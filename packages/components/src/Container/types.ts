@@ -1,6 +1,10 @@
 import { ReactNode } from "react";
+import {
+  CommonAllowedElements,
+  CommonAtlantisProps,
+} from "../sharedHooks/types";
 
-export interface ContainerProps {
+export interface ContainerProps extends CommonAtlantisProps {
   readonly children: ReactNode;
   /** The name of the container. This allows you to name your container query, but it's not necessary. */
   readonly name: string;
@@ -9,16 +13,7 @@ export interface ContainerProps {
   /** Whether to allow the container to take the width of the content. Defaults to 100% */
   readonly autoWidth?: boolean;
   /** The HTML tag to render the container as. Defaults to `div`. */
-  as?:
-    | "section"
-    | "article"
-    | "ul"
-    | "li"
-    | "div"
-    | "span"
-    | "dl"
-    | "dd"
-    | "dt";
+  as?: CommonAllowedElements;
 }
 export interface ContainerApplyProps {
   readonly children: ReactNode;

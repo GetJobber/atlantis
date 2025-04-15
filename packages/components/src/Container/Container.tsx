@@ -2,6 +2,10 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Container.module.css";
 import { ContainerApplyProps, ContainerProps } from "./types";
+import {
+  ariaPropsMapped,
+  dataPropsMapped,
+} from "../sharedHooks/useCommonProps";
 
 export const Container = ({
   children,
@@ -9,9 +13,17 @@ export const Container = ({
   className,
   as: Tag = "div",
   autoWidth = false,
+  data,
+  aria,
+  role,
+  id,
 }: ContainerProps) => {
   return (
     <Tag
+      role={role}
+      id={id}
+      {...dataPropsMapped(data)}
+      {...ariaPropsMapped(aria)}
       style={
         {
           "--public-container-name": name,

@@ -1,7 +1,11 @@
 import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import { Spaces } from "../sharedHooks/useSpaces";
+import {
+  CommonAllowedElements,
+  CommonAtlantisProps,
+} from "../sharedHooks/types";
 
-export interface ContentBlockProps {
+export interface ContentBlockProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
 
   /**
@@ -28,14 +32,5 @@ export interface ContentBlockProps {
   readonly gutters?: Spaces | (string & NonNullable<unknown>);
 
   /** The HTML tag to render the container as. Defaults to `div`. */
-  as?:
-    | "section"
-    | "article"
-    | "ul"
-    | "li"
-    | "div"
-    | "span"
-    | "dl"
-    | "dd"
-    | "dt";
+  as?: CommonAllowedElements;
 }

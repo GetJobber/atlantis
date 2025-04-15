@@ -1,13 +1,22 @@
-import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import { Spaces } from "../sharedHooks/useSpaces";
+import { AtlantisBreakpoints } from "../sharedHooks/useBreakpoints";
+import {
+  CommonAllowedElements,
+  CommonAtlantisProps,
+} from "../sharedHooks/types";
 
-export interface ClusterProps {
+export interface ClusterProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
 
   /**
    * The horizontal justification of the cluster elements.
    */
-  readonly justify?: "start" | "end" | "center" | "between" | "around";
+  readonly justify?:
+    | "start"
+    | "end"
+    | "center"
+    | "space-between"
+    | "space-around";
 
   /**
    * The vertical alignment of the cluster elements.
@@ -22,10 +31,20 @@ export interface ClusterProps {
   /**
    * The breakpoint below which the cluster will collapse.
    */
-  readonly collapseBelow?: typeof Breakpoints | (string & NonNullable<unknown>);
+  readonly collapseBelow?: typeof AtlantisBreakpoints;
+
+  /**
+   * Force the cluster to collapse. Use this when our breakpoints are not enough control.
+   */
+  readonly collapsed?: boolean;
 
   /**
    * Enabling this prevents the cluster from taking 100% of the width of the parent and instead flows with the content.
    */
   autoWidth?: boolean;
+
+  /**
+   * The HTML tag to render the cluster as.
+   */
+  as?: CommonAllowedElements;
 }

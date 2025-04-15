@@ -1,9 +1,12 @@
 import React from "react";
 import classNames from "classnames";
-import { useMediaQuery } from "@jobber/hooks";
 import styles from "./SideKick.module.css";
 import { SideKickProps } from "./types";
 import { useSpaces } from "../sharedHooks/useSpaces";
+import {
+  ariaPropsMapped,
+  dataPropsMapped,
+} from "../sharedHooks/useCommonProps";
 
 export function SideKick({
   children,
@@ -12,14 +15,22 @@ export function SideKick({
   gap = "var(--space-base)",
   onRight,
   collapseBelow,
+  collapsed,
   autoWidth = false,
   as: Tag = "div",
+  data,
+  aria,
+  role,
+  id,
 }: SideKickProps) {
   const spaceMapped = useSpaces(gap);
-  const collapsed = useMediaQuery(`(max-width: ${collapseBelow || "0"})`);
 
   return (
     <Tag
+      role={role}
+      id={id}
+      {...dataPropsMapped(data)}
+      {...ariaPropsMapped(aria)}
       style={
         {
           "--public-sidekick-side-width": sideWidth,
@@ -36,7 +47,8 @@ export function SideKick({
             ? styles.withWidthRight
             : styles.withWidthLeft
           : null,
-        collapsed && collapseBelow ? styles.collapsed : null,
+        collapseBelow,
+        collapsed ? styles.collapsed : undefined,
       )}
     >
       {children}

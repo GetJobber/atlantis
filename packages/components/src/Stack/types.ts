@@ -1,6 +1,10 @@
 import { Spaces } from "../sharedHooks/useSpaces";
+import {
+  CommonAllowedElements,
+  CommonAtlantisProps,
+} from "../sharedHooks/types";
 
-export interface StackProps {
+export interface StackProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
   /** The amount of space between the children. Semantic tokens are available. */
   readonly gap?: string | Spaces;
@@ -29,14 +33,5 @@ export interface StackProps {
   /** Whether to allow the stack to take the width of the content. Defaults to 100% */
   readonly autoWidth?: boolean;
   /** The HTML tag to render the container as. Defaults to `div`. */
-  as?:
-    | "section"
-    | "article"
-    | "ul"
-    | "li"
-    | "div"
-    | "span"
-    | "dl"
-    | "dd"
-    | "dt";
+  as?: CommonAllowedElements;
 }

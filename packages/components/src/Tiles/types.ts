@@ -1,6 +1,10 @@
 import { Spaces } from "../sharedHooks/useSpaces";
+import {
+  CommonAllowedElements,
+  CommonAtlantisProps,
+} from "../sharedHooks/types";
 
-export interface TilesProps {
+export interface TilesProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
   /** The minimum size of the tiles. */
   readonly minSize: string;
@@ -9,14 +13,5 @@ export interface TilesProps {
   /** Whether to allow the tiles to take the width of the content. Defaults to 100% */
   readonly autoWidth?: boolean;
   /** The HTML tag to render the container as. Defaults to `div`. */
-  as?:
-    | "section"
-    | "article"
-    | "ul"
-    | "li"
-    | "div"
-    | "span"
-    | "dl"
-    | "dd"
-    | "dt";
+  as?: CommonAllowedElements;
 }

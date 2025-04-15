@@ -3,6 +3,10 @@ import classNames from "classnames";
 import styles from "./Stack.module.css";
 import { StackProps } from "./types";
 import { spaceTokens, useSpaces } from "../sharedHooks/useSpaces";
+import {
+  ariaPropsMapped,
+  dataPropsMapped,
+} from "../sharedHooks/useCommonProps";
 
 export function Stack({
   gap = spaceTokens.base,
@@ -12,11 +16,19 @@ export function Stack({
   align,
   autoWidth = false,
   as: Tag = "div",
+  data,
+  aria,
+  role,
+  id,
 }: StackProps) {
   const spaceMapped = useSpaces(gap);
 
   return (
     <Tag
+      role={role}
+      id={id}
+      {...dataPropsMapped(data)}
+      {...ariaPropsMapped(aria)}
       style={
         {
           "--public-stack-split": splitAfter,

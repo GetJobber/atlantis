@@ -4,6 +4,10 @@ import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import styles from "./ContentBlock.module.css";
 import { ContentBlockProps } from "./types";
 import { useSpaces } from "../sharedHooks/useSpaces";
+import {
+  ariaPropsMapped,
+  dataPropsMapped,
+} from "../sharedHooks/useCommonProps";
 
 export function ContentBlock({
   children,
@@ -12,6 +16,10 @@ export function ContentBlock({
   gutters,
   justify = "left",
   as: Tag = "div",
+  data,
+  aria,
+  role,
+  id,
 }: ContentBlockProps) {
   const guttersMapped = useSpaces(gutters);
 
@@ -36,6 +44,10 @@ export function ContentBlock({
 
   return (
     <Tag
+      role={role}
+      id={id}
+      {...dataPropsMapped(data)}
+      {...ariaPropsMapped(aria)}
       style={style}
       className={classNames(
         styles.contentBlock,

@@ -36,3 +36,34 @@
 .collapsed {
   flex-direction: column;
 }
+
+.sm,
+.md,
+.lg,
+.xl {
+  flex-direction: column;
+}
+
+@media (--small-screens-and-up) {
+  .sm {
+    flex-direction: row;
+  }
+}
+
+@media (--medium-screens-and-up) {
+  .md {
+    flex-direction: row;
+  }
+}
+
+@media (--large-screens-and-up) {
+  .lg {
+    flex-direction: row;
+  }
+}
+
+@media (--extra-large-screens-and-up) {
+  .xl {
+    flex-direction: row;
+  }
+}
