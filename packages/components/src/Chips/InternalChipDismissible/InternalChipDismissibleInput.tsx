@@ -13,7 +13,6 @@ import { Text } from "../../Text";
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
 
-// eslint-disable-next-line max-statements
 export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
