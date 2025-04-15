@@ -1,8 +1,8 @@
-import { Spaces } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
 import {
-  CommonAllowedElements,
-  CommonAtlantisProps,
+  type CommonAllowedElements,
+  type CommonAtlantisProps,
+  type GapSpacing,
 } from "../sharedHelpers/types";
 
 export interface SideKickProps extends CommonAtlantisProps {
@@ -12,7 +12,7 @@ export interface SideKickProps extends CommonAtlantisProps {
   /** The minimum width of the content. */
   readonly contentMinWidth?: string;
   /** The amount of space between the sidekick and the content. Semantic tokens are available. */
-  readonly gap?: string | Spaces;
+  readonly gap?: GapSpacing;
   /** Whether to place the sidekick on the right. */
   readonly onRight?: boolean;
   /** The breakpoint to collapse the sidekick at. */

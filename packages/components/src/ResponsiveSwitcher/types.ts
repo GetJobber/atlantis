@@ -1,7 +1,7 @@
-import { Spaces } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 import {
-  CommonAllowedElements,
-  CommonAtlantisProps,
+  type CommonAllowedElements,
+  type CommonAtlantisProps,
+  type GapSpacing,
 } from "../sharedHelpers/types";
 
 export interface ResponsiveSwitcherProps extends CommonAtlantisProps {
@@ -11,7 +11,7 @@ export interface ResponsiveSwitcherProps extends CommonAtlantisProps {
   readonly threshold: string;
 
   /** The amount of space between the children. Semantic tokens are available. */
-  readonly gap?: Spaces | (string & NonNullable<unknown>);
+  readonly gap?: GapSpacing;
 
   /** The HTML tag to render the container as. Defaults to `div`. */
   as?: CommonAllowedElements;

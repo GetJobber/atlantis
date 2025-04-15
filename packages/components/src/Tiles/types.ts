@@ -1,7 +1,7 @@
-import { Spaces } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 import {
-  CommonAllowedElements,
-  CommonAtlantisProps,
+  type CommonAllowedElements,
+  type CommonAtlantisProps,
+  type GapSpacing,
 } from "../sharedHelpers/types";
 
 export interface TilesProps extends CommonAtlantisProps {
@@ -9,7 +9,7 @@ export interface TilesProps extends CommonAtlantisProps {
   /** The minimum size of the tiles. */
   readonly minSize: string;
   /** The amount of space between the tiles. Semantic tokens are available. */
-  readonly gap: string | Spaces;
+  readonly gap?: GapSpacing;
   /** Whether to allow the tiles to take the width of the content. Defaults to 100% */
   readonly autoWidth?: boolean;
   /** The HTML tag to render the container as. Defaults to `div`. */

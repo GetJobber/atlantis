@@ -1,7 +1,7 @@
-import { Spaces } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 import {
-  CommonAllowedElements,
-  CommonAtlantisProps,
+  type CommonAllowedElements,
+  type CommonAtlantisProps,
+  type GapSpacing,
 } from "../sharedHelpers/types";
 
 export interface CoverProps extends CommonAtlantisProps {
@@ -9,7 +9,7 @@ export interface CoverProps extends CommonAtlantisProps {
   /** The minimum height of the element. Suggested to use `vh` units. */
   readonly minHeight?: string;
   /** The amount of space around the centered content */
-  readonly gap?: Spaces | (string & NonNullable<unknown>);
+  readonly gap?: GapSpacing;
   /** The HTML tag to render the container as. Defaults to `div`. */
   as?: CommonAllowedElements;
 

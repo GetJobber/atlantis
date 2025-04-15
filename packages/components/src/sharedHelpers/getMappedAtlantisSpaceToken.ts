@@ -1,14 +1,4 @@
-export type Spaces =
-  | "minuscule"
-  | "slim"
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "base"
-  | "large"
-  | "larger"
-  | "largest"
-  | "extravagant";
+import { Spaces } from "./types";
 
 export const spaceTokens: Record<Spaces, string> = {
   minuscule: "var(--space-minuscule)",

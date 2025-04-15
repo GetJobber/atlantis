@@ -1,13 +1,13 @@
-import { Spaces } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 import {
-  CommonAllowedElements,
-  CommonAtlantisProps,
+  type CommonAllowedElements,
+  type CommonAtlantisProps,
+  type GapSpacing,
 } from "../sharedHelpers/types";
 
 export interface StackProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
   /** The amount of space between the children. Semantic tokens are available. */
-  readonly gap?: string | Spaces;
+  readonly gap?: GapSpacing;
   /** Setting this will push the stack down to the bottom of the parent container,
    * after the number of children provided (1-15).
    * Requires parent to have height greater than the sum of the children. */

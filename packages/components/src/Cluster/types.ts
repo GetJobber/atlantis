@@ -1,8 +1,8 @@
-import { Spaces } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
 import {
-  CommonAllowedElements,
-  CommonAtlantisProps,
+  type CommonAllowedElements,
+  type CommonAtlantisProps,
+  type GapSpacing,
 } from "../sharedHelpers/types";
 
 export interface ClusterProps extends CommonAtlantisProps {
@@ -26,7 +26,7 @@ export interface ClusterProps extends CommonAtlantisProps {
   /**
    * The amount of space between the cluster elements. Semantic tokens are available.
    */
-  readonly gap?: Spaces | (string & NonNullable<unknown>);
+  readonly gap?: GapSpacing;
 
   /**
    * The breakpoint below which the cluster will collapse.

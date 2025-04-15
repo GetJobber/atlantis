@@ -1,9 +1,9 @@
 import {
   CommonAllowedElements,
   CommonAtlantisProps,
+  GapSpacing,
 } from "../sharedHelpers/types";
 import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
-import { Spaces } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export interface ContentBlockProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
@@ -29,7 +29,7 @@ export interface ContentBlockProps extends CommonAtlantisProps {
   /**
    * The amount of space between the content and the edges of the container.
    */
-  readonly gutters?: Spaces | (string & NonNullable<unknown>);
+  readonly gutters?: GapSpacing;
 
   /** The HTML tag to render the container as. Defaults to `div`. */
   as?: CommonAllowedElements;

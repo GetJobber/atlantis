@@ -10,6 +10,7 @@ export interface CommonAtlantisProps {
 }
 export type CommonAllowedElements =
   | "section"
+  | "p"
   | "article"
   | "ul"
   | "li"
@@ -18,3 +19,16 @@ export type CommonAllowedElements =
   | "dl"
   | "dd"
   | "dt";
+
+export type Spaces =
+  | "minuscule"
+  | "slim"
+  | "smallest"
+  | "smaller"
+  | "small"
+  | "base"
+  | "large"
+  | "larger"
+  | "largest"
+  | "extravagant";
+export type GapSpacing = Spaces | (string & NonNullable<unknown>);

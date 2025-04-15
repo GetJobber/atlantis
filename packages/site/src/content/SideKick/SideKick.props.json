@@ -46,7 +46,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "GapSpacing"
         }
       },
       "onRight": {
