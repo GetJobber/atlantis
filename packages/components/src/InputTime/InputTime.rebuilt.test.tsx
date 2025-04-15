@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { InputTimeRebuilt } from "./InputTime.rebuilt";
+import { InputTime } from ".";
 import * as TimePredictHook from "./hooks/useTimePredict";
 
 const mockSetTypedTime = jest.fn();
@@ -19,15 +19,13 @@ const createDate = (hours: number, minutes: number): Date => {
 describe("InputTimeRebuilt", () => {
   it("renders an initial time when given 'defaultValue'", () => {
     const defaultDate = createDate(11, 23);
-    render(<InputTimeRebuilt version={2} defaultValue={defaultDate} />);
+    render(<InputTime version={2} defaultValue={defaultDate} />);
     expect(screen.getByDisplayValue("11:23")).toBeInTheDocument();
   });
 
   it("should set the value when given 'value'", () => {
     const valueDate = createDate(12, 30);
-    render(
-      <InputTimeRebuilt version={2} value={valueDate} onChange={jest.fn()} />,
-    );
+    render(<InputTime version={2} value={valueDate} onChange={jest.fn()} />);
     expect(screen.getByDisplayValue("12:30")).toBeInTheDocument();
   });
 
@@ -38,11 +36,7 @@ describe("InputTimeRebuilt", () => {
     const changeHandler = jest.fn();
 
     render(
-      <InputTimeRebuilt
-        version={2}
-        value={startDate}
-        onChange={changeHandler}
-      />,
+      <InputTime version={2} value={startDate} onChange={changeHandler} />,
     );
 
     fireEvent.change(screen.getByTestId("ATL-InputTime-input"), {
@@ -65,7 +59,7 @@ describe("InputTimeRebuilt", () => {
   it("should call onFocus when the input is focused", async () => {
     const focusHandler = jest.fn();
     render(
-      <InputTimeRebuilt
+      <InputTime
         version={2}
         onFocus={focusHandler}
         value={createDate(10, 0)}
@@ -77,7 +71,7 @@ describe("InputTimeRebuilt", () => {
 
   it("should call onBlur when the input loses focus", async () => {
     const blurHandler = jest.fn();
-    render(<InputTimeRebuilt version={2} onBlur={blurHandler} />);
+    render(<InputTime version={2} onBlur={blurHandler} />);
     const input = screen.getByTestId("ATL-InputTime-input");
     await userEvent.click(input);
     await userEvent.tab();
@@ -91,7 +85,7 @@ describe("InputTimeRebuilt", () => {
     const inputRef = React.createRef<HTMLInputElement>();
 
     render(
-      <InputTimeRebuilt
+      <InputTime
         version={2}
         value={startDate}
         onChange={changeHandler}
@@ -112,29 +106,27 @@ describe("InputTimeRebuilt", () => {
   });
 
   describe("useTimePredict integration", () => {
-    let input: HTMLElement;
     const initialValue = createDate(10, 0);
-    const handleChange = jest.fn();
 
     beforeEach(() => {
       mockSetTypedTime.mockClear();
       (TimePredictHook.useTimePredict as jest.Mock).mockClear();
-      handleChange.mockClear();
+    });
+
+    // This is asserting imperfect behavior that is preexisting
+    // ideally it would only be called once
+    it("calls useTimePredict hook on initial render", () => {
+      const handleChange = jest.fn();
 
       render(
-        <InputTimeRebuilt
+        <InputTime
           version={2}
           value={initialValue}
           onChange={handleChange}
           name="Hook Test"
         />,
       );
-      input = screen.getByTestId("ATL-InputTime-input");
-    });
 
-    // This is asserting imperfect behavior that is preexisting
-    // ideally it would only be called once
-    it("calls useTimePredict hook on initial render", () => {
       expect(TimePredictHook.useTimePredict).toHaveBeenCalledTimes(2);
       expect(TimePredictHook.useTimePredict).toHaveBeenCalledWith({
         value: initialValue,
@@ -143,12 +135,37 @@ describe("InputTimeRebuilt", () => {
     });
 
     it("calls setTypedTime for single numeric key press", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
       await userEvent.type(input, "1");
+
       expect(mockSetTypedTime).toHaveBeenCalledTimes(1);
       expect(mockSetTypedTime).toHaveBeenCalledWith(expect.any(Function));
     });
 
     it("calls setTypedTime for multiple numeric key presses", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
       await userEvent.type(input, "23");
 
       expect(mockSetTypedTime).toHaveBeenCalledTimes(2);
@@ -157,11 +174,36 @@ describe("InputTimeRebuilt", () => {
     });
 
     it("does not call setTypedTime for non-numeric key press", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
       await userEvent.type(input, "a");
+
       expect(mockSetTypedTime).not.toHaveBeenCalled();
     });
 
     it("calls setTypedTime correctly for mixed key presses", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
       await userEvent.type(input, "1a2");
 
       expect(mockSetTypedTime).toHaveBeenCalledTimes(2);
@@ -170,26 +212,38 @@ describe("InputTimeRebuilt", () => {
     });
 
     it("should not call setTypedTime if the input is disabled", async () => {
+      const handleChange = jest.fn();
+
       render(
-        <InputTimeRebuilt
+        <InputTime
           version={2}
           value={initialValue}
           onChange={handleChange}
           disabled
         />,
       );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
+      await userEvent.type(input, "1");
+
       expect(mockSetTypedTime).not.toHaveBeenCalled();
     });
 
     it("should not call setTypedTime if the input is readonly", async () => {
+      const handleChange = jest.fn();
+
       render(
-        <InputTimeRebuilt
+        <InputTime
           version={2}
           value={initialValue}
           onChange={handleChange}
           readonly
         />,
       );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
+      await userEvent.type(input, "1");
+
       expect(mockSetTypedTime).not.toHaveBeenCalled();
     });
   });
