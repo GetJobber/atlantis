@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
-import { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.Types";
+import { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.types";
 import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 
@@ -78,9 +78,6 @@ export function InputTimeRebuilt({
 
     if (ref.current) {
       if (!ref.current.checkValidity()) {
-        // don't we need to update the value too?
-        // is it valid for them to be out of sync?
-        // onChange?.(undefined);
         ref.current.value = "";
       }
     }
