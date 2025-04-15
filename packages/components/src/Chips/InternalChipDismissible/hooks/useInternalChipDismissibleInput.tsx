@@ -88,8 +88,6 @@ export function useInternalChipDismissibleInput({
     handleBlur: () => {
       if (shouldCancelBlur) return;
 
-      // const valueBeforeBlur = computed.inputRef.current?.value;
-
       if (
         submitInputOnFocusShift &&
         searchValue.length > 0 &&
