@@ -168,5 +168,29 @@ describe("InputTimeRebuilt", () => {
       expect(mockSetTypedTime).toHaveBeenNthCalledWith(1, expect.any(Function));
       expect(mockSetTypedTime).toHaveBeenNthCalledWith(2, expect.any(Function));
     });
+
+    it("should not call setTypedTime if the input is disabled", async () => {
+      render(
+        <InputTimeRebuilt
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          disabled
+        />,
+      );
+      expect(mockSetTypedTime).not.toHaveBeenCalled();
+    });
+
+    it("should not call setTypedTime if the input is readonly", async () => {
+      render(
+        <InputTimeRebuilt
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          readonly
+        />,
+      );
+      expect(mockSetTypedTime).not.toHaveBeenCalled();
+    });
   });
 });

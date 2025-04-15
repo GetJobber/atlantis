@@ -56,6 +56,8 @@ export function InputTimeRebuilt({
         onFocus={handleFocus}
         data-testid="ATL-InputTime-input"
         onKeyUp={e => {
+          if (params.disabled || params.readonly) return;
+
           !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
         }}
         {...valueProps}
