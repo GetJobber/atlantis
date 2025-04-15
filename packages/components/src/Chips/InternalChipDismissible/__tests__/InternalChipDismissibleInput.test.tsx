@@ -207,10 +207,8 @@ describe("Add/delete via keyboard", () => {
     const newValue = "Brand New Option";
     fireEvent.change(input, { target: { value: newValue } });
 
-    // Wait for debounce that updates options/state based on search
     act(() => {
-      // jest.advanceTimersByTime(300);
-      jest.runOnlyPendingTimers(); // Run the search debounce timer
+      jest.runOnlyPendingTimers();
     });
 
     fireEvent.keyDown(input, { key: "Enter" });
