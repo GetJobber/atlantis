@@ -13,8 +13,8 @@ export function ContentBlock({
   gutters,
   justify = "left",
   as: Tag = "div",
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
   UNSAFE_className,
@@ -24,8 +24,8 @@ export function ContentBlock({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--content-block-max-width": getMappedBreakpointWidth(maxWidth),

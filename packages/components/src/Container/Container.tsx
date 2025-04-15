@@ -9,8 +9,8 @@ export const Container = ({
   className,
   as: Tag = "div",
   autoWidth = false,
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
 }: ContainerProps) => {
@@ -18,8 +18,8 @@ export const Container = ({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-container-name": name,

@@ -13,8 +13,8 @@ export function ResponsiveSwitcher({
   gap = spaceTokens.base,
   limit = 2,
   as: Tag = "div",
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
   UNSAFE_className,
@@ -24,8 +24,8 @@ export function ResponsiveSwitcher({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       className={classNames(
         styles.responsiveSwitcher,
         styles[`limit-${limit}` as keyof typeof styles],

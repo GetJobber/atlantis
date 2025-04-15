@@ -9,8 +9,8 @@ export function Cover({
   minHeight,
   gap,
   as: Tag = "div",
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
   UNSAFE_className,
@@ -20,8 +20,8 @@ export function Cover({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-cover-min-height": minHeight,
@@ -43,15 +43,15 @@ Cover.Center = function CenterContent({
   as: Tag = "div",
   id,
   role,
-  aria,
-  data,
+  ariaAttributes,
+  dataAttributes,
 }: CoverCenterContentProps) {
   return (
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       className={classNames(
         styles.centerContent,
         UNSAFE_className?.centerContent,

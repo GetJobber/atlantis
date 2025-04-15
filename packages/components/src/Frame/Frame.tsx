@@ -8,8 +8,8 @@ export function Frame({
   aspectX = 16,
   aspectY = 9,
   as: Tag = "div",
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
   UNSAFE_className,
@@ -19,8 +19,8 @@ export function Frame({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       className={classNames(styles.frame, UNSAFE_className?.container)}
       style={
         {

@@ -10,8 +10,8 @@ export function Tiles({
   gap = "base",
   autoWidth = false,
   as: Tag = "div",
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
   UNSAFE_className,
@@ -21,8 +21,8 @@ export function Tiles({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-tile-min-size": minSize,

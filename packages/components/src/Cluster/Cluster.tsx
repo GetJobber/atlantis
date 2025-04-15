@@ -13,8 +13,8 @@ export function Cluster({
   collapsed,
   autoWidth = false,
   as: Tag = "div",
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
   UNSAFE_className,
@@ -26,8 +26,8 @@ export function Cluster({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-cluster-justify": justify,

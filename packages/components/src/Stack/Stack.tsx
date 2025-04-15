@@ -15,8 +15,8 @@ export function Stack({
   align,
   autoWidth = false,
   as: Tag = "div",
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
   UNSAFE_className,
@@ -26,8 +26,8 @@ export function Stack({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-stack-split": splitAfter,

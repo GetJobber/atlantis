@@ -14,8 +14,8 @@ export function SideKick({
   collapsed,
   autoWidth = false,
   as: Tag = "div",
-  data,
-  aria,
+  dataAttributes,
+  ariaAttributes,
   role,
   id,
   UNSAFE_className,
@@ -25,8 +25,8 @@ export function SideKick({
     <Tag
       role={role}
       id={id}
-      {...data}
-      {...aria}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-sidekick-side-width": sideWidth,
