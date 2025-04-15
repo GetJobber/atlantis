@@ -6,12 +6,12 @@
     "displayName": "Stack",
     "methods": [],
     "props": {
-      "space": {
+      "gap": {
         "defaultValue": {
           "value": "spaceTokens.base"
         },
         "description": "The amount of space between the children. Semantic tokens are available.",
-        "name": "space",
+        "name": "gap",
         "parent": {
           "fileName": "packages/components/src/Stack/types.ts",
           "name": "StackProps"
@@ -23,7 +23,7 @@
       },
       "splitAfter": {
         "defaultValue": null,
-        "description": "The number of children to split the stack after (1-15). Requires parent to have height greater than the sum of the children.",
+        "description": "Setting this will push the stack down to the bottom of the parent container,\nafter the number of children provided (1-15).\nRequires parent to have height greater than the sum of the children.",
         "name": "splitAfter",
         "parent": {
           "fileName": "packages/components/src/Stack/types.ts",
@@ -73,6 +73,97 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "as": {
+        "defaultValue": null,
+        "description": "The HTML tag to render the container as. Defaults to `div`.",
+        "name": "as",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CommonAllowedElements"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; }"
+        }
+      },
+      "data": {
+        "defaultValue": null,
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "data",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ [key: `data-${string}`]: string; }"
+        }
+      },
+      "aria": {
+        "defaultValue": null,
+        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
+        "name": "aria",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaAttributes"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Standard HTML role attribute.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaRole"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "Standard HTML id attribute.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }
