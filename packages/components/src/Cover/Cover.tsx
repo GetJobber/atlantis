@@ -50,8 +50,8 @@ Cover.Center = function CenterContent({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       className={classNames(
         styles.centerContent,
         UNSAFE_className?.centerContent,
