@@ -8,7 +8,9 @@ export interface StackProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
   /** The amount of space between the children. Semantic tokens are available. */
   readonly gap?: string | Spaces;
-  /** The number of children to split the stack after (1-15). Requires parent to have height greater than the sum of the children. */
+  /** Setting this will push the stack down to the bottom of the parent container,
+   * after the number of children provided (1-15).
+   * Requires parent to have height greater than the sum of the children. */
   readonly splitAfter?:
     | 1
     | 2
