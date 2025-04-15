@@ -397,7 +397,7 @@ describe("onlyShowMenuOnSearch", () => {
     expect(screen.getByRole("combobox")).toHaveFocus();
   });
 
-  it("should update input value, but not show menu immediately on type", () => {
+  it("should update input value, and eventually show menu on type", () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
     const input = screen.getByRole("combobox");
@@ -408,6 +408,12 @@ describe("onlyShowMenuOnSearch", () => {
 
     expect(input).toHaveValue(searchValue);
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
   });
 
   it("should clear input value and keep menu hidden on clear", () => {
