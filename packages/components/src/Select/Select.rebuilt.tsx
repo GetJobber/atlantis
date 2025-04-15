@@ -1,4 +1,4 @@
-import React, { forwardRef, useId, useRef } from "react";
+import React, { useId, useRef } from "react";
 import omit from "lodash/omit";
 import { SelectRebuiltProps } from "./Select.types";
 import { useSelectActions } from "./hooks/useSelectActions";
@@ -9,17 +9,11 @@ import {
   useFormFieldWrapperStyles,
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
-import { mergeRefs } from "../utils/mergeRefs";
 
-/**
- * SelectRebuilt is a version of the Select component that doesn't rely on React Hook Form.
- * It extracts the selection logic into custom hooks.
- */
-export const SelectRebuilt = forwardRef(function SelectInternal(
-  props: SelectRebuiltProps,
-  ref: React.Ref<HTMLSelectElement>,
-) {
-  const selectRef = useRef<HTMLSelectElement>(null);
+export function SelectRebuilt(props: SelectRebuiltProps) {
+  const selectRef =
+    (props.inputRef as React.RefObject<HTMLSelectElement>) ??
+    useRef<HTMLSelectElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const { inputStyle } = useFormFieldWrapperStyles({
@@ -82,18 +76,14 @@ export const SelectRebuilt = forwardRef(function SelectInternal(
       clearable="never"
     >
       <>
-        <select
-          {...fieldProps}
-          ref={mergeRefs([ref, selectRef])}
-          className={inputStyle}
-        >
+        <select {...fieldProps} ref={selectRef} className={inputStyle}>
           {props.children}
         </select>
         <FormFieldPostFix variation="select" />
       </>
     </FormFieldWrapper>
   );
-});
+}
 
 function useSelectId(props: SelectRebuiltProps) {
   const generatedId = useId();
