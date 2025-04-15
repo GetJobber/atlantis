@@ -11,7 +11,6 @@ export interface UseSelectFormFieldProps {
   readonly error?: string;
   readonly invalid?: boolean;
   readonly value?: string;
-  readonly defaultValue?: string;
   readonly handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   readonly handleBlur: () => void;
   readonly handleFocus: () => void;
@@ -28,7 +27,6 @@ export interface UseSelectFormFieldReturn {
     readonly onBlur: () => void;
     readonly onFocus: () => void;
     readonly value?: string;
-    readonly defaultValue?: string;
     readonly "aria-describedby"?: string;
   };
   readonly descriptionIdentifier: string;
@@ -47,7 +45,6 @@ export function useSelectFormField({
   description,
   inline,
   value,
-  defaultValue,
   handleChange,
   handleBlur,
   handleFocus,
@@ -64,7 +61,6 @@ export function useSelectFormField({
     onBlur: handleBlur,
     onFocus: handleFocus,
     value,
-    defaultValue,
     ...(description &&
       !inline && { "aria-describedby": descriptionIdentifier }),
   };

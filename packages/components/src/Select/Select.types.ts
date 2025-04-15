@@ -38,6 +38,6 @@ export interface SelectProps
 /**
  * Rebuilt version of the Select component without React Hook Form dependency.
  */
-export interface SelectRebuiltProps extends SelectProps {
+export interface SelectRebuiltProps extends Omit<SelectProps, "defaultValue"> {
   version: 2;
 }
