@@ -6,10 +6,6 @@ import {
   getMappedAtlantisSpaceToken,
   spaceTokens,
 } from "../sharedHelpers/getMappedAtlantisSpaceToken";
-import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
 
 export function ResponsiveSwitcher({
   children,
@@ -28,8 +24,8 @@ export function ResponsiveSwitcher({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       className={classNames(
         styles.responsiveSwitcher,
         styles[`limit-${limit}` as keyof typeof styles],

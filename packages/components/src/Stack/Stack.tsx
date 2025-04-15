@@ -3,10 +3,6 @@ import classNames from "classnames";
 import styles from "./Stack.module.css";
 import { StackProps } from "./types";
 import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
-import {
   getMappedAtlantisSpaceToken,
   spaceTokens,
 } from "../sharedHelpers/getMappedAtlantisSpaceToken";
@@ -30,8 +26,8 @@ export function Stack({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       style={
         {
           "--public-stack-split": splitAfter,

@@ -4,10 +4,6 @@ import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import styles from "./ContentBlock.module.css";
 import { ContentBlockProps } from "./types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
-import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
 import { getMappedBreakpointWidth } from "../sharedHelpers/getMappedBreakpointWidth";
 
 export function ContentBlock({
@@ -28,8 +24,8 @@ export function ContentBlock({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       style={
         {
           "--content-block-max-width": getMappedBreakpointWidth(maxWidth),

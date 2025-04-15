@@ -2,10 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Cover.module.css";
 import { CoverCenterContentProps, CoverProps } from "./types";
-import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Cover({
@@ -24,8 +20,8 @@ export function Cover({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       style={
         {
           "--public-cover-min-height": minHeight,

@@ -2,10 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Frame.module.css";
 import { FrameProps } from "./types";
-import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
 
 export function Frame({
   children,
@@ -23,8 +19,8 @@ export function Frame({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       className={classNames(styles.frame, UNSAFE_className?.container)}
       style={
         {

@@ -2,10 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Cluster.module.css";
 import { ClusterProps } from "./types";
-import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Cluster({
@@ -30,8 +26,8 @@ export function Cluster({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       style={
         {
           "--public-cluster-justify": justify,

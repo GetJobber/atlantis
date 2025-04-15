@@ -2,10 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./SideKick.module.css";
 import { SideKickProps } from "./types";
-import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function SideKick({
@@ -29,8 +25,8 @@ export function SideKick({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       style={
         {
           "--public-sidekick-side-width": sideWidth,

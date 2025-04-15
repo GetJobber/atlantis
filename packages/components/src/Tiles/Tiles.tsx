@@ -2,10 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Tiles.module.css";
 import { TilesProps } from "./types";
-import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Tiles({
@@ -25,8 +21,8 @@ export function Tiles({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       style={
         {
           "--public-tile-min-size": minSize,

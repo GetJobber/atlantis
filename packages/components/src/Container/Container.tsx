@@ -2,10 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Container.module.css";
 import { ContainerApplyProps, ContainerProps } from "./types";
-import {
-  ariaPropsMapped,
-  dataPropsMapped,
-} from "../sharedHelpers/getCommonProps";
 
 export const Container = ({
   children,
@@ -22,8 +18,8 @@ export const Container = ({
     <Tag
       role={role}
       id={id}
-      {...dataPropsMapped(data)}
-      {...ariaPropsMapped(aria)}
+      {...data}
+      {...aria}
       style={
         {
           "--public-container-name": name,
