@@ -48,7 +48,7 @@ export function SideKick({
             ? styles.withWidthRight
             : styles.withWidthLeft
           : null,
-        collapseBelow,
+        collapseBelow && styles[collapseBelow as keyof typeof styles],
         collapsed ? styles.collapsed : undefined,
         UNSAFE_className?.container,
       )}

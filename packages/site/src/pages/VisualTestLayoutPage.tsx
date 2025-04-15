@@ -265,7 +265,8 @@ export const VisualTestLayoutPage = () => {
                       <Button label="Will" type="secondary" />
                       <Button label="Stack" type="secondary" />
                       <Button label="Below" type="secondary" />
-                      <Button label="600px" type="secondary" />
+                      <Button label="md" type="secondary" />
+                      <Button label="Breakpoint" type="secondary" />
                     </Cluster>
                   </Box>
                 </Card>
@@ -743,11 +744,7 @@ export const VisualTestLayoutPage = () => {
                 <Text size="large">SideKick with Collapse</Text>
                 <Card>
                   <Box padding="base">
-                    <SideKick
-                      sideWidth="200px"
-                      contentMinWidth="50%"
-                      collapseBelow="lg"
-                    >
+                    <SideKick sideWidth="200px" contentMinWidth="50%">
                       <Card>
                         <Box padding="base">
                           <Stack>

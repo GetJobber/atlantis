@@ -43,7 +43,7 @@ export function Cluster({
       }
       className={classNames(
         styles.cluster,
-        collapseBelow,
+        collapseBelow && styles[collapseBelow as keyof typeof styles],
         collapsed ? styles.collapsed : undefined,
         UNSAFE_className?.container,
       )}

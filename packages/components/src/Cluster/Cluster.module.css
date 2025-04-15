@@ -7,16 +7,6 @@
   width: var(--public-cluster-width);
 }
 
-.collapsed {
-  flex-direction: column;
-}
-
-.collapsed > * {
-  flex-basis: auto;
-  width: 100%;
-  min-width: 0;
-}
-
 /** When we nest clusters, the clustering stops working because of the 100% width. This prevents nested clusters from fighting **/
 .cluster .cluster {
   width: auto;
@@ -31,9 +21,20 @@
   flex-direction: column;
 }
 
+.sm > *,
+.md > *,
+.lg > *,
+.xl > * {
+  width: 100%;
+}
+
 @media (--small-screens-and-up) {
   .sm {
     flex-direction: row;
+  }
+
+  .sm > * {
+    width: auto;
   }
 }
 
@@ -41,11 +42,19 @@
   .md {
     flex-direction: row;
   }
+
+  .md > * {
+    width: auto;
+  }
 }
 
 @media (--large-screens-and-up) {
   .lg {
     flex-direction: row;
+  }
+
+  .lg > * {
+    width: auto;
   }
 }
 
@@ -53,4 +62,16 @@
   .xl {
     flex-direction: row;
   }
+
+  .xl > * {
+    width: auto;
+  }
+}
+
+.cluster.collapsed {
+  flex-direction: column;
+}
+
+.cluster.collapsed > * {
+  width: 100%;
 }
