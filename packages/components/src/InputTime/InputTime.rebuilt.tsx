@@ -50,6 +50,8 @@ export function InputTimeRebuilt({
         name={params.name}
         className={inputStyle}
         onBlur={handleBlur}
+        disabled={params.disabled}
+        readOnly={params.readonly}
         onChange={handleChangeEvent}
         onFocus={handleFocus}
         data-testid="ATL-InputTime-input"
