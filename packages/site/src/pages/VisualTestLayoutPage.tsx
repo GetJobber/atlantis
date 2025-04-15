@@ -744,7 +744,11 @@ export const VisualTestLayoutPage = () => {
                 <Text size="large">SideKick with Collapse</Text>
                 <Card>
                   <Box padding="base">
-                    <SideKick sideWidth="200px" contentMinWidth="50%">
+                    <SideKick
+                      sideWidth="200px"
+                      contentMinWidth="50%"
+                      collapseBelow="md"
+                    >
                       <Card>
                         <Box padding="base">
                           <Stack>
