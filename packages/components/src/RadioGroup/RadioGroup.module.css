@@ -33,8 +33,12 @@
   flex-shrink: 0;
 }
 
-.verticallyCentered .input + .label::before {
-  align-self: center;
+.alignCenter .input + .label {
+  align-items: center;
+}
+
+.alignEnd .input + .label {
+  align-items: flex-end;
 }
 
 .input:hover + .label::before {

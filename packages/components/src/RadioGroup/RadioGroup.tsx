@@ -32,11 +32,11 @@ interface RadioGroupProps {
   readonly name?: string;
 
   /**
-   * Whether to vertically center the radio buttons.
+   * Adjust how the radio buttons are vertically aligned with the label content.
    *
-   * @default false
+   * @default "start"
    */
-  readonly verticallyCentered?: boolean;
+  readonly align?: "start" | "center" | "end";
 }
 
 export function RadioGroup({
@@ -44,11 +44,12 @@ export function RadioGroup({
   value,
   ariaLabel,
   onChange,
-  verticallyCentered,
+  align = "start",
   name = useId(),
 }: RadioGroupProps) {
   const classes = classnames(styles.radioGroup, {
-    [styles.verticallyCentered]: verticallyCentered,
+    [styles.alignCenter]: align === "center",
+    [styles.alignEnd]: align === "end",
   });
 
   return (

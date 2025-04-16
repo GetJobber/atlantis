@@ -163,14 +163,14 @@ const CustomRadioOptionCenteredButtonTemplate: ComponentStory<
   return (
     <Content>
       <Text>
-        Use the `verticallyCentered` prop to align the radio buttons vertically
-        with the custom option content.
+        Use the `align=&quot;center&quot;` prop to align the radio buttons
+        vertically with the custom option content.
       </Text>
       <RadioGroup
+        align="center"
         {...args}
         onChange={(value: string) => setOption(value)}
         value={option}
-        verticallyCentered={true}
       >
         <RadioOption value="option1">
           <Box padding="small" direction="row" gap="small" alignItems="center">
