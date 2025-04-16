@@ -157,7 +157,6 @@ export default {
     "@jobber/design/foundation",
     "@jobber/formatters",
     "@jobber/hooks",
-    "zxcvbn",
     "@tanstack/react-table",
   ],
 };

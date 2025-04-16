@@ -1,0 +1,473 @@
+import { Stack } from "@jobber/components/Stack";
+import { ContentBlock } from "@jobber/components";
+import { Typography } from "@jobber/components/Typography";
+import { Box } from "@jobber/components/Box";
+import { Heading } from "@jobber/components/Heading";
+import { Card } from "@jobber/components/Card";
+import { Tiles } from "@jobber/components/Tiles";
+import { ResponsiveSwitcher } from "@jobber/components/ResponsiveSwitcher";
+import { Cover } from "@jobber/components/Cover";
+import { Button } from "@jobber/components/Button";
+import { Text } from "@jobber/components/Text";
+import { Cluster } from "@jobber/components/Cluster";
+import { SideKick } from "@jobber/components/SideKick";
+import { Frame } from "@jobber/components/Frame";
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Chip } from "@jobber/components/Chip";
+import { InputText } from "@jobber/components/InputText";
+import { FormFieldLabel } from "@jobber/components/FormField";
+import { Modal } from "@jobber/components/Modal";
+import { useState } from "react";
+import { Container } from "@jobber/components/Container";
+
+import styles from "./page-layouts.module.css";
+
+<Meta title="Guides/Layouts" />
+
+# Page Layouts
+
+<Stack>
+  <Text>These layout components are designed to help you easily build smaller-scale layouts without needing to reach for CSS.  </Text>
+  <Text>More complex full-page scaffolding can be found on the [Scaffolding](/guides/scaffolding) page.  </Text>
+</Stack>
+<Stack gap="largest">
+<section>
+<Stack>
+<Canvas>
+  <Stack>
+    <Heading level={1}>Stack</Heading>
+    <Text>The Stack component is used to create a vertical stack of elements. It is a flex container that aligns items in a column direction.</Text>
+  </Stack>
+</Canvas>
+<Canvas>
+  <Stack>
+    <Heading level={2}>Stack Form Layouts</Heading>
+    <Text>Every item stacks with equal spacing and a responsive vertical rhythm.</Text>
+    <Stack>
+      <FormFieldLabel external>Name</FormFieldLabel>
+      <InputText label="Name" />
+      <FormFieldLabel external>Email</FormFieldLabel>
+      <InputText label="Email" />
+    </Stack>
+  </Stack>
+</Canvas>
+<Canvas>
+
+  <Stack>
+    <Heading level={2}>Stack Card Layouts</Heading>
+    <Text>Stacks are a great way to layout content in a card format. They are responsive and easy to read.</Text>
+    <Cluster>
+      <Card elevation="base">
+        <Box padding="base">
+          <Stack>
+            <Heading level={3}>Card Layout</Heading>
+            <Text>A card with a header, body text, and footer</Text>
+            <Button label="Button" />
+            <Text>And they're all stacked vertically</Text>
+            <Text>with equal spacing</Text>
+          </Stack>
+        </Box>
+      </Card>
+    </Cluster>
+  </Stack>
+  
+</Canvas>
+<Story>
+  {() => {
+    const [modalOpen, setModalOpen] = useState(false);
+    return (
+  <Canvas>
+  <Stack>
+    <Heading level={2}>Stack Modal Layouts</Heading>
+    <Text>Stacks are a great way to layout content in a modal format. They are responsive and easy to read.</Text>
+    <Button label="Open Modal" onClick={() => setModalOpen(true)} />
+    <Modal open={modalOpen} onRequestClose={() => setModalOpen(false)}>
+    <Box padding="base">
+      <Stack>
+        <Heading level={3}>Modal Layout</Heading>
+        <Text>A modal with a header, body text, and footer</Text>
+        <Text>And they're all stacked vertically with equal spacing</Text>
+        <Button label="Close the Modal" onClick={() => setModalOpen(false)} />
+      </Stack>  
+    </Box>
+    </Modal>
+    </Stack>
+  </Canvas>
+  )}}
+</Story>
+
+</Stack>
+</section>
+<section>
+<Stack>
+<Canvas>
+  <Stack>
+    <Heading level={1}>Cluster</Heading>
+    <Text>The Cluster component is used to create a horizontal stack of elements. It is a flex container that aligns items in a row direction.</Text>
+    <Cluster>
+      <Chip label="Cluster Chip" />
+      <Heading level={5}>These are all in a cluster</Heading>
+      <Button label="Clustered items have variable widths" />
+      <Text>They wrap when they run out of space</Text>
+      </Cluster>
+  </Stack>
+</Canvas>
+<Canvas>
+  <Stack>
+    <Heading level={2}>Spaced Out Cluster</Heading>
+    <Text>The Cluster component has a default space of 12px between items. You can customize this space by passing the gap prop.</Text>
+
+      <Cluster gap="larger">
+        <Chip label="There" />
+        <Chip label="is" />
+        <Chip label="a" />
+        <Chip label="default" />
+        <Chip label="space" />
+        <Chip label="between" />
+        <Chip label="items" />
+        <Chip label="that" />
+        <Chip label="you" />
+        <Chip label="can" />
+        <Chip label="customize" />
+      </Cluster>
+      </Stack>
+
+</Canvas>
+<Canvas>
+<Stack>
+  <Typography size="largest" align="end" fontWeight="bold">Justified Cluster</Typography>
+  <Text align="end">The Cluster component has a default horizontal alignment of start. You can customize this alignment by passing the justify prop.</Text>
+  <Cluster justify="end">
+        <Chip label="You" />
+        <Chip label="can" />
+        <Chip label="justify" />
+        <Chip label="the items" />
+        <Chip label="in the cluster" />
+        <Chip label="horizontally" />
+      </Cluster>
+</Stack>
+</Canvas>
+<Canvas>
+  <Stack>
+  <Heading level={2}>Aligned Cluster</Heading>
+  <Text>The Cluster component has a default vertical alignment of top/start. You can customize this alignment by passing the align prop.</Text>
+  <Cluster align="center">
+        <Chip label="You can also align" />
+          <Text>  
+            items vertically
+          </Text>
+          <div style={{ height: "100px", backgroundColor: "var(--color-surface--background)", width:200 }}>
+          &nbsp;
+          </div>
+      </Cluster>
+  </Stack>
+  </Canvas>
+</Stack>
+</section>
+<section>
+<Stack>
+<Canvas>
+   <Stack>
+  <Heading level={1}>Tiles</Heading>
+    <Text>The Tiles component is used to create a horizontal grid of fixed-width items. 
+    It is a flexible container that aligns items horizontally and will start moving items to the next row when there is no more room.</Text>
+  <Tiles minSize="15ch" gap="12px">
+    <Text>Here is a longer bit of repeated copy that will surely cause the tile to wrap.</Text>
+    <Text>Here is a longer bit of repeated copy that will surely cause the tile to wrap.</Text>
+    <Text>Here is a longer bit of repeated copy that will surely cause the tile to wrap.</Text>
+    <Text>Here is a longer bit of repeated copy that will surely cause the tile to wrap.</Text>
+  </Tiles>
+  </Stack>
+</Canvas>
+<Story>
+{() => {
+  const [tileSize, setTileSize] = useState("20ch");
+  return (
+  <Canvas>
+  <Stack>
+  <Heading level={2}>Minimum Tile Size</Heading>
+    <Text>The minimum tile size is the smallest size that a tile can be. This is used to ensure that the tiles are always the same size.</Text>
+    <Cluster align="center">
+      <Button label="Change the size of the tiles" onClick={() => setTileSize(tileSize === "20ch" ? "30ch" : "20ch")} />
+      <Text>Current tile size: {tileSize}</Text>
+    </Cluster>
+  <Tiles minSize={tileSize} gap="12px">
+    <Card elevation="base">
+      <Box padding="base" borderWidth="0px">
+        <Stack>
+          <Heading level={2}>Card Title</Heading>
+          <Text>Card Description</Text>
+          <Button label="Card Button" />
+        </Stack>
+      </Box>
+    </Card>
+    <Card elevation="base">
+      <Box padding="base" borderWidth="0px">
+        <Stack>
+          <Heading level={2}>Longer Card Title</Heading>
+          <Text>A longer card description that spans multiple lines</Text>
+          <Button label="Card Button" />
+        </Stack>
+      </Box>
+    </Card>
+  </Tiles>
+  </Stack>
+  </Canvas>
+  )
+}}
+</Story>
+</Stack>
+</section>
+<section>
+<Stack>
+<Canvas>
+  <Stack>
+    <Heading level={1}>Cover</Heading>
+    <Text>The Cover component is used to create an arbitrary height layout with an option to center content and have content above/below the centered content.</Text>
+    <Cover minHeight="30vh">
+      <Cover.Center>
+        <Box padding="base" background="surface--background">
+        <Stack>
+        <Heading level={2}>Centered Content</Heading>
+        <Box colorSurface="color-text" colorInverse="color-surface" invert>
+            <Text>This is a square</Text>
+        </Box>
+        </Stack>
+      </Box>
+      </Cover.Center>
+    </Cover>
+  </Stack>
+  </Canvas>
+  <Canvas>
+    <Cover minHeight="40vh">
+      <Stack>
+        <Heading level={2}>Cover with a heading</Heading>
+        <Text>You can place content above and below the centered content and align it any way you want, and the centered content will always be centered in the provided parent space.</Text>
+      </Stack>
+      <Cover.Center>
+        <Box background="color-surface--background">
+          <Text>This is the centered content</Text>
+        </Box>
+      </Cover.Center>
+        <Box background="color-surface--background">
+        <Stack>
+          <Heading level={2}>Cover Footer Content</Heading>
+          <Text>This is the footer content</Text>
+        </Stack>
+      </Box>
+    </Cover>
+  </Canvas>
+  </Stack>
+</section>
+<section>
+<Stack>
+  <Canvas>
+      <ContentBlock maxWidth="100%">
+      <Stack>
+        <Heading level={1}>Content Block</Heading>
+        <Text>The ContentBlock component is used to horizontally justify and limit content.</Text>
+      </Stack>
+      </ContentBlock>
+  </Canvas>
+ <Canvas>
+      <ContentBlock maxWidth="300px" justify="center" andText>
+      <Stack>
+      <Heading level={1}>Text Center</Heading>
+      <Text>The `andText` prop will center the text as well as the content.</Text>
+      </Stack>
+      </ContentBlock>
+  </Canvas>
+  <Canvas>
+    <ContentBlock maxWidth="200px">
+      <Stack>
+        <Heading level={2}>Max Width</Heading>
+        <Text>The Center component can also take a `maxWidth` prop to limit the width of the content.</Text>
+      </Stack>  
+    </ContentBlock>
+  </Canvas>
+  <Canvas>
+    <ContentBlock gutters="largest">
+      <Stack>
+        <Heading level={2}>Gutters</Heading>
+        <Text>The Center component can also take a `gutters` prop to add minimum space between the content and the edges of the parent so the content never touches the edge of the parent/screen. This space only applies to the element when required, not by default.</Text>
+      </Stack>
+    </ContentBlock>
+   
+  </Canvas>
+  
+</Stack>
+</section>
+<section>
+<Stack>
+ <Canvas>
+  <Stack>
+  <Heading level={1}>Frame</Heading>
+  <Text>The Frame component is used to create an aspect ratio with a layout. It's especially good at handling images and videos and cropping them to fit the aspect ratio (default 16x9).</Text>
+  <Frame>
+    <img src="/img_collage.jpg" alt="Placeholder" />
+  </Frame>
+ 
+  </Stack>
+  </Canvas>
+  <Canvas>
+    <Stack>
+      <Heading level={2}>1x1</Heading>
+        <Frame aspectX={1} aspectY={1}>
+          <img src="/img_collage.jpg" alt="Placeholder" />
+        </Frame>
+    </Stack>
+  </Canvas>
+<Canvas>
+    <Stack>
+      <Heading level={2}>4x3</Heading>
+        <Frame aspectX={4} aspectY={3}>
+          <img src="/img_collage.jpg" alt="Placeholder" />
+        </Frame>
+    </Stack>
+  </Canvas>
+  <Canvas>
+ <Frame>
+    <Cover>
+      <Heading level={2}>It Works for Content As Well</Heading>
+      <Text>Everything is centered and cropped to fit the aspect ratio.</Text>
+    </Cover>
+  </Frame>
+  </Canvas>
+  </Stack>
+</section>
+<section>
+<Stack>
+<Canvas>
+  <Stack>
+    <Heading level={1}>Responsive Switcher</Heading>
+    <Text>The Responsive Switcher component is used to create a responsive layout that will automatically swap from horizontal to vertical when the content exceeds the threshold.</Text>
+    <ResponsiveSwitcher threshold="60ch" gap="12px" limit={2}>
+      <Box padding="base" background="surface--background">
+          <Heading level={3}>Content on the left/top</Heading>
+      </Box>
+      <Box padding="base" background="surface--background">
+        <Heading level={3}>Content on the right/bottom</Heading>
+      </Box>
+    </ResponsiveSwitcher>
+  </Stack>
+  </Canvas>
+  <Canvas>
+      <ResponsiveSwitcher threshold="50ch" limit={3}>
+      <Card elevation="base">
+          <Box padding="base">
+          <Heading level={3}>Some Card Content</Heading>
+        </Box>
+      </Card>
+       <Card elevation="base">
+        <Box padding="base">
+          <Heading level={3}>Some Card Content</Heading>
+        </Box>
+      </Card>
+      <Card elevation="base">
+        <Box padding="base">
+          <Heading level={3}>Some Card Content</Heading>
+        </Box>
+      </Card>
+      </ResponsiveSwitcher>
+  </Canvas>
+</Stack>
+</section>
+<section>
+
+<Stack> 
+<Canvas>
+  <Stack>
+  <Heading level={1}>Sidekick</Heading>
+  <Text>The Sidekick component is used to create a horizontal layout where one half of the content is fixed width, and the other half is fluid. Where there is no longer the specified sideWidth space remaining, the content will wrap to the next line.</Text>
+  <SideKick sideWidth="120px" contentMinWidth="60%">
+      <InputText placeholder="Sidekick Input" />
+      <Button label="Sidekick Button" />
+    </SideKick>
+  </Stack>
+  </Canvas>
+  <Canvas>
+    <SideKick sideWidth="60%" contentMinWidth="200px">
+      <Cover>
+        <Cover.Center>
+        <Stack>
+        <Heading level={2}>Sidekick Content</Heading>
+        <Text>The Sidekick component is used to create a horizontal layout where one half of the content is fixed width, and the other half is fluid. Where there is no longer the specified sideWidth space remaining, the content will wrap to the next line.</Text>
+        </Stack>
+        </Cover.Center>
+        </Cover>
+      <Frame aspectX={9} aspectY={16}>
+         <img src="/img_collage.jpg" alt="Placeholder" />
+      </Frame>
+    </SideKick>
+  </Canvas>
+</Stack>
+</section>
+<section>
+<Stack>
+     <Stack>
+     <Heading level={1}>Container</Heading>
+      <Text>Containers are for isolating style overrides to a specific layout. Set a container name, and apply associated styles where needed.</Text>
+     <Text>Containers are just container queries, and are fairly advanced. Only use them when absolutely necessary.</Text>
+     <Text>We will soon provide a set of predfined Containers and styles for common layout pattern adjustments.</Text>
+     <Text>You can also create your own containers and portable style overrides with these tools.</Text>
+     </Stack>
+    <Container name="container-items">
+    <ContentBlock maxWidth="1280px" align="left">
+      <Stack>
+        <Container.Apply className={styles.item}>
+          <Card>
+            <Box padding="base">
+              <Stack>
+                <Heading level={1}>Container Example</Heading>
+                <Text>We've overridden the default styles without having to modify any existing code or styles.</Text>
+              </Stack>
+            </Box>
+          </Card>
+        </Container.Apply>
+        <Container.Apply className={styles.itemDotted}>
+          <Card>
+            <Box padding="base">
+              <Stack>
+                <Heading level={1}>Container Example</Heading>
+                <Text>These cards are functionally identical except they have different container queries based on their content widths.</Text>
+              </Stack>
+            </Box>
+          </Card>
+        </Container.Apply>
+        <Container.Apply className={styles.itemUpsideDown}>
+          <Card>
+            <Box padding="base">
+              <Stack>
+                <Heading level={1}>Container Example</Heading>
+                <Text>They're also perfectly portable. If you just need the layout, take everything under the Container.Apply. If you want the wrapper but not the container styles, grab the Container.Apply as well. Or, just re-use the container elsewhere to wrap other content.</Text>
+              </Stack>
+            </Box>
+          </Card>
+        </Container.Apply>
+      </Stack>
+      </ContentBlock>
+</Container>
+<Stack>
+ <Card>
+            <Box padding="base">
+              <Stack>
+                <Heading level={1}>Container Example</Heading>
+                <Text>This last example is exactly the same as the others, except it's not in the container.</Text>
+              </Stack>
+            </Box>
+          </Card>
+          </Stack>
+          </Stack>
+</section>
+
+<Cover minHeight="30vh">
+<Stack>
+<Canvas>
+  <Stack>
+  <Heading level={1}>Looking For More?</Heading>
+  <Text>Check out the [Scaffolding](/guides/scaffolding) page to see how to layout full pages with these components</Text>
+  </Stack>
+</Canvas>
+</Stack>
+</Cover>
+</Stack>

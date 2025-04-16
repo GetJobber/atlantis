@@ -1,14 +1,33 @@
 .glimmer {
-  --glimmer-background: rgba(var(--color-black--rgb), 5%);
+  --glimmer-background: var(--color-surface--reverse);
+  --glimmer-background-opacity: 7.5%;
+  --glimmer-shine-opacity: 75%;
   --glimmer-shine: rgba(var(--color-white--rgb), var(--glimmer-shine-opacity));
-  --glimmer-shine-opacity: 80%;
   --duration-base: calc(var(--timing-slowest) * 4); /* 2s */
   --duration-fast: calc(var(--duration-base) / 2); /* 1s */
-
+  position: relative;
   width: 100%;
   height: 100%;
   border-radius: var(--radius-base);
+  overflow: hidden;
+}
+
+.glimmer::before,
+.glimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glimmer::before {
   background-color: var(--glimmer-background);
+  opacity: var(--glimmer-background-opacity);
+}
+
+.glimmer::after {
   background-image: linear-gradient(
     90deg,
     transparent 0px,
@@ -20,9 +39,18 @@
   animation: glimmer 2s infinite linear;
 }
 
+[data-theme="dark"] .glimmer,
 .reverseTheme {
-  --glimmer-background: rgba(var(--color-white--rgb), 10%);
-  --glimmer-shine-opacity: 25%;
+  --glimmer-shine-opacity: 20%;
+}
+
+.reverseTheme {
+  --glimmer-background: var(--color-surface);
+}
+
+[data-theme="dark"] .reverseTheme {
+  --glimmer-shine-opacity: 75%;
+  --glimmer-background-opacity: 7.5%;
 }
 
 @keyframes glimmer {

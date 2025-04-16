@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Glimmer } from "@jobber/components/Glimmer";
 import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
 
 export default {
   title: "Components/Status and Feedback/Glimmer/Web",
@@ -13,7 +14,69 @@ export default {
 } as ComponentMeta<typeof Glimmer>;
 
 const BasicTemplate: ComponentStory<typeof Glimmer> = args => (
-  <Glimmer {...args} />
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--space-small)",
+        padding: "var(--space-base)",
+        backgroundColor: "var(--color-surface)",
+      }}
+    >
+      <Text size="small" variation="subdued">
+        On surface
+      </Text>
+      <Glimmer {...args} />
+    </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--space-small)",
+        padding: "var(--space-base)",
+        backgroundColor: "var(--color-surface--background",
+      }}
+    >
+      <Text size="small" variation="subdued">
+        On surface--background
+      </Text>
+      <Glimmer {...args} />
+    </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--space-small)",
+        padding: "var(--space-base)",
+        backgroundColor: "var(--color-surface--background--subtle)",
+      }}
+    >
+      <Text size="small" variation="subdued">
+        On surface--background--subtle
+      </Text>
+      <Glimmer {...args} />
+    </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "var(--space-small)",
+        padding: "var(--space-base)",
+        backgroundColor: "var(--color-surface--reverse)",
+      }}
+    >
+      <Text size="small" variation="subdued">
+        On surface--reverse (toggle reverseTheme prop)
+      </Text>
+      <Glimmer {...args} />
+    </div>
+  </div>
 );
 
 export const Basic = BasicTemplate.bind({});
