@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.0...@jobber/atlantis-site@0.42.1) (2025-04-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.41.1...@jobber/atlantis-site@0.42.0) (2025-04-16)
+
+
+### Features
+
+* **components:** Layout System 2.0  ([#2461](https://github.com/GetJobber/atlantis/issues/2461)) ([9b0383f](https://github.com/GetJobber/atlantis/commit/9b0383fff586df22dc23374359cbd7d259c18d60))
+
+
+
+
+
+## [0.41.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.41.0...@jobber/atlantis-site@0.41.1) (2025-04-15)
+
+
+### Bug Fixes
+
+* **docx:** Fix InputCurrency Storybook Link ([#2487](https://github.com/GetJobber/atlantis/issues/2487)) ([c7945e0](https://github.com/GetJobber/atlantis/commit/c7945e038bccf806e77638c7020de935d70ec9b2))
+
+
+
+
+
+# [0.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.40.1...@jobber/atlantis-site@0.41.0) (2025-04-15)
+
+
+### Features
+
+* **components:** Add ref to Button and Chip ([#2470](https://github.com/GetJobber/atlantis/issues/2470)) ([81dbed3](https://github.com/GetJobber/atlantis/commit/81dbed31f37e85a5d0450ae8e94e52c8e4844d0d))
+
+
+
+
+
+## [0.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.40.0...@jobber/atlantis-site@0.40.1) (2025-04-14)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 # [0.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.39.0...@jobber/atlantis-site@0.40.0) (2025-04-11)
 
 

@@ -1,0 +1,39 @@
+.contentBlock {
+  --content-block-max-width: 100ch;
+  --content-block-gutters: 0;
+  width: 100%;
+  box-sizing: content-box;
+  margin-inline: auto;
+  max-inline-size: var(--content-block-max-width);
+}
+
+.left {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+
+.right {
+  margin-inline-end: 0;
+  margin-inline-start: auto;
+}
+
+.center {
+  margin-inline: auto;
+}
+
+.andText {
+  text-align: center;
+}
+
+.left.andText {
+  text-align: left;
+}
+
+.right.andText {
+  text-align: right;
+}
+
+.gutters {
+  padding-inline-start: var(--content-block-gutters);
+  padding-inline-end: var(--content-block-gutters);
+}
