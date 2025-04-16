@@ -25,6 +25,7 @@ export function Modal({
 
   return (
     <dialog
+      data-testid="ATL-modal-v2"
       style={
         {
           "--modal-animation-direction": open ? "normal" : "reverse",
@@ -32,6 +33,11 @@ export function Modal({
       }
       ref={dialogRef}
       onClick={handleBackdropClick}
+      onAnimationEnd={() => {
+        if (!open) {
+          dialogRef.current?.close();
+        }
+      }}
       className={classNames(
         styles.container,
         size && styles[size],

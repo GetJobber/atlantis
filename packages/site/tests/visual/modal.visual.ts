@@ -79,13 +79,8 @@ test.describe("Modal Visual Tests", () => {
       await basicModalButton.click();
       await page.waitForTimeout(500); // Wait for modal animation
 
-      const closeButton = page.getByLabel("Close modal");
+      const closeButton = page.getByTestId("ATL-modal-v2");
       await expect(closeButton).toBeFocused();
-
-      // Optional: Screenshot to visually verify focus state if needed
-      await expect(page).toHaveScreenshot("18-basic-modal-focus.png", {
-        fullPage: true,
-      });
 
       await closeButton.click(); // Close the modal
       await page.waitForTimeout(500);

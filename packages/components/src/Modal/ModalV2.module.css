@@ -17,6 +17,7 @@
 
 .container {
   z-index: var(--elevation-modal);
+  width: 100%;
   padding: var(--space-small);
   padding: 0;
   border: none;
@@ -28,7 +29,6 @@
 
 .container.visible {
   display: flex;
-  width: 100%;
 }
 
 .container.hidden {
