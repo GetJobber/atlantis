@@ -1,0 +1,22 @@
+.cover {
+  display: flex;
+  flex-direction: column;
+  min-block-size: var(--public-cover-min-height);
+  padding: var(--public-cover-space);
+}
+
+.cover > * {
+  margin-block: var(--public-cover-space);
+}
+
+.cover > :first-child:not(.centerContent) {
+  margin-block-start: 0;
+}
+
+.cover > :last-child:not(.centerContent) {
+  margin-block-end: 0;
+}
+
+.cover > .centerContent {
+  margin-block: auto;
+}

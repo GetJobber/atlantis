@@ -1,0 +1,84 @@
+import { Stack, Text, Box } from "@jobber/components";
+import { Canvas } from "@storybook/addon-docs";
+
+# Stack
+
+The Stack component creates a vertical layout of elements with consistent
+spacing between them. It's one of the fundamental layout components in Atlantis
+that helps create clean, organized interfaces.
+
+The Stack differs from our legacy Content component in that it's not tackling
+multiple use cases. The Stack only manages vertical spacing between elements.
+Content also managed the padding around the edges of the content, which is now
+handled by Box. Splitting the two components allows them both to be more
+flexible and useful than before.
+
+## When to use
+
+Use Stack when you need to:
+
+- Create vertical layouts with consistent spacing
+- Build forms with evenly spaced fields
+- Layout content in cards or modals
+- Create sections with equal vertical rhythm
+
+## Examples
+
+### Basic Stack
+
+<Canvas>
+  <Stack>
+    <Text>First item</Text>
+    <Text>Second item</Text>
+    <Text>Third item</Text>
+  </Stack>
+</Canvas>
+
+### Custom Spacing
+
+<Canvas>
+  <Stack gap="large">
+    <Text>More space</Text>
+    <Text>Between items</Text>
+  </Stack>
+</Canvas>
+
+### Split Layout
+
+<Canvas>
+  <Box height={200}>
+    <Stack splitAfter={2}>
+      <Text>Main content</Text>
+      <Text>Secondary content</Text>
+      <Text>Footer content</Text>
+    </Stack>
+  </Box>
+</Canvas>
+
+### Recursive Spacing
+
+<Canvas>
+  <Stack gap="large" recursive>
+    <Box>
+      <Text>Nested item 1.1</Text>
+      <Text>Nested item 1.2</Text>
+    </Box>
+    <Box>
+      <Text>Nested item 2.1</Text>
+      <Text>Nested item 2.2</Text>
+    </Box>
+  </Stack>
+</Canvas>
+
+## Related components
+
+- For horizontal layouts, use [Cluster](/components/Cluster)
+- For grid layouts, use [Tiles](/components/Tiles)
+- For responsive layouts that switch between horizontal and vertical, use
+  [ResponsiveSwitcher](/components/ResponsiveSwitcher)
+
+## Accessibility
+
+Stack uses semantic HTML and maintains proper spacing for readability. The
+component preserves the natural document flow, ensuring good keyboard navigation
+and screen reader compatibility.

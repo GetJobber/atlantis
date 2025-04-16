@@ -1,0 +1,85 @@
+import { Meta } from "@storybook/addon-docs";
+import { ContentBlock } from "@jobber/components";
+import { Canvas, Story } from "@storybook/addon-docs";
+import { Stack } from "@jobber/components/Stack";
+import { Heading } from "@jobber/components/Heading";
+import { Text } from "@jobber/components/Text";
+import { Button } from "@jobber/components/Button";
+import { Box } from "@jobber/components/Box";
+
+<Meta title="Components/Layout/ContentBlock" />
+
+# ContentBlock
+
+The ContentBlock component horizontally justifes content within its boundaries
+which can be constrained by a maximum width. It provides a simple way to create
+constrained and justified layouts with optional gutter controls.
+
+## Design & usage guidelines
+
+Use ContentBlock when you need to:
+
+- Create a constrained and justified layout with a controlled maximum width
+- Justify content horizontally within a container
+- Maintain consistent spacing from container edges
+- Justify both content and text alignment together
+
+### Related components
+
+- For vertical centering, use [Cover](/components/Cover) with `Cover.Center`
+- For stacking elements vertically use [Stack](/components/Stack)
+- For horizontal spreading use [Cluster](/components/Cluster)
+- For horizontal spreading with a fixed width use [Tiles](/components/Tiles)
+- For container queries for maximum control use a
+  [Container](/components/Container)
+
+## Content guidelines
+
+The ContentBlock component can contain any valid React content, including:
+
+- Text and typography components
+- Interactive elements like buttons and forms
+- Layout components like Stack or Cluster
+- Media elements like images or videos
+
+## Accessibility
+
+The ContentBlock component is a layout utility that doesn't affect the
+accessibility of its content. However, when using `andText`, ensure that
+centered text maintains readability and doesn't impair comprehension for users
+with reading difficulties.
+
+## Examples
+
+### Basic centering
+
+<Canvas>
+  <ContentBlock justify="center">
+    <Stack>
+      <Heading level={1}>Centered content</Heading>
+      <Text>This content is horizontally centered</Text>
+    </Stack>
+  </ContentBlock>
+</Canvas>
+
+### Centered text with maximum width
+
+<Canvas>
+  <ContentBlock maxWidth="200px" justify="center">
+    <Stack>
+      <Heading level={2}>Narrow content</Heading>
+      <Text>This content and text are centered within a 200px container</Text>
+    </Stack>
+  </ContentBlock>
+</Canvas>
+
+### With gutters
+
+<Canvas>
+  <ContentBlock gutters="largest">
+    <Stack>
+      <Heading level={2}>Spaced content</Heading>
+      <Text>This content maintains minimum spacing from container edges</Text>
+    </Stack>
+  </ContentBlock>
+</Canvas>
