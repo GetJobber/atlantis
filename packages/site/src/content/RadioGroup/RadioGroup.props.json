@@ -60,19 +60,19 @@
           "name": "string"
         }
       },
-      "verticallyCentered": {
+      "align": {
         "defaultValue": {
-          "value": "false"
+          "value": "start"
         },
-        "description": "Whether to vertically center the radio buttons.",
-        "name": "verticallyCentered",
+        "description": "Adjust how the radio buttons are vertically aligned with the label content.",
+        "name": "align",
         "parent": {
           "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
           "name": "RadioGroupProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "\"start\" | \"center\" | \"end\""
         }
       }
     }
