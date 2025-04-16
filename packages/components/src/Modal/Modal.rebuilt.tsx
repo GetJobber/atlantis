@@ -18,8 +18,6 @@ export function ModalRebuilt({
   tertiaryAction,
   onRequestClose,
   activatorRef,
-  UNSAFE_className,
-  UNSAFE_style,
 }: ModalRewriteProps) {
   return (
     <ModalProvider
@@ -29,17 +27,12 @@ export function ModalRebuilt({
       onRequestClose={onRequestClose}
       activatorRef={activatorRef}
     >
-      <ModalWrapper
-        UNSAFE_className={UNSAFE_className}
-        UNSAFE_style={UNSAFE_style}
-      >
+      <ModalWrapper>
         <ModalContent
           title={title}
           primaryAction={primaryAction}
           secondaryAction={secondaryAction}
           tertiaryAction={tertiaryAction}
-          UNSAFE_className={UNSAFE_className}
-          UNSAFE_style={UNSAFE_style}
         >
           {children}
         </ModalContent>
@@ -57,8 +50,6 @@ function ModalContent({
   primaryAction,
   secondaryAction,
   tertiaryAction,
-  UNSAFE_className,
-  UNSAFE_style,
 }: Omit<ModalRewriteProps, "version">) {
   const { onRequestClose, dismissible } = useModalContext();
   const template = (
@@ -68,8 +59,6 @@ function ModalContent({
           title={title}
           dismissible={dismissible}
           onRequestClose={onRequestClose}
-          UNSAFE_className={UNSAFE_className}
-          UNSAFE_style={UNSAFE_style}
         />
       )}
       {children}
@@ -77,8 +66,6 @@ function ModalContent({
         primary={primaryAction}
         secondary={secondaryAction}
         tertiary={tertiaryAction}
-        UNSAFE_className={UNSAFE_className}
-        UNSAFE_style={UNSAFE_style}
       />
     </>
   );

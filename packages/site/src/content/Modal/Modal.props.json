@@ -3,16 +3,18 @@
     "tags": {},
     "filePath": "../components/src/Modal/Modal.tsx",
     "description": "",
-    "displayName": "Modal",
+    "displayName": "ModalLegacy",
     "methods": [],
     "props": {
       "title": {
-        "defaultValue": null,
-        "description": "Title of the modal.",
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "",
         "name": "title",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -23,11 +25,11 @@
         "defaultValue": {
           "value": false
         },
-        "description": "Whether the modal is open.",
+        "description": "",
         "name": "open",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -36,11 +38,11 @@
       },
       "size": {
         "defaultValue": null,
-        "description": "Size of the modal.",
+        "description": "",
         "name": "size",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -51,11 +53,11 @@
         "defaultValue": {
           "value": true
         },
-        "description": "Whether the modal will render a dismiss button.",
+        "description": "",
         "name": "dismissible",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -64,11 +66,11 @@
       },
       "primaryAction": {
         "defaultValue": null,
-        "description": "Primary action of the modal.",
+        "description": "",
         "name": "primaryAction",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -77,11 +79,11 @@
       },
       "secondaryAction": {
         "defaultValue": null,
-        "description": "Secondary action of the modal.",
+        "description": "",
         "name": "secondaryAction",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -90,11 +92,11 @@
       },
       "tertiaryAction": {
         "defaultValue": null,
-        "description": "Tertiary action of the modal. This will be rendered on the left side of the action bar.\nUseful for actions like \"Cancel\" that are not destructive.",
+        "description": "",
         "name": "tertiaryAction",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -103,323 +105,28 @@
       },
       "onRequestClose": {
         "defaultValue": null,
-        "description": "Callback executed when the user wants to close/dismiss the Modal",
+        "description": "",
         "name": "onRequestClose",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
           "name": "() => void"
         }
       },
-      "activatorRef": {
-        "defaultValue": null,
-        "description": "Ref to specify the activator element. Useful if the activator can unmount\nand needs to be re-mounted.",
-        "name": "activatorRef",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
-        },
-        "required": false,
-        "type": {
-          "name": "MutableRefObject<HTMLElement>"
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ modal?: string; overlay?: string; header?: string; title?: { textStyle?: string; }; actionBar?: string; rightAction?: string; leftAction?: string; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ modal?: React.CSSProperties; overlay?: React.CSSProperties; header?: React.CSSProperties; title?: { textStyle?: CSSProperties; }; actionBar?: React.CSSProperties; rightAction?: React.CSSProperties; leftAction?: React.CSSProperties; }"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Modal/Modal.tsx",
-    "description": "",
-    "displayName": "Modal.Header",
-    "methods": [],
-    "props": {
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "HeaderPropsWithoutChildren"
-        },
-        "required": false,
-        "type": {
-          "name": "{ header?: string; title?: { textStyle?: string; }; dismissButton?: string; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "HeaderPropsWithoutChildren"
-        },
-        "required": false,
-        "type": {
-          "name": "{ header?: React.CSSProperties; title?: { textStyle?: CSSProperties; }; dismissButton?: React.CSSProperties; }"
-        }
-      },
-      "title": {
-        "defaultValue": null,
-        "description": "Title of the modal.",
-        "name": "title",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "HeaderPropsWithoutChildren"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "dismissible": {
-        "defaultValue": null,
-        "description": "Whether the modal is dismissible.",
-        "name": "dismissible",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "HeaderPropsWithoutChildren"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onRequestClose": {
-        "defaultValue": null,
-        "description": "Callback executed when the user wants to close/dismiss the Modal",
-        "name": "onRequestClose",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "HeaderPropsWithoutChildren"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Modal/Modal.tsx",
-    "description": "",
-    "displayName": "Modal.Actions",
-    "methods": [],
-    "props": {
-      "primary": {
-        "defaultValue": null,
-        "description": "Primary action of the modal.",
-        "name": "primary",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalActionsProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
-        }
-      },
-      "secondary": {
-        "defaultValue": null,
-        "description": "Secondary action of the modal.",
-        "name": "secondary",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalActionsProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
-        }
-      },
-      "tertiary": {
-        "defaultValue": null,
-        "description": "Tertiary action of the modal. This will be rendered on the left side of the action bar.\nUseful for actions like \"Cancel\" that are not destructive.",
-        "name": "tertiary",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalActionsProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalActionsProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ actionBar?: string; rightAction?: string; leftAction?: string; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalActionsProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ actionBar?: React.CSSProperties; rightAction?: React.CSSProperties; leftAction?: React.CSSProperties; }"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Modal/Modal.tsx",
-    "description": "",
-    "displayName": "Modal.Activator",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Modal/Modal.tsx",
-    "description": "",
-    "displayName": "Modal.Provider",
-    "methods": [],
-    "props": {
-      "size": {
+      "version": {
         "defaultValue": null,
         "description": "",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/Modal/ModalContext.tsx",
-          "name": "ModalProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number | symbol"
-        }
-      },
-      "open": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "",
-        "name": "open",
-        "parent": {
-          "fileName": "packages/components/src/Modal/ModalContext.tsx",
-          "name": "ModalProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onRequestClose": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onRequestClose",
-        "parent": {
-          "fileName": "packages/components/src/Modal/ModalContext.tsx",
-          "name": "ModalProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "activatorRef": {
-        "defaultValue": null,
-        "description": "",
-        "name": "activatorRef",
-        "parent": {
-          "fileName": "packages/components/src/Modal/ModalContext.tsx",
-          "name": "ModalProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "MutableRefObject<HTMLElement>"
-        }
-      },
-      "dismissible": {
-        "defaultValue": {
-          "value": true
-        },
-        "description": "",
-        "name": "dismissible",
-        "parent": {
-          "fileName": "packages/components/src/Modal/ModalContext.tsx",
-          "name": "ModalProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Modal/Modal.tsx",
-    "description": "",
-    "displayName": "Modal.Wrapper",
-    "methods": [],
-    "props": {
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
+        "name": "version",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalWrapperProps"
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
-          "name": "{ modal?: string; overlay?: string; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalWrapperProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ modal?: React.CSSProperties; overlay?: React.CSSProperties; }"
+          "name": "1"
         }
       }
     }

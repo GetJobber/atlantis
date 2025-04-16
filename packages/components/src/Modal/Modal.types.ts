@@ -7,7 +7,6 @@ import {
 import { XOR } from "ts-xor";
 import sizes from "./ModalSizes.module.css";
 import { ButtonProps } from "../Button";
-import { HeadingProps } from "../Heading";
 
 export interface ModalProviderProps {
   readonly children: React.ReactNode;
@@ -31,35 +30,9 @@ export interface ModalProviderProps {
   readonly dismissible?: boolean;
 }
 
-export interface ModalWrapperProps extends PropsWithChildren {
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_className?: {
-    modal?: string;
-    overlay?: string;
-  };
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_style?: {
-    modal?: React.CSSProperties;
-    overlay?: React.CSSProperties;
-  };
-}
+export type ModalWrapperProps = PropsWithChildren;
 
-export interface ModalOverlayProps extends PropsWithChildren {
-  readonly UNSAFE_className?: {
-    overlay?: string;
-  };
-  readonly UNSAFE_style?: {
-    overlay?: React.CSSProperties;
-  };
-}
+export type ModalOverlayProps = PropsWithChildren;
 
 export interface ModalRewriteProps {
   /**
@@ -104,35 +77,8 @@ export interface ModalRewriteProps {
   readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
 
   /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   * Use the new implementation of Modal only supported in
    */
-  readonly UNSAFE_className?: {
-    modal?: string;
-    overlay?: string;
-    header?: string;
-    title?: HeadingProps["UNSAFE_className"];
-    actionBar?: string;
-    rightAction?: string;
-    leftAction?: string;
-  };
-
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_style?: {
-    modal?: React.CSSProperties;
-    overlay?: React.CSSProperties;
-    header?: React.CSSProperties;
-    title?: HeadingProps["UNSAFE_style"];
-    actionBar?: React.CSSProperties;
-    rightAction?: React.CSSProperties;
-    leftAction?: React.CSSProperties;
-  };
-
   readonly version: 2;
 }
 
@@ -176,28 +122,6 @@ export interface ModalActionsProps {
    * Useful for actions like "Cancel" that are not destructive.
    */
   readonly tertiary?: ButtonProps;
-
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_className?: {
-    actionBar?: string;
-    rightAction?: string;
-    leftAction?: string;
-  };
-
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_style?: {
-    actionBar?: React.CSSProperties;
-    rightAction?: React.CSSProperties;
-    leftAction?: React.CSSProperties;
-  };
 }
 
 interface HeaderPropsWithoutChildren {
@@ -213,26 +137,6 @@ interface HeaderPropsWithoutChildren {
    * Callback executed when the user wants to close/dismiss the Modal
    */
   onRequestClose?(): void;
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_className?: {
-    header?: string;
-    title?: HeadingProps["UNSAFE_className"];
-    dismissButton?: string;
-  };
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_style?: {
-    header?: React.CSSProperties;
-    title?: HeadingProps["UNSAFE_style"];
-    dismissButton?: React.CSSProperties;
-  };
 }
 type HeaderWithChildren = PropsWithChildren;
 
