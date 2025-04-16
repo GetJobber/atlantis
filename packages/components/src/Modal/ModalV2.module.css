@@ -16,11 +16,47 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
   z-index: var(--elevation-modal);
   padding: var(--space-small);
-  overflow: auto;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+  background: transparent;
+  animation: fadeIn 0.2s ease-in-out;
+  flex-direction: column;
+}
+
+.container.visible {
+  display: flex;
+  width: 100%;
+}
+
+.container.hidden {
+  animation: fadeOut 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    scale: 0.9;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    scale: 1;
+  }
+
+  to {
+    opacity: 0;
+    scale: 0.9;
+  }
 }
 
 .container,
@@ -30,6 +66,10 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.container::backdrop {
+  background-color: var(--color-overlay);
 }
 
 .overlay {
@@ -44,6 +84,7 @@
   margin: auto;
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  overflow: auto;
   background-color: var(--color-surface);
   flex: 0 0 auto;
   outline-color: var(--color-focus);
@@ -70,9 +111,9 @@
 }
 
 /**
- * Ensure there's no extra padding top on the next element. This mostly negates
- * the <Content /> padding
- */
+   * Ensure there's no extra padding top on the next element. This mostly negates
+   * the <Content /> padding
+   */
 
 .header + * {
   padding-top: 0;
@@ -89,11 +130,12 @@
   padding-top: 0;
   flex: 1 1 100%;
   justify-content: flex-end;
+  gap: var(--space-small);
 }
 
 /**
- * 1. Use CSS `order` to adjust the buttons position on the UI
- */
+   * 1. Use CSS `order` to adjust the buttons position on the UI
+   */
 
 .leftAction {
   flex: 1 1 auto;
@@ -122,4 +164,24 @@
 .rightAction > *:nth-child(2) {
   order: 1;
   /* 1 */
+}
+
+.small {
+  --modal--padding: var(--space-base);
+  --public-tab--inset: var(--space-base);
+  max-width: 400px;
+}
+
+.small > div {
+  --modal--padding: var(--space-base);
+  --public-tab--inset: var(--space-base);
+  max-width: 400px;
+}
+
+.large {
+  max-width: 940px;
+}
+
+.large > div {
+  max-width: 940px;
 }

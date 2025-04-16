@@ -71,6 +71,25 @@ test.describe("Modal Visual Tests", () => {
         });
       }
     });
+
+    test("should focus the close button when opened", async ({ page }) => {
+      const basicModalButton = page.getByRole("button", {
+        name: "Open Basic Modal",
+      });
+      await basicModalButton.click();
+      await page.waitForTimeout(500); // Wait for modal animation
+
+      const closeButton = page.getByLabel("Close modal");
+      await expect(closeButton).toBeFocused();
+
+      // Optional: Screenshot to visually verify focus state if needed
+      await expect(page).toHaveScreenshot("18-basic-modal-focus.png", {
+        fullPage: true,
+      });
+
+      await closeButton.click(); // Close the modal
+      await page.waitForTimeout(500);
+    });
   });
 
   test.describe("sized modals", () => {

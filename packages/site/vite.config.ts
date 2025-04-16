@@ -56,7 +56,7 @@ export default defineConfig({
     minify: false,
   },
   optimizeDeps: {
-    include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
+    include: ["@jobber/formatters", "@jobber/hooks"],
   },
   resolve: {
     alias: {

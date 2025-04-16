@@ -48,9 +48,8 @@ export const VisualTestModalPage = () => {
                   variation="work"
                 />
               </Cluster>
-
-              {/* Basic Modal */}
               <Modal
+                version={2}
                 title="Basic Modal"
                 open={basicModalOpen}
                 onRequestClose={() => setBasicModalOpen(false)}
@@ -73,6 +72,7 @@ export const VisualTestModalPage = () => {
 
               {/* Confirmation Modal */}
               <Modal
+                version={2}
                 title="Confirmation Modal"
                 open={confirmationModalOpen}
                 onRequestClose={() => setConfirmationModalOpen(false)}
@@ -100,6 +100,7 @@ export const VisualTestModalPage = () => {
 
               {/* Custom Modal */}
               <Modal
+                version={2}
                 title="Custom Modal"
                 open={customModalOpen}
                 onRequestClose={() => setCustomModalOpen(false)}
@@ -135,6 +136,7 @@ export const VisualTestModalPage = () => {
 
               {/* Large Modal */}
               <Modal
+                version={2}
                 title="Large Modal"
                 open={largeModalOpen}
                 onRequestClose={() => setLargeModalOpen(false)}
@@ -184,6 +186,7 @@ export const VisualTestModalPage = () => {
               />
 
               <Modal
+                version={2}
                 title="Form Modal"
                 open={formModalOpen}
                 onRequestClose={() => setFormModalOpen(false)}
