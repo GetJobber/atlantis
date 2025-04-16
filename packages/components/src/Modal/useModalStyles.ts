@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import styles from "./Modal.module.css";
+import styles from "./Modal.rebuilt.module.css";
 import sizes from "./ModalSizes.module.css";
 
 export function useModalStyles(size?: keyof typeof sizes) {
