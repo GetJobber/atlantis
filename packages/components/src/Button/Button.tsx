@@ -105,7 +105,7 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
     return <button {...buttonProps}>{buttonInternals}</button>;
   },
 );
-ButtonWrapper.displayName = "ButtonWrappersss";
+ButtonWrapper.displayName = "ButtonWrapper";
 
 const ButtonNamespace = Object.assign(ButtonComponent, {
   Label: ButtonLabel,
