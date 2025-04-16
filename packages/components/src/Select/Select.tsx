@@ -12,7 +12,7 @@ export function Select(props: SelectProps) {
     ["version"],
   );
 
-  function handleChange(newValue: string) {
+  function handleChange(newValue: string | number) {
     props.onChange?.(newValue);
   }
 

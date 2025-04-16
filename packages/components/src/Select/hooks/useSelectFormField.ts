@@ -10,7 +10,7 @@ export interface UseSelectFormFieldProps {
   readonly inline?: boolean;
   readonly error?: string;
   readonly invalid?: boolean;
-  readonly value?: string;
+  readonly value?: string | number;
   readonly handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   readonly handleBlur: () => void;
   readonly handleFocus: () => void;
@@ -26,7 +26,7 @@ export interface UseSelectFormFieldReturn {
     readonly onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
     readonly onBlur: () => void;
     readonly onFocus: () => void;
-    readonly value?: string;
+    readonly value?: string | number;
     readonly "aria-describedby"?: string;
   };
   readonly descriptionIdentifier: string;

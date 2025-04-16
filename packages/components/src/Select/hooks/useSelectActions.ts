@@ -2,7 +2,7 @@ import { ChangeEvent, RefObject } from "react";
 
 interface UseSelectActionsProps {
   readonly onChange?: (
-    newValue: string,
+    newValue: string | number,
     event?: ChangeEvent<HTMLSelectElement>,
   ) => void;
   readonly onBlur?: () => void;

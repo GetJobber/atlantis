@@ -29,9 +29,9 @@ export interface SelectProps
       | "prefix"
       | "suffix"
     > {
-  readonly defaultValue?: string;
-  readonly value?: string;
-  onChange?(newValue?: string): void;
+  readonly defaultValue?: string | number;
+  readonly value?: string | number;
+  onChange?(newValue?: string | number): void;
   version?: 1 | 2;
 }
 
