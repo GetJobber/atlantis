@@ -6,6 +6,19 @@ import { Markdown } from "@jobber/components";
 import { Heading } from "@jobber/components";
 import { Stack } from "@jobber/components";
 import { Cluster } from "@jobber/components";
+import { Divider } from "@jobber/components";
+import { FormFieldLabel } from "@jobber/components";
+import { InputText } from "@jobber/components";
+import { InputDate } from "@jobber/components";
+import { InputGroup } from "@jobber/components";
+import { InputPhoneNumber } from "@jobber/components";
+import { InputEmail } from "@jobber/components";
+import { InputNumber } from "@jobber/components";
+import { Content } from "@jobber/components";
+import { Disclosure } from "@jobber/components";
+import { Checkbox } from "@jobber/components";
+import { Select } from "@jobber/components";
+import { Option } from "@jobber/components";
 import { Button } from "@jobber/components";
 import { Menu } from "@jobber/components";
 import { Page } from "@jobber/components";
@@ -15,6 +28,11 @@ import { Typography } from "@jobber/components";
 import { Container } from "@jobber/components";
 import { Box } from "@jobber/components";
 import { ContentBlock } from "@jobber/components";
+import { Card } from "@jobber/components";
+import { Icon } from "@jobber/components";
+import { StatusLabel } from "@jobber/components";
+import { StatusIndicator } from "@jobber/components";
+import { FormatEmail } from "@jobber/components";
 import styles from "./scaffolding.module.css";
 
 # Scaffolding
@@ -123,4 +141,258 @@ responsive behavior for free.
       </ContentBlock>
     </Box>
   </Container>
+</Canvas>
+
+<Heading level={3}>Request Show</Heading>
+<Canvas>
+  <Card accent="requestColor">
+    <Box
+      gap="large"
+      padding={{ vertical: "larger", horizontal: "largest" }}
+      background="surface--background--subtle"
+    >
+      <Cluster justify="space-between">
+        <Cluster>
+          <Icon name="request" />
+          <StatusLabel label="Active" status="informative" />
+        </Cluster>
+        <Cluster>
+          <Button ariaLabel="More" type="secondary" icon="more" />
+          <Button
+            ariaLabel="Primary Action"
+            label="Primary Action"
+            icon="quote"
+          />
+        </Cluster>
+      </Cluster>
+      <Heading level={1}>Request #32</Heading>
+      <Card>
+        <Box
+          radius="base"
+          padding="large"
+          background="surface--background--subtle"
+        >
+          <Stack>
+            <Cluster justify="space-between">
+              <Cluster>
+                <Heading level={4}>Josephine Smith</Heading>
+                <StatusIndicator status="informative" />
+              </Cluster>
+              <Menu
+                activator={
+                  <Button
+                    ariaLabel="More options"
+                    icon="more"
+                    type="tertiary"
+                    variation="subtle"
+                  />
+                }
+                items={[
+                  { actions: [{ label: "Action 1" }, { label: "Action 2" }] },
+                ]}
+              />
+            </Cluster>
+            <Text>3891 Ranchview Dr. Richardson, California 62639</Text>
+            <Tiles autoWidth>
+              <Stack gap="smallest">
+                <Text>453-998-0078</Text>
+                <FormatEmail email="josephine.smith@gmail.com" />
+              </Stack>
+              <Stack gap="smallest">
+                <Text variation="subdued">Lead source</Text>
+                <Text>Google Ad</Text>
+              </Stack>
+            </Tiles>
+          </Stack>
+        </Box>
+      </Card>
+      <Tiles>
+        <Stack gap="smaller">
+          <Text variation="subdued">Viewed</Text>
+          <Text>03/18/2025</Text>
+        </Stack>
+        <Stack gap="smaller">
+          <Text variation="subdued">Email opened</Text>
+          <Text>03/18/2025</Text>
+        </Stack>
+        <Stack gap="smaller">
+          <Text variation="subdued">Reminder</Text>
+          <Text>03/18/2025</Text>
+        </Stack>
+      </Tiles>
+      <Tiles>
+        <Stack gap="smaller">
+          <Text variation="subdued">ROC #</Text>
+          <Text>254292</Text>
+        </Stack>
+        <Stack gap="smaller">
+          <Text variation="subdued">Ordered by</Text>
+          <Text>Mark Gilbert</Text>
+        </Stack>
+        <Stack gap="smaller">
+          <Text variation="subdued">Client type</Text>
+          <Text>Commercial</Text>
+        </Stack>
+      </Tiles>
+    </Box>
+    <br />
+  </Card>
+</Canvas>
+
+<Disclosure title="Skeleton Request Show template">
+    ```
+      <Card accent="color">
+        <Box padding={{ vertical: "larger", horizontal: "largest" }} background="surface--background--subtle">
+          {/* Top Bar Pattern */}
+          <Cluster justify="space-between">
+            <Cluster>
+              {/* Left side status elements */}
+            </Cluster>
+            <Container>
+              <Cluster>
+                {/* Right side actions */}
+              </Cluster>
+            </Container>
+          </Cluster>
+
+          {/* Main Content */}
+          <Stack gap="larger">
+            <Heading level={1} />
+
+            {/* Info Card */}
+            <Card>
+              <Box padding="large" background="surface--background--subtle">
+                {/* Metadata Tiles */}
+                <Stack>
+                  <Text>Info</Text>
+                </Stack>
+              </Box>
+            </Card>
+
+            {/* Metadata Grid */}
+            <Tiles>
+              <Stack gap="base">
+                <Text>Metadata</Text>
+              </Stack>
+            </Tiles>
+          </Stack>
+        </Box>
+      </Card>
+    ```
+
+</Disclosure>
+
+<Divider />
+
+<Heading level={3}>Request Create (responsive padding)</Heading>
+<Canvas>
+  <Card>
+    <Container name="form-container">
+      <Container.Apply className={styles.formPadding}>
+        <ResponsiveSwitcher threshold="40rem" gap="largest">
+          <Stack gap="base">
+            <Heading level={2}>Overview</Heading>
+            <Heading level={3}>Service details</Heading>
+            <Stack gap="smallest">
+              <FormFieldLabel external htmlFor="service-details">
+                Please provide as much information as you can
+              </FormFieldLabel>
+              <InputText id="service-details" multiline rows={4} />
+            </Stack>
+            <Stack gap="base">
+              <Heading level={3}>Your availability</Heading>
+              <Text variation="subdued">
+                Which day would be best for an assessment of the work?
+              </Text>
+              <InputDate placeholder={"Date"} />
+              <Text variation="subdued">
+                What is another day that works for you?
+              </Text>
+              <InputDate placeholder={"Date"} />
+              <Text variation="subdued">
+                What are your preferred arrival times?
+              </Text>
+              <Stack gap="small">
+                <Checkbox label="Any time" />
+                <Checkbox label="Morning" />
+                <Checkbox label="Afternoon" />
+                <Checkbox label="Evening" />
+              </Stack>
+            </Stack>
+          </Stack>
+          <Stack>
+            <Heading level={2}>On-site assessment</Heading>
+            <Container name="assessment-container">
+              <Container.Apply className={styles.assessmentCard}>
+                <Box padding="extravagant">
+                  <ContentBlock justify="center" andText>
+                    <Stack gap="base" align="center">
+                      <Icon
+                        name="visit"
+                        size="large"
+                        UNSAFE_className={{ svg: styles.iconCircle }}
+                        UNSAFE_style={{ path: { fill: "var(--color-icon)" } }}
+                      />
+                      <Text align="center">
+                        Visit the property to assess the job before you do the
+                        work
+                      </Text>
+                    </Stack>
+                  </ContentBlock>
+                </Box>
+              </Container.Apply>
+            </Container>
+          </Stack>
+        </ResponsiveSwitcher>
+      </Container.Apply>
+    </Container>
+  </Card>
+</Canvas>
+
+<Heading level={3}>Client New</Heading>
+<Canvas>
+  <Card>
+    <Box padding="large" gap="base">
+      <Stack gap="large">
+        <Heading level={2}>New Client</Heading>
+        <Heading level={3}>Primary contact details</Heading>
+      </Stack>
+      <InputGroup flowDirection="vertical">
+        <InputGroup flowDirection="horizontal">
+          <Select placeholder="Title">
+            <Option value="none">No title</Option>
+            <Option value="mr">Mr.</Option>
+            <Option value="mrs">Mrs.</Option>
+            <Option value="ms">Ms.</Option>
+            <Option value="dr">Dr.</Option>
+          </Select>
+          <InputText placeholder="First name" />
+          <InputText placeholder="Last name" />
+        </InputGroup>
+        <InputGroup flowDirection="horizontal">
+          <InputText placeholder="Company name" />
+        </InputGroup>
+      </InputGroup>
+      <Checkbox label="Use company name as the primary name" />
+      <Heading level={4}>Communication</Heading>
+      <Stack gap="small">
+        <InputPhoneNumber pattern="(***) ***-****" />
+        <InputEmail placeholder="Email" />
+      </Stack>
+      <Divider />
+      <Heading level={3}>Property address</Heading>
+      <InputGroup flowDirection={"vertical"}>
+        <InputText placeholder="Street 1" />
+        <InputText placeholder="Street 2" />
+        <InputGroup flowDirection="horizontal">
+          <InputText placeholder="City" />
+          <InputText placeholder="Province" />
+        </InputGroup>
+        <InputGroup flowDirection="horizontal">
+          <InputText placeholder="Postal Code" />
+          <InputText placeholder="Country" />
+        </InputGroup>
+      </InputGroup>
+    </Box>
+  </Card>
 </Canvas>
