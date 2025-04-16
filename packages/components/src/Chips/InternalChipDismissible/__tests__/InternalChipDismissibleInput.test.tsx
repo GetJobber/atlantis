@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
 import { ChipProps } from "../../Chip";
@@ -77,6 +77,7 @@ beforeEach(() => {
 
 afterEach(() => {
   jest.useRealTimers();
+  cleanup();
 });
 
 describe("Menu closed", () => {
@@ -130,6 +131,12 @@ describe("Menu open", () => {
 
   it("should highlight the first option", () => {
     isOptionhighlighted(optionsArray[0]);
+  });
+
+  it("should highlight the hovered option", () => {
+    const optionToHover = screen.getByRole("option", { name: optionsArray[1] });
+    fireEvent.mouseEnter(optionToHover);
+    isOptionhighlighted(optionsArray[1]);
   });
 
   it("should have a loading spinner", () => {
@@ -192,6 +199,7 @@ describe("Add/delete via keyboard", () => {
     fireEvent.keyDown(screen.getByRole("combobox"), { key: "Enter" });
     expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[0]);
     expect(handleCustomOptionSelect).not.toHaveBeenCalled();
+    expect(screen.getByRole("combobox")).toHaveFocus();
   });
 
   it("should call onCustomOptionSelect on enter when search value is new", () => {
@@ -207,6 +215,7 @@ describe("Add/delete via keyboard", () => {
 
     expect(handleCustomOptionSelect).toHaveBeenCalledWith(newValue);
     expect(handleOptionSelect).not.toHaveBeenCalled();
+    expect(screen.getByRole("combobox")).toHaveFocus();
   });
 
   it("should add the highlighted option on tab", () => {
@@ -215,6 +224,7 @@ describe("Add/delete via keyboard", () => {
     fireEvent.keyDown(input, { key: "Tab" });
     expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[1]);
     expect(handleCustomOptionSelect).not.toHaveBeenCalled();
+    expect(input).toHaveFocus();
   });
 
   it("should add the current input as a custom option on comma", () => {
@@ -230,6 +240,7 @@ describe("Add/delete via keyboard", () => {
 
     expect(handleCustomOptionSelect).toHaveBeenCalledWith(newValue);
     expect(handleOptionSelect).not.toHaveBeenCalled();
+    expect(input).toHaveFocus();
   });
 });
 
@@ -377,6 +388,114 @@ describe("Default Blur Behavior", () => {
     expect(input).toBeInTheDocument();
     expect(input).toHaveFocus();
     expect(input).toHaveValue("");
+  });
+});
+
+describe("submitInputOnFocusShift", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+    rerender(
+      <InternalChipDismissibleInput
+        {...props}
+        submitInputOnFocusShift={true}
+      />,
+    );
+    const addButton = screen.getByRole("button", { name: "Add" });
+    fireEvent.click(addButton);
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it("should select a custom option on blur", () => {
+    const input = screen.getByRole("combobox");
+    const searchValue = "Superb";
+    fireEvent.change(input, { target: { value: searchValue } });
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    fireEvent.blur(input);
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    expect(handleCustomOptionSelect).toHaveBeenCalledWith(searchValue);
+    expect(handleOptionSelect).not.toHaveBeenCalled();
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
+  });
+
+  it("should do nothing on blur if input is empty", () => {
+    const input = screen.getByRole("combobox");
+    expect(input).toHaveValue("");
+
+    fireEvent.blur(input);
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    expect(handleCustomOptionSelect).not.toHaveBeenCalled();
+    expect(handleOptionSelect).not.toHaveBeenCalled();
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument(); // Input should still hide
+  });
+});
+
+describe("submitInputOnFocusShift without onCustomOptionSelect", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+    cleanup();
+    render(
+      <InternalChipDismissibleInput
+        {...props}
+        onCustomOptionSelect={undefined}
+        submitInputOnFocusShift={true}
+      />,
+    );
+    const addButton = screen.getByRole("button", { name: "Add" });
+    fireEvent.click(addButton);
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it("should select the best matching option on blur", () => {
+    const input = screen.getByRole("combobox");
+    const searchValue = "Fab";
+    fireEvent.change(input, { target: { value: searchValue } });
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    fireEvent.blur(input);
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[1]);
+    expect(handleCustomOptionSelect).not.toHaveBeenCalled();
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
+  });
+
+  it("should do nothing on blur if input is empty", () => {
+    const input = screen.getByRole("combobox");
+    expect(input).toHaveValue("");
+
+    fireEvent.blur(input);
+
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    expect(handleCustomOptionSelect).not.toHaveBeenCalled();
+    expect(handleOptionSelect).not.toHaveBeenCalled();
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
   });
 });
 
