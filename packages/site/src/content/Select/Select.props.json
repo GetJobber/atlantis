@@ -201,19 +201,6 @@
           "name": "\"small\" | \"large\""
         }
       },
-      "readonly": {
-        "defaultValue": null,
-        "description": "Prevents users from editing the value.",
-        "name": "readonly",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "autofocus": {
         "defaultValue": null,
         "description": "Determines if the input should be auto-focused, using the HTML attribute",

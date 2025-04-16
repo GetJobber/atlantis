@@ -17,7 +17,6 @@ export interface SelectProps
     >,
     Pick<
       FormFieldProps,
-      | "readonly"
       | "autofocus"
       | "onEnter"
       | "onBlur"

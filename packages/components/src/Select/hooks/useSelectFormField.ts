@@ -4,7 +4,6 @@ export interface UseSelectFormFieldProps {
   readonly id: string;
   readonly name: string;
   readonly disabled?: boolean;
-  readonly readonly?: boolean;
   readonly autofocus?: boolean;
   readonly description?: string;
   readonly inline?: boolean;
@@ -21,7 +20,6 @@ export interface UseSelectFormFieldReturn {
     readonly id: string;
     readonly name: string;
     readonly disabled?: boolean;
-    readonly readOnly?: boolean;
     readonly autoFocus?: boolean;
     readonly onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
     readonly onBlur: () => void;
@@ -40,7 +38,6 @@ export function useSelectFormField({
   id,
   name,
   disabled,
-  readonly,
   autofocus,
   description,
   inline,
@@ -55,7 +52,6 @@ export function useSelectFormField({
     id,
     name,
     disabled,
-    readOnly: readonly,
     autoFocus: autofocus,
     onChange: handleChange,
     onBlur: handleBlur,
