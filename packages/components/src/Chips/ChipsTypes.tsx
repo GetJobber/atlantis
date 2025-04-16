@@ -116,7 +116,7 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
    * onCustomOptionSelect is provided, or the closest match.
    * @default false
    */
-  readonly submitInputOnFocusShift?: boolean;
+  readonly autoSelectOnClickOutside?: boolean;
 }
 
 export type ChipsProps =

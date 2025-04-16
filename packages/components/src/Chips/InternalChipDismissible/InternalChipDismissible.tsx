@@ -57,7 +57,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
         onSearch={props.onSearch}
         onLoadMore={props.onLoadMore}
         onlyShowMenuOnSearch={props.onlyShowMenuOnSearch}
-        submitInputOnFocusShift={props.submitInputOnFocusShift}
+        autoSelectOnClickOutside={props.autoSelectOnClickOutside}
       />
     </div>
   );

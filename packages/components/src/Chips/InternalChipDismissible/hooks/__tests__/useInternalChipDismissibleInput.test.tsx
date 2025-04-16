@@ -27,7 +27,7 @@ const hookParams = {
   onOptionSelect: handleOptionSelect,
   onCustomOptionSelect: handleCustomOptionSelect,
   onSearch: handleSearch,
-  submitInputOnFocusShift: false,
+  autoSelectOnClickOutside: false,
   onlyShowMenuOnSearch: false,
 };
 
@@ -154,9 +154,9 @@ describe("handleBlur", () => {
     expect(result.current.menuOpen).toBe(true);
     expect(result.current.activeIndex).toBe(2);
   });
-  describe("when submitInputOnFocusShift is true", () => {
+  describe("when autoSelectOnClickOutside is true", () => {
     it("should submit the custom option on blur when a custom option can be added", () => {
-      const result = setupHook({ submitInputOnFocusShift: true });
+      const result = setupHook({ autoSelectOnClickOutside: true });
       const searchValue = "NewValue";
 
       act(() => {
@@ -181,7 +181,7 @@ describe("handleBlur", () => {
 
     it("should submit the first option on blur when custom option cannot be added", () => {
       const result = setupHook({
-        submitInputOnFocusShift: true,
+        autoSelectOnClickOutside: true,
         onCustomOptionSelect: undefined,
       });
       const searchValue = "Ama";
@@ -203,7 +203,7 @@ describe("handleBlur", () => {
     });
 
     it("should not submit anything on blur when search value is empty", () => {
-      const result = setupHook({ submitInputOnFocusShift: true });
+      const result = setupHook({ autoSelectOnClickOutside: true });
 
       act(() => {
         result.current.handleOpenMenu();
@@ -221,7 +221,7 @@ describe("handleBlur", () => {
     });
 
     it("should not submit anything on blur when search value exists but there are no options", () => {
-      const result = setupHook({ submitInputOnFocusShift: true, options: [] });
+      const result = setupHook({ autoSelectOnClickOutside: true, options: [] });
       const searchValue = "NoMatch";
 
       act(() => {

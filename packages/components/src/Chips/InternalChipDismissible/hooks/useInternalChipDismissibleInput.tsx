@@ -25,7 +25,7 @@ export function useInternalChipDismissibleInput({
   onOptionSelect,
   onSearch,
   onlyShowMenuOnSearch = false,
-  submitInputOnFocusShift = false,
+  autoSelectOnClickOutside = false,
 }: ChipDismissibleInputProps) {
   const menuId = useId();
   const [allOptions, setAllOptions] = useState<
@@ -89,7 +89,7 @@ export function useInternalChipDismissibleInput({
       if (shouldCancelBlur) return;
 
       if (
-        submitInputOnFocusShift &&
+        autoSelectOnClickOutside &&
         searchValue.length > 0 &&
         allOptions.length > 0
       ) {

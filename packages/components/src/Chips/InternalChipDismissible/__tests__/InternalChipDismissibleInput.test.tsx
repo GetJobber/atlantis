@@ -391,13 +391,13 @@ describe("Default Blur Behavior", () => {
   });
 });
 
-describe("submitInputOnFocusShift", () => {
+describe("autoSelectOnClickOutside", () => {
   beforeEach(() => {
     jest.useFakeTimers();
     rerender(
       <InternalChipDismissibleInput
         {...props}
-        submitInputOnFocusShift={true}
+        autoSelectOnClickOutside={true}
       />,
     );
     const addButton = screen.getByRole("button", { name: "Add" });
@@ -444,7 +444,7 @@ describe("submitInputOnFocusShift", () => {
   });
 });
 
-describe("submitInputOnFocusShift without onCustomOptionSelect", () => {
+describe("autoSelectOnClickOutside without onCustomOptionSelect", () => {
   beforeEach(() => {
     jest.useFakeTimers();
     cleanup();
@@ -452,7 +452,7 @@ describe("submitInputOnFocusShift without onCustomOptionSelect", () => {
       <InternalChipDismissibleInput
         {...props}
         onCustomOptionSelect={undefined}
-        submitInputOnFocusShift={true}
+        autoSelectOnClickOutside={true}
       />,
     );
     const addButton = screen.getByRole("button", { name: "Add" });
