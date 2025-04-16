@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.37.0...@jobber/components@6.38.0) (2025-04-16)
+
+
+### Features
+
+* **components:** Layout System 2.0  ([#2461](https://github.com/GetJobber/atlantis/issues/2461)) ([9b0383f](https://github.com/GetJobber/atlantis/commit/9b0383fff586df22dc23374359cbd7d259c18d60))
+
+
+
+
+
 # [6.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.36.1...@jobber/components@6.37.0) (2025-04-15)
 
 
