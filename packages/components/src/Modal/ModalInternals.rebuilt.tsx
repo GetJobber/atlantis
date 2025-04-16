@@ -12,7 +12,7 @@ import {
   HeaderProps,
   ModalActionsProps,
   ModalWrapperProps,
-} from "./Modal.rebuilt.types";
+} from "./Modal.types";
 import { useModalStyles } from "./useModalStyles";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";

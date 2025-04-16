@@ -237,3 +237,22 @@ interface HeaderPropsWithoutChildren {
 type HeaderWithChildren = PropsWithChildren;
 
 export type HeaderProps = XOR<HeaderPropsWithoutChildren, HeaderWithChildren>;
+
+export interface ModalLegacyProps {
+  /**
+   * @default false
+   */
+  readonly title?: string;
+  readonly open?: boolean;
+  readonly size?: keyof typeof sizes;
+  /**
+   * @default true
+   */
+  readonly dismissible?: boolean;
+  readonly children: ReactNode;
+  readonly primaryAction?: ButtonProps;
+  readonly secondaryAction?: ButtonProps;
+  readonly tertiaryAction?: ButtonProps;
+  onRequestClose?(): void;
+  readonly version?: 1;
+}

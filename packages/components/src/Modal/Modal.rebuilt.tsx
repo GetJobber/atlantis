@@ -1,6 +1,6 @@
 import React from "react";
 import { ModalProvider, useModalContext } from "./ModalContext.rebuilt";
-import { ModalRewriteProps } from "./Modal.rebuilt.types";
+import { ModalRewriteProps } from "./Modal.types";
 import {
   ModalActions,
   ModalHeader,

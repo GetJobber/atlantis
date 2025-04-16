@@ -1,6 +1,6 @@
 import React from "react";
 import { ModalRebuilt } from "./Modal.rebuilt";
-import { ModalLegacy as ModalLegacy, ModalLegacyProps } from "./Modal";
+import { ModalLegacy } from "./Modal";
 import { ModalProvider } from "./ModalContext.rebuilt";
 import {
   ModalActions,
@@ -8,7 +8,7 @@ import {
   ModalHeader,
   ModalWrapper,
 } from "./ModalInternals.rebuilt";
-import { ModalRewriteProps as ModalRewriteProps } from "./Modal.rebuilt.types";
+import { ModalLegacyProps, ModalRewriteProps } from "./Modal.types";
 
 type ModalProps = ModalLegacyProps | ModalRewriteProps;
 

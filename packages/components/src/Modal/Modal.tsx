@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,28 +7,10 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./Modal.module.css";
 import sizes from "./ModalSizes.module.css";
+import { ModalLegacyProps } from "./Modal.types";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
-
-export interface ModalLegacyProps {
-  /**
-   * @default false
-   */
-  readonly title?: string;
-  readonly open?: boolean;
-  readonly size?: keyof typeof sizes;
-  /**
-   * @default true
-   */
-  readonly dismissible?: boolean;
-  readonly children: ReactNode;
-  readonly primaryAction?: ButtonProps;
-  readonly secondaryAction?: ButtonProps;
-  readonly tertiaryAction?: ButtonProps;
-  onRequestClose?(): void;
-  readonly version?: 1;
-}
 
 export function ModalLegacy({
   open = false,
