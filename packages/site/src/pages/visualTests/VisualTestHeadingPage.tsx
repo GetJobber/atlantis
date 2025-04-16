@@ -3,16 +3,16 @@ import { Box, Grid, Heading, Stack, Text } from "@jobber/components";
 export const VisualTestHeadingPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Heading Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Different Heading Levels */}
           <section>
             <Text size="large">Different Heading Levels</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Heading level={1}>Heading Level 1</Heading>
                   <Text variation="subdued">Main subject of the page</Text>
 
@@ -48,7 +48,7 @@ export const VisualTestHeadingPage = () => {
             <Text size="large">Custom Elements</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Heading level={2} element="h1">
                     Visual Level 2, Semantic Level 1
                   </Heading>
@@ -89,19 +89,19 @@ export const VisualTestHeadingPage = () => {
             <Text size="large">Heading in Context</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="large">
+                <Stack gap="large">
                   <Box background="surface--background" padding="large">
-                    <Stack space="small">
+                    <Stack gap="small">
                       <Heading level={2}>Job Details</Heading>
-                      <Stack space="base">
+                      <Stack gap="base">
                         <Heading level={3}>Client Information</Heading>
                         <Text>Client details would go here</Text>
                       </Stack>
-                      <Stack space="base">
+                      <Stack gap="base">
                         <Heading level={3}>Property Details</Heading>
                         <Text>Property information would go here</Text>
                       </Stack>
-                      <Stack space="base">
+                      <Stack gap="base">
                         <Heading level={4}>Additional Notes</Heading>
                         <Text>Any extra information about the job</Text>
                       </Stack>

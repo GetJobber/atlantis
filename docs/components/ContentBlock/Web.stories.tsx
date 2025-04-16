@@ -55,6 +55,7 @@ export const WithAndText = BasicTemplate.bind({});
 WithAndText.args = {
   maxWidth: "50ch",
   justify: "center",
+  andText: true,
 };
 
 const CustomMaxWidthTemplate: ComponentStory<typeof ContentBlock> = args => (

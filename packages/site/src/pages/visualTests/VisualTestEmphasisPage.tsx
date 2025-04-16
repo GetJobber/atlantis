@@ -3,16 +3,16 @@ import { Box, Emphasis, Grid, Heading, Stack, Text } from "@jobber/components";
 export const VisualTestEmphasisPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Emphasis Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Bold Emphasis */}
           <section>
             <Text size="large">Bold Emphasis</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Text>
                     <Emphasis variation="bold">Save $240</Emphasis> when you
                     choose our Annual Plan
@@ -32,7 +32,7 @@ export const VisualTestEmphasisPage = () => {
             <Text size="large">Italic Emphasis</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Text>
                     Simon&apos;s here to show{" "}
                     <Emphasis variation="italic">you</Emphasis> how Jobber
@@ -52,7 +52,7 @@ export const VisualTestEmphasisPage = () => {
             <Text size="large">Highlight Emphasis</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Heading level={1}>
                     Get paid <Emphasis variation="highlight">faster</Emphasis>
                   </Heading>
@@ -70,7 +70,7 @@ export const VisualTestEmphasisPage = () => {
             <Text size="large">Mixed Emphasis</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Text>
                     The <Emphasis variation="bold">important</Emphasis> thing to
                     remember is to use{" "}

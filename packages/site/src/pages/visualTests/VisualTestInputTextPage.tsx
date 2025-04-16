@@ -7,10 +7,10 @@ export const VisualTestInputTextPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputText Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputText */}
           <section>
             <Text size="large">Basic InputText</Text>

@@ -7,10 +7,10 @@ export const VisualTestSwitchPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Switch Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Switch */}
           <section>
             <Text size="large">Basic Switch</Text>
@@ -45,7 +45,7 @@ export const VisualTestSwitchPage = () => {
             <Text size="large">Switch States</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Box>
                     <Text>Disabled (Off):</Text>
                     <Switch

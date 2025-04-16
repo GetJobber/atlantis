@@ -55,10 +55,10 @@ export const VisualTestAutocompletePage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Autocomplete Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Autocomplete */}
           <section>
             <Text size="large">Basic Autocomplete</Text>

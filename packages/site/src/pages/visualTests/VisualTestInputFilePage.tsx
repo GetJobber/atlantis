@@ -22,10 +22,10 @@ export const VisualTestInputFilePage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputFile Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputFile (Dropzone) */}
           <section>
             <Text size="large">Basic InputFile (Dropzone)</Text>
@@ -72,7 +72,7 @@ export const VisualTestInputFilePage = () => {
             <Text size="large">InputFile with File Type Restrictions</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InputFile
                     allowedTypes="images"
                     getUploadParams={handleUploadParams}

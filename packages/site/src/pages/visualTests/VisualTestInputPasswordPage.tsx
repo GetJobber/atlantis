@@ -15,10 +15,10 @@ export const VisualTestInputPasswordPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputPassword Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputPassword */}
           <section>
             <Text size="large">Basic InputPassword</Text>
@@ -53,7 +53,7 @@ export const VisualTestInputPasswordPage = () => {
             <Text size="large">InputPassword states</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InputPassword
                     value={password3}
                     onChange={setPassword3}

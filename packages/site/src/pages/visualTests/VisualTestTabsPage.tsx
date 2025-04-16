@@ -3,10 +3,10 @@ import { Box, Grid, Heading, Stack, Tab, Tabs, Text } from "@jobber/components";
 export const VisualTestTabsPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Tabs Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Tabs */}
           <section>
             <Text size="large">Basic Tabs</Text>
@@ -70,7 +70,7 @@ export const VisualTestTabsPage = () => {
                 <Tabs defaultTab={0}>
                   <Tab label="Details">
                     <Box padding="base">
-                      <Stack space="small">
+                      <Stack gap="small">
                         <Text>Detailed information goes here</Text>
                         <Text variation="subdued">
                           Additional details can be added
@@ -80,7 +80,7 @@ export const VisualTestTabsPage = () => {
                   </Tab>
                   <Tab label="Settings">
                     <Box padding="base">
-                      <Stack space="small">
+                      <Stack gap="small">
                         <Text>Settings panel content</Text>
                         <Text variation="subdued">
                           Configure your preferences
@@ -90,7 +90,7 @@ export const VisualTestTabsPage = () => {
                   </Tab>
                   <Tab label="History">
                     <Box padding="base">
-                      <Stack space="small">
+                      <Stack gap="small">
                         <Text>History and activity</Text>
                         <Text variation="subdued">
                           View past actions and changes

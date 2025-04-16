@@ -3,10 +3,10 @@ import { Box, Grid, Heading, Stack, Text, Toast } from "@jobber/components";
 export const VisualTestToastPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Toast Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Toast */}
           <section>
             <Text size="large">Basic Toast</Text>
@@ -22,7 +22,7 @@ export const VisualTestToastPage = () => {
             <Text size="large">Toast Variations</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Toast message="Success message" variation="success" />
                   <Toast message="Error message" variation="error" />
                   <Toast message="Info message" variation="info" />
@@ -51,7 +51,7 @@ export const VisualTestToastPage = () => {
             <Text size="large">Multiple Toasts</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Toast message="First toast message" variation="success" />
                   <Toast message="Second toast message" variation="info" />
                   <Toast message="Third toast message" variation="error" />

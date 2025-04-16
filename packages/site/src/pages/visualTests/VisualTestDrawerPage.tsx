@@ -16,10 +16,10 @@ export const VisualTestDrawerPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Drawer Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Drawer */}
           <section>
             <Text size="large">Basic Drawer</Text>
@@ -36,7 +36,7 @@ export const VisualTestDrawerPage = () => {
                     onRequestClose={() => setIsBasicDrawerOpen(false)}
                   >
                     <Content>
-                      <Stack space="small">
+                      <Stack gap="small">
                         <Text>This is a basic drawer with simple content.</Text>
                         <Text>
                           The drawer can be closed by clicking the close button
@@ -68,13 +68,13 @@ export const VisualTestDrawerPage = () => {
                     onRequestClose={() => setIsDrawerWithContentOpen(false)}
                   >
                     <Content>
-                      <Stack space="large">
+                      <Stack gap="large">
                         <Text>
                           This drawer demonstrates how to display rich content
                           with multiple sections.
                         </Text>
                         <Box padding="small">
-                          <Stack space="small">
+                          <Stack gap="small">
                             <Heading level={2}>Section 1</Heading>
                             <Text>
                               This is the content for section 1. It can contain
@@ -83,7 +83,7 @@ export const VisualTestDrawerPage = () => {
                           </Stack>
                         </Box>
                         <Box padding="small">
-                          <Stack space="small">
+                          <Stack gap="small">
                             <Heading level={2}>Section 2</Heading>
                             <Text>
                               This is the content for section 2. Notice how we
@@ -109,7 +109,7 @@ export const VisualTestDrawerPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Content>
-                  <Stack space="small">
+                  <Stack gap="small">
                     <Text>
                       This is the main content area. It remains interactive
                       while the drawer is open. Try clicking the buttons above

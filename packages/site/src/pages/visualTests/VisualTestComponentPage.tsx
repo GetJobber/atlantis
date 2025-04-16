@@ -17,11 +17,11 @@ import {
 export const VisualTestComponentPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         {/* Button Examples */}
         <Stack>
           <Heading level={1}>Button Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Basic Button Types */}
             <section>
               <Text size="large">Basic Button Types</Text>
@@ -111,7 +111,7 @@ export const VisualTestComponentPage = () => {
         {/* Avatar Examples */}
         <Stack>
           <Heading level={1}>Avatar Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Avatar Sizes */}
             <section>
               <Text size="large">Avatar Sizes</Text>
@@ -167,30 +167,30 @@ export const VisualTestComponentPage = () => {
         {/* StatusIndicator Examples */}
         <Stack>
           <Heading level={1}>StatusIndicator Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* All Status Types */}
             <section>
               <Text size="large">All Status Types</Text>
               <Card>
                 <Box padding="base">
                   <Cluster>
-                    <Cluster space="small">
+                    <Cluster gap="small">
                       <StatusIndicator status="success" />
                       <Text>Success</Text>
                     </Cluster>
-                    <Cluster space="small">
+                    <Cluster gap="small">
                       <StatusIndicator status="warning" />
                       <Text>Warning</Text>
                     </Cluster>
-                    <Cluster space="small">
+                    <Cluster gap="small">
                       <StatusIndicator status="critical" />
                       <Text>Critical</Text>
                     </Cluster>
-                    <Cluster space="small">
+                    <Cluster gap="small">
                       <StatusIndicator status="inactive" />
                       <Text>Inactive</Text>
                     </Cluster>
-                    <Cluster space="small">
+                    <Cluster gap="small">
                       <StatusIndicator status="informative" />
                       <Text>Informative</Text>
                     </Cluster>
@@ -202,10 +202,10 @@ export const VisualTestComponentPage = () => {
             {/* Status Indicators in Context */}
             <section>
               <Text size="large">Status Indicators in Context</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card>
                   <Box padding="base">
-                    <Cluster space="small" align="center">
+                    <Cluster gap="small" align="center">
                       <StatusIndicator status="success" />
                       <Text>System Status: Online</Text>
                     </Cluster>
@@ -213,7 +213,7 @@ export const VisualTestComponentPage = () => {
                 </Card>
                 <Card>
                   <Box padding="base">
-                    <Cluster space="small" align="center">
+                    <Cluster gap="small" align="center">
                       <StatusIndicator status="critical" />
                       <Text>System Status: Error</Text>
                     </Cluster>
@@ -227,11 +227,11 @@ export const VisualTestComponentPage = () => {
         {/* Banner Examples */}
         <Stack>
           <Heading level={1}>Banner Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Basic Banner Types */}
             <section>
               <Text size="large">Basic Banner Types</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Banner type="notice">
                   This is a notice banner with default icon
                 </Banner>
@@ -250,7 +250,7 @@ export const VisualTestComponentPage = () => {
             {/* Banners with Actions */}
             <section>
               <Text size="large">Banners with Actions</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Banner
                   type="notice"
                   primaryAction={{
@@ -275,7 +275,7 @@ export const VisualTestComponentPage = () => {
             {/* Banners with Custom Icons */}
             <section>
               <Text size="large">Banners with Custom Icons</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Banner type="notice" icon="calendar">
                   A notice banner with a custom calendar icon
                 </Banner>
@@ -288,7 +288,7 @@ export const VisualTestComponentPage = () => {
             {/* Non-dismissible Banners */}
             <section>
               <Text size="large">Non-dismissible Banners</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Banner type="warning" dismissible={false}>
                   This warning banner cannot be dismissed
                 </Banner>
@@ -303,11 +303,11 @@ export const VisualTestComponentPage = () => {
         {/* Checkbox Examples */}
         <Stack>
           <Heading level={1}>Checkbox Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Basic Checkbox Types */}
             <section>
               <Text size="large">Basic Checkbox Types</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Checkbox label="Basic Checkbox" />
                 <Checkbox label="Pre-checked Checkbox" defaultChecked />
                 <Checkbox
@@ -323,7 +323,7 @@ export const VisualTestComponentPage = () => {
             {/* Checkbox States */}
             <section>
               <Text size="large">Checkbox States</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Checkbox label="Disabled Checkbox" disabled />
                 <Checkbox
                   label="Disabled Checked Checkbox"
@@ -337,7 +337,7 @@ export const VisualTestComponentPage = () => {
             {/* Checkbox with Description */}
             <section>
               <Text size="large">Checkbox with Description</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Checkbox
                   label="Checkbox with Description"
                   description="This is a helpful description that provides more context"
@@ -352,7 +352,7 @@ export const VisualTestComponentPage = () => {
             {/* Checkbox with Children */}
             <section>
               <Text size="large">Checkbox with Children</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Checkbox>
                   <Text>
                     Custom label with a{" "}
@@ -373,11 +373,11 @@ export const VisualTestComponentPage = () => {
         {/* Card Examples */}
         <Stack>
           <Heading level={1}>Card Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Basic Cards */}
             <section>
               <Text size="large">Basic Cards</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card>
                   <Box padding="base">
                     <Text>Basic card with no header or special styling</Text>
@@ -413,7 +413,7 @@ export const VisualTestComponentPage = () => {
             {/* Card Elevations */}
             <section>
               <Text size="large">Card Elevations</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card elevation="none">
                   <Box padding="base">
                     <Text>Card with no elevation</Text>
@@ -435,7 +435,7 @@ export const VisualTestComponentPage = () => {
             {/* Interactive Cards */}
             <section>
               <Text size="large">Interactive Cards</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card
                   onClick={() => console.log("Clicked!")}
                   header="Clickable Card"
@@ -467,7 +467,7 @@ export const VisualTestComponentPage = () => {
             {/* Cards with Accent Colors */}
             <section>
               <Text size="large">Cards with Accent Colors</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card accent="green" header="Work Card">
                   <Box padding="base">
                     <Text>Card with green accent color</Text>
@@ -533,11 +533,11 @@ export const VisualTestComponentPage = () => {
         {/* Box Examples */}
         <Stack>
           <Heading level={1}>Box Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Basic Box Usage */}
             <section>
               <Text size="large">Basic Box Usage</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Box>
                   <Text>Default Box - display: flex with column direction</Text>
                 </Box>
@@ -553,7 +553,7 @@ export const VisualTestComponentPage = () => {
             {/* Box with Border and Margin */}
             <section>
               <Text size="large">Box with Border and Margin</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Box margin="largest" border="thickest" padding="extravagant">
                   <Text>
                     Box with largest margin, thickest border, and extravagant
@@ -572,7 +572,7 @@ export const VisualTestComponentPage = () => {
             {/* Box Layout Examples */}
             <section>
               <Text size="large">Box Layout Examples</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Box direction="row">
                   <Box padding="base" width="grow" border="base">
                     <Text>Left column (grow)</Text>
@@ -651,11 +651,11 @@ export const VisualTestComponentPage = () => {
         {/* Menu Examples */}
         <Stack>
           <Heading level={1}>Menu Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Basic Menu Types */}
             <section>
               <Text size="large">Basic Menu Types</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card>
                   <Box padding="base">
                     <Menu
@@ -752,7 +752,7 @@ export const VisualTestComponentPage = () => {
             {/* Menu Variations */}
             <section>
               <Text size="large">Menu Variations</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card>
                   <Box padding="base">
                     <Cluster>
@@ -948,9 +948,9 @@ export const VisualTestComponentPage = () => {
               >
                 <Box padding="base">
                   <Stack>
-                    <Cluster space="small" align="center">
+                    <Cluster gap="small" align="center" autoWidth>
                       <Avatar initials="JS" size="large" />
-                      <Stack space="tight">
+                      <Stack gap="tight" autoWidth>
                         <Text size="large">John Smith</Text>
                         <Text variation="subdued">john.smith@example.com</Text>
                       </Stack>
@@ -968,11 +968,11 @@ export const VisualTestComponentPage = () => {
         {/* Text Examples */}
         <Stack>
           <Heading level={1}>Text Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Text Sizes */}
             <section>
               <Text size="large">Text Sizes</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Text size="small">This is small text</Text>
                 <Text size="base">This is base text (default)</Text>
                 <Text size="large">This is large text</Text>
@@ -982,7 +982,7 @@ export const VisualTestComponentPage = () => {
             {/* Text Variations */}
             <section>
               <Text size="large">Text Variations</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Text variation="default">Default text variation</Text>
                 <Text variation="subdued">Subdued text variation</Text>
                 <Text variation="success">Success text variation</Text>
@@ -993,7 +993,7 @@ export const VisualTestComponentPage = () => {
             {/* Text Weights */}
             <section>
               <Text size="large">Text Weights</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Emphasis variation="bold">Bold weight text</Emphasis>
                 <Text>Normal weight text</Text>
               </Stack>
@@ -1002,7 +1002,7 @@ export const VisualTestComponentPage = () => {
             {/* Text Alignment */}
             <section>
               <Text size="large">Text Alignment</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Text align="start">Left aligned text (default)</Text>
                 <Text align="center">Center aligned text</Text>
                 <Text align="end">Right aligned text</Text>
@@ -1023,7 +1023,7 @@ export const VisualTestComponentPage = () => {
             {/* Text with HTML Tags */}
             <section>
               <Text size="large">Text with HTML Tags</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Text>
                   Text can have <strong>bold parts</strong> and{" "}
                   <em>emphasized parts</em> using HTML tags.
@@ -1038,7 +1038,7 @@ export const VisualTestComponentPage = () => {
             {/* Text with Inline Elements */}
             <section>
               <Text size="large">Text with Inline Elements</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Text>
                   Normal text with <Text variation="success">success text</Text>{" "}
                   inline.
@@ -1054,11 +1054,11 @@ export const VisualTestComponentPage = () => {
         {/* Heading Examples */}
         <Stack>
           <Heading level={1}>Heading Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Heading Levels */}
             <section>
               <Text size="large">Heading Levels</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Heading level={1}>Heading Level 1</Heading>
                 <Heading level={2}>Heading Level 2</Heading>
                 <Heading level={3}>Heading Level 3</Heading>
@@ -1071,7 +1071,7 @@ export const VisualTestComponentPage = () => {
             {/* Custom Elements */}
             <section>
               <Text size="large">Custom Elements</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card>
                   <Box padding="base">
                     <Heading level={2} element="span">
@@ -1119,11 +1119,11 @@ export const VisualTestComponentPage = () => {
             {/* Heading with Other Components */}
             <section>
               <Text size="large">Heading with Other Components</Text>
-              <Stack space="base">
+              <Stack gap="base">
                 <Card>
                   <Box padding="base">
                     <Stack>
-                      <Cluster align="center" space="small">
+                      <Cluster align="center" gap="small">
                         <Heading level={3}>Section Title</Heading>
                         <StatusIndicator status="success" />
                       </Cluster>
@@ -1138,7 +1138,11 @@ export const VisualTestComponentPage = () => {
                 <Card>
                   <Box padding="base">
                     <Stack>
-                      <Cluster align="center" space="base" justify="between">
+                      <Cluster
+                        align="center"
+                        gap="base"
+                        justify="space-between"
+                      >
                         <Heading level={3}>Dashboard Overview</Heading>
                         <Button
                           label="Refresh"

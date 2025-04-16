@@ -1,30 +1,39 @@
 import React from "react";
 import classNames from "classnames";
-import { useMediaQuery } from "@jobber/hooks";
 import styles from "./SideKick.module.css";
 import { SideKickProps } from "./types";
-import { useSpaces } from "../sharedHooks/useSpaces";
+import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function SideKick({
   children,
   sideWidth,
   contentMinWidth = "50%",
-  space = "var(--space-base)",
+  gap = "var(--space-base)",
   onRight,
   collapseBelow,
+  collapsed,
   autoWidth = false,
+  as: Tag = "div",
+  dataAttributes,
+  ariaAttributes,
+  role,
+  id,
+  UNSAFE_className,
+  UNSAFE_style,
 }: SideKickProps) {
-  const spaceMapped = useSpaces(space);
-  const collapsed = useMediaQuery(`(max-width: ${collapseBelow || "0"})`);
-
   return (
-    <div
+    <Tag
+      role={role}
+      id={id}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-sidekick-side-width": sideWidth,
           "--public-sidekick-min-width": contentMinWidth,
-          "--public-sidekick-space": spaceMapped,
+          "--public-sidekick-space": getMappedAtlantisSpaceToken(gap),
           "--public-sidekick-width": autoWidth ? "auto" : "100%",
+          ...UNSAFE_style?.container,
         } as React.CSSProperties
       }
       className={classNames(
@@ -35,10 +44,12 @@ export function SideKick({
             ? styles.withWidthRight
             : styles.withWidthLeft
           : null,
-        collapsed && collapseBelow ? styles.collapsed : null,
+        collapseBelow && styles[collapseBelow as keyof typeof styles],
+        collapsed ? styles.collapsed : undefined,
+        UNSAFE_className?.container,
       )}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

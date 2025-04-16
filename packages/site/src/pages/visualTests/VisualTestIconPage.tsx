@@ -12,25 +12,25 @@ import {
 export const VisualTestIconPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Icon Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Icon Sizes */}
           <section>
             <Text size="large">Icon Sizes</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small" align="start">
-                  <Cluster space="small" align="center">
+                <Stack gap="small" align="start">
+                  <Cluster gap="small" align="center">
                     <Icon name="star" size="small" />
                     <Text>Small Icon</Text>
                   </Cluster>
-                  <Cluster space="small" align="center">
+                  <Cluster gap="small" align="center">
                     <Icon name="star" size="base" />
                     <Text>Base Icon (Default)</Text>
                   </Cluster>
-                  <Cluster space="small" align="center">
+                  <Cluster gap="small" align="center">
                     <Icon name="star" size="large" />
                     <Text>Large Icon</Text>
                   </Cluster>
@@ -44,33 +44,33 @@ export const VisualTestIconPage = () => {
             <Text size="large">System Colors</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Cluster space="small">
+                <Cluster gap="small">
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="star" color="blue" />
                       <Text>Blue</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="star" color="green" />
                       <Text>Green</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="star" color="red" />
                       <Text>Red</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="star" color="yellow" />
                       <Text>Yellow</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="star" color="orange" />
                       <Text>Orange</Text>
                     </Stack>
@@ -85,33 +85,33 @@ export const VisualTestIconPage = () => {
             <Text size="large">Common Icons</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Cluster space="small">
+                <Cluster gap="small">
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="add" />
                       <Text>Add</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="edit" />
                       <Text>Edit</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="trash" />
                       <Text>Trash</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="search" />
                       <Text>Search</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="checkmark" />
                       <Text>Checkmark</Text>
                     </Stack>
@@ -126,27 +126,27 @@ export const VisualTestIconPage = () => {
             <Text size="large">Status Icons</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Cluster space="small">
+                <Cluster gap="small">
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="info" color="blue" />
                       <Text>Info</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="alert" color="red" />
                       <Text>Alert</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="warning" color="yellow" />
                       <Text>Warning</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="help" color="greyBlue" />
                       <Text>Help</Text>
                     </Stack>
@@ -161,21 +161,21 @@ export const VisualTestIconPage = () => {
             <Text size="large">Custom Color</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Cluster space="small">
+                <Cluster gap="small">
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="star" customColor="#9C27B0" />
                       <Text>Custom Purple</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="star" customColor="#FF4081" />
                       <Text>Custom Pink</Text>
                     </Stack>
                   </Box>
                   <Box padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name="star" customColor="#795548" />
                       <Text>Custom Brown</Text>
                     </Stack>
@@ -190,9 +190,9 @@ export const VisualTestIconPage = () => {
             <Text size="large">All Available Icons</Text>
 
             {/* Arrows */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Arrows</Heading>
-              <Cluster space="small">
+              <Cluster gap="small">
                 {(
                   [
                     "arrowDown",
@@ -206,7 +206,7 @@ export const VisualTestIconPage = () => {
                   ] as IconNames[]
                 ).map(name => (
                   <Box key={name} padding="base">
-                    <Stack space="small" align="center">
+                    <Stack gap="small" align="center">
                       <Icon name={name} />
                       <Text>{name}</Text>
                     </Stack>
@@ -216,11 +216,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Calendar & Scheduling */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Calendar & Scheduling</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "afterDate",
@@ -240,7 +240,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -252,11 +252,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Files */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Files</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "addNote",
@@ -273,7 +273,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -285,11 +285,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Forms */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Forms</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "checkbox",
@@ -304,7 +304,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -316,11 +316,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Status and Support */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Status and Support</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "alert",
@@ -331,7 +331,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -343,11 +343,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Map */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Map</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "address",
@@ -357,7 +357,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -369,11 +369,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Messaging */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Messaging</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "chat",
@@ -388,7 +388,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -400,11 +400,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* User */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>User</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "clients",
@@ -417,7 +417,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -429,11 +429,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Social Media */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Social Media</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "angieslist",
@@ -449,7 +449,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -461,11 +461,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Transaction */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Transaction</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "bank",
@@ -477,7 +477,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -489,11 +489,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Work */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Work</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "chemical",
@@ -506,7 +506,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -518,11 +518,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Request, Quote, Job */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Request, Quote & Job</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "request",
@@ -534,7 +534,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -546,11 +546,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Invoice */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Invoice</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "badInvoice",
@@ -561,7 +561,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -573,14 +573,14 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Fleet Management */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Fleet Management</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(["truck", "fuel", "engine"] as IconNames[]).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -592,11 +592,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* System Actions */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>System Actions</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "add",
@@ -624,7 +624,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -636,11 +636,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Other */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Other</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "headset",
@@ -682,7 +682,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>
@@ -694,11 +694,11 @@ export const VisualTestIconPage = () => {
             </Stack>
 
             {/* Legacy */}
-            <Stack space="small">
+            <Stack gap="small">
               <Heading level={2}>Legacy</Heading>
               <Grid>
                 <Grid.Cell size={{ xs: 12, md: 12 }}>
-                  <Cluster space="small">
+                  <Cluster gap="small">
                     {(
                       [
                         "apple",
@@ -711,7 +711,7 @@ export const VisualTestIconPage = () => {
                       ] as IconNames[]
                     ).map(name => (
                       <Box key={name} padding="base">
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Icon name={name} />
                           <Text>{name}</Text>
                         </Stack>

@@ -27,16 +27,16 @@ export const VisualTestInlineLabelPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InlineLabel Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InlineLabel */}
           <section>
             <Text size="large">Basic InlineLabel</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InlineLabel>Default Label</InlineLabel>
                   <InlineLabel color="green">Success Label</InlineLabel>
                   <InlineLabel color="red">Error Label</InlineLabel>
@@ -50,7 +50,7 @@ export const VisualTestInlineLabelPage = () => {
             <Text size="large">Different Sizes</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InlineLabel size="base">Base Size</InlineLabel>
                   <InlineLabel size="large">Large Size</InlineLabel>
                   <InlineLabel size="larger">Larger Size</InlineLabel>
@@ -64,7 +64,7 @@ export const VisualTestInlineLabelPage = () => {
             <Text size="large">All Colors</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   {colors.map(color => (
                     <InlineLabel key={color} color={color}>
                       {color} Label

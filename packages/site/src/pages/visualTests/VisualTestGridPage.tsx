@@ -3,10 +3,10 @@ import { Box, Grid, Heading, Stack, Text } from "@jobber/components";
 export const VisualTestGridPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Grid Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Grid */}
           <section>
             <Text size="large">Basic Grid</Text>

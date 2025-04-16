@@ -7,10 +7,10 @@ export const VisualTestSelectPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Select Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Select */}
           <section>
             <Text size="large">Basic Select</Text>
@@ -51,7 +51,7 @@ export const VisualTestSelectPage = () => {
             <Text size="large">Select States</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Select placeholder="Invalid state" invalid>
                     <Option value="1">Option 1</Option>
                     <Option value="2">Option 2</Option>
@@ -76,7 +76,7 @@ export const VisualTestSelectPage = () => {
             <Text size="large">Select Sizes</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Select placeholder="Small size" size="small">
                     <Option value="1">Option 1</Option>
                     <Option value="2">Option 2</Option>

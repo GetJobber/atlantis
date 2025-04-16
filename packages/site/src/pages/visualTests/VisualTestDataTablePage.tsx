@@ -51,10 +51,10 @@ export const VisualTestDataTablePage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>DataTable Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic DataTable */}
           <section>
             <Text size="large">Basic DataTable</Text>

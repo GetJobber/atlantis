@@ -14,10 +14,10 @@ export const VisualTestDisclosurePage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Disclosure Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Disclosure */}
           <section>
             <Text size="large">Basic Disclosure</Text>
@@ -55,7 +55,7 @@ export const VisualTestDisclosurePage = () => {
             <Text size="large">Controlled Disclosure</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Button
                     label={
                       isControlledOpen ? "Close Disclosure" : "Open Disclosure"
@@ -111,10 +111,10 @@ export const VisualTestDisclosurePage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Disclosure title="Nested Content Example">
-                  <Stack space="small">
+                  <Stack gap="small">
                     <Text>This Disclosure contains nested content:</Text>
                     <Box padding="small" background="base-grey--100">
-                      <Stack space="small">
+                      <Stack gap="small">
                         <Text>• First item in a list</Text>
                         <Text>• Second item in a list</Text>
                         <Text>• Third item in a list</Text>

@@ -7,16 +7,16 @@ export const VisualTestInputDatePage = () => {
   const [date3, setDate3] = useState<Date | undefined>();
   const [date4, setDate4] = useState<Date | undefined>();
 
-  const today = new Date();
+  const today = new Date(2025, 3, 11); // Months are 0-indexed, so 3 is April
   const nextWeek = new Date();
   nextWeek.setDate(today.getDate() + 7);
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputDate Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputDate */}
           <section>
             <Text size="large">Basic InputDate</Text>
@@ -69,7 +69,7 @@ export const VisualTestInputDatePage = () => {
             <Text size="large">InputDate states</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InputDate
                     value={date4}
                     onChange={setDate4}
@@ -77,7 +77,7 @@ export const VisualTestInputDatePage = () => {
                     placeholder="MM/DD/YYYY"
                   />
                   <InputDate
-                    value={new Date()}
+                    value={new Date(2025, 3, 11)}
                     onChange={setDate4}
                     readOnly={true}
                     placeholder="MM/DD/YYYY"

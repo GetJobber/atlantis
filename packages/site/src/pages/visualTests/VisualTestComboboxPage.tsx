@@ -91,10 +91,10 @@ export const VisualTestComboboxPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Combobox Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Single Select */}
           <section>
             <Text size="large">Basic Single Select</Text>
@@ -202,7 +202,7 @@ export const VisualTestComboboxPage = () => {
                       id={member.id}
                       label={member.label}
                       prefix={
-                        <Stack space="small" align="center">
+                        <Stack gap="small" align="center">
                           <Avatar
                             size="small"
                             initials="AJ"
@@ -220,7 +220,7 @@ export const VisualTestComboboxPage = () => {
                         </Stack>
                       }
                       customRender={option => (
-                        <Stack space="small">
+                        <Stack gap="small">
                           <Text>{option.label}</Text>
                           <Text variation="subdued" size="small">
                             {member.email}

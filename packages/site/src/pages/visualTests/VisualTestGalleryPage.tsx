@@ -57,10 +57,10 @@ export const VisualTestGalleryPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Gallery Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Gallery */}
           <section>
             <Text size="large">Basic Gallery</Text>

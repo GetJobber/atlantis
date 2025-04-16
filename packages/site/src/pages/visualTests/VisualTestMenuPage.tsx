@@ -56,10 +56,10 @@ export const VisualTestMenuPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Menu Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Menu */}
           <section>
             <Text size="large">Basic Menu</Text>

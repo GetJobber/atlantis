@@ -15,10 +15,10 @@ export const VisualTestInputPhoneNumberPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputPhoneNumber Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputPhoneNumber */}
           <section>
             <Text size="large">Basic InputPhoneNumber</Text>
@@ -53,7 +53,7 @@ export const VisualTestInputPhoneNumberPage = () => {
             <Text size="large">InputPhoneNumber states</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InputPhoneNumber
                     value={phone3}
                     onChange={setPhone3}

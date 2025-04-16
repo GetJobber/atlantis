@@ -33,16 +33,16 @@ export const VisualTestLightBoxPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>LightBox Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic LightBox */}
           <section>
             <Text size="large">Basic LightBox</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Button
                     label="Open LightBox"
                     onClick={() => {
@@ -69,7 +69,7 @@ export const VisualTestLightBoxPage = () => {
             <Text size="large">LightBox with specific image</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Button
                     label="Open Second Image"
                     onClick={() => {
@@ -96,7 +96,7 @@ export const VisualTestLightBoxPage = () => {
             <Text size="large">LightBox with single image</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Button
                     label="Open Single Image"
                     onClick={() => {

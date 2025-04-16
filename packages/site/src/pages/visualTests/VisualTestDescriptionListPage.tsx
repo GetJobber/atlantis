@@ -33,7 +33,7 @@ export const VisualTestDescriptionListPage = () => {
     ["Invoice Number", "#INV-2024-001"],
     [
       "Status",
-      <Stack key="status" align="center" space="small">
+      <Stack key="status" align="center" gap="small">
         <StatusIndicator status="success" />
         <Text>Paid</Text>
       </Stack>,
@@ -58,28 +58,28 @@ export const VisualTestDescriptionListPage = () => {
   const propertyData: [string, React.ReactNode][] = [
     [
       "Property Type",
-      <Stack key="propertyType" align="center" space="small">
+      <Stack key="propertyType" align="center" gap="small">
         <Icon name="home" />
         <Text>Residential</Text>
       </Stack>,
     ],
     [
       "Square Footage",
-      <Stack key="squareFootage" align="center" space="small">
+      <Stack key="squareFootage" align="center" gap="small">
         <Icon name="search" />
         <Text>2,500 sq ft</Text>
       </Stack>,
     ],
     [
       "Bedrooms",
-      <Stack key="bedrooms" align="center" space="small">
+      <Stack key="bedrooms" align="center" gap="small">
         <Icon name="user" />
         <Text>4</Text>
       </Stack>,
     ],
     [
       "Bathrooms",
-      <Stack key="bathrooms" align="center" space="small">
+      <Stack key="bathrooms" align="center" gap="small">
         <Icon name="help" />
         <Text>2.5</Text>
       </Stack>,
@@ -88,10 +88,10 @@ export const VisualTestDescriptionListPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>DescriptionList Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Example */}
           <section>
             <Text size="large">Basic Contact Information</Text>

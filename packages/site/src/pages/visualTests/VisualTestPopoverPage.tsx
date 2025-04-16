@@ -17,10 +17,10 @@ export const VisualTestPopoverPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Popover Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Popover */}
           <section>
             <Text size="large">Basic Popover</Text>
@@ -60,7 +60,7 @@ export const VisualTestPopoverPage = () => {
                   preferredPlacement="right"
                 >
                   <Box padding="base">
-                    <Stack space="small">
+                    <Stack gap="small">
                       <Text>This is a popover with custom placement</Text>
                       <Text>It appears on the right side</Text>
                     </Stack>

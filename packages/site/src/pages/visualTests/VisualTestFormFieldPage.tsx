@@ -32,17 +32,17 @@ export const VisualTestFormFieldPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>FormField Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Form with FormFields */}
           <section>
             <Text size="large">Basic Form with FormFields</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Form onSubmit={handleSubmit}>
-                  <Stack space="small">
+                  <Stack gap="small">
                     <FormField
                       placeholder="First Name"
                       name="firstName"
@@ -83,7 +83,7 @@ export const VisualTestFormFieldPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Form onSubmit={handleSubmit}>
-                  <Stack space="small">
+                  <Stack gap="small">
                     <FormField
                       placeholder="First Name"
                       name="firstName"

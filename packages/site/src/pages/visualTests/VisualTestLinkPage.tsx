@@ -3,10 +3,10 @@ import { Box, Grid, Heading, Link, Stack, Text } from "@jobber/components";
 export const VisualTestLinkPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Link Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Link */}
           <section>
             <Text size="large">Basic Link</Text>

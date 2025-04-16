@@ -10,16 +10,16 @@ import {
 export const VisualTestProgressBarPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>ProgressBar Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Base Progress Bar */}
           <section>
             <Text size="large">Base Progress Bar</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <ProgressBar currentStep={3} totalSteps={10} />
                   <ProgressBar currentStep={7} totalSteps={10} />
                   <ProgressBar currentStep={10} totalSteps={10} />
@@ -33,7 +33,7 @@ export const VisualTestProgressBarPage = () => {
             <Text size="large">Large Progress Bar</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <ProgressBar currentStep={3} totalSteps={10} size="large" />
                   <ProgressBar currentStep={7} totalSteps={10} size="large" />
                   <ProgressBar currentStep={10} totalSteps={10} size="large" />
@@ -47,7 +47,7 @@ export const VisualTestProgressBarPage = () => {
             <Text size="large">Stepped Progress Bar</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <ProgressBar
                     currentStep={1}
                     totalSteps={4}
@@ -73,7 +73,7 @@ export const VisualTestProgressBarPage = () => {
             <Text size="large">Percentage Progress Bar</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <ProgressBar currentStep={25} totalSteps={100} />
                   <ProgressBar currentStep={50} totalSteps={100} />
                   <ProgressBar currentStep={75} totalSteps={100} />

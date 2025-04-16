@@ -11,10 +11,10 @@ import {
 export const VisualTestDividerPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Divider Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Divider */}
           <section>
             <Text size="large">Basic Divider</Text>
@@ -52,7 +52,7 @@ export const VisualTestDividerPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Content>
-                  <Stack align="center" space="small">
+                  <Stack align="center" gap="small">
                     <Text>Left</Text>
                     <Box padding="small">
                       <Divider direction="vertical" />
@@ -73,7 +73,7 @@ export const VisualTestDividerPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Content>
-                  <Stack space="small">
+                  <Stack gap="small">
                     <Text>First section</Text>
                     <Divider />
                     <Text>Second section</Text>

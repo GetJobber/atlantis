@@ -24,11 +24,11 @@ export const VisualTestModalPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         {/* Modal Examples */}
         <Stack>
           <Heading level={1}>Modal Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Basic Modal Types */}
             <section>
               <Text size="large">Basic Modal Types</Text>
@@ -109,7 +109,7 @@ export const VisualTestModalPage = () => {
                 }}
               >
                 <Box padding="large">
-                  <Stack space="base">
+                  <Stack gap="base">
                     <Text>
                       This modal demonstrates customization options. It can
                       include various content and styling.
@@ -149,7 +149,7 @@ export const VisualTestModalPage = () => {
                 size="large"
               >
                 <Box padding="large">
-                  <Stack space="large">
+                  <Stack gap="large">
                     <Text>
                       This is a large modal that provides more space for
                       content. It&apos;s useful for displaying complex
@@ -197,7 +197,7 @@ export const VisualTestModalPage = () => {
                 }}
               >
                 <Box padding="large">
-                  <Stack space="large">
+                  <Stack gap="large">
                     <Text>
                       Modals are commonly used to present forms that require
                       user input.
@@ -236,7 +236,7 @@ export const VisualTestModalPage = () => {
                 }}
                 size="large"
               >
-                <Stack space="base">
+                <Stack gap="base">
                   <Box padding="large">
                     <Text>
                       Modals can contain tabs to organize content into different
@@ -246,7 +246,7 @@ export const VisualTestModalPage = () => {
                   <Tabs defaultTab={0}>
                     <Tab label="General">
                       <Box padding="base">
-                        <Stack space="base">
+                        <Stack gap="base">
                           <Text>
                             This tab contains general settings or information.
                           </Text>
@@ -261,7 +261,7 @@ export const VisualTestModalPage = () => {
                     </Tab>
                     <Tab label="Advanced">
                       <Box padding="base">
-                        <Stack space="base">
+                        <Stack gap="base">
                           <Text>
                             This tab contains advanced settings or information.
                           </Text>
@@ -278,7 +278,7 @@ export const VisualTestModalPage = () => {
                     </Tab>
                     <Tab label="Notifications">
                       <Box padding="base">
-                        <Stack space="base">
+                        <Stack gap="base">
                           <Text>This tab contains notification settings.</Text>
                           <Text>
                             Using tabs in modals helps organize complex forms or

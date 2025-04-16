@@ -11,10 +11,10 @@ import {
 export const VisualTestTooltipPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Tooltip Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Tooltip */}
           <section>
             <Text size="large">Basic Tooltip</Text>
@@ -32,7 +32,7 @@ export const VisualTestTooltipPage = () => {
             <Text size="large">Tooltip Positions</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Tooltip message="Top tooltip" preferredPlacement="top">
                     <Button label="Top" />
                   </Tooltip>
@@ -55,7 +55,7 @@ export const VisualTestTooltipPage = () => {
             <Text size="large">Tooltip with Tab Index</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Tooltip message="Default tooltip with tab index">
                     <Button label="With Tab Index" />
                   </Tooltip>

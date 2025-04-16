@@ -9,10 +9,10 @@ export const VisualTestInputTimePage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputTime Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputTime */}
           <section>
             <Text size="large">Basic InputTime</Text>

@@ -17,10 +17,10 @@ export const VisualTestListPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>List Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic List */}
           <section>
             <Text size="large">Basic List</Text>
@@ -39,7 +39,7 @@ export const VisualTestListPage = () => {
                 <List
                   items={complexItems}
                   customRenderItem={item => (
-                    <Stack space="small">
+                    <Stack gap="small">
                       <Text size="base">{item.title}</Text>
                       <Text variation="subdued">{item.description}</Text>
                     </Stack>

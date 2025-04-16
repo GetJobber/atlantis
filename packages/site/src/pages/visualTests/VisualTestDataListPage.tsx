@@ -32,7 +32,7 @@ export const VisualTestDataListPage = () => {
       label: "First Item",
       description: "This is the first item description",
       status: "Active",
-      date: new Date().toLocaleDateString(),
+      date: new Date(2025, 3, 11).toLocaleDateString(),
       tags: ["Important", "New"],
     },
     {
@@ -40,7 +40,7 @@ export const VisualTestDataListPage = () => {
       label: "Second Item",
       description: "This is the second item description",
       status: "Pending",
-      date: new Date().toLocaleDateString(),
+      date: new Date(2025, 3, 11).toLocaleDateString(),
       tags: ["Urgent"],
     },
     {
@@ -48,17 +48,17 @@ export const VisualTestDataListPage = () => {
       label: "Third Item",
       description: "This is the third item description",
       status: "Completed",
-      date: new Date().toLocaleDateString(),
+      date: new Date(2025, 3, 11).toLocaleDateString(),
       tags: [],
     },
   ];
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>DataList Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic DataList */}
           <section>
             <Text size="large">Basic DataList</Text>
@@ -229,10 +229,10 @@ export const VisualTestDataListPage = () => {
                 {(item: TestItem) => (
                   <Grid>
                     <Grid.Cell size={{ xs: 12, md: 3 }}>
-                      <Stack space="small">
+                      <Stack gap="small">
                         <Text>{item.label}</Text>
                         {item.tags && item.tags.length > 0 && (
-                          <Stack align="center" space="small">
+                          <Stack align="center" gap="small">
                             {item.tags.map((tag: string) => (
                               <Box
                                 key={tag}

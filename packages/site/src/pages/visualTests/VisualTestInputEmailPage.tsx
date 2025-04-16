@@ -20,10 +20,10 @@ export const VisualTestInputEmailPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputEmail Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputEmail */}
           <section>
             <Text size="large">Basic InputEmail</Text>
@@ -74,7 +74,7 @@ export const VisualTestInputEmailPage = () => {
             <Text size="large">InputEmail states</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InputEmail
                     value={email4}
                     onChange={handleChange(setEmail4)}

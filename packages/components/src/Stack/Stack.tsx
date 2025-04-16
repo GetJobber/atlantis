@@ -2,25 +2,38 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Stack.module.css";
 import { StackProps } from "./types";
-import { spaceTokens, useSpaces } from "../sharedHooks/useSpaces";
+import {
+  getMappedAtlantisSpaceToken,
+  spaceTokens,
+} from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Stack({
-  space = spaceTokens.base,
+  gap = spaceTokens.base,
   recursive,
   splitAfter,
   children,
   align,
   autoWidth = false,
+  as: Tag = "div",
+  dataAttributes,
+  ariaAttributes,
+  role,
+  id,
+  UNSAFE_className,
+  UNSAFE_style,
 }: StackProps) {
-  const spaceMapped = useSpaces(space);
-
   return (
-    <div
+    <Tag
+      role={role}
+      id={id}
+      {...dataAttributes}
+      {...ariaAttributes}
       style={
         {
           "--public-stack-split": splitAfter,
-          "--public-stack-space": spaceMapped,
+          "--public-stack-space": getMappedAtlantisSpaceToken(gap),
           "--public-stack-width": autoWidth ? "auto" : "100%",
+          ...UNSAFE_style?.container,
         } as React.CSSProperties
       }
       className={classNames(
@@ -32,9 +45,10 @@ export function Stack({
         align === "center" ? styles.center : undefined,
         align === "start" ? styles.start : undefined,
         align === "end" ? styles.end : undefined,
+        UNSAFE_className?.container,
       )}
     >
       {children}
-    </div>
+    </Tag>
   );
 }

@@ -21,10 +21,10 @@ export const VisualTestInputNumberPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputNumber Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputNumber */}
           <section>
             <Text size="large">Basic InputNumber</Text>
@@ -60,7 +60,7 @@ export const VisualTestInputNumberPage = () => {
             <Text size="large">InputNumber with prefix/suffix</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InputNumber
                     value={value3}
                     onChange={handleChange(setValue3)}
@@ -83,7 +83,7 @@ export const VisualTestInputNumberPage = () => {
             <Text size="large">InputNumber states</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InputNumber
                     value={42}
                     onChange={handleChange(() => ({}))}

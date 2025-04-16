@@ -10,10 +10,10 @@ import {
 export const VisualTestInputValidationPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputValidation Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic InputValidation */}
           <section>
             <Text size="large">Basic InputValidation</Text>
@@ -42,7 +42,7 @@ export const VisualTestInputValidationPage = () => {
             <Text size="large">Multiple InputValidations</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <InputValidation message="This field is required" />
                   <InputValidation message="Must be at least 8 characters" />
                   <InputValidation message="Must contain a number" />

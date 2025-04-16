@@ -23,7 +23,7 @@ export const VisualTestLayoutPage = () => {
         {/* Stack Examples */}
         <Stack>
           <Heading level={1}>Stack Examples</Heading>
-          <Stack space="large">
+          <Stack gap="large">
             {/* Basic Stack */}
             <section>
               <Text size="large">Basic Stack</Text>
@@ -44,7 +44,7 @@ export const VisualTestLayoutPage = () => {
               <Cluster>
                 <Card>
                   <Box padding="base">
-                    <Stack space="small">
+                    <Stack gap="small">
                       <Text>Small Space</Text>
                       <Text>Between Items</Text>
                       <Text>In Stack</Text>
@@ -53,7 +53,7 @@ export const VisualTestLayoutPage = () => {
                 </Card>
                 <Card>
                   <Box padding="base">
-                    <Stack space="large">
+                    <Stack gap="large">
                       <Text>Large Space</Text>
                       <Text>Between Items</Text>
                       <Text>In Stack</Text>
@@ -130,7 +130,7 @@ export const VisualTestLayoutPage = () => {
               <Text size="large">Recursive Stack</Text>
               <Card>
                 <Box padding="base">
-                  <Stack space="large" recursive>
+                  <Stack gap="large" recursive>
                     <div>
                       <Text>Nested Group 1</Text>
                       <Text>These items have space</Text>
@@ -149,7 +149,7 @@ export const VisualTestLayoutPage = () => {
           {/* Cluster Examples */}
           <Stack>
             <Heading level={1}>Cluster Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Basic Cluster */}
               <section>
                 <Text size="large">Basic Cluster</Text>
@@ -168,10 +168,10 @@ export const VisualTestLayoutPage = () => {
               {/* Cluster with Different Spacing */}
               <section>
                 <Text size="large">Cluster with Different Spacing</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
-                      <Cluster space="small">
+                      <Cluster gap="small">
                         <Chip label="Small" />
                         <Chip label="Space" />
                         <Chip label="Between" />
@@ -181,7 +181,7 @@ export const VisualTestLayoutPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <Cluster space="large">
+                      <Cluster gap="large">
                         <Chip label="Large" />
                         <Chip label="Space" />
                         <Chip label="Between" />
@@ -195,7 +195,7 @@ export const VisualTestLayoutPage = () => {
               {/* Cluster with Justification */}
               <section>
                 <Text size="large">Cluster with Justification</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
                       <Cluster justify="start">
@@ -222,7 +222,7 @@ export const VisualTestLayoutPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <Cluster justify="between">
+                      <Cluster justify="space-between">
                         <Button label="Space" />
                         <Button label="Between" type="secondary" />
                         <Button label="Items" type="secondary" />
@@ -231,7 +231,7 @@ export const VisualTestLayoutPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <Cluster justify="around">
+                      <Cluster justify="space-around">
                         <Button label="Space" />
                         <Button label="Around" type="secondary" />
                         <Button label="Items" type="secondary" />
@@ -246,13 +246,14 @@ export const VisualTestLayoutPage = () => {
                 <Text size="large">Cluster with Collapse</Text>
                 <Card>
                   <Box padding="base">
-                    <Cluster collapseBelow="600px">
+                    <Cluster collapseBelow="md">
                       <Button label="These" />
                       <Button label="Items" type="secondary" />
                       <Button label="Will" type="secondary" />
                       <Button label="Stack" type="secondary" />
                       <Button label="Below" type="secondary" />
-                      <Button label="600px" type="secondary" />
+                      <Button label="md" type="secondary" />
+                      <Button label="Breakpoint" type="secondary" />
                     </Cluster>
                   </Box>
                 </Card>
@@ -263,7 +264,7 @@ export const VisualTestLayoutPage = () => {
           {/* ContentBlock Examples */}
           <Stack>
             <Heading level={1}>ContentBlock Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Basic ContentBlock */}
               <section>
                 <Text size="large">Basic ContentBlock</Text>
@@ -288,7 +289,7 @@ export const VisualTestLayoutPage = () => {
                 <Text size="large">
                   ContentBlock with Different Justification
                 </Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
                       <ContentBlock justify="left">
@@ -334,7 +335,7 @@ export const VisualTestLayoutPage = () => {
               {/* ContentBlock with Different Max Widths */}
               <section>
                 <Text size="large">ContentBlock with Different Max Widths</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
                       <ContentBlock maxWidth="300px">
@@ -368,7 +369,7 @@ export const VisualTestLayoutPage = () => {
               {/* ContentBlock with Text Alignment */}
               <section>
                 <Text size="large">ContentBlock with Text Alignment</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
                       <ContentBlock justify="center" andText>
@@ -414,7 +415,7 @@ export const VisualTestLayoutPage = () => {
           {/* ResponsiveSwitcher Examples */}
           <Stack>
             <Heading level={1}>ResponsiveSwitcher Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Basic ResponsiveSwitcher */}
               <section>
                 <Text size="large">Basic ResponsiveSwitcher</Text>
@@ -453,10 +454,10 @@ export const VisualTestLayoutPage = () => {
                 <Text size="large">
                   ResponsiveSwitcher with Different Spacing
                 </Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
-                      <ResponsiveSwitcher threshold="40ch" space="small">
+                      <ResponsiveSwitcher threshold="40ch" gap="small">
                         <Card>
                           <Box padding="base">
                             <Text>Small Space Between</Text>
@@ -472,7 +473,7 @@ export const VisualTestLayoutPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <ResponsiveSwitcher threshold="40ch" space="large">
+                      <ResponsiveSwitcher threshold="40ch" gap="large">
                         <Card>
                           <Box padding="base">
                             <Text>Large Space Between</Text>
@@ -494,7 +495,7 @@ export const VisualTestLayoutPage = () => {
                 <Text size="large">
                   ResponsiveSwitcher with Different Thresholds
                 </Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
                       <ResponsiveSwitcher threshold="200px">
@@ -588,7 +589,7 @@ export const VisualTestLayoutPage = () => {
           {/* SideKick Examples */}
           <Stack>
             <Heading level={1}>SideKick Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Basic SideKick */}
               <section>
                 <Text size="large">Basic SideKick</Text>
@@ -623,13 +624,13 @@ export const VisualTestLayoutPage = () => {
               {/* SideKick with Different Spacing */}
               <section>
                 <Text size="large">SideKick with Different Spacing</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
                       <SideKick
                         sideWidth="150px"
                         contentMinWidth="50%"
-                        space="small"
+                        gap="small"
                       >
                         <Card>
                           <Box padding="base">
@@ -649,7 +650,7 @@ export const VisualTestLayoutPage = () => {
                       <SideKick
                         sideWidth="150px"
                         contentMinWidth="50%"
-                        space="large"
+                        gap="large"
                       >
                         <Card>
                           <Box padding="base">
@@ -733,7 +734,7 @@ export const VisualTestLayoutPage = () => {
                     <SideKick
                       sideWidth="200px"
                       contentMinWidth="50%"
-                      collapseBelow="800px"
+                      collapseBelow="md"
                     >
                       <Card>
                         <Box padding="base">
@@ -804,7 +805,7 @@ export const VisualTestLayoutPage = () => {
           {/* Cover Examples */}
           <Stack>
             <Heading level={1}>Cover Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Basic Cover */}
               <section>
                 <Text size="large">Basic Cover</Text>
@@ -862,7 +863,7 @@ export const VisualTestLayoutPage = () => {
               {/* Cover with Different Heights */}
               <section>
                 <Text size="large">Cover with Different Heights</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
                       <Cover minHeight="20vh">
@@ -888,8 +889,8 @@ export const VisualTestLayoutPage = () => {
               <section>
                 <Text size="large">Cover with Custom Spacing</Text>
                 <Card>
-                  <Box padding="large">
-                    <Cover minHeight="30vh" space="large">
+                  <Box>
+                    <Cover minHeight="30vh" gap="large">
                       <Text>Top content with large spacing</Text>
                       <Cover.Center>
                         <Stack>
@@ -914,7 +915,7 @@ export const VisualTestLayoutPage = () => {
                     <Cover minHeight="50vh">
                       <Text>Welcome back!</Text>
                       <Cover.Center>
-                        <Stack space="large">
+                        <Stack gap="large">
                           <Heading level={2}>Sign In</Heading>
                           <Stack>
                             <InputText placeholder="Email" />
@@ -939,7 +940,7 @@ export const VisualTestLayoutPage = () => {
             <Heading level={1}>Frame Examples</Heading>
             {/* Basic Frame */}
             <ContentBlock maxWidth={"100%"}>
-              <Tiles space="base" minSize="50ch">
+              <Tiles gap="base" minSize="50ch">
                 <section>
                   <Text size="large">Basic Frame (16:9)</Text>
                   <Frame>
@@ -976,13 +977,13 @@ export const VisualTestLayoutPage = () => {
           {/* Tiles Examples */}
           <Stack>
             <Heading level={1}>Tiles Examples</Heading>
-            <Stack space="large">
+            <Stack gap="large">
               {/* Basic Tiles */}
               <section>
                 <Text size="large">Basic Tiles</Text>
                 <Card>
                   <Box padding="base">
-                    <Tiles minSize="20ch" space="base">
+                    <Tiles minSize="20ch" gap="base">
                       <Card>
                         <Box padding="base">
                           <Stack>
@@ -1021,10 +1022,10 @@ export const VisualTestLayoutPage = () => {
               {/* Tiles with Different Spacing */}
               <section>
                 <Text size="large">Tiles with Different Spacing</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
-                      <Tiles minSize="20ch" space="small">
+                      <Tiles minSize="20ch" gap="small">
                         <Card>
                           <Box padding="base">
                             <Stack>
@@ -1060,7 +1061,7 @@ export const VisualTestLayoutPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <Tiles minSize="20ch" space="large">
+                      <Tiles minSize="20ch" gap="large">
                         <Card>
                           <Box padding="base">
                             <Stack>
@@ -1100,10 +1101,10 @@ export const VisualTestLayoutPage = () => {
               {/* Tiles with Different Sizes */}
               <section>
                 <Text size="large">Tiles with Different Sizes</Text>
-                <Stack space="base">
+                <Stack gap="base">
                   <Card>
                     <Box padding="base">
-                      <Tiles minSize="15ch" space="base">
+                      <Tiles minSize="15ch" gap="base">
                         <Card>
                           <Box padding="base">
                             <Stack>
@@ -1139,7 +1140,7 @@ export const VisualTestLayoutPage = () => {
                   </Card>
                   <Card>
                     <Box padding="base">
-                      <Tiles minSize="30ch" space="base">
+                      <Tiles minSize="30ch" gap="base">
                         <Card>
                           <Box padding="base">
                             <Stack>
@@ -1181,7 +1182,7 @@ export const VisualTestLayoutPage = () => {
                 <Text size="large">Tiles with Mixed Content</Text>
                 <Card>
                   <Box padding="base">
-                    <Tiles minSize="25ch" space="base">
+                    <Tiles minSize="25ch" gap="base">
                       <Card>
                         <Box padding="base">
                           <Stack>

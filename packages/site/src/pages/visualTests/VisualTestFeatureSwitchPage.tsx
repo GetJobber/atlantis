@@ -15,10 +15,10 @@ export const VisualTestFeatureSwitchPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>FeatureSwitch Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic FeatureSwitch */}
           <section>
             <Text size="large">Basic FeatureSwitch</Text>

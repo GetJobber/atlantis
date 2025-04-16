@@ -11,10 +11,10 @@ import {
 export const VisualTestInputGroupPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>InputGroup Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Vertical InputGroup */}
           <section>
             <Text size="large">Vertical InputGroup</Text>

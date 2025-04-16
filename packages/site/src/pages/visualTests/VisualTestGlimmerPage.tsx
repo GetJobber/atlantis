@@ -3,16 +3,16 @@ import { Box, Glimmer, Grid, Heading, Stack, Text } from "@jobber/components";
 export const VisualTestGlimmerPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Glimmer Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Glimmer */}
           <section>
             <Text size="large">Basic Glimmer</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Glimmer />
                   <Glimmer width={200} />
                   <Glimmer size="small" />
@@ -27,7 +27,7 @@ export const VisualTestGlimmerPage = () => {
             <Text size="large">Different Shapes</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Glimmer shape="rectangle" />
                   <Glimmer shape="circle" />
                 </Stack>
@@ -40,7 +40,7 @@ export const VisualTestGlimmerPage = () => {
             <Text size="large">Different Timings</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Glimmer timing="slow" />
                   <Glimmer timing="base" />
                   <Glimmer timing="fast" />
@@ -55,7 +55,7 @@ export const VisualTestGlimmerPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Box background="surface--reverse" padding="small">
-                  <Stack space="small">
+                  <Stack gap="small">
                     <Glimmer reverseTheme={true} />
                     <Glimmer.Header reverseTheme={true} />
                     <Glimmer.Text reverseTheme={true} />
@@ -71,7 +71,7 @@ export const VisualTestGlimmerPage = () => {
             <Text size="large">Semantic Blocks</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="small">
+                <Stack gap="small">
                   <Glimmer.Header level={1} />
                   <Glimmer.Header level={3} />
                   <Glimmer.Text lines={1} />

@@ -10,16 +10,16 @@ import {
 export const VisualTestTypographyPage = () => {
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Typography Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Typography */}
           <section>
             <Text size="large">Basic Typography</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Typography element="h1">Heading 1</Typography>
                   <Typography element="h2">Heading 2</Typography>
                   <Typography element="h3">Heading 3</Typography>
@@ -37,7 +37,7 @@ export const VisualTestTypographyPage = () => {
             <Text size="large">Typography Font Weights</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Typography element="p" fontWeight="regular">
                     Regular weight text
                   </Typography>
@@ -60,7 +60,7 @@ export const VisualTestTypographyPage = () => {
             <Text size="large">Typography Text Cases</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Typography element="p" textCase="uppercase">
                     Uppercase text
                   </Typography>
@@ -80,7 +80,7 @@ export const VisualTestTypographyPage = () => {
             <Text size="large">Typography Text Colors</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Typography element="p" textColor="success">
                     Success color text
                   </Typography>
@@ -103,7 +103,7 @@ export const VisualTestTypographyPage = () => {
             <Text size="large">Typography Emphasis</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Typography element="p" emphasisType="strong">
                     Strong emphasis
                   </Typography>
@@ -121,7 +121,7 @@ export const VisualTestTypographyPage = () => {
             <Text size="large">Typography Alignment</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Typography element="p" align="start">
                     Start aligned text
                   </Typography>
@@ -158,7 +158,7 @@ export const VisualTestTypographyPage = () => {
             <Text size="large">Typography with Underline</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <Typography element="p" underline="solid">
                     Solid underline
                   </Typography>

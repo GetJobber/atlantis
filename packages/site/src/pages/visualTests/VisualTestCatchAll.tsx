@@ -57,7 +57,7 @@ export const VisualTestCatchAll = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Visual Test Pages</Heading>
         <Text>Click on any component below to view its visual test page.</Text>
 

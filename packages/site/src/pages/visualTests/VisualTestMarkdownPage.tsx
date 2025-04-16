@@ -17,10 +17,10 @@ This is a paragraph with **bold** and _italic_ text.
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>Markdown Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic Markdown */}
           <section>
             <Text size="large">Basic Markdown</Text>

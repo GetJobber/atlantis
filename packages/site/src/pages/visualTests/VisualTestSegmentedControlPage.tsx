@@ -15,10 +15,10 @@ export const VisualTestSegmentedControlPage = () => {
 
   return (
     <Box padding="large">
-      <Stack space="extravagant">
+      <Stack gap="extravagant">
         <Heading level={1}>SegmentedControl Examples</Heading>
 
-        <Stack space="large">
+        <Stack gap="large">
           {/* Basic SegmentedControl */}
           <section>
             <Text size="large">Basic SegmentedControl</Text>
@@ -73,7 +73,7 @@ export const VisualTestSegmentedControlPage = () => {
             <Text size="large">SegmentedControl Sizes</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Stack space="base">
+                <Stack gap="base">
                   <SegmentedControl
                     selectedValue={selectedSize}
                     onSelectValue={setSelectedSize}
