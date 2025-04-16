@@ -11,7 +11,7 @@ import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
 
-export interface ModalProps {
+export interface ModalLegacyProps {
   /**
    * @default false
    */
@@ -27,9 +27,10 @@ export interface ModalProps {
   readonly secondaryAction?: ButtonProps;
   readonly tertiaryAction?: ButtonProps;
   onRequestClose?(): void;
+  readonly version?: 1;
 }
 
-export function Modal({
+export function ModalLegacy({
   open = false,
   title,
   size,
@@ -39,7 +40,7 @@ export function Modal({
   secondaryAction,
   tertiaryAction,
   onRequestClose,
-}: ModalProps) {
+}: ModalLegacyProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);

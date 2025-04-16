@@ -1,14 +1,13 @@
 import React from "react";
 import { ModalProvider, useModalContext } from "./ModalContext.rebuilt";
-import { ModalProps } from "./Modal.rebuilt.types";
+import { ModalRewriteProps } from "./Modal.rebuilt.types";
 import {
   ModalActions,
-  ModalActivator,
   ModalHeader,
   ModalWrapper,
 } from "./ModalInternals.rebuilt";
 
-export function Modal({
+export function ModalRebuilt({
   open = false,
   title,
   size,
@@ -21,7 +20,7 @@ export function Modal({
   activatorRef,
   UNSAFE_className,
   UNSAFE_style,
-}: ModalProps) {
+}: ModalRewriteProps) {
   return (
     <ModalProvider
       open={open}
@@ -30,7 +29,7 @@ export function Modal({
       onRequestClose={onRequestClose}
       activatorRef={activatorRef}
     >
-      <Modal.Wrapper
+      <ModalWrapper
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
       >
@@ -44,7 +43,7 @@ export function Modal({
         >
           {children}
         </ModalContent>
-      </Modal.Wrapper>
+      </ModalWrapper>
     </ModalProvider>
   );
 }
@@ -60,12 +59,12 @@ function ModalContent({
   tertiaryAction,
   UNSAFE_className,
   UNSAFE_style,
-}: ModalProps) {
+}: Omit<ModalRewriteProps, "version">) {
   const { onRequestClose, dismissible } = useModalContext();
   const template = (
     <>
       {title != undefined && (
-        <Modal.Header
+        <ModalHeader
           title={title}
           dismissible={dismissible}
           onRequestClose={onRequestClose}
@@ -74,7 +73,7 @@ function ModalContent({
         />
       )}
       {children}
-      <Modal.Actions
+      <ModalActions
         primary={primaryAction}
         secondary={secondaryAction}
         tertiary={tertiaryAction}
@@ -86,12 +85,3 @@ function ModalContent({
 
   return template;
 }
-
-Modal.Header = ModalHeader;
-
-Modal.Actions = ModalActions;
-
-Modal.Activator = ModalActivator;
-Modal.Provider = ModalProvider;
-
-Modal.Wrapper = ModalWrapper;

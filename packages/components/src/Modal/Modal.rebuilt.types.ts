@@ -61,7 +61,7 @@ export interface ModalOverlayProps extends PropsWithChildren {
   };
 }
 
-export interface ModalProps {
+export interface ModalRewriteProps {
   /**
    * Title of the modal.
    */
@@ -132,12 +132,14 @@ export interface ModalProps {
     rightAction?: React.CSSProperties;
     leftAction?: React.CSSProperties;
   };
+
+  readonly version: 2;
 }
 
 export interface ModalContextType {
-  readonly open?: ModalProps["open"];
-  readonly onRequestClose: ModalProps["onRequestClose"];
-  readonly activatorRef: ModalProps["activatorRef"];
+  readonly open?: ModalRewriteProps["open"];
+  readonly onRequestClose: ModalRewriteProps["onRequestClose"];
+  readonly activatorRef: ModalRewriteProps["activatorRef"];
   /**
    * Refs used by floating-ui to position the modal.
    */
@@ -149,7 +151,7 @@ export interface ModalContextType {
   /**
    * Size of the modal.
    */
-  readonly size?: ModalProps["size"];
+  readonly size?: ModalRewriteProps["size"];
   /**
    * Floating-ui node id for the modal. Used to ensure the modal is aware of other floating-ui elements.
    */
@@ -157,7 +159,7 @@ export interface ModalContextType {
   /**
    * Whether the modal is dismissible.
    */
-  readonly dismissible?: ModalProps["dismissible"];
+  readonly dismissible?: ModalRewriteProps["dismissible"];
 }
 
 export interface ModalActionsProps {
@@ -202,11 +204,11 @@ interface HeaderPropsWithoutChildren {
   /**
    * Title of the modal.
    */
-  readonly title: NonNullable<ModalProps["title"]>;
+  readonly title: NonNullable<ModalRewriteProps["title"]>;
   /**
    * Whether the modal is dismissible.
    */
-  readonly dismissible?: ModalProps["dismissible"];
+  readonly dismissible?: ModalRewriteProps["dismissible"];
   /**
    * Callback executed when the user wants to close/dismiss the Modal
    */

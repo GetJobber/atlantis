@@ -1,14 +1,18 @@
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Modal } from "./Modal.rebuilt";
+import { Modal } from ".";
 import styles from "./Modal.module.css";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
 describe("Default Modal", () => {
   it('modal contains aria role of "dialog"', async () => {
-    const { findByRole } = render(<Modal open>Content</Modal>);
+    const { findByRole } = render(
+      <Modal open version={2}>
+        Content
+      </Modal>,
+    );
     expect(await findByRole("dialog")).toBeInTheDocument();
   });
 
@@ -18,7 +22,7 @@ describe("Default Modal", () => {
     const handleClose = jest.fn();
 
     const { getByLabelText, getByText, queryByTestId } = render(
-      <Modal title={title} open={true} onRequestClose={handleClose}>
+      <Modal title={title} open={true} onRequestClose={handleClose} version={2}>
         {content}
       </Modal>,
     );
@@ -31,14 +35,22 @@ describe("Default Modal", () => {
   });
 
   it("modal without a title doesn't show the header", () => {
-    const { queryByTestId } = render(<Modal open={true}>Content</Modal>);
+    const { queryByTestId } = render(
+      <Modal open={true} version={2}>
+        Content
+      </Modal>,
+    );
     expect(queryByTestId("modal-header")).toBeNull();
   });
 
   it("modal doesn't show up", () => {
     const title = "Dis be a title";
     const content = "Dis be a content 🎉";
-    const { queryByText } = render(<Modal title={title}>{content}</Modal>);
+    const { queryByText } = render(
+      <Modal title={title} version={2}>
+        {content}
+      </Modal>,
+    );
     expect(queryByText(title)).toBeNull();
     expect(queryByText(content)).toBeNull();
   });
@@ -54,6 +66,7 @@ describe("Default Modal", () => {
         primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
         secondaryAction={{ label: "Cancel", onClick: handleSecondaryAction }}
         tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
+        version={2}
       >
         Button me up!
       </Modal>,
@@ -73,7 +86,12 @@ describe("Default Modal", () => {
     const handleClose = jest.fn();
 
     const { getByLabelText } = render(
-      <Modal title="Press escape!" open={true} onRequestClose={handleClose}>
+      <Modal
+        title="Press escape!"
+        open={true}
+        onRequestClose={handleClose}
+        version={2}
+      >
         No really. Press escape!
       </Modal>,
     );
@@ -93,7 +111,12 @@ describe("Default Modal", () => {
     const { baseElement } = render(
       <>
         <h1>Some Page</h1>
-        <Modal title={title} open={true} onRequestClose={handleClose}>
+        <Modal
+          title={title}
+          open={true}
+          onRequestClose={handleClose}
+          version={2}
+        >
           {content}
         </Modal>
         <p>There is some content here.</p>
@@ -109,6 +132,7 @@ describe("Default Modal", () => {
   it("modal shows with primary learning button", () => {
     const { baseElement } = render(
       <Modal
+        version={2}
         title="Teaching Modal"
         open={true}
         primaryAction={{
@@ -147,6 +171,7 @@ describe("Default Modal", () => {
     it("applies UNSAFE_className to the modal", () => {
       render(
         <Modal
+          version={2}
           open={true}
           UNSAFE_className={{
             modal: customModalClass,
@@ -183,6 +208,7 @@ describe("Default Modal", () => {
     it("applies UNSAFE_style to the modal", () => {
       render(
         <Modal
+          version={2}
           open={true}
           UNSAFE_style={{
             modal: customModalStyle,
