@@ -11,6 +11,7 @@ import { ModalLegacyProps } from "./Modal.types";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
+import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 export function ModalLegacy({
   open = false,
@@ -29,52 +30,54 @@ export function ModalLegacy({
   useOnKeyDown(handleRequestClose, "Escape");
 
   const template = (
-    <AnimatePresence>
-      {open && (
-        <div
-          ref={modalRef}
-          role="dialog"
-          className={styles.container}
-          tabIndex={0}
-        >
-          <motion.div
-            key={styles.overlay}
-            className={styles.overlay}
-            onClick={onRequestClose}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.8 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          />
-          <motion.div
-            key={styles.modal}
-            className={modalClassName}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{
-              duration: 0.2,
-              ease: "easeInOut",
-            }}
+    <AtlantisPortalContent>
+      <AnimatePresence>
+        {open && (
+          <div
+            ref={modalRef}
+            role="dialog"
+            className={styles.container}
+            tabIndex={0}
           >
-            {title != undefined && (
-              <Header
-                title={title}
-                dismissible={dismissible}
-                onRequestClose={onRequestClose}
-              />
-            )}
-            {children}
-
-            <Actions
-              primary={primaryAction}
-              secondary={secondaryAction}
-              tertiary={tertiaryAction}
+            <motion.div
+              key={styles.overlay}
+              className={styles.overlay}
+              onClick={onRequestClose}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.8 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
             />
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
+            <motion.div
+              key={styles.modal}
+              className={modalClassName}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{
+                duration: 0.2,
+                ease: "easeInOut",
+              }}
+            >
+              {title != undefined && (
+                <Header
+                  title={title}
+                  dismissible={dismissible}
+                  onRequestClose={onRequestClose}
+                />
+              )}
+              {children}
+
+              <Actions
+                primary={primaryAction}
+                secondary={secondaryAction}
+                tertiary={tertiaryAction}
+              />
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </AtlantisPortalContent>
   );
 
   return globalThis?.document
