@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.0...@jobber/components@6.38.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* **components:** make Glimmer respond to dark mode ([#2472](https://github.com/GetJobber/atlantis/issues/2472)) ([c313412](https://github.com/GetJobber/atlantis/commit/c31341211cc7e087a9a9cd191125b08ac9c9195d))
+
+
+
+
+
 # [6.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.37.0...@jobber/components@6.38.0) (2025-04-16)
 
 
