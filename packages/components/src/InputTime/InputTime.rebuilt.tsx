@@ -5,7 +5,6 @@ import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 
 export function InputTimeRebuilt({
-  defaultValue,
   value,
   onChange,
   ...params
@@ -21,11 +20,6 @@ export function InputTimeRebuilt({
   const { inputStyle } = useFormFieldWrapperStyles(params);
 
   const id = getId(params);
-
-  const valueProps = {
-    ...(defaultValue && { defaultValue: dateToTimeString(defaultValue) }),
-    ...(!defaultValue && { value: dateToTimeString(value) }),
-  };
 
   return (
     <FormFieldWrapper
@@ -60,7 +54,7 @@ export function InputTimeRebuilt({
 
           !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
         }}
-        {...valueProps}
+        value={dateToTimeString(value)}
       />
     </FormFieldWrapper>
   );

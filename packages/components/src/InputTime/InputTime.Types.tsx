@@ -49,6 +49,8 @@ export interface InputTimeProps
   version?: 1 | 2;
 }
 
-export interface InputTimeRebuiltProps extends InputTimeProps {
+export interface InputTimeRebuiltProps
+  extends Omit<InputTimeProps, "defaultValue" | "version"> {
+  defaultValue?: never;
   version: 2;
 }

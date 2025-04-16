@@ -17,19 +17,13 @@ const createDate = (hours: number, minutes: number): Date => {
 };
 
 describe("InputTimeRebuilt", () => {
-  it("renders an initial time when given 'defaultValue'", () => {
-    const defaultDate = createDate(11, 23);
-    render(<InputTime version={2} defaultValue={defaultDate} />);
-    expect(screen.getByDisplayValue("11:23")).toBeInTheDocument();
-  });
-
   it("should set the value when given 'value'", () => {
     const valueDate = createDate(12, 30);
     render(<InputTime version={2} value={valueDate} onChange={jest.fn()} />);
     expect(screen.getByDisplayValue("12:30")).toBeInTheDocument();
   });
 
-  const testOnChange = () => {
+  it("should call the onChange function when the component is modified", () => {
     const startDate = createDate(2, 35);
     const newValue = "05:32";
     const newDate = createDate(5, 32);
@@ -49,12 +43,7 @@ describe("InputTimeRebuilt", () => {
     expect(calledDate).toBeInstanceOf(Date);
     expect(calledDate?.getHours()).toBe(newDate.getHours());
     expect(calledDate?.getMinutes()).toBe(newDate.getMinutes());
-  };
-
-  it(
-    "should call the onChange function when the component is modified",
-    testOnChange,
-  );
+  });
 
   it("should call onFocus when the input is focused", async () => {
     const focusHandler = jest.fn();
