@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "string | number"
         }
       },
       "value": {
@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "string | number"
         }
       },
       "onChange": {
@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "(newValue?: string) => void"
+          "name": "(newValue?: string | number) => void"
         }
       },
       "version": {

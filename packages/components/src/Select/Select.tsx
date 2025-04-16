@@ -6,8 +6,12 @@ import { FormField, FormFieldProps } from "../FormField";
 export function Select(props: SelectProps) {
   const formFieldProps: FormFieldProps = omit(
     {
-      onChange: handleChange,
       ...props,
+      onChange: handleChange,
+      defaultValue:
+        typeof props.defaultValue === "number"
+          ? props.defaultValue.toString()
+          : props.defaultValue,
     },
     ["version"],
   );
