@@ -17,6 +17,63 @@ export function Modal({
   tertiaryAction,
   size,
 }: ModalV2Props) {
+  return (
+    <ModalWrapper
+      open={open}
+      size={size}
+      onRequestClose={onRequestClose}
+      dismissible={dismissible}
+    >
+      <Modal.Header>
+        <Modal.Title>{title}</Modal.Title>
+        <Modal.DismissButton
+          visible={dismissible}
+          onRequestClose={onRequestClose}
+        />
+      </Modal.Header>
+      {children}
+      <Modal.Actions
+        visible={!!primaryAction || !!secondaryAction || !!tertiaryAction}
+      >
+        <Cluster justify="space-between">
+          <Cluster>
+            {tertiaryAction && (
+              <Button
+                {...tertiaryAction}
+                type="secondary"
+                variation="destructive"
+              />
+            )}
+          </Cluster>
+          <Cluster gap="small">
+            {secondaryAction && (
+              <Button {...secondaryAction} variation="subtle" />
+            )}
+            {primaryAction && <Button {...primaryAction} />}
+          </Cluster>
+        </Cluster>
+      </Modal.Actions>
+    </ModalWrapper>
+  );
+}
+
+function ModalHeader({ children }: { readonly children: React.ReactNode }) {
+  return <div className={styles.header}>{children}</div>;
+}
+
+function ModalWrapper({
+  open,
+  size,
+  children,
+  onRequestClose,
+  dismissible,
+}: {
+  readonly open: boolean;
+  readonly size: ModalV2Props["size"];
+  readonly children: React.ReactNode;
+  readonly onRequestClose: ModalV2Props["onRequestClose"];
+  readonly dismissible: ModalV2Props["dismissible"];
+}) {
   const { dialogRef, handleBackdropClick } = useModal({
     open,
     onRequestClose,
@@ -44,37 +101,7 @@ export function Modal({
         open ? styles.visible : styles.hidden,
       )}
     >
-      <div className={styles.modal}>
-        <div className={styles.header}>
-          <Modal.Title>{title}</Modal.Title>
-          <Modal.DismissButton
-            visible={dismissible}
-            onRequestClose={onRequestClose}
-          />
-        </div>
-        {children}
-        <Modal.Actions
-          visible={!!primaryAction || !!secondaryAction || !!tertiaryAction}
-        >
-          <Cluster justify="space-between">
-            <Cluster>
-              {tertiaryAction && (
-                <Button
-                  {...tertiaryAction}
-                  type="secondary"
-                  variation="destructive"
-                />
-              )}
-            </Cluster>
-            <Cluster gap="small">
-              {secondaryAction && (
-                <Button {...secondaryAction} variation="subtle" />
-              )}
-              {primaryAction && <Button {...primaryAction} />}
-            </Cluster>
-          </Cluster>
-        </Modal.Actions>
-      </div>
+      <div className={styles.modal}>{children}</div>
     </dialog>
   );
 }
@@ -178,3 +205,4 @@ function ModalActions({
 Modal.DismissButton = ModalDismiss;
 Modal.Title = ModalTitle;
 Modal.Actions = ModalActions;
+Modal.Header = ModalHeader;
