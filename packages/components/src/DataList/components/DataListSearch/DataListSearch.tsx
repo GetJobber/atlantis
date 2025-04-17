@@ -59,7 +59,7 @@ export function InternalDataListSearch() {
           // If the initial value changes, reset the input.
           key={initialValue}
           defaultValue={initialValue}
-          value={controlledValue}
+          value={controlledValue as string}
           ref={inputRef}
           placeholder={getPlaceholder()}
           onChange={
@@ -68,7 +68,7 @@ export function InternalDataListSearch() {
               : debouncedSearch
           }
           prefix={{ icon: "search" }}
-          clearable="always"
+          clearable={"always" as const}
         />
       </div>
 
