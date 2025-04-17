@@ -10,6 +10,11 @@ export type ButtonVariation = "work" | "learning" | "subtle" | "destructive";
 export type ButtonSize = "small" | "base" | "large";
 export type ButtonType = "primary" | "secondary" | "tertiary";
 
+// Define a type that allows both MouseEvent handler types
+export type ClickEventHandler =
+  | ((event: React.MouseEvent<HTMLButtonElement>) => void)
+  | ((event: React.MouseEvent<HTMLAnchorElement>) => void);
+
 export interface ButtonFoundationProps {
   /**
    * Used for screen readers. Will override label on screen
@@ -26,12 +31,8 @@ export interface ButtonFoundationProps {
   readonly size?: ButtonSize;
   readonly ariaLabel?: string;
 
-  onClick?(
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ): void;
-  onMouseDown?(
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ): void;
+  onClick?: ClickEventHandler;
+  onMouseDown?: ClickEventHandler;
 
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
@@ -80,6 +81,9 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
    * Used to create an 'href' on an anchor tag.
    */
   readonly url?: string;
+
+  onClick?: ClickEventHandler;
+  onMouseDown?: ClickEventHandler;
 }
 
 interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
@@ -88,6 +92,9 @@ interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
    * @deprecated
    */
   readonly to?: LinkProps<S>["to"];
+
+  onClick?: ClickEventHandler;
+  onMouseDown?: ClickEventHandler;
 }
 
 interface BaseActionProps extends ButtonFoundationProps {

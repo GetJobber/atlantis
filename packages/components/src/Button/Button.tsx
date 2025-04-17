@@ -59,8 +59,6 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
       disabled,
       id,
       style: UNSAFE_style.container,
-      ...(!disabled && { onClick: onClick }),
-      ...(!disabled && { onMouseDown: onMouseDown }),
       "aria-controls": ariaControls,
       "aria-haspopup": ariaHaspopup,
       "aria-expanded": ariaExpanded,
@@ -71,32 +69,71 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
     const buttonInternals = children || <ButtonContent {...props} />;
 
     if (to) {
-      // Props specific to Link
       const linkProps = {
         ...commonProps,
         to: to as LinkProps["to"],
+        ...(!disabled && {
+          onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+            onClick &&
+              (onClick as (e: React.MouseEvent<HTMLAnchorElement>) => void)(
+                event,
+              );
+          },
+          onMouseDown: (event: React.MouseEvent<HTMLAnchorElement>) => {
+            onMouseDown &&
+              (onMouseDown as (e: React.MouseEvent<HTMLAnchorElement>) => void)(
+                event,
+              );
+          },
+        }),
       };
 
       return <Link {...linkProps}>{buttonInternals}</Link>;
     }
 
     if (url) {
-      // Props specific to anchor
       const anchorProps = {
         ...commonProps,
         href: !disabled ? url : undefined,
         ...(external && { target: "_blank" }),
+        ...(!disabled && {
+          onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+            onClick &&
+              (onClick as (e: React.MouseEvent<HTMLAnchorElement>) => void)(
+                event,
+              );
+          },
+          onMouseDown: (event: React.MouseEvent<HTMLAnchorElement>) => {
+            onMouseDown &&
+              (onMouseDown as (e: React.MouseEvent<HTMLAnchorElement>) => void)(
+                event,
+              );
+          },
+        }),
         ref: ref as React.ForwardedRef<HTMLAnchorElement>,
       };
 
       return <a {...anchorProps}>{buttonInternals}</a>;
     }
 
-    // Props specific to button
     const buttonProps = {
       ...commonProps,
       type: buttonType,
       ...(submit && { name, value }),
+      ...(!disabled && {
+        onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+          onClick &&
+            (onClick as (e: React.MouseEvent<HTMLButtonElement>) => void)(
+              event,
+            );
+        },
+        onMouseDown: (event: React.MouseEvent<HTMLButtonElement>) => {
+          onMouseDown &&
+            (onMouseDown as (e: React.MouseEvent<HTMLButtonElement>) => void)(
+              event,
+            );
+        },
+      }),
       ref: ref as React.ForwardedRef<HTMLButtonElement>,
     };
 
