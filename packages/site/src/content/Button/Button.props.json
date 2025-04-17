@@ -25,11 +25,11 @@
         "name": "onClick",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonAnchorProps"
         },
         "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void"
+          "name": "ClickEventHandler"
         }
       },
       "name": {
@@ -224,7 +224,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void"
+          "name": "ClickEventHandler"
         }
       },
       "UNSAFE_className": {
