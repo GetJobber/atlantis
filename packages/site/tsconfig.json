@@ -9,6 +9,9 @@
       "@atlantis/docs/*": [
         "../../docs/*"
       ],
+      "@jobber-component-styles/*": [
+        "../components/dist/*"
+      ],
       "react": [
         "./node_modules/@types/react"
       ]

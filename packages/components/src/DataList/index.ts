@@ -1,11 +1,11 @@
 export * from "./DataList";
 export {
-  DataListItemType,
-  DataListObject,
-  DataListSorting,
-  DataListSortable,
-  DataListSelectedType,
-  DataListSelectedAllType,
-  DataListProps,
-  DataListEmptyStateProps,
+  type DataListItemType,
+  type DataListObject,
+  type DataListSorting,
+  type DataListSortable,
+  type DataListSelectedType,
+  type DataListSelectedAllType,
+  type DataListProps,
+  type DataListEmptyStateProps,
 } from "./DataList.types";

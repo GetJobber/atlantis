@@ -11,7 +11,7 @@ import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
 } from "./useMakeComboboxHandlers";
-import { ComboboxOption } from "../Combobox.types";
+import { type ComboboxOption } from "../Combobox.types";
 
 type UseComboboxReturn = {
   wrapperRef: React.RefObject<HTMLDivElement>;

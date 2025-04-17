@@ -12,8 +12,8 @@ import {
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,
   THEME_CHANGE_EVENT,
-  Theme,
-  ThemeChangeDetails,
+  type Theme,
+  type ThemeChangeDetails,
 } from "./types";
 import styles from "./AtlantisThemeContext.module.css";
 
