@@ -9,7 +9,7 @@ import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
 
-export const Chip = ({
+export function Chip({
   ariaLabel,
   disabled,
   heading,
@@ -23,7 +23,7 @@ export const Chip = ({
   role = "button",
   tabIndex = 0,
   variation = "base",
-}: ChipProps): JSX.Element => {
+}: ChipProps): JSX.Element {
   const classes = classnames(styles.chip, {
     [styles.invalid]: invalid,
     [styles.base]: variation === "base",
@@ -87,7 +87,7 @@ export const Chip = ({
       </Tag>
     </Tooltip>
   );
-};
+}
 
 function getTooltipMessage(
   labelFullyVisible: boolean,
