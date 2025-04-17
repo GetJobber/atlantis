@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.1...@jobber/components@6.38.2) (2025-04-17)
+
+
+### Bug Fixes
+
+* **components:** Update text color on autofill in FormField ([#2490](https://github.com/GetJobber/atlantis/issues/2490)) ([8d637ea](https://github.com/GetJobber/atlantis/commit/8d637ea45104ff499f5f1737f4e93ce39570034d))
+
+
+
+
+
 ## [6.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.0...@jobber/components@6.38.1) (2025-04-16)
 
 
