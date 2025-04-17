@@ -77,6 +77,7 @@ describe("handleReset", () => {
     act(() => result.current.handleReset());
     expect(result.current.activeIndex).toBe(0);
     expect(result.current.searchValue).toBe("");
+    expect(result.current.menuOpen).toBe(true);
   });
 
   it("should keep active index at 0 if it's already 0", () => {
@@ -87,6 +88,22 @@ describe("handleReset", () => {
 
     act(() => result.current.handleReset());
 
+    expect(result.current.activeIndex).toBe(0);
+    expect(result.current.searchValue).toBe("");
+  });
+
+  it("should close the menu if onlyShowMenuOnSearch is true", () => {
+    const result = setupHook({ onlyShowMenuOnSearch: true });
+
+    act(() => result.current.handleShowInput());
+    act(() => result.current.handleSearchChange(fakeChangeEvent("test")));
+    act(() => jest.advanceTimersByTime(300));
+
+    expect(result.current.menuOpen).toBe(true);
+
+    act(() => result.current.handleReset());
+
+    expect(result.current.menuOpen).toBe(false);
     expect(result.current.activeIndex).toBe(0);
     expect(result.current.searchValue).toBe("");
   });

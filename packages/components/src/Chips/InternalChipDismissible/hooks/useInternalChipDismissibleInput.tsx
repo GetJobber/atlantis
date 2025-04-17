@@ -73,6 +73,10 @@ export function useInternalChipDismissibleInput({
     handleReset: () => {
       setActiveIndex(activeIndex === 0 ? activeIndex : activeIndex - 1);
       setSearchValue("");
+
+      if (onlyShowMenuOnSearch) {
+        actions.handleCloseMenu();
+      }
     },
 
     handleOpenMenu: () => setMenuOpen(true),

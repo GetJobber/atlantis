@@ -581,6 +581,30 @@ describe("onlyShowMenuOnSearch", () => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
   });
+
+  it("should close the menu on option selection", () => {
+    const addButton = screen.getByRole("button", { name: "Add" });
+    fireEvent.click(addButton);
+    const input = screen.getByRole("combobox");
+
+    fireEvent.change(input, { target: { value: "A" } });
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+
+    const firstOption = screen.getByRole("option", { name: optionsArray[0] });
+    fireEvent.click(firstOption);
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    expect(screen.queryByRole("combobox")).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Add" }),
+    ).not.toBeInTheDocument();
+  });
 });
 
 function isOptionhighlighted(highlighted: string) {
