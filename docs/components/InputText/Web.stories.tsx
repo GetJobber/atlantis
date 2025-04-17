@@ -173,6 +173,7 @@ export const VersionComparison = () => {
         <InputText
           {...props}
           version={2}
+          error="This is an error"
           value={values[field]}
           onChange={handleChange(field)}
         />

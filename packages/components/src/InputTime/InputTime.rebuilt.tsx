@@ -36,6 +36,7 @@ export function InputTimeRebuilt({
       clearable={params.clearable ?? "never"}
       onClear={handleClear}
       type="time"
+      readonly={params.readonly}
       placeholder={params.placeholder}
       value={dateToTimeString(value)}
     >

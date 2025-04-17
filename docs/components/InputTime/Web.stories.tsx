@@ -26,7 +26,7 @@ const BasicTemplate: ComponentStory<typeof InputTime> = args => (
 );
 
 const ControlledTemplate: ComponentStory<typeof InputTime> = args => {
-  const [time, setTime] = useState<Date>();
+  const [time, setTime] = useState<Date>(new Date());
 
   const handleChange = (newTime: Date) => {
     setTime(newTime);
@@ -35,7 +35,13 @@ const ControlledTemplate: ComponentStory<typeof InputTime> = args => {
   return (
     <Content>
       <Flex template={["grow", "shrink"]}>
-        <InputTime {...args} value={time} onChange={handleChange} />
+        <InputTime
+          {...args}
+          value={time}
+          version={2}
+          readonly
+          onChange={handleChange}
+        />
         <Button label="Reset" size="large" onClick={() => setTime()} />
       </Flex>
       <pre>{time && time.toString()}</pre>
