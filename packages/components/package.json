@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "6.37.0",
+  "version": "6.38.3",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -85,6 +85,11 @@
       "import": "./dist/Chips/index.mjs",
       "require": "./dist/Chips/index.cjs"
     },
+    "./Cluster": {
+      "types": "./dist/Cluster/index.d.ts",
+      "import": "./dist/Cluster/index.mjs",
+      "require": "./dist/Cluster/index.cjs"
+    },
     "./Combobox": {
       "types": "./dist/Combobox/index.d.ts",
       "import": "./dist/Combobox/index.mjs",
@@ -95,10 +100,25 @@
       "import": "./dist/ConfirmationModal/index.mjs",
       "require": "./dist/ConfirmationModal/index.cjs"
     },
+    "./Cover": {
+      "types": "./dist/Cover/index.d.ts",
+      "import": "./dist/Cover/index.mjs",
+      "require": "./dist/Cover/index.cjs"
+    },
+    "./Container": {
+      "types": "./dist/Container/index.d.ts",
+      "import": "./dist/Container/index.mjs",
+      "require": "./dist/Container/index.cjs"
+    },
     "./Content": {
       "types": "./dist/Content/index.d.ts",
       "import": "./dist/Content/index.mjs",
       "require": "./dist/Content/index.cjs"
+    },
+    "./ContentBlock": {
+      "types": "./dist/ContentBlock/index.d.ts",
+      "import": "./dist/ContentBlock/index.mjs",
+      "require": "./dist/ContentBlock/index.cjs"
     },
     "./Countdown": {
       "types": "./dist/Countdown/index.d.ts",
@@ -194,6 +214,11 @@
       "types": "./dist/FormatTime/index.d.ts",
       "import": "./dist/FormatTime/index.mjs",
       "require": "./dist/FormatTime/index.cjs"
+    },
+    "./Frame": {
+      "types": "./dist/Frame/index.d.ts",
+      "import": "./dist/Frame/index.mjs",
+      "require": "./dist/Frame/index.cjs"
     },
     "./Gallery": {
       "types": "./dist/Gallery/index.d.ts",
@@ -340,10 +365,20 @@
       "import": "./dist/RecurringSelect/index.mjs",
       "require": "./dist/RecurringSelect/index.cjs"
     },
+    "./ResponsiveSwitcher": {
+      "types": "./dist/ResponsiveSwitcher/index.d.ts",
+      "import": "./dist/ResponsiveSwitcher/index.mjs",
+      "require": "./dist/ResponsiveSwitcher/index.cjs"
+    },
     "./Select": {
       "types": "./dist/Select/index.d.ts",
       "import": "./dist/Select/index.mjs",
       "require": "./dist/Select/index.cjs"
+    },
+    "./SideKick": {
+      "types": "./dist/SideKick/index.d.ts",
+      "import": "./dist/SideKick/index.mjs",
+      "require": "./dist/SideKick/index.cjs"
     },
     "./Spinner": {
       "types": "./dist/Spinner/index.d.ts",
@@ -359,6 +394,11 @@
       "types": "./dist/StatusLabel/index.d.ts",
       "import": "./dist/StatusLabel/index.mjs",
       "require": "./dist/StatusLabel/index.cjs"
+    },
+    "./Stack": {
+      "types": "./dist/Stack/index.d.ts",
+      "import": "./dist/Stack/index.mjs",
+      "require": "./dist/Stack/index.cjs"
     },
     "./Switch": {
       "types": "./dist/Switch/index.d.ts",
@@ -379,6 +419,11 @@
       "types": "./dist/Text/index.d.ts",
       "import": "./dist/Text/index.mjs",
       "require": "./dist/Text/index.cjs"
+    },
+    "./Tiles": {
+      "types": "./dist/Tiles/index.d.ts",
+      "import": "./dist/Tiles/index.mjs",
+      "require": "./dist/Tiles/index.cjs"
     },
     "./Toast": {
       "types": "./dist/Toast/index.d.ts",

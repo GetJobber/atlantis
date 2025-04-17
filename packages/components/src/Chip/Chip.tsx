@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import classnames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
 import styles from "./Chip.module.css";
@@ -9,46 +9,56 @@ import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
 
-const ChipComponent = forwardRef<HTMLButtonElement | HTMLDivElement, ChipProps>(
-  (
-    {
-      ariaLabel,
-      disabled,
-      heading,
-      invalid,
-      label,
-      value,
-      testID,
-      onClick,
-      onKeyDown,
-      children,
-      role = "button",
-      tabIndex = 0,
-      variation = "base",
-    },
-    ref,
-  ) => {
-    const classes = classnames(styles.chip, {
-      [styles.invalid]: invalid,
-      [styles.base]: variation === "base",
-      [styles.subtle]: variation === "subtle",
-      [styles.disabled]: disabled,
-    });
+export const Chip = ({
+  ariaLabel,
+  disabled,
+  heading,
+  invalid,
+  label,
+  value,
+  testID,
+  onClick,
+  onKeyDown,
+  children,
+  role = "button",
+  tabIndex = 0,
+  variation = "base",
+}: ChipProps): JSX.Element => {
+  const classes = classnames(styles.chip, {
+    [styles.invalid]: invalid,
+    [styles.base]: variation === "base",
+    [styles.subtle]: variation === "subtle",
+    [styles.disabled]: disabled,
+  });
 
-    const prefix = useChildComponent(children, d => d.type === ChipPrefix);
-    const suffix = useChildComponent(children, d => d.type === ChipSuffix);
+  const prefix = useChildComponent(children, d => d.type === Chip.Prefix);
+  const suffix = useChildComponent(children, d => d.type === Chip.Suffix);
 
-    const [labelRef, labelFullyVisible] = useInView<HTMLSpanElement>();
-    const [headingRef, headingFullyVisible] = useInView<HTMLSpanElement>();
-    const tooltipMessage = getTooltipMessage(
-      labelFullyVisible,
-      headingFullyVisible,
-      label,
-      heading,
-    );
+  const [labelRef, labelFullyVisible] = useInView<HTMLSpanElement>();
+  const [headingRef, headingFullyVisible] = useInView<HTMLSpanElement>();
+  const tooltipMessage = getTooltipMessage(
+    labelFullyVisible,
+    headingFullyVisible,
+    label,
+    heading,
+  );
+  const Tag = onClick ? "button" : "div";
 
-    const chipContent = (
-      <>
+  return (
+    <Tooltip message={tooltipMessage} setTabIndex={false}>
+      <Tag
+        className={classes}
+        onClick={(ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) =>
+          onClick?.(value, ev)
+        }
+        tabIndex={disabled ? -1 : tabIndex}
+        onKeyDown={onKeyDown}
+        aria-label={ariaLabel}
+        disabled={disabled}
+        role={role}
+        data-testid={testID}
+        type="button"
+      >
         {prefix}
         <div className={styles.chipContent}>
           {heading && (
@@ -74,47 +84,10 @@ const ChipComponent = forwardRef<HTMLButtonElement | HTMLDivElement, ChipProps>(
           )}
         </div>
         {suffix}
-      </>
-    );
-
-    // Use createElement to properly handle the ref typing
-    return (
-      <Tooltip message={tooltipMessage} setTabIndex={false}>
-        {onClick
-          ? React.createElement(
-              "button",
-              {
-                className: classes,
-                onClick: (ev: React.MouseEvent<HTMLButtonElement>) =>
-                  onClick?.(value, ev),
-                tabIndex: disabled ? -1 : tabIndex,
-                onKeyDown,
-                "aria-label": ariaLabel,
-                disabled,
-                role,
-                "data-testid": testID,
-                type: "button",
-                ref,
-              },
-              chipContent,
-            )
-          : React.createElement(
-              "div",
-              {
-                className: classes,
-                tabIndex: disabled ? -1 : tabIndex,
-                onKeyDown,
-                "aria-label": ariaLabel,
-                role,
-                "data-testid": testID,
-                ref,
-              },
-              chipContent,
-            )}
-      </Tooltip>
-    );
-  },
-);
+      </Tag>
+    </Tooltip>
+  );
+};
 
 function getTooltipMessage(
   labelFullyVisible: boolean,
@@ -133,12 +106,5 @@ function getTooltipMessage(
   return message;
 }
 
-ChipComponent.displayName = "Chip";
-
-// Required to assign sub-components to the Chip component when it is a forwardRef
-const ChipNamespace = Object.assign(ChipComponent, {
-  Prefix: ChipPrefix,
-  Suffix: ChipSuffix,
-});
-
-export { ChipNamespace as Chip };
+Chip.Prefix = ChipPrefix;
+Chip.Suffix = ChipSuffix;

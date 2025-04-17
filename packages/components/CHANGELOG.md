@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.2...@jobber/components@6.38.3) (2025-04-17)
+
+
+### Reverts
+
+* **components:** Add ref to Button and Chip ([#2494](https://github.com/GetJobber/atlantis/issues/2494)) ([507349d](https://github.com/GetJobber/atlantis/commit/507349d25e60b88cd848632cee20c5a67779eb42)), closes [#2470](https://github.com/GetJobber/atlantis/issues/2470)
+
+
+
+
+
+## [6.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.1...@jobber/components@6.38.2) (2025-04-17)
+
+
+### Bug Fixes
+
+* **components:** Update text color on autofill in FormField ([#2490](https://github.com/GetJobber/atlantis/issues/2490)) ([8d637ea](https://github.com/GetJobber/atlantis/commit/8d637ea45104ff499f5f1737f4e93ce39570034d))
+
+
+
+
+
+## [6.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.0...@jobber/components@6.38.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* **components:** make Glimmer respond to dark mode ([#2472](https://github.com/GetJobber/atlantis/issues/2472)) ([c313412](https://github.com/GetJobber/atlantis/commit/c31341211cc7e087a9a9cd191125b08ac9c9195d))
+
+
+
+
+
+# [6.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.37.0...@jobber/components@6.38.0) (2025-04-16)
+
+
+### Features
+
+* **components:** Layout System 2.0  ([#2461](https://github.com/GetJobber/atlantis/issues/2461)) ([9b0383f](https://github.com/GetJobber/atlantis/commit/9b0383fff586df22dc23374359cbd7d259c18d60))
+
+
+
+
+
 # [6.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.36.1...@jobber/components@6.37.0) (2025-04-15)
 
 
