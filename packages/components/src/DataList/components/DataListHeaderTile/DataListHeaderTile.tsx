@@ -41,7 +41,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       })}
       onClick={handleOnClick}
       ref={dataListHeaderTileRef}
-      {...(isSortable ? { type: "button" } : {})}
+      type={isSortable ? "button" : undefined}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {isSortable && sortableItem?.options && isDropDownOpen && (
