@@ -11,7 +11,7 @@
         "description": "Accessible label, which can be different from the primary label.",
         "name": "ariaLabel",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -24,7 +24,7 @@
         "description": "The testing id for the chip if necessary.",
         "name": "testID",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -37,7 +37,7 @@
         "description": "Disables both mouse and keyboard functionality, and updates the visual style of the Chip to appear disabled.",
         "name": "disabled",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -50,7 +50,7 @@
         "description": "Adds more prominent text to act as a heading. Will be displayed on the left with a | separator.",
         "name": "heading",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -63,7 +63,7 @@
         "description": "Changes Chip styling to inform the user of an issue.",
         "name": "invalid",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -76,7 +76,7 @@
         "description": "The content of the chip. Will be displayed on the right if you include a heading.",
         "name": "label",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": true,
@@ -91,7 +91,7 @@
         "description": "The accessible role the Chip is fulfilling. Defaults to 'button'",
         "name": "role",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -106,7 +106,7 @@
         "description": "Used for accessibility purpopses, specifically using the tab key as navigation.",
         "name": "tabIndex",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -119,7 +119,7 @@
         "description": "Will be passed to onClick, when the user clicks on this Chip.",
         "name": "value",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -134,7 +134,7 @@
         "description": "Button style variation. Does not affect functionality.",
         "name": "variation",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -147,7 +147,7 @@
         "description": "Chip Click Callback. Sends an event and sometimes a value (SelectableChip).",
         "name": "onClick",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
@@ -160,7 +160,7 @@
         "description": "Callback. Called when you keydown on Chip. Ships the event, so you can get the key pushed.",
         "name": "onKeyDown",
         "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.d.ts",
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
         },
         "required": false,
