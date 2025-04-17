@@ -1,5 +1,5 @@
 export { FormField } from "./FormField";
-export type { FormFieldProps } from "./FormFieldTypes";
+export type * from "./FormFieldTypes";
 export { useAtlantisFormField } from "./hooks/useAtlantisFormField";
 export { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";
 export { useAtlantisFormFieldName } from "./hooks/useAtlantisFormFieldName";
