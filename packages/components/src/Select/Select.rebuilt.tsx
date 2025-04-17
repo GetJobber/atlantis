@@ -32,7 +32,6 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       onChange: props.onChange,
       onBlur: props.onBlur,
       onFocus: props.onFocus,
-      selectRef: selectRef,
     });
 
   const inputProps = omit(props, [

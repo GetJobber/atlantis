@@ -1,4 +1,4 @@
-import { ChangeEvent, RefObject } from "react";
+import { ChangeEvent } from "react";
 
 interface UseSelectActionsProps {
   readonly onChange?: (
@@ -7,7 +7,6 @@ interface UseSelectActionsProps {
   ) => void;
   readonly onBlur?: () => void;
   readonly onFocus?: () => void;
-  readonly selectRef: RefObject<HTMLSelectElement>;
 }
 
 /**
@@ -17,7 +16,6 @@ export function useSelectActions({
   onChange,
   onBlur,
   onFocus,
-  selectRef,
 }: UseSelectActionsProps) {
   function handleChange(event: ChangeEvent<HTMLSelectElement>) {
     const newValue = event.currentTarget.value;
@@ -32,11 +30,10 @@ export function useSelectActions({
     onFocus?.();
   }
 
-  function handleClear() {
-    handleBlur();
-    onChange?.("");
-    selectRef?.current?.focus();
-  }
+  // Noop for SelectRebuilt since onClear is a required prop for FormFieldWrapper
+  // but Select is not clearable.
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  function handleClear() {}
 
   return {
     handleChange,
