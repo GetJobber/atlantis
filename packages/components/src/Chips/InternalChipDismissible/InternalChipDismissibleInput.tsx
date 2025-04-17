@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import debounce from "lodash/debounce";
 import classNames from "classnames";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./InternalChipDismissible.module.css";
@@ -85,7 +84,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         value={searchValue}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
-        onBlur={debounce(handleBlur, 200)}
         onFocus={handleOpenMenu}
         autoFocus={true}
       />
