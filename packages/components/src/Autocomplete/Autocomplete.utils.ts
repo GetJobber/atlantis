@@ -1,4 +1,8 @@
-import { AnyOption, GroupOption, Option } from "./Autocomplete.types";
+import {
+  type AnyOption,
+  type GroupOption,
+  type Option,
+} from "./Autocomplete.types";
 
 export function isOptionSelected(
   selectedOption: Option | undefined,

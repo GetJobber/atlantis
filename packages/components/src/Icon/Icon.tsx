@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
 
-export { IconColorNames, IconNames } from "@jobber/design";
+export type { IconColorNames, IconNames } from "@jobber/design";
 
 export interface IconProps {
   /** The icon to show.  */

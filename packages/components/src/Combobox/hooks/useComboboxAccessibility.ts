@@ -11,7 +11,7 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { ComboboxOption } from "../Combobox.types";
+import { type ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
 const COMBOBOX_OFFSET = 8;

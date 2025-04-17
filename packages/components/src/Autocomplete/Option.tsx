@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 import classnames from "classnames";
 import styles from "./Autocomplete.module.css";
 import { isOptionGroup } from "./Autocomplete.utils";
-import { AnyOption, Option } from "./Autocomplete.types";
+import { type AnyOption, type Option } from "./Autocomplete.types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Icon } from "../Icon";

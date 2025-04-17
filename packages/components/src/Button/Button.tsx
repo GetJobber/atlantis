@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { Link, LinkProps } from "react-router-dom";
 import classnames from "classnames";
-import { ButtonProps, HTMLButtonType } from "./Button.types";
+import { type ButtonProps, type HTMLButtonType } from "./Button.types";
 import { useButtonStyles } from "./useButtonStyles";
 // eslint-disable-next-line import/no-deprecated
 import { ButtonContent, ButtonIcon, ButtonLabel } from "./ButtonInternals";

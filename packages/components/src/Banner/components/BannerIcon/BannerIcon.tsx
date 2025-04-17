@@ -4,7 +4,7 @@ import classNames from "classnames";
 import iconStyles from "./BannerIcon.module.css";
 import bannerStyles from "../../Banner.module.css";
 import { Icon } from "../../../Icon";
-import { BannerType } from "../../Banner.types";
+import { type BannerType } from "../../Banner.types";
 
 export interface BannerIconProps {
   readonly icon: IconNames;
