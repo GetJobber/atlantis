@@ -28,7 +28,7 @@ export function InputTimeRebuilt({
       align={params.align}
       inline={params.inline}
       name={params.name}
-      error={""}
+      error={params.error || ""}
       identifier={id}
       descriptionIdentifier={`descriptionUUID--${id}`}
       invalid={Boolean(params.invalid)}

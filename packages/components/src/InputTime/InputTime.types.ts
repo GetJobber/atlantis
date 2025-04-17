@@ -53,4 +53,5 @@ export interface InputTimeRebuiltProps
   extends Omit<InputTimeProps, "defaultValue" | "version"> {
   defaultValue?: never;
   version: 2;
+  error?: string;
 }

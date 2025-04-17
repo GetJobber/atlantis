@@ -94,6 +94,13 @@ describe("InputTimeRebuilt", () => {
     expect(document.activeElement).toBe(inputRef.current);
   });
 
+  it("should display the error message when error prop is provided", () => {
+    const errorMessage = "Please enter a valid time";
+    render(<InputTime version={2} error={errorMessage} />);
+
+    expect(screen.getByText(errorMessage)).toBeInTheDocument();
+  });
+
   describe("useTimePredict integration", () => {
     const initialValue = createDate(10, 0);
 
