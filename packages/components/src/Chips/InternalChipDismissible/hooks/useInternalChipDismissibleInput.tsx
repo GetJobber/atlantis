@@ -80,6 +80,7 @@ export function useInternalChipDismissibleInput({
     handleEnableBlur: () => setShouldCancelBlur(false),
 
     handleBlur: () => {
+      console.log("handleBlur");
       if (shouldCancelBlur) return;
       actions.handleReset();
       actions.handleCloseMenu();
