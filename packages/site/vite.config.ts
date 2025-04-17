@@ -63,7 +63,7 @@ export default defineConfig({
       "@jobber/formatters": path.resolve(__dirname, "../formatters/src"),
       "@jobber/hooks": path.resolve(__dirname, "../hooks/src"),
       "@jobber/components": path.resolve(__dirname, "../components/src"),
-      "@jobber-component-styles": path.resolve(__dirname, "../components/dist"),
+      "@jobber/component/styles": path.resolve(__dirname, "../components/dist"),
       "@storybook/addon-docs": path.resolve(
         __dirname,
         "./src/components/StorybookOverrides",

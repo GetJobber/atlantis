@@ -12,7 +12,7 @@ import { TritonProvider } from "./providers/TritonProvider";
 
 import "@jobber/design/dist/foundation.css";
 import "@jobber/design/dist/dark.mode.css";
-import "@jobber-component-styles/styles.css";
+import "@jobber/component/styles/styles.css";
 import "./main.css";
 
 handleStorybookRedirect();

@@ -2,10 +2,10 @@ import React, { forwardRef } from "react";
 import omit from "lodash/omit";
 import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
 import { InputDateRebuiltProps } from "./InputDate.types";
+import { Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
 import { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
 import { InputText } from "../InputText";
-import { Suffix } from "../FormField";
 
 export const InputDateRebuilt = forwardRef(function InputDateInternal(
   props: InputDateRebuiltProps,

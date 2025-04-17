@@ -9,7 +9,7 @@
       "@atlantis/docs/*": [
         "../../docs/*"
       ],
-      "@jobber-component-styles/*": [
+      "@jobber/component/styles/*": [
         "../components/dist/*"
       ],
       "react": [

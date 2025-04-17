@@ -11,7 +11,7 @@ module.exports = {
         ignore: [
           "^@atlantis/docs",
           "^@atlantis/packages",
-          "^@jobber-component-styles",
+          "^@jobber/component/styles",
         ],
       },
     ],
