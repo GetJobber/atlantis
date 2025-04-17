@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.3...@jobber/components@6.38.4) (2025-04-17)
+
+
+### Bug Fixes
+
+* **components:** Assign type button to DataListHeaderTile when column is sortable ([#2491](https://github.com/GetJobber/atlantis/issues/2491)) ([d8beb8b](https://github.com/GetJobber/atlantis/commit/d8beb8b7d71bc7bbe56da33347bb7e28bfff4a8f))
+
+
+
+
+
 ## [6.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.2...@jobber/components@6.38.3) (2025-04-17)
 
 
