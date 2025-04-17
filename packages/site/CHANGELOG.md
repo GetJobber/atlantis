@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.2...@jobber/atlantis-site@0.42.3) (2025-04-17)
+
+
+### Reverts
+
+* **components:** Add ref to Button and Chip ([#2494](https://github.com/GetJobber/atlantis/issues/2494)) ([507349d](https://github.com/GetJobber/atlantis/commit/507349d25e60b88cd848632cee20c5a67779eb42)), closes [#2470](https://github.com/GetJobber/atlantis/issues/2470)
+
+
+
+
+
 ## [0.42.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.1...@jobber/atlantis-site@0.42.2) (2025-04-17)
 
 **Note:** Version bump only for package @jobber/atlantis-site
