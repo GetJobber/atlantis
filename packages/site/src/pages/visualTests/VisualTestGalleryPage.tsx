@@ -10,8 +10,8 @@ export const VisualTestGalleryPage = () => {
       type: "image/jpeg",
       size: 200000,
       progress: 1,
-      thumbnailSrc: "https://placehold.co/200x200/e6e6e6/999999?text=1",
-      src: "https://placehold.co/800x800/e6e6e6/999999?text=1",
+      thumbnailSrc: "/img_collage.jpg",
+      src: "/img_collage.jpg",
     },
     {
       key: "2",
@@ -19,8 +19,8 @@ export const VisualTestGalleryPage = () => {
       type: "image/jpeg",
       size: 200000,
       progress: 1,
-      thumbnailSrc: "https://placehold.co/200x200/e6e6e6/999999?text=2",
-      src: "https://placehold.co/800x800/e6e6e6/999999?text=2",
+      thumbnailSrc: "/img_collage.jpg",
+      src: "/img_collage.jpg",
     },
     {
       key: "3",
@@ -28,8 +28,8 @@ export const VisualTestGalleryPage = () => {
       type: "image/jpeg",
       size: 200000,
       progress: 1,
-      thumbnailSrc: "https://placehold.co/200x200/e6e6e6/999999?text=3",
-      src: "https://placehold.co/800x800/e6e6e6/999999?text=3",
+      thumbnailSrc: "/img_collage.jpg",
+      src: "/img_collage.jpg",
     },
     {
       key: "4",
@@ -37,8 +37,8 @@ export const VisualTestGalleryPage = () => {
       type: "image/jpeg",
       size: 200000,
       progress: 1,
-      thumbnailSrc: "https://placehold.co/200x200/e6e6e6/999999?text=4",
-      src: "https://placehold.co/800x800/e6e6e6/999999?text=4",
+      thumbnailSrc: "/img_collage.jpg",
+      src: "/img_collage.jpg",
     },
     {
       key: "5",
@@ -46,8 +46,8 @@ export const VisualTestGalleryPage = () => {
       type: "image/jpeg",
       size: 200000,
       progress: 1,
-      thumbnailSrc: "https://placehold.co/200x200/e6e6e6/999999?text=5",
-      src: "https://placehold.co/800x800/e6e6e6/999999?text=5",
+      thumbnailSrc: "/img_collage.jpg",
+      src: "/img_collage.jpg",
     },
   ]);
 
