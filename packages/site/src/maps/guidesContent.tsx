@@ -5,6 +5,7 @@ import FrontendStyleguideComponent from "@atlantis/docs/guides/frontend-style.st
 import AddingAnIcon from "@atlantis/docs/guides/adding-an-icon.stories.mdx";
 import GettingStartedWithReactComponent from "@atlantis/docs/getting-started-with-react/getting-started-with-react.stories.mdx";
 import PullRequestTitleGeneratorComponent from "@atlantis/docs/guides/pull-request-title-generator.stories.mdx";
+import FigmaOverviewComponent from "@atlantis/docs/guides/figma-overview.mdx";
 import PageLayoutsComponent from "../guides/page-layouts.stories.mdx";
 import ScaffoldingComponent from "../guides/scaffolding.stories.mdx";
 import { ContentMapItems } from "../types/maps";
@@ -29,6 +30,11 @@ export const guidesContentMap: ContentMapItems = {
     intro: "Adding an icon",
     title: "Adding an icon",
     content: () => <AddingAnIcon />,
+  },
+  "figma-overview": {
+    intro: "Figma overview",
+    title: "Figma overview",
+    content: () => <FigmaOverviewComponent />,
   },
   "frontend-styleguide": {
     intro: "Frontend styleguide",

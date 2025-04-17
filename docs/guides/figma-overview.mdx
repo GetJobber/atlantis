@@ -1,0 +1,146 @@
+import { Meta } from "@storybook/addon-docs";
+import { Banner, Tiles } from "@jobber/components";
+
+<Meta title="Guides/Figma" />
+
+# Figma overview
+
+<Banner type="notice" dismissible={false}>
+  Figma libraries are currently limited to internal Jobber usage
+</Banner>
+
+## Figma libraries
+
+<iframe
+  style={{
+    border: "var(--border-base) solid var(--color-border)",
+    borderRadius: "var(--radius-base)",
+    overflow: "hidden",
+  }}
+  title="Figma Product Base Design"
+  width="100%"
+  height="800"
+  src="https://embed.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product-Base?m=auto&node-id=26021-260&embed-host=share"
+  allowFullScreen
+/>
+
+### Base
+
+Elements that are shared across web and mobile, such as design tokens and icons.
+
+<iframe
+  style={{
+    border: "var(--border-base) solid var(--color-border)",
+    borderRadius: "var(--radius-base)",
+    overflow: "hidden",
+  }}
+  title="Figma Product Base Design"
+  width="100%"
+  height="450"
+  src="https://embed.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product-Base?m=auto&node-id=198-1834&embed-host=share"
+  allowfullscreen
+></iframe>
+
+### Online and Mobile
+
+Atlantis and Shared components for the web (incl. responsive web) and mobile
+applications, respectively.
+
+<Tiles
+    gap="var(--space-base)"
+  >
+<iframe   style={{
+    border: "var(--border-base) solid var(--color-border)",
+    borderRadius: "var(--radius-base)",
+    overflow: "hidden",
+  }}
+  title="Figma Product Online"
+  width="100%"
+  height="250" src="https://embed.figma.com/design/rIIhulZvcp9M82lNOCGv16/Product-Online?m=auto&node-id=12588-94285&embed-host=share" allowfullscreen></iframe>
+
+<iframe   style={{
+    border: "var(--border-base) solid var(--color-border)",
+    borderRadius: "var(--radius-base)",
+    overflow: "hidden",
+  }}
+  title="Figma Product Mobile"
+  width="100%"
+  height="250" src="https://embed.figma.com/design/avvgu5SkbBvS8lGVePBsqO/Product-Mobile?m=auto&node-id=198-1834&embed-host=share" allowfullscreen></iframe>
+</Tiles>
+
+### Views
+
+The "Views" libraries contain as many of the pages/screens (we generalize this
+language to "views" to apply across platforms) as possible that we have built
+for a given platform. If you're looking for a view and you don't see it here,
+ask the team in #designers-feedback to see if anyone has the most up-to-date
+version in a working file (and ideally add it to the library for the next
+designer who's looking for it!)
+
+<Tiles gap="var(--space-base)">
+  <iframe
+    style={{
+      border: "var(--border-base) solid var(--color-border)",
+      borderRadius: "var(--radius-base)",
+      overflow: "hidden",
+    }}
+    title="Figma Product Online Views"
+    width="100%"
+    height="250"
+    src="https://embed.figma.com/design/LDsmAG7C5oLMW8jXFGSUGw/Product-Online-Views?m=auto&node-id=4-166534&embed-host=share"
+    allowfullscreen
+  ></iframe>
+  <iframe
+    style={{
+      border: "var(--border-base) solid var(--color-border)",
+      borderRadius: "var(--radius-base)",
+      overflow: "hidden",
+    }}
+    title="Figma Product Mobile Views"
+    width="100%"
+    height="250"
+    src="https://embed.figma.com/design/Q8qEFBbktHv3fr8ZBpGj9N/Product-Mobile-Views?m=auto&node-id=7-10319&embed-host=share"
+    allowfullscreen
+  ></iframe>
+</Tiles>
+
+## Choosing the right library
+
+You'll notice several systems-terms being thrown around as you work on Jobber.
+Atlantis, SG-1, Shared components, and more! To make sure you're using
+components from the right library in your work, follow this decision tree.
+
+## How to add and use components
+
+Whether you're adding a new component to our design system or using a component
+in your project, you can reference this guide for everything from naming
+conventions to editing tips.
+
+## Responsive design / "what size should my artboards be?"
+
+Our default artboard recommended sizes are based on usage data.
+
+| Device type | Default artboard size |
+| ----------- | --------------------- |
+| Desktop     | 1680 × 1200           |
+| Tablet      | 768 × 1024            |
+| Phone       | 375 × 812             |
+
+You should verify that your designs work at
+[responsive breakpoints.](../design/breakpoints) It's recommended to build with
+autolayout, to make this easier to check!
+
+<iframe
+  style={{
+    border: "var(--border-base) solid var(--color-border)",
+    borderRadius: "var(--radius-base)",
+    overflow: "hidden",
+  }}
+  title="Figma Product Base Design"
+  width="100%"
+  height="450"
+  src="https://embed.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product-Base?m=auto&node-id=20707-66&embed-host=share"
+  allowfullscreen
+></iframe>
+
+**Remember:** auto-layout is your friend!
