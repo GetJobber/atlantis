@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
 import { Chip, Chips } from "@jobber/components/Chips";
@@ -85,6 +85,11 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
     handleCustomAdd,
   } = useFakeOptionQuery();
 
+  const chipChildren = useMemo(
+    () => options.map(name => <Chip key={name} label={name} value={name} />),
+    [options],
+  );
+
   return (
     <Chips
       {...args}
@@ -96,9 +101,7 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
       onSearch={handleSearch}
       onLoadMore={handleLoadMore}
     >
-      {options.map(name => (
-        <Chip key={name} label={name} value={name} />
-      ))}
+      {chipChildren}
     </Chips>
   );
 };

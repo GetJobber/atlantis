@@ -22,6 +22,7 @@ export function useInternalChipDismissibleInput({
   onCustomOptionSelect,
   onOptionSelect,
   onSearch,
+  onlyShowMenuOnSearch = false,
 }: ChipDismissibleInputProps) {
   const menuId = useId();
   const [allOptions, setAllOptions] = useState<
@@ -67,6 +68,7 @@ export function useInternalChipDismissibleInput({
     handleReset: () => {
       setActiveIndex(activeIndex === 0 ? activeIndex : activeIndex - 1);
       setSearchValue("");
+      actions.handleCloseMenu();
     },
 
     handleOpenMenu: () => setMenuOpen(true),
@@ -82,13 +84,29 @@ export function useInternalChipDismissibleInput({
     handleBlur: () => {
       if (shouldCancelBlur) return;
       actions.handleReset();
-      actions.handleCloseMenu();
     },
 
     handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => {
       setActiveIndex(0);
-      setSearchValue(event.currentTarget.value);
+      const newSearchValue = event.currentTarget.value;
+      setSearchValue(newSearchValue);
       setShouldCancelEnter(true);
+
+      if (newSearchValue.length > 0 && !menuOpen) {
+        actions.handleOpenMenu();
+      }
+
+      if (newSearchValue.length === 0 && menuOpen) {
+        actions.handleCloseMenu();
+      }
+
+      if (onlyShowMenuOnSearch && newSearchValue.length > 0 && !menuOpen) {
+        actions.handleOpenMenu();
+      }
+
+      if (onlyShowMenuOnSearch && newSearchValue.length === 0 && menuOpen) {
+        actions.handleCloseMenu();
+      }
     },
 
     handleSetActiveOnMouseOver: (index: number) => {
@@ -108,33 +126,35 @@ export function useInternalChipDismissibleInput({
     },
 
     handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
-      const callbacks: KeyDownCallBacks = {
-        Enter: () => {
-          if (shouldCancelEnter) return;
-          actions.handleSelectOption(computed.activeOption);
-        },
-        Tab: () => actions.handleSelectOption(computed.activeOption),
-        ",": () => {
-          if (searchValue.length === 0) return;
-          actions.handleSelectOption(generateCustomOptionObject(searchValue));
-        },
-        ArrowDown: () => {
-          if (isLoadingMore && activeIndex === maxOptionIndex) return;
-          setActiveIndex(computed.nextOptionIndex);
-        },
-        ArrowUp: () => setActiveIndex(computed.previousOptionIndex),
-      };
+      const callbacks: KeyDownCallBacks = {};
 
       if (searchValue.length === 0) {
         callbacks.Backspace = () => {
-          // If there's no text left to delete,
-          // and delete is pressed again, focus on a chip instead.
           const target = computed.inputRef.current?.previousElementSibling;
 
           if (target instanceof HTMLElement) {
             target.focus();
           }
         };
+      }
+
+      if (!onlyShowMenuOnSearch || searchValue.length > 0) {
+        callbacks.Enter = () => {
+          if (shouldCancelEnter) return;
+          actions.handleSelectOption(computed.activeOption);
+        };
+        callbacks.Tab = () => actions.handleSelectOption(computed.activeOption);
+
+        callbacks[","] = () => {
+          if (searchValue.length === 0) return;
+          actions.handleSelectOption(generateCustomOptionObject(searchValue));
+        };
+
+        callbacks.ArrowDown = () => {
+          if (isLoadingMore && activeIndex === maxOptionIndex) return;
+          setActiveIndex(computed.nextOptionIndex);
+        };
+        callbacks.ArrowUp = () => setActiveIndex(computed.previousOptionIndex);
       }
 
       handleKeydownEvents(callbacks, event);
