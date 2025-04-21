@@ -279,10 +279,8 @@ describe("SelectRebuilt", () => {
       selectElement.blur = jest.fn();
 
       // Call native methods through ref
-      if (ref.current) {
-        ref.current.focus();
-        ref.current.blur();
-      }
+      ref.current?.focus();
+      ref.current?.blur();
 
       // Verify
       expect(selectElement.focus).toHaveBeenCalled();
