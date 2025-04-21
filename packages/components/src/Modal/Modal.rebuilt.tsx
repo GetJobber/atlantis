@@ -127,7 +127,7 @@ export function ModalWrapper({ children }: ModalWrapperProps) {
                     data-floating-ui-focusable
                     className={modal}
                     initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
+                    animate={{ scale: 1, opacity: 0.8 }}
                     exit={{ scale: 0.9, opacity: 0 }}
                     transition={{
                       duration: 0.2,
