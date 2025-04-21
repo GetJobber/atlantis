@@ -22,9 +22,14 @@ const AnimatedOverlay = motion(FloatingOverlay);
 
 export function ModalHeader({ title, children }: HeaderProps) {
   const { header, dismissButton } = useModalStyles();
-  const { dismissible, onRequestClose } = useModalContext();
-  const content = children ?? (
-    <div className={header} data-testid="ATL-Modal-Header">
+  const { dismissible, onRequestClose, modalLabelledBy } = useModalContext();
+
+  if (children) {
+    return <>{children}</>;
+  }
+
+  return (
+    <div className={header} data-testid="ATL-Modal-Header" id={modalLabelledBy}>
       <Heading level={2}>{title}</Heading>
 
       {dismissible && (
@@ -34,8 +39,6 @@ export function ModalHeader({ title, children }: HeaderProps) {
       )}
     </div>
   );
-
-  return <>{content}</>;
 }
 
 export function ModalActions({
@@ -108,6 +111,7 @@ export function ModalWrapper({ children }: ModalWrapperProps) {
     floatingRefs,
     size,
     floatingNodeId,
+    modalLabelledBy,
   } = useModalContext();
   const { modal } = useModalStyles(size);
 
@@ -125,6 +129,7 @@ export function ModalWrapper({ children }: ModalWrapperProps) {
                 >
                   <motion.div
                     data-floating-ui-focusable
+                    aria-labelledby={modalLabelledBy}
                     className={modal}
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 0.8 }}

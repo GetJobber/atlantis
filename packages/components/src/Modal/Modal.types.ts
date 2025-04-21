@@ -73,7 +73,7 @@ export interface ModalContextType {
    * Id to provide aria-labelledby to the modal. If you are using Modal.Header with children or another header you will need to provide this as the id of the header.
    * @default "ATL-Modal-Header"
    */
-  readonly modalAriaLabelledBy?: string;
+  readonly modalLabelledBy?: string;
 }
 
 export interface ModalActionsProps {

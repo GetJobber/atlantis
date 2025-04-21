@@ -55,4 +55,23 @@ describe("Composable Modal", () => {
     await userEvent.keyboard("{Escape}");
     expect(handleRequestClose).toHaveBeenCalledTimes(1);
   });
+
+  it("should render the modal header with custom content", () => {
+    render(
+      <Modal.Provider open={true} modalLabelledBy="custom-header">
+        <Modal.Wrapper>
+          <Modal.Header>
+            <span id="custom-header">Custom Header Content</span>
+          </Modal.Header>
+        </Modal.Wrapper>
+      </Modal.Provider>,
+    );
+    expect(screen.getByRole("dialog")).toHaveAttribute(
+      "aria-labelledby",
+      "custom-header",
+    );
+    expect(screen.getByRole("dialog")).toHaveTextContent(
+      "Custom Header Content",
+    );
+  });
 });

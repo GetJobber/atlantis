@@ -22,6 +22,7 @@ export interface ModalProviderProps {
   readonly onRequestClose?: () => void;
   readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
   readonly dismissible?: boolean;
+  readonly modalLabelledBy?: string;
 }
 
 export function ModalProvider({
@@ -31,6 +32,7 @@ export function ModalProvider({
   onRequestClose = noop,
   activatorRef: refProp,
   dismissible = true,
+  modalLabelledBy = "ATL-Modal-Header",
 }: ModalProviderProps) {
   const { floatingRefs, floatingContext, nodeId, activatorRef, parentId } =
     useModal({
@@ -50,6 +52,7 @@ export function ModalProvider({
         open,
         floatingNodeId: nodeId,
         dismissible,
+        modalLabelledBy,
       }}
     >
       {children}
