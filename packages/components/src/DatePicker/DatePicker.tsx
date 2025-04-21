@@ -1,8 +1,9 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
-import ReactDatePicker from "react-datepicker";
+import ReactDatePicker, { registerLocale } from "react-datepicker";
 import { XOR } from "ts-xor";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import * as locales from "date-fns/locale";
 import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import {
@@ -11,6 +12,14 @@ import {
 } from "./DatePickerActivator";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
 import { useAtlantisContext } from "../AtlantisContext";
+
+// Register all available locales
+Object.entries(locales).forEach(([key, value]) => {
+  // Skip the default export and internal properties
+  if (key !== "default" && !key.startsWith("_")) {
+    registerLocale(key, value);
+  }
+});
 
 interface BaseDatePickerProps {
   /**
@@ -38,6 +47,11 @@ interface BaseDatePickerProps {
    * Dates on the calendar to highlight
    */
   readonly highlightDates?: Date[];
+
+  /**
+   * Optional locale override. If not provided, falls back to the locale from AtlantisContext.
+   */
+  readonly locale?: string;
 
   /**
    * Change handler that will return the date selected.
@@ -83,7 +97,7 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-/*eslint max-statements: ["error", 13]*/
+/*eslint max-statements: ["error", 14]*/
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -97,10 +111,12 @@ export function DatePicker({
   maxDate,
   minDate,
   highlightDates,
+  locale: localeProp,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
-  const { dateFormat } = useAtlantisContext();
+  const { dateFormat, locale: contextLocale } = useAtlantisContext();
+  const effectiveLocale = localeProp || contextLocale;
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -153,6 +169,7 @@ export function DatePicker({
         ]}
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
+        locale={effectiveLocale}
       />
     </div>
   );
