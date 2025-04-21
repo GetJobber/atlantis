@@ -34,38 +34,11 @@ export type ModalWrapperProps = PropsWithChildren;
 
 export type ModalOverlayProps = PropsWithChildren;
 
-export interface ModalRewriteProps {
-  /**
-   * Title of the modal.
-   */
-  readonly title?: string;
+export interface ModalContextType {
   /**
    * Whether the modal is open.
    */
   readonly open?: boolean;
-  /**
-   * Size of the modal.
-   */
-  readonly size?: keyof typeof sizes;
-  /**
-   * Whether the modal will render a dismiss button.
-   * @default true
-   */
-  readonly dismissible?: boolean;
-  readonly children: ReactNode;
-  /**
-   * Primary action of the modal.
-   */
-  readonly primaryAction?: ButtonProps;
-  /**
-   * Secondary action of the modal.
-   */
-  readonly secondaryAction?: ButtonProps;
-  /**
-   * Tertiary action of the modal. This will be rendered on the left side of the action bar.
-   * Useful for actions like "Cancel" that are not destructive.
-   */
-  readonly tertiaryAction?: ButtonProps;
   /**
    * Callback executed when the user wants to close/dismiss the Modal
    */
@@ -75,17 +48,6 @@ export interface ModalRewriteProps {
    * and needs to be re-mounted.
    */
   readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
-
-  /**
-   * Use the new implementation of Modal only supported in
-   */
-  readonly version: 2;
-}
-
-export interface ModalContextType {
-  readonly open?: ModalRewriteProps["open"];
-  readonly onRequestClose: ModalRewriteProps["onRequestClose"];
-  readonly activatorRef: ModalRewriteProps["activatorRef"];
   /**
    * Refs used by floating-ui to position the modal.
    */
@@ -97,7 +59,7 @@ export interface ModalContextType {
   /**
    * Size of the modal.
    */
-  readonly size?: ModalRewriteProps["size"];
+  readonly size?: keyof typeof sizes;
   /**
    * Floating-ui node id for the modal. Used to ensure the modal is aware of other floating-ui elements.
    */
@@ -105,7 +67,7 @@ export interface ModalContextType {
   /**
    * Whether the modal is dismissible.
    */
-  readonly dismissible?: ModalRewriteProps["dismissible"];
+  readonly dismissible?: boolean;
 }
 
 export interface ModalActionsProps {
@@ -128,11 +90,11 @@ interface HeaderPropsWithoutChildren {
   /**
    * Title of the modal.
    */
-  readonly title: NonNullable<ModalRewriteProps["title"]>;
+  readonly title: string;
   /**
    * Whether the modal is dismissible.
    */
-  readonly dismissible?: ModalRewriteProps["dismissible"];
+  readonly dismissible?: boolean;
   /**
    * Callback executed when the user wants to close/dismiss the Modal
    */

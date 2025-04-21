@@ -13,7 +13,7 @@ import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
-export function ModalLegacy({
+export const ModalLegacy = ({
   open = false,
   title,
   size,
@@ -23,7 +23,7 @@ export function ModalLegacy({
   secondaryAction,
   tertiaryAction,
   onRequestClose,
-}: ModalLegacyProps) {
+}: ModalLegacyProps) => {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
@@ -89,7 +89,7 @@ export function ModalLegacy({
       onRequestClose();
     }
   }
-}
+};
 
 interface HeaderProps {
   readonly title: string;

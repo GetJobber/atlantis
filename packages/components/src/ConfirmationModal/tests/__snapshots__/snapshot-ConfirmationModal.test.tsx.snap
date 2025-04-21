@@ -3,67 +3,72 @@
 exports[`renders a simple ConfirmationModal 1`] = `
 <div>
   <div
-    class="container"
-    role="dialog"
-    tabindex="0"
+    class="staticThemeProviderWrapper"
+    data-theme="light"
   >
     <div
-      class="overlay"
-      style="opacity: 0;"
-    />
-    <div
-      class="modal"
-      style="opacity: 0; transform: scale(0.9) translateZ(0);"
+      class="container"
+      role="dialog"
+      tabindex="0"
     >
       <div
-        class="header"
-        data-testid="modal-header"
-      >
-        <h2
-          class="base bold largest heading"
-        >
-          Should we?
-        </h2>
-      </div>
+        class="overlay"
+        style="opacity: 0;"
+      />
       <div
-        class="padded base"
+        class="modal"
+        style="opacity: 0; transform: scale(0.9) translateZ(0);"
       >
+        <div
+          class="header"
+          data-testid="modal-header"
+        >
+          <h2
+            class="base bold largest heading"
+          >
+            Should we?
+          </h2>
+        </div>
         <div
           class="padded base"
         >
-          <p
-            class="base regular base text"
+          <div
+            class="padded base"
           >
-            Do something…
-          </p>
+            <p
+              class="base regular base text"
+            >
+              Do something…
+            </p>
+          </div>
         </div>
-      </div>
-      <div
-        class="actionBar"
-      >
         <div
-          class="rightAction"
+          class="actionBar"
         >
-          <button
-            class="button base work primary buttonChildren"
-            type="button"
+          <div
+            class="rightAction"
           >
-            <span
-              class="base semiBold base base"
+            <button
+              class="button base work primary buttonChildren"
+              type="button"
             >
-              We Shall
-            </span>
-          </button>
-          <button
-            class="button base subtle primary buttonChildren"
-            type="button"
-          >
-            <span
-              class="base semiBold base base"
+              <span
+                class="base semiBold base base"
+              >
+                We Shall
+              </span>
+            </button>
+            <button
+              class="button base subtle primary buttonChildren"
+              type="button"
             >
-              Cancel
-            </span>
-          </button>
+              <span
+                class="base semiBold base base"
+              >
+                Cancel
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
