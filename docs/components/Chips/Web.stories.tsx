@@ -84,6 +84,7 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
     handleSelect,
     handleCustomAdd,
   } = useFakeOptionQuery();
+  console.log({ options });
 
   return (
     <Chips

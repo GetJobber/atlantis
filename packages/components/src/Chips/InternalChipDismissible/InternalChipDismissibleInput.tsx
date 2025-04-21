@@ -52,6 +52,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     update,
     setPositionedElementRef,
   } = useRepositionMenu(attachTo);
+
   useSafeLayoutEffect(() => {
     update?.();
   }, [allOptions, menuOpen, update, options]);
@@ -60,7 +61,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleDebouncedSearch(searchValue, options);
 
     return handleDebouncedSearch.cancel;
-  }, [searchValue, options]);
+  }, [searchValue]);
 
   useEffect(() => {
     isInView && onLoadMore && onLoadMore(searchValue);
@@ -123,7 +124,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
               </button>
             ))}
 
-            <div ref={visibleChildRef} />
+            <div style={{ borderTop: "1px solid red" }} ref={visibleChildRef} />
 
             {isLoadingMore && (
               <div className={styles.loadingIndicator}>
