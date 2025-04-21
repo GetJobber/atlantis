@@ -24,7 +24,7 @@ export interface ModalProviderProps {
   readonly onRequestClose?: () => void;
   /**
    * Ref to specify the activator element. Useful if the activator can unmount
-   * and focused needs to be returned to the activator element.
+   * and focus needs to be returned to the activator element.
    */
   readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
   readonly dismissible?: boolean;
@@ -68,6 +68,12 @@ export interface ModalContextType {
    * Whether the modal is dismissible.
    */
   readonly dismissible?: boolean;
+
+  /**
+   * Id to provide aria-labelledby to the modal. If you are using Modal.Header with children or another header you will need to provide this as the id of the header.
+   * @default "ATL-Modal-Header"
+   */
+  readonly modalAriaLabelledBy?: string;
 }
 
 export interface ModalActionsProps {
