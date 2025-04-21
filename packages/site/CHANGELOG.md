@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.4...@jobber/atlantis-site@0.43.0) (2025-04-21)
+
+
+### Bug Fixes
+
+* **components:** Fix Chip Type Issue ([#2496](https://github.com/GetJobber/atlantis/issues/2496)) ([0f549b6](https://github.com/GetJobber/atlantis/commit/0f549b6fc6e741b67f0c32384a446b788cd08fa5))
+
+
+### Features
+
+* **components:** Add ability to only open Chips menu on search [JOB-119726] ([#2471](https://github.com/GetJobber/atlantis/issues/2471)) ([8f855c8](https://github.com/GetJobber/atlantis/commit/8f855c8ae06e57df2e3beea9d69b27bb181fb780))
+* **components:** InputTime without RHF ([#2477](https://github.com/GetJobber/atlantis/issues/2477)) ([f58a91f](https://github.com/GetJobber/atlantis/commit/f58a91f7bee6b53ae80254531417fb4837b69afd))
+
+
+
+
+
+## [0.42.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.3...@jobber/atlantis-site@0.42.4) (2025-04-17)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.42.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.2...@jobber/atlantis-site@0.42.3) (2025-04-17)
+
+
+### Reverts
+
+* **components:** Add ref to Button and Chip ([#2494](https://github.com/GetJobber/atlantis/issues/2494)) ([507349d](https://github.com/GetJobber/atlantis/commit/507349d25e60b88cd848632cee20c5a67779eb42)), closes [#2470](https://github.com/GetJobber/atlantis/issues/2470)
+
+
+
+
+
+## [0.42.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.1...@jobber/atlantis-site@0.42.2) (2025-04-17)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.0...@jobber/atlantis-site@0.42.1) (2025-04-16)
 
 **Note:** Version bump only for package @jobber/atlantis-site
