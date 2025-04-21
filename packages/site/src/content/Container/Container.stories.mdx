@@ -1,0 +1,102 @@
+import { Meta, Canvas } from "@storybook/addon-docs";
+import { Container } from "@jobber/components/Container";
+import { Stack } from "@jobber/components/Stack";
+import { Card } from "@jobber/components/Card";
+import { Text } from "@jobber/components/Text";
+import { Heading } from "@jobber/components/Heading";
+import { ContentBlock } from "@jobber/components/ContentBlock";
+
+import styles from "./Container.module.css";
+
+<Meta title="Components/Utilities/Container" component={Container} />
+
+# Container
+
+Container is a utility component that enables the use of CSS Container Queries,
+allowing you to create responsive layouts based on the container's size rather
+than the viewport size.
+
+## Design & usage guidelines
+
+Use Container when you need to:
+
+- Create responsive layouts that adapt based on their parent container's size
+- Build reusable components that can adapt to different contexts
+- Implement complex layouts that require different styles at different container
+  sizes
+
+### Basic usage
+
+The Container component consists of two parts:
+
+1. `Container` - Creates a containment context
+2. `Container.Apply` - Applies container queries to its children
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <Container name="example">
+      <Stack>
+        <Container.Apply className={styles.item} autoWidth>
+          <Card>
+            <Stack>
+              <Heading level={1}>Container Example</Heading>
+              <Text>
+                This content can respond to the container's width using CSS
+                Container Queries.
+              </Text>
+            </Stack>
+          </Card>
+        </Container.Apply>
+      </Stack>
+    </Container>
+  </ContentBlock>
+</Canvas>
+
+### Writing container queries
+
+Container queries use the `@container` CSS at-rule to apply styles based on the
+container's size. The container's name is passed as a CSS custom property.
+
+```css
+@container example (min-width: 600px) {
+  .myComponent {
+    /* Styles to apply when container is at least 600px wide */
+  }
+}
+```
+
+### Multiple containers
+
+You can have multiple containers on a page, each with its own name. This allows
+for independent responsive behavior:
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <Stack>
+      <Container name="first">
+        <Container.Apply className={styles.item} autoWidth>
+          <Card>
+            <Text>First container</Text>
+          </Card>
+        </Container.Apply>
+      </Container>
+      <Container name="second">
+        <Container.Apply className={styles.item} autoWidth>
+          <Card>
+            <Text>Second container</Text>
+          </Card>
+        </Container.Apply>
+      </Container>
+    </Stack>
+  </ContentBlock>
+</Canvas>
+
+## Content guidelines
+
+- Use descriptive names for your containers that reflect their purpose
+- Keep container queries focused on layout changes rather than content changes
+- Consider the smallest and largest sizes your container might need to handle
+
+## Related components
+
+- For vertical stacking with consistent spacing, use [Stack](/components/Stack)

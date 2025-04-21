@@ -3,6 +3,123 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.3...@jobber/atlantis-site@0.42.4) (2025-04-17)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.42.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.2...@jobber/atlantis-site@0.42.3) (2025-04-17)
+
+
+### Reverts
+
+* **components:** Add ref to Button and Chip ([#2494](https://github.com/GetJobber/atlantis/issues/2494)) ([507349d](https://github.com/GetJobber/atlantis/commit/507349d25e60b88cd848632cee20c5a67779eb42)), closes [#2470](https://github.com/GetJobber/atlantis/issues/2470)
+
+
+
+
+
+## [0.42.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.1...@jobber/atlantis-site@0.42.2) (2025-04-17)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.0...@jobber/atlantis-site@0.42.1) (2025-04-16)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.41.1...@jobber/atlantis-site@0.42.0) (2025-04-16)
+
+
+### Features
+
+* **components:** Layout System 2.0  ([#2461](https://github.com/GetJobber/atlantis/issues/2461)) ([9b0383f](https://github.com/GetJobber/atlantis/commit/9b0383fff586df22dc23374359cbd7d259c18d60))
+
+
+
+
+
+## [0.41.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.41.0...@jobber/atlantis-site@0.41.1) (2025-04-15)
+
+
+### Bug Fixes
+
+* **docx:** Fix InputCurrency Storybook Link ([#2487](https://github.com/GetJobber/atlantis/issues/2487)) ([c7945e0](https://github.com/GetJobber/atlantis/commit/c7945e038bccf806e77638c7020de935d70ec9b2))
+
+
+
+
+
+# [0.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.40.1...@jobber/atlantis-site@0.41.0) (2025-04-15)
+
+
+### Features
+
+* **components:** Add ref to Button and Chip ([#2470](https://github.com/GetJobber/atlantis/issues/2470)) ([81dbed3](https://github.com/GetJobber/atlantis/commit/81dbed31f37e85a5d0450ae8e94e52c8e4844d0d))
+
+
+
+
+
+## [0.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.40.0...@jobber/atlantis-site@0.40.1) (2025-04-14)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.39.0...@jobber/atlantis-site@0.40.0) (2025-04-11)
+
+
+### Features
+
+* **components:** add UNSAFE_className and UNSAFE_style props to Divider ([#2474](https://github.com/GetJobber/atlantis/issues/2474)) ([e43885c](https://github.com/GetJobber/atlantis/commit/e43885c75af6b5147442e38d7d2a4e137fb757de))
+
+
+
+
+
+# [0.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.38.0...@jobber/atlantis-site@0.39.0) (2025-04-10)
+
+
+### Features
+
+* **components:** Add unsafe props to Avatar web ([#2473](https://github.com/GetJobber/atlantis/issues/2473)) ([8ed647d](https://github.com/GetJobber/atlantis/commit/8ed647da8ea64bc038a7f37138fdf8fd96908b43))
+
+
+
+
+
+# [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.3...@jobber/atlantis-site@0.38.0) (2025-04-08)
+
+
+### Features
+
+* **design:** add slim spacing token and add to docs ([#2465](https://github.com/GetJobber/atlantis/issues/2465)) ([91396c8](https://github.com/GetJobber/atlantis/commit/91396c8c0326a8b89087e62067eeba390e1ef80c))
+
+
+
+
+
+## [0.37.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.2...@jobber/atlantis-site@0.37.3) (2025-04-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.37.1...@jobber/atlantis-site@0.37.2) (2025-04-07)
 
 **Note:** Version bump only for package @jobber/atlantis-site

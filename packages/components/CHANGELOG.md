@@ -3,6 +3,124 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.38.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.3...@jobber/components@6.38.4) (2025-04-17)
+
+
+### Bug Fixes
+
+* **components:** Assign type button to DataListHeaderTile when column is sortable ([#2491](https://github.com/GetJobber/atlantis/issues/2491)) ([d8beb8b](https://github.com/GetJobber/atlantis/commit/d8beb8b7d71bc7bbe56da33347bb7e28bfff4a8f))
+
+
+
+
+
+## [6.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.2...@jobber/components@6.38.3) (2025-04-17)
+
+
+### Reverts
+
+* **components:** Add ref to Button and Chip ([#2494](https://github.com/GetJobber/atlantis/issues/2494)) ([507349d](https://github.com/GetJobber/atlantis/commit/507349d25e60b88cd848632cee20c5a67779eb42)), closes [#2470](https://github.com/GetJobber/atlantis/issues/2470)
+
+
+
+
+
+## [6.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.1...@jobber/components@6.38.2) (2025-04-17)
+
+
+### Bug Fixes
+
+* **components:** Update text color on autofill in FormField ([#2490](https://github.com/GetJobber/atlantis/issues/2490)) ([8d637ea](https://github.com/GetJobber/atlantis/commit/8d637ea45104ff499f5f1737f4e93ce39570034d))
+
+
+
+
+
+## [6.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.0...@jobber/components@6.38.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* **components:** make Glimmer respond to dark mode ([#2472](https://github.com/GetJobber/atlantis/issues/2472)) ([c313412](https://github.com/GetJobber/atlantis/commit/c31341211cc7e087a9a9cd191125b08ac9c9195d))
+
+
+
+
+
+# [6.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.37.0...@jobber/components@6.38.0) (2025-04-16)
+
+
+### Features
+
+* **components:** Layout System 2.0  ([#2461](https://github.com/GetJobber/atlantis/issues/2461)) ([9b0383f](https://github.com/GetJobber/atlantis/commit/9b0383fff586df22dc23374359cbd7d259c18d60))
+
+
+
+
+
+# [6.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.36.1...@jobber/components@6.37.0) (2025-04-15)
+
+
+### Features
+
+* **components:** Add ref to Button and Chip ([#2470](https://github.com/GetJobber/atlantis/issues/2470)) ([81dbed3](https://github.com/GetJobber/atlantis/commit/81dbed31f37e85a5d0450ae8e94e52c8e4844d0d))
+
+
+
+
+
+## [6.36.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.36.0...@jobber/components@6.36.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* **components:** Support conditionally rendering children in Tabs ([#2478](https://github.com/GetJobber/atlantis/issues/2478)) ([bfba4e9](https://github.com/GetJobber/atlantis/commit/bfba4e9d1f92f337f551635caa88a83ca4b2e293))
+
+
+
+
+
+# [6.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.35.0...@jobber/components@6.36.0) (2025-04-11)
+
+
+### Features
+
+* **components:** add UNSAFE_className and UNSAFE_style props to Divider ([#2474](https://github.com/GetJobber/atlantis/issues/2474)) ([e43885c](https://github.com/GetJobber/atlantis/commit/e43885c75af6b5147442e38d7d2a4e137fb757de))
+
+
+
+
+
+# [6.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.34.0...@jobber/components@6.35.0) (2025-04-10)
+
+
+### Features
+
+* **components:** Add unsafe props to Avatar web ([#2473](https://github.com/GetJobber/atlantis/issues/2473)) ([8ed647d](https://github.com/GetJobber/atlantis/commit/8ed647da8ea64bc038a7f37138fdf8fd96908b43))
+
+
+
+
+
+# [6.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.33.3...@jobber/components@6.34.0) (2025-04-08)
+
+
+### Features
+
+* **design:** add slim spacing token and add to docs ([#2465](https://github.com/GetJobber/atlantis/issues/2465)) ([91396c8](https://github.com/GetJobber/atlantis/commit/91396c8c0326a8b89087e62067eeba390e1ef80c))
+
+
+
+
+
+## [6.33.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.33.2...@jobber/components@6.33.3) (2025-04-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [6.33.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.33.1...@jobber/components@6.33.2) (2025-04-07)
 
 **Note:** Version bump only for package @jobber/components

@@ -81,7 +81,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
+          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
         }
       },
       "height": {
@@ -109,7 +109,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\" | BoxSpace"
+          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\" | BoxSpace"
         }
       },
       "padding": {
@@ -122,7 +122,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\" | BoxSpace"
+          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\" | BoxSpace"
         }
       },
       "preserveWhiteSpace": {
