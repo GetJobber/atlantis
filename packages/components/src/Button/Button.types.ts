@@ -10,7 +10,7 @@ export type ButtonVariation = "work" | "learning" | "subtle" | "destructive";
 export type ButtonSize = "small" | "base" | "large";
 export type ButtonType = "primary" | "secondary" | "tertiary";
 
-export interface ButtonFoundationProps {
+export interface ButtonCommonProps {
   /**
    * Used for screen readers. Will override label on screen
    * reader if present.
@@ -25,13 +25,16 @@ export interface ButtonFoundationProps {
   readonly loading?: boolean;
   readonly size?: ButtonSize;
   readonly ariaLabel?: string;
-
-  onClick?(
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ): void;
-  onMouseDown?(
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ): void;
+  readonly icon?: IconNames;
+  readonly iconOnRight?: boolean;
+  readonly label?: string;
+  readonly variation?: ButtonVariation;
+  readonly type?: ButtonType;
+  readonly role?: string;
+  readonly submit?: boolean;
+  readonly value?: string;
+  readonly name?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
@@ -60,6 +63,36 @@ export interface ButtonFoundationProps {
   };
 }
 
+export interface ButtonButtonProps extends ButtonCommonProps {
+  readonly url?: never;
+  readonly to?: never;
+  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
+  onMouseDown?(event: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ButtonAnchorProps extends ButtonCommonProps {
+  readonly url: string;
+  readonly to?: never;
+  onClick?(event: React.MouseEvent<HTMLAnchorElement>): void;
+  onMouseDown?(event: React.MouseEvent<HTMLAnchorElement>): void;
+}
+
+export interface ButtonLinkProps<S = unknown> extends ButtonCommonProps {
+  readonly to: LinkProps<S>["to"];
+  readonly url?: never;
+  onClick?(event: React.MouseEvent<HTMLAnchorElement>): void;
+  onMouseDown?(event: React.MouseEvent<HTMLAnchorElement>): void;
+}
+
+export interface ButtonFoundationProps extends ButtonCommonProps {
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
+  onMouseDown?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
+}
+
 interface ButtonNonComposableProps extends ButtonFoundationProps {
   readonly icon?: IconNames;
   readonly iconOnRight?: boolean;
@@ -73,21 +106,6 @@ interface ButtonIconProps extends ButtonNonComposableProps {
 
 interface ButtonLabelProps extends ButtonNonComposableProps {
   readonly label: string;
-}
-
-interface ButtonAnchorProps extends ButtonFoundationProps {
-  /**
-   * Used to create an 'href' on an anchor tag.
-   */
-  readonly url?: string;
-}
-
-interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
-  /**
-   * **Deprecated**: to will be removed in the next major version
-   * @deprecated
-   */
-  readonly to?: LinkProps<S>["to"];
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
@@ -141,7 +159,9 @@ export type ButtonWithoutChildrenProps = BaseButtonProps &
     readonly children?: never;
   };
 
-export type ButtonProps = XOR<
-  ButtonWithChildrenProps,
-  ButtonWithoutChildrenProps
->;
+export type ButtonProps =
+  | ButtonButtonProps
+  | ButtonAnchorProps
+  | ButtonLinkProps
+  | ButtonWithChildrenProps
+  | ButtonWithoutChildrenProps;

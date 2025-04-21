@@ -7,8 +7,10 @@ import { useButtonStyles } from "./useButtonStyles";
 import { ButtonContent, ButtonIcon, ButtonLabel } from "./ButtonInternals";
 import { ButtonProvider } from "./ButtonProvider";
 
-// Define the possible ref types
 type ButtonRefElement = HTMLButtonElement | HTMLAnchorElement;
+
+type ButtonEventHandler = React.MouseEventHandler<HTMLButtonElement>;
+type AnchorEventHandler = React.MouseEventHandler<HTMLAnchorElement>;
 
 const ButtonComponent = forwardRef<ButtonRefElement, ButtonProps>(
   (props, ref) => {
@@ -53,14 +55,11 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
 
     const buttonClassNames = classnames(combined, UNSAFE_className.container);
 
-    // Base props common to all element types
     const commonProps = {
       className: buttonClassNames,
       disabled,
       id,
       style: UNSAFE_style.container,
-      ...(!disabled && { onClick: onClick }),
-      ...(!disabled && { onMouseDown: onMouseDown }),
       "aria-controls": ariaControls,
       "aria-haspopup": ariaHaspopup,
       "aria-expanded": ariaExpanded,
@@ -71,34 +70,61 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
     const buttonInternals = children || <ButtonContent {...props} />;
 
     if (to) {
-      // Props specific to Link
-      const linkProps = {
+      const linkProps: React.ComponentProps<typeof Link> = {
         ...commonProps,
         to: to as LinkProps["to"],
       };
+
+      if (!disabled && onClick) {
+        linkProps.onClick = onClick as AnchorEventHandler;
+      }
+
+      if (!disabled && onMouseDown) {
+        linkProps.onMouseDown = onMouseDown as AnchorEventHandler;
+      }
 
       return <Link {...linkProps}>{buttonInternals}</Link>;
     }
 
     if (url) {
-      // Props specific to anchor
-      const anchorProps = {
+      const anchorProps: React.DetailedHTMLProps<
+        React.AnchorHTMLAttributes<HTMLAnchorElement>,
+        HTMLAnchorElement
+      > = {
         ...commonProps,
         href: !disabled ? url : undefined,
         ...(external && { target: "_blank" }),
         ref: ref as React.ForwardedRef<HTMLAnchorElement>,
       };
 
+      if (!disabled && onClick) {
+        anchorProps.onClick = onClick as AnchorEventHandler;
+      }
+
+      if (!disabled && onMouseDown) {
+        anchorProps.onMouseDown = onMouseDown as AnchorEventHandler;
+      }
+
       return <a {...anchorProps}>{buttonInternals}</a>;
     }
 
-    // Props specific to button
-    const buttonProps = {
+    const buttonProps: React.DetailedHTMLProps<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    > = {
       ...commonProps,
       type: buttonType,
       ...(submit && { name, value }),
       ref: ref as React.ForwardedRef<HTMLButtonElement>,
     };
+
+    if (!disabled && onClick) {
+      buttonProps.onClick = onClick as ButtonEventHandler;
+    }
+
+    if (!disabled && onMouseDown) {
+      buttonProps.onMouseDown = onMouseDown as ButtonEventHandler;
+    }
 
     // Explanation: "type" IS defined in the buttonProps object
     // eslint-disable-next-line react/button-has-type
