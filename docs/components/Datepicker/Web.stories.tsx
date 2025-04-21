@@ -147,7 +147,7 @@ const LocaleOverrideTemplate: ComponentStory<typeof DatePicker> = () => {
   return (
     <Content>
       <Content spacing="small">
-        <p>Default locale from AtlantisContext (enGB):</p>
+        <p>Default locale from AtlantisContext (en):</p>
         <DatePicker selected={date} onChange={setDate} />
       </Content>
 

@@ -13,9 +13,9 @@ import {
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
 import { useAtlantisContext } from "../AtlantisContext";
 
-// Register all available locales
+// Register date-fns locales with react-datepicker
+// This is required for the DatePicker to support different locales via props or AtlantisContext
 Object.entries(locales).forEach(([key, value]) => {
-  // Skip the default export and internal properties
   if (key !== "default" && !key.startsWith("_")) {
     registerLocale(key, value);
   }
@@ -49,7 +49,10 @@ interface BaseDatePickerProps {
   readonly highlightDates?: Date[];
 
   /**
-   * Optional locale override. If not provided, falls back to the locale from AtlantisContext.
+   * Change the locale for the calendar's language and formatting.
+   *
+   * Regional settings can be implemented either through AtlantisContext
+   * or by using this prop, which will override the context value.
    */
   readonly locale?: string;
 
