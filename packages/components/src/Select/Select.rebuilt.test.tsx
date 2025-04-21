@@ -1,5 +1,6 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Option } from "./Option";
 import { SelectRebuilt } from "./Select.rebuilt";
 
@@ -67,21 +68,21 @@ describe("SelectRebuilt", () => {
   });
 
   it("renders the value when set", () => {
-    const { container } = render(
+    render(
       <SelectRebuilt version={2} value="bar">
         <Option value="foo">Foo</Option>
         <Option value="bar">Bar</Option>
       </SelectRebuilt>,
     );
 
-    const select = container.querySelector("select") as HTMLSelectElement;
-    expect(select.options[select.selectedIndex].value).toBe("bar");
+    const selectElement = screen.getByRole("combobox");
+    expect(selectElement).toHaveValue("bar");
   });
 
   it("should set the selected value when given 'value'", () => {
     const expectedValue = "baz";
 
-    const { container } = render(
+    render(
       <SelectRebuilt version={2} value={expectedValue}>
         <Option value="foo">Foo</Option>
         <Option value="bar">Bar</Option>
@@ -89,32 +90,30 @@ describe("SelectRebuilt", () => {
       </SelectRebuilt>,
     );
 
-    const select = container.querySelector("select") as HTMLSelectElement;
+    const selectElement = screen.getByRole("combobox");
 
     // Verify the value is correctly set
-    expect(select.value).toBe(expectedValue);
+    expect(selectElement).toHaveValue(expectedValue);
 
     // Verify the correct option is selected
-    expect(select.selectedIndex).toBe(2);
+    const select = selectElement as HTMLSelectElement;
     expect(select.options[select.selectedIndex].text).toBe("Baz");
   });
 
   describe("Action handlers", () => {
-    it("should pass the new value to the onChange handler when the selected option changes", () => {
+    it("should pass the new value to the onChange handler when the selected option changes", async () => {
       const changeHandler = jest.fn();
       const expectedValue = "bar";
 
-      const { container } = render(
+      render(
         <SelectRebuilt version={2} onChange={changeHandler}>
           <Option value="foo">Foo</Option>
           <Option value="bar">Bar</Option>
         </SelectRebuilt>,
       );
 
-      const select = container.querySelector("select") as HTMLSelectElement;
-      fireEvent.change(select, {
-        target: { value: expectedValue },
-      });
+      const selectElement = screen.getByRole("combobox");
+      await userEvent.selectOptions(selectElement, expectedValue);
 
       expect(changeHandler).toHaveBeenCalledWith(
         expectedValue,
@@ -122,10 +121,10 @@ describe("SelectRebuilt", () => {
       );
     });
 
-    it("should call onChange with the correct value when selecting a different option", () => {
+    it("should call onChange with the correct value when selecting a different option", async () => {
       const changeHandler = jest.fn();
 
-      const { container } = render(
+      render(
         <SelectRebuilt version={2} onChange={changeHandler} value="foo">
           <Option value="foo">Foo</Option>
           <Option value="bar">Bar</Option>
@@ -133,84 +132,121 @@ describe("SelectRebuilt", () => {
         </SelectRebuilt>,
       );
 
-      const select = container.querySelector("select") as HTMLSelectElement;
+      const selectElement = screen.getByRole("combobox");
 
       // Initial value should be "foo"
-      expect(select.value).toBe("foo");
+      expect(selectElement).toHaveValue("foo");
 
       // Change to "baz"
-      fireEvent.change(select, { target: { value: "baz" } });
+      await userEvent.selectOptions(selectElement, "baz");
 
       // Handler should be called with the new value
       expect(changeHandler).toHaveBeenCalledTimes(1);
       expect(changeHandler).toHaveBeenCalledWith("baz", expect.any(Object));
     });
 
-    it("should call onFocus when the select is focused", () => {
+    it("should call onFocus when the select is focused", async () => {
       const focusHandler = jest.fn();
 
-      const { container } = render(
+      render(
         <SelectRebuilt version={2} onFocus={focusHandler}>
           <Option value="foo">Foo</Option>
           <Option value="bar">Bar</Option>
         </SelectRebuilt>,
       );
 
-      const select = container.querySelector("select") as HTMLSelectElement;
-      fireEvent.focus(select);
+      const selectElement = screen.getByRole("combobox");
+      await userEvent.click(selectElement);
 
       expect(focusHandler).toHaveBeenCalledTimes(1);
     });
 
-    it("should call onBlur when the select loses focus", () => {
+    it("should call onBlur when the select loses focus", async () => {
       const blurHandler = jest.fn();
 
-      const { container } = render(
-        <SelectRebuilt version={2} onBlur={blurHandler}>
-          <Option value="foo">Foo</Option>
-          <Option value="bar">Bar</Option>
-        </SelectRebuilt>,
+      render(
+        <>
+          <SelectRebuilt version={2} onBlur={blurHandler}>
+            <Option value="foo">Foo</Option>
+            <Option value="bar">Bar</Option>
+          </SelectRebuilt>
+          <button type="button" data-testid="other-element">
+            Other element
+          </button>
+        </>,
       );
 
-      const select = container.querySelector("select") as HTMLSelectElement;
-      fireEvent.blur(select);
+      // First focus the select element
+      const selectElement = screen.getByRole("combobox");
+      await userEvent.click(selectElement);
+
+      // Then focus another element to trigger blur
+      const otherElement = screen.getByTestId("other-element");
+      await userEvent.click(otherElement);
 
       expect(blurHandler).toHaveBeenCalledTimes(1);
     });
 
-    it("should handle all events correctly when they are combined", () => {
-      const changeHandler = jest.fn();
-      const focusHandler = jest.fn();
-      const blurHandler = jest.fn();
+    describe("combined events", () => {
+      it("should handle focus event correctly", async () => {
+        const focusHandler = jest.fn();
 
-      const { container } = render(
-        <SelectRebuilt
-          version={2}
-          onChange={changeHandler}
-          onFocus={focusHandler}
-          onBlur={blurHandler}
-          value="foo"
-        >
-          <Option value="foo">Foo</Option>
-          <Option value="bar">Bar</Option>
-          <Option value="baz">Baz</Option>
-        </SelectRebuilt>,
-      );
+        render(
+          <SelectRebuilt version={2} onFocus={focusHandler} value="foo">
+            <Option value="foo">Foo</Option>
+            <Option value="bar">Bar</Option>
+            <Option value="baz">Baz</Option>
+          </SelectRebuilt>,
+        );
 
-      const select = container.querySelector("select") as HTMLSelectElement;
+        const selectElement = screen.getByRole("combobox");
+        await userEvent.click(selectElement);
+        expect(focusHandler).toHaveBeenCalledTimes(1);
+      });
 
-      // Test focus
-      fireEvent.focus(select);
-      expect(focusHandler).toHaveBeenCalledTimes(1);
+      it("should handle change event correctly", async () => {
+        const changeHandler = jest.fn();
 
-      // Test change
-      fireEvent.change(select, { target: { value: "bar" } });
-      expect(changeHandler).toHaveBeenCalledTimes(1);
-      expect(changeHandler).toHaveBeenCalledWith("bar", expect.any(Object));
+        render(
+          <SelectRebuilt version={2} onChange={changeHandler} value="foo">
+            <Option value="foo">Foo</Option>
+            <Option value="bar">Bar</Option>
+            <Option value="baz">Baz</Option>
+          </SelectRebuilt>,
+        );
 
-      // Test blur
-      fireEvent.blur(select);
-      expect(blurHandler).toHaveBeenCalledTimes(1);
+        const selectElement = screen.getByRole("combobox");
+        await userEvent.selectOptions(selectElement, "bar");
+        expect(changeHandler).toHaveBeenCalledTimes(1);
+        expect(changeHandler).toHaveBeenCalledWith("bar", expect.any(Object));
+      });
+
+      it("should handle blur event correctly", async () => {
+        const blurHandler = jest.fn();
+
+        render(
+          <>
+            <SelectRebuilt version={2} onBlur={blurHandler} value="foo">
+              <Option value="foo">Foo</Option>
+              <Option value="bar">Bar</Option>
+              <Option value="baz">Baz</Option>
+            </SelectRebuilt>
+            <button type="button" data-testid="other-element">
+              Other element
+            </button>
+          </>,
+        );
+
+        // Focus the select element
+        const selectElement = screen.getByRole("combobox");
+        await userEvent.click(selectElement);
+
+        // Click on another element to trigger blur
+        const otherElement = screen.getByTestId("other-element");
+        await userEvent.click(otherElement);
+
+        expect(blurHandler).toHaveBeenCalledTimes(1);
+      });
     });
   });
 
@@ -230,19 +266,17 @@ describe("SelectRebuilt", () => {
     it("can access native select methods through inputRef", () => {
       const ref = React.createRef<HTMLSelectElement>();
 
-      const { container } = render(
+      render(
         <SelectRebuilt version={2} inputRef={ref}>
           <Option>Foo</Option>
         </SelectRebuilt>,
       );
 
-      const selectElement = container.querySelector("select");
+      const selectElement = screen.getByRole("combobox");
 
       // Setup mocks
-      if (selectElement) {
-        selectElement.focus = jest.fn();
-        selectElement.blur = jest.fn();
-      }
+      selectElement.focus = jest.fn();
+      selectElement.blur = jest.fn();
 
       // Call native methods through ref
       if (ref.current) {
@@ -251,8 +285,8 @@ describe("SelectRebuilt", () => {
       }
 
       // Verify
-      expect(selectElement?.focus).toHaveBeenCalled();
-      expect(selectElement?.blur).toHaveBeenCalled();
+      expect(selectElement.focus).toHaveBeenCalled();
+      expect(selectElement.blur).toHaveBeenCalled();
     });
   });
 });
