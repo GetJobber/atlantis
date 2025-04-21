@@ -11,7 +11,9 @@ import { ModalLegacyProps } from "./Modal.types";
 
 export type { ModalLegacyProps as ModalProps } from "./Modal.types";
 
-const Modal = (props: ModalLegacyProps) => <ModalLegacy {...props} />;
+function Modal(props: ModalLegacyProps) {
+  return <ModalLegacy {...props} />;
+}
 
 Modal.Header = ModalHeader;
 
