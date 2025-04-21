@@ -136,19 +136,6 @@
           "name": "boolean"
         }
       },
-      "loading": {
-        "defaultValue": null,
-        "description": "Show a spinner to indicate loading",
-        "name": "loading",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "name": {
         "defaultValue": null,
         "description": "Name of the input.",

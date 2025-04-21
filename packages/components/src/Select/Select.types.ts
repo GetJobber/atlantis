@@ -9,7 +9,6 @@ export interface SelectProps
       | "disabled"
       | "invalid"
       | "inline"
-      | "loading"
       | "name"
       | "onValidation"
       | "placeholder"
