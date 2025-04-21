@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.13.1...@jobber/hooks@2.14.0) (2025-04-21)
+
+
+### Features
+
+* **components:** InputTime without RHF ([#2477](https://github.com/GetJobber/atlantis/issues/2477)) ([f58a91f](https://github.com/GetJobber/atlantis/commit/f58a91f7bee6b53ae80254531417fb4837b69afd))
+
+
+
+
+
 ## [2.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.13.0...@jobber/hooks@2.13.1) (2025-04-08)
 
 **Note:** Version bump only for package @jobber/hooks
