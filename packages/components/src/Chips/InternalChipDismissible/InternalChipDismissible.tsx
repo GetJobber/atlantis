@@ -56,6 +56,8 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
         onCustomOptionSelect={handleCustomAdd}
         onSearch={props.onSearch}
         onLoadMore={props.onLoadMore}
+        onlyShowMenuOnSearch={props.onlyShowMenuOnSearch}
+        autoSelectOnClickOutside={props.autoSelectOnClickOutside}
       />
     </div>
   );
