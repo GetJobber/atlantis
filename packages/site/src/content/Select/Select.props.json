@@ -6,58 +6,6 @@
     "displayName": "Select",
     "methods": [],
     "props": {
-      "defaultValue": {
-        "defaultValue": null,
-        "description": "",
-        "name": "defaultValue",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number"
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "",
-        "name": "value",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number"
-        }
-      },
-      "onChange": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onChange",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(newValue?: string | number) => void"
-        }
-      },
-      "version": {
-        "defaultValue": null,
-        "description": "",
-        "name": "version",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "1 | 2"
-        }
-      },
       "id": {
         "defaultValue": null,
         "description": "A unique identifier for the input.",
@@ -188,6 +136,32 @@
           "name": "\"small\" | \"large\""
         }
       },
+      "value": {
+        "defaultValue": null,
+        "description": "Set the component to the given value.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | Date"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "onChange handler that provides the new value (or event)\n@param newValue\n@param event",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(newValue: string | number | boolean | Date, event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void"
+        }
+      },
       "autofocus": {
         "defaultValue": null,
         "description": "Determines if the input should be auto-focused, using the HTML attribute",
@@ -316,6 +290,32 @@
         "required": false,
         "type": {
           "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "Initial value of the input. Only use this when you need to pre-populate\nthe field with a data that is not controlled by the components state. If a\nstate is controlling the value, use the `value` prop instead.",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | Date"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
         }
       }
     }
