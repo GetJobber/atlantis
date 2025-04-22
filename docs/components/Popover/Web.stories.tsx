@@ -7,6 +7,7 @@ import { Button } from "@jobber/components/Button";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Box } from "@jobber/components/Box";
+// import { darkTokens, webTokens } from "@jobber/design";
 
 export default {
   title: "Components/Overlays/Popover/Web",
@@ -154,25 +155,71 @@ const ForceThemeTemplate: ComponentStory<typeof Popover> = args => {
   const [showPopover1, setShowPopover1] = useState(args.open);
   const buttonStyles = { width: "fit-content" };
 
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
   return (
-    <Box gap="base">
-      <Heading level={2}>Force theme of popover content</Heading>
-      <div ref={divRef1} style={buttonStyles}>
+    <AtlantisThemeContextProvider dangerouslyOverrideTheme={theme}>
+      <Box gap="base" background="surface" padding="large">
         <Button
-          label="Toggle Popover"
-          onClick={() => setShowPopover1(!showPopover1)}
+          label="Toggle Theme"
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         />
-      </div>
-      <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-        <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
-          <Popover.DismissButton onClick={() => setShowPopover1(false)} />
-          <Content>
-            <Text>This is a Popover built with composable subcomponents</Text>
-          </Content>
-          <Popover.Arrow />
-        </Popover.Provider>
-      </AtlantisThemeContextProvider>
-    </Box>
+        <Heading level={2}>Force theme of popover content</Heading>
+        <div ref={divRef1} style={buttonStyles}>
+          <Button
+            label="Toggle Popover"
+            onClick={() => setShowPopover1(!showPopover1)}
+          />
+        </div>
+        <AtlantisThemeContextProvider
+          dangerouslyOverrideTheme={theme === "light" ? "dark" : "light"}
+        >
+          <Popover
+            attachTo={divRef1}
+            open={showPopover1}
+            preferredPlacement="right"
+            onRequestClose={() => setShowPopover1(false)}
+            // UNSAFE_style={{
+            //   container: {
+            //     backgroundColor:
+            //       theme === "light"
+            //         ? darkTokens["color-surface"]
+            //         : webTokens["color-surface"],
+            //     color:
+            //       theme === "light"
+            //         ? darkTokens["color-text"]
+            //         : webTokens["color-text"],
+            //   },
+            // }}
+          >
+            {/* <AtlantisThemeContextProvider
+              dangerouslyOverrideTheme={theme === "light" ? "dark" : "light"}
+            > */}
+            <Content>
+              <Box gap="small" width={246}>
+                <Heading level={4} element="span">
+                  {/* <Trans> */}
+                  Integrate all your favorite tools—right in Jobber
+                  {/* </Trans> */}
+                </Heading>
+                <Text variation="subdued">
+                  {/* <Trans> */}
+                  Skip the tab switching and run your entire business from
+                  Jobber
+                  {/* </Trans> */}
+                </Text>
+              </Box>
+              <Button
+                label={`Explore Apps`}
+                variation="learning"
+                size="small"
+              />
+            </Content>
+            {/* </AtlantisThemeContextProvider> */}
+          </Popover>
+        </AtlantisThemeContextProvider>
+      </Box>
+    </AtlantisThemeContextProvider>
   );
 };
 
