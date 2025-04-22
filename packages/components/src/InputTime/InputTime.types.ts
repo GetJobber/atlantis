@@ -43,10 +43,10 @@ export interface InputTimeProps
    * Function called when user changes input value.
    */
   onChange?(newValue?: Date): void;
-  /**
-   * The version of the component.
-   */
-  version?: 1 | 2;
+}
+
+export interface InputTimeLegacyProps extends InputTimeProps {
+  version?: 1;
 }
 
 export interface InputTimeRebuiltProps
