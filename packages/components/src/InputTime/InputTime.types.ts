@@ -52,6 +52,9 @@ export interface InputTimeLegacyProps extends InputTimeProps {
 export interface InputTimeRebuiltProps
   extends Omit<InputTimeProps, "defaultValue" | "version"> {
   defaultValue?: never;
+  /**
+   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
+   */
   version: 2;
   error?: string;
 }
