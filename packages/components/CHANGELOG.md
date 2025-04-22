@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.39.0...@jobber/components@6.40.0) (2025-04-22)
+
+
+### Features
+
+* **hooks:** BREAKING CHANGE: Remove useAssert ([#2495](https://github.com/GetJobber/atlantis/issues/2495)) ([3f9325a](https://github.com/GetJobber/atlantis/commit/3f9325ab2a671e1a2ee0a662551b0879322f00c6))
+
+
+
+
+
 # [6.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.38.4...@jobber/components@6.39.0) (2025-04-21)
 
 

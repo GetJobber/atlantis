@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.14.0...@jobber/hooks@2.15.0) (2025-04-22)
+
+
+### Features
+
+* **hooks:** BREAKING CHANGE: Remove useAssert ([#2495](https://github.com/GetJobber/atlantis/issues/2495)) ([3f9325a](https://github.com/GetJobber/atlantis/commit/3f9325ab2a671e1a2ee0a662551b0879322f00c6))
+
+
+
+
+
 # [2.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.13.1...@jobber/hooks@2.14.0) (2025-04-21)
 
 
