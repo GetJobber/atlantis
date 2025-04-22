@@ -1,6 +1,6 @@
 import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
-export interface SelectProps
+export interface SelectLegacyProps
   extends Pick<
       CommonFormFieldProps,
       | "id"
@@ -13,6 +13,8 @@ export interface SelectProps
       | "onValidation"
       | "placeholder"
       | "size"
+      | "value"
+      | "onChange"
     >,
     Pick<
       FormFieldProps,
@@ -26,18 +28,20 @@ export interface SelectProps
       | "children"
       | "prefix"
       | "suffix"
-    > {
-  readonly defaultValue?: string | number;
-  readonly value?: string | number;
-  onChange?(newValue?: string | number): void;
-  version?: 1 | 2;
-}
+      | "defaultValue"
+      | "version"
+    > {}
 
 /**
  * Rebuilt version of the Select component without React Hook Form dependency.
  */
 export interface SelectRebuiltProps
-  extends Omit<SelectProps, "defaultValue" | "version"> {
+  extends Omit<
+    SelectLegacyProps,
+    "defaultValue" | "version" | "onChange" | "value"
+  > {
   defaultValue?: never;
+  value?: string | number;
+  onChange?: (newValue: string | number) => void;
   version: 2;
 }
