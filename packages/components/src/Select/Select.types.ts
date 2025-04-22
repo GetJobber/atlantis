@@ -41,7 +41,7 @@ export interface SelectRebuiltProps
     "defaultValue" | "version" | "onChange" | "value"
   > {
   defaultValue?: never;
-  value?: string | number;
-  onChange?: (newValue: string | number) => void;
+  readonly value?: string | number;
+  onChange?(newValue?: string | number): void;
   version: 2;
 }
