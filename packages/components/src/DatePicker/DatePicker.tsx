@@ -56,6 +56,8 @@ interface BaseDatePickerProps {
    */
   readonly locale?: string;
 
+  readonly calendarStartDay?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
   /**
    * Change handler that will return the date selected.
    */
@@ -115,6 +117,7 @@ export function DatePicker({
   minDate,
   highlightDates,
   locale: localeProp,
+  calendarStartDay,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
@@ -173,6 +176,7 @@ export function DatePicker({
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
         locale={effectiveLocale}
+        calendarStartDay={calendarStartDay}
       />
     </div>
   );
