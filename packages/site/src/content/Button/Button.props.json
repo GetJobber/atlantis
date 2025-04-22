@@ -6,17 +6,30 @@
     "displayName": "Button",
     "methods": [],
     "props": {
-      "external": {
+      "url": {
         "defaultValue": null,
         "description": "",
-        "name": "external",
+        "name": "url",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonButtonProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "string"
+        }
+      },
+      "to": {
+        "defaultValue": null,
+        "description": "",
+        "name": "to",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "LocationDescriptor<unknown> | ((location: Location<unknown>) => LocationDescriptor<unknown>)"
         }
       },
       "onClick": {
@@ -25,76 +38,24 @@
         "name": "onClick",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonButtonProps"
         },
         "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void"
+          "name": "((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<...>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | ((..."
         }
       },
-      "name": {
+      "onMouseDown": {
         "defaultValue": null,
         "description": "",
-        "name": "name",
+        "name": "onMouseDown",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
+          "name": "ButtonButtonProps"
         },
         "required": false,
         "type": {
-          "name": "string"
-        }
-      },
-      "submit": {
-        "defaultValue": null,
-        "description": "Allows the button to submit a form",
-        "name": "submit",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "type": {
-        "defaultValue": null,
-        "description": "",
-        "name": "type",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonType"
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "",
-        "name": "value",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "variation": {
-        "defaultValue": null,
-        "description": "",
-        "name": "variation",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BaseActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonVariation"
+          "name": "((event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | ((event: MouseEvent<...>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<..."
         }
       },
       "ariaControls": {
@@ -103,7 +64,7 @@
         "name": "ariaControls",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -116,7 +77,7 @@
         "name": "ariaHaspopup",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -129,7 +90,7 @@
         "name": "ariaExpanded",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -142,7 +103,20 @@
         "name": "disabled",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "external": {
+        "defaultValue": null,
+        "description": "",
+        "name": "external",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -155,7 +129,7 @@
         "name": "fullWidth",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -168,7 +142,7 @@
         "name": "id",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -181,7 +155,7 @@
         "name": "loading",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -194,7 +168,7 @@
         "name": "size",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -207,98 +181,7 @@
         "name": "ariaLabel",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onMouseDown": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onMouseDown",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void"
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ container?: string; buttonLabel?: { textStyle?: string; }; buttonIcon?: { svg?: string; path?: string; }; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Used to override the default button role.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BasicButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "to": {
-        "defaultValue": null,
-        "description": "**Deprecated**: to will be removed in the next major version\n@deprecated",
-        "name": "to",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonLinkProps"
-        },
-        "required": false,
-        "type": {
-          "name": "LocationDescriptor<unknown> | ((location: Location<unknown>) => LocationDescriptor<unknown>)"
-        }
-      },
-      "url": {
-        "defaultValue": null,
-        "description": "Used to create an 'href' on an anchor tag.",
-        "name": "url",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonAnchorProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "label": {
-        "defaultValue": null,
-        "description": "",
-        "name": "label",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonLabelProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -311,7 +194,7 @@
         "name": "icon",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonNonComposableProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -324,11 +207,128 @@
         "name": "iconOnRight",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonNonComposableProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonVariation"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonType"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Used to override the default button role.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "submit": {
+        "defaultValue": null,
+        "description": "Allows the button to submit a form",
+        "name": "submit",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; buttonLabel?: { textStyle?: string; }; buttonIcon?: { svg?: string; path?: string; }; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
         }
       },
       "ref": {

@@ -206,7 +206,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly id?: string; readonly variation?: ButtonVariation; ... 17 more ...; readonly children?: never; } | ... 34 more ... | { ...; }, string | JSXElementConstructor<...>>"
+          "name": "ReactElement<ButtonProps, string | JSXElementConstructor<any>>"
         }
       },
       "type": {

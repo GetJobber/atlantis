@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+          "name": "ButtonProps"
         }
       },
       "dismissible": {

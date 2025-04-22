@@ -140,11 +140,11 @@
         "name": "onClick",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonButtonProps"
         },
         "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+          "name": "((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<...>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | ((..."
         }
       }
     }
