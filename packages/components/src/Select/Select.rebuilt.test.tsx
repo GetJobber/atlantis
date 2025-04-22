@@ -97,7 +97,7 @@ describe("SelectRebuilt", () => {
 
     // Verify the correct option is selected
     const select = selectElement as HTMLSelectElement;
-    expect(select.options[select.selectedIndex].text).toBe("Baz");
+    expect(select.options[select.selectedIndex]).toHaveTextContent("Baz");
   });
 
   describe("Action handlers", () => {
