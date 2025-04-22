@@ -45,19 +45,6 @@
           "name": "(newValue?: Date) => void"
         }
       },
-      "version": {
-        "defaultValue": null,
-        "description": "The version of the component.",
-        "name": "version",
-        "parent": {
-          "fileName": "packages/components/src/InputTime/InputTime.types.ts",
-          "name": "InputTimeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "1 | 2"
-        }
-      },
       "id": {
         "defaultValue": null,
         "description": "A unique identifier for the input.",
