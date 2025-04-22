@@ -1,10 +1,13 @@
 import React from "react";
 import { Select as SelectLegacy } from "./Select";
 import { SelectRebuilt } from "./Select.rebuilt";
-import { SelectProps, SelectRebuiltProps } from "./Select.types";
+import {
+  SelectProps as SelectLegacyProps,
+  SelectRebuiltProps,
+} from "./Select.types";
 
 export { Option } from "./Option";
-export type SelectShimProps = SelectProps | SelectRebuiltProps;
+export type SelectShimProps = SelectLegacyProps | SelectRebuiltProps;
 
 function isNewSelectProps(props: SelectShimProps): props is SelectRebuiltProps {
   return props.version === 2;
@@ -17,3 +20,5 @@ export function Select(props: SelectShimProps) {
     return <SelectLegacy {...props} />;
   }
 }
+
+export { SelectRebuiltProps, SelectLegacyProps };
