@@ -4,6 +4,10 @@ import { DatePicker } from "@jobber/components/DatePicker";
 import { Content } from "@jobber/components/Content";
 import { DataDump } from "@jobber/components/DataDump";
 import { Button } from "@jobber/components/Button";
+import {
+  AtlantisContext,
+  atlantisContextDefaultValues,
+} from "@jobber/components/AtlantisContext";
 
 export default {
   title: "Components/Selections/DatePicker/Web",
@@ -101,7 +105,7 @@ export const RestrictedDateRange = RestrictedDateRateTemplate.bind({});
 
 RestrictedDateRange.args = {};
 
-const CalendarStartDayTemplate: ComponentStory<typeof DatePicker> = () => {
+const WeekStartTemplate: ComponentStory<typeof DatePicker> = () => {
   const [date, setDate] = useState(new Date());
 
   return (
@@ -112,17 +116,24 @@ const CalendarStartDayTemplate: ComponentStory<typeof DatePicker> = () => {
       </Content>
 
       <Content spacing="small">
-        <p>Monday start (calendarStartDay=1):</p>
-        <DatePicker selected={date} onChange={setDate} calendarStartDay={1} />
+        <p>Monday start using prop (firstDayOfWeek=1):</p>
+        <DatePicker selected={date} onChange={setDate} firstDayOfWeek={1} />
       </Content>
 
       <Content spacing="small">
-        <p>Saturday start (calendarStartDay=6):</p>
-        <DatePicker selected={date} onChange={setDate} calendarStartDay={6} />
+        <p>Monday start using AtlantisContext:</p>
+        <AtlantisContext.Provider
+          value={{
+            ...atlantisContextDefaultValues,
+            firstDayOfWeek: 1,
+          }}
+        >
+          <DatePicker selected={date} onChange={setDate} />
+        </AtlantisContext.Provider>
       </Content>
     </Content>
   );
 };
 
-export const CalendarStartDay = CalendarStartDayTemplate.bind({});
-CalendarStartDay.args = {};
+export const WeekStart = WeekStartTemplate.bind({});
+WeekStart.args = {};

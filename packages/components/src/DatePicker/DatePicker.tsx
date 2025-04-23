@@ -40,10 +40,12 @@ interface BaseDatePickerProps {
   readonly highlightDates?: Date[];
 
   /**
-   * Sets which day is the start of the week.
+   * Sets which day is considered the first day of the week.
    * 0 = Sunday, 1 = Monday, etc.
+   *
+   * @default 0
    */
-  readonly calendarStartDay?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  readonly firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
   /**
    * Change handler that will return the date selected.
@@ -103,13 +105,13 @@ export function DatePicker({
   maxDate,
   minDate,
   highlightDates,
-  calendarStartDay,
+  firstDayOfWeek,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
-  const { dateFormat, calendarStartDay: contextCalendarStartDay } =
+  const { dateFormat, firstDayOfWeek: contextFirstDayOfWeek } =
     useAtlantisContext();
-  const effectiveCalendarStartDay = calendarStartDay ?? contextCalendarStartDay;
+  const effectiveFirstDayOfWeek = firstDayOfWeek ?? contextFirstDayOfWeek;
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -162,7 +164,7 @@ export function DatePicker({
         ]}
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
-        calendarStartDay={effectiveCalendarStartDay}
+        calendarStartDay={effectiveFirstDayOfWeek}
       />
     </div>
   );

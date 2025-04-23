@@ -36,12 +36,12 @@ export interface AtlantisContextProps {
   readonly locale: string;
 
   /**
-   * Sets which day is considered the start of the week for calendar components.
+   * Sets which day is considered the first day of the week in a calendar.
    * 0 = Sunday, 1 = Monday, etc.
    *
    * @default 0
    */
-  readonly calendarStartDay?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  readonly firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export const atlantisContextDefaultValues: AtlantisContextProps = {
@@ -52,7 +52,7 @@ export const atlantisContextDefaultValues: AtlantisContextProps = {
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: "$",
   locale: "en",
-  calendarStartDay: 0,
+  firstDayOfWeek: 0,
 };
 
 export const AtlantisContext = createContext(atlantisContextDefaultValues);
