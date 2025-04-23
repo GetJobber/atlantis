@@ -6,6 +6,19 @@
     "displayName": "Select",
     "methods": [],
     "props": {
+      "maxLength": {
+        "defaultValue": null,
+        "description": "Changes the width to roughly the same size as the maximum character length",
+        "name": "maxLength",
+        "parent": {
+          "fileName": "packages/components/src/Select/Select.types.ts",
+          "name": "SelectLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
       "id": {
         "defaultValue": null,
         "description": "A unique identifier for the input.",
