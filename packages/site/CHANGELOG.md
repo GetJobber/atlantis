@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.46.1...@jobber/atlantis-site@0.47.0) (2025-04-23)
+
+
+### Features
+
+* **components:** Add maxLength prop to both Select versions ([#2510](https://github.com/GetJobber/atlantis/issues/2510)) ([dcb2ca9](https://github.com/GetJobber/atlantis/commit/dcb2ca95bf0eda559a691b5416fd8dee36b3e3d7))
+
+
+
+
+
 ## [0.46.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.46.0...@jobber/atlantis-site@0.46.1) (2025-04-23)
 
 
