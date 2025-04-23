@@ -1,9 +1,8 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
-import ReactDatePicker, { registerLocale } from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 import { XOR } from "ts-xor";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import * as locales from "date-fns/locale";
 import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import {
@@ -12,14 +11,6 @@ import {
 } from "./DatePickerActivator";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
 import { useAtlantisContext } from "../AtlantisContext";
-
-// Register date-fns locales with react-datepicker
-// This is required for the DatePicker to support different locales via props or AtlantisContext
-Object.entries(locales).forEach(([key, value]) => {
-  if (key !== "default" && !key.startsWith("_")) {
-    registerLocale(key, value);
-  }
-});
 
 interface BaseDatePickerProps {
   /**
@@ -49,13 +40,9 @@ interface BaseDatePickerProps {
   readonly highlightDates?: Date[];
 
   /**
-   * Change the locale for the calendar's language and formatting.
-   *
-   * Regional settings can be implemented either through AtlantisContext
-   * or by using this prop, which will override the context value.
+   * Sets which day is the start of the week.
+   * 0 = Sunday, 1 = Monday, etc.
    */
-  readonly locale?: string;
-
   readonly calendarStartDay?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
   /**
@@ -116,13 +103,13 @@ export function DatePicker({
   maxDate,
   minDate,
   highlightDates,
-  locale: localeProp,
   calendarStartDay,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
-  const { dateFormat, locale: contextLocale } = useAtlantisContext();
-  const effectiveLocale = localeProp || contextLocale;
+  const { dateFormat, calendarStartDay: contextCalendarStartDay } =
+    useAtlantisContext();
+  const effectiveCalendarStartDay = calendarStartDay ?? contextCalendarStartDay;
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -175,8 +162,7 @@ export function DatePicker({
         ]}
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
-        locale={effectiveLocale}
-        calendarStartDay={calendarStartDay}
+        calendarStartDay={effectiveCalendarStartDay}
       />
     </div>
   );

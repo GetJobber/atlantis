@@ -4,10 +4,6 @@ import { DatePicker } from "@jobber/components/DatePicker";
 import { Content } from "@jobber/components/Content";
 import { DataDump } from "@jobber/components/DataDump";
 import { Button } from "@jobber/components/Button";
-import {
-  AtlantisContext,
-  atlantisContextDefaultValues,
-} from "@jobber/components/AtlantisContext";
 
 export default {
   title: "Components/Selections/DatePicker/Web",
@@ -105,64 +101,28 @@ export const RestrictedDateRange = RestrictedDateRateTemplate.bind({});
 
 RestrictedDateRange.args = {};
 
-const DynamicLocaleTemplate: ComponentStory<typeof DatePicker> = args => {
-  const [date, setDate] = useState(new Date());
-  // In a real app, this would come from your user preferences or API
-  const [userPreferredLocale, setUserPreferredLocale] = useState("enGB");
-
-  // Example of getting browser locale
-  const getBrowserLocale = () => {
-    const locale = navigator.language.replace("-", "");
-    setUserPreferredLocale(locale);
-  };
-
-  return (
-    <Content>
-      <Button
-        label="Use Browser Locale"
-        onClick={getBrowserLocale}
-        variation="subtle"
-      />
-      <Content spacing="small">
-        <p>Current locale: {userPreferredLocale}</p>
-        <AtlantisContext.Provider
-          value={{
-            ...atlantisContextDefaultValues,
-            locale: userPreferredLocale,
-          }}
-        >
-          <DatePicker {...args} selected={date} onChange={setDate} />
-        </AtlantisContext.Provider>
-      </Content>
-    </Content>
-  );
-};
-
-export const DynamicLocale = DynamicLocaleTemplate.bind({});
-DynamicLocale.args = {};
-
-const LocaleOverrideTemplate: ComponentStory<typeof DatePicker> = () => {
+const CalendarStartDayTemplate: ComponentStory<typeof DatePicker> = () => {
   const [date, setDate] = useState(new Date());
 
   return (
     <Content>
       <Content spacing="small">
-        <p>Default locale from AtlantisContext (en):</p>
+        <p>Default (Sunday start):</p>
         <DatePicker selected={date} onChange={setDate} />
       </Content>
 
       <Content spacing="small">
-        <p>Overridden with French locale (frCA):</p>
-        <DatePicker selected={date} onChange={setDate} locale="frCA" />
+        <p>Monday start (calendarStartDay=1):</p>
+        <DatePicker selected={date} onChange={setDate} calendarStartDay={1} />
       </Content>
 
       <Content spacing="small">
-        <p>Overridden with Spanish locale (es):</p>
-        <DatePicker selected={date} onChange={setDate} locale="es" />
+        <p>Saturday start (calendarStartDay=6):</p>
+        <DatePicker selected={date} onChange={setDate} calendarStartDay={6} />
       </Content>
     </Content>
   );
 };
 
-export const LocaleOverride = LocaleOverrideTemplate.bind({});
-LocaleOverride.args = {};
+export const CalendarStartDay = CalendarStartDayTemplate.bind({});
+CalendarStartDay.args = {};
