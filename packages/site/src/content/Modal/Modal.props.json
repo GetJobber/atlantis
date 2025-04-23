@@ -3,7 +3,7 @@
     "tags": {},
     "filePath": "../components/src/Modal/Modal.tsx",
     "description": "",
-    "displayName": "ModalLegacy",
+    "displayName": "Modal",
     "methods": [],
     "props": {
       "title": {
@@ -13,8 +13,8 @@
         "description": "",
         "name": "title",
         "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
+          "fileName": "../components/src/Modal/Modal.tsx",
+          "name": "ModalProps"
         },
         "required": false,
         "type": {
@@ -28,8 +28,8 @@
         "description": "",
         "name": "open",
         "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
+          "fileName": "../components/src/Modal/Modal.tsx",
+          "name": "ModalProps"
         },
         "required": false,
         "type": {
@@ -41,8 +41,8 @@
         "description": "",
         "name": "size",
         "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
+          "fileName": "../components/src/Modal/Modal.tsx",
+          "name": "ModalProps"
         },
         "required": false,
         "type": {
@@ -56,8 +56,8 @@
         "description": "",
         "name": "dismissible",
         "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
+          "fileName": "../components/src/Modal/Modal.tsx",
+          "name": "ModalProps"
         },
         "required": false,
         "type": {
@@ -69,12 +69,12 @@
         "description": "",
         "name": "primaryAction",
         "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
+          "fileName": "../components/src/Modal/Modal.tsx",
+          "name": "ModalProps"
         },
         "required": false,
         "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly size?: ButtonSize; readonly variation?: ButtonVariation; ... 17 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
         }
       },
       "secondaryAction": {
@@ -82,12 +82,12 @@
         "description": "",
         "name": "secondaryAction",
         "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
+          "fileName": "../components/src/Modal/Modal.tsx",
+          "name": "ModalProps"
         },
         "required": false,
         "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly size?: ButtonSize; readonly variation?: ButtonVariation; ... 17 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
         }
       },
       "tertiaryAction": {
@@ -95,12 +95,12 @@
         "description": "",
         "name": "tertiaryAction",
         "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
+          "fileName": "../components/src/Modal/Modal.tsx",
+          "name": "ModalProps"
         },
         "required": false,
         "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly size?: ButtonSize; readonly variation?: ButtonVariation; ... 17 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
         }
       },
       "onRequestClose": {
@@ -108,25 +108,12 @@
         "description": "",
         "name": "onRequestClose",
         "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
+          "fileName": "../components/src/Modal/Modal.tsx",
+          "name": "ModalProps"
         },
         "required": false,
         "type": {
           "name": "() => void"
-        }
-      },
-      "version": {
-        "defaultValue": null,
-        "description": "",
-        "name": "version",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "1"
         }
       }
     }
