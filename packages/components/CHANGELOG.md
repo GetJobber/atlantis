@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.41.0...@jobber/components@6.42.0) (2025-04-23)
+
+
+### Features
+
+* **components:** Add support for composable modals ([#2475](https://github.com/GetJobber/atlantis/issues/2475)) ([9fdce60](https://github.com/GetJobber/atlantis/commit/9fdce6080ecdcfec4625ecf3c3be327fee6567ba))
+
+
+
+
+
 # [6.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.40.2...@jobber/components@6.41.0) (2025-04-23)
 
 
