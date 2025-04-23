@@ -30,8 +30,12 @@ export interface SelectLegacyProps
       | "suffix"
       | "defaultValue"
       | "version"
-      | "maxLength"
-    > {}
+    > {
+  /**
+   * Changes the width to roughly the same size as the maximum character length
+   */
+  readonly maxLength?: number;
+}
 
 /**
  * Rebuilt version of the Select component without React Hook Form dependency.
