@@ -50,7 +50,10 @@ export interface InputTimeLegacyProps extends InputTimeProps {
 }
 
 export interface InputTimeRebuiltProps
-  extends Omit<InputTimeProps, "defaultValue" | "version"> {
+  extends Omit<
+    InputTimeProps,
+    "defaultValue" | "version" | "validations" | "onValidation"
+  > {
   /**
    * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
    */
