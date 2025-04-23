@@ -13,7 +13,8 @@
   color: var(--color-interactive--hover);
 }
 
-:global(.sb-show-main.sb-main-padded) {
+:global(.sb-show-main.sb-main-padded),
+:global(.sb-show-main.sb-main-fullscreen) {
   background-color: var(--color-surface) !important;
   transition: none;
 }
