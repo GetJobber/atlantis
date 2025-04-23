@@ -6,7 +6,7 @@ interface ClearActionProps {
   /**
    * Click handler
    */
-  readonly onClick: () => void;
+  readonly onClick?: () => void;
   readonly visible?: boolean;
 }
 
@@ -19,7 +19,7 @@ export function ClearAction({
   return (
     <button
       className={styles.clearInput}
-      onClick={onClick}
+      onClick={() => onClick?.()}
       type="button"
       aria-label="Clear input"
       data-testid="ATL-FormField-clearButton"
