@@ -4,8 +4,8 @@ import { ModalProvider } from "./ModalContext.rebuilt";
 import {
   ModalActions,
   ModalActivator,
+  ModalContent,
   ModalHeader,
-  ModalWrapper,
 } from "./Modal.rebuilt";
 import { ModalLegacyProps } from "./Modal.types";
 
@@ -22,7 +22,7 @@ Modal.Actions = ModalActions;
 Modal.Activator = ModalActivator;
 Modal.Provider = ModalProvider;
 
-Modal.Wrapper = ModalWrapper;
+Modal.Content = ModalContent;
 
 export { useModalContext } from "./ModalContext.rebuilt";
 export { useModalStyles } from "./useModalStyles";

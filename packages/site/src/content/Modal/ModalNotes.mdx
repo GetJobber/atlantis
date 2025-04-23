@@ -6,7 +6,7 @@
 with some testing environments.
 
 Modal exposes its internal building blocks as subcomponents: `Modal.Provider`,
-`Modal.Activator`, `Modal.Header`, `Modal.Wrapper`, `Modal.Actions`. This gives
+`Modal.Activator`, `Modal.Header`, `Modal.Content`, `Modal.Actions`. This gives
 you more control over the Modal's appearance and behaviour.
 
 Here is a basic example of how our current non-composable Modal is used:
@@ -31,7 +31,7 @@ Using Modal's built-in subcomponents, this UI can alternatively be expressed as:
 ```tsx
 
 <Modal.Provider open={true} onRequestClose={() => setShowModal(false)}>
-  <Modal.Wrapper>
+  <Modal.Content>
     <Modal.Header title="Modal Title" />
     <Modal.Content>
       Modal content goes here
@@ -41,7 +41,7 @@ Using Modal's built-in subcomponents, this UI can alternatively be expressed as:
           label: "Cancel",
           onClick: handleSecondaryAction,
         }}} />
-  </Modal.Wrapper>
+  </Modal.Content>
 </Modal.Provider>
 ```
 
@@ -82,7 +82,7 @@ function CustomModal() {
         open={showModal}
         onRequestClose={() => setShowModal(false)}
       >
-        <Modal.Wrapper>
+        <Modal.Content>
           <Modal.Header>
             <CustomHeader />
           </Modal.Header>
@@ -96,7 +96,7 @@ function CustomModal() {
               onClick: handleSecondaryAction,
             }}
           />
-        </Modal.Wrapper>
+        </Modal.Content>
       </Modal.Provider>
     </>
   );
@@ -123,10 +123,10 @@ function ModalWithCustomFocus() {
         <Modal.Activator>
           <InputText placeholder="Modal will return focus here" />
       </Modal.Activator>
-      <Modal.Wrapper>
+      <Modal.Content>
         <Modal.Header title="Modal Title" />
         <Modal.Content>Modal content goes here</Modal.Content>
-      </Modal.Wrapper>
+      </Modal.Content>
     </Modal.Provider>
   );
 }

@@ -171,7 +171,7 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
           setPopoverOpen(false);
         }}
       >
-        <Modal.Wrapper>
+        <Modal.Content>
           <Modal.Header>
             <CustomHeader />
           </Modal.Header>
@@ -243,7 +243,7 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
               <Icon name="help" color="blue" />
             </Tooltip>
           </Content>
-        </Modal.Wrapper>
+        </Modal.Content>
         <Modal.Activator>
           <InputText placeholder="Modal will return focus here" />
         </Modal.Activator>

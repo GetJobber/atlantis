@@ -10,7 +10,7 @@ import { useModalContext } from "./ModalContext.rebuilt";
 import {
   HeaderProps,
   ModalActionsProps,
-  ModalWrapperProps,
+  ModalContentProps as ModalContainerProps,
 } from "./Modal.types";
 import { useModalStyles } from "./useModalStyles";
 import { Heading } from "../Heading";
@@ -82,7 +82,7 @@ export function ModalActivator({ children }: PropsWithChildren) {
 }
 
 /**
- * Background overlay for the modal. Used in the ModalWrapper.
+ * Background overlay for the modal. Used in the ModalContent.
  */
 
 export function ModalOverlay({ children }: PropsWithChildren) {
@@ -103,7 +103,7 @@ export function ModalOverlay({ children }: PropsWithChildren) {
   );
 }
 
-export function ModalWrapper({ children }: ModalWrapperProps) {
+export function ModalContent({ children }: ModalContainerProps) {
   const {
     open,
     floatingContext,

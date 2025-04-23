@@ -30,7 +30,7 @@ export interface ModalProviderProps {
   readonly dismissible?: boolean;
 }
 
-export type ModalWrapperProps = PropsWithChildren;
+export type ModalContentProps = PropsWithChildren;
 
 export type ModalOverlayProps = PropsWithChildren;
 

@@ -9,7 +9,7 @@ describe("Composable Modal", () => {
   it("should render the modal content", () => {
     render(
       <Modal.Provider open={true}>
-        <Modal.Wrapper>
+        <Modal.Content>
           <Modal.Header title="Modal Title" />
           <Content>
             <Text>This is some extra content</Text>
@@ -19,7 +19,7 @@ describe("Composable Modal", () => {
             secondary={{ label: "Cancel" }}
             tertiary={{ label: "Delete", variation: "destructive" }}
           />
-        </Modal.Wrapper>
+        </Modal.Content>
       </Modal.Provider>,
     );
     const header = screen.getByTestId("ATL-Modal-Header");
@@ -34,9 +34,9 @@ describe("Composable Modal", () => {
   it('modal contains aria role of "dialog"', async () => {
     render(
       <Modal.Provider open={true}>
-        <Modal.Wrapper>
+        <Modal.Content>
           <Modal.Header title="Modal Title" />
-        </Modal.Wrapper>
+        </Modal.Content>
       </Modal.Provider>,
     );
     expect(await screen.findByRole("dialog")).toBeInTheDocument();
@@ -46,9 +46,9 @@ describe("Composable Modal", () => {
     const handleRequestClose = jest.fn();
     render(
       <Modal.Provider open={true} onRequestClose={handleRequestClose}>
-        <Modal.Wrapper>
+        <Modal.Content>
           <Modal.Header title="Modal Title" />
-        </Modal.Wrapper>
+        </Modal.Content>
       </Modal.Provider>,
     );
 
@@ -59,11 +59,11 @@ describe("Composable Modal", () => {
   it("should render the modal header with custom content", () => {
     render(
       <Modal.Provider open={true} modalLabelledBy="custom-header">
-        <Modal.Wrapper>
+        <Modal.Content>
           <Modal.Header>
             <span id="custom-header">Custom Header Content</span>
           </Modal.Header>
-        </Modal.Wrapper>
+        </Modal.Content>
       </Modal.Provider>,
     );
     expect(screen.getByRole("dialog")).toHaveAttribute(
