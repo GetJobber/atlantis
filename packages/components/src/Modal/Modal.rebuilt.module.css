@@ -1,0 +1,109 @@
+:root {
+  --modal--width: 600px;
+  --modal--padding-horizontal: var(--space-base);
+  --modal--padding-vertical: var(--space-base);
+  --modal--padding: var(--modal--padding-vertical)
+    var(--modal--padding-horizontal);
+
+  @media (--medium-screens-and-up) {
+    --modal--padding-horizontal: var(--space-large);
+    --modal--padding-vertical: var(--space-large);
+    --modal--padding: var(--modal--padding-vertical)
+      var(--modal--padding-horizontal);
+  }
+
+  --modal--shadow: var(--shadow-base);
+}
+
+.overlay {
+  display: grid;
+  z-index: var(--elevation-modal);
+  background-color: var(--color-overlay);
+  place-items: center;
+}
+
+.modal {
+  position: relative;
+  z-index: var(--elevation-modal);
+  width: 100%;
+  max-width: var(--modal--width);
+  box-shadow: var(--modal--shadow);
+  margin: auto;
+  padding: var(--space-small);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+  flex: 0 0 auto;
+  outline-color: var(--color-focus);
+}
+
+/* Adjust `Content` and `Tab` components public padding to match the modal */
+
+.modal > * {
+  --public-content--padding: var(--modal--padding);
+  --public-tab--inset: var(--modal--padding-horizontal);
+}
+
+/* Remove the nested `Content` components public padding */
+
+.modal > * > * {
+  --public-content--padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--modal--padding);
+  background-color: transparent;
+}
+
+/**
+ * Ensure there's no extra padding top on the next element. This mostly negates
+ * the <Content /> padding
+ */
+
+.header + * {
+  padding-top: 0;
+}
+
+.closeButton {
+  margin-top: -6px;
+  margin-right: -6px;
+}
+
+.actionBar {
+  display: flex;
+  padding: var(--modal--padding);
+  padding-top: 0;
+  flex: 1 1 100%;
+  justify-content: flex-end;
+}
+
+/**
+ * 1. Use CSS `order` to adjust the buttons position on the UI
+ */
+
+.leftAction {
+  flex: 1 1 auto;
+  order: 1; /* 1 */
+}
+
+.rightAction {
+  display: flex;
+  flex: 0 0 auto;
+  order: 2; /* 1 */
+}
+
+/* This is in a correct position and order */
+/* stylelint-disable-next-line no-descending-specificity */
+.rightAction > * {
+  margin-left: var(--space-small);
+}
+
+.rightAction > *:first-child {
+  order: 2; /* 1 */
+}
+
+.rightAction > *:nth-child(2) {
+  order: 1; /* 1 */
+}
