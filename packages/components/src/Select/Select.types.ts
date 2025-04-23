@@ -38,7 +38,12 @@ export interface SelectLegacyProps
 export interface SelectRebuiltProps
   extends Omit<
     SelectLegacyProps,
-    "defaultValue" | "version" | "onChange" | "value"
+    | "defaultValue"
+    | "version"
+    | "onChange"
+    | "value"
+    | "validations"
+    | "onValidation"
   > {
   defaultValue?: never;
   readonly value?: string | number;
