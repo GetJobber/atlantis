@@ -14,7 +14,16 @@ export default {
   component: DatePicker,
   parameters: {
     viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/AtlantisContext": [
+            "atlantisContextDefaultValues",
+          ],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof DatePicker>;
 
