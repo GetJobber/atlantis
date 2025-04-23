@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
+import { AtlantisThemeContextProvider } from "@jobber/components/AtlantisThemeContext";
 import { tokens } from "@jobber/design/foundation";
 import { Header } from "./components/Header";
 import { InlineCode } from "./components/InlineCode";
@@ -75,4 +76,11 @@ export const decorators = [
       <StoryDetails Story={Story} context={context} />
     </div>
   ,
+  (Story) => {
+    return (
+      <AtlantisThemeContextProvider>
+        <Story />
+      </AtlantisThemeContextProvider>
+    );
+  }
 ];
