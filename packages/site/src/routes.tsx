@@ -221,7 +221,7 @@ export const routes: Array<AtlantisRoute> = [
       },
       {
         path: "/guides/figma-101",
-        handle: "Figma overview",
+        handle: "Figma 101",
         exact: true,
       },
       {

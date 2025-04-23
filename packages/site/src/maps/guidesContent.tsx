@@ -32,8 +32,8 @@ export const guidesContentMap: ContentMapItems = {
     content: () => <AddingAnIcon />,
   },
   "figma-101": {
-    intro: "Figma overview",
-    title: "Figma overview",
+    intro: "Figma 101",
+    title: "Figma 101",
     content: () => <Figma101Component />,
   },
   "frontend-styleguide": {
