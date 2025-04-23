@@ -8,8 +8,6 @@ import {
   shift,
   useDismiss,
   useFloating,
-  useFloatingNodeId,
-  useFloatingParentNodeId,
   useInteractions,
 } from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
@@ -29,21 +27,16 @@ export function useComboboxAccessibility(
   popperRef: React.RefObject<HTMLDivElement>;
   popperStyles: React.CSSProperties;
   floatingProps: ReturnType<UseInteractionsReturn["getFloatingProps"]>;
-  nodeId?: string;
-  parentNodeId: string | null;
 } {
   const { handleClose } = useContext(ComboboxContext);
   const hasOptionsVisible = open && filteredOptions.length > 0;
   const focusedIndex = useRef<number | null>(null);
-  const parentNodeId = useFloatingParentNodeId();
-  const nodeId = useFloatingNodeId();
 
   useRefocusOnActivator(open);
 
   const popperRef = useFocusTrap<HTMLDivElement>(open);
 
   const { floatingStyles, update, context } = useFloating({
-    nodeId,
     elements: {
       reference: wrapperRef.current,
       floating: popperRef.current,
@@ -53,8 +46,8 @@ export function useComboboxAccessibility(
       if (!openState) handleClose();
     },
     middleware: [
-      autoPlacement({ allowedPlacements: ["bottom-start", "top-start"] }),
       offset(COMBOBOX_OFFSET),
+      autoPlacement({ allowedPlacements: ["bottom-start", "top-start"] }),
       shift({ padding: COMBOBOX_OFFSET }),
     ],
     placement: "bottom-start",
@@ -134,7 +127,5 @@ export function useComboboxAccessibility(
     popperRef,
     popperStyles: floatingStyles,
     floatingProps: getFloatingProps(),
-    nodeId,
-    parentNodeId,
   };
 }

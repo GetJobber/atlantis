@@ -1,6 +1,5 @@
 import Content from "@atlantis/docs/components/Modal/Modal.stories.mdx";
 import Props from "./Modal.props.json";
-import Notes from "./ModalNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -33,5 +32,4 @@ export default {
       url: getStorybookUrl(`?path=/docs/components-overlays-modal--docs`),
     },
   ],
-  notes: () => <Notes />,
 } as const satisfies ContentExport;
