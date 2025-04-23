@@ -41,7 +41,7 @@ export interface AtlantisContextProps {
    *
    * @default 0
    */
-  readonly firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  readonly firstDayOfWeek: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export const atlantisContextDefaultValues: AtlantisContextProps = {
