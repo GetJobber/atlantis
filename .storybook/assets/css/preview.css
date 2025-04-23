@@ -13,6 +13,11 @@
   color: var(--color-interactive--hover);
 }
 
+:global(.sb-show-main.sb-main-padded) {
+  background-color: var(--color-surface) !important;
+  transition: none;
+}
+
 :global(.sb-show-main code) {
   border: var(--color-surface--background);
   color: var(--color-text);
