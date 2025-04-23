@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.40.0...@jobber/components@6.40.1) (2025-04-23)
+
+
+### Bug Fixes
+
+* **components:** Fix Type Definition Linking for Clearable ([#2503](https://github.com/GetJobber/atlantis/issues/2503)) ([ab8ee7e](https://github.com/GetJobber/atlantis/commit/ab8ee7eea799a50b52fd35052914a7c049df09f8))
+
+
+
+
+
 # [6.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.39.0...@jobber/components@6.40.0) (2025-04-22)
 
 
