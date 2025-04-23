@@ -30,6 +30,7 @@ export interface SelectLegacyProps
       | "suffix"
       | "defaultValue"
       | "version"
+      | "maxLength"
     > {}
 
 /**

@@ -149,6 +149,7 @@ export const VersionComparison = () => {
     sizeSmall: "",
     sizeLarge: "",
     loading: "",
+    maxLength: "",
   });
 
   const [inline, setInline] = useState(false);
@@ -302,6 +303,16 @@ export const VersionComparison = () => {
             ...extraProps,
           },
           "loading",
+        )}
+
+        {renderBothVersions(
+          "Max Length",
+          {
+            placeholder: "Max length select",
+            maxLength: 5,
+            ...extraProps,
+          },
+          "maxLength",
         )}
       </div>
 

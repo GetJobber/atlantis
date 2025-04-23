@@ -73,6 +73,7 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       suffix={props.suffix}
       onClear={handleClear}
       clearable="never"
+      maxLength={props.maxLength}
     >
       <>
         <select {...fieldProps} ref={selectRef} className={inputStyle}>

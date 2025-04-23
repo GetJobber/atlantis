@@ -317,6 +317,19 @@
         "type": {
           "name": "1"
         }
+      },
+      "maxLength": {
+        "defaultValue": null,
+        "description": "Maximum character length for an input. This also changes the width to\nroughly the same size as the max length. This is to communicate that the\nuser that on certain cases, they can only type a limited amount of\ncharacters.",
+        "name": "maxLength",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
       }
     }
   }
