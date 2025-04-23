@@ -18,7 +18,7 @@ export const guidesList = [
   },
   {
     title: "Figma overview",
-    to: "/guides/figma-overview",
+    to: "/guides/figma-101",
   },
   {
     title: "Frontend styleguide",
