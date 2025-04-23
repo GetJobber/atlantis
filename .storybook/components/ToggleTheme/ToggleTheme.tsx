@@ -15,8 +15,9 @@ export const ToggleTheme = ({ api, children }: ToggleThemeProps) => {
             theme: !isDark ? darkTheme : lightTheme,
         });
         if (iframe) {
-            const iframeDocument = iframe.contentDocument || iframe.contentWindow?.document;
-            iframeDocument?.documentElement.setAttribute('data-theme', !isDark ? 'dark' : 'light');
+          const theme = !isDark ? 'dark' : 'light';
+          // @ts-ignore updateTheme is injected via preview.tsx
+          iframe.contentWindow?.updateTheme(theme);
         }
         setIsDark(!isDark);
     }
