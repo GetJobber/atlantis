@@ -16,8 +16,15 @@ export const ToggleTheme = ({ api, children }: ToggleThemeProps) => {
         });
         if (iframe) {
           const theme = !isDark ? 'dark' : 'light';
+
           // @ts-ignore updateTheme is injected via preview.tsx
-          iframe.contentWindow?.updateTheme(theme);
+          if (iframe.contentWindow?.updateTheme) {
+            // @ts-ignore updateTheme is injected via preview.tsx
+            iframe.contentWindow?.updateTheme(theme);
+          } else {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow?.document;
+            iframeDocument?.documentElement.setAttribute('data-theme', theme);
+          }
         }
         setIsDark(!isDark);
     }
