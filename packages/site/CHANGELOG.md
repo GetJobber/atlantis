@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.44.1...@jobber/atlantis-site@0.44.2) (2025-04-23)
+
+
+### Bug Fixes
+
+* **components:** Properly Exclude DefaultValue from InputTimev2 Props ([#2502](https://github.com/GetJobber/atlantis/issues/2502)) ([93366a9](https://github.com/GetJobber/atlantis/commit/93366a9558046c9c62b622af91443e1eb4f601b6))
+
+
+
+
+
 ## [0.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.44.0...@jobber/atlantis-site@0.44.1) (2025-04-23)
 
 **Note:** Version bump only for package @jobber/atlantis-site
