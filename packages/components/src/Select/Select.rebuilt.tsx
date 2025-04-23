@@ -27,12 +27,11 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
     id: id,
   });
 
-  const { handleChange, handleBlur, handleFocus, handleClear } =
-    useSelectActions({
-      onChange: props.onChange,
-      onBlur: props.onBlur,
-      onFocus: props.onFocus,
-    });
+  const { handleChange, handleBlur, handleFocus } = useSelectActions({
+    onChange: props.onChange,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+  });
 
   const inputProps = omit(props, [
     "onChange",
@@ -71,7 +70,6 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       value={props.value}
       prefix={props.prefix}
       suffix={props.suffix}
-      onClear={handleClear}
       clearable="never"
     >
       <>
