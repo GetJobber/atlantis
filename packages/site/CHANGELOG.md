@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.44.2...@jobber/atlantis-site@0.45.0) (2025-04-23)
+
+
+### Features
+
+* **components:** Select without RHF ([#2484](https://github.com/GetJobber/atlantis/issues/2484)) ([4392647](https://github.com/GetJobber/atlantis/commit/4392647ecc70fee96b28a44b2fabd01b5a03e6a6))
+
+
+
+
+
 ## [0.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.44.1...@jobber/atlantis-site@0.44.2) (2025-04-23)
 
 
