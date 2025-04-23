@@ -1,17 +1,9 @@
-import React, { forwardRef, useId } from "react";
-import omit from "lodash/omit";
+import React, { forwardRef } from "react";
 import { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
-import { useInputTextActions } from "./useInputTextActions";
-import {
-  UseInputTextFormFieldReturn,
-  useInputTextFormField,
-} from "./useInputTextFormField";
-import {
-  FormFieldWrapper,
-  useAtlantisFormFieldName,
-  useFormFieldWrapperStyles,
-} from "../FormField";
+import { useInputText } from "./useInputText";
+import { UseInputTextFormFieldReturn } from "./useInputTextFormField";
+import { FormFieldWrapper } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
 
@@ -19,16 +11,8 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
   inputRefs: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
 ) {
-  const inputTextRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
-    null,
-  );
-
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const legacyPropHelper = {
-    ...props,
-    version: 1,
-  };
-  const id = useInputTextId(props);
+  const { baseProps, inputStyle, fieldProps, inputTextRef, wrapperRef } =
+    useInputText(props);
 
   const { rowRange } = useTextAreaResize({
     rows: props.rows,
@@ -39,70 +23,14 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
 
   const type = props.multiline ? "textarea" : "text";
 
-  const { inputStyle } = useFormFieldWrapperStyles(legacyPropHelper);
-
-  const { name } = useAtlantisFormFieldName({
-    nameProp: props.name,
-    id: id,
-  });
-
-  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
-    useInputTextActions({
-      onChange: props.onChange,
-      onBlur: props.onBlur,
-      onFocus: props.onFocus,
-      onKeyDown: props.onKeyDown,
-      onEnter: props.onEnter,
-      inputRef: inputTextRef,
-    });
-
-  const inputProps = omit(props, [
-    "onChange",
-    "onBlur",
-    "onFocus",
-    "onEnter",
-    "size",
-    "placeholder",
-    "multiline",
-    "prefix",
-    "suffix",
-    "version",
-  ]);
-
-  const { fieldProps, descriptionIdentifier } = useInputTextFormField({
-    ...inputProps,
-    id,
-    name,
-    handleChange,
-    handleBlur,
-    handleFocus,
-    handleKeyDown,
-  });
-
   return (
     <FormFieldWrapper
-      disabled={props.disabled}
-      size={props.size}
+      {...baseProps}
       align={props.align}
-      inline={props.inline}
-      autofocus={props.autoFocus}
-      name={name}
-      wrapperRef={wrapperRef}
-      error={props.error ?? ""}
-      invalid={Boolean(props.error || props.invalid)}
-      identifier={id}
-      descriptionIdentifier={descriptionIdentifier}
-      description={props.description}
-      clearable={props.clearable ?? "never"}
-      onClear={handleClear}
-      type={props.multiline ? "textarea" : "text"}
-      placeholder={props.placeholder}
-      value={props.value}
-      prefix={props.prefix}
-      suffix={props.suffix}
       rows={rowRange.min}
       toolbar={props.toolbar}
       toolbarVisibility={props.toolbarVisibility}
+      type={type}
     >
       <>
         {type === "textarea" ? (
@@ -130,12 +58,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     </FormFieldWrapper>
   );
 });
-
-function useInputTextId(props: InputTextRebuiltProps) {
-  const generatedId = useId();
-
-  return props.id || generatedId;
-}
 
 function TextArea({
   fieldProps,
