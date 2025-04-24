@@ -167,74 +167,31 @@
         "type": {
           "name": "(ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void"
         }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Chip/Chip.tsx",
-    "description": "",
-    "displayName": "Chip.Prefix",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Chip/Chip.tsx",
-    "description": "",
-    "displayName": "Chip.Suffix",
-    "methods": [],
-    "props": {
-      "className": {
+      },
+      "ref": {
         "defaultValue": null,
         "description": "",
-        "name": "className",
+        "name": "ref",
         "parent": {
-          "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
-          "name": "ChipSuffixProps"
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "Ref<HTMLButtonElement | HTMLDivElement>"
         }
       },
-      "testID": {
+      "key": {
         "defaultValue": null,
         "description": "",
-        "name": "testID",
+        "name": "key",
         "parent": {
-          "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
-          "name": "ChipSuffixProps"
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
         },
         "required": false,
         "type": {
-          "name": "string"
-        }
-      },
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
-          "name": "ChipSuffixProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Chip/components/ChipSuffix/Chip.Suffix.tsx",
-          "name": "ChipSuffixProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: any) => void"
+          "name": "Key"
         }
       }
     }
