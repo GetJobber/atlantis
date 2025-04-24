@@ -30,15 +30,9 @@ export function useSelectActions({
     onFocus?.();
   }
 
-  // Noop for SelectRebuilt since onClear is a required prop for FormFieldWrapper
-  // but Select is not clearable.
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  function handleClear() {}
-
   return {
     handleChange,
     handleBlur,
     handleFocus,
-    handleClear,
   };
 }
