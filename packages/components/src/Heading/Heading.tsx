@@ -3,7 +3,7 @@ import { Typography, TypographyOptions, TypographyProps } from "../Typography";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
-interface HeadingProps {
+export interface HeadingProps {
   /**
    * @default 5
    */
