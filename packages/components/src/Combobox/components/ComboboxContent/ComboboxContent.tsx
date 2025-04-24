@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import { FloatingNode, FloatingPortal, FloatingTree } from "@floating-ui/react";
+import ReactDOM from "react-dom";
 import styles from "./ComboboxContent.module.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
@@ -24,73 +25,77 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     );
 
   const content = (
-    <FloatingNode id={nodeId}>
-      <FloatingPortal>
-        <div
-          ref={popperRef}
-          id={COMBOBOX_MENU_ID}
-          data-testid={COMBOBOX_MENU_ID}
-          data-elevation={"elevated"}
-          tabIndex={0}
-          className={classnames(styles.content, {
-            [styles.hidden]: !props.open,
-          })}
-          style={popperStyles}
-          {...floatingProps}
-        >
-          <ComboboxContentSearch
-            open={props.open}
-            placeholder={props.subjectNoun}
-            searchValue={props.searchValue}
-            setSearchValue={props.setSearchValue}
-            handleSearchChange={props.handleSearchChange}
-          />
+    <div
+      ref={popperRef}
+      id={COMBOBOX_MENU_ID}
+      data-testid={COMBOBOX_MENU_ID}
+      data-elevation={"elevated"}
+      tabIndex={0}
+      className={classnames(styles.content, {
+        [styles.hidden]: !props.open,
+      })}
+      style={popperStyles}
+      {...floatingProps}
+    >
+      <ComboboxContentSearch
+        open={props.open}
+        placeholder={props.subjectNoun}
+        searchValue={props.searchValue}
+        setSearchValue={props.setSearchValue}
+        handleSearchChange={props.handleSearchChange}
+      />
 
-          {props.multiselect && (optionsExist || props.selected.length > 0) && (
-            <ComboboxContentHeader
-              hasOptionsVisible={optionsExist}
-              subjectNoun={props.subjectNoun}
-              selectedCount={props.selected.length}
-              onClearAll={() => {
-                props.selectedStateSetter([]);
-              }}
-              onSelectAll={() => {
-                props.selectedStateSetter(props.options);
-              }}
-            />
-          )}
-          <ComboboxContentList
-            multiselect={props.multiselect}
-            options={props.options}
-            selected={props.selected}
-            optionsListRef={optionsListRef}
-            searchValue={props.searchValue}
-            subjectNoun={props.subjectNoun}
-            loading={props.loading}
-            onLoadMore={props.onLoadMore}
-          />
-          {props.actionElements && (
-            <div className={styles.actions} role="group">
-              {props.actionElements.map((child, index, childrenArray) => (
-                <div
-                  key={index}
-                  className={classnames({
-                    [styles.actionPadding]: index === childrenArray.length - 1,
-                  })}
-                >
-                  {child}
-                </div>
-              ))}
+      {props.multiselect && (optionsExist || props.selected.length > 0) && (
+        <ComboboxContentHeader
+          hasOptionsVisible={optionsExist}
+          subjectNoun={props.subjectNoun}
+          selectedCount={props.selected.length}
+          onClearAll={() => {
+            props.selectedStateSetter([]);
+          }}
+          onSelectAll={() => {
+            props.selectedStateSetter(props.options);
+          }}
+        />
+      )}
+      <ComboboxContentList
+        multiselect={props.multiselect}
+        options={props.options}
+        selected={props.selected}
+        optionsListRef={optionsListRef}
+        searchValue={props.searchValue}
+        subjectNoun={props.subjectNoun}
+        loading={props.loading}
+        onLoadMore={props.onLoadMore}
+      />
+      {props.actionElements && (
+        <div className={styles.actions} role="group">
+          {props.actionElements.map((child, index, childrenArray) => (
+            <div
+              key={index}
+              className={classnames({
+                [styles.actionPadding]: index === childrenArray.length - 1,
+              })}
+            >
+              {child}
             </div>
-          )}
+          ))}
         </div>
-      </FloatingPortal>
-    </FloatingNode>
+      )}
+    </div>
   );
 
   if (parentNodeId) {
-    return content;
+    return (
+      <FloatingTree>
+        <FloatingNode id={nodeId}>
+          <FloatingPortal>{content}</FloatingPortal>
+        </FloatingNode>
+      </FloatingTree>
+    );
   }
 
-  return <FloatingTree>{content}</FloatingTree>;
+  return globalThis?.document
+    ? ReactDOM.createPortal(content, document.body)
+    : content;
 }

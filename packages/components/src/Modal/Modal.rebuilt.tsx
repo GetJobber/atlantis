@@ -18,8 +18,6 @@ import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
-const AnimatedOverlay = motion(FloatingOverlay);
-
 export function ModalHeader({ title, children }: HeaderProps) {
   const { header, dismissButton } = useModalStyles();
   const { dismissible, onRequestClose, modalLabelledBy } = useModalContext();
@@ -85,21 +83,19 @@ export function ModalActivator({ children }: PropsWithChildren) {
  * Background overlay for the modal. Used in the ModalContent.
  */
 
-export function ModalOverlay({ children }: PropsWithChildren) {
-  const { size } = useModalContext();
-  const { overlay } = useModalStyles(size);
+export function ModalOverlay() {
+  const { onRequestClose } = useModalContext();
+  const { overlayBackground } = useModalStyles();
 
   return (
-    <AnimatedOverlay
-      className={overlay}
+    <motion.div
+      onClick={onRequestClose}
+      className={overlayBackground}
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: 0.8 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      data-testid="ATL-Modal-Overlay"
-    >
-      {children}
-    </AnimatedOverlay>
+    />
   );
 }
 
@@ -113,7 +109,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     floatingNodeId,
     modalLabelledBy,
   } = useModalContext();
-  const { modal } = useModalStyles(size);
+  const { modal, overlay } = useModalStyles(size);
 
   return (
     <AnimatePresence>
@@ -121,31 +117,35 @@ export function ModalContent({ children }: ModalContainerProps) {
         <FloatingNode id={floatingNodeId}>
           <FloatingPortal>
             <AtlantisPortalContent>
-              <ModalOverlay>
+              <FloatingOverlay className={overlay}>
                 <FloatingFocusManager
                   context={floatingContext}
                   returnFocus={activatorRef?.current ? activatorRef : true}
                   initialFocus={floatingRefs?.floating}
                 >
-                  <motion.div
-                    data-floating-ui-focusable
-                    aria-labelledby={modalLabelledBy}
-                    className={modal}
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 0.8 }}
-                    exit={{ scale: 0.9, opacity: 0 }}
-                    transition={{
-                      duration: 0.2,
-                      ease: "easeInOut",
-                    }}
+                  <div
                     ref={floatingRefs?.setFloating}
                     role="dialog"
-                    tabIndex={-1}
+                    tabIndex={0}
+                    aria-labelledby={modalLabelledBy}
                   >
-                    {children}
-                  </motion.div>
+                    <ModalOverlay />
+                    <motion.div
+                      data-floating-ui-focusable
+                      className={modal}
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.9, opacity: 0 }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      {children}
+                    </motion.div>
+                  </div>
                 </FloatingFocusManager>
-              </ModalOverlay>
+              </FloatingOverlay>
             </AtlantisPortalContent>
           </FloatingPortal>
         </FloatingNode>

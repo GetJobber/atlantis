@@ -11,9 +11,8 @@ import { ModalLegacyProps } from "./Modal.types";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
-import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
-export const ModalLegacy = ({
+export function ModalLegacy({
   open = false,
   title,
   size,
@@ -23,61 +22,59 @@ export const ModalLegacy = ({
   secondaryAction,
   tertiaryAction,
   onRequestClose,
-}: ModalLegacyProps) => {
+}: ModalLegacyProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
   useOnKeyDown(handleRequestClose, "Escape");
 
   const template = (
-    <AtlantisPortalContent>
-      <AnimatePresence>
-        {open && (
-          <div
-            ref={modalRef}
-            role="dialog"
-            className={styles.container}
-            tabIndex={0}
+    <AnimatePresence>
+      {open && (
+        <div
+          ref={modalRef}
+          role="dialog"
+          className={styles.container}
+          tabIndex={0}
+        >
+          <motion.div
+            key={styles.overlay}
+            className={styles.overlay}
+            onClick={onRequestClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.8 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.div
+            key={styles.modal}
+            className={modalClassName}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{
+              duration: 0.2,
+              ease: "easeInOut",
+            }}
           >
-            <motion.div
-              key={styles.overlay}
-              className={styles.overlay}
-              onClick={onRequestClose}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.8 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            />
-            <motion.div
-              key={styles.modal}
-              className={modalClassName}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{
-                duration: 0.2,
-                ease: "easeInOut",
-              }}
-            >
-              {title != undefined && (
-                <Header
-                  title={title}
-                  dismissible={dismissible}
-                  onRequestClose={onRequestClose}
-                />
-              )}
-              {children}
-
-              <Actions
-                primary={primaryAction}
-                secondary={secondaryAction}
-                tertiary={tertiaryAction}
+            {title != undefined && (
+              <Header
+                title={title}
+                dismissible={dismissible}
+                onRequestClose={onRequestClose}
               />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-    </AtlantisPortalContent>
+            )}
+            {children}
+
+            <Actions
+              primary={primaryAction}
+              secondary={secondaryAction}
+              tertiary={tertiaryAction}
+            />
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 
   return globalThis?.document
@@ -89,7 +86,7 @@ export const ModalLegacy = ({
       onRequestClose();
     }
   }
-};
+}
 
 interface HeaderProps {
   readonly title: string;

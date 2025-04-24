@@ -18,8 +18,18 @@
 .overlay {
   display: grid;
   z-index: var(--elevation-modal);
-  background-color: var(--color-overlay);
   place-items: center;
+}
+
+.overlayBackground {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--elevation-modal);
+  background-color: var(--color-overlay);
+  opacity: 0.8;
 }
 
 .modal {

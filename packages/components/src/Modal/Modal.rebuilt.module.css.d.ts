@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "overlay": string;
+  readonly "overlayBackground": string;
   readonly "modal": string;
   readonly "header": string;
   readonly "closeButton": string;

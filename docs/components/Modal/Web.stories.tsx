@@ -6,7 +6,6 @@ import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 import { InputText } from "@jobber/components/InputText";
 import {
-  AtlantisThemeContextProvider,
   Autocomplete,
   Box,
   Combobox,
@@ -216,6 +215,15 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
                   label={option.label}
                 />
               ))}
+              <Combobox.Action
+                label="Add Teammate"
+                onClick={() => alert("Added a new teammate ✅")}
+              />
+              <Combobox.Action
+                label="Manage Teammates"
+                onClick={() => alert("Managed teammates 👍")}
+                keepOpenOnClick
+              />
             </Combobox>
 
             <InputDate
@@ -254,29 +262,3 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
 export const ModalWithProviderExample = ModalWithProviderExampleTemplate.bind(
   {},
 );
-
-const ModalCustomThemeTemplate: ComponentStory<typeof Modal> = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  return (
-    <Content>
-      <Text>
-        This is a modal that will always use the dark theme. The modal is
-        wrapped in an AtlantisThemeContextProvider with a dark theme and when it
-        is opened it will use dark mode
-      </Text>
-      <Button
-        label="Open Modal with Custom Theme"
-        onClick={() => setModalOpen(true)}
-      />
-      <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-        <Modal open={modalOpen} onRequestClose={() => setModalOpen(false)}>
-          <Content>
-            <Text>This is a modal with a custom theme</Text>
-          </Content>
-        </Modal>
-      </AtlantisThemeContextProvider>
-    </Content>
-  );
-};
-export const ModalCustomTheme = ModalCustomThemeTemplate.bind({});
