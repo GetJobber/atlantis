@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.44.0...@jobber/components@6.45.0) (2025-04-24)
+
+
+### Features
+
+* **components:** make onClear optional on FormFieldWrapper ([#2507](https://github.com/GetJobber/atlantis/issues/2507)) ([281e88a](https://github.com/GetJobber/atlantis/commit/281e88a8ab875cec10fcbab308a538543dba1c46))
+
+
+
+
+
 # [6.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.43.0...@jobber/components@6.44.0) (2025-04-24)
 
 
