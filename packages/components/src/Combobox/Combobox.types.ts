@@ -58,6 +58,11 @@ export interface ComboboxProps {
    * Should the Combobox display the loading state.
    */
   readonly loading?: boolean;
+
+  /**
+   * A ref to the default activator button element.
+   */
+  readonly defaultActivatorRef: React.RefObject<HTMLButtonElement>;
 }
 
 export interface ComboboxCustomActivatorProps {
@@ -102,6 +107,7 @@ export interface ComboboxActivatorProps {
 export interface ComboboxTriggerProps
   extends Pick<ComboboxContentProps, "selected"> {
   readonly label?: string;
+  readonly activatorRef: React.RefObject<HTMLButtonElement>;
 }
 
 export interface ComboboxOptionProps {
