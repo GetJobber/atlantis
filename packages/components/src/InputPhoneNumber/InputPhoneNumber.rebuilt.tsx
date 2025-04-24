@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useId } from "react";
 import { useForm, useFormContext } from "react-hook-form";
 import { InputMask, InputMaskProps } from "./InputMask";
-import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
+import {
+  CommonFormFieldProps,
+  FormField,
+  FormFieldProps,
+  FormFieldWrapper,
+  useAtlantisFormFieldName,
+  useFormFieldWrapperStyles,
+} from "../FormField";
+import { useInputTextFormField } from "../InputText/useInputTextFormField";
+import { useInputTextActions } from "../InputText/useInputTextActions";
 
 interface InputPhoneNumberRebuiltProps
   extends Omit<CommonFormFieldProps, "align">,
@@ -18,6 +27,7 @@ interface InputPhoneNumberRebuiltProps
     > {
   readonly value: string;
   readonly onChange: (value: string) => void;
+  readonly error?: string;
 
   /**
    * A pattern to specify the format to display the phone number in.
@@ -26,65 +36,71 @@ interface InputPhoneNumberRebuiltProps
    * @default "(***) ***-****"
    */
   readonly pattern?: InputMaskProps["pattern"];
-
-  /**
-   * Shows a "required" validation message when the component is left empty.
-   */
-  readonly required?: boolean;
 }
 
 export function InputPhoneNumberRebuilt({
-  required,
   ...props
 }: InputPhoneNumberRebuiltProps) {
-  const { placeholder, validations, pattern = "(***) ***-****" } = props;
-  const errorSubject = placeholder || "Phone number";
-  const { getValues } =
-    useFormContext() != undefined
-      ? useFormContext()
-      : // If there isn't a Form Context being provided, get a form for this field.
-        useForm({ mode: "onTouched" });
+  const inputPhoneNumberRef = React.useRef<HTMLInputElement>(null);
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+
+  const { inputStyle } = useFormFieldWrapperStyles(props);
+
+  const generatedId = useId();
+  const id = props.id || generatedId;
+
+  const { name } = useAtlantisFormFieldName({
+    nameProp: props.name,
+    id: id,
+  });
+
+  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
+    useInputTextActions({
+      onChange: props.onChange,
+      onBlur: props.onBlur,
+      onFocus: props.onFocus,
+      onEnter: props.onEnter,
+      inputRef: inputPhoneNumberRef,
+    });
+
+  const { fieldProps, descriptionIdentifier } = useInputTextFormField({
+    id,
+    name,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    handleKeyDown,
+  });
 
   return (
-    <InputMask pattern={pattern} strict={false}>
-      <FormField
-        {...props}
+    <FormFieldWrapper
+      disabled={props.disabled}
+      size={props.size}
+      inline={props.inline}
+      name={name}
+      wrapperRef={wrapperRef}
+      error={props.error ?? ""}
+      invalid={Boolean(props.error || props.invalid)}
+      identifier={id}
+      descriptionIdentifier={descriptionIdentifier}
+      description={props.description}
+      clearable={props.clearable ?? "never"}
+      onClear={handleClear}
+      type={"tel"}
+      placeholder={props.placeholder}
+      value={props.value}
+      prefix={props.prefix}
+      suffix={props.suffix}
+      readonly={props.readonly}
+    >
+      <input
         type="tel"
-        pattern={pattern}
-        validations={{
-          required: {
-            value: Boolean(required),
-            message: `${errorSubject} is required`,
-          },
-          ...validations,
-          validate: getPhoneNumberValidation,
-        }}
+        {...fieldProps}
+        ref={inputPhoneNumberRef}
+        className={inputStyle}
+        value={props.value}
+        readOnly={props.readonly}
       />
-    </InputMask>
+    </FormFieldWrapper>
   );
-
-  function getPhoneNumberValidation(value: string) {
-    // Get unique characters that aren't * in the pattern
-    const patternNonDelimterCharacters = pattern
-      .split("")
-      .filter(char => char !== "*")
-      .filter((char, index, arr) => arr.indexOf(char) === index);
-    const specialCharacters = patternNonDelimterCharacters.join(" ");
-    // Remove special characters from pattern
-    const cleanValue = value.replace(
-      new RegExp(`[${specialCharacters}]`, "g"),
-      "",
-    );
-    const cleanValueRequiredLength = (pattern.match(/\*/g) || []).length;
-
-    if (cleanValue.length > 0 && cleanValue.length < cleanValueRequiredLength) {
-      return `${errorSubject} must contain ${cleanValueRequiredLength} or more digits`;
-    }
-
-    if (typeof validations?.validate === "function") {
-      return validations.validate(value, getValues);
-    }
-
-    return true;
-  }
 }

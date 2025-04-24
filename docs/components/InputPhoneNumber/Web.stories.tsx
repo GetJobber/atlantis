@@ -39,3 +39,8 @@ InitialValue.args = {
   value: "555-TUNA",
   placeholder: "Enter your phone number",
 };
+
+export const Version2 = BasicTemplate.bind({});
+Version2.args = {
+  version: 2,
+};
