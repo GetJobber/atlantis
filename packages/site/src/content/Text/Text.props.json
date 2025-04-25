@@ -18,7 +18,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"b\" | \"em\" | \"dd\" | \"dt\" | \"strong\" | \"span\""
+          "name": "TextElement"
         }
       },
       "maxLines": {

@@ -1,12 +1,17 @@
 import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions, TypographyProps } from "../Typography";
 
+type TextElement = Extract<
+  TypographyProps["element"],
+  "p" | "b" | "em" | "dd" | "dt" | "strong" | "span"
+>;
+
 export interface TextProps {
   /**
    * The HTML element to render the text as.
    * @default "p"
    */
-  readonly element?: TypographyProps["element"];
+  readonly element?: TextElement;
 
   readonly maxLines?:
     | "single"
