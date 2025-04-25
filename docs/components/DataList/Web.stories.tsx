@@ -773,9 +773,10 @@ export const CustomItemNavigation: StoryObj<typeof DataList> = {
       headerVisibility={{ xs: false, md: true }}
       itemActions={() => (
         <DataList.ItemActions
-          onClick={() => {
+          onClick={(item, evt) => {
+            evt?.preventDefault();
             alert(
-              "BAD: this onClick fires and then the page navigates to the url. We need to call e.preventDefault() but we don't have access to it.",
+              "BAD: this onClick handles ALL types of clicks, blocking command-click from opening the link in a new tab.",
             );
           }}
           url="/?path=/story/components-lists-and-tables-datalist-web--custom-item-navigation"
