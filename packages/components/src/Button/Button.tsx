@@ -9,9 +9,11 @@ import { ButtonProvider } from "./ButtonProvider";
 
 type ButtonRefElement = HTMLButtonElement | HTMLAnchorElement;
 
-type ButtonEventHandler = React.MouseEventHandler<HTMLButtonElement>;
-type AnchorEventHandler = React.MouseEventHandler<HTMLAnchorElement>;
+// Type guards to check what type of button we're dealing with
+const isAnchorElement = (props: ButtonProps): boolean => !!props.url;
+const isLinkElement = (props: ButtonProps): boolean => !!props.to;
 
+// Generic Button component to ensure proper event type inference
 const ButtonComponent = forwardRef<ButtonRefElement, ButtonProps>(
   (props, ref) => {
     const { size } = props;
@@ -69,25 +71,27 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
 
     const buttonInternals = children || <ButtonContent {...props} />;
 
-    // comment to make a build trigger
-    if (to) {
+    if (isLinkElement(props)) {
       const linkProps: React.ComponentProps<typeof Link> = {
         ...commonProps,
         to: to as LinkProps["to"],
       };
 
       if (!disabled && onClick) {
-        linkProps.onClick = onClick as AnchorEventHandler;
+        // Safe to do because we've verified this is a Link element
+        linkProps.onClick =
+          onClick as React.MouseEventHandler<HTMLAnchorElement>;
       }
 
       if (!disabled && onMouseDown) {
-        linkProps.onMouseDown = onMouseDown as AnchorEventHandler;
+        linkProps.onMouseDown =
+          onMouseDown as React.MouseEventHandler<HTMLAnchorElement>;
       }
 
       return <Link {...linkProps}>{buttonInternals}</Link>;
     }
 
-    if (url) {
+    if (isAnchorElement(props)) {
       const anchorProps: React.DetailedHTMLProps<
         React.AnchorHTMLAttributes<HTMLAnchorElement>,
         HTMLAnchorElement
@@ -99,16 +103,20 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
       };
 
       if (!disabled && onClick) {
-        anchorProps.onClick = onClick as AnchorEventHandler;
+        // Safe to do because we've verified this is an Anchor element
+        anchorProps.onClick =
+          onClick as React.MouseEventHandler<HTMLAnchorElement>;
       }
 
       if (!disabled && onMouseDown) {
-        anchorProps.onMouseDown = onMouseDown as AnchorEventHandler;
+        anchorProps.onMouseDown =
+          onMouseDown as React.MouseEventHandler<HTMLAnchorElement>;
       }
 
       return <a {...anchorProps}>{buttonInternals}</a>;
     }
 
+    // This is a regular button element
     const buttonProps: React.DetailedHTMLProps<
       React.ButtonHTMLAttributes<HTMLButtonElement>,
       HTMLButtonElement
@@ -120,11 +128,14 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
     };
 
     if (!disabled && onClick) {
-      buttonProps.onClick = onClick as ButtonEventHandler;
+      // Safe to do because we've verified this is a Button element
+      buttonProps.onClick =
+        onClick as React.MouseEventHandler<HTMLButtonElement>;
     }
 
     if (!disabled && onMouseDown) {
-      buttonProps.onMouseDown = onMouseDown as ButtonEventHandler;
+      buttonProps.onMouseDown =
+        onMouseDown as React.MouseEventHandler<HTMLButtonElement>;
     }
 
     // Explanation: "type" IS defined in the buttonProps object
