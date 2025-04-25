@@ -30,7 +30,7 @@ export const guidesList = [
   },
   {
     title: "Page Layouts",
-    to: "/guides/layouts",
+    to: "/guides/page-layouts",
   },
   {
     title: "Scaffolding",
