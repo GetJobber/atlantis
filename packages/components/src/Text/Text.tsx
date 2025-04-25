@@ -2,6 +2,12 @@ import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions, TypographyProps } from "../Typography";
 
 export interface TextProps {
+  /**
+   * The HTML element to render the text as.
+   * @default "p"
+   */
+  readonly element?: TypographyProps["element"];
+
   readonly maxLines?:
     | "single"
     | "small"
@@ -44,6 +50,7 @@ export function Text({
   variation = "default",
   size = "base",
   align = "start",
+  element = "p",
   children,
   maxLines = "unlimited",
   UNSAFE_className,
@@ -70,6 +77,7 @@ export function Text({
 
   return (
     <Typography
+      element={element}
       textColor={textColors[variation] as TextColor}
       size={size}
       numberOfLines={maxLineToNumber[maxLines]}
