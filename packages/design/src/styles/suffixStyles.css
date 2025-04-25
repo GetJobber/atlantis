@@ -19,6 +19,10 @@ body {
 }
 
 @custom-media --small-screens-and-below (max-width: 489px);
+@custom-media --medium-screens-and-below (max-width: 767px);
+@custom-media --large-screens-and-below (max-width: 1079px);
+@custom-media --extra-large-screens-and-below (max-width: 1439px);
+
 @custom-media --small-screens-and-up (min-width: 490px);
 @custom-media --medium-screens-and-up (min-width: 768px);
 @custom-media --large-screens-and-up (min-width: 1080px);
