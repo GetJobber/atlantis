@@ -1,3 +1,4 @@
+import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
 import {
   type CommonAllowedElements,
   type CommonAtlantisProps,
@@ -12,6 +13,15 @@ export interface ResponsiveSwitcherProps extends CommonAtlantisProps {
 
   /** The amount of space between the children. Semantic tokens are available. */
   readonly gap?: GapSpacing;
+
+  /** The element to scale the children by. Defaults to `container`. */
+  scaleBy?: "container" | "screen";
+
+  /** The breakpoint to collapse the responsive switcher at. */
+  readonly collapseBelow?: keyof typeof AtlantisBreakpoints;
+
+  /** Force the responsive switcher to collapse. Use this when our breakpoints are not enough control. */
+  readonly collapsed?: boolean;
 
   /** The HTML tag to render the container as. Defaults to `div`. */
   as?: CommonAllowedElements;
