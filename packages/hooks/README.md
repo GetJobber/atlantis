@@ -4,7 +4,6 @@ Shared hooks for components in Atlantis.
 
 ## Hooks
 
-- [useAssert](../?path=/docs/hooks-useassert--docs)
 - [useCallbackRef](../?path=/docs/hooks-usecallbackref--docs)
 - [useBool](../?path=/docs/hooks-usebool--docs)
 - [useCollectionQuery](../?path=/docs/hooks-usecollectionquery--docs)

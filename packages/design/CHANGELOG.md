@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.75.0...@jobber/design@0.75.1) (2025-04-24)
+
+
+### Bug Fixes
+
+* **design:** Fix elevation tokens to ensure they respect theme overrides ([#2509](https://github.com/GetJobber/atlantis/issues/2509)) ([2f2c400](https://github.com/GetJobber/atlantis/commit/2f2c400c9ff844d276871506afe71559f6a5f15f))
+
+
+
+
+
 # [0.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.74.0...@jobber/design@0.75.0) (2025-04-08)
 
 

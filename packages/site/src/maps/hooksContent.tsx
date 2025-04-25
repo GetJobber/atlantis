@@ -1,4 +1,3 @@
-import UseAssertDocs from "@atlantis/docs/hooks/useAssert.stories.mdx";
 import UseBoolDocs from "@atlantis/docs/hooks/useBool.stories.mdx";
 import UseBreakpointsDocs from "@atlantis/docs/hooks/useBreakpoints.stories.mdx";
 import UseCallbackRefDocs from "@atlantis/docs/hooks/useCallbackRef.stories.mdx";
@@ -16,11 +15,6 @@ import UseWindowDimensionsDocs from "@atlantis/docs/hooks/useWindowDimensions.st
 import { ContentMapItems } from "../types/maps";
 
 export const hooksContentMap: ContentMapItems = {
-  useAssert: {
-    intro: "useAssert",
-    title: "useAssert",
-    content: () => <UseAssertDocs />,
-  },
   useBool: {
     intro: "useBool",
     title: "useBool",

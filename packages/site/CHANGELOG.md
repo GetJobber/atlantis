@@ -3,6 +3,154 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.48.1...@jobber/atlantis-site@0.49.0) (2025-04-24)
+
+
+### Features
+
+* **components:** Add Ref to Chip ([#2506](https://github.com/GetJobber/atlantis/issues/2506)) ([9d98abd](https://github.com/GetJobber/atlantis/commit/9d98abd3d599d68de7dfa2e10f587aff4d79c577))
+
+
+
+
+
+## [0.48.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.48.0...@jobber/atlantis-site@0.48.1) (2025-04-24)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.47.0...@jobber/atlantis-site@0.48.0) (2025-04-24)
+
+
+### Features
+
+* **components:** Add support for composable modals - Take 2 ([#2511](https://github.com/GetJobber/atlantis/issues/2511)) ([fc97582](https://github.com/GetJobber/atlantis/commit/fc975824691bd2a145cf88dcc09064db2b43b33d)), closes [#2508](https://github.com/GetJobber/atlantis/issues/2508)
+
+
+
+
+
+# [0.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.46.1...@jobber/atlantis-site@0.47.0) (2025-04-23)
+
+
+### Features
+
+* **components:** Add maxLength prop to both Select versions ([#2510](https://github.com/GetJobber/atlantis/issues/2510)) ([dcb2ca9](https://github.com/GetJobber/atlantis/commit/dcb2ca95bf0eda559a691b5416fd8dee36b3e3d7))
+
+
+
+
+
+## [0.46.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.46.0...@jobber/atlantis-site@0.46.1) (2025-04-23)
+
+
+### Reverts
+
+* **components:** Add support for composable modals ([#2508](https://github.com/GetJobber/atlantis/issues/2508)) ([c3f42c4](https://github.com/GetJobber/atlantis/commit/c3f42c4f54014de710e786a4eb752a155984a7c3)), closes [#2475](https://github.com/GetJobber/atlantis/issues/2475)
+
+
+
+
+
+# [0.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.45.0...@jobber/atlantis-site@0.46.0) (2025-04-23)
+
+
+### Features
+
+* **components:** Add support for composable modals ([#2475](https://github.com/GetJobber/atlantis/issues/2475)) ([9fdce60](https://github.com/GetJobber/atlantis/commit/9fdce6080ecdcfec4625ecf3c3be327fee6567ba))
+
+
+
+
+
+# [0.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.44.2...@jobber/atlantis-site@0.45.0) (2025-04-23)
+
+
+### Features
+
+* **components:** Select without RHF ([#2484](https://github.com/GetJobber/atlantis/issues/2484)) ([4392647](https://github.com/GetJobber/atlantis/commit/4392647ecc70fee96b28a44b2fabd01b5a03e6a6))
+
+
+
+
+
+## [0.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.44.1...@jobber/atlantis-site@0.44.2) (2025-04-23)
+
+
+### Bug Fixes
+
+* **components:** Properly Exclude DefaultValue from InputTimev2 Props ([#2502](https://github.com/GetJobber/atlantis/issues/2502)) ([93366a9](https://github.com/GetJobber/atlantis/commit/93366a9558046c9c62b622af91443e1eb4f601b6))
+
+
+
+
+
+## [0.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.44.0...@jobber/atlantis-site@0.44.1) (2025-04-23)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.43.0...@jobber/atlantis-site@0.44.0) (2025-04-22)
+
+
+### Features
+
+* **hooks:** BREAKING CHANGE: Remove useAssert ([#2495](https://github.com/GetJobber/atlantis/issues/2495)) ([3f9325a](https://github.com/GetJobber/atlantis/commit/3f9325ab2a671e1a2ee0a662551b0879322f00c6))
+
+
+
+
+
+# [0.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.4...@jobber/atlantis-site@0.43.0) (2025-04-21)
+
+
+### Bug Fixes
+
+* **components:** Fix Chip Type Issue ([#2496](https://github.com/GetJobber/atlantis/issues/2496)) ([0f549b6](https://github.com/GetJobber/atlantis/commit/0f549b6fc6e741b67f0c32384a446b788cd08fa5))
+
+
+### Features
+
+* **components:** Add ability to only open Chips menu on search [JOB-119726] ([#2471](https://github.com/GetJobber/atlantis/issues/2471)) ([8f855c8](https://github.com/GetJobber/atlantis/commit/8f855c8ae06e57df2e3beea9d69b27bb181fb780))
+* **components:** InputTime without RHF ([#2477](https://github.com/GetJobber/atlantis/issues/2477)) ([f58a91f](https://github.com/GetJobber/atlantis/commit/f58a91f7bee6b53ae80254531417fb4837b69afd))
+
+
+
+
+
+## [0.42.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.3...@jobber/atlantis-site@0.42.4) (2025-04-17)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.42.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.2...@jobber/atlantis-site@0.42.3) (2025-04-17)
+
+
+### Reverts
+
+* **components:** Add ref to Button and Chip ([#2494](https://github.com/GetJobber/atlantis/issues/2494)) ([507349d](https://github.com/GetJobber/atlantis/commit/507349d25e60b88cd848632cee20c5a67779eb42)), closes [#2470](https://github.com/GetJobber/atlantis/issues/2470)
+
+
+
+
+
+## [0.42.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.1...@jobber/atlantis-site@0.42.2) (2025-04-17)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
 ## [0.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.42.0...@jobber/atlantis-site@0.42.1) (2025-04-16)
 
 **Note:** Version bump only for package @jobber/atlantis-site

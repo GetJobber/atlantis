@@ -44,3 +44,19 @@ export interface InputTimeProps
    */
   onChange?(newValue?: Date): void;
 }
+
+export interface InputTimeLegacyProps extends InputTimeProps {
+  version?: 1;
+}
+
+export interface InputTimeRebuiltProps
+  extends Omit<
+    InputTimeProps,
+    "defaultValue" | "version" | "validations" | "onValidation"
+  > {
+  /**
+   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
+   */
+  version: 2;
+  error?: string;
+}
