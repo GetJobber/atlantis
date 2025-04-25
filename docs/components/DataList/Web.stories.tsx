@@ -180,6 +180,7 @@ const DataListStory = (args: {
   title: string;
   headerVisibility?: { xs: boolean; md: boolean };
   loadingState?: "initial" | "filtering" | "loadingMore" | "none";
+  itemActions?: () => React.ReactElement;
 }) => {
   const items = mockedData;
   const totalCount = mockedData.length;
@@ -323,37 +324,41 @@ const DataListStory = (args: {
         placeholder="Search birds..."
       />
 
-      <DataList.ItemActions onClick={handleActionClick}>
-        <DataList.ItemAction
-          visible={item => item.species !== "Droid"}
-          icon="edit"
-          label="Edit"
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="sendMessage"
-          label={item => `Message ${item.label}`}
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Create new..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Add attribute..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="trash"
-          label="Delete"
-          destructive={true}
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Go to Jobber.com"
-          actionUrl="https://www.jobber.com"
-        />
-      </DataList.ItemActions>
+      {args.itemActions ? (
+        args.itemActions()
+      ) : (
+        <DataList.ItemActions onClick={handleActionClick}>
+          <DataList.ItemAction
+            visible={item => item.species !== "Droid"}
+            icon="edit"
+            label="Edit"
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="sendMessage"
+            label={item => `Message ${item.label}`}
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Create new..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Add attribute..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="trash"
+            label="Delete"
+            destructive={true}
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Go to Jobber.com"
+            actionUrl="https://www.jobber.com"
+          />
+        </DataList.ItemActions>
+      )}
 
       <DataList.BatchActions>
         <DataList.BatchAction
@@ -757,6 +762,25 @@ export const EmptyState: StoryObj<typeof DataList> = {
       data={[]}
       title="All birds"
       headerVisibility={{ xs: false, md: true }}
+    />
+  ),
+};
+
+export const CustomItemNavigation: StoryObj<typeof DataList> = {
+  render: () => (
+    <DataListStory
+      title="All birds"
+      headerVisibility={{ xs: false, md: true }}
+      itemActions={() => (
+        <DataList.ItemActions
+          onClick={() => {
+            alert(
+              "BAD: this onClick fires and then the page navigates to the url. We need to call e.preventDefault() but we don't have access to it.",
+            );
+          }}
+          url="/?path=/story/components-lists-and-tables-datalist-web--custom-item-navigation"
+        />
+      )}
     />
   ),
 };
