@@ -62,7 +62,7 @@ export const VisualTestSelectPage = () => {
                     <Option value="2">Option 2</Option>
                   </Select>
 
-                  <Select placeholder="Loading state" loading>
+                  <Select placeholder="Loading state" version={1} loading>
                     <Option value="1">Option 1</Option>
                     <Option value="2">Option 2</Option>
                   </Select>
