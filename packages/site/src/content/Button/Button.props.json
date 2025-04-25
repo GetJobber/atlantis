@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void"
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
         }
       },
       "name": {
@@ -224,7 +224,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void"
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
         }
       },
       "UNSAFE_className": {
@@ -329,32 +329,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "ref": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ref",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "RefAttributes"
-        },
-        "required": false,
-        "type": {
-          "name": "Ref<ButtonRefElement>"
-        }
-      },
-      "key": {
-        "defaultValue": null,
-        "description": "",
-        "name": "key",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "Attributes"
-        },
-        "required": false,
-        "type": {
-          "name": "Key"
         }
       }
     }

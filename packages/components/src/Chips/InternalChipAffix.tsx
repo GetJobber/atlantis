@@ -1,5 +1,4 @@
 import React, { ReactElement } from "react";
-import { useAssert } from "@jobber/hooks/useAssert";
 import { type ChipButtonProps, InternalChipButton } from "./InternalChipButton";
 import styles from "./InternalChip.module.css";
 import { type InternalChipProps } from "./ChipTypes";
@@ -17,8 +16,6 @@ export function InternalChipAffix({
   invalid,
   disabled,
 }: InternalChipAffixProps) {
-  assertProps();
-
   if (affix?.type === Avatar) {
     return <Avatar {...(affix.props as AvatarProps)} size="small" />;
   }
@@ -31,6 +28,7 @@ export function InternalChipAffix({
     return <InternalChipButton {...(affix.props as ChipButtonProps)} />;
   }
 
+  //eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
 
   function renderChipIcon(icon: ReactElement<IconProps>) {
@@ -52,16 +50,5 @@ export function InternalChipAffix({
     if (active) return "white";
 
     return;
-  }
-
-  function assertProps() {
-    const isAvatar = affix?.type === Avatar || false;
-    const isIcon = affix?.type === Icon || false;
-    const isChipButton = affix?.type === InternalChipButton || false;
-
-    useAssert(
-      !!affix && !(isAvatar || isIcon || isChipButton),
-      `Prefix prop only accepts "<Avatar />" or "<Icon />" component. You have "${affix?.type}".`,
-    );
   }
 }

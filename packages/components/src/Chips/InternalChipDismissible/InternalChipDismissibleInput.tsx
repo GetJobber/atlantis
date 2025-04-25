@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import debounce from "lodash/debounce";
 import classNames from "classnames";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./InternalChipDismissible.module.css";
@@ -31,15 +30,17 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     menuId,
     menuOpen,
     searchValue,
+    showInput,
     generateDescendantId,
     handleBlur,
-    handleOpenMenu,
+    handleFocus,
     handleSearchChange,
     handleCancelBlur,
     handleEnableBlur,
     handleSetActiveOnMouseOver,
     handleKeyDown,
     handleSelectOption,
+    handleShowInput,
     handleDebouncedSearch,
   } = useInternalChipDismissibleInput(props);
 
@@ -66,9 +67,11 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     isInView && onLoadMore && onLoadMore(searchValue);
   }, [isInView]);
 
-  if (!menuOpen) {
-    return React.cloneElement(activator, { onClick: handleOpenMenu });
+  if (!showInput) {
+    return React.cloneElement(activator, { onClick: handleShowInput });
   }
+
+  const shouldShowMenu = menuOpen && (hasAvailableOptions || isLoadingMore);
 
   return (
     <>
@@ -80,17 +83,17 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         aria-label="Press up and down arrow to cycle through the options or type to narrow down the results"
         aria-autocomplete="list"
         aria-owns={menuId}
-        aria-expanded={hasAvailableOptions}
+        aria-expanded={shouldShowMenu}
         aria-activedescendant={generateDescendantId(activeIndex)}
         value={searchValue}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
-        onBlur={debounce(handleBlur, 200)}
-        onFocus={handleOpenMenu}
+        onBlur={() => setTimeout(handleBlur, 200)}
+        onFocus={handleFocus}
         autoFocus={true}
       />
 
-      {(hasAvailableOptions || isLoadingMore) && (
+      {shouldShowMenu && (
         <div
           ref={setPositionedElementRef}
           className={styles.menu}
