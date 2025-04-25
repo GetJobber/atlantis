@@ -20,6 +20,7 @@ import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Flex } from "@jobber/components/Flex";
 // eslint-disable-next-line import/no-internal-modules
 import { useDebounce } from "@jobber/components/utils/useDebounce";
+import { isNormalClick } from "@jobber/components";
 
 const meta: Meta = {
   title: "Components/Lists and Tables/DataList/Web",
@@ -774,10 +775,11 @@ export const CustomItemNavigation: StoryObj<typeof DataList> = {
       itemActions={() => (
         <DataList.ItemActions
           onClick={(item, evt) => {
-            evt?.preventDefault();
-            alert(
-              "BAD: this onClick handles ALL types of clicks, blocking command-click from opening the link in a new tab.",
-            );
+            // Check for normal clicks to ensure we don't block command-click from opening the link in a new tab
+            if (evt && isNormalClick(evt)) {
+              evt.preventDefault();
+              alert("✅ Intercepted a normal left click for custom navigation");
+            }
           }}
           url="/?path=/story/components-lists-and-tables-datalist-web--custom-item-navigation"
         />
