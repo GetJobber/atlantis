@@ -6,6 +6,21 @@
     "displayName": "Text",
     "methods": [],
     "props": {
+      "element": {
+        "defaultValue": {
+          "value": "p"
+        },
+        "description": "The HTML element to render the text as.",
+        "name": "element",
+        "parent": {
+          "fileName": "../components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"b\" | \"em\" | \"dd\" | \"dt\" | \"strong\" | \"span\""
+        }
+      },
       "maxLines": {
         "defaultValue": {
           "value": "unlimited"
