@@ -137,6 +137,19 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "defaultActivatorRef": {
+        "defaultValue": null,
+        "description": "A ref to the default activator button element.",
+        "name": "defaultActivatorRef",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLButtonElement>"
+        }
       }
     }
   },
