@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.49.0...@jobber/atlantis-site@0.50.0) (2025-04-25)
+
+
+### Features
+
+* **components:** Visual Regression Testing ([#2479](https://github.com/GetJobber/atlantis/issues/2479)) ([04357d6](https://github.com/GetJobber/atlantis/commit/04357d6bee0c6bfeb159a51b0d0b2649880c32e9))
+
+
+
+
+
 # [0.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.48.1...@jobber/atlantis-site@0.49.0) (2025-04-24)
 
 
