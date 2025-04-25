@@ -9,7 +9,7 @@ import {
 
 export function ResponsiveSwitcher({
   children,
-  threshold,
+  threshold = "50%",
   gap = spaceTokens.base,
   limit = 2,
   scaleBy = "container",

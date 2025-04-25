@@ -19,6 +19,7 @@ export function Stack({
   ariaAttributes,
   role,
   id,
+  divider,
   UNSAFE_className,
   UNSAFE_style,
 }: StackProps) {
@@ -48,7 +49,14 @@ export function Stack({
         UNSAFE_className?.container,
       )}
     >
-      {children}
+      {divider && Array.isArray(children)
+        ? children.map((child, index) => (
+            <>
+              {child}
+              {index < children.length - 1 && divider}
+            </>
+          ))
+        : children}
     </Tag>
   );
 }

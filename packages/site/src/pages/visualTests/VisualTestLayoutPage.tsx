@@ -6,8 +6,11 @@ import {
   Cluster,
   ContentBlock,
   Cover,
+  Divider,
   Frame,
   Heading,
+  Hidden,
+  HiddenVisually,
   InputText,
   ResponsiveSwitcher,
   SideKick,
@@ -72,6 +75,24 @@ export const VisualTestLayoutPage = () => {
                     <InputText placeholder="Enter your name" />
                     <InputText placeholder="Enter your email" />
                     <Button label="Submit Form" />
+                  </Stack>
+                </Box>
+              </Card>
+            </section>
+            <section>
+              <Text size="large">Stack with Divider</Text>
+              <Card>
+                <Box padding="base">
+                  <Stack
+                    divider={
+                      <HiddenVisually above="sm">
+                        <Divider />
+                      </HiddenVisually>
+                    }
+                  >
+                    <Text>First item</Text>
+                    <Text>Second item</Text>
+                    <Text>Third item</Text>
                   </Stack>
                 </Box>
               </Card>
@@ -573,6 +594,33 @@ export const VisualTestLayoutPage = () => {
                         <InputText placeholder="Last Name" />
                       </Stack>
                       <Stack>
+                        <InputText placeholder="Email" />
+                        <InputText placeholder="Password" />
+                        <Cluster justify="center">
+                          <Button label="Sign In" />
+                        </Cluster>
+                      </Stack>
+                    </ResponsiveSwitcher>
+                  </Box>
+                </Card>
+              </section>
+              {/* ResponsiveSwitcher with Divider */}
+              <section>
+                <Text size="large">ResponsiveSwitcher with Divider</Text>
+                <Card>
+                  <Box padding="base">
+                    <ResponsiveSwitcher collapseBelow="md">
+                      <Stack>
+                        <InputText placeholder="First Name" />
+                        <InputText placeholder="Last Name" />
+                      </Stack>
+                      <Stack
+                        divider={
+                          <Hidden above="md">
+                            <Divider />
+                          </Hidden>
+                        }
+                      >
                         <InputText placeholder="Email" />
                         <InputText placeholder="Password" />
                         <Cluster justify="center">

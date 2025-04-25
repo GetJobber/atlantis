@@ -1,11 +1,12 @@
+import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
 import {
   CommonAllowedElements,
   CommonAtlantisProps,
 } from "../sharedHelpers/types";
 
 export interface HiddenVisuallyProps extends CommonAtlantisProps {
-  above?: "small" | "medium" | "large" | "extraLarge";
-  below?: "small" | "medium" | "large" | "extraLarge";
+  above?: keyof Omit<typeof AtlantisBreakpoints, "xs">;
+  below?: keyof Omit<typeof AtlantisBreakpoints, "xs">;
   children: React.ReactNode;
   as?: CommonAllowedElements;
   /** **Use at your own risk:** Custom class names for specific elements. This should only be used as a

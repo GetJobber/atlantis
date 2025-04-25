@@ -2,50 +2,61 @@
   display: none;
 }
 
+.smAndUp,
+.mdAndUp,
+.lgAndUp,
+.xlAndUp,
+.smAndDown,
+.mdAndDown,
+.lgAndDown,
+.xlAndDown {
+  display: var(--public-hidden-display-type, "block");
+}
+
 @media (--small-screens-and-up) {
-  .smallAndUp {
-    display: var(--public-hidden-display-type, "block");
+  .smAndUp {
+    display: none;
   }
 }
 
 @media (--medium-screens-and-up) {
-  .mediumAndUp {
-    display: var(--public-hidden-display-type, "block");
+  .mdAndUp {
+    display: none;
   }
 }
 
 @media (--large-screens-and-up) {
-  .largeAndUp {
-    display: var(--public-hidden-display-type, "block");
+  .lgAndUp {
+    display: none;
   }
 }
 
 @media (--extra-large-screens-and-up) {
-  .extraLargeAndUp {
-    display: var(--public-hidden-display-type, "block");
+  .xlAndUp {
+    display: none;
   }
 }
 
 @media (--small-screens-and-below) {
-  .smallAndDown {
-    display: var(--public-hidden-display-type, "block");
+  .smAndDown {
+    display: none;
   }
 }
 
 @media (--medium-screens-and-below) {
-  .mediumAndDown {
-    display: var(--public-hidden-display-type, "block");
+  .mdAndDown {
+    display: none;
   }
 }
 
 @media (--large-screens-and-below) {
-  .largeAndDown {
-    display: var(--public-hidden-display-type, "block");
+  .lgAndDown {
+    display: none;
   }
 }
 
 @media (--extra-large-screens-and-below) {
-  .extraLargeAndDown {
-    display: var(--public-hidden-display-type, "block");
+  .xlAndDown {
+    display: none;
   }
 }

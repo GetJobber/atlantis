@@ -10,106 +10,132 @@
   clip: rect(0, 0, 0, 0);
 }
 
+.smAndUp,
+.mdAndUp,
+.lgAndUp,
+.xlAndUp,
+.smAndDown,
+.mdAndDown,
+.lgAndDown,
+.xlAndDown {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  white-space: normal;
+  clip: auto;
+}
+
 @media (--small-screens-and-up) {
-  .smallAndUp {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .smAndUp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
-    overflow: visible;
-    white-space: normal;
-    clip: auto;
+    border-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }
 
 @media (--medium-screens-and-up) {
-  .mediumAndUp {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .mdAndUp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
-    overflow: visible;
-    white-space: normal;
-    clip: auto;
+    border-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }
 
 @media (--large-screens-and-up) {
-  .largeAndUp {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .lgAndUp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
-    overflow: visible;
-    white-space: normal;
-    clip: auto;
+    border-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }
 
 @media (--extra-large-screens-and-up) {
-  .extraLargeAndUp {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .xlAndUp {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
-    overflow: visible;
-    white-space: normal;
-    clip: auto;
+    border-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }
 
 @media (--small-screens-and-below) {
-  .smallAndDown {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .smAndDown {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
-    overflow: visible;
-    white-space: normal;
-    clip: auto;
+    border-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }
 
 @media (--medium-screens-and-below) {
-  .mediumAndDown {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .mdAndDown {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
-    overflow: visible;
-    white-space: normal;
-    clip: auto;
+    border-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }
 
 @media (--large-screens-and-below) {
-  .largeAndDown {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .lgAndDown {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
-    overflow: visible;
-    white-space: normal;
-    clip: auto;
+    border-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }
 
 @media (--extra-large-screens-and-below) {
-  .extraLargeAndDown {
-    position: static;
-    width: auto;
-    height: auto;
-    margin: 0;
+  .xlAndDown {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
     padding: 0;
-    overflow: visible;
-    white-space: normal;
-    clip: auto;
+    border-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(0, 0, 0, 0);
   }
 }

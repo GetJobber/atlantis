@@ -9,7 +9,7 @@ export interface ResponsiveSwitcherProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;
 
   /** The minimum width of the top-level children. If this can't be met, the children will break to row. */
-  readonly threshold: string;
+  readonly threshold?: string;
 
   /** The amount of space between the children. Semantic tokens are available. */
   readonly gap?: GapSpacing;
