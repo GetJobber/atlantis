@@ -17,7 +17,7 @@ export interface FormFieldWrapperProps extends FormFieldProps {
   readonly identifier: string;
   readonly descriptionIdentifier: string;
   readonly clearable: Clearable;
-  readonly onClear: () => void;
+  readonly onClear?: () => void;
   readonly showMiniLabel?: boolean;
   readonly readonly?: boolean;
 }
