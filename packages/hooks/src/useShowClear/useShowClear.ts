@@ -6,6 +6,7 @@ interface UseShowClearParameters {
   focused: boolean;
   hasValue: boolean;
   disabled?: boolean;
+  readonly?: boolean;
 }
 
 export function useShowClear({
@@ -13,6 +14,7 @@ export function useShowClear({
   multiline,
   focused,
   hasValue,
+  readonly,
   disabled = false,
 }: UseShowClearParameters): boolean | undefined {
   if (multiline && clearable !== "never") {
@@ -20,7 +22,7 @@ export function useShowClear({
   }
 
   // Do not show if there is no value
-  if (!hasValue || clearable === "never" || disabled) {
+  if (!hasValue || clearable === "never" || disabled || readonly) {
     return false;
   }
 
