@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { DayOfWeek } from "../sharedHelpers/types";
 
 export interface AtlantisContextProps {
   /**
@@ -41,7 +42,7 @@ export interface AtlantisContextProps {
    *
    * @default 0
    */
-  readonly firstDayOfWeek: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  readonly firstDayOfWeek: DayOfWeek;
 }
 
 export const atlantisContextDefaultValues: AtlantisContextProps = {

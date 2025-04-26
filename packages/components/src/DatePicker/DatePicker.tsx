@@ -10,6 +10,7 @@ import {
   DatePickerActivatorProps,
 } from "./DatePickerActivator";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
+import { DayOfWeek } from "../sharedHelpers/types";
 import { useAtlantisContext } from "../AtlantisContext";
 
 interface BaseDatePickerProps {
@@ -45,7 +46,7 @@ interface BaseDatePickerProps {
    *
    * @default 0
    */
-  readonly firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  readonly firstDayOfWeek?: DayOfWeek;
 
   /**
    * Change handler that will return the date selected.

@@ -156,7 +156,7 @@
         },
         "required": false,
         "type": {
-          "name": "0 | 1 | 2 | 3 | 4 | 5 | 6"
+          "name": "DayOfWeek"
         }
       },
       "onChange": {
