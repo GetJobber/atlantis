@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { View, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import { useHorizontalStyles } from "./ContentHorizontal.style";
 import { useVerticalStyles } from "./ContentVertical.style";
 import { useSpaceAroundStyles } from "./ContentSpaceAround.style";
@@ -11,6 +11,11 @@ export type Spacing =
   | "smaller"
   | "smallest"
   | "large";
+
+export interface ContentUnsafeStyle {
+  container?: StyleProp<ViewStyle>;
+  childWrapper?: StyleProp<ViewStyle>;
+}
 
 export interface ContentProps {
   /**
@@ -33,11 +38,9 @@ export interface ContentProps {
   /**
    * **Use at your own risk:** Custom style for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
-  readonly UNSAFE_style?: {
-    container?: ViewStyle;
-    childWrapper?: ViewStyle;
-  };
+  readonly UNSAFE_style?: ContentUnsafeStyle;
 }
 
 export function Content({

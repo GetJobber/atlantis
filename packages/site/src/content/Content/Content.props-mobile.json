@@ -63,6 +63,19 @@
         "type": {
           "name": "\"horizontal\" | \"vertical\""
         }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components-native/src/Content/Content.tsx",
+          "name": "ContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ContentUnsafeStyle"
+        }
       }
     }
   }
