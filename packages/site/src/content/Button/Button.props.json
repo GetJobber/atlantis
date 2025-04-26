@@ -6,58 +6,6 @@
     "displayName": "Button",
     "methods": [],
     "props": {
-      "url": {
-        "defaultValue": null,
-        "description": "",
-        "name": "url",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "to": {
-        "defaultValue": null,
-        "description": "",
-        "name": "to",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "LocationDescriptor<unknown> | ((location: Location<unknown>) => LocationDescriptor<unknown>)"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<...>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | ((..."
-        }
-      },
-      "onMouseDown": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onMouseDown",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "((event: MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | ((event: MouseEvent<...>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<..."
-        }
-      },
       "ariaControls": {
         "defaultValue": null,
         "description": "Used for screen readers. Will override label on screen\nreader if present.",
@@ -255,7 +203,7 @@
       },
       "role": {
         "defaultValue": null,
-        "description": "Used to override the default button role.",
+        "description": "",
         "name": "role",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
@@ -268,7 +216,7 @@
       },
       "submit": {
         "defaultValue": null,
-        "description": "Allows the button to submit a form",
+        "description": "",
         "name": "submit",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
@@ -329,6 +277,42 @@
         "required": false,
         "type": {
           "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
+        }
+      },
+      "url": {
+        "defaultValue": null,
+        "description": "",
+        "name": "url",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "to": {
+        "defaultValue": null,
+        "description": "",
+        "name": "to",
+        "required": false,
+        "type": {
+          "name": "LocationDescriptor<unknown> | ((location: Location<unknown>) => LocationDescriptor<unknown>)"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "required": false,
+        "type": {
+          "name": "((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<...>) => void)"
+        }
+      },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onMouseDown",
+        "required": false,
+        "type": {
+          "name": "((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<...>) => void)"
         }
       },
       "ref": {

@@ -220,71 +220,6 @@
     "displayName": "InputFile.Button",
     "methods": [],
     "props": {
-      "external": {
-        "defaultValue": null,
-        "description": "",
-        "name": "external",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<...>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | ((..."
-        }
-      },
-      "variation": {
-        "defaultValue": null,
-        "description": "",
-        "name": "variation",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonVariation"
-        }
-      },
-      "type": {
-        "defaultValue": null,
-        "description": "",
-        "name": "type",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonType"
-        }
-      },
-      "onMouseDown": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onMouseDown",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "((event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | ((event: MouseEvent<...>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<..."
-        }
-      },
       "ariaControls": {
         "defaultValue": null,
         "description": "Used for screen readers. Will override label on screen\nreader if present.",
@@ -328,6 +263,19 @@
         "defaultValue": null,
         "description": "",
         "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "external": {
+        "defaultValue": null,
+        "description": "",
+        "name": "external",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
           "name": "ButtonCommonProps"
@@ -443,9 +391,35 @@
           "name": "string"
         }
       },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonVariation"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonType"
+        }
+      },
       "role": {
         "defaultValue": null,
-        "description": "Used to override the default button role.",
+        "description": "",
         "name": "role",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
@@ -480,6 +454,24 @@
         "required": false,
         "type": {
           "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "required": false,
+        "type": {
+          "name": "any"
+        }
+      },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onMouseDown",
+        "required": false,
+        "type": {
+          "name": "any"
         }
       }
     }

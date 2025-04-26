@@ -417,19 +417,6 @@
           "name": "() => void"
         }
       },
-      "icon": {
-        "defaultValue": null,
-        "description": "The icon beside the label",
-        "name": "icon",
-        "parent": {
-          "fileName": "packages/components/src/DataList/DataList.types.ts",
-          "name": "DataListActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "IconNames"
-        }
-      },
       "label": {
         "defaultValue": null,
         "description": "The label of the action",
@@ -441,6 +428,19 @@
         "required": true,
         "type": {
           "name": "string | ((item: DataListObject) => string)"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "The icon beside the label",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/DataList/DataList.types.ts",
+          "name": "DataListActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
         }
       },
       "destructive": {

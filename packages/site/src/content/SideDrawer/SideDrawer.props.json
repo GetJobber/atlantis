@@ -139,12 +139,12 @@
         "description": "",
         "name": "onClick",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonButtonProps"
+          "fileName": "packages/components/src/SideDrawer/SideDrawerBackButton.tsx",
+          "name": "ButtonOnlyProps"
         },
         "required": false,
         "type": {
-          "name": "((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<HTMLAnchorElement, MouseEvent>) => void) | ((event: MouseEvent<...>) => void) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | (((event: MouseEvent<...>) => void) & ((event: MouseEvent<...>) => void)) | ((..."
+          "name": "React.MouseEventHandler<HTMLButtonElement>"
         }
       }
     }
