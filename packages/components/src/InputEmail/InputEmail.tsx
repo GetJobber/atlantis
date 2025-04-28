@@ -1,7 +1,7 @@
 import React from "react";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
-type InputEmailProps = CommonFormFieldProps &
+export type InputEmailProps = CommonFormFieldProps &
   Pick<
     FormFieldProps,
     "maxLength" | "readonly" | "validations" | "defaultValue"

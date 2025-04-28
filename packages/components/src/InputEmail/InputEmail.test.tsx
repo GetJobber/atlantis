@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { InputEmail, validationMessage } from ".";
+import { InputEmail, validationMessage } from "./InputEmail";
 
 it("shows an error message for an invalid email", async () => {
   const { getByLabelText, getByText } = render(
