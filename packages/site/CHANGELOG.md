@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.3...@jobber/atlantis-site@0.51.0) (2025-04-28)
+
+
+### Features
+
+* **components:** Add Default Activator Ref to Combobox ([#2513](https://github.com/GetJobber/atlantis/issues/2513)) ([28eba8d](https://github.com/GetJobber/atlantis/commit/28eba8d96f9f8835e27e4f21d060d45fbd2c95bc))
+
+
+
+
+
 ## [0.50.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.2...@jobber/atlantis-site@0.50.3) (2025-04-28)
 
 
