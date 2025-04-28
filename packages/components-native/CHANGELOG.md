@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.79.0...@jobber/components-native@0.80.0) (2025-04-28)
+
+
+### Features
+
+* **components-native:** Add UNSAFE_style to Content ([#2520](https://github.com/GetJobber/atlantis/issues/2520)) ([00408b2](https://github.com/GetJobber/atlantis/commit/00408b2d9a534d74cffbaf2a34d01bf887f154e7))
+
+
+
+
+
 # [0.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.78.0...@jobber/components-native@0.79.0) (2025-04-08)
 
 
