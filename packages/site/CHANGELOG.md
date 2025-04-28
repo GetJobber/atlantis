@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.51.0...@jobber/atlantis-site@0.52.0) (2025-04-28)
+
+
+### Features
+
+* **components:** Add firstDayOfWeek to DatePicker and AtlantisContext ([#2499](https://github.com/GetJobber/atlantis/issues/2499)) ([3a33836](https://github.com/GetJobber/atlantis/commit/3a3383699619e3a013f82d796bf5cb9a70355b32))
+
+
+
+
+
 # [0.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.3...@jobber/atlantis-site@0.51.0) (2025-04-28)
 
 
