@@ -1,5 +1,13 @@
 import { Clearable } from "@jobber/hooks";
-import { FormFieldProps } from "../FormField";
+import { CommonFormFieldProps, FormFieldProps } from "../FormField";
+
+export type InputEmailLegacyProps = CommonFormFieldProps &
+  Pick<
+    FormFieldProps,
+    "maxLength" | "readonly" | "validations" | "defaultValue"
+  >;
+
+export const validationMessage = "Please enter a valid email";
 
 export type InputEmailVersion = 1 | 2 | undefined;
 

@@ -1,15 +1,8 @@
 import React from "react";
-import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
+import { InputEmailLegacyProps, validationMessage } from "./InputEmail.types";
+import { FormField } from "../FormField";
 
-export type InputEmailProps = CommonFormFieldProps &
-  Pick<
-    FormFieldProps,
-    "maxLength" | "readonly" | "validations" | "defaultValue"
-  >;
-
-export const validationMessage = "Please enter a valid email";
-
-export function InputEmail(props: InputEmailProps) {
+export function InputEmail(props: InputEmailLegacyProps) {
   const { validations } = props;
 
   return (
