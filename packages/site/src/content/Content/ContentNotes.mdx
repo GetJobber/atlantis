@@ -1,0 +1,24 @@
+## Component customization
+
+### UNSAFE_style (mobile)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Content updates may lead to unintended
+breakages.
+
+The Content component has two elements that can be targeted to apply custom
+styles. These are the container and child wrapper.
+
+```tsx
+UNSAFE_style: {
+    container: {
+      paddingHorizontal: tokens["space-large"],
+    },
+    childWrapper: {
+      backgroundColor: tokens["color-surface--background"],
+    },
+  },
+```

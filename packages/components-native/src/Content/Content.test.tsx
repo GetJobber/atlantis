@@ -21,7 +21,10 @@ function getContentChildren(contentView: ReactTestInstance) {
 const text = "🌚 I am the text 🌞";
 
 function setupContent(
-  props?: Pick<ContentProps, "spacing" | "childSpacing" | "direction">,
+  props?: Pick<
+    ContentProps,
+    "spacing" | "childSpacing" | "direction" | "UNSAFE_style"
+  >,
 ) {
   const container = render(
     <View accessibilityLabel="contentView">
@@ -29,6 +32,7 @@ function setupContent(
         spacing={props?.spacing}
         childSpacing={props?.childSpacing}
         direction={props?.direction}
+        UNSAFE_style={props?.UNSAFE_style}
       >
         <Text>{text}</Text>
         <Text>{text}</Text>
@@ -265,6 +269,80 @@ describe("Horizontal", () => {
       ]);
       expect(contentChildren[1].props.style).toContainEqual(
         horizontalStyles.smallestChildSpace,
+      );
+    });
+  });
+});
+
+describe("UNSAFE_style", () => {
+  it("applies custom styles to container", () => {
+    const customStyle = {
+      backgroundColor: "red",
+      padding: 16,
+    };
+
+    const { parentView } = setupContent({
+      UNSAFE_style: {
+        container: customStyle,
+      },
+    });
+
+    const contentView = getContentComponent(parentView);
+    expect(contentView.props.style).toEqual(
+      expect.arrayContaining([expect.objectContaining(customStyle)]),
+    );
+  });
+
+  it("applies custom styles to child wrapper", () => {
+    const customStyle = {
+      backgroundColor: "blue",
+      marginLeft: 8,
+    };
+
+    const { parentView } = setupContent({
+      UNSAFE_style: {
+        childWrapper: customStyle,
+      },
+    });
+
+    const contentView = getContentComponent(parentView);
+    const contentChildren = getContentChildren(contentView);
+
+    contentChildren.forEach(child => {
+      expect(child.props.style).toEqual(
+        expect.arrayContaining([expect.objectContaining(customStyle)]),
+      );
+    });
+  });
+
+  it("applies custom styles to both container and child wrapper", () => {
+    const containerStyle = {
+      backgroundColor: "red",
+      padding: 16,
+    };
+
+    const childWrapperStyle = {
+      backgroundColor: "blue",
+      marginLeft: 8,
+    };
+
+    const { parentView } = setupContent({
+      UNSAFE_style: {
+        container: containerStyle,
+        childWrapper: childWrapperStyle,
+      },
+    });
+
+    const contentView = getContentComponent(parentView);
+    const contentChildren = getContentChildren(contentView);
+
+    expect(contentView.props.style).toEqual(
+      expect.arrayContaining([expect.objectContaining(containerStyle)]),
+    );
+
+    contentChildren.forEach(child => {
+      expect(child.props.style).toEqual(
+        expect.arrayContaining([expect.objectContaining(childWrapperStyle)]),
       );
     });
   });

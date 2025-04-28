@@ -2,8 +2,8 @@
 
 ### Custom activator
 
-If you want to use a different activator to display the `DatePicker` you can
-pass a `React` component as the `activator`. See
+If you want to use a different activator to display the DatePicker you can pass
+a `React` component as the `activator`. See
 [Custom Activator](../?path=/story/components-selections-datepicker-web--custom-activator)
 example.
 
@@ -21,6 +21,15 @@ If you need to call attention to a series of dates on the calendar, the
 additional emphasis. See the
 [Highlighted Dates](../?path=/story/components-selections-datepicker-web--restricted-date-range)
 example.
+
+### Week start
+
+The DatePicker will use the `firstDayOfWeek` value defined either in its props
+or from the AtlantisContext. If both are provided, the value passed directly to
+the DatePicker takes precedence over the context.
+
+This value should be a number between 0 and 6, where 0 is Sunday and 6 is
+Saturday.
 
 ## Developer notes
 

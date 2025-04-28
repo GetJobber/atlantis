@@ -220,6 +220,11 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/guides/figma-101",
+        handle: "Figma 101",
+        exact: true,
+      },
+      {
         path: "/guides/getting-started-with-react",
         handle: "Getting started with React",
         exact: true,

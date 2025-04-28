@@ -362,7 +362,7 @@
         },
         "required": false,
         "type": {
-          "name": "(item: T) => void"
+          "name": "(item: T, event?: MouseEvent<HTMLElement, MouseEvent>) => void"
         }
       }
     }

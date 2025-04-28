@@ -98,7 +98,10 @@ const ButtonWrapper = forwardRef<ButtonRefElement, ButtonProps>(
       > = {
         ...commonProps,
         href: !disabled ? url : undefined,
-        ...(external && { target: "_blank" }),
+        ...(external && {
+          target: "_blank",
+          rel: "noopener noreferrer",
+        }),
         ref: ref as React.ForwardedRef<HTMLAnchorElement>,
       };
 

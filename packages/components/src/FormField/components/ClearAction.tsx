@@ -6,7 +6,7 @@ interface ClearActionProps {
   /**
    * Click handler
    */
-  readonly onClick: () => void;
+  readonly onClick?: () => void;
   readonly visible?: boolean;
 }
 
