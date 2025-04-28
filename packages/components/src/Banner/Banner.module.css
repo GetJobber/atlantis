@@ -48,13 +48,9 @@
   display: flex;
   flex: 1 1 auto;
   gap: var(--space-small);
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-
-  @media (--small-screens-and-below) {
-    flex-wrap: wrap;
-  }
 }
 
 .bannerChildren {
@@ -66,18 +62,10 @@
   margin-bottom: 0;
 }
 
-.medium .bannerChildren {
-  flex: 1;
-}
-
 .bannerAction {
   display: flex;
   flex: 0 0 auto;
-
-  @media (--small-screens-and-below) {
-    width: 100%;
-    padding-left: var(--space-larger);
-  }
+  padding-left: var(--space-larger);
 }
 
 .closeButton {

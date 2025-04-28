@@ -6,10 +6,10 @@ declare const styles: {
   readonly "success": string;
   readonly "bannerChildren": string;
   readonly "bannerContent": string;
-  readonly "medium": string;
   readonly "bannerAction": string;
   readonly "closeButton": string;
   readonly "iconWrapper": string;
+  readonly "medium": string;
 };
 export = styles;
 
