@@ -68,7 +68,11 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           />
         )}
         {triggerElement || (
-          <ComboboxTrigger label={props.label} selected={props.selected} />
+          <ComboboxTrigger
+            label={props.label}
+            selected={props.selected}
+            activatorRef={props.defaultActivatorRef}
+          />
         )}
         <ComboboxContent
           multiselect={props.multiSelect}
