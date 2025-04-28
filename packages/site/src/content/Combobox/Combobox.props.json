@@ -148,7 +148,7 @@
         },
         "required": false,
         "type": {
-          "name": "RefObject<HTMLButtonElement>"
+          "name": "Ref<HTMLButtonElement>"
         }
       }
     }
