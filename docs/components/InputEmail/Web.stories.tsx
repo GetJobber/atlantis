@@ -68,7 +68,12 @@ export const VersionComparison = () => {
         <h3>{title}</h3>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
-        <InputEmail {...props} version={1} value={values[field]} />
+        <InputEmail
+          {...props}
+          version={1}
+          value={values[field]}
+          onChange={handleChange(field)}
+        />
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
         <InputEmail
