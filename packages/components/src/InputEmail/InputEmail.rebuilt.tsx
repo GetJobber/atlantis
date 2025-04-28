@@ -104,6 +104,7 @@ export const InputEmailRebuilt = forwardRef<
         onClear={handleClear}
         wrapperRef={wrapperRef}
         maxLength={maxLength}
+        disabled={props.disabled}
       >
         <input
           {...fieldProps}
