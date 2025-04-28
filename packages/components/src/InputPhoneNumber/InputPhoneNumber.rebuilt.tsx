@@ -1,9 +1,9 @@
-import React, { useId } from "react";
-import { useForm, useFormContext } from "react-hook-form";
-import { InputMask, InputMaskProps } from "./InputMask";
+import React, { useCallback, useId } from "react";
+import { InputMaskProps } from "./InputMask";
+import { useInputMask } from "./useInputMask";
+import styles from "./InputMask.module.css";
 import {
   CommonFormFieldProps,
-  FormField,
   FormFieldProps,
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -39,6 +39,7 @@ interface InputPhoneNumberRebuiltProps
 }
 
 export function InputPhoneNumberRebuilt({
+  pattern = "(***) ***-****",
   ...props
 }: InputPhoneNumberRebuiltProps) {
   const inputPhoneNumberRef = React.useRef<HTMLInputElement>(null);
@@ -54,9 +55,27 @@ export function InputPhoneNumberRebuilt({
     id: id,
   });
 
+  // Use our mask hook with memoized functions to prevent re-render cycles
+  const { formattedValue, isMasking, placeholderMask, handleInputChange } =
+    useInputMask({
+      value: props.value,
+      pattern,
+      strict: false,
+    });
+
+  // Create a stable onChange handler that won't change on every render
+  const handleMaskedChange = useCallback(
+    (value: string) => {
+      const maskedValue = handleInputChange(value);
+      props.onChange(maskedValue);
+    },
+    [handleInputChange, props.onChange],
+  );
+
+  // Use this stable onChange handler in useInputTextActions
   const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
     useInputTextActions({
-      onChange: props.onChange,
+      onChange: handleMaskedChange,
       onBlur: props.onBlur,
       onFocus: props.onFocus,
       onEnter: props.onEnter,
@@ -71,6 +90,14 @@ export function InputPhoneNumberRebuilt({
     handleFocus,
     handleKeyDown,
   });
+
+  // Create the mask element when masking is active
+  const maskElement = isMasking ? (
+    <div className={styles.mask} aria-hidden="true">
+      <span className={styles.hiddenValue}>{formattedValue}</span>
+      <span>{placeholderMask}</span>
+    </div>
+  ) : null;
 
   return (
     <FormFieldWrapper
@@ -88,7 +115,7 @@ export function InputPhoneNumberRebuilt({
       onClear={handleClear}
       type={"tel"}
       placeholder={props.placeholder}
-      value={props.value}
+      value={formattedValue}
       prefix={props.prefix}
       suffix={props.suffix}
       readonly={props.readonly}
@@ -98,9 +125,11 @@ export function InputPhoneNumberRebuilt({
         {...fieldProps}
         ref={inputPhoneNumberRef}
         className={inputStyle}
-        value={props.value}
+        style={{ backgroundColor: "transparent" }}
+        value={formattedValue}
         readOnly={props.readonly}
       />
+      {maskElement}
     </FormFieldWrapper>
   );
 }
