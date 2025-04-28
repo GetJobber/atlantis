@@ -100,11 +100,13 @@ export const InputEmailRebuilt = forwardRef<
         prefix={prefix}
         suffix={suffix}
         description={description}
-        clearable="while-editing"
+        clearable={props.clearable ?? "never"}
         onClear={handleClear}
         wrapperRef={wrapperRef}
         maxLength={maxLength}
         disabled={props.disabled}
+        type="text"
+        value={value}
       >
         <input
           {...fieldProps}

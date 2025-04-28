@@ -49,7 +49,7 @@ export interface InputEmailRebuiltProps
   ) => void;
   readonly onEnter?: FormFieldProps["onEnter"];
   readonly onBlur?: FormFieldProps["onBlur"];
-  readonly value: string;
+  readonly value?: string;
   readonly maxLength?: number;
   readonly size?: FormFieldProps["size"];
   readonly inline?: FormFieldProps["inline"];
