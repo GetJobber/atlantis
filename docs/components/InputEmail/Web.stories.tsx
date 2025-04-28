@@ -39,6 +39,7 @@ export const VersionComparison = () => {
     sizeLarge: "",
     loading: "",
     maxLength: "",
+    clearable: "",
   });
 
   const [inline, setInline] = useState(false);
@@ -191,7 +192,15 @@ export const VersionComparison = () => {
           },
           "maxLength",
         )}
-        {}
+        {renderBothVersions(
+          "Clearable",
+          {
+            placeholder: "Clearable input",
+            clearable: "always",
+            ...extraProps,
+          },
+          "clearable",
+        )}
       </div>
 
       <Grid>
