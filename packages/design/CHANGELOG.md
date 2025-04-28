@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.75.1...@jobber/design@0.76.0) (2025-04-25)
+
+
+### Features
+
+* **design:** Adding a new price tag icon ([#2522](https://github.com/GetJobber/atlantis/issues/2522)) ([b2f269f](https://github.com/GetJobber/atlantis/commit/b2f269fca1f3be72310551e813472936b74cc2ce))
+
+
+
+
+
 ## [0.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.75.0...@jobber/design@0.75.1) (2025-04-24)
 
 
