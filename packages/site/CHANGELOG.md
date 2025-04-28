@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.50.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.2...@jobber/atlantis-site@0.50.3) (2025-04-28)
+
+
+### Bug Fixes
+
+* **components:** Allow DataList.ItemActions to support onClick and url together ([#2519](https://github.com/GetJobber/atlantis/issues/2519)) ([110fb1e](https://github.com/GetJobber/atlantis/commit/110fb1ebf742099f366688fd3a7ac31a4556aa56))
+
+
+
+
+
 ## [0.50.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.1...@jobber/atlantis-site@0.50.2) (2025-04-28)
 
 **Note:** Version bump only for package @jobber/atlantis-site
