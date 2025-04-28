@@ -66,6 +66,10 @@
   display: flex;
   flex: 0 0 auto;
   padding-left: var(--space-larger);
+
+  @media (--medium-screens-and-above) {
+    padding-left: 0;
+  }
 }
 
 .closeButton {
