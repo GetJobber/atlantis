@@ -151,13 +151,14 @@ export function useInputMask({
     [formatValue, stringifiedValue],
   );
 
-  // Update masking state based on the value in an effect, not during render
+  // Update masking state based on the raw value length
   useEffect(() => {
-    setIsMasking(
-      stringifiedValue.length <
-        patternInfo.patternChars.filter(char => char === delimiter).length,
-    );
-  }, [stringifiedValue, patternInfo, delimiter]);
+    // isMasking is true if the number of raw chars is less than the max allowed
+    const maxCleanChars = patternInfo.patternChars.filter(
+      char => char === delimiter,
+    ).length;
+    setIsMasking(rawValue.length < maxCleanChars);
+  }, [rawValue, patternInfo, delimiter]); // Depend on rawValue now
 
   // Create a placeholder mask showing the unfilled portion of the pattern
   const placeholderMask = useMemo(
