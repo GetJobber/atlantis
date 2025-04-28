@@ -103,6 +103,7 @@ export const InputEmailRebuilt = forwardRef<
         clearable="while-editing"
         onClear={handleClear}
         wrapperRef={wrapperRef}
+        maxLength={maxLength}
       >
         <input
           {...fieldProps}
