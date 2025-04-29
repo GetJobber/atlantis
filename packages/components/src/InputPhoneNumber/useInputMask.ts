@@ -52,7 +52,7 @@ interface UseInputMaskResult {
 }
 
 export function useInputMask({
-  value,
+  value = "",
   pattern,
   delimiter = "*",
   strict = true,

@@ -1,5 +1,5 @@
 import React, { useCallback, useId } from "react";
-import { InputMaskProps } from "./InputMask";
+import { InputMaskProps, PhoneNumberMaskElement } from "./InputMask";
 import { useInputMask } from "./useInputMask";
 import styles from "./InputMask.module.css";
 import {
@@ -13,29 +13,6 @@ import { useInputTextFormField } from "../InputText/useInputTextFormField";
 import { useInputTextActions } from "../InputText/useInputTextActions";
 
 const DEFAULT_PATTERN = "(***) ***-****";
-
-interface PhoneNumberMaskElementProps {
-  readonly isMasking: boolean;
-  readonly formattedValue: string;
-  readonly placeholderMask: string;
-}
-
-function PhoneNumberMaskElement({
-  isMasking,
-  formattedValue,
-  placeholderMask,
-}: PhoneNumberMaskElementProps) {
-  if (!isMasking) {
-    return null;
-  }
-
-  return (
-    <div className={styles.mask} aria-hidden="true">
-      <span className={styles.hiddenValue}>{formattedValue}</span>
-      <span>{placeholderMask}</span>
-    </div>
-  );
-}
 
 interface InputPhoneNumberRebuiltProps
   extends Omit<CommonFormFieldProps, "align">,
@@ -84,7 +61,7 @@ export function InputPhoneNumberRebuilt({
     formattedValue,
     isMasking,
     placeholderMask,
-    inputValue,
+    numericValue,
     handleInputChange,
   } = useInputMask({
     value: props.value,
@@ -119,7 +96,7 @@ export function InputPhoneNumberRebuilt({
   });
 
   const cursorPosition =
-    inputValue.length === 0 && pattern[0] === "("
+    numericValue.length === 0 && pattern[0] === "("
       ? ` ${styles.cursorPosition}`
       : "";
 
