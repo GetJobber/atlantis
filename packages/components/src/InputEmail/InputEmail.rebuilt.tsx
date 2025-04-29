@@ -9,10 +9,10 @@ import {
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 
-export const InputEmailRebuilt = forwardRef<
-  HTMLInputElement,
-  InputEmailRebuiltProps
->((props, ref) => {
+export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
+  props: InputEmailRebuiltProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
   const id = useId();
   const inputRef =
     (ref as React.RefObject<HTMLInputElement>) ??
@@ -29,6 +29,7 @@ export const InputEmailRebuilt = forwardRef<
     error: props.error,
     maxLength: props.maxLength,
     disabled: props.disabled,
+    placeholder: props.placeholder,
   });
 
   const { name } = useAtlantisFormFieldName({
@@ -90,5 +91,3 @@ export const InputEmailRebuilt = forwardRef<
     </FormFieldWrapper>
   );
 });
-
-InputEmailRebuilt.displayName = "InputEmailRebuilt";
