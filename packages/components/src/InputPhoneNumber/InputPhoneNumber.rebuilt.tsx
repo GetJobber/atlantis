@@ -1,10 +1,9 @@
 import React, { useCallback, useId } from "react";
-import { InputMaskProps, PhoneNumberMaskElement } from "./InputMask";
+import { PhoneNumberMaskElement } from "./InputMask";
 import { useInputMask } from "./useInputMask";
 import styles from "./InputMask.module.css";
+import { InputPhoneNumberRebuiltProps } from "./InputPhoneNumber.types";
 import {
-  CommonFormFieldProps,
-  FormFieldProps,
   FormFieldWrapper,
   useAtlantisFormFieldName,
   useFormFieldWrapperStyles,
@@ -13,32 +12,6 @@ import { useInputTextFormField } from "../InputText/useInputTextFormField";
 import { useInputTextActions } from "../InputText/useInputTextActions";
 
 const DEFAULT_PATTERN = "(***) ***-****";
-
-interface InputPhoneNumberRebuiltProps
-  extends Omit<CommonFormFieldProps, "align">,
-    Pick<
-      FormFieldProps,
-      | "autocomplete"
-      | "onEnter"
-      | "onFocus"
-      | "onBlur"
-      | "validations"
-      | "readonly"
-      | "prefix"
-      | "suffix"
-    > {
-  readonly value: string;
-  readonly onChange: (value: string) => void;
-  readonly error?: string;
-
-  /**
-   * A pattern to specify the format to display the phone number in.
-   * For example if you want to display the format for [Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)
-   * you could set it to `** ** ** **`
-   * @default "(***) ***-****"
-   */
-  readonly pattern?: InputMaskProps["pattern"];
-}
 
 export function InputPhoneNumberRebuilt({
   pattern = DEFAULT_PATTERN,
@@ -126,7 +99,6 @@ export function InputPhoneNumberRebuilt({
         {...fieldProps}
         ref={inputPhoneNumberRef}
         className={`${inputStyle}${cursorPosition}`}
-        style={{ backgroundColor: "transparent" }}
         value={formattedValue}
         readOnly={props.readonly}
       />

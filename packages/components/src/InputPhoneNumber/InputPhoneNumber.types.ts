@@ -46,6 +46,7 @@ export interface InputPhoneNumberRebuiltProps
     > {
   readonly value: string;
   readonly onChange: (value: string) => void;
+  readonly error?: string;
 
   /**
    * A pattern to specify the format to display the phone number in.
