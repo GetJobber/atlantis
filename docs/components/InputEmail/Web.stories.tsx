@@ -46,12 +46,14 @@ export const VersionComparison = () => {
   const [invalid, setInvalid] = useState<boolean | undefined>(undefined);
   const [disabled, setDisabled] = useState(false);
   const [description, setDescription] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const extraProps = {
     invalid,
     inline,
     disabled,
     description,
+    error,
   };
 
   const handleChange = (field: keyof typeof values) => (value: string) => {
@@ -238,6 +240,12 @@ export const VersionComparison = () => {
             onClick={() => {
               setDescription(description ? "" : "This is a description");
             }}
+          />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Toggle Error"
+            onClick={() => setError(error ? "" : "This is an error message")}
           />
         </Grid.Cell>
       </Grid>
