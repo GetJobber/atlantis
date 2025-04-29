@@ -23,7 +23,7 @@ export const InputEmailRebuilt = forwardRef<
     size: props.size,
     inline: props.inline,
     align: props.align,
-    type: "text",
+    type: "email",
     value: props.value,
     invalid: props.invalid,
     error: props.error,
