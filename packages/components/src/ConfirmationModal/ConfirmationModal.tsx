@@ -146,6 +146,7 @@ export interface SimpleConfirmationModalProps
 
 export interface ComplexConfirmationModalProps
   extends BaseConfirmationModalProps {
+  readonly ref: Ref<ConfirmationModalRef>;
   readonly open?: undefined;
 }
 
