@@ -22,3 +22,7 @@
   visibility: hidden;
   opacity: 0;
 }
+
+input.emptyPhoneNumber {
+  padding-left: calc(var(--field--padding-left) + var(--space-smaller));
+}

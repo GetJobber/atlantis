@@ -113,6 +113,7 @@ export function useAtlantisFormField({
   errorMessage,
 }: useAtlantisFormFieldProps) {
   const descriptionIdentifier = `descriptionUUID--${id}`;
+  console.log("In here");
 
   const fieldProps = {
     ...useControllerField,

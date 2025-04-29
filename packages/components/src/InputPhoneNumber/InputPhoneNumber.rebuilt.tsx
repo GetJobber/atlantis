@@ -38,6 +38,7 @@ interface InputPhoneNumberRebuiltProps
   readonly pattern?: InputMaskProps["pattern"];
 }
 
+// eslint-disable-next-line max-statements
 export function InputPhoneNumberRebuilt({
   pattern = "(***) ***-****",
   ...props
@@ -55,15 +56,18 @@ export function InputPhoneNumberRebuilt({
     id: id,
   });
 
-  // Use our mask hook with memoized functions to prevent re-render cycles
-  const { formattedValue, isMasking, placeholderMask, handleInputChange } =
-    useInputMask({
-      value: props.value,
-      pattern,
-      strict: false,
-    });
+  const {
+    formattedValue,
+    isMasking,
+    placeholderMask,
+    rawValue,
+    handleInputChange,
+  } = useInputMask({
+    value: props.value,
+    pattern,
+    strict: false,
+  });
 
-  // Create a stable onChange handler that won't change on every render
   const handleMaskedChange = useCallback(
     (value: string) => {
       const maskedValue = handleInputChange(value);
@@ -72,7 +76,6 @@ export function InputPhoneNumberRebuilt({
     [handleInputChange, props.onChange],
   );
 
-  // Use this stable onChange handler in useInputTextActions
   const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
     useInputTextActions({
       onChange: handleMaskedChange,
@@ -124,7 +127,9 @@ export function InputPhoneNumberRebuilt({
         type="tel"
         {...fieldProps}
         ref={inputPhoneNumberRef}
-        className={inputStyle}
+        className={`${inputStyle}${
+          rawValue.length === 0 ? ` ${styles.emptyPhoneNumber}` : ""
+        }`}
         style={{ backgroundColor: "transparent" }}
         value={formattedValue}
         readOnly={props.readonly}

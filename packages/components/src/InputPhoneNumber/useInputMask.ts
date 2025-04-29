@@ -59,11 +59,11 @@ interface UseInputMaskResult {
   /**
    * Calculate cursor position after formatting
    */
-  getNextCursorPosition: (
-    previousPosition: number,
-    previousValue: string,
-    newValue: string,
-  ) => number;
+  // getNextCursorPosition: (
+  //   previousPosition: number,
+  //   previousValue: string,
+  //   newValue: string,
+  // ) => number;
 }
 
 /**
@@ -172,45 +172,45 @@ export function useInputMask({
   /**
    * Helper to calculate the next cursor position after formatting
    */
-  const getNextCursorPosition = useCallback(
-    (
-      previousPosition: number,
-      previousValue: string,
-      newValue: string, // eslint-disable-line @typescript-eslint/no-unused-vars
-    ): number => {
-      // Simple case: if at end, keep at end
-      if (previousPosition >= previousValue.length) {
-        // If at end, keep at end (use actual formatted value)
-        return formattedValue.length;
-      }
+  // const getNextCursorPosition = useCallback(
+  //   (
+  //     previousPosition: number,
+  //     previousValue: string,
+  //     newValue: string, // eslint-disable-line @typescript-eslint/no-unused-vars
+  //   ): number => {
+  //     // Simple case: if at end, keep at end
+  //     if (previousPosition >= previousValue.length) {
+  //       // If at end, keep at end (use actual formatted value)
+  //       return formattedValue.length;
+  //     }
 
-      // Count special chars up to cursor position in the old value
-      const specialCharsBeforeCursor = countSpecialChars(
-        previousValue.substring(0, previousPosition),
-        patternInfo.specialChars,
-      );
+  //     // Count special chars up to cursor position in the old value
+  //     const specialCharsBeforeCursor = countSpecialChars(
+  //       previousValue.substring(0, previousPosition),
+  //       patternInfo.specialChars,
+  //     );
 
-      // Count raw chars up to cursor position
-      const rawCharsBeforeCursor = previousPosition - specialCharsBeforeCursor;
+  //     // Count raw chars up to cursor position
+  //     const rawCharsBeforeCursor = previousPosition - specialCharsBeforeCursor;
 
-      // Find the position in the new value with the same number of raw chars
-      let rawCharCount = 0;
-      let newPosition = 0;
+  //     // Find the position in the new value with the same number of raw chars
+  //     let rawCharCount = 0;
+  //     let newPosition = 0;
 
-      while (
-        rawCharCount < rawCharsBeforeCursor &&
-        newPosition < formattedValue.length
-      ) {
-        if (!patternInfo.specialChars.includes(formattedValue[newPosition])) {
-          rawCharCount++;
-        }
-        newPosition++;
-      }
+  //     while (
+  //       rawCharCount < rawCharsBeforeCursor &&
+  //       newPosition < formattedValue.length
+  //     ) {
+  //       if (!patternInfo.specialChars.includes(formattedValue[newPosition])) {
+  //         rawCharCount++;
+  //       }
+  //       newPosition++;
+  //     }
 
-      return newPosition;
-    },
-    [formattedValue, patternInfo.specialChars],
-  );
+  //     return newPosition;
+  //   },
+  //   [formattedValue, patternInfo.specialChars],
+  // );
 
   return {
     formattedValue,
@@ -218,7 +218,7 @@ export function useInputMask({
     isMasking,
     handleInputChange,
     rawValue,
-    getNextCursorPosition,
+    // getNextCursorPosition,
   };
 }
 
@@ -239,6 +239,6 @@ function getMaskedValue(cleanVal: string[], specialChars: string[]) {
 /**
  * Count special characters in a string
  */
-function countSpecialChars(str: string, specialChars: string[]): number {
-  return str.split("").filter(char => specialChars.includes(char)).length;
-}
+// function countSpecialChars(str: string, specialChars: string[]): number {
+//   return str.split("").filter(char => specialChars.includes(char)).length;
+// }
