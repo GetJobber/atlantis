@@ -12,6 +12,31 @@ import {
 import { useInputTextFormField } from "../InputText/useInputTextFormField";
 import { useInputTextActions } from "../InputText/useInputTextActions";
 
+const DEFAULT_PATTERN = "(***) ***-****";
+
+interface PhoneNumberMaskElementProps {
+  readonly isMasking: boolean;
+  readonly formattedValue: string;
+  readonly placeholderMask: string;
+}
+
+function PhoneNumberMaskElement({
+  isMasking,
+  formattedValue,
+  placeholderMask,
+}: PhoneNumberMaskElementProps) {
+  if (!isMasking) {
+    return null;
+  }
+
+  return (
+    <div className={styles.mask} aria-hidden="true">
+      <span className={styles.hiddenValue}>{formattedValue}</span>
+      <span>{placeholderMask}</span>
+    </div>
+  );
+}
+
 interface InputPhoneNumberRebuiltProps
   extends Omit<CommonFormFieldProps, "align">,
     Pick<
@@ -38,9 +63,8 @@ interface InputPhoneNumberRebuiltProps
   readonly pattern?: InputMaskProps["pattern"];
 }
 
-// eslint-disable-next-line max-statements
 export function InputPhoneNumberRebuilt({
-  pattern = "(***) ***-****",
+  pattern = DEFAULT_PATTERN,
   ...props
 }: InputPhoneNumberRebuiltProps) {
   const inputPhoneNumberRef = React.useRef<HTMLInputElement>(null);
@@ -60,7 +84,7 @@ export function InputPhoneNumberRebuilt({
     formattedValue,
     isMasking,
     placeholderMask,
-    rawValue,
+    inputValue,
     handleInputChange,
   } = useInputMask({
     value: props.value,
@@ -94,13 +118,10 @@ export function InputPhoneNumberRebuilt({
     handleKeyDown,
   });
 
-  // Create the mask element when masking is active
-  const maskElement = isMasking ? (
-    <div className={styles.mask} aria-hidden="true">
-      <span className={styles.hiddenValue}>{formattedValue}</span>
-      <span>{placeholderMask}</span>
-    </div>
-  ) : null;
+  const cursorPosition =
+    inputValue.length === 0 && pattern[0] === "("
+      ? ` ${styles.cursorPosition}`
+      : "";
 
   return (
     <FormFieldWrapper
@@ -127,14 +148,16 @@ export function InputPhoneNumberRebuilt({
         type="tel"
         {...fieldProps}
         ref={inputPhoneNumberRef}
-        className={`${inputStyle}${
-          rawValue.length === 0 ? ` ${styles.emptyPhoneNumber}` : ""
-        }`}
+        className={`${inputStyle}${cursorPosition}`}
         style={{ backgroundColor: "transparent" }}
         value={formattedValue}
         readOnly={props.readonly}
       />
-      {maskElement}
+      <PhoneNumberMaskElement
+        isMasking={isMasking}
+        formattedValue={formattedValue}
+        placeholderMask={placeholderMask}
+      />
     </FormFieldWrapper>
   );
 }

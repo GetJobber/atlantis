@@ -23,6 +23,6 @@
   opacity: 0;
 }
 
-input.emptyPhoneNumber {
+input.cursorPosition {
   padding-left: calc(var(--field--padding-left) + var(--space-smaller));
 }

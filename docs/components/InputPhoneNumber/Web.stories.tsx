@@ -43,4 +43,5 @@ InitialValue.args = {
 export const Version2 = BasicTemplate.bind({});
 Version2.args = {
   version: 2,
+  placeholder: "Enter your phone number",
 };
