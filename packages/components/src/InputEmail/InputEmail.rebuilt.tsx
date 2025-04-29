@@ -41,7 +41,9 @@ export const InputEmailRebuilt = forwardRef<
     ref,
   ) => {
     const id = useId();
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef =
+      (ref as React.RefObject<HTMLInputElement>) ??
+      useRef<HTMLInputElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     const { inputStyle } = useFormFieldWrapperStyles({
@@ -110,7 +112,7 @@ export const InputEmailRebuilt = forwardRef<
       >
         <input
           {...fieldProps}
-          ref={ref || inputRef}
+          ref={inputRef}
           type="email"
           className={inputStyle}
           value={value}

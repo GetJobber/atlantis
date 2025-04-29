@@ -60,10 +60,3 @@ export interface InputEmailRebuiltProps
   readonly suffix?: FormFieldProps["suffix"];
   readonly description?: FormFieldProps["description"];
 }
-
-export interface InputEmailRef {
-  insert(text: string): void;
-  blur(): void;
-  focus(): void;
-  scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
-}
