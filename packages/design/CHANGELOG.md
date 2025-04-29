@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.0...@jobber/design@0.76.1) (2025-04-29)
+
+
+### Bug Fixes
+
+* **design:** Updating priceTag icon to meet jobber design standards ([#2526](https://github.com/GetJobber/atlantis/issues/2526)) ([4c7717d](https://github.com/GetJobber/atlantis/commit/4c7717d0215bc216e077bbb9224049192222ba56))
+
+
+
+
+
 # [0.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.75.1...@jobber/design@0.76.0) (2025-04-25)
 
 
