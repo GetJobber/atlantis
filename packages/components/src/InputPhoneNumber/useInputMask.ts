@@ -22,6 +22,11 @@ interface UseInputMaskParams {
    * @default true
    */
   strict?: boolean;
+
+  /**
+   * Callback function to be called with the masked value on change.
+   */
+  onChange?: (maskedValue: string) => void;
 }
 
 interface UseInputMaskResult {
@@ -41,14 +46,14 @@ interface UseInputMaskResult {
   isMasking: boolean;
 
   /**
-   * Handler for input change events that formats the input
+   * Handler for input change events that formats the input and calls the onChange prop
    */
-  handleInputChange: (newValue: string) => string;
+  maskedOnChange: (newValue: string) => void;
 
   /**
-   * Raw value without formatting characters
+   * Raw input value from the user without formatting characters
    */
-  numericValue: string;
+  inputValue: string;
 }
 
 export function useInputMask({
@@ -56,6 +61,7 @@ export function useInputMask({
   pattern,
   delimiter = "*",
   strict = true,
+  onChange,
 }: UseInputMaskParams): UseInputMaskResult {
   const [isMasking, setIsMasking] = useState(!value);
 
@@ -73,7 +79,7 @@ export function useInputMask({
     };
   }, [pattern, delimiter]);
 
-  const numericValue = useMemo(() => {
+  const inputValue = useMemo(() => {
     return value
       .split("")
       .filter(char => !patternInfo.specialChars.includes(char))
@@ -81,10 +87,10 @@ export function useInputMask({
   }, [value, patternInfo.specialChars]);
 
   const formatValue = useCallback(
-    (inputValue: string): string => {
+    (unformattedValue: string): string => {
       const { patternChars, specialChars, maxCleanChars } = patternInfo;
 
-      const cleanValueChars = inputValue
+      const cleanValueChars = unformattedValue
         .split("")
         .filter(char => !specialChars.includes(char));
 
@@ -104,11 +110,12 @@ export function useInputMask({
     [patternInfo, strict],
   );
 
-  const handleInputChange = useCallback(
-    (newValue: string): string => {
-      return formatValue(newValue);
+  const maskedOnChange = useCallback(
+    (newValue: string): void => {
+      const formatted = formatValue(newValue);
+      onChange?.(formatted);
     },
-    [formatValue],
+    [formatValue, onChange],
   );
 
   const formattedValue = useMemo(
@@ -120,8 +127,8 @@ export function useInputMask({
     const maxCleanChars = patternInfo.patternChars.filter(
       char => char === delimiter,
     ).length;
-    setIsMasking(numericValue.length < maxCleanChars);
-  }, [numericValue, patternInfo, delimiter]);
+    setIsMasking(inputValue.length < maxCleanChars);
+  }, [inputValue, patternInfo, delimiter]);
 
   const placeholderMask = useMemo(
     () =>
@@ -135,8 +142,8 @@ export function useInputMask({
     formattedValue,
     placeholderMask,
     isMasking,
-    handleInputChange,
-    numericValue,
+    maskedOnChange,
+    inputValue,
   };
 }
 

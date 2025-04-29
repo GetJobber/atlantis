@@ -1,5 +1,6 @@
-import React, { useCallback, useId } from "react";
-import { PhoneNumberMaskElement } from "./InputMask";
+import React, { useId } from "react";
+import classNames from "classnames";
+import { MaskElement } from "./InputMask";
 import { useInputMask } from "./useInputMask";
 import styles from "./InputMask.module.css";
 import { InputPhoneNumberRebuiltProps } from "./InputPhoneNumber.types";
@@ -34,25 +35,18 @@ export function InputPhoneNumberRebuilt({
     formattedValue,
     isMasking,
     placeholderMask,
-    numericValue,
-    handleInputChange,
+    inputValue,
+    maskedOnChange,
   } = useInputMask({
     value: props.value,
     pattern,
     strict: false,
+    onChange: props.onChange,
   });
-
-  const handleMaskedChange = useCallback(
-    (value: string) => {
-      const maskedValue = handleInputChange(value);
-      props.onChange(maskedValue);
-    },
-    [handleInputChange, props.onChange],
-  );
 
   const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
     useInputTextActions({
-      onChange: handleMaskedChange,
+      onChange: maskedOnChange,
       onBlur: props.onBlur,
       onFocus: props.onFocus,
       onEnter: props.onEnter,
@@ -69,7 +63,7 @@ export function InputPhoneNumberRebuilt({
   });
 
   const cursorPosition =
-    numericValue.length === 0 && pattern[0] === "("
+    inputValue.length === 0 && pattern[0] === "("
       ? ` ${styles.cursorPosition}`
       : "";
 
@@ -98,11 +92,11 @@ export function InputPhoneNumberRebuilt({
         type="tel"
         {...fieldProps}
         ref={inputPhoneNumberRef}
-        className={`${inputStyle}${cursorPosition}`}
+        className={classNames(inputStyle, cursorPosition)}
         value={formattedValue}
         readOnly={props.readonly}
       />
-      <PhoneNumberMaskElement
+      <MaskElement
         isMasking={isMasking}
         formattedValue={formattedValue}
         placeholderMask={placeholderMask}

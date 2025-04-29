@@ -3,6 +3,29 @@ import styles from "./InputMask.module.css";
 import { useInputMask } from "./useInputMask";
 import { FormFieldProps } from "../FormField";
 
+interface MaskElementProps {
+  readonly isMasking: boolean;
+  readonly formattedValue: string;
+  readonly placeholderMask: string;
+}
+
+export function MaskElement({
+  isMasking,
+  formattedValue,
+  placeholderMask,
+}: MaskElementProps) {
+  if (!isMasking) {
+    return null;
+  }
+
+  return (
+    <div className={styles.mask} aria-hidden="true">
+      <span className={styles.hiddenValue}>{formattedValue}</span>
+      <span>{placeholderMask}</span>
+    </div>
+  );
+}
+
 export interface InputMaskProps {
   /**
    * A string pattern to mask the value. For example:
@@ -42,29 +65,6 @@ export interface InputMaskProps {
   readonly children: ReactElement<FormFieldProps>;
 }
 
-interface PhoneNumberMaskElementProps {
-  readonly isMasking: boolean;
-  readonly formattedValue: string;
-  readonly placeholderMask: string;
-}
-
-export function PhoneNumberMaskElement({
-  isMasking,
-  formattedValue,
-  placeholderMask,
-}: PhoneNumberMaskElementProps) {
-  if (!isMasking) {
-    return null;
-  }
-
-  return (
-    <div className={styles.mask} aria-hidden="true">
-      <span className={styles.hiddenValue}>{formattedValue}</span>
-      <span>{placeholderMask}</span>
-    </div>
-  );
-}
-
 export function InputMask({
   children,
   delimiter = "*",
@@ -72,20 +72,17 @@ export function InputMask({
   strict = true,
 }: InputMaskProps) {
   const { value: inputValue, onChange } = children.props;
-  const {
-    placeholderMask,
-    isMasking,
-    formattedValue,
-    handleInputChange: formatValue,
-  } = useInputMask({
-    value: String(inputValue || ""),
-    pattern,
-    delimiter,
-    strict,
-  });
+  const { placeholderMask, isMasking, formattedValue, maskedOnChange } =
+    useInputMask({
+      value: String(inputValue || ""),
+      pattern,
+      delimiter,
+      strict,
+      onChange: onChange,
+    });
 
   const inputMask = (
-    <PhoneNumberMaskElement
+    <MaskElement
       isMasking={isMasking}
       formattedValue={formattedValue}
       placeholderMask={placeholderMask}
@@ -93,11 +90,7 @@ export function InputMask({
   );
 
   return cloneElement(children, {
-    onChange: handleChange,
+    onChange: maskedOnChange,
     children: inputMask,
   });
-
-  function handleChange(value: string): void {
-    onChange?.(formatValue(value));
-  }
 }
