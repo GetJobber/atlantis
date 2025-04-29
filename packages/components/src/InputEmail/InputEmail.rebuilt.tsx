@@ -66,8 +66,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       size={props.size}
       inline={props.inline}
       align={props.align}
-      toolbar={props.toolbar}
-      toolbarVisibility={props.toolbarVisibility}
       prefix={props.prefix}
       suffix={props.suffix}
       description={props.description}
@@ -85,6 +83,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         type="email"
         className={inputStyle}
         value={props.value}
+        data-testid="ATL-InputEmail-input"
       />
       <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
       {props.children}

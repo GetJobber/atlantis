@@ -28,6 +28,8 @@ export interface InputEmailRebuiltProps
     | "max"
     | "min"
     | "defaultValue"
+    | "toolbar"
+    | "toolbarVisibility"
   > {
   readonly error?: string;
   readonly invalid?: boolean;
@@ -54,8 +56,6 @@ export interface InputEmailRebuiltProps
   readonly size?: FormFieldProps["size"];
   readonly inline?: FormFieldProps["inline"];
   readonly align?: FormFieldProps["align"];
-  readonly toolbar?: FormFieldProps["toolbar"];
-  readonly toolbarVisibility?: FormFieldProps["toolbarVisibility"];
   readonly prefix?: FormFieldProps["prefix"];
   readonly suffix?: FormFieldProps["suffix"];
   readonly description?: FormFieldProps["description"];

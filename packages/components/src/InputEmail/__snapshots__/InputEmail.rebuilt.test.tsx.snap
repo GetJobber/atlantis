@@ -21,6 +21,7 @@ exports[`InputEmailRebuilt renders a basic InputEmailRebuilt 1`] = `
           >
             <input
               class="input"
+              data-testid="ATL-InputEmail-input"
               id=":r0:"
               name="generatedName--:r0:"
               type="email"
@@ -56,6 +57,7 @@ exports[`InputEmailRebuilt renders correctly as large 1`] = `
           >
             <input
               class="input"
+              data-testid="ATL-InputEmail-input"
               id=":r3:"
               name="generatedName--:r3:"
               type="email"
@@ -91,6 +93,7 @@ exports[`InputEmailRebuilt renders correctly as small 1`] = `
           >
             <input
               class="input"
+              data-testid="ATL-InputEmail-input"
               id=":r2:"
               name="generatedName--:r2:"
               type="email"
@@ -126,6 +129,7 @@ exports[`InputEmailRebuilt renders correctly when disabled 1`] = `
           >
             <input
               class="input"
+              data-testid="ATL-InputEmail-input"
               disabled=""
               id=":r4:"
               name="generatedName--:r4:"
@@ -162,6 +166,7 @@ exports[`InputEmailRebuilt renders correctly when invalid 1`] = `
           >
             <input
               class="input"
+              data-testid="ATL-InputEmail-input"
               id=":r5:"
               invalid="true"
               name="generatedName--:r5:"
@@ -198,6 +203,7 @@ exports[`InputEmailRebuilt renders correctly with placeholder 1`] = `
           >
             <input
               class="input"
+              data-testid="ATL-InputEmail-input"
               id=":r1:"
               name="generatedName--:r1:"
               placeholder="Enter email"
