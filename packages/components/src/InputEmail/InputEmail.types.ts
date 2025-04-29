@@ -28,8 +28,6 @@ export interface InputEmailRebuiltProps
     | "max"
     | "min"
     | "defaultValue"
-    | "toolbar"
-    | "toolbarVisibility"
   > {
   readonly error?: string;
   readonly invalid?: boolean;
