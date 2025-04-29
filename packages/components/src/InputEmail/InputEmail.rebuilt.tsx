@@ -12,119 +12,83 @@ import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 export const InputEmailRebuilt = forwardRef<
   HTMLInputElement,
   InputEmailRebuiltProps
->(
-  (
-    {
-      error,
-      invalid,
-      identifier,
-      autocomplete,
-      loading,
-      onKeyDown,
-      children,
-      onChange,
-      onEnter,
-      onBlur,
-      onFocus,
-      value,
-      maxLength,
-      size,
-      inline,
-      align,
-      toolbar,
-      toolbarVisibility,
-      prefix,
-      suffix,
-      description,
-      ...props
-    },
-    ref,
-  ) => {
-    const id = useId();
-    const inputRef =
-      (ref as React.RefObject<HTMLInputElement>) ??
-      useRef<HTMLInputElement>(null);
-    const wrapperRef = useRef<HTMLDivElement>(null);
+>((props, ref) => {
+  const id = useId();
+  const inputRef =
+    (ref as React.RefObject<HTMLInputElement>) ??
+    useRef<HTMLInputElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const { inputStyle } = useFormFieldWrapperStyles({
-      size,
-      inline,
-      align,
-      type: "text",
-      value,
-      invalid,
-      error,
-      maxLength,
-      disabled: props.disabled,
-    });
+  const { inputStyle } = useFormFieldWrapperStyles({
+    size: props.size,
+    inline: props.inline,
+    align: props.align,
+    type: "text",
+    value: props.value,
+    invalid: props.invalid,
+    error: props.error,
+    maxLength: props.maxLength,
+    disabled: props.disabled,
+  });
 
-    const { name } = useAtlantisFormFieldName({
-      nameProp: props.name,
-      id,
-    });
+  const { name } = useAtlantisFormFieldName({
+    nameProp: props.name,
+    id,
+  });
 
-    const {
-      handleChange,
-      handleBlur,
-      handleFocus,
-      handleKeyDown,
-      handleClear,
-    } = useInputEmailActions({
-      onChange,
-      onBlur,
-      onFocus,
-      onKeyDown,
-      onEnter,
+  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
+    useInputEmailActions({
+      onChange: props.onChange,
+      onBlur: props.onBlur,
+      onFocus: props.onFocus,
+      onKeyDown: props.onKeyDown,
+      onEnter: props.onEnter,
       inputRef,
     });
 
-    const { fieldProps, descriptionIdentifier } = useInputEmailFormField({
-      ...props,
-      id,
-      name,
-      handleChange,
-      handleBlur,
-      handleFocus,
-      handleKeyDown,
-    });
+  const { fieldProps, descriptionIdentifier } = useInputEmailFormField({
+    ...props,
+    id,
+    name,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    handleKeyDown,
+  });
 
-    return (
-      <FormFieldWrapper
-        error={error || ""}
-        invalid={invalid}
-        identifier={identifier || id}
-        descriptionIdentifier={descriptionIdentifier}
-        size={size}
-        inline={inline}
-        align={align}
-        toolbar={toolbar}
-        toolbarVisibility={toolbarVisibility}
-        prefix={prefix}
-        suffix={suffix}
-        description={description}
-        clearable={props.clearable ?? "never"}
-        onClear={handleClear}
-        wrapperRef={wrapperRef}
-        maxLength={maxLength}
-        disabled={props.disabled}
-        type="text"
-        value={value}
-      >
-        <input
-          {...fieldProps}
-          ref={inputRef}
-          type="email"
-          className={inputStyle}
-          value={value}
-          autoComplete={autocomplete === true ? "email" : autocomplete || "off"}
-          aria-invalid={invalid}
-          aria-describedby={error ? `${identifier || id}-error` : undefined}
-        />
-        <FormFieldPostFix variation="spinner" visible={loading ?? false} />
-        {children}
-      </FormFieldWrapper>
-    );
-  },
-);
+  return (
+    <FormFieldWrapper
+      error={props.error || ""}
+      invalid={props.invalid}
+      identifier={props.identifier || id}
+      descriptionIdentifier={descriptionIdentifier}
+      size={props.size}
+      inline={props.inline}
+      align={props.align}
+      toolbar={props.toolbar}
+      toolbarVisibility={props.toolbarVisibility}
+      prefix={props.prefix}
+      suffix={props.suffix}
+      description={props.description}
+      clearable={props.clearable ?? "never"}
+      onClear={handleClear}
+      wrapperRef={wrapperRef}
+      maxLength={props.maxLength}
+      disabled={props.disabled}
+      type="email"
+      value={props.value}
+    >
+      <input
+        {...fieldProps}
+        ref={inputRef}
+        type="email"
+        className={inputStyle}
+        value={props.value}
+      />
+      <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
+      {props.children}
+    </FormFieldWrapper>
+  );
+});
 
 InputEmailRebuilt.displayName = "InputEmailRebuilt";
