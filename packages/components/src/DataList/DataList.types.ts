@@ -310,7 +310,7 @@ interface BaseDataListItemActionsProps<T extends DataListObject> {
   /**
    * Callback when an item is clicked.
    */
-  readonly onClick?: (item: T) => void;
+  readonly onClick?: (item: T, event?: React.MouseEvent<HTMLElement>) => void;
 }
 
 export interface DataListBulkActionsProps {

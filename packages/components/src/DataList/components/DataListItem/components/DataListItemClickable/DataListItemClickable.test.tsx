@@ -61,7 +61,13 @@ describe("DataListItemClickable", () => {
 
     await userEvent.click(target);
     expect(handleClick).toHaveBeenCalledTimes(1);
-    expect(handleClick).toHaveBeenCalledWith(expectedItem);
+    expect(handleClick).toHaveBeenCalledWith(
+      expectedItem,
+      expect.objectContaining({
+        type: "click",
+        preventDefault: expect.any(Function),
+      }),
+    );
   });
 
   it("should fire the `onClick` when pressing space or enter", () => {
@@ -75,11 +81,11 @@ describe("DataListItemClickable", () => {
 
     fireEvent.keyDown(target, { key: "Enter" });
     expect(handleClick).toHaveBeenCalledTimes(1);
-    expect(handleClick).toHaveBeenCalledWith(expectedItem);
+    expect(handleClick).toHaveBeenCalledWith(expectedItem, undefined);
 
     fireEvent.keyDown(target, { key: " " });
     expect(handleClick).toHaveBeenCalledTimes(2);
-    expect(handleClick).toHaveBeenCalledWith(expectedItem);
+    expect(handleClick).toHaveBeenCalledWith(expectedItem, undefined);
   });
 
   describe("URL prop", () => {
@@ -121,7 +127,13 @@ describe("DataListItemClickable", () => {
 
       await userEvent.click(target);
       expect(handleClick).toHaveBeenCalledTimes(1);
-      expect(handleClick).toHaveBeenCalledWith(expectedItem);
+      expect(handleClick).toHaveBeenCalledWith(
+        expectedItem,
+        expect.objectContaining({
+          type: "click",
+          preventDefault: expect.any(Function),
+        }),
+      );
     });
   });
 
@@ -164,7 +176,13 @@ describe("DataListItemClickable", () => {
 
       await userEvent.click(target);
       expect(handleClick).toHaveBeenCalledTimes(1);
-      expect(handleClick).toHaveBeenCalledWith(expectedItem);
+      expect(handleClick).toHaveBeenCalledWith(
+        expectedItem,
+        expect.objectContaining({
+          type: "click",
+          preventDefault: expect.any(Function),
+        }),
+      );
     });
   });
 });
