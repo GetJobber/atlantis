@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.53.0...@jobber/atlantis-site@0.54.0) (2025-04-30)
+
+
+### Bug Fixes
+
+* **components-native:** Adjusting Type mismatch in ThumbnailList ([#2523](https://github.com/GetJobber/atlantis/issues/2523)) ([d340a9e](https://github.com/GetJobber/atlantis/commit/d340a9eb3c2fbd7ff2d26934491ed59dfc3e2cbb))
+
+
+### Features
+
+* **docx:** Fixing "Show Code" examples with the weird numbers and dollar signs and such. ([#2521](https://github.com/GetJobber/atlantis/issues/2521)) ([dacdd56](https://github.com/GetJobber/atlantis/commit/dacdd5685bc05c5275d581b453c09f2973e40ef2))
+
+
+
+
+
 # [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.52.0...@jobber/atlantis-site@0.53.0) (2025-04-28)
 
 
