@@ -11,7 +11,7 @@ exports[`renders a Switch with defaultValue false 1`] = `
   }
   collapsable={false}
   disabled={false}
-  handlerTag={4}
+  handlerTag={-1}
   handlerType="NativeViewGestureHandler"
   onChange={[Function]}
   onGestureHandlerEvent={[Function]}
@@ -47,7 +47,7 @@ exports[`renders a Switch with defaultValue true 1`] = `
   }
   collapsable={false}
   disabled={false}
-  handlerTag={2}
+  handlerTag={-1}
   handlerType="NativeViewGestureHandler"
   onChange={[Function]}
   onGestureHandlerEvent={[Function]}
@@ -83,7 +83,7 @@ exports[`renders a Switch with value false 1`] = `
   }
   collapsable={false}
   disabled={false}
-  handlerTag={3}
+  handlerTag={-1}
   handlerType="NativeViewGestureHandler"
   onChange={[Function]}
   onGestureHandlerEvent={[Function]}
@@ -119,7 +119,7 @@ exports[`renders a Switch with value true 1`] = `
   }
   collapsable={false}
   disabled={false}
-  handlerTag={1}
+  handlerTag={-1}
   handlerType="NativeViewGestureHandler"
   onChange={[Function]}
   onGestureHandlerEvent={[Function]}
@@ -155,7 +155,7 @@ exports[`renders a disabled Switch with value false 1`] = `
   }
   collapsable={false}
   disabled={true}
-  handlerTag={6}
+  handlerTag={-1}
   handlerType="NativeViewGestureHandler"
   onChange={[Function]}
   onGestureHandlerEvent={[Function]}
@@ -191,7 +191,7 @@ exports[`renders a disabled Switch with value true 1`] = `
   }
   collapsable={false}
   disabled={true}
-  handlerTag={5}
+  handlerTag={-1}
   handlerType="NativeViewGestureHandler"
   onChange={[Function]}
   onGestureHandlerEvent={[Function]}
