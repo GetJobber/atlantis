@@ -196,7 +196,7 @@ export const routes: Array<AtlantisRoute> = [
     children: [
       {
         path: "/guides/atlantis-overview",
-        handle: "Atlantis Overview",
+        handle: "Atlantis overview",
         exact: true,
       },
       {
