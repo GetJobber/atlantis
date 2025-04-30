@@ -55,7 +55,7 @@
           "fileName": "packages/components-native/src/ThumbnailList/types.ts",
           "name": "ThumbnailListProps"
         },
-        "required": true,
+        "required": false,
         "type": {
           "name": "CreateThumbnail"
         }
