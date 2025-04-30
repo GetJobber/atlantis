@@ -58,8 +58,8 @@ export const guidesContentMap: ContentMapItems = {
     content: () => <PullRequestTitleGeneratorComponent />,
   },
   "page-layouts": {
-    intro: "Page Layouts",
-    title: "Page Layouts",
+    intro: "Page layouts",
+    title: "Page layouts",
     content: () => <PageLayoutsComponent />,
   },
   scaffolding: {

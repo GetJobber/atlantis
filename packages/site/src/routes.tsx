@@ -241,7 +241,7 @@ export const routes: Array<AtlantisRoute> = [
       },
       {
         path: "/guides/page-layouts",
-        handle: "Page Layouts",
+        handle: "Page layouts",
         exact: true,
       },
       {
