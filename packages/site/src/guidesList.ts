@@ -3,6 +3,7 @@ export const guidesList = [
     title: "Atlantis overview",
     to: "/guides/atlantis-overview",
     sections: ["Getting started"],
+    imageURL: "/Overview.png",
   },
   {
     title: "Create a React component",
@@ -29,6 +30,7 @@ export const guidesList = [
     title: "Figma 101",
     to: "/guides/figma-101",
     sections: ["Getting started"],
+    imageURL: "/Figma.png",
   },
   {
     title: "Frontend styleguide",
@@ -39,6 +41,7 @@ export const guidesList = [
     title: "Getting started with React",
     to: "/guides/getting-started-with-react",
     sections: ["Getting started"],
+    imageURL: "/React.png",
   },
   {
     title: "Pull request title generator",
