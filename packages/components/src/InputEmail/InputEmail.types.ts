@@ -20,7 +20,6 @@ export interface InputEmailRebuiltProps
     React.InputHTMLAttributes<HTMLInputElement>,
     | "onChange"
     | "onBlur"
-    | "maxLength"
     | "size"
     | "suffix"
     | "prefix"
@@ -50,7 +49,6 @@ export interface InputEmailRebuiltProps
   readonly onEnter?: FormFieldProps["onEnter"];
   readonly onBlur?: FormFieldProps["onBlur"];
   readonly value?: string;
-  readonly maxLength?: number;
   readonly size?: FormFieldProps["size"];
   readonly inline?: FormFieldProps["inline"];
   readonly align?: FormFieldProps["align"];
