@@ -40,6 +40,7 @@ export const VersionComparison = () => {
     loading: "",
     maxLength: "",
     clearable: "",
+    readonly: "",
   });
 
   const [inline, setInline] = useState(false);
@@ -207,6 +208,18 @@ export const VersionComparison = () => {
             ...extraProps,
           },
           "clearable",
+        )}
+        {renderBothVersions(
+          "Readonly",
+          {
+            placeholder: "Readonly",
+            ...extraProps,
+            // For version 1
+            readonly: true,
+            // For version 2
+            readOnly: true,
+          },
+          "readonly",
         )}
       </div>
 
