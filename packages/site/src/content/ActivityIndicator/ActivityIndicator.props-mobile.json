@@ -81,7 +81,7 @@
         },
         "required": false,
         "type": {
-          "name": "Insets"
+          "name": "number | Insets"
         }
       },
       "id": {
@@ -95,6 +95,19 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "needsOffscreenAlphaCompositing": {
+        "defaultValue": null,
+        "description": "Whether this view needs to rendered offscreen and composited with an alpha in order to preserve 100% correct colors and blending behavior.\nThe default (false) falls back to drawing the component and its children\nwith an alpha applied to the paint used to draw each element instead of rendering the full component offscreen and compositing it back with an alpha value.\nThis default may be noticeable and undesired in the case where the View you are setting an opacity on\nhas multiple overlapping elements (e.g. multiple overlapping Views, or text and a background).\n\nRendering offscreen to preserve correct alpha behavior is extremely expensive\nand hard to debug for non-native developers, which is why it is not turned on by default.\nIf you do need to enable this property for an animation,\nconsider combining it with renderToHardwareTextureAndroid if the view contents are static (i.e. it doesn't need to be redrawn each frame).\nIf that property is enabled, this View will be rendered off-screen once,\nsaved in a hardware texture, and then composited onto the screen with an alpha each frame without having to switch rendering targets on the GPU.",
+        "name": "needsOffscreenAlphaCompositing",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "onLayout": {
@@ -175,19 +188,6 @@
           "name": "boolean"
         }
       },
-      "needsOffscreenAlphaCompositing": {
-        "defaultValue": null,
-        "description": "Whether this view needs to rendered offscreen and composited with an alpha in order to preserve 100% correct colors and blending behavior.\nThe default (false) falls back to drawing the component and its children\nwith an alpha applied to the paint used to draw each element instead of rendering the full component offscreen and compositing it back with an alpha value.\nThis default may be noticeable and undesired in the case where the View you are setting an opacity on\nhas multiple overlapping elements (e.g. multiple overlapping Views, or text and a background).\n\nRendering offscreen to preserve correct alpha behavior is extremely expensive\nand hard to debug for non-native developers, which is why it is not turned on by default.\nIf you do need to enable this property for an animation,\nconsider combining it with renderToHardwareTextureAndroid if the view contents are static (i.e. it doesn't need to be redrawn each frame).\nIf that property is enabled, this View will be rendered off-screen once,\nsaved in a hardware texture, and then composited onto the screen with an alpha each frame without having to switch rendering targets on the GPU.",
-        "name": "needsOffscreenAlphaCompositing",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "renderToHardwareTextureAndroid": {
         "defaultValue": null,
         "description": "Whether this view should render itself (and all of its children) into a single hardware texture on the GPU.\n\nOn Android, this is useful for animations and interactions that only modify opacity, rotation, translation, and/or scale:\nin those cases, the view doesn't have to be redrawn and display lists don't need to be re-executed. The texture can just be\nre-used and re-composited with different parameters. The downside is that this can use up limited video memory, so this prop should be set back to false at the end of the interaction/animation.",
@@ -212,6 +212,19 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "tabIndex": {
+        "defaultValue": null,
+        "description": "Indicates whether this `View` should be focusable with a non-touch input device, eg. receive focus with a hardware keyboard.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex\nfor more details.\n\nSupports the following values:\n-  0 (View is focusable)\n- -1 (View is not focusable)",
+        "name": "tabIndex",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "0 | -1"
         }
       },
       "shouldRasterizeIOS": {
@@ -838,19 +851,6 @@
           "name": "boolean"
         }
       },
-      "aria-labelledby": {
-        "defaultValue": null,
-        "description": "Represents the nativeID of the associated label text. When the assistive technology focuses on the component with this props, the text is read aloud.\n@platform android",
-        "name": "aria-labelledby",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "accessibilityHint": {
         "defaultValue": null,
         "description": "An accessibility hint helps users understand what will happen when they perform an action on the accessibility element when that result is not obvious from the accessibility label.",
@@ -968,19 +968,6 @@
           "name": "boolean"
         }
       },
-      "aria-live": {
-        "defaultValue": null,
-        "description": "",
-        "name": "aria-live",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"polite\" | \"assertive\" | \"off\""
-        }
-      },
       "aria-modal": {
         "defaultValue": null,
         "description": "",
@@ -1007,9 +994,35 @@
           "name": "Role"
         }
       },
+      "accessibilityLabelledBy": {
+        "defaultValue": null,
+        "description": "Identifies the element that labels the element it is applied to. When the assistive technology focuses on the component with this props,\nthe text is read aloud. The value should should match the nativeID of the related element.\n@platform android",
+        "name": "accessibilityLabelledBy",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "string | string[]"
+        }
+      },
+      "aria-labelledby": {
+        "defaultValue": null,
+        "description": "Identifies the element that labels the element it is applied to. When the assistive technology focuses on the component with this props,\nthe text is read aloud. The value should should match the nativeID of the related element.\n@platform android",
+        "name": "aria-labelledby",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "accessibilityLiveRegion": {
         "defaultValue": null,
-        "description": "Indicates to accessibility services whether the user should be notified when this view changes.\nWorks for Android API >= 19 only.\nSee http://developer.android.com/reference/android/view/View.html#attr_android:accessibilityLiveRegion for references.\n@platform android",
+        "description": "Indicates to accessibility services whether the user should be notified\nwhen this view changes. Works for Android API >= 19 only.\n@platform android\n\nSee https://reactnative.dev/docs/view#accessibilityliveregion",
         "name": "accessibilityLiveRegion",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
@@ -1020,17 +1033,17 @@
           "name": "\"none\" | \"polite\" | \"assertive\""
         }
       },
-      "accessibilityLabelledBy": {
+      "aria-live": {
         "defaultValue": null,
-        "description": "A reference to another element `nativeID` used to build complex forms. The value of `accessibilityLabelledBy` should match the `nativeID` of the related element.\n@platform android",
-        "name": "accessibilityLabelledBy",
+        "description": "Indicates to accessibility services whether the user should be notified\nwhen this view changes. Works for Android API >= 19 only.\n@platform android\n\nSee https://reactnative.dev/docs/view#accessibilityliveregion",
+        "name": "aria-live",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
           "name": "AccessibilityPropsAndroid"
         },
         "required": false,
         "type": {
-          "name": "string | string[]"
+          "name": "\"polite\" | \"assertive\" | \"off\""
         }
       },
       "accessibilityElementsHidden": {
