@@ -1,6 +1,6 @@
 export const guidesList = [
   {
-    title: "Atlantis Overview",
+    title: "Atlantis overview",
     to: "/guides/atlantis-overview",
     sections: ["Getting started"],
   },
