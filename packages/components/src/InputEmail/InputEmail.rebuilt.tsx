@@ -81,7 +81,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         {...fieldProps}
         ref={inputRef}
         type="email"
-        inputMode="email"
         className={inputStyle}
         value={props.value}
         data-testid="ATL-InputEmail-input"
