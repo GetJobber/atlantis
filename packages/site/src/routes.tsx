@@ -195,6 +195,11 @@ export const routes: Array<AtlantisRoute> = [
     component: GuidesPage,
     children: [
       {
+        path: "/guides/atlantis-overview",
+        handle: "Atlantis Overview",
+        exact: true,
+      },
+      {
         path: "/guides/create-a-react-component",
         handle: "Create a React component",
         exact: true,

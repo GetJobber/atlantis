@@ -1,5 +1,9 @@
 export const guidesList = [
   {
+    title: "Atlantis Overview",
+    to: "/guides/atlantis-overview",
+  },
+  {
     title: "Create a React component",
     to: "/guides/create-a-react-component",
   },

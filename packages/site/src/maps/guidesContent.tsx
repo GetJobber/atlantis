@@ -6,11 +6,17 @@ import AddingAnIcon from "@atlantis/docs/guides/adding-an-icon.stories.mdx";
 import GettingStartedWithReactComponent from "@atlantis/docs/getting-started-with-react/getting-started-with-react.stories.mdx";
 import PullRequestTitleGeneratorComponent from "@atlantis/docs/guides/pull-request-title-generator.stories.mdx";
 import Figma101Component from "@atlantis/docs/guides/figma-101.mdx";
+import AtlantisOverviewComponent from "@atlantis/docs/guides/atlantis-overview.mdx";
 import PageLayoutsComponent from "../guides/page-layouts.stories.mdx";
 import ScaffoldingComponent from "../guides/scaffolding.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const guidesContentMap: ContentMapItems = {
+  "atlantis-overview": {
+    intro: "Atlantis Overview",
+    title: "Atlantis Overview",
+    content: () => <AtlantisOverviewComponent />,
+  },
   "create-a-react-component": {
     intro: "Create a react component",
     title: "Create a react component",
