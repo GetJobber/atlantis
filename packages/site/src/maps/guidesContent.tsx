@@ -7,15 +7,21 @@ import GettingStartedWithReactComponent from "@atlantis/docs/getting-started-wit
 import PullRequestTitleGeneratorComponent from "@atlantis/docs/guides/pull-request-title-generator.stories.mdx";
 import Figma101Component from "@atlantis/docs/guides/figma-101.mdx";
 import AtlantisOverviewComponent from "@atlantis/docs/guides/atlantis-overview.mdx";
+import ContributingComponent from "@atlantis/docs/guides/contributing.mdx";
 import PageLayoutsComponent from "../guides/page-layouts.stories.mdx";
 import ScaffoldingComponent from "../guides/scaffolding.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const guidesContentMap: ContentMapItems = {
   "atlantis-overview": {
-    intro: "Atlantis Overview",
-    title: "Atlantis Overview",
+    intro: "Atlantis overview",
+    title: "Atlantis overview",
     content: () => <AtlantisOverviewComponent />,
+  },
+  contributing: {
+    intro: "Contributing",
+    title: "Contributing",
+    content: () => <ContributingComponent />,
   },
   "create-a-react-component": {
     intro: "Create a react component",

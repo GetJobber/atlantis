@@ -6,6 +6,11 @@ export const guidesList = [
     imageURL: "/Overview.png",
   },
   {
+    title: "Contributing to Atlantis",
+    to: "/guides/contributing",
+    sections: ["Contributing"],
+  },
+  {
     title: "Create a React component",
     to: "/guides/create-a-react-component",
     sections: ["Building"],
