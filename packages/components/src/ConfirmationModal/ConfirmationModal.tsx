@@ -163,6 +163,7 @@ type ConfirmationModalProps =
   | (SimpleConfirmationModalProps & (StringMessage | ChildrenMessage))
   | (ComplexConfirmationModalProps & (StringMessage | ChildrenMessage));
 
+// Comment to trigger build
 export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
   {
     title,

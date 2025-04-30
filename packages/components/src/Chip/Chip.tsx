@@ -9,6 +9,7 @@ import { useChildComponent } from "./hooks/useChildComponent";
 import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
 
+// Comment to trigger build
 const ChipComponent = forwardRef<HTMLButtonElement | HTMLDivElement, ChipProps>(
   (
     {
