@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import {
   InputPhoneNumberLegacyProps,
   InputPhoneNumberRebuiltProps,
@@ -16,12 +16,15 @@ function isNewInputPhoneNumberProps(
   return props.version === 2;
 }
 
-export function InputPhoneNumber(props: InputPhoneNumberShimProps) {
+export const InputPhoneNumber = forwardRef(function InputPhoneNumberShim(
+  props: InputPhoneNumberShimProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   if (isNewInputPhoneNumberProps(props)) {
-    return <InputPhoneNumberRebuilt {...props} />;
+    return <InputPhoneNumberRebuilt {...props} ref={ref} />;
   } else {
     return <InputPhoneNumberLegacy {...props} />;
   }
-}
+});
 
 export { InputPhoneNumberLegacyProps, InputPhoneNumberRebuiltProps };
