@@ -5,20 +5,6 @@ import { InputPhoneNumber } from "./InputPhoneNumber";
 const placeholder = "Phone";
 const validationMessage = "Phone number must contain 10 or more digits";
 
-jest.mock("framer-motion", () => ({
-  motion: {
-    div: require("react").forwardRef(({ children, ...rest }, ref) => (
-      <div {...rest} ref={ref}>
-        {children}
-      </div>
-    )),
-  },
-  AnimatePresence: jest
-    .fn()
-    .mockImplementation(({ children }) => <>{children}</>),
-  default: jest.fn(),
-}));
-
 describe("InputPhoneNumber", () => {
   it("should render a field", () => {
     render(
