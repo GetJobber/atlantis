@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.51.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.51.1...@jobber/components@6.51.2) (2025-05-01)
+
+
+### Bug Fixes
+
+* **components:** Fix modal size not being respected in all cases ([#2532](https://github.com/GetJobber/atlantis/issues/2532)) ([61256dd](https://github.com/GetJobber/atlantis/commit/61256ddcac698eb0839ea0936cd3fe21fd758d78))
+
+
+
+
+
 ## [6.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.51.0...@jobber/components@6.51.1) (2025-05-01)
 
 **Note:** Version bump only for package @jobber/components
