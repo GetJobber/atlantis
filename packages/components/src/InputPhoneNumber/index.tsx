@@ -1,13 +1,13 @@
 import React from "react";
 import {
-  InputPhoneNumberProps,
+  InputPhoneNumberLegacyProps,
   InputPhoneNumberRebuiltProps,
 } from "./InputPhoneNumber.types";
 import { InputPhoneNumberRebuilt } from "./InputPhoneNumber.rebuilt";
 import { InputPhoneNumber as InputPhoneNumberLegacy } from "./InputPhoneNumber";
 
 export type InputPhoneNumberShimProps =
-  | InputPhoneNumberProps
+  | InputPhoneNumberLegacyProps
   | InputPhoneNumberRebuiltProps;
 
 function isNewInputPhoneNumberProps(
@@ -23,3 +23,5 @@ export function InputPhoneNumber(props: InputPhoneNumberShimProps) {
     return <InputPhoneNumberLegacy {...props} />;
   }
 }
+
+export { InputPhoneNumberLegacyProps, InputPhoneNumberRebuiltProps };

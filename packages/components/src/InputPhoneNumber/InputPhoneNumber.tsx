@@ -1,13 +1,13 @@
 import React from "react";
 import { useForm, useFormContext } from "react-hook-form";
 import { InputMask } from "./InputMask";
-import { InputPhoneNumberProps } from "./InputPhoneNumber.types";
+import { InputPhoneNumberLegacyProps } from "./InputPhoneNumber.types";
 import { FormField } from "../FormField";
 
 export function InputPhoneNumber({
   required,
   ...props
-}: InputPhoneNumberProps) {
+}: InputPhoneNumberLegacyProps) {
   const { placeholder, validations, pattern = "(***) ***-****" } = props;
   const errorSubject = placeholder || "Phone number";
   const { getValues } =

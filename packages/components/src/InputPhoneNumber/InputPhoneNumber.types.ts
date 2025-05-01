@@ -1,7 +1,7 @@
 import { InputMaskProps } from "./InputMask";
 import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
-export interface InputPhoneNumberProps
+export interface InputPhoneNumberLegacyProps
   extends Omit<CommonFormFieldProps, "align">,
     Pick<
       FormFieldProps,
