@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.80.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.80.0...@jobber/components-native@0.80.1) (2025-04-30)
+
+
+### Bug Fixes
+
+* **components-native:** Adjusting Type mismatch in ThumbnailList ([#2523](https://github.com/GetJobber/atlantis/issues/2523)) ([d340a9e](https://github.com/GetJobber/atlantis/commit/d340a9eb3c2fbd7ff2d26934491ed59dfc3e2cbb))
+
+
+
+
+
+# [0.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.79.0...@jobber/components-native@0.80.0) (2025-04-28)
+
+
+### Features
+
+* **components-native:** Add UNSAFE_style to Content ([#2520](https://github.com/GetJobber/atlantis/issues/2520)) ([00408b2](https://github.com/GetJobber/atlantis/commit/00408b2d9a534d74cffbaf2a34d01bf887f154e7))
+
+
+
+
+
 # [0.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.78.0...@jobber/components-native@0.79.0) (2025-04-08)
 
 

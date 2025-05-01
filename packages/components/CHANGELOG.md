@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.50.0...@jobber/components@6.51.0) (2025-04-30)
+
+
+### Features
+
+* **components:** InputEmail V2 without RHF ([#2527](https://github.com/GetJobber/atlantis/issues/2527)) ([8e98098](https://github.com/GetJobber/atlantis/commit/8e980980cfb42b4c14b03893c23c709fc05fb5b9))
+
+
+
+
+
+# [6.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.49.0...@jobber/components@6.50.0) (2025-04-28)
+
+
+### Features
+
+* **components:** Add element prop to Text ([#2515](https://github.com/GetJobber/atlantis/issues/2515)) ([b946b00](https://github.com/GetJobber/atlantis/commit/b946b001467a7a9d34d52b3da2097f50a0808b5c))
+* **components:** Add noopener and noreferrer attributes to Link ([#2514](https://github.com/GetJobber/atlantis/issues/2514)) ([cf8269d](https://github.com/GetJobber/atlantis/commit/cf8269daadf6e957c85a08362a1410adab5ac782))
+
+
+
+
+
+# [6.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.48.0...@jobber/components@6.49.0) (2025-04-28)
+
+
+### Features
+
+* **components:** Add firstDayOfWeek to DatePicker and AtlantisContext ([#2499](https://github.com/GetJobber/atlantis/issues/2499)) ([3a33836](https://github.com/GetJobber/atlantis/commit/3a3383699619e3a013f82d796bf5cb9a70355b32))
+
+
+
+
+
+# [6.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.47.0...@jobber/components@6.48.0) (2025-04-28)
+
+
+### Features
+
+* **components:** Add Default Activator Ref to Combobox ([#2513](https://github.com/GetJobber/atlantis/issues/2513)) ([28eba8d](https://github.com/GetJobber/atlantis/commit/28eba8d96f9f8835e27e4f21d060d45fbd2c95bc))
+
+
+
+
+
+# [6.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.46.0...@jobber/components@6.47.0) (2025-04-28)
+
+
+### Bug Fixes
+
+* **components:** Allow DataList.ItemActions to support onClick and url together ([#2519](https://github.com/GetJobber/atlantis/issues/2519)) ([110fb1e](https://github.com/GetJobber/atlantis/commit/110fb1ebf742099f366688fd3a7ac31a4556aa56))
+
+
+### Features
+
+* **components:** Visual Regression Testing ([#2479](https://github.com/GetJobber/atlantis/issues/2479)) ([04357d6](https://github.com/GetJobber/atlantis/commit/04357d6bee0c6bfeb159a51b0d0b2649880c32e9))
+
+
+
+
+
 # [6.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.45.0...@jobber/components@6.46.0) (2025-04-24)
 
 

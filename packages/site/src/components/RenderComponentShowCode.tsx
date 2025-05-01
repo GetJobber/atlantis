@@ -15,7 +15,17 @@ export const RenderComponentShowCode = ({ children }: PropsWithChildren) => {
     setCodeVisible(!codeVisible);
   };
   const code = Children.map(children, child => {
-    return reactElementToJSXString(child);
+    return reactElementToJSXString(child, {
+      displayName: e => {
+        if (e && typeof e === "object" && "type" in e) {
+          if (typeof e.type === "function") {
+            return (e.type.name || "Anonymous").replace(/[\d$]+/g, "");
+          }
+        }
+
+        return "Anonymous";
+      },
+    });
   });
   useEffect(() => {
     prism.highlightAll();

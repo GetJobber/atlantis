@@ -4,6 +4,10 @@ import ReactDatePicker from "react-datepicker";
 import userEvent from "@testing-library/user-event";
 import { DatePicker } from "./DatePicker";
 import styles from "./DatePicker.module.css";
+import {
+  AtlantisContext,
+  atlantisContextDefaultValues,
+} from "../AtlantisContext";
 
 beforeEach(() => {
   /**
@@ -214,5 +218,71 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
         expect(container.querySelector(className)).toBeTruthy();
       });
     });
+  });
+});
+
+describe("Week Start", () => {
+  it("should default to Sunday", async () => {
+    render(<DatePicker onChange={jest.fn()} />);
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+
+    const dayNames = Array.from(
+      document.querySelectorAll(".react-datepicker__day-name"),
+    ).map(el => el.textContent);
+
+    expect(dayNames[0]).toBe("Sun");
+  });
+
+  it("should respect the provided firstDayOfWeek value", async () => {
+    render(<DatePicker onChange={jest.fn()} firstDayOfWeek={1} />);
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+
+    const dayNames = Array.from(
+      document.querySelectorAll(".react-datepicker__day-name"),
+    ).map(el => el.textContent);
+
+    expect(dayNames[0]).toBe("Mon");
+  });
+
+  it("should respect the firstDayOfWeek when provided in AtlantisContext", async () => {
+    render(
+      <AtlantisContext.Provider
+        value={{ ...atlantisContextDefaultValues, firstDayOfWeek: 3 }}
+      >
+        <DatePicker onChange={jest.fn()} />
+      </AtlantisContext.Provider>,
+    );
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+
+    const dayNames = Array.from(
+      document.querySelectorAll(".react-datepicker__day-name"),
+    ).map(el => el.textContent);
+
+    expect(dayNames[0]).toBe("Wed");
+  });
+
+  it("should respect firstDayOfWeek in DatePicker over AtlantisContext", async () => {
+    render(
+      <AtlantisContext.Provider
+        value={{ ...atlantisContextDefaultValues, firstDayOfWeek: 4 }}
+      >
+        <DatePicker onChange={jest.fn()} firstDayOfWeek={1} />
+      </AtlantisContext.Provider>,
+    );
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+
+    const dayNames = Array.from(
+      document.querySelectorAll(".react-datepicker__day-name"),
+    ).map(el => el.textContent);
+
+    expect(dayNames[0]).toBe("Mon");
   });
 });

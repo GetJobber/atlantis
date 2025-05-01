@@ -85,3 +85,4 @@ export * from "./Tiles";
 export * from "./Toast";
 export * from "./Tooltip";
 export * from "./Typography";
+export * from "./utils/isNormalClick";

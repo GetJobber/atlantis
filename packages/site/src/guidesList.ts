@@ -17,6 +17,10 @@ export const guidesList = [
     to: "/guides/adding-an-icon",
   },
   {
+    title: "Figma 101",
+    to: "/guides/figma-101",
+  },
+  {
     title: "Frontend styleguide",
     to: "/guides/frontend-styleguide",
   },
