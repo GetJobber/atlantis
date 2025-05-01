@@ -8,7 +8,6 @@ import { InputText } from "@jobber/components/InputText";
 import {
   Autocomplete,
   Box,
-  Cluster,
   Combobox,
   Heading,
   Icon,
@@ -134,7 +133,6 @@ function CustomHeader() {
 
 const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalOpen2, setModalOpen2] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<
     Array<{ id: string | number; label: string }>
   >([]);
@@ -151,7 +149,6 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
   const [autocompleteValue, setAutocompleteValue] = useState<
     AutocompleteOption | undefined
   >();
-  const [modalSize, setModalSize] = useState<"small" | "large" | undefined>();
 
   return (
     <Content>
@@ -161,17 +158,6 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
         after it has been closed. This is done with the Modal.Activator
         component
       </Text>
-      <Modal
-        open={modalOpen2}
-        onRequestClose={() => setModalOpen2(false)}
-        size={modalSize}
-        title={modalSize ? `${modalSize} Modal` : "Base modal"}
-      >
-        <Content>
-          <Text>It&apos;s harder, better, faster, and stronger! 🤖</Text>
-        </Content>
-      </Modal>
-      <Button label="Open Modal" onClick={() => setModalOpen2(true)} />
 
       <Button
         label="Open Modal with Custom Focus"
@@ -183,7 +169,6 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
           setModalOpen(false);
           setPopoverOpen(false);
         }}
-        size={modalSize}
       >
         <Modal.Content>
           <Modal.Header>
@@ -271,12 +256,6 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
           <InputText placeholder="Modal will return focus here" />
         </Modal.Activator>
       </Modal.Provider>
-
-      <Cluster>
-        <Button label="Small Modal" onClick={() => setModalSize("small")} />
-        <Button label="Large Modal" onClick={() => setModalSize("large")} />
-        <Button label="Base Modal" onClick={() => setModalSize(undefined)} />
-      </Cluster>
     </Content>
   );
 };
