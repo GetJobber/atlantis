@@ -43,12 +43,6 @@ InitialValue.args = {
   placeholder: "Enter your phone number",
 };
 
-export const Version2 = BasicTemplate.bind({});
-Version2.args = {
-  version: 2,
-  placeholder: "Enter your phone number",
-};
-
 export const VersionComparison = () => {
   const [values, setValues] = React.useState({
     basic: "",
