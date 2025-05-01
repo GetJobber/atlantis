@@ -92,7 +92,9 @@ export function useInputMask({
 
       const cleanValueChars = unformattedValue
         .split("")
-        .filter(char => !specialChars.includes(char));
+        .filter(
+          char => !specialChars.includes(char) && !Number.isNaN(Number(char)),
+        );
 
       const isOverCharLimit = cleanValueChars.length > maxCleanChars;
 
@@ -124,11 +126,9 @@ export function useInputMask({
   );
 
   useEffect(() => {
-    const maxCleanChars = patternInfo.patternChars.filter(
-      char => char === delimiter,
-    ).length;
-    setIsMasking(inputValue.length < maxCleanChars);
-  }, [inputValue, patternInfo, delimiter]);
+    const shouldMask = strict || inputValue.length < patternInfo.maxCleanChars;
+    setIsMasking(shouldMask);
+  }, [inputValue, patternInfo.maxCleanChars, strict]);
 
   const placeholderMask = useMemo(
     () =>
