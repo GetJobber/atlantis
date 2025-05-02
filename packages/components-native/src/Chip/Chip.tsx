@@ -82,7 +82,7 @@ export function Chip({
         backgroundColor:
           inactiveBackgroundColor === "surface"
             ? tokens["color-surface"]
-            : tokens["color-surface--background"],
+            : tokens["color-interactive--background"],
       },
       isActive && { backgroundColor: accentColor },
     ];
