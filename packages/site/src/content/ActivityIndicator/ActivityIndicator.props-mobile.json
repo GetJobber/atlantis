@@ -188,6 +188,19 @@
           "name": "boolean"
         }
       },
+      "collapsableChildren": {
+        "defaultValue": null,
+        "description": "Setting to false prevents direct children of the view from being removed\nfrom the native view hierarchy, similar to the effect of setting\n`collapsable={false}` on each child.",
+        "name": "collapsableChildren",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "renderToHardwareTextureAndroid": {
         "defaultValue": null,
         "description": "Whether this view should render itself (and all of its children) into a single hardware texture on the GPU.\n\nOn Android, this is useful for animations and interactions that only modify opacity, rotation, translation, and/or scale:\nin those cases, the view doesn't have to be redrawn and display lists don't need to be re-executed. The texture can just be\nre-used and re-composited with different parameters. The downside is that this can use up limited video memory, so this prop should be set back to false at the end of the interaction/animation.",
@@ -264,19 +277,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "tvParallaxProperties": {
-        "defaultValue": null,
-        "description": "*(Apple TV only)* Object with properties to control Apple TV parallax effects.\n@platform ios",
-        "name": "tvParallaxProperties",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "TVViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "TVParallaxProperties"
         }
       },
       "tvParallaxShiftDistanceX": {
