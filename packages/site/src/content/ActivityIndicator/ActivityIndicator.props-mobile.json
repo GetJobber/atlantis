@@ -1136,6 +1136,32 @@
         "type": {
           "name": "string"
         }
+      },
+      "accessibilityShowsLargeContentViewer": {
+        "defaultValue": null,
+        "description": "A Boolean value that indicates whether or not to show the item in the large content viewer.\nAvailable on iOS 13.0+\nhttps://reactnative.dev/docs/accessibility#accessibilityshowslargecontentviewer\n@platform ios",
+        "name": "accessibilityShowsLargeContentViewer",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "accessibilityLargeContentTitle": {
+        "defaultValue": null,
+        "description": "When `accessibilityShowsLargeContentViewer` is set, this string will be used as title for the large content viewer.\nhttps://reactnative.dev/docs/accessibility#accessibilitylargecontenttitle\n@platform ios",
+        "name": "accessibilityLargeContentTitle",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
       }
     }
   }
