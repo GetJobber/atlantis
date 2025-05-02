@@ -135,7 +135,7 @@
     "react-dom": "18.2.0",
     "react-ga4": "^2.1.0",
     "react-intl": "^6.4.2",
-    "react-native": "0.74.5",
+    "react-native": "^0.75.0",
     "react-native-gesture-handler": "^2.10.2",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modal-datetime-picker": "^15.0.1",
