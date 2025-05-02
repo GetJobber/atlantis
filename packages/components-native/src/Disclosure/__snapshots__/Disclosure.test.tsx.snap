@@ -370,7 +370,7 @@ exports[`should not render the caret when the Disclosure is empty 1`] = `
     }
     accessible={true}
     collapsable={false}
-    focusable={true}
+    focusable={false}
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
