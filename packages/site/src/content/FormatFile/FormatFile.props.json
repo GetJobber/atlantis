@@ -252,7 +252,7 @@
         "name": "onDelete",
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void"
         }
       },
       "isComplete": {
