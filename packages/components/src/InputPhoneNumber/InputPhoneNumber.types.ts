@@ -46,6 +46,8 @@ export interface InputPhoneNumberRebuiltProps
     | "defaultValue"
     | "readOnly"
     | "type"
+    | "maxLength"
+    | "minLength"
   > {
   readonly error?: string;
   readonly invalid?: boolean;
