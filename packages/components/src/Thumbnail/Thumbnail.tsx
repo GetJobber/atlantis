@@ -43,7 +43,13 @@ export function Thumbnail({
   const hasName = Boolean(name) && compact;
 
   if (type.startsWith("image/") && isSupportedImageType(file)) {
-    return <InternalThumbnailImage file={file} />;
+    return (
+      <InternalThumbnailImage
+        file={file}
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+      />
+    );
   }
 
   return (
