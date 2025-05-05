@@ -85,7 +85,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
         disabled={props.disabled}
         size={props.size}
         inline={props.inline}
-        name={name}
         wrapperRef={wrapperRef}
         error={props.error ?? ""}
         invalid={Boolean(props.error || props.invalid)}
