@@ -11,12 +11,32 @@ interface InternalThumbnailProps {
   readonly compact?: boolean;
   readonly size: "base" | "large";
   readonly file: FileUpload;
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: React.CSSProperties;
+  };
 }
 
 export function Thumbnail({
   compact = false,
   size,
   file,
+  UNSAFE_className,
+  UNSAFE_style,
 }: InternalThumbnailProps) {
   const { name, type } = file;
   const iconName = getIconNameFromType(type);
@@ -28,9 +48,15 @@ export function Thumbnail({
 
   return (
     <div
-      className={classNames(styles.content, styles[size], {
-        [styles.hasName]: hasName,
-      })}
+      className={classNames(
+        styles.content,
+        styles[size],
+        {
+          [styles.hasName]: hasName,
+        },
+        UNSAFE_className?.container,
+      )}
+      style={UNSAFE_style?.container}
     >
       <Icon name={iconName} color="greyBlue" size={size} />
 
