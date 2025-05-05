@@ -24,14 +24,18 @@ export function FormatFile({
     onClick,
     onDelete,
   });
-  const { wrapperClassNames, detailsClassNames, thumbnailContainerClassNames } =
-    useFormatFileStyles({
-      display,
-      displaySize,
-      isComplete,
-      onClick,
-      onDelete,
-    });
+  const {
+    wrapperClassNames,
+    detailsClassNames,
+    progressClassNames,
+    thumbnailContainerClassNames,
+  } = useFormatFileStyles({
+    display,
+    displaySize,
+    isComplete,
+    onClick,
+    onDelete,
+  });
 
   return (
     <FormatFile.Wrapper className={wrapperClassNames}>
@@ -52,7 +56,7 @@ export function FormatFile({
           />
           <FormatFile.ProgressContainer
             visible={!isComplete}
-            className={styles.progress}
+            className={progressClassNames}
           >
             <ProgressBar
               size="small"

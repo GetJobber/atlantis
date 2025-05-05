@@ -30,6 +30,7 @@ export const useFormatFileStyles = ({
   return {
     wrapperClassNames,
     detailsClassNames,
+    progressClassNames: styles.progress,
     thumbnailContainerClassNames,
   };
 };
