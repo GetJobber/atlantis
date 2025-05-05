@@ -50,7 +50,7 @@ export const VersionComparison = () => {
     customPattern: "",
     error: "",
     disabled: "",
-    readonly: "555-123-4567",
+    readonly: "(555) 123-4567",
     clearableAlways: "",
     clearableFocus: "",
     clearableWithSuffix: "",

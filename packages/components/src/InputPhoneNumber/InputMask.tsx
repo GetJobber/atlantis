@@ -91,7 +91,6 @@ export function InputMask({
 
   return cloneElement(children, {
     onChange: maskedOnChange,
-    children: inputMask,
-    value: formattedValue,
+    children: isMasking && inputMask,
   });
 }
