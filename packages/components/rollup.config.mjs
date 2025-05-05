@@ -1,6 +1,7 @@
 /* eslint-disable import/no-default-export */
 import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
+import { dirname, join, resolve } from "path";
+import { readdirSync, statSync } from "fs";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
@@ -13,10 +14,23 @@ import presetenv from "postcss-preset-env";
 import multiInput from "rollup-plugin-multi-input";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 import alias from "@rollup/plugin-alias";
-// comments for manual release
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-export default {
+
+const postcssPlugins = [
+  postcssimport,
+  autoprefixer,
+  tools({
+    files: ["../design/dist/foundation.css"],
+  }),
+  presetenv({
+    stage: 1,
+    preserve: true,
+  }),
+];
+
+const mainConfig = {
   input: `src/**/index.{ts,tsx}`,
   plugins: [
     nodePolyfills(),
@@ -44,17 +58,7 @@ export default {
         globalModulePaths: [/node_modules/],
       },
       autoModules: false,
-      plugins: [
-        postcssimport,
-        autoprefixer,
-        tools({
-          files: ["../design/dist/foundation.css"],
-        }),
-        presetenv({
-          stage: 1,
-          preserve: true,
-        }),
-      ],
+      plugins: postcssPlugins,
     }),
     commonjs(),
     copy({
@@ -160,3 +164,78 @@ export default {
     "@tanstack/react-table",
   ],
 };
+
+const getComponentDirectories = () => {
+  const srcPath = join(__dirname, "src");
+
+  return readdirSync(srcPath).filter(entry => {
+    const fullPath = join(srcPath, entry);
+
+    return (
+      statSync(fullPath).isDirectory() &&
+      // Skip utility/helper directories that aren't components
+      ![
+        "utils",
+        "sharedHelpers",
+        "AnimatedPresence",
+        "AnimatedSwitcher",
+        "AtlantisContext",
+        "AtlantisPortalContent",
+        "AtlantisThemeContext",
+        "Box",
+        "ButtonDismiss",
+        "Chips",
+        "ConfirmationModal",
+        "Countdown",
+        "DataDump",
+        "Emphasis",
+        "Form",
+        "FormatDate",
+        "FormatRelativeDateTime",
+        "FormatTime",
+        "Heading",
+        "Icon",
+        "InputDate",
+        "InputEmail",
+        "InputNumber",
+        "InputPassword",
+        "InputPhoneNumber",
+        "InputText",
+        "InputTime",
+        "Markdown",
+        "Select",
+        "Text",
+        "Typography",
+      ].includes(entry)
+    );
+  });
+};
+
+const createComponentCssConfig = componentName => {
+  return {
+    input: `src/${componentName}/${componentName}.module.css`,
+    plugins: [
+      nodeResolve(),
+      postcss({
+        extract: `${componentName}.css`,
+        modules: {
+          generateScopedName: "[hash:base64]",
+          globalModulePaths: [/node_modules/],
+        },
+        autoModules: false,
+        plugins: postcssPlugins,
+        onlyModules: true,
+        minimize: false,
+      }),
+    ],
+    output: {
+      dir: `dist/${componentName}`,
+      assetFileNames: "[name][extname]",
+    },
+  };
+};
+
+const componentDirectories = getComponentDirectories();
+const componentCssConfigs = componentDirectories.map(createComponentCssConfig);
+
+export default [mainConfig, ...componentCssConfigs];
