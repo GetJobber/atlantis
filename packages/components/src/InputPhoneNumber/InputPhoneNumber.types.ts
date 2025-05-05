@@ -66,3 +66,5 @@ export interface InputPhoneNumberRebuiltProps
    */
   readonly version: 2;
 }
+
+export const DEFAULT_PATTERN = "(***) ***-****";

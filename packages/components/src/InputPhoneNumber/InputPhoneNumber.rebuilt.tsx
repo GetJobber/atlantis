@@ -3,7 +3,10 @@ import classNames from "classnames";
 import { MaskElement } from "./InputMask";
 import { useInputMask } from "./useInputMask";
 import styles from "./InputMask.module.css";
-import { InputPhoneNumberRebuiltProps } from "./InputPhoneNumber.types";
+import {
+  DEFAULT_PATTERN,
+  InputPhoneNumberRebuiltProps,
+} from "./InputPhoneNumber.types";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -11,8 +14,6 @@ import {
 } from "../FormField";
 import { useInputTextFormField } from "../InputText/useInputTextFormField";
 import { useInputTextActions } from "../InputText/useInputTextActions";
-
-const DEFAULT_PATTERN = "(***) ***-****";
 
 export const InputPhoneNumberRebuilt = forwardRef(
   function InputPhoneNumberInternal(
