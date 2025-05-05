@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.51.2...@jobber/components@6.52.0) (2025-05-05)
+
+
+### Features
+
+* **components:** Add clientColor to Card accent ([#2537](https://github.com/GetJobber/atlantis/issues/2537)) ([a92a750](https://github.com/GetJobber/atlantis/commit/a92a750f8af37d1631f09a8329590554d82e02a5))
+
+
+
+
+
 ## [6.51.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.51.1...@jobber/components@6.51.2) (2025-05-01)
 
 
