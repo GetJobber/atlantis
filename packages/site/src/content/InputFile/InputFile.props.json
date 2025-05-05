@@ -491,6 +491,21 @@
     "displayName": "InputFile.Description",
     "methods": [],
     "props": {
+      "element": {
+        "defaultValue": {
+          "value": "\"p\""
+        },
+        "description": "The HTML element to render the text as.",
+        "name": "element",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextElement"
+        }
+      },
       "maxLines": {
         "defaultValue": null,
         "description": "",
@@ -590,6 +605,21 @@
     "displayName": "InputFile.HintText",
     "methods": [],
     "props": {
+      "element": {
+        "defaultValue": {
+          "value": "\"p\""
+        },
+        "description": "The HTML element to render the text as.",
+        "name": "element",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextElement"
+        }
+      },
       "maxLines": {
         "defaultValue": null,
         "description": "",

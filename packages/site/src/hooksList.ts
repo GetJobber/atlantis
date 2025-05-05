@@ -1,10 +1,5 @@
 export const hooksList = [
   {
-    title: "useAssert",
-    to: "/hooks/useAssert",
-    sections: ["React Utilities"],
-  },
-  {
     title: "useBool",
     to: "/hooks/useBool",
     sections: ["React Utilities"],

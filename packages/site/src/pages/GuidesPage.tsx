@@ -12,6 +12,8 @@ export const GuidesPage = () => {
         body: {
           content: guidesList,
         },
+        useCategories: true,
+        showSegmentedControl: true,
       }}
     />
   );
