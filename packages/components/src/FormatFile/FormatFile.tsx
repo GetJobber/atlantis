@@ -31,6 +31,7 @@ export function FormatFile({
     detailsClassNames,
     progressClassNames,
     thumbnailContainerClassNames,
+    deleteButtonContainerClassNames,
   } = useFormatFileStyles({
     display,
     displaySize,
@@ -57,7 +58,7 @@ export function FormatFile({
             size={displaySize}
           />
           <FormatFile.ProgressContainer
-            visible={!isComplete}
+            isVisible={!isComplete}
             className={progressClassNames}
           >
             <ProgressBar
@@ -69,41 +70,59 @@ export function FormatFile({
         </FormatFile.ThumbnailContainer>
 
         <FormatFile.Expanded
-          visible={display === "expanded"}
+          isVisible={display === "expanded"}
           file={file}
           fileSize={fileSize}
         />
       </FormatFile.Body>
-      <FormatFile.DeleteButton
-        isComplete={isComplete && onDelete !== undefined}
-        onDelete={() => {
-          setDeleteConfirmationOpen(true);
-        }}
+      <FormatFile.DeleteButtonContainer
+        className={deleteButtonContainerClassNames}
+        isVisible={isComplete && onDelete !== undefined}
       >
-        <ConfirmationModal
-          title="Confirm Deletion"
-          message={`Are you sure you want to delete this file?`}
-          confirmLabel="Delete"
-          variation="destructive"
-          open={deleteConfirmationOpen}
-          onConfirm={() => onDelete?.()}
-          onRequestClose={() => setDeleteConfirmationOpen(false)}
-        />
-      </FormatFile.DeleteButton>
+        <FormatFile.DeleteButton
+          onDelete={() => {
+            setDeleteConfirmationOpen(true);
+          }}
+        >
+          <ConfirmationModal
+            title="Confirm Deletion"
+            message={`Are you sure you want to delete this file?`}
+            confirmLabel="Delete"
+            variation="destructive"
+            open={deleteConfirmationOpen}
+            onConfirm={() => onDelete?.()}
+            onRequestClose={() => setDeleteConfirmationOpen(false)}
+          />
+        </FormatFile.DeleteButton>
+      </FormatFile.DeleteButtonContainer>
     </FormatFile.Wrapper>
   );
 }
 
+FormatFile.DeleteButtonContainer = function FormatFileDeleteButtonContainer({
+  children,
+  className,
+  isVisible,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly isVisible: boolean;
+}) {
+  if (!isVisible) return null;
+
+  return <div className={className}>{children}</div>;
+};
+
 FormatFile.ProgressContainer = function FormatFileProgressContainer({
-  visible,
+  isVisible,
   children,
   className,
 }: {
-  readonly visible: boolean;
+  readonly isVisible: boolean;
   readonly children: React.ReactNode;
   readonly className?: string;
 }) {
-  if (!visible) return null;
+  if (!isVisible) return null;
 
   return <div className={className}>{children}</div>;
 };
@@ -155,13 +174,13 @@ FormatFile.Body = function FormatFileBody({
 FormatFile.Expanded = function FormatFileExpanded({
   file,
   fileSize,
-  visible,
+  isVisible,
 }: {
   readonly file: FileUpload;
   readonly fileSize: string;
-  readonly visible: boolean;
+  readonly isVisible: boolean;
 }) {
-  if (!visible) return null;
+  if (!isVisible) return null;
 
   return (
     <div className={styles.contentBlock}>
@@ -183,21 +202,19 @@ FormatFile.Wrapper = function FormatFileWrapper({
 
 FormatFile.DeleteButton = function FormatFileDeleteButton({
   onDelete,
-  isComplete,
   size = "base",
   children,
 }: {
   readonly onDelete?: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
-  readonly isComplete: boolean;
   readonly size?: "base" | "large";
   readonly children?: React.ReactNode;
 }) {
   const buttonSize = size === "base" ? "small" : "base";
 
-  return isComplete && onDelete ? (
-    <div className={styles.deleteButton}>
+  return (
+    <>
       <Button
         onClick={onDelete}
         variation="destructive"
@@ -207,6 +224,6 @@ FormatFile.DeleteButton = function FormatFileDeleteButton({
         size={buttonSize}
       />
       {children}
-    </div>
-  ) : null;
+    </>
+  );
 };

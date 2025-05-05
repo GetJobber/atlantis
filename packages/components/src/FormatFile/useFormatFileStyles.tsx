@@ -28,10 +28,11 @@ export const useFormatFileStyles = ({
   );
 
   return {
-    wrapperClassNames,
+    deleteButtonContainerClassNames: styles.deleteButton,
     detailsClassNames,
     progressClassNames: styles.progress,
     thumbnailContainerClassNames,
+    wrapperClassNames,
   };
 };
 

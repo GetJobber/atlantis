@@ -80,6 +80,7 @@
     "FormatFile",
     "FormatFile.Body",
     "FormatFile.DeleteButton",
+    "FormatFile.DeleteButtonContainer",
     "FormatFile.Expanded",
     "FormatFile.ProgressContainer",
     "FormatFile.ThumbnailContainer",
