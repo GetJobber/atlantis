@@ -80,11 +80,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
       inline: props.inline,
     });
 
-    const cursorPosition =
-      inputValue.length === 0 && pattern[0] === "("
-        ? ` ${styles.cursorPosition}`
-        : "";
-
     return (
       <FormFieldWrapper
         disabled={props.disabled}
@@ -111,7 +106,9 @@ export const InputPhoneNumberRebuilt = forwardRef(
           type="tel"
           {...fieldProps}
           ref={inputPhoneNumberRef}
-          className={classNames(inputStyle, cursorPosition)}
+          className={classNames(inputStyle, {
+            [styles.emptyValue]: inputValue.length === 0 && pattern[0] === "(",
+          })}
           value={formattedValue}
           readOnly={props.readonly}
         />
