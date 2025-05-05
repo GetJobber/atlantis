@@ -7,7 +7,7 @@ import { FileUpload } from "../InputFile";
 import { Typography } from "../Typography";
 import { isSafari } from "../utils/getClientBrowser";
 
-interface InternalThumbnailProps {
+interface ThumbnailProps {
   readonly compact?: boolean;
   readonly size: "base" | "large";
   readonly file: FileUpload;
@@ -37,7 +37,7 @@ export function Thumbnail({
   file,
   UNSAFE_className,
   UNSAFE_style,
-}: InternalThumbnailProps) {
+}: ThumbnailProps) {
   const { name, type } = file;
   const iconName = getIconNameFromType(type);
   const hasName = Boolean(name) && compact;
