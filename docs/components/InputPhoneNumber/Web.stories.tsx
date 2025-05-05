@@ -59,11 +59,12 @@ export const VersionComparison = () => {
   const [invalid, setInvalid] = React.useState<boolean | undefined>(undefined);
   const [disabled, setDisabled] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | undefined>();
-
+  const [loading, setLoading] = React.useState(false);
   const extraProps = {
     invalid,
     error: errorMessage,
     disabled,
+    loading,
   };
 
   const handleChange = (field: keyof typeof values) => (value: string) => {
@@ -213,6 +214,14 @@ export const VersionComparison = () => {
             label="Toggle Disabled"
             onClick={() => {
               setDisabled(!disabled);
+            }}
+          />
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Button
+            label="Toggle loading"
+            onClick={() => {
+              setLoading(!loading);
             }}
           />
         </Grid.Cell>

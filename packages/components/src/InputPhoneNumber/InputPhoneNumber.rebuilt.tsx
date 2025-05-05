@@ -14,6 +14,7 @@ import {
   useAtlantisFormFieldName,
   useFormFieldWrapperStyles,
 } from "../FormField";
+import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 
 export const InputPhoneNumberRebuilt = forwardRef(
   function InputPhoneNumberInternal(
@@ -104,6 +105,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
         prefix={props.prefix}
         suffix={props.suffix}
         readonly={props.readonly}
+        loading={props.loading}
       >
         <input
           type="tel"
@@ -117,6 +119,10 @@ export const InputPhoneNumberRebuilt = forwardRef(
           isMasking={isMasking}
           formattedValue={formattedValue}
           placeholderMask={placeholderMask}
+        />
+        <FormFieldPostFix
+          variation="spinner"
+          visible={props.loading ?? false}
         />
       </FormFieldWrapper>
     );
