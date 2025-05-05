@@ -3,10 +3,6 @@ description: This rule updates an existing PR description by merging it with new
 globs:
 alwaysApply: false
 ---
-description: This rule updates an existing PR description by merging it with new commit information.
-globs:
-alwaysApply: false
----
 # PR Description Updater
 
 This rule updates an existing PR description by merging it with information from new commits.
