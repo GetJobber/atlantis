@@ -17,6 +17,8 @@ export function FormatFile({
   onDelete,
   onClick,
 }: FormatFileProps) {
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+
   const { isComplete, fileSize } = useFormatFile({
     file,
     display,
@@ -72,7 +74,22 @@ export function FormatFile({
           fileSize={fileSize}
         />
       </FormatFile.Body>
-      <FormatFile.DeleteButton isComplete={isComplete} onDelete={onDelete} />
+      <FormatFile.DeleteButton
+        isComplete={isComplete && onDelete !== undefined}
+        onDelete={() => {
+          setDeleteConfirmationOpen(true);
+        }}
+      >
+        <ConfirmationModal
+          title="Confirm Deletion"
+          message={`Are you sure you want to delete this file?`}
+          confirmLabel="Delete"
+          variation="destructive"
+          open={deleteConfirmationOpen}
+          onConfirm={() => onDelete?.()}
+          onRequestClose={() => setDeleteConfirmationOpen(false)}
+        />
+      </FormatFile.DeleteButton>
     </FormatFile.Wrapper>
   );
 }
@@ -168,33 +185,28 @@ FormatFile.DeleteButton = function FormatFileDeleteButton({
   onDelete,
   isComplete,
   size = "base",
+  children,
 }: {
-  readonly onDelete?: () => void;
+  readonly onDelete?: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
   readonly isComplete: boolean;
   readonly size?: "base" | "large";
+  readonly children?: React.ReactNode;
 }) {
   const buttonSize = size === "base" ? "small" : "base";
-  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
 
   return isComplete && onDelete ? (
     <div className={styles.deleteButton}>
       <Button
-        onClick={() => setDeleteConfirmationOpen(true)}
+        onClick={onDelete}
         variation="destructive"
         type="tertiary"
         icon="trash"
         ariaLabel="Delete File"
         size={buttonSize}
       />
-      <ConfirmationModal
-        title="Confirm Deletion"
-        message={`Are you sure you want to delete this file?`}
-        confirmLabel="Delete"
-        variation="destructive"
-        open={deleteConfirmationOpen}
-        onConfirm={() => onDelete?.()}
-        onRequestClose={() => setDeleteConfirmationOpen(false)}
-      />
+      {children}
     </div>
   ) : null;
 };
