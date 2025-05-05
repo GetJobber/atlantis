@@ -93,11 +93,11 @@
           "name": "string"
         }
       },
-      "isVisible": {
+      "isHidden": {
         "defaultValue": null,
         "description": "",
-        "name": "isVisible",
-        "required": true,
+        "name": "isHidden",
+        "required": false,
         "type": {
           "name": "boolean"
         }
@@ -111,15 +111,6 @@
     "displayName": "FormatFile.ProgressContainer",
     "methods": [],
     "props": {
-      "isVisible": {
-        "defaultValue": null,
-        "description": "",
-        "name": "isVisible",
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "className": {
         "defaultValue": null,
         "description": "",
@@ -127,6 +118,15 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "isHidden": {
+        "defaultValue": null,
+        "description": "",
+        "name": "isHidden",
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

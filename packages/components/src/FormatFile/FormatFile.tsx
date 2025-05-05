@@ -58,7 +58,7 @@ export function FormatFile({
             size={displaySize}
           />
           <FormatFile.ProgressContainer
-            isVisible={!isComplete}
+            isHidden={isComplete}
             className={progressClassNames}
           >
             <ProgressBar
@@ -77,7 +77,7 @@ export function FormatFile({
       </FormatFile.Body>
       <FormatFile.DeleteButtonContainer
         className={deleteButtonContainerClassNames}
-        isVisible={isComplete && onDelete !== undefined}
+        isHidden={!isComplete || onDelete === undefined}
       >
         <FormatFile.DeleteButton
           onDelete={() => {
@@ -102,27 +102,27 @@ export function FormatFile({
 FormatFile.DeleteButtonContainer = function FormatFileDeleteButtonContainer({
   children,
   className,
-  isVisible,
+  isHidden,
 }: {
   readonly children: React.ReactNode;
   readonly className?: string;
-  readonly isVisible: boolean;
+  readonly isHidden?: boolean;
 }) {
-  if (!isVisible) return null;
+  if (isHidden) return null;
 
   return <div className={className}>{children}</div>;
 };
 
 FormatFile.ProgressContainer = function FormatFileProgressContainer({
-  isVisible,
+  isHidden,
   children,
   className,
 }: {
-  readonly isVisible: boolean;
   readonly children: React.ReactNode;
   readonly className?: string;
+  readonly isHidden?: boolean;
 }) {
-  if (!isVisible) return null;
+  if (isHidden) return null;
 
   return <div className={className}>{children}</div>;
 };
