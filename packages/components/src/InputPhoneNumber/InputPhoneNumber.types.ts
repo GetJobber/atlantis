@@ -1,3 +1,4 @@
+import { Clearable } from "@jobber/hooks/useShowClear";
 import { InputMaskProps } from "./InputMask";
 import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
@@ -32,21 +33,38 @@ export interface InputPhoneNumberLegacyProps
 }
 
 export interface InputPhoneNumberRebuiltProps
-  extends Omit<CommonFormFieldProps, "align" | "version">,
-    Pick<
-      FormFieldProps,
-      | "autocomplete"
-      | "onEnter"
-      | "onFocus"
-      | "onBlur"
-      | "validations"
-      | "readonly"
-      | "prefix"
-      | "suffix"
-    > {
-  readonly value: string;
-  readonly onChange: (value: string) => void;
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    | "onChange"
+    | "onBlur"
+    | "size"
+    | "suffix"
+    | "prefix"
+    | "value"
+    | "max"
+    | "min"
+    | "defaultValue"
+    | "readOnly"
+    | "type"
+  > {
   readonly error?: string;
+  readonly invalid?: boolean;
+  readonly identifier?: string;
+  readonly autocomplete?: boolean | string;
+  readonly loading?: boolean;
+  readonly onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  readonly children?: React.ReactNode;
+  readonly clearable?: Clearable;
+
+  readonly value: string;
+  readonly onChange: (
+    value: string,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
+
+  readonly onBlur?: (event?: React.FocusEvent<HTMLInputElement>) => void;
+  readonly onEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  readonly onFocus?: (event?: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
    * A pattern to specify the format to display the phone number in.
@@ -65,6 +83,14 @@ export interface InputPhoneNumberRebuiltProps
    * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
    */
   readonly version: 2;
+
+  readonly size?: FormFieldProps["size"];
+  readonly inline?: FormFieldProps["inline"];
+  readonly align?: FormFieldProps["align"];
+  readonly prefix?: FormFieldProps["prefix"];
+  readonly suffix?: FormFieldProps["suffix"];
+  readonly description?: FormFieldProps["description"];
+  readonly readonly?: boolean;
 }
 
 export const DEFAULT_PATTERN = "(***) ***-****";

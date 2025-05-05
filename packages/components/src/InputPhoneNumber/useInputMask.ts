@@ -26,7 +26,10 @@ interface UseInputMaskParams {
   /**
    * Callback function to be called with the masked value on change.
    */
-  onChange?: (maskedValue: string) => void;
+  onChange?: (
+    maskedValue: string,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
 }
 
 interface UseInputMaskResult {
@@ -48,7 +51,10 @@ interface UseInputMaskResult {
   /**
    * Handler for input change events that formats the input and calls the onChange prop
    */
-  maskedOnChange: (newValue: string) => void;
+  maskedOnChange: (
+    newValue: string,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
 
   /**
    * Raw input value from the user without formatting characters
@@ -113,9 +119,9 @@ export function useInputMask({
   );
 
   const maskedOnChange = useCallback(
-    (newValue: string): void => {
+    (newValue: string, event?: React.ChangeEvent<HTMLInputElement>): void => {
       const formatted = formatValue(newValue);
-      onChange?.(formatted);
+      onChange?.(formatted, event);
     },
     [formatValue, onChange],
   );

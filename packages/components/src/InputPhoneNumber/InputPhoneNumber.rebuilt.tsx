@@ -7,13 +7,13 @@ import {
   DEFAULT_PATTERN,
   InputPhoneNumberRebuiltProps,
 } from "./InputPhoneNumber.types";
+import { useInputPhoneActions } from "./hooks/useInputPhoneActions";
+import { useInputPhoneFormField } from "./hooks/useInputPhoneFormField";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
   useFormFieldWrapperStyles,
 } from "../FormField";
-import { useInputTextFormField } from "../InputText/useInputTextFormField";
-import { useInputTextActions } from "../InputText/useInputTextActions";
 
 export const InputPhoneNumberRebuilt = forwardRef(
   function InputPhoneNumberInternal(
@@ -24,9 +24,10 @@ export const InputPhoneNumberRebuilt = forwardRef(
       (ref as React.RefObject<HTMLInputElement>) ??
       React.useRef<HTMLInputElement>(null);
     const wrapperRef = React.useRef<HTMLDivElement>(null);
-
-    const { inputStyle } = useFormFieldWrapperStyles(props);
-
+    const { inputStyle } = useFormFieldWrapperStyles({
+      ...props,
+      type: "tel",
+    });
     const generatedId = useId();
     const id = props.id || generatedId;
 
@@ -52,9 +53,9 @@ export const InputPhoneNumberRebuilt = forwardRef(
       handleChange,
       handleBlur,
       handleFocus,
-      handleKeyDown,
       handleClear,
-    } = useInputTextActions({
+      handleKeyDown,
+    } = useInputPhoneActions({
       onChange: maskedOnChange,
       onBlur: props.onBlur,
       onFocus: props.onFocus,
@@ -62,13 +63,20 @@ export const InputPhoneNumberRebuilt = forwardRef(
       inputRef: inputPhoneNumberRef,
     });
 
-    const { fieldProps, descriptionIdentifier } = useInputTextFormField({
+    const { fieldProps, descriptionIdentifier } = useInputPhoneFormField({
       id,
       name,
       handleChange,
       handleBlur,
       handleFocus,
       handleKeyDown,
+      autofocus: props.autoFocus,
+      disabled: props.disabled,
+      readonly: props.readonly,
+      invalid: props.invalid,
+      error: props.error,
+      description: props.description,
+      inline: props.inline,
     });
 
     const cursorPosition =
