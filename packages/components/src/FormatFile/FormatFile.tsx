@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from "./FormatFile.module.css";
-import { InternalThumbnail } from "./InternalThumbnail";
 import { FormatFileProps } from "./types";
 import { useFormatFile } from "./useFormatFile";
 import { useFormatFileStyles } from "./useFormatFileStyles";
+import { Thumbnail } from "../Thumbnail";
 import { Text } from "../Text";
 import { ProgressBar } from "../ProgressBar";
 import { Button } from "../Button";
@@ -44,7 +44,7 @@ export function FormatFile({
         isComplete={isComplete}
       >
         <FormatFile.ThumbnailContainer className={thumbnailContainerClassNames}>
-          <InternalThumbnail
+          <Thumbnail
             key={file.key}
             compact={display === "compact"}
             file={file}

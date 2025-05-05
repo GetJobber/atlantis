@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import styles from "./InternalThumbnail.module.css";
-import { InternalThumbnailImage } from "./InternalThumbnailImage";
+import styles from "./Thumbnail.module.css";
+import { InternalThumbnailImage } from "./ThumbnailImage";
 import { Icon, IconNames } from "../Icon";
 import { FileUpload } from "../InputFile";
 import { Typography } from "../Typography";
@@ -13,7 +13,7 @@ interface InternalThumbnailProps {
   readonly file: FileUpload;
 }
 
-export function InternalThumbnail({
+export function Thumbnail({
   compact = false,
   size,
   file,
