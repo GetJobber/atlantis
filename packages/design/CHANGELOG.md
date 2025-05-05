@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.1...@jobber/design@0.77.0) (2025-05-05)
+
+
+### Features
+
+* **design:** JOB-122715 Add mobile and desktop icons ([#2535](https://github.com/GetJobber/atlantis/issues/2535)) ([5de8e5e](https://github.com/GetJobber/atlantis/commit/5de8e5ea99a08eb88cd0f9a49f08de985ca4a358))
+
+
+
+
+
 ## [0.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.0...@jobber/design@0.76.1) (2025-04-29)
 
 
