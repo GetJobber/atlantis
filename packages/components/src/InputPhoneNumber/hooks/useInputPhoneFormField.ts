@@ -75,6 +75,7 @@ export function useInputPhoneFormField({
   disabled,
   autofocus,
   value,
+  readonly,
   ...rest
 }: useInputPhoneFormFieldProps) {
   const descriptionIdentifier = `descriptionUUID--${id}`;
@@ -93,6 +94,7 @@ export function useInputPhoneFormField({
     invalid: error || rest.invalid ? "true" : undefined,
     ...(description &&
       !inline && { "aria-describedby": descriptionIdentifier }),
+    readOnly: readonly,
   };
 
   return { fieldProps, descriptionIdentifier };

@@ -109,7 +109,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
             [styles.emptyValue]: inputValue.length === 0 && pattern[0] === "(",
           })}
           value={formattedValue}
-          readOnly={props.readonly}
         />
         <MaskElement
           isMasking={isMasking}
