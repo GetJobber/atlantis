@@ -1,11 +1,15 @@
 import omit from "lodash/omit";
 import React, { useEffect, useRef, useState } from "react";
+import format from "date-fns/format";
+import isValid from "date-fns/isValid";
 import { InputDateProps } from "./InputDate.types";
 import { FieldActionsRef, FormField, Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
+import { useAtlantisContext } from "../AtlantisContext";
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
+  const { dateFormat } = useAtlantisContext();
 
   return (
     <DatePicker
@@ -54,6 +58,17 @@ export function InputDate(inputProps: InputDateProps) {
                 inputProps.onBlur && inputProps.onBlur();
                 activatorProps.onBlur && activatorProps.onBlur();
                 setIsFocused(false);
+
+                if (inputProps.restoreLastValueOnBlur) {
+                  if ((!value || !isValid(value)) && inputProps.value) {
+                    onChange?.({
+                      // @ts-expect-error -- This is a hack to sync the value back to ReactDatePicker
+                      target: {
+                        value: format(inputProps.value, dateFormat),
+                      },
+                    });
+                  }
+                }
               }}
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();

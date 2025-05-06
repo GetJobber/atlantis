@@ -91,4 +91,10 @@ export interface InputDateProps
    * Text to display instead of a date value
    */
   readonly emptyValueLabel?: string;
+
+  /**
+   * Whether to replace empty/invalid values with the original value on blur
+   * @default false
+   */
+  readonly restoreLastValueOnBlur?: boolean;
 }
