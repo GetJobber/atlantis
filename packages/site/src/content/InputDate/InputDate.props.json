@@ -90,7 +90,7 @@
         "defaultValue": {
           "value": "false"
         },
-        "description": "Whether to replace empty/invalid values with the original value on blur",
+        "description": "Experimental:\nWhether to replace empty/invalid values with the original value on blur.\n\nThis solves an immediate UX problem and is likely to change in the future.\nIt prevents the input from retaining empty/invalid values when the user tabs\ninto it, clears the value, and tabs away. In this scenario, the original\nvalue will be restored.",
         "name": "restoreLastValueOnBlur",
         "parent": {
           "fileName": "packages/components/src/InputDate/InputDate.types.ts",
