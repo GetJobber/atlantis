@@ -1,0 +1,253 @@
+.container {
+  width: 100%;
+}
+
+.inline {
+  display: inline-block;
+  width: auto;
+}
+
+.wrapper {
+  /*****************************************************************************
+   * In Atlantis, these `--public-field` properties are used in other components such
+   * as InputGroup, therefore they must stay on :root
+   * (but here we move them to .wrapper just to contain them for the time being)
+   **/
+  --public-field--top-left-radius: var(--radius-base);
+  --public-field--top-right-radius: var(--radius-base);
+  --public-field--bottom-left-radius: var(--radius-base);
+  --public-field--bottom-right-radius: var(--radius-base);
+
+  --field--placeholder-color: var(--color-base-blue--600);
+  --field--value-color: var(--color-heading);
+  --field--border-color: var(--color-border--interactive);
+
+  --postfix-right: var(--space-base);
+  /*************************************************************************/
+  --field--placeholder-offset: 50%;
+  --field--placeholder-transform: -50%;
+
+  --field--textAlign: left;
+
+  --field--height: var(--space-largest);
+
+  --field--padding-top: calc(var(--space-base) - var(--space-smallest));
+  --field--padding-bottom: calc(var(--space-base) - var(--space-smallest));
+  --field--padding-left: var(--space-base);
+  --field--padding-right: var(--space-base);
+
+  --field--value-lineHeight: calc(var(--base-unit) * 1.25);
+
+  --field--background-color: var(--color-surface);
+
+  --field--base-elevation: var(--elevation-base);
+  --field--label-elevation: calc(var(--field--base-elevation) + 1);
+  --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
+  --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: var(--border-base) solid var(--field--border-color);
+  border-radius: var(--radius-base);
+  border-top-right-radius: var(--public-field--top-right-radius);
+  border-bottom-right-radius: var(--public-field--bottom-right-radius);
+  border-bottom-left-radius: var(--public-field--bottom-left-radius);
+  border-top-left-radius: var(--public-field--top-left-radius);
+  color: var(--field--value-color);
+  font-size: var(--typography--fontSize-base);
+  background-color: var(--field--background-color);
+}
+
+.wrapper * {
+  box-sizing: border-box;
+}
+
+.wrapper:focus-within {
+  position: relative;
+  z-index: var(--field--base-elevation);
+  box-shadow: var(--shadow-focus);
+}
+
+.horizontalWrapper {
+  display: flex;
+  height: var(--field--height);
+  flex: 1;
+}
+
+.invalid,
+.invalid:focus-within {
+  --field--border-color: var(--color-critical);
+  position: relative;
+}
+
+.disabled {
+  --field--placeholder-color: var(--color-disabled);
+  --field--value-color: var(--color-disabled);
+  --field--background-color: var(--color-disabled--secondary);
+  --field--border-color: var(--color-border);
+}
+
+/* override iOS default styling for disabled input */
+.disabled :disabled {
+  -webkit-text-fill-color: var(--field--value-color);
+  opacity: 1;
+}
+
+.small {
+  --field--padding-left: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-right: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-top: var(--space-small);
+  --field--padding-bottom: var(--space-small);
+  --field--height: calc(var(--space-larger) + var(--space-smaller));
+  --postfix-right: calc(var(--space-small) + var(--space-smaller));
+}
+
+.large {
+  --field--padding-left: var(--space-large);
+  --field--padding-right: var(--space-large);
+  --field--height: calc(var(--space-extravagant));
+  --postfix-right: var(--space-large);
+}
+
+.inline {
+  display: inline-block;
+  width: auto;
+}
+
+.center {
+  --field--textAlign: center;
+}
+
+.right {
+  --field--textAlign: right;
+}
+
+/**
+ * Input Wrapper
+ **/
+.inputWrapper {
+  display: flex;
+  flex: 1;
+  position: relative;
+  /* Ensure input stays with the rest of the element stack */
+  z-index: var(--elevation-default);
+}
+
+.childrenWrapper {
+  position: relative;
+  flex: 1;
+}
+
+/**
+ * Input
+ **/
+.input {
+  position: relative;
+  z-index: var(--field--base-elevation);
+  width: 100%;
+  padding-top: var(--field--padding-top);
+  padding-bottom: var(--field--padding-bottom);
+  padding-left: var(--field--padding-left);
+  padding-right: var(--field--padding-right);
+  border: none;
+  border-radius: var(--radius-base);
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: var(--field--value-lineHeight);
+  text-align: var(--field--textAlign);
+  background: transparent;
+  appearance: none;
+}
+
+.input:focus {
+  outline: none;
+}
+
+/* DO WE NEED TO SUPPORT AUTOFILL FOR INPUT NUMBER?? */
+/* .input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+} */
+
+/**
+ * Label
+ **/
+.label {
+  position: absolute;
+  top: var(--field--placeholder-offset);
+  z-index: var(--field--label-elevation);
+  width: 100%;
+  padding-left: var(--field--padding-left);
+  padding-right: var(--field--padding-right);
+  overflow: hidden;
+  color: var(--field--placeholder-color);
+  line-height: var(--field--value-lineHeight);
+  text-align: var(--field--textAlign);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(var(--field--placeholder-transform));
+}
+/* When not hiding the label, animate the transition to the miniLabel */
+.inputWrapper:not(.hideLabel) .label {
+  transition: all var(--timing-quick);
+}
+/**
+ * When input has value or is focused
+ * and label has content
+ * label becomes "miniLabel": small and above field value
+ * unless inputWrapper is small
+ */
+.inputWrapper:not(.small, .hideLabel):has(
+    .input:not(:placeholder-shown) + .label:not(:empty)
+  ),
+.inputWrapper:not(.small, .hideLabel):has(.input:focus + .label:not(:empty)) {
+  --field--placeholder-color: var(--color-text--secondary);
+  --field--placeholder-offset: var(--space-smallest);
+  --field--placeholder-transform: 0;
+  --field--padding-top: calc(var(--space-base) + var(--space-smaller));
+  --field--padding-bottom: var(--space-small);
+}
+
+.input:not(:placeholder-shown) + .label:not(:empty),
+.input:focus + .label:not(:empty) {
+  font-size: var(--typography--fontSize-small);
+}
+/* Size small inputs don't show a "miniLabel" */
+.inputWrapper.small .input:not(:placeholder-shown) + .label:not(:empty),
+.inputWrapper.small .input:focus + .label:not(:empty) {
+  display: none;
+}
+
+/* Size Large inputs adjust top padding on minilabel  */
+.inputWrapper.large:not(.hideLabel)
+  .input:not(:placeholder-shown)
+  + .label:not(:empty),
+.inputWrapper.large:not(.hideLabel) .input:focus + .label:not(:empty) {
+  --field--padding-top: calc(var(--space-large) + var(--space-smaller));
+}
+.inputWrapper.large .input:not(:placeholder-shown) + .label:not(:empty) .label,
+.inputWrapper.large .input:focus + .label:not(:empty) .label {
+  padding-top: var(--space-small);
+}
+
+.hideLabel .input:not(:placeholder-shown) + .label:not(:empty),
+.hideLabel .input:focus + .label:not(:empty) {
+  visibility: hidden;
+}
+
+.description {
+  margin-top: var(--space-smaller);
+}
+.fieldError {
+  align-items: center;
+  display: flex;
+  gap: var(--space-smaller);
+  padding: var(--space-smaller);
+  padding-left: 0;
+  vertical-align: baseline;
+}

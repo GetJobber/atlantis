@@ -93,6 +93,7 @@
     "Icon",
     "InlineLabel",
     "InputAvatar",
+    "InputCurrency",
     "InputDate",
     "InputEmail",
     "InputFile",
