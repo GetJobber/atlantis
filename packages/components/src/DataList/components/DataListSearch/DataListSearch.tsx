@@ -78,6 +78,7 @@ export function InternalDataListSearch() {
           initialChild={
             <Button
               variation="subtle"
+              type="secondary"
               icon="search"
               ariaLabel="Search"
               onClick={toggleSearch}
@@ -86,6 +87,7 @@ export function InternalDataListSearch() {
           switchTo={
             <Button
               variation="subtle"
+              type="secondary"
               icon="remove"
               ariaLabel="Close search bar"
               onClick={toggleSearch}
