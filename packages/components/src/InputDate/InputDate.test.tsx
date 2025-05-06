@@ -1,7 +1,8 @@
 /* eslint-disable max-statements */
 import React, { useState } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { InputDate } from ".";
+import userEvent from "@testing-library/user-event";
+import { InputDate, InputDateProps } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
 import { Text } from "../Text";
@@ -331,4 +332,83 @@ describe("InputDate V1", () => {
       </div>
     );
   }
+
+  function InputDateWithStateTest(
+    props: {
+      readonly initialValue: string;
+    } & Partial<InputDateProps>,
+  ): JSX.Element {
+    const [date, setDate] = useState(new Date(props.initialValue));
+
+    return (
+      <InputDate
+        {...props}
+        value={date}
+        onChange={d => {
+          // Skips empty date values: this scenario expects the input to always be valid
+          if (!d) return;
+          setDate(d);
+        }}
+      />
+    );
+  }
+
+  describe("when restoreLastValueOnBlur is true", () => {
+    it("restores the last value when the input is empty", async () => {
+      const originalValue = "11/11/2011";
+      const placeholder = "placeholder";
+      render(
+        <>
+          <textarea data-testid="textarea" />
+          <InputDateWithStateTest
+            restoreLastValueOnBlur
+            initialValue={originalValue}
+            placeholder={placeholder}
+          />
+        </>,
+      );
+
+      const textarea = screen.getByTestId("textarea");
+      const input = screen.getByLabelText(placeholder);
+
+      // Focus an element, tab to the input and clear the value, then blur the input
+      await userEvent.click(textarea);
+      await userEvent.tab();
+      await userEvent.clear(input);
+      await userEvent.type(input, "what");
+      await userEvent.tab({
+        shift: true,
+      });
+
+      expect(input).toHaveValue(originalValue);
+    });
+
+    it("restores the last value when the input contains an invalid date", async () => {
+      const originalValue = "11/11/2011";
+      const placeholder = "placeholder";
+      render(
+        <>
+          <textarea data-testid="textarea" />
+          <InputDateWithStateTest
+            restoreLastValueOnBlur
+            initialValue={originalValue}
+            placeholder={placeholder}
+          />
+        </>,
+      );
+
+      const textarea = screen.getByTestId("textarea");
+      const input = screen.getByLabelText(placeholder);
+
+      // Focus an element, tab to the input and enter an invalid date, then blur the input
+      await userEvent.click(textarea);
+      await userEvent.tab();
+      await userEvent.type(input, "invalidtext");
+      await userEvent.tab({
+        shift: true,
+      });
+
+      expect(input).toHaveValue(originalValue);
+    });
+  });
 });
