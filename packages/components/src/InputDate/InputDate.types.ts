@@ -93,7 +93,14 @@ export interface InputDateProps
   readonly emptyValueLabel?: string;
 
   /**
-   * Whether to replace empty/invalid values with the original value on blur
+   * Experimental:
+   * Whether to replace empty/invalid values with the original value on blur.
+   *
+   * This solves an immediate UX problem and is likely to change in the future.
+   * It prevents the input from retaining empty/invalid values when the user tabs
+   * into it, clears the value, and tabs away. In this scenario, the original
+   * value will be restored.
+   *
    * @default false
    */
   readonly restoreLastValueOnBlur?: boolean;
