@@ -3,10 +3,10 @@ import { InputTextRef } from "@jobber/components/InputText";
 import { DefaultMenu, DefaultMenuProps } from "./DefaultMenu";
 import { useAutocompleteMenu } from "./MenuWrapper";
 import {
-  AnyOption,
-  CustomOptionsMenuProp,
-  MenuProps,
-  Option,
+  type AnyOption,
+  type CustomOptionsMenuProp,
+  type MenuProps,
+  type Option,
 } from "../Autocomplete.types";
 
 export function Menu<

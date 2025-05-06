@@ -1,6 +1,6 @@
 import React, { RefObject } from "react";
 import { BaseAutocompleteMenuWrapper } from "./MenuWrapper";
-import { AnyOption, Option } from "../Autocomplete.types";
+import { type AnyOption, type Option } from "../Autocomplete.types";
 import { isOptionSelected } from "../Autocomplete.utils";
 import { MenuOption } from "../Option";
 import { useKeyboardNavigation } from "../useKeyboardNavigation";

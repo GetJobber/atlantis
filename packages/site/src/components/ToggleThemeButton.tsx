@@ -1,6 +1,6 @@
 import {
   Button,
-  Theme,
+  type Theme,
   updateTheme,
   useAtlantisTheme,
 } from "@jobber/components";

@@ -9,7 +9,11 @@ import React, {
 } from "react";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
-import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
+import {
+  type AnyOption,
+  type AutocompleteProps,
+  type Option,
+} from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
 import { InputText, InputTextRef } from "../InputText";
 import { useDebounce } from "../utils/useDebounce";

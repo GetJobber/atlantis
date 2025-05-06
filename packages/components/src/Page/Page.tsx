@@ -10,8 +10,8 @@ import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
-import { Button, ButtonProps } from "../Button";
-import { Menu, SectionProps } from "../Menu";
+import { Button, type ButtonProps } from "../Button";
+import { Menu, type SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 
 export type ButtonActionProps = ButtonProps & {

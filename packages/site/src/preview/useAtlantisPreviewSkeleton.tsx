@@ -1,4 +1,4 @@
-import { Theme } from "@jobber/components";
+import { type Theme } from "@jobber/components";
 import { RefObject } from "react";
 
 const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {

@@ -1,4 +1,4 @@
-import { Theme } from "@jobber/components";
+import { type Theme } from "@jobber/components";
 
 const FALLBACK_THEME: Theme = "light";
 

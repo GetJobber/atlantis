@@ -2,11 +2,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
-  AnyOption,
+  type AnyOption,
   Autocomplete,
   BaseMenuGroupOption,
   BaseMenuOption,
-  CustomOptionsMenuProp,
+  type CustomOptionsMenuProp,
   KeyboardAction,
   MenuOption,
   Option,

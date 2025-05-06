@@ -1,1 +1,1 @@
-export { Form, FormRef } from "./Form";
+export { Form, type FormRef } from "./Form";
