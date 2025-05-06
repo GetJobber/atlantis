@@ -180,6 +180,7 @@ export function DatePicker({
    */
   function handleChange(value: Date /* , event: React.SyntheticEvent */) {
     onChange(value);
+    console.log(`🔥 handleChange`, value);
   }
 
   function handleCalendarOpen() {

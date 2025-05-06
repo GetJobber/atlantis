@@ -32,10 +32,14 @@ export function InputDate(inputProps: InputDateProps) {
 
         // Set form field to formatted date string immediately, to avoid validations
         //  triggering incorrectly when it blurs (to handle the datepicker UI click)
+        // MAYBE NEED TO re-setValue IN THIS CASE? Because `value` didn't change if the owner skipped the onChange event
         useEffect(() => {
           value && formFieldActionsRef.current?.setValue(value);
+          console.log(`🔥 SET VALUE`, value);
         }, [value]);
         const showEmptyValueLabel = !value && !isFocused;
+
+        console.log(`🔥 CURR VALUE`, value);
 
         return (
           // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
@@ -49,16 +53,19 @@ export function InputDate(inputProps: InputDateProps) {
               placeholder={inputProps.placeholder}
               onChange={(_, event) => {
                 onChange && onChange(event);
+                console.log(`🔥 FormField onChange`, event);
               }}
               onBlur={() => {
                 inputProps.onBlur && inputProps.onBlur();
                 activatorProps.onBlur && activatorProps.onBlur();
                 setIsFocused(false);
+                console.log(`🔥 BLURRR`);
               }}
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();
                 activatorProps.onFocus && activatorProps.onFocus();
                 setIsFocused(true);
+                console.log(`🔥 FOCUS`);
               }}
               onKeyUp={event => {
                 if (

@@ -17,7 +17,24 @@ export default {
 const BasicTemplate: ComponentStory<typeof InputDate> = args => {
   const [date, setDate] = useState(new Date("11/11/2011"));
 
-  return <InputDate {...args} value={date} onChange={setDate} />;
+  return (
+    <Content>
+      <textarea />
+      <InputDate
+        {...args}
+        value={date}
+        onChange={d => {
+          if (!d) {
+            console.log(`🔥 InputDate onChange NO VALUE`);
+
+            return;
+          }
+          setDate(d);
+          console.log(`🔥 InputDate onChange`, d);
+        }}
+      />
+    </Content>
+  );
 };
 
 export const Basic = BasicTemplate.bind({});
