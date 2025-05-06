@@ -37,6 +37,8 @@ interface FormatFileProps {
    * onDelete callback - this function will be called when the delete action is triggered
    */
   onDelete?(): void;
+
+  readonly quickDelete?: boolean;
 }
 
 export function FormatFile({
@@ -44,6 +46,7 @@ export function FormatFile({
   display = "expanded",
   displaySize = "base",
   onDelete,
+  quickDelete,
   onClick,
 }: FormatFileProps) {
   const isComplete = file.progress >= 1;
@@ -104,6 +107,7 @@ export function FormatFile({
       {isComplete && onDelete && (
         <div className={styles.deleteButton}>
           <FormatFileDeleteButton
+            quickDelete={quickDelete}
             size={display === "expanded" ? "large" : displaySize}
             onDelete={onDelete}
           />
