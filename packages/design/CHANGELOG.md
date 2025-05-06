@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.77.0...@jobber/design@0.78.0) (2025-05-06)
+
+
+### Features
+
+* **design:** Add surface and onSurface colors for color-client ([#2539](https://github.com/GetJobber/atlantis/issues/2539)) ([4c9f741](https://github.com/GetJobber/atlantis/commit/4c9f7415e31add63da9428c084bc23855e4615fa))
+
+
+
+
+
 # [0.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.1...@jobber/design@0.77.0) (2025-05-05)
 
 

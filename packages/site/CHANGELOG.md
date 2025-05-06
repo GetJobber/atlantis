@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.6...@jobber/atlantis-site@0.55.0) (2025-05-06)
+
+
+### Features
+
+* **components:** InputPhoneNumber v2 ([#2534](https://github.com/GetJobber/atlantis/issues/2534)) ([f1220e8](https://github.com/GetJobber/atlantis/commit/f1220e8ef62cd42ff67c075b9f17eff6fbebd96b))
+* **design:** Add surface and onSurface colors for color-client ([#2539](https://github.com/GetJobber/atlantis/issues/2539)) ([4c9f741](https://github.com/GetJobber/atlantis/commit/4c9f7415e31add63da9428c084bc23855e4615fa))
+
+
+
+
+
 ## [0.54.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.5...@jobber/atlantis-site@0.54.6) (2025-05-05)
 
 **Note:** Version bump only for package @jobber/atlantis-site
