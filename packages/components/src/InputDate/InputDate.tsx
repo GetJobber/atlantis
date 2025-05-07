@@ -1,11 +1,15 @@
 import omit from "lodash/omit";
 import React, { useEffect, useRef, useState } from "react";
+import format from "date-fns/format";
+import isValid from "date-fns/isValid";
 import { InputDateProps } from "./InputDate.types";
 import { FieldActionsRef, FormField, Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
+import { useAtlantisContext } from "../AtlantisContext";
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
+  const { dateFormat } = useAtlantisContext();
 
   return (
     <DatePicker
@@ -54,6 +58,32 @@ export function InputDate(inputProps: InputDateProps) {
                 inputProps.onBlur && inputProps.onBlur();
                 activatorProps.onBlur && activatorProps.onBlur();
                 setIsFocused(false);
+
+                /**
+                 * This is an experimental workaround to solve a specific UX problem we have under certain conditions.
+                 * When you click to focus InputDate, ReactDatePicker becomes visible. If you delete the current date and blur
+                 * the input field by clicking away, ReactDatePicker will automatically set the date to whatever date was
+                 * currently selected.
+                 *
+                 * The above works great and is the expected user experience. ReactDatePicker fills in the empty value for us.
+                 *
+                 * However, there's a specific scenario where ReactDatePicker isn't visible: when you tab into the input date.
+                 * When you tab into it, clear the value, and tab away to blur, ReactDatePicker doesn't automatically fill in
+                 * the empty value because it wasn't visible/active.
+                 *
+                 * To solve this, we need to handle the blur event here and check if the value is empty or invalid. If it is,
+                 * we have to call onChange with the original input value which informs ReactDatePicker that is the current value.
+                 */
+                if (inputProps.restoreLastValueOnBlur) {
+                  if ((!value || !isValid(value)) && inputProps.value) {
+                    onChange?.({
+                      // @ts-expect-error -- This is a hack to sync the value back to ReactDatePicker
+                      target: {
+                        value: format(inputProps.value, dateFormat),
+                      },
+                    });
+                  }
+                }
               }}
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();
