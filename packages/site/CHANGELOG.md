@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.55.0...@jobber/atlantis-site@0.56.0) (2025-05-07)
+
+
+### Features
+
+* **components:** Add InputDate prop to replace invalid values with last value on blur ([#2541](https://github.com/GetJobber/atlantis/issues/2541)) ([5958b7c](https://github.com/GetJobber/atlantis/commit/5958b7c4265423c1ef9188f9f236af4937f98aab))
+
+
+
+
+
 # [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.6...@jobber/atlantis-site@0.55.0) (2025-05-06)
 
 
