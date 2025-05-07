@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
 } from "@jobber/components";
+import { EmailPicker } from "./EmailPicker";
 
 export const VisualTestMenuPage = () => {
   const basicItems = [
@@ -91,6 +92,9 @@ export const VisualTestMenuPage = () => {
                 <Menu items={complexItems} />
               </Grid.Cell>
             </Grid>
+          </section>
+          <section>
+            <EmailPicker />
           </section>
         </Stack>
       </Stack>

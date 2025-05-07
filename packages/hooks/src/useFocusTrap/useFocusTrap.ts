@@ -23,12 +23,12 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
 
     if (event.shiftKey) {
       if (document.activeElement === firstElement) {
-        lastElement.focus();
+        lastElement?.focus();
         event.preventDefault();
       }
     } else {
-      if (document.activeElement === lastElement) {
-        firstElement.focus();
+      if (document.activeElement === lastElement && firstElement) {
+        firstElement?.focus();
         event.preventDefault();
       }
     }
@@ -37,7 +37,7 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
   useEffect(() => {
     if (active && ref.current) {
       const { firstElement } = getElements(ref.current);
-      firstElement.focus();
+      firstElement?.focus();
       ref.current.addEventListener("keydown", handleKeyDown);
     }
 

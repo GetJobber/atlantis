@@ -13,6 +13,7 @@ export {
   FormFieldWrapperToolbar,
   FormFieldWrapperProps,
 } from "./FormFieldWrapper";
+export { ClearAction } from "./components/ClearAction";
 export { AffixIcon, AffixLabel } from "./FormFieldAffix";
 export {
   useFormFieldWrapperStyles,

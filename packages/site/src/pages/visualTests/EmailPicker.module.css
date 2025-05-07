@@ -1,0 +1,414 @@
+:root {
+    /**
+     * These `--public-field` properties are used in other components such
+     * as InputGroup, therefore they must stay on :root
+     **/
+    --public-field--top-left-radius: var(--radius-base);
+    --public-field--top-right-radius: var(--radius-base);
+    --public-field--bottom-left-radius: var(--radius-base);
+    --public-field--bottom-right-radius: var(--radius-base);
+
+    --field--placeholder-color: var(--color-base-blue--600);
+    --field--value-color: var(--color-heading);
+    --field--border-color: var(--color-border--interactive);
+
+    --postfix-right: var(--space-base);
+}
+
+.container {
+    width: 100%;
+}
+
+/**
+   * Wrapper
+   **/
+.wrapper {
+    --field--placeholder-offset: 50%;
+    --field--placeholder-transform: -50%;
+
+    --field--textAlign: left;
+
+    --field--height: var(--space-largest);
+
+    --field--padding-top: 0;
+    --field--padding-bottom: 0;
+    --field--padding-left: var(--space-base);
+    --field--padding-right: var(--space-base);
+
+    --field--value-lineHeight: calc(var(--base-unit) * 1.25);
+
+    --field--background-color: var(--color-surface);
+
+    --field--base-elevation: var(--elevation-base);
+    --field--label-elevation: calc(var(--field--base-elevation) + 1);
+    --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
+    --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: var(--border-base) solid var(--field--border-color);
+    border-radius: var(--radius-base);
+    border-top-right-radius: var(--public-field--top-right-radius);
+    border-bottom-right-radius: var(--public-field--bottom-right-radius);
+    border-bottom-left-radius: var(--public-field--bottom-left-radius);
+    border-top-left-radius: var(--public-field--top-left-radius);
+    color: var(--field--value-color);
+    font-size: var(--typography--fontSize-base);
+    background-color: var(--field--background-color);
+}
+
+.wrapper * {
+    box-sizing: border-box;
+}
+
+.wrapper:focus-within {
+    position: relative;
+    z-index: var(--field--base-elevation);
+    box-shadow: var(--shadow-focus);
+}
+
+.horizontalWrapper {
+    display: flex;
+    height: var(--field--height);
+    flex: 1;
+}
+
+.textarea.safari .horizontalWrapper {
+    margin-right: var(--field--padding-right);
+}
+
+.timeInputLabel:not(:focus-within) input {
+    color: var(--field--background-color);
+    -webkit-text-fill-color: var(--field--background-color);
+}
+
+.timeInputLabel:focus-within,
+.miniLabel {
+    --field--placeholder-color: var(--color-text--secondary);
+    --field--placeholder-offset: var(--space-smallest);
+    --field--placeholder-transform: 0;
+    --field--padding-bottom: var(--space-small);
+}
+
+
+.wrapper.text {
+    --field--placeholder-offset: 0;
+    --field--placeholder-transform: 0;
+    min-height: auto;
+}
+
+.wrapper.textarea {
+    resize: vertical;
+    overflow: auto;
+}
+
+.invalid,
+.invalid:focus-within {
+    --field--border-color: var(--color-critical);
+    position: relative;
+}
+
+.disabled {
+    --field--placeholder-color: var(--color-disabled);
+    --field--value-color: var(--color-disabled);
+    --field--background-color: var(--color-disabled--secondary);
+    --field--border-color: var(--color-border);
+}
+
+/* override iOS default styling for disabled input */
+.disabled :disabled {
+    -webkit-text-fill-color: var(--field--value-color);
+    opacity: 1;
+}
+
+.small {
+    --field--padding-left: calc(var(--space-base) - var(--space-smaller));
+    --field--padding-right: calc(var(--space-base) - var(--space-smaller));
+    --field--padding-top: var(--space-small);
+    --field--padding-bottom: var(--space-small);
+    --field--height: calc(var(--space-larger) + var(--space-smaller));
+    --postfix-right: calc(var(--space-small) + var(--space-smaller));
+}
+
+.large {
+    --field--padding-left: var(--space-large);
+    --field--padding-right: var(--space-large);
+    --field--height: calc(var(--space-extravagant));
+    --postfix-right: var(--space-large);
+}
+
+.inline {
+    display: inline-block;
+    width: auto;
+}
+
+.center {
+    --field--textAlign: center;
+}
+
+.right {
+    --field--textAlign: right;
+}
+
+/**
+   * The custom property --formField-maxLength is getting defined inside the
+   * component.
+   */
+.maxLength {
+    width: calc((var(--base-unit) * var(--formField-maxLength)) + var(--field--padding-left) + var(--field--padding-right));
+}
+
+/**
+   * Input Wrapper
+   **/
+.inputWrapper {
+    display: flex;
+    flex: 1;
+    position: relative;
+    /* Ensure input stays with the rest of the element stack */
+    z-index: var(--elevation-default);
+}
+
+.childrenWrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+/**
+   * Input
+   **/
+.input {
+    position: relative;
+    z-index: var(--field--base-elevation);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: var(--field--padding-left);
+    padding-right: var(--field--padding-right);
+    border: none;
+    border-radius: var(--radius-base);
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: var(--field--value-lineHeight);
+    text-align: left;
+    background: transparent;
+    appearance: none;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.emptyPhoneNumber {
+    padding-left: calc(var(--field--padding-left) + var(--space-smaller));
+}
+
+.textarea .childrenWrapper {
+    display: flex;
+    min-height: var(--field--height);
+    flex-direction: column;
+}
+
+.textarea .inputWrapper:has(.label) .childrenWrapper {
+    padding-top: var(--field--padding-top);
+}
+
+.textarea .input {
+    flex: 1;
+    resize: none;
+    scroll-padding-bottom: var(--space-base);
+    padding-top: 0;
+}
+
+.select .input {
+    z-index: var(--field--label-elevation);
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+    -webkit-text-fill-color: var(--field--value-color);
+}
+
+.textarea:not(:has(.label)) {
+    .input {
+        padding-top: var(--field--padding-top);
+    }
+}
+
+.textarea.safari .input {
+    padding-right: 0;
+}
+
+/**
+   * Label
+   **/
+.label {
+    position: absolute;
+    top: var(--field--placeholder-offset);
+    z-index: var(--field--label-elevation);
+    width: 100%;
+    padding-left: var(--field--padding-left);
+    padding-right: var(--field--padding-right);
+    overflow: hidden;
+    color: var(--field--placeholder-color);
+    line-height: var(--field--value-lineHeight);
+    text-align: var(--field--textAlign);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+    transform: translateY(var(--field--placeholder-transform));
+    transition: all var(--timing-quick);
+}
+
+.externalLabel {
+    display: block;
+    margin-bottom: var(--space-smaller);
+    color: var(--field--placeholder-color);
+    line-height: var(--typography--lineHeight-base);
+}
+
+.select select,
+.right select,
+.select .label {
+    padding-right: calc(var(--field--padding-right) + var(--base-unit) * 2);
+}
+
+.select option {
+    background-color: var(--field--background-color);
+}
+
+.text .label {
+    padding-top: var(--field--padding-top);
+    transform: translateY(var(--field--placeholder-transform));
+}
+
+.textarea .label {
+    padding-right: var(--field--padding-right);
+}
+
+.miniLabel .label,
+.timeInputLabel:focus-within .label {
+    font-size: var(--typography--fontSize-small);
+}
+
+.text.miniLabel .label {
+    padding-top: var(--space-smallest);
+}
+
+.textarea.miniLabel .label {
+    background-color: var(--field--background-color);
+}
+
+.small.miniLabel .label,
+.timeInputLabel.small.miniLabel:focus-within .label {
+    display: none;
+}
+
+/**This is valid cascading order **/
+/* stylelint-disable-next-line no-descending-specificity */
+.large.miniLabel .label,
+.timeInputLabel.large.miniLabel:focus-within .label {
+    padding-top: var(--space-small);
+}
+
+/**
+   * Postfix
+   **/
+.postfix {
+    position: absolute;
+    top: 50%;
+    right: var(--postfix-right);
+    z-index: var(--field--postfix-elevation);
+    transform: translateY(-50%);
+}
+
+/**
+   * Affix
+   **/
+
+.affixIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 calc(var(--field--padding-left) * -1) 0 0;
+    padding: 0 var(--field--padding-right) 0 var(--field--padding-left);
+}
+
+.affixIcon.suffix {
+    margin: 0 0 0 calc(var(--field--padding-right) * -1);
+    padding-left: var(--space-small);
+}
+
+.affixIcon.hasAction {
+    position: relative;
+    z-index: var(--field--postfix-action-elevation);
+}
+
+.affixLabel {
+    display: flex;
+    margin: 0 calc((var(--field--padding-left) - var(--space-smallest)) * -1) 0 0;
+    padding: 0 0 0 var(--field--padding-left);
+    line-height: var(--field--value-lineHeight);
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.affixLabel.suffix {
+    margin: 0 0 0 calc((var(--field--padding-left) - var(--space-smallest)) * -1);
+    padding: 0 var(--field--padding-left) 0 0;
+}
+
+.miniLabel:not(.small) .affixLabel {
+    padding-top: var(--field--padding-top);
+    padding-bottom: var(--field--padding-bottom);
+}
+
+.description {
+    margin-top: var(--space-smaller);
+}
+
+.toolbar {
+    display: flex;
+    position: relative;
+    margin: var(--space-small) var(--field--padding-right) var(--space-base) var(--field--padding-left);
+}
+
+.toolbar::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: calc(-1.25 * var(--space-base));
+    right: 0;
+    left: 0;
+    z-index: var(--elevation-base);
+    height: var(--space-base);
+    background: linear-gradient(to bottom, transparent, var(--color-surface) 60%);
+}
+
+.itemB {
+    width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border: none;
+    background: none;
+    text-align: left;
+}
+
+.itemB:hover {
+    background-color: var(--color-interactive--background);
+    color: var(--color-surface);
+    border-radius: var(--radius-base);
+}
+
+.itemB:focus {
+    border-radius: var(--radius-base);
+    outline: 1px solid var(--color-interactive--background);
+}
