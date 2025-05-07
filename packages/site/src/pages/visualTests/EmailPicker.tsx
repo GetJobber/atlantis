@@ -1,19 +1,17 @@
 import {
-  AffixIcon,
-  AffixLabel,
+  Box,
+  Button,
   Chip,
-  ClearAction,
   Cluster,
+  ContentBlock,
   FormFieldInputHorizontalWrapper,
   FormFieldInputWrapperStyles,
-  FormFieldLabel,
   Icon,
-  InputValidation,
   Menu,
   Text,
   useFormFieldWrapperStyles,
 } from "@jobber/components";
-import { RefObject, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./EmailPicker.module.css";
 
 export const EmailPicker = () => {
@@ -48,21 +46,25 @@ export const EmailPicker = () => {
       email: "kevinbrooks@example.com",
     },
   ];
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div style={{ "--menu-space": "0" } as React.CSSProperties}>
       <Menu
+        UNSAFE_className={{
+          container: styles.noPadding,
+          items: styles.noPadding,
+        }}
         activator={
           <EmailField value="test" showMiniLabel={false} fullWidth>
             <Cluster gap="small">
+              <Text>To</Text>
               {selected.map((item, index) => {
                 return !item.outOfBand ? (
                   <Chip key={index} label={item.name}>
                     <Chip.Suffix
                       onClick={() => {
-                        setSelected(
-                          selected.filter(i => i.email !== item.email),
-                        );
+                        setSelected(selected.filter(i => i.name !== item.name));
                       }}
                     >
                       <Icon size="small" name="remove" />
@@ -77,6 +79,7 @@ export const EmailPicker = () => {
                 );
               })}
               <input
+                ref={inputRef}
                 value={email}
                 onChange={e => {
                   setEmail(e.target.value);
@@ -85,6 +88,7 @@ export const EmailPicker = () => {
                 type="text"
                 onKeyDown={e => {
                   if (e.key === "Enter") {
+                    setEmail("");
                     setSelected([
                       ...selected,
                       {
@@ -100,39 +104,40 @@ export const EmailPicker = () => {
           </EmailField>
         }
       >
-        {items.map((item, index) => (
-          <button
-            className={styles.itemB}
-            key={index}
-            onClick={() => {
-              setSelected([...selected, item]);
-            }}
-            type="button"
-          >
-            <div>
-              <Text>{item.name}</Text>
-              <Text>{item.role}</Text>
-            </div>
-            <Text>{item.email}</Text>
-          </button>
-        ))}
+        {items
+          .filter(item => !selected.some(s => s.email === item.email))
+          .map((item, index) => (
+            <button
+              className={styles.itemB}
+              key={index}
+              onClick={() => {
+                setSelected([...selected, item]);
+              }}
+              type="button"
+            >
+              <div>
+                <Text>{item.name}</Text>
+                <Text>{item.role}</Text>
+              </div>
+              <Text>{item.email}</Text>
+            </button>
+          ))}
+        <Box padding="small">
+          <ContentBlock>
+            <Button
+              type="tertiary"
+              onClick={() => alert("Add new contact experience start")}
+            >
+              <Button.Label>Add new contact</Button.Label>
+            </Button>
+          </ContentBlock>
+        </Box>
       </Menu>
     </div>
   );
 };
 
 export const EmailField = ({
-  value,
-  showMiniLabel,
-  size,
-  prefix,
-  suffix,
-  placeholder,
-  error,
-  inline,
-  fullWidth,
-  identifier,
-  onClear,
   children,
   ...rest
 }: {
@@ -155,57 +160,26 @@ export const EmailField = ({
   readonly children?: React.ReactNode;
   readonly fullWidth?: boolean;
 }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  const prefixRef = useRef() as RefObject<HTMLDivElement>;
-  const suffixRef = useRef() as RefObject<HTMLDivElement>;
-
-  const { wrapperClasses, containerClasses, wrapperInlineStyle, labelStyle } =
-    useFormFieldWrapperStyles({
-      placeholder: "Enter email",
-      value: "test",
-      invalid: false,
-      error: "error",
-      type: "text",
-      disabled: false,
-      inline: false,
-      showMiniLabel: true,
-    });
+  const { wrapperClasses, containerClasses } = useFormFieldWrapperStyles({
+    placeholder: "Enter email",
+    value: "test",
+    invalid: false,
+    error: "error",
+    type: "text",
+    disabled: false,
+    inline: false,
+    showMiniLabel: true,
+  });
 
   return (
-    <div className={containerClasses} data-full-width={fullWidth} {...rest}>
-      <div
-        className={wrapperClasses}
-        style={wrapperInlineStyle}
-        data-testid="Form-Field-Wrapper"
-        ref={wrapperRef}
-      >
+    <div className={containerClasses} {...rest}>
+      <div className={wrapperClasses} data-testid="Form-Field-Wrapper">
         <FormFieldInputHorizontalWrapper>
-          <AffixIcon {...prefix} size={size} />
           <FormFieldInputWrapperStyles>
-            {(showMiniLabel || !value) && (
-              <FormFieldLabel
-                htmlFor={identifier}
-                style={
-                  prefixRef?.current || suffixRef?.current
-                    ? labelStyle
-                    : undefined
-                }
-              >
-                {placeholder}
-              </FormFieldLabel>
-            )}
-            <AffixLabel {...prefix} labelRef={prefixRef} />
-
             <div className={styles.childrenWrapper}>{children}</div>
-
-            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
           </FormFieldInputWrapperStyles>
-          <ClearAction onClick={onClear} visible={!!onClear} />
-          <AffixIcon {...suffix} variation="suffix" size={size} />
         </FormFieldInputHorizontalWrapper>
       </div>
-      <InputValidation message={error || ""} visible={!!error && !inline} />
     </div>
   );
 };

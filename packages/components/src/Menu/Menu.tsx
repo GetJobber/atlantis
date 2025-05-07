@@ -30,6 +30,15 @@ export interface MenuProps {
    * Custom menu item.
    */
   readonly children?: ReactNode;
+
+  readonly UNSAFE_className?: {
+    container?: string;
+    items?: string;
+  };
+  readonly UNSAFE_style?: {
+    container?: React.CSSProperties;
+    items?: React.CSSProperties;
+  };
 }
 
 export interface SectionProps {
@@ -45,7 +54,13 @@ export interface SectionProps {
 }
 
 // eslint-disable-next-line max-statements
-export function Menu({ activator, items, children }: MenuProps) {
+export function Menu({
+  activator,
+  items,
+  children,
+  UNSAFE_className,
+  UNSAFE_style,
+}: MenuProps) {
   const {
     activator: activatorElement,
     buttonID,
@@ -66,7 +81,8 @@ export function Menu({ activator, items, children }: MenuProps) {
 
   return (
     <Menu.Container
-      wrapperClasses={wrapperClasses}
+      wrapperClasses={classnames(wrapperClasses, UNSAFE_className?.container)}
+      wrapperStyle={UNSAFE_style?.container || {}}
       handleParentClick={handleParentClick}
     >
       <Menu.Activator
@@ -119,6 +135,7 @@ export function Menu({ activator, items, children }: MenuProps) {
             menuRef={menuRef}
             state={state}
             fullWidth={fullWidth}
+            className={UNSAFE_className?.items}
           >
             {children}
           </Menu.Items>
@@ -149,11 +166,13 @@ Menu.Items = function MenuItemWrapper({
   menuRef,
   state,
   fullWidth,
+  className,
 }: {
   readonly children: ReactNode;
   readonly buttonID: string;
   readonly menuID: string;
   readonly hide: () => void;
+  readonly className?: string;
   readonly variation: {
     overlayStartStop: {
       opacity: number;
@@ -167,9 +186,13 @@ Menu.Items = function MenuItemWrapper({
 }) {
   return (
     <motion.div
-      className={classnames(styles.menu, {
-        [styles.fullWidth]: fullWidth,
-      })}
+      className={classnames(
+        styles.menu,
+        {
+          [styles.fullWidth]: fullWidth,
+        },
+        className,
+      )}
       role="menu"
       data-elevation={"elevated"}
       aria-labelledby={buttonID}
@@ -194,14 +217,20 @@ Menu.Items = function MenuItemWrapper({
 Menu.Container = function MenuContainer({
   children,
   wrapperClasses,
+  wrapperStyle,
   handleParentClick,
 }: {
   readonly children: ReactNode;
   readonly wrapperClasses: string;
+  readonly wrapperStyle: React.CSSProperties;
   readonly handleParentClick: (event: React.MouseEvent<HTMLDivElement>) => void;
 }) {
   return (
-    <div className={wrapperClasses} onClick={handleParentClick}>
+    <div
+      className={wrapperClasses}
+      style={wrapperStyle}
+      onClick={handleParentClick}
+    >
       {children}
     </div>
   );

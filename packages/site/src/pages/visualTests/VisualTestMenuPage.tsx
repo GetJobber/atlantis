@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  ContentBlock,
   Grid,
   Heading,
   IconNames,
@@ -58,43 +59,51 @@ export const VisualTestMenuPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Menu Examples</Heading>
+        <Heading level={2}>Email [object] to [client name]</Heading>
 
         <Stack gap="large">
           {/* Basic Menu */}
-          <section>
-            <Text size="large">Basic Menu</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Menu items={basicItems} />
-              </Grid.Cell>
-            </Grid>
-          </section>
+          {
+            <section>
+              <Text size="large">Basic Menu</Text>
+              <Grid>
+                <Grid.Cell size={{ xs: 12, md: 6 }}>
+                  <Menu items={basicItems} />
+                </Grid.Cell>
+              </Grid>
+            </section>
+          }
 
           {/* Menu with Custom Activator */}
-          <section>
-            <Text size="large">Menu with Custom Activator</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Menu
-                  items={basicItems}
-                  activator={<Button label="Open Menu" icon="menu" />}
-                />
-              </Grid.Cell>
-            </Grid>
-          </section>
+          {
+            <section>
+              <Text size="large">Menu with Custom Activator</Text>
+              <Grid>
+                <Grid.Cell size={{ xs: 12, md: 6 }}>
+                  <Menu
+                    items={basicItems}
+                    activator={<Button label="Open Menu" icon="menu" />}
+                  />
+                </Grid.Cell>
+              </Grid>
+            </section>
+          }
 
           {/* Menu with Icons and Sections */}
+          {
+            <section>
+              <Text size="large">Menu with Icons and Sections</Text>
+              <Grid>
+                <Grid.Cell size={{ xs: 12, md: 6 }}>
+                  <Menu items={complexItems} />
+                </Grid.Cell>
+              </Grid>
+            </section>
+          }
           <section>
-            <Text size="large">Menu with Icons and Sections</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Menu items={complexItems} />
-              </Grid.Cell>
-            </Grid>
-          </section>
-          <section>
-            <EmailPicker />
+            <ContentBlock maxWidth="lg">
+              <EmailPicker />
+            </ContentBlock>
           </section>
         </Stack>
       </Stack>

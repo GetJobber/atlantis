@@ -84,6 +84,7 @@
 .action:focus-visible {
   box-shadow: var(--shadow-focus);
 }
+
 .action span {
   /* match appearance of Button labels */
   -webkit-font-smoothing: antialiased;
@@ -109,6 +110,10 @@
 
 .fullWidth {
   width: 100%;
+}
+
+.noPadding {
+  padding: 0;
 }
 
 .screenReaderOnly {

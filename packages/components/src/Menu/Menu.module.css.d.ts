@@ -9,6 +9,7 @@ declare const styles: {
   readonly "overlay": string;
   readonly "fullWidth": string;
   readonly "screenReaderOnly": string;
+  readonly "noPadding": string;
 };
 export = styles;
 

@@ -1,164 +1,3 @@
-:root {
-    /**
-     * These `--public-field` properties are used in other components such
-     * as InputGroup, therefore they must stay on :root
-     **/
-    --public-field--top-left-radius: var(--radius-base);
-    --public-field--top-right-radius: var(--radius-base);
-    --public-field--bottom-left-radius: var(--radius-base);
-    --public-field--bottom-right-radius: var(--radius-base);
-
-    --field--placeholder-color: var(--color-base-blue--600);
-    --field--value-color: var(--color-heading);
-    --field--border-color: var(--color-border--interactive);
-
-    --postfix-right: var(--space-base);
-}
-
-.container {
-    width: 100%;
-}
-
-/**
-   * Wrapper
-   **/
-.wrapper {
-    --field--placeholder-offset: 50%;
-    --field--placeholder-transform: -50%;
-
-    --field--textAlign: left;
-
-    --field--height: var(--space-largest);
-
-    --field--padding-top: 0;
-    --field--padding-bottom: 0;
-    --field--padding-left: var(--space-base);
-    --field--padding-right: var(--space-base);
-
-    --field--value-lineHeight: calc(var(--base-unit) * 1.25);
-
-    --field--background-color: var(--color-surface);
-
-    --field--base-elevation: var(--elevation-base);
-    --field--label-elevation: calc(var(--field--base-elevation) + 1);
-    --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
-    --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
-
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: var(--border-base) solid var(--field--border-color);
-    border-radius: var(--radius-base);
-    border-top-right-radius: var(--public-field--top-right-radius);
-    border-bottom-right-radius: var(--public-field--bottom-right-radius);
-    border-bottom-left-radius: var(--public-field--bottom-left-radius);
-    border-top-left-radius: var(--public-field--top-left-radius);
-    color: var(--field--value-color);
-    font-size: var(--typography--fontSize-base);
-    background-color: var(--field--background-color);
-}
-
-.wrapper * {
-    box-sizing: border-box;
-}
-
-.wrapper:focus-within {
-    position: relative;
-    z-index: var(--field--base-elevation);
-    box-shadow: var(--shadow-focus);
-}
-
-.horizontalWrapper {
-    display: flex;
-    height: var(--field--height);
-    flex: 1;
-}
-
-.textarea.safari .horizontalWrapper {
-    margin-right: var(--field--padding-right);
-}
-
-.timeInputLabel:not(:focus-within) input {
-    color: var(--field--background-color);
-    -webkit-text-fill-color: var(--field--background-color);
-}
-
-.timeInputLabel:focus-within,
-.miniLabel {
-    --field--placeholder-color: var(--color-text--secondary);
-    --field--placeholder-offset: var(--space-smallest);
-    --field--placeholder-transform: 0;
-    --field--padding-bottom: var(--space-small);
-}
-
-
-.wrapper.text {
-    --field--placeholder-offset: 0;
-    --field--placeholder-transform: 0;
-    min-height: auto;
-}
-
-.wrapper.textarea {
-    resize: vertical;
-    overflow: auto;
-}
-
-.invalid,
-.invalid:focus-within {
-    --field--border-color: var(--color-critical);
-    position: relative;
-}
-
-.disabled {
-    --field--placeholder-color: var(--color-disabled);
-    --field--value-color: var(--color-disabled);
-    --field--background-color: var(--color-disabled--secondary);
-    --field--border-color: var(--color-border);
-}
-
-/* override iOS default styling for disabled input */
-.disabled :disabled {
-    -webkit-text-fill-color: var(--field--value-color);
-    opacity: 1;
-}
-
-.small {
-    --field--padding-left: calc(var(--space-base) - var(--space-smaller));
-    --field--padding-right: calc(var(--space-base) - var(--space-smaller));
-    --field--padding-top: var(--space-small);
-    --field--padding-bottom: var(--space-small);
-    --field--height: calc(var(--space-larger) + var(--space-smaller));
-    --postfix-right: calc(var(--space-small) + var(--space-smaller));
-}
-
-.large {
-    --field--padding-left: var(--space-large);
-    --field--padding-right: var(--space-large);
-    --field--height: calc(var(--space-extravagant));
-    --postfix-right: var(--space-large);
-}
-
-.inline {
-    display: inline-block;
-    width: auto;
-}
-
-.center {
-    --field--textAlign: center;
-}
-
-.right {
-    --field--textAlign: right;
-}
-
-/**
-   * The custom property --formField-maxLength is getting defined inside the
-   * component.
-   */
-.maxLength {
-    width: calc((var(--base-unit) * var(--formField-maxLength)) + var(--field--padding-left) + var(--field--padding-right));
-}
-
 /**
    * Input Wrapper
    **/
@@ -183,13 +22,9 @@
    **/
 .input {
     position: relative;
-    z-index: var(--field--base-elevation);
     padding-top: 12px;
     padding-bottom: 12px;
-    padding-left: var(--field--padding-left);
-    padding-right: var(--field--padding-right);
     border: none;
-    border-radius: var(--radius-base);
     color: inherit;
     font-family: inherit;
     font-size: inherit;
@@ -393,22 +228,27 @@
 }
 
 .itemB {
-    width: 1100px;
+    width: 1076px;
     display: flex;
     justify-content: space-between;
     padding: 12px;
     border: none;
     background: none;
     text-align: left;
+    transition: background-color var(--timing-quick);
+    border-bottom: 1px solid var(--color-border--interactive);
 }
 
 .itemB:hover {
-    background-color: var(--color-interactive--background);
+    background-color: var(--color-interactive--background--hover);
     color: var(--color-surface);
-    border-radius: var(--radius-base);
 }
 
 .itemB:focus {
-    border-radius: var(--radius-base);
     outline: 1px solid var(--color-interactive--background);
+    background-color: var(--color-interactive--background);
+}
+
+.noPadding {
+    padding: 0;
 }
