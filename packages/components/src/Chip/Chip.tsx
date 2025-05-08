@@ -46,7 +46,6 @@ const ChipComponent = forwardRef<HTMLButtonElement | HTMLDivElement, ChipProps>(
       label,
       heading,
     );
-
     const chipContent = (
       <>
         {prefix}
