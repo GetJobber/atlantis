@@ -91,6 +91,35 @@ const ContentTemplate: ComponentStory<typeof Tiles> = args => (
   </Tiles>
 );
 
+const AlignmentTemplate: ComponentStory<typeof Tiles> = () => (
+  <Box border="base" borderColor="border">
+    <Tiles gap="largest" align="center">
+      <Card>
+        <Box height={150} padding="base" justifyContent="center">
+          <Text>First tile</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box height={50} padding="base" justifyContent="center">
+          <Text>Second tile</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box height={20} padding="base" justifyContent="center">
+          <Text>Third tile</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box height={30} padding="base" justifyContent="center">
+          <Text>Forth tile</Text>
+        </Box>
+      </Card>
+    </Tiles>
+  </Box>
+);
+
+export const Alignment = AlignmentTemplate.bind({});
+
 export const WithContent = ContentTemplate.bind({});
 WithContent.args = {
   gap: "base",

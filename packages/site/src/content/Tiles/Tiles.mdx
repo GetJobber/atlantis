@@ -123,18 +123,30 @@ The Tiles component supports vertically aligning the tiles within the container.
 
 <Canvas>
   <ContentBlock maxWidth="100%">
-    <Tiles gap="largest" align="center">
-      <Card>
-        <Box height={150} padding="base" justifyContent="center">
-          <Text>First tile</Text>
-        </Box>
-      </Card>
-      <Card>
-        <Box height={50} padding="base" justifyContent="center">
-          <Text>Second tile</Text>
-        </Box>
-      </Card>
-    </Tiles>
+    <Box border="base" borderColor="border" padding="small">
+      <Tiles gap="small" align="center" minSize="15ch">
+        <Card>
+          <Box height={150} width={90} justifyContent="center" padding="base">
+            <Text>First tile</Text>
+          </Box>
+        </Card>
+        <Card>
+          <Box height={50} width={90} padding="base" justifyContent="center">
+            <Text>Second tile</Text>
+          </Box>
+        </Card>
+        <Card>
+          <Box height={20} width={90} padding="base" justifyContent="center">
+            <Text>Third tile</Text>
+          </Box>
+        </Card>
+        <Card>
+          <Box height={50} width={90} padding="base" justifyContent="center">
+            <Text>Forth tile</Text>
+          </Box>
+        </Card>
+      </Tiles>
+    </Box>
   </ContentBlock>
 </Canvas>
 
