@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.78.0...@jobber/design@0.79.0) (2025-05-08)
+
+
+### Features
+
+* **design:** JOB-122715 Add editDisabled icon ([#2546](https://github.com/GetJobber/atlantis/issues/2546)) ([dfa8787](https://github.com/GetJobber/atlantis/commit/dfa8787f2c8f45b35cae6a8d48179f248c67f514))
+
+
+
+
+
 # [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.77.0...@jobber/design@0.78.0) (2025-05-06)
 
 

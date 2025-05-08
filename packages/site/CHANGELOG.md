@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.57.0...@jobber/atlantis-site@0.58.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Add disableContextMenu prop for DataList.ItemActions ([#2545](https://github.com/GetJobber/atlantis/issues/2545)) ([cf5a22f](https://github.com/GetJobber/atlantis/commit/cf5a22f60e95651cb60bd99a93e22196213d2871))
+
+
+
+
+
 # [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.56.1...@jobber/atlantis-site@0.57.0) (2025-05-08)
 
 
