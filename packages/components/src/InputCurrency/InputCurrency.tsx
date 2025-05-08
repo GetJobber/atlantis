@@ -14,7 +14,7 @@ import { Text } from "../Text";
 
 /**
  * Experimental and temporary version of the InputCurrency component.
- * Do not modify this code unless you have talked with Atlantis/UXF first.
+ * Do not modify this code unless you have talked with UXF first.
  */
 
 export interface InputCurrencyProps
