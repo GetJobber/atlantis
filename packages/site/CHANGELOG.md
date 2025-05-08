@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.56.1...@jobber/atlantis-site@0.57.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Update tiles to support alignment prop. ([#2544](https://github.com/GetJobber/atlantis/issues/2544)) ([f9c2cd7](https://github.com/GetJobber/atlantis/commit/f9c2cd742ba7bf4edf0077f21e20c96ae91a225b))
+
+
+
+
+
 ## [0.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.56.0...@jobber/atlantis-site@0.56.1) (2025-05-07)
 
 **Note:** Version bump only for package @jobber/atlantis-site
