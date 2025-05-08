@@ -1,0 +1,17 @@
+{
+  "name": "eslint-plugin-jobber",
+  "version": "1.0.0",
+  "description": "Custom ESLint rules for Jobber projects",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "rules"
+  ],
+  "scripts": {
+    "test": "node tests/no-src-imports.test.js"
+  },
+  "peerDependencies": {
+    "eslint": ">=7.28.0"
+  }
+} 
