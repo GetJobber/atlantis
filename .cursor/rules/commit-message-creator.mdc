@@ -1,0 +1,121 @@
+---
+description: This rule provides guidelines for creating conventional commit messages that follow standard practices for clear, consistent commit history.
+globs:
+alwaysApply: false
+---
+# Cursor Rule: Commit Message Creator
+
+## Description
+This rule provides guidelines for creating conventional commit messages that follow standard practices for clear, consistent commit history.
+
+## Format
+```
+<type>(<optional scope>): <description>
+
+<optional body>
+
+<optional footer>
+```
+
+## Types
+- `feat`: Adds a new feature
+- `fix`: Fixes a bug
+- `refactor`: Code changes that neither fix bugs nor add features
+- `perf`: Performance improvements
+- `style`: Changes that do not affect code functionality (formatting, missing semicolons)
+- `test`: Adding or correcting tests
+- `docs`: Documentation changes only
+- `build`: Changes to build process, dependencies, project version
+- `ops`: Operational changes (infrastructure, deployment, backup)
+- `chore`: Miscellaneous changes (e.g., .gitignore updates)
+
+## Scopes
+- Scope is optional and provides additional context
+- Use short, descriptive terms relevant to your project
+- Common examples: `api`, `ui`, `auth`, `data`, `core`, `components`
+
+## Breaking Changes
+- Indicate breaking changes with `!` before the colon: `feat(api)!: remove status endpoint`
+- Always include details in the footer with `BREAKING CHANGE: <description>`
+
+## Description Guidelines
+- Use imperative, present tense: "add" not "added" or "adds"
+- Don't capitalize first letter
+- No period at the end
+- Be concise but descriptive
+
+## Body Guidelines
+- Explain motivation for the change
+- Compare with previous behavior
+- Use present tense
+
+## Footer Guidelines
+- Reference issues: `Refs: #123, #456`
+- Detail breaking changes: `BREAKING CHANGE: <description>`
+
+## Examples
+```
+feat: add email notifications
+feat(auth): implement OAuth login
+fix(api): correct data validation
+docs: update installation instructions
+refactor(core): simplify error handling
+feat(api)!: remove deprecated endpoints
+
+BREAKING CHANGE: API v1 endpoints are no longer available
+```
+
+## Versioning Impact
+- Breaking changes: increment major version
+- New features/fixes: increment minor version
+- Non-functional changes: increment patch version
+
+## Automatic Commit Message Generation
+
+When this rule is invoked via `@commit-message-creator` or `/commit-message`, it should analyze staged changes and generate a proper conventional commit message by following these steps:
+
+### Analysis Process
+
+1. **Examine Staged Files**:
+   - List all staged files using `git diff --staged --name-status`
+   - Identify file types, directories, and changes (added, modified, deleted)
+
+2. **Determine Commit Type**:
+   - `feat`: New files or significant additions to existing files that add functionality
+   - `fix`: Changes to existing code that fix known issues
+   - `refactor`: Changes to existing code structure without changing functionality
+   - `perf`: Changes aimed at improving performance
+   - `style`: Formatting changes, whitespace, semicolons
+   - `test`: Changes to test files or addition of new tests
+   - `docs`: Changes to documentation files (README, docs/, comments)
+   - `build`: Changes to build configuration, dependencies
+   - `chore`: Other maintenance changes
+
+3. **Identify Scope**:
+   - Based on directories affected (e.g., `api`, `ui`, `auth`)
+   - If multiple areas, use the most impacted area or omit scope
+   - For monorepos, consider package/module names as scopes
+
+4. **Create Description**:
+   - Summarize the primary purpose of changes concisely
+   - Use present tense, imperative mood
+   - Start with a verb (add, update, fix, refactor)
+   - Limit to 50-72 characters
+
+### Example Analysis
+
+- If changes include new API endpoints → `feat(api): add user profile endpoints`
+- If changes fix validation bugs → `fix(validation): handle null input values`
+- If changes update documentation → `docs: update installation instructions`
+- If changes are only formatting → `style: standardize indentation in components`
+
+### Generation Rules
+
+1. If changes touch test files only → `test: <description>`
+2. If changes touch documentation only → `docs: <description>`
+3. If changes include package.json/dependencies → `build: <description>`
+4. If primarily adding new files/features → `feat: <description>`
+5. If primarily modifying existing behavior to fix issues → `fix: <description>`
+6. If changes are mixed → Use the most significant type for the primary change
+
+The generated commit message should follow the conventional format and adhere to all guidelines established in this rule.
