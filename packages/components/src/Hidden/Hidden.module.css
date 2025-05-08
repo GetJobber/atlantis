@@ -1,0 +1,62 @@
+.hidden {
+  display: none;
+}
+
+.smAndUp,
+.mdAndUp,
+.lgAndUp,
+.xlAndUp,
+.smAndDown,
+.mdAndDown,
+.lgAndDown,
+.xlAndDown {
+  display: var(--public-hidden-display-type, "block");
+}
+
+@media (--small-screens-and-up) {
+  .smAndUp {
+    display: none;
+  }
+}
+
+@media (--medium-screens-and-up) {
+  .mdAndUp {
+    display: none;
+  }
+}
+
+@media (--large-screens-and-up) {
+  .lgAndUp {
+    display: none;
+  }
+}
+
+@media (--extra-large-screens-and-up) {
+  .xlAndUp {
+    display: none;
+  }
+}
+
+@media (--small-screens-and-below) {
+  .smAndDown {
+    display: none;
+  }
+}
+
+@media (--medium-screens-and-below) {
+  .mdAndDown {
+    display: none;
+  }
+}
+
+@media (--large-screens-and-below) {
+  .lgAndDown {
+    display: none;
+  }
+}
+
+@media (--extra-large-screens-and-below) {
+  .xlAndDown {
+    display: none;
+  }
+}

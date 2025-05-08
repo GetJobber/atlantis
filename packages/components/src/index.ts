@@ -43,6 +43,8 @@ export * from "./Gallery";
 export * from "./Glimmer";
 export * from "./Grid";
 export * from "./Heading";
+export * from "./Hidden";
+export * from "./HiddenVisually";
 export * from "./Icon";
 export * from "./InlineLabel";
 export * from "./InputAvatar";

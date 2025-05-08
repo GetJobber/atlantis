@@ -1,5 +1,11 @@
 declare const styles: {
   readonly "responsiveSwitcher": string;
+  readonly "scaleByScreen": string;
+  readonly "collapsed": string;
+  readonly "sm": string;
+  readonly "md": string;
+  readonly "lg": string;
+  readonly "xl": string;
   readonly "limit-1": string;
   readonly "limit-2": string;
   readonly "limit-3": string;

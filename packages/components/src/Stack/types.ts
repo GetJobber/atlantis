@@ -34,6 +34,8 @@ export interface StackProps extends CommonAtlantisProps {
   readonly align?: "start" | "center" | "end";
   /** Whether to allow the stack to take the width of the content. Defaults to 100% */
   readonly autoWidth?: boolean;
+  /** Element to divide the stack with. */
+  divider?: React.ReactNode;
   /** The HTML tag to render the container as. Defaults to `div`. */
   as?: CommonAllowedElements;
 

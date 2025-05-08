@@ -35,6 +35,23 @@ export interface TextProps {
   readonly size?: "small" | "base" | "large";
 
   /**
+   * @default "p"
+   */
+  readonly element?:
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "p"
+    | "b"
+    | "em"
+    | "dd"
+    | "dt"
+    | "strong"
+    | "span";
+  /**
    * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
@@ -58,6 +75,7 @@ export function Text({
   element = "p",
   children,
   maxLines = "unlimited",
+  element = "p",
   UNSAFE_className,
   UNSAFE_style,
 }: PropsWithChildren<TextProps>) {
@@ -87,6 +105,7 @@ export function Text({
       size={size}
       numberOfLines={maxLineToNumber[maxLines]}
       align={align}
+      element={element}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_style={UNSAFE_style}
     >
