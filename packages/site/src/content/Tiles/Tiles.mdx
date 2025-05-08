@@ -117,6 +117,27 @@ Controls the gap between tiles. Uses Jobber's spacing scale:
   </ContentBlock>
 </Canvas>
 
+### Alignment
+
+The Tiles component supports vertically aligning the tiles within the container.
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <Tiles gap="largest" align="center">
+      <Card>
+        <Box height={150} padding="base" justifyContent="center">
+          <Text>First tile</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box height={50} padding="base" justifyContent="center">
+          <Text>Second tile</Text>
+        </Box>
+      </Card>
+    </Tiles>
+  </ContentBlock>
+</Canvas>
+
 ## Accessibility
 
 The Tiles component:
