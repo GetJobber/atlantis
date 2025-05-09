@@ -420,6 +420,11 @@
       "import": "./dist/Text/index.mjs",
       "require": "./dist/Text/index.cjs"
     },
+    "./Thumbnail": {
+      "types": "./dist/Thumbnail/index.d.ts",
+      "import": "./dist/Thumbnail/index.mjs",
+      "require": "./dist/Thumbnail/index.cjs"
+    },
     "./Tiles": {
       "types": "./dist/Tiles/index.d.ts",
       "import": "./dist/Tiles/index.mjs",
