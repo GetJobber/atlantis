@@ -6,7 +6,12 @@ export type InternalChipDismissibleProps = Omit<ChipDismissibleProps, "type">;
 export interface ChipDismissibleInputProps
   extends Pick<
     InternalChipDismissibleProps,
-    "activator" | "isLoadingMore" | "onSearch" | "onLoadMore" | "controlled"
+    | "activator"
+    | "isLoadingMore"
+    | "onSearch"
+    | "onLoadMore"
+    | "controlled"
+    | "customRenderMenu"
   > {
   readonly attachTo: React.RefObject<Element | null>;
   readonly options: ChipProps[];

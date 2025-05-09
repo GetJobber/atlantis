@@ -1,6 +1,21 @@
 import { MouseEvent, ReactElement } from "react";
 import { ChipProps } from "./Chip";
 
+export interface MenuItemsAPI {
+  generateDescendantId: (index: number) => string;
+  handleSelectOption: (
+    option: ChipProps & {
+      readonly custom: boolean;
+    },
+  ) => void;
+  handleSetActiveOnMouseOver: (index: number) => () => void;
+  handleCancelBlur: () => void;
+  handleEnableBlur: () => void;
+  handleShowInput: () => void;
+  activeIndex: number;
+  menuListOptionStyles: string;
+  activeOptionStyles: string;
+}
 interface ChipFoundationProps {
   readonly children: ReactElement<ChipProps>[];
 
@@ -67,7 +82,10 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   readonly type: "dismissible";
   readonly selected: string[];
   onChange(value: string[]): void;
-
+  readonly customRenderMenu?: (
+    options: ChipProps[],
+    menuItemsAPI: MenuItemsAPI,
+  ) => ReactElement;
   readonly controlled?: boolean;
 
   /**
