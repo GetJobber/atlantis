@@ -3,12 +3,19 @@ import classNames from "classnames";
 import styles from "./Grid.module.css";
 import alignments from "./GridAlign.module.css";
 import { GridCell } from "./GridCell";
+import { GapSpacing } from "../sharedHelpers/types";
+import {
+  getMappedAtlantisSpaceToken,
+  spaceTokens,
+} from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 interface GridProps {
   /**
-   * Add spacing between elements.
+   * Add spacing between elements. Can be a boolean for default spacing,
+   * or a semantic token for custom spacing.
+   * @default true
    */
-  readonly gap?: boolean;
+  readonly gap?: boolean | GapSpacing;
 
   /**
    * Adjust the alignment of columns. We only support a few select properties
@@ -30,12 +37,24 @@ export function Grid({
   gap = true,
   children,
 }: GridProps) {
-  const classnames = classNames(styles.grid, alignments[alignItems], {
-    [styles.gap]: gap,
-  });
+  const gapValue = (() => {
+    if (typeof gap === "boolean") {
+      return gap ? spaceTokens.base : undefined;
+    }
+
+    return getMappedAtlantisSpaceToken(gap);
+  })();
+
+  const style: React.CSSProperties | undefined = gapValue
+    ? { gap: gapValue }
+    : undefined;
 
   return (
-    <div data-testid={GRID_TEST_ID} className={classnames}>
+    <div
+      data-testid={GRID_TEST_ID}
+      className={classNames(styles.grid, alignments[alignItems])}
+      style={style}
+    >
       {children}
     </div>
   );

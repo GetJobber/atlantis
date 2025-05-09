@@ -6,6 +6,7 @@ import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { DescriptionList } from "@jobber/components/DescriptionList";
+import { Stack } from "@jobber/components/Stack";
 
 export default {
   title: "Components/Layouts and Structure/Grid/Web",
@@ -89,6 +90,92 @@ const ThreeColumnsTemplate: ComponentStory<typeof Grid> = args => (
     </Grid>
   </Content>
 );
+
+const SpacingTemplate: ComponentStory<typeof Grid> = () => (
+  <Stack gap="large">
+    <div>
+      <Text variation="subdued">gap=&quot;small&quot;</Text>
+      <Grid gap="small">
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 1</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 2</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+      </Grid>
+    </div>
+
+    <div>
+      <Text variation="subdued">gap=true (default)</Text>
+      <Grid gap={true}>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 1</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 2</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+      </Grid>
+    </div>
+
+    <div>
+      <Text variation="subdued">gap=&quot;large&quot;</Text>
+      <Grid gap="large">
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 1</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 2</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+      </Grid>
+    </div>
+
+    <div>
+      <Text variation="subdued">gap=false </Text>
+      <Grid gap={false}>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 1</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 2</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+      </Grid>
+    </div>
+  </Stack>
+);
+
+export const Spacing = SpacingTemplate.bind({});
 
 export const ThreeColumns = ThreeColumnsTemplate.bind({});
 ThreeColumns.args = {
