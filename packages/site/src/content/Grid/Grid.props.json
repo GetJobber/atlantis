@@ -10,7 +10,7 @@
         "defaultValue": {
           "value": true
         },
-        "description": "Add spacing between elements.",
+        "description": "Add spacing between elements. Can be a boolean for default spacing,\nor a semantic token for custom spacing.",
         "name": "gap",
         "parent": {
           "fileName": "../components/src/Grid/Grid.tsx",
@@ -18,7 +18,7 @@
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "boolean | GapSpacing"
         }
       },
       "alignItems": {
