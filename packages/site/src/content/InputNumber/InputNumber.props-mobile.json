@@ -341,7 +341,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"name\" | \"none\" | \"nickname\" | \"password\" | \"username\" | \"URL\" | \"addressCity\" | \"addressCityAndState\" | \"addressState\" | \"countryName\" | \"creditCardNumber\" | \"creditCardExpiration\" | ... 28 more ... | \"birthdateYear\""
+          "name": "\"name\" | \"none\" | \"nickname\" | \"password\" | \"username\" | \"URL\" | \"addressCity\" | \"addressCityAndState\" | \"addressState\" | \"countryName\" | \"creditCardNumber\" | \"creditCardExpiration\" | ... 33 more ... | \"shipmentTrackingNumber\""
         }
       },
       "multiline": {

@@ -175,6 +175,19 @@
           "name": "string"
         }
       },
+      "experimental_layoutConformance": {
+        "defaultValue": null,
+        "description": "Contols whether this view, and its transitive children, are laid in a way\nconsistent with web browsers ('strict'), or consistent with existing\nReact Native code which may rely on incorrect behavior ('classic').",
+        "name": "experimental_layoutConformance",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"strict\" | \"classic\""
+        }
+      },
       "collapsable": {
         "defaultValue": null,
         "description": "Views that are only used to layout their children or otherwise don't draw anything\nmay be automatically removed from the native hierarchy as an optimization.\nSet this property to false to disable this optimization and ensure that this View exists in the native view hierarchy.",
