@@ -128,8 +128,8 @@
 }
 
 .small {
-  --field--padding-left: calc(var(--space-base) - var(--space-smaller));
-  --field--padding-right: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-left: var(--space-slim);
+  --field--padding-right: var(--space-slim);
   --field--padding-top: var(--space-small);
   --field--padding-bottom: var(--space-small);
   --field--height: calc(var(--space-larger) + var(--space-smaller));

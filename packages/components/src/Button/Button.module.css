@@ -183,7 +183,7 @@ a.button.disabled:hover {
 
 .small {
   --button--size: 32px;
-  padding: var(--space-smaller) calc(var(--space-base) - var(--space-smaller));
+  padding: var(--space-smaller) var(--space-slim);
 }
 
 .base {
