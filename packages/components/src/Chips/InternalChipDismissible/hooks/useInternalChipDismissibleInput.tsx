@@ -6,8 +6,8 @@ import React, {
   useRef,
   useState,
 } from "react";
-import debounce from "lodash/debounce";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
+import { useDebounce } from "@jobber/components/utils/useDebounce";
 import {
   ChipDismissibleInputOptionProps,
   ChipDismissibleInputProps,
@@ -56,6 +56,7 @@ export function useInternalChipDismissibleInput({
     previousOptionIndex: activeIndex > 0 ? activeIndex - 1 : maxOptionIndex,
   };
 
+  // why do we need you?
   function handleSearch(newSearchValue: string, newOptions: ChipProps[] = []) {
     onSearch && onSearch(newSearchValue);
 
@@ -65,7 +66,7 @@ export function useInternalChipDismissibleInput({
     setShouldCancelEnter(false);
   }
 
-  const handleDebouncedSearch = debounce(handleSearch, SEARCH_DEBOUNCE_TIME);
+  const handleDebouncedSearch = useDebounce(handleSearch, SEARCH_DEBOUNCE_TIME);
 
   const actions = {
     generateDescendantId: (index: number) => `${computed.menuId}-${index}`,
@@ -130,6 +131,7 @@ export function useInternalChipDismissibleInput({
       if (onlyShowMenuOnSearch && newSearchValue.length === 0 && menuOpen) {
         actions.handleCloseMenu();
       }
+      handleDebouncedSearch(newSearchValue, options);
     },
 
     handleSetActiveOnMouseOver: (index: number) => {
@@ -192,7 +194,6 @@ export function useInternalChipDismissibleInput({
 
       handleKeydownEvents(callbacks, event);
     },
-    handleDebouncedSearch,
   };
 
   return {

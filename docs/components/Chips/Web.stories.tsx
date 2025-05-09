@@ -75,31 +75,65 @@ export const MultiSelect = MultiSelectTemplate.bind({});
 MultiSelect.args = {};
 
 const SelectionTemplate: ComponentStory<typeof Chips> = args => {
-  const {
-    selected,
-    options,
-    loading,
-    handleLoadMore,
-    handleSearch,
-    handleSelect,
-    handleCustomAdd,
-  } = useFakeOptionQuery();
+  // const {
+  //   selected,
+  //   options,
+  //   loading,
+  //   handleLoadMore,
+  //   handleSearch,
+  //   handleSelect,
+  //   handleCustomAdd,
+  // } = useFakeOptionQuery();
+  const [selected, setSelected] = useState<string[]>(["Mando", "Darth Vader"]);
+  const [loading, setLoading] = useState(false);
+  const [options, setOptions] = useState<string[]>([
+    "Mando",
+    "Darth Vader",
+    "Yoda",
+    "Obi-Wan Kenobi",
+    "Anakin Skywalker",
+    "Padme Amidala",
+    "Mace Windu",
+  ]);
+  const [externalSearchValue, setExternalSearchValue] = useState("");
+
+  const handleSelect = (value: string[]) => {
+    setSelected(value);
+  };
+
+  const handleCustomAdd = (value: string) => {
+    setOptions(prev => [...prev, value]);
+    setSelected(prev => [...prev, value]);
+  };
+
+  const handleSearch = (value: string) => {
+    setExternalSearchValue(value);
+  };
+
+  const handleLoadMore = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
 
   return (
-    <Chips
-      {...args}
-      type="dismissible"
-      selected={selected}
-      onChange={handleSelect}
-      onCustomAdd={handleCustomAdd}
-      isLoadingMore={loading}
-      onSearch={handleSearch}
-      onLoadMore={handleLoadMore}
-    >
-      {options.map(name => (
-        <Chip key={name} label={name} value={name} />
-      ))}
-    </Chips>
+    <>
+      <Text>{externalSearchValue}</Text>
+      <Chips
+        type="dismissible"
+        selected={selected}
+        onChange={handleSelect}
+        onCustomAdd={handleCustomAdd}
+        isLoadingMore={loading}
+        onSearch={handleSearch}
+        onLoadMore={handleLoadMore}
+      >
+        {options.map(name => (
+          <Chip key={name} label={name} value={name} />
+        ))}
+      </Chips>
+    </>
   );
 };
 

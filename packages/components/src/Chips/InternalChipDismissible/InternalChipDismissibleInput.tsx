@@ -41,7 +41,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleKeyDown,
     handleSelectOption,
     handleShowInput,
-    handleDebouncedSearch,
   } = useInternalChipDismissibleInput(props);
 
   const menuRef = useScrollToActive(activeIndex);
@@ -56,12 +55,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   useSafeLayoutEffect(() => {
     update?.();
   }, [allOptions, menuOpen, update, options]);
-
-  useEffect(() => {
-    handleDebouncedSearch(searchValue, options);
-
-    return handleDebouncedSearch.cancel;
-  }, [searchValue, options]);
 
   useEffect(() => {
     isInView && onLoadMore && onLoadMore(searchValue);
