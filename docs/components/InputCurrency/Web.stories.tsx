@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputCurrency } from "@jobber/components/InputCurrency";
 import { Box } from "@jobber/components/Box";
@@ -28,17 +28,6 @@ const BasicTemplate: ComponentStory<typeof InputCurrency> = args => {
   return <InputCurrency {...args} />;
 };
 
-const ExternalLabelTemplate: ComponentStory<typeof InputCurrency> = args => {
-  return (
-    <div>
-      <FormFieldLabel external={true} htmlFor="ext-input">
-        External label
-      </FormFieldLabel>
-      <InputCurrency id="ext-input" {...args} />
-    </div>
-  );
-};
-
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   align: undefined,
@@ -60,6 +49,23 @@ Readonly.args = {
   readOnly: true,
 };
 
+const ExternalLabelTemplate: ComponentStory<typeof InputCurrency> = args => {
+  return (
+    <div>
+      <FormFieldLabel external={true} htmlFor="ext-input">
+        External label
+      </FormFieldLabel>
+      <InputCurrency id="ext-input" {...args} />
+    </div>
+  );
+};
+
+export const ExternalLabel = ExternalLabelTemplate.bind({});
+ExternalLabel.args = {
+  name: "name",
+  showMiniLabel: false,
+};
+
 // export const Loading = BasicTemplate.bind({});
 // Loading.args = {
 //   name: "phoneNumber",
@@ -78,6 +84,27 @@ Readonly.args = {
 //   clearable: "always",
 //   showMiniLabel: false,
 // };
+
+const FocusTemplate: ComponentStory<typeof InputCurrency> = args => {
+  const inputCurrencyRef = useRef<InputCurrencyRef>(null);
+
+  function toggleInputFocus(shouldFocus = true) {
+    const action = shouldFocus ? "focus" : "blur";
+    inputCurrencyRef.current?.[action]();
+  }
+
+  return (
+    <Content>
+      <InputCurrency {...args} value={5.0} ref={inputCurrencyRef} />
+      <Button label="Focus input" onClick={() => toggleInputFocus(true)} />
+      <br />
+      <Button label="Blur input" onClick={() => toggleInputFocus(false)} />
+    </Content>
+  );
+};
+
+export const FocusAndBlur = FocusTemplate.bind({});
+FocusAndBlur.args = {};
 
 export const VersionComparison = () => {
   const [values, setValues] = React.useState({

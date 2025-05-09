@@ -31,6 +31,9 @@ export interface InputCurrencyProps
     | "defaultValue"
   > {
   readonly align?: "center" | "right";
+  readonly autocomplete?: boolean | string;
+  readonly autoFocus?: boolean;
+
   readonly defaultValue?: number;
   readonly description?: string;
   readonly error?: string;
