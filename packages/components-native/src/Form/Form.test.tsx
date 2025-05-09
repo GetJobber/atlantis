@@ -545,7 +545,7 @@ describe("Form", () => {
   });
 
   describe("Safe Area", () => {
-    it("does render a safe area when there's a saveButtonOffset is provided", () => {
+    it("does render a safe area when there's NO saveButtonOffset provided", () => {
       const { getByTestId } = render(<FormTest onSubmit={onSubmitMock} />);
 
       expect(getByTestId("ATL-FormSafeArea")).toBeDefined();

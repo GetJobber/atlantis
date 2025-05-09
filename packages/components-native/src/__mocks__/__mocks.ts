@@ -22,6 +22,7 @@ jest.mock("react-native-reanimated", () => {
     FadeIn: {
       duration: () => undefined,
     },
+    useEvent: () => ({ listeners: [] }),
   };
 });
 

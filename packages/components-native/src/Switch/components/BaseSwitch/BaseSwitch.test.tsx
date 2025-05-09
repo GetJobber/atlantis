@@ -2,61 +2,86 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { BaseSwitch } from "./BaseSwitch";
 
-it("renders a Switch with value true", () => {
-  const tree = render(<BaseSwitch value={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+describe("BaseSwitch", () => {
+  describe("rendering", () => {
+    it("renders with value true", () => {
+      const { getByRole } = render(<BaseSwitch value={true} />);
+      const switchElement = getByRole("switch");
+      expect(switchElement).toBeDefined();
+      expect(switchElement.props.accessibilityState.checked).toBe(true);
+    });
 
-it("renders a Switch with defaultValue true", () => {
-  const tree = render(<BaseSwitch defaultValue={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    it("renders with defaultValue true", () => {
+      const { getByRole } = render(<BaseSwitch defaultValue={true} />);
+      const switchElement = getByRole("switch");
+      expect(switchElement).toBeDefined();
+      expect(switchElement.props.accessibilityState.checked).toBe(true);
+    });
 
-it("renders a Switch with value false", () => {
-  const tree = render(<BaseSwitch value={false} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    it("renders with value false", () => {
+      const { getByRole } = render(<BaseSwitch value={false} />);
+      const switchElement = getByRole("switch");
+      expect(switchElement).toBeDefined();
+      expect(switchElement.props.accessibilityState.checked).toBe(false);
+    });
 
-it("renders a Switch with defaultValue false", () => {
-  const tree = render(<BaseSwitch defaultValue={false} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    it("renders with defaultValue false", () => {
+      const { getByRole } = render(<BaseSwitch defaultValue={false} />);
+      const switchElement = getByRole("switch");
+      expect(switchElement).toBeDefined();
+      expect(switchElement.props.accessibilityState.checked).toBe(false);
+    });
 
-it("renders a disabled Switch with value true", () => {
-  const tree = render(<BaseSwitch value={true} disabled={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    it("renders correctly when disabled with value true", () => {
+      const { getByRole } = render(<BaseSwitch value={true} disabled={true} />);
+      const switchElement = getByRole("switch");
+      expect(switchElement).toBeDefined();
+      expect(switchElement.props.accessibilityState.checked).toBe(true);
+      expect(switchElement.props.accessibilityState.disabled).toBe(true);
+    });
 
-it("renders a disabled Switch with value false", () => {
-  const tree = render(<BaseSwitch value={false} disabled={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+    it("renders correctly when disabled with value false", () => {
+      const { getByRole } = render(
+        <BaseSwitch value={false} disabled={true} />,
+      );
+      const switchElement = getByRole("switch");
+      expect(switchElement).toBeDefined();
+      expect(switchElement.props.accessibilityState.checked).toBe(false);
+      expect(switchElement.props.accessibilityState.disabled).toBe(true);
+    });
+  });
 
-it("invokes the valueChange callback", () => {
-  const valueChangedCallback = jest.fn();
-  const tree = render(
-    <BaseSwitch
-      value={false}
-      onValueChange={valueChangedCallback}
-      accessibilityLabel={"test switch"}
-    />,
-  );
-  fireEvent(tree.getByLabelText("test switch"), "valueChange", true);
-  expect(valueChangedCallback).toHaveBeenCalledWith(true);
-  fireEvent(tree.getByLabelText("test switch"), "valueChange", false);
-  expect(valueChangedCallback).toHaveBeenCalledWith(false);
-});
+  describe("behavior", () => {
+    it("invokes the valueChange callback", () => {
+      const valueChangedCallback = jest.fn();
+      const { getByLabelText } = render(
+        <BaseSwitch
+          value={false}
+          onValueChange={valueChangedCallback}
+          accessibilityLabel={"test switch"}
+        />,
+      );
 
-it("doesn't invoke the valueChange callback if disabled", () => {
-  const valueChangedCallback = jest.fn();
-  const tree = render(
-    <BaseSwitch
-      value={false}
-      disabled={true}
-      onValueChange={valueChangedCallback}
-      accessibilityLabel={"test switch"}
-    />,
-  );
-  fireEvent(tree.getByLabelText("test switch"), "valueChange", true);
-  expect(valueChangedCallback).not.toHaveBeenCalled();
+      fireEvent(getByLabelText("test switch"), "valueChange", true);
+      expect(valueChangedCallback).toHaveBeenCalledWith(true);
+
+      fireEvent(getByLabelText("test switch"), "valueChange", false);
+      expect(valueChangedCallback).toHaveBeenCalledWith(false);
+    });
+
+    it("doesn't invoke the valueChange callback if disabled", () => {
+      const valueChangedCallback = jest.fn();
+      const { getByLabelText } = render(
+        <BaseSwitch
+          value={false}
+          disabled={true}
+          onValueChange={valueChangedCallback}
+          accessibilityLabel={"test switch"}
+        />,
+      );
+
+      fireEvent(getByLabelText("test switch"), "valueChange", true);
+      expect(valueChangedCallback).not.toHaveBeenCalled();
+    });
+  });
 });
