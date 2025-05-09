@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.78.0...@jobber/design@0.79.0) (2025-05-08)
+
+
+### Features
+
+* **design:** JOB-122715 Add editDisabled icon ([#2546](https://github.com/GetJobber/atlantis/issues/2546)) ([dfa8787](https://github.com/GetJobber/atlantis/commit/dfa8787f2c8f45b35cae6a8d48179f248c67f514))
+
+
+
+
+
+# [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.77.0...@jobber/design@0.78.0) (2025-05-06)
+
+
+### Features
+
+* **design:** Add surface and onSurface colors for color-client ([#2539](https://github.com/GetJobber/atlantis/issues/2539)) ([4c9f741](https://github.com/GetJobber/atlantis/commit/4c9f7415e31add63da9428c084bc23855e4615fa))
+
+
+
+
+
+# [0.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.1...@jobber/design@0.77.0) (2025-05-05)
+
+
+### Features
+
+* **design:** JOB-122715 Add mobile and desktop icons ([#2535](https://github.com/GetJobber/atlantis/issues/2535)) ([5de8e5e](https://github.com/GetJobber/atlantis/commit/5de8e5ea99a08eb88cd0f9a49f08de985ca4a358))
+
+
+
+
+
 ## [0.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.0...@jobber/design@0.76.1) (2025-04-29)
 
 

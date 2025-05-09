@@ -16,6 +16,7 @@ export function Tiles({
   id,
   UNSAFE_className,
   UNSAFE_style,
+  align = "start",
 }: TilesProps) {
   return (
     <Tag
@@ -28,6 +29,7 @@ export function Tiles({
           "--public-tile-min-size": minSize,
           "--public-tile-space": getMappedAtlantisSpaceToken(gap),
           "--public-tiles-width": autoWidth ? "auto" : "100%",
+          "--public-tiles-align": align,
           ...UNSAFE_style?.container,
         } as React.CSSProperties
       }

@@ -3,6 +3,131 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.58.0...@jobber/atlantis-site@0.58.1) (2025-05-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.57.0...@jobber/atlantis-site@0.58.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Add disableContextMenu prop for DataList.ItemActions ([#2545](https://github.com/GetJobber/atlantis/issues/2545)) ([cf5a22f](https://github.com/GetJobber/atlantis/commit/cf5a22f60e95651cb60bd99a93e22196213d2871))
+
+
+
+
+
+# [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.56.1...@jobber/atlantis-site@0.57.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Update tiles to support alignment prop. ([#2544](https://github.com/GetJobber/atlantis/issues/2544)) ([f9c2cd7](https://github.com/GetJobber/atlantis/commit/f9c2cd742ba7bf4edf0077f21e20c96ae91a225b))
+
+
+
+
+
+## [0.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.56.0...@jobber/atlantis-site@0.56.1) (2025-05-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.55.0...@jobber/atlantis-site@0.56.0) (2025-05-07)
+
+
+### Features
+
+* **components:** Add InputDate prop to replace invalid values with last value on blur ([#2541](https://github.com/GetJobber/atlantis/issues/2541)) ([5958b7c](https://github.com/GetJobber/atlantis/commit/5958b7c4265423c1ef9188f9f236af4937f98aab))
+
+
+
+
+
+# [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.6...@jobber/atlantis-site@0.55.0) (2025-05-06)
+
+
+### Features
+
+* **components:** InputPhoneNumber v2 ([#2534](https://github.com/GetJobber/atlantis/issues/2534)) ([f1220e8](https://github.com/GetJobber/atlantis/commit/f1220e8ef62cd42ff67c075b9f17eff6fbebd96b))
+* **design:** Add surface and onSurface colors for color-client ([#2539](https://github.com/GetJobber/atlantis/issues/2539)) ([4c9f741](https://github.com/GetJobber/atlantis/commit/4c9f7415e31add63da9428c084bc23855e4615fa))
+
+
+
+
+
+## [0.54.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.5...@jobber/atlantis-site@0.54.6) (2025-05-05)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.4...@jobber/atlantis-site@0.54.5) (2025-05-05)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.3...@jobber/atlantis-site@0.54.4) (2025-05-01)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.2...@jobber/atlantis-site@0.54.3) (2025-05-01)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.1...@jobber/atlantis-site@0.54.2) (2025-05-01)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.0...@jobber/atlantis-site@0.54.1) (2025-04-30)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.53.0...@jobber/atlantis-site@0.54.0) (2025-04-30)
+
+
+### Bug Fixes
+
+* **components-native:** Adjusting Type mismatch in ThumbnailList ([#2523](https://github.com/GetJobber/atlantis/issues/2523)) ([d340a9e](https://github.com/GetJobber/atlantis/commit/d340a9eb3c2fbd7ff2d26934491ed59dfc3e2cbb))
+
+
+### Features
+
+* **docx:** Fixing "Show Code" examples with the weird numbers and dollar signs and such. ([#2521](https://github.com/GetJobber/atlantis/issues/2521)) ([dacdd56](https://github.com/GetJobber/atlantis/commit/dacdd5685bc05c5275d581b453c09f2973e40ef2))
+
+
+
+
+
 # [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.52.0...@jobber/atlantis-site@0.53.0) (2025-04-28)
 
 
