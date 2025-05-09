@@ -3,6 +3,107 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.56.0...@jobber/components@6.56.1) (2025-05-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.55.0...@jobber/components@6.56.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Add disableContextMenu prop for DataList.ItemActions ([#2545](https://github.com/GetJobber/atlantis/issues/2545)) ([cf5a22f](https://github.com/GetJobber/atlantis/commit/cf5a22f60e95651cb60bd99a93e22196213d2871))
+
+
+
+
+
+# [6.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.54.1...@jobber/components@6.55.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Update tiles to support alignment prop. ([#2544](https://github.com/GetJobber/atlantis/issues/2544)) ([f9c2cd7](https://github.com/GetJobber/atlantis/commit/f9c2cd742ba7bf4edf0077f21e20c96ae91a225b))
+
+
+
+
+
+## [6.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.54.0...@jobber/components@6.54.1) (2025-05-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.53.0...@jobber/components@6.54.0) (2025-05-07)
+
+
+### Features
+
+* **components:** Add InputDate prop to replace invalid values with last value on blur ([#2541](https://github.com/GetJobber/atlantis/issues/2541)) ([5958b7c](https://github.com/GetJobber/atlantis/commit/5958b7c4265423c1ef9188f9f236af4937f98aab))
+
+
+
+
+
+# [6.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.52.0...@jobber/components@6.53.0) (2025-05-06)
+
+
+### Features
+
+* **components:** InputPhoneNumber v2 ([#2534](https://github.com/GetJobber/atlantis/issues/2534)) ([f1220e8](https://github.com/GetJobber/atlantis/commit/f1220e8ef62cd42ff67c075b9f17eff6fbebd96b))
+
+
+
+
+
+# [6.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.51.2...@jobber/components@6.52.0) (2025-05-05)
+
+
+### Features
+
+* **components:** Add clientColor to Card accent ([#2537](https://github.com/GetJobber/atlantis/issues/2537)) ([a92a750](https://github.com/GetJobber/atlantis/commit/a92a750f8af37d1631f09a8329590554d82e02a5))
+
+
+
+
+
+## [6.51.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.51.1...@jobber/components@6.51.2) (2025-05-01)
+
+
+### Bug Fixes
+
+* **components:** Fix modal size not being respected in all cases ([#2532](https://github.com/GetJobber/atlantis/issues/2532)) ([61256dd](https://github.com/GetJobber/atlantis/commit/61256ddcac698eb0839ea0936cd3fe21fd758d78))
+
+
+
+
+
+## [6.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.51.0...@jobber/components@6.51.1) (2025-05-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.50.0...@jobber/components@6.51.0) (2025-04-30)
+
+
+### Features
+
+* **components:** InputEmail V2 without RHF ([#2527](https://github.com/GetJobber/atlantis/issues/2527)) ([8e98098](https://github.com/GetJobber/atlantis/commit/8e980980cfb42b4c14b03893c23c709fc05fb5b9))
+
+
+
+
+
 # [6.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.49.0...@jobber/components@6.50.0) (2025-04-28)
 
 

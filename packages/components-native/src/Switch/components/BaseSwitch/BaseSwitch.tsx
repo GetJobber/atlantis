@@ -60,7 +60,7 @@ export function BaseSwitch({
       } else if (internalValue) {
         return tokens["color-interactive"];
       } else {
-        return tokens["color-surface--background"];
+        return tokens["color-interactive--background"];
       }
     }
 
@@ -81,7 +81,7 @@ export function BaseSwitch({
       //iOS
       return {
         true: tokens["color-interactive"],
-        false: tokens["color-surface--background"],
+        false: tokens["color-interactive--background"],
       };
     }
   }
@@ -98,7 +98,7 @@ export function BaseSwitch({
       disabled={disabled}
       thumbColor={getThumbColor()}
       trackColor={getTrackColors()}
-      ios_backgroundColor={tokens["color-surface--background"]}
+      ios_backgroundColor={tokens["color-interactive--background"]}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole={"switch"}
       accessibilityState={{

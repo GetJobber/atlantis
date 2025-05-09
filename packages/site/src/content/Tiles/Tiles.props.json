@@ -64,6 +64,21 @@
           "name": "CommonAllowedElements"
         }
       },
+      "align": {
+        "defaultValue": {
+          "value": "start"
+        },
+        "description": "The vertical alignment  of the tiles within the container.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Tiles/types.ts",
+          "name": "TilesProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
       "UNSAFE_className": {
         "defaultValue": null,
         "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",

@@ -50,7 +50,7 @@
         },
         "destructive": {
             "$value": "{color.base.red-.500}",
-            "$description": "Use to signify that an interaction will destroy something in the users’ account or workflow."
+            "$description": "Use to signify that an interaction will destroy something in the users' account or workflow."
         },
         "destructive-": {
             "hover": {
@@ -149,7 +149,7 @@
         "text-": {
             "secondary": {
                 "$value": "{color.base.blue-.400}",
-                "$description": "Text that is relevant but less important can be lower-contrast to suggest its’ reduced importance."
+                "$description": "Text that is relevant but less important can be lower-contrast to suggest its' reduced importance."
             },
             "reverse": {
                 "$value": "{color.base.blue-.700}",
@@ -213,7 +213,7 @@
         },
         "overlay": {
             "$value": "rgba({color.black-.rgb}, 0.6)",
-            "$description": "Use to mask an area of the interface to promote focus to a foreground action, such as a Modal’s appearance."
+            "$description": "Use to mask an area of the interface to promote focus to a foreground action, such as a Modal's appearance."
         },
         "overlay-": {
             "dimmed": {
@@ -336,6 +336,16 @@
         "client": {
             "$value": "{color.base.blue-.200}",
             "$description": "Clients use a neutral value as they sit at the core of the workflow."
+        },
+        "client-": {
+            "surface": {
+                "$value": "{color.base.blue-.800}",
+                "$description": "Use for the surface of an element that has client status."
+            },
+            "onSurface": {
+                "$value": "{color.base.blue-.300}",
+                "$description": "Use for text or iconography that sits overtop a client background."
+            }
         }
     },
     "shadow": {

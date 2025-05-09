@@ -364,6 +364,21 @@
         "type": {
           "name": "(item: T, event?: MouseEvent<HTMLElement, MouseEvent>) => void"
         }
+      },
+      "disableContextMenu": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Disable the custom context menu. This allows the browser's native context menu to be shown.",
+        "name": "disableContextMenu",
+        "parent": {
+          "fileName": "packages/components/src/DataList/DataList.types.ts",
+          "name": "BaseDataListItemActionsProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   },

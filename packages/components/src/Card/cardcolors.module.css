@@ -14,6 +14,10 @@
   --card--accent-color: var(--color-invoice);
 }
 
+.clientColor {
+  --card--accent-color: var(--color-client);
+}
+
 .blue {
   --card--accent-color: var(--color-blue);
 }

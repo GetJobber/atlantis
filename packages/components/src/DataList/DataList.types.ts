@@ -311,6 +311,12 @@ interface BaseDataListItemActionsProps<T extends DataListObject> {
    * Callback when an item is clicked.
    */
   readonly onClick?: (item: T, event?: React.MouseEvent<HTMLElement>) => void;
+
+  /**
+   * Disable the custom context menu. This allows the browser's native context menu to be shown.
+   * @default false
+   */
+  readonly disableContextMenu?: boolean;
 }
 
 export interface DataListBulkActionsProps {
