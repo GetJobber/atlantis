@@ -48,6 +48,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
       ))}
 
       <InternalChipDismissibleInput
+        controlled={props.controlled}
         activator={props.activator}
         attachTo={wrapperRef}
         isLoadingMore={props.isLoadingMore}

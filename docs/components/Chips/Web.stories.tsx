@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
 import { Chip, Chips } from "@jobber/components/Chips";
 import { Text } from "@jobber/components/Text";
-import { useFakeOptionQuery } from "./utils/storyUtils";
 
 export default {
   title: "Components/Selections/Chips/Web",
@@ -74,16 +73,7 @@ const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
 export const MultiSelect = MultiSelectTemplate.bind({});
 MultiSelect.args = {};
 
-const SelectionTemplate: ComponentStory<typeof Chips> = args => {
-  // const {
-  //   selected,
-  //   options,
-  //   loading,
-  //   handleLoadMore,
-  //   handleSearch,
-  //   handleSelect,
-  //   handleCustomAdd,
-  // } = useFakeOptionQuery();
+const SelectionTemplate: ComponentStory<typeof Chips> = () => {
   const [selected, setSelected] = useState<string[]>(["Mando", "Darth Vader"]);
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState<string[]>([
@@ -152,6 +142,133 @@ Selection.parameters = {
       files: {
         "/useFakeOptionQuery.ts": require("./utils/storyUtils").default,
       },
+    },
+  },
+};
+
+const ControlledSelectionTemplate: ComponentStory<typeof Chips> = () => {
+  const [selected, setSelected] = useState<string[]>([
+    "Luke Skywalker",
+    "Leia Organa",
+  ]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [displayedOptions, setDisplayedOptions] = useState([
+    "Luke Skywalker",
+    "Leia Organa",
+    "Han Solo",
+    "Chewbacca",
+    "R2-D2",
+    "C-3PO",
+    "Darth Vader",
+  ]);
+
+  // Full list of all available options
+  const allOptions = [
+    "Luke Skywalker",
+    "Leia Organa",
+    "Han Solo",
+    "Chewbacca",
+    "R2-D2",
+    "C-3PO",
+    "Darth Vader",
+    "Obi-Wan Kenobi",
+    "Yoda",
+    "Emperor Palpatine",
+    "Boba Fett",
+    "Lando Calrissian",
+    "Jabba the Hutt",
+    "Admiral Ackbar",
+    "Wedge Antilles",
+  ];
+
+  const handleSelect = (value: string[]) => {
+    setSelected(value);
+  };
+
+  // Handle search in controlled mode
+  // Here we manually filter our options based on search term
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+
+    if (value === "") {
+      setDisplayedOptions(allOptions.slice(0, 7)); // Reset to initial set
+    } else {
+      // Filter options based on search term
+      // Note: We don't need to include selected options in the filtered list
+      // The component will ensure selected chips remain visible
+      const filteredOptions = allOptions.filter(option =>
+        option.toLowerCase().includes(value.toLowerCase()),
+      );
+      setDisplayedOptions(filteredOptions);
+    }
+  };
+
+  // Handle custom add in controlled mode
+  const handleCustomAdd = (value: string) => {
+    // Add to both our main options list and selected items
+    if (!allOptions.includes(value)) {
+      setDisplayedOptions([...displayedOptions, value]);
+    }
+    setSelected(prev => [...prev, value]);
+  };
+
+  return (
+    <>
+      <Text>
+        Controlled mode with search term: &ldquo;{searchTerm}&rdquo;
+        <br />
+        Selected: {selected.join(", ")}
+        <br />
+        <small style={{ color: "var(--color-text--subdued)" }}>
+          Try searching for &ldquo;Solo&rdquo; - notice how the selected chips
+          remain visible even when they don&apos;t match the search.
+        </small>
+      </Text>
+      <Chips
+        controlled={true}
+        type="dismissible"
+        selected={selected}
+        onChange={handleSelect}
+        onCustomAdd={handleCustomAdd}
+        onSearch={handleSearch}
+      >
+        {displayedOptions.map(name => (
+          <Chip key={name} label={name} value={name} />
+        ))}
+      </Chips>
+    </>
+  );
+};
+
+export const ControlledSelection = ControlledSelectionTemplate.bind({});
+ControlledSelection.args = {
+  type: "dismissible",
+};
+
+ControlledSelection.parameters = {
+  docs: {
+    description: {
+      story: `
+        This example demonstrates the controlled mode for dismissible chips.
+        
+        ## Controlled Mode Benefits
+        
+        When \`controlled={true}\` is set on dismissible chips:
+        
+        - **No internal filtering**: The component doesn't filter options based on search value
+        - **No debouncing**: Search events are immediately passed to the parent component
+        - **Consumer-driven filtering**: The parent component is responsible for filtering based on search
+        - **Better performance**: Avoid duplicate filtering logic and state
+        - **More flexibility**: Implement complex filtering logic (e.g., API requests, fuzzy search)
+        
+        ## Implementation Notes
+        
+        In controlled mode, you should:
+        
+        1. Maintain state for the options to display in your parent component
+        2. Handle filtering in your \`onSearch\` callback
+        3. Pass the filtered options as children to the Chips component
+      `,
     },
   },
 };

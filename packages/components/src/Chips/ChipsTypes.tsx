@@ -68,6 +68,8 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   readonly selected: string[];
   onChange(value: string[]): void;
 
+  readonly controlled?: boolean;
+
   /**
    * Use a custom activator to trigger the Chip option selector
    */
