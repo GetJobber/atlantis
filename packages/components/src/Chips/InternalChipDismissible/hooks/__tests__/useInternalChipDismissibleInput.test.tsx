@@ -179,7 +179,6 @@ describe("handleBlur", () => {
       act(() => {
         result.current.handleOpenMenu();
         result.current.handleSearchChange(fakeChangeEvent(searchValue));
-        result.current.handleDebouncedSearch(searchValue, hookParams.options);
       });
       expect(result.current.searchValue).toBe(searchValue);
       expect(result.current.menuOpen).toBe(true);
@@ -336,7 +335,6 @@ describe("handleSearchChange", () => {
 
     act(() => {
       result.current.handleSearchChange(fakeChangeEvent("initial"));
-      result.current.handleDebouncedSearch("initial", hookParams.options);
     });
     act(() => jest.advanceTimersByTime(300));
     act(() => result.current.handleSearchChange(fakeChangeEvent("new search")));
