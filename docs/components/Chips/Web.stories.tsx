@@ -3,6 +3,8 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
 import { Chip, Chips } from "@jobber/components/Chips";
 import { Text } from "@jobber/components/Text";
+import { MenuItemsAPI } from "@jobber/components/Chips/ChipsTypes";
+import { ChipProps } from "@jobber/components/Chip/Chip.types";
 
 export default {
   title: "Components/Selections/Chips/Web",
@@ -212,6 +214,21 @@ const ControlledSelectionTemplate: ComponentStory<typeof Chips> = () => {
     setSelected(prev => [...prev, value]);
   };
 
+  const customRenderMenu = (
+    options: ChipProps[],
+    menuItemsAPI: MenuItemsAPI,
+  ) => {
+    return (
+      <div>
+        {options.map(option => (
+          <div onBlur={menuItemsAPI.handleCancelBlur} key={option.value}>
+            {option.label}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <>
       <Text>
@@ -231,6 +248,7 @@ const ControlledSelectionTemplate: ComponentStory<typeof Chips> = () => {
         onChange={handleSelect}
         onCustomAdd={handleCustomAdd}
         onSearch={handleSearch}
+        customRenderMenu={customRenderMenu}
       >
         {displayedOptions.map(name => (
           <Chip key={name} label={name} value={name} />

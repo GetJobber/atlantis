@@ -3,6 +3,8 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InternalChipDismissible } from "..";
 import { Chip } from "../..";
+import { ChipProps } from "../../Chip";
+import { MenuItemsAPI } from "../../ChipsTypes";
 
 const mockIsInView = jest.fn(() => false);
 
@@ -237,5 +239,148 @@ describe("Deleting a chip", () => {
 
     // Focus should now be on the first chip, NOT on chip2 (which no longer exists)
     expect(first).toHaveFocus();
+  });
+});
+
+describe("controlled prop", () => {
+  const chips = ["Amazing", "Fabulous", "Magical"];
+  const selectedChips = ["Amazing"];
+
+  it("should keep the menu open after selection when controlled is true", async () => {
+    render(
+      <InternalChipDismissible
+        selected={selectedChips}
+        onChange={handleChange}
+        onCustomAdd={handleCustomAdd}
+        onClick={handleClickChip}
+        onSearch={handleSearch}
+        onLoadMore={handleLoadMore}
+        controlled={true}
+      >
+        {chips.map(chip => (
+          <Chip key={chip} label={chip} value={chip} />
+        ))}
+      </InternalChipDismissible>,
+    );
+
+    await userEvent.click(screen.getByLabelText("Add"));
+
+    // Select an option
+    const targetChip = chips.find(chip => !selectedChips.includes(chip));
+    await userEvent.click(screen.getByText(targetChip as string));
+
+    // The menu should still be open
+    expect(screen.getByTestId("chip-menu")).toBeInTheDocument();
+    expect(screen.getByRole("combobox")).toBeInTheDocument();
+
+    // But the selection should have happened
+    expect(handleChange).toHaveBeenCalledWith([...selectedChips, targetChip]);
+  });
+
+  it("should close the menu after selection when controlled is false", async () => {
+    render(
+      <InternalChipDismissible
+        selected={selectedChips}
+        onChange={handleChange}
+        onCustomAdd={handleCustomAdd}
+        onClick={handleClickChip}
+        onSearch={handleSearch}
+        onLoadMore={handleLoadMore}
+        controlled={false}
+      >
+        {chips.map(chip => (
+          <Chip key={chip} label={chip} value={chip} />
+        ))}
+      </InternalChipDismissible>,
+    );
+
+    await userEvent.click(screen.getByLabelText("Add"));
+
+    // Select an option
+    const targetChip = chips.find(chip => !selectedChips.includes(chip));
+    await userEvent.click(screen.getByText(targetChip as string));
+    screen.debug();
+    // The menu should be closed
+    expect(screen.queryByTestId("chip-menu")).not.toBeInTheDocument();
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
+
+    // And the selection should have happened
+    expect(handleChange).toHaveBeenCalledWith([...selectedChips, targetChip]);
+  });
+});
+
+describe("customRenderMenu prop", () => {
+  const chips = ["Amazing", "Fabulous", "Magical"];
+  const selectedChips = ["Amazing"];
+  const customText = "Custom Menu Header";
+
+  it("should render a custom menu when customRenderMenu is provided", async () => {
+    const customRenderMenu = jest.fn(
+      (menuOptions: ChipProps[], menuItemsAPI: MenuItemsAPI) => (
+        <div data-testid="custom-menu-container">
+          <div data-testid="custom-header">{customText}</div>
+          {menuOptions.map((option: ChipProps, index: number) => (
+            <button
+              key={option.value}
+              role="option"
+              type="button"
+              id={menuItemsAPI.generateDescendantId(index)}
+              className={`${menuItemsAPI.menuListOptionStyles} ${
+                menuItemsAPI.activeIndex === index
+                  ? menuItemsAPI.activeOptionStyles
+                  : ""
+              }`}
+              onClick={() =>
+                menuItemsAPI.handleSelectOption({ ...option, custom: false })
+              }
+              onMouseEnter={menuItemsAPI.handleSetActiveOnMouseOver(index)}
+              onMouseDown={menuItemsAPI.handleCancelBlur}
+              onMouseUp={menuItemsAPI.handleEnableBlur}
+              data-testid={`custom-option-${option.value}`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      ),
+    );
+
+    render(
+      <InternalChipDismissible
+        selected={selectedChips}
+        onChange={handleChange}
+        onCustomAdd={handleCustomAdd}
+        onClick={handleClickChip}
+        onSearch={handleSearch}
+        onLoadMore={handleLoadMore}
+        customRenderMenu={customRenderMenu}
+      >
+        {chips.map(chip => (
+          <Chip key={chip} label={chip} value={chip} />
+        ))}
+      </InternalChipDismissible>,
+    );
+
+    await userEvent.click(screen.getByLabelText("Add"));
+    screen.debug();
+    // Custom menu should be rendered
+    expect(screen.getByTestId("custom-menu-container")).toBeInTheDocument();
+    expect(screen.getByTestId("custom-header")).toHaveTextContent(customText);
+
+    // Custom options should work
+    const availableChips = chips.filter(chip => !selectedChips.includes(chip));
+
+    for (const chip of availableChips) {
+      expect(screen.getByTestId(`custom-option-${chip}`)).toBeInTheDocument();
+    }
+
+    // Selecting a custom option should work
+    await userEvent.click(
+      screen.getByTestId(`custom-option-${availableChips[0]}`),
+    );
+    expect(handleChange).toHaveBeenCalledWith([
+      ...selectedChips,
+      availableChips[0],
+    ]);
   });
 });

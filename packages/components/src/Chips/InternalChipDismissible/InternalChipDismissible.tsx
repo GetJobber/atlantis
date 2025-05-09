@@ -55,6 +55,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
         options={availableChipOptions}
         onOptionSelect={handleChipAdd}
         onCustomOptionSelect={handleCustomAdd}
+        customRenderMenu={props.customRenderMenu}
         onSearch={props.onSearch}
         onLoadMore={props.onLoadMore}
         onlyShowMenuOnSearch={props.onlyShowMenuOnSearch}

@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
 import { ChipProps } from "../../Chip";
+import { MenuItemsAPI } from "../../ChipsTypes";
 
 let mockCurrentIsInView = false;
 
@@ -604,6 +605,128 @@ describe("onlyShowMenuOnSearch", () => {
     expect(
       screen.queryByRole("button", { name: "Add" }),
     ).not.toBeInTheDocument();
+  });
+});
+
+describe("customRenderMenu prop", () => {
+  const customText = "Custom rendering";
+  const customRenderMenu = jest.fn(
+    (menuOptions: ChipProps[], menuItemsAPI: MenuItemsAPI) => {
+      return (
+        <div data-testid="custom-menu">
+          <div data-testid="custom-text">{customText}</div>
+          {menuOptions.map((menuOption: ChipProps, index: number) => (
+            <button
+              key={menuOption.value}
+              role="option"
+              type="button"
+              id={menuItemsAPI.generateDescendantId(index)}
+              className={`${menuItemsAPI.menuListOptionStyles} ${
+                menuItemsAPI.activeIndex === index
+                  ? menuItemsAPI.activeOptionStyles
+                  : ""
+              }`}
+              onClick={() =>
+                menuItemsAPI.handleSelectOption({
+                  ...menuOption,
+                  custom: false,
+                })
+              }
+              onMouseEnter={menuItemsAPI.handleSetActiveOnMouseOver(index)}
+              onMouseDown={menuItemsAPI.handleCancelBlur}
+              onMouseUp={menuItemsAPI.handleEnableBlur}
+            >
+              {menuOption.label}
+            </button>
+          ))}
+        </div>
+      );
+    },
+  );
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    rerender(
+      <InternalChipDismissibleInput
+        {...props}
+        customRenderMenu={customRenderMenu}
+      />,
+    );
+    const addButton = screen.getByRole("button", { name: "Add" });
+    fireEvent.click(addButton);
+  });
+
+  it("should call the customRenderMenu function with options and API", () => {
+    expect(customRenderMenu).toHaveBeenCalledWith(
+      expect.any(Array),
+      expect.objectContaining({
+        generateDescendantId: expect.any(Function),
+        handleSelectOption: expect.any(Function),
+        handleSetActiveOnMouseOver: expect.any(Function),
+        handleCancelBlur: expect.any(Function),
+        handleEnableBlur: expect.any(Function),
+        handleShowInput: expect.any(Function),
+        activeIndex: expect.any(Number),
+        menuListOptionStyles: expect.any(String),
+        activeOptionStyles: expect.any(String),
+      }),
+    );
+  });
+
+  it("should render the custom menu", () => {
+    expect(screen.getByTestId("custom-menu")).toBeInTheDocument();
+    expect(screen.getByTestId("custom-text")).toHaveTextContent(customText);
+  });
+
+  it("should handle option selection through the custom menu", () => {
+    const menuItems = screen.getAllByRole("option");
+    fireEvent.click(menuItems[1]);
+    expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[1]);
+  });
+});
+
+describe("controlled prop", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should not close the menu when controlled is true and an option is selected", () => {
+    rerender(<InternalChipDismissibleInput {...props} controlled={true} />);
+
+    const addButton = screen.getByRole("button", { name: "Add" });
+    fireEvent.click(addButton);
+
+    const option = screen.getByRole("option", { name: optionsArray[0] });
+    fireEvent.click(option);
+
+    expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[0]);
+    expect(screen.getByRole("combobox")).toBeInTheDocument();
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+  });
+
+  it("should close the menu when controlled is false and an option is selected", () => {
+    jest.useFakeTimers();
+
+    rerender(<InternalChipDismissibleInput {...props} controlled={false} />);
+
+    const addButton = screen.getByRole("button", { name: "Add" });
+    fireEvent.click(addButton);
+
+    const option = screen.getByRole("option", { name: optionsArray[0] });
+    fireEvent.click(option);
+
+    expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[0]);
+
+    // Clear focus and run timers to simulate blur
+    fireEvent.blur(screen.getByRole("combobox"));
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+    jest.useRealTimers();
   });
 });
 
