@@ -117,6 +117,16 @@
     "client": {
       "$value": "{color.base.taupe-.700}",
       "$description": "Clients use a neutral value as they sit at the core of the workflow."
+    },
+    "client-": {
+      "surface": {
+        "$value": "{color.base.taupe-.200}",
+        "$description": "Use for the surface of an element that has client status."
+      },
+      "onSurface": {
+        "$value": "{color.base.taupe-.800}",
+        "$description": "Use for text or iconography that sits overtop a client background."
+      }
     }
   }
 }

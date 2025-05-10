@@ -14,6 +14,9 @@
     "small": {
       "$value": "8px"
     },
+    "slim": {
+      "$value": "12px"
+    },
     "base": {
       "$value": "16px"
     },

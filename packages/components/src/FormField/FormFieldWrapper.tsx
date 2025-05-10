@@ -17,8 +17,9 @@ export interface FormFieldWrapperProps extends FormFieldProps {
   readonly identifier: string;
   readonly descriptionIdentifier: string;
   readonly clearable: Clearable;
-  readonly onClear: () => void;
+  readonly onClear?: () => void;
   readonly showMiniLabel?: boolean;
+  readonly readonly?: boolean;
 }
 
 export function FormFieldWrapper({
@@ -41,6 +42,7 @@ export function FormFieldWrapper({
   identifier,
   clearable,
   onClear,
+  readonly,
   toolbar,
   toolbarVisibility = "while-editing",
   showMiniLabel = true,
@@ -75,6 +77,7 @@ export function FormFieldWrapper({
     focused,
     hasValue: Boolean(value),
     disabled,
+    readonly,
   });
 
   const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =

@@ -1,23 +1,10 @@
 import React, { useState } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { InputPhoneNumber } from "./InputPhoneNumber";
 
 const placeholder = "Phone";
 const validationMessage = "Phone number must contain 10 or more digits";
-
-jest.mock("framer-motion", () => ({
-  motion: {
-    div: require("react").forwardRef(({ children, ...rest }, ref) => (
-      <div {...rest} ref={ref}>
-        {children}
-      </div>
-    )),
-  },
-  AnimatePresence: jest
-    .fn()
-    .mockImplementation(({ children }) => <>{children}</>),
-  default: jest.fn(),
-}));
 
 describe("InputPhoneNumber", () => {
   it("should render a field", () => {
@@ -102,6 +89,18 @@ describe("InputPhoneNumber", () => {
 
         return <InputPhoneNumber value={value} onChange={setValue} />;
       }
+    });
+    it("should call onChange with the correct value", async () => {
+      const mockOnChange = jest.fn();
+      render(<InputPhoneNumber value="123123" onChange={mockOnChange} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "123123");
+      await waitFor(() => {
+        expect(mockOnChange).toHaveBeenCalledWith(
+          "(123) 123-3",
+          expect.any(Object),
+        );
+      });
     });
   });
 

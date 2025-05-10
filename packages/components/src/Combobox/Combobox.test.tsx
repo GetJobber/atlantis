@@ -4,7 +4,6 @@ import { UserEvent, userEvent } from "@testing-library/user-event";
 import { mockIntersectionObserver } from "jsdom-testing-mocks";
 import { Combobox } from "./Combobox";
 import { ComboboxOption } from "./Combobox.types";
-import { COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE } from "./hooks/useComboboxValidation";
 import * as POM from "./Combobox.pom";
 import { Button } from "../Button";
 
@@ -422,26 +421,6 @@ describe("Combobox Compound Component Validation", () => {
         </Combobox>,
       ),
     ).not.toThrow();
-  });
-
-  it("throws an error when there are multiple Combobox Activators present", () => {
-    // This keeps the testing console clean
-    const consoleErrorSpy = jest
-      .spyOn(console, "error")
-      .mockImplementation(() => ({}));
-    expect(() =>
-      render(
-        <Combobox label={activatorLabel} selected={[]} onSelect={jest.fn()}>
-          <Combobox.Activator>
-            <Button label="Click me" />
-          </Combobox.Activator>
-          <Combobox.Activator>
-            <Button label="No Click me" />
-          </Combobox.Activator>
-        </Combobox>,
-      ),
-    ).toThrow(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
-    consoleErrorSpy.mockRestore();
   });
 });
 

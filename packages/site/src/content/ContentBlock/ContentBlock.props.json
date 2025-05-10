@@ -1,0 +1,158 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/ContentBlock/ContentBlock.tsx",
+    "description": "",
+    "displayName": "ContentBlock",
+    "methods": [],
+    "props": {
+      "justify": {
+        "defaultValue": {
+          "value": "left"
+        },
+        "description": "The justification of the content.",
+        "name": "justify",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"left\" | \"center\" | \"right\""
+        }
+      },
+      "maxWidth": {
+        "defaultValue": {
+          "value": "Breakpoints.smaller"
+        },
+        "description": "The maximum width of the centered content.",
+        "name": "maxWidth",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | (string & {})"
+        }
+      },
+      "andText": {
+        "defaultValue": null,
+        "description": "Whether to also center the text.",
+        "name": "andText",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "gutters": {
+        "defaultValue": null,
+        "description": "The amount of space between the content and the edges of the container.",
+        "name": "gutters",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "GapSpacing"
+        }
+      },
+      "as": {
+        "defaultValue": null,
+        "description": "The HTML tag to render the container as. Defaults to `div`.",
+        "name": "as",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CommonAllowedElements"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/ContentBlock/types.ts",
+          "name": "ContentBlockProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; }"
+        }
+      },
+      "dataAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "dataAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ [key: `data-${string}`]: string; }"
+        }
+      },
+      "ariaAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
+        "name": "ariaAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaAttributes"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Standard HTML role attribute.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaRole"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "Standard HTML id attribute.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

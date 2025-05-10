@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.77.0...@jobber/design@0.78.0) (2025-05-06)
+
+
+### Features
+
+* **design:** Add surface and onSurface colors for color-client ([#2539](https://github.com/GetJobber/atlantis/issues/2539)) ([4c9f741](https://github.com/GetJobber/atlantis/commit/4c9f7415e31add63da9428c084bc23855e4615fa))
+
+
+
+
+
+# [0.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.1...@jobber/design@0.77.0) (2025-05-05)
+
+
+### Features
+
+* **design:** JOB-122715 Add mobile and desktop icons ([#2535](https://github.com/GetJobber/atlantis/issues/2535)) ([5de8e5e](https://github.com/GetJobber/atlantis/commit/5de8e5ea99a08eb88cd0f9a49f08de985ca4a358))
+
+
+
+
+
+## [0.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.0...@jobber/design@0.76.1) (2025-04-29)
+
+
+### Bug Fixes
+
+* **design:** Updating priceTag icon to meet jobber design standards ([#2526](https://github.com/GetJobber/atlantis/issues/2526)) ([4c7717d](https://github.com/GetJobber/atlantis/commit/4c7717d0215bc216e077bbb9224049192222ba56))
+
+
+
+
+
+# [0.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.75.1...@jobber/design@0.76.0) (2025-04-25)
+
+
+### Features
+
+* **design:** Adding a new price tag icon ([#2522](https://github.com/GetJobber/atlantis/issues/2522)) ([b2f269f](https://github.com/GetJobber/atlantis/commit/b2f269fca1f3be72310551e813472936b74cc2ce))
+
+
+
+
+
+## [0.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.75.0...@jobber/design@0.75.1) (2025-04-24)
+
+
+### Bug Fixes
+
+* **design:** Fix elevation tokens to ensure they respect theme overrides ([#2509](https://github.com/GetJobber/atlantis/issues/2509)) ([2f2c400](https://github.com/GetJobber/atlantis/commit/2f2c400c9ff844d276871506afe71559f6a5f15f))
+
+
+
+
+
+# [0.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.74.0...@jobber/design@0.75.0) (2025-04-08)
+
+
+### Features
+
+* **design:** add slim spacing token and add to docs ([#2465](https://github.com/GetJobber/atlantis/issues/2465)) ([91396c8](https://github.com/GetJobber/atlantis/commit/91396c8c0326a8b89087e62067eeba390e1ef80c))
+
+
+
+
+
 # [0.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.73.0...@jobber/design@0.74.0) (2025-04-08)
 
 

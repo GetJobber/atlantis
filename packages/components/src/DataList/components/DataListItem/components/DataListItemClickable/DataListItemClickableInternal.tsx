@@ -66,7 +66,7 @@ export function DataListItemClickableInternal<T extends DataListObject>({
 
   return <>{children}</>;
 
-  function handleClick() {
-    activeItem && onClick?.(activeItem);
+  function handleClick(evt?: React.MouseEvent<HTMLElement>) {
+    activeItem && onClick?.(activeItem, evt);
   }
 }

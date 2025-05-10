@@ -1,0 +1,132 @@
+import { ResponsiveSwitcher, Card, Text, Box, Stack } from "@jobber/components";
+import { Canvas } from "@storybook/addon-docs";
+import { ContentBlock } from "@jobber/components/ContentBlock";
+
+# ResponsiveSwitcher
+
+The ResponsiveSwitcher component is a layout component that automatically
+switches between horizontal and vertical arrangements based on the available
+space. It's designed to create responsive layouts that adapt to different screen
+sizes without requiring media queries.
+
+## When to use
+
+Use ResponsiveSwitcher when you need to:
+
+- Create layouts that switch between horizontal and vertical arrangements based
+  on container width
+- Build responsive interfaces without writing media queries
+- Implement flexible grid-like layouts that adapt to available space
+- Create responsive form layouts
+- Build adaptive content sections that work across different screen sizes
+
+## Examples
+
+### Basic Usage
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <ResponsiveSwitcher threshold="30ch">
+      <Box>
+        <Card>
+          <Box padding="base">
+            <Text>First item</Text>
+          </Box>
+        </Card>
+      </Box>
+      <Box>
+        <Card>
+          <Box padding="base">
+            <Text>Second item</Text>
+          </Box>
+        </Card>
+      </Box>
+    </ResponsiveSwitcher>
+  </ContentBlock>
+</Canvas>
+
+### Custom Spacing
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <ResponsiveSwitcher threshold="40ch" gap="large">
+      <Box>
+        <Card>
+          <Box padding="base">
+            <Text>More space</Text>
+          </Box>
+        </Card>
+      </Box>
+      <Box>
+        <Card>
+          <Box padding="base">
+            <Text>Between items</Text>
+          </Box>
+        </Card>
+      </Box>
+    </ResponsiveSwitcher>
+  </ContentBlock>
+</Canvas>
+
+### Custom Threshold
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <ResponsiveSwitcher threshold="200px">
+      <Box>
+        <Card>
+          <Box padding="base">
+            <Text>Custom breakpoint</Text>
+          </Box>
+        </Card>
+      </Box>
+      <Box>
+        <Card>
+          <Box padding="base">
+            <Text>at 200px</Text>
+          </Box>
+        </Card>
+      </Box>
+    </ResponsiveSwitcher>
+  </ContentBlock>
+</Canvas>
+
+### With Item Limit
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <ResponsiveSwitcher threshold="30ch" limit={3}>
+      <Card>
+        <Box padding="base">
+          <Text>First item</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box padding="base">
+          <Text>Second item</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box padding="base">
+          <Text>Third item</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box padding="base">
+          <Text>Fourth item (will force all to wrap)</Text>
+        </Box>
+      </Card>
+    </ResponsiveSwitcher>
+  </ContentBlock>
+</Canvas>
+
+## Implementation Details
+
+The ResponsiveSwitcher uses CSS Flexbox with the `flex-wrap` property to create
+responsive layouts. It calculates when to switch between layouts using CSS
+`calc()` and custom properties, avoiding the need for media queries.
+
+## Related Components
+
+- For vertical layouts with consistent spacing, use [Stack](/components/Stack)
+- For horizontal layouts with wrapping, use [Cluster](/components/Cluster)

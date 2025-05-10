@@ -135,7 +135,6 @@ export const Modalize = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
 
   const updateOpen = () => {
-    console.log("setting open?", open);
     setOpen(o => !o);
   };
   useEffect(() => {

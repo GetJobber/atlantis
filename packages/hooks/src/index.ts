@@ -1,4 +1,3 @@
-export * from "./useAssert";
 export * from "./useBool";
 export * from "./useBreakpoints";
 export * from "./useCallbackRef";

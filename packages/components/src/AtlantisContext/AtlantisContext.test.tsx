@@ -14,6 +14,7 @@ const providerValues: AtlantisContextProps = {
   locale: "en",
   floatSeparators: { decimal: ".", group: "," },
   currencySymbol: "€",
+  firstDayOfWeek: 0,
 };
 
 describe("AtlantisContext", () => {
