@@ -1,40 +1,132 @@
-import React from "react";
+import type { FocusEvent } from "react";
+import React, { createRef, forwardRef, useImperativeHandle } from "react";
 import {
   NumberField as AriaNumberField,
-  // NumberFieldProps as AriaNumberFieldProps,
-  // FieldError,
-  // Group,
+  Text as AriaText,
+  Group,
   Input,
-  // Label,
-  // Text,
-  // ValidationResult,
+  Label,
 } from "react-aria-components";
-// import classnames from "classnames";
-import { InputNumberRebuiltProps } from "./InputNumber2.types";
-import styles from "../FormField/FormField.module.css";
-// import { useIsSafari } from "../FormField/hooks/useIsSafari";
-// import {
-//   LabelPadding,
-//   useFormFieldWrapperStylesProps,
-// } from "../FormField/hooks/useFormFieldWrapperStyles";
+import classnames from "classnames";
+import styles from "./InputNumber2.module.css";
+import { InputNumber2Props } from "./InputNumber2.types";
+import { Icon } from "../Icon";
+import { Text } from "../Text";
 
-export function InputNumber2(props: InputNumberRebuiltProps) {
-  const ariaNumberFieldProps = {
-    ...props,
-  };
+const defaultFormatOptions: Intl.NumberFormatOptions = {
+  notation: "standard",
+  style: "decimal",
+};
 
-  return (
-    <div className={styles.container}>
-      <AriaNumberField {...ariaNumberFieldProps} className={styles.wrapper}>
-        {/* <Label>{placeholder}</Label> */}
-        {/* <Group> */}
-        <Input className={styles.input} />
-        {/* <Button slot="decrement">-</Button> */}
-        {/* <Button slot="increment">+</Button> */}
-        {/* </Group> */}
-        {/* {description && <Text slot="description">{description}</Text>} */}
-        {/* <FieldError>{error}</FieldError> */}
-      </AriaNumberField>
-    </div>
-  );
+export interface InputNumber2Ref {
+  blur(): void;
+  focus(): void;
 }
+
+export const InputNumber2 = forwardRef(
+  (props: InputNumber2Props, ref: React.Ref<InputNumber2Ref>) => {
+    const inputRef = createRef<HTMLInputElement>();
+
+    function handleChange(
+      newValue: number,
+      event?: React.ChangeEvent<HTMLInputElement>,
+    ) {
+      props.onChange && props.onChange(newValue, event);
+    }
+
+    useImperativeHandle(ref, () => ({
+      blur: () => {
+        const input = inputRef.current;
+
+        if (input) {
+          input.blur();
+        }
+      },
+      focus: () => {
+        const input = inputRef.current;
+
+        if (input) {
+          input.focus();
+        }
+      },
+    }));
+
+    const {
+      align,
+      description,
+      disabled,
+      error,
+      inline,
+      invalid,
+      placeholder,
+      readonly,
+      showMiniLabel = true,
+      size,
+      ...ariaNumberFieldProps
+    } = props;
+
+    return (
+      <AriaNumberField
+        {...ariaNumberFieldProps}
+        className={classnames(styles.container, inline && styles.inline)}
+        formatOptions={defaultFormatOptions}
+        isDisabled={disabled}
+        isInvalid={invalid}
+        isReadOnly={readonly}
+        onBlur={e => props.onBlur?.(e as FocusEvent<HTMLInputElement>)}
+        onFocus={e => props.onFocus?.(e as FocusEvent<HTMLInputElement>)}
+        onChange={handleChange}
+      >
+        <Group
+          className={classnames(
+            styles.wrapper,
+            align && styles[align],
+            invalid && styles.invalid,
+            disabled && styles.disabled,
+          )}
+        >
+          <div className={styles.horizontalWrapper}>
+            <div
+              className={classnames(
+                styles.inputWrapper,
+                !showMiniLabel && styles.hideLabel,
+                size && styles[size],
+              )}
+            >
+              <Input
+                className={styles.input}
+                placeholder=" " // used for CSS minilabel
+                ref={inputRef}
+              />
+              <Label className={styles.label}>{placeholder}</Label>
+            </div>
+          </div>
+        </Group>
+        {description && (
+          <AriaText
+            className={styles.description}
+            elementType="div"
+            slot="description"
+          >
+            <Text size="small" variation="subdued">
+              {description}
+            </Text>
+          </AriaText>
+        )}
+        {error && (
+          <AriaText
+            className={styles.fieldError}
+            elementType="div"
+            slot="errorMessage"
+          >
+            <Icon color="critical" name="alert" size="small" />
+            <Text size="small" variation="error">
+              {error}
+            </Text>
+          </AriaText>
+        )}
+      </AriaNumberField>
+    );
+  },
+);
+InputNumber2.displayName = "InputNumber2";

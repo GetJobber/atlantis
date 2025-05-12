@@ -11,7 +11,7 @@ export default {
   },
 } as ComponentMeta<typeof InputNumber2>;
 
-const BasicTemplate: ComponentStory<typeof InputNumber2> = args => {
+const BasiccTemplate: ComponentStory<typeof InputNumber2> = args => {
   const [value, setValue] = useState(args.value);
 
   return (
@@ -23,15 +23,15 @@ const BasicTemplate: ComponentStory<typeof InputNumber2> = args => {
   );
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
+export const Basicc = BasiccTemplate.bind({});
+Basicc.args = {
   value: 3,
   placeholder: "placeholder label",
   error: "error string",
   description: "description string",
 };
 
-// export const Invalid = BasicTemplate.bind({});
+// export const Invalid = BasiccTemplate.bind({});
 // Invalid.args = {
 //   value: 1.1,
 //   invalid: true,
