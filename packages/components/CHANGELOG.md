@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.57.0...@jobber/components@6.58.0) (2025-05-12)
+
+
+### Features
+
+* **components-native:** BREAKING CHANGE: Upgrade React Native Version ([#2528](https://github.com/GetJobber/atlantis/issues/2528)) ([ca67b7e](https://github.com/GetJobber/atlantis/commit/ca67b7efa686f03017a9af86189a62de993c72a4)), closes [#2540](https://github.com/GetJobber/atlantis/issues/2540)
+
+
+
+
+
 # [6.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.56.1...@jobber/components@6.57.0) (2025-05-12)
 
 
