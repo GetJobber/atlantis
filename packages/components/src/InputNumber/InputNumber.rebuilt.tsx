@@ -95,6 +95,7 @@ export const InputNumberRebuilt = forwardRef(
             <div
               className={classnames(
                 styles.inputWrapper,
+                disabled && styles.disabled,
                 !showMiniLabel && styles.hideLabel,
                 size && styles[size],
               )}
