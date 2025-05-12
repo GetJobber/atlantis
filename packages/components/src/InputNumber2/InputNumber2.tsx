@@ -1,6 +1,7 @@
 import type { FocusEvent } from "react";
 import React, { createRef, forwardRef, useImperativeHandle } from "react";
 import {
+  FieldError as AriaFieldError,
   NumberField as AriaNumberField,
   Text as AriaText,
   Group,
@@ -114,16 +115,12 @@ export const InputNumber2 = forwardRef(
           </AriaText>
         )}
         {error && (
-          <AriaText
-            className={styles.fieldError}
-            elementType="div"
-            slot="errorMessage"
-          >
+          <AriaFieldError className={styles.fieldError}>
             <Icon color="critical" name="alert" size="small" />
             <Text size="small" variation="error">
               {error}
             </Text>
-          </AriaText>
+          </AriaFieldError>
         )}
       </AriaNumberField>
     );
