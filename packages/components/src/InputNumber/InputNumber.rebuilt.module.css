@@ -201,6 +201,7 @@
   pointer-events: none;
   transform: translateY(var(--field--placeholder-transform));
 }
+
 /* When not hiding the label, animate the transition to the miniLabel */
 .inputWrapper:not(.hideLabel) .label {
   transition: all var(--timing-quick);
@@ -220,6 +221,10 @@
   --field--placeholder-transform: 0;
   --field--padding-top: calc(var(--space-base) + var(--space-smaller));
   --field--padding-bottom: var(--space-small);
+}
+
+.inputWrapper.disabled label {
+  --field--placeholder-color: var(--color-text-disabled);
 }
 
 .input:not(:placeholder-shown) + .label:not(:empty),
