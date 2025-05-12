@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.56.1...@jobber/components@6.57.0) (2025-05-12)
+
+
+### Features
+
+* **components:** Format File Composed ([#2538](https://github.com/GetJobber/atlantis/issues/2538)) ([4f1f931](https://github.com/GetJobber/atlantis/commit/4f1f93110d7b4b090b0e94f124232aaf8bd1f777))
+
+
+
+
+
 ## [6.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.56.0...@jobber/components@6.56.1) (2025-05-08)
 
 **Note:** Version bump only for package @jobber/components

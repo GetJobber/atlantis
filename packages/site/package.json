@@ -1,7 +1,7 @@
 {
   "name": "@jobber/atlantis-site",
   "private": true,
-  "version": "0.58.1",
+  "version": "0.59.0",
   "type": "module",
   "scripts": {
     "e2e": "playwright test",
