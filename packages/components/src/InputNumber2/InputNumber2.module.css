@@ -96,6 +96,18 @@
   opacity: 1;
 }
 
+.description {
+  margin-top: var(--space-smaller);
+}
+
+.fieldError {
+  align-items: center;
+  display: flex;
+  gap: var(--space-smaller);
+  padding: var(--space-smaller);
+  padding-left: 0;
+}
+
 .small {
   --field--padding-left: calc(var(--space-base) - var(--space-smaller));
   --field--padding-right: calc(var(--space-base) - var(--space-smaller));
@@ -236,16 +248,4 @@
 .inputWrapper.large .input:not(:placeholder-shown) + .label:not(:empty) .label,
 .inputWrapper.large .input:focus + .label:not(:empty) .label {
   padding-top: var(--space-small);
-}
-
-.description {
-  margin-top: var(--space-smaller);
-}
-.fieldError {
-  align-items: center;
-  display: flex;
-  gap: var(--space-smaller);
-  padding: var(--space-smaller);
-  padding-left: 0;
-  vertical-align: baseline;
 }
