@@ -90,6 +90,8 @@
     "Grid.Cell",
     "Header",
     "Heading",
+    "Hidden",
+    "HiddenVisually",
     "Icon",
     "InlineLabel",
     "InputAvatar",

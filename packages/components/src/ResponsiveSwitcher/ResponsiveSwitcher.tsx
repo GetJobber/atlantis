@@ -9,12 +9,15 @@ import {
 
 export function ResponsiveSwitcher({
   children,
-  threshold,
+  threshold = "50%",
   gap = spaceTokens.base,
   limit = 2,
+  scaleBy = "container",
   as: Tag = "div",
   dataAttributes,
   ariaAttributes,
+  collapseBelow,
+  collapsed,
   role,
   id,
   UNSAFE_className,
@@ -28,7 +31,10 @@ export function ResponsiveSwitcher({
       {...ariaAttributes}
       className={classNames(
         styles.responsiveSwitcher,
+        scaleBy === "screen" && styles.scaleByScreen,
         styles[`limit-${limit}` as keyof typeof styles],
+        collapseBelow && styles[collapseBelow as keyof typeof styles],
+        collapsed ? styles.collapsed : undefined,
         UNSAFE_className?.container,
       )}
       style={
