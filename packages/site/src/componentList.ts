@@ -472,13 +472,6 @@ export const componentList = [
     additionalMatches: ["Number Input", "Numeric Input"],
   },
   {
-    title: "InputNumber2",
-    to: "/components/InputNumber2",
-    imageURL: "/InputNumber.png",
-    sections: ["Forms & Inputs"],
-    additionalMatches: ["Number Input", "Numeric Input"],
-  },
-  {
     title: "InputPassword",
     to: "/components/InputPassword",
     imageURL: "/InputPassword.png",

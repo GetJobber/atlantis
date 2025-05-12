@@ -56,7 +56,6 @@ const components = [
   "InputFile",
   "InputGroup",
   "InputNumber",
-  "InputNumber2",
   "InputPassword",
   "InputPhoneNumber",
   "InputText",

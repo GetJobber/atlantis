@@ -51,7 +51,6 @@ export * from "./InputEmail";
 export * from "./InputFile";
 export * from "./InputGroup";
 export * from "./InputNumber";
-export * from "./InputNumber2";
 export * from "./InputPassword";
 export * from "./InputPhoneNumber";
 export * from "./InputText";
