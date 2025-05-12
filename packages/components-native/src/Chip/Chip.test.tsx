@@ -35,7 +35,7 @@ it("renders an inactive Chip with a default backgroundColor", () => {
     backgroundColor: tokens["color-surface--reverse"],
   });
   expect(getByTestId("chipTest").props.style).toContainEqual({
-    backgroundColor: tokens["color-surface--background"],
+    backgroundColor: tokens["color-interactive--background"],
   });
 });
 

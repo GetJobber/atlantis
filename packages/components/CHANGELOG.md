@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.56.0...@jobber/components@6.56.1) (2025-05-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.55.0...@jobber/components@6.56.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Add disableContextMenu prop for DataList.ItemActions ([#2545](https://github.com/GetJobber/atlantis/issues/2545)) ([cf5a22f](https://github.com/GetJobber/atlantis/commit/cf5a22f60e95651cb60bd99a93e22196213d2871))
+
+
+
+
+
+# [6.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.54.1...@jobber/components@6.55.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Update tiles to support alignment prop. ([#2544](https://github.com/GetJobber/atlantis/issues/2544)) ([f9c2cd7](https://github.com/GetJobber/atlantis/commit/f9c2cd742ba7bf4edf0077f21e20c96ae91a225b))
+
+
+
+
+
+## [6.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.54.0...@jobber/components@6.54.1) (2025-05-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [6.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.53.0...@jobber/components@6.54.0) (2025-05-07)
 
 
