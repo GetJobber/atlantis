@@ -95,9 +95,9 @@ export function FormFieldWrapper({
         data-testid="Form-Field-Wrapper"
         ref={wrapperRef}
       >
-        <div className={styles.horizontalWrapper}>
+        <FormFieldInputHorizontalWrapper>
           <AffixIcon {...prefix} size={size} />
-          <div className={styles.inputWrapper}>
+          <FormFieldInputWrapperStyles>
             {(showMiniLabel || !value) && (
               <FormFieldLabel
                 htmlFor={identifier}
@@ -112,13 +112,13 @@ export function FormFieldWrapper({
             )}
             <AffixLabel {...prefix} labelRef={prefixRef} />
 
-            <div className={styles.childrenWrapper}>{children}</div>
+            <FormFieldWrapperMain>{children}</FormFieldWrapperMain>
 
             <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
-          </div>
+          </FormFieldInputWrapperStyles>
           <ClearAction onClick={onClear} visible={showClear} />
           <AffixIcon {...suffix} variation="suffix" size={size} />
-        </div>
+        </FormFieldInputHorizontalWrapper>
         <FormFieldWrapperToolbar
           toolbarVisibility={toolbarVisibility}
           isToolbarVisible={isToolbarVisible}
