@@ -9,8 +9,8 @@ import {
   Label,
 } from "react-aria-components";
 import classnames from "classnames";
-import styles from "./InputNumber2.module.css";
-import { InputNumber2Props } from "./InputNumber2.types";
+import styles from "./InputNumber.rebuilt.module.css";
+import { InputNumberRebuiltProps } from "./InputNumber.rebuilt.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
@@ -19,13 +19,13 @@ const defaultFormatOptions: Intl.NumberFormatOptions = {
   style: "decimal",
 };
 
-export interface InputNumber2Ref {
+export interface InputNumberRebuiltRef {
   blur(): void;
   focus(): void;
 }
 
-export const InputNumber2 = forwardRef(
-  (props: InputNumber2Props, ref: React.Ref<InputNumber2Ref>) => {
+export const InputNumberRebuilt = forwardRef(
+  (props: InputNumberRebuiltProps, ref: React.Ref<InputNumberRebuiltRef>) => {
     const inputRef = createRef<HTMLInputElement>();
 
     const mergedFormatOptions = {
@@ -131,4 +131,4 @@ export const InputNumber2 = forwardRef(
     );
   },
 );
-InputNumber2.displayName = "InputNumber2";
+InputNumberRebuilt.displayName = "InputNumberRebuilt";

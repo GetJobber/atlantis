@@ -280,11 +280,6 @@
       "import": "./dist/InputNumber/index.mjs",
       "require": "./dist/InputNumber/index.cjs"
     },
-    "./InputNumber2": {
-      "types": "./dist/InputNumber2/index.d.ts",
-      "import": "./dist/InputNumber2/index.mjs",
-      "require": "./dist/InputNumber2/index.cjs"
-    },
     "./InputPassword": {
       "types": "./dist/InputPassword/index.d.ts",
       "import": "./dist/InputPassword/index.mjs",

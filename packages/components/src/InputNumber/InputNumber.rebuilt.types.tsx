@@ -3,8 +3,8 @@ import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
 export type InputNumberVersion = 1 | 2 | undefined;
 
-export interface InputNumber2Props
-  extends CommonFormFieldProps,
+export interface InputNumberRebuiltProps
+  extends Omit<CommonFormFieldProps, "version">,
     Pick<
       FormFieldProps,
       "onFocus" | "onBlur" | "inputRef" | "readonly" | "size"
@@ -25,9 +25,13 @@ export interface InputNumber2Props
   ) => void;
   readonly showMiniLabel?: boolean;
   readonly value?: number;
+  /**
+   * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
+   */
+  readonly version: 2;
 }
 
-export interface InputNumber2Ref {
+export interface InputNumberRebuiltRef {
   focus: () => void;
   blur: () => void;
 }
