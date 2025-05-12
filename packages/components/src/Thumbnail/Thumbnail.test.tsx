@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import React from "react";
 import { FileUpload } from "@jobber/components/InputFile";
-import { InternalThumbnail } from "@jobber/components/FormatFile/InternalThumbnail";
+import { Thumbnail } from "./Thumbnail";
 import * as browserUtilities from "../utils/getClientBrowser";
 
 afterEach(() => {
@@ -9,12 +9,10 @@ afterEach(() => {
 });
 
 function renderInternalThumbnail(file: FileUpload) {
-  return render(
-    <InternalThumbnail compact={false} size={"base"} file={file} />,
-  );
+  return render(<Thumbnail compact={false} size={"base"} file={file} />);
 }
 
-describe("InternalThumbnail", () => {
+describe("Thumbnail", () => {
   it("renders the appropriate thumbnail for an image", async () => {
     const file: FileUpload = {
       key: "abc",
