@@ -5,6 +5,7 @@ import { Box } from "@jobber/components/Box";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
+import { Link } from "@jobber/components/Link";
 import { FormFieldLabel } from "@jobber/components/FormField";
 import { Flex } from "@jobber/components/Flex";
 import { InputNumber2Ref } from "@jobber/components/InputNumber2/InputNumber2.types";
@@ -360,11 +361,8 @@ const FormattingExamplesTemplate: ComponentStory<
 > = args => {
   const [value, setValue] = useState<number>(11.1337);
   const [formatOptions, setFormatOptions] = useState<Intl.NumberFormatOptions>({
-    currency: "CAD",
-    currencyDisplay: "code",
-    style: "currency",
     minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    maximumFractionDigits: 4,
   });
 
   return (
@@ -378,89 +376,110 @@ const FormattingExamplesTemplate: ComponentStory<
 
       <Flex template={["shrink", "shrink", "shrink"]} gap="small">
         <Button
-          label="CAD"
+          label="Decimal (default)"
           onClick={() =>
-            setFormatOptions({ ...formatOptions, currency: "CAD" })
+            setFormatOptions({ ...formatOptions, style: "decimal" })
           }
         />
         <Button
-          label="USD"
+          label="Percent"
           onClick={() =>
-            setFormatOptions({ ...formatOptions, currency: "USD" })
+            setFormatOptions({ ...formatOptions, style: "percent" })
           }
         />
         <Button
-          label="BGP"
+          label="Unit"
           onClick={() =>
-            setFormatOptions({ ...formatOptions, currency: "GBP" })
+            setFormatOptions({
+              ...formatOptions,
+              style: "unit",
+              unit: "celsius",
+              unitDisplay: "long",
+            })
           }
         />
       </Flex>
 
       <Flex template={["shrink", "shrink", "shrink"]} gap="small">
         <Button
-          label="Code Display"
+          label="Liter Units"
           onClick={() =>
             setFormatOptions({
               ...formatOptions,
-              currencyDisplay: "code",
+              style: "unit",
+              unit: "liter",
+              unitDisplay: "short",
             })
           }
         />
         <Button
-          label="Symbol Display"
+          label="Km Units (long display)"
           onClick={() =>
             setFormatOptions({
               ...formatOptions,
-              currencyDisplay: "symbol",
+              style: "unit",
+              unit: "kilometer",
+              unitDisplay: "long",
             })
           }
         />
         <Button
-          label="Name Display"
+          label="GB Units (narrow display)"
           onClick={() =>
             setFormatOptions({
               ...formatOptions,
-              currencyDisplay: "name",
+              style: "unit",
+              unit: "gigabyte",
+              unitDisplay: "narrow",
             })
           }
         />
       </Flex>
 
-      <Flex template={["shrink", "shrink"]} gap="small">
+      <Flex template={["shrink", "shrink", "shrink"]} gap="small">
         <Button
-          label="2 Decimals"
+          label="2-4 Decimals"
           onClick={() =>
             setFormatOptions({
               ...formatOptions,
+              maximumFractionDigits: 4,
               minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
             })
           }
         />
         <Button
-          label="4 Decimals"
+          label="2 Decimals always"
           onClick={() =>
             setFormatOptions({
               ...formatOptions,
+              maximumFractionDigits: 2,
               minimumFractionDigits: 2,
-              maximumFractionDigits: 4,
+            })
+          }
+        />
+        <Button
+          label="No Decimals"
+          onClick={() =>
+            setFormatOptions({
+              ...formatOptions,
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
             })
           }
         />
       </Flex>
+      <Link url="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat">
+        Learn more about Intl.NumberFormat options
+      </Link>
     </Box>
   );
 };
 
 export const FormattingExamples = FormattingExamplesTemplate.bind({});
 FormattingExamples.args = {
-  placeholder: "Hakunamatata",
+  placeholder: "Number with formatting",
   formatOptions: {
-    currency: "CAD",
-    currencyDisplay: "code",
-    style: "currency",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 4,
+    maximumFractionDigits: 2,
   },
+  description: "Use Intl.NumberFormat for detailed options",
 };

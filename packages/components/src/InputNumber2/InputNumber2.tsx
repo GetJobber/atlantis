@@ -28,6 +28,11 @@ export const InputNumber2 = forwardRef(
   (props: InputNumber2Props, ref: React.Ref<InputNumber2Ref>) => {
     const inputRef = createRef<HTMLInputElement>();
 
+    const mergedFormatOptions = {
+      ...defaultFormatOptions,
+      ...props.formatOptions,
+    };
+
     function handleChange(
       newValue: number,
       event?: React.ChangeEvent<HTMLInputElement>,
@@ -70,7 +75,7 @@ export const InputNumber2 = forwardRef(
       <AriaNumberField
         {...ariaNumberFieldProps}
         className={classnames(styles.container, inline && styles.inline)}
-        formatOptions={defaultFormatOptions}
+        formatOptions={mergedFormatOptions}
         isDisabled={disabled}
         isInvalid={invalid}
         isReadOnly={readonly}
