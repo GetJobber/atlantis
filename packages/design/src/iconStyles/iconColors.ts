@@ -1,5 +1,8 @@
 export const iconColors = {
   tokens: {
+    icon: {
+      value: "{color.icon}",
+    },
     white: {
       value: "{color.white}",
     },
