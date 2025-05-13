@@ -62,7 +62,7 @@
   box-sizing: border-box;
 }
 
-.wrapper:focus-within {
+.wrapper:not(.disabled):focus-within {
   position: relative;
   z-index: var(--field--base-elevation);
   box-shadow: var(--shadow-focus);
