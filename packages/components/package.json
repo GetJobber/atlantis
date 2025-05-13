@@ -518,7 +518,7 @@
   "peerDependencies": {
     "@apollo/client": "^3",
     "@jobber/design": "*",
-    "@jobber/hooks": "^2",
+    "@jobber/hooks": ">=2",
     "@tanstack/react-table": "^8",
     "axios": "^1",
     "classnames": "^2",
