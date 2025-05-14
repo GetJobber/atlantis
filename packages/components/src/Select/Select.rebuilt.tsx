@@ -60,7 +60,7 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       autofocus={props.autofocus}
       name={name}
       wrapperRef={wrapperRef}
-      error={""}
+      error={props.error ?? ""}
       invalid={props.invalid}
       identifier={id}
       descriptionIdentifier={descriptionIdentifier}
