@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.58.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.3...@jobber/components@6.58.4) (2025-05-14)
+
+
+### Bug Fixes
+
+* **components:** stop minilabel from responding on empty disabled InputTime ([#2564](https://github.com/GetJobber/atlantis/issues/2564)) ([9e1d465](https://github.com/GetJobber/atlantis/commit/9e1d4654ca08d505f4c3e1d905adeaaa9a09ae00))
+
+
+
+
+
 ## [6.58.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.2...@jobber/components@6.58.3) (2025-05-14)
 
 
