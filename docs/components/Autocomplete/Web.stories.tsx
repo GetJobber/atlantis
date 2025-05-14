@@ -1468,7 +1468,7 @@ const WithinModalTemplate: ComponentStory<typeof Modal> = () => {
       <div style={{ position: "sticky", bottom: 0 }}>
         <Button
           label="+ Add new client"
-          onClick={addNewClient}
+          onMouseDown={addNewClient}
           size="small"
           id="footerElement"
           fullWidth
@@ -1488,8 +1488,10 @@ const WithinModalTemplate: ComponentStory<typeof Modal> = () => {
   return (
     <Content>
       <Text>
-        This example shows how an Autocomplete that uses `customRenderMenu` has
-        a problem when rendered within Modals.
+        This example serves as a testing bed to verify Autocompletes within
+        Modals work as expected. We&apos;ve had problems in the past with
+        Autocompletes using `customRenderMenu` and it causing the parent Modal
+        to be dismissed when an option is selected.
       </Text>
 
       <Button
