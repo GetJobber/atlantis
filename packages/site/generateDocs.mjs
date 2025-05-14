@@ -27,8 +27,8 @@ import {
  * @param {string} outputPath
  */
 const parseAndWriteDocs = (componentPath, outputPath) => {
-  console.log("parsing component at:", componentPath);
   const documentation = parse(componentPath);
+
   const cleanedDocumentation = removeNonComponents(
     removeDeclarations(documentation),
   );
@@ -36,7 +36,6 @@ const parseAndWriteDocs = (componentPath, outputPath) => {
   const outputDir = dirname(outputPath);
   mkdirSync(outputDir, { recursive: true });
 
-  console.log("writing documentation to:", outputPath);
   writeFileSync(outputPath, JSON.stringify(cleanedDocumentation, null, 2));
 };
 
@@ -51,9 +50,9 @@ const parseAndWriteDocs = (componentPath, outputPath) => {
  * @returns The doc without any functions
  */
 const removeNonComponents = doc => {
-  doc = doc.filter(item => item.displayName.match(/^[A-Z]/));
+  const displayName = doc.displayName;
 
-  return doc;
+  return displayName.match(/^[A-Z]/);
 };
 
 /**
@@ -126,7 +125,9 @@ const buildComponentDocs = name => {
     baseOutputDir,
     name,
   );
-  parseAndWriteDocs(componentPath, outputPath);
+
+  // return {componentPath, outputPath}
+  parseAndWriteDocs(componentPath, outputPath, name);
 };
 
 const buildMobileComponentDocs = name => {
@@ -139,6 +140,51 @@ const buildMobileComponentDocs = name => {
   parseAndWriteDocs(componentPath, outputPath);
 };
 
-ListOfGeneratedWebComponents.forEach(buildComponentDocs);
+// ListOfGeneratedWebComponents.forEach(buildComponentDocs);
 
-ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
+const buildComponentPaths = name => {
+  const { componentPath, outputPath } = buildPaths(
+    baseComponentDir,
+    baseOutputDir,
+    name,
+  );
+
+  return { componentPath, outputPath, name };
+};
+
+/**
+ *
+ * @param {string} componentPath
+ * @returns any
+ */
+const parseDocs = componentPath => {
+  const documentation = parse(componentPath);
+  const cleanedDocumentation = documentation.map(componentDoc =>
+    removeDeclarations(componentDoc),
+  );
+  //removeNonComponents(
+
+  return cleanedDocumentation;
+};
+
+const componentPaths = ListOfGeneratedWebComponents.map(buildComponentPaths);
+
+const allComponentPaths = componentPaths.map(
+  ({ componentPath }) => componentPath,
+);
+const allComponentNames = componentPaths.map(({ name }) => name);
+
+const parsedDocs = parseDocs(allComponentPaths);
+console.log({ allComponentPaths });
+
+parsedDocs.forEach(doc => {
+  if (!allComponentPaths.find(value => value === doc.filePath)) {
+    throw new Error(JSON.stringify(doc, null, 2));
+  }
+});
+
+console.log(JSON.stringify({ parsedDocs }, null, 2));
+
+// ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
+
+// const
