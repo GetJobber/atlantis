@@ -352,11 +352,6 @@
   padding-left: var(--space-small);
 }
 
-.affixIcon.hasAction {
-  position: relative;
-  z-index: var(--field--postfix-action-elevation);
-}
-
 .affixLabel {
   display: flex;
   margin: 0 calc((var(--field--padding-left) - var(--space-smallest)) * -1) 0 0;
