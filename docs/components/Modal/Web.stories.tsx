@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Modal } from "@jobber/components/Modal";
@@ -20,6 +21,7 @@ import {
 } from "@jobber/components";
 import { Option as AutocompleteOption } from "@jobber/components/Autocomplete";
 import { Option, Select } from "@jobber/components/Select";
+import { CustomRenderingTemplate } from "../Autocomplete/Web.stories";
 
 export default {
   title: "Components/Overlays/Modal/Web",
@@ -144,7 +146,7 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
     { id: "4", label: "Option 4" },
   ];
   const [inputDateValue, setInputDateValue] = useState<Date | undefined>();
-  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [popoverOpen, setPopoverOpen] = useState(true);
   const buttonPopoverRef = useRef<HTMLDivElement>(null);
   const [autocompleteValue, setAutocompleteValue] = useState<
     AutocompleteOption | undefined
@@ -163,9 +165,12 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
         label="Open Modal with Custom Focus"
         onClick={() => setModalOpen(true)}
       />
+      <Text>Autocomplete to Test focus trap</Text>
+      <CustomRenderingTemplate />
       <Modal.Provider
         open={modalOpen}
         onRequestClose={() => {
+          console.log("onRequestClose");
           setModalOpen(false);
           setPopoverOpen(false);
         }}
@@ -205,7 +210,6 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
             <Combobox
               selected={selectedOptions}
               onSelect={selection => setSelectedOptions(selection)}
-              multiSelect
               subjectNoun="options"
             >
               {options.map(option => (
@@ -246,6 +250,8 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
               ]}
               placeholder="Search options..."
             />
+
+            <CustomRenderingTemplate />
 
             <Tooltip message="This field cannot be left empty">
               <Icon name="help" color="blue" />

@@ -201,6 +201,7 @@ export function BaseMenuOption<GenericOption extends AnyOption = AnyOption>({
       role="option"
       type="button"
       className={optionClass}
+      data-autocomplete-menu
       onMouseDown={onOptionSelect?.bind(undefined, option)}
       style={UNSAFE_style}
     >

@@ -40,6 +40,12 @@ export function useModal({
     outsidePressEvent: "click",
     escapeKey: true,
     bubbles: true,
+    outsidePress(event: MouseEvent) {
+      console.log("outsidePress", event);
+      console.log(Boolean(event.target?.closest("[data-autocomplete-menu]")));
+
+      return false;
+    },
   });
   const role = useRole(floatingContext);
 

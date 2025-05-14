@@ -122,6 +122,7 @@ export function ModalContent({ children }: ModalContainerProps) {
                   context={floatingContext}
                   returnFocus={activatorRef?.current ? activatorRef : true}
                   initialFocus={floatingRefs?.floating}
+                  closeOnFocusOut={false}
                 >
                   <div
                     ref={floatingRefs?.setFloating}

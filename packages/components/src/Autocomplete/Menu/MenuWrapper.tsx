@@ -27,6 +27,11 @@ function BaseAutocompleteMenuWrapperInternal({
       ref={setMenuRef}
       style={{ ...popperStyles.popper, width: targetWidth }}
       data-elevation={"elevated"}
+      data-autocomplete-menu
+      onClick={e => {
+        console.log("clicked", e);
+        e.stopPropagation();
+      }}
       {...attributes.popper}
     >
       {children}
@@ -55,7 +60,14 @@ export function useAutocompleteMenu({
       const menuPopperProps = useRepositionMenu(attachTo, visible);
       useEffect(() => {
         setMenuRef(menuPopperProps.menuRef);
-      }, [menuPopperProps.menuRef]);
+
+        // remove the inert from floating-ui attribute when the menu is visible
+        if (menuPopperProps.menuRef) {
+          delete menuPopperProps.menuRef.dataset.floatingUiInert;
+          menuPopperProps.menuRef.removeAttribute("inert");
+          menuPopperProps.menuRef.removeAttribute("aria-hidden");
+        }
+      }, [menuPopperProps.menuRef, visible]);
 
       return (
         <BaseAutocompleteMenuWrapper

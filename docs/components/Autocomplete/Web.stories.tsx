@@ -281,7 +281,7 @@ const actualOptions: CustomOption[] = [
   },
 ];
 
-const CustomRenderingTemplate = () => {
+export const CustomRenderingTemplate = () => {
   const BasicCustomTemplate = () => {
     const [value, setValue] = useState<Option | undefined>();
     const [detailsValue, setDetailsValue] = useState<Option | undefined>();
