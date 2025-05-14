@@ -78,6 +78,11 @@
   margin-right: var(--field--padding-right);
 }
 
+/* When there's placeholder text on an EMPTY time input
+  - we hide the field value when the input is:
+  - not focused or disabled
+*/
+.timeInputLabel input:disabled,
 .timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
   -webkit-text-fill-color: var(--field--background-color);
