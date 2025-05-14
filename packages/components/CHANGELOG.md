@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.1...@jobber/components@6.58.2) (2025-05-14)
+
+
+### Bug Fixes
+
+* **components:** stop showing focus ring on disabled and invalid components ([#2558](https://github.com/GetJobber/atlantis/issues/2558)) ([5b6f704](https://github.com/GetJobber/atlantis/commit/5b6f7041cc599b08aaf23fd8d33704d1c1226638))
+
+
+
+
+
 ## [6.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.0...@jobber/components@6.58.1) (2025-05-13)
 
 **Note:** Version bump only for package @jobber/components
