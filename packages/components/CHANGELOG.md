@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.58.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.2...@jobber/components@6.58.3) (2025-05-14)
+
+
+### Bug Fixes
+
+* **components:** Allowing error passthrough on <Select version={2} /> ([#2563](https://github.com/GetJobber/atlantis/issues/2563)) ([b50d72e](https://github.com/GetJobber/atlantis/commit/b50d72e5eb1d72dda2c6122fc8c708683f8418d5))
+
+
+
+
+
 ## [6.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.1...@jobber/components@6.58.2) (2025-05-14)
 
 
