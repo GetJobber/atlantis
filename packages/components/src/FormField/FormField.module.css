@@ -62,7 +62,7 @@
   box-sizing: border-box;
 }
 
-.wrapper:focus-within {
+.wrapper:not(.disabled):focus-within {
   position: relative;
   z-index: var(--field--base-elevation);
   box-shadow: var(--shadow-focus);
@@ -108,8 +108,8 @@
   overflow: auto;
 }
 
-.invalid,
-.invalid:focus-within {
+.invalid:not(.disabled),
+.invalid:not(.disabled):focus-within {
   --field--border-color: var(--color-critical);
   position: relative;
 }

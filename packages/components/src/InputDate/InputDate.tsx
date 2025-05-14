@@ -27,7 +27,7 @@ export function InputDate(inputProps: InputDateProps) {
             ? ({
                 icon: "calendar",
                 ariaLabel: "Show calendar",
-                onClick: onClick && onClick,
+                onClick: !inputProps.disabled && onClick && onClick,
               } as Suffix)
             : undefined;
 
