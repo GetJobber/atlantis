@@ -78,12 +78,17 @@
   margin-right: var(--field--padding-right);
 }
 
+/* When there's placeholder text on an EMPTY time input
+  - we hide the field value when the input is:
+  - not focused or disabled
+*/
+.timeInputLabel input:disabled,
 .timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
   -webkit-text-fill-color: var(--field--background-color);
 }
 
-.timeInputLabel:focus-within,
+.timeInputLabel:not(.disabled):focus-within,
 .miniLabel {
   --field--placeholder-color: var(--color-text--secondary);
   --field--placeholder-offset: var(--space-smallest);
@@ -92,7 +97,7 @@
   --field--padding-bottom: var(--space-small);
 }
 
-.timeInputLabel.large:focus-within,
+.timeInputLabel:not(.disabled).large:focus-within,
 .miniLabel.large {
   --field--padding-top: calc(var(--space-large) + var(--space-smaller));
 }
@@ -299,9 +304,12 @@
   padding-right: var(--field--padding-right);
 }
 
-.miniLabel .label,
-.timeInputLabel:focus-within .label {
+.miniLabel .label {
   font-size: var(--typography--fontSize-small);
+}
+
+.small.miniLabel .label {
+  display: none;
 }
 
 .text.miniLabel .label {
@@ -312,15 +320,18 @@
   background-color: var(--field--background-color);
 }
 
-.small.miniLabel .label,
-.timeInputLabel.small.miniLabel:focus-within .label {
+.timeInputLabel:focus-within:not(.disabled) .label {
+  font-size: var(--typography--fontSize-small);
+}
+
+.timeInputLabel.small.miniLabel:focus-within:not(.disabled) .label {
   display: none;
 }
 
 /**This is valid cascading order **/
 /* stylelint-disable-next-line no-descending-specificity */
 .large.miniLabel .label,
-.timeInputLabel.large.miniLabel:focus-within .label {
+.timeInputLabel.large.miniLabel:focus-within:not(.disabled) .label {
   padding-top: var(--space-small);
 }
 
