@@ -22,7 +22,7 @@ export function Menu<
   inputRef,
   customRenderMenu,
 }: MenuProps<GenericOption, GenericOptionValue>) {
-  const { open } = useModalContext();
+  const { open: isWithinOpenModal } = useModalContext();
 
   /**
    * Experimental/temporary workaround for Autocompletes within Modals. This is only necessary
@@ -38,7 +38,7 @@ export function Menu<
    * within its menu would cause FloatingUI to close the parent Modal because it determined the click was
    * outside of the Modal.
    */
-  const specialModalWorkaround = open && customRenderMenu;
+  const specialModalWorkaround = isWithinOpenModal && customRenderMenu;
   if (specialModalWorkaround && (!inputFocused || !options.length)) return null;
 
   if (customRenderMenu) {
