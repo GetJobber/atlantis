@@ -67,6 +67,11 @@ references:
         echo 'export PULL_REQUEST_NUMBER=$(basename "${CIRCLE_PULL_REQUEST}")' >> $BASH_ENV
         echo 'export BASE_PATH=${PULL_REQUEST_NUMBER:-${CIRCLE_BRANCH}}' >> $BASH_ENV
 
+  playwright_config: &playwright_config
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+    working_directory: ~/atlantis
+
 jobs:
   checkout_code:
     <<: *container_config
@@ -183,12 +188,9 @@ jobs:
             fi
 
   e2e_tests:
-    <<: *container_config
+    <<: *playwright_config
     steps:
       - *attach_workspace
-      - run:
-          name: Install Playwright browsers
-          command: npx playwright install --with-deps
       - run:
           name: Start dev server for e2e tests
           command: cd packages/site && npm run dev
@@ -210,6 +212,8 @@ jobs:
       - run:
           name: Run Playwright tests
           command: cd packages/site && npm run e2e
+          env:
+            CI: 'true'
       - store_test_results:
           path: packages/site/playwright-report
       - store_artifacts:
