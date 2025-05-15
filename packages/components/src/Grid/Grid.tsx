@@ -4,12 +4,9 @@ import styles from "./Grid.module.css";
 import alignments from "./GridAlign.module.css";
 import { GridCell } from "./GridCell";
 import { GapSpacing } from "../sharedHelpers/types";
-import {
-  getMappedAtlantisSpaceToken,
-  spaceTokens,
-} from "../sharedHelpers/getMappedAtlantisSpaceToken";
+import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
-interface GridProps {
+export interface GridProps {
   /**
    * Add spacing between elements. Can be a boolean for default spacing,
    * or a semantic token for custom spacing.
@@ -32,28 +29,47 @@ interface GridProps {
 
 export const GRID_TEST_ID = "ATL-Grid";
 
+function getGapStyles(gap: boolean | GapSpacing): {
+  className?: string;
+  style?: React.CSSProperties;
+} {
+  if (typeof gap === "boolean") {
+    if (gap === true) {
+      return { className: styles.gap };
+    }
+
+    return {};
+  }
+
+  const gapValue = getMappedAtlantisSpaceToken(gap);
+
+  if (gapValue) {
+    return { style: { gap: gapValue } };
+  }
+
+  return {};
+}
+
 export function Grid({
   alignItems = "start",
   gap = true,
   children,
 }: GridProps) {
-  const gapValue = (() => {
-    if (typeof gap === "boolean") {
-      return gap ? spaceTokens.base : undefined;
-    }
+  if (typeof gap === "boolean") {
+    console.warn(
+      "Deprecation Warning: The boolean type for the 'gap' prop in the Grid component is deprecated and will be removed in a future version. " +
+        "Please use a GapSpacing token (e.g., 'small', 'base', 'large') for fixed spacing. " +
+        "Using 'true' applies default responsive spacing. Using 'false' results in no gap.",
+    );
+  }
 
-    return getMappedAtlantisSpaceToken(gap);
-  })();
-
-  const style: React.CSSProperties | undefined = gapValue
-    ? { gap: gapValue }
-    : undefined;
+  const { className: gapClass, style: gapStyle } = getGapStyles(gap);
 
   return (
     <div
       data-testid={GRID_TEST_ID}
-      className={classNames(styles.grid, alignments[alignItems])}
-      style={style}
+      className={classNames(styles.grid, alignments[alignItems], gapClass)}
+      style={gapStyle}
     >
       {children}
     </div>

@@ -2,7 +2,9 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { GRID_TEST_ID, Grid } from ".";
 import alignments from "./GridAlign.module.css";
+import styles from "./Grid.module.css";
 import { spaceTokens } from "../sharedHelpers/getMappedAtlantisSpaceToken";
+import { Spaces } from "../sharedHelpers/types";
 
 const children = [
   <Grid.Cell key="1" size={{ xs: 12, sm: 8, md: 6, lg: 4, xl: 3 }}>
@@ -27,7 +29,7 @@ describe("Grid", () => {
     it("should have default gap spacing when gap is true", () => {
       render(<Grid>{children}</Grid>);
       const element = screen.getByTestId(GRID_TEST_ID);
-      expect(element).toHaveStyle({ gap: spaceTokens.base });
+      expect(element).toHaveClass(styles.gap);
     });
 
     it("should have no gap when gap is false", () => {
@@ -36,10 +38,25 @@ describe("Grid", () => {
       expect(element).not.toHaveStyle({ gap: expect.any(String) });
     });
 
-    it("should use custom gap spacing when provided a token", () => {
-      render(<Grid gap="small">{children}</Grid>);
-      const element = screen.getByTestId(GRID_TEST_ID);
-      expect(element).toHaveStyle({ gap: spaceTokens.small });
+    describe("GapSpacing tokens", () => {
+      // Test different standard token values
+      it.each<[Spaces]>([
+        ["none"],
+        ["small"],
+        ["base"],
+        ["large"],
+        ["minuscule"],
+        ["slim"],
+        ["smallest"],
+        ["smaller"],
+        ["larger"],
+        ["largest"],
+        ["extravagant"],
+      ])("should apply the correct spacing for gap='%s'", gapValue => {
+        render(<Grid gap={gapValue}>{children}</Grid>);
+        const element = screen.getByTestId(GRID_TEST_ID);
+        expect(element).toHaveStyle({ gap: spaceTokens[gapValue] });
+      });
     });
   });
 

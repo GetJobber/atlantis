@@ -94,26 +94,6 @@ const ThreeColumnsTemplate: ComponentStory<typeof Grid> = args => (
 const SpacingTemplate: ComponentStory<typeof Grid> = () => (
   <Stack gap="large">
     <div>
-      <Text variation="subdued">gap=&quot;small&quot;</Text>
-      <Grid gap="small">
-        <Grid.Cell size={{ xs: 6 }}>
-          <Card>
-            <Content>
-              <Text>Column 1</Text>
-            </Content>
-          </Card>
-        </Grid.Cell>
-        <Grid.Cell size={{ xs: 6 }}>
-          <Card>
-            <Content>
-              <Text>Column 2</Text>
-            </Content>
-          </Card>
-        </Grid.Cell>
-      </Grid>
-    </div>
-
-    <div>
       <Text variation="subdued">gap=true (default)</Text>
       <Grid gap={true}>
         <Grid.Cell size={{ xs: 6 }}>
@@ -134,7 +114,27 @@ const SpacingTemplate: ComponentStory<typeof Grid> = () => (
     </div>
 
     <div>
-      <Text variation="subdued">gap=&quot;large&quot;</Text>
+      <Text variation="subdued">gap=&quot;base&quot;</Text>
+      <Grid gap="base">
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 1</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 6 }}>
+          <Card>
+            <Content>
+              <Text>Column 2</Text>
+            </Content>
+          </Card>
+        </Grid.Cell>
+      </Grid>
+    </div>
+
+    <div>
+      <Text variation="subdued">gap=large</Text>
       <Grid gap="large">
         <Grid.Cell size={{ xs: 6 }}>
           <Card>
@@ -154,7 +154,7 @@ const SpacingTemplate: ComponentStory<typeof Grid> = () => (
     </div>
 
     <div>
-      <Text variation="subdued">gap=false </Text>
+      <Text variation="subdued">gap=false</Text>
       <Grid gap={false}>
         <Grid.Cell size={{ xs: 6 }}>
           <Card>
