@@ -40,25 +40,21 @@ export default defineConfig({
       },
     },
 
-    // Only run Firefox and WebKit in non-CI environments to speed up CI builds
-    process.env.CI
-      ? {}
-      : {
-          name: "firefox",
-          use: {
-            ...devices["Desktop Firefox"],
-            viewport: { width: 1280, height: 720 },
-          },
-        },
+    // Run Firefox and WebKit in both CI and non-CI environments
+    {
+      name: "firefox",
+      use: {
+        ...devices["Desktop Firefox"],
+        viewport: { width: 1280, height: 720 },
+      },
+    },
 
-    process.env.CI
-      ? {}
-      : {
-          name: "webkit",
-          use: {
-            ...devices["Desktop Safari"],
-            viewport: { width: 1280, height: 720 },
-          },
-        },
-  ].filter(project => Object.keys(project).length > 0),
+    {
+      name: "webkit",
+      use: {
+        ...devices["Desktop Safari"],
+        viewport: { width: 1280, height: 720 },
+      },
+    },
+  ],
 });
