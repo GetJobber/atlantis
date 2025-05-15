@@ -14,7 +14,7 @@
     "preview": "vite preview",
     "test:visual:reload": "cd .. && npm run bootstrap && cd - && npm run test:visual",
     "test:visual": "playwright test --config=playwright.config.ts --project=chromium tests/visual/",
-    "test:visual:update": "playwright test --config=playwright.config.ts --project=chromium tests/visual/ --update-snapshots"
+    "test:visual:update": "playwright test --config=playwright.config.ts  tests/visual/ --update-snapshots"
   },
   "dependencies": {
     "@babel/standalone": "^7.26.2",

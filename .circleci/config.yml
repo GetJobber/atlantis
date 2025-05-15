@@ -182,6 +182,30 @@ jobs:
               npm run ci:release
             fi
 
+  e2e_tests:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - run:
+          name: Install Playwright browsers
+          command: npx playwright install --with-deps
+      - run:
+          name: Start dev server for e2e tests
+          command: cd packages/site && npm run dev
+          background: true
+      - run:
+          name: Wait for dev server to start
+          command: sleep 10
+      - run:
+          name: Run Playwright tests
+          command: cd packages/site && npm run e2e
+      - store_test_results:
+          path: packages/site/playwright-report
+      - store_artifacts:
+          path: packages/site/playwright-report
+      - store_artifacts:
+          path: packages/site/test-results
+
 workflows:
   version: 2
 
@@ -209,6 +233,9 @@ workflows:
       - build_new_docs:
           requires:
             - install_dependencies
+      - e2e_tests:
+          requires:
+            - install_dependencies
       - release:
           filters:
             branches:
@@ -219,3 +246,4 @@ workflows:
             - test
             - build_storybook
             - build_new_docs
+            - e2e_tests

@@ -7,8 +7,11 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: "html",
+  reporter: process.env.CI
+    ? [["html"], ["junit", { outputFile: "test-results/junit-results.xml" }]]
+    : "html",
   use: {
+    baseURL: process.env.CI ? "http://localhost:5173" : "http://localhost:5173",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
   },
@@ -29,20 +32,25 @@ export default defineConfig({
       },
     },
 
-    {
-      name: "firefox",
-      use: {
-        ...devices["Desktop Firefox"],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
+    // Only run Firefox and WebKit in non-CI environments to speed up CI builds
+    process.env.CI
+      ? {}
+      : {
+          name: "firefox",
+          use: {
+            ...devices["Desktop Firefox"],
+            viewport: { width: 1280, height: 720 },
+          },
+        },
 
-    {
-      name: "webkit",
-      use: {
-        ...devices["Desktop Safari"],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
-  ],
+    process.env.CI
+      ? {}
+      : {
+          name: "webkit",
+          use: {
+            ...devices["Desktop Safari"],
+            viewport: { width: 1280, height: 720 },
+          },
+        },
+  ].filter(project => Object.keys(project).length > 0),
 });
