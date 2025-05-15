@@ -8,8 +8,11 @@ test.describe("Atlantis Visual Tests", () => {
   test("description list components", async ({ page }) => {
     await page.goto("http://localhost:5173/visual-tests/description-list");
     await page.waitForTimeout(500);
-    await expect(page).toHaveScreenshot("single-visual-test.png", {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      "visual-test-description-list-page.png",
+      {
+        fullPage: true,
+      },
+    );
   });
 });
