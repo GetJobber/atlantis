@@ -194,8 +194,19 @@ jobs:
           command: cd packages/site && npm run dev
           background: true
       - run:
-          name: Wait for dev server to start
-          command: sleep 10
+          name: Wait for dev server to be ready
+          command: |
+            timeout=60
+            counter=0
+            until $(curl --output /dev/null --silent --head --fail http://localhost:5173); do
+              if [ $counter -gt $timeout ]; then
+                echo "ERROR: Timed out waiting for server to start"
+                exit 1
+              fi
+              echo "Waiting for server to be ready..."
+              sleep 1
+              counter=$((counter+1))
+            done
       - run:
           name: Run Playwright tests
           command: cd packages/site && npm run e2e
