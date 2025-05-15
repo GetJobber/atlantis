@@ -14,6 +14,10 @@ export default defineConfig({
     baseURL: process.env.CI ? "http://localhost:5173" : "http://localhost:5173",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
+    contextOptions: {
+      deviceScaleFactor: 1,
+      forcedColors: "none",
+    },
   },
 
   expect: {

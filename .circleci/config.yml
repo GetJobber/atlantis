@@ -69,7 +69,7 @@ references:
 
   playwright_config: &playwright_config
     docker:
-      - image: mcr.microsoft.com/playwright:v1.49.0-noble
+      - image: mcr.microsoft.com/playwright:latest-noble
     working_directory: ~/atlantis
 
 jobs:

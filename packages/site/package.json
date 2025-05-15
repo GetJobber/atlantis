@@ -35,7 +35,7 @@
     "@babel/preset-react": "^7.26.3",
     "@mdx-js/react": "^3.0.1",
     "@mdx-js/rollup": "^3.0.1",
-    "@playwright/test": "^1.49.0",
+    "@playwright/test": "^1.52.0",
     "@react-native/babel-preset": "^0.76.3",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-replace": "^6.0.1",
