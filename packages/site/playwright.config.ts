@@ -23,6 +23,10 @@ export default defineConfig({
     },
   },
 
+  // Custom snapshot path that only includes browser name, not OS
+  snapshotPathTemplate:
+    "{testDir}/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}{ext}",
+
   projects: [
     {
       name: "chromium",
