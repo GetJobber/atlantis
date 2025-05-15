@@ -1506,6 +1506,7 @@ const WithinModalTemplate: ComponentStory<typeof Modal> = () => {
         }}
       >
         <Modal.Content>
+          <Modal.Header title="This is an example showing Autocomplete within a Modal" />
           <Content>
             <Heading level={2}>Default Rendering</Heading>
             <Autocomplete
