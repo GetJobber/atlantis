@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.58.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.5...@jobber/components@6.58.6) (2025-05-15)
+
+
+### Bug Fixes
+
+* **components:** Prevent Autocompletes within Modals from dismissing the Modal on select ([#2560](https://github.com/GetJobber/atlantis/issues/2560)) ([86c8f3a](https://github.com/GetJobber/atlantis/commit/86c8f3a0d6230bc8a83167cdbec1d46f8c822acd))
+
+
+
+
+
 ## [6.58.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.4...@jobber/components@6.58.5) (2025-05-15)
 
 
