@@ -25,7 +25,6 @@ declare const styles: {
   readonly "postfix": string;
   readonly "affixIcon": string;
   readonly "suffix": string;
-  readonly "hasAction": string;
   readonly "affixLabel": string;
   readonly "description": string;
   readonly "toolbar": string;
