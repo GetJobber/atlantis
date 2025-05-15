@@ -39,7 +39,7 @@ export function Menu<
    * outside of the Modal.
    */
   const specialModalWorkaround = isWithinOpenModal && customRenderMenu;
-  if (specialModalWorkaround && (!inputFocused || !options.length)) return null;
+  if (specialModalWorkaround && !inputFocused) return null;
 
   if (customRenderMenu) {
     return (
