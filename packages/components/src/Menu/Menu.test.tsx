@@ -184,8 +184,8 @@ describe("Menu", () => {
       await userEvent.click(screen.getByRole("button"));
 
       const iconSvg = screen.getByTestId("job");
-      const pathElement = iconSvg.querySelectorAll("path")[0];
-      expect(pathElement.style.fill).toBe("var(--color-job)");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-job)");
     });
 
     it("should allow overriding icon colors", async () => {
@@ -209,8 +209,8 @@ describe("Menu", () => {
       await userEvent.click(screen.getByRole("button"));
 
       const iconSvg = screen.getByTestId("job");
-      const pathElement = iconSvg.querySelectorAll("path")[0];
-      expect(pathElement.style.fill).toBe("var(--color-icon)");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-icon)");
     });
 
     it("should use destructive icon color when action is marked as destructive", async () => {
@@ -235,8 +235,8 @@ describe("Menu", () => {
       await userEvent.click(screen.getByRole("button"));
 
       const iconSvg = screen.getByTestId("trash");
-      const pathElement = iconSvg.querySelectorAll("path")[0];
-      expect(pathElement.style.fill).toBe("var(--color-destructive)");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-destructive)");
     });
   });
 });
