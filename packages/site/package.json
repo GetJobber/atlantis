@@ -4,7 +4,7 @@
   "version": "0.58.1",
   "type": "module",
   "scripts": {
-    "e2e": "playwright test",
+    "e2e": "playwright test --config=playwright.config.ts tests/visual/modal.visual.ts",
     "dev": "npm run bundle && npm run copyFiles && vite",
     "bundle": "rollup -c editorBundle.rollup.config.js && rollup -c editorMobileBundle.rollup.config.js",
     "copyFiles": "cp ../design/dist/foundation.css ./public/foundation.css && cp ../components/dist/styles.css ./public/styles.css && cp ../design/dist/dark.mode.css ./public/dark.mode.css && cp ./node_modules/axios/dist/esm/axios.js ./public",

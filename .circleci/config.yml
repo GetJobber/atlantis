@@ -189,6 +189,7 @@ jobs:
 
   e2e_tests:
     <<: *playwright_config
+    resource_class: medium+
     steps:
       - *attach_workspace
       - run:
