@@ -7,10 +7,16 @@ interface FormatRelativeDateTimeProps {
    * A `string` should be an ISO 8601 format date string.
    */
   readonly date: Date | string;
+
+  /**
+   * Whether to show the date and time on day rollover.
+   */
+  readonly showDateAndTimeOnDayRollover?: boolean;
 }
 
 export function FormatRelativeDateTime({
   date: inputDate,
+  showDateAndTimeOnDayRollover = false,
 }: FormatRelativeDateTimeProps) {
   let dateObject: Date;
 
@@ -21,8 +27,13 @@ export function FormatRelativeDateTime({
   }
 
   const now = Date.now() / 1000; //seconds
+  const today = new Date();
   const date = dateObject;
   const delta = now - date.getTime() / 1000; //seconds;
+  const additionalOptions: object =
+    showDateAndTimeOnDayRollover && today.getDate() !== date.getDate()
+      ? { weekday: "short", hour: "numeric", minute: "numeric" }
+      : {};
 
   switch (relativeTimeRange(delta)) {
     case "less than an hour":
@@ -33,13 +44,24 @@ export function FormatRelativeDateTime({
           {date.toLocaleTimeString(undefined, {
             hour: "numeric",
             minute: "numeric",
+            ...additionalOptions,
           })}
         </>
       );
     case "less than a week":
-      return <>{strFormatDate(date, { weekday: "short" })}</>;
+      return (
+        <>{strFormatDate(date, { weekday: "short", ...additionalOptions })}</>
+      );
     case "less than a year":
-      return <>{strFormatDate(date, { month: "short", day: "numeric" })}</>;
+      return (
+        <>
+          {strFormatDate(date, {
+            month: "short",
+            day: "numeric",
+            ...additionalOptions,
+          })}
+        </>
+      );
     default:
       return (
         <>
