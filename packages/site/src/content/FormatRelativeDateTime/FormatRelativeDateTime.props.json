@@ -18,6 +18,21 @@
         "type": {
           "name": "string | Date"
         }
+      },
+      "showDateAndTimeOnDayRollover": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether to show the date and time on day rollover.",
+        "name": "showDateAndTimeOnDayRollover",
+        "parent": {
+          "fileName": "../components/src/FormatRelativeDateTime/FormatRelativeDateTime.tsx",
+          "name": "FormatRelativeDateTimeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }
