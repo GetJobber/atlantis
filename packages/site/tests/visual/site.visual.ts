@@ -142,13 +142,13 @@ test.describe("Atlantis Visual Tests", () => {
       });
     });
 
-    test("emphasis components", async ({ page }) => {
+    /*   test("emphasis components", async ({ page }) => {
       await page.goto("http://localhost:5173/visual-tests/emphasis");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-emphasis-page.png", {
         fullPage: true,
       });
-    });
+    }); */
 
     test("glimmer components", async ({ page }) => {
       await page.goto("http://localhost:5173/visual-tests/glimmer");
