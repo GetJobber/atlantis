@@ -1,0 +1,249 @@
+---
+description: This rule helps generate a PR description based on the current branch's git history and the repository's PR template.
+globs: 
+alwaysApply: false
+---
+# PR Description Generator
+
+This rule helps generate a PR description based on the current branch's git history and the repository's PR template.
+
+## Behavior
+
+1. Gets the current branch name
+2. Retrieves the git history since branching from main/master
+3. Analyzes the changes to categorize them according to the PR template sections
+4. Generates a PR description following the exact template format
+5. Saves the description body to a temporary file for PR submission
+
+## Example Usage
+
+```
+/pr-description
+```
+
+## Implementation
+
+```typescript
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import { readFile, writeFile } from 'fs/promises';
+import { join } from 'path';
+import { tmpdir } from 'os';
+
+const execAsync = promisify(exec);
+
+// Valid types and scopes as defined in the PR template
+const VALID_TYPES = [
+  'fix',      // patches a bug
+  'feat',     // introduces a new feature
+  'docs',     // documentation only changes
+  'build',    // improvements to the build system
+  'refactor', // neither fixes a bug nor adds a feature
+  'chore',    // other changes that don't modify src or test files
+] as const;
+
+const VALID_SCOPES = [
+  'components',
+  'components-native',
+  'deps',
+  'deps-dev',
+  'design',
+  'docx',
+  'eslint',
+  'formatters',
+  'generators',
+  'hooks',
+  'stylelint',
+] as const;
+
+async function getCurrentBranch() {
+  const { stdout } = await execAsync('git rev-parse --abbrev-ref HEAD');
+  return stdout.trim();
+}
+
+async function getBaseCommit() {
+  try {
+    const { stdout } = await execAsync('git merge-base HEAD master');
+    return stdout.trim();
+  } catch {
+    try {
+      const { stdout } = await execAsync('git merge-base HEAD main');
+      return stdout.trim();
+    } catch {
+      throw new Error('Could not find base branch (main or master)');
+    }
+  }
+}
+
+async function getCommits(baseCommit: string) {
+  // Using %x1F as a field separator and %x1E as a record separator to avoid newline issues
+  const { stdout } = await execAsync(`git log ${baseCommit}..HEAD --pretty=format:"%s%x1F%b%x1E" | cat`);
+  return stdout
+    .split('\x1E') // Split records
+    .filter(Boolean)
+    .map(record => record.split('\x1F')); // Split fields within each record
+}
+
+function categorizeChanges(commits: string[][]) {
+  const categories = {
+    added: [] as string[],
+    changed: [] as string[],
+    deprecated: [] as string[],
+    removed: [] as string[],
+    fixed: [] as string[],
+    security: [] as string[],
+  };
+
+  for (const [subject] of commits) {
+    const message = subject.toLowerCase();
+
+    if (message.startsWith('feat:') || message.includes('add')) {
+      categories.added.push(`- ${subject}`);
+    } else if (message.startsWith('fix:')) {
+      categories.fixed.push(`- ${subject}`);
+    } else if (message.startsWith('refactor:') || message.includes('change')) {
+      categories.changed.push(`- ${subject}`);
+    } else if (message.includes('deprecat')) {
+      categories.deprecated.push(`- ${subject}`);
+    } else if (message.includes('remov')) {
+      categories.removed.push(`- ${subject}`);
+    } else if (message.includes('security')) {
+      categories.security.push(`- ${subject}`);
+    }
+  }
+
+  return categories;
+}
+
+function determineTypeAndScope(branch: string, firstCommit: string): { type: string; scope: string } {
+  // Try to extract type and scope from branch name first
+  const branchParts = branch.split('/');
+  let type = branchParts[0];
+  let scope = branchParts[1];
+
+  // Validate and adjust type
+  if (!VALID_TYPES.includes(type as any)) {
+    // Try to determine type from first commit
+    const commitMsg = firstCommit.toLowerCase();
+    type = VALID_TYPES.find(t => commitMsg.startsWith(`${t}:`)) || 'refactor';
+  }
+
+  // Validate and adjust scope
+  if (!VALID_SCOPES.includes(scope as any)) {
+    // Try to find a valid scope in the branch name
+    scope = VALID_SCOPES.find(s => branch.includes(s)) || 'components';
+  }
+
+  return { type, scope };
+}
+
+// Note: When manually writing PR descriptions to files, use printf instead of echo
+// to avoid issues with newlines in shell commands. For example:
+// printf "# Title\n\n## Section\n..." > description.md
+async function savePRDescription(description: string): Promise<string> {
+  const tempFile = join(tmpdir(), `pr-description-${Date.now()}.md`);
+  await writeFile(tempFile, description, 'utf-8');
+  return tempFile;
+}
+
+function generateDescription(branch: string, commits: string[], categories: ReturnType<typeof categorizeChanges>) {
+  const { type, scope } = determineTypeAndScope(branch, commits[0] || '');
+
+  // Generate the conventional commit title
+  const title = `${type}(${scope}): ${commits[0]?.split(':')[1]?.trim() || 'update component'}`;
+
+  // Generate the description following the exact template format
+  const body = `## Motivations
+
+${commits.length > 0 ? commits[0].split('|')[1] || 'Improve component functionality and flexibility.' : ''}
+
+## Changes
+
+### Added
+
+${categories.added.length ? categories.added.join('\n') : ''}
+
+### Changed
+
+${categories.changed.length ? categories.changed.join('\n') : ''}
+
+### Deprecated
+
+${categories.deprecated.length ? categories.deprecated.join('\n') : ''}
+
+### Removed
+
+${categories.removed.length ? categories.removed.join('\n') : ''}
+
+### Fixed
+
+${categories.fixed.length ? categories.fixed.join('\n') : ''}
+
+### Security
+
+${categories.security.length ? categories.security.join('\n') : ''}
+
+## Testing
+
+${commits.some(c => c.toLowerCase().includes('test'))
+  ? commits.filter(c => c.toLowerCase().includes('test')).map(c => `- ${c}`).join('\n')
+  : 'Changes can be tested via Pre-release'}
+
+---
+
+[In Atlantis we use Github's built in pull request reviews](mdc:https:/help.github.com/en/articles/about-pull-request-reviews).
+
+[Random photo of Atlantis](mdc:https:/loremflickr.com/672/400/atlantis)`;
+
+  return { title, body };
+}
+
+export async function generatePRDescription() {
+  try {
+    const branch = await getCurrentBranch();
+    const baseCommit = await getBaseCommit();
+    const commits = await getCommits(baseCommit);
+    const categories = categorizeChanges(commits);
+
+    const { title, body } = generateDescription(branch, commits, categories);
+
+    // First save the description to a temporary file
+    const descriptionFile = await savePRDescription(body);
+    console.log(`PR description saved to: ${descriptionFile}`);
+
+    // Return in the exact format expected by pr-submitter
+    const output = [
+      title,
+      '--PR_DESCRIPTION_FILE--',
+      descriptionFile,
+      '',  // Empty line before preview
+      body  // Preview of the description
+    ].join('\n');
+
+    return output;
+  } catch (error) {
+    console.error('Error:', error.message);
+    throw new Error(`Failed to generate PR description: ${error.message}`);
+  }
+}
+```
+
+## Command
+
+```json
+{
+  "name": "Generate PR Description",
+  "description": "Generates a PR description based on git history and PR template",
+  "command": "pr-description",
+  "implementation": "generatePRDescription",
+  "example": "/pr-description"
+}
+```
+
+## Usage Flow
+
+1. Run `/pr-description` to generate the PR description
+2. Review the generated description and make any necessary adjustments
+3. If you want to create a PR with this description, use the `/pr-submit` command
+
+Note: The generated description is saved to a temporary file that will be used by the PR submitter. The file will be automatically cleaned up after the PR is submitted.
