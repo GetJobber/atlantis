@@ -22,32 +22,23 @@ test.describe("Atlantis Visual Tests", () => {
       });
     });
 
-    /* 
-   
-   Something about this doesn't work locally vs in CI.
-
-   So in order to get a passing test suite, we're going to skip this one for now.
-   
-   test("divider components", async ({ page }) => {
+    test("divider components", async ({ page }) => {
       await page.goto("http://localhost:5173/visual-tests/divider");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-divider-page.png", {
         fullPage: true,
       });
-    }); */
+    });
   });
 
   test.describe("interactive components", () => {
-    /*  
-  
-  This is a really large test, and it's not really clear what's failing.
-  test("primary components", async ({ page }) => {
+    test("primary components", async ({ page }) => {
       await page.goto("http://localhost:5173/visual-tests/components");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-components-page.png", {
         fullPage: true,
       });
-    }); */
+    });
 
     test("modal components", async ({ page }) => {
       await page.goto("http://localhost:5173/visual-tests/modal");
@@ -142,7 +133,11 @@ test.describe("Atlantis Visual Tests", () => {
       });
     });
 
-    /*   test("emphasis components", async ({ page }) => {
+    /*   
+    
+    We have a font rendering issue between local and CI with JobberPro. Instead of slowing down this PR, we're commenting out for now.
+
+    test("emphasis components", async ({ page }) => {
       await page.goto("http://localhost:5173/visual-tests/emphasis");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-emphasis-page.png", {

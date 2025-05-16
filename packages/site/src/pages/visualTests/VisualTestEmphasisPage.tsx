@@ -53,10 +53,10 @@ export const VisualTestEmphasisPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Stack gap="small">
-                  <Heading level={1}>
+                  <Heading level={3}>
                     Get paid <Emphasis variation="highlight">faster</Emphasis>
                   </Heading>
-                  <Heading level={2}>
+                  <Heading level={3}>
                     Work <Emphasis variation="highlight">smarter</Emphasis>, not
                     harder
                   </Heading>
