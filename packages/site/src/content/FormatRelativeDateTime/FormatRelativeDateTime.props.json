@@ -33,6 +33,21 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "inJobberFormat": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether to display the date and time in Jobber format.",
+        "name": "inJobberFormat",
+        "parent": {
+          "fileName": "../components/src/FormatRelativeDateTime/FormatRelativeDateTime.tsx",
+          "name": "FormatRelativeDateTimeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
       }
     }
   }
