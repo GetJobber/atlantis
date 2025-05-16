@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import sortBy from "lodash/sortBy";
@@ -8,6 +10,7 @@ import { Text } from "@jobber/components/Text";
 import { DataDump } from "@jobber/components/DataDump";
 import { Typography } from "@jobber/components/Typography";
 import { Heading } from "@jobber/components/Heading";
+import { Icon } from "@jobber/components/Icon";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web",
@@ -31,35 +34,7 @@ const BasicTemplate: ComponentStory<typeof DataTable> = args => (
   <DataTable {...args} />
 );
 
-const exampleData = [
-  {
-    name: "Eddard",
-    house: "Stark",
-    region: "North",
-    sigil: "Direwolf",
-    isAlive: "No",
-  },
-  {
-    name: "Catelyn",
-    house: "Stark",
-    region: "North",
-    sigil: "Direwolf",
-    isAlive: "No",
-  },
-  {
-    name: "Jon Snow",
-    house: "Stark",
-    region: "North",
-    sigil: "Direwolf",
-    isAlive: "Yes",
-  },
-  {
-    name: "Robert",
-    house: "Stark",
-    region: "North",
-    sigil: "Direwolf",
-    isAlive: "No",
-  },
+const exampleSubRows = [
   {
     name: "Rickon",
     house: "Stark",
@@ -68,11 +43,62 @@ const exampleData = [
     isAlive: "No",
   },
   {
+    name: "Pickon",
+    house: "Lark",
+    region: "North",
+    sigil: "Direwolf",
+    isAlive: "No",
+  },
+];
+
+const exampleData = [
+  {
+    name: "Eddard",
+    house: "Stark",
+    region: "North",
+    sigil: "Direwolf",
+    isAlive: "No",
+    subRows: exampleSubRows,
+  },
+  {
+    name: "Catelyn",
+    house: "Stark",
+    region: "North",
+    sigil: "Direwolf",
+    isAlive: "No",
+    subRows: exampleSubRows,
+  },
+  {
+    name: "Jon Snow",
+    house: "Stark",
+    region: "North",
+    sigil: "Direwolf",
+    isAlive: "Yes",
+    subRows: exampleSubRows,
+  },
+  {
+    name: "Robert",
+    house: "Stark",
+    region: "North",
+    sigil: "Direwolf",
+    isAlive: "No",
+    subRows: exampleSubRows,
+  },
+  {
+    name: "Rickon",
+    house: "Stark",
+    region: "North",
+    sigil: "Direwolf",
+    isAlive: "No",
+    subRows: exampleSubRows,
+  },
+  {
     name: "Robert",
     house: "Baratheon",
     region: "Stormlands",
     sigil: "Black Stag",
     isAlive: "No",
+    subRows: exampleSubRows,
   },
   {
     name: "Cercei",
@@ -80,6 +106,7 @@ const exampleData = [
     region: "Westerlands",
     sigil: "Golden Lion",
     isAlive: "Yes",
+    subRows: exampleSubRows,
   },
   {
     name: "Sansa",
@@ -87,6 +114,7 @@ const exampleData = [
     region: "North",
     sigil: "Direwolf",
     isAlive: "Yes",
+    subRows: exampleSubRows,
   },
   {
     name: "Arya",
@@ -94,6 +122,7 @@ const exampleData = [
     region: "North",
     sigil: "Direwolf",
     isAlive: "Yes",
+    subRows: exampleSubRows,
   },
   {
     name: "Bran",
@@ -247,6 +276,75 @@ ClientSidePagination.args = {
       accessorKey: "isAlive",
       cell: info => info.getValue(),
       header: "Alive",
+    },
+  ],
+};
+
+export const ClientSidePaginationWithSubRows = BasicTemplate.bind({});
+ClientSidePaginationWithSubRows.args = {
+  data: exampleData,
+  stickyHeader: true,
+  height: 400,
+  pagination: { manualPagination: false, itemsPerPage: [10, 20, 30] },
+  sorting: { manualSorting: false },
+  onRowClick: row => {
+    if (row.depth > 0) {
+      alert("Subrow clicked");
+
+      return;
+    }
+
+    if (row.getCanExpand()) {
+      row.getToggleExpandedHandler()?.();
+
+      return;
+    }
+
+    alert(JSON.stringify(row.original, null, 2));
+  },
+  getSubRows: (row: any) =>
+    row.subRows?.map((subRow: any) => ({ ...subRow, depth: 1 })),
+  columns: [
+    {
+      accessorKey: "name",
+      cell: info => {
+        const row = info.row;
+
+        return (
+          <div
+            style={{
+              marginLeft: `${row.depth * 1.25}rem`,
+            }}
+          >
+            {row.getCanExpand() ? (
+              <div style={{ display: "flex", flexDirection: "row", gap: 5 }}>
+                <div>
+                  {row.getIsExpanded() ? (
+                    <Icon name="arrowDown" size="small" />
+                  ) : (
+                    <Icon name="arrowRight" size="small" />
+                  )}
+                </div>
+                <div>{info.getValue<string>()}</div>
+              </div>
+            ) : (
+              <div>{info.getValue<string>()}</div>
+            )}
+          </div>
+        );
+      },
+      header: "Name",
+      enableSorting: false,
+    },
+    {
+      accessorKey: "house",
+      cell: info => info.getValue(),
+      header: "House",
+    },
+    {
+      accessorKey: "region",
+      cell: info => info.getValue(),
+      header: "Region",
     },
   ],
 };

@@ -1,4 +1,11 @@
-import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  ColumnDef,
+  ExpandedState,
+  Row,
+  getExpandedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { LegacyRef, ReactNode } from "react";
 import {
@@ -73,6 +80,10 @@ export interface DataTableProps<T> {
    * When true, shows the loading state of the DataTable
    */
   readonly loading?: boolean;
+
+  readonly getSubRows?:
+    | ((originalRow: unknown, index: number) => undefined | unknown[])
+    | undefined;
 }
 
 export function DataTable<T extends object>({
@@ -84,6 +95,7 @@ export function DataTable<T extends object>({
   stickyHeader,
   pinFirstColumn,
   onRowClick,
+  getSubRows,
   emptyState,
   loading = false,
 }: DataTableProps<T>) {
@@ -97,7 +109,21 @@ export function DataTable<T extends object>({
     [styles.pinFirstColumn]: pinFirstColumn,
   });
 
-  const table = useReactTable(tableSettings);
+  const [expanded, setExpanded] = React.useState<ExpandedState>({});
+
+  const exandableRowTableSettings = {
+    getSubRows,
+    state: {
+      expanded,
+    },
+    onExpandedChange: setExpanded,
+    getExpandedRowModel: getExpandedRowModel(),
+  };
+
+  const table = useReactTable({
+    ...tableSettings,
+    ...exandableRowTableSettings,
+  } as any);
 
   return (
     <div className={styles.dataTableContainer}>
