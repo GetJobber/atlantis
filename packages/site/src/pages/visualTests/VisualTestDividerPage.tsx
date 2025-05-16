@@ -12,7 +12,7 @@ export const VisualTestDividerPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Divider Examples</Heading>
+        <Heading level={3}>Divider Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Divider */}

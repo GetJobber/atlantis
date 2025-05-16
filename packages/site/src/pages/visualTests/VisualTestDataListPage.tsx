@@ -56,7 +56,7 @@ export const VisualTestDataListPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>DataList Examples</Heading>
+        <Heading level={3}>DataList Examples</Heading>
 
         <Stack gap="large">
           {/* Basic DataList */}

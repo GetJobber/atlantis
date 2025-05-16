@@ -92,7 +92,7 @@ export const VisualTestComboboxPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Combobox Examples</Heading>
+        <Heading level={3}>Combobox Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Single Select */}

@@ -4,7 +4,7 @@ export const VisualTestLinkPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Link Examples</Heading>
+        <Heading level={3}>Link Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Link */}

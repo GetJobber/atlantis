@@ -4,7 +4,7 @@ export const VisualTestHeadingPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Heading Examples</Heading>
+        <Heading level={3}>Heading Examples</Heading>
 
         <Stack gap="large">
           {/* Different Heading Levels */}
@@ -13,14 +13,6 @@ export const VisualTestHeadingPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 8 }}>
                 <Stack gap="small">
-                  <Heading level={1}>Heading Level 1</Heading>
-                  <Text variation="subdued">Main subject of the page</Text>
-
-                  <Heading level={2}>Heading Level 2</Heading>
-                  <Text variation="subdued">
-                    Categorize large groups of content
-                  </Text>
-
                   <Heading level={3}>Heading Level 3</Heading>
                   <Text variation="subdued">
                     Group content and forms on a single topic

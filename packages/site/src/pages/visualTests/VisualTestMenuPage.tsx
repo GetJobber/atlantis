@@ -57,7 +57,7 @@ export const VisualTestMenuPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Menu Examples</Heading>
+        <Heading level={3}>Menu Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Menu */}

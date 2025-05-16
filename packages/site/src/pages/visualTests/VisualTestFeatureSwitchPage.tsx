@@ -16,7 +16,7 @@ export const VisualTestFeatureSwitchPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>FeatureSwitch Examples</Heading>
+        <Heading level={3}>FeatureSwitch Examples</Heading>
 
         <Stack gap="large">
           {/* Basic FeatureSwitch */}

@@ -4,7 +4,7 @@ export const VisualTestToastPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Toast Examples</Heading>
+        <Heading level={3}>Toast Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Toast */}

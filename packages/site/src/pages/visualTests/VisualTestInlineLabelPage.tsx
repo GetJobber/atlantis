@@ -28,7 +28,7 @@ export const VisualTestInlineLabelPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InlineLabel Examples</Heading>
+        <Heading level={3}>InlineLabel Examples</Heading>
 
         <Stack gap="large">
           {/* Basic InlineLabel */}

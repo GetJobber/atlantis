@@ -161,7 +161,7 @@ export const VisualTestLayoutPage = () => {
 
           {/* Cluster Examples */}
           <Stack>
-            <Heading level={1}>Cluster Examples</Heading>
+            <Heading level={3}>Cluster Examples</Heading>
             <Stack gap="large">
               {/* Basic Cluster */}
               <section>

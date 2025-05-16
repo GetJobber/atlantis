@@ -12,7 +12,7 @@ export const VisualTestTooltipPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Tooltip Examples</Heading>
+        <Heading level={3}>Tooltip Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Tooltip */}

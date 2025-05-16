@@ -16,7 +16,7 @@ export const VisualTestInputPhoneNumberPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InputPhoneNumber Examples</Heading>
+        <Heading level={3}>InputPhoneNumber Examples</Heading>
 
         <Stack gap="large">
           {/* Basic InputPhoneNumber */}

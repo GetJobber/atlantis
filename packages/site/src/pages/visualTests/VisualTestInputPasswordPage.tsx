@@ -16,7 +16,7 @@ export const VisualTestInputPasswordPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InputPassword Examples</Heading>
+        <Heading level={3}>InputPassword Examples</Heading>
 
         <Stack gap="large">
           {/* Basic InputPassword */}

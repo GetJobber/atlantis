@@ -52,7 +52,7 @@ export const VisualTestDataTablePage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>DataTable Examples</Heading>
+        <Heading level={3}>DataTable Examples</Heading>
 
         <Stack gap="large">
           {/* Basic DataTable */}
