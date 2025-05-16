@@ -3,7 +3,7 @@ import { RegisterOptions } from "react-hook-form";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
 export interface InputNumberProps
-  extends CommonFormFieldProps,
+  extends Omit<CommonFormFieldProps, "version">,
     Pick<
       FormFieldProps,
       | "maxLength"
@@ -22,6 +22,11 @@ export interface InputNumberProps
       | "suffix"
     > {
   readonly value?: number;
+  /**
+   * Experimental:
+   * Determine which version of the FormField to use.
+   */
+  readonly version?: 1;
 }
 
 export interface InputNumberRef {
