@@ -8,7 +8,7 @@ export const VisualTestSelectPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Select Examples</Heading>
+        <Heading level={3}>Select Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Select */}

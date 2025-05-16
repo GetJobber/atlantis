@@ -11,7 +11,7 @@ export const VisualTestInputValidationPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InputValidation Examples</Heading>
+        <Heading level={3}>InputValidation Examples</Heading>
 
         <Stack gap="large">
           {/* Basic InputValidation */}

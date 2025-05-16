@@ -4,7 +4,7 @@ export const VisualTestGridPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Grid Examples</Heading>
+        <Heading level={3}>Grid Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Grid */}

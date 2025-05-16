@@ -4,7 +4,7 @@ export const VisualTestHeadingPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Heading Examples</Heading>
+        <Heading level={3}>Heading Examples</Heading>
 
         <Stack gap="large">
           {/* Different Heading Levels */}

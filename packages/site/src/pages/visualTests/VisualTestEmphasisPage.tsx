@@ -4,7 +4,7 @@ export const VisualTestEmphasisPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Emphasis Examples</Heading>
+        <Heading level={3}>Emphasis Examples</Heading>
 
         <Stack gap="large">
           {/* Bold Emphasis */}

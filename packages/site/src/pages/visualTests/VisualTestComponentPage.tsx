@@ -20,7 +20,7 @@ export const VisualTestComponentPage = () => {
       <Stack gap="extravagant">
         {/* Button Examples */}
         <Stack>
-          <Heading level={1}>Button Examples</Heading>
+          <Heading level={3}>Button Examples</Heading>
           <Stack gap="large">
             {/* Basic Button Types */}
             <section>

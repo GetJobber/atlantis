@@ -22,7 +22,7 @@ export const VisualTestLayoutPage = () => {
       <Box padding="large">
         {/* Stack Examples */}
         <Stack>
-          <Heading level={1}>Stack Examples</Heading>
+          <Heading level={3}>Stack Examples</Heading>
           <Stack gap="large">
             {/* Basic Stack */}
             <section>

@@ -8,7 +8,7 @@ export const VisualTestSwitchPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Switch Examples</Heading>
+        <Heading level={3}>Switch Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Switch */}
