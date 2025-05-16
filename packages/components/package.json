@@ -280,6 +280,11 @@
       "import": "./dist/InputNumber/index.mjs",
       "require": "./dist/InputNumber/index.cjs"
     },
+    "./InputNumber2": {
+      "types": "./dist/InputNumber2/index.d.ts",
+      "import": "./dist/InputNumber2/index.mjs",
+      "require": "./dist/InputNumber2/index.cjs"
+    },
     "./InputPassword": {
       "types": "./dist/InputPassword/index.d.ts",
       "import": "./dist/InputPassword/index.mjs",
@@ -483,6 +488,7 @@
     "filesize": "^6.1.0",
     "framer-motion": "^11.0.3",
     "lodash": "^4.17.21",
+    "react-aria-components": "^1.7.1",
     "react-countdown": "^2.3.2",
     "react-datepicker": "~4.10.0",
     "react-dropzone": "^11.0.2",

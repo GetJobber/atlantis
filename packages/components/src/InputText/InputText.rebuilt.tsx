@@ -28,6 +28,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     ...props,
     version: 1,
   };
+
   const id = useInputTextId(props);
 
   const { rowRange } = useTextAreaResize({
