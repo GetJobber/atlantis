@@ -25,6 +25,7 @@ export type CommonAllowedElements =
   | "dt";
 
 export type Spaces =
+  | "none"
   | "minuscule"
   | "slim"
   | "smallest"
