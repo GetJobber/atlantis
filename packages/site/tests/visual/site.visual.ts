@@ -43,7 +43,6 @@ test.describe("Atlantis Visual Tests", () => {
     /*
     We have a font rendering issue between local and CI with JobberPro. 
     Instead of slowing down this PR, we're commenting out for now.
-     */
     test("primary components", async ({ page }) => {
       await page.goto("http://localhost:5173/visual-tests/components");
       await page.waitForTimeout(500);
@@ -51,6 +50,7 @@ test.describe("Atlantis Visual Tests", () => {
         fullPage: true,
       });
     });
+     */
 
     test("modal components", async ({ page }) => {
       await page.goto("http://localhost:5173/visual-tests/modal");
