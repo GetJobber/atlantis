@@ -6,7 +6,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 4 : undefined,
   reporter: process.env.CI
     ? [["html"], ["junit", { outputFile: "test-results/junit-results.xml" }]]
     : "html",
@@ -32,6 +32,7 @@ export default defineConfig({
     "{testDir}/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}{ext}",
 
   projects: [
+    // Always run Chromium in both CI and non-CI environments
     {
       name: "chromium",
       use: {
@@ -40,21 +41,24 @@ export default defineConfig({
       },
     },
 
-    // Run Firefox and WebKit in both CI and non-CI environments
-    {
-      name: "firefox",
-      use: {
-        ...devices["Desktop Firefox"],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
-
-    {
-      name: "webkit",
-      use: {
-        ...devices["Desktop Safari"],
-        viewport: { width: 1280, height: 720 },
-      },
-    },
+    // Run Firefox and WebKit only in non-CI environments
+    ...(process.env.CI
+      ? []
+      : [
+          {
+            name: "firefox",
+            use: {
+              ...devices["Desktop Firefox"],
+              viewport: { width: 1280, height: 720 },
+            },
+          },
+          {
+            name: "webkit",
+            use: {
+              ...devices["Desktop Safari"],
+              viewport: { width: 1280, height: 720 },
+            },
+          },
+        ]),
   ],
 });
