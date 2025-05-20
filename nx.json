@@ -1,0 +1,175 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "bootstrap",
+          "clean",
+          "entryPoints:build",
+          "entryPoints:clean",
+          "prepack",
+          "postpack",
+          "compile",
+          "build:clean",
+          "build:design",
+          "generate:iconMap",
+          "generate:tokenCSS",
+          "generate:assets",
+          "watch",
+          "e2e",
+          "dev",
+          "bundle",
+          "copyFiles",
+          "generate",
+          "lint",
+          "preview",
+          "test:visual:reload",
+          "test:visual",
+          "test:visual:update"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "bootstrap": {
+      "dependsOn": [
+        "^bootstrap"
+      ]
+    },
+    "clean": {
+      "dependsOn": [
+        "^clean"
+      ]
+    },
+    "entryPoints:build": {
+      "dependsOn": [
+        "^entryPoints:build"
+      ]
+    },
+    "entryPoints:clean": {
+      "dependsOn": [
+        "^entryPoints:clean"
+      ]
+    },
+    "prepack": {
+      "dependsOn": [
+        "^prepack"
+      ]
+    },
+    "postpack": {
+      "dependsOn": [
+        "^postpack"
+      ]
+    },
+    "compile": {
+      "dependsOn": [
+        "^compile"
+      ]
+    },
+    "build:clean": {
+      "dependsOn": [
+        "^build:clean"
+      ]
+    },
+    "build:design": {
+      "dependsOn": [
+        "^build:design"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "generate:iconMap": {
+      "dependsOn": [
+        "^generate:iconMap"
+      ]
+    },
+    "generate:tokenCSS": {
+      "dependsOn": [
+        "^generate:tokenCSS"
+      ]
+    },
+    "generate:assets": {
+      "dependsOn": [
+        "^generate:assets"
+      ]
+    },
+    "watch": {
+      "dependsOn": [
+        "^watch"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "e2e": {
+      "dependsOn": [
+        "^e2e"
+      ]
+    },
+    "dev": {
+      "dependsOn": [
+        "^dev"
+      ]
+    },
+    "bundle": {
+      "dependsOn": [
+        "^bundle"
+      ],
+      "outputs": [
+        "{projectRoot}/public"
+      ]
+    },
+    "copyFiles": {
+      "dependsOn": [
+        "^copyFiles"
+      ],
+      "outputs": [
+        "{projectRoot}/public"
+      ]
+    },
+    "generate": {
+      "dependsOn": [
+        "^generate"
+      ],
+      "outputs": [
+        "{projectRoot}/../components/src"
+      ]
+    },
+    "lint": {
+      "dependsOn": [
+        "^lint"
+      ]
+    },
+    "preview": {
+      "dependsOn": [
+        "^preview"
+      ]
+    },
+    "test:visual:reload": {
+      "dependsOn": [
+        "^test:visual:reload"
+      ]
+    },
+    "test:visual": {
+      "dependsOn": [
+        "^test:visual"
+      ]
+    },
+    "test:visual:update": {
+      "dependsOn": [
+        "^test:visual:update"
+      ]
+    }
+  }
+}
