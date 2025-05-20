@@ -1,0 +1,68 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { UseStepper } from "./UseStepper";
+
+<Meta title="Hooks/useStepper" />
+
+# UseStepper
+
+The `useStepper` hook provides a type-safe way to manage multi-step flows in
+React applications. It handles step progression and navigation while ensuring
+type safety for step definitions.
+
+<Canvas>
+  <UseStepper />
+</Canvas>
+
+## Hook Parameters
+
+```typescript
+interface UseStepOptions<StepName extends string> {
+  // Optional starting step. If not provided, the first step in the steps array will be used
+  defaultStep?: StepName;
+}
+
+function useStepper<StepName extends string>(
+  steps: readonly StepName[],
+  options: UseStepOptions<StepName> = {}
+);
+```
+
+## Return Values
+
+```typescript
+{
+  // Current active step
+  currentStep: StepName;
+
+  // Move to next step
+  nextStep: () => void;
+
+  // Move to previous step
+  previousStep: () => void;
+
+  // Navigate to specific step
+  goToStep: (step: StepName) => void;
+
+  // Whether current step is the first step
+  isFirst: boolean;
+
+  // Whether current step is the last step
+  isLast: boolean;
+}
+```
+
+## Error Handling
+
+The hook will throw errors in the following cases:
+
+- When initialized with an empty steps array
+- When provided an invalid `defaultStep` that doesn't exist in the steps array
+- When `goToStep` is called with an invalid step name
+
+## Type Safety
+
+The hook is fully type-safe and will provide TypeScript errors if:
+
+- Steps array is empty
+- Invalid step names are used
+- Attempting to navigate to non-existent steps
