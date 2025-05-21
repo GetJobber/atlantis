@@ -56,6 +56,10 @@ function AutocompleteInternal<
   const inputRef = useRef<InputTextRef | null>(null);
 
   useEffect(() => {
+    setOptions(initialOptionsMemo);
+  }, [initialOptionsMemo]);
+
+  useEffect(() => {
     delayedSearch();
   }, [inputText]);
 
