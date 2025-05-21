@@ -126,6 +126,11 @@ export const routes: Array<AtlantisRoute> = [
         handle: "Voice & tone",
         exact: true,
       },
+      {
+        path: "/content/new-document-from-george",
+        handle: "New Document from George",
+        exact: true,
+      },
     ],
   },
   {
