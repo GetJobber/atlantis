@@ -222,7 +222,7 @@ export async function updatePRDescription() {
 
 ## Prerequisites
 
-- [GitHub CLI (gh)](https:/cli.github.com) must be installed and authenticated
+- [GitHub CLI (gh)](https://cli.github.com) must be installed and authenticated
 - A pull request must exist for the current branch
 - You must have push access to the repository
 - All commits must be pushed to the remote repository

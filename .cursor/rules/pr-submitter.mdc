@@ -121,7 +121,7 @@ export async function submitPR(prDescription: string) {
 
 ## Prerequisites
 
-- [GitHub CLI (gh)](https:/cli.github.com) must be installed and authenticated
+- [GitHub CLI (gh)](https://cli.github.com) must be installed and authenticated
 - You must have push access to the repository
 - Your local branch must be pushed to the remote
 - You must run `/pr-description` first to generate the PR description
