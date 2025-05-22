@@ -1,6 +1,6 @@
 ---
 description: This rule helps generate a PR description based on the current branch's git history and the repository's PR template.
-globs: 
+globs:
 alwaysApply: false
 ---
 # PR Description Generator
@@ -141,7 +141,7 @@ function determineTypeAndScope(branch: string, firstCommit: string): { type: str
 // to avoid issues with newlines in shell commands. For example:
 // printf "# Title\n\n## Section\n..." > description.md
 async function savePRDescription(description: string): Promise<string> {
-  const tempFile = join(tmpdir(), `pr-description-${Date.now()}.md`);
+  const tempFile = join(tmpdir(), `pr-description.md`);
   await writeFile(tempFile, description, 'utf-8');
   return tempFile;
 }
@@ -191,9 +191,7 @@ ${commits.some(c => c.toLowerCase().includes('test'))
 
 ---
 
-[In Atlantis we use Github's built in pull request reviews](mdc:https:/help.github.com/en/articles/about-pull-request-reviews).
-
-[Random photo of Atlantis](mdc:https:/loremflickr.com/672/400/atlantis)`;
+[In Atlantis we use Github's built in pull request reviews](https:/help.github.com/en/articles/about-pull-request-reviews).`;
 
   return { title, body };
 }

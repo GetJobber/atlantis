@@ -68,7 +68,7 @@ BREAKING CHANGE: API v1 endpoints are no longer available
 ## Versioning Impact
 - Breaking changes: increment major version
 - New features/fixes: increment minor version
-- Non-functional changes: increment patch version
+- Non-functional changes and of bug fixes: increment patch version
 
 ## Automatic Commit Message Generation
 
