@@ -41,6 +41,7 @@ export function Body<T extends object>({
                 key={row.id}
                 onClick={handleRowClick(row)}
                 className={bodyRowClasses}
+                style={getRowStyle(row)}
               >
                 {row.getVisibleCells().map(cell => {
                   return (
@@ -77,4 +78,12 @@ export function Body<T extends object>({
       )}
     </>
   );
+}
+
+function getRowStyle<T>(row: Row<T>) {
+  return row.depth > 0
+    ? {
+        backgroundColor: "var(--color-surface--background--subtle)",
+      }
+    : undefined;
 }
