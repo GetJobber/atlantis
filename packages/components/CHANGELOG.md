@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.0...@jobber/components@6.60.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **components:** Fix InputEmail V2 placeholder propagated down to input ([#2570](https://github.com/GetJobber/atlantis/issues/2570)) ([749ab5a](https://github.com/GetJobber/atlantis/commit/749ab5acfd6076ec46ffbed1a8f4a09691fc9535))
+
+
+
+
+
 # [6.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.59.0...@jobber/components@6.60.0) (2025-05-23)
 
 
