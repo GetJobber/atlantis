@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.59.0...@jobber/components@6.60.0) (2025-05-23)
+
+
+### Features
+
+* **components:** Add InputNumber v2 ([#2551](https://github.com/GetJobber/atlantis/issues/2551)) ([b1f55d9](https://github.com/GetJobber/atlantis/commit/b1f55d9773a799edca596010339792e8b8835124))
+
+
+
+
+
 # [6.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.6...@jobber/components@6.59.0) (2025-05-15)
 
 
