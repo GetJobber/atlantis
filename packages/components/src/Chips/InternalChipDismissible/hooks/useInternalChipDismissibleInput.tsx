@@ -6,8 +6,8 @@ import React, {
   useRef,
   useState,
 } from "react";
-import debounce from "lodash/debounce";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
+import { useDebounce } from "@jobber/components/utils/useDebounce";
 import {
   ChipDismissibleInputOptionProps,
   ChipDismissibleInputProps,
@@ -26,6 +26,7 @@ export function useInternalChipDismissibleInput({
   onSearch,
   onlyShowMenuOnSearch = false,
   autoSelectOnClickOutside = false,
+  controlled = false,
 }: ChipDismissibleInputProps) {
   const menuId = useId();
   const [allOptions, setAllOptions] = useState<
@@ -44,8 +45,14 @@ export function useInternalChipDismissibleInput({
   const { liveAnnounce } = useLiveAnnounce();
 
   useEffect(() => {
-    setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
-  }, [options]);
+    if (controlled) {
+      // In controlled mode, just convert options to the expected format
+      setAllOptions(options.map(opt => ({ ...opt, custom: false })));
+    } else {
+      // In uncontrolled mode, perform filtering based on searchValue
+      setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
+    }
+  }, [options, controlled, searchValue, canAddCustomOption]);
 
   const computed = {
     menuId,
@@ -58,14 +65,13 @@ export function useInternalChipDismissibleInput({
 
   function handleSearch(newSearchValue: string, newOptions: ChipProps[] = []) {
     onSearch && onSearch(newSearchValue);
-
     setAllOptions(
       generateOptions(newOptions, newSearchValue, canAddCustomOption),
     );
     setShouldCancelEnter(false);
   }
 
-  const handleDebouncedSearch = debounce(handleSearch, SEARCH_DEBOUNCE_TIME);
+  const handleDebouncedSearch = useDebounce(handleSearch, SEARCH_DEBOUNCE_TIME);
 
   const actions = {
     generateDescendantId: (index: number) => `${computed.menuId}-${index}`,
@@ -119,16 +125,25 @@ export function useInternalChipDismissibleInput({
       setActiveIndex(0);
       const newSearchValue = event.currentTarget.value;
       setSearchValue(newSearchValue);
-      setShouldCancelEnter(true);
 
-      if (onlyShowMenuOnSearch && newSearchValue.length > 0 && !menuOpen) {
-        setTimeout(() => {
-          actions.handleOpenMenu();
-        }, SEARCH_DEBOUNCE_TIME);
-      }
+      if (controlled) {
+        // In controlled mode, just call onSearch immediately without debouncing
+        onSearch && onSearch(newSearchValue);
+      } else {
+        // In uncontrolled mode, use debouncing and handle menu state
+        setShouldCancelEnter(true);
 
-      if (onlyShowMenuOnSearch && newSearchValue.length === 0 && menuOpen) {
-        actions.handleCloseMenu();
+        if (onlyShowMenuOnSearch && newSearchValue.length > 0 && !menuOpen) {
+          setTimeout(() => {
+            actions.handleOpenMenu();
+          }, SEARCH_DEBOUNCE_TIME);
+        }
+
+        if (onlyShowMenuOnSearch && newSearchValue.length === 0 && menuOpen) {
+          actions.handleCloseMenu();
+        }
+
+        handleDebouncedSearch(newSearchValue, options);
       }
     },
 
@@ -161,7 +176,7 @@ export function useInternalChipDismissibleInput({
 
       if (!onlyShowMenuOnSearch || searchValue.length > 0) {
         callbacks.Enter = () => {
-          if (shouldCancelEnter) return;
+          if (shouldCancelEnter && !controlled) return;
           actions.handleSelectOption(computed.activeOption);
         };
         callbacks.Tab = () => actions.handleSelectOption(computed.activeOption);
@@ -192,7 +207,6 @@ export function useInternalChipDismissibleInput({
 
       handleKeydownEvents(callbacks, event);
     },
-    handleDebouncedSearch,
   };
 
   return {
@@ -204,6 +218,7 @@ export function useInternalChipDismissibleInput({
     showInput,
     searchValue,
     shouldCancelBlur,
+    controlled,
   };
 }
 

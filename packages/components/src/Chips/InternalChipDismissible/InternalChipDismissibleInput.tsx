@@ -41,7 +41,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleKeyDown,
     handleSelectOption,
     handleShowInput,
-    handleDebouncedSearch,
   } = useInternalChipDismissibleInput(props);
 
   const menuRef = useScrollToActive(activeIndex);
@@ -56,12 +55,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   useSafeLayoutEffect(() => {
     update?.();
   }, [allOptions, menuOpen, update, options]);
-
-  useEffect(() => {
-    handleDebouncedSearch(searchValue, options);
-
-    return handleDebouncedSearch.cancel;
-  }, [searchValue, options]);
 
   useEffect(() => {
     isInView && onLoadMore && onLoadMore(searchValue);
@@ -107,24 +100,36 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
             className={styles.menuList}
             data-testid="chip-menu"
           >
-            {allOptions.map((option, i) => (
-              <button
-                key={option.value}
-                role="option"
-                type="button"
-                id={generateDescendantId(i)}
-                className={classNames(styles.menuListOption, {
-                  [styles.activeOption]: activeIndex === i,
-                })}
-                onClick={() => handleSelectOption(option)}
-                onMouseEnter={handleSetActiveOnMouseOver(i)}
-                onMouseDown={handleCancelBlur}
-                onMouseUp={handleEnableBlur}
-              >
-                <span aria-hidden>{option.prefix}</span>
-                <Text>{option.label}</Text>
-              </button>
-            ))}
+            {props.customRenderMenu
+              ? props.customRenderMenu(allOptions, {
+                  generateDescendantId,
+                  handleSelectOption,
+                  handleSetActiveOnMouseOver,
+                  handleCancelBlur,
+                  handleEnableBlur,
+                  handleShowInput,
+                  activeIndex,
+                  menuListOptionStyles: styles.menuListOption,
+                  activeOptionStyles: styles.activeOption,
+                })
+              : allOptions.map((option, i) => (
+                  <button
+                    key={option.value}
+                    role="option"
+                    type="button"
+                    id={generateDescendantId(i)}
+                    className={classNames(styles.menuListOption, {
+                      [styles.activeOption]: activeIndex === i,
+                    })}
+                    onClick={() => handleSelectOption(option)}
+                    onMouseEnter={handleSetActiveOnMouseOver(i)}
+                    onMouseDown={handleCancelBlur}
+                    onMouseUp={handleEnableBlur}
+                  >
+                    <span aria-hidden>{option.prefix}</span>
+                    <Text>{option.label}</Text>
+                  </button>
+                ))}
 
             <div ref={visibleChildRef} />
 
