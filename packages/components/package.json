@@ -255,6 +255,11 @@
       "import": "./dist/InputAvatar/index.mjs",
       "require": "./dist/InputAvatar/index.cjs"
     },
+    "./InputCurrency": {
+      "types": "./dist/InputCurrency/index.d.ts",
+      "import": "./dist/InputCurrency/index.mjs",
+      "require": "./dist/InputCurrency/index.cjs"
+    },
     "./InputDate": {
       "types": "./dist/InputDate/index.d.ts",
       "import": "./dist/InputDate/index.mjs",

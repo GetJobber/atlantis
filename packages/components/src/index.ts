@@ -46,6 +46,7 @@ export * from "./Heading";
 export * from "./Icon";
 export * from "./InlineLabel";
 export * from "./InputAvatar";
+export * from "./InputCurrency";
 export * from "./InputDate";
 export * from "./InputEmail";
 export * from "./InputFile";
