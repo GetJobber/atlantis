@@ -92,6 +92,7 @@ async function checkThatHeadingExists(heading: Locator, page) {
   } else {
     const alternativeElement = page.getByRole("button", {
       name: "Canvas",
+      exact: true,
     });
     await expect(alternativeElement).toBeVisible();
   }

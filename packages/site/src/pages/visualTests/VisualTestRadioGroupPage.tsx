@@ -16,7 +16,7 @@ export const VisualTestRadioGroupPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>RadioGroup Examples</Heading>
+        <Heading level={3}>RadioGroup Examples</Heading>
 
         <Stack gap="large">
           {/* Basic RadioGroup */}

@@ -4,7 +4,7 @@ export const VisualTestGlimmerPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Glimmer Examples</Heading>
+        <Heading level={3}>Glimmer Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Glimmer */}

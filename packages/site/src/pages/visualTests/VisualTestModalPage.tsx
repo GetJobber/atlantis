@@ -27,7 +27,7 @@ export const VisualTestModalPage = () => {
       <Stack gap="extravagant">
         {/* Modal Examples */}
         <Stack>
-          <Heading level={1}>Modal Examples</Heading>
+          <Heading level={3}>Modal Examples</Heading>
           <Stack gap="large">
             {/* Basic Modal Types */}
             <section>

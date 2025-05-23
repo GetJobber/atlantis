@@ -14,7 +14,7 @@ export const VisualTestInputDatePage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InputDate Examples</Heading>
+        <Heading level={3}>InputDate Examples</Heading>
 
         <Stack gap="large">
           {/* Basic InputDate */}

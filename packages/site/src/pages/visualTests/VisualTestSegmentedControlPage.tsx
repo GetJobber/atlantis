@@ -16,7 +16,7 @@ export const VisualTestSegmentedControlPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>SegmentedControl Examples</Heading>
+        <Heading level={3}>SegmentedControl Examples</Heading>
 
         <Stack gap="large">
           {/* Basic SegmentedControl */}

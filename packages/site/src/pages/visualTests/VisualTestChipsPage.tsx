@@ -40,7 +40,7 @@ export const VisualTestChipsPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Chips Examples</Heading>
+        <Heading level={3}>Chips Examples</Heading>
 
         <Stack gap="large">
           {/* Single Select Chips */}

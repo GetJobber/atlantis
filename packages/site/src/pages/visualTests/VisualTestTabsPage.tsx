@@ -4,7 +4,7 @@ export const VisualTestTabsPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Tabs Examples</Heading>
+        <Heading level={3}>Tabs Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Tabs */}

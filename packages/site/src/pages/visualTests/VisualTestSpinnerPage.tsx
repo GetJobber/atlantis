@@ -4,7 +4,7 @@ export const VisualTestSpinnerPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Spinner Examples</Heading>
+        <Heading level={3}>Spinner Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Spinner */}

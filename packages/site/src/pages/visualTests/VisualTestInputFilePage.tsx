@@ -23,7 +23,7 @@ export const VisualTestInputFilePage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InputFile Examples</Heading>
+        <Heading level={3}>InputFile Examples</Heading>
 
         <Stack gap="large">
           {/* Basic InputFile (Dropzone) */}

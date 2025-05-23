@@ -18,7 +18,7 @@ This is a paragraph with **bold** and _italic_ text.
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Markdown Examples</Heading>
+        <Heading level={3}>Markdown Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Markdown */}

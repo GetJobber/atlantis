@@ -33,7 +33,7 @@ export const VisualTestFormFieldPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>FormField Examples</Heading>
+        <Heading level={3}>FormField Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Form with FormFields */}

@@ -4,7 +4,7 @@ export const VisualTestEmphasisPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Emphasis Examples</Heading>
+        <Heading level={3}>Emphasis Examples</Heading>
 
         <Stack gap="large">
           {/* Bold Emphasis */}
@@ -53,10 +53,10 @@ export const VisualTestEmphasisPage = () => {
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Stack gap="small">
-                  <Heading level={1}>
+                  <Heading level={3}>
                     Get paid <Emphasis variation="highlight">faster</Emphasis>
                   </Heading>
-                  <Heading level={2}>
+                  <Heading level={3}>
                     Work <Emphasis variation="highlight">smarter</Emphasis>, not
                     harder
                   </Heading>

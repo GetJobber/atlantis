@@ -15,7 +15,7 @@ export const VisualTestDisclosurePage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Disclosure Examples</Heading>
+        <Heading level={3}>Disclosure Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Disclosure */}
