@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("Modal Visual Tests", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173/visual-tests/modal");
+    await page.goto("/visual-tests/modal");
     await page.waitForTimeout(1000);
   });
 

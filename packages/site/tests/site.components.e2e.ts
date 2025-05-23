@@ -37,7 +37,7 @@ const uniqueList = buildUniqueComponentList();
  */
 uniqueList.forEach(component => {
   test(`Component Page For: ${component}`, async ({ page }) => {
-    await page.goto(`http://localhost:5173/components/${component}`);
+    await page.goto(`/components/${component}`);
     await expect(
       page.getByRole("heading", { name: component, exact: true }),
     ).toHaveText(component);
@@ -61,7 +61,7 @@ uniqueList.forEach(component => {
 ListOfDesignPages.forEach(
   ({ path, title }: { path: string; title: string }) => {
     test(`Design Page For: ${title}`, async ({ page }) => {
-      await page.goto(`http://localhost:5173/design/${path}`);
+      await page.goto(`/design/${path}`);
 
       await expect(
         page.getByRole("heading", { name: title, exact: true }),
@@ -99,19 +99,19 @@ async function checkThatHeadingExists(heading: Locator, page) {
 }
 
 test("Home Loads", async ({ page }) => {
-  await page.goto("http://localhost:5173");
+  await page.goto("");
 
   await expect(page.locator("h1")).toHaveText("Home");
 });
 
 test("Design Loads", async ({ page }) => {
-  await page.goto("http://localhost:5173/design");
+  await page.goto("/design");
 
   await expect(page.locator("h1")).toHaveText("Design");
 });
 
 test("All Components Load", async ({ page }) => {
-  await page.goto("http://localhost:5173/components");
+  await page.goto("/components");
 
   await expect(page.locator("h1")).toHaveText("Components");
 });

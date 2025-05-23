@@ -6,12 +6,12 @@ test.describe("Atlantis Visual Tests", () => {
   });
 
   test.describe("layout components", () => {
-    /* 
-    We have a font rendering issue between local and CI with JobberPro. 
+    /*
+    We have a font rendering issue between local and CI with JobberPro.
     Instead of slowing down this PR, we're commenting out for now.
    */
     test("primary layouts", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/layout");
+      await page.goto("/visual-tests/layout");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-layout-page.png", {
         fullPage: true,
@@ -19,7 +19,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("grid components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/grid");
+      await page.goto("/visual-tests/grid");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-grid-page.png", {
         fullPage: true,
@@ -27,11 +27,11 @@ test.describe("Atlantis Visual Tests", () => {
     });
     /*
 
-    We have a font rendering issue between local and CI with JobberPro. 
+    We have a font rendering issue between local and CI with JobberPro.
     Instead of slowing down this PR, we're commenting out for now.
  */
     test("divider components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/divider");
+      await page.goto("/visual-tests/divider");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-divider-page.png", {
         fullPage: true,
@@ -41,10 +41,10 @@ test.describe("Atlantis Visual Tests", () => {
 
   test.describe("interactive components", () => {
     /*
-    We have a font rendering issue between local and CI with JobberPro. 
+    We have a font rendering issue between local and CI with JobberPro.
     Instead of slowing down this PR, we're commenting out for now.
     test("primary components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/components");
+      await page.goto("/visual-tests/components");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-components-page.png", {
         fullPage: true,
@@ -53,7 +53,7 @@ test.describe("Atlantis Visual Tests", () => {
      */
 
     test("modal components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/modal");
+      await page.goto("/visual-tests/modal");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-modal-page.png", {
         fullPage: true,
@@ -61,7 +61,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("drawer components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/drawer");
+      await page.goto("/visual-tests/drawer");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-drawer-page.png", {
         fullPage: true,
@@ -69,7 +69,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("disclosure components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/disclosure");
+      await page.goto("/visual-tests/disclosure");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-disclosure-page.png", {
         fullPage: true,
@@ -77,7 +77,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("side drawer components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/side-drawer");
+      await page.goto("/visual-tests/side-drawer");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-side-drawer-page.png", {
         fullPage: true,
@@ -87,7 +87,7 @@ test.describe("Atlantis Visual Tests", () => {
 
   test.describe("form components", () => {
     test("form field components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/form-field");
+      await page.goto("/visual-tests/form-field");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-form-field-page.png", {
         fullPage: true,
@@ -95,7 +95,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("autocomplete components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/autocomplete");
+      await page.goto("/visual-tests/autocomplete");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-autocomplete-page.png", {
         fullPage: true,
@@ -103,7 +103,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("combobox components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/combobox");
+      await page.goto("/visual-tests/combobox");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-combobox-page.png", {
         fullPage: true,
@@ -111,7 +111,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("datepicker components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/datepicker");
+      await page.goto("/visual-tests/datepicker");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-datepicker-page.png", {
         fullPage: true,
@@ -119,7 +119,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("radio group components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/radio-group");
+      await page.goto("/visual-tests/radio-group");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-radio-group-page.png", {
         fullPage: true,
@@ -127,7 +127,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("segmented control components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/segmented-control");
+      await page.goto("/visual-tests/segmented-control");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot(
         "visual-test-segmented-control-page.png",
@@ -138,19 +138,19 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("select components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/select");
+      await page.goto("/visual-tests/select");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-select-page.png", {
         fullPage: true,
       });
     });
 
-    /*   
-    
+    /*
+
     We have a font rendering issue between local and CI with JobberPro. Instead of slowing down this PR, we're commenting out for now.
 
     test("emphasis components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/emphasis");
+      await page.goto("/visual-tests/emphasis");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-emphasis-page.png", {
         fullPage: true,
@@ -158,7 +158,7 @@ test.describe("Atlantis Visual Tests", () => {
     }); */
 
     test("glimmer components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/glimmer");
+      await page.goto("/visual-tests/glimmer");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-glimmer-page.png", {
         fullPage: true,
@@ -166,7 +166,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("switch components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/switch");
+      await page.goto("/visual-tests/switch");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-switch-page.png", {
         fullPage: true,
@@ -176,7 +176,7 @@ test.describe("Atlantis Visual Tests", () => {
 
   test.describe("data display components", () => {
     test("datalist components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/datalist");
+      await page.goto("/visual-tests/datalist");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-datalist-page.png", {
         fullPage: true,
@@ -184,7 +184,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("description list components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/description-list");
+      await page.goto("/visual-tests/description-list");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot(
         "visual-test-description-list-page.png",
@@ -195,7 +195,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("gallery components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/gallery");
+      await page.goto("/visual-tests/gallery");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-gallery-page.png", {
         fullPage: true,
@@ -203,7 +203,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("table components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/table");
+      await page.goto("/visual-tests/table");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-table-page.png", {
         fullPage: true,
@@ -211,7 +211,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("data table components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/data-table");
+      await page.goto("/visual-tests/data-table");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-data-table-page.png", {
         fullPage: true,
@@ -219,7 +219,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("tabs components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/tabs");
+      await page.goto("/visual-tests/tabs");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-tabs-page.png", {
         fullPage: true,
@@ -227,7 +227,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("toast components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/toast");
+      await page.goto("/visual-tests/toast");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-toast-page.png", {
         fullPage: true,
@@ -235,7 +235,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("tooltip components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/tooltip");
+      await page.goto("/visual-tests/tooltip");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-tooltip-page.png", {
         fullPage: true,
@@ -244,21 +244,21 @@ test.describe("Atlantis Visual Tests", () => {
 
     /*
 
-    We have a font rendering issue between local and CI with JobberPro. 
+    We have a font rendering issue between local and CI with JobberPro.
     Instead of slowing down this PR, we're commenting out for now.
     test("typography components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/typography");
+      await page.goto("/visual-tests/typography");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-typography-page.png", {
         fullPage: true,
       });
-    }); 
+    });
  */
   });
 
   test.describe("selection components", () => {
     test("chip components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/chip");
+      await page.goto("/visual-tests/chip");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-chip-page.png", {
         fullPage: true,
@@ -266,7 +266,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("chips components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/chips");
+      await page.goto("/visual-tests/chips");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-chips-page.png", {
         fullPage: true,
@@ -274,7 +274,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("feature switch components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/feature-switch");
+      await page.goto("/visual-tests/feature-switch");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot(
         "visual-test-feature-switch-page.png",
@@ -287,7 +287,7 @@ test.describe("Atlantis Visual Tests", () => {
 
   test.describe("input components", () => {
     test("inline label components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/inline-label");
+      await page.goto("/visual-tests/inline-label");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-inline-label-page.png", {
         fullPage: true,
@@ -295,7 +295,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input date components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-date");
+      await page.goto("/visual-tests/input-date");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-input-date-page.png", {
         fullPage: true,
@@ -303,7 +303,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input email components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-email");
+      await page.goto("/visual-tests/input-email");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-input-email-page.png", {
         fullPage: true,
@@ -311,7 +311,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input file components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-file");
+      await page.goto("/visual-tests/input-file");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-input-file-page.png", {
         fullPage: true,
@@ -319,7 +319,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input group components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-group");
+      await page.goto("/visual-tests/input-group");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-input-group-page.png", {
         fullPage: true,
@@ -327,7 +327,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input number components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-number");
+      await page.goto("/visual-tests/input-number");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-input-number-page.png", {
         fullPage: true,
@@ -335,7 +335,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input password components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-password");
+      await page.goto("/visual-tests/input-password");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot(
         "visual-test-input-password-page.png",
@@ -346,7 +346,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input phone number components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-phone-number");
+      await page.goto("/visual-tests/input-phone-number");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot(
         "visual-test-input-phone-number-page.png",
@@ -357,7 +357,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input text components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-text");
+      await page.goto("/visual-tests/input-text");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-input-text-page.png", {
         fullPage: true,
@@ -365,7 +365,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input time components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-time");
+      await page.goto("/visual-tests/input-time");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-input-time-page.png", {
         fullPage: true,
@@ -373,7 +373,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("input validation components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/input-validation");
+      await page.goto("/visual-tests/input-validation");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot(
         "visual-test-input-validation-page.png",
@@ -386,7 +386,7 @@ test.describe("Atlantis Visual Tests", () => {
 
   test.describe("utility components", () => {
     test("lightbox components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/lightbox");
+      await page.goto("/visual-tests/lightbox");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-lightbox-page.png", {
         fullPage: true,
@@ -394,7 +394,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("link components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/link");
+      await page.goto("/visual-tests/link");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-link-page.png", {
         fullPage: true,
@@ -402,7 +402,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("list components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/list");
+      await page.goto("/visual-tests/list");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-list-page.png", {
         fullPage: true,
@@ -410,7 +410,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("markdown components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/markdown");
+      await page.goto("/visual-tests/markdown");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-markdown-page.png", {
         fullPage: true,
@@ -418,7 +418,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("menu components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/menu");
+      await page.goto("/visual-tests/menu");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-menu-page.png", {
         fullPage: true,
@@ -426,7 +426,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("popover components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/popover");
+      await page.goto("/visual-tests/popover");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-popover-page.png", {
         fullPage: true,
@@ -434,7 +434,7 @@ test.describe("Atlantis Visual Tests", () => {
     });
 
     test("progress bar components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/progress-bar");
+      await page.goto("/visual-tests/progress-bar");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-progress-bar-page.png", {
         fullPage: true,
@@ -444,7 +444,7 @@ test.describe("Atlantis Visual Tests", () => {
 
   test.describe("status components", () => {
     test("spinner components", async ({ page }) => {
-      await page.goto("http://localhost:5173/visual-tests/spinner");
+      await page.goto("/visual-tests/spinner");
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("visual-test-spinner-page.png", {
         fullPage: true,
