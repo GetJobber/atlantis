@@ -7,7 +7,7 @@
   @media print {
     overflow: hidden;
 
-    body {
+    & body {
       position: absolute;
       height: 100%;
       overflow: hidden;
