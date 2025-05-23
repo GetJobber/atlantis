@@ -1,0 +1,28 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { UseDebounce } from "./UseDebounce";
+
+<Meta title="Hooks/useDebounce" />
+
+# useDebounce
+
+`useDebounce` is a hook that creates a debounced version of a function that will
+only call the function after a specified delay has passed since the last time it
+was invoked.
+
+This hook manages the requirements of debouncing functions in React, since a
+stable reference to the debounced function is required. The hook automatically
+handles cleanup to prevent memory leaks.
+
+This is especially useful when handling frequent events like typing, scrolling,
+or resizing where you want to limit how often the handler is actually called.
+
+```tsx
+import { useDebounce } from "@jobber/hooks";
+```
+
+The hook takes a function, a wait delay (in milliseconds), and optional debounce
+settings.
+
+<Canvas>
+  <UseDebounce />
+</Canvas>
