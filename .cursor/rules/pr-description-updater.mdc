@@ -1,0 +1,242 @@
+---
+description: This rule updates an existing PR description by merging it with new commit information.
+globs:
+alwaysApply: false
+---
+# PR Description Updater
+
+This rule updates an existing PR description by merging it with information from new commits.
+
+## Behavior
+
+1. Gets the current PR number from the branch
+2. Retrieves the existing PR description
+3. Gets new commits since the last PR update
+4. Generates a new description for these commits
+5. Merges the new information with the existing PR description
+6. Updates the PR with the merged description
+
+## Example Usage
+
+```
+/pr-description-update
+```
+
+## Implementation
+
+```typescript
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import { readFile, writeFile } from 'fs/promises';
+import { join } from 'path';
+import { tmpdir } from 'os';
+
+const execAsync = promisify(exec);
+
+async function getCurrentBranch() {
+  const { stdout } = await execAsync('git rev-parse --abbrev-ref HEAD');
+  return stdout.trim();
+}
+
+async function getPRNumber(branch: string) {
+  try {
+    const { stdout } = await execAsync(`gh pr view --json number --jq .number | cat`);
+    return parseInt(stdout.trim(), 10);
+  } catch {
+    throw new Error('No pull request found for the current branch');
+  }
+}
+
+async function getExistingPRDescription(prNumber: number) {
+  const { stdout } = await execAsync(`gh pr view ${prNumber} --json body --jq .body | cat`);
+  return stdout.trim();
+}
+
+async function getLastPRUpdateCommit(prNumber: number) {
+  try {
+    // Get the PR creation date
+    const { stdout } = await execAsync(`gh pr view ${prNumber} --json createdAt --jq .createdAt | cat`);
+    return new Date(stdout.trim());
+  } catch {
+    throw new Error('Could not determine PR creation date');
+  }
+}
+
+async function getNewCommits(since: Date) {
+  // Using %x1F as a field separator and %x1E as a record separator to avoid newline issues
+  const { stdout } = await execAsync(
+    `git log --since="${since.toISOString()}" --pretty=format:"%s%x1F%b%x1E" | cat`,
+  );
+  return stdout
+    .split('\x1E') // Split records
+    .filter(Boolean)
+    .map(record => record.split('\x1F')); // Split fields within each record
+}
+
+function categorizeNewChanges(commits: string[][]) {
+  const categories = {
+    added: [] as string[],
+    changed: [] as string[],
+    deprecated: [] as string[],
+    removed: [] as string[],
+    fixed: [] as string[],
+    security: [] as string[],
+  };
+
+  for (const [subject] of commits) {
+    const message = subject.toLowerCase();
+
+    if (message.startsWith('feat:') || message.includes('add')) {
+      categories.added.push(`- ${subject}`);
+    } else if (message.startsWith('fix:')) {
+      categories.fixed.push(`- ${subject}`);
+    } else if (message.startsWith('refactor:') || message.includes('change')) {
+      categories.changed.push(`- ${subject}`);
+    } else if (message.includes('deprecat')) {
+      categories.deprecated.push(`- ${subject}`);
+    } else if (message.includes('remov')) {
+      categories.removed.push(`- ${subject}`);
+    } else if (message.includes('security')) {
+      categories.security.push(`- ${subject}`);
+    }
+  }
+
+  return categories;
+}
+
+function mergeDescriptions(existing: string, newCategories: ReturnType<typeof categorizeNewChanges>) {
+  // Split the existing description into sections
+  const sections = existing.split(/^### /m);
+  const header = sections[0];
+  const categorySections = sections.slice(1);
+
+  // Update each category section with new items
+  const updatedSections = categorySections.map(section => {
+    const categoryMatch = section.match(/^(Added|Changed|Deprecated|Removed|Fixed|Security)/i);
+    if (!categoryMatch) return section;
+
+    const category = categoryMatch[1].toLowerCase() as keyof typeof newCategories;
+    const newItems = newCategories[category];
+
+    if (newItems.length === 0) return section;
+
+    // Find where to insert new items (after existing items but before next section)
+    const lines = section.split('\n');
+    let insertIndex = lines.findIndex(line => line === '');
+    if (insertIndex === -1) insertIndex = lines.length;
+
+    // Insert new items
+    lines.splice(insertIndex, 0, ...newItems);
+
+    return lines.join('\n');
+  });
+
+  // Reconstruct the description
+  return header + '### ' + updatedSections.join('### ');
+}
+
+async function checkUnpushedCommits(branch: string) {
+  try {
+    // Get the remote tracking branch
+    const { stdout: trackingBranch } = await execAsync('git rev-parse --abbrev-ref --symbolic-full-name @{u}');
+
+    // Compare local and remote commits
+    const { stdout: behindAhead } = await execAsync(`git rev-list --left-right --count ${trackingBranch.trim()}...HEAD`);
+    const [behind, ahead] = behindAhead.trim().split('\t').map(Number);
+
+    if (ahead > 0) {
+      console.log(`Found ${ahead} unpushed commit(s). Attempting to push to remote...`);
+      try {
+        await execAsync('git push');
+        console.log('Successfully pushed commits to remote.');
+        return true;
+      } catch (pushError) {
+        throw new Error(`Failed to push commits: ${pushError.message}. Please push your changes manually before updating the PR description.`);
+      }
+    }
+
+    return true;
+  } catch (error) {
+    if (error.message.includes('no upstream')) {
+      throw new Error('No upstream branch found. Please push your branch to remote first.');
+    }
+    throw error;
+  }
+}
+
+async function updateExistingPRDescription(prNumber: number, description: string) {
+  const tempFile = join(tmpdir(), `pr-description.md`);
+  await writeFile(tempFile, description, 'utf-8');
+
+  try {
+    await execAsync(`gh pr edit ${prNumber} --body-file "${tempFile}"`);
+  } finally {
+    // Clean up temp file
+    await execAsync(`rm "${tempFile}"`);
+  }
+}
+
+export async function updatePRDescription() {
+  try {
+    // Get current PR info
+    const branch = await getCurrentBranch();
+
+    // Check for unpushed commits first
+    await checkUnpushedCommits(branch);
+
+    const prNumber = await getPRNumber(branch);
+
+    // Get existing description and last update time
+    const existingDescription = await getExistingPRDescription(prNumber);
+    const lastUpdate = await getLastPRUpdateCommit(prNumber);
+
+    // Get and categorize new commits
+    const newCommits = await getNewCommits(lastUpdate);
+    const newCategories = categorizeNewChanges(newCommits);
+
+    // Merge descriptions
+    const updatedDescription = mergeDescriptions(existingDescription, newCategories);
+
+    // Update PR
+    await updateExistingPRDescription(prNumber, updatedDescription);
+
+    return `Successfully updated PR #${prNumber} with new commit information.`;
+  } catch (error) {
+    console.error('Error:', error.message);
+    return `Error: ${error.message}. Please check the console for details.`;
+  }
+}
+```
+
+## Command
+
+```json
+{
+  "name": "Update PR Description",
+  "description": "Updates an existing PR description with new commit information",
+  "command": "pr-description-update",
+  "implementation": "updatePRDescription",
+  "example": "/pr-description-update"
+}
+```
+
+## Prerequisites
+
+- [GitHub CLI (gh)](https://cli.github.com) must be installed and authenticated
+- A pull request must exist for the current branch
+- You must have push access to the repository
+- All commits must be pushed to the remote repository
+
+## Usage Flow
+
+1. Create initial PR using `/pr-description` and `/pr-submit`
+2. Make additional commits to your branch
+3. Push your commits to the remote repository
+4. Run `/pr-description-update` to merge new commit information into the existing PR description
+
+Note: The rule will automatically:
+1. Check if all commits are pushed to the remote
+2. Find your existing PR
+3. Get commits made since the PR was created
+4. Add their information to the appropriate sections of the PR description
+5. Update the PR while preserving the existing structure and information
