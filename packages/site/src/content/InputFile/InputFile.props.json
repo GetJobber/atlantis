@@ -220,65 +220,13 @@
     "displayName": "InputFile.Button",
     "methods": [],
     "props": {
-      "external": {
-        "defaultValue": null,
-        "description": "",
-        "name": "external",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
-        }
-      },
-      "variation": {
-        "defaultValue": null,
-        "description": "",
-        "name": "variation",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BaseActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonVariation"
-        }
-      },
-      "type": {
-        "defaultValue": null,
-        "description": "",
-        "name": "type",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonType"
-        }
-      },
       "ariaControls": {
         "defaultValue": null,
         "description": "Used for screen readers. Will override label on screen\nreader if present.",
         "name": "ariaControls",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -291,7 +239,7 @@
         "name": "ariaHaspopup",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -304,7 +252,7 @@
         "name": "ariaExpanded",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -317,7 +265,20 @@
         "name": "disabled",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "external": {
+        "defaultValue": null,
+        "description": "",
+        "name": "external",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -332,7 +293,7 @@
         "name": "fullWidth",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -345,7 +306,7 @@
         "name": "id",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -358,7 +319,7 @@
         "name": "loading",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -371,7 +332,7 @@
         "name": "size",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -384,59 +345,7 @@
         "name": "ariaLabel",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onMouseDown": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onMouseDown",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ container?: string; buttonLabel?: { textStyle?: string; }; buttonIcon?: { svg?: string; path?: string; }; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Used to override the default button role.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BasicButtonProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -449,7 +358,7 @@
         "name": "icon",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonNonComposableProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -462,7 +371,7 @@
         "name": "iconOnRight",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonNonComposableProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
@@ -475,11 +384,94 @@
         "name": "label",
         "parent": {
           "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonLabelProps"
+          "name": "ButtonCommonProps"
         },
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonVariation"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonType"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; buttonLabel?: { textStyle?: string; }; buttonIcon?: { svg?: string; path?: string; }; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "required": false,
+        "type": {
+          "name": "any"
+        }
+      },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onMouseDown",
+        "required": false,
+        "type": {
+          "name": "any"
         }
       }
     }
