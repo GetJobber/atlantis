@@ -17,433 +17,433 @@
     "./dist/styles.css": "./dist/styles.css",
     "./AnimatedPresence": {
       "types": "./dist/AnimatedPresence/index.d.ts",
-      "import": "./dist/AnimatedPresence/index.mjs",
-      "require": "./dist/AnimatedPresence/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./AnimatedSwitcher": {
       "types": "./dist/AnimatedSwitcher/index.d.ts",
-      "import": "./dist/AnimatedSwitcher/index.mjs",
-      "require": "./dist/AnimatedSwitcher/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./AtlantisContext": {
       "types": "./dist/AtlantisContext/index.d.ts",
-      "import": "./dist/AtlantisContext/index.mjs",
-      "require": "./dist/AtlantisContext/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./AtlantisThemeContext": {
       "types": "./dist/AtlantisThemeContext/index.d.ts",
-      "import": "./dist/AtlantisThemeContext/index.mjs",
-      "require": "./dist/AtlantisThemeContext/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Autocomplete": {
       "types": "./dist/Autocomplete/index.d.ts",
-      "import": "./dist/Autocomplete/index.mjs",
-      "require": "./dist/Autocomplete/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Avatar": {
       "types": "./dist/Avatar/index.d.ts",
-      "import": "./dist/Avatar/index.mjs",
-      "require": "./dist/Avatar/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Banner": {
       "types": "./dist/Banner/index.d.ts",
-      "import": "./dist/Banner/index.mjs",
-      "require": "./dist/Banner/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Box": {
       "types": "./dist/Box/index.d.ts",
-      "import": "./dist/Box/index.mjs",
-      "require": "./dist/Box/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Button": {
       "types": "./dist/Button/index.d.ts",
-      "import": "./dist/Button/index.mjs",
-      "require": "./dist/Button/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./ButtonDismiss": {
       "types": "./dist/ButtonDismiss/index.d.ts",
-      "import": "./dist/ButtonDismiss/index.mjs",
-      "require": "./dist/ButtonDismiss/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Card": {
       "types": "./dist/Card/index.d.ts",
-      "import": "./dist/Card/index.mjs",
-      "require": "./dist/Card/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Checkbox": {
       "types": "./dist/Checkbox/index.d.ts",
-      "import": "./dist/Checkbox/index.mjs",
-      "require": "./dist/Checkbox/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Chip": {
       "types": "./dist/Chip/index.d.ts",
-      "import": "./dist/Chip/index.mjs",
-      "require": "./dist/Chip/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Chips": {
       "types": "./dist/Chips/index.d.ts",
-      "import": "./dist/Chips/index.mjs",
-      "require": "./dist/Chips/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Cluster": {
       "types": "./dist/Cluster/index.d.ts",
-      "import": "./dist/Cluster/index.mjs",
-      "require": "./dist/Cluster/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Combobox": {
       "types": "./dist/Combobox/index.d.ts",
-      "import": "./dist/Combobox/index.mjs",
-      "require": "./dist/Combobox/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./ConfirmationModal": {
       "types": "./dist/ConfirmationModal/index.d.ts",
-      "import": "./dist/ConfirmationModal/index.mjs",
-      "require": "./dist/ConfirmationModal/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Cover": {
       "types": "./dist/Cover/index.d.ts",
-      "import": "./dist/Cover/index.mjs",
-      "require": "./dist/Cover/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Container": {
       "types": "./dist/Container/index.d.ts",
-      "import": "./dist/Container/index.mjs",
-      "require": "./dist/Container/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Content": {
       "types": "./dist/Content/index.d.ts",
-      "import": "./dist/Content/index.mjs",
-      "require": "./dist/Content/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./ContentBlock": {
       "types": "./dist/ContentBlock/index.d.ts",
-      "import": "./dist/ContentBlock/index.mjs",
-      "require": "./dist/ContentBlock/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Countdown": {
       "types": "./dist/Countdown/index.d.ts",
-      "import": "./dist/Countdown/index.mjs",
-      "require": "./dist/Countdown/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./DataDump": {
       "types": "./dist/DataDump/index.d.ts",
-      "import": "./dist/DataDump/index.mjs",
-      "require": "./dist/DataDump/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./DataList": {
       "types": "./dist/DataList/index.d.ts",
-      "import": "./dist/DataList/index.mjs",
-      "require": "./dist/DataList/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./DataTable": {
       "types": "./dist/DataTable/index.d.ts",
-      "import": "./dist/DataTable/index.mjs",
-      "require": "./dist/DataTable/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./DatePicker": {
       "types": "./dist/DatePicker/index.d.ts",
-      "import": "./dist/DatePicker/index.mjs",
-      "require": "./dist/DatePicker/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./DescriptionList": {
       "types": "./dist/DescriptionList/index.d.ts",
-      "import": "./dist/DescriptionList/index.mjs",
-      "require": "./dist/DescriptionList/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Disclosure": {
       "types": "./dist/Disclosure/index.d.ts",
-      "import": "./dist/Disclosure/index.mjs",
-      "require": "./dist/Disclosure/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Divider": {
       "types": "./dist/Divider/index.d.ts",
-      "import": "./dist/Divider/index.mjs",
-      "require": "./dist/Divider/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Drawer": {
       "types": "./dist/Drawer/index.d.ts",
-      "import": "./dist/Drawer/index.mjs",
-      "require": "./dist/Drawer/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Emphasis": {
       "types": "./dist/Emphasis/index.d.ts",
-      "import": "./dist/Emphasis/index.mjs",
-      "require": "./dist/Emphasis/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./FeatureSwitch": {
       "types": "./dist/FeatureSwitch/index.d.ts",
-      "import": "./dist/FeatureSwitch/index.mjs",
-      "require": "./dist/FeatureSwitch/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Flex": {
       "types": "./dist/Flex/index.d.ts",
-      "import": "./dist/Flex/index.mjs",
-      "require": "./dist/Flex/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Form": {
       "types": "./dist/Form/index.d.ts",
-      "import": "./dist/Form/index.mjs",
-      "require": "./dist/Form/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./FormField": {
       "types": "./dist/FormField/index.d.ts",
-      "import": "./dist/FormField/index.mjs",
-      "require": "./dist/FormField/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./FormatDate": {
       "types": "./dist/FormatDate/index.d.ts",
-      "import": "./dist/FormatDate/index.mjs",
-      "require": "./dist/FormatDate/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./FormatEmail": {
       "types": "./dist/FormatEmail/index.d.ts",
-      "import": "./dist/FormatEmail/index.mjs",
-      "require": "./dist/FormatEmail/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./FormatFile": {
       "types": "./dist/FormatFile/index.d.ts",
-      "import": "./dist/FormatFile/index.mjs",
-      "require": "./dist/FormatFile/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./FormatRelativeDateTime": {
       "types": "./dist/FormatRelativeDateTime/index.d.ts",
-      "import": "./dist/FormatRelativeDateTime/index.mjs",
-      "require": "./dist/FormatRelativeDateTime/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./FormatTime": {
       "types": "./dist/FormatTime/index.d.ts",
-      "import": "./dist/FormatTime/index.mjs",
-      "require": "./dist/FormatTime/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Frame": {
       "types": "./dist/Frame/index.d.ts",
-      "import": "./dist/Frame/index.mjs",
-      "require": "./dist/Frame/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Gallery": {
       "types": "./dist/Gallery/index.d.ts",
-      "import": "./dist/Gallery/index.mjs",
-      "require": "./dist/Gallery/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Glimmer": {
       "types": "./dist/Glimmer/index.d.ts",
-      "import": "./dist/Glimmer/index.mjs",
-      "require": "./dist/Glimmer/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Grid": {
       "types": "./dist/Grid/index.d.ts",
-      "import": "./dist/Grid/index.mjs",
-      "require": "./dist/Grid/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Heading": {
       "types": "./dist/Heading/index.d.ts",
-      "import": "./dist/Heading/index.mjs",
-      "require": "./dist/Heading/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Icon": {
       "types": "./dist/Icon/index.d.ts",
-      "import": "./dist/Icon/index.mjs",
-      "require": "./dist/Icon/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InlineLabel": {
       "types": "./dist/InlineLabel/index.d.ts",
-      "import": "./dist/InlineLabel/index.mjs",
-      "require": "./dist/InlineLabel/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputAvatar": {
       "types": "./dist/InputAvatar/index.d.ts",
-      "import": "./dist/InputAvatar/index.mjs",
-      "require": "./dist/InputAvatar/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputDate": {
       "types": "./dist/InputDate/index.d.ts",
-      "import": "./dist/InputDate/index.mjs",
-      "require": "./dist/InputDate/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputEmail": {
       "types": "./dist/InputEmail/index.d.ts",
-      "import": "./dist/InputEmail/index.mjs",
-      "require": "./dist/InputEmail/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputFile": {
       "types": "./dist/InputFile/index.d.ts",
-      "import": "./dist/InputFile/index.mjs",
-      "require": "./dist/InputFile/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputGroup": {
       "types": "./dist/InputGroup/index.d.ts",
-      "import": "./dist/InputGroup/index.mjs",
-      "require": "./dist/InputGroup/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputNumber": {
       "types": "./dist/InputNumber/index.d.ts",
-      "import": "./dist/InputNumber/index.mjs",
-      "require": "./dist/InputNumber/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputPassword": {
       "types": "./dist/InputPassword/index.d.ts",
-      "import": "./dist/InputPassword/index.mjs",
-      "require": "./dist/InputPassword/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputPhoneNumber": {
       "types": "./dist/InputPhoneNumber/index.d.ts",
-      "import": "./dist/InputPhoneNumber/index.mjs",
-      "require": "./dist/InputPhoneNumber/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputText": {
       "types": "./dist/InputText/index.d.ts",
-      "import": "./dist/InputText/index.mjs",
-      "require": "./dist/InputText/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputTime": {
       "types": "./dist/InputTime/index.d.ts",
-      "import": "./dist/InputTime/index.mjs",
-      "require": "./dist/InputTime/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./InputValidation": {
       "types": "./dist/InputValidation/index.d.ts",
-      "import": "./dist/InputValidation/index.mjs",
-      "require": "./dist/InputValidation/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./LightBox": {
       "types": "./dist/LightBox/index.d.ts",
-      "import": "./dist/LightBox/index.mjs",
-      "require": "./dist/LightBox/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Link": {
       "types": "./dist/Link/index.d.ts",
-      "import": "./dist/Link/index.mjs",
-      "require": "./dist/Link/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./List": {
       "types": "./dist/List/index.d.ts",
-      "import": "./dist/List/index.mjs",
-      "require": "./dist/List/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Markdown": {
       "types": "./dist/Markdown/index.d.ts",
-      "import": "./dist/Markdown/index.mjs",
-      "require": "./dist/Markdown/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Menu": {
       "types": "./dist/Menu/index.d.ts",
-      "import": "./dist/Menu/index.mjs",
-      "require": "./dist/Menu/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Modal": {
       "types": "./dist/Modal/index.d.ts",
-      "import": "./dist/Modal/index.mjs",
-      "require": "./dist/Modal/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./MultiSelect": {
       "types": "./dist/MultiSelect/index.d.ts",
-      "import": "./dist/MultiSelect/index.mjs",
-      "require": "./dist/MultiSelect/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Page": {
       "types": "./dist/Page/index.d.ts",
-      "import": "./dist/Page/index.mjs",
-      "require": "./dist/Page/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Popover": {
       "types": "./dist/Popover/index.d.ts",
-      "import": "./dist/Popover/index.mjs",
-      "require": "./dist/Popover/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./ProgressBar": {
       "types": "./dist/ProgressBar/index.d.ts",
-      "import": "./dist/ProgressBar/index.mjs",
-      "require": "./dist/ProgressBar/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./RadioGroup": {
       "types": "./dist/RadioGroup/index.d.ts",
-      "import": "./dist/RadioGroup/index.mjs",
-      "require": "./dist/RadioGroup/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./RecurringSelect": {
       "types": "./dist/RecurringSelect/index.d.ts",
-      "import": "./dist/RecurringSelect/index.mjs",
-      "require": "./dist/RecurringSelect/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./ResponsiveSwitcher": {
       "types": "./dist/ResponsiveSwitcher/index.d.ts",
-      "import": "./dist/ResponsiveSwitcher/index.mjs",
-      "require": "./dist/ResponsiveSwitcher/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Select": {
       "types": "./dist/Select/index.d.ts",
-      "import": "./dist/Select/index.mjs",
-      "require": "./dist/Select/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./SideKick": {
       "types": "./dist/SideKick/index.d.ts",
-      "import": "./dist/SideKick/index.mjs",
-      "require": "./dist/SideKick/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Spinner": {
       "types": "./dist/Spinner/index.d.ts",
-      "import": "./dist/Spinner/index.mjs",
-      "require": "./dist/Spinner/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./StatusIndicator": {
       "types": "./dist/StatusIndicator/index.d.ts",
-      "import": "./dist/StatusIndicator/index.mjs",
-      "require": "./dist/StatusIndicator/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./StatusLabel": {
       "types": "./dist/StatusLabel/index.d.ts",
-      "import": "./dist/StatusLabel/index.mjs",
-      "require": "./dist/StatusLabel/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Stack": {
       "types": "./dist/Stack/index.d.ts",
-      "import": "./dist/Stack/index.mjs",
-      "require": "./dist/Stack/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Switch": {
       "types": "./dist/Switch/index.d.ts",
-      "import": "./dist/Switch/index.mjs",
-      "require": "./dist/Switch/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Table": {
       "types": "./dist/Table/index.d.ts",
-      "import": "./dist/Table/index.mjs",
-      "require": "./dist/Table/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Tabs": {
       "types": "./dist/Tabs/index.d.ts",
-      "import": "./dist/Tabs/index.mjs",
-      "require": "./dist/Tabs/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Text": {
       "types": "./dist/Text/index.d.ts",
-      "import": "./dist/Text/index.mjs",
-      "require": "./dist/Text/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Thumbnail": {
       "types": "./dist/Thumbnail/index.d.ts",
-      "import": "./dist/Thumbnail/index.mjs",
-      "require": "./dist/Thumbnail/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Tiles": {
       "types": "./dist/Tiles/index.d.ts",
-      "import": "./dist/Tiles/index.mjs",
-      "require": "./dist/Tiles/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Toast": {
       "types": "./dist/Toast/index.d.ts",
-      "import": "./dist/Toast/index.mjs",
-      "require": "./dist/Toast/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Tooltip": {
       "types": "./dist/Tooltip/index.d.ts",
-      "import": "./dist/Tooltip/index.mjs",
-      "require": "./dist/Tooltip/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./Typography": {
       "types": "./dist/Typography/index.d.ts",
-      "import": "./dist/Typography/index.mjs",
-      "require": "./dist/Typography/index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./utils/meta/meta.json": {
       "types": "./dist/utils/meta/meta.json",
@@ -452,9 +452,7 @@
     }
   },
   "scripts": {
-    "build": "npm run build:pre && rollup --config && npm run build:post",
-    "build:pre": "PREBUILD_CSS=true rollup --config && cp dist/styles.css ./styles.css.backup && npm run clean",
-    "build:post": "mv ./styles.css.backup dist/styles.css",
+    "build": "rollup --config",
     "bootstrap": "npm run clean; npm run build",
     "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
