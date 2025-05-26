@@ -11,9 +11,46 @@ import { InlineLabel } from "@jobber/components";
 Allow the user to consistently manage settings for their account or for specific
 features within the application.
 
+## Use when…
+
+Something about the user's account or functionality needs to be managed and it
+
+- can't be done in the context of the main application
+- involves setting a default that does not frequently change
+- has a group of related options that are better managed in a single place
+
 ## Solution
 
+<iframe
+  style={{
+    border: "var(--border-base) solid var(--color-border)",
+    borderRadius: "var(--radius-base)",
+    overflow: "hidden",
+  }}
+  title="Figma overview"
+  width="100%"
+  height="600"
+  src="https://embed.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product-Base?m=auto&node-id=30406-25&embed-host=share"
+  allowfullscreen
+></iframe>
+
+Under the appropriate section in the Settings menu, add a setting for the
+feature.
+
+Most settings can be managed with the `FeatureSwitch` component, which allows:
+
+- turning functionality on and off
+- editing aspects of the feature via a `Modal`
+- if the page supports it, live updates to the setting
+
 ## Implementation
+
+The [FeatureSwitch](../components/FeatureSwitch) component is a good starting
+point for most settings. If the setting is more complex, you can trigger a
+[Modal](../components/Modal) to edit the setting.
+
+For cases where you don't need the full functionality of the `FeatureSwitch`,
+you can compose a layout of the pieces you do need.
 
 ## Related
 
