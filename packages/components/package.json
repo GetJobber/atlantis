@@ -452,7 +452,9 @@
     }
   },
   "scripts": {
-    "build": "rollup --config",
+    "build": "npm run build:pre && rollup --config && npm run build:post",
+    "build:pre": "PREBUILD_CSS=true rollup --config && cp dist/styles.css ./styles.css.backup",
+    "build:post": "mv ./styles.css.backup dist/styles.css",
     "bootstrap": "npm run clean; npm run build",
     "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
