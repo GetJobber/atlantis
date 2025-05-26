@@ -11,9 +11,7 @@ export default defineConfig({
     ? [["html"], ["junit", { outputFile: "test-results/junit-results.xml" }]]
     : "html",
   use: {
-    baseURL: process.env.CI
-      ? "http://localhost:5173"
-      : "http://host.docker.internal:5173",
+    baseURL: "http://localhost:5173",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     contextOptions: {

@@ -15,10 +15,6 @@ const rewriteLink = (item: string) => {
   return newItem;
 };
 export default defineConfig({
-  server: {
-    host: "127.0.0.1",
-    allowedHosts: ["localhost", "host.docker.internal"],
-  },
   plugins: [
     react(),
     mdx({
