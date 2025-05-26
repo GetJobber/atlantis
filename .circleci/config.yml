@@ -212,7 +212,7 @@ jobs:
             done
       - run:
           name: Run Playwright tests
-          command: cd packages/site && npm run e2e
+          command: cd packages/site && npm run test:visual:ci
           env:
             CI: 'true'
       - store_test_results:
