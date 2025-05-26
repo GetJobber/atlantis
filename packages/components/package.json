@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "6.56.1",
+  "version": "6.60.1",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -420,6 +420,11 @@
       "import": "./dist/Text/index.mjs",
       "require": "./dist/Text/index.cjs"
     },
+    "./Thumbnail": {
+      "types": "./dist/Thumbnail/index.d.ts",
+      "import": "./dist/Thumbnail/index.mjs",
+      "require": "./dist/Thumbnail/index.cjs"
+    },
     "./Tiles": {
       "types": "./dist/Tiles/index.d.ts",
       "import": "./dist/Tiles/index.mjs",
@@ -478,6 +483,7 @@
     "filesize": "^6.1.0",
     "framer-motion": "^11.0.3",
     "lodash": "^4.17.21",
+    "react-aria-components": "^1.7.1",
     "react-countdown": "^2.3.2",
     "react-datepicker": "~4.10.0",
     "react-dropzone": "^11.0.2",
@@ -513,7 +519,7 @@
   "peerDependencies": {
     "@apollo/client": "^3",
     "@jobber/design": "*",
-    "@jobber/hooks": "^2",
+    "@jobber/hooks": ">=2",
     "@tanstack/react-table": "^8",
     "axios": "^1",
     "classnames": "^2",

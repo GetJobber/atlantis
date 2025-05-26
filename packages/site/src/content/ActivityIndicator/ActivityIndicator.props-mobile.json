@@ -81,7 +81,7 @@
         },
         "required": false,
         "type": {
-          "name": "Insets"
+          "name": "number | Insets"
         }
       },
       "id": {
@@ -95,6 +95,19 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "needsOffscreenAlphaCompositing": {
+        "defaultValue": null,
+        "description": "Whether this view needs to rendered offscreen and composited with an alpha in order to preserve 100% correct colors and blending behavior.\nThe default (false) falls back to drawing the component and its children\nwith an alpha applied to the paint used to draw each element instead of rendering the full component offscreen and compositing it back with an alpha value.\nThis default may be noticeable and undesired in the case where the View you are setting an opacity on\nhas multiple overlapping elements (e.g. multiple overlapping Views, or text and a background).\n\nRendering offscreen to preserve correct alpha behavior is extremely expensive\nand hard to debug for non-native developers, which is why it is not turned on by default.\nIf you do need to enable this property for an animation,\nconsider combining it with renderToHardwareTextureAndroid if the view contents are static (i.e. it doesn't need to be redrawn each frame).\nIf that property is enabled, this View will be rendered off-screen once,\nsaved in a hardware texture, and then composited onto the screen with an alpha each frame without having to switch rendering targets on the GPU.",
+        "name": "needsOffscreenAlphaCompositing",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "onLayout": {
@@ -162,6 +175,19 @@
           "name": "string"
         }
       },
+      "experimental_layoutConformance": {
+        "defaultValue": null,
+        "description": "Contols whether this view, and its transitive children, are laid in a way\nconsistent with web browsers ('strict'), or consistent with existing\nReact Native code which may rely on incorrect behavior ('classic').",
+        "name": "experimental_layoutConformance",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"strict\" | \"classic\""
+        }
+      },
       "collapsable": {
         "defaultValue": null,
         "description": "Views that are only used to layout their children or otherwise don't draw anything\nmay be automatically removed from the native hierarchy as an optimization.\nSet this property to false to disable this optimization and ensure that this View exists in the native view hierarchy.",
@@ -175,10 +201,10 @@
           "name": "boolean"
         }
       },
-      "needsOffscreenAlphaCompositing": {
+      "collapsableChildren": {
         "defaultValue": null,
-        "description": "Whether this view needs to rendered offscreen and composited with an alpha in order to preserve 100% correct colors and blending behavior.\nThe default (false) falls back to drawing the component and its children\nwith an alpha applied to the paint used to draw each element instead of rendering the full component offscreen and compositing it back with an alpha value.\nThis default may be noticeable and undesired in the case where the View you are setting an opacity on\nhas multiple overlapping elements (e.g. multiple overlapping Views, or text and a background).\n\nRendering offscreen to preserve correct alpha behavior is extremely expensive\nand hard to debug for non-native developers, which is why it is not turned on by default.\nIf you do need to enable this property for an animation,\nconsider combining it with renderToHardwareTextureAndroid if the view contents are static (i.e. it doesn't need to be redrawn each frame).\nIf that property is enabled, this View will be rendered off-screen once,\nsaved in a hardware texture, and then composited onto the screen with an alpha each frame without having to switch rendering targets on the GPU.",
-        "name": "needsOffscreenAlphaCompositing",
+        "description": "Setting to false prevents direct children of the view from being removed\nfrom the native view hierarchy, similar to the effect of setting\n`collapsable={false}` on each child.",
+        "name": "collapsableChildren",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
           "name": "ViewPropsAndroid"
@@ -212,6 +238,19 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "tabIndex": {
+        "defaultValue": null,
+        "description": "Indicates whether this `View` should be focusable with a non-touch input device, eg. receive focus with a hardware keyboard.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex\nfor more details.\n\nSupports the following values:\n-  0 (View is focusable)\n- -1 (View is not focusable)",
+        "name": "tabIndex",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "0 | -1"
         }
       },
       "shouldRasterizeIOS": {
@@ -251,19 +290,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "tvParallaxProperties": {
-        "defaultValue": null,
-        "description": "*(Apple TV only)* Object with properties to control Apple TV parallax effects.\n@platform ios",
-        "name": "tvParallaxProperties",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "TVViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "TVParallaxProperties"
         }
       },
       "tvParallaxShiftDistanceX": {
@@ -838,19 +864,6 @@
           "name": "boolean"
         }
       },
-      "aria-labelledby": {
-        "defaultValue": null,
-        "description": "Represents the nativeID of the associated label text. When the assistive technology focuses on the component with this props, the text is read aloud.\n@platform android",
-        "name": "aria-labelledby",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "accessibilityHint": {
         "defaultValue": null,
         "description": "An accessibility hint helps users understand what will happen when they perform an action on the accessibility element when that result is not obvious from the accessibility label.",
@@ -968,19 +981,6 @@
           "name": "boolean"
         }
       },
-      "aria-live": {
-        "defaultValue": null,
-        "description": "",
-        "name": "aria-live",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"polite\" | \"assertive\" | \"off\""
-        }
-      },
       "aria-modal": {
         "defaultValue": null,
         "description": "",
@@ -1007,9 +1007,35 @@
           "name": "Role"
         }
       },
+      "accessibilityLabelledBy": {
+        "defaultValue": null,
+        "description": "Identifies the element that labels the element it is applied to. When the assistive technology focuses on the component with this props,\nthe text is read aloud. The value should should match the nativeID of the related element.\n@platform android",
+        "name": "accessibilityLabelledBy",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "string | string[]"
+        }
+      },
+      "aria-labelledby": {
+        "defaultValue": null,
+        "description": "Identifies the element that labels the element it is applied to. When the assistive technology focuses on the component with this props,\nthe text is read aloud. The value should should match the nativeID of the related element.\n@platform android",
+        "name": "aria-labelledby",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "accessibilityLiveRegion": {
         "defaultValue": null,
-        "description": "Indicates to accessibility services whether the user should be notified when this view changes.\nWorks for Android API >= 19 only.\nSee http://developer.android.com/reference/android/view/View.html#attr_android:accessibilityLiveRegion for references.\n@platform android",
+        "description": "Indicates to accessibility services whether the user should be notified\nwhen this view changes. Works for Android API >= 19 only.\n@platform android\n\nSee https://reactnative.dev/docs/view#accessibilityliveregion",
         "name": "accessibilityLiveRegion",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
@@ -1020,17 +1046,17 @@
           "name": "\"none\" | \"polite\" | \"assertive\""
         }
       },
-      "accessibilityLabelledBy": {
+      "aria-live": {
         "defaultValue": null,
-        "description": "A reference to another element `nativeID` used to build complex forms. The value of `accessibilityLabelledBy` should match the `nativeID` of the related element.\n@platform android",
-        "name": "accessibilityLabelledBy",
+        "description": "Indicates to accessibility services whether the user should be notified\nwhen this view changes. Works for Android API >= 19 only.\n@platform android\n\nSee https://reactnative.dev/docs/view#accessibilityliveregion",
+        "name": "aria-live",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
           "name": "AccessibilityPropsAndroid"
         },
         "required": false,
         "type": {
-          "name": "string | string[]"
+          "name": "\"polite\" | \"assertive\" | \"off\""
         }
       },
       "accessibilityElementsHidden": {
@@ -1115,6 +1141,32 @@
         "defaultValue": null,
         "description": "By using the accessibilityLanguage property, the screen reader will understand which language to use while reading the element's label, value and hint. The provided string value must follow the BCP 47 specification (https://www.rfc-editor.org/info/bcp47).\nhttps://reactnative.dev/docs/accessibility#accessibilitylanguage-ios\n@platform ios",
         "name": "accessibilityLanguage",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "accessibilityShowsLargeContentViewer": {
+        "defaultValue": null,
+        "description": "A Boolean value that indicates whether or not to show the item in the large content viewer.\nAvailable on iOS 13.0+\nhttps://reactnative.dev/docs/accessibility#accessibilityshowslargecontentviewer\n@platform ios",
+        "name": "accessibilityShowsLargeContentViewer",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "accessibilityLargeContentTitle": {
+        "defaultValue": null,
+        "description": "When `accessibilityShowsLargeContentViewer` is set, this string will be used as title for the large content viewer.\nhttps://reactnative.dev/docs/accessibility#accessibilitylargecontenttitle\n@platform ios",
+        "name": "accessibilityLargeContentTitle",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
           "name": "AccessibilityPropsIOS"

@@ -47,7 +47,6 @@ export function AffixIcon({
 }: AffixIconProps & XOR<Affix, Suffix>) {
   const affixIconClass = classnames(styles.affixIcon, {
     [styles.suffix]: variation === "suffix",
-    [styles.hasAction]: onClick,
   });
 
   const iconSize = size === "small" ? "small" : "base";

@@ -54,4 +54,5 @@ export interface SelectRebuiltProps
   readonly value?: string | number;
   onChange?(newValue?: string | number): void;
   version: 2;
+  error?: string;
 }

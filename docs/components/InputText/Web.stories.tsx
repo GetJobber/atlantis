@@ -196,6 +196,9 @@ export const VersionComparison = () => {
           {
             placeholder: "Default alignment",
             ...extraProps,
+            showMiniLabel: false,
+            description: "Description text",
+            error: "Error string",
           },
           "basic",
         )}

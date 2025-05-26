@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.81.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.0...@jobber/components-native@0.81.1) (2025-05-16)
+
+
+### Bug Fixes
+
+* **components-native:** Fix bleeding corners for FormatFile ([#2559](https://github.com/GetJobber/atlantis/issues/2559)) ([8779248](https://github.com/GetJobber/atlantis/commit/87792488bbf0efc110d1adf914b61bdaa1fff619))
+
+
+
+
+
+# [0.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.80.2...@jobber/components-native@0.81.0) (2025-05-12)
+
+
+### Features
+
+* **components-native:** BREAKING CHANGE: Upgrade React Native Version ([#2528](https://github.com/GetJobber/atlantis/issues/2528)) ([ca67b7e](https://github.com/GetJobber/atlantis/commit/ca67b7efa686f03017a9af86189a62de993c72a4)), closes [#2540](https://github.com/GetJobber/atlantis/issues/2540)
+
+
+
+
+
 ## [0.80.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.80.1...@jobber/components-native@0.80.2) (2025-05-07)
 
 **Note:** Version bump only for package @jobber/components-native

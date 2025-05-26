@@ -51,7 +51,7 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
         ? ({
             icon: "calendar",
             ariaLabel: "Show calendar",
-            onClick: onClick && onClick,
+            onClick: !props.disabled && onClick && onClick,
           } as Suffix)
         : undefined;
 

@@ -139,6 +139,106 @@ describe("Menu", () => {
     await userEvent.click(getByRole("button"));
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
+
+  describe("icon colors", () => {
+    it("should default to --color-icon", async () => {
+      render(
+        <Menu
+          activator={<Button label="Menu" />}
+          items={[
+            {
+              actions: [
+                {
+                  label: "Down",
+                  icon: "arrowDown",
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const iconSvg = screen.getByTestId("arrowDown");
+      expect(iconSvg.style.fill).toBe("var(--color-icon)");
+    });
+
+    it("should respect special icon colors", async () => {
+      render(
+        <Menu
+          activator={<Button label="Menu" />}
+          items={[
+            {
+              actions: [
+                {
+                  label: "New job",
+                  icon: "job",
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const iconSvg = screen.getByTestId("job");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-job)");
+    });
+
+    it("should allow overriding icon colors", async () => {
+      render(
+        <Menu
+          activator={<Button label="Menu" />}
+          items={[
+            {
+              actions: [
+                {
+                  label: "New job",
+                  icon: "job",
+                  iconColor: "icon",
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const iconSvg = screen.getByTestId("job");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-icon)");
+    });
+
+    it("should use destructive icon color when action is marked as destructive", async () => {
+      render(
+        <Menu
+          activator={<Button label="Menu" />}
+          items={[
+            {
+              header: "Danger Zone",
+              actions: [
+                {
+                  label: "Delete Item",
+                  icon: "trash",
+                  destructive: true,
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const iconSvg = screen.getByTestId("trash");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-destructive)");
+    });
+  });
 });
 
 it("should focus first action item from the menu when activated", async () => {
