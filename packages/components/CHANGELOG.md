@@ -3,6 +3,124 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.0...@jobber/components@6.60.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **components:** Fix InputEmail V2 placeholder propagated down to input ([#2570](https://github.com/GetJobber/atlantis/issues/2570)) ([749ab5a](https://github.com/GetJobber/atlantis/commit/749ab5acfd6076ec46ffbed1a8f4a09691fc9535))
+
+
+
+
+
+# [6.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.59.0...@jobber/components@6.60.0) (2025-05-23)
+
+
+### Features
+
+* **components:** Add InputNumber v2 ([#2551](https://github.com/GetJobber/atlantis/issues/2551)) ([b1f55d9](https://github.com/GetJobber/atlantis/commit/b1f55d9773a799edca596010339792e8b8835124))
+
+
+
+
+
+# [6.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.6...@jobber/components@6.59.0) (2025-05-15)
+
+
+### Features
+
+* **components:** Support iconColor on Menu actions ([#2555](https://github.com/GetJobber/atlantis/issues/2555)) ([806775a](https://github.com/GetJobber/atlantis/commit/806775a925e35e2f8d0e088bb8335edd828f063f))
+
+
+
+
+
+## [6.58.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.5...@jobber/components@6.58.6) (2025-05-15)
+
+
+### Bug Fixes
+
+* **components:** Prevent Autocompletes within Modals from dismissing the Modal on select ([#2560](https://github.com/GetJobber/atlantis/issues/2560)) ([86c8f3a](https://github.com/GetJobber/atlantis/commit/86c8f3a0d6230bc8a83167cdbec1d46f8c822acd))
+
+
+
+
+
+## [6.58.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.4...@jobber/components@6.58.5) (2025-05-15)
+
+
+### Bug Fixes
+
+* **components:** Remove z-index from affix icons with actions [JOB-119173 ] ([#2562](https://github.com/GetJobber/atlantis/issues/2562)) ([c54d292](https://github.com/GetJobber/atlantis/commit/c54d292a7d83b7681c0028cdd1fd4c49a4ebfe77))
+
+
+
+
+
+## [6.58.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.3...@jobber/components@6.58.4) (2025-05-14)
+
+
+### Bug Fixes
+
+* **components:** stop minilabel from responding on empty disabled InputTime ([#2564](https://github.com/GetJobber/atlantis/issues/2564)) ([9e1d465](https://github.com/GetJobber/atlantis/commit/9e1d4654ca08d505f4c3e1d905adeaaa9a09ae00))
+
+
+
+
+
+## [6.58.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.2...@jobber/components@6.58.3) (2025-05-14)
+
+
+### Bug Fixes
+
+* **components:** Allowing error passthrough on <Select version={2} /> ([#2563](https://github.com/GetJobber/atlantis/issues/2563)) ([b50d72e](https://github.com/GetJobber/atlantis/commit/b50d72e5eb1d72dda2c6122fc8c708683f8418d5))
+
+
+
+
+
+## [6.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.1...@jobber/components@6.58.2) (2025-05-14)
+
+
+### Bug Fixes
+
+* **components:** stop showing focus ring on disabled and invalid components ([#2558](https://github.com/GetJobber/atlantis/issues/2558)) ([5b6f704](https://github.com/GetJobber/atlantis/commit/5b6f7041cc599b08aaf23fd8d33704d1c1226638))
+
+
+
+
+
+## [6.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.58.0...@jobber/components@6.58.1) (2025-05-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.57.0...@jobber/components@6.58.0) (2025-05-12)
+
+
+### Features
+
+* **components-native:** BREAKING CHANGE: Upgrade React Native Version ([#2528](https://github.com/GetJobber/atlantis/issues/2528)) ([ca67b7e](https://github.com/GetJobber/atlantis/commit/ca67b7efa686f03017a9af86189a62de993c72a4)), closes [#2540](https://github.com/GetJobber/atlantis/issues/2540)
+
+
+
+
+
+# [6.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.56.1...@jobber/components@6.57.0) (2025-05-12)
+
+
+### Features
+
+* **components:** Format File Composed ([#2538](https://github.com/GetJobber/atlantis/issues/2538)) ([4f1f931](https://github.com/GetJobber/atlantis/commit/4f1f93110d7b4b090b0e94f124232aaf8bd1f777))
+
+
+
+
+
 ## [6.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.56.0...@jobber/components@6.56.1) (2025-05-08)
 
 **Note:** Version bump only for package @jobber/components

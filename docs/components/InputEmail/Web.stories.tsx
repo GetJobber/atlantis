@@ -40,7 +40,7 @@ export const VersionComparison = () => {
     loading: "",
     maxLength: "",
     clearable: "",
-    readonly: "",
+    readonly: "readonly@example.com",
   });
 
   const [inline, setInline] = useState(false);
