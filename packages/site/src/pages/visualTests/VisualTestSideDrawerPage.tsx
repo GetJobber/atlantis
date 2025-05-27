@@ -18,7 +18,7 @@ export const VisualTestSideDrawerPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>SideDrawer Examples</Heading>
+        <Heading level={3}>SideDrawer Examples</Heading>
 
         <Stack gap="large">
           {/* Basic SideDrawer */}
