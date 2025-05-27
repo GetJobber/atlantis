@@ -37,11 +37,29 @@ Something about the user's account or functionality needs to be managed and it
 Under the appropriate section in the Settings menu, add a setting for the
 feature.
 
-Most settings can be managed with the `FeatureSwitch` component, which allows:
+Most settings can be managed with the
+[FeatureSwitch](../components/FeatureSwitch) component, which allows:
 
 - turning functionality on and off
-- editing aspects of the feature via a `Modal`
+- editing aspects of the feature via a [Modal](../components/Modal)
 - if the page supports it, live updates to the setting
+
+### Grouping settings
+
+<iframe
+  style={{
+    border: "var(--border-base) solid var(--color-border)",
+    borderRadius: "var(--radius-base)",
+    overflow: "hidden",
+  }}
+  title="Figma overview"
+  width="100%"
+  height="900"
+  src="https://embed.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product-Base?m=auto&node-id=30684-219&embed-host=share"
+  allowfullscreen
+></iframe>
+
+Use a [Card](../components/Card) to group related settings together.
 
 ## Implementation
 
@@ -50,7 +68,8 @@ point for most settings. If the setting is more complex, you can trigger a
 [Modal](../components/Modal) to edit the setting.
 
 For cases where you don't need the full functionality of the `FeatureSwitch`,
-you can compose a layout of the pieces you do need.
+you can either opt out of props like `onSwitch` or `onEdit`, or compose a layout
+of the pieces you do need.
 
 ## Related
 
@@ -59,6 +78,7 @@ you can compose a layout of the pieces you do need.
 - [FeatureSwitch](../components/FeatureSwitch)
 - [Card](../components/Card)
 - [Modal](../components/Modal)
+- [Switch](../components/Switch)
 
 ## Principles
 
