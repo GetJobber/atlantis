@@ -147,7 +147,7 @@ export const componentList = [
   {
     title: "Cluster",
     to: "/components/Cluster",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Cluster.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Grid", "Columns", "Rows"],
   },
@@ -195,7 +195,7 @@ export const componentList = [
   {
     title: "Cover",
     to: "/components/Cover",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Cover.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -290,7 +290,7 @@ export const componentList = [
   {
     title: "Frame",
     to: "/components/Frame",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Frame.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Stack", "Container"],
   },
@@ -625,7 +625,7 @@ export const componentList = [
   {
     title: "ResponsiveSwitcher",
     to: "/components/ResponsiveSwitcher",
-    imageURL: "/Placeholder.png",
+    imageURL: "/ResponsiveSwitcher.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -653,7 +653,7 @@ export const componentList = [
   {
     title: "SideKick",
     to: "/components/SideKick",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Sidekick.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -674,7 +674,7 @@ export const componentList = [
   {
     title: "Stack",
     to: "/components/Stack",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Stack.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -736,7 +736,7 @@ export const componentList = [
   {
     title: "Tiles",
     to: "/components/Tiles",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Tiles.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
