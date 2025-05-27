@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.80.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.0...@jobber/design@0.80.1) (2025-05-27)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.79.0...@jobber/design@0.80.0) (2025-05-15)
 
 

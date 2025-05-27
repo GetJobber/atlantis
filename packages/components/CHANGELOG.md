@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.1...@jobber/components@6.60.2) (2025-05-27)
+
+
+### Bug Fixes
+
+* **components:** Fix inconsistent bundled styles order for components ([#2573](https://github.com/GetJobber/atlantis/issues/2573)) ([66f8345](https://github.com/GetJobber/atlantis/commit/66f8345f06ac1c3f0aea2c88f76cd947cada6145))
+
+
+
+
+
 ## [6.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.0...@jobber/components@6.60.1) (2025-05-23)
 
 
