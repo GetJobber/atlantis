@@ -119,7 +119,7 @@ export const componentList = [
   {
     title: "ContentBlock",
     to: "/components/ContentBlock",
-    imageURL: "/Placeholder.png",
+    imageURL: "/ContentBlock.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
@@ -168,7 +168,7 @@ export const componentList = [
   {
     title: "Container",
     to: "/components/Container",
-    imageURL: "/Placeholder.png",
+    imageURL: "/Container.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Container", "Stack", "Query"],
   },
