@@ -5,12 +5,16 @@ import { Button, Flex } from "@jobber/components";
 export function UseStepper() {
   const steps = ["step1", "step2", "step3"] as const;
 
-  const { currentStep, nextStep, previousStep, isFirst, isLast } = useStepper(
-    steps,
-    {
-      defaultStep: "step1", // optional
-    },
-  );
+  const {
+    currentStep,
+    goToNextStep,
+    goToPreviousStep,
+    isFirst,
+    isLast,
+    goToStep,
+  } = useStepper(steps, {
+    defaultStep: "step1", // optional
+  });
 
   return (
     <div>
@@ -20,16 +24,20 @@ export function UseStepper() {
       <Flex gap="base" direction="row" align="end" template={["grow", "grow"]}>
         <Button
           label="Previous"
-          onClick={previousStep}
+          onClick={goToPreviousStep}
           disabled={isFirst}
           type="primary"
         />
-        <Button
-          label="Next"
-          onClick={nextStep}
-          disabled={isLast}
-          type="primary"
-        />
+        {!isLast && (
+          <Button label="Next" onClick={goToNextStep} type="primary" />
+        )}
+        {isLast && (
+          <Button
+            label="Go To Start"
+            onClick={() => goToStep("step1")}
+            type="primary"
+          />
+        )}
       </Flex>
     </div>
   );

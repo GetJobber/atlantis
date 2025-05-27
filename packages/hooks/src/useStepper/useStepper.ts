@@ -30,7 +30,7 @@ export function useStepper<StepName extends string>(
         setCurrentStep(step);
       },
 
-      nextStep: () => {
+      goToNextStep: () => {
         setCurrentStep(prevCurrentStep => {
           const currentIndex = steps.indexOf(prevCurrentStep);
           const nextStep = steps[Math.min(currentIndex + 1, steps.length - 1)];
@@ -41,7 +41,7 @@ export function useStepper<StepName extends string>(
         });
       },
 
-      previousStep: () => {
+      goToPreviousStep: () => {
         setCurrentStep(prevCurrentStep => {
           const currentIndex = steps.indexOf(prevCurrentStep);
           const previousStep = steps[Math.max(currentIndex - 1, 0)];

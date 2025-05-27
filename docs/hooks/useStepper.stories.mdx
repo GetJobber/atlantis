@@ -13,9 +13,50 @@ type safety for step definitions.
   <UseStepper />
 </Canvas>
 
+```tsx
+const steps = ["step1", "step2", "step3"] as const;
+
+const {
+  currentStep,
+  goToNextStep,
+  goToPreviousStep,
+  isFirst,
+  isLast,
+  goToStep,
+} = useStepper(steps, {
+  defaultStep: "step1", // optional
+});
+
+return (
+  <div>
+    {currentStep === "step1" && <div>Step 1</div>}
+    {currentStep === "step2" && <div>Step 2</div>}
+    {currentStep === "step3" && <div>Step 3</div>}
+    <Flex gap="base" direction="row" align="end" template={["grow", "grow"]}>
+      <Button
+        label="Previous"
+        onClick={goToPreviousStep}
+        disabled={isFirst}
+        type="primary"
+      />
+      {!isLast && <Button label="Next" onClick={goToNextStep} type="primary" />}
+      {isLast && (
+        <Button
+          label="Go To Start"
+          onClick={() => goToStep("step1")}
+          type="primary"
+        />
+      )}
+    </Flex>
+  </div>
+);
+```
+
 ## Hook Parameters
 
 ```typescript
+import { UseStepper } from "./UseStepper";
+
 interface UseStepOptions<StepName extends string> {
   // Optional starting step. If not provided, the first step in the steps array will be used
   defaultStep?: StepName;
@@ -27,7 +68,7 @@ function useStepper<StepName extends string>(
 );
 ```
 
-## Return Values
+## Return Value
 
 ```typescript
 {
