@@ -40,7 +40,7 @@ export const VisualTestDatePickerPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>DatePicker Examples</Heading>
+        <Heading level={3}>DatePicker Examples</Heading>
 
         <Stack gap="large">
           {/* Basic DatePicker */}

@@ -20,7 +20,7 @@ export const VisualTestComponentPage = () => {
       <Stack gap="extravagant">
         {/* Button Examples */}
         <Stack>
-          <Heading level={1}>Button Examples</Heading>
+          <Heading level={3}>Button Examples</Heading>
           <Stack gap="large">
             {/* Basic Button Types */}
             <section>
@@ -110,7 +110,7 @@ export const VisualTestComponentPage = () => {
 
         {/* Avatar Examples */}
         <Stack>
-          <Heading level={1}>Avatar Examples</Heading>
+          <Heading level={3}>Avatar Examples</Heading>
           <Stack gap="large">
             {/* Avatar Sizes */}
             <section>
@@ -166,7 +166,7 @@ export const VisualTestComponentPage = () => {
 
         {/* StatusIndicator Examples */}
         <Stack>
-          <Heading level={1}>StatusIndicator Examples</Heading>
+          <Heading level={3}>StatusIndicator Examples</Heading>
           <Stack gap="large">
             {/* All Status Types */}
             <section>
@@ -226,7 +226,7 @@ export const VisualTestComponentPage = () => {
 
         {/* Banner Examples */}
         <Stack>
-          <Heading level={1}>Banner Examples</Heading>
+          <Heading level={3}>Banner Examples</Heading>
           <Stack gap="large">
             {/* Basic Banner Types */}
             <section>
@@ -302,7 +302,7 @@ export const VisualTestComponentPage = () => {
 
         {/* Checkbox Examples */}
         <Stack>
-          <Heading level={1}>Checkbox Examples</Heading>
+          <Heading level={3}>Checkbox Examples</Heading>
           <Stack gap="large">
             {/* Basic Checkbox Types */}
             <section>
@@ -372,7 +372,7 @@ export const VisualTestComponentPage = () => {
 
         {/* Card Examples */}
         <Stack>
-          <Heading level={1}>Card Examples</Heading>
+          <Heading level={3}>Card Examples</Heading>
           <Stack gap="large">
             {/* Basic Cards */}
             <section>
@@ -532,7 +532,7 @@ export const VisualTestComponentPage = () => {
 
         {/* Box Examples */}
         <Stack>
-          <Heading level={1}>Box Examples</Heading>
+          <Heading level={3}>Box Examples</Heading>
           <Stack gap="large">
             {/* Basic Box Usage */}
             <section>
@@ -650,7 +650,7 @@ export const VisualTestComponentPage = () => {
         </Stack>
         {/* Menu Examples */}
         <Stack>
-          <Heading level={1}>Menu Examples</Heading>
+          <Heading level={3}>Menu Examples</Heading>
           <Stack gap="large">
             {/* Basic Menu Types */}
             <section>
@@ -967,7 +967,7 @@ export const VisualTestComponentPage = () => {
         </Stack>
         {/* Text Examples */}
         <Stack>
-          <Heading level={1}>Text Examples</Heading>
+          <Heading level={3}>Text Examples</Heading>
           <Stack gap="large">
             {/* Text Sizes */}
             <section>
@@ -1053,14 +1053,12 @@ export const VisualTestComponentPage = () => {
         </Stack>
         {/* Heading Examples */}
         <Stack>
-          <Heading level={1}>Heading Examples</Heading>
+          <Heading level={3}>Heading Examples</Heading>
           <Stack gap="large">
             {/* Heading Levels */}
             <section>
               <Text size="large">Heading Levels</Text>
               <Stack gap="base">
-                <Heading level={1}>Heading Level 1</Heading>
-                <Heading level={2}>Heading Level 2</Heading>
                 <Heading level={3}>Heading Level 3</Heading>
                 <Heading level={4}>Heading Level 4</Heading>
                 <Heading level={5}>Heading Level 5</Heading>

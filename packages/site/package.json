@@ -4,7 +4,6 @@
   "version": "0.60.0",
   "type": "module",
   "scripts": {
-    "e2e": "playwright test",
     "dev": "npm run bundle && npm run copyFiles && vite",
     "bundle": "rollup -c editorBundle.rollup.config.js && rollup -c editorMobileBundle.rollup.config.js",
     "copyFiles": "cp ../design/dist/foundation.css ./public/foundation.css && cp ../components/dist/styles.css ./public/styles.css && cp ../design/dist/dark.mode.css ./public/dark.mode.css && cp ./node_modules/axios/dist/esm/axios.js ./public",
@@ -12,9 +11,10 @@
     "generate": "node generateDocs.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "test:visual:ci": "playwright test --config=playwright.config.ts tests/visual/",
     "test:visual:reload": "cd .. && npm run bootstrap && cd - && npm run test:visual",
-    "test:visual": "playwright test --config=playwright.config.ts --project=chromium tests/visual/",
-    "test:visual:update": "playwright test --config=playwright.config.ts --project=chromium tests/visual/ --update-snapshots"
+    "test:visual": "../../scripts/e2e.sh playwright test --config=playwright.config.ts --project=chromium tests/visual/",
+    "test:visual:update": "../../scripts/e2e.sh playwright test --config=playwright.config.ts  tests/visual/ --update-snapshots"
   },
   "dependencies": {
     "@babel/standalone": "^7.26.2",
@@ -35,7 +35,7 @@
     "@babel/preset-react": "^7.26.3",
     "@mdx-js/react": "^3.0.1",
     "@mdx-js/rollup": "^3.0.1",
-    "@playwright/test": "^1.49.0",
+    "@playwright/test": "^1.52.0",
     "@react-native/babel-preset": "^0.76.3",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-replace": "^6.0.1",

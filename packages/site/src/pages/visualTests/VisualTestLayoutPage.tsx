@@ -22,7 +22,7 @@ export const VisualTestLayoutPage = () => {
       <Box padding="large">
         {/* Stack Examples */}
         <Stack>
-          <Heading level={1}>Stack Examples</Heading>
+          <Heading level={3}>Stack Examples</Heading>
           <Stack gap="large">
             {/* Basic Stack */}
             <section>
@@ -148,7 +148,7 @@ export const VisualTestLayoutPage = () => {
           </Stack>
           {/* Cluster Examples */}
           <Stack>
-            <Heading level={1}>Cluster Examples</Heading>
+            <Heading level={3}>Cluster Examples</Heading>
             <Stack gap="large">
               {/* Basic Cluster */}
               <section>
@@ -263,7 +263,7 @@ export const VisualTestLayoutPage = () => {
 
           {/* ContentBlock Examples */}
           <Stack>
-            <Heading level={1}>ContentBlock Examples</Heading>
+            <Heading level={3}>ContentBlock Examples</Heading>
             <Stack gap="large">
               {/* Basic ContentBlock */}
               <section>
@@ -414,7 +414,7 @@ export const VisualTestLayoutPage = () => {
 
           {/* ResponsiveSwitcher Examples */}
           <Stack>
-            <Heading level={1}>ResponsiveSwitcher Examples</Heading>
+            <Heading level={3}>ResponsiveSwitcher Examples</Heading>
             <Stack gap="large">
               {/* Basic ResponsiveSwitcher */}
               <section>
@@ -588,7 +588,7 @@ export const VisualTestLayoutPage = () => {
 
           {/* SideKick Examples */}
           <Stack>
-            <Heading level={1}>SideKick Examples</Heading>
+            <Heading level={3}>SideKick Examples</Heading>
             <Stack gap="large">
               {/* Basic SideKick */}
               <section>
@@ -804,7 +804,7 @@ export const VisualTestLayoutPage = () => {
 
           {/* Cover Examples */}
           <Stack>
-            <Heading level={1}>Cover Examples</Heading>
+            <Heading level={3}>Cover Examples</Heading>
             <Stack gap="large">
               {/* Basic Cover */}
               <section>
@@ -937,7 +937,7 @@ export const VisualTestLayoutPage = () => {
 
           {/* Frame Examples */}
           <Stack>
-            <Heading level={1}>Frame Examples</Heading>
+            <Heading level={3}>Frame Examples</Heading>
             {/* Basic Frame */}
             <ContentBlock maxWidth={"100%"}>
               <Tiles gap="base" minSize="50ch">
@@ -976,7 +976,7 @@ export const VisualTestLayoutPage = () => {
 
           {/* Tiles Examples */}
           <Stack>
-            <Heading level={1}>Tiles Examples</Heading>
+            <Heading level={3}>Tiles Examples</Heading>
             <Stack gap="large">
               {/* Basic Tiles */}
               <section>

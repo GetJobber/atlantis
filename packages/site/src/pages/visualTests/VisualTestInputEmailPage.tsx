@@ -21,7 +21,7 @@ export const VisualTestInputEmailPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InputEmail Examples</Heading>
+        <Heading level={3}>InputEmail Examples</Heading>
 
         <Stack gap="large">
           {/* Basic InputEmail */}
