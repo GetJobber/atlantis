@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.60.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.2...@jobber/components@6.60.3) (2025-05-28)
+
+
+### Bug Fixes
+
+* **components:** rename InputNumberProps type and improve mutual exclusivity ([#2575](https://github.com/GetJobber/atlantis/issues/2575)) ([a9fc8eb](https://github.com/GetJobber/atlantis/commit/a9fc8eb86d2935e20e1a6b292df0681884497a71))
+
+
+
+
+
 ## [6.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.1...@jobber/components@6.60.2) (2025-05-27)
 
 
