@@ -15,9 +15,12 @@ export const useAtlantisPreviewCode = ({
   theme: Theme;
 }) => {
   const [code, setCode] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [error, setError] = useState<string>("");
   const { writeCodeToIFrame } = useAtlantisPreviewSkeleton(type);
-
+  const updateContent = useCallback((contentUp: string) => {
+    setContent(contentUp);
+  }, []);
   const updateCode = useCallback(
     (codeUp: string, forceUpdate?: boolean) => {
       // Since we can update our code from the editor or from page updates (clicking tabs)
@@ -59,5 +62,5 @@ export const useAtlantisPreviewCode = ({
     [iframe, iframeMobile, theme, type],
   );
 
-  return { updateCode, code, error };
+  return { updateCode, code, error, updateContent, content };
 };

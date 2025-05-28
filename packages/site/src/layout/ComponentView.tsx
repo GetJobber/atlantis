@@ -13,7 +13,10 @@ import { useErrorCatcher } from "../hooks/useErrorCatcher";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import usePageTitle from "../hooks/usePageTitle";
 import { useAtlantisPreview } from "../preview/AtlantisPreviewProvider";
-import { AtlantisPreviewEditor } from "../preview/AtlantisPreviewEditor";
+import {
+  AtlantisContentEditor,
+  AtlantisPreviewEditor,
+} from "../preview/AtlantisPreviewEditor";
 import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
 
 /**
@@ -23,9 +26,17 @@ import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
  */
 // eslint-disable-next-line max-statements
 export const ComponentView = () => {
+  const [editing, setEditing] = useState(false);
   const { name = "" } = useParams<{ name: string }>();
-  const { updateCode, iframe, iframeMobile, type, updateType } =
-    useAtlantisPreview();
+  const {
+    updateCode,
+    content,
+    updateContent,
+    iframe,
+    iframeMobile,
+    type,
+    updateType,
+  } = useAtlantisPreview();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
@@ -87,7 +98,7 @@ export const ComponentView = () => {
       label: "Design",
       children: (
         <Content spacing="large">
-          <ComponentContent />
+          {editing ? <AtlantisContentEditor /> : <ComponentContent />}
         </Content>
       ),
     },
@@ -195,8 +206,28 @@ export const ComponentView = () => {
 
   return PageMeta ? (
     <BaseView>
-      <BaseView.Main>
-        <Page width="narrow" title={PageMeta.title}>
+      <BaseView.Main noMaxWidth={editing}>
+        <Page
+          title={PageMeta.title}
+          primaryAction={{
+            label: editing ? "Save" : "Edit",
+            onClick: async () => {
+              if (editing) {
+                fetch("/api/callback?component=Button", {
+                  method: "POST",
+                  body: JSON.stringify({
+                    content: content,
+                  }),
+                });
+                // Save the editor content
+                setEditing(false);
+              } else {
+                updateContent(await PageMeta.contentAsString());
+                setEditing(true);
+              }
+            },
+          }}
+        >
           <Box>
             <Content spacing="large">
               <Box direction="column" gap="small" alignItems="flex-end">

@@ -7,6 +7,12 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ButtonContent />,
+  contentAsString: async () => {
+    const response = await fetch("/api/callback?component=Button");
+    const data = await response.json();
+
+    return data.content;
+  },
   props: Props,
   mobileProps: MobileProps,
   component: {

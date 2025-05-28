@@ -81,3 +81,73 @@ export const AtlantisPreviewEditor = () => {
     </div>
   );
 };
+
+export const AtlantisContentEditor = () => {
+  const { content, updateContent, error, type } = useAtlantisPreview();
+
+  const { atlantisPreviewCodeTheme } = useAtlantisPreviewCodeTheme();
+
+  const editor = useRef(null);
+  const editorView = useRef<EditorView | null>(null);
+
+  useEffect(() => {
+    // If the code has changed, but it's not equal to the editor's code, update the editor
+    // This happens when we switch tabs
+    // Check out the code mirror docs to see how the state is updated with a transaction.
+    if (content && editorView.current?.state.doc.toString() !== content) {
+      const transaction = editorView.current?.state.update({
+        changes: {
+          from: 0,
+          to: editorView.current.state.doc.length,
+          insert: content,
+        },
+      });
+
+      if (transaction) {
+        editorView.current?.dispatch(transaction);
+      }
+    }
+  }, [type, content]);
+
+  useEffect(() => {
+    // If the DOM has mounted, but we have not yet initialized the editor.
+    if (editor.current && !editorView.current) {
+      // Basic CodeMirror setup with a custom theme, line numbers and syntax highlighting.
+      const startState = EditorState.create({
+        doc: content,
+        extensions: [
+          lineNumbers(),
+          atlantisPreviewCodeTheme,
+          syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
+
+          language.of(javascript({ jsx: true, typescript: true })),
+          EditorView.updateListener.of(update => {
+            if (update.docChanged) {
+              updateContent(update.state.doc.toString());
+            }
+          }),
+        ],
+      });
+      editorView.current = new EditorView({
+        state: startState,
+        parent: editor.current,
+      });
+      editorView.current.dispatch({});
+    }
+
+    return () => {
+      if (editorView.current) {
+        editorView.current.destroy();
+        editorView.current = null;
+      }
+    };
+  }, [editor, editorView, type]);
+
+  return (
+    <div>
+      <div ref={editor}></div>
+      <CopyCodeButton code={content} />
+      {error}
+    </div>
+  );
+};

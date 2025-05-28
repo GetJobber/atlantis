@@ -9,7 +9,9 @@ const AtlantisPreviewContext = createContext<{
   iframe: React.RefObject<HTMLIFrameElement> | null;
   iframeMobile: React.RefObject<HTMLIFrameElement> | null;
   updateCode: (code: string, forceUpdate?: boolean) => void;
+  updateContent: (content: string, forceUpdate?: boolean) => void;
   code: string;
+  content: string;
   error: string;
   type: "web" | "mobile";
   updateType: (value: "web" | "mobile") => void;
@@ -17,7 +19,9 @@ const AtlantisPreviewContext = createContext<{
   iframe: null,
   iframeMobile: null,
   updateCode: () => ({}),
+  updateContent: () => ({}),
   code: "",
+  content: "",
   error: "",
   type: "web",
   updateType: () => ({}),
@@ -31,12 +35,13 @@ export const AtlantisPreviewProvider = ({ children }: PropsWithChildren) => {
   const { theme } = useAtlantisTheme();
   const { iframe, iframeMobile, type, updateType } = useAtlantisPreviewViewer();
 
-  const { code, error, updateCode } = useAtlantisPreviewCode({
-    iframe,
-    iframeMobile,
-    theme,
-    type,
-  });
+  const { code, content, error, updateCode, updateContent } =
+    useAtlantisPreviewCode({
+      iframe,
+      iframeMobile,
+      theme,
+      type,
+    });
 
   useEffect(() => {
     if (iframe.current) {
@@ -56,7 +61,9 @@ export const AtlantisPreviewProvider = ({ children }: PropsWithChildren) => {
         iframe,
         iframeMobile,
         updateCode,
+        updateContent,
         code,
+        content,
         error,
         type,
         updateType,

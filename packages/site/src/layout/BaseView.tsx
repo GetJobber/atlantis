@@ -37,8 +37,11 @@ BaseView.Main = function Main({
             <div
               style={{
                 width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                transition: "max-width 0.3s ease-in",
                 maxWidth: noMaxWidth
-                  ? "none"
+                  ? "100%"
                   : "calc(768px + var(--space-large))",
                 padding: "0 var(--space-base)",
                 boxSizing: "border-box",
