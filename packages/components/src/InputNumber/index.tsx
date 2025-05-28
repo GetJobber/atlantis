@@ -10,12 +10,16 @@ import {
   InputNumberRebuiltRef,
 } from "./InputNumber.rebuilt.types";
 
-export type InputNumberShimProps =
-  | InputNumberLegacyProps
-  | InputNumberRebuiltProps;
+export type InputNumberProps =
+  | ({
+      version: 2;
+    } & InputNumberRebuiltProps)
+  | ({
+      version?: 1;
+    } & InputNumberLegacyProps);
 
 function isNewInputNumberProps(
-  props: InputNumberShimProps,
+  props: InputNumberProps,
 ): props is InputNumberRebuiltProps {
   return props.version === 2;
 }
@@ -23,7 +27,7 @@ function isNewInputNumberProps(
 type InputNumberRef = InputNumberRebuiltRef | InputNumberLegacyRef;
 
 export const InputNumber = forwardRef(function InputNumberShim(
-  props: InputNumberShimProps,
+  props: InputNumberProps,
   ref: ForwardedRef<InputNumberRef>,
 ) {
   if (isNewInputNumberProps(props)) {
