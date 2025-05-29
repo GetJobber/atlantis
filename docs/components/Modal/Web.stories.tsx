@@ -150,6 +150,8 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
     AutocompleteOption | undefined
   >();
 
+  const [nestedModalOpen, setNestedModalOpen] = useState(false);
+
   return (
     <Content>
       <Text>
@@ -246,11 +248,45 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
               ]}
               placeholder="Search options..."
             />
-
+            <Autocomplete
+              value={autocompleteValue}
+              onChange={newValue => setAutocompleteValue(newValue)}
+              getOptions={() => [
+                { value: "option1", label: "First Option" },
+                { value: "option2", label: "Second Option" },
+                { value: "option3", label: "Third Option" },
+              ]}
+              placeholder="Open Autocomplete with a button and trigger a modal"
+              customRenderMenu={({ MenuWrapper, inputFocused }) => (
+                <MenuWrapper visible={inputFocused}>
+                  <Button
+                    size="small"
+                    label="Open Modal"
+                    onMouseDown={() => setNestedModalOpen(true)}
+                    type="tertiary"
+                    fullWidth
+                  />
+                </MenuWrapper>
+              )}
+            />
             <Tooltip message="This field cannot be left empty">
               <Icon name="help" color="blue" />
             </Tooltip>
+            <Button
+              label="Open Nested Modal"
+              onClick={() => setNestedModalOpen(true)}
+            />
           </Content>
+          <Modal.Provider
+            open={nestedModalOpen}
+            onRequestClose={() => setNestedModalOpen(false)}
+          >
+            <Modal.Content>
+              <Modal.Header>
+                <Heading level={2}>Nested Modal</Heading>
+              </Modal.Header>
+            </Modal.Content>
+          </Modal.Provider>
         </Modal.Content>
         <Modal.Activator>
           <InputText placeholder="Modal will return focus here" />
