@@ -8,20 +8,22 @@
   border-radius: 0;
 }
 
-/* First element */
-.splitButton > :global(button:first-child) {
+/* First element - either a direct button or a button inside Menu */
+.splitButton > :global(button:first-child),
+.splitButton > div:first-child > div > :global(button) {
   border-bottom-left-radius: var(--radius-base);
   border-top-left-radius: var(--radius-base);
 }
 
 /* Last element - either a direct button or a button inside Menu */
 .splitButton > :global(button:last-child),
-.splitButton > div > div > :global(button) {
+.splitButton > div:last-child > div > :global(button) {
   border-top-right-radius: var(--radius-base);
   border-bottom-right-radius: var(--radius-base);
 }
 
-/* Divider lines */
-.splitButton > :global(button:not(:last-child)) {
+/* Divider lines for buttons and Menu */
+.splitButton > :global(button:not(:last-child)),
+.splitButton > div:not(:last-child) > div > :global(button) {
   border-right: 1px solid var(--color-surface);
 }
