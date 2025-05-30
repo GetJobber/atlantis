@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.60.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.3...@jobber/components@6.60.5) (2025-05-30)
+
+
+### Bug Fixes
+
+* **components:** Fix modal provider not allowing a modal to open another modal ([#2576](https://github.com/GetJobber/atlantis/issues/2576)) ([9bc6528](https://github.com/GetJobber/atlantis/commit/9bc65281fe38d063787777b3e21fa7bd7e86065c))
+* **components:** Fix modal spacing issue due to css specificity recently changing ([#2578](https://github.com/GetJobber/atlantis/issues/2578)) ([48f52f6](https://github.com/GetJobber/atlantis/commit/48f52f6f136d9db687013bab129bb71b05c84b31))
+
+
+
+
+
 ## [6.60.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.3...@jobber/components@6.60.4) (2025-05-30)
 
 
