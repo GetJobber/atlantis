@@ -1,21 +1,8 @@
-import React, { ReactNode } from "react";
-import classnames from "classnames";
+import React, { PropsWithChildren } from "react";
 import styles from "./SplitButton.module.css";
 
-export interface SplitButtonProps {
-  /**
-   * The buttons and/or menu to render in the split button group
-   */
-  readonly children: ReactNode;
+export type SplitButtonProps = PropsWithChildren;
 
-  /**
-   * Optional class name for custom styling
-   */
-  readonly className?: string;
-}
-
-export function SplitButton({ children, className }: SplitButtonProps) {
-  return (
-    <div className={classnames(styles.splitButton, className)}>{children}</div>
-  );
+export function SplitButton({ children }: SplitButtonProps) {
+  return <div className={styles.splitButton}>{children}</div>;
 }
