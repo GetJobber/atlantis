@@ -1,0 +1,33 @@
+.splitButton {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+/* Target all buttons in the split button to remove border radius */
+.splitButton :global(button) {
+  border-radius: 0;
+}
+
+/* First element */
+.splitButton > :global(button:first-child) {
+  border-bottom-left-radius: var(--radius-base);
+  border-top-left-radius: var(--radius-base);
+}
+
+/* Last element - either a direct button or a button inside a wrapper */
+.splitButton > :global(button:last-child),
+.splitButton > :global(.wrapper) :global(button) {
+  border-top-right-radius: var(--radius-base);
+  border-bottom-right-radius: var(--radius-base);
+}
+
+/* Divider lines for direct buttons */
+.splitButton > :global(button:not(:last-child)) {
+  border-right: 1px solid var(--color-white);
+}
+
+/* Special handling for buttons before the Menu wrapper */
+.splitButton > :global(button) + :global(.wrapper),
+.splitButton > :global(.wrapper) + :global(.wrapper) {
+  border-left: 1px solid var(--color-white);
+}
