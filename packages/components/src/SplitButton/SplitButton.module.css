@@ -14,20 +14,14 @@
   border-top-left-radius: var(--radius-base);
 }
 
-/* Last element - either a direct button or a button inside a wrapper */
+/* Last element - either a direct button or a button inside Menu */
 .splitButton > :global(button:last-child),
-.splitButton > :global(.wrapper) :global(button) {
+.splitButton > div > div > :global(button) {
   border-top-right-radius: var(--radius-base);
   border-bottom-right-radius: var(--radius-base);
 }
 
-/* Divider lines for direct buttons */
+/* Divider lines */
 .splitButton > :global(button:not(:last-child)) {
-  border-right: 1px solid var(--color-white);
-}
-
-/* Special handling for buttons before the Menu wrapper */
-.splitButton > :global(button) + :global(.wrapper),
-.splitButton > :global(.wrapper) + :global(.wrapper) {
-  border-left: 1px solid var(--color-white);
+  border-right: 1px solid var(--color-surface);
 }
