@@ -4,6 +4,7 @@ exports[`Menu renders 1`] = `
 <div>
   <div
     class="wrapper"
+    data-atl-menu-wrapper="true"
   >
     <div>
       <button
@@ -39,6 +40,7 @@ exports[`Menu with custom activator renders 1`] = `
 <div>
   <div
     class="wrapper"
+    data-atl-menu-wrapper="true"
   >
     <div>
       <button

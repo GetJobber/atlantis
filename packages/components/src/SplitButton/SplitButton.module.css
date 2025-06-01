@@ -3,27 +3,28 @@
   align-items: stretch;
 }
 
-/* Target all buttons in the split button to remove border radius */
-.splitButton :global(button) {
+/* Base styles */
+.splitButton :global(button),
+.splitButton :global([data-atl-menu-wrapper] button) {
   border-radius: 0;
 }
 
-/* First element - either a direct button or a button inside Menu */
+/* First element */
 .splitButton > :global(button:first-child),
-.splitButton > div:first-child > div > :global(button) {
+.splitButton > :global([data-atl-menu-wrapper]:first-child) button {
   border-bottom-left-radius: var(--radius-base);
   border-top-left-radius: var(--radius-base);
 }
 
-/* Last element - either a direct button or a button inside Menu */
+/* Last element */
 .splitButton > :global(button:last-child),
-.splitButton > div:last-child > div > :global(button) {
+.splitButton > :global([data-atl-menu-wrapper]:last-child) button {
   border-top-right-radius: var(--radius-base);
   border-bottom-right-radius: var(--radius-base);
 }
 
-/* Divider lines for buttons and Menu */
+/* Divider lines */
 .splitButton > :global(button:not(:last-child)),
-.splitButton > div:not(:last-child) > div > :global(button) {
+.splitButton > :global([data-atl-menu-wrapper]:not(:last-child)) button {
   border-right: 1px solid var(--color-surface);
 }
