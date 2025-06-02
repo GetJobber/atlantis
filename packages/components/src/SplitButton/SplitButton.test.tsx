@@ -1,29 +1,30 @@
-// import React from "react";
-// import { fireEvent, render } from "@testing-library/react";
-// import { SplitButton } from ".";
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import { SplitButton } from ".";
 
-// it("renders a SplitButton", () => {
-//   const { container } = render(<SplitButton text="Foo" />);
-//   expect(container).toMatchSnapshot();
-// });
+describe("SplitButton", () => {
+  it("renders children in the correct order", () => {
+    render(
+      <SplitButton>
+        <div data-testid="first-child">First</div>
+        <div data-testid="second-child">Second</div>
+      </SplitButton>,
+    );
 
-// it("renders a loud SplitButton", () => {
-//   const { container } = render(<SplitButton text="Foo" loud={true} />);
-//   expect(container).toMatchSnapshot();
-// });
+    const children = screen.getAllByTestId(/child/);
+    expect(children).toHaveLength(2);
+    expect(children[0]).toHaveTextContent("First");
+    expect(children[1]).toHaveTextContent("Second");
+  });
 
-// test("it should call the handler with the new value", () => {
-//   const clickHandler = jest.fn();
-//   const text = "Foo";
-//   const { getByText } = render(<SplitButton onClick={clickHandler} text={text} />);
+  it("applies the splitButton class to the wrapper", () => {
+    render(
+      <SplitButton>
+        <div>Child content</div>
+      </SplitButton>,
+    );
 
-//   fireEvent.click(getByText(text));
-//   expect(clickHandler).toHaveBeenCalled();
-
-//   // E.g. If you need a change event, rather than a click event:
-//   //
-//   // fireEvent.change(getByLabelText(placeholder), {
-//   //   target: { value: newValue },
-//   // });
-//   // expect(changeHandler).toHaveBeenCalledWith(newValue);
-// });
+    const wrapper = screen.getByText("Child content").parentElement;
+    expect(wrapper).toHaveClass("splitButton");
+  });
+});
