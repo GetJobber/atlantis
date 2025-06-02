@@ -19,12 +19,14 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
     onBlur,
     onChange,
     onFocus,
+    invalid,
   }: CheckboxRebuiltProps,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
+    invalid && styles.invalid,
   );
   const inputClassName = classnames(styles.input, {
     [styles.indeterminate]: indeterminate,
