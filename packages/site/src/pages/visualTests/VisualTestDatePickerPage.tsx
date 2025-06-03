@@ -11,30 +11,27 @@ import { useState } from "react";
 
 export const VisualTestDatePickerPage = () => {
   // Basic DatePicker
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    new Date("2025-06-03"),
-  );
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
   // Inline DatePicker
-  const [inlineDate, setInlineDate] = useState<Date | undefined>(
-    new Date("2025-06-03"),
-  );
+  const [inlineDate, setInlineDate] = useState<Date | undefined>(undefined);
 
   // DatePicker with min/max dates
   const [restrictedDate, setRestrictedDate] = useState<Date | undefined>(
     undefined,
   );
-  const minDate = new Date("2025-06-03");
-  const maxDate = new Date("2025-09-03");
+  const minDate = new Date();
+  const maxDate = new Date();
+  maxDate.setMonth(maxDate.getMonth() + 3);
 
   // DatePicker with highlighted dates
   const [highlightedDate, setHighlightedDate] = useState<Date | undefined>(
     undefined,
   );
   const highlightDates = [
-    new Date("2025-06-03"),
-    new Date("2025-06-07"),
-    new Date("2025-06-14"),
+    new Date(new Date().setDate(new Date().getDate() + 3)),
+    new Date(new Date().setDate(new Date().getDate() + 7)),
+    new Date(new Date().setDate(new Date().getDate() + 14)),
   ];
 
   // Disabled DatePicker
