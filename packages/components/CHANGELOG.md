@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.5...@jobber/components@6.61.0) (2025-06-03)
+
+
+### Features
+
+* **components:** add ref to Checkbox v2 ([#2579](https://github.com/GetJobber/atlantis/issues/2579)) ([ffa5c82](https://github.com/GetJobber/atlantis/commit/ffa5c82278941ad1a45e7eff1cd8c6b5b4779402))
+
+
+
+
+
 ## [6.60.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.3...@jobber/components@6.60.5) (2025-05-30)
 
 
