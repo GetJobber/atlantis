@@ -1,0 +1,30 @@
+.splitButton {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+/* Base styles */
+.splitButton :global(button),
+.splitButton :global([data-atl-menu-wrapper] button) {
+  border-radius: 0;
+}
+
+/* First element */
+.splitButton > :global(button:first-child),
+.splitButton > :global([data-atl-menu-wrapper]:first-child) button {
+  border-bottom-left-radius: var(--radius-base);
+  border-top-left-radius: var(--radius-base);
+}
+
+/* Last element */
+.splitButton > :global(button:last-child),
+.splitButton > :global([data-atl-menu-wrapper]:last-child) button {
+  border-top-right-radius: var(--radius-base);
+  border-bottom-right-radius: var(--radius-base);
+}
+
+/* Divider lines */
+.splitButton > :global(button:not(:last-child)),
+.splitButton > :global([data-atl-menu-wrapper]:not(:last-child)) button {
+  border-right: 1px solid var(--color-surface);
+}

@@ -126,7 +126,11 @@ export function Menu({ activator, items }: MenuProps) {
   }
 
   return (
-    <div className={wrapperClasses} onClick={handleParentClick}>
+    <div
+      className={wrapperClasses}
+      onClick={handleParentClick}
+      data-atl-menu-wrapper
+    >
       <div ref={popperRef}>
         {React.cloneElement(activator, {
           onClick: toggle(activator.props.onClick),
