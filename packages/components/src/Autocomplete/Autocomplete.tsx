@@ -7,12 +7,12 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useDebounce } from "@jobber/hooks";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
 import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
 import { InputText, InputTextRef } from "../InputText";
-import { useDebounce } from "../utils/useDebounce";
 import { mergeRefs } from "../utils/mergeRefs";
 
 // Max statements increased to make room for the debounce functions
