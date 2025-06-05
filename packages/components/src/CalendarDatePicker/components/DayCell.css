@@ -1,0 +1,183 @@
+.container {
+  display: flex;
+  position: relative;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 0px;
+}
+
+.container:focus-visible {
+  outline: none;
+}
+
+.cell {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  /* box-sizing: border-box; */
+  border: 0;
+  border-color: transparent;
+  border-radius: var(--radius-circle);
+  background: transparent;
+  flex-basis: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Selection: Disabled, Selected, Highlighted, or Unselected */
+.container[data-selection="selected"] .cell {
+  color: var(--color-text--reverse);
+  background-color: var(--color-green);
+}
+
+.container[data-selection="disabled"] .cell {
+  color: var(--color-disabled);
+}
+
+/* Hover & Focus */
+.container:is(:focus, :hover) .cell {
+  background-color: var(--color-surface--hover);
+}
+
+.container[data-range="none"][data-selection="highlighted"]:not(:focus, :hover)
+  .cell {
+  background-color: var(--color-green--lighter);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.container[data-selection="selected"]:is(:focus, :hover) .cell {
+  background-color: var(--color-interactive--hover);
+}
+
+/* Rollover */
+.container:is(
+    [data-rollover="start"],
+    [data-rollover="between"],
+    [data-rollover="end"]
+  ) {
+  background-color: var(--color-surface--background);
+}
+
+.container[data-rollover="start"] {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.container[data-rollover="end"] {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* Range selection */
+.container:is(
+    [data-range="start"],
+    [data-range="between"],
+    [data-range="end"]
+  ) {
+  box-sizing: border-box;
+  border-top: 2px solid var(--color-surface);
+  border-bottom: 2px solid var(--color-surface);
+}
+.container[data-range="between"] {
+  background-color: var(--color-green--lightest);
+}
+
+.container[data-range="start"] {
+  background: linear-gradient(
+    90deg,
+    transparent 50%,
+    var(--color-green--lightest) 50%
+  );
+}
+
+.container[data-range="end"] {
+  background: linear-gradient(
+    90deg,
+    var(--color-green--lightest) 50%,
+    transparent 50%
+  );
+}
+
+/* Range selection + Rollover */
+.container:not([data-rollover="none"]):not([data-range="none"]) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.container[data-range="end"] + .container[data-rollover="between"] {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.container:not([data-rollover="none"]):has(
+    + .container:not([data-rollover="none"])[data-range="start"]
+  ) {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.container:not([data-selection="selected"]):is(
+    [data-rollover="start"],
+    [data-rollover="between"],
+    [data-rollover="end"]
+  ):is(:focus, :hover)
+  .cell {
+  background-color: var(--color-surface);
+}
+
+.container[data-rollover]:is(
+    [data-range="start"],
+    [data-range="between"],
+    [data-range="end"]
+  ):is(:focus, :hover)
+  .cell {
+  color: var(--color-text--reverse);
+  background-color: var(--color-interactive--hover);
+}
+
+/* Current date indicator */
+.container[data-today="true"] .cell span::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: var(--color-text);
+}
+
+.container[data-today="true"]:not([data-range="none"]) span::after {
+  bottom: 4px;
+}
+
+.container[data-today="true"][data-selection="disabled"] span::after {
+  background-color: var(--color-disabled);
+}
+
+.container[data-today="true"][data-selection="selected"] span::after {
+  background-color: var(--color-surface);
+}
+
+/* Hover, Focus + Current date indicator */
+.container[data-today="true"]:is(:focus, :hover):is(
+    [data-selection="selected"],
+    :not([data-range="none"])
+  )
+  .cell
+  span::after {
+  background-color: var(--color-surface);
+}
+
+.accessibleLabel {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
