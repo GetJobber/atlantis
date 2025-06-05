@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Banner } from "@jobber/components/Banner";
 import { Button } from "@jobber/components/Button";
+import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
+import { Banner as Banner1 } from "@jobber/components/Banner/Banner1";
 
 export default {
   title: "Components/Status and Feedback/Banner/Web",
@@ -87,6 +89,53 @@ const ControlledTemplate: ComponentStory<typeof Banner> = args => {
   );
 };
 
+const ComposableDemoTemplate: ComponentStory<typeof Banner> = () => {
+  return (
+    <Content>
+      <Banner1 type="success">
+        <Banner1.Icon />
+        <Banner1.Content>
+          <Text>Default banner style</Text>
+        </Banner1.Content>
+        <Banner1.DismissButton onDismiss={() => alert("Dismissed")} />
+      </Banner1>
+
+      <Banner1 type="notice">
+        <Banner1.Icon
+          name="job"
+          color="blue"
+          backgroundColor="base-purple--400"
+        />
+        <Banner1.Content>
+          <Text>Custom icon and color, override dismiss button onClick</Text>
+        </Banner1.Content>
+        <Banner1.DismissButton onClick={() => alert("Run custom behaviour")} />
+      </Banner1>
+
+      <Banner1 type="warning">
+        <Banner1.Icon />
+        <Banner1.Content>
+          <Text>Action button</Text>
+        </Banner1.Content>
+        <Banner1.Action
+          label="More info"
+          onClick={() => alert("More info...")}
+        />
+      </Banner1>
+
+      <Banner1 type="error">
+        <Banner1.Icon />
+        <Banner1.Content>
+          <Text>Custom button</Text>
+        </Banner1.Content>
+        <Button onClick={() => alert("Custom button...")}>
+          <Button.Label>Custom button</Button.Label>
+        </Button>
+      </Banner1>
+    </Content>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   type: "notice",
@@ -105,5 +154,10 @@ Success.args = {
 
 export const Controlled = ControlledTemplate.bind({});
 Controlled.args = {
+  type: "notice",
+};
+
+export const ComposableDemo = ComposableDemoTemplate.bind({});
+ComposableDemo.args = {
   type: "notice",
 };
