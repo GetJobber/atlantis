@@ -13,8 +13,8 @@
 
 .dropZone {
   padding: var(--space-base);
-  border: var(--border-base) dashed var(--color-border--interactive);
-  border-radius: var(--radius-base);
+  border: var(--border-thick) dashed var(--color-border--interactive);
+  border-radius: var(--radius-large);
   text-align: center;
 }
 
