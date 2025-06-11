@@ -31,6 +31,41 @@ describe("Composable Modal", () => {
     expect(screen.getByText("Delete")).toBeInTheDocument();
   });
 
+  it("should allow overriding of action buttons", () => {
+    render(
+      <Modal.Provider open={true}>
+        <Modal.Content>
+          <Modal.Header title="Modal Title" />
+          <Modal.Actions
+            primary={{
+              label: "Submit",
+              variation: "destructive",
+              type: "secondary",
+            }}
+            secondary={{
+              label: "Cancel",
+              variation: "subtle",
+              type: "tertiary",
+            }}
+            tertiary={{
+              label: "Delete",
+              variation: "destructive",
+              type: "secondary",
+            }}
+          />
+        </Modal.Content>
+      </Modal.Provider>,
+    );
+    expect(screen.getByRole("button", { name: "Submit" })).toHaveClass(
+      "secondary destructive",
+    );
+    expect(screen.getByRole("button", { name: "Cancel" })).toHaveClass(
+      "tertiary subtle",
+    );
+    expect(screen.getByRole("button", { name: "Delete" })).toHaveClass(
+      "secondary destructive",
+    );
+  });
   it('modal contains aria role of "dialog"', async () => {
     render(
       <Modal.Provider open={true}>
