@@ -26,9 +26,18 @@ describe("Composable Modal", () => {
     expect(header).toBeDefined();
     expect(header).toHaveTextContent("Modal Title");
     expect(screen.getByText("This is some extra content")).toBeInTheDocument();
-    expect(screen.getByText("Submit")).toBeInTheDocument();
-    expect(screen.getByText("Cancel")).toBeInTheDocument();
-    expect(screen.getByText("Delete")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Delete" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Submit" })).toHaveClass(
+      "primary",
+    );
+    expect(screen.getByRole("button", { name: "Cancel" })).toHaveClass(
+      "primary subtle",
+    );
+    expect(screen.getByRole("button", { name: "Delete" })).toHaveClass(
+      "secondary destructive",
+    );
   });
 
   it("should allow overriding of action buttons", () => {
@@ -44,7 +53,7 @@ describe("Composable Modal", () => {
             }}
             secondary={{
               label: "Cancel",
-              variation: "subtle",
+              variation: "work",
               type: "tertiary",
             }}
             tertiary={{
@@ -60,7 +69,7 @@ describe("Composable Modal", () => {
       "secondary destructive",
     );
     expect(screen.getByRole("button", { name: "Cancel" })).toHaveClass(
-      "tertiary subtle",
+      "tertiary work",
     );
     expect(screen.getByRole("button", { name: "Delete" })).toHaveClass(
       "secondary destructive",
