@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.61.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.1...@jobber/components@6.61.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* **components:** standardize gap between selected thumbnail and indicator in Lightbox ([#2583](https://github.com/GetJobber/atlantis/issues/2583)) ([4730892](https://github.com/GetJobber/atlantis/commit/4730892f2f6a54fcb40a2fc57d65c7cb002e21b9))
+
+
+
+
+
+## [6.61.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.0...@jobber/components@6.61.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **components:** Fix Composable modal actions not supporting overrides on Buttons ([#2587](https://github.com/GetJobber/atlantis/issues/2587)) ([b584e20](https://github.com/GetJobber/atlantis/commit/b584e20aeef77dcceff3681a941c65ba84ec3d85))
+
+
+
+
+
+# [6.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.5...@jobber/components@6.61.0) (2025-06-03)
+
+
+### Features
+
+* **components:** add ref to Checkbox v2 ([#2579](https://github.com/GetJobber/atlantis/issues/2579)) ([ffa5c82](https://github.com/GetJobber/atlantis/commit/ffa5c82278941ad1a45e7eff1cd8c6b5b4779402))
+
+
+
+
+
 ## [6.60.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.3...@jobber/components@6.60.5) (2025-05-30)
 
 

@@ -60,6 +60,11 @@ export interface BaseCheckboxProps {
    * Called when the checkbox loses focus
    */
   onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
+
+  /**
+   * Whether the checkbox is invalid
+   */
+  invalid?: boolean;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
