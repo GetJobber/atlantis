@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.61.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.0...@jobber/components@6.61.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **components:** Fix Composable modal actions not supporting overrides on Buttons ([#2587](https://github.com/GetJobber/atlantis/issues/2587)) ([b584e20](https://github.com/GetJobber/atlantis/commit/b584e20aeef77dcceff3681a941c65ba84ec3d85))
+
+
+
+
+
 # [6.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.60.5...@jobber/components@6.61.0) (2025-06-03)
 
 
