@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.61.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.3...@jobber/components@6.61.4) (2025-06-13)
+
+
+### Bug Fixes
+
+* **components:** match InputFile styling to match designs ([#2585](https://github.com/GetJobber/atlantis/issues/2585)) ([d8c0822](https://github.com/GetJobber/atlantis/commit/d8c0822095bd2975093d99a20cd3a3582ae426d3))
+
+
+
+
+
 ## [6.61.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.2...@jobber/components@6.61.3) (2025-06-13)
 
 
