@@ -1,0 +1,52 @@
+.swapComponentAt {
+  display: contents;
+  --swapped-display: none;
+  --swapped-display-xs: none;
+  --swapped-display-sm: none;
+  --swapped-display-md: none;
+  --swapped-display-lg: none;
+  --swapped-display-xl: none;
+  --default-display: contents;
+  --default-display-xs: contents;
+  --default-display-sm: contents;
+  --default-display-md: contents;
+  --default-display-lg: contents;
+  --default-display-xl: contents;
+}
+
+.swapComponentAt > :last-child {
+  display: none;
+
+  @media (--small-screens-and-below) {
+    display: var(--swapped-display-xs);
+  }
+  @media (--small-screens-and-up) {
+    display: var(--swapped-display-sm);
+  }
+  @media (--medium-screens-and-up) {
+    display: var(--swapped-display-md);
+  }
+  @media (--large-screens-and-up) {
+    display: var(--swapped-display-lg);
+  }
+}
+
+.swapComponentAt > :first-child {
+  display: none;
+
+  @media (--small-screens-and-up) {
+    display: var(--default-display-xs);
+  }
+
+  @media (--medium-screens-and-up) {
+    display: var(--default-display-md);
+  }
+
+  @media (--large-screens-and-up) {
+    display: var(--default-display-lg);
+  }
+
+  @media (--extra-large-screens-and-up) {
+    display: var(--default-display-xl);
+  }
+}
