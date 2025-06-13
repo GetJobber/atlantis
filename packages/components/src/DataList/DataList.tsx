@@ -242,9 +242,6 @@ DataList.Filters = DataListFilters;
 
 /**
  * Enables the search functionality of the DataList.
- *
- * Since the debounce is implemented within the component, it can only be an
- * uncontrolled component. Thus the lack of a `value` prop.
  */
 DataList.Search = DataListSearch;
 

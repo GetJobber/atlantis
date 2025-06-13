@@ -1,4 +1,3 @@
-import UseAssertDocs from "@atlantis/docs/hooks/useAssert.stories.mdx";
 import UseBoolDocs from "@atlantis/docs/hooks/useBool.stories.mdx";
 import UseBreakpointsDocs from "@atlantis/docs/hooks/useBreakpoints.stories.mdx";
 import UseCallbackRefDocs from "@atlantis/docs/hooks/useCallbackRef.stories.mdx";
@@ -10,18 +9,12 @@ import UseIsMountedDocs from "@atlantis/docs/hooks/useIsMounted.stories.mdx";
 import UseLiveAnnounceDocs from "@atlantis/docs/hooks/useLiveAnnounce.stories.mdx";
 import UseOnKeyDownDocs from "@atlantis/docs/hooks/useOnKeyDown.stories.mdx";
 import UseOnMountDocs from "@atlantis/docs/hooks/useOnMount.stories.mdx";
-import UsePasswordStrengthDocs from "@atlantis/docs/hooks/usePasswordStrength.stories.mdx";
 import UseRefocusOnActivatorDocs from "@atlantis/docs/hooks/useRefocusOnActivator.stories.mdx";
 import UseResizeObserverDocs from "@atlantis/docs/hooks/useResizeObserver.stories.mdx";
 import UseWindowDimensionsDocs from "@atlantis/docs/hooks/useWindowDimensions.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const hooksContentMap: ContentMapItems = {
-  useAssert: {
-    intro: "useAssert",
-    title: "useAssert",
-    content: () => <UseAssertDocs />,
-  },
   useBool: {
     intro: "useBool",
     title: "useBool",
@@ -76,11 +69,6 @@ export const hooksContentMap: ContentMapItems = {
     intro: "useOnMount",
     title: "useOnMount",
     content: () => <UseOnMountDocs />,
-  },
-  usePasswordStrength: {
-    intro: "usePasswordStrength",
-    title: "usePasswordStrength",
-    content: () => <UsePasswordStrengthDocs />,
   },
   useRefocusOnActivator: {
     intro: "useRefocusOnActivator",

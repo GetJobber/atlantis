@@ -37,7 +37,11 @@ export function InternalDataListSearch() {
   );
 
   if (!searchComponent) return null;
-  const { placeholder, initialValue } = searchComponent.props;
+  const {
+    placeholder,
+    initialValue,
+    value: controlledValue,
+  } = searchComponent.props;
 
   return (
     <div
@@ -55,9 +59,14 @@ export function InternalDataListSearch() {
           // If the initial value changes, reset the input.
           key={initialValue}
           defaultValue={initialValue}
+          value={controlledValue}
           ref={inputRef}
           placeholder={getPlaceholder()}
-          onChange={debouncedSearch}
+          onChange={
+            controlledValue !== undefined
+              ? searchComponent.props.onSearch
+              : debouncedSearch
+          }
           prefix={{ icon: "search" }}
           clearable="always"
         />

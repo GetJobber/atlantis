@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
-import { IconNames } from "@jobber/design";
+import { IconColorNames, IconNames } from "@jobber/design";
 import { usePopper } from "react-popper";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import ReactDOM from "react-dom";
@@ -266,6 +266,11 @@ export interface ActionProps {
   readonly icon?: IconNames;
 
   /**
+   * Color for the icon. Defaults to "icon".
+   */
+  readonly iconColor?: IconColorNames;
+
+  /**
    * Visual style for the action button
    */
   readonly destructive?: boolean;
@@ -280,6 +285,7 @@ function Action({
   label,
   sectionLabel,
   icon,
+  iconColor,
   destructive,
   onClick,
 }: ActionProps) {
@@ -299,7 +305,7 @@ function Action({
     >
       {icon && (
         <div>
-          <Icon color={destructive ? "destructive" : undefined} name={icon} />
+          <Icon color={destructive ? "destructive" : iconColor} name={icon} />
         </div>
       )}
       <Typography element="span" fontWeight="semiBold" textColor="text">

@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { View } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import { useHorizontalStyles } from "./ContentHorizontal.style";
 import { useVerticalStyles } from "./ContentVertical.style";
 import { useSpaceAroundStyles } from "./ContentSpaceAround.style";
@@ -11,6 +11,11 @@ export type Spacing =
   | "smaller"
   | "smallest"
   | "large";
+
+export interface ContentUnsafeStyle {
+  container?: StyleProp<ViewStyle>;
+  childWrapper?: StyleProp<ViewStyle>;
+}
 
 export interface ContentProps {
   /**
@@ -29,6 +34,13 @@ export interface ContentProps {
   readonly childSpacing?: Spacing;
 
   readonly direction?: "horizontal" | "vertical";
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: ContentUnsafeStyle;
 }
 
 export function Content({
@@ -36,6 +48,7 @@ export function Content({
   spacing = "base",
   childSpacing = "base",
   direction = "vertical",
+  UNSAFE_style,
 }: ContentProps): JSX.Element {
   const horizontalStyles = useHorizontalStyles();
   const verticalStyles = useVerticalStyles();
@@ -46,7 +59,9 @@ export function Content({
   const containerStyle = spaceAroundStyles[styleName];
 
   return (
-    <View style={[styles.wrapper, containerStyle]}>{renderChildren()}</View>
+    <View style={[styles.wrapper, containerStyle, UNSAFE_style?.container]}>
+      {renderChildren()}
+    </View>
   );
 
   function renderChildren() {
@@ -57,12 +72,17 @@ export function Content({
     const childContainerStyle = styles[spaceName];
 
     return childArray.map((child, index) => {
-      // In order to get spacing between the children, we apply the child spacing on each of
-      // the children except for the first (top) child
       const childStyle = index !== 0 ? [childContainerStyle] : [];
 
       return (
-        <View key={index} style={[styles.childWrapper, ...childStyle]}>
+        <View
+          key={index}
+          style={[
+            styles.childWrapper,
+            ...childStyle,
+            UNSAFE_style?.childWrapper,
+          ]}
+        >
           {child}
         </View>
       );

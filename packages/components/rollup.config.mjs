@@ -16,8 +16,19 @@ import alias from "@rollup/plugin-alias";
 // comments for manual release
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+/**
+ * When PREBUILD_CSS is supplied, only build the main index.ts file.
+ * This ensures postcss maintains consistent ordering of styles across builds.
+ *
+ * Using multiInput (input with globs) produces inconsistent ordering within styles.css
+ * because files are loaded in a non-deterministic order, and postcss bundles them in
+ * that order.
+ */
+const PREBUILD_CSS = process.env.PREBUILD_CSS === "true";
+
 export default {
-  input: `src/**/index.{ts,tsx}`,
+  input: PREBUILD_CSS ? "src/index.ts" : `src/**/index.{ts,tsx}`,
   plugins: [
     nodePolyfills(),
     alias({
@@ -157,7 +168,6 @@ export default {
     "@jobber/design/foundation",
     "@jobber/formatters",
     "@jobber/hooks",
-    "zxcvbn",
     "@tanstack/react-table",
   ],
 };

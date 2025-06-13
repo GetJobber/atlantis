@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 272 more ... | \"client\""
+          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 274 more ... | \"client--onSurface\""
         }
       },
       "border": {
@@ -55,7 +55,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 272 more ... | \"client\""
+          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 274 more ... | \"client--onSurface\""
         }
       },
       "direction": {
@@ -81,7 +81,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
+          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
         }
       },
       "height": {
@@ -109,7 +109,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\" | BoxSpace"
+          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\" | BoxSpace"
         }
       },
       "padding": {
@@ -122,7 +122,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\" | BoxSpace"
+          "name": "\"base\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\" | BoxSpace"
         }
       },
       "preserveWhiteSpace": {

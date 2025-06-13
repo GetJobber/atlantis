@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.72.1",
+  "version": "0.80.1",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "type": "module",

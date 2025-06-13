@@ -6,6 +6,7 @@ import {
   InputPassword,
   InputText,
   InputValidation,
+  SegmentedControl,
   SideDrawer,
   Text,
   Tooltip,
@@ -91,7 +92,8 @@ const ChatInterface = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "calc(100vh - 80px)",
+        flex: 1,
+        minHeight: 0,
         gap: 16,
       }}
     >
@@ -134,6 +136,8 @@ export function TritonSideDrawer() {
     loading,
     validateApiKey,
     isValidKey,
+    personality,
+    setPersonality,
   } = useTritonChat();
 
   useEffect(() => {
@@ -154,7 +158,27 @@ export function TritonSideDrawer() {
           />
         </Tooltip>
       </SideDrawer.Actions>
-      <Box padding={{ left: "base", right: "base" }}>
+      {isValidKey && (
+        <SideDrawer.Toolbar>
+          <SegmentedControl
+            selectedValue={personality}
+            onSelectValue={setPersonality}
+            size="small"
+          >
+            <SegmentedControl.Option value="developer">
+              Developer
+            </SegmentedControl.Option>
+            <SegmentedControl.Option value="designer">
+              Designer
+            </SegmentedControl.Option>
+          </SegmentedControl>
+        </SideDrawer.Toolbar>
+      )}
+      <Box
+        padding={{ left: "base", right: "base", bottom: "base" }}
+        direction="column"
+        height="grow"
+      >
         {isValidKey ? (
           <ChatInterface
             question={question}

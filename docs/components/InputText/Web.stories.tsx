@@ -12,7 +12,14 @@ export default {
   component: InputText,
   parameters: {
     viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/FormField": ["FormFieldLabel"],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof InputText>;
 
@@ -189,6 +196,9 @@ export const VersionComparison = () => {
           {
             placeholder: "Default alignment",
             ...extraProps,
+            showMiniLabel: false,
+            description: "Description text",
+            error: "Error string",
           },
           "basic",
         )}

@@ -30,7 +30,6 @@ export interface CardProps {
   /**
    * @deprecated
    * Use header instead.
-   *
    */
   readonly title?: string;
 
@@ -39,4 +38,17 @@ export interface CardProps {
    */
   readonly header?: string | HeaderActionProps | ReactElement;
   readonly elevation?: elevationProp;
+}
+
+export interface CardHeaderProps {
+  readonly children: ReactNode;
+}
+
+export interface CardBodyProps {
+  readonly children: ReactNode;
+}
+
+export interface CardCompositionProps {
+  Header: React.FC<CardHeaderProps>;
+  Body: React.FC<CardBodyProps>;
 }

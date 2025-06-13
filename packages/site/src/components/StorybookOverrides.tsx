@@ -9,7 +9,18 @@ import { RenderComponentShowCode } from "./RenderComponentShowCode";
  * @returns
  */
 export const Meta = () => null;
-export const Story = () => null;
+
+export const Story = ({
+  children,
+}: {
+  children: React.ReactNode | (() => React.ReactNode);
+}) => {
+  if (typeof children === "function") {
+    return children();
+  }
+
+  return children;
+};
 export const ArgsTable = () => null;
 export const Source = () => null;
 

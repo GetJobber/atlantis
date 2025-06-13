@@ -1,6 +1,7 @@
 import CardContent from "@atlantis/docs/components/Card/Card.stories.mdx";
 import Props from "./Card.props.json";
 import MobileProps from "./Card.props-mobile.json";
+import Notes from "./CardNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -42,4 +43,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

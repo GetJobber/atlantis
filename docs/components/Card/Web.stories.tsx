@@ -9,6 +9,7 @@ import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 import { Icon } from "@jobber/components/Icon";
 import { Flex } from "@jobber/components/Flex";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Layouts and Structure/Card/Web",
@@ -148,3 +149,51 @@ const HeaderActionTemplate: ComponentStory<typeof Card> = () => (
 );
 
 export const HeaderAction = HeaderActionTemplate.bind({});
+
+const CompoundComponentTemplate: ComponentStory<typeof Card> = args => (
+  <Card {...args}>
+    <Card.Header>
+      <Box padding="base">
+        <Flex template={["grow", "shrink"]} align="start">
+          <Heading level={4}>Company settings</Heading>
+          <Button type="tertiary" icon="cog" ariaLabel="Settings" />
+        </Flex>
+      </Box>
+    </Card.Header>
+    <Card.Body>
+      <Content>
+        <Heading level={4}>Details</Heading>
+        <InputGroup>
+          <InputText defaultValue="Quest Provider" placeholder="Company name" />
+          <InputText placeholder="Years in business" />
+        </InputGroup>
+        <Heading level={4}>Contact</Heading>
+        <InputGroup>
+          <InputText
+            prefix={{
+              icon: "phone",
+            }}
+            placeholder="Phone number"
+          />
+          <InputText
+            prefix={{
+              icon: "presentation",
+            }}
+            placeholder="Website"
+          />
+          <InputText
+            prefix={{
+              icon: "email",
+            }}
+            placeholder="Email"
+          />
+        </InputGroup>
+      </Content>
+    </Card.Body>
+  </Card>
+);
+
+export const CompoundComponent = CompoundComponentTemplate.bind({});
+CompoundComponent.args = {
+  elevation: "base",
+};

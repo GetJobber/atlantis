@@ -1,43 +1,17 @@
 import React from "react";
 import { useForm, useFormContext } from "react-hook-form";
-import { InputMask, InputMaskProps } from "./InputMask";
-import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
-
-interface InputPhoneNumberProps
-  extends Omit<CommonFormFieldProps, "align">,
-    Pick<
-      FormFieldProps,
-      | "autocomplete"
-      | "onEnter"
-      | "onFocus"
-      | "onBlur"
-      | "validations"
-      | "readonly"
-      | "prefix"
-      | "suffix"
-    > {
-  readonly value: string;
-  readonly onChange: (value: string) => void;
-
-  /**
-   * A pattern to specify the format to display the phone number in.
-   * For example if you want to display the format for [Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)
-   * you could set it to `** ** ** **`
-   * @default "(***) ***-****"
-   */
-  readonly pattern?: InputMaskProps["pattern"];
-
-  /**
-   * Shows a "required" validation message when the component is left empty.
-   */
-  readonly required?: boolean;
-}
+import { InputMask } from "./InputMask";
+import {
+  DEFAULT_PATTERN,
+  InputPhoneNumberLegacyProps,
+} from "./InputPhoneNumber.types";
+import { FormField } from "../FormField";
 
 export function InputPhoneNumber({
   required,
   ...props
-}: InputPhoneNumberProps) {
-  const { placeholder, validations, pattern = "(***) ***-****" } = props;
+}: InputPhoneNumberLegacyProps) {
+  const { placeholder, validations, pattern = DEFAULT_PATTERN } = props;
   const errorSubject = placeholder || "Phone number";
   const { getValues } =
     useFormContext() != undefined
@@ -50,6 +24,7 @@ export function InputPhoneNumber({
       <FormField
         {...props}
         type="tel"
+        pattern={pattern}
         validations={{
           required: {
             value: Boolean(required),

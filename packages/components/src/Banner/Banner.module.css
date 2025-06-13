@@ -3,7 +3,7 @@
   --banner-textColor: var(--color-text);
   display: flex;
   position: relative;
-  padding: calc(var(--space-base) - var(--space-smaller)) var(--space-base);
+  padding: var(--space-slim) var(--space-base);
   border-radius: var(--radius-base);
   color: var(--banner-textColor);
   background-color: var(--banner-surface);
