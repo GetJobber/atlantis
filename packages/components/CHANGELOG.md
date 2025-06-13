@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.61.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.2...@jobber/components@6.61.3) (2025-06-13)
+
+
+### Bug Fixes
+
+* **components:** add radius to focus states of FormatFile ([#2584](https://github.com/GetJobber/atlantis/issues/2584)) ([f9ed0f0](https://github.com/GetJobber/atlantis/commit/f9ed0f04f3458495653b5bc7ce9e5222fccaffa8))
+
+
+
+
+
 ## [6.61.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.1...@jobber/components@6.61.2) (2025-06-12)
 
 
