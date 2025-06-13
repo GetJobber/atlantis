@@ -3,16 +3,16 @@
     "$type": "shadow",
     "$description": "Shadow tokens. These are used to define the shadow of elements. Feel free to use these directly.",
     "low": {
-      "$value": "0px {space.minuscule} {space.smallest} rgba(0, 0, 0, 0.25), 0px 0px {space.smallest} rgba(0, 0, 0, 0.1)"
+      "$value": "0px 1px 2px rgba(0, 0, 0, 0.25), 0px 0px 2px rgba(0, 0, 0, 0.1)"
     },
     "base": {
-      "$value": "0px {space.minuscule} {space.smaller} 0px rgba(0, 0, 0, 0.1), 0px {space.smaller} 12px 0px rgba(0, 0, 0, 0.05)"
+      "$value": "0px 1px 4px 0px rgba(0, 0, 0, 0.1), 0px 4px 12px 0px rgba(0, 0, 0, 0.05)"
     },
     "high": {
-      "$value": "0px {space.base} {space.base} 0px rgba(0, 0, 0, 0.075), 0px 0px {space.small} 0px rgba(0, 0, 0, 0.05)"
+      "$value": "0px 16px 16px 0px rgba(0, 0, 0, 0.075), 0px 0px 8px 0px rgba(0, 0, 0, 0.05)"
     },
     "focus": {
-      "$value": "0px 0px 0px {space.smallest} {color.surface}, 0px 0px 0px {space.smaller} {color.focus}"
+      "$value": "0px 0px 0px 2px {color.surface}, 0px 0px 0px 4px {color.focus}"
     }
   }
 }
