@@ -192,6 +192,7 @@
   background-color: var(--color-surface);
   transition:
     border var(--timing-base) ease-in,
+    border-radius var(--timing-quick) ease-in,
     transform var(--timing-quick) ease-in-out;
   flex-shrink: 0;
 
@@ -203,7 +204,8 @@
 .thumbnail.selected {
   margin: 0 var(--space-smaller);
   padding: var(--space-smallest);
-  border: 2px solid var(--color-surface);
+  border: var(--border-thick) solid var(--color-surface);
+  border-radius: var(--radius-base);
   background-color: transparent;
   transform: scale(1.125);
 
