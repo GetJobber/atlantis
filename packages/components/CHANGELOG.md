@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.61.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.1...@jobber/components@6.61.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* **components:** standardize gap between selected thumbnail and indicator in Lightbox ([#2583](https://github.com/GetJobber/atlantis/issues/2583)) ([4730892](https://github.com/GetJobber/atlantis/commit/4730892f2f6a54fcb40a2fc57d65c7cb002e21b9))
+
+
+
+
+
 ## [6.61.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.0...@jobber/components@6.61.1) (2025-06-11)
 
 
