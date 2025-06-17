@@ -1,13 +1,18 @@
 import React, { useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import sortBy from "lodash/sortBy";
-import { DataTable } from "@jobber/components/DataTable";
+import {
+  DataTable,
+  RowSelectionState,
+  selectionColumnDefinition,
+} from "@jobber/components/DataTable";
 import { Menu } from "@jobber/components/Menu";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 import { DataDump } from "@jobber/components/DataDump";
 import { Typography } from "@jobber/components/Typography";
 import { Heading } from "@jobber/components/Heading";
+import { Checkbox } from "@jobber/components/Checkbox";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web",
@@ -602,4 +607,110 @@ LoadingState.args = {
   height: 600,
   loading: true,
   data: [],
+};
+
+const SelectionTemplate: ComponentStory<typeof DataTable> = args => {
+  const [selectionState, setSelectionState] = useState<RowSelectionState>({});
+
+  console.log(Object.keys(selectionState));
+
+  return (
+    <DataTable<{
+      id: string;
+      name: string;
+      points: string;
+      chance: number;
+      power: string;
+    }>
+      {...args}
+      selection={{
+        rowSelection: selectionState,
+        onRowSelectionChange: setSelectionState,
+      }}
+      columns={[
+        selectionColumnDefinition,
+        {
+          id: "name",
+          accessorKey: "name",
+          header: "Name",
+        },
+      ]}
+    />
+  );
+};
+
+export const Selection = SelectionTemplate.bind({});
+Selection.args = {
+  data: [
+    {
+      id: "1",
+      name: "Eddard",
+      points: "1,000,000",
+      chance: 5,
+      power: "50,000",
+    },
+    {
+      id: "2",
+      name: "Catelyn",
+      points: "2,000,000",
+      chance: 5,
+      power: "40,000",
+    },
+    {
+      id: "3",
+      name: "Jon",
+      points: "1,250,000",
+      chance: 8,
+      power: "20,000",
+    },
+    {
+      id: "4",
+      name: "Robert",
+      points: "1,000,000",
+      chance: 5,
+      power: "50,000",
+    },
+    {
+      id: "5",
+      name: "Rickon",
+      points: "2,000,000",
+      chance: 5,
+      power: "40,000",
+    },
+    {
+      id: "6",
+      name: "Robert",
+      points: "1,250,000",
+      chance: 8,
+      power: "20,000",
+    },
+    {
+      id: "7",
+      name: "Cersei",
+      points: "1,000,000",
+      chance: 5,
+      power: "50,000",
+    },
+    {
+      id: "8",
+      name: "Sansa",
+      points: "2,000,000",
+      chance: 5,
+      power: "40,000",
+    },
+    {
+      id: "9",
+      name: "Arya",
+      points: "1,250,000",
+      chance: 8,
+      power: "20,000",
+    },
+    {
+      id: "10",
+      name: "Bran",
+      points: "1,000,000",
+      chance: 5,
+      power: "50,000",
+    },
+  ],
 };

@@ -6,18 +6,27 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
 } from "@tanstack/react-table";
+import { RowSelectionType } from "./DataTable";
 import { PaginationType, SortingType } from "./types";
 
 export function createTableSettings<T>(
   data: T[],
   columns: ColumnDef<T>[],
-  options?: { pagination?: PaginationType; sorting?: SortingType },
+  options?: {
+    pagination?: PaginationType;
+    sorting?: SortingType;
+    selection?: RowSelectionType<T>;
+  },
 ) {
   const { state: paginationState, ...restPaginationSettings } =
     getPaginationSettings(options?.pagination);
 
   const { state: sortingState, ...restSortingSettings } = getSortingSettings(
     options?.sorting,
+  );
+
+  const [selectionState, restSelectionSettings] = getSelectionSettings(
+    options?.selection,
   );
 
   let initialPatinationState: PaginationState | undefined;
@@ -32,16 +41,25 @@ export function createTableSettings<T>(
   const tableSettings: TableOptions<T> = {
     data,
     columns,
-    state: { ...paginationState, ...sortingState },
+    state: { ...paginationState, ...sortingState, ...selectionState },
     getCoreRowModel: getCoreRowModel(),
     ...restPaginationSettings,
     ...restSortingSettings,
+    ...restSelectionSettings,
     initialState: {
       pagination: initialPatinationState,
     },
   };
 
   return tableSettings;
+}
+
+function getSelectionSettings<T>(selection?: RowSelectionType<T>) {
+  if (!selection) return [] as const;
+
+  const { rowSelection, ...restSelectionSettings } = selection;
+
+  return [{ rowSelection }, restSelectionSettings] as const;
 }
 
 type PaginationSettings<T> = Pick<

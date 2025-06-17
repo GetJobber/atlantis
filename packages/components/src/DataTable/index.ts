@@ -11,3 +11,5 @@ export {
   PaginationState,
   SortingState,
 } from "@tanstack/react-table";
+
+export { selectionColumnDefinition } from "./selectionColumnDefinition";

@@ -1,6 +1,13 @@
-import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
+import {
+  ColumnDef,
+  CoreOptions,
+  Row,
+  RowSelectionOptions,
+  RowSelectionTableState,
+  useReactTable,
+} from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { LegacyRef, ReactNode } from "react";
+import React, { LegacyRef, ReactNode, useMemo } from "react";
 import {
   Breakpoints,
   useResizeObserver,
@@ -73,12 +80,23 @@ export interface DataTableProps<T> {
    * When true, shows the loading state of the DataTable
    */
   readonly loading?: boolean;
+
+  readonly selection?: RowSelectionType<T>;
 }
 
-export function DataTable<T extends object>({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type RowData = object | any[];
+
+export interface RowSelectionType<TData extends RowData>
+  extends Omit<RowSelectionOptions<TData>, "enableSubRowSelection">,
+    Pick<CoreOptions<TData>, "getRowId">,
+    RowSelectionTableState {}
+
+export function DataTable<T extends RowData>({
   data,
   columns,
   pagination,
+  selection,
   sorting,
   height,
   stickyHeader,
@@ -88,10 +106,15 @@ export function DataTable<T extends object>({
   loading = false,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver<HTMLDivElement>();
-  const tableSettings = createTableSettings(data, columns, {
-    pagination,
-    sorting,
-  });
+  const tableSettings = useMemo(
+    () =>
+      createTableSettings(data, columns, {
+        pagination,
+        sorting,
+        selection,
+      }),
+    [data, columns, pagination, sorting],
+  );
 
   const tableClasses = classNames(styles.table, {
     [styles.pinFirstColumn]: pinFirstColumn,
@@ -114,6 +137,17 @@ export function DataTable<T extends object>({
             onRowClick={onRowClick}
             stickyHeader={stickyHeader}
           />
+          {(table.getIsSomePageRowsSelected() ||
+            table.getIsAllPageRowsSelected()) && (
+            <tbody>
+              <tr>
+                <td colSpan={columns.length}>
+                  You currently have {table.getSelectedRowModel().rows.length}{" "}
+                  out of {table.getCoreRowModel().rows.length} selected
+                </td>
+              </tr>
+            </tbody>
+          )}
           <Body
             table={table}
             onRowClick={onRowClick}
@@ -146,6 +180,8 @@ export function DataTable<T extends object>({
           onPageChange={() => ref.current?.scrollTo(0, 0)}
         />
       )}
+
+      <pre>{JSON.stringify(table.getState().rowSelection, null, 2)}</pre>
     </div>
   );
 }

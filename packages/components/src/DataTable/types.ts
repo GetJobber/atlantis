@@ -93,3 +93,5 @@ export interface DefaultSorting {
 }
 
 export type SortingType = DefaultSorting | ManualSorting;
+
+export type RowSelectionState = Record<string | number, boolean>;
