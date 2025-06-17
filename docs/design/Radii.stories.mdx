@@ -5,21 +5,18 @@ import { Meta } from "@storybook/addon-docs";
 # Border Radius
 
 This base radius can be found in almost all of our components that have a
-defined "edge": [Button](../?path=/docs/components-actions-button--docs),
-[Card](../?path=/docs/components-layouts-and-structure-card--docs),
-[InputText](../?path=/docs/components-forms-and-inputs-inputtext--docs), and
-[Menu](../?path=/docs/components-navigation-menu--docs) are all examples of this
-in practice.
+defined "edge": [Button](/components/Button), [Card](/components/Card),
+[InputText](/components/InputText), and [Menu](/components/Menu) are all
+examples of this in practice.
 
 If an element is nested directly inside of a container with the base radius, or
 is itself smaller than the base radius, the small radius may be applied.
 
 Larger rounded corners should be used sparingly, but are available for cases
 where the user may expect a smoother corner, such as
-[ProgressBar](../?path=/docs/components-status-and-feedback-progressbar--docs).
-`--radius-circle` can be used for circular elements like
-[Radio](../?path=/docs/components-forms-and-inputs-radiogroup--docs) options or
-the "pip" in [Switch](../?path=/docs/components-selections-switch--docs).
+[ProgressBar](/components/ProgressBar). `--radius-circle` can be used for
+circular elements like [Radio](/components/RadioGroup) options or the "pip" in
+[Switch](/components/Switch).
 
 export function Example({ of: radius }) {
   const style = {

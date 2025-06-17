@@ -1,6 +1,7 @@
 import { useLocation, useParams } from "react-router";
 import { ContentView } from "../layout/ContentView";
 import { contentMap } from "../maps";
+import { NotFoundPage } from "../pages/NotFoundPage";
 
 /**
  * Pulls information from the URL and uses it to load the correct content
@@ -28,11 +29,23 @@ export const ContentLoader = () => {
     case location.pathname.startsWith("/packages"):
       type = "packages";
       break;
+    case location.pathname.startsWith("/patterns"):
+      type = "patterns";
+      break;
     default:
       type = "content";
   }
 
   const content = contentMap[type][name];
 
-  return <ContentView key={`${type}-${name}`} content={content.content} />;
+  return content ? (
+    <ContentView
+      key={`${type}-${name}`}
+      title={content.title}
+      content={content.content}
+      noMaxWidth={content.noMaxWidth}
+    />
+  ) : (
+    <NotFoundPage />
+  );
 };

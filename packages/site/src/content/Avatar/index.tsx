@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Avatar/Avatar.stories.mdx";
 import Props from "./Avatar.props.json";
+import Notes from "./AvatarNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -25,4 +26,5 @@ export default {
       ),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

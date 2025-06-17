@@ -2,7 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 import { Switch } from "react-native-gesture-handler";
 import { useFormController } from "../../../hooks";
-import { tokens } from "../../../utils/design";
+import { useAtlantisTheme } from "../../../AtlantisThemeContext";
 
 export interface BaseSwitchProps {
   /**
@@ -51,6 +51,8 @@ export function BaseSwitch({
 
   const internalValue = value ?? field.value;
 
+  const { tokens } = useAtlantisTheme();
+
   function getThumbColor() {
     if (Platform.OS === "android") {
       if (disabled) {
@@ -58,7 +60,7 @@ export function BaseSwitch({
       } else if (internalValue) {
         return tokens["color-interactive"];
       } else {
-        return tokens["color-surface--background"];
+        return tokens["color-interactive--background"];
       }
     }
 
@@ -79,7 +81,7 @@ export function BaseSwitch({
       //iOS
       return {
         true: tokens["color-interactive"],
-        false: tokens["color-surface--background"],
+        false: tokens["color-interactive--background"],
       };
     }
   }
@@ -96,7 +98,7 @@ export function BaseSwitch({
       disabled={disabled}
       thumbColor={getThumbColor()}
       trackColor={getTrackColors()}
-      ios_backgroundColor={tokens["color-surface--background"]}
+      ios_backgroundColor={tokens["color-interactive--background"]}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole={"switch"}
       accessibilityState={{

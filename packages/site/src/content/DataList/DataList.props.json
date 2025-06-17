@@ -73,7 +73,7 @@
       },
       "totalCount": {
         "defaultValue": null,
-        "description": "Total number of items in the DataList.\n\nThis renders an \"N result\" text with the DataList\nthat helps users know how many items they have\nin the list",
+        "description": "Total number of items in the DataList.\n\nThis renders an \"N results\" text with the DataList\nthat helps users know how many items they have\nin the list",
         "name": "totalCount",
         "parent": {
           "fileName": "packages/components/src/DataList/DataList.types.ts",
@@ -206,7 +206,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<ButtonProps, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly id?: string; readonly variation?: ButtonVariation; ... 17 more ...; readonly children?: never; } | ... 34 more ... | { ...; }, string | JSXElementConstructor<...>>"
         }
       },
       "type": {
@@ -269,6 +269,19 @@
         "defaultValue": null,
         "description": "The initial value of the search input.\n\nUpdating this prop after the component has mounted will rerender the\ncomponent with the new value. Only update the value of this when you\nabsolutely have to.",
         "name": "initialValue",
+        "parent": {
+          "fileName": "packages/components/src/DataList/DataList.types.ts",
+          "name": "DataListSearchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "The controlled value of the search input.\n\nSupply this field if you want to take control over the search input's\nvalue. You'll need to use `onSearch` to handle updating your state with\nthe latest value.",
+        "name": "value",
         "parent": {
           "fileName": "packages/components/src/DataList/DataList.types.ts",
           "name": "DataListSearchProps"
@@ -349,7 +362,22 @@
         },
         "required": false,
         "type": {
-          "name": "(item: T) => void"
+          "name": "(item: T, event?: MouseEvent<HTMLElement, MouseEvent>) => void"
+        }
+      },
+      "disableContextMenu": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Disable the custom context menu. This allows the browser's native context menu to be shown.",
+        "name": "disableContextMenu",
+        "parent": {
+          "fileName": "packages/components/src/DataList/DataList.types.ts",
+          "name": "BaseDataListItemActionsProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }
@@ -454,6 +482,19 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "alwaysVisible": {
+        "defaultValue": null,
+        "description": "Determine if the action is always visible. It is not recommended to set this to true on more then one action.",
+        "name": "alwaysVisible",
+        "parent": {
+          "fileName": "packages/components/src/DataList/DataList.types.ts",
+          "name": "DataListActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

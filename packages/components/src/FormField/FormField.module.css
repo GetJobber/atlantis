@@ -62,7 +62,7 @@
   box-sizing: border-box;
 }
 
-.wrapper:focus-within {
+.wrapper:not(.disabled):focus-within {
   position: relative;
   z-index: var(--field--base-elevation);
   box-shadow: var(--shadow-focus);
@@ -78,12 +78,17 @@
   margin-right: var(--field--padding-right);
 }
 
+/* When there's placeholder text on an EMPTY time input
+  - we hide the field value when the input is:
+  - not focused or disabled
+*/
+.timeInputLabel input:disabled,
 .timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
   -webkit-text-fill-color: var(--field--background-color);
 }
 
-.timeInputLabel:focus-within,
+.timeInputLabel:not(.disabled):focus-within,
 .miniLabel {
   --field--placeholder-color: var(--color-text--secondary);
   --field--placeholder-offset: var(--space-smallest);
@@ -92,7 +97,7 @@
   --field--padding-bottom: var(--space-small);
 }
 
-.timeInputLabel.large:focus-within,
+.timeInputLabel:not(.disabled).large:focus-within,
 .miniLabel.large {
   --field--padding-top: calc(var(--space-large) + var(--space-smaller));
 }
@@ -108,8 +113,8 @@
   overflow: auto;
 }
 
-.invalid,
-.invalid:focus-within {
+.invalid:not(.disabled),
+.invalid:not(.disabled):focus-within {
   --field--border-color: var(--color-critical);
   position: relative;
 }
@@ -117,8 +122,8 @@
 .disabled {
   --field--placeholder-color: var(--color-disabled);
   --field--value-color: var(--color-disabled);
-  --field--background-color: var(--color-surface--background);
-  --field--border-color: var(--color-disabled--secondary);
+  --field--background-color: var(--color-disabled--secondary);
+  --field--border-color: var(--color-border);
 }
 
 /* override iOS default styling for disabled input */
@@ -128,8 +133,8 @@
 }
 
 .small {
-  --field--padding-left: calc(var(--space-base) - var(--space-smaller));
-  --field--padding-right: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-left: var(--space-slim);
+  --field--padding-right: var(--space-slim);
   --field--padding-top: var(--space-small);
   --field--padding-bottom: var(--space-small);
   --field--height: calc(var(--space-larger) + var(--space-smaller));
@@ -209,6 +214,10 @@
   outline: none;
 }
 
+.emptyPhoneNumber {
+  padding-left: calc(var(--field--padding-left) + var(--space-smaller));
+}
+
 .textarea .childrenWrapper {
   display: flex;
   min-height: var(--field--height);
@@ -235,6 +244,7 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+  -webkit-text-fill-color: var(--field--value-color);
 }
 
 .textarea:not(:has(.label)) {
@@ -268,6 +278,13 @@
   transition: all var(--timing-quick);
 }
 
+.externalLabel {
+  display: block;
+  margin-bottom: var(--space-smaller);
+  color: var(--field--placeholder-color);
+  line-height: var(--typography--lineHeight-base);
+}
+
 .select select,
 .right select,
 .select .label {
@@ -287,9 +304,12 @@
   padding-right: var(--field--padding-right);
 }
 
-.miniLabel .label,
-.timeInputLabel:focus-within .label {
+.miniLabel .label {
   font-size: var(--typography--fontSize-small);
+}
+
+.small.miniLabel .label {
+  display: none;
 }
 
 .text.miniLabel .label {
@@ -300,15 +320,18 @@
   background-color: var(--field--background-color);
 }
 
-.small.miniLabel .label,
-.timeInputLabel.small.miniLabel:focus-within .label {
+.timeInputLabel:focus-within:not(.disabled) .label {
+  font-size: var(--typography--fontSize-small);
+}
+
+.timeInputLabel.small.miniLabel:focus-within:not(.disabled) .label {
   display: none;
 }
 
 /**This is valid cascading order **/
 /* stylelint-disable-next-line no-descending-specificity */
 .large.miniLabel .label,
-.timeInputLabel.large.miniLabel:focus-within .label {
+.timeInputLabel.large.miniLabel:focus-within:not(.disabled) .label {
   padding-top: var(--space-small);
 }
 
@@ -338,11 +361,6 @@
 .affixIcon.suffix {
   margin: 0 0 0 calc(var(--field--padding-right) * -1);
   padding-left: var(--space-small);
-}
-
-.affixIcon.hasAction {
-  position: relative;
-  z-index: var(--field--postfix-action-elevation);
 }
 
 .affixLabel {

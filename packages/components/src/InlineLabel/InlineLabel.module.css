@@ -12,7 +12,7 @@
 }
 
 .large {
-  padding: calc(var(--space-small) * 1.25) calc(var(--space-small) * 1.5);
+  padding: calc(var(--space-small) * 1.25) var(--space-slim);
   border-radius: var(--radius-larger);
 }
 
@@ -21,7 +21,7 @@
 }
 
 .larger {
-  padding: calc(var(--space-small) * 1.5) calc(var(--space-base));
+  padding: var(--space-slim) calc(var(--space-base));
   border-radius: var(--radius-larger);
 }
 

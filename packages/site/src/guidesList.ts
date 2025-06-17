@@ -1,33 +1,66 @@
 export const guidesList = [
   {
+    title: "Atlantis overview",
+    to: "/guides/atlantis-overview",
+    sections: ["Getting started"],
+    imageURL: "/Overview.png",
+  },
+  {
+    title: "Contributing to Atlantis",
+    to: "/guides/contributing",
+    sections: ["Contributing"],
+  },
+  {
     title: "Create a React component",
     to: "/guides/create-a-react-component",
-    imageURL: "/Placeholder.png",
+    sections: ["Building"],
   },
   {
     title: "Customizing components",
     to: "/guides/customizing-components",
-    imageURL: "/Placeholder.png",
-    additionalMatches: ["Custom"],
+    additionalMatches: ["Custom", "Composability"],
+    sections: ["Building"],
   },
   {
-    title: "Documentation styleguide",
+    title: "Writing documentation",
     to: "/guides/documentation-styleguide",
-    imageURL: "/Placeholder.png",
+    sections: ["Contributing"],
+  },
+  {
+    title: "Adding an icon",
+    to: "/guides/adding-an-icon",
+    sections: ["Contributing"],
+  },
+  {
+    title: "Figma 101",
+    to: "/guides/figma-101",
+    sections: ["Getting started"],
+    imageURL: "/Figma.png",
   },
   {
     title: "Frontend styleguide",
     to: "/guides/frontend-styleguide",
-    imageURL: "/Placeholder.png",
+    sections: ["Building"],
   },
   {
     title: "Getting started with React",
     to: "/guides/getting-started-with-react",
-    imageURL: "/Placeholder.png",
+    sections: ["Getting started"],
+    imageURL: "/React.png",
   },
   {
     title: "Pull request title generator",
     to: "/guides/pull-request-title-generator",
-    imageURL: "/Placeholder.png",
+    sections: ["Contributing"],
+  },
+  {
+    title: "Page layouts",
+    to: "/guides/page-layouts",
+    sections: ["Building"],
+  },
+  {
+    title: "Scaffolding",
+    to: "/guides/scaffolding",
+    sections: ["Building"],
   },
 ];

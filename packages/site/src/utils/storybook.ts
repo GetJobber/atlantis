@@ -3,9 +3,6 @@
  *
  * If the url contains `?path`, we redirect to `/storybook/?path=___`.
  *
- * If the url is the root page, we redirect to `/storybook` unless the `?new`
- * param is set, which forces the new docs site to render.
- *
  * Any other path is assumed to be owned by the new docs site, and will render.
  */
 export function handleStorybookRedirect() {
@@ -15,12 +12,12 @@ export function handleStorybookRedirect() {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
-  const forceNewDocsSite = urlParams.has("new");
+  const redirectToNewSite = localStorage.getItem("nolikeynewsite");
   const isStorybookPath = urlParams.has("path");
 
   if (isStorybookPath) {
     window.location.href = `/storybook/${window.location.search}`;
-  } else if (window.location.pathname === "/" && !forceNewDocsSite) {
+  } else if (window.location.pathname === "/" && redirectToNewSite) {
     // NOTE: by default we redirect to storybook for now.
     // TODO: when the new site is ready, we just need to remove this case.
     window.location.href = `/storybook`;

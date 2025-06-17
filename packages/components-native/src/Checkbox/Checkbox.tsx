@@ -1,11 +1,11 @@
 import React from "react";
 import { ColorValue, Pressable, View } from "react-native";
 import { XOR } from "ts-xor";
-import { tokens } from "@jobber/design";
-import { styles } from "./Checkbox.style";
+import { useStyles } from "./Checkbox.style";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { FormField } from "../FormField";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 interface CommonCheckboxProps {
   /**
@@ -125,6 +125,8 @@ function CheckboxInternal({
     indeterminate,
   );
 
+  const styles = useStyles();
+
   return (
     <Pressable
       accessibilityRole="checkbox"
@@ -180,6 +182,8 @@ function getBackgroundColor(
   disabled: boolean,
   indeterminate: boolean,
 ): ColorValue {
+  const { tokens } = useAtlantisTheme();
+
   if (checked || indeterminate) {
     if (disabled) {
       return tokens["color-disabled"];

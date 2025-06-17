@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useRef } from "react";
 import { View, ViewStyle } from "react-native";
 import { v4 } from "react-native-uuid";
 import { useErrorMessageContext } from "./context";
-import { styles } from "./ErrorMessageWrapper.style";
+import { useStyles } from "./ErrorMessageWrapper.style";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
@@ -21,11 +21,6 @@ interface ErrorMessageWrapperProps {
 
   readonly children: ReactNode;
 }
-
-const wrapForStyle: Record<WrapForTypes, ViewStyle | undefined> = {
-  card: styles.wrapForCard,
-  default: undefined,
-};
 
 /**
  * Adds an error message below the children but ensure the message gets read
@@ -46,6 +41,12 @@ export function ErrorMessageWrapper({
 
   const hasErrorMessage = Boolean(message);
 
+  const styles = useStyles();
+
+  const wrapForStyle: Record<WrapForTypes, ViewStyle | undefined> = {
+    card: styles.wrapForCard,
+    default: undefined,
+  };
   useEffect(() => {
     if (register) {
       register({ id: uuid, ref: a11yMessageRef, hasErrorMessage });

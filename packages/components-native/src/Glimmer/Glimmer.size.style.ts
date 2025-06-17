@@ -1,10 +1,11 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../utils/design";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
-export const sizeStyles = StyleSheet.create({
-  small: { height: tokens["space-small"] },
-  base: { height: tokens["space-base"] },
-  large: { height: tokens["space-large"] },
-  larger: { height: tokens["space-larger"] },
-  largest: { height: tokens["space-largest"] },
+export const useSizeStyles = buildThemedStyles(tokens => {
+  return {
+    small: { height: tokens["space-small"] },
+    base: { height: tokens["space-base"] },
+    large: { height: tokens["space-large"] },
+    larger: { height: tokens["space-larger"] },
+    largest: { height: tokens["space-largest"] },
+  };
 });

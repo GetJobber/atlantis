@@ -10,9 +10,9 @@ import {
   ViewStyle,
 } from "react-native";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
-import { typographyStyles as styles } from "./Typography.style";
-import { tokens } from "../utils/design";
+import { useTypographyStyles } from "./Typography.style";
 import { capitalize } from "../utils/intl";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export interface TypographyProps<T extends FontFamily>
   extends Pick<TextProps, "selectable"> {
@@ -118,6 +118,8 @@ export interface TypographyProps<T extends FontFamily>
    * Have text styled with strike through
    */
   readonly strikeThrough?: boolean;
+
+  readonly UNSAFE_style?: TypographyUnsafeStyle;
 }
 
 const maxNumberOfLines = {
@@ -128,6 +130,10 @@ const maxNumberOfLines = {
   extraLarge: 16,
   unlimited: undefined,
 };
+
+export interface TypographyUnsafeStyle {
+  textStyle?: StyleProp<TextStyle>;
+}
 
 export const Typography = React.memo(InternalTypography);
 
@@ -146,21 +152,23 @@ function InternalTypography<T extends FontFamily = "base">({
   maxFontScaleSize,
   adjustsFontSizeToFit = false,
   lineHeight,
-  letterSpacing,
+  letterSpacing = "base",
   reverseTheme = false,
   hideFromScreenReader = false,
   accessibilityRole = "text",
   strikeThrough = false,
   underline,
+  UNSAFE_style,
   selectable = true,
 }: TypographyProps<T>): JSX.Element {
-  const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
+  const styles = useTypographyStyles();
+  const sizeAndHeight = getSizeAndHeightStyle(size, styles, lineHeight);
   const style: StyleProp<ViewStyle>[] = [
-    getFontStyle(fontFamily, fontStyle, fontWeight),
-    getColorStyle(color, reverseTheme),
-    getAlignStyle(align),
+    getFontStyle(fontFamily, fontStyle, fontWeight, styles),
+    getColorStyle(styles, color, reverseTheme),
+    getAlignStyle(styles, align),
     sizeAndHeight,
-    getLetterSpacingStyle(letterSpacing),
+    getLetterSpacingStyle(letterSpacing, styles),
   ];
 
   if (strikeThrough) {
@@ -176,6 +184,10 @@ function InternalTypography<T extends FontFamily = "base">({
     style.push(underlineTextStyle, styles.underline);
   }
 
+  if (UNSAFE_style?.textStyle) {
+    style.push(UNSAFE_style.textStyle);
+  }
+
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
 
   const text = getTransformedText(children, transform);
@@ -186,6 +198,8 @@ function InternalTypography<T extends FontFamily = "base">({
         importantForAccessibility: "no-hide-descendants",
       }
     : { accessibilityRole };
+
+  const { tokens } = useAtlantisTheme();
 
   return (
     <TypographyGestureDetector>
@@ -220,6 +234,7 @@ function getFontStyle(
   fontFamily: FontFamily = "base",
   fontStyle: FontStyle = "regular",
   fontWeight: FontWeight = "regular",
+  styles: ReturnType<typeof useTypographyStyles>,
 ) {
   const defaultBaseFontStyling = styles.baseRegularRegular;
   const defaultDisplayFontStyling = styles.displayRegularBold;
@@ -250,7 +265,11 @@ function getTransformedText(text?: string, transform?: TextTransform) {
   }
 }
 
-function getColorStyle(color?: TextColor, reverseTheme?: boolean) {
+function getColorStyle(
+  styles: ReturnType<typeof useTypographyStyles>,
+  color?: TextColor,
+  reverseTheme?: boolean,
+) {
   if (color === "default" || !color) {
     return styles.greyBlue;
   }
@@ -260,6 +279,7 @@ function getColorStyle(color?: TextColor, reverseTheme?: boolean) {
 }
 
 function getAlignStyle(
+  styles: ReturnType<typeof useTypographyStyles>,
   alignStyle: TextAlign = I18nManager.isRTL ? "end" : "start",
 ) {
   return styles[`${alignStyle}Align`];
@@ -267,6 +287,7 @@ function getAlignStyle(
 
 function getSizeAndHeightStyle(
   textSize: TextSize,
+  styles: ReturnType<typeof useTypographyStyles>,
   lineHeightOverwrite?: LineHeight,
 ) {
   const fontSize = styles[`${textSize}Size`];
@@ -280,7 +301,10 @@ function getSizeAndHeightStyle(
   return fontSize;
 }
 
-function getLetterSpacingStyle(letterSpacing: LetterSpacing = "base") {
+function getLetterSpacingStyle(
+  letterSpacing: LetterSpacing,
+  styles: ReturnType<typeof useTypographyStyles>,
+) {
   return styles[`${letterSpacing}LetterSpacing`];
 }
 

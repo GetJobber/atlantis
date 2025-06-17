@@ -15,7 +15,7 @@ export const BodyBlock = ({ children }: PropsWithChildren) => {
         padding: "var(--space-largest) var(--space-large)",
       }}
     >
-      <Content>{children}</Content>
+      <Content spacing={"extravagant"}>{children}</Content>
     </div>
   );
 };

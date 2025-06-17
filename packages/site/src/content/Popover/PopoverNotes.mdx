@@ -1,0 +1,183 @@
+## Component customization
+
+
+### Composable usage
+
+Popover exposes its internal building blocks as subcomponents:
+`Popover.Provider`, `Popover.DismissButton` and `Popover.Arrow`. This gives you
+more control over the Popover's appearance and behaviour.
+
+Here's a basic example of how our current non-composable Popover is used:
+
+```tsx
+<Popover
+  attachTo={elementRef}
+  open={showPopover}
+  onRequestClose={() => setShowPopover(false)}
+>
+  <Content>
+    Popover content goes here
+  </Content>
+</Popover>
+```
+
+Using Popover's built-in subcomponents, this UI can alternatively be expressed as:
+
+```tsx
+<Popover.Provider attachTo={elementRef} open={showPopover}>
+  <Popover.DismissButton onClick={() => setShowPopover(false)} />
+  <Content>
+    Popover content goes here
+  </Content>
+  <Popover.Arrow />
+</Popover.Provider>
+```
+
+If you don't want to render the dismiss button or arrow, you can omit them like
+so:
+
+```tsx
+<Popover.Provider attachTo={elementRef} open={showPopover}>
+  <Content>
+    Popover content goes here
+  </Content>
+</Popover.Provider>
+```
+
+If you need more control over the dismiss button, you can pass a custom child
+component into `Popover.DismissButton`:
+
+```tsx
+<Popover.Provider attachTo={elementRef} open={showPopover}>
+  <Popover.DismissButton>
+    <Button onClick={() => setShowPopover(false)} variation="subtle">
+      <Button.Icon name="eyeCrossed" />
+    </Button>
+  </Popover.DismissButton>
+  <Content>
+    Popover content goes here
+  </Content>
+  <Popover.Arrow />
+</Popover.Provider>
+```
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+Popover has three elements that can be targeted with classes or styles. These
+are the container, the dismiss button container, and the arrow.
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Popover updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the Popover. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// YourComponent.tsx
+UNSAFE_className={{
+  container: styles.customPopoverBackground,
+  dismissButtonContainer: styles.customDismissButton,
+  arrow: styles.customArrow,
+}}
+
+// YourComponent.module.css
+.customPopoverBackground {
+  background-color: var(--color-surface--background);
+}
+
+.customDismissButton {
+  background-color: var(--color-indigo);
+}
+
+.customArrow {
+  padding-left: var(--space-extravagant);
+}
+```
+
+You can also use the `UNSAFE_className` prop to apply custom classes to any
+element within the Popover.
+
+```tsx
+UNSAFE_className={{ container: "custom-container-class" }}
+```
+
+If you're using Popover with its composable subcomponents, you'll need to pass
+`UNSAFE_className` to the individual subcomponents accordingly:
+
+```tsx
+<Popover.Provider
+  attachTo={elementRef}
+  open={showPopover}
+  UNSAFE_className={{
+    container: styles.customPopoverBackground,
+  }}
+>
+  <Popover.DismissButton
+    onClick={() => setShowPopover(false)}
+    UNSAFE_className={{
+      dismissButtonContainer: styles.customDismissButton,
+    }}
+  />
+  <Content>
+    Popover content goes here
+  </Content>
+  <Popover.Arrow
+    UNSAFE_className={{
+      arrow: styles.customArrow,
+    }}
+  />
+</Popover.Provider>
+```
+
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the Popover.
+
+```tsx
+UNSAFE_style={{
+  container: { backgroundColor: "lightblue" },
+  dismissButtonContainer: { paddingRight: "var(--space-larger)" },
+  arrow: { paddingRight: "var(--space-extravagant)" },
+}}
+```
+
+If you're using Popover with its composable subcomponents, you'll need to pass
+`UNSAFE_style` to the individual subcomponents accordingly:
+
+```tsx
+<Popover.Provider
+  attachTo={elementRef}
+  open={showPopover}
+  UNSAFE_style={{
+    container: {
+      backgroundColor: "orange",
+    },
+  }}
+>
+  <Popover.DismissButton
+    onClick={() => setShowPopover(false)}
+    UNSAFE_style={{
+      dismissButtonContainer: {
+        backgroundColor: "blue",
+      },
+    }}
+  />
+  <Content>
+    Popover content goes here
+  </Content>
+  <Popover.Arrow
+    UNSAFE_style={{
+      arrow: {
+        backgroundColor: "red",
+      },
+    }}
+  />
+</Popover.Provider>
+```

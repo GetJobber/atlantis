@@ -12,7 +12,7 @@ import fontFamilies from "./css/FontFamilies.module.css";
 import underlineStyles from "./css/Underline.module.css";
 import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
 
-interface TypographyProps {
+export interface TypographyProps {
   readonly id?: string;
   /**
    * @default "p"
@@ -61,6 +61,20 @@ interface TypographyProps {
    * @example "double color-invoice" for a double underline in the specified color
    */
   readonly underline?: UnderlineStyle | UnderlineStyleWithColor | undefined;
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: { textStyle?: string };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: { textStyle?: CSSProperties };
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -77,6 +91,8 @@ export function Typography({
   numberOfLines,
   fontFamily,
   underline,
+  UNSAFE_className,
+  UNSAFE_style,
 }: TypographyProps) {
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
@@ -92,45 +108,51 @@ export function Typography({
     {
       ...(align && { [alignment[align]]: align !== `start` }),
     },
+    UNSAFE_className?.textStyle,
   );
 
-  let stylesOverrides: CSSProperties = {};
+  const truncateStyles: CSSProperties = shouldTruncateText
+    ? {
+        WebkitLineClamp: numberOfLines,
+        WebkitBoxOrient: "vertical",
+      }
+    : {};
 
-  if (shouldTruncateText) {
-    stylesOverrides = {
-      WebkitLineClamp: numberOfLines,
-      WebkitBoxOrient: "vertical",
-    };
-  }
-
-  if (underline) {
-    const [underlineStyle, underlineColor] = underline.split(" ");
-
-    stylesOverrides.textDecorationStyle = underlineStyle as UnderlineStyle;
-    stylesOverrides.textDecorationColor = computeUnderlineColor(
-      underlineColor,
-      textColor,
-    );
-  }
+  const underlineInlineStyles = computeUnderlineStyles(underline, textColor);
 
   return (
-    <Tag id={id} className={className} style={stylesOverrides}>
+    <Tag
+      id={id}
+      className={className}
+      style={{
+        ...truncateStyles,
+        ...underlineInlineStyles,
+        ...UNSAFE_style?.textStyle,
+      }}
+    >
       {children}
     </Tag>
   );
 }
 
-function computeUnderlineColor(
-  textDecorationColor: string,
+function computeUnderlineStyles(
+  underline?: UnderlineStyle | UnderlineStyleWithColor,
   textColor?: keyof typeof textColors,
-): string | undefined {
-  // Use the specified underline color if one is provided. If no underline color
-  // is specified, fall back to the text color for the underline.
-  if (textDecorationColor) {
-    return `var(--${textDecorationColor})`;
+): CSSProperties {
+  if (!underline) {
+    return {};
   }
 
-  if (textColor) {
-    return textColors[textColor];
+  const [underlineStyle, underlineColor] = underline.split(" ");
+  const underlineInlineStyles: CSSProperties = {
+    textDecorationStyle: underlineStyle as UnderlineStyle,
+  };
+
+  if (underlineColor) {
+    underlineInlineStyles.textDecorationColor = `var(--${underlineColor})`;
+  } else if (textColor) {
+    underlineInlineStyles.textDecorationColor = textColors[textColor];
   }
+
+  return underlineInlineStyles;
 }

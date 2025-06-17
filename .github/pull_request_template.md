@@ -2,7 +2,7 @@
   Atlantis uses Conventional Commits to track versions.
   Pull request titles should follow the following format.
 
-  For help creating your pull request, you can [use this tool](https://atlantis.getjobber.com/?path=/story/guides-pull-request-title-generator--docs)
+  For help creating your pull request, you can [use this tool](https://atlantis.getjobber.com/guides/pull-request-title-generator)
 
   <TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>
 
@@ -82,5 +82,3 @@ Changes can be
 ---
 
 [In Atlantis we use Github's built in pull request reviews](https://help.github.com/en/articles/about-pull-request-reviews).
-
-![Random photo of Atlantis](https://loremflickr.com/672/400/atlantis)

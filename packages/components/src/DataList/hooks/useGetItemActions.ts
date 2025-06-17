@@ -7,6 +7,9 @@ export function useGetItemActions<T extends DataListObject>(item: T) {
   const itemActions = itemActionComponent?.props.children || [];
   const actionsArray = Children.toArray(itemActions);
 
+  const disableContextMenu =
+    itemActionComponent?.props.disableContextMenu ?? false;
+
   const actions = useMemo(() => {
     return actionsArray.filter(action => {
       if (isValidElement(action) && action.props.visible) {
@@ -20,5 +23,6 @@ export function useGetItemActions<T extends DataListObject>(item: T) {
   return {
     actions: actions as ReactElement<DataListActionProps<T>>[],
     hasActions: Boolean(actions.length),
+    disableContextMenu,
   };
 }

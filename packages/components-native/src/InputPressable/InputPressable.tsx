@@ -3,8 +3,20 @@ import { IconNames } from "@jobber/design";
 import { FieldError } from "react-hook-form";
 import { Text as NativeText, Pressable } from "react-native";
 import { Clearable, useShowClear } from "@jobber/hooks";
-import { styles } from "./InputPressable.style";
-import { InputFieldWrapper, commonInputStyles } from "../InputFieldWrapper";
+import { XOR } from "ts-xor";
+import { useStyles } from "./InputPressable.style";
+import { InputFieldWrapper, useCommonInputStyles } from "../InputFieldWrapper";
+
+interface BasicSuffix {
+  icon?: IconNames;
+  label?: string;
+}
+
+interface InteractiveSuffix {
+  icon: IconNames;
+  label?: string;
+  onPress: () => void;
+}
 
 export interface InputPressableProps {
   /**
@@ -64,10 +76,8 @@ export interface InputPressableProps {
   /**
    * Symbol to display after the text input
    */
-  readonly suffix?: {
-    icon?: IconNames;
-    label?: string;
-  };
+  readonly suffix?: XOR<BasicSuffix, InteractiveSuffix>;
+
   /**
    * Add a clear action on the input that clears the value.
    *
@@ -118,6 +128,9 @@ export function InputPressableInternal(
     hasValue,
     disabled,
   });
+
+  const styles = useStyles();
+  const commonInputStyles = useCommonInputStyles();
 
   return (
     <InputFieldWrapper

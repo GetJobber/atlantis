@@ -92,5 +92,20 @@ describe("SegmentedControlProvider", () => {
 
       expect(screen.getByLabelText("Option 2")).toBeChecked();
     });
+
+    it("does not call onSelectValue on mount", () => {
+      const handleSelectValue = jest.fn();
+      render(
+        <SegmentedControlProvider
+          selectedValue="option1"
+          onSelectValue={handleSelectValue}
+        >
+          <SegmentedControl />
+        </SegmentedControlProvider>,
+      );
+
+      // Verify that onSelectValue was never called during mount
+      expect(handleSelectValue).not.toHaveBeenCalled();
+    });
   });
 });

@@ -6,7 +6,7 @@ interface ClearActionProps {
   /**
    * Click handler
    */
-  readonly onClick: () => void;
+  readonly onClick?: () => void;
   readonly visible?: boolean;
 }
 
@@ -22,6 +22,7 @@ export function ClearAction({
       onClick={onClick}
       type="button"
       aria-label="Clear input"
+      data-testid="ATL-FormField-clearButton"
     >
       <Icon name="remove" size="small" />
     </button>

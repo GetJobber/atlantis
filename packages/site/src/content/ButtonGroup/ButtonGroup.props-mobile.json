@@ -170,7 +170,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"destructive\" | \"task\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | \"interactive\" | ... 33 more ... | \"brandHighlight\""
+          "name": "\"destructive\" | \"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | ... 34 more ... | \"brandHighlight\""
         }
       },
       "onPress": {
@@ -244,7 +244,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"destructive\" | \"task\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | \"interactive\" | ... 33 more ... | \"brandHighlight\""
+          "name": "\"destructive\" | \"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | ... 34 more ... | \"brandHighlight\""
         }
       },
       "onPress": {

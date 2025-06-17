@@ -3,6 +3,7 @@ import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
 import { ContentPage } from "./pages/ContentPage";
 import { DesignPage } from "./pages/DesignPage";
+import { PatternsPage } from "./pages/PatternsPage";
 import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
 import { componentSections } from "./componentSections";
@@ -11,6 +12,8 @@ import { HooksPage } from "./pages/HooksPage";
 import { hooksList } from "./hooksList";
 import { GuidesPage } from "./pages/GuidesPage";
 import { PackagesPage } from "./pages/PackagesPage";
+import { ComponentNotFound } from "./components/ComponentNotFound";
+import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -66,6 +69,39 @@ export const routes: Array<AtlantisRoute> = [
     component: HomePage,
     exact: true,
     handle: "Home",
+  },
+  {
+    path: "/patterns",
+    handle: "Patterns",
+    exact: true,
+    component: PatternsPage,
+    children: [
+      {
+        path: "/patterns/interaction",
+        handle: "Interaction",
+        exact: true,
+      },
+      {
+        path: "/patterns/empty-states",
+        handle: "Empty states",
+        exact: true,
+      },
+      {
+        path: "/patterns/errors",
+        handle: "Errors",
+        exact: true,
+      },
+      {
+        path: "/patterns/disabled-states",
+        handle: "Disabled states",
+        exact: true,
+      },
+      {
+        path: "/patterns/settings",
+        handle: "Settings",
+        exact: true,
+      },
+    ],
   },
   {
     path: "/components",
@@ -164,6 +200,16 @@ export const routes: Array<AtlantisRoute> = [
     component: GuidesPage,
     children: [
       {
+        path: "/guides/atlantis-overview",
+        handle: "Atlantis overview",
+        exact: true,
+      },
+      {
+        path: "/guides/contributing",
+        handle: "Contributing",
+        exact: true,
+      },
+      {
         path: "/guides/create-a-react-component",
         handle: "Create a React component",
         exact: true,
@@ -175,12 +221,22 @@ export const routes: Array<AtlantisRoute> = [
       },
       {
         path: "/guides/documentation-styleguide",
-        handle: "Documentation styleguide",
+        handle: "Writing documentation",
+        exact: true,
+      },
+      {
+        path: "/guides/adding-an-icon",
+        handle: "Adding an icon",
         exact: true,
       },
       {
         path: "/guides/frontend-styleguide",
         handle: "Frontend styleguide",
+        exact: true,
+      },
+      {
+        path: "/guides/figma-101",
+        handle: "Figma 101",
         exact: true,
       },
       {
@@ -191,6 +247,16 @@ export const routes: Array<AtlantisRoute> = [
       {
         path: "/guides/pull-request-title-generator",
         handle: "Pull request title generator",
+        exact: true,
+      },
+      {
+        path: "/guides/page-layouts",
+        handle: "Page layouts",
+        exact: true,
+      },
+      {
+        path: "/guides/scaffolding",
+        handle: "Scaffolding",
         exact: true,
       },
     ],
@@ -324,9 +390,30 @@ export const routes: Array<AtlantisRoute> = [
     exact: true,
   },
   {
+    path: "/patterns/:name",
+    component: ContentLoader,
+    handle: "PatternsContent",
+    inNav: false,
+    exact: true,
+  },
+  {
     path: "/changelog/:name",
     component: ContentLoader,
     handle: "ChangelogContent",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/component-not-found",
+    component: ComponentNotFound,
+    handle: "ComponentNotFound",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/welcome-guide",
+    component: WelcomeGuidePage,
+    handle: "WelcomeGuide",
     inNav: false,
     exact: true,
   },

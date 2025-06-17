@@ -1,6 +1,5 @@
 .container {
-    width: 100%;
-    pointer-events: none; 
+    pointer-events: none;
     position: absolute;
     top: 0;
     opacity: 0;

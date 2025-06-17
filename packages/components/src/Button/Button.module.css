@@ -29,6 +29,7 @@
   fill: var(--public--button--color-variation);
   align-items: center;
   justify-content: center;
+  gap: var(--space-smaller);
 }
 
 .button * {
@@ -182,7 +183,7 @@ a.button.disabled:hover {
 
 .small {
   --button--size: 32px;
-  padding: var(--space-smaller) calc(var(--space-base) - var(--space-smaller));
+  padding: var(--space-smaller) var(--space-slim);
 }
 
 .base {
@@ -200,28 +201,19 @@ a.button.disabled:hover {
   flex-shrink: 0;
 }
 
-.onlyIcon {
+.buttonChildren:has(> svg:only-child) {
   width: var(--button--size);
   padding: 0;
 }
 
-.hasIconAndLabel {
-  width: auto;
-  gap: var(--space-smaller);
-}
-
-.hasIconAndLabel > * {
-  text-align: start;
-}
-
-.hasIconAndLabel > *:first-child {
-  margin-left: calc(var(--space-smaller) * -1);
-}
-
-.iconOnRight > *:first-child {
-  order: 1;
-  margin-left: 0;
+/** Icon on Right */
+.buttonChildren > span ~ svg {
   margin-right: calc(var(--space-smaller) * -1);
+}
+
+/** Icon on Left */
+.buttonChildren > svg:has(+ span:nth-child(2)) {
+  margin-left: calc(var(--space-smaller) * -1);
 }
 
 .fullWidth {

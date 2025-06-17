@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import { FloatingNode, FloatingPortal, FloatingTree } from "@floating-ui/react";
 import ReactDOM from "react-dom";
 import styles from "./ComboboxContent.module.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
@@ -14,24 +15,27 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
   const { optionsListRef } = useComboboxContent(props.open, props.selected);
 
-  const { popperRef, popperStyles, attributes } = useComboboxAccessibility(
-    props.handleSelection,
-    props.options,
-    optionsListRef,
-    props.open,
-    props.wrapperRef,
-  );
+  const { popperRef, popperStyles, floatingProps, nodeId, parentNodeId } =
+    useComboboxAccessibility(
+      props.handleSelection,
+      props.options,
+      optionsListRef,
+      props.open,
+      props.wrapperRef,
+    );
 
-  const template = (
+  const content = (
     <div
       ref={popperRef}
       id={COMBOBOX_MENU_ID}
       data-testid={COMBOBOX_MENU_ID}
       data-elevation={"elevated"}
       tabIndex={0}
-      className={classnames(styles.content, { [styles.hidden]: !props.open })}
-      style={popperStyles.popper}
-      {...attributes.popper}
+      className={classnames(styles.content, {
+        [styles.hidden]: !props.open,
+      })}
+      style={popperStyles}
+      {...floatingProps}
     >
       <ComboboxContentSearch
         open={props.open}
@@ -81,7 +85,17 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     </div>
   );
 
+  if (parentNodeId) {
+    return (
+      <FloatingTree>
+        <FloatingNode id={nodeId}>
+          <FloatingPortal>{content}</FloatingPortal>
+        </FloatingNode>
+      </FloatingTree>
+    );
+  }
+
   return globalThis?.document
-    ? ReactDOM.createPortal(template, document.body)
-    : template;
+    ? ReactDOM.createPortal(content, document.body)
+    : content;
 }

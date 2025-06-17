@@ -4,6 +4,7 @@
 import { PathPrompt } from "inquirer-path";
 
 export default (plop, config) => {
+  // Merge the config with the default values
   const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",
@@ -53,12 +54,12 @@ export default (plop, config) => {
     actions: answers => {
       Object.assign(answers, { mdx: "mdx", tsx: "tsx" });
       const actions = [];
-      // const buildSiteContentIndex = () => ({
-      //   type: "addMany",
-      //   destination: `packages/site/src/content/{{name}}/`,
-      //   base: "templates/site",
-      //   templateFiles: "templates/site/**/*",
-      // });
+      const buildSiteContentIndex = () => ({
+        type: "addMany",
+        destination: `packages/site/src/content/{{name}}/`,
+        base: "templates/site",
+        templateFiles: "templates/site/**/*",
+      });
 
       if (answers.type === "web") {
         actions.push(
@@ -74,7 +75,7 @@ export default (plop, config) => {
             base: "templates/docs",
             templateFiles: `templates/docs/!(Mobile)*`,
           },
-          //    buildSiteContentIndex(), - Uncomment when site is ready for production
+          buildSiteContentIndex(),
           webReminder,
         );
       } else if (answers.type === "native") {
@@ -91,7 +92,7 @@ export default (plop, config) => {
             base: "templates/docs",
             templateFiles: `templates/docs/!(Web)*`,
           },
-          //    buildSiteContentIndex(), - Uncomment when site is ready for production
+          buildSiteContentIndex(),
           mobileReminder,
         );
       } else {
@@ -114,7 +115,7 @@ export default (plop, config) => {
             base: "templates/docs",
             templateFiles: `templates/docs/${templateGlob}`,
           },
-          //  buildSiteContentIndex(), - Uncomment when site is ready for production
+          buildSiteContentIndex(),
           webReminder,
           mobileReminder,
         );

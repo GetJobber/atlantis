@@ -1,15 +1,17 @@
-import { Box, Button, Content, Icon, Typography } from "@jobber/components";
-import { Link } from "react-router-dom";
-import { Fragment, PropsWithChildren, useState } from "react";
-import { SearchBox } from "./SearchBox";
+import { Box, Button, Typography } from "@jobber/components";
+import { Link, useLocation } from "react-router-dom";
+import { Fragment, PropsWithChildren, useRef } from "react";
+import { useBreakpoints } from "@jobber/hooks";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
+import { LeftDrawer } from "./LeftDrawer";
+import { getStorybookUrl } from "./getStorybookUrl";
 import { routes } from "../routes";
 import { JobberLogo } from "../assets/JobberLogo.svg";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
 
-interface NavMenuProps {
+export interface NavMenuProps {
   readonly mainContentRef: React.RefObject<HTMLDivElement>;
 }
 
@@ -18,8 +20,9 @@ interface NavMenuProps {
  * @returns ReactNode
  */
 export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
-  const [open, setOpen] = useState(false);
-  const { isMinimal } = useAtlantisSite();
+  const { isMinimal, isMobileMenuOpen, toggleMobileMenu } = useAtlantisSite();
+  const { pathname } = useLocation();
+  const selectedRef = useRef<HTMLAnchorElement | null>(null);
 
   if (isMinimal) return null;
 
@@ -33,7 +36,10 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
     return menuItems.map((menuItem, menuItemIndex) => {
       return (
         <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
-          <StyledSubLink to={`/components/${menuItem.handle}`}>
+          <StyledSubLink
+            to={`/components/${menuItem.handle}`}
+            selectedRef={selectedRef}
+          >
             {menuItem.handle}
           </StyledSubLink>
         </MenuSubItem>
@@ -54,7 +60,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
       return (
         <MenuSubItem key={`${routeIndex}-${menuItemIndex}`}>
-          <StyledSubLink to={menuItem.path ?? "/"}>
+          <StyledSubLink to={menuItem.path ?? "/"} selectedRef={selectedRef}>
             {menuItem.handle}
           </StyledSubLink>
         </MenuSubItem>
@@ -64,84 +70,112 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
 
   const skipToContent = () => {
     mainContentRef.current?.focus();
+    toggleMobileMenu();
   };
 
-  return (
+  const menuContent = (
     <nav className={styles.navMenuContainer}>
       <div className={styles.navMenuHeader}>
         <VisibleWhenFocused>
           <Button label="Skip to Content" onClick={skipToContent} />
         </VisibleWhenFocused>
-        <Box>
-          {/* TODO: remove ?new when we roll out the new docs site to everyone */}
-          <Link to="/?new">
+        <div className={styles.navMenuHeaderLogo}>
+          <Link to="/">
             <JobberLogo />
           </Link>
-        </Box>
-        <Box>
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className={styles.searchButton}
-            aria-label="Search"
-          >
-            <Icon name="search" />
-            <span className={styles.searchButtonText}>
-              <Typography
-                size={"base"}
-                textColor={"text"}
-                fontWeight={"semiBold"}
-              >
-                Search
-              </Typography>
-            </span>
-            <div className={styles.searchKeyIndicator}>/</div>
-          </button>
-        </Box>
-        <SearchBox open={open} setOpen={setOpen} />
+        </div>
       </div>
       <div className={styles.navMenu}>
         <MenuList>
-          <Content spacing="smaller">
-            {routes?.map((route, routeIndex) => {
-              if (route.inNav === false) return null;
+          {routes?.map((route, routeIndex) => {
+            if (route.inNav === false) return null;
 
-              if (route.children) {
-                return (
-                  <Box key={routeIndex}>
-                    <AnimatedPresenceDisclosure
-                      to={route.path ?? "/"}
-                      title={route.handle}
-                    >
-                      {iterateSubMenu(route.children, routeIndex)}
-                    </AnimatedPresenceDisclosure>
-                  </Box>
-                );
-              }
-
+            if (route.children) {
               return (
-                <MenuItem key={routeIndex}>
-                  <StyledLink to={getRoutePath(route.path) ?? "/"}>
-                    {route.handle}
-                  </StyledLink>
-                </MenuItem>
+                <Box key={routeIndex}>
+                  <AnimatedPresenceDisclosure
+                    to={route.path ?? "/"}
+                    title={route.handle}
+                    selected={pathname.startsWith(route.path ?? "/")}
+                  >
+                    {iterateSubMenu(route.children, routeIndex)}
+                  </AnimatedPresenceDisclosure>
+                </Box>
               );
-            })}
-          </Content>
+            }
+
+            return (
+              <MenuItem key={routeIndex}>
+                <StyledLink to={route.path ?? "/"} selectedRef={selectedRef}>
+                  {route.handle}
+                </StyledLink>
+              </MenuItem>
+            );
+          })}
         </MenuList>
       </div>
+      <a
+        href={getStorybookUrl("?path=/docs/introduction--docs")}
+        className={styles.navFooterLink}
+      >
+        View in Storybook
+      </a>
     </nav>
   );
+
+  return (
+    <>
+      <div className={styles.desktopNavContainer}>{menuContent}</div>
+      {isMobileMenuOpen && (
+        <LeftDrawer
+          onClose={toggleMobileMenu}
+          header={
+            <Box padding={{ top: "smaller" }}>
+              <Link to="/" onClick={toggleMobileMenu}>
+                <JobberLogo />
+              </Link>
+            </Box>
+          }
+        >
+          {menuContent}
+        </LeftDrawer>
+      )}
+    </>
+  );
+};
+
+const getLinkClassName = (
+  baseClasses: string,
+  isSelected: boolean,
+  selectedClass: string,
+): string => {
+  return `${baseClasses} ${isSelected ? selectedClass : ""}`.trim();
 };
 
 export const StyledLink = ({
   to,
   children,
-}: PropsWithChildren<{ readonly to: string }>) => {
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
+  const { pathname } = useLocation();
+  const isSelected = pathname === to;
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
+  const { toggleMobileMenu } = useAtlantisSite();
+  const { mediumAndUp } = useBreakpoints();
+
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuLink}`}
+      className={className}
+      ref={isSelected ? selectedRef : null}
+      onClick={mediumAndUp ? undefined : toggleMobileMenu}
     >
       {children}
     </Link>
@@ -151,11 +185,27 @@ export const StyledLink = ({
 export const StyledSubLink = ({
   to,
   children,
-}: PropsWithChildren<{ readonly to: string }>) => {
+  selectedRef,
+}: PropsWithChildren<{
+  readonly to: string;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+}>) => {
+  const { pathname } = useLocation();
+  const isSelected = pathname === to;
+  const className = getLinkClassName(
+    `${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`,
+    isSelected,
+    styles.selected,
+  );
+  const { toggleMobileMenu } = useAtlantisSite();
+  const { mediumAndUp } = useBreakpoints();
+
   return (
     <Link
       to={to ?? "/"}
-      className={`${styles.navMenuItem} ${styles.navMenuSubItem} ${styles.navMenuLink}`}
+      className={className}
+      ref={isSelected ? selectedRef : null}
+      onClick={mediumAndUp ? undefined : toggleMobileMenu}
     >
       {children}
     </Link>
@@ -168,8 +218,8 @@ export const MenuList = ({ children }: PropsWithChildren) => {
 
 export const MenuItem = ({ children }: PropsWithChildren) => {
   return (
-    <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="bold" size="large" textColor="text">
+    <li style={{ listStyle: "none" }} className="stickySectionHeader">
+      <Typography fontWeight="semiBold" size={"large"} textColor="heading">
         {children}
       </Typography>
     </li>
@@ -179,9 +229,7 @@ export const MenuItem = ({ children }: PropsWithChildren) => {
 export const MenuSubItem = ({ children }: PropsWithChildren) => {
   return (
     <li style={{ listStyle: "none" }}>
-      <Typography fontWeight="semiBold" size="base" textColor="text">
-        {children}
-      </Typography>
+      <Typography textColor="heading">{children}</Typography>
     </li>
   );
 };
@@ -193,12 +241,3 @@ export const sectionTitle = (section: string) => (
     </Typography>
   </div>
 );
-
-// TODO: delete this once we roll out the new docs site to everyone
-function getRoutePath(path?: string) {
-  if (path === "/") {
-    return "/?new";
-  }
-
-  return path;
-}

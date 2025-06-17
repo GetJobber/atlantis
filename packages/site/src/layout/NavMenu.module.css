@@ -5,13 +5,17 @@
   --navItemHeight: 40px;
   display: flex;
   flex-direction: column;
-  padding: 36px 0 0 0;
-  height: 100dvh;
-  width: 200px;
+  height: 100%;
+  min-width: var(--sideBarWidth);
   box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    padding: var(--space-large) 0 0 0;
+    height: 100dvh;
+  }
 }
 
-.navMenuContainer > * {
+.navMenuContainer>* {
   padding-left: var(--space-base);
   padding-right: var(--space-base);
   padding-bottom: var(--space-base);
@@ -28,7 +32,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-large);
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 .navMenu li {
@@ -44,43 +49,11 @@
   user-select: none;
 }
 
-.searchButton {
-  display: flex;
-  align-items: center;
-  border: var(--border-base) solid var(--color-border--interactive);
-  border-radius: var(--radius-base);
-  padding: var(--space-small);
-  background: var(--color-surface);
-  outline: transparent;
-
-  &:focus-visible {
-    box-shadow: var(--shadow-focus);
-    background-color: var(--color-surface--background--hover);
-  }
+.navMenuContainer .selected {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-small);
 }
 
-.searchButton:hover {
-  background: var(--color-surface--background--hover);
-  border: var(--border-base) solid var(--color-interactive--subtle--hover);
-}
-
-.searchButtonText {
-  margin: 0 var(--space-small);
-  flex: 1;
-  text-align: start;
-}
-
-.searchKeyIndicator {
-  background: var(--color-surface--background);
-  width: 20px;
-  height: 20px;
-  font-size: var(--typography--fontSize-large);
-  color: var(--color-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-low);
-}
 
 .navMenuLink {
   color: var(--color-text);
@@ -116,38 +89,65 @@
   transition: all var(--timing-base) ease-out;
   margin-left: var(--negativeHoverOffset);
   margin-right: var(--negativeHoverOffset);
+  margin-bottom: var(--space-smaller);
   padding-left: var(--hoverOffset);
   min-height: var(--navItemHeight);
   align-items: stretch;
   justify-content: space-between;
+  background-color: var(--color-surface--background);
+}
 
-  &:hover {
-    background-color: var(--color-surface--background--hover);
-  }
+.disclosureNavItem a {
+  background-color: transparent;
+  display: flex;
+  display: inline-flex;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  outline: transparent;
+  text-decoration: none;
+  flex-grow: 1;
+  min-height: var(--navItemHeight);
+  outline: transparent;
+}
 
-  a {
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    outline: transparent;
-    text-decoration: none;
-    flex-grow: 1;
-    min-height: var(--navItemHeight);
+.disclosureNavItem:hover {
+  background-color: var(--color-surface--background--hover);
+}
 
-    &:focus-visible {
-      box-shadow: var(--shadow-focus);
-      background-color: var(--color-surface--background--hover);
-    }
-  }
+.disclosureNavItem a:focus-visible {
+  box-shadow: var(--shadow-focus);
+  background-color: var(--color-surface--background--hover);
+}
 
-  button {
-    border-radius: var(--radius-small);
-    mix-blend-mode: multiply;
+.disclosureNavItem button {
+  border-radius: var(--radius-small);
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="dark"] .disclosureNavItem button {
+  mix-blend-mode: screen;
+}
+
+a.navFooterLink {
+  margin: 0;
+  margin-top: auto;
+  font-size: var(--typography--fontSize-small);
+  color: var(--color-text--secondary);
+}
+
+.desktopNavContainer {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
   }
 }
 
-:root[data-theme="dark"] .disclosureNavItem {
-  button {
-    mix-blend-mode: screen;
+.navMenuHeaderLogo {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
   }
 }

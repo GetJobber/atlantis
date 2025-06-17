@@ -1,3 +1,13 @@
+:root {
+  --sideBarWidth: 200px;
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --sideBarWidth: 235px;
+  }
+}
+
 body {
   margin: 0;
   font-family: var(--typography--fontFamily-normal);
@@ -8,14 +18,39 @@ h1 {
   font-weight: 800;
 }
 
-h1,
+h1 {
+  font-family: var(--typography--fontFamily-display);
+}
+
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--typography--fontFamily-display);
+  font-weight: 700;
 }
+
+h2 {
+  font-size: var(--typography--fontSize-largest);
+}
+
+h3 {
+  font-size: var(--typography--fontSize-larger);
+}
+
+h4 {
+  font-size: var(--typography--fontSize-large);
+}
+
+h5 {
+  font-size: var(--typography--fontSize-base);
+}
+
+h6 {
+  font-size: var(--typography--fontSize-small);
+  text-transform: uppercase;
+}
+
 
 a {
   margin: calc(-1 * var(--space-smallest));
@@ -40,15 +75,22 @@ a:visited {
   color: var(--color-interactive--hover);
 }
 
+blockquote {
+  background-color: var(--color-surface--background--subtle);
+  margin: 0;
+  padding: var(--space-base) var(--space-large);
+  border-radius: var(--radius-base);
+}
+
 custom-elements,
 section[role="tabpanel"] {
   & table {
-    min-width: 66%;
+    min-width: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-overflow-scrolling: touch;
-    margin: var(--space-large) auto;
+    margin: var(--space-large) 0;
     font-size: var(--typography--fontSize-base);
     line-height: 24px;
     padding: 0;
@@ -136,7 +178,6 @@ iframe {
   padding: var(--space-large);
   width: 100%;
   height: 100%;
-  color: var(--color-base-white);
   text-shadow: 0px 4px 16px rgba(var(--color-black--rgb), 0.6);
   min-height: 30vh;
   display: flex;
@@ -169,4 +210,42 @@ iframe {
 .headerBlock > * {
   width: 100%;
   max-width: 1024px;
+}
+
+.contentCardWrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-rows: auto;
+  gap: var(--space-base);
+  isolation: isolate;
+}
+
+@media screen and (min-width: 1024px) {
+  .contentCardWrapper {
+    gap: var(--space-larger);
+  }
+}
+
+.stickySectionHeader {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.baseView-sideRail {
+  width: var(--sideBarWidth);
+  padding: 90px var(--space-large);
+  display: none;
+  flex-direction: column;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .baseView-sideRail {
+    display: flex;
+  }
 }

@@ -16,6 +16,7 @@ exports[`TextList when the bulletItems is provided displays the text list 1`] = 
         {
           "padding": 0,
         },
+        undefined,
       ]
     }
   >
@@ -23,6 +24,7 @@ exports[`TextList when the bulletItems is provided displays the text list 1`] = 
       style={
         [
           {},
+          undefined,
         ]
       }
     >
@@ -114,6 +116,7 @@ exports[`TextList when the bulletItems is provided displays the text list 1`] = 
           {
             "padding": 0,
           },
+          undefined,
         ]
       }
     >

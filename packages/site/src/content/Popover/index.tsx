@@ -1,5 +1,6 @@
 import Content from "@atlantis/docs/components/Popover/Popover.stories.mdx";
 import Props from "./Popover.props.json";
+import Notes from "./PopoverNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -36,4 +37,5 @@ export default {
       url: getStorybookUrl(`?path=/docs/components-overlays-popover--docs`),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

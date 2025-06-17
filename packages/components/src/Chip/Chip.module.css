@@ -1,6 +1,8 @@
 :root {
-  --public-chip-base-bg-color: var(--color-surface--background);
-  --public-chip-base-hover-bg-color: var(--color-surface--background--hover);
+  --public-chip-base-bg-color: var(--color-interactive--background);
+  --public-chip-base-hover-bg-color: var(
+    --color-interactive--background--hover
+  );
   --public-chip-base-content-color: var(--color-heading);
 }
 
@@ -105,6 +107,7 @@
 .subtle.invalid {
   --chip-border-color: var(--color-critical);
   --chip-base-bg-color: var(--color-critical--surface);
+  --chip-base-hover-bg-color: var(--color-interactive--background--hover);
 }
 
 /* If these change, please update InternalChip.css focus-visible rules */
@@ -113,19 +116,18 @@
 .subtle.invalid:hover,
 .subtle.invalid:focus-visible {
   --chip-border-color: var(--color-critical);
-  --chip-base-hover-bg-color: var(--color-surface--background--hover);
 }
 
 .subtle {
   --chip-border-color: var(--color-border--interactive);
   --chip-base-bg-color: var(--color-surface);
+  --chip-base-hover-bg-color: var(--color-interactive--background);
 }
 
 /* If these change, please update InternalChip.css focus-visible rules */
 .subtle:focus-visible,
 .subtle:hover {
   --chip-border-color: var(--chip-base-bg-color);
-  --chip-base-hover-bg-color: var(--color-surface--background);
 }
 
 .invalid.disabled,
@@ -181,21 +183,53 @@
   right: 0;
   width: var(--space-base);
   height: 100%;
-  background: linear-gradient(
-    to left,
-    var(--chip-base-bg-color) 5%,
-    rgba(255, 255, 255, 0)
-  );
-  transition: all var(--timing-base);
 }
 
-.chip:focus-visible .truncateGradient,
-.chip:hover .truncateGradient {
+.truncateGradient > span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 10%;
+  background-color: var(--chip-base-bg-color);
+}
+
+.truncateGradient::before,
+.truncateGradient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: opacity var(--timing-base);
+}
+
+.truncateGradient::before {
   background: linear-gradient(
     to left,
-    var(--chip-base-hover-bg-color) 5%,
+    var(--chip-base-bg-color) 10%,
     rgba(255, 255, 255, 0)
   );
+  opacity: 1;
+}
+
+.truncateGradient::after {
+  background: linear-gradient(
+    to left,
+    var(--chip-base-hover-bg-color) 10%,
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0;
+}
+
+.chip:hover .truncateGradient::before,
+.chip:focus .truncateGradient::before,
+.chip:focus-visible .truncateGradient::before {
+  opacity: 0;
+}
+
+.chip:hover .truncateGradient::after,
+.chip:focus .truncateGradient::after,
+.chip:focus-visible .truncateGradient::after {
+  opacity: 1;
 }
 
 .chipLabelRef {

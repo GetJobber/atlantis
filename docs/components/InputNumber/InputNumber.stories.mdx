@@ -1,12 +1,7 @@
 import { Canvas, Meta, Story } from "@storybook/addon-docs";
-import { useState } from "react";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
-
-{/* Sections of this file have been duplicated in the new docs site temporarily. */}
-{/* When updating this file, make sure to also update the corresponding notes file: */}
-{/* packages/site/src/content/[Component]/[Component]Notes.mdx */}
 
 <Meta title="Components/Forms and Inputs/InputNumber" component={InputNumber} />
 
@@ -22,14 +17,3 @@ increments, such as quantity, price, or days (ie 2 days -> 3 days).
 While some types of data may technically be numbers, they can be ill-suited for
 using a number input. For example, phone numbers and credit card numbers provide
 no value to the user by offering an incrementer.
-
-## Using onValidation
-
-If you need to capture the error message and render it outside of the component.
-Read the
-[InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation--docs)
-documentation.
-
-For more details about `validation` using `Input` components, see the
-[InputText](../?path=/docs/components-forms-and-inputs-inputtext--docs#validation-message)
-documentation.

@@ -42,6 +42,7 @@ import {
 import {
   Breakpoints,
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
+  DATA_LIST_TITLE_CONTAINER_TEST_ID,
 } from "./DataList.const";
 import { DataListBulkActions } from "./components/DataListBulkActions";
 import {
@@ -145,12 +146,25 @@ function InternalDataList({
 
   const shouldRenderLoadMoreTrigger = !initialLoading && !showEmptyState;
 
+  const shouldRenderTitleContainer =
+    initialLoading || title !== undefined || totalCount !== undefined;
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.titleContainer}>
-        {title && <Heading level={3}>{title}</Heading>}
-        <DataListTotalCount totalCount={totalCount} loading={initialLoading} />
-      </div>
+      {shouldRenderTitleContainer && (
+        <div
+          className={styles.titleContainer}
+          data-testid={DATA_LIST_TITLE_CONTAINER_TEST_ID}
+        >
+          {title && <Heading level={3}>{title}</Heading>}
+          {totalCount !== undefined && (
+            <DataListTotalCount
+              totalCount={totalCount}
+              loading={initialLoading}
+            />
+          )}
+        </div>
+      )}
 
       {/* We need to know where the top of the list is but not necessarily the
       heading as per the design requirements */}
@@ -228,9 +242,6 @@ DataList.Filters = DataListFilters;
 
 /**
  * Enables the search functionality of the DataList.
- *
- * Since the debounce is implemented within the component, it can only be an
- * uncontrolled component. Thus the lack of a `value` prop.
  */
 DataList.Search = DataListSearch;
 

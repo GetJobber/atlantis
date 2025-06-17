@@ -18,7 +18,10 @@ export function Link({
   return (
     <a
       href={url}
-      {...(external && { target: "_blank" })}
+      {...(external && {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      })}
       {...(ariaLabel && { "aria-label": ariaLabel })}
       {...(ariaExpanded && { "aria-expanded": ariaExpanded })}
       className={styles.link}

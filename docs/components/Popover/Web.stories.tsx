@@ -1,10 +1,15 @@
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import {
+  AtlantisThemeContextProvider,
+  useAtlantisTheme,
+} from "@jobber/components/AtlantisThemeContext";
 import { Content } from "@jobber/components/Content";
 import { Popover } from "@jobber/components/Popover";
 import { Button } from "@jobber/components/Button";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Overlays/Popover/Web",
@@ -78,3 +83,104 @@ const InformationalTemplate: ComponentStory<typeof Popover> = args => {
 };
 
 export const Informational = InformationalTemplate.bind({});
+
+const ComposedTemplate: ComponentStory<typeof Popover> = args => {
+  const divRef1 = useRef<HTMLDivElement>(null);
+  const divRef2 = useRef<HTMLDivElement>(null);
+  const divRef3 = useRef<HTMLDivElement>(null);
+  const [showPopover1, setShowPopover1] = useState(args.open);
+  const [showPopover2, setShowPopover2] = useState(args.open);
+  const [showPopover3, setShowPopover3] = useState(args.open);
+  const buttonStyles = { width: "fit-content" };
+
+  return (
+    <Box gap="larger">
+      <Box gap="base">
+        <Heading level={2}>Default style with subcomponents</Heading>
+        <div ref={divRef1} style={buttonStyles}>
+          <Button
+            label="Toggle Popover"
+            onClick={() => setShowPopover1(!showPopover1)}
+          />
+        </div>
+        <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
+          <Popover.DismissButton onClick={() => setShowPopover1(false)} />
+
+          <Content>
+            This is a Popover built with composable subcomponents
+          </Content>
+          <Popover.Arrow />
+        </Popover.Provider>
+      </Box>
+
+      <Box gap="base">
+        <Heading level={2}>Without arrow and dismiss button</Heading>
+        <div ref={divRef2} style={buttonStyles}>
+          <Button
+            label="Toggle Popover"
+            onClick={() => setShowPopover2(!showPopover2)}
+          />
+        </div>
+        <Popover.Provider {...args} attachTo={divRef2} open={showPopover2}>
+          <Content>
+            This is a Popover that excludes the arrow and dismiss button
+          </Content>
+        </Popover.Provider>
+      </Box>
+
+      <Box gap="base">
+        <Heading level={2}>With custom dismiss button</Heading>
+        <div ref={divRef3} style={buttonStyles}>
+          <Button
+            label="Toggle Popover"
+            onClick={() => setShowPopover3(!showPopover3)}
+          />
+        </div>
+        <Popover.Provider {...args} attachTo={divRef3} open={showPopover3}>
+          <Popover.DismissButton>
+            <Button onClick={() => setShowPopover3(false)} variation="subtle">
+              <Button.Icon name="eyeCrossed" />
+            </Button>
+          </Popover.DismissButton>
+          <Content>This is a Popover with a custom dismiss button</Content>
+          <Popover.Arrow />
+        </Popover.Provider>
+      </Box>
+    </Box>
+  );
+};
+
+export const Composed = ComposedTemplate.bind({});
+
+const ForceInverseThemeTemplate: ComponentStory<typeof Popover> = args => {
+  const divRef1 = useRef<HTMLDivElement>(null);
+  const [showPopover1, setShowPopover1] = useState(args.open);
+  const buttonStyles = { width: "fit-content" };
+  const { theme } = useAtlantisTheme();
+
+  return (
+    <Box gap="base">
+      <Heading level={2}>Force theme of popover content</Heading>
+      <div ref={divRef1} style={buttonStyles}>
+        <Button
+          label="Toggle Popover"
+          onClick={() => setShowPopover1(!showPopover1)}
+        />
+      </div>
+      <AtlantisThemeContextProvider
+        dangerouslyOverrideTheme={theme === "dark" ? "light" : "dark"}
+      >
+        <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
+          <Popover.DismissButton onClick={() => setShowPopover1(false)} />
+          <Content>
+            <Heading level={3}>Inverse Theme</Heading>
+            <Text>This is a Popover built with composable subcomponents</Text>
+          </Content>
+          <Popover.Arrow />
+        </Popover.Provider>
+      </AtlantisThemeContextProvider>
+    </Box>
+  );
+};
+
+export const ForceInverseTheme = ForceInverseThemeTemplate.bind({});

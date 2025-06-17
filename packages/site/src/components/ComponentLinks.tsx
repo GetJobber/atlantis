@@ -1,4 +1,4 @@
-import { Box, Content, Heading, Icon, Link } from "@jobber/components";
+import { Box, Content, Icon, Link, Typography } from "@jobber/components";
 import { AnchorLinks } from "./AnchorLinks";
 import { ContentExportLinks } from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
@@ -9,7 +9,6 @@ import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
  * @returns ReactNode
  */
 export const ComponentLinks = ({
-  key,
   links,
   goToProps,
   goToUsage,
@@ -17,7 +16,6 @@ export const ComponentLinks = ({
   webEnabled,
   mobileEnabled,
 }: {
-  readonly key: string;
   readonly links?: ContentExportLinks[];
   readonly goToProps: (type: string) => void;
   readonly goToUsage: (type: string) => void;
@@ -31,15 +29,21 @@ export const ComponentLinks = ({
   return (
     <Content spacing={"larger"}>
       <AnchorLinks
-        key={key}
+        id="design"
         header="Design"
         additionalOnClickAction={goToDesign}
       />
       {webEnabled && (
         <Content>
-          <Heading level={6} element="h3">
+          <Typography
+            element={"h3"}
+            size="small"
+            textCase="uppercase"
+            textColor="textSecondary"
+            fontWeight={"bold"}
+          >
             Web
-          </Heading>
+          </Typography>
           <Content spacing="small">
             <Box>
               <a onClick={() => goToUsage("web")} href={`#`}>
@@ -56,9 +60,15 @@ export const ComponentLinks = ({
       )}
       {mobileEnabled && (
         <Content>
-          <Heading level={6} element="h3">
+          <Typography
+            element={"h3"}
+            size="small"
+            textCase="uppercase"
+            textColor="textSecondary"
+            fontWeight={"bold"}
+          >
             Mobile
-          </Heading>
+          </Typography>
           <Content spacing="small">
             <Box>
               <a onClick={() => goToUsage("mobile")} href={`#`}>
@@ -74,9 +84,15 @@ export const ComponentLinks = ({
         </Content>
       )}
       <Content>
-        <Heading level={6} element="h3">
+        <Typography
+          element={"h3"}
+          size="small"
+          textCase="uppercase"
+          textColor="textSecondary"
+          fontWeight={"bold"}
+        >
           Links
-        </Heading>
+        </Typography>
         <Content spacing="smaller">
           <Box direction="row" gap="smaller" alignItems="center">
             <Icon size="small" color="interactive" name="link" />

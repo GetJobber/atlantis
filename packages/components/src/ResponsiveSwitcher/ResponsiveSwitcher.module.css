@@ -1,0 +1,55 @@
+.responsiveSwitcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--public-responsive-switcher-space);
+}
+
+.responsiveSwitcher > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--public-responsive-switcher-threshold) - 100%) * 999);
+}
+
+.responsiveSwitcher.limit-1 > :nth-last-child(n + 2),
+.responsiveSwitcher.limit-1 > :nth-last-child(n + 2) ~ * {
+  flex-basis: 100%;
+}
+
+.responsiveSwitcher.limit-2 > :nth-last-child(n + 3),
+.responsiveSwitcher.limit-2 > :nth-last-child(n + 3) ~ * {
+  flex-basis: 100%;
+}
+
+.responsiveSwitcher.limit-3 > :nth-last-child(n + 4),
+.responsiveSwitcher.limit-3 > :nth-last-child(n + 4) ~ * {
+  flex-basis: 100%;
+}
+
+.responsiveSwitcher.limit-4 > :nth-last-child(n + 5),
+.responsiveSwitcher.limit-4 > :nth-last-child(n + 5) ~ * {
+  flex-basis: 100%;
+}
+
+.responsiveSwitcher.limit-5 > :nth-last-child(n + 6),
+.responsiveSwitcher.limit-5 > :nth-last-child(n + 6) ~ * {
+  flex-basis: 100%;
+}
+
+.responsiveSwitcher.limit-6 > :nth-last-child(n + 7),
+.responsiveSwitcher.limit-6 > :nth-last-child(n + 7) ~ * {
+  flex-basis: 100%;
+}
+
+.responsiveSwitcher.limit-7 > :nth-last-child(n + 8),
+.responsiveSwitcher.limit-7 > :nth-last-child(n + 8) ~ * {
+  flex-basis: 100%;
+}
+
+.responsiveSwitcher.limit-8 > :nth-last-child(n + 9),
+.responsiveSwitcher.limit-8 > :nth-last-child(n + 9) ~ * {
+  flex-basis: 100%;
+}
+
+.responsiveSwitcher.limit-9 > :nth-last-child(n + 10),
+.responsiveSwitcher.limit-9 > :nth-last-child(n + 10) ~ * {
+  flex-basis: 100%;
+}

@@ -1,75 +1,22 @@
 import React, { Ref, forwardRef, useImperativeHandle, useRef } from "react";
-import { XOR } from "ts-xor";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
-import {
-  CommonFormFieldProps,
-  FieldActionsRef,
-  FormField,
-  FormFieldProps,
-} from "../FormField";
-
-export interface RowRange {
-  min: number;
-  max: number;
-}
-
-interface BaseProps
-  extends CommonFormFieldProps,
-    Pick<
-      FormFieldProps,
-      | "autofocus"
-      | "maxLength"
-      | "readonly"
-      | "autocomplete"
-      | "keyboard"
-      | "onEnter"
-      | "onFocus"
-      | "onBlur"
-      | "onChange"
-      | "inputRef"
-      | "validations"
-      | "defaultValue"
-      | "prefix"
-      | "suffix"
-      | "toolbar"
-      | "toolbarVisibility"
-    > {
-  multiline?: boolean;
-}
-
-export interface InputTextRef {
-  insert(text: string): void;
-  blur(): void;
-  focus(): void;
-  scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
-}
-
-interface MultilineProps extends BaseProps {
-  /**
-   * Use this when you're expecting a long answer.
-   */
-  readonly multiline: true;
-
-  /**
-   * Specifies the visible height of a long answer form field. Can be in the
-   * form of a single number to set a static height, or an object with a min
-   * and max keys indicating the minimum number of visible rows, and the
-   * maximum number of visible rows.
-   */
-  readonly rows?: number | RowRange;
-}
-
-type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
+import { InputTextLegacyProps, InputTextRef } from "./InputText.types";
+import { useTextAreaResize } from "./useTextAreaResize";
+import { FieldActionsRef, FormField } from "../FormField";
 
 function InputTextInternal(
-  props: InputTextPropOptions,
+  props: InputTextLegacyProps,
   ref: Ref<InputTextRef>,
 ) {
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
   const actionsRef = useRef<FieldActionsRef>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const rowRange = getRowRange();
+  const { resize, rowRange } = useTextAreaResize({
+    rows: props.rows,
+    value: props.value,
+    inputRef,
+    wrapperRef,
+  });
 
   useImperativeHandle(ref, () => ({
     insert: (text: string) => {
@@ -98,17 +45,6 @@ function InputTextInternal(
     },
   }));
 
-  useSafeLayoutEffect(() => {
-    if (
-      inputRef &&
-      inputRef.current instanceof HTMLTextAreaElement &&
-      wrapperRef &&
-      wrapperRef.current instanceof HTMLDivElement
-    ) {
-      resize(inputRef.current, wrapperRef.current);
-    }
-  }, [inputRef.current, wrapperRef.current]);
-
   return (
     <FormField
       {...props}
@@ -124,56 +60,7 @@ function InputTextInternal(
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
 
-    if (
-      inputRef &&
-      inputRef.current instanceof HTMLTextAreaElement &&
-      wrapperRef &&
-      wrapperRef?.current instanceof HTMLDivElement
-    ) {
-      resize(inputRef.current, wrapperRef.current);
-    }
-  }
-
-  function getRowRange(): RowRange {
-    if (props.rows === undefined) {
-      return { min: 3, max: 3 };
-    } else if (typeof props.rows === "object") {
-      return { min: props.rows.min, max: props.rows.max };
-    } else {
-      return { min: props.rows, max: props.rows };
-    }
-  }
-
-  function resize(textArea: HTMLTextAreaElement, wrapper: HTMLDivElement) {
-    if (rowRange.min === rowRange.max) return;
-
-    textArea.style.flexBasis = "auto";
-    wrapper.style.height = "auto";
-    textArea.style.flexBasis = textAreaHeight(textArea) + "px";
-  }
-
-  function textAreaHeight(textArea: HTMLTextAreaElement) {
-    const {
-      lineHeight,
-      borderBottomWidth,
-      borderTopWidth,
-      paddingBottom,
-      paddingTop,
-    } = window.getComputedStyle(textArea);
-
-    const maxHeight =
-      rowRange.max * parseFloat(lineHeight) +
-      parseFloat(borderTopWidth) +
-      parseFloat(borderBottomWidth) +
-      parseFloat(paddingTop) +
-      parseFloat(paddingBottom);
-
-    const scrollHeight =
-      textArea.scrollHeight +
-      parseFloat(borderTopWidth) +
-      parseFloat(borderBottomWidth);
-
-    return Math.min(scrollHeight, maxHeight);
+    resize();
   }
 
   function insertText(text: string) {

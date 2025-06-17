@@ -126,3 +126,50 @@ describe("InternalDataListSearch", () => {
     expect(onSearch).toHaveBeenCalledWith(searchValue);
   });
 });
+
+describe("Controlled InternalDataListSearch", () => {
+  it("calls onSearch when the value changes", async () => {
+    const onSearch = jest.fn();
+    const currentValue = "controlled value";
+    spy.mockReturnValue({
+      ...defaultValues,
+      searchComponent: (
+        <DataListSearch onSearch={onSearch} value={currentValue} />
+      ),
+    });
+    render(<InternalDataListSearch />);
+
+    const input = screen.getByRole("textbox");
+    const nextCharacter = "A";
+    await user.type(input, nextCharacter);
+
+    expect(onSearch).toHaveBeenCalledWith(`${currentValue}${nextCharacter}`);
+  });
+
+  it("renders the latest value as it's updated", async () => {
+    const onSearch = jest.fn();
+    const firstValue = "first render value";
+    const secondValue = "second render value";
+    spy
+      .mockReturnValueOnce({
+        ...defaultValues,
+        searchComponent: (
+          <DataListSearch onSearch={onSearch} value={firstValue} />
+        ),
+      })
+      .mockReturnValue({
+        ...defaultValues,
+        searchComponent: (
+          <DataListSearch onSearch={onSearch} value={secondValue} />
+        ),
+      });
+
+    const { rerender } = render(<InternalDataListSearch />);
+
+    const input = screen.getByRole("textbox");
+    expect(input).toHaveValue(firstValue);
+
+    rerender(<InternalDataListSearch />);
+    expect(input).toHaveValue(secondValue);
+  });
+});

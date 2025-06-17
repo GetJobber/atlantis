@@ -52,6 +52,9 @@ export default defineConfig({
       ],
     }),
   ],
+  build: {
+    minify: false,
+  },
   optimizeDeps: {
     include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
   },

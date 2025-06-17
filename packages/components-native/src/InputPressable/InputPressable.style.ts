@@ -1,29 +1,32 @@
-import { tokens } from "@jobber/design";
-import { StyleSheet } from "react-native";
-import { typographyStyles } from "../Typography/Typography.style";
+import { buildThemedStyles } from "../AtlantisThemeContext";
+import { getTypographyStyles } from "../Typography";
 
-export const styles = StyleSheet.create({
-  pressable: {
-    flex: 1,
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  const typographyStyles = getTypographyStyles(tokens);
 
-  inputPressableStyles: {
-    paddingTop:
-      (typographyStyles.defaultSize.fontSize || 0) +
-      tokens["space-small"] +
-      tokens["space-smaller"],
-    lineHeight: typographyStyles.defaultSize.lineHeight,
-  },
+  return {
+    pressable: {
+      flex: 1,
+    },
 
-  inputEmpty: {
-    paddingTop: 0,
-  },
+    inputPressableStyles: {
+      paddingTop:
+        (typographyStyles.defaultSize.fontSize || 0) +
+        tokens["space-small"] +
+        tokens["space-smaller"],
+      lineHeight: typographyStyles.defaultSize.lineHeight,
+    },
 
-  inputDisabled: {
-    color: typographyStyles.disabled.color,
-  },
+    inputEmpty: {
+      paddingTop: 0,
+    },
 
-  inputInvalid: {
-    borderColor: tokens["color-critical"],
-  },
+    inputDisabled: {
+      color: typographyStyles.disabled.color,
+    },
+
+    inputInvalid: {
+      borderColor: tokens["color-critical"],
+    },
+  };
 });

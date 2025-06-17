@@ -9,9 +9,9 @@ export const PageWrapper = ({ children }: PropsWithChildren) => {
   return (
     <div
       style={{
-        width: "100%",
-        minHeight: "100%",
-        backgroundColor: "var(--color-surface)",
+        display: "flex",
+        flexDirection: "column",
+        height: "100dvh",
       }}
     >
       {children}

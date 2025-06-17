@@ -13,10 +13,9 @@ export const CodePreviewWindow = ({ children }: PropsWithChildren) => {
         gap: "var(--space-small)",
         width: "100%",
         boxSizing: "border-box",
-        padding: "var(--space-largest)",
-        border: "var(--border-base) solid var(--color-border)",
+        padding: "var(--space-small)",
         borderRadius: "var(--radius-base)",
-        backgroundColor: "var(--color-surface)",
+        backgroundColor: "var(--color-surface--background--subtle)",
         alignItems: "center",
         justifyContent: "center",
       }}

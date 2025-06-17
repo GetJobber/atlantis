@@ -12,9 +12,7 @@ export default {
   component: {
     element: `<FormField placeholder={"Words..."} type={"text"} />`,
     mobileElement: `<FormField name={"name"}>
-      {(field) => {
-        return <InputText value={field.value} placeholder="Enter name here" />;
-      }}
+      {(field) =>       <InputText value={field.value} placeholder="Enter name here" />      }
     </FormField>`,
   },
   title: "FormField",

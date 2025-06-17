@@ -12,6 +12,6 @@ export interface ContentCardProps {
 export interface ContentListItem {
   title: string;
   to: string;
-  imageURL: string;
+  imageURL?: string;
   additionalMatches?: string[];
 }

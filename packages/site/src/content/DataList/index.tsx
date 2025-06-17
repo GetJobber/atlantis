@@ -24,8 +24,8 @@ export default {
       <DataList.Layout>
         {(item) => (
           <Grid>
-            <Grid.Cell size={{ xs: 12, md: 6 }}>{item.name}</Grid.Cell>
-            <Grid.Cell size={{ xs: 12, md: 6 }}>{item.email}</Grid.Cell>
+            <Grid.Cell size={{ xs: 6 }}>{item.name}</Grid.Cell>
+            <Grid.Cell size={{ xs: 6 }}>{item.email}</Grid.Cell>
           </Grid>
         )}
       </DataList.Layout>

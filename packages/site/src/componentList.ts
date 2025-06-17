@@ -40,6 +40,13 @@ export const componentList = [
     sections: ["Utilities"],
   },
   {
+    title: "AtlantisThemeContext",
+    to: "/components/AtlantisThemeContext",
+    imageURL: "/AtlantisThemeContext.png",
+    additionalMatches: ["Theme", "Dark Mode", "Light Mode"],
+    sections: ["Themes"],
+  },
+  {
     title: "Autocomplete",
     to: "/components/Autocomplete",
     imageURL: "/Autocomplete.png",
@@ -110,6 +117,13 @@ export const componentList = [
     additionalMatches: ["Tile"],
   },
   {
+    title: "ContentBlock",
+    to: "/components/ContentBlock",
+    imageURL: "/ContentBlock.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
+  },
+  {
     title: "Checkbox",
     to: "/components/Checkbox",
     imageURL: "/Checkbox.png",
@@ -131,6 +145,13 @@ export const componentList = [
     sections: ["Selections"],
   },
   {
+    title: "Cluster",
+    to: "/components/Cluster",
+    imageURL: "/Cluster.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Grid", "Columns", "Rows"],
+  },
+  {
     title: "Combobox",
     to: "/components/Combobox",
     imageURL: "/Combobox.png",
@@ -143,6 +164,13 @@ export const componentList = [
     imageURL: "/ConfirmationModal.png",
     additionalMatches: ["Confirm", "Prompt", "Modal"],
     sections: ["Overlays"],
+  },
+  {
+    title: "Container",
+    to: "/components/Container",
+    imageURL: "/Container.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Query"],
   },
   {
     title: "Content",
@@ -163,6 +191,13 @@ export const componentList = [
     imageURL: "/Countdown.png",
     sections: ["Utilities"],
     additionalMatches: ["Timer", "Time", "Clock"],
+  },
+  {
+    title: "Cover",
+    to: "/components/Cover",
+    imageURL: "/Cover.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
   {
     title: "DataDump",
@@ -249,6 +284,13 @@ export const componentList = [
     title: "Flex",
     to: "/components/Flex",
     imageURL: "/Flex.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Stack", "Container"],
+  },
+  {
+    title: "Frame",
+    to: "/components/Frame",
+    imageURL: "/Frame.png",
     sections: ["Layouts & Structure"],
     additionalMatches: ["Layout", "Stack", "Container"],
   },
@@ -378,7 +420,7 @@ export const componentList = [
     title: "InputCurrency",
     to: "/components/InputCurrency",
     imageURL: "/InputCurrency.png",
-    sections: ["Forms and Inputs"],
+    sections: ["Forms & Inputs"],
     additionalMatches: ["Money", "Dollar", "Currency"],
   },
   {
@@ -488,7 +530,14 @@ export const componentList = [
     to: "/components/LightBox",
     imageURL: "/LightBox.png",
     sections: ["Images & Icons"],
-    additionalMatches: ["Gallery", "Carousel", "Display", "Image"],
+    additionalMatches: [
+      "Gallery",
+      "Carousel",
+      "Display",
+      "Image",
+      "Box Sizing",
+      "Border Box",
+    ],
   },
   {
     title: "Link",
@@ -574,6 +623,13 @@ export const componentList = [
     additionalMatches: ["Calendar", "Date Picker", "Schedule"],
   },
   {
+    title: "ResponsiveSwitcher",
+    to: "/components/ResponsiveSwitcher",
+    imageURL: "/ResponsiveSwitcher.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
+  },
+  {
     title: "SegmentedControl",
     to: "/components/SegmentedControl",
     imageURL: "/SegmentedControl.png",
@@ -595,6 +651,13 @@ export const componentList = [
     additionalMatches: ["Drawer", "Panel", "Sidebar", "Flyout"],
   },
   {
+    title: "SideKick",
+    to: "/components/SideKick",
+    imageURL: "/Sidekick.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
+  },
+  {
     title: "Spinner",
     to: "/components/Spinner",
     imageURL: "/Spinner.png",
@@ -607,6 +670,13 @@ export const componentList = [
       "Busy",
       "ActivityIndicator",
     ],
+  },
+  {
+    title: "Stack",
+    to: "/components/Stack",
+    imageURL: "/Stack.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
   {
     title: "StatusIndicator",
@@ -662,6 +732,13 @@ export const componentList = [
     imageURL: "/ThumbnailList.png",
     sections: ["Images & Icons"],
     additionalMatches: ["Gallery", "Image", "Photo"],
+  },
+  {
+    title: "Tiles",
+    to: "/components/Tiles",
+    imageURL: "/Tiles.png",
+    sections: ["Layouts & Structure"],
+    additionalMatches: ["Layout", "Container", "Stack", "Wrapper"],
   },
   {
     title: "Toast",

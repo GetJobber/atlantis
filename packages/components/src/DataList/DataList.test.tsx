@@ -11,6 +11,7 @@ import {
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
   DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
   DATA_LIST_STICKY_HEADER_TEST_ID,
+  DATA_LIST_TITLE_CONTAINER_TEST_ID,
   DATA_LOAD_MORE_TEST_ID,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
@@ -53,6 +54,32 @@ describe("DataList", () => {
     const mockData = [{ id: 1, label: "Luke Skywalker" }];
     const mockHeader = { label: "Name" };
 
+    it("should render the title if defined", () => {
+      render(
+        <DataList
+          title="Mock title"
+          totalCount={10}
+          data={mockData}
+          headers={mockHeader}
+        >
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText("Mock title")).toBeInTheDocument();
+    });
+
+    it("should not render the title container if title or totalCount is undefined", () => {
+      render(
+        <DataList data={mockData} headers={mockHeader}>
+          <></>
+        </DataList>,
+      );
+
+      expect(
+        screen.queryByTestId(DATA_LIST_TITLE_CONTAINER_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+
     it("should render the total count", () => {
       render(
         <DataList totalCount={10} data={mockData} headers={mockHeader}>
@@ -91,6 +118,18 @@ describe("DataList", () => {
       );
       const results = screen.getByTestId(DATALIST_TOTALCOUNT_TEST_ID);
       expect(within(results).getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
+    });
+
+    it("should not render the total count if the totalCount is undefined", () => {
+      render(
+        <DataList data={mockData} headers={mockHeader} title={mockTitle}>
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText(mockTitle)).toBeInTheDocument();
+      expect(
+        screen.queryByTestId(DATALIST_TOTALCOUNT_TEST_ID),
+      ).not.toBeInTheDocument();
     });
   });
 

@@ -1,82 +1,72 @@
 export const hooksList = [
   {
-    title: "useAssert",
-    to: "/hooks/useAssert",
-    imageURL: "/Hooks.png",
-  },
-  {
     title: "useBool",
     to: "/hooks/useBool",
-    imageURL: "/Hooks.png",
+    sections: ["React Utilities"],
   },
   {
     title: "useBreakpoints",
     to: "/hooks/useBreakpoints",
-    imageURL: "/Hooks.png",
+    sections: ["Window & Layout"],
   },
   {
     title: "useCallbackRef",
     to: "/hooks/useCallbackRef",
-    imageURL: "/Hooks.png",
+    sections: ["React Utilities"],
   },
   {
     title: "useCollectionQuery",
     to: "/hooks/useCollectionQuery",
-    imageURL: "/Hooks.png",
+    sections: ["React Utilities"],
   },
   {
     title: "useFocusTrap",
     to: "/hooks/useFocusTrap",
-    imageURL: "/Hooks.png",
+    sections: ["Accessibility"],
   },
   {
     title: "useFormState",
+    sections: ["React Utilities"],
     to: "/hooks/useFormState",
-    imageURL: "/Hooks.png",
   },
   {
     title: "useInView",
     to: "/hooks/useInView",
-    imageURL: "/Hooks.png",
+    sections: ["Window & Layout"],
   },
   {
     title: "useIsMounted",
     to: "/hooks/useIsMounted",
-    imageURL: "/Hooks.png",
+    sections: ["React Utilities"],
   },
   {
     title: "useLiveAnnounce",
     to: "/hooks/useLiveAnnounce",
-    imageURL: "/Hooks.png",
+    sections: ["Accessibility"],
   },
   {
     title: "useOnKeyDown",
     to: "/hooks/useOnKeyDown",
-    imageURL: "/Hooks.png",
+    sections: ["Accessibility"],
   },
   {
     title: "useOnMount",
     to: "/hooks/useOnMount",
-    imageURL: "/Hooks.png",
-  },
-  {
-    title: "usePasswordStrength",
-    to: "/hooks/usePasswordStrength",
-    imageURL: "/Hooks.png",
+    sections: ["React Utilities"],
   },
   {
     title: "useRefocusOnActivator",
     to: "/hooks/useRefocusOnActivator",
-    imageURL: "/Hooks.png",
+    sections: ["Window & Layout"],
   },
   {
     title: "useResizeObserver",
     to: "/hooks/useResizeObserver",
-    imageURL: "/Hooks.png",
+    sections: ["Window & Layout"],
   },
   {
     title: "useWindowDimensions",
     to: "/hooks/useWindowDimensions",
-    imageURL: "/Hooks.png",
+    sections: ["Window & Layout"],
   },
 ];

@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
-import { IconNames } from "@jobber/design";
+import { IconColorNames, IconNames } from "@jobber/design";
 import { usePopper } from "react-popper";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import ReactDOM from "react-dom";
@@ -64,7 +64,7 @@ export interface SectionProps {
 // eslint-disable-next-line max-statements
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
-  const shadowRef = useRef<HTMLSpanElement>(null);
+  const popperRef = useRef<HTMLDivElement>(null);
 
   const { width } = useWindowDimensions();
 
@@ -88,7 +88,7 @@ export function Menu({ activator, items }: MenuProps) {
     styles: popperStyles,
     attributes,
     state,
-  } = usePopper(shadowRef.current?.nextElementSibling, popperElement, {
+  } = usePopper(popperRef.current, popperElement, {
     placement: "bottom-start",
     strategy: "fixed",
     modifiers: [
@@ -127,14 +127,15 @@ export function Menu({ activator, items }: MenuProps) {
 
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
-      <span ref={shadowRef} className={styles.shadowRef} />
-      {React.cloneElement(activator, {
-        onClick: toggle(activator.props.onClick),
-        id: buttonID,
-        ariaControls: menuID,
-        ariaExpanded: visible,
-        ariaHaspopup: true,
-      })}
+      <div ref={popperRef}>
+        {React.cloneElement(activator, {
+          onClick: toggle(activator.props.onClick),
+          id: buttonID,
+          ariaControls: menuID,
+          ariaExpanded: visible,
+          ariaHaspopup: true,
+        })}
+      </div>
       <MenuPortal>
         <AnimatePresence>
           {visible && (
@@ -265,6 +266,11 @@ export interface ActionProps {
   readonly icon?: IconNames;
 
   /**
+   * Color for the icon. Defaults to "icon".
+   */
+  readonly iconColor?: IconColorNames;
+
+  /**
    * Visual style for the action button
    */
   readonly destructive?: boolean;
@@ -279,6 +285,7 @@ function Action({
   label,
   sectionLabel,
   icon,
+  iconColor,
   destructive,
   onClick,
 }: ActionProps) {
@@ -298,7 +305,7 @@ function Action({
     >
       {icon && (
         <div>
-          <Icon color={destructive ? "destructive" : undefined} name={icon} />
+          <Icon color={destructive ? "destructive" : iconColor} name={icon} />
         </div>
       )}
       <Typography element="span" fontWeight="semiBold" textColor="text">

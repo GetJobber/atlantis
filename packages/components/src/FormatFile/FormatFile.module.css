@@ -46,7 +46,7 @@
   box-sizing: border-box;
   padding: 0;
   overflow: hidden;
-  background-color: var(--color-surface--background);
+  background-color: var(--color-interactive--background);
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -58,6 +58,7 @@
 
 .compact .wrapper:focus {
   box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-base);
   outline: none;
 }
 
@@ -75,6 +76,7 @@
   width: 100%;
   height: 100%;
   box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-base);
 }
 
 .deleteButton {

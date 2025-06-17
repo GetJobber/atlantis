@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
+
 // If you get an error in the live editor for mobile components, you'll need
 // an override in this file. Try to match the shape of what the original code
 // is trying to get from the mobile component. If you're not sure,
 // dig into the source code of the original component to see what it's doing and
 // try to replicate (or stub out) that behavior here.
+
 import React, { forwardRef, useEffect } from "react";
 
 export const MobileOverrides = () => {
@@ -43,9 +45,15 @@ export const LinearGradient = () => "";
 export const Stop = () => "";
 
 export const Rect = rect => {
-  console.log("RECT PROPS:", rect);
-
-  return "";
+  return (
+    <rect
+      x={rect.x}
+      y={rect.y}
+      width={rect.width}
+      height={rect.height}
+      fill={rect.fill}
+    />
+  );
 };
 export const KeyboardAwareScrollView = props => props.children;
 export const useSafeAreaFrame = () => "";
@@ -127,7 +135,6 @@ export const Modalize = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
 
   const updateOpen = () => {
-    console.log("setting open?", open);
     setOpen(o => !o);
   };
   useEffect(() => {

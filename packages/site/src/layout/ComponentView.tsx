@@ -1,21 +1,20 @@
-import { Box, Content, Page, Tab, Tabs } from "@jobber/components";
+import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
-import { ComponentNotFound } from "../components/ComponentNotFound";
+import { NotFoundPage } from "../pages/NotFoundPage";
 import { ComponentLinks } from "../components/ComponentLinks";
 import { CodePreviewWindow } from "../components/CodePreviewWindow";
 import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
 import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
-import {
-  AtlantisPreviewEditor,
-  AtlantisPreviewViewer,
-  useAtlantisPreview,
-} from "../providers/AtlantisPreviewEditorProvider";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
+import usePageTitle from "../hooks/usePageTitle";
+import { useAtlantisPreview } from "../preview/AtlantisPreviewProvider";
+import { AtlantisPreviewEditor } from "../preview/AtlantisPreviewEditor";
+import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
@@ -32,7 +31,10 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
   const { stateValues } = usePropsAsDataList(PageMeta, type);
-  const { enableMinimal, minimal, disableMinimal } = useAtlantisSite();
+  const { enableMinimal, minimal, disableMinimal, isMinimal } =
+    useAtlantisSite();
+
+  usePageTitle({ title: PageMeta?.title });
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
@@ -106,6 +108,12 @@ export const ComponentView = () => {
         <div data-usage-tab>
           <Box margin={{ bottom: "base" }}>
             <AtlantisPreviewEditor />
+          </Box>
+          <Box margin={{ top: "base", bottom: "base" }}>
+            <Banner type="warning" dismissible={false}>
+              Due to distinctions between web and native platform, this may not
+              render accurately in a web browser.
+            </Banner>
           </Box>
           <PropsList values={stateValues || []} />
         </div>
@@ -209,7 +217,7 @@ export const ComponentView = () => {
           </Box>
         </Page>
       </BaseView.Main>
-      <BaseView.Siderail>
+      <BaseView.Siderail visible={!isMinimal}>
         <ComponentLinks
           key={`component-${name}`}
           links={PageMeta?.links}
@@ -222,6 +230,6 @@ export const ComponentView = () => {
       </BaseView.Siderail>
     </BaseView>
   ) : (
-    <ComponentNotFound />
+    <NotFoundPage />
   );
 };

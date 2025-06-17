@@ -1,5 +1,4 @@
 import React from "react";
-import { useAssert } from "@jobber/hooks/useAssert";
 import { InternalChipProps } from "./ChipTypes";
 
 export interface ChipProps
@@ -13,8 +12,6 @@ export interface ChipProps
 // Only need the component to pass in the data as a react children
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Chip(props: ChipProps) {
-  // Throw error when <Chip /> gets used outside of the <Chips />
-  useAssert(true, "`<Chip>` component can only be used inside `<Chips>`");
-
+  //eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
 }
