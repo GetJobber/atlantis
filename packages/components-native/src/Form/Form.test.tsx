@@ -300,6 +300,32 @@ describe("Form", () => {
       });
     });
 
+    it("should call onSubmitSuccess after submit promise resolves", async () => {
+      onSubmitMock.mockImplementationOnce(() => {
+        return Promise.resolve({
+          resolvedPromiseData: "passed",
+        });
+      });
+      const { getByLabelText } = render(<FormTest onSubmit={onSubmitMock} />);
+      const saveButton = getByLabelText(saveButtonText);
+
+      const newValue = "New Value";
+      fireEvent.changeText(getByLabelText(testInputTextPlaceholder), newValue);
+      expect(onChangeMock).toHaveBeenCalled();
+
+      fireEvent(getByLabelText(switchLabel), "onValueChange", true);
+      expect(onChangeSwitchMock).toHaveBeenCalled();
+
+      fireEvent.press(saveButton);
+
+      await waitFor(() => {
+        expect(onSubmitMock).toHaveBeenCalled();
+      });
+      expect(onSuccessMock).toHaveBeenCalledWith({
+        resolvedPromiseData: "passed",
+      });
+    });
+
     it("should dismiss keyboard when form is saved", async () => {
       const keyboardDismissSpy = jest.spyOn(Keyboard, "dismiss");
       const { getByLabelText } = render(<FormTest onSubmit={onSubmitMock} />);

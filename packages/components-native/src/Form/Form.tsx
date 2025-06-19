@@ -247,17 +247,16 @@ function InternalForm<T extends FieldValues, S>({
     setKeyboardScreenY(0);
   }
 
-  function callHandleSubmit() {
-    let result: S;
+  async function callHandleSubmit() {
+    let result: S | undefined;
 
-    handleSubmit(data => {
-      return internalSubmit(data).then(saveResult => {
-        result = saveResult as S;
-      });
-    })().then(() => {
-      removeListenerRef.current?.();
-      onSubmitSuccess(result);
-    });
+    await handleSubmit(async data => {
+      const saveResult = await internalSubmit(data);
+      result = saveResult as S;
+    })();
+
+    removeListenerRef.current?.();
+    onSubmitSuccess(result as S);
   }
 
   async function internalSubmit(data: FormValues<T>) {
