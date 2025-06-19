@@ -155,6 +155,69 @@ describe("Post Requests", () => {
     });
   });
 
+  it("scrubs ASCII characters outside of the range of 32-126 from filename", async () => {
+    const fetchParams = jest.fn(fetchUploadParams);
+    const handleStart = jest.fn();
+
+    const fileWithSpecialChars = new File(
+      ["test content"],
+      "Screenshot 2025-06-18 at 10.24.19 AM🐦‍🔥.png",
+      {
+        type: "image/png",
+      },
+    );
+
+    const { container } = render(
+      <InputFile getUploadParams={fetchParams} onUploadStart={handleStart} />,
+    );
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
+
+    await userEvent.upload(input, fileWithSpecialChars);
+
+    await waitFor(() => {
+      expect(handleStart).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: "Screenshot 2025-06-18 at 10.24.19AM.png",
+          type: "image/png",
+        }),
+      );
+    });
+  });
+
+  it("does not scrub ASCII characters within the range of 32-126 from filename", async () => {
+    const fetchParams = jest.fn(fetchUploadParams);
+    const handleStart = jest.fn();
+
+    const fileWithoutSpecialChars = new File(
+      ["test content"],
+      "Screenshot 2025-06-18 at 10.24.19 AM.png",
+      {
+        type: "image/png",
+      },
+    );
+
+    const { container } = render(
+      <InputFile getUploadParams={fetchParams} onUploadStart={handleStart} />,
+    );
+
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
+
+    await userEvent.upload(input, fileWithoutSpecialChars);
+
+    await waitFor(() => {
+      expect(handleStart).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: "Screenshot 2025-06-18 at 10.24.19 AM.png",
+          type: "image/png",
+        }),
+      );
+    });
+  });
+
   describe("when component fails to get upload params", () => {
     it("calls onError callback", async () => {
       const fetchParams = jest.fn(() => Promise.reject("error"));
