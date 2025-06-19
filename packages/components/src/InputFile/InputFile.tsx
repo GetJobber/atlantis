@@ -465,6 +465,11 @@ function createAxiosConfig({
   };
 }
 
+// This function removes any ASCII characters outside of the range of 32-126
+function scrubFile(filename: string) {
+  return filename.replace(/[^ -~]/g, "");
+}
+
 function getFileUpload(
   file: File,
   key: string,
@@ -472,7 +477,7 @@ function getFileUpload(
 ): FileUpload {
   return {
     key: key,
-    name: file.name,
+    name: scrubFile(file.name),
     type: file.type,
     size: file.size,
     progress: 0,
