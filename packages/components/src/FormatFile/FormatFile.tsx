@@ -211,8 +211,6 @@ FormatFile.DeleteButton = function FormatFileDeleteButton({
   readonly size?: "base" | "large";
   readonly children?: React.ReactNode;
 }) {
-  const buttonSize = size === "base" ? "small" : "base";
-
   return (
     <>
       <Button
@@ -224,7 +222,7 @@ FormatFile.DeleteButton = function FormatFileDeleteButton({
         type="tertiary"
         icon="trash"
         ariaLabel="Delete File"
-        size={buttonSize}
+        size={"small"}
       />
       {children}
     </>

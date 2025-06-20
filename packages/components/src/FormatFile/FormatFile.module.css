@@ -84,9 +84,12 @@
 }
 
 .compact .customDeleteButton {
+  border-radius: var(--radius-small);
+}
+
+.compact.base .customDeleteButton {
   max-width: 24px;
   min-height: 24px;
-  border-radius: var(--radius-small);
 }
 
 .expanded .thumbnail {
@@ -144,6 +147,11 @@
   top: var(--space-smaller);
   right: var(--space-smaller);
   box-shadow: var(--shadow-base);
+}
+
+.compact.large .deleteButton {
+  top: var(--space-small);
+  right: var(--space-small);
 }
 
 @media (--medium-screens-and-up) {
