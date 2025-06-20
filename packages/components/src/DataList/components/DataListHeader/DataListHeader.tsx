@@ -39,7 +39,7 @@ export function DataListHeader() {
   }
 
   const headerData = generateHeaderElements(headers);
-  if (!headerData) return null;
+  if (!headerData || !layout) return null;
 
   return (
     <div className={styles.headerTitles}>
