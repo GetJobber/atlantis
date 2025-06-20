@@ -83,6 +83,12 @@
   z-index: var(--elevation-base);
 }
 
+.compact .customDeleteButton {
+  max-width: 24px;
+  min-height: 24px;
+  border-radius: var(--radius-small);
+}
+
 .expanded .thumbnail {
   border-right: none;
   border-bottom-left-radius: var(--radius-base);
@@ -137,6 +143,7 @@
   position: absolute;
   top: var(--space-smaller);
   right: var(--space-smaller);
+  box-shadow: var(--shadow-base);
 }
 
 @media (--medium-screens-and-up) {

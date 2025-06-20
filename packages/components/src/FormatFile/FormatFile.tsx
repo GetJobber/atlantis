@@ -216,6 +216,9 @@ FormatFile.DeleteButton = function FormatFileDeleteButton({
   return (
     <>
       <Button
+        UNSAFE_className={{
+          container: size === "base" ? styles.customDeleteButton : undefined,
+        }}
         onClick={onDelete}
         variation="destructive"
         type="tertiary"
