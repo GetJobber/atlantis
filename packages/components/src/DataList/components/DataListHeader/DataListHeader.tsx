@@ -10,6 +10,7 @@ import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
 import { useActiveLayout } from "../../hooks/useActiveLayout";
 import { useBatchSelect } from "../../hooks/useBatchSelect";
 import styles from "../../DataList.module.css";
+import { DataListObject, LayoutRenderer } from "../../DataList.types";
 
 export function DataListHeader() {
   const breakpoints = useResponsiveSizing();
@@ -18,14 +19,24 @@ export function DataListHeader() {
     headers,
     layoutBreakpoints,
   } = useDataListContext();
-  const { hasAtLeastOneSelected } = useBatchSelect();
+  const { hasAtLeastOneSelected, canSelect, canSelectAll } = useBatchSelect();
 
   const size = getVisibleSize();
   const { layout } = useActiveLayout();
 
   const visible = headerVisibility[size];
 
-  if ((!visible && !hasAtLeastOneSelected) || !layout) return null;
+  if (
+    getVisibility(
+      visible,
+      hasAtLeastOneSelected,
+      layout,
+      canSelect,
+      canSelectAll,
+    )
+  ) {
+    return null;
+  }
 
   const headerData = generateHeaderElements(headers);
   if (!headerData) return null;
@@ -43,4 +54,18 @@ export function DataListHeader() {
 
     return visibleHeaderSize || layoutBreakpoints[0];
   }
+}
+
+function getVisibility(
+  visible: boolean | undefined,
+  hasAtLeastOneSelected: boolean,
+  layout: LayoutRenderer<DataListObject> | undefined,
+  canSelect: boolean,
+  canSelectAll: boolean,
+) {
+  return (
+    (!visible && !hasAtLeastOneSelected) ||
+    !layout ||
+    (!visible && canSelect && !canSelectAll)
+  );
 }
