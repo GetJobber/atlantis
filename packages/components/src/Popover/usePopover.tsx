@@ -7,7 +7,11 @@ export const usePopover = ({
   preferredPlacement,
   attachTo,
   open,
-}: Pick<PopoverProps, "preferredPlacement" | "attachTo" | "open">) => {
+  strategy = "absolute",
+}: Pick<
+  PopoverProps,
+  "preferredPlacement" | "attachTo" | "open" | "strategy"
+>) => {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
 
@@ -21,6 +25,13 @@ export const usePopover = ({
         name: "offset",
         options: {
           offset: [0, 10],
+        },
+      },
+      {
+        name: "preventOverflow",
+        options: {
+          boundary: "viewport",
+          padding: 8,
         },
       },
       {
@@ -38,11 +49,17 @@ export const usePopover = ({
     {
       modifiers,
       placement: preferredPlacement,
+      strategy,
     },
   );
   useRefocusOnActivator(open);
 
-  return { setPopperElement, setArrowElement, popperStyles, attributes };
+  return {
+    setPopperElement,
+    setArrowElement,
+    popperStyles,
+    attributes,
+  };
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -29,12 +29,14 @@ export function PopoverProvider({
   open,
   UNSAFE_className,
   UNSAFE_style,
+  strategy,
 }: PopoverProviderProps) {
   const { setPopperElement, setArrowElement, popperStyles, attributes } =
     usePopover({
       preferredPlacement,
       attachTo,
       open,
+      strategy,
     });
 
   if (!open) return null;
