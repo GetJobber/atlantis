@@ -211,17 +211,18 @@ FormatFile.DeleteButton = function FormatFileDeleteButton({
   readonly size?: "base" | "large";
   readonly children?: React.ReactNode;
 }) {
-  const buttonSize = size === "base" ? "small" : "base";
-
   return (
     <>
       <Button
+        UNSAFE_className={{
+          container: size === "base" ? styles.customDeleteButton : undefined,
+        }}
         onClick={onDelete}
         variation="destructive"
         type="tertiary"
         icon="trash"
         ariaLabel="Delete File"
-        size={buttonSize}
+        size={"small"}
       />
       {children}
     </>

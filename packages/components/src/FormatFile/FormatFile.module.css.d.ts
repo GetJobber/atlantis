@@ -7,6 +7,7 @@ declare const styles: {
   readonly "base": string;
   readonly "thumbnail": string;
   readonly "deleteButton": string;
+  readonly "customDeleteButton": string;
   readonly "clickable": string;
   readonly "hoverable": string;
   readonly "progress": string;
