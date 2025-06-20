@@ -27,7 +27,7 @@ export function DataListHeader() {
   const visible = headerVisibility[size];
 
   if (
-    getVisibility(
+    isHeaderHidden(
       visible,
       hasAtLeastOneSelected,
       layout,
@@ -56,7 +56,7 @@ export function DataListHeader() {
   }
 }
 
-function getVisibility(
+function isHeaderHidden(
   visible: boolean | undefined,
   hasAtLeastOneSelected: boolean,
   layout: LayoutRenderer<DataListObject> | undefined,
