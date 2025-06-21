@@ -28,6 +28,61 @@ interface UploadParams {
 }
 ```
 
+### sanitizeFilename
+
+The `sanitizeFilename` prop allows you to provide a function that sanitizes
+filenames before upload. By default, InputFile preserves the original filename.
+If you need to sanitize filenames for security or compatibility reasons, you can
+provide an external sanitization function.
+
+**For most use cases, we recommend using the well-tested `sanitize-filename` npm
+package:**
+
+```bash
+npm install sanitize-filename
+```
+
+```tsx
+import sanitize from "sanitize-filename";
+
+<InputFile sanitizeFilename={sanitize} getUploadParams={getUploadParams} />;
+```
+
+**Alternatively, you can use `filenamify`:**
+
+```bash
+npm install filenamify
+```
+
+```tsx
+import filenamify from "filenamify";
+
+<InputFile sanitizeFilename={filenamify} getUploadParams={getUploadParams} />;
+```
+
+**You can also provide your own custom sanitization logic:**
+
+```tsx
+const customSanitizer = (filename: string) => {
+  return filename
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9.-]/g, "");
+};
+
+<InputFile
+  sanitizeFilename={customSanitizer}
+  getUploadParams={getUploadParams}
+/>;
+```
+
+**If no `sanitizeFilename` prop is provided, the original filename is
+preserved:**
+
+```tsx
+<InputFile getUploadParams={getUploadParams} />
+```
+
 ### updateFiles helper
 
 InputFile also exports an `updateFiles` method. This method allows for easily
