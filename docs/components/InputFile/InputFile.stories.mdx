@@ -13,3 +13,65 @@ When contributing to, or consuming the InputFile component, consider the
 following:
 
 - Provide feedback once the file(s) have been dropped and uploading begins.
+
+## Filename Sanitization
+
+By default, InputFile preserves the original filename. If you need to sanitize
+filenames for security or compatibility reasons, you can provide an external
+sanitization function.
+
+### Using sanitize-filename (Recommended)
+
+For most use cases, we recommend the well-tested `sanitize-filename` npm
+package:
+
+```bash
+npm install sanitize-filename
+```
+
+```tsx
+import sanitize from "sanitize-filename";
+
+<InputFile sanitizeFilename={sanitize} getUploadParams={getUploadParams} />;
+```
+
+### Using filenamify
+
+Alternatively, you can use `filenamify`:
+
+```bash
+npm install filenamify
+```
+
+```tsx
+import filenamify from "filenamify";
+
+<InputFile sanitizeFilename={filenamify} getUploadParams={getUploadParams} />;
+```
+
+### Custom Sanitization
+
+You can also provide your own sanitization logic:
+
+```tsx
+const customSanitizer = (filename: string) => {
+  return filename
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9.-]/g, "");
+};
+
+<InputFile
+  sanitizeFilename={customSanitizer}
+  getUploadParams={getUploadParams}
+/>;
+```
+
+### No Sanitization (Default)
+
+If you don't provide a `sanitizeFilename` prop, the original filename is
+preserved:
+
+```tsx
+<InputFile getUploadParams={getUploadParams} />
+```

@@ -162,6 +162,30 @@ interface InputFileProps {
   };
 
   /**
+   * Optional filename sanitization function. When provided, this function
+   * will be applied to sanitize filenames before creating FileUpload objects.
+   *
+   * For most use cases, we recommend using the 'sanitize-filename' npm package:
+   *
+   * @example
+   * ```tsx
+   * import sanitize from 'sanitize-filename';
+   *
+   * <InputFile sanitizeFilename={sanitize} />
+   * ```
+   *
+   * @example
+   * ```tsx
+   * // Custom sanitization
+   * <InputFile sanitizeFilename={(name) => name.toLowerCase().replace(/\s+/g, '-')} />
+   * ```
+   *
+   * @see https://www.npmjs.com/package/sanitize-filename
+   * @see https://www.npmjs.com/package/filenamify
+   */
+  readonly sanitizeFilename?: (filename: string) => string;
+
+  /**
    * Children will be rendered instead of the default content
    */
   readonly children?: React.ReactNode;
@@ -228,6 +252,7 @@ export function InputFile({
   description,
   hintText,
   maxFilesValidation,
+  sanitizeFilename,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -400,7 +425,7 @@ export function InputFile({
       httpMethod = "POST",
     } = params;
 
-    const fileUpload = getFileUpload(file, key, url);
+    const fileUpload = getFileUpload(file, key, url, sanitizeFilename);
     onUploadStart && onUploadStart({ ...fileUpload });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -465,19 +490,17 @@ function createAxiosConfig({
   };
 }
 
-// This function removes any ASCII characters outside of the range of 32-126
-function scrubFileName(filename: string) {
-  return filename.replace(/[^ -~]/g, "");
-}
-
 function getFileUpload(
   file: File,
   key: string,
   uploadUrl?: string,
+  sanitizeFilename?: (filename: string) => string,
 ): FileUpload {
+  const fileName = sanitizeFilename ? sanitizeFilename(file.name) : file.name;
+
   return {
     key: key,
-    name: scrubFileName(file.name),
+    name: fileName,
     type: file.type,
     size: file.size,
     progress: 0,

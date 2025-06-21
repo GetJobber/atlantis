@@ -120,6 +120,19 @@
           "name": "{ readonly maxFiles: number; readonly numberOfCurrentFiles: number; }"
         }
       },
+      "sanitizeFilename": {
+        "defaultValue": null,
+        "description": "Optional filename sanitization function. When provided, this function\nwill be applied to sanitize filenames before creating FileUpload objects.\n\nFor most use cases, we recommend using the 'sanitize-filename' npm package:\n@example ```tsx\nimport sanitize from 'sanitize-filename';\n\n<InputFile sanitizeFilename={sanitize} />\n```\n@example ```tsx\n// Custom sanitization\n<InputFile sanitizeFilename={(name) => name.toLowerCase().replace(/\\s+/g, '-')} />\n```\n@see https://www.npmjs.com/package/sanitize-filename\n@see https://www.npmjs.com/package/filenamify",
+        "name": "sanitizeFilename",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(filename: string) => string"
+        }
+      },
       "children": {
         "defaultValue": null,
         "description": "Children will be rendered instead of the default content",

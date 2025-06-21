@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
 import { userEvent } from "@testing-library/user-event";
-import { InputFile } from ".";
+import { InputFile } from "./InputFile";
 
 jest.mock("axios", () => {
   return { request: jest.fn() };
@@ -155,13 +155,13 @@ describe("Post Requests", () => {
     });
   });
 
-  it("scrubs ASCII characters outside of the range of 32-126 from filename", async () => {
+  it("does not scrub filenames by default", async () => {
     const fetchParams = jest.fn(fetchUploadParams);
     const handleStart = jest.fn();
 
     const fileWithSpecialChars = new File(
       ["test content"],
-      "Screenshot 2025-06-18 at 10.24.19 AM🐦‍🔥.png",
+      "Screenshot 2025-06-18 at 10.24.19 AM🐦‍🔥.png",
       {
         type: "image/png",
       },
@@ -179,16 +179,62 @@ describe("Post Requests", () => {
     await waitFor(() => {
       expect(handleStart).toHaveBeenCalledWith(
         expect.objectContaining({
-          name: "Screenshot 2025-06-18 at 10.24.19AM.png",
+          name: "Screenshot 2025-06-18 at 10.24.19 AM🐦‍🔥.png",
           type: "image/png",
         }),
       );
     });
   });
 
-  it("does not scrub ASCII characters within the range of 32-126 from filename", async () => {
+  it("sanitizes filenames when sanitizeFilename prop is provided", async () => {
     const fetchParams = jest.fn(fetchUploadParams);
     const handleStart = jest.fn();
+
+    // Mock sanitize function that removes special characters
+    const mockSanitize = jest.fn((filename: string) =>
+      filename.replace(/🐦‍🔥/g, ""),
+    );
+
+    const fileWithSpecialChars = new File(
+      ["test content"],
+      "Screenshot 2025-06-18 at 10.24.19 AM🐦‍🔥.png",
+      {
+        type: "image/png",
+      },
+    );
+
+    const { container } = render(
+      <InputFile
+        getUploadParams={fetchParams}
+        onUploadStart={handleStart}
+        sanitizeFilename={mockSanitize}
+      />,
+    );
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
+
+    await userEvent.upload(input, fileWithSpecialChars);
+
+    await waitFor(() => {
+      expect(mockSanitize).toHaveBeenCalledWith(
+        "Screenshot 2025-06-18 at 10.24.19 AM🐦‍🔥.png",
+      );
+      expect(handleStart).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: "Screenshot 2025-06-18 at 10.24.19 AM.png",
+          type: "image/png",
+        }),
+      );
+    });
+  });
+
+  it("preserves original filename when sanitizeFilename returns it unchanged", async () => {
+    const fetchParams = jest.fn(fetchUploadParams);
+    const handleStart = jest.fn();
+
+    // Mock sanitize function that doesn't change safe filenames
+    const mockSanitize = jest.fn((filename: string) => filename);
 
     const fileWithoutSpecialChars = new File(
       ["test content"],
@@ -199,7 +245,11 @@ describe("Post Requests", () => {
     );
 
     const { container } = render(
-      <InputFile getUploadParams={fetchParams} onUploadStart={handleStart} />,
+      <InputFile
+        getUploadParams={fetchParams}
+        onUploadStart={handleStart}
+        sanitizeFilename={mockSanitize}
+      />,
     );
 
     const input = container.querySelector(
@@ -209,10 +259,47 @@ describe("Post Requests", () => {
     await userEvent.upload(input, fileWithoutSpecialChars);
 
     await waitFor(() => {
+      expect(mockSanitize).toHaveBeenCalledWith(
+        "Screenshot 2025-06-18 at 10.24.19 AM.png",
+      );
       expect(handleStart).toHaveBeenCalledWith(
         expect.objectContaining({
           name: "Screenshot 2025-06-18 at 10.24.19 AM.png",
           type: "image/png",
+        }),
+      );
+    });
+  });
+
+  it("supports custom sanitization functions", async () => {
+    const fetchParams = jest.fn(fetchUploadParams);
+    const handleStart = jest.fn();
+
+    const customSanitizer = (filename: string) =>
+      filename.toLowerCase().replace(/\s+/g, "-");
+
+    const fileWithSpaces = new File(["test content"], "My Test File.pdf", {
+      type: "application/pdf",
+    });
+
+    const { container } = render(
+      <InputFile
+        getUploadParams={fetchParams}
+        onUploadStart={handleStart}
+        sanitizeFilename={customSanitizer}
+      />,
+    );
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
+
+    await userEvent.upload(input, fileWithSpaces);
+
+    await waitFor(() => {
+      expect(handleStart).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: "my-test-file.pdf",
+          type: "application/pdf",
         }),
       );
     });
