@@ -154,6 +154,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
               min={min}
               ref={inputRefs}
               onKeyUp={onKeyUp}
+              aria-describedby={descriptionIdentifier}
             />
             {loading && <FormFieldPostFix variation="spinner" />}
             {children}
