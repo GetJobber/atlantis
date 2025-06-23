@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+/* eslint-disable import/no-deprecated */
 import {
   DurationPeriod,
   RecurrenceRule,

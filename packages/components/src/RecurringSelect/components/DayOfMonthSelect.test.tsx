@@ -1,5 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+/* eslint-disable import/no-deprecated */
 import { DayOfMonthSelect } from "./DayOfMonthSelect";
 import { DayOfMonth } from "../types";
 
