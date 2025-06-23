@@ -45,6 +45,21 @@
           "name": "boolean"
         }
       },
+      "strategy": {
+        "defaultValue": {
+          "value": "'absolute'"
+        },
+        "description": "The strategy to use for the Popover.",
+        "name": "strategy",
+        "parent": {
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
+          "name": "PopoverProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"absolute\" | \"fixed\""
+        }
+      },
       "onRequestClose": {
         "defaultValue": null,
         "description": "Callback executed when the user wants to close/dismiss the Popover",
@@ -147,6 +162,21 @@
         "required": true,
         "type": {
           "name": "boolean"
+        }
+      },
+      "strategy": {
+        "defaultValue": {
+          "value": "'absolute'"
+        },
+        "description": "The strategy to use for the Popover.",
+        "name": "strategy",
+        "parent": {
+          "fileName": "packages/components/src/Popover/Popover.types.ts",
+          "name": "PopoverProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"absolute\" | \"fixed\""
         }
       },
       "UNSAFE_className": {
