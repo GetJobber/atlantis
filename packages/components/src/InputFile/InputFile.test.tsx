@@ -186,12 +186,12 @@ describe("Post Requests", () => {
     });
   });
 
-  it("sanitizes filenames when sanitizeFilename prop is provided", async () => {
+  it("transforms filenames when transformFilename prop is provided", async () => {
     const fetchParams = jest.fn(fetchUploadParams);
     const handleStart = jest.fn();
 
-    // Mock sanitize function that removes special characters
-    const mockSanitize = jest.fn((filename: string) =>
+    // Mock transform function that removes special characters
+    const mockTransform = jest.fn((filename: string) =>
       filename.replace(/🐦‍🔥/g, ""),
     );
 
@@ -207,7 +207,7 @@ describe("Post Requests", () => {
       <InputFile
         getUploadParams={fetchParams}
         onUploadStart={handleStart}
-        sanitizeFilename={mockSanitize}
+        transformFilename={mockTransform}
       />,
     );
     const input = container.querySelector(
@@ -217,7 +217,7 @@ describe("Post Requests", () => {
     await userEvent.upload(input, fileWithSpecialChars);
 
     await waitFor(() => {
-      expect(mockSanitize).toHaveBeenCalledWith(
+      expect(mockTransform).toHaveBeenCalledWith(
         "Screenshot 2025-06-18 at 10.24.19 AM🐦‍🔥.png",
       );
       expect(handleStart).toHaveBeenCalledWith(
@@ -229,12 +229,12 @@ describe("Post Requests", () => {
     });
   });
 
-  it("preserves original filename when sanitizeFilename returns it unchanged", async () => {
+  it("preserves original filename when transformFilename returns it unchanged", async () => {
     const fetchParams = jest.fn(fetchUploadParams);
     const handleStart = jest.fn();
 
-    // Mock sanitize function that doesn't change safe filenames
-    const mockSanitize = jest.fn((filename: string) => filename);
+    // Mock transform function that doesn't change safe filenames
+    const mockTransform = jest.fn((filename: string) => filename);
 
     const fileWithoutSpecialChars = new File(
       ["test content"],
@@ -248,7 +248,7 @@ describe("Post Requests", () => {
       <InputFile
         getUploadParams={fetchParams}
         onUploadStart={handleStart}
-        sanitizeFilename={mockSanitize}
+        transformFilename={mockTransform}
       />,
     );
 
@@ -259,7 +259,7 @@ describe("Post Requests", () => {
     await userEvent.upload(input, fileWithoutSpecialChars);
 
     await waitFor(() => {
-      expect(mockSanitize).toHaveBeenCalledWith(
+      expect(mockTransform).toHaveBeenCalledWith(
         "Screenshot 2025-06-18 at 10.24.19 AM.png",
       );
       expect(handleStart).toHaveBeenCalledWith(
@@ -271,11 +271,113 @@ describe("Post Requests", () => {
     });
   });
 
-  it("supports custom sanitization functions", async () => {
+  it("falls back to original filename when transform returns empty string", async () => {
     const fetchParams = jest.fn(fetchUploadParams);
     const handleStart = jest.fn();
 
-    const customSanitizer = (filename: string) =>
+    // Mock transform function that returns empty string
+    const mockTransform = jest.fn(() => "");
+
+    const emptyTransformFile = new File(
+      ["test content"],
+      "original-filename.pdf",
+      { type: "application/pdf" },
+    );
+
+    const { container } = render(
+      <InputFile
+        getUploadParams={fetchParams}
+        onUploadStart={handleStart}
+        transformFilename={mockTransform}
+      />,
+    );
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
+
+    await userEvent.upload(input, emptyTransformFile);
+
+    await waitFor(() => {
+      expect(mockTransform).toHaveBeenCalledWith("original-filename.pdf");
+      expect(handleStart).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: "original-filename.pdf",
+          type: "application/pdf",
+        }),
+      );
+    });
+  });
+
+  it("falls back to original filename when transform throws an error", async () => {
+    const fetchParams = jest.fn(fetchUploadParams);
+    const handleStart = jest.fn();
+
+    // Mock transform function that throws an error
+    const mockTransform = jest.fn(() => {
+      throw new Error("Transform failed");
+    });
+
+    const errorTransformFile = new File(
+      ["test content"],
+      "original-filename.pdf",
+      { type: "application/pdf" },
+    );
+
+    const { container } = render(
+      <InputFile
+        getUploadParams={fetchParams}
+        onUploadStart={handleStart}
+        transformFilename={mockTransform}
+      />,
+    );
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
+
+    await userEvent.upload(input, errorTransformFile);
+
+    await waitFor(() => {
+      expect(mockTransform).toHaveBeenCalledWith("original-filename.pdf");
+      expect(handleStart).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: "original-filename.pdf",
+          type: "application/pdf",
+        }),
+      );
+    });
+  });
+
+  it("generates default filename when original filename is empty", async () => {
+    const fetchParams = jest.fn(fetchUploadParams);
+    const handleStart = jest.fn();
+
+    // Create a file with empty name (this is rare but possible)
+    const emptyNameFile = new File(["test content"], "", { type: "image/png" });
+
+    const { container } = render(
+      <InputFile getUploadParams={fetchParams} onUploadStart={handleStart} />,
+    );
+    const input = container.querySelector(
+      "input[type=file]",
+    ) as HTMLInputElement;
+
+    await userEvent.upload(input, emptyNameFile);
+
+    await waitFor(() => {
+      expect(handleStart).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: expect.stringMatching(/^file_\d+$/),
+          type: "image/png",
+        }),
+      );
+    });
+  });
+
+  it("supports custom transformation functions", async () => {
+    const fetchParams = jest.fn(fetchUploadParams);
+    const handleStart = jest.fn();
+
+    const customTransform = (filename: string) =>
       filename.toLowerCase().replace(/\s+/g, "-");
 
     const fileWithSpaces = new File(["test content"], "My Test File.pdf", {
@@ -286,7 +388,7 @@ describe("Post Requests", () => {
       <InputFile
         getUploadParams={fetchParams}
         onUploadStart={handleStart}
-        sanitizeFilename={customSanitizer}
+        transformFilename={customTransform}
       />,
     );
     const input = container.querySelector(

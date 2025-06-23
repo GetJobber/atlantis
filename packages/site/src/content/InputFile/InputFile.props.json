@@ -120,10 +120,10 @@
           "name": "{ readonly maxFiles: number; readonly numberOfCurrentFiles: number; }"
         }
       },
-      "sanitizeFilename": {
+      "transformFilename": {
         "defaultValue": null,
-        "description": "Optional filename sanitization function. When provided, this function\nwill be applied to sanitize filenames before creating FileUpload objects.\n\nFor most use cases, we recommend using the 'sanitize-filename' npm package:\n@example ```tsx\nimport sanitize from 'sanitize-filename';\n\n<InputFile sanitizeFilename={sanitize} />\n```\n@example ```tsx\n// Custom sanitization\n<InputFile sanitizeFilename={(name) => name.toLowerCase().replace(/\\s+/g, '-')} />\n```\n@see https://www.npmjs.com/package/sanitize-filename\n@see https://www.npmjs.com/package/filenamify",
-        "name": "sanitizeFilename",
+        "description": "Optional filename transformation function. When provided, this function\nwill be applied to transform filenames before creating FileUpload objects.\n\nThis function can be used for:\n- Sanitizing filenames (removing dangerous characters)\n- Normalizing filenames (converting to lowercase, replacing spaces)\n- Adding prefixes/suffixes (e.g., adding timestamps or UUIDs)\n- Any other filename transformation logic\n\nFor most sanitization use cases, we recommend using the 'sanitize-filename' npm package:\n@example ```tsx\nimport sanitize from 'sanitize-filename';\n\n<InputFile transformFilename={sanitize} />\n```\n@example ```tsx\n// Custom transformation - normalize to lowercase with hyphens\n<InputFile transformFilename={(name) => name.toLowerCase().replace(/\\s+/g, '-')} />\n```\n@example ```tsx\n// Add timestamp to filename\n<InputFile transformFilename={(name) => {\n  const timestamp = Date.now();\n  const [base, ext] = name.split('.');\n  return ext ? `${base}_${timestamp}.${ext}` : `${base}_${timestamp}`;\n}} />\n```\n@see https://www.npmjs.com/package/sanitize-filename\n@see https://www.npmjs.com/package/filenamify",
+        "name": "transformFilename",
         "parent": {
           "fileName": "../components/src/InputFile/InputFile.tsx",
           "name": "InputFileProps"

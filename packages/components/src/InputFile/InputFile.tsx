@@ -162,28 +162,44 @@ interface InputFileProps {
   };
 
   /**
-   * Optional filename sanitization function. When provided, this function
-   * will be applied to sanitize filenames before creating FileUpload objects.
+   * Optional filename transformation function. When provided, this function
+   * will be applied to transform filenames before creating FileUpload objects.
    *
-   * For most use cases, we recommend using the 'sanitize-filename' npm package:
+   * This function can be used for:
+   * - Sanitizing filenames (removing dangerous characters)
+   * - Normalizing filenames (converting to lowercase, replacing spaces)
+   * - Adding prefixes/suffixes (e.g., adding timestamps or UUIDs)
+   * - Any other filename transformation logic
+   *
+   * For most sanitization use cases, we recommend using the 'sanitize-filename' npm package:
    *
    * @example
    * ```tsx
    * import sanitize from 'sanitize-filename';
    *
-   * <InputFile sanitizeFilename={sanitize} />
+   * <InputFile transformFilename={sanitize} />
    * ```
    *
    * @example
    * ```tsx
-   * // Custom sanitization
-   * <InputFile sanitizeFilename={(name) => name.toLowerCase().replace(/\s+/g, '-')} />
+   * // Custom transformation - normalize to lowercase with hyphens
+   * <InputFile transformFilename={(name) => name.toLowerCase().replace(/\s+/g, '-')} />
+   * ```
+   *
+   * @example
+   * ```tsx
+   * // Add timestamp to filename
+   * <InputFile transformFilename={(name) => {
+   *   const timestamp = Date.now();
+   *   const [base, ext] = name.split('.');
+   *   return ext ? `${base}_${timestamp}.${ext}` : `${base}_${timestamp}`;
+   * }} />
    * ```
    *
    * @see https://www.npmjs.com/package/sanitize-filename
    * @see https://www.npmjs.com/package/filenamify
    */
-  readonly sanitizeFilename?: (filename: string) => string;
+  readonly transformFilename?: (filename: string) => string;
 
   /**
    * Children will be rendered instead of the default content
@@ -252,7 +268,7 @@ export function InputFile({
   description,
   hintText,
   maxFilesValidation,
-  sanitizeFilename,
+  transformFilename,
   getUploadParams,
   onUploadStart,
   onUploadProgress,
@@ -425,7 +441,7 @@ export function InputFile({
       httpMethod = "POST",
     } = params;
 
-    const fileUpload = getFileUpload(file, key, url, sanitizeFilename);
+    const fileUpload = getFileUpload(file, key, url, transformFilename);
     onUploadStart && onUploadStart({ ...fileUpload });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -494,9 +510,26 @@ function getFileUpload(
   file: File,
   key: string,
   uploadUrl?: string,
-  sanitizeFilename?: (filename: string) => string,
+  transformFilename?: (filename: string) => string,
 ): FileUpload {
-  const fileName = sanitizeFilename ? sanitizeFilename(file.name) : file.name;
+  let fileName = file.name;
+
+  if (transformFilename) {
+    try {
+      const transformed = transformFilename(file.name);
+      // Use transformed name if it's not empty, otherwise fall back to original
+      fileName = transformed && transformed.trim() ? transformed : file.name;
+    } catch (error) {
+      // If transformation fails, silently fall back to original filename
+      fileName = file.name;
+    }
+  }
+
+  // Final fallback: if we still have no filename, generate a default one
+  if (!fileName || !fileName.trim()) {
+    const extension = file.name.includes(".") ? file.name.split(".").pop() : "";
+    fileName = `file_${Date.now()}${extension ? `.${extension}` : ""}`;
+  }
 
   return {
     key: key,
