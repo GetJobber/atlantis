@@ -14,16 +14,24 @@ following:
 
 - Provide feedback once the file(s) have been dropped and uploading begins.
 
-## Filename Sanitization
+## Filename Transformation
 
-By default, InputFile preserves the original filename. If you need to sanitize
-filenames for security or compatibility reasons, you can provide an external
-sanitization function.
+By default, InputFile preserves the original filename. If you need to transform
+filenames for security, compatibility, or other reasons, you can provide an
+external transformation function.
 
-### Using sanitize-filename (Recommended)
+The `transformFilename` prop accepts any function that takes a filename string
+and returns a transformed filename string. This can be used for:
 
-For most use cases, we recommend the well-tested `sanitize-filename` npm
-package:
+- **Sanitizing filenames** (removing dangerous characters)
+- **Normalizing filenames** (converting to lowercase, replacing spaces)
+- **Adding prefixes/suffixes** (e.g., adding timestamps or UUIDs)
+- **Any other filename transformation logic**
+
+### Using sanitize-filename (Recommended for sanitization)
+
+For most sanitization use cases, we recommend the well-tested
+`sanitize-filename` npm package:
 
 ```bash
 npm install sanitize-filename
@@ -32,7 +40,7 @@ npm install sanitize-filename
 ```tsx
 import sanitize from "sanitize-filename";
 
-<InputFile sanitizeFilename={sanitize} getUploadParams={getUploadParams} />;
+<InputFile transformFilename={sanitize} getUploadParams={getUploadParams} />;
 ```
 
 ### Using filenamify
@@ -46,15 +54,17 @@ npm install filenamify
 ```tsx
 import filenamify from "filenamify";
 
-<InputFile sanitizeFilename={filenamify} getUploadParams={getUploadParams} />;
+<InputFile transformFilename={filenamify} getUploadParams={getUploadParams} />;
 ```
 
-### Custom Sanitization
+### Custom Transformations
 
-You can also provide your own sanitization logic:
+You can provide your own transformation logic for various use cases:
+
+#### Normalizing filenames
 
 ```tsx
-const customSanitizer = (filename: string) => {
+const normalizeFilename = (filename: string) => {
   return filename
     .toLowerCase()
     .replace(/\s+/g, "-")
@@ -62,16 +72,56 @@ const customSanitizer = (filename: string) => {
 };
 
 <InputFile
-  sanitizeFilename={customSanitizer}
+  transformFilename={normalizeFilename}
   getUploadParams={getUploadParams}
 />;
 ```
 
-### No Sanitization (Default)
+#### Adding timestamps
 
-If you don't provide a `sanitizeFilename` prop, the original filename is
+```tsx
+const addTimestamp = (filename: string) => {
+  const timestamp = Date.now();
+  const [base, ext] = filename.split(".");
+  return ext ? `${base}_${timestamp}.${ext}` : `${base}_${timestamp}`;
+};
+
+<InputFile
+  transformFilename={addTimestamp}
+  getUploadParams={getUploadParams}
+/>;
+```
+
+#### Adding UUIDs
+
+```tsx
+import { v4 as uuidv4 } from "uuid";
+
+const addUUID = (filename: string) => {
+  const [base, ext] = filename.split(".");
+  const uuid = uuidv4().slice(0, 8);
+  return ext ? `${base}_${uuid}.${ext}` : `${base}_${uuid}`;
+};
+
+<InputFile transformFilename={addUUID} getUploadParams={getUploadParams} />;
+```
+
+### No Transformation (Default)
+
+If you don't provide a `transformFilename` prop, the original filename is
 preserved:
 
 ```tsx
 <InputFile getUploadParams={getUploadParams} />
 ```
+
+### Error Handling
+
+The component includes built-in error handling for transformation functions:
+
+- If the transformation function throws an error, it falls back to the original
+  filename
+- If the transformation function returns an empty string, it falls back to the
+  original filename
+- If the original filename is empty, it generates a default filename with
+  timestamp
