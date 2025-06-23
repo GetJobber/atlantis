@@ -23,7 +23,7 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
   }: CheckboxRebuiltProps,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const descriptionId = useId();
+  const descriptionIdentifier = useId();
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
@@ -59,7 +59,7 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
             id={id}
             className={inputClassName}
             name={name}
-            aria-describedby={description ? descriptionId : undefined}
+            aria-describedby={description ? descriptionIdentifier : undefined}
             checked={checked}
             value={value}
             defaultChecked={defaultChecked}
@@ -76,7 +76,7 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
         {labelContent && <span className={styles.label}>{labelContent}</span>}
       </label>
       {description && (
-        <div id={descriptionId} className={styles.description}>
+        <div id={descriptionIdentifier} className={styles.description}>
           {descriptionContent}
         </div>
       )}
