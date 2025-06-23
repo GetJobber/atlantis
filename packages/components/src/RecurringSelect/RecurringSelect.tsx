@@ -1,4 +1,5 @@
 import React from "react";
+/* eslint-disable import/no-deprecated */
 import { MonthlySelect } from "./components";
 import { CurrentRecurrenceComponent } from "./CurrentRecurrenceComponent";
 import styles from "./RecurringSelect.module.css";
@@ -14,12 +15,18 @@ import { InputGroup } from "../InputGroup";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
+/**
+ * @deprecated RecurringSelect will be removed in the next major version
+ */
 interface RecurringSelectProps {
   readonly disabled?: boolean;
   readonly value: RecurrenceRule;
   onChange(value: RecurrenceRule): void;
 }
 
+/**
+ * @deprecated RecurringSelect will be removed in the next major version
+ */
 export function RecurringSelect({
   value,
   disabled = false,

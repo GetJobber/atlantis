@@ -3,6 +3,9 @@ import styles from "./MonthlySelect.module.css";
 import { DurationPeriod } from "../types";
 import { RadioGroup, RadioOption } from "../../RadioGroup";
 
+/**
+ * @deprecated MonthlySelect will be removed in the next major version
+ */
 interface MonthlySelectProps {
   readonly disabled: boolean;
   readonly selectedMonthOption:
@@ -13,6 +16,9 @@ interface MonthlySelectProps {
   ): void;
 }
 
+/**
+ * @deprecated MonthlySelect will be removed in the next major version
+ */
 export function MonthlySelect({
   disabled,
   onChange,

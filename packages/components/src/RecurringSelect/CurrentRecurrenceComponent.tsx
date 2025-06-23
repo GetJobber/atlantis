@@ -1,4 +1,5 @@
 import React from "react";
+/* eslint-disable import/no-deprecated */
 import {
   DayOfMonthSelect,
   MonthlyDayOfWeekSelect,
@@ -18,6 +19,9 @@ interface RecurringSelectProps {
   onChange(newRecurrence: RecurrenceRule): void;
 }
 
+/**
+ * @deprecated CurrentRecurrenceComponent will be removed in the next major version
+ */
 export function CurrentRecurrenceComponent({
   recurrenceRule,
   disabled = false,
