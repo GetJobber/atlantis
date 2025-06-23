@@ -80,6 +80,7 @@ export function CheckboxLegacy({
                   checked={checked}
                   defaultChecked={defaultChecked}
                   aria-label={label}
+                  aria-describedby={description}
                   onChange={handleChange}
                   onFocus={onFocus}
                   onBlur={onBlur}
