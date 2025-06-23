@@ -202,20 +202,18 @@ FormatFile.Wrapper = function FormatFileWrapper({
 
 FormatFile.DeleteButton = function FormatFileDeleteButton({
   onDelete,
-  size = "base",
   children,
 }: {
   readonly onDelete?: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
-  readonly size?: "base" | "large";
   readonly children?: React.ReactNode;
 }) {
   return (
     <>
       <Button
         UNSAFE_className={{
-          container: size === "base" ? styles.customDeleteButton : undefined,
+          container: styles.customDeleteButton,
         }}
         onClick={onDelete}
         variation="destructive"

@@ -154,7 +154,7 @@
   right: var(--space-small);
 }
 
-@media (--medium-screens-and-up) {
+@media (any-pointer: fine) {
   .deleteable ~ .deleteButton {
     visibility: hidden;
   }
