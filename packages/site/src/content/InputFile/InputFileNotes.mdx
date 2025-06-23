@@ -181,6 +181,72 @@ allowed to be uploaded.
 />
 ```
 
+### transformFilename
+
+The `transformFilename` prop allows you to provide a custom function to
+transform filenames before they are processed by the component. This is useful
+for:
+
+- **Sanitizing filenames** (removing dangerous characters)
+- **Normalizing filenames** (converting to lowercase, replacing spaces)
+- **Adding prefixes/suffixes** (e.g., adding timestamps or UUIDs)
+- **Any other filename transformation logic**
+
+The function receives the original filename as a string and should return the
+transformed filename as a string.
+
+#### Error Handling
+
+If the transformation function throws an error, the component will:
+
+1. Fall back to using the original filename
+2. Report the error via the `onUploadError` callback (if provided)
+
+If the transformation function returns an empty string, the component will fall
+back to the original filename.
+
+#### Examples
+
+**Using a sanitization library:**
+
+```tsx
+import sanitize from "sanitize-filename";
+
+<InputFile
+  transformFilename={sanitize}
+  getUploadParams={getUploadParams}
+  onUploadError={error => console.error("Transform error:", error.message)}
+/>;
+```
+
+**Custom transformation:**
+
+```tsx
+const normalizeFilename = (filename: string) => {
+  return filename.toLowerCase().replace(/\s+/g, "-");
+};
+
+<InputFile
+  transformFilename={normalizeFilename}
+  getUploadParams={getUploadParams}
+/>;
+```
+
+**Adding timestamps:**
+
+```tsx
+const addTimestamp = (filename: string) => {
+  const timestamp = Date.now();
+  const [base, ext] = filename.split(".");
+  return ext ? `${base}_${timestamp}.${ext}` : `${base}_${timestamp}`;
+};
+
+<InputFile
+  transformFilename={addTimestamp}
+  getUploadParams={getUploadParams}
+/>;
+```
+
 ## Basic usage
 
 ```tsx

@@ -120,8 +120,19 @@ preserved:
 The component includes built-in error handling for transformation functions:
 
 - If the transformation function throws an error, it falls back to the original
-  filename
+  filename and reports the error via the `onUploadError` callback
 - If the transformation function returns an empty string, it falls back to the
   original filename
 - If the original filename is empty, it generates a default filename with
   timestamp
+
+```tsx
+<InputFile
+  transformFilename={riskyTransform}
+  onUploadError={error => {
+    console.error("Upload error:", error.message);
+    // Handle the error appropriately
+  }}
+  getUploadParams={getUploadParams}
+/>
+```

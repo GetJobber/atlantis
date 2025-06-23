@@ -311,6 +311,7 @@ describe("Post Requests", () => {
   it("falls back to original filename when transform throws an error", async () => {
     const fetchParams = jest.fn(fetchUploadParams);
     const handleStart = jest.fn();
+    const handleError = jest.fn();
 
     // Mock transform function that throws an error
     const mockTransform = jest.fn(() => {
@@ -327,6 +328,7 @@ describe("Post Requests", () => {
       <InputFile
         getUploadParams={fetchParams}
         onUploadStart={handleStart}
+        onUploadError={handleError}
         transformFilename={mockTransform}
       />,
     );
@@ -342,6 +344,12 @@ describe("Post Requests", () => {
         expect.objectContaining({
           name: "original-filename.pdf",
           type: "application/pdf",
+        }),
+      );
+      expect(handleError).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message:
+            'Filename transformation failed for "original-filename.pdf": Transform failed',
         }),
       );
     });

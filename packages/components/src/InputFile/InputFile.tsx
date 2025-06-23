@@ -441,7 +441,13 @@ export function InputFile({
       httpMethod = "POST",
     } = params;
 
-    const fileUpload = getFileUpload(file, key, url, transformFilename);
+    const fileUpload = getFileUpload(
+      file,
+      key,
+      url,
+      transformFilename,
+      onUploadError,
+    );
     onUploadStart && onUploadStart({ ...fileUpload });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -511,6 +517,7 @@ function getFileUpload(
   key: string,
   uploadUrl?: string,
   transformFilename?: (filename: string) => string,
+  onUploadError?: (error: Error) => void,
 ): FileUpload {
   let fileName = file.name;
 
@@ -520,7 +527,14 @@ function getFileUpload(
       // Use transformed name if it's not empty, otherwise fall back to original
       fileName = transformed && transformed.trim() ? transformed : file.name;
     } catch (error) {
-      // If transformation fails, silently fall back to original filename
+      // If transformation fails, fall back to original filename and notify via error callback
+      onUploadError?.(
+        new Error(
+          `Filename transformation failed for "${file.name}": ${
+            error instanceof Error ? error.message : "Unknown error"
+          }`,
+        ),
+      );
       fileName = file.name;
     }
   }
