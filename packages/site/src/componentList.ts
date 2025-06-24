@@ -619,7 +619,7 @@ export const componentList = [
     title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",
-    sections: ["Selections"],
+    sections: ["Deprecated"],
     additionalMatches: ["Calendar", "Date Picker", "Schedule"],
   },
   {
