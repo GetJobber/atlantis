@@ -1,22 +1,15 @@
 import React from "react";
 import styles from "./MonthlyDayOfWeekSelect.module.css";
-/* eslint-disable import/no-deprecated */
 import { WeeklySelect } from "./WeeklySelect";
 import { Text } from "../../Text";
 import { WeekDay } from "../types";
 
-/**
- * @deprecated MonthlyDayOfWeekSelect will be removed in the next major version
- */
 interface MonthlyDayOfWeekSelectProps {
   readonly disabled: boolean;
   readonly selectedWeeks: Set<WeekDay>[];
   onChange(nextSelectedWeeks: Set<WeekDay>[]): void;
 }
 
-/**
- * @deprecated MonthlyDayOfWeekSelect will be removed in the next major version
- */
 export function MonthlyDayOfWeekSelect({
   disabled,
   selectedWeeks,

@@ -3,9 +3,6 @@ import styles from "./WeeklySelect.module.css";
 import checkboxStyles from "../DateCellCheckbox.module.css";
 import { WeekDay } from "../types";
 
-/**
- * @deprecated WeeklySelect will be removed in the next major version
- */
 interface WeeklySelectProps {
   readonly disabled: boolean;
   readonly selectedDays: Set<WeekDay>;
@@ -13,9 +10,6 @@ interface WeeklySelectProps {
 }
 const weekDays = [0, 1, 2, 3, 4, 5, 6];
 
-/**
- * @deprecated WeeklySelect will be removed in the next major version
- */
 export function WeeklySelect({
   onChange,
   selectedDays,

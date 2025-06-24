@@ -1,3 +1,4 @@
+// @deprecated RecurringSelect will be removed in the next major version
 export enum WeekDay {
   Sunday,
   Monday,
@@ -8,6 +9,7 @@ export enum WeekDay {
   Saturday,
 }
 
+// @deprecated RecurringSelect will be removed in the next major version
 export type DayOfMonth =
   | 1
   | 2
@@ -42,6 +44,7 @@ export type DayOfMonth =
   | 31
   | "LAST";
 
+// @deprecated RecurringSelect will be removed in the next major version
 export enum DurationPeriod {
   Day = "Day",
   Week = "Week",
@@ -74,6 +77,7 @@ export interface RecurrenceRuleWeekDayOfMonth {
   dayOfWeek: [Set<WeekDay>, Set<WeekDay>, Set<WeekDay>, Set<WeekDay>];
 }
 
+// @deprecated RecurringSelect will be removed in the next major version
 export type RecurrenceRule = {
   interval: number;
 } & (

@@ -3,9 +3,6 @@ import styles from "./DayOfMonthSelect.module.css";
 import checkboxStyles from "../DateCellCheckbox.module.css";
 import { DayOfMonth } from "../types";
 
-/**
- * @deprecated DayOfMonthSelect will be removed in the next major version
- */
 interface DayOfMonthSelectProps {
   readonly selectedDays: Set<DayOfMonth>;
   readonly disabled: boolean;
@@ -14,9 +11,6 @@ interface DayOfMonthSelectProps {
 
 const daysInMonth = [...Array.from({ length: 31 }, (_, i) => i + 1), "LAST"];
 
-/**
- * @deprecated DayOfMonthSelect will be removed in the next major version
- */
 export function DayOfMonthSelect({
   selectedDays,
   disabled,
