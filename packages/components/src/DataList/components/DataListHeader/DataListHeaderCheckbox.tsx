@@ -122,9 +122,7 @@ function ColumnHeaderContent({
   readonly hasAtLeastOneSelected: boolean;
   readonly selectedCount: number;
   readonly deselectText: string;
-  readonly onSelect:
-    | ((selected: DataListSelectedType<string | number>) => void)
-    | undefined;
+  readonly onSelect?: (selected: DataListSelectedType<string | number>) => void;
 }) {
   if (canSelectAll) {
     return (
