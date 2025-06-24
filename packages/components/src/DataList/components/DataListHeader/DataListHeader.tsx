@@ -63,9 +63,13 @@ function isHeaderHidden(
   canSelect: boolean,
   canSelectAll: boolean,
 ) {
-  return (
-    (!visible && !hasAtLeastOneSelected) ||
-    !layout ||
-    (!visible && canSelect && !canSelectAll)
-  );
+  // When the horizontal area is too small and the data starts to wrap
+  // we want to hide the headers that will no longer align with the content
+
+  // The exception is when we have onSelectAll AND one or more are selected
+  // because then we show the "header" in its select-all UI variation state
+  const isHiddenForSelect = !visible && canSelect && !canSelectAll;
+  const isHiddenForSelectAll = !visible && !hasAtLeastOneSelected;
+
+  return !layout || isHiddenForSelect || isHiddenForSelectAll;
 }
