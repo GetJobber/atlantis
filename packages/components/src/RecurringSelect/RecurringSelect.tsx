@@ -3,6 +3,7 @@ import { MonthlySelect } from "./components";
 import { CurrentRecurrenceComponent } from "./CurrentRecurrenceComponent";
 import styles from "./RecurringSelect.module.css";
 import {
+  /* eslint-disable import/no-deprecated */
   DurationPeriod,
   RecurrenceRule,
   isMonthly,

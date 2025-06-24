@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { MonthlyDayOfWeekSelect } from "./MonthlyDayOfWeekSelect";
+/* eslint-disable import/no-deprecated */
 import { WeekDay } from "../types";
 
 let onChange: jest.Mock;
