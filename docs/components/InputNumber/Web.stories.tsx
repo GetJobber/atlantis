@@ -160,7 +160,7 @@ Controlled.args = {
 };
 
 export const VersionComparison = () => {
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     basic: 11.77,
     multiline: 11.77,
     error: 11.77,
@@ -177,11 +177,11 @@ export const VersionComparison = () => {
     inline: 11.77,
     multilineResize: 11.77,
   });
-  const [inline, setInline] = React.useState(false);
-  const [invalid, setInvalid] = React.useState<boolean | undefined>(undefined);
-  const [disabled, setDisabled] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState<string | undefined>();
-  const [description, setDescription] = React.useState<string>("");
+  const [inline, setInline] = useState(false);
+  const [invalid, setInvalid] = useState<boolean | undefined>(undefined);
+  const [disabled, setDisabled] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
+  const [description, setDescription] = useState<string>("");
 
   const extraProps = {
     invalid,
@@ -520,4 +520,52 @@ FormattingExamples_v2Only.args = {
     maximumFractionDigits: 2,
   },
   description: "Use Intl.NumberFormat for detailed options",
+};
+
+export const MinMaxValue_v2 = (args: {
+  minValue: number;
+  maxValue: number;
+  value: number;
+}) => {
+  const [value, setValue] = useState<number | undefined>(args.value);
+
+  return (
+    <Box gap="base">
+      <InputNumber
+        version={2}
+        value={value}
+        onChange={v => setValue(v)}
+        placeholder="Enter a number"
+        minValue={args.minValue}
+        maxValue={args.maxValue}
+        description={`Use the controls below to set minValue and maxValue constraints. Current constraints: ${
+          args.minValue !== undefined ? `min: ${args.minValue}` : ""
+        } ${args.maxValue !== undefined ? `max: ${args.maxValue}` : ""}`.trim()}
+      />
+      <Text size="small" variation="subdued">
+        Current value: {value ?? "undefined"}
+      </Text>
+    </Box>
+  );
+};
+
+MinMaxValue_v2.argTypes = {
+  minValue: {
+    control: { type: "number" },
+    description: "Minimum allowed value",
+  },
+  maxValue: {
+    control: { type: "number" },
+    description: "Maximum allowed value",
+  },
+  value: {
+    control: { type: "number" },
+    description: "Current input value",
+  },
+};
+
+MinMaxValue_v2.args = {
+  minValue: 0,
+  maxValue: 100,
+  value: 15,
 };
