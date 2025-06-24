@@ -64,7 +64,7 @@ test("it should show validation error when value is below minValue", () => {
 
   expect(
     getByText("Enter a number that is greater than or equal to 10"),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 test("it should show validation error when value is above maxValue", () => {
@@ -74,7 +74,7 @@ test("it should show validation error when value is above maxValue", () => {
 
   expect(
     getByText("Enter a number that is less than or equal to 10"),
-  ).toBeInTheDocument();
+  ).toBeVisible();
 });
 
 test("it should show validation error when value is outside minValue and maxValue range", () => {
@@ -88,7 +88,7 @@ test("it should show validation error when value is outside minValue and maxValu
     />,
   );
 
-  expect(getByText("Enter a number between 10 and 20")).toBeInTheDocument();
+  expect(getByText("Enter a number between 10 and 20")).toBeVisible();
 });
 
 test("it should not show validation error when value is within range", () => {
@@ -136,7 +136,7 @@ test("it should prioritize custom error over min/max validation error", () => {
     />,
   );
 
-  expect(getByText(customError)).toBeInTheDocument();
+  expect(getByText(customError)).toBeVisible();
   expect(
     queryByText("Enter a number between 10 and 20"),
   ).not.toBeInTheDocument();
