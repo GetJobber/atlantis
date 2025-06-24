@@ -16,6 +16,10 @@ interface DataListHeaderCheckbox {
   readonly children: ReactElement;
 }
 
+export const DATA_LIST_HEADER_CHECKBOX_TEST_ID = "ATL-DataList-header-checkbox";
+export const DATA_LIST_HEADER_BATCH_SELECT_TEST_ID =
+  "ATL-DataList-header-batch-select";
+
 export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   const { sm } = useResponsiveSizing();
   const { data, totalCount } = useDataListContext();
@@ -41,6 +45,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   return (
     <div className={styles.selectable}>
       <div
+        data-testid={DATA_LIST_HEADER_CHECKBOX_TEST_ID}
         className={classNames(styles.selectAllCheckbox, {
           [styles.visible]: canSelectAll,
         })}
@@ -127,7 +132,10 @@ function ColumnHeaderContent({
         switched={hasAtLeastOneSelected}
         initialChild={children}
         switchTo={
-          <div className={styles.batchSelectContainer}>
+          <div
+            data-testid={DATA_LIST_HEADER_BATCH_SELECT_TEST_ID}
+            className={styles.batchSelectContainer}
+          >
             <div className={styles.headerBatchSelect}>
               {Boolean(selectedCount) && <Text>{selectedCount} selected</Text>}
               <Button
