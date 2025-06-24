@@ -7,7 +7,7 @@ import {
 } from "@jobber/components/RecurringSelect";
 
 export default {
-  title: "Components/Selections/RecurringSelect/Web",
+  title: "Components/Deprecated/RecurringSelect/Web",
   component: RecurringSelect,
   parameters: {
     viewMode: "story",
