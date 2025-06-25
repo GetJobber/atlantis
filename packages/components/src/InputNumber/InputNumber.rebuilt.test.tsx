@@ -93,3 +93,23 @@ test("it should work with only maxValue", () => {
   expect(input).toBeVisible();
   expect(input).toHaveValue("15");
 });
+
+test("it should clamp value to maxValue when value exceeds maxValue", () => {
+  const { getByRole } = render(
+    <InputNumber version={2} value={25} maxValue={20} placeholder="Number" />,
+  );
+
+  const input = getByRole("textbox", { name: "Number" });
+  expect(input).toBeVisible();
+  expect(input).toHaveValue("20");
+});
+
+test("it should clamp value to minValue when value is below minValue", () => {
+  const { getByRole } = render(
+    <InputNumber version={2} value={5} minValue={10} placeholder="Number" />,
+  );
+
+  const input = getByRole("textbox", { name: "Number" });
+  expect(input).toBeVisible();
+  expect(input).toHaveValue("10");
+});
