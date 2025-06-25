@@ -12,7 +12,7 @@ export const useStyles = buildThemedStyles(tokens => {
       width: "100%",
       justifyContent: "space-between",
       flexDirection: "row",
-      alignItems: "center",
+      alignItems: "start",
       paddingVertical: tokens["space-small"],
     },
 
