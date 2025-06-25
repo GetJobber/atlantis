@@ -538,7 +538,7 @@ export const MinMaxValue_v2 = (args: {
         placeholder="Enter a number"
         minValue={args.minValue}
         maxValue={args.maxValue}
-        description={`Use the controls below to set minValue and maxValue constraints. Current constraints: ${
+        description={`minValue and maxValue props are passed through to React Aria's NumberField. Current constraints: ${
           args.minValue !== undefined ? `min: ${args.minValue}` : ""
         } ${args.maxValue !== undefined ? `max: ${args.maxValue}` : ""}`.trim()}
       />

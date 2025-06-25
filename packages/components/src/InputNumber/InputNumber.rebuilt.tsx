@@ -40,33 +40,6 @@ export const InputNumberRebuilt = forwardRef(
       props.onChange && props.onChange(newValue, event);
     }
 
-    function getValidationError(value: number | undefined): string | undefined {
-      if (value === undefined || value === null) {
-        return undefined;
-      }
-
-      const isOverMax = props.maxValue !== undefined && value > props.maxValue;
-      const isUnderMin = props.minValue !== undefined && value < props.minValue;
-
-      if (isOverMax || isUnderMin) {
-        if (props.minValue !== undefined && props.maxValue === undefined) {
-          return `Enter a number that is greater than or equal to ${props.minValue}`;
-        } else if (
-          props.maxValue !== undefined &&
-          props.minValue === undefined
-        ) {
-          return `Enter a number that is less than or equal to ${props.maxValue}`;
-        } else if (
-          props.minValue !== undefined &&
-          props.maxValue !== undefined
-        ) {
-          return `Enter a number between ${props.minValue} and ${props.maxValue}`;
-        }
-      }
-
-      return undefined;
-    }
-
     useImperativeHandle(ref, () => ({
       blur: () => {
         const input = inputRef.current;
@@ -100,18 +73,13 @@ export const InputNumberRebuilt = forwardRef(
       ...ariaNumberFieldProps
     } = props;
 
-    // Determine if the field should be invalid based on min/max validation
-    const validationError = getValidationError(props.value);
-    const isInvalid = invalid || !!validationError;
-    const displayError = error || validationError;
-
     return (
       <AriaNumberField
         {...ariaNumberFieldProps}
         className={classnames(styles.container, inline && styles.inline)}
         formatOptions={mergedFormatOptions}
         isDisabled={disabled}
-        isInvalid={isInvalid}
+        isInvalid={invalid}
         isReadOnly={readonly}
         minValue={minValue}
         maxValue={maxValue}
@@ -123,7 +91,7 @@ export const InputNumberRebuilt = forwardRef(
           className={classnames(
             styles.wrapper,
             align && styles[align],
-            isInvalid && styles.invalid,
+            invalid && styles.invalid,
             disabled && styles.disabled,
           )}
         >
@@ -156,11 +124,11 @@ export const InputNumberRebuilt = forwardRef(
             </Text>
           </AriaText>
         )}
-        {displayError && (
+        {error && (
           <AriaFieldError className={styles.fieldError}>
             <Icon color="critical" name="alert" size="small" />
             <Text size="small" variation="error">
-              {displayError}
+              {error}
             </Text>
           </AriaFieldError>
         )}

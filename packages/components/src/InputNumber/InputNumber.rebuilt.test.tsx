@@ -7,7 +7,7 @@ it("renders an input type number", () => {
   const { getByLabelText } = render(
     <InputNumber version={2} value={123} placeholder="My number" />,
   );
-  expect(getByLabelText("My number")).toBeInTheDocument();
+  expect(getByLabelText("My number")).toBeVisible();
 });
 
 test("it should call the handler with a number value", async () => {
@@ -57,42 +57,8 @@ test("it should handle blur", () => {
   expect(blurHandler).toHaveBeenCalledTimes(1);
 });
 
-test("it should show validation error when value is below minValue", () => {
-  const { getByText } = render(
-    <InputNumber version={2} value={5} minValue={10} placeholder="Number" />,
-  );
-
-  expect(
-    getByText("Enter a number that is greater than or equal to 10"),
-  ).toBeVisible();
-});
-
-test("it should show validation error when value is above maxValue", () => {
-  const { getByText } = render(
-    <InputNumber version={2} value={15} maxValue={10} placeholder="Number" />,
-  );
-
-  expect(
-    getByText("Enter a number that is less than or equal to 10"),
-  ).toBeVisible();
-});
-
-test("it should show validation error when value is outside minValue and maxValue range", () => {
-  const { getByText } = render(
-    <InputNumber
-      version={2}
-      value={25}
-      minValue={10}
-      maxValue={20}
-      placeholder="Number"
-    />,
-  );
-
-  expect(getByText("Enter a number between 10 and 20")).toBeVisible();
-});
-
-test("it should not show validation error when value is within range", () => {
-  const { queryByText } = render(
+test("it should pass through minValue and maxValue props", () => {
+  const { getByRole } = render(
     <InputNumber
       version={2}
       value={15}
@@ -102,42 +68,28 @@ test("it should not show validation error when value is within range", () => {
     />,
   );
 
-  expect(
-    queryByText("Enter a number between 10 and 20"),
-  ).not.toBeInTheDocument();
+  // Check that the component renders correctly with the props
+  const input = getByRole("textbox", { name: "Number" });
+  expect(input).toBeVisible();
+  expect(input).toHaveValue("15");
 });
 
-test("it should not show validation error when value is undefined", () => {
-  const { queryByText } = render(
-    <InputNumber
-      version={2}
-      value={undefined}
-      minValue={10}
-      maxValue={20}
-      placeholder="Number"
-    />,
+test("it should work with only minValue", () => {
+  const { getByRole } = render(
+    <InputNumber version={2} value={15} minValue={10} placeholder="Number" />,
   );
 
-  expect(
-    queryByText("Enter a number between 10 and 20"),
-  ).not.toBeInTheDocument();
+  const input = getByRole("textbox", { name: "Number" });
+  expect(input).toBeVisible();
+  expect(input).toHaveValue("15");
 });
 
-test("it should prioritize custom error over min/max validation error", () => {
-  const customError = "Custom error message";
-  const { getByText, queryByText } = render(
-    <InputNumber
-      version={2}
-      value={25}
-      minValue={10}
-      maxValue={20}
-      error={customError}
-      placeholder="Number"
-    />,
+test("it should work with only maxValue", () => {
+  const { getByRole } = render(
+    <InputNumber version={2} value={15} maxValue={20} placeholder="Number" />,
   );
 
-  expect(getByText(customError)).toBeVisible();
-  expect(
-    queryByText("Enter a number between 10 and 20"),
-  ).not.toBeInTheDocument();
+  const input = getByRole("textbox", { name: "Number" });
+  expect(input).toBeVisible();
+  expect(input).toHaveValue("15");
 });
