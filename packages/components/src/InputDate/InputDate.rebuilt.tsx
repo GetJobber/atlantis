@@ -6,10 +6,10 @@ import { DatePicker } from "../DatePicker";
 import { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
 import { InputText } from "../InputText";
 
-export const InputDateRebuilt = forwardRef(function InputDateInternal(
-  props: InputDateRebuiltProps,
-  inputRefs: React.Ref<HTMLInputElement>,
-) {
+export const InputDateRebuilt = forwardRef<
+  HTMLInputElement,
+  InputDateRebuiltProps
+>((props, forwardedRef) => {
   const { onChange } = props;
 
   return (
@@ -78,7 +78,7 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
           value={
             showEmptyValueLabel ? props.emptyValueLabel || "" : value || ""
           }
-          ref={inputRefs}
+          ref={forwardedRef}
           suffix={suffix}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -94,3 +94,5 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
     );
   }
 });
+
+InputDateRebuilt.displayName = "InputDateRebuilt";
