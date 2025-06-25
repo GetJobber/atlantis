@@ -1,5 +1,4 @@
 import React, { forwardRef } from "react";
-import omit from "lodash/omit";
 import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
 import { InputDateRebuiltProps } from "./InputDate.types";
 import { Suffix } from "../FormField";
@@ -31,18 +30,19 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
 
   function InputDateActivator(activatorProps: DatePickerActivatorProps) {
     const { onClick, value } = activatorProps;
-    const newActivatorProps = omit(activatorProps, ["activator", "fullWidth"]);
+
+    const datePickerId = activatorProps.id;
 
     const { handleChange, handleFocus, handleBlur, isFocused } =
       useInputDateActivatorActions({
-        onChange: newActivatorProps.onChange,
+        onChange: activatorProps.onChange,
         onFocus: event => {
           props.onFocus?.(event);
-          newActivatorProps.onFocus?.();
+          activatorProps.onFocus?.();
         },
         onBlur: event => {
           props.onBlur?.(event);
-          newActivatorProps.onBlur?.();
+          activatorProps.onBlur?.();
         },
       });
 
@@ -61,8 +61,18 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
       // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
       <div onClick={onClick}>
         <InputText
-          {...newActivatorProps}
-          {...props}
+          // Only pass specific props we know are valid and needed
+          id={datePickerId}
+          disabled={props.disabled}
+          error={props.error}
+          readOnly={props.readOnly}
+          placeholder={props.placeholder}
+          size={props.size}
+          inline={props.inline}
+          align={props.align}
+          description={props.description}
+          invalid={props.invalid}
+          name={props.name}
           version={2}
           value={
             showEmptyValueLabel ? props.emptyValueLabel || "" : value || ""
