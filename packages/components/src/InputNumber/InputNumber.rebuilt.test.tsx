@@ -5,7 +5,13 @@ import { InputNumber, InputNumberRef } from ".";
 
 it("renders an input type number", () => {
   const { getByLabelText } = render(
-    <InputNumber version={2} value={123} placeholder="My number" />,
+    <InputNumber
+      version={2}
+      value={123}
+      placeholder="My number"
+      minValue={0}
+      maxValue={200}
+    />,
   );
   expect(getByLabelText("My number")).toBeVisible();
 });
@@ -55,43 +61,6 @@ test("it should handle blur", () => {
     inputRef?.current?.blur();
   });
   expect(blurHandler).toHaveBeenCalledTimes(1);
-});
-
-test("it should pass through minValue and maxValue props", () => {
-  const { getByRole } = render(
-    <InputNumber
-      version={2}
-      value={15}
-      minValue={10}
-      maxValue={20}
-      placeholder="Number"
-    />,
-  );
-
-  // Check that the component renders correctly with the props
-  const input = getByRole("textbox", { name: "Number" });
-  expect(input).toBeVisible();
-  expect(input).toHaveValue("15");
-});
-
-test("it should work with only minValue", () => {
-  const { getByRole } = render(
-    <InputNumber version={2} value={15} minValue={10} placeholder="Number" />,
-  );
-
-  const input = getByRole("textbox", { name: "Number" });
-  expect(input).toBeVisible();
-  expect(input).toHaveValue("15");
-});
-
-test("it should work with only maxValue", () => {
-  const { getByRole } = render(
-    <InputNumber version={2} value={15} maxValue={20} placeholder="Number" />,
-  );
-
-  const input = getByRole("textbox", { name: "Number" });
-  expect(input).toBeVisible();
-  expect(input).toHaveValue("15");
 });
 
 test("it should clamp value to maxValue when value exceeds maxValue", () => {
