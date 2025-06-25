@@ -18,7 +18,7 @@ export const useStyles = buildThemedStyles(tokens => {
 
     label: {
       flex: 1,
-      gap: tokens["space-smallest"],
+      gap: tokens["space-smaller"],
     },
 
     checkbox: {
