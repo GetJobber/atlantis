@@ -31,8 +31,6 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
   function InputDateActivator(activatorProps: DatePickerActivatorProps) {
     const { onClick, value } = activatorProps;
 
-    const datePickerId = activatorProps.id;
-
     const { handleChange, handleFocus, handleBlur, isFocused } =
       useInputDateActivatorActions({
         onChange: activatorProps.onChange,
@@ -61,8 +59,11 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
       // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
       <div onClick={onClick}>
         <InputText
-          // Only pass specific props we know are valid and needed
-          id={datePickerId}
+          aria-describedby={activatorProps.ariaDescribedBy}
+          aria-invalid={activatorProps.ariaInvalid === "true" ? true : false}
+          aria-labelledby={activatorProps.ariaLabelledBy}
+          aria-required={activatorProps.ariaRequired === "true" ? true : false}
+          id={activatorProps.id}
           disabled={props.disabled}
           error={props.error}
           readOnly={props.readOnly}
