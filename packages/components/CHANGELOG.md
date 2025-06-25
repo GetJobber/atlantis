@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.62.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.62.0...@jobber/components@6.62.1) (2025-06-25)
+
+
+### Bug Fixes
+
+* **components:** DataList Header Fixes ([#2594](https://github.com/GetJobber/atlantis/issues/2594)) ([d9fca12](https://github.com/GetJobber/atlantis/commit/d9fca12368bc954a9cbc844b09fbdaf36cc939f6))
+
+
+
+
+
 # [6.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.61.5...@jobber/components@6.62.0) (2025-06-25)
 
 
