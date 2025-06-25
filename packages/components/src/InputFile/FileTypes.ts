@@ -5,6 +5,8 @@ export enum FileTypes {
   HEIC = "image/heic",
   PDF = "application/pdf",
   DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  CSV = "text/csv",
 }
 
 export const BASIC_IMAGE_TYPES = ["PNG", "JPEG", "JPG"];
