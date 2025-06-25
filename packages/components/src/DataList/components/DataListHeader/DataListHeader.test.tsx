@@ -64,7 +64,7 @@ describe("DataListHeader", () => {
   describe("when headerVisibility is true", () => {
     it("should render the header when layout is defined", () => {
       render(<DataListHeader />);
-      expect(screen.getByTestId("mock-header")).toBeInTheDocument();
+      expect(screen.getByTestId("mock-header")).toBeVisible();
     });
 
     it("should render header when layout is defined and no items are selected", () => {
