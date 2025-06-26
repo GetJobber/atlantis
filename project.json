@@ -21,10 +21,10 @@
     "storybook:build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build",
+        "command": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build -o storybook-build-output",
         "cwd": "."
       },
-      "outputs": ["{projectRoot}/storybook-static"]
+      "outputs": ["{projectRoot}/storybook-build-output"]
     },
     "site:build": {
       "executor": "nx:run-commands",
@@ -37,7 +37,7 @@
     "merge:dist": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "mv storybook-static packages/site/dist/storybook && mv packages/site/dist storybook-static",
+        "command": "mv storybook-build-output packages/site/dist/storybook && mv packages/site/dist storybook-static",
         "cwd": "."
       },
       "outputs": ["{projectRoot}/storybook-static"],

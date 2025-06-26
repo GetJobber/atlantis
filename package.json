@@ -21,7 +21,7 @@
     "build:all": "nx run atlantis:build:all",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
     "ci:release": "lerna publish --yes --no-private",
-    "clean": "rm -rf node_modules **/dist packages/**/.rollup.cache storybook-static",
+    "clean": "rm -rf node_modules **/dist packages/**/.rollup.cache storybook-static storybook-build-output",
     "generate": "plop -- --path='./packages/components/src/'",
     "generate:sitemap": "nx run atlantis:generate:sitemap",
     "lint": "npm run lint:js && npm run lint:css",
