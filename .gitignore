@@ -7,7 +7,6 @@ node_modules
 .DS_Store
 .idea
 storybook-static
-storybook-build-output
 .rollup.cache
 jobber-*.tgz
 .npmrc
