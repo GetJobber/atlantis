@@ -39,7 +39,7 @@
         "{projectRoot}/packages/**/*",
         "{projectRoot}/node_modules/**/*"
       ],
-      "outputs": ["{projectRoot}/storybook-static"],
+      "outputs": ["{projectRoot}/storybook-build-output"],
       "cache": true
     },
     "site:build": {
@@ -57,7 +57,7 @@
     "merge:dist": {
       "dependsOn": ["storybook:build", "site:build"],
       "inputs": [
-        "{projectRoot}/storybook-static/**/*",
+        "{projectRoot}/storybook-build-output/**/*",
         "{projectRoot}/packages/site/dist/**/*"
       ],
       "outputs": ["{projectRoot}/storybook-static"],
@@ -72,7 +72,8 @@
       "{projectRoot}/**/*",
       "!{projectRoot}/node_modules/**/*",
       "!{projectRoot}/dist/**/*",
-      "!{projectRoot}/storybook-static/**/*"
+      "!{projectRoot}/storybook-static/**/*",
+      "!{projectRoot}/storybook-build-output/**/*"
     ]
   },
   "parallel": 3,
