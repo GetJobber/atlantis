@@ -763,11 +763,14 @@ describe("DataList", () => {
         </DataList>,
       );
 
-      const headerCheckbox = screen.queryByTestId(
+      const checkboxContainer = screen.getByTestId(
         DATA_LIST_HEADER_CHECKBOX_TEST_ID,
       );
+      const headerCheckbox = within(checkboxContainer).getByRole("checkbox", {
+        hidden: true,
+      });
       expect(headerCheckbox).toBeInTheDocument();
-      expect(headerCheckbox).not.toHaveClass("visible");
+      expect(headerCheckbox).not.toBeVisible();
     });
 
     it("should not show checkbox or select-all UI when item is selected and onSelectAll is absent", () => {
@@ -852,12 +855,12 @@ describe("DataList", () => {
           </DataList.Layout>
         </DataList>,
       );
-
-      const headerCheckbox = screen.getByTestId(
+      const checkboxContainer = screen.getByTestId(
         DATA_LIST_HEADER_CHECKBOX_TEST_ID,
       );
+      const headerCheckbox = within(checkboxContainer).getByRole("checkbox");
       expect(headerCheckbox).toBeInTheDocument();
-      expect(headerCheckbox).toHaveClass("visible");
+      expect(headerCheckbox).toBeVisible();
 
       // Rerender with a selected item
       rerender(

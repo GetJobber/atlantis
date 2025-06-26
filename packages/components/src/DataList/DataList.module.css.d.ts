@@ -10,7 +10,6 @@ declare const styles: {
   readonly "active": string;
   readonly "selectable": string;
   readonly "selectAllCheckbox": string;
-  readonly "visible": string;
   readonly "selected": string;
   readonly "filtering": string;
   readonly "filteringSpinner": string;
