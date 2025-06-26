@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import classnames from "classnames";
 import {
@@ -23,21 +23,23 @@ export default {
   },
   decorators: [
     // Workaround Storybook's wrapping flex parent that make everything full width
-    story => <div>{story()}</div>,
+    Story => (
+      <div>
+        <Story />
+      </div>
+    ),
   ],
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
-const BasicTemplate: ComponentStory<typeof Button> = args => (
-  <Button {...args} />
-);
-
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  label: "New Job",
-  onClick: () => alert("👍"),
+export const Basic: StoryObj<typeof Button> = {
+  args: {
+    label: "New Job",
+    type: "primary",
+    onClick: () => alert("👍"),
+  },
 };
 
-const RoutingTemplate: ComponentStory<typeof Button> = () => (
+const RoutingTemplate = () => (
   <Router basename="/components/button">
     <Button label="Home" to="/" />
     <Button label="Office" to="/office" />
@@ -57,23 +59,25 @@ const RoutingTemplate: ComponentStory<typeof Button> = () => (
   </Router>
 );
 
-export const ClientSideRouting = RoutingTemplate.bind({});
-ClientSideRouting.parameters = {
-  previewTabs: {
-    code: {
-      hidden: false,
-      extraImports: {
-        "react-router-dom": [
-          "Route",
-          { name: "BrowserRouter", alias: "Router" },
-          "Switch",
-        ],
+export const ClientSideRouting: StoryObj<typeof Button> = {
+  render: RoutingTemplate,
+  parameters: {
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "react-router-dom": [
+            "Route",
+            { name: "BrowserRouter", alias: "Router" },
+            "Switch",
+          ],
+        },
       },
     },
   },
 };
 
-const FormTemplate: ComponentStory<typeof Button> = () => (
+const FormTemplate = () => (
   <Form onSubmit={() => alert("Wow, what a number")}>
     <Content>
       <InputNumber placeholder="Pick a number" />
@@ -82,7 +86,7 @@ const FormTemplate: ComponentStory<typeof Button> = () => (
   </Form>
 );
 
-const ComparisonTemplate: ComponentStory<typeof Button> = () => {
+const ComparisonTemplate = () => {
   const [type, setType] = useState<ButtonType>("primary");
   const [variation, setVariation] = useState<ButtonVariation>("work");
 
@@ -317,7 +321,7 @@ const ComparisonTemplate: ComponentStory<typeof Button> = () => {
   );
 };
 
-const ComposedLinksTemplate: ComponentStory<typeof Button> = () => {
+const ComposedLinksTemplate = () => {
   const buttonStyles = useButtonStyles({});
 
   return (
@@ -358,31 +362,37 @@ const ComposedLinksTemplate: ComponentStory<typeof Button> = () => {
   );
 };
 
-export const ComposedLinks = ComposedLinksTemplate.bind({});
-ComposedLinks.parameters = {
-  previewTabs: {
-    code: {
-      hidden: false,
-      extraImports: {
-        "react-router-dom": [
-          "Route",
-          { name: "BrowserRouter", alias: "Router" },
-          "Switch",
-        ],
-        "@jobber/components/Button": ["useButtonStyles"],
+export const ComposedLinks: StoryObj<typeof Button> = {
+  render: ComposedLinksTemplate,
+  parameters: {
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "react-router-dom": [
+            "Route",
+            { name: "BrowserRouter", alias: "Router" },
+            "Switch",
+          ],
+          "@jobber/components/Button": ["useButtonStyles"],
+        },
       },
     },
   },
 };
 
-export const Comparison = ComparisonTemplate.bind({});
-Comparison.parameters = {
-  docs: {
-    description: {
-      story:
-        "Comparison between Button and ButtonComposed components with various props.",
+export const Comparison: StoryObj<typeof Button> = {
+  render: ComparisonTemplate,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Comparison between Button and ButtonComposed components with various props.",
+      },
     },
   },
 };
 
-export const FormSubmit = FormTemplate.bind({});
+export const FormSubmit: StoryObj<typeof Button> = {
+  render: FormTemplate,
+};

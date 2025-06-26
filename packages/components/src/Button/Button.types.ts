@@ -1,4 +1,4 @@
-import { IconNames } from "@jobber/design";
+import { type IconNames } from "@jobber/design";
 import { LinkProps } from "react-router-dom";
 import { XOR } from "ts-xor";
 import { CSSProperties } from "react";
