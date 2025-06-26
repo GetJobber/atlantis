@@ -188,6 +188,10 @@ jobs:
               echo "NX cache directory size: $(du -sh .nx/cache)"
               echo "NX cache contents:"
               find .nx/cache -type f -name "*.json" | head -10
+              echo "Looking for storybook-related cache entries:"
+              find .nx/cache -name "*storybook*" -o -name "*build-output*" | head -10
+              echo "Recent cache entries (last 5):"
+              find .nx/cache -type d -name "[0-9]*" | sort | tail -5
               echo "NX cache structure:"
               tree .nx/cache -L 2 || ls -la .nx/cache
             fi
@@ -199,7 +203,12 @@ jobs:
       - *generate_base_path
       - run:
           name: Build Storybook with NX
-          command: npm run storybook:build
+          command: |
+            echo "=== Starting Storybook Build ==="
+            echo "Running: npm run storybook:build"
+            echo "This should use NX caching if available..."
+            npm run storybook:build
+            echo "=== Storybook Build Complete ==="
       - run:
           name: Debug NX Cache After Build
           command: |
@@ -219,38 +228,6 @@ jobs:
       - run:
           name: Build Site with NX
           command: npm run site:build
-      - *check_git_status
-      - *save_nx_cache
-
-  build_all:
-    resource_class: medium+
-    <<: *container_config
-    steps:
-      - *attach_workspace
-      - *restore_nx_cache
-      - run:
-          name: Debug NX Cache Before Full Build
-          command: |
-            echo "=== NX Cache Before Full Build ==="
-            echo "Current directory: $(pwd)"
-            echo "NX cache directory exists: $(test -d .nx/cache && echo 'YES' || echo 'NO')"
-            if [ -d .nx/cache ]; then
-              echo "NX cache directory size: $(du -sh .nx/cache)"
-              echo "NX cache structure:"
-              tree .nx/cache -L 2 || ls -la .nx/cache
-            fi
-            echo "=== End Debug Info ==="
-      - run:
-          name: Build All with NX
-          command: npm run build
-      - run:
-          name: Debug NX Cache After Full Build
-          command: |
-            echo "=== NX Cache After Full Build ==="
-            echo "NX cache directory size after build: $(du -sh .nx/cache)"
-            echo "Recent cache entries:"
-            find .nx/cache -type f -name "*.json" -newer .nx/cache | head -10
-            echo "=== End Debug Info ==="
       - *check_git_status
       - *save_nx_cache
 
@@ -333,12 +310,6 @@ workflows:
       - build_new_docs:
           requires:
             - install_dependencies
-      - build_all:
-          requires:
-            - install_dependencies
-      - e2e_tests:
-          requires:
-            - install_dependencies
       - release:
           filters:
             branches:
@@ -349,5 +320,4 @@ workflows:
             - test
             - build_storybook
             - build_new_docs
-            - build_all
             - e2e_tests
