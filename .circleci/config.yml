@@ -176,6 +176,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *restore_nx_cache
       - *generate_base_path
       - run:
           name: Build Storybook with NX
@@ -187,6 +188,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *restore_nx_cache
       - run:
           name: Build Site with NX
           command: npm run site:build
@@ -198,6 +200,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *restore_nx_cache
       - run:
           name: Build All with NX
           command: npm run build
