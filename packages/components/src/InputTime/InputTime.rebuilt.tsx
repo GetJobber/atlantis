@@ -46,6 +46,7 @@ export function InputTimeRebuilt({
         name={params.name}
         className={inputStyle}
         onBlur={handleBlur}
+        id={id}
         disabled={params.disabled}
         readOnly={params.readonly}
         onChange={handleChangeEvent}
