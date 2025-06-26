@@ -310,6 +310,9 @@ workflows:
       - build_new_docs:
           requires:
             - install_dependencies
+      - e2e_tests:
+          requires:
+            - install_dependencies
       - release:
           filters:
             branches:
