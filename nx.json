@@ -39,7 +39,7 @@
         "{projectRoot}/packages/**/*",
         "{projectRoot}/node_modules/**/*"
       ],
-      "outputs": ["{projectRoot}/storybook-build-output"],
+      "outputs": ["{projectRoot}/storybook-static"],
       "cache": true
     },
     "site:build": {
