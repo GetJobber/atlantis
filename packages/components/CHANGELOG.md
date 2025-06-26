@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.63.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.63.1...@jobber/components@6.63.2) (2025-06-26)
+
+
+### Bug Fixes
+
+* **components:** Fix InputDate and InputTime v2 Issues ([#2603](https://github.com/GetJobber/atlantis/issues/2603)) ([46613d8](https://github.com/GetJobber/atlantis/commit/46613d89141eedb2b76844fa8a500d36948763fb))
+
+
+
+
+
 ## [6.63.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.63.0...@jobber/components@6.63.1) (2025-06-26)
 
 
