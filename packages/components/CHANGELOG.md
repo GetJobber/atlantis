@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.62.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.62.1...@jobber/components@6.62.2) (2025-06-26)
+
+
+### Bug Fixes
+
+* **components:** pass Checkbox description to screen-readers ([#2597](https://github.com/GetJobber/atlantis/issues/2597)) ([7236243](https://github.com/GetJobber/atlantis/commit/7236243e08e0a79cc9ab60a12c43325d859291e1))
+
+
+
+
+
 ## [6.62.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.62.0...@jobber/components@6.62.1) (2025-06-25)
 
 
