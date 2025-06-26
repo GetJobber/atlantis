@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.62.2...@jobber/components@6.63.0) (2025-06-26)
+
+
+### Features
+
+* **components:** Update FileTypes enum ([#2602](https://github.com/GetJobber/atlantis/issues/2602)) ([f36e403](https://github.com/GetJobber/atlantis/commit/f36e40357306d87d6a8aa0944c6b899e5e377307))
+
+
+
+
+
 ## [6.62.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.62.1...@jobber/components@6.62.2) (2025-06-26)
 
 
