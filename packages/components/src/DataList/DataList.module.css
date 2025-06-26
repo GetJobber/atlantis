@@ -154,14 +154,9 @@
 
 .selectAllCheckbox {
   display: flex;
-  visibility: hidden;
 
   /* To compensate the Checkbox's label margin that we are using for screen-readers */
   margin-right: calc(var(--space-base) * -1);
-}
-
-.selectAllCheckbox.visible {
-  visibility: visible;
 }
 
 .listItem .selectable > :first-child {
