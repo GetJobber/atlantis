@@ -7,7 +7,11 @@ import {
   DataListContext,
   defaultValues,
 } from "@jobber/components/DataList/context/DataListContext";
-import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
+import {
+  DATA_LIST_HEADER_BATCH_SELECT_TEST_ID,
+  DATA_LIST_HEADER_CHECKBOX_TEST_ID,
+  DataListHeaderCheckbox,
+} from "./DataListHeaderCheckbox";
 
 const handleSelect = jest.fn();
 const handleSelectAll = jest.fn();
@@ -17,76 +21,129 @@ beforeEach(() => {
   handleSelectAll.mockReset();
 });
 
-const withSelectedContext = {
+const withBothHandlersContext = {
   ...defaultValues,
   selected: ["1"],
   onSelect: handleSelect,
   onSelectAll: handleSelectAll,
+  data: [{ id: "1" }, { id: "2" }],
 };
 
-const withoutSelectedContext = {
+const withOnlySelectContext = {
   ...defaultValues,
-  ...withSelectedContext,
+  selected: ["1"],
+  onSelect: handleSelect,
+  data: [{ id: "1" }, { id: "2" }],
+};
+
+const withoutHandlersContext = {
+  ...defaultValues,
+  data: [{ id: "1" }, { id: "2" }],
+};
+
+const withNoSelectedItemsContext = {
+  ...withBothHandlersContext,
   selected: [],
 };
 
 const deselectAllLabel = "Deselect All";
 
 describe("DataListHeaderCheckbox", () => {
-  it("should only render the checkbox and children when there are no selected items", () => {
-    const textToBeFound = "Find me";
-    render(
-      <DataListContext.Provider value={withoutSelectedContext}>
-        <DataListHeaderCheckbox>
-          <p>{textToBeFound}</p>
-        </DataListHeaderCheckbox>
-      </DataListContext.Provider>,
-    );
+  describe("when neither onSelect nor onSelectAll are provided", () => {
+    it("should only render the children without checkbox or AnimatedSwitcher", () => {
+      const childText = "Find me";
+      render(
+        <DataListContext.Provider value={withoutHandlersContext}>
+          <DataListHeaderCheckbox>
+            <p data-testid="child-element">{childText}</p>
+          </DataListHeaderCheckbox>
+        </DataListContext.Provider>,
+      );
 
-    expect(screen.getByRole("checkbox")).toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: deselectAllLabel }),
-    ).not.toBeInTheDocument();
-    expect(screen.queryByText(textToBeFound)).toBeInTheDocument();
+      expect(screen.getByTestId("child-element")).toBeInTheDocument();
+      expect(screen.queryByRole("checkbox")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
   });
 
-  it("should only render the checkbox and deselect all button when there are selected items", () => {
-    const textToBeFound = "Find me";
-    render(
-      <DataListContext.Provider value={withSelectedContext}>
-        <DataListHeaderCheckbox>
-          <p>{textToBeFound}</p>
-        </DataListHeaderCheckbox>
-      </DataListContext.Provider>,
-    );
+  describe("when only onSelect is provided", () => {
+    it("should render an invisible checkbox with children (no AnimatedSwitcher)", () => {
+      const childText = "Find me";
+      render(
+        <DataListContext.Provider value={withOnlySelectContext}>
+          <DataListHeaderCheckbox>
+            <p data-testid="child-element">{childText}</p>
+          </DataListHeaderCheckbox>
+        </DataListContext.Provider>,
+      );
 
-    expect(screen.getByRole("checkbox")).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: deselectAllLabel }),
-    ).toBeInTheDocument();
-    expect(screen.queryByText(textToBeFound)).not.toBeInTheDocument();
+      expect(screen.getByTestId("child-element")).toBeInTheDocument();
+      expect(screen.getByRole("checkbox")).toBeInTheDocument();
+      expect(
+        screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
+      ).not.toHaveClass("visible");
+    });
   });
 
-  it("should only render the children when none of the required props are implemented", () => {
-    const textToBeFound = "Find me";
-    render(
-      <DataListContext.Provider value={defaultValues}>
-        <DataListHeaderCheckbox>
-          <p>{textToBeFound}</p>
-        </DataListHeaderCheckbox>
-      </DataListContext.Provider>,
-    );
+  describe("when both onSelect and onSelectAll are provided", () => {
+    it("should render a visible checkbox and children when no items are selected", () => {
+      const childText = "Find me";
+      render(
+        <DataListContext.Provider value={withNoSelectedItemsContext}>
+          <DataListHeaderCheckbox>
+            <p data-testid="child-element">{childText}</p>
+          </DataListHeaderCheckbox>
+        </DataListContext.Provider>,
+      );
 
-    expect(screen.queryByRole("checkbox")).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole("button", { name: deselectAllLabel }),
-    ).not.toBeInTheDocument();
-    expect(screen.getByText(textToBeFound)).toBeInTheDocument();
+      expect(screen.getByTestId("child-element")).toBeInTheDocument();
+      expect(screen.getByRole("checkbox")).toBeInTheDocument();
+      expect(
+        screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
+      ).toBeInTheDocument();
+      expect(screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID)).toHaveClass(
+        "visible",
+      );
+      expect(
+        screen.queryByTestId(DATA_LIST_HEADER_BATCH_SELECT_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should render the batch select UI when items are selected", () => {
+      const childText = "Find me";
+      render(
+        <DataListContext.Provider value={withBothHandlersContext}>
+          <DataListHeaderCheckbox>
+            <p data-testid="child-element">{childText}</p>
+          </DataListHeaderCheckbox>
+        </DataListContext.Provider>,
+      );
+
+      expect(screen.queryByTestId("child-element")).not.toBeInTheDocument();
+      expect(screen.getByRole("checkbox")).toBeInTheDocument();
+      expect(
+        screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
+      ).toBeInTheDocument();
+      expect(screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID)).toHaveClass(
+        "visible",
+      );
+      expect(
+        screen.getByTestId(DATA_LIST_HEADER_BATCH_SELECT_TEST_ID),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: deselectAllLabel }),
+      ).toBeInTheDocument();
+    });
   });
 
-  it("should fire the onSelectAll when the checkbox have been clicked", async () => {
+  it("should fire the onSelectAll when the checkbox has been clicked", async () => {
     render(
-      <DataListContext.Provider value={withSelectedContext}>
+      <DataListContext.Provider value={withBothHandlersContext}>
         <DataListHeaderCheckbox>
           <div />
         </DataListHeaderCheckbox>
@@ -98,9 +155,9 @@ describe("DataListHeaderCheckbox", () => {
     expect(handleSelectAll).toHaveBeenCalledTimes(1);
   });
 
-  it("should return an empty array on onSelect when deselect all have been clicked", async () => {
+  it("should return an empty array on onSelect when deselect all has been clicked", async () => {
     render(
-      <DataListContext.Provider value={withSelectedContext}>
+      <DataListContext.Provider value={withBothHandlersContext}>
         <DataListHeaderCheckbox>
           <div />
         </DataListHeaderCheckbox>
@@ -156,11 +213,11 @@ describe("DataListHeaderCheckbox", () => {
       it.each([
         [
           "is not the same as totalCount",
-          { ...withSelectedContext, totalCount: 2 },
+          { ...withBothHandlersContext, totalCount: 2 },
         ],
         [
           "is less than the length of data",
-          { ...withSelectedContext, data: [{ id: 1 }, { id: 2 }] },
+          { ...withBothHandlersContext, data: [{ id: 1 }, { id: 2 }] },
         ],
       ])("should be indeterminate when the selected items %s", (_, context) => {
         render(
@@ -176,10 +233,13 @@ describe("DataListHeaderCheckbox", () => {
     });
 
     it.each([
-      ["is the same as totalCount", { ...withSelectedContext, totalCount: 1 }],
+      [
+        "is the same as totalCount",
+        { ...withBothHandlersContext, totalCount: 1 },
+      ],
       [
         "is greater than or equal to the length of data",
-        { ...withSelectedContext, data: [{ id: 1 }] },
+        { ...withBothHandlersContext, data: [{ id: 1 }] },
       ],
     ])("should be a checkmark when the selected items %s", (_, context) => {
       render(

@@ -3,6 +3,7 @@ import { MonthlySelect } from "./components";
 import { CurrentRecurrenceComponent } from "./CurrentRecurrenceComponent";
 import styles from "./RecurringSelect.module.css";
 import {
+  /* eslint-disable import/no-deprecated */
   DurationPeriod,
   RecurrenceRule,
   isMonthly,
@@ -20,6 +21,9 @@ interface RecurringSelectProps {
   onChange(value: RecurrenceRule): void;
 }
 
+/**
+ * @deprecated RecurringSelect will be removed in the next major version
+ */
 export function RecurringSelect({
   value,
   disabled = false,
