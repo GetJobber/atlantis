@@ -1,0 +1,55 @@
+{
+  "name": "@jobber/design",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mkdir -p dist && npm run generate:assets && npm run build:design",
+        "cwd": "packages/design"
+      },
+      "outputs": ["{projectRoot}/dist"],
+      "dependsOn": []
+    },
+    "build:design": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rollup -c rollup.config.mjs",
+        "cwd": "packages/design"
+      },
+      "outputs": ["{projectRoot}/dist"],
+      "dependsOn": ["generate:assets"]
+    },
+    "generate:assets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run generate:iconMap && npm run generate:tokenCSS",
+        "cwd": "packages/design"
+      },
+      "outputs": ["{projectRoot}/src/assets"]
+    },
+    "generate:iconMap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx src/scripts/buildIconMap.ts",
+        "cwd": "packages/design"
+      },
+      "outputs": ["{projectRoot}/src/assets"]
+    },
+    "generate:tokenCSS": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx src/scripts/buildTokens.ts",
+        "cwd": "packages/design"
+      },
+      "outputs": ["{projectRoot}/src/assets"]
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf dist colors.js foundation.css src/assets colors.cjs colors.mjs",
+        "cwd": "packages/design"
+      }
+    }
+  }
+}

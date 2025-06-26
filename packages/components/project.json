@@ -1,0 +1,38 @@
+{
+  "name": "@jobber/components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build:pre && rollup --config && npm run build:post",
+        "cwd": "packages/components"
+      },
+      "outputs": ["{projectRoot}/dist"],
+      "dependsOn": ["^build"]
+    },
+    "build:pre": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "PREBUILD_CSS=true rollup --config && cp dist/styles.css ./styles.css.backup && npm run clean",
+        "cwd": "packages/components"
+      },
+      "outputs": ["{projectRoot}/styles.css.backup"]
+    },
+    "build:post": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mv ./styles.css.backup dist/styles.css",
+        "cwd": "packages/components"
+      },
+      "outputs": ["{projectRoot}/dist/styles.css"]
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
+        "cwd": "packages/components"
+      }
+    }
+  }
+}

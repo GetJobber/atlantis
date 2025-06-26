@@ -11,3 +11,6 @@ storybook-static
 jobber-*.tgz
 .npmrc
 styles.css.backup
+
+# NX (for useNx option)
+.nx/cache

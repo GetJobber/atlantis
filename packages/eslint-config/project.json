@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "@jobber/eslint-config",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'No build step for eslint-config'",
+        "cwd": "packages/eslint-config"
+      },
+      "outputs": [],
+      "dependsOn": []
+    }
+  }
+} 

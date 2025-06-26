@@ -1,0 +1,80 @@
+{
+  "extends": "nx/presets/npm.json",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "storybook:build",
+          "site:build",
+          "merge:dist",
+          "generate:sitemap"
+        ],
+        "parallel": 3
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/**/*.{ts,tsx,js,jsx,json,css,md,mdx}",
+        "{projectRoot}/rollup.config.*",
+        "{projectRoot}/tsconfig.json",
+        "{projectRoot}/vite.config.*"
+      ],
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
+    },
+    "storybook:build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/docs/**/*",
+        "{projectRoot}/packages/**/*",
+        "{projectRoot}/node_modules/**/*"
+      ],
+      "outputs": ["{projectRoot}/storybook-static"],
+      "cache": true
+    },
+    "site:build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/packages/site/**/*",
+        "{projectRoot}/packages/site/public/**/*",
+        "{projectRoot}/packages/site/src/**/*"
+      ],
+      "outputs": ["{projectRoot}/packages/site/dist"],
+      "cache": true
+    },
+    "merge:dist": {
+      "dependsOn": ["storybook:build", "site:build"],
+      "inputs": [
+        "{projectRoot}/storybook-static/**/*",
+        "{projectRoot}/packages/site/dist/**/*"
+      ],
+      "outputs": ["{projectRoot}/storybook-static"],
+      "cache": true
+    },
+    "generate:sitemap": {
+      "cache": true
+    }
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "!{projectRoot}/node_modules/**/*",
+      "!{projectRoot}/dist/**/*",
+      "!{projectRoot}/storybook-static/**/*"
+    ]
+  },
+  "parallel": 3,
+  "defaultBase": "master"
+}

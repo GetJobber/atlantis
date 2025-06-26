@@ -1,0 +1,61 @@
+{
+  "name": "atlantis",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build:all && npm run generate:sitemap",
+        "parallel": false
+      },
+      "dependsOn": ["build:all", "generate:sitemap"]
+    },
+    "build:all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run storybook:build && npm run site:build && npm run merge:dist",
+        "parallel": false
+      },
+      "dependsOn": ["storybook:build", "site:build", "merge:dist"]
+    },
+    "storybook:build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/storybook-static"]
+    },
+    "site:build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd packages/site && npm run build",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/packages/site/dist"]
+    },
+    "merge:dist": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mv storybook-static packages/site/dist/storybook && mv packages/site/dist storybook-static",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/storybook-static"],
+      "dependsOn": ["storybook:build", "site:build"]
+    },
+    "generate:sitemap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node sitemap-generator.js",
+        "cwd": "."
+      }
+    },
+    "packages:build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx lerna run build --stream",
+        "cwd": "."
+      }
+    }
+  }
+}
