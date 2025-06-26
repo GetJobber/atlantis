@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.63.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.63.2...@jobber/components@6.63.3) (2025-06-26)
+
+
+### Bug Fixes
+
+* **components:** Manage Checkbox Visibility Inline for Improved Testing ([#2605](https://github.com/GetJobber/atlantis/issues/2605)) ([250662c](https://github.com/GetJobber/atlantis/commit/250662c6610af86565175ff89fc8c2c2de22fb19))
+
+
+
+
+
 ## [6.63.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.63.1...@jobber/components@6.63.2) (2025-06-26)
 
 
