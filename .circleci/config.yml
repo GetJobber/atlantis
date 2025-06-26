@@ -25,6 +25,24 @@ references:
       keys:
         - npm-cache-v1
 
+  restore_nx_cache: &restore_nx_cache
+    restore_cache:
+      name: Restore NX cache
+      keys:
+        # More granular cache keys for better hit rates
+        - nx-cache-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}
+        - nx-cache-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}
+        - nx-cache-v2-{{ .Branch }}
+        - nx-cache-v2
+
+  save_nx_cache: &save_nx_cache
+    save_cache:
+      name: Save NX cache
+      key: nx-cache-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}
+      paths:
+        - .nx/cache
+        - node_modules/.cache
+
   attach_workspace: &attach_workspace
     attach_workspace:
         at: .
@@ -89,6 +107,7 @@ jobs:
     steps:
       - *attach_workspace
       - *restore_npm_cache
+      - *restore_nx_cache
       - run:
           name: Authenticate with npm
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
@@ -159,16 +178,31 @@ jobs:
       - *attach_workspace
       - *generate_base_path
       - run:
+          name: Build Storybook with NX
           command: npm run storybook:build
       - *check_git_status
+      - *save_nx_cache
 
   build_new_docs:
     <<: *container_config
     steps:
       - *attach_workspace
       - run:
-          command: cd packages/site && npm run generate && npm run build
+          name: Build Site with NX
+          command: npm run site:build
       - *check_git_status
+      - *save_nx_cache
+
+  build_all:
+    resource_class: medium+
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - run:
+          name: Build All with NX
+          command: npm run build
+      - *check_git_status
+      - *save_nx_cache
 
   release:
     <<: *container_config
@@ -249,6 +283,9 @@ workflows:
       - build_new_docs:
           requires:
             - install_dependencies
+      - build_all:
+          requires:
+            - install_dependencies
       - e2e_tests:
           requires:
             - install_dependencies
@@ -262,4 +299,5 @@ workflows:
             - test
             - build_storybook
             - build_new_docs
+            - build_all
             - e2e_tests
