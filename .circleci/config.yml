@@ -25,6 +25,25 @@ references:
       keys:
         - npm-cache-v1
 
+  restore_nx_cache: &restore_nx_cache
+    restore_cache:
+      name: Restore NX cache
+      keys:
+        # More granular cache keys for better hit rates
+        - nx-cache-v3-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}-{{ checksum "project.json" }}
+        - nx-cache-v3-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}
+        - nx-cache-v3-{{ .Branch }}-{{ checksum "package-lock.json" }}
+        - nx-cache-v3-{{ .Branch }}
+        - nx-cache-v3
+
+  save_nx_cache: &save_nx_cache
+    save_cache:
+      name: Save NX cache
+      key: nx-cache-v3-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}-{{ checksum "project.json" }}
+      paths:
+        - .nx/cache
+        - node_modules/.cache
+
   attach_workspace: &attach_workspace
     attach_workspace:
         at: .
@@ -89,10 +108,12 @@ jobs:
     steps:
       - *attach_workspace
       - *restore_npm_cache
+      - *restore_nx_cache
       - run:
           name: Authenticate with npm
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - *npm_install
+      - *save_nx_cache
       - *persist_to_workspace
 
   check_for_manual_release:
@@ -157,18 +178,146 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *restore_nx_cache
+      - run:
+          name: Debug NX Cache Contents
+          command: |
+            echo "=== NX Cache Debug Info ==="
+            echo "Current directory: $(pwd)"
+            echo "NX cache directory exists: $(test -d .nx/cache && echo 'YES' || echo 'NO')"
+            if [ -d .nx/cache ]; then
+              echo "NX cache directory size: $(du -sh .nx/cache)"
+              echo "NX cache contents:"
+              find .nx/cache -type f -name "*.json" | head -10
+              echo "Looking for components-native cache entries:"
+              find .nx/cache -name "*components-native*" -o -name "*build-output*" | head -10
+              echo "Recent cache entries (last 5):"
+              find .nx/cache -type d -name "[0-9]*" | sort | tail -5
+              echo "NX cache structure:"
+              tree .nx/cache -L 2 || ls -la .nx/cache
+              
+              # Check for multiple cached builds of components-native
+              COMPONENTS_NATIVE_CACHES=$(find .nx/cache -name "*components-native*" -type d | wc -l)
+              echo "Number of components-native cache entries: $COMPONENTS_NATIVE_CACHES"
+              if [ "$COMPONENTS_NATIVE_CACHES" -gt 2 ]; then
+                echo "WARNING: Multiple components-native cache entries detected. Clearing cache to prevent type conflicts."
+                rm -rf .nx/cache
+                echo "Cache cleared."
+              fi
+            fi
+            echo "Node modules cache exists: $(test -d node_modules/.cache && echo 'YES' || echo 'NO')"
+            if [ -d node_modules/.cache ]; then
+              echo "Node modules cache size: $(du -sh node_modules/.cache)"
+            fi
+            echo "=== End Debug Info ==="
       - *generate_base_path
       - run:
-          command: npm run storybook:build
+          name: Build Storybook with NX
+          command: |
+            echo "=== Starting Storybook Build ==="
+            echo "Running: npm run storybook:build"
+            echo "This should use NX caching if available..."
+            
+            # Run the build and capture output
+            if npm run storybook:build; then
+              echo "=== Storybook Build Complete ==="
+            else
+              echo "=== Build Failed ==="
+              echo "Checking for TypeScript compilation errors..."
+              
+              # Check if the error is related to type conflicts by running again and checking output
+              if npm run storybook:build 2>&1 | grep -q "All declarations of.*must have identical type parameters\|Interface.*incorrectly extends interface"; then
+                echo "TypeScript compilation error detected. Clearing NX cache and retrying..."
+                rm -rf .nx/cache
+                echo "Cache cleared. Retrying build..."
+                npm run storybook:build
+              else
+                echo "Build failed for other reasons. Exiting."
+                exit 1
+              fi
+            fi
+      - run:
+          name: Debug NX Cache After Build
+          command: |
+            echo "=== NX Cache After Build ==="
+            echo "NX cache directory size after build: $(du -sh .nx/cache)"
+            echo "Recent cache entries:"
+            find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
+            echo "=== End Debug Info ==="
       - *check_git_status
+      - *save_nx_cache
 
   build_new_docs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *restore_nx_cache
       - run:
-          command: cd packages/site && npm run generate && npm run build
+          name: Debug NX Cache Contents
+          command: |
+            echo "=== NX Cache Debug Info ==="
+            echo "Current directory: $(pwd)"
+            echo "NX cache directory exists: $(test -d .nx/cache && echo 'YES' || echo 'NO')"
+            if [ -d .nx/cache ]; then
+              echo "NX cache directory size: $(du -sh .nx/cache)"
+              echo "NX cache contents:"
+              find .nx/cache -type f -name "*.json" | head -10
+              echo "Looking for components-native cache entries:"
+              find .nx/cache -name "*components-native*" -o -name "*build-output*" | head -10
+              echo "Recent cache entries (last 5):"
+              find .nx/cache -type d -name "[0-9]*" | sort | tail -5
+              echo "NX cache structure:"
+              tree .nx/cache -L 2 || ls -la .nx/cache
+              
+              # Check for multiple cached builds of components-native
+              COMPONENTS_NATIVE_CACHES=$(find .nx/cache -name "*components-native*" -type d | wc -l)
+              echo "Number of components-native cache entries: $COMPONENTS_NATIVE_CACHES"
+              if [ "$COMPONENTS_NATIVE_CACHES" -gt 2 ]; then
+                echo "WARNING: Multiple components-native cache entries detected. Clearing cache to prevent type conflicts."
+                rm -rf .nx/cache
+                echo "Cache cleared."
+              fi
+            fi
+            echo "Node modules cache exists: $(test -d node_modules/.cache && echo 'YES' || echo 'NO')"
+            if [ -d node_modules/.cache ]; then
+              echo "Node modules cache size: $(du -sh node_modules/.cache)"
+            fi
+            echo "=== End Debug Info ==="
+      - run:
+          name: Build Site with NX
+          command: |
+            echo "=== Starting Site Build ==="
+            echo "Running: npm run site:build"
+            echo "This should use NX caching if available..."
+            
+            # Run the build and capture output
+            if npm run site:build; then
+              echo "=== Site Build Complete ==="
+            else
+              echo "=== Build Failed ==="
+              echo "Checking for TypeScript compilation errors..."
+              
+              # Check if the error is related to type conflicts by running again and checking output
+              if npm run site:build 2>&1 | grep -q "All declarations of.*must have identical type parameters\|Interface.*incorrectly extends interface"; then
+                echo "TypeScript compilation error detected. Clearing NX cache and retrying..."
+                rm -rf .nx/cache
+                echo "Cache cleared. Retrying build..."
+                npm run site:build
+              else
+                echo "Build failed for other reasons. Exiting."
+                exit 1
+              fi
+            fi
+      - run:
+          name: Debug NX Cache After Build
+          command: |
+            echo "=== NX Cache After Build ==="
+            echo "NX cache directory size after build: $(du -sh .nx/cache)"
+            echo "Recent cache entries:"
+            find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
+            echo "=== End Debug Info ==="
       - *check_git_status
+      - *save_nx_cache
 
   release:
     <<: *container_config
