@@ -9,7 +9,6 @@ import {
 } from "@jobber/components/DataList/context/DataListContext";
 import {
   DATA_LIST_HEADER_BATCH_SELECT_TEST_ID,
-  DATA_LIST_HEADER_CHECKBOX_TEST_ID,
   DataListHeaderCheckbox,
 } from "./DataListHeaderCheckbox";
 
@@ -61,15 +60,14 @@ describe("DataListHeaderCheckbox", () => {
       );
 
       expect(screen.getByTestId("child-element")).toBeInTheDocument();
-      expect(screen.queryByRole("checkbox")).not.toBeInTheDocument();
       expect(
-        screen.queryByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
+        screen.queryByRole("checkbox", { hidden: true }),
       ).not.toBeInTheDocument();
     });
   });
 
   describe("when only onSelect is provided", () => {
-    it("should render an invisible checkbox with children (no AnimatedSwitcher)", () => {
+    it("should render a hidden checkbox with children (no AnimatedSwitcher)", () => {
       const childText = "Find me";
       render(
         <DataListContext.Provider value={withOnlySelectContext}>
@@ -80,13 +78,13 @@ describe("DataListHeaderCheckbox", () => {
       );
 
       expect(screen.getByTestId("child-element")).toBeInTheDocument();
-      expect(screen.getByRole("checkbox")).toBeInTheDocument();
+      const checkbox = screen.queryByRole("checkbox");
+
+      expect(checkbox).not.toBeInTheDocument();
+      // Use hidden: true to find elements even if they are not visible to accessibility API
       expect(
-        screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
+        screen.getByRole("checkbox", { hidden: true }),
       ).toBeInTheDocument();
-      expect(
-        screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
-      ).not.toHaveClass("visible");
     });
   });
 
@@ -102,13 +100,11 @@ describe("DataListHeaderCheckbox", () => {
       );
 
       expect(screen.getByTestId("child-element")).toBeInTheDocument();
-      expect(screen.getByRole("checkbox")).toBeInTheDocument();
-      expect(
-        screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
-      ).toBeInTheDocument();
-      expect(screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID)).toHaveClass(
-        "visible",
-      );
+
+      const checkbox = screen.getByRole("checkbox");
+
+      expect(checkbox).toBeInTheDocument();
+      expect(checkbox).toBeVisible();
       expect(
         screen.queryByTestId(DATA_LIST_HEADER_BATCH_SELECT_TEST_ID),
       ).not.toBeInTheDocument();
@@ -126,12 +122,11 @@ describe("DataListHeaderCheckbox", () => {
 
       expect(screen.queryByTestId("child-element")).not.toBeInTheDocument();
       expect(screen.getByRole("checkbox")).toBeInTheDocument();
-      expect(
-        screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID),
-      ).toBeInTheDocument();
-      expect(screen.getByTestId(DATA_LIST_HEADER_CHECKBOX_TEST_ID)).toHaveClass(
-        "visible",
-      );
+
+      const checkbox = screen.getByRole("checkbox");
+
+      expect(checkbox).toBeInTheDocument();
+      expect(checkbox).toBeVisible();
       expect(
         screen.getByTestId(DATA_LIST_HEADER_BATCH_SELECT_TEST_ID),
       ).toBeInTheDocument();
@@ -228,7 +223,9 @@ describe("DataListHeaderCheckbox", () => {
           </DataListContext.Provider>,
         );
 
-        expect(screen.getByRole("checkbox")).toHaveClass("indeterminate");
+        expect(screen.getByRole("checkbox", { hidden: true })).toHaveClass(
+          "indeterminate",
+        );
       });
     });
 
@@ -250,7 +247,7 @@ describe("DataListHeaderCheckbox", () => {
         </DataListContext.Provider>,
       );
 
-      expect(screen.getByRole("checkbox")).toBeChecked();
+      expect(screen.getByRole("checkbox", { hidden: true })).toBeChecked();
     });
   });
 });

@@ -46,9 +46,10 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
     <div className={styles.selectable}>
       <div
         data-testid={DATA_LIST_HEADER_CHECKBOX_TEST_ID}
-        className={classNames(styles.selectAllCheckbox, {
-          [styles.visible]: canSelectAll,
-        })}
+        style={{
+          visibility: canSelectAll ? "visible" : "hidden",
+        }}
+        className={classNames(styles.selectAllCheckbox)}
       >
         <Checkbox
           checked={isAllSelected()}
