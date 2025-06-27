@@ -19,6 +19,7 @@ export function InputTimeRebuilt({
 
   const { inputStyle } = useFormFieldWrapperStyles(params);
 
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
   const id = getId(params);
 
   return (
@@ -39,6 +40,7 @@ export function InputTimeRebuilt({
       readonly={params.readonly}
       placeholder={params.placeholder}
       value={dateToTimeString(value)}
+      wrapperRef={wrapperRef}
     >
       <input
         ref={ref}
