@@ -16,7 +16,7 @@
     "packages/site"
   ],
   "scripts": {
-    "bootstrap": "npm run bootstrap --workspaces --if-present",
+    "bootstrap": "nx run-many --target=bootstrap --all --exclude=atlantis",
     "build": "nx run atlantis:build",
     "build:all": "nx run atlantis:build:all",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
@@ -32,6 +32,7 @@
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
     "merge:dist": "nx run atlantis:merge:dist",
     "pack": "npm run bootstrap && npm pack -w",
+    "postinstall": "npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
     "preventManualRelease": "node scripts/preventManualRelease.js",
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
