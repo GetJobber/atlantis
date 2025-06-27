@@ -219,14 +219,14 @@ jobs:
             echo "This should use NX caching if available..."
             
             # Run the build and capture output
-            if npm run storybook:build 2>&1 | tee build.log; then
+            if npm run storybook:build; then
               echo "=== Storybook Build Complete ==="
             else
               echo "=== Build Failed ==="
               echo "Checking for TypeScript compilation errors..."
               
-              # Check if the error is related to type conflicts
-              if grep -q "All declarations of.*must have identical type parameters\|Interface.*incorrectly extends interface" build.log; then
+              # Check if the error is related to type conflicts by running again and checking output
+              if npm run storybook:build 2>&1 | grep -q "All declarations of.*must have identical type parameters\|Interface.*incorrectly extends interface"; then
                 echo "TypeScript compilation error detected. Clearing NX cache and retrying..."
                 rm -rf .nx/cache
                 echo "Cache cleared. Retrying build..."
@@ -291,14 +291,14 @@ jobs:
             echo "This should use NX caching if available..."
             
             # Run the build and capture output
-            if npm run site:build 2>&1 | tee build.log; then
+            if npm run site:build; then
               echo "=== Site Build Complete ==="
             else
               echo "=== Build Failed ==="
               echo "Checking for TypeScript compilation errors..."
               
-              # Check if the error is related to type conflicts
-              if grep -q "All declarations of.*must have identical type parameters\|Interface.*incorrectly extends interface" build.log; then
+              # Check if the error is related to type conflicts by running again and checking output
+              if npm run site:build 2>&1 | grep -q "All declarations of.*must have identical type parameters\|Interface.*incorrectly extends interface"; then
                 echo "TypeScript compilation error detected. Clearing NX cache and retrying..."
                 rm -rf .nx/cache
                 echo "Cache cleared. Retrying build..."
