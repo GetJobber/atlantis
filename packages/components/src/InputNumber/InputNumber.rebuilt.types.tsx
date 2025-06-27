@@ -19,6 +19,8 @@ export interface InputNumberRebuiltProps
   readonly identifier?: string;
   readonly inline?: boolean;
   readonly invalid?: boolean;
+  readonly maxValue?: number;
+  readonly minValue?: number;
   readonly onChange?: (
     newValue: number,
     event?: React.ChangeEvent<HTMLInputElement>,
