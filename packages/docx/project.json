@@ -5,7 +5,7 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "echo 'No build step for docx'",
+        "command": "echo 'No build script for docx package'",
         "cwd": "packages/docx"
       },
       "outputs": [],

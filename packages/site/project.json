@@ -8,8 +8,7 @@
         "command": "npm run build",
         "cwd": "packages/site"
       },
-      "outputs": ["{projectRoot}/dist"],
-      "dependsOn": ["^build"]
+      "outputs": ["{projectRoot}/dist"]
     },
     "clean": {
       "executor": "nx:run-commands",

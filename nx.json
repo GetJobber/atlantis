@@ -6,6 +6,7 @@
       "options": {
         "cacheableOperations": [
           "build",
+          "bootstrap",
           "storybook:build",
           "site:build",
           "merge:dist",
@@ -18,6 +19,19 @@
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/**/*.{ts,tsx,js,jsx,json,css,md,mdx}",
+        "{projectRoot}/rollup.config.*",
+        "{projectRoot}/tsconfig.json",
+        "{projectRoot}/vite.config.*"
+      ],
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
+    },
+    "bootstrap": {
+      "dependsOn": ["^bootstrap"],
       "inputs": [
         "default",
         "^default",
@@ -57,7 +71,7 @@
     "merge:dist": {
       "dependsOn": ["storybook:build", "site:build"],
       "inputs": [
-        "{projectRoot}/storybook-build-output/**/*",
+        "{projectRoot}/storybook-static/**/*",
         "{projectRoot}/packages/site/dist/**/*"
       ],
       "outputs": ["{projectRoot}/storybook-static"],
@@ -73,7 +87,6 @@
       "!{projectRoot}/node_modules/**/*",
       "!{projectRoot}/dist/**/*",
       "!{projectRoot}/storybook-static/**/*",
-      "!{projectRoot}/storybook-build-output/**/*"
     ]
   },
   "parallel": 3,

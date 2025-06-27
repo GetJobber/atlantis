@@ -5,7 +5,7 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "echo 'No build step for generators'",
+        "command": "echo 'No build script for generators package'",
         "cwd": "packages/generators"
       },
       "outputs": [],

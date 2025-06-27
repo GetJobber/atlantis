@@ -5,11 +5,10 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "echo 'No build step for eslint-config'",
+        "command": "echo 'No build script for eslint-config package'",
         "cwd": "packages/eslint-config"
       },
-      "outputs": [],
-      "dependsOn": []
+      "outputs": []
     }
   }
 } 

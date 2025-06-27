@@ -32,6 +32,14 @@
         "command": "rm -rf dist/* tsconfig.tsbuildinfo",
         "cwd": "packages/components-native"
       }
+    },
+    "bootstrap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build",
+        "cwd": "packages/components-native"
+      },
+      "outputs": ["{projectRoot}/dist"]
     }
   }
 }

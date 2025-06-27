@@ -33,6 +33,14 @@
         "command": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
         "cwd": "packages/components"
       }
+    },
+    "bootstrap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean; npm run build",
+        "cwd": "packages/components"
+      },
+      "outputs": ["{projectRoot}/dist"]
     }
   }
 }

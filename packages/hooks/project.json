@@ -17,6 +17,14 @@
         "command": "rm -rf dist/* tsconfig.tsbuildinfo",
         "cwd": "packages/hooks"
       }
+    },
+    "bootstrap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean; npm run build",
+        "cwd": "packages/hooks"
+      },
+      "outputs": ["{projectRoot}/dist"]
     }
   }
 }

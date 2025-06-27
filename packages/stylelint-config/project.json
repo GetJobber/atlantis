@@ -5,11 +5,10 @@
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "echo 'No build step for stylelint-config'",
+        "command": "echo 'No build script for stylelint-config package'",
         "cwd": "packages/stylelint-config"
       },
-      "outputs": [],
-      "dependsOn": []
+      "outputs": []
     }
   }
 } 
