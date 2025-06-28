@@ -79,8 +79,8 @@ export const ColorSearch: React.FC = () => {
   return (
     <Stack gap="base">
       <Text>
-        Search for color tokens by entering a hex code, HSL or RGB value (e.g.
-        #032B3A, hsl(86, 100%, 46%), rgba(255,255,255,1)).
+        Search for color tokens by entering a hex code, HSL or RGB(A) value
+        (e.g. #032B3A, hsl(86, 100%, 46%), rgba(255,255,255,1)).
       </Text>
 
       <InputText
