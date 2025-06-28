@@ -21,12 +21,12 @@ const ColorMatchItem: React.FC<ColorMatch> = ({ tokenName, colorValue }) => {
   };
 
   return (
-    <Cluster align="center" gap="small">
+    <Cluster align="center" gap="smaller">
       <div
         style={{
           width: 32,
           height: 32,
-          borderRadius: 6,
+          borderRadius: `var(--radius-small)`,
           background: colorValue,
           border: `var(--border-base) solid var(--color-border)`,
         }}
@@ -36,7 +36,8 @@ const ColorMatchItem: React.FC<ColorMatch> = ({ tokenName, colorValue }) => {
           background: `var(--color-surface--background)`,
           borderRadius: `var(--radius-base)`,
           fontFamily: "monospace",
-          fontSize: 14,
+          fontSize: `var(--typography--fontSize-small)`,
+          padding: `var(--space-smallest) var(--space-small)`,
         }}
       >
         --{tokenName}
@@ -96,6 +97,9 @@ export const ColorSearch: React.FC = () => {
             <ColorMatchItem key={match.tokenName} {...match} />
           ))}
         </Stack>
+      )}
+      {searchValue.trim() && colorMatches.length === 0 && (
+        <Text variation="subdued">No matching color tokens found.</Text>
       )}
     </Stack>
   );

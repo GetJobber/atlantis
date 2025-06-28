@@ -24,9 +24,9 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } {
   const cleanHex = hex.replace("#", "");
 
   return {
-    r: parseInt(cleanHex.substr(0, 2), 16) / 255,
-    g: parseInt(cleanHex.substr(2, 2), 16) / 255,
-    b: parseInt(cleanHex.substr(4, 2), 16) / 255,
+    r: parseInt(cleanHex.slice(0, 2), 16) / 255,
+    g: parseInt(cleanHex.slice(2, 4), 16) / 255,
+    b: parseInt(cleanHex.slice(4, 6), 16) / 255,
   };
 }
 
@@ -79,7 +79,7 @@ function rgbToHex(r: number, g: number, b: number): string {
  * Normalizes HSL color to hex
  */
 function normalizeHslColor(color: string): string | null {
-  const hslMatch = color.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
+  const hslMatch = color.match(/hsl\(\s*(\d+),\s*(\d+)%\s*,\s*(\d+)%\s*\)/i);
 
   if (hslMatch) {
     const [, h, s, l] = hslMatch;
@@ -94,7 +94,7 @@ function normalizeHslColor(color: string): string | null {
  * Normalizes RGB color to hex
  */
 function normalizeRgbColor(color: string): string | null {
-  const rgbMatch = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+  const rgbMatch = color.match(/rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\s*\)/i);
 
   if (rgbMatch) {
     const [, r, g, b] = rgbMatch;
@@ -109,7 +109,9 @@ function normalizeRgbColor(color: string): string | null {
  * Normalizes RGBA color to hex
  */
 function normalizeRgbaColor(color: string): string | null {
-  const rgbaMatch = color.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+  const rgbaMatch = color.match(
+    /rgba\(\s*(\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\s*\)/i,
+  );
 
   if (rgbaMatch) {
     const [, r, g, b] = rgbaMatch;
@@ -148,18 +150,17 @@ function normalizeHexColor(color: string): string | null {
  * Handles HSL, RGB, RGBA, and hex formats
  */
 export function normalizeColor(color: string): string {
-  // Try different color format normalizers
-  const hslResult = normalizeHslColor(color);
-  if (hslResult) return hslResult;
+  const normalizers = [
+    normalizeHslColor,
+    normalizeRgbColor,
+    normalizeRgbaColor,
+    normalizeHexColor,
+  ];
 
-  const rgbResult = normalizeRgbColor(color);
-  if (rgbResult) return rgbResult;
-
-  const rgbaResult = normalizeRgbaColor(color);
-  if (rgbaResult) return rgbaResult;
-
-  const hexResult = normalizeHexColor(color);
-  if (hexResult) return hexResult;
+  for (const normalize of normalizers) {
+    const result = normalize(color);
+    if (result) return result;
+  }
 
   return color;
 }
@@ -188,20 +189,4 @@ export function colorsAreEqual(
     Math.abs(hsl1.s - hsl2.s) <= tolerance &&
     Math.abs(hsl1.l - hsl2.l) <= tolerance
   );
-}
-
-/**
- * Formats a color token name for display
- */
-export function formatTokenName(tokenName: string): string {
-  return tokenName
-    .replace(/^color-/, "")
-    .replace(/--/g, " ")
-    .replace(/-/g, " ")
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
-    .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ")
-    .trim();
 }
