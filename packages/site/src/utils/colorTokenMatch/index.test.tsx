@@ -6,7 +6,7 @@ import {
   hslToHex,
   normalizeColor,
   rgbToHex,
-} from "./colorTokenMatch";
+} from ".";
 
 describe("Color Token Match", () => {
   describe("Hex to HSL", () => {
@@ -76,29 +76,14 @@ describe("Color Token Match", () => {
   });
 
   describe("token name match", () => {
-    const cases = [
-      {
-        input: "#032B3A",
-        expectedTokens: ["color-base-blue--900", "color-heading"],
-      },
-      {
-        input: "hsl(86, 100%, 46%)",
-        expectedTokens: ["color-brand--highlight"],
-      },
-      {
-        input: "rgba(255, 255, 255, 1)",
-        expectedTokens: ["color-white", "color-text--reverse"],
-      },
-      {
-        input: "rgb(85, 106, 203)",
-        expectedTokens: ["color-indigo"],
-      },
-    ];
-
-    cases.forEach(({ input, expectedTokens }) => {
-      test(`returns the correct token(s) for input "${input}" (expects: ${expectedTokens.join(
-        ", ",
-      )})`, () => {
+    test.each([
+      ["#032B3A", ["color-base-blue--900", "color-heading"]],
+      ["hsl(86, 100%, 46%)", ["color-brand--highlight"]],
+      ["rgba(255, 255, 255, 1)", ["color-white", "color-text--reverse"]],
+      ["rgb(85, 106, 203)", ["color-indigo"]],
+    ])(
+      'returns the correct token(s) for input "%s" (expects: %s)',
+      (input, expectedTokens) => {
         const normalizedInput = normalizeColor(input);
 
         const matches = Object.entries(allColors).filter(
@@ -112,8 +97,8 @@ describe("Color Token Match", () => {
         expectedTokens.forEach(expected => {
           expect(matchTokens).toContain(expected);
         });
-      });
-    });
+      },
+    );
   });
 
   describe("no matches", () => {
