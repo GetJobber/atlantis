@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.81.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.1...@jobber/components-native@0.81.2) (2025-06-30)
+
+
+### Bug Fixes
+
+* **components-native:** fix placement of assistive text on Checkbox [JOB-125934] ([#2600](https://github.com/GetJobber/atlantis/issues/2600)) ([cc1c768](https://github.com/GetJobber/atlantis/commit/cc1c76831dae9138d159a69c793718e04877effb))
+
+
+
+
+
 ## [0.81.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.0...@jobber/components-native@0.81.1) (2025-05-16)
 
 
