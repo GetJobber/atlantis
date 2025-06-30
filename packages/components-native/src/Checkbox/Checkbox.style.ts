@@ -12,12 +12,13 @@ export const useStyles = buildThemedStyles(tokens => {
       width: "100%",
       justifyContent: "space-between",
       flexDirection: "row",
-      alignItems: "center",
+      alignItems: "flex-start",
       paddingVertical: tokens["space-small"],
     },
 
     label: {
       flex: 1,
+      gap: tokens["space-smaller"],
     },
 
     checkbox: {
