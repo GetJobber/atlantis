@@ -46,7 +46,6 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modalize": "^2.0.13",
     "react-native-portalize": "^1.0.7",
-    "react-native-safe-area-context": "^4.5.2",
     "react-native-toast-message": "^2.1.6",
     "react-native-uuid": "^1.4.9",
     "ts-xor": "^1.1.0"
