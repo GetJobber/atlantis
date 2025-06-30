@@ -6,7 +6,10 @@ import { Cluster } from "@jobber/components/Cluster";
 import { Button } from "@jobber/components/Button";
 import { showToast } from "@jobber/components/Toast";
 import { allColors } from "@jobber/design";
-import { colorsAreEqual, normalizeColor } from "../utils/colorUtils";
+import {
+  colorsAreEqual,
+  normalizeColor,
+} from "../utils/colorTokenMatch/colorTokenMatch";
 
 interface ColorMatch {
   readonly tokenName: string;

@@ -20,7 +20,7 @@ export function hslToHex(h: number, s: number, l: number): string {
 /**
  * Converts hex color to RGB values
  */
-function hexToRgb(hex: string): { r: number; g: number; b: number } {
+export function hexToRgb(hex: string): { r: number; g: number; b: number } {
   const cleanHex = hex.replace("#", "");
 
   return {
@@ -69,7 +69,7 @@ export function hexToHsl(hex: string): { h: number; s: number; l: number } {
 /**
  * Converts RGB values to hex
  */
-function rgbToHex(r: number, g: number, b: number): string {
+export function rgbToHex(r: number, g: number, b: number): string {
   return `#${Math.round(r).toString(16).padStart(2, "0")}${Math.round(g)
     .toString(16)
     .padStart(2, "0")}${Math.round(b).toString(16).padStart(2, "0")}`;
