@@ -7,6 +7,8 @@ import {
   Text,
 } from "@jobber/components";
 import { useState } from "react";
+import { CustomGroupOption } from "./AdvancedAutocomplete";
+import SimpleAutocomplete from "./SimpleAutocomplete";
 
 type OptionValue = string;
 
@@ -24,13 +26,12 @@ export const VisualTestAutocompletePage = () => {
   const [validationValue, setValidationValue] = useState<Option | undefined>(
     undefined,
   );
-  const [customValue, setCustomValue] = useState<Option | undefined>(undefined);
 
   const basicOptions: Option[] = [
     { value: "1", label: "Apple" },
     { value: "2", label: "Banana" },
     { value: "3", label: "Cherry" },
-    { value: "4", label: "Date" },
+    { value: "4", label: "ElderDate" },
     { value: "5", label: "Elderberry" },
   ];
 
@@ -40,17 +41,95 @@ export const VisualTestAutocompletePage = () => {
     { value: "3", label: "Bob Johnson", details: "bob@example.com" },
   ];
 
+  const customOptions: CustomGroupOption[] = [
+    {
+      label: "Services",
+      icon: "quote",
+      description: "Services",
+      type: "default",
+      options: [
+        {
+          value: 1,
+          label: "Plumbing",
+          type: "default",
+          description: "Plumbing services",
+          cost: 100,
+        },
+        {
+          value: 2,
+          label: "Electrical",
+          type: "default",
+          description: "Electrical services",
+          cost: 200,
+        },
+      ],
+    },
+    {
+      icon: "invoice",
+      label: "Products",
+      description: "Products",
+      type: "default",
+      options: [
+        {
+          label: "Plumbing Tape",
+          description: "Plumbing Tape",
+          cost: 100,
+          type: "default",
+          value: 4,
+        },
+        {
+          label: "Plumbing Sink",
+
+          type: "default",
+          description: "Plumbing Sink",
+          cost: 200,
+          value: 5,
+        },
+      ],
+    },
+    {
+      icon: "invoice",
+      label: "HOME DEPOT",
+      description: "Home Depot",
+      type: "catalog",
+      options: [
+        {
+          label: "Home Depot Plumbing Tape",
+          description: "Home Depot Plumbing tape",
+          type: "catalog",
+          cost: 100,
+          value: 6,
+        },
+        {
+          label: "Home Depot Plumbing Sink",
+          description: "Home Depot Plumbing sink",
+          type: "catalog",
+          cost: 100,
+          value: 7,
+        },
+      ],
+    },
+  ];
+
   const getFilteredOptions = (query: string) => {
     return basicOptions.filter(option =>
       option.label.toLowerCase().includes(query.toLowerCase()),
     );
   };
 
-  const getAsyncOptions = async (query: string) => {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 500));
+  const data = [
+    "Apple",
+    "Banana",
+    "Cherry",
+    "Date",
+    "Grape",
+    "Mango",
+    "Orange",
+    "Strawberry",
+  ];
 
-    return getFilteredOptions(query);
+  const handleSelect = value => {
+    alert(`Selected: ${value}`);
   };
 
   return (
@@ -113,17 +192,13 @@ export const VisualTestAutocompletePage = () => {
             </Grid>
           </section>
 
-          {/* Autocomplete with Async Options */}
           <section>
-            <Text size="large">Autocomplete with Async Options</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Autocomplete<Option>
-                  placeholder="Type to search"
-                  value={customValue}
-                  onChange={(newValue?: Option) => setCustomValue(newValue)}
-                  getOptions={getAsyncOptions}
-                  debounce={500}
+                <SimpleAutocomplete
+                  suggestions={data}
+                  onSelect={handleSelect}
+                  renderItem={item => <span>{item}</span>}
                 />
               </Grid.Cell>
             </Grid>

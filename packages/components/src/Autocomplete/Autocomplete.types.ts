@@ -102,6 +102,8 @@ export interface AutocompleteProps<
       GenericOptionValue
     >,
   ) => React.ReactElement;
+
+  version?: 1 | 2;
 }
 
 export type CustomOptionsMenuType<GenericOption extends AnyOption = AnyOption> =

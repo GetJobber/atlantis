@@ -1,0 +1,135 @@
+.autocomplete {
+    position: relative;
+    width: 100%;
+}
+
+
+.inputWrapper {
+    --field--placeholder-offset: 50%;
+    --field--placeholder-transform: -50%;
+
+    --field--textAlign: left;
+
+    --field--height: var(--space-largest);
+
+    --field--padding-top: calc(var(--space-base) - var(--space-smallest));
+    --field--padding-bottom: calc(var(--space-base) - var(--space-smallest));
+    --field--padding-left: var(--space-base);
+    --field--padding-right: var(--space-base);
+
+    --field--value-lineHeight: calc(var(--base-unit) * 1.25);
+
+    --field--background-color: var(--color-surface);
+
+    --field--base-elevation: var(--elevation-base);
+    --field--label-elevation: calc(var(--field--base-elevation) + 1);
+    --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
+    --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: var(--border-base) solid var(--field--border-color);
+    border-radius: var(--radius-base);
+    border-top-right-radius: var(--public-field--top-right-radius);
+    border-bottom-right-radius: var(--public-field--bottom-right-radius);
+    border-bottom-left-radius: var(--public-field--bottom-left-radius);
+    border-top-left-radius: var(--public-field--top-left-radius);
+    color: var(--field--value-color);
+    font-size: var(--typography--fontSize-base);
+    background-color: var(--field--background-color);
+}
+
+.inputWrapper * {
+    box-sizing: border-box;
+}
+
+.inputWrapper:not(.disabled):focus-within {
+    position: relative;
+    z-index: var(--field--base-elevation);
+    box-shadow: var(--shadow-focus);
+}
+
+/**
+ * Input
+ **/
+.input {
+    position: relative;
+    z-index: var(--field--base-elevation);
+    width: 100%;
+    padding-top: var(--field--padding-top);
+    padding-bottom: var(--field--padding-bottom);
+    padding-left: var(--field--padding-left);
+    padding-right: var(--field--padding-right);
+    border: none;
+    border-radius: var(--radius-base);
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: var(--field--value-lineHeight);
+    text-align: var(--field--textAlign);
+    background: transparent;
+    appearance: none;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.item:hover,
+.highlighted {
+    background-color: #f0f0f0;
+}
+
+.autocomplete {
+    position: relative;
+    width: 100%;
+}
+
+
+.list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1000;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.item:hover,
+.highlighted {
+    background-color: #f0f0f0;
+}

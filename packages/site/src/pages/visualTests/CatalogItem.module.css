@@ -1,0 +1,38 @@
+.catalogItemButton {
+    background-color: transparent;
+    border: 0;
+    padding: var(--space-small) var(--space-base);
+    border-radius: var(--radius-base);
+    width: 100%;
+    text-align: left;
+}
+
+.catalogItemButtonHeader {
+    background-color: transparent;
+    border: 0;
+    padding: var(--space-small) 0;
+    border-radius: var(--radius-base);
+}
+
+
+
+.catalogItemButton:hover,
+.catalogItemButtonHeader:hover,
+.highlighted,
+.catalogItemButton:focus {
+    background-color: var(--color-interactive--background);
+    cursor: pointer;
+}
+
+.catalogItem:hover {
+
+    background-color: var(--color-interactive--background);
+    cursor: pointer;
+    border-radius: var(--radius-base);
+}
+
+.catalogItem button {
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+}
