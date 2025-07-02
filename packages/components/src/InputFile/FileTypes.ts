@@ -3,6 +3,7 @@ export enum FileTypes {
   JPG = "image/jpg",
   PNG = "image/png",
   HEIC = "image/heic",
+  WEBP = "image/webp",
   PDF = "application/pdf",
   DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
