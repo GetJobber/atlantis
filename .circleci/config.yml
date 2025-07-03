@@ -30,16 +30,15 @@ references:
       name: Restore NX cache
       keys:
         # More granular cache keys for better hit rates
-        - nx-cache-v3-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}-{{ checksum "project.json" }}
-        - nx-cache-v3-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}
-        - nx-cache-v3-{{ .Branch }}-{{ checksum "package-lock.json" }}
-        - nx-cache-v3-{{ .Branch }}
-        - nx-cache-v3
+        - nx-cache-v4-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}
+        - nx-cache-v4-{{ .Branch }}-{{ checksum "package-lock.json" }}
+        - nx-cache-v4-{{ .Branch }}
+        - nx-cache-v4
 
   save_nx_cache: &save_nx_cache
     save_cache:
       name: Save NX cache
-      key: nx-cache-v3-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}-{{ checksum "project.json" }}
+      key: nx-cache-v4-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}
       paths:
         - .nx/cache
         - node_modules/.cache
@@ -216,6 +215,11 @@ jobs:
             echo "Running: npm run storybook:build"
             echo "This should use NX caching if available..."
             
+            # Show NX cache status before build
+            echo "=== NX Cache Status Before Build ==="
+            npx nx show projects --affected || echo "No affected projects or NX not available"
+            echo "=== End NX Cache Status ==="
+            
             # Run the build and capture output
             if npm run storybook:build; then
               echo "=== Storybook Build Complete ==="
@@ -287,6 +291,11 @@ jobs:
             echo "=== Starting Site Build ==="
             echo "Running: npm run site:build"
             echo "This should use NX caching if available..."
+            
+            # Show NX cache status before build
+            echo "=== NX Cache Status Before Build ==="
+            npx nx show projects --affected || echo "No affected projects or NX not available"
+            echo "=== End NX Cache Status ==="
             
             # Run the build and capture output
             if npm run site:build; then
