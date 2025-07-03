@@ -30,12 +30,11 @@ export function PopoverProvider({
   UNSAFE_className,
   UNSAFE_style,
 }: PopoverProviderProps) {
-  const { setPopperElement, setArrowElement, popperStyles, attributes } =
-    usePopover({
-      preferredPlacement,
-      attachTo,
-      open,
-    });
+  const { setPopperElement, setArrowElement, popperStyles } = usePopover({
+    preferredPlacement,
+    attachTo,
+    open,
+  });
 
   if (!open) return null;
 
@@ -47,7 +46,6 @@ export function PopoverProvider({
       }}
     >
       <PopoverWrapper
-        attributes={attributes}
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
         setPopperElement={setPopperElement}
@@ -60,13 +58,11 @@ export function PopoverProvider({
 
 function PopoverWrapper({
   children,
-  attributes,
   setPopperElement,
   UNSAFE_className,
   UNSAFE_style,
 }: {
   readonly children: React.ReactNode;
-  readonly attributes: Record<string, { [key: string]: string } | undefined>;
   readonly setPopperElement: (element: HTMLElement | null) => void;
 } & Pick<PopoverProviderProps, "UNSAFE_className" | "UNSAFE_style">) {
   const popoverStyles = usePopoverStyles();
@@ -85,7 +81,6 @@ function PopoverWrapper({
         ref={setPopperElement}
         style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
         className={classes}
-        {...attributes.popper}
         data-testid="ATL-Popover-Container"
       >
         {children}

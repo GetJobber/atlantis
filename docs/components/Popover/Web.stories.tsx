@@ -10,6 +10,7 @@ import { Button } from "@jobber/components/Button";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Box } from "@jobber/components/Box";
+import { Banner } from "@jobber/components/Banner";
 
 export default {
   title: "Components/Overlays/Popover/Web",
@@ -83,6 +84,138 @@ const InformationalTemplate: ComponentStory<typeof Popover> = args => {
 };
 
 export const Informational = InformationalTemplate.bind({});
+
+const MovingElementTemplate: ComponentStory<typeof Popover> = args => {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [showPopover, setShowPopover] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [, setContainer] = useState<HTMLDivElement | null>(null);
+
+  const moveElement = (direction: "up" | "down" | "left" | "right") => {
+    const newPosition = { ...position };
+
+    switch (direction) {
+      case "up":
+        newPosition.y -= 50;
+        break;
+      case "down":
+        newPosition.y += 50;
+        break;
+      case "left":
+        newPosition.x -= 50;
+        break;
+      case "right":
+        newPosition.x += 50;
+        break;
+    }
+    setPosition(newPosition);
+  };
+
+  const resetPosition = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  return (
+    <Box gap="large">
+      <Box gap="base">
+        <Heading level={2}>Moving Element Test</Heading>
+        <Text>
+          This demonstrates the fix for the bug where popovers wouldn&apos;t
+          follow their attached element when it moved in the DOM.
+        </Text>
+        <Text>
+          Click the buttons below to move the attached element around. The
+          popover should follow it correctly.
+        </Text>
+      </Box>
+
+      <Box gap="small">
+        <Button
+          label="BANNER"
+          onClick={() => setShowBanner(!showBanner)}
+          variation="subtle"
+        />
+        <Button
+          label="Move Up"
+          onClick={() => moveElement("up")}
+          variation="subtle"
+        />
+        <Button
+          label="Move Down"
+          onClick={() => moveElement("down")}
+          variation="subtle"
+        />
+        <Button
+          label="Move Left"
+          onClick={() => moveElement("left")}
+          variation="subtle"
+        />
+        <Button
+          label="Move Right"
+          onClick={() => moveElement("right")}
+          variation="subtle"
+        />
+        <Button
+          label="Reset Position"
+          onClick={resetPosition}
+          variation="subtle"
+        />
+      </Box>
+
+      <div
+        ref={setContainer}
+        style={{
+          position: "relative",
+          minHeight: "300px",
+          border: "2px dashed #ccc",
+          padding: "20px",
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        {showBanner && <Banner type="notice">Banner</Banner>}
+        <div
+          ref={divRef}
+          style={{
+            display: "inline-block",
+            backgroundColor: "red",
+            position: "relative",
+            left: `${2 + position.x}px`,
+            top: `${1 + position.y}px`,
+            transition: "all 0.3s ease",
+            zIndex: 1,
+          }}
+        >
+          <Button
+            label={showPopover ? "Close Popover" : "Open Popover"}
+            onClick={() => setShowPopover(!showPopover)}
+          />
+        </div>
+      </div>
+
+      <Popover
+        {...args}
+        attachTo={divRef}
+        open={showPopover}
+        onRequestClose={() => setShowPopover(false)}
+      >
+        <Content>
+          <Heading level={3}>Following Element</Heading>
+          <Text>
+            This popover should follow the button as it moves around the page.
+            The fix ensures that when the attached element moves in the DOM, the
+            popover updates its position accordingly.
+          </Text>
+          <Text>
+            Current position: ({position.x}, {position.y})
+          </Text>
+        </Content>
+      </Popover>
+    </Box>
+  );
+};
+
+export const MovingElement = MovingElementTemplate.bind({});
 
 const ComposedTemplate: ComponentStory<typeof Popover> = args => {
   const divRef1 = useRef<HTMLDivElement>(null);
