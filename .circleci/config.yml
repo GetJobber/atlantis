@@ -29,16 +29,12 @@ references:
     restore_cache:
       name: Restore NX cache
       keys:
-        # More granular cache keys for better hit rates
-        - nx-cache-v4-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}
-        - nx-cache-v4-{{ .Branch }}-{{ checksum "package-lock.json" }}
         - nx-cache-v4-{{ .Branch }}
-        - nx-cache-v4
 
   save_nx_cache: &save_nx_cache
     save_cache:
       name: Save NX cache
-      key: nx-cache-v4-{{ .Branch }}-{{ checksum "package-lock.json" }}-{{ checksum "nx.json" }}
+      key: nx-cache-v4-{{ .Branch }}
       paths:
         - .nx/cache
         - node_modules/.cache
@@ -186,20 +182,16 @@ jobs:
               echo "NX cache directory size: $(du -sh .nx/cache)"
               echo "NX cache contents:"
               find .nx/cache -type f -name "*.json" | head -10
-              echo "Looking for components-native cache entries:"
-              find .nx/cache -name "*components-native*" -o -name "*build-output*" | head -10
               echo "Recent cache entries (last 5):"
               find .nx/cache -type d -name "[0-9]*" | sort | tail -5
               echo "NX cache structure:"
               tree .nx/cache -L 2 || ls -la .nx/cache
               
-              # Check for multiple cached builds of components-native
-              COMPONENTS_NATIVE_CACHES=$(find .nx/cache -name "*components-native*" -type d | wc -l)
-              echo "Number of components-native cache entries: $COMPONENTS_NATIVE_CACHES"
-              if [ "$COMPONENTS_NATIVE_CACHES" -gt 2 ]; then
-                echo "WARNING: Multiple components-native cache entries detected. Clearing cache to prevent type conflicts."
-                rm -rf .nx/cache
-                echo "Cache cleared."
+              # General check for many cache entries
+              CACHE_ENTRIES=$(find .nx/cache -type d -name "[0-9]*" | wc -l)
+              echo "Number of cache entries: $CACHE_ENTRIES"
+              if [ "$CACHE_ENTRIES" -gt 10 ]; then
+                echo "WARNING: Many cache entries detected. Consider cache cleanup if builds are slow."
               fi
             fi
             echo "Node modules cache exists: $(test -d node_modules/.cache && echo 'YES' || echo 'NO')"
@@ -264,20 +256,16 @@ jobs:
               echo "NX cache directory size: $(du -sh .nx/cache)"
               echo "NX cache contents:"
               find .nx/cache -type f -name "*.json" | head -10
-              echo "Looking for components-native cache entries:"
-              find .nx/cache -name "*components-native*" -o -name "*build-output*" | head -10
               echo "Recent cache entries (last 5):"
               find .nx/cache -type d -name "[0-9]*" | sort | tail -5
               echo "NX cache structure:"
               tree .nx/cache -L 2 || ls -la .nx/cache
               
-              # Check for multiple cached builds of components-native
-              COMPONENTS_NATIVE_CACHES=$(find .nx/cache -name "*components-native*" -type d | wc -l)
-              echo "Number of components-native cache entries: $COMPONENTS_NATIVE_CACHES"
-              if [ "$COMPONENTS_NATIVE_CACHES" -gt 2 ]; then
-                echo "WARNING: Multiple components-native cache entries detected. Clearing cache to prevent type conflicts."
-                rm -rf .nx/cache
-                echo "Cache cleared."
+              # General check for many cache entries
+              CACHE_ENTRIES=$(find .nx/cache -type d -name "[0-9]*" | wc -l)
+              echo "Number of cache entries: $CACHE_ENTRIES"
+              if [ "$CACHE_ENTRIES" -gt 10 ]; then
+                echo "WARNING: Many cache entries detected. Consider cache cleanup if builds are slow."
               fi
             fi
             echo "Node modules cache exists: $(test -d node_modules/.cache && echo 'YES' || echo 'NO')"
