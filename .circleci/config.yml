@@ -108,12 +108,10 @@ jobs:
     steps:
       - *attach_workspace
       - *restore_npm_cache
-      - *restore_nx_cache
       - run:
           name: Authenticate with npm
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - *npm_install
-      - *save_nx_cache
       - *persist_to_workspace
 
   check_for_manual_release:
