@@ -20,6 +20,12 @@ export interface PopoverProps {
   readonly open: boolean;
 
   /**
+   * The strategy to use for the Popover.
+   * @default 'absolute'
+   */
+  readonly strategy?: "absolute" | "fixed";
+
+  /**
    * Callback executed when the user wants to close/dismiss the Popover
    */
   readonly onRequestClose?: () => void;
@@ -54,7 +60,10 @@ export interface PopoverProps {
 }
 
 export type PopoverProviderProps = PropsWithChildren<
-  Pick<PopoverProps, "preferredPlacement" | "attachTo" | "open"> & {
+  Pick<
+    PopoverProps,
+    "preferredPlacement" | "attachTo" | "open" | "strategy"
+  > & {
     /**
      * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
      * **last resort**. Using this may result in unexpected side effects.
