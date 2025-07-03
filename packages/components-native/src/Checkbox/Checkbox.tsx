@@ -152,6 +152,15 @@ function CheckboxInternal({
             <Text variation={textVariation} align="start">
               {label}
             </Text>
+            {assistiveText && (
+              <Text
+                level="textSupporting"
+                align="start"
+                variation={textVariation}
+              >
+                {assistiveText}
+              </Text>
+            )}
           </View>
         )}
         <View
@@ -168,11 +177,6 @@ function CheckboxInternal({
           )}
         </View>
       </View>
-      {assistiveText && (
-        <Text level="textSupporting" align="start" variation={textVariation}>
-          {assistiveText}
-        </Text>
-      )}
     </Pressable>
   );
 }

@@ -68,6 +68,8 @@ export const InputNumberRebuilt = forwardRef(
       readonly,
       showMiniLabel = true,
       size,
+      minValue,
+      maxValue,
       ...ariaNumberFieldProps
     } = props;
 
@@ -79,6 +81,8 @@ export const InputNumberRebuilt = forwardRef(
         isDisabled={disabled}
         isInvalid={invalid}
         isReadOnly={readonly}
+        minValue={minValue}
+        maxValue={maxValue}
         onBlur={e => props.onBlur?.(e as FocusEvent<HTMLInputElement>)}
         onFocus={e => props.onFocus?.(e as FocusEvent<HTMLInputElement>)}
         onChange={handleChange}

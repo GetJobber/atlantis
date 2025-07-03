@@ -281,15 +281,6 @@
         "type": {
           "name": "(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void"
         }
-      },
-      "size": {
-        "defaultValue": null,
-        "description": "",
-        "name": "size",
-        "required": false,
-        "type": {
-          "name": "\"base\" | \"large\""
-        }
       }
     }
   }
