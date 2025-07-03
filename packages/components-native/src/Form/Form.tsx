@@ -251,11 +251,10 @@ function InternalForm<T extends FieldValues, S>({
     let result: S | undefined;
 
     await handleSubmit(async data => {
-      const saveResult = await internalSubmit(data);
-      result = saveResult as S;
+      result = (await internalSubmit(data)) as S;
+      removeListenerRef.current?.();
     })();
 
-    removeListenerRef.current?.();
     onSubmitSuccess(result as S);
   }
 
