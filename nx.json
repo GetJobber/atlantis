@@ -49,9 +49,7 @@
         "default",
         "^default",
         "{projectRoot}/.storybook/**/*",
-        "{projectRoot}/docs/**/*",
-        "{projectRoot}/packages/**/*",
-        "{projectRoot}/node_modules/**/*"
+        "{projectRoot}/docs/**/*"
       ],
       "outputs": ["{projectRoot}/storybook-static"],
       "cache": true
@@ -86,7 +84,7 @@
       "{projectRoot}/**/*",
       "!{projectRoot}/node_modules/**/*",
       "!{projectRoot}/dist/**/*",
-      "!{projectRoot}/storybook-static/**/*",
+      "!{projectRoot}/storybook-static/**/*"
     ]
   },
   "parallel": 3,
