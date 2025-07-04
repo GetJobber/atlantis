@@ -8,11 +8,19 @@ import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 interface PopoverContextProps {
   setArrowElement: (element: HTMLElement | null) => void;
-  popperStyles: { [key: string]: CSSProperties };
+  popperStyles: {
+    popper: CSSProperties;
+    arrow?: {
+      x?: number;
+      y?: number;
+      centerOffset?: number;
+    };
+  };
+  placement?: string;
 }
 
 const PopoverContext = createContext<PopoverContextProps>({
-  popperStyles: {},
+  popperStyles: { popper: {} },
   setArrowElement: () => {
     // noop
   },
@@ -30,7 +38,7 @@ export function PopoverProvider({
   UNSAFE_className,
   UNSAFE_style,
 }: PopoverProviderProps) {
-  const { setPopperElement, setArrowElement, popperStyles, attributes } =
+  const { setPopperElement, setArrowElement, popperStyles, placement } =
     usePopover({
       preferredPlacement,
       attachTo,
@@ -44,13 +52,14 @@ export function PopoverProvider({
       value={{
         setArrowElement,
         popperStyles,
+        placement,
       }}
     >
       <PopoverWrapper
-        attributes={attributes}
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
         setPopperElement={setPopperElement}
+        placement={placement}
       >
         {children}
       </PopoverWrapper>
@@ -60,14 +69,14 @@ export function PopoverProvider({
 
 function PopoverWrapper({
   children,
-  attributes,
   setPopperElement,
   UNSAFE_className,
   UNSAFE_style,
+  placement,
 }: {
   readonly children: React.ReactNode;
-  readonly attributes: Record<string, { [key: string]: string } | undefined>;
   readonly setPopperElement: (element: HTMLElement | null) => void;
+  readonly placement?: string;
 } & Pick<PopoverProviderProps, "UNSAFE_className" | "UNSAFE_style">) {
   const popoverStyles = usePopoverStyles();
   const { popperStyles } = usePopoverContext();
@@ -85,7 +94,7 @@ function PopoverWrapper({
         ref={setPopperElement}
         style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
         className={classes}
-        {...attributes.popper}
+        data-popper-placement={placement}
         data-testid="ATL-Popover-Container"
       >
         {children}
