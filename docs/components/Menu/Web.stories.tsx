@@ -97,36 +97,3 @@ CustomActivator.args = {
     },
   ],
 };
-
-export const WithCustomStyle = CustomActivatorTemplate.bind({});
-WithCustomStyle.args = {
-  ...CustomActivator.args,
-  UNSAFE_style: {
-    menu: {
-      border: "2px solid var(--color-interactive)",
-    },
-    action: {
-      textDecoration: "underline",
-    },
-    header: {
-      border: "1px dotted var(--color-interactive)",
-    },
-  },
-  items: [
-    {
-      actions: [
-        { label: "Email", icon: "email" },
-        { label: "Text Message", icon: "sms" },
-        { label: "Delete", icon: "trash", destructive: true },
-      ],
-    },
-    {
-      header: "More",
-      actions: [
-        { label: "Mark as Sent", icon: "email" },
-        { label: "Follow Up", icon: "sms" },
-        { label: "Copy", icon: "copy" },
-      ],
-    },
-  ],
-};
