@@ -192,6 +192,15 @@ jobs:
               if [ "$CACHE_ENTRIES" -gt 10 ]; then
                 echo "WARNING: Many cache entries detected. Consider cache cleanup if builds are slow."
               fi
+              
+              # Show run.json content for cache analysis
+              echo "=== NX Run History (run.json) ==="
+              if [ -f .nx/cache/run.json ]; then
+                echo "run.json exists, showing recent task executions:"
+                cat .nx/cache/run.json | jq -r '.tasks[] | "\(.taskId) - \(.cacheStatus) - hash: \(.hash)"' | tail -10
+              else
+                echo "run.json not found - no recent task executions recorded"
+              fi
             fi
             echo "Node modules cache exists: $(test -d node_modules/.cache && echo 'YES' || echo 'NO')"
             if [ -d node_modules/.cache ]; then
@@ -236,6 +245,15 @@ jobs:
             echo "NX cache directory size after build: $(du -sh .nx/cache)"
             echo "Recent cache entries:"
             find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
+            
+            # Show updated run.json content
+            echo "=== Updated NX Run History (run.json) ==="
+            if [ -f .nx/cache/run.json ]; then
+              echo "run.json after build, showing recent task executions:"
+              cat .nx/cache/run.json | jq -r '.tasks[] | "\(.taskId) - \(.cacheStatus) - hash: \(.hash)"' | tail -10
+            else
+              echo "run.json not found after build"
+            fi
             echo "=== End Debug Info ==="
       - *check_git_status
       - *save_nx_cache
@@ -265,6 +283,15 @@ jobs:
               echo "Number of cache entries: $CACHE_ENTRIES"
               if [ "$CACHE_ENTRIES" -gt 10 ]; then
                 echo "WARNING: Many cache entries detected. Consider cache cleanup if builds are slow."
+              fi
+              
+              # Show run.json content for cache analysis
+              echo "=== NX Run History (run.json) ==="
+              if [ -f .nx/cache/run.json ]; then
+                echo "run.json exists, showing recent task executions:"
+                cat .nx/cache/run.json | jq -r '.tasks[] | "\(.taskId) - \(.cacheStatus) - hash: \(.hash)"' | tail -10
+              else
+                echo "run.json not found - no recent task executions recorded"
               fi
             fi
             echo "Node modules cache exists: $(test -d node_modules/.cache && echo 'YES' || echo 'NO')"
@@ -309,6 +336,15 @@ jobs:
             echo "NX cache directory size after build: $(du -sh .nx/cache)"
             echo "Recent cache entries:"
             find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
+            
+            # Show updated run.json content
+            echo "=== Updated NX Run History (run.json) ==="
+            if [ -f .nx/cache/run.json ]; then
+              echo "run.json after build, showing recent task executions:"
+              cat .nx/cache/run.json | jq -r '.tasks[] | "\(.taskId) - \(.cacheStatus) - hash: \(.hash)"' | tail -10
+            else
+              echo "run.json not found after build"
+            fi
             echo "=== End Debug Info ==="
       - *check_git_status
       - *save_nx_cache
