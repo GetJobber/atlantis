@@ -35,47 +35,31 @@
 }
 
 .arrow {
-  visibility: hidden;
-}
-
-.arrow,
-.arrow::before {
+  content: "";
   position: absolute;
+  visibility: visible;
   width: var(--base-unit);
   height: var(--base-unit);
-  background: inherit;
-}
-
-.arrow::before {
-  content: "";
-  visibility: visible;
   border: var(--border-base) solid var(--color-border);
+  background: inherit;
   transform: rotate(45deg);
   transform-origin: center;
   clip-path: polygon(-4px -4px, 15.3px 0, 0 15.3px);
 }
 
+/* Arrow rotation based on placement */
 .popover[data-popper-placement^="top"] > .arrow {
-  bottom: var(--popover--position--offset);
-}
-.popover[data-popper-placement^="top"] > .arrow::before {
-  transform: rotate(-135deg);
+  transform: rotate(-45deg);
 }
 
 .popover[data-popper-placement^="bottom"] > .arrow {
-  top: var(--popover--position--offset);
+  transform: rotate(45deg);
 }
 
 .popover[data-popper-placement^="left"] > .arrow {
-  right: var(--popover--position--offset);
-}
-.popover[data-popper-placement^="left"] > .arrow::before {
   transform: rotate(135deg);
 }
 
 .popover[data-popper-placement^="right"] > .arrow {
-  left: var(--popover--position--offset);
-}
-.popover[data-popper-placement^="right"] > .arrow::before {
-  transform: rotate(-45deg);
+  transform: rotate(315deg);
 }

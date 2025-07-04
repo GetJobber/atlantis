@@ -46,15 +46,36 @@ Popover.Arrow = function PopoverArrow({
   UNSAFE_className,
   UNSAFE_style,
 }: PopoverArrowProps) {
-  const { setArrowElement, popperStyles } = usePopoverContext();
+  const { setArrowElement, popperStyles, placement } = usePopoverContext();
   const popoverStyles = usePopoverStyles();
   const classes = classnames(popoverStyles.arrow, UNSAFE_className?.arrow);
+
+  const staticSideMap = {
+    top: "bottom",
+    right: "left",
+    bottom: "top",
+    left: "right",
+  } as const;
+
+  const placementKey = placement?.split("-")[0] as keyof typeof staticSideMap;
+  const staticSide = staticSideMap[placementKey];
+
+  const arrowStyles: React.CSSProperties = {
+    position: "absolute",
+    left: popperStyles.arrow?.x != null ? `${popperStyles.arrow?.x}px` : "",
+    top: popperStyles.arrow?.y != null ? `${popperStyles.arrow?.y}px` : "",
+    right: "",
+    bottom: "",
+    [staticSide]: "-6px",
+    width: "var(--base-unit)",
+    height: "var(--base-unit)",
+  };
 
   return (
     <div
       ref={setArrowElement}
       className={classes}
-      style={{ ...popperStyles.arrow, ...UNSAFE_style?.arrow }}
+      style={{ ...arrowStyles, ...UNSAFE_style?.arrow }}
       data-testid="ATL-Popover-Arrow"
     />
   );

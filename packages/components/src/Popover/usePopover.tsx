@@ -24,15 +24,10 @@ export const usePopover = ({
       flip({
         fallbackPlacements: ["top", "bottom", "left", "right"],
       }),
-      //update this for arrow
       arrow({
         element: arrowElement || null,
-        padding: 10,
       }),
       shift({ mainAxis: true, crossAxis: true, padding: 8 }),
-      // autoUpdate(referenceElement, floatingElement, {
-      //   animationFrame: true,
-      // }),
     ];
   }, [arrowElement]);
 
@@ -40,7 +35,7 @@ export const usePopover = ({
     ? attachTo
     : attachTo.current;
 
-  const { refs, floatingStyles } = useFloating({
+  const { refs, floatingStyles, middlewareData, placement } = useFloating({
     placement: (preferredPlacement === "auto"
       ? "bottom"
       : preferredPlacement) as Placement,
@@ -57,7 +52,11 @@ export const usePopover = ({
   return {
     setPopperElement: refs.setFloating,
     setArrowElement,
-    popperStyles: { popper: floatingStyles },
+    popperStyles: {
+      popper: floatingStyles,
+      arrow: middlewareData.arrow,
+    },
+    placement,
     attributes: { popper: {} },
   };
 };

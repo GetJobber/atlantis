@@ -8,11 +8,19 @@ import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 interface PopoverContextProps {
   setArrowElement: (element: HTMLElement | null) => void;
-  popperStyles: { [key: string]: CSSProperties };
+  popperStyles: {
+    popper: CSSProperties;
+    arrow?: {
+      x?: number;
+      y?: number;
+      centerOffset?: number;
+    };
+  };
+  placement?: string;
 }
 
 const PopoverContext = createContext<PopoverContextProps>({
-  popperStyles: {},
+  popperStyles: { popper: {} },
   setArrowElement: () => {
     // noop
   },
@@ -30,11 +38,12 @@ export function PopoverProvider({
   UNSAFE_className,
   UNSAFE_style,
 }: PopoverProviderProps) {
-  const { setPopperElement, setArrowElement, popperStyles } = usePopover({
-    preferredPlacement,
-    attachTo,
-    open,
-  });
+  const { setPopperElement, setArrowElement, popperStyles, placement } =
+    usePopover({
+      preferredPlacement,
+      attachTo,
+      open,
+    });
 
   if (!open) return null;
 
@@ -43,12 +52,14 @@ export function PopoverProvider({
       value={{
         setArrowElement,
         popperStyles,
+        placement,
       }}
     >
       <PopoverWrapper
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
         setPopperElement={setPopperElement}
+        placement={placement}
       >
         {children}
       </PopoverWrapper>
@@ -61,9 +72,11 @@ function PopoverWrapper({
   setPopperElement,
   UNSAFE_className,
   UNSAFE_style,
+  placement,
 }: {
   readonly children: React.ReactNode;
   readonly setPopperElement: (element: HTMLElement | null) => void;
+  readonly placement?: string;
 } & Pick<PopoverProviderProps, "UNSAFE_className" | "UNSAFE_style">) {
   const popoverStyles = usePopoverStyles();
   const { popperStyles } = usePopoverContext();
@@ -81,6 +94,7 @@ function PopoverWrapper({
         ref={setPopperElement}
         style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
         className={classes}
+        data-popper-placement={placement}
         data-testid="ATL-Popover-Container"
       >
         {children}
