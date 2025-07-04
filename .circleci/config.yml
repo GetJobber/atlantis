@@ -38,6 +38,19 @@ references:
       paths:
         - .nx/cache
 
+  restore_nx_cache_job: &restore_nx_cache_job
+    restore_cache:
+      name: Restore NX cache
+      keys:
+        - nx-cache-v5-{{ .Branch }}
+
+  save_nx_cache_job: &save_nx_cache_job
+    save_cache:
+      name: Save NX cache
+      key: nx-cache-v5-{{ .Branch }}
+      paths:
+        - .nx/cache
+
   attach_workspace: &attach_workspace
     attach_workspace:
         at: .
@@ -170,7 +183,6 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *restore_nx_cache
       - run:
           name: Debug NX Cache Contents
           command: |
@@ -264,7 +276,6 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *restore_nx_cache
       - run:
           name: Debug NX Cache Contents
           command: |
@@ -352,7 +363,6 @@ jobs:
             fi
             echo "=== End Debug Info ==="
       - *check_git_status
-      - *save_nx_cache
 
   release:
     <<: *container_config
@@ -406,6 +416,19 @@ jobs:
       - store_artifacts:
           path: packages/site/test-results
 
+  restore_nx_cache:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - *restore_nx_cache_job
+      - *persist_to_workspace
+
+  save_nx_cache:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - *save_nx_cache_job
+
 workflows:
   version: 2
 
@@ -415,6 +438,9 @@ workflows:
       - install_dependencies:
           requires:
             - checkout_code
+      - restore_nx_cache:
+          requires:
+            - install_dependencies
       - check_for_manual_release:
           requires:
             - install_dependencies
@@ -429,10 +455,14 @@ workflows:
             - install_dependencies
       - build_storybook:
           requires:
-            - install_dependencies
+            - restore_nx_cache
       - build_new_docs:
           requires:
-            - install_dependencies
+            - restore_nx_cache
+      - save_nx_cache:
+          requires:
+            - build_storybook
+            - build_new_docs
       - e2e_tests:
           requires:
             - install_dependencies
