@@ -22,30 +22,3 @@ Jobber features, such as jobs, quotes, and invoices, are not proper nouns and
 | Send as text message             | Send As Text Message             |
 | Collect signature                | COLLECT SIGNATURE                |
 | Assign Jasmine Williams to visit | Assign jasmine williams to visit |
-
-## Component customization
-
-### UNSAFE\_ props (advanced usage)
-
-General information for using `UNSAFE_` props can be found
-[here](/guides/customizing-components).
-
-**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
-considered a **last resort**. Future Menu updates may lead to unintended
-breakages.
-
-Menu has multiple elements that can be targeted with classes or styles:
-
-- `menu`: The actual menu element containing the actions
-- `section`: The container for each section
-- `action`: The container for each individual action
-
-#### UNSAFE_className (web)
-
-Use `UNSAFE_className` to apply custom classes to the Menu. This can be useful
-for applying styles via CSS Modules.
-
-#### UNSAFE_style (web)
-
-The `UNSAFE_style` prop provides granular control over the Menu's appearance
-through inline styles.
