@@ -29,12 +29,12 @@ references:
     restore_cache:
       name: Restore NX cache
       keys:
-        - nx-cache-v4-{{ .Branch }}
+        - nx-cache-v5-{{ .Branch }}
 
   save_nx_cache: &save_nx_cache
     save_cache:
       name: Save NX cache
-      key: nx-cache-v4-{{ .Branch }}
+      key: nx-cache-v5-{{ .Branch }}
       paths:
         - .nx/cache
 
@@ -176,6 +176,9 @@ jobs:
           command: |
             echo "=== NX Cache Debug Info ==="
             echo "Current directory: $(pwd)"
+            echo "Branch: $CIRCLE_BRANCH"
+            echo "Cache key being used: nx-cache-v5-$CIRCLE_BRANCH"
+            
             echo "NX cache directory exists: $(test -d .nx/cache && echo 'YES' || echo 'NO')"
             if [ -d .nx/cache ]; then
               echo "NX cache directory size: $(du -sh .nx/cache)"
@@ -256,7 +259,6 @@ jobs:
             fi
             echo "=== End Debug Info ==="
       - *check_git_status
-      - *save_nx_cache
 
   build_new_docs:
     <<: *container_config
@@ -268,6 +270,9 @@ jobs:
           command: |
             echo "=== NX Cache Debug Info ==="
             echo "Current directory: $(pwd)"
+            echo "Branch: $CIRCLE_BRANCH"
+            echo "Cache key being used: nx-cache-v5-$CIRCLE_BRANCH"
+            
             echo "NX cache directory exists: $(test -d .nx/cache && echo 'YES' || echo 'NO')"
             if [ -d .nx/cache ]; then
               echo "NX cache directory size: $(du -sh .nx/cache)"
