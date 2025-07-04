@@ -103,9 +103,7 @@ WithCustomStyle.args = {
   ...CustomActivator.args,
   UNSAFE_style: {
     menu: {
-      borderRadius: "16px",
       border: "2px solid var(--color-interactive)",
-      padding: "16px",
     },
     action: {
       textDecoration: "underline",
