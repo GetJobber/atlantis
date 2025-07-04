@@ -34,10 +34,9 @@ references:
   save_nx_cache: &save_nx_cache
     save_cache:
       name: Save NX cache
-      key: nx-cache-v4-{{ .Branch }}
+      key: nx-cache-v4-{{ .Branch }}-{{ epoch }}
       paths:
         - .nx/cache
-        - node_modules/.cache
 
   attach_workspace: &attach_workspace
     attach_workspace:
