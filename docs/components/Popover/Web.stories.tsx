@@ -178,7 +178,6 @@ const MovingElementTemplate: ComponentStory<typeof Popover> = args => {
           ref={divRef}
           style={{
             display: "inline-block",
-            backgroundColor: "red",
             position: "relative",
             left: `${2 + position.x}px`,
             top: `${1 + position.y}px`,

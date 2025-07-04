@@ -45,6 +45,7 @@ export const usePopover = ({
       ? "bottom"
       : preferredPlacement) as Placement,
     middleware: modifiers,
+    strategy: "absolute",
     elements: {
       reference: referenceElement || null,
     },
