@@ -35,6 +35,7 @@ function AutocompleteInternal<
     onFocus,
     validations,
     customRenderMenu,
+    version = 1,
     ...inputProps
   }: AutocompleteProps<
     GenericOption,
@@ -68,6 +69,7 @@ function AutocompleteInternal<
       <InputText
         ref={mergeRefs([ref, inputRef])}
         autocomplete={false}
+        version={version as 1 | undefined}
         size={size}
         value={inputText}
         onChange={handleInputChange}
