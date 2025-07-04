@@ -34,7 +34,7 @@ references:
   save_nx_cache: &save_nx_cache
     save_cache:
       name: Save NX cache
-      key: nx-cache-v4-{{ .Branch }}-{{ epoch }}
+      key: nx-cache-v4-{{ .Branch }}
       paths:
         - .nx/cache
 
