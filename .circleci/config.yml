@@ -25,13 +25,13 @@ references:
       keys:
         - npm-cache-v1
 
-  restore_nx_cache_job: &restore_nx_cache_job
+  restore_nx_cache: &restore_nx_cache
     restore_cache:
       name: Restore NX cache
       key:
         - nx-cache-v5-{{ .Branch }}-
 
-  save_nx_cache_job: &save_nx_cache_job
+  save_nx_cache: &save_nx_cache
     save_cache:
       name: Save NX cache
       key: nx-cache-v5-{{ .Branch }}-{{ epoch }}
@@ -407,14 +407,14 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *restore_nx_cache_job
+      - *restore_nx_cache
       - *persist_to_workspace
 
   save_nx_cache:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *save_nx_cache_job
+      - *save_nx_cache
 
 workflows:
   version: 2
