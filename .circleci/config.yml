@@ -28,13 +28,13 @@ references:
   restore_nx_cache: &restore_nx_cache
     restore_cache:
       name: Restore NX cache
-      keys:
-        - nx-cache-v5-{{ .Branch }}
+      key:
+        - nx-cache-v5-{{ .Branch }}-
 
   save_nx_cache: &save_nx_cache
     save_cache:
       name: Save NX cache
-      key: nx-cache-v5-{{ .Branch }}
+      key: nx-cache-v5-{{ .Branch }}-{{ epoch }}
       paths:
         - .nx/cache
 
