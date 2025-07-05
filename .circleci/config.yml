@@ -38,6 +38,19 @@ references:
       paths:
         - .nx/cache
 
+  restore_nx_cache_job: &restore_nx_cache_job
+    restore_cache:
+      name: Restore NX cache
+      key:
+        - nx-cache-v5-{{ .Branch }}-
+
+  save_nx_cache_job: &save_nx_cache_job
+    save_cache:
+      name: Save NX cache
+      key: nx-cache-v5-{{ .Branch }}-{{ epoch }}
+      paths:
+        - .nx/cache
+
   attach_workspace: &attach_workspace
     attach_workspace:
         at: .
@@ -407,14 +420,14 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *restore_nx_cache
+      - *restore_nx_cache_job
       - *persist_to_workspace
 
   save_nx_cache:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *save_nx_cache
+      - *save_nx_cache_job
 
 workflows:
   version: 2
