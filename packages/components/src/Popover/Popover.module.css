@@ -35,21 +35,18 @@
 }
 
 .arrow {
-  content: "";
   position: absolute;
-  visibility: visible;
   width: var(--base-unit);
   height: var(--base-unit);
   border: var(--border-base) solid var(--color-border);
   background: inherit;
-  transform: rotate(45deg);
   transform-origin: center;
   clip-path: polygon(-4px -4px, 15.3px 0, 0 15.3px);
 }
 
 /* Arrow rotation based on placement */
 .popover[data-popper-placement^="top"] > .arrow {
-  transform: rotate(-45deg);
+  transform: rotate(-135deg);
 }
 
 .popover[data-popper-placement^="bottom"] > .arrow {

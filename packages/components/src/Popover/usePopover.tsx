@@ -24,10 +24,11 @@ export const usePopover = ({
       flip({
         fallbackPlacements: ["top", "bottom", "left", "right"],
       }),
+      shift({ mainAxis: true, crossAxis: true, padding: 8 }),
       arrow({
         element: arrowElement || null,
+        padding: 6,
       }),
-      shift({ mainAxis: true, crossAxis: true, padding: 8 }),
     ];
   }, [arrowElement]);
 
@@ -39,8 +40,8 @@ export const usePopover = ({
     placement: (preferredPlacement === "auto"
       ? "bottom"
       : preferredPlacement) as Placement,
+    strategy: "fixed",
     middleware: modifiers,
-    strategy: "absolute",
     elements: {
       reference: referenceElement || null,
     },

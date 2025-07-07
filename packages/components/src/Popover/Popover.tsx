@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import { Side } from "@floating-ui/utils";
 import {
   PopoverArrowProps,
   PopoverDismissButtonProps,
@@ -50,23 +51,26 @@ Popover.Arrow = function PopoverArrow({
   const popoverStyles = usePopoverStyles();
   const classes = classnames(popoverStyles.arrow, UNSAFE_className?.arrow);
 
-  const staticSideMap = {
+  // the arrow will get positioned opposite to the placement side
+  const staticSideMap: Record<Side, Side> = {
     top: "bottom",
     right: "left",
     bottom: "top",
     left: "right",
   } as const;
 
-  const placementKey = placement?.split("-")[0] as keyof typeof staticSideMap;
+  // placement can include alignment (e.g. 'top-start') but we just want the side
+  const placementKey = placement?.split("-")[0] as Side;
   const staticSide = staticSideMap[placementKey];
 
   const arrowStyles: React.CSSProperties = {
     position: "absolute",
+    // only left or top will be defined at a time
     left: popperStyles.arrow?.x != null ? `${popperStyles.arrow?.x}px` : "",
     top: popperStyles.arrow?.y != null ? `${popperStyles.arrow?.y}px` : "",
     right: "",
     bottom: "",
-    [staticSide]: "-6px",
+    [staticSide]: "-7px",
     width: "var(--base-unit)",
     height: "var(--base-unit)",
   };
