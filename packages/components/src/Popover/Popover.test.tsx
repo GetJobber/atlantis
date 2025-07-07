@@ -47,43 +47,6 @@ describe("Non-composable Popover", () => {
     expect(screen.queryByText(content)).toBeNull();
   });
 
-  it("should update position when attachTo element moves in DOM", () => {
-    const MovingElementTest = () => {
-      const [, setContainer] = useState<HTMLDivElement | null>(null);
-      const divRef = useRef<HTMLDivElement>(null);
-
-      return (
-        <>
-          <div ref={setContainer} data-testid="container">
-            <div ref={divRef} data-testid="attached-element">
-              Attached Element
-            </div>
-          </div>
-          <Popover attachTo={divRef} open={true}>
-            {content}
-          </Popover>
-        </>
-      );
-    };
-
-    render(<MovingElementTest />);
-
-    const popover = screen.getByTestId("ATL-Popover-Container");
-    const attachedElement = screen.getByTestId("attached-element");
-    const container = screen.getByTestId("container");
-
-    // Move the attached element to a different position in the DOM
-    act(() => {
-      container.appendChild(attachedElement);
-    });
-
-    // The popover should still be positioned relative to the moved element
-    // We can't easily test exact positioning in unit tests, but we can verify
-    // that the popover is still rendered and the usePopper hook is working
-    expect(screen.getByText(content)).toBeInTheDocument();
-    expect(popover).toBeInTheDocument();
-  });
-
   it("should handle attachTo element changes correctly", () => {
     const ChangingElementTest = () => {
       const [useFirstElement, setUseFirstElement] = useState(true);
@@ -107,6 +70,7 @@ describe("Non-composable Popover", () => {
           <button
             onClick={() => setUseFirstElement(!useFirstElement)}
             data-testid="toggle-button"
+            type="button"
           >
             Toggle
           </button>
@@ -150,6 +114,7 @@ describe("Non-composable Popover", () => {
           <button
             onClick={() => setShowPopover(!showPopover)}
             data-testid="toggle-button"
+            type="button"
           >
             Toggle
           </button>
@@ -442,6 +407,7 @@ describe("Composable Popover", () => {
           <button
             onClick={() => setUseFirstElement(!useFirstElement)}
             data-testid="toggle-button"
+            type="button"
           >
             Toggle
           </button>

@@ -132,7 +132,7 @@ const MovingElementTemplate: ComponentStory<typeof Popover> = args => {
 
       <Box gap="small">
         <Button
-          label="BANNER"
+          label="Add Banner (causing layout reflow)"
           onClick={() => setShowBanner(!showBanner)}
           variation="subtle"
         />
