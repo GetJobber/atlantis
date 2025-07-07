@@ -100,6 +100,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *restore_nx_cache
       - *restore_npm_cache
       - run:
           name: Authenticate with npm
@@ -169,7 +170,6 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *restore_nx_cache
       - run:
           name: Debug NX Cache Contents
           command: |
@@ -237,13 +237,11 @@ jobs:
             find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
             echo "=== End Debug Info ==="
       - *check_git_status
-      - *save_nx_cache
 
   build_new_docs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *restore_nx_cache
       - run:
           name: Debug NX Cache Contents
           command: |
@@ -310,7 +308,6 @@ jobs:
             find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
             echo "=== End Debug Info ==="
       - *check_git_status
-      - *save_nx_cache
 
   release:
     <<: *container_config
@@ -364,6 +361,12 @@ jobs:
       - store_artifacts:
           path: packages/site/test-results
 
+  save_nx_cache:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - *save_nx_cache
+
 workflows:
   version: 2
 
@@ -394,6 +397,10 @@ workflows:
       - e2e_tests:
           requires:
             - install_dependencies
+      - save_nx_cache:
+          requires:
+            - build_storybook
+            - build_new_docs
       - release:
           filters:
             branches:
