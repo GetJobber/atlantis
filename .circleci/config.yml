@@ -264,6 +264,7 @@ jobs:
             echo "Recent cache entries:"
             find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
             echo "=== End Debug Info ==="
+      - *persist_to_workspace
       - *check_git_status
 
   build_new_docs:
@@ -363,6 +364,7 @@ jobs:
             echo "Recent cache entries:"
             find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
             echo "=== End Debug Info ==="
+      - *persist_to_workspace
       - *check_git_status
 
   release:
