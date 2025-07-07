@@ -89,6 +89,16 @@ export interface AutocompleteProps<
     | Promise<Array<GenericGetOptionsValue | GenericOption>>;
 
   /**
+   * Called by advanced usage scenarios to update the options.
+   * @param newInputText
+   */
+  updateOptions?(
+    newInputText: string | object,
+  ):
+    | Array<GenericGetOptionsValue | GenericOption>
+    | Promise<Array<GenericGetOptionsValue | GenericOption>>;
+
+  /**
    * Hint text that goes above the value once the form is filled out.
    */
   readonly placeholder: string;
@@ -103,7 +113,7 @@ export interface AutocompleteProps<
     >,
   ) => React.ReactElement;
 
-  version?: 1 | 2;
+  version?: 1 | 2 | undefined;
 }
 
 export type CustomOptionsMenuType<GenericOption extends AnyOption = AnyOption> =
@@ -129,6 +139,7 @@ export interface MenuProps<
   readonly customRenderMenu?: (
     props: CustomOptionsMenuProp<GenericOption, GenericOptionValue>,
   ) => React.ReactElement;
+  readonly handleUpdateOptions: (query: object | string) => void;
 }
 
 export interface CustomOptionsMenuProp<
@@ -167,4 +178,9 @@ export interface CustomOptionsMenuProp<
     children: React.ReactNode;
     visible: boolean;
   }) => React.ReactElement;
+
+  /**
+   * Callback to update the options.
+   */
+  readonly handleUpdateOptions: (query: object | string) => void;
 }

@@ -2,6 +2,7 @@ import { FocusEvent, useMemo, useState } from "react";
 import { isOptionGroup } from "./Autocomplete.utils";
 import { AnyOption, Option } from "./Autocomplete.types";
 
+// eslint-disable-next-line max-statements
 export function useAutocompleteFunctions({
   getOptions,
   onChange,
@@ -10,10 +11,15 @@ export function useAutocompleteFunctions({
   value,
   allowFreeForm,
   initialOptions,
+  updateOptions,
 }: {
   getOptions: (
     newInputText: string,
   ) => (AnyOption | AnyOption)[] | Promise<(AnyOption | AnyOption)[]>;
+  updateOptions?: (
+    newInputText: string | object,
+  ) => (AnyOption | AnyOption)[] | Promise<(AnyOption | AnyOption)[]>;
+
   onChange: (newValue?: Option | undefined) => void;
   onBlur:
     | ((event?: FocusEvent<Element, Element> | undefined) => void)
@@ -51,10 +57,25 @@ export function useAutocompleteFunctions({
     setOptions(mapToOptions(filteredOptions));
   }
 
-  function handleMenuChange(chosenOption?: Option) {
-    onChange(chosenOption);
-    updateInput(chosenOption?.label ?? "");
-    setInputFocused(false);
+  async function handleUpdateOptions(query: object | string) {
+    if (updateOptions) {
+      const updatedOptions = await updateOptions(query);
+
+      setOptions(mapToOptions(updatedOptions));
+    }
+  }
+
+  function handleMenuChange(
+    chosenOption?: Option,
+    { onlyChange }: { onlyChange?: boolean } = {},
+  ) {
+    if (onlyChange) {
+      onChange(chosenOption);
+    } else {
+      onChange(chosenOption);
+      updateInput(chosenOption?.label ?? "");
+      setInputFocused(false);
+    }
   }
 
   function handleInputChange(newText: string) {
@@ -104,6 +125,7 @@ export function useAutocompleteFunctions({
     handleInputBlur,
     handleInputChange,
     handleMenuChange,
+    handleUpdateOptions,
     updateSearch,
     inputFocused,
     inputText,

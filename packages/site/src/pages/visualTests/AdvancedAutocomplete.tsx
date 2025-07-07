@@ -125,77 +125,9 @@ export function AdvancedAutocomplete({
     ],
   );
   useCustomKeyboardNavigation({ onRequestHighlightChange });
-  console.log("OPTIONS", optionsWithExtraElements, highlightedOptionIndex);
 
   return (
     <MenuWrapper visible={menuVisible}>
-      <Cluster justify="space-between">
-        <Cluster autoWidth>
-          <Box
-            padding={
-              activeView === "default"
-                ? "base"
-                : { top: "small", bottom: "small" }
-            }
-          >
-            {activeView === "default" && (
-              <Heading level={4}>{"My products & services"}</Heading>
-            )}
-            {activeView === "catalog" && (
-              <button
-                ref={backRef}
-                type="button"
-                className={styles.catalogItemButton}
-                onMouseDown={e => {
-                  e.preventDefault();
-                  setActiveView("default");
-                }}
-                onKeyDown={e => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setActiveView("default");
-                  }
-                }}
-              >
-                <Cluster>
-                  <Icon name="arrowLeft" />
-                  <HomeDepotIcon />
-                  <Heading level={4}>{"The Home Depot"}</Heading>
-                </Cluster>
-              </button>
-            )}
-          </Box>
-        </Cluster>
-        <Cluster autoWidth>
-          <button
-            type="button"
-            className={styles.catalogItemButton}
-            ref={catalogRef}
-            style={{
-              display: activeView === "default" ? "block" : "none",
-            }}
-            onKeyDown={e => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                e.stopPropagation();
-                setActiveView("catalog");
-              }
-            }}
-            onMouseDown={e => {
-              e.preventDefault();
-              setActiveView("catalog");
-            }}
-          >
-            <Cluster gap="small">
-              <Typography size="large">More</Typography>
-              <HomeDepotIcon />
-              <Icon name="arrowRight" />
-            </Cluster>
-          </button>
-        </Cluster>
-      </Cluster>
-
       {optionsWithExtraElements
         .filter(d => d.type === activeView)
         .map((option, index) => {

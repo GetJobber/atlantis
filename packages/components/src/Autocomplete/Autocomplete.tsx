@@ -25,6 +25,7 @@ function AutocompleteInternal<
     placeholder,
     onBlur,
     onFocus,
+    updateOptions,
     validations,
     customRenderMenu,
     version,
@@ -41,12 +42,14 @@ function AutocompleteInternal<
     handleInputBlur,
     handleInputChange,
     handleMenuChange,
+    handleUpdateOptions,
     updateSearch,
     inputFocused,
     options,
     inputText,
     updateInput,
   } = useAutocompleteFunctions({
+    updateOptions,
     getOptions,
     onChange: onChange as (newValue?: Option | undefined) => void,
     onBlur,
@@ -86,6 +89,7 @@ function AutocompleteInternal<
         customRenderMenu={customRenderMenu}
         selectedOption={value}
         onOptionSelect={handleMenuChange}
+        handleUpdateOptions={handleUpdateOptions}
       />
     </AutocompleteWrapper>
   );
