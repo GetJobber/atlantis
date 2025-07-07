@@ -21,10 +21,10 @@ export const usePopover = ({
   const modifiers = useMemo(() => {
     return [
       offset(10),
+      shift({ mainAxis: true, crossAxis: true, padding: 8 }),
       flip({
         fallbackPlacements: ["top", "bottom", "left", "right"],
       }),
-      shift({ mainAxis: true, crossAxis: true, padding: 8 }),
       arrow({
         element: arrowElement || null,
         padding: 6,
