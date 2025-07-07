@@ -81,9 +81,9 @@ describe("Non-composable Popover", () => {
     render(<ChangingElementTest />);
 
     // Initially attached to first element
-    expect(screen.getByText(content)).toBeInTheDocument();
-    expect(screen.getByTestId("first-element")).toBeInTheDocument();
-    expect(screen.getByTestId("second-element")).toBeInTheDocument();
+    expect(screen.getByText(content)).toBeVisible();
+    expect(screen.getByTestId("first-element")).toBeVisible();
+    expect(screen.getByTestId("second-element")).toBeVisible();
 
     // Switch to second element
     act(() => {
@@ -91,7 +91,7 @@ describe("Non-composable Popover", () => {
     });
 
     // Popover should still be rendered and working with the new element
-    expect(screen.getByText(content)).toBeInTheDocument();
+    expect(screen.getByText(content)).toBeVisible();
   });
 
   it("should position correctly on initial render", () => {
@@ -133,8 +133,8 @@ describe("Non-composable Popover", () => {
     });
 
     // Popover should now be visible and positioned correctly
-    expect(screen.getByText(content)).toBeInTheDocument();
-    expect(screen.getByTestId("ATL-Popover-Container")).toBeInTheDocument();
+    expect(screen.getByText(content)).toBeVisible();
+    expect(screen.getByTestId("ATL-Popover-Container")).toBeVisible();
   });
 
   describe("UNSAFE_ props", () => {
@@ -378,8 +378,8 @@ describe("Composable Popover", () => {
     });
 
     // The popover should still be positioned relative to the moved element
-    expect(screen.getByText(content)).toBeInTheDocument();
-    expect(popover).toBeInTheDocument();
+    expect(screen.getByText(content)).toBeVisible();
+    expect(popover).toBeVisible();
   });
 
   it("should handle attachTo element changes correctly (composable)", () => {
@@ -418,9 +418,9 @@ describe("Composable Popover", () => {
     render(<ChangingElementTest />);
 
     // Initially attached to first element
-    expect(screen.getByText(content)).toBeInTheDocument();
-    expect(screen.getByTestId("first-element")).toBeInTheDocument();
-    expect(screen.getByTestId("second-element")).toBeInTheDocument();
+    expect(screen.getByText(content)).toBeVisible();
+    expect(screen.getByTestId("first-element")).toBeVisible();
+    expect(screen.getByTestId("second-element")).toBeVisible();
 
     // Switch to second element
     act(() => {
@@ -428,7 +428,7 @@ describe("Composable Popover", () => {
     });
 
     // Popover should still be rendered and working with the new element
-    expect(screen.getByText(content)).toBeInTheDocument();
+    expect(screen.getByText(content)).toBeVisible();
   });
 
   describe("UNSAFE_ props", () => {
