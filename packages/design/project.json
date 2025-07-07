@@ -57,7 +57,7 @@
         "command": "npm run clean && nx run @jobber/design:build",
         "cwd": "packages/design"
       },
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/src/assets"]
     }
   }
 }
