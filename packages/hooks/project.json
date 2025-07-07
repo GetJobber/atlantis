@@ -21,7 +21,7 @@
     "bootstrap": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm run clean; npm run build",
+        "command": "npm run clean && nx run @jobber/hooks:build",
         "cwd": "packages/hooks"
       },
       "outputs": ["{projectRoot}/dist"]

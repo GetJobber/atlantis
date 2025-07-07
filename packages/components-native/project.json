@@ -36,7 +36,7 @@
     "bootstrap": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm run build",
+        "command": "nx run @jobber/components-native:build",
         "cwd": "packages/components-native"
       },
       "outputs": ["{projectRoot}/dist"]

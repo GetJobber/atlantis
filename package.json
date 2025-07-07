@@ -16,7 +16,7 @@
     "packages/site"
   ],
   "scripts": {
-    "bootstrap": "nx run-many --target=bootstrap --all --exclude=atlantis",
+    "bootstrap": "nx run atlantis:bootstrap",
     "build": "nx run atlantis:build",
     "build:all": "nx run atlantis:build:all",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",

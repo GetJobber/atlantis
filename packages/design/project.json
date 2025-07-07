@@ -54,7 +54,7 @@
     "bootstrap": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm run clean && npm run build",
+        "command": "npm run clean && nx run @jobber/design:build",
         "cwd": "packages/design"
       },
       "outputs": ["{projectRoot}/dist"]

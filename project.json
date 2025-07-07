@@ -25,7 +25,8 @@
         "command": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build",
         "cwd": "."
       },
-      "outputs": ["{projectRoot}/storybook-static"]
+      "outputs": ["{projectRoot}/storybook-static"],
+      "dependsOn": ["@jobber/components:build", "@jobber/components-native:build", "@jobber/design:build", "@jobber/formatters:build", "@jobber/hooks:build"]
     },
     "site:build": {
       "executor": "nx:run-commands",
@@ -33,7 +34,8 @@
         "command": "cd packages/site && npm run build",
         "cwd": "."
       },
-      "outputs": ["{projectRoot}/packages/site/dist"]
+      "outputs": ["{projectRoot}/packages/site/dist"],
+      "dependsOn": ["@jobber/components:build", "@jobber/components-native:build", "@jobber/design:build", "@jobber/formatters:build", "@jobber/hooks:build"]
     },
     "merge:dist": {
       "executor": "nx:run-commands",
@@ -51,12 +53,13 @@
         "cwd": "."
       }
     },
-    "packages:build": {
+    "bootstrap": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx lerna run build --stream",
+        "command": "echo 'Bootstrap complete'",
         "cwd": "."
-      }
+      },
+      "dependsOn": ["@jobber/components:bootstrap", "@jobber/components-native:bootstrap", "@jobber/design:bootstrap", "@jobber/formatters:bootstrap", "@jobber/hooks:bootstrap"]
     }
   }
 }
