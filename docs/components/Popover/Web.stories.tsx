@@ -96,7 +96,6 @@ const MovingElementTemplate: ComponentStory<typeof Popover> = args => {
   const [showPopover, setShowPopover] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [, setContainer] = useState<HTMLDivElement | null>(null);
 
   const moveElement = (direction: "up" | "down" | "left" | "right") => {
     const newPosition = { ...position };
@@ -125,14 +124,18 @@ const MovingElementTemplate: ComponentStory<typeof Popover> = args => {
   return (
     <Box gap="large">
       <Box gap="base">
-        <Heading level={2}>Moving Element Test</Heading>
+        <Heading level={2}>Moving attachTo Element</Heading>
         <Text>
-          This demonstrates the fix for the bug where popovers wouldn&apos;t
-          follow their attached element when it moved in the DOM.
+          This demonstrates how the popover will reposition itself when the
+          attachTo element moves.
         </Text>
         <Text>
           Click the buttons below to move the attached element around. The
           popover should follow it correctly.
+        </Text>
+        <Text>
+          The popover should also shift, then flip when it reaches the edge of
+          its container.
         </Text>
       </Box>
 
@@ -170,7 +173,6 @@ const MovingElementTemplate: ComponentStory<typeof Popover> = args => {
       </Box>
 
       <div
-        ref={setContainer}
         style={{
           position: "relative",
           minHeight: "300px",
@@ -207,9 +209,8 @@ const MovingElementTemplate: ComponentStory<typeof Popover> = args => {
         <Content>
           <Heading level={3}>Following Element</Heading>
           <Text>
-            This popover should follow the button as it moves around the page.
-            The fix ensures that when the attached element moves in the DOM, the
-            popover updates its position accordingly.
+            This popover should reposition itself and follow the attached button
+            as it moves around the page.
           </Text>
           <Text>
             Current position: ({position.x}, {position.y})
@@ -220,7 +221,7 @@ const MovingElementTemplate: ComponentStory<typeof Popover> = args => {
   );
 };
 
-export const MovingElement = MovingElementTemplate.bind({});
+export const MovingAttachToElement = MovingElementTemplate.bind({});
 
 const ComposedTemplate: ComponentStory<typeof Popover> = args => {
   const divRef1 = useRef<HTMLDivElement>(null);
