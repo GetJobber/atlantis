@@ -21,7 +21,7 @@ export const usePopover = ({
   const modifiers = useMemo(() => {
     return [
       offset(10),
-      shift({ mainAxis: true, crossAxis: true, padding: 8 }),
+      shift({ mainAxis: true, crossAxis: false, padding: 8 }),
       flip({
         fallbackPlacements: ["top", "bottom", "left", "right"],
       }),
