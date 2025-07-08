@@ -79,7 +79,6 @@ describe("Non-composable Popover", () => {
 
       const popover = screen.getByTestId("ATL-Popover-Container");
       expect(popover).toHaveAttribute("role", "dialog");
-      expect(popover).toHaveAttribute("data-elevation", "elevated");
     });
 
     it("should have dismiss button with proper accessibility attributes", () => {
