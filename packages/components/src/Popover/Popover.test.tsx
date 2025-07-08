@@ -70,6 +70,43 @@ describe("Non-composable Popover", () => {
     });
   });
 
+  describe("Accessibility", () => {
+    it("should have proper ARIA attributes when open", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("role", "dialog");
+      expect(popover).toHaveAttribute("data-elevation", "elevated");
+    });
+
+    it("should have dismiss button with proper accessibility attributes", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const dismissButton = screen.getByLabelText("Close dialog");
+      expect(dismissButton).toBeInTheDocument();
+      expect(dismissButton).toHaveAttribute("aria-label", "Close dialog");
+    });
+
+    it("should be focusable and keyboard accessible", async () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const dismissButton = screen.getByLabelText("Close dialog");
+
+      // Tab to the dismiss button
+      await userEvent.tab();
+      expect(dismissButton).toHaveFocus();
+    });
+  });
+
   describe("UNSAFE_ props", () => {
     it("should apply the UNSAFE_className to the container", () => {
       renderPopover({
