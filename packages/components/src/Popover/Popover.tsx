@@ -59,9 +59,7 @@ Popover.Arrow = function PopoverArrow({
     left: "right",
   } as const;
 
-  // placement can include alignment (e.g. 'top-start') but we just want the side
-  const placementKey = placement?.split("-")[0] as Side;
-  const staticSide = staticSideMap[placementKey];
+  const staticSide = staticSideMap[placement as Side];
 
   const arrowStyles: React.CSSProperties = {
     position: "absolute",
