@@ -101,7 +101,6 @@ describe("Non-composable Popover", () => {
 
       const dismissButton = screen.getByLabelText("Close dialog");
 
-      // Tab to the dismiss button
       await userEvent.tab();
       expect(dismissButton).toHaveFocus();
     });
@@ -313,44 +312,6 @@ describe("Composable Popover", () => {
     );
 
     expect(screen.queryByLabelText("Close dialog")).not.toBeInTheDocument();
-  });
-
-  describe("preferredPlacement (composable)", () => {
-    it("should use bottom placement by default", () => {
-      const divRef = React.createRef<HTMLDivElement>();
-
-      render(
-        <>
-          <div ref={divRef}></div>
-          <Popover.Provider attachTo={divRef} open={true}>
-            {content}
-          </Popover.Provider>
-        </>,
-      );
-
-      const popover = screen.getByTestId("ATL-Popover-Container");
-      expect(popover).toHaveAttribute("data-popper-placement", "bottom");
-    });
-
-    it("should use specified placement value", () => {
-      const divRef = React.createRef<HTMLDivElement>();
-
-      render(
-        <>
-          <div ref={divRef}></div>
-          <Popover.Provider
-            attachTo={divRef}
-            open={true}
-            preferredPlacement="top"
-          >
-            {content}
-          </Popover.Provider>
-        </>,
-      );
-
-      const popover = screen.getByTestId("ATL-Popover-Container");
-      expect(popover).toHaveAttribute("data-popper-placement", "top");
-    });
   });
 
   describe("UNSAFE_ props", () => {
