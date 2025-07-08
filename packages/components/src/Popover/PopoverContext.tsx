@@ -13,7 +13,6 @@ interface PopoverContextProps {
     arrow?: {
       x?: number;
       y?: number;
-      centerOffset?: number;
     };
   };
   placement?: string;
