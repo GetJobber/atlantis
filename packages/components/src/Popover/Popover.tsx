@@ -68,7 +68,7 @@ Popover.Arrow = function PopoverArrow({
     top: popperStyles.arrow?.y != null ? `${popperStyles.arrow?.y}px` : "",
     right: "",
     bottom: "",
-    [staticSide]: "-7px",
+    [staticSide]: "var(--popover--position--offset)",
     width: "var(--base-unit)",
     height: "var(--base-unit)",
   };
