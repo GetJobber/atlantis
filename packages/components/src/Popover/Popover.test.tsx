@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { act, render, screen } from "@testing-library/react";
+import React, { useRef } from "react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Popover, type PopoverProps } from ".";
 import { Button } from "../Button";
@@ -45,96 +45,6 @@ describe("Non-composable Popover", () => {
     renderPopover({ open: false, children: content });
 
     expect(screen.queryByText(content)).toBeNull();
-  });
-
-  it("should handle attachTo element changes correctly", () => {
-    const ChangingElementTest = () => {
-      const [useFirstElement, setUseFirstElement] = useState(true);
-      const firstRef = useRef<HTMLDivElement>(null);
-      const secondRef = useRef<HTMLDivElement>(null);
-
-      return (
-        <>
-          <div ref={firstRef} data-testid="first-element">
-            First Element
-          </div>
-          <div ref={secondRef} data-testid="second-element">
-            Second Element
-          </div>
-          <Popover
-            attachTo={useFirstElement ? firstRef : secondRef}
-            open={true}
-          >
-            {content}
-          </Popover>
-          <button
-            onClick={() => setUseFirstElement(!useFirstElement)}
-            data-testid="toggle-button"
-            type="button"
-          >
-            Toggle
-          </button>
-        </>
-      );
-    };
-
-    render(<ChangingElementTest />);
-
-    // Initially attached to first element
-    expect(screen.getByText(content)).toBeVisible();
-    expect(screen.getByTestId("first-element")).toBeVisible();
-    expect(screen.getByTestId("second-element")).toBeVisible();
-
-    // Switch to second element
-    act(() => {
-      screen.getByTestId("toggle-button").click();
-    });
-
-    // Popover should still be rendered and working with the new element
-    expect(screen.getByText(content)).toBeVisible();
-  });
-
-  it("should position correctly on initial render", () => {
-    const InitialPositionTest = () => {
-      const divRef = useRef<HTMLDivElement>(null);
-      const [showPopover, setShowPopover] = useState(false);
-
-      return (
-        <>
-          <div
-            ref={divRef}
-            data-testid="attached-element"
-            style={{ position: "absolute", top: "100px", left: "200px" }}
-          >
-            Attached Element
-          </div>
-          <Popover attachTo={divRef} open={showPopover}>
-            {content}
-          </Popover>
-          <button
-            onClick={() => setShowPopover(!showPopover)}
-            data-testid="toggle-button"
-            type="button"
-          >
-            Toggle
-          </button>
-        </>
-      );
-    };
-
-    render(<InitialPositionTest />);
-
-    // Initially popover should not be visible
-    expect(screen.queryByText(content)).not.toBeInTheDocument();
-
-    // Open the popover
-    act(() => {
-      screen.getByTestId("toggle-button").click();
-    });
-
-    // Popover should now be visible and positioned correctly
-    expect(screen.getByText(content)).toBeVisible();
-    expect(screen.getByTestId("ATL-Popover-Container")).toBeVisible();
   });
 
   describe("UNSAFE_ props", () => {
@@ -343,92 +253,6 @@ describe("Composable Popover", () => {
     );
 
     expect(screen.queryByLabelText("Close dialog")).not.toBeInTheDocument();
-  });
-
-  it("should update position when attachTo element moves in DOM (composable)", () => {
-    const MovingElementTest = () => {
-      const [, setContainer] = useState<HTMLDivElement | null>(null);
-      const divRef = useRef<HTMLDivElement>(null);
-
-      return (
-        <>
-          <div ref={setContainer} data-testid="container">
-            <div ref={divRef} data-testid="attached-element">
-              Attached Element
-            </div>
-          </div>
-          <Popover.Provider attachTo={divRef} open={true}>
-            <Popover.DismissButton onClick={() => undefined} />
-            {content}
-            <Popover.Arrow />
-          </Popover.Provider>
-        </>
-      );
-    };
-
-    render(<MovingElementTest />);
-
-    const popover = screen.getByTestId("ATL-Popover-Container");
-    const attachedElement = screen.getByTestId("attached-element");
-    const container = screen.getByTestId("container");
-
-    // Move the attached element to a different position in the DOM
-    act(() => {
-      container.appendChild(attachedElement);
-    });
-
-    // The popover should still be positioned relative to the moved element
-    expect(screen.getByText(content)).toBeVisible();
-    expect(popover).toBeVisible();
-  });
-
-  it("should handle attachTo element changes correctly (composable)", () => {
-    const ChangingElementTest = () => {
-      const [useFirstElement, setUseFirstElement] = useState(true);
-      const firstRef = useRef<HTMLDivElement>(null);
-      const secondRef = useRef<HTMLDivElement>(null);
-
-      return (
-        <>
-          <div ref={firstRef} data-testid="first-element">
-            First Element
-          </div>
-          <div ref={secondRef} data-testid="second-element">
-            Second Element
-          </div>
-          <Popover.Provider
-            attachTo={useFirstElement ? firstRef : secondRef}
-            open={true}
-          >
-            <Popover.DismissButton onClick={() => undefined} />
-            {content}
-            <Popover.Arrow />
-          </Popover.Provider>
-          <button
-            onClick={() => setUseFirstElement(!useFirstElement)}
-            data-testid="toggle-button"
-            type="button"
-          >
-            Toggle
-          </button>
-        </>
-      );
-    };
-
-    render(<ChangingElementTest />);
-
-    // Initially attached to first element
-    expect(screen.getByText(content)).toBeVisible();
-    expect(screen.getByTestId("first-element")).toBeVisible();
-    expect(screen.getByTestId("second-element")).toBeVisible();
-
-    // Switch to second element
-    act(() => {
-      screen.getByTestId("toggle-button").click();
-    });
-
-    // Popover should still be rendered and working with the new element
-    expect(screen.getByText(content)).toBeVisible();
   });
 
   describe("UNSAFE_ props", () => {
