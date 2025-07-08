@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.64.0...@jobber/components@6.65.0) (2025-07-04)
+
+
+### Features
+
+* **components:** Add UNSAFE Props to Menu ([#2611](https://github.com/GetJobber/atlantis/issues/2611)) ([227ff44](https://github.com/GetJobber/atlantis/commit/227ff4421156ad8237c2482556ebf9fb99160ae9))
+
+
+
+
+
+# [6.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.63.4...@jobber/components@6.64.0) (2025-07-02)
+
+
+### Features
+
+* **components:** Add webp to FileTypes enum (input file can accept webp in list of custom file types) ([#2609](https://github.com/GetJobber/atlantis/issues/2609)) ([080bcf1](https://github.com/GetJobber/atlantis/commit/080bcf15476f83748a299584aae6ef649182af7f))
+
+
+
+
+
 ## [6.63.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.63.3...@jobber/components@6.63.4) (2025-06-27)
 
 

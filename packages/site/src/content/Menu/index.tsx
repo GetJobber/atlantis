@@ -1,6 +1,7 @@
 import Content from "@atlantis/docs/components/Menu/Menu.stories.mdx";
 import Props from "./Menu.props.json";
 import MobileProps from "./Menu.props-mobile.json";
+import Notes from "./MenuNotes.mdx";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
@@ -73,4 +74,5 @@ export default {
       url: getStorybookUrl(`?path=/docs/components-navigation-menu--docs`),
     },
   ],
+  notes: () => <Notes />,
 } as const satisfies ContentExport;

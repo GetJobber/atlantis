@@ -239,6 +239,73 @@ describe("Menu", () => {
       expect(pathElement).toHaveStyle("fill: var(--color-destructive)");
     });
   });
+
+  describe("UNSAFE props", () => {
+    it("should apply UNSAFE_className and UNSAFE_style to menu when opened", async () => {
+      render(
+        <Menu
+          items={[
+            {
+              actions: [{ label: "Test" }],
+            },
+          ]}
+          UNSAFE_className={{ menu: "custom-menu-class" }}
+          UNSAFE_style={{ menu: { color: "blue" } }}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const menu = screen.getByRole("menu");
+      expect(menu).toHaveClass("custom-menu-class");
+      expect(menu).toHaveStyle("color: blue");
+    });
+  });
+
+  it("should apply UNSAFE_className and UNSAFE_style to section header", async () => {
+    render(
+      <Menu
+        items={[
+          {
+            header: "Test",
+            actions: [{ label: "Test" }],
+          },
+        ]}
+        UNSAFE_className={{ header: "custom-header-class" }}
+        UNSAFE_style={{ header: { color: "red" } }}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole("button"));
+
+    // The header element we're applying the style to is hidden for accessibility reasons and has no reliable identifier
+    const header = screen.getByRole("heading", { hidden: true }).parentElement;
+
+    expect(header).toHaveClass("custom-header-class");
+    expect(header).toHaveStyle("color: red");
+  });
+  it("should apply UNSAFE_className and UNSAFE_style to all actions", async () => {
+    render(
+      <Menu
+        items={[
+          {
+            actions: [{ label: "Test" }],
+          },
+        ]}
+        UNSAFE_className={{ action: "custom-action-class" }}
+        UNSAFE_style={{ action: { color: "green" } }}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole("button"));
+
+    const actions = screen.getAllByRole("menuitem");
+
+    actions.forEach(action => {
+      expect(action).toHaveClass("custom-action-class");
+      expect(action).toHaveStyle("color: green");
+    });
+  });
 });
 
 it("should focus first action item from the menu when activated", async () => {

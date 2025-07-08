@@ -265,7 +265,17 @@ describe("Post Requests", () => {
       const { container } = render(
         <InputFile
           getUploadParams={fetchUploadParams}
-          allowedTypes={["JPEG", "PNG", "HEIC", "PDF", "DOCX", "CSV"]}
+          allowedTypes={[
+            "JPEG",
+            "PNG",
+            "HEIC",
+            "PDF",
+            "DOCX",
+            "CSV",
+            "WEBP",
+            "GIF",
+            "AVIF",
+          ]}
         />,
       );
 
@@ -280,6 +290,9 @@ describe("Post Requests", () => {
         "application/pdf",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         "text/csv",
+        "image/webp",
+        "image/gif",
+        "image/avif",
       ].join(",");
 
       expect(input.accept).toBe(expectedMimeTypes);

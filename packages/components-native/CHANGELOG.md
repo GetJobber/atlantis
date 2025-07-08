@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.2...@jobber/components-native@0.82.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* **components-native:** Do not render Select's label element when no label is provided [JOB-125934] ([#2601](https://github.com/GetJobber/atlantis/issues/2601)) ([1b732d5](https://github.com/GetJobber/atlantis/commit/1b732d5bb843b10a8637a21bca60e4462ed10e60))
+
+
+### Features
+
+* **components-native:** Bump react-native-safe-area-context Version ([#2608](https://github.com/GetJobber/atlantis/issues/2608)) ([12130e0](https://github.com/GetJobber/atlantis/commit/12130e05feb3ad270ed744eb4598c853a818589f))
+
+
+
+
+
 ## [0.81.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.1...@jobber/components-native@0.81.2) (2025-06-30)
 
 
