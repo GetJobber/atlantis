@@ -47,6 +47,29 @@ describe("Non-composable Popover", () => {
     expect(screen.queryByText(content)).toBeNull();
   });
 
+  describe("preferredPlacement", () => {
+    it("should use bottom placement by default", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("data-popper-placement", "bottom");
+    });
+
+    it("should use specified placement value", () => {
+      renderPopover({
+        open: true,
+        preferredPlacement: "top",
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("data-popper-placement", "top");
+    });
+  });
+
   describe("UNSAFE_ props", () => {
     it("should apply the UNSAFE_className to the container", () => {
       renderPopover({
@@ -253,6 +276,44 @@ describe("Composable Popover", () => {
     );
 
     expect(screen.queryByLabelText("Close dialog")).not.toBeInTheDocument();
+  });
+
+  describe("preferredPlacement (composable)", () => {
+    it("should use bottom placement by default", () => {
+      const divRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <>
+          <div ref={divRef}></div>
+          <Popover.Provider attachTo={divRef} open={true}>
+            {content}
+          </Popover.Provider>
+        </>,
+      );
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("data-popper-placement", "bottom");
+    });
+
+    it("should use specified placement value", () => {
+      const divRef = React.createRef<HTMLDivElement>();
+
+      render(
+        <>
+          <div ref={divRef}></div>
+          <Popover.Provider
+            attachTo={divRef}
+            open={true}
+            preferredPlacement="top"
+          >
+            {content}
+          </Popover.Provider>
+        </>,
+      );
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("data-popper-placement", "top");
+    });
   });
 
   describe("UNSAFE_ props", () => {
