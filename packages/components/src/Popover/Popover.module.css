@@ -45,18 +45,18 @@
 }
 
 /* Arrow rotation based on placement */
-.popover[data-popper-placement^="top"] > .arrow {
+.popover[data-popover-placement^="top"] > .arrow {
   transform: rotate(-135deg);
 }
 
-.popover[data-popper-placement^="bottom"] > .arrow {
+.popover[data-popover-placement^="bottom"] > .arrow {
   transform: rotate(45deg);
 }
 
-.popover[data-popper-placement^="left"] > .arrow {
+.popover[data-popover-placement^="left"] > .arrow {
   transform: rotate(135deg);
 }
 
-.popover[data-popper-placement^="right"] > .arrow {
+.popover[data-popover-placement^="right"] > .arrow {
   transform: rotate(315deg);
 }
