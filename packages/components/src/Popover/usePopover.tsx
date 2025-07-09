@@ -55,7 +55,7 @@ export const usePopover = ({
 
   const { refs, floatingStyles, middlewareData, placement } = useFloating({
     placement: preferredPlacement === "auto" ? undefined : preferredPlacement,
-    strategy: "fixed",
+    strategy: "absolute",
     middleware: modifiers,
     elements: {
       reference: referenceElement || null,
