@@ -1,3 +1,4 @@
+import { Side } from "@floating-ui/react";
 import React, { CSSProperties, createContext, useContext } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
@@ -15,7 +16,7 @@ interface PopoverContextProps {
       y?: number;
     };
   };
-  placement?: string;
+  placement?: Side;
 }
 
 const PopoverContext = createContext<PopoverContextProps>({
@@ -75,7 +76,7 @@ function PopoverWrapper({
 }: {
   readonly children: React.ReactNode;
   readonly setPopperElement: (element: HTMLElement | null) => void;
-  readonly placement?: string;
+  readonly placement?: Side;
 } & Pick<PopoverProviderProps, "UNSAFE_className" | "UNSAFE_style">) {
   const popoverStyles = usePopoverStyles();
   const { popperStyles } = usePopoverContext();
