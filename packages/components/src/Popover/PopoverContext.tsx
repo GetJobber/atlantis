@@ -32,7 +32,7 @@ export function usePopoverContext() {
 
 export function PopoverProvider({
   children,
-  preferredPlacement,
+  preferredPlacement = "auto",
   attachTo,
   open,
   UNSAFE_className,
