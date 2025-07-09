@@ -1,131 +1,56 @@
-import { Autocomplete, Box, Heading, Stack } from "@jobber/components";
-import { useCallback, useState } from "react";
 import {
-  CustomGroupOption,
-  CustomOptionForGroup,
-} from "./AdvancedAutocomplete";
-import { CustomMenuContent, CustomOption } from "./CustomMenuContent";
+  Autocomplete,
+  Box,
+  Grid,
+  Heading,
+  Stack,
+  Text,
+} from "@jobber/components";
+import { useState } from "react";
 
-const AdvancedOptions: CustomOption[] = [
-  {
-    value: 1,
-    label: "Plumbing Tape",
-    description: "Plumbing tape is neat",
-    cost: 100,
-    section: "Products",
-  },
-  {
-    value: 2,
-    label: "Electrical Tape",
-    description: "Electrical tape is also neat",
-    cost: 150.22,
-  },
-  {
-    value: 3,
-    label: "Super Tape",
-    description: "Super tape is the best",
-    cost: 99.99,
-  },
-  {
-    value: 4,
-    label: "Plumbing",
-    description: "Plumbing is a service",
-    cost: 100,
-    section: "Services",
-  },
-  {
-    value: 5,
-    label: "Super Plumbing",
-    description: "Super plumbing is the best",
-    cost: 200,
-  },
-];
+type OptionValue = string;
 
-const HomeDepotOptions: CustomOption[] = [
-  {
-    value: 1,
-    label: "Home Depot Plumbing Tape",
-    description: "Home Depot plumbing tape is neat",
-    cost: 120,
-    section: "Plumbing",
-  },
-  {
-    value: 2,
-    label: "Home Depot Plubming Stumps",
-    description: "Home Depot plubming stumps are also neat",
-    cost: 110.12,
-  },
-  {
-    value: 3,
-    label: "Home Depot Plumbing Welding",
-    description: "Home Depot plumbing welding is the best",
-    cost: 129.99,
-  },
-  {
-    value: 4,
-    label: "Home Depot Electrical Tape",
-    description: "Home Depot electrical tape is also neat",
-    cost: 120,
-    section: "Electical",
-  },
-  {
-    value: 5,
-    label: "Home Depot Electrical Welding",
-    description: "Home Depot electrical welding is the best",
-    cost: 200,
-  },
-];
+interface Option {
+  value: OptionValue;
+  label: string;
+  details?: string;
+}
 
 export const VisualTestAutocompletePage = () => {
-  const [activeType, setActiveType] = useState<string | undefined>("default");
-  const [customValue, setCustomValue] = useState<
-    CustomOptionForGroup | undefined
-  >(undefined);
-  const [value, setValue] = useState<CustomOption | undefined>();
-
-  const getOptions = useCallback(
-    (text: string) => {
-      if (text === "" && activeType === "default") {
-        return AdvancedOptions;
-      }
-
-      if (text === "" && activeType === "catalog") {
-        return HomeDepotOptions;
-      }
-
-      if (activeType === "catalog") {
-        const filterRegex = new RegExp(text, "i");
-
-        return HomeDepotOptions.filter(
-          option =>
-            option.label.match(filterRegex) ||
-            option.description?.match(filterRegex) ||
-            option.cost?.toString().match(filterRegex),
-        );
-      } else {
-        const filterRegex = new RegExp(text, "i");
-
-        return AdvancedOptions.filter(
-          option =>
-            option.label.match(filterRegex) ||
-            option.description?.match(filterRegex) ||
-            option.cost?.toString().match(filterRegex),
-        );
-      }
-    },
-    [activeType],
+  const [basicValue, setBasicValue] = useState<Option | undefined>(undefined);
+  const [detailsValue, setDetailsValue] = useState<Option | undefined>(
+    undefined,
   );
+  const [validationValue, setValidationValue] = useState<Option | undefined>(
+    undefined,
+  );
+  const [customValue, setCustomValue] = useState<Option | undefined>(undefined);
 
-  const handleUpdateOptions = (query: { type: string; to: string }) => {
-    if (query.to) {
-      setActiveType(query.to);
-    }
+  const basicOptions: Option[] = [
+    { value: "1", label: "Apple" },
+    { value: "2", label: "Banana" },
+    { value: "3", label: "Cherry" },
+    { value: "4", label: "Date" },
+    { value: "5", label: "Elderberry" },
+  ];
 
-    if (query.type == "switch" && query.to === "catalog") {
-      return HomeDepotOptions;
-    }
+  const detailsOptions: Option[] = [
+    { value: "1", label: "John Smith", details: "john@example.com" },
+    { value: "2", label: "Jane Doe", details: "jane@example.com" },
+    { value: "3", label: "Bob Johnson", details: "bob@example.com" },
+  ];
 
-    return AdvancedOptions;
+  const getFilteredOptions = (query: string) => {
+    return basicOptions.filter(option =>
+      option.label.toLowerCase().includes(query.toLowerCase()),
+    );
+  };
+
+  const getAsyncOptions = async (query: string) => {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    return getFilteredOptions(query);
   };
 
   return (
@@ -134,20 +59,74 @@ export const VisualTestAutocompletePage = () => {
         <Heading level={3}>Autocomplete Examples</Heading>
 
         <Stack gap="large">
-          {/* Autocomplete with Async Options */}
-
+          {/* Basic Autocomplete */}
           <section>
-            <Autocomplete
-              placeholder="Search for something"
-              initialOptions={AdvancedOptions}
-              value={value}
-              onChange={newValue => {
-                setValue(newValue);
-              }}
-              customRenderMenu={props => <CustomMenuContent {...props} />}
-              getOptions={getOptions}
-              updateOptions={handleUpdateOptions}
-            />
+            <Text size="large">Basic Autocomplete</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Autocomplete<Option>
+                  placeholder="Select a fruit"
+                  value={basicValue}
+                  onChange={(newValue?: Option) => setBasicValue(newValue)}
+                  getOptions={query => getFilteredOptions(query)}
+                  initialOptions={basicOptions}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Autocomplete with Details */}
+          <section>
+            <Text size="large">Autocomplete with Details</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Autocomplete<Option>
+                  placeholder="Select a contact"
+                  value={detailsValue}
+                  onChange={(newValue?: Option) => setDetailsValue(newValue)}
+                  getOptions={query =>
+                    detailsOptions.filter(option =>
+                      option.label.toLowerCase().includes(query.toLowerCase()),
+                    )
+                  }
+                  initialOptions={detailsOptions}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Autocomplete with Validation */}
+          <section>
+            <Text size="large">Autocomplete with Validation</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Autocomplete<Option>
+                  placeholder="Required field"
+                  value={validationValue}
+                  onChange={(newValue?: Option) => setValidationValue(newValue)}
+                  getOptions={query => getFilteredOptions(query)}
+                  initialOptions={basicOptions}
+                  invalid={!validationValue}
+                  description="This field is required"
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Autocomplete with Async Options */}
+          <section>
+            <Text size="large">Autocomplete with Async Options</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Autocomplete<Option>
+                  placeholder="Type to search"
+                  value={customValue}
+                  onChange={(newValue?: Option) => setCustomValue(newValue)}
+                  getOptions={getAsyncOptions}
+                  debounce={500}
+                />
+              </Grid.Cell>
+            </Grid>
           </section>
         </Stack>
       </Stack>
