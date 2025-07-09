@@ -12,8 +12,8 @@ import { Menu } from "./Menu/Menu";
 import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
 import { InputText, InputTextRef } from "../InputText";
-import { mergeRefs } from "../utils/mergeRefs";
 import { useDebounce } from "../utils/useDebounce";
+import { mergeRefs } from "../utils/mergeRefs";
 
 // Max statements increased to make room for the debounce functions
 // eslint-disable-next-line max-statements
@@ -65,26 +65,40 @@ function AutocompleteInternal<
     updateInput(value?.label ?? "");
   }, [value]);
 
+  const inputTextProps =
+    version === 2
+      ? {
+          ...inputProps,
+          version: 2 as const,
+          value: inputText,
+          onChange: handleInputChange,
+          error: validations ? "" : undefined,
+          invalid: Boolean(validations),
+        }
+      : {
+          ...inputProps,
+          version,
+          value: inputText,
+          onChange: handleInputChange,
+          validations,
+        };
+
   return (
     <div className={styles.autocomplete} ref={autocompleteRef}>
       <InputText
         ref={mergeRefs([ref, inputRef])}
         autocomplete={false}
         size={size}
-        value={inputText}
-        onChange={handleInputChange}
         placeholder={placeholder}
         onFocus={handleInputFocus}
-        version={version as 1}
         onBlur={handleInputBlur}
-        validations={validations}
-        {...inputProps}
+        {...(inputTextProps as Parameters<typeof InputText>[0])}
       />
       <Menu
         attachTo={autocompleteRef}
         inputRef={inputRef}
         inputFocused={inputFocused}
-        options={options as (GenericOption | GenericGetOptionsValue)[]}
+        options={options}
         customRenderMenu={customRenderMenu}
         selectedOption={value}
         onOptionSelect={handleMenuChange}
