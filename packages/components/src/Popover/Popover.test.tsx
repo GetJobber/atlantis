@@ -55,7 +55,7 @@ describe("Non-composable Popover", () => {
       });
 
       const popover = screen.getByTestId("ATL-Popover-Container");
-      expect(popover).toHaveAttribute("data-popper-placement", "bottom");
+      expect(popover).toHaveAttribute("data-popover-placement", "bottom");
     });
 
     it("should use specified placement value", () => {
@@ -66,7 +66,7 @@ describe("Non-composable Popover", () => {
       });
 
       const popover = screen.getByTestId("ATL-Popover-Container");
-      expect(popover).toHaveAttribute("data-popper-placement", "top");
+      expect(popover).toHaveAttribute("data-popover-placement", "top");
     });
   });
 

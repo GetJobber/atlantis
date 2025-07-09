@@ -94,7 +94,7 @@ function PopoverWrapper({
         ref={setPopperElement}
         style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
         className={classes}
-        data-popper-placement={placement}
+        data-popover-placement={placement}
         data-testid="ATL-Popover-Container"
       >
         {children}
