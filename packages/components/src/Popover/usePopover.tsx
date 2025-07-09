@@ -11,6 +11,9 @@ import { useMemo, useState } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { PopoverProps } from "./Popover.types";
 
+const POPOVER_OFFSET = 10;
+const POPOVER_SHIFT_PADDING = 8;
+
 export const usePopover = ({
   preferredPlacement,
   attachTo,
@@ -20,8 +23,12 @@ export const usePopover = ({
 
   const modifiers = useMemo(() => {
     const baseModifiers = [
-      offset(10),
-      shift({ mainAxis: true, crossAxis: false, padding: 8 }),
+      offset(POPOVER_OFFSET),
+      shift({
+        mainAxis: true,
+        crossAxis: false,
+        padding: POPOVER_SHIFT_PADDING,
+      }),
     ];
 
     const placementMiddleware =
@@ -38,7 +45,6 @@ export const usePopover = ({
       placementMiddleware,
       arrow({
         element: arrowElement || null,
-        padding: 6,
       }),
     ];
   }, [arrowElement, preferredPlacement]);
