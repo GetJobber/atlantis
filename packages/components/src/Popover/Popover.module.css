@@ -58,5 +58,5 @@
 }
 
 .popover[data-popover-placement^="right"] > .arrow {
-  transform: rotate(315deg);
+  transform: rotate(-45deg);
 }
