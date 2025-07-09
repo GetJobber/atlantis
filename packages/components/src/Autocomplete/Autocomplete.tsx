@@ -1,11 +1,20 @@
-import React, { Ref, RefAttributes, RefObject, forwardRef } from "react";
+import React, {
+  Ref,
+  RefAttributes,
+  RefObject,
+  forwardRef,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
 import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
-import { useAutocompleteFunctions } from "./useAutocompleteFunctions";
-import { useAutocomplete } from "./useAutocomplete";
+import { isOptionGroup } from "./Autocomplete.utils";
 import { InputText, InputTextRef } from "../InputText";
 import { mergeRefs } from "../utils/mergeRefs";
+import { useDebounce } from "../utils/useDebounce";
 
 // Max statements increased to make room for the debounce functions
 // eslint-disable-next-line max-statements
@@ -37,37 +46,28 @@ function AutocompleteInternal<
   >,
   ref: Ref<InputTextRef>,
 ) {
-  const {
-    handleInputFocus,
-    handleInputBlur,
-    handleInputChange,
-    handleMenuChange,
-    handleUpdateOptions,
-    updateSearch,
-    inputFocused,
-    options,
-    inputText,
-    updateInput,
-  } = useAutocompleteFunctions({
-    updateOptions,
-    getOptions,
-    onChange: onChange as (newValue?: Option | undefined) => void,
-    onBlur,
-    onFocus,
-    value,
-    allowFreeForm,
-    initialOptions,
-  });
-  const { autocompleteRef, inputRef } = useAutocomplete({
-    value,
-    updateSearch,
-    debounceRate,
-    inputText,
-    updateInput,
-  });
+  const initialOptionsMemo = useMemo(
+    () => mapToOptions(initialOptions),
+    [initialOptions],
+  );
+  const [options, setOptions] =
+    useState<Array<GenericOption | GenericGetOptionsValue>>(initialOptionsMemo);
+  const [inputFocused, setInputFocused] = useState(false);
+  const [inputText, setInputText] = useState(value?.label ?? "");
+  const autocompleteRef = useRef(null);
+  const delayedSearch = useDebounce(updateSearch, debounceRate);
+  const inputRef = useRef<InputTextRef | null>(null);
+
+  useEffect(() => {
+    delayedSearch();
+  }, [inputText]);
+
+  useEffect(() => {
+    updateInput(value?.label ?? "");
+  }, [value]);
 
   return (
-    <AutocompleteWrapper autocompleteRef={autocompleteRef}>
+    <div className={styles.autocomplete} ref={autocompleteRef}>
       <InputText
         ref={mergeRefs([ref, inputRef])}
         autocomplete={false}
@@ -91,8 +91,81 @@ function AutocompleteInternal<
         onOptionSelect={handleMenuChange}
         handleUpdateOptions={handleUpdateOptions}
       />
-    </AutocompleteWrapper>
+    </div>
   );
+
+  function updateInput(newText: string) {
+    setInputText(newText);
+
+    if (newText === "") {
+      setOptions(mapToOptions(initialOptions));
+    }
+  }
+
+  async function updateSearch() {
+    const updatedOptions = await getOptions(inputText);
+    const filteredOptions = updatedOptions.filter(option =>
+      isOptionGroup(option) ? option.options.length > 0 : true,
+    );
+
+    setOptions(mapToOptions(filteredOptions));
+  }
+
+  function handleMenuChange(chosenOption?: GenericOptionValue) {
+    onChange(chosenOption);
+    updateInput(chosenOption?.label ?? "");
+    setInputFocused(false);
+  }
+
+  async function handleUpdateOptions(query: object | string) {
+    if (updateOptions) {
+      const updatedOptions = await updateOptions(query);
+
+      setOptions(mapToOptions(updatedOptions));
+    }
+  }
+
+  function handleInputChange(newText: string) {
+    updateInput(newText);
+
+    if (allowFreeForm) {
+      onChange({ label: newText } as GenericOptionValue);
+    }
+  }
+
+  function handleInputBlur() {
+    setInputFocused(false);
+
+    if (value == undefined || value.label !== inputText) {
+      setInputText("");
+      onChange(undefined);
+    }
+    onBlur && onBlur();
+  }
+
+  function handleInputFocus() {
+    setInputFocused(true);
+
+    if (onFocus) {
+      onFocus();
+    }
+  }
+}
+
+function mapToOptions<GenericOption extends AnyOption = AnyOption>(
+  items: GenericOption[],
+) {
+  const retVal = items.reduce<GenericOption[]>((result, item) => {
+    result.push(item);
+
+    if (isOptionGroup(item) && item.options) {
+      result = result.concat(item.options as GenericOption[]);
+    }
+
+    return result;
+  }, []);
+
+  return retVal;
 }
 
 export function AutocompleteWrapper({
