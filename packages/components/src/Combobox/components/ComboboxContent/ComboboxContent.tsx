@@ -52,9 +52,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           selectedCount={props.selected.length}
           onClearAll={() => {
             props.selectedStateSetter([]);
+            props.onClear?.();
           }}
           onSelectAll={() => {
             props.selectedStateSetter(props.options);
+            props.onSelectAll?.(props.options);
           }}
         />
       )}

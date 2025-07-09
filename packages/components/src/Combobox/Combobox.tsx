@@ -10,7 +10,12 @@ import { useCombobox } from "./hooks/useCombobox";
 import { ComboboxActivator } from "./components/ComboboxActivator";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 
-export function Combobox(props: ComboboxProps): JSX.Element {
+const defaultOnSelect = () => undefined;
+
+export function Combobox({
+  onSelect = defaultOnSelect,
+  ...props
+}: ComboboxProps): JSX.Element {
   const { optionElements, triggerElement, actionElements } =
     useComboboxValidation(props.children);
 
@@ -40,7 +45,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     handleSearchChange,
   } = useCombobox(
     props.selected,
-    props.onSelect,
+    onSelect,
     options,
     props.onClose,
     props.multiSelect,
@@ -63,7 +68,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
         {open && (
           <div
             className={styles.overlay}
-            onClick={() => handleClose()}
+            onClick={handleClose}
             data-testid="ATL-Combobox-Overlay"
           />
         )}
@@ -80,6 +85,8 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           selected={selectedOptions}
           actionElements={actionElements}
           selectedStateSetter={selectedStateSetter}
+          onSelectAll={props.onSelectAll}
+          onClear={props.onClear}
           handleSelection={handleSelection}
           searchValue={searchValue}
           setSearchValue={setSearchValue}

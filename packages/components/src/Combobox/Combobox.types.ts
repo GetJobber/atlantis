@@ -27,7 +27,17 @@ export interface ComboboxProps {
   /**
    * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
    */
-  readonly onSelect: (selection: ComboboxOption[]) => void;
+  readonly onSelect?: (selection: ComboboxOption[]) => void;
+
+  /**
+   * Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.
+   */
+  readonly onSelectAll?: (selection: ComboboxOption[]) => void;
+
+  /**
+   * Callback function invoked upon the clearing of all options.
+   */
+  readonly onClear?: () => void;
 
   /**
    * Callback function invoked upon the Combobox menu closing.
@@ -135,6 +145,11 @@ export interface ComboboxOptionProps {
       isSelected: boolean;
     },
   ) => React.ReactNode;
+
+  /**
+   * Callback function invoked when the option is clicked.
+   */
+  readonly onClick?: () => void;
 }
 
 export type ComboboxOption = ComboboxOptionProps;
@@ -161,6 +176,22 @@ export interface ComboboxContentProps {
    */
   readonly selectedStateSetter: (selection: ComboboxOption[]) => void;
 
+  /**
+   * Callback function to be called when an option is selected.
+   */
+  readonly onSelectAll?: (selection: ComboboxOption[]) => void;
+
+  /**
+   * Callback function to be called when all options are selected.
+   */
+  readonly onClear?: () => void;
+
+  /**
+   * Callback function to be called when an option is selected.
+   */
+  /**
+   * Callback function to be called when an option is selected.
+   */
   /**
    * Callback function to be called when an option is selected.
    */
