@@ -54,6 +54,8 @@ export const usePopover = ({
     elements: {
       reference: referenceElement || null,
     },
+    // Only use this option when the floating element is conditionally rendered
+    // (which we are), not hidden with css. https://floating-ui.com/docs/autoUpdate
     whileElementsMounted: autoUpdate,
   });
 
