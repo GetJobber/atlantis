@@ -460,7 +460,13 @@
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
     "entryPoints:clean": "npm run entryPoints:build clean",
     "prepack": "npm run entryPoints:build",
-    "postpack": "npm run entryPoints:clean"
+    "postpack": "npm run entryPoints:clean",
+    "dev:sb": "vite",
+    "build:sb": "tsc -b && vite build",
+    "lint:sb": "eslint .",
+    "preview:sb": "vite preview",
+    "storybook:sb": "storybook dev -p 6007",
+    "build-storybook:sb": "storybook build"
   },
   "files": [
     "*.js",
@@ -516,6 +522,10 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^9.1.0-alpha.3",
+    "@storybook/addon-docs": "^9.1.0-alpha.3",
+    "@storybook/addon-onboarding": "^9.1.0-alpha.3",
+    "@storybook/react-vite": "^9.1.0-alpha.3",
     "typed-css-modules": "^0.7.0"
   },
   "peerDependencies": {
