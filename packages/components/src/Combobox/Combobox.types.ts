@@ -177,21 +177,15 @@ export interface ComboboxContentProps {
   readonly selectedStateSetter: (selection: ComboboxOption[]) => void;
 
   /**
-   * Callback function to be called when an option is selected.
+   * Callback function to be called when the user clicks the select all button.
    */
   readonly onSelectAll?: (selection: ComboboxOption[]) => void;
 
   /**
-   * Callback function to be called when all options are selected.
+   * Callback function to be called when the user clicks the clear all button.
    */
   readonly onClear?: () => void;
 
-  /**
-   * Callback function to be called when an option is selected.
-   */
-  /**
-   * Callback function to be called when an option is selected.
-   */
   /**
    * Callback function to be called when an option is selected.
    */
