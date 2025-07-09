@@ -1,7 +1,6 @@
 import React, {
   Ref,
   RefAttributes,
-  RefObject,
   forwardRef,
   useEffect,
   useMemo,
@@ -166,20 +165,6 @@ function mapToOptions<GenericOption extends AnyOption = AnyOption>(
   }, []);
 
   return retVal;
-}
-
-export function AutocompleteWrapper({
-  children,
-  autocompleteRef,
-}: {
-  readonly children: React.ReactNode;
-  readonly autocompleteRef: RefObject<HTMLDivElement>;
-}) {
-  return (
-    <div className={styles.autocomplete} ref={autocompleteRef}>
-      {children}
-    </div>
-  );
 }
 
 // Casts the Generics to the forward ref so autocomplete works as expected for consumers
