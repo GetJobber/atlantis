@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "@jobber/generators",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'No build script for generators package'",
+        "cwd": "packages/generators"
+      },
+      "outputs": [],
+      "dependsOn": []
+    }
+  }
+} 
