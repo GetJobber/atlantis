@@ -92,7 +92,7 @@ function AutocompleteInternal<
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        {...(inputTextProps as Parameters<typeof InputText>[0])}
+        {...inputTextProps}
       />
       <Menu
         attachTo={autocompleteRef}
