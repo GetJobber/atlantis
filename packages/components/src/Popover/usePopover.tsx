@@ -1,6 +1,6 @@
 import {
-  Placement,
   arrow,
+  autoPlacement,
   autoUpdate,
   flip,
   offset,
@@ -19,27 +19,36 @@ export const usePopover = ({
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
 
   const modifiers = useMemo(() => {
-    return [
+    const baseModifiers = [
       offset(10),
       shift({ mainAxis: true, crossAxis: false, padding: 8 }),
-      flip({
-        fallbackPlacements: ["top", "bottom", "left", "right"],
-      }),
+    ];
+
+    const placementMiddleware =
+      preferredPlacement === "auto"
+        ? autoPlacement({
+            allowedPlacements: ["top", "bottom", "left", "right"],
+          })
+        : flip({
+            fallbackPlacements: ["top", "bottom", "left", "right"],
+          });
+
+    return [
+      ...baseModifiers,
+      placementMiddleware,
       arrow({
         element: arrowElement || null,
         padding: 6,
       }),
     ];
-  }, [arrowElement]);
+  }, [arrowElement, preferredPlacement]);
 
   const referenceElement = isHTMLElement(attachTo)
     ? attachTo
     : attachTo.current;
 
   const { refs, floatingStyles, middlewareData, placement } = useFloating({
-    placement: (preferredPlacement === "auto"
-      ? "bottom"
-      : preferredPlacement) as Placement,
+    placement: preferredPlacement === "auto" ? undefined : preferredPlacement,
     strategy: "fixed",
     middleware: modifiers,
     elements: {
