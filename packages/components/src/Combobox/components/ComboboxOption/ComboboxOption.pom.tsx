@@ -14,12 +14,14 @@ export function renderOption({
   customRender,
   selected,
   onSelect = noop,
+  onClick,
 }: {
   id: string | number;
   label: string;
   customRender?: ComboboxOptionProps["customRender"];
   selected: ComboboxOptionProps[];
   onSelect?: ComboboxProviderProps["selectionHandler"];
+  onClick?: () => void;
 }) {
   return render(
     <ComboboxContextProvider
@@ -31,7 +33,12 @@ export function renderOption({
       selectionHandler={onSelect}
       searchValue=""
     >
-      <ComboboxOption label={label} id={id} customRender={customRender} />
+      <ComboboxOption
+        label={label}
+        id={id}
+        customRender={customRender}
+        onClick={onClick}
+      />
     </ComboboxContextProvider>,
   );
 }

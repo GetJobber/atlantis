@@ -200,4 +200,89 @@ describe("ComboboxOption", () => {
       });
     });
   });
+
+  describe("onClick callback", () => {
+    const handleClick = jest.fn();
+
+    beforeEach(() => {
+      handleClick.mockClear();
+    });
+
+    it("should call onClick when the option is clicked", async () => {
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [],
+        onSelect,
+        onClick: handleClick,
+      });
+
+      await userEvent.click(POM.getOption("Michael"));
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call both onClick and selectionHandler when clicked", async () => {
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [],
+        onSelect,
+        onClick: handleClick,
+      });
+
+      await userEvent.click(POM.getOption("Michael"));
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
+      expect(onSelect).toHaveBeenCalledTimes(1);
+    });
+
+    it("should work correctly when onClick is not provided", async () => {
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [],
+        onSelect,
+      });
+
+      await userEvent.click(POM.getOption("Michael"));
+
+      expect(onSelect).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call onClick even when option is selected", async () => {
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [{ id: "1", label: "Michael" }],
+        onSelect,
+        onClick: handleClick,
+      });
+
+      await userEvent.click(POM.getOption("Michael"));
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
+      expect(onSelect).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call onClick with customRender", async () => {
+      const option: ComboboxOptionProps = {
+        id: "1",
+        label: "Michael",
+        customRender: POM.customRender,
+        onClick: handleClick,
+      };
+
+      POM.renderOption({
+        ...option,
+        selected: [],
+        onSelect,
+      });
+
+      await userEvent.click(POM.getOption("Michael"));
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
+      expect(onSelect).toHaveBeenCalledTimes(1);
+    });
+  });
 });
