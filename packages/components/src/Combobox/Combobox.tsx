@@ -10,12 +10,7 @@ import { useCombobox } from "./hooks/useCombobox";
 import { ComboboxActivator } from "./components/ComboboxActivator";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 
-const defaultOnSelect = () => undefined;
-
-export function Combobox({
-  onSelect = defaultOnSelect,
-  ...props
-}: ComboboxProps): JSX.Element {
+export function Combobox(props: ComboboxProps): JSX.Element {
   const { optionElements, triggerElement, actionElements } =
     useComboboxValidation(props.children);
 
@@ -46,7 +41,7 @@ export function Combobox({
     handleSearchChange,
   } = useCombobox(
     props.selected,
-    onSelect,
+    props.onSelect,
     options,
     props.onClose,
     props.multiSelect,

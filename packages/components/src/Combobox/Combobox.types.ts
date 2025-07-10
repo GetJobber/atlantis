@@ -27,7 +27,7 @@ export interface ComboboxProps {
   /**
    * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
    */
-  readonly onSelect?: (selection: ComboboxOption[]) => void;
+  readonly onSelect: (selection: ComboboxOption[]) => void;
 
   /**
    * Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.

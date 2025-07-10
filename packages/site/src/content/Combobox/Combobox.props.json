@@ -48,16 +48,14 @@
         }
       },
       "onSelect": {
-        "defaultValue": {
-          "value": "() => undefined"
-        },
+        "defaultValue": null,
         "description": "Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.",
         "name": "onSelect",
         "parent": {
           "fileName": "packages/components/src/Combobox/Combobox.types.ts",
           "name": "ComboboxProps"
         },
-        "required": false,
+        "required": true,
         "type": {
           "name": "(selection: ComboboxOptionProps[]) => void"
         }
