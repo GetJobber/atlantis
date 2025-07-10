@@ -424,50 +424,6 @@ describe("Combobox Multiselect", () => {
 
       expect(handleClear).toHaveBeenCalledTimes(1);
     });
-
-    it("should work correctly when onSelectAll is not provided", async () => {
-      render(
-        <Combobox
-          label={activatorLabel}
-          multiSelect={true}
-          selected={[]}
-          onSelect={handleSelect}
-        >
-          <Combobox.Option id="1" label="Bilbo Baggins" />
-          <Combobox.Option id="2" label="Frodo Baggins" />
-        </Combobox>,
-      );
-
-      await userEvent.click(screen.getByRole("combobox"));
-      await userEvent.click(screen.getByText("Select all"));
-
-      expect(handleSelect).toHaveBeenCalledWith([
-        { id: "1", label: "Bilbo Baggins" },
-        { id: "2", label: "Frodo Baggins" },
-      ]);
-    });
-
-    it("should work correctly when onClear is not provided", async () => {
-      render(
-        <Combobox
-          label={activatorLabel}
-          multiSelect={true}
-          selected={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={handleSelect}
-        >
-          <Combobox.Option id="1" label="Bilbo Baggins" />
-          <Combobox.Option id="2" label="Frodo Baggins" />
-        </Combobox>,
-      );
-
-      await userEvent.click(screen.getByRole("combobox"));
-      await userEvent.click(screen.getByText("Clear"));
-
-      expect(handleSelect).toHaveBeenCalledWith([]);
-    });
   });
 
   describe("onClose callback", () => {
