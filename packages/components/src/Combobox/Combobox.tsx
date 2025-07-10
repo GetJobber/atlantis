@@ -26,6 +26,7 @@ export function Combobox({
         label: option.props.label,
         prefix: option.props.prefix,
         customRender: option.props.customRender,
+        onClick: option.props.onClick,
       })) || [],
     [optionElements],
   );
