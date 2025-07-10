@@ -21,7 +21,7 @@ export function renderOption({
   customRender?: ComboboxOptionProps["customRender"];
   selected: ComboboxOptionProps[];
   onSelect?: ComboboxProviderProps["selectionHandler"];
-  onClick?: () => void;
+  onClick?: ComboboxOptionProps["onClick"];
 }) {
   return render(
     <ComboboxContextProvider
