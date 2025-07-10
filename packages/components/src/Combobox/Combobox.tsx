@@ -59,6 +59,8 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       shouldScroll={shouldScroll}
       searchValue={searchValue}
       label={props.label}
+      onClear={props.onClear}
+      onSelectAll={props.onSelectAll}
     >
       <div ref={wrapperRef} className={styles.wrapper}>
         {open && (
@@ -81,8 +83,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           selected={selectedOptions}
           actionElements={actionElements}
           selectedStateSetter={selectedStateSetter}
-          onSelectAll={props.onSelectAll}
-          onClear={props.onClear}
           handleSelection={handleSelection}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
