@@ -915,38 +915,6 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const CustomRenderOptions = ComboboxCustomRenderOptions.bind({});
-CustomRenderOptions.args = {
-  multiSelect: true,
-};
-
-export const KeepOpenOnClick = ComboboxKeepOpenOnClick.bind({});
-KeepOpenOnClick.args = {};
-
-export const ClearSelection = ComboboxClearSelection.bind({});
-ClearSelection.args = {};
-
-export const CustomActivator = ComboboxCustomActivator.bind({});
-CustomActivator.args = {};
-
-export const EmptyState = ComboboxEmptyState.bind({});
-EmptyState.args = {};
-
-export const PrefixOptions = ComboboxPrefixOptions.bind({});
-PrefixOptions.args = {};
-
-export const MultiSelect = ComboboxMultiSelection.bind({});
-MultiSelect.args = {};
-
-export const SingleSelect = ComboboxSingleSelection.bind({});
-SingleSelect.args = {};
-
-export const DynamicAction = DynamicButton.bind({});
-DynamicAction.args = {};
-
-export const CustomSearch = ComboboxCustomSearch.bind({});
-CustomSearch.args = {};
-
 const ComboboxCallbackProps: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
   const [logs, setLogs] = useState<string[]>([]);
@@ -1070,6 +1038,38 @@ const ComboboxCallbackProps: ComponentStory<typeof Combobox> = args => {
     </div>
   );
 };
+
+export const CustomRenderOptions = ComboboxCustomRenderOptions.bind({});
+CustomRenderOptions.args = {
+  multiSelect: true,
+};
+
+export const KeepOpenOnClick = ComboboxKeepOpenOnClick.bind({});
+KeepOpenOnClick.args = {};
+
+export const ClearSelection = ComboboxClearSelection.bind({});
+ClearSelection.args = {};
+
+export const CustomActivator = ComboboxCustomActivator.bind({});
+CustomActivator.args = {};
+
+export const EmptyState = ComboboxEmptyState.bind({});
+EmptyState.args = {};
+
+export const PrefixOptions = ComboboxPrefixOptions.bind({});
+PrefixOptions.args = {};
+
+export const MultiSelect = ComboboxMultiSelection.bind({});
+MultiSelect.args = {};
+
+export const SingleSelect = ComboboxSingleSelection.bind({});
+SingleSelect.args = {};
+
+export const DynamicAction = DynamicButton.bind({});
+DynamicAction.args = {};
+
+export const CustomSearch = ComboboxCustomSearch.bind({});
+CustomSearch.args = {};
 
 export const CallbackProps = ComboboxCallbackProps.bind({});
 CallbackProps.args = {};
