@@ -917,125 +917,63 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
 
 const ComboboxCallbackProps: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption[]>([]);
-  const [logs, setLogs] = useState<string[]>([]);
-
-  const addLog = (message: string) => {
-    setLogs(prev => [
-      ...prev,
-      `${new Date().toLocaleTimeString()}: ${message}`,
-    ]);
-  };
 
   const handleSelectAll = (selection: ComboboxOption[]) => {
-    addLog(
-      `onSelectAll called with ${selection.length} items: ${selection
-        .map(s => s.label)
-        .join(", ")}`,
+    console.log(
+      "onSelectAll called with:",
+      selection.map(s => s.label),
     );
   };
 
   const handleClear = () => {
-    addLog("onClear called - all items cleared");
+    console.log("onClear called - all items cleared");
   };
 
   const handleOptionClick = (optionLabel: string) => {
-    addLog(`onClick called for option: ${optionLabel}`);
-  };
-
-  const clearLogs = () => {
-    setLogs([]);
+    console.log("onClick called for option:", optionLabel);
   };
 
   return (
-    <div style={{ display: "flex", gap: "24px" }}>
-      <div style={{ flex: 1 }}>
-        <Combobox
-          {...args}
-          multiSelect
-          label="Team Members"
-          onSelect={setSelected}
-          selected={selected}
-          onSelectAll={handleSelectAll}
-          onClear={handleClear}
-        >
-          <Combobox.Option
-            id="1"
-            label="Alice Johnson"
-            onClick={() => handleOptionClick("Alice Johnson")}
-          />
-          <Combobox.Option
-            id="2"
-            label="Bob Smith"
-            onClick={() => handleOptionClick("Bob Smith")}
-          />
-          <Combobox.Option
-            id="3"
-            label="Charlie Brown"
-            onClick={() => handleOptionClick("Charlie Brown")}
-          />
-          <Combobox.Option
-            id="4"
-            label="Diana Prince"
-            onClick={() => handleOptionClick("Diana Prince")}
-          />
-          <Combobox.Option
-            id="5"
-            label="Edward Norton"
-            onClick={() => handleOptionClick("Edward Norton")}
-          />
+    <Combobox
+      {...args}
+      multiSelect
+      label="Team Members"
+      onSelect={setSelected}
+      selected={selected}
+      onSelectAll={handleSelectAll}
+      onClear={handleClear}
+    >
+      <Combobox.Option
+        id="1"
+        label="Alice Johnson"
+        onClick={() => handleOptionClick("Alice Johnson")}
+      />
+      <Combobox.Option
+        id="2"
+        label="Bob Smith"
+        onClick={() => handleOptionClick("Bob Smith")}
+      />
+      <Combobox.Option
+        id="3"
+        label="Charlie Brown"
+        onClick={() => handleOptionClick("Charlie Brown")}
+      />
+      <Combobox.Option
+        id="4"
+        label="Diana Prince"
+        onClick={() => handleOptionClick("Diana Prince")}
+      />
+      <Combobox.Option
+        id="5"
+        label="Edward Norton"
+        onClick={() => handleOptionClick("Edward Norton")}
+      />
 
-          <Combobox.Action
-            label="Add Team Member"
-            onClick={() => addLog("Action: Add Team Member clicked")}
-          />
-        </Combobox>
-      </div>
-
-      <div
-        style={{
-          flex: 1,
-          padding: "16px",
-          backgroundColor: "#f5f5f5",
-          borderRadius: "8px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "16px",
-          }}
-        >
-          <Heading level={3}>Callback Logs</Heading>
-          <Button label="Clear Logs" onClick={clearLogs} size="small" />
-        </div>
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: "12px",
-            borderRadius: "4px",
-            maxHeight: "300px",
-            overflowY: "auto",
-            fontSize: "14px",
-            fontFamily: "monospace",
-          }}
-        >
-          {logs.length === 0 ? (
-            <Text variation="subdued">
-              No callback events yet. Try selecting, clearing, or clicking
-              options.
-            </Text>
-          ) : (
-            logs.map((log, index) => (
-              <div key={index} style={{ marginBottom: "4px" }}>
-                {log}
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-    </div>
+      <Combobox.Action
+        label="Add Team Member"
+        onClick={() => console.log("Action: Add Team Member clicked")}
+      />
+    </Combobox>
   );
 };
 
