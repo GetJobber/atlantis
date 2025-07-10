@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [6.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.65.0...@jobber/components@6.66.0) (2025-07-05)
-
-
-### Features
-
-* **components:** Add additional callbacks to Combobox component ([#TBD](https://github.com/GetJobber/atlantis/issues/TBD)) ([TBD](https://github.com/GetJobber/atlantis/commit/TBD))
-  - Add `onSelectAll` callback prop to Combobox for handling "select all" actions in multiselect mode
-  - Add `onClear` callback prop to Combobox for handling "clear all" actions in multiselect mode
-  - Add `onClick` callback prop to ComboboxOption for handling individual option clicks
-  - Make `onSelect` prop optional
-
 # [6.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.64.0...@jobber/components@6.65.0) (2025-07-04)
 
 
