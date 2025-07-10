@@ -309,10 +309,10 @@
           "name": "(option: Omit<ComboboxOptionProps, \"customRender\"> & { isSelected: boolean; }) => ReactNode"
         }
       },
-      "onClick": {
+      "onOptionClick": {
         "defaultValue": null,
         "description": "Callback function invoked when the option is clicked.",
-        "name": "onClick",
+        "name": "onOptionClick",
         "parent": {
           "fileName": "packages/components/src/Combobox/Combobox.types.ts",
           "name": "ComboboxOptionProps"
