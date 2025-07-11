@@ -7,7 +7,7 @@ import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxOptionProps } from "../../Combobox.types";
 
 export function ComboboxOption(props: ComboboxOptionProps) {
-  const { customRender, onOptionClick, ...contentProps } = props;
+  const { customRender, onClick, ...contentProps } = props;
   const { selected, selectionHandler } = useContext(ComboboxContext);
 
   const isSelected = selected.some(
@@ -24,7 +24,7 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       onClick={() => {
         selectionHandler &&
           selectionHandler({ id: props.id, label: props.label });
-        onOptionClick?.();
+        onClick?.();
       }}
       className={classnames(styles.option)}
     >

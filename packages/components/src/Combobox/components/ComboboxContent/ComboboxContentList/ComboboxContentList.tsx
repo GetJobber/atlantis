@@ -42,7 +42,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
                 label={option.label}
                 prefix={option.prefix}
                 customRender={option.customRender}
-                onOptionClick={option.onOptionClick}
+                onClick={option.onClick}
               />
             );
           })}

@@ -201,20 +201,20 @@ describe("ComboboxOption", () => {
     });
   });
 
-  describe("onOptionClick callback", () => {
+  describe("onClick callback", () => {
     const handleClick = jest.fn();
 
     beforeEach(() => {
       handleClick.mockClear();
     });
 
-    it("should call onOptionClick when the option is clicked", async () => {
+    it("should call onClick when the option is clicked", async () => {
       POM.renderOption({
         id: "1",
         label: "Michael",
         selected: [],
         onSelect,
-        onOptionClick: handleClick,
+        onClick: handleClick,
       });
 
       await userEvent.click(POM.getOption("Michael"));

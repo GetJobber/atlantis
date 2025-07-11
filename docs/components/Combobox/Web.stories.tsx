@@ -946,27 +946,27 @@ const ComboboxCallbackProps: ComponentStory<typeof Combobox> = args => {
       <Combobox.Option
         id="1"
         label="Alice Johnson"
-        onOptionClick={() => handleOptionClick("Alice Johnson")}
+        onClick={() => handleOptionClick("Alice Johnson")}
       />
       <Combobox.Option
         id="2"
         label="Bob Smith"
-        onOptionClick={() => handleOptionClick("Bob Smith")}
+        onClick={() => handleOptionClick("Bob Smith")}
       />
       <Combobox.Option
         id="3"
         label="Charlie Brown"
-        onOptionClick={() => handleOptionClick("Charlie Brown")}
+        onClick={() => handleOptionClick("Charlie Brown")}
       />
       <Combobox.Option
         id="4"
         label="Diana Prince"
-        onOptionClick={() => handleOptionClick("Diana Prince")}
+        onClick={() => handleOptionClick("Diana Prince")}
       />
       <Combobox.Option
         id="5"
         label="Edward Norton"
-        onOptionClick={() => handleOptionClick("Edward Norton")}
+        onClick={() => handleOptionClick("Edward Norton")}
       />
 
       <Combobox.Action
