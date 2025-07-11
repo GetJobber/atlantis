@@ -17,6 +17,8 @@ const OVERLAY_TEST_ID = "ATL-Combobox-Overlay";
 const activatorLabel = "Select a Baggins";
 const handleAction = jest.fn();
 const handleSelect = jest.fn();
+const handleSelectAll = jest.fn();
+const handleClear = jest.fn();
 const mockSelectedValue = jest.fn<ComboboxOption[], []>().mockReturnValue([]);
 const mockMultiSelectValue = jest.fn().mockReturnValue(false);
 const mockOnSearch = jest.fn();
@@ -27,6 +29,8 @@ let user: UserEvent;
 afterEach(() => {
   handleAction.mockClear();
   handleSelect.mockClear();
+  handleSelectAll.mockClear();
+  handleClear.mockClear();
 });
 
 describe("Combobox", () => {
@@ -367,101 +371,91 @@ describe("Combobox Multiselect", () => {
     expect(handleSelect).toHaveBeenCalledWith([]);
   });
 
-  describe("onSelectAll and onClear callbacks", () => {
-    const handleSelectAll = jest.fn();
-    const handleClear = jest.fn();
+  it("should call onSelectAll when clicking Select all", async () => {
+    render(
+      <Combobox
+        label={activatorLabel}
+        multiSelect={true}
+        selected={[]}
+        onSelect={handleSelect}
+        onSelectAll={handleSelectAll}
+        onClear={handleClear}
+      >
+        <Combobox.Option id="1" label="Bilbo Baggins" />
+        <Combobox.Option id="2" label="Frodo Baggins" />
+      </Combobox>,
+    );
 
-    beforeEach(() => {
-      handleSelectAll.mockClear();
-      handleClear.mockClear();
-    });
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.click(screen.getByText("Select all"));
 
-    it("should call onSelectAll when clicking Select all", async () => {
-      render(
-        <Combobox
-          label={activatorLabel}
-          multiSelect={true}
-          selected={[]}
-          onSelect={handleSelect}
-          onSelectAll={handleSelectAll}
-          onClear={handleClear}
-        >
-          <Combobox.Option id="1" label="Bilbo Baggins" />
-          <Combobox.Option id="2" label="Frodo Baggins" />
-        </Combobox>,
-      );
-
-      await userEvent.click(screen.getByRole("combobox"));
-      await userEvent.click(screen.getByText("Select all"));
-
-      expect(handleSelectAll).toHaveBeenCalledTimes(1);
-      expect(handleSelectAll).toHaveBeenCalledWith([
-        { id: "1", label: "Bilbo Baggins" },
-        { id: "2", label: "Frodo Baggins" },
-      ]);
-    });
-
-    it("should call onClear when clicking Clear", async () => {
-      render(
-        <Combobox
-          label={activatorLabel}
-          multiSelect={true}
-          selected={[
-            { id: "1", label: "Bilbo Baggins" },
-            { id: "2", label: "Frodo Baggins" },
-          ]}
-          onSelect={handleSelect}
-          onSelectAll={handleSelectAll}
-          onClear={handleClear}
-        >
-          <Combobox.Option id="1" label="Bilbo Baggins" />
-          <Combobox.Option id="2" label="Frodo Baggins" />
-        </Combobox>,
-      );
-
-      await userEvent.click(screen.getByRole("combobox"));
-      await userEvent.click(screen.getByText("Clear"));
-
-      expect(handleClear).toHaveBeenCalledTimes(1);
-    });
+    expect(handleSelectAll).toHaveBeenCalledTimes(1);
+    expect(handleSelectAll).toHaveBeenCalledWith([
+      { id: "1", label: "Bilbo Baggins" },
+      { id: "2", label: "Frodo Baggins" },
+    ]);
   });
 
-  describe("onClose callback", () => {
-    const handleClose = jest.fn();
+  it("should call onClear when clicking Clear", async () => {
+    render(
+      <Combobox
+        label={activatorLabel}
+        multiSelect={true}
+        selected={[
+          { id: "1", label: "Bilbo Baggins" },
+          { id: "2", label: "Frodo Baggins" },
+        ]}
+        onSelect={handleSelect}
+        onSelectAll={handleSelectAll}
+        onClear={handleClear}
+      >
+        <Combobox.Option id="1" label="Bilbo Baggins" />
+        <Combobox.Option id="2" label="Frodo Baggins" />
+      </Combobox>,
+    );
 
-    beforeEach(() => {
-      handleClose.mockClear();
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.click(screen.getByText("Clear"));
 
-      render(
-        <Combobox
-          label={activatorLabel}
-          multiSelect={true}
-          selected={[]}
-          onSelect={handleSelect}
-          onClose={handleClose}
-          onSearch={mockOnSearch}
-        >
-          <Combobox.Option id="1" label="Bilbo Baggins" />
-          <Combobox.Option id="2" label="Frodo Baggins" />
-          <Combobox.Action label="Add Teammate" onClick={handleAction} />
-        </Combobox>,
-      );
-    });
+    expect(handleClear).toHaveBeenCalledTimes(1);
+  });
+});
 
-    it("should call onClose when the content is closed", async () => {
-      await userEvent.click(screen.getByRole("combobox"));
-      await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
+describe("onClose callback", () => {
+  const handleClose = jest.fn();
 
-      expect(handleClose).toHaveBeenCalledTimes(1);
-    });
+  beforeEach(() => {
+    handleClose.mockClear();
 
-    it("should call onSearch with correct params when closing", async () => {
-      await userEvent.click(screen.getByRole("combobox"));
-      await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
-      expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+    render(
+      <Combobox
+        label={activatorLabel}
+        multiSelect={true}
+        selected={[]}
+        onSelect={handleSelect}
+        onClose={handleClose}
+        onSearch={mockOnSearch}
+      >
+        <Combobox.Option id="1" label="Bilbo Baggins" />
+        <Combobox.Option id="2" label="Frodo Baggins" />
+        <Combobox.Action label="Add Teammate" onClick={handleAction} />
+      </Combobox>,
+    );
+  });
 
-      expect(mockOnSearch).toHaveBeenCalledWith("");
-    });
+  it("should call onClose when the content is closed", async () => {
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
+
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call onSearch with correct params when closing", async () => {
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.click(screen.getByTestId(OVERLAY_TEST_ID));
+    expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+
+    expect(mockOnSearch).toHaveBeenCalledWith("");
   });
 });
 
