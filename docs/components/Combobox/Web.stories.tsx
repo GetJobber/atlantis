@@ -929,8 +929,13 @@ const ComboboxCallbackProps: ComponentStory<typeof Combobox> = args => {
     console.log("onClear called - all items cleared");
   };
 
-  const handleOptionClick = (optionLabel: string) => {
-    console.log("onClick called for option:", optionLabel);
+  const handleOptionClick = (option: ComboboxOption) => {
+    console.log(
+      "onClick called for option:",
+      option.label,
+      "with id:",
+      option.id,
+    );
   };
 
   return (
@@ -946,27 +951,27 @@ const ComboboxCallbackProps: ComponentStory<typeof Combobox> = args => {
       <Combobox.Option
         id="1"
         label="Alice Johnson"
-        onClick={() => handleOptionClick("Alice Johnson")}
+        onClick={option => handleOptionClick(option)}
       />
       <Combobox.Option
         id="2"
         label="Bob Smith"
-        onClick={() => handleOptionClick("Bob Smith")}
+        onClick={option => handleOptionClick(option)}
       />
       <Combobox.Option
         id="3"
         label="Charlie Brown"
-        onClick={() => handleOptionClick("Charlie Brown")}
+        onClick={option => handleOptionClick(option)}
       />
       <Combobox.Option
         id="4"
         label="Diana Prince"
-        onClick={() => handleOptionClick("Diana Prince")}
+        onClick={option => handleOptionClick(option)}
       />
       <Combobox.Option
         id="5"
         label="Edward Norton"
-        onClick={() => handleOptionClick("Edward Norton")}
+        onClick={option => handleOptionClick(option)}
       />
 
       <Combobox.Action

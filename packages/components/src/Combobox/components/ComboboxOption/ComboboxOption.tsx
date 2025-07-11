@@ -24,7 +24,7 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       onClick={() => {
         selectionHandler &&
           selectionHandler({ id: props.id, label: props.label });
-        onClick?.();
+        onClick?.(props);
       }}
       className={classnames(styles.option)}
     >

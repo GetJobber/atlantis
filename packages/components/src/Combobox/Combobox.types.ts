@@ -149,7 +149,7 @@ export interface ComboboxOptionProps {
   /**
    * Callback function invoked when the option is clicked.
    */
-  readonly onClick?: () => void;
+  readonly onClick?: (option: ComboboxOption) => void;
 }
 
 export type ComboboxOption = ComboboxOptionProps;

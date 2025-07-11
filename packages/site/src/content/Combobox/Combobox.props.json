@@ -319,7 +319,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(option: ComboboxOptionProps) => void"
         }
       }
     }

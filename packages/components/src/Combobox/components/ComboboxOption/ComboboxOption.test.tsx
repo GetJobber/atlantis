@@ -220,6 +220,13 @@ describe("ComboboxOption", () => {
       await userEvent.click(POM.getOption("Michael"));
 
       expect(handleClick).toHaveBeenCalledTimes(1);
+      expect(handleClick).toHaveBeenCalledWith({
+        id: "1",
+        label: "Michael",
+        prefix: undefined,
+        customRender: undefined,
+        onClick: handleClick,
+      });
     });
   });
 });
