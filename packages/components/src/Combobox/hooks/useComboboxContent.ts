@@ -4,13 +4,15 @@ import { ComboboxContext } from "../ComboboxProvider";
 
 interface useComboboxContent {
   optionsListRef: React.RefObject<HTMLUListElement>;
+  onClear?: () => void;
+  onSelectAll?: (selection: ComboboxOption[]) => void;
 }
 
 export function useComboboxContent(
   open: boolean,
   selected: ComboboxOption[],
 ): useComboboxContent {
-  const { shouldScroll } = useContext(ComboboxContext);
+  const { onClear, onSelectAll, shouldScroll } = useContext(ComboboxContext);
   const optionsListRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -28,6 +30,8 @@ export function useComboboxContent(
   }, [open, selected]);
 
   return {
+    onClear,
+    onSelectAll,
     optionsListRef,
   };
 }
