@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import classnames from "classnames";
 import { FloatingNode, FloatingPortal, FloatingTree } from "@floating-ui/react";
 import ReactDOM from "react-dom";
@@ -10,12 +10,13 @@ import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 import { ComboboxContentProps } from "../../Combobox.types";
 import { COMBOBOX_MENU_ID } from "../../constants";
-import { ComboboxContext } from "../../ComboboxProvider";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
-  const { optionsListRef } = useComboboxContent(props.open, props.selected);
-  const { onClear, onSelectAll } = useContext(ComboboxContext);
+  const { onClear, onSelectAll, optionsListRef } = useComboboxContent(
+    props.open,
+    props.selected,
+  );
 
   const { popperRef, popperStyles, floatingProps, nodeId, parentNodeId } =
     useComboboxAccessibility(
