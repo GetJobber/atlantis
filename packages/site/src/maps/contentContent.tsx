@@ -1,6 +1,7 @@
 import FormattingDocs from "@atlantis/docs/content/formatting.stories.mdx";
 import ProductVocabularyDocs from "@atlantis/docs/content/product-vocabulary.stories.mdx";
 import VoiceAndToneDocs from "@atlantis/docs/content/voice-and-tone.stories.mdx";
+import NewDocumentFromGeorgeDocs from "@atlantis/docs/content/new-document-from-george.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const contentContentMap: ContentMapItems = {
@@ -18,5 +19,10 @@ export const contentContentMap: ContentMapItems = {
     intro: "Voice & tone",
     title: "Voice & tone",
     content: () => <VoiceAndToneDocs />,
+  },
+  "new-document-from-george": {
+    intro: "New Document from George",
+    title: "New Document from George",
+    content: () => <NewDocumentFromGeorgeDocs />,
   },
 };
