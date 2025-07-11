@@ -915,73 +915,6 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-const ComboboxCallbackProps: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption[]>([]);
-
-  const handleSelectAll = (selection: ComboboxOption[]) => {
-    console.log(
-      "onSelectAll called with:",
-      selection.map(s => s.label),
-    );
-  };
-
-  const handleClear = () => {
-    console.log("onClear called - all items cleared");
-  };
-
-  const handleOptionClick = (option: ComboboxOption) => {
-    console.log(
-      "onClick called for option:",
-      option.label,
-      "with id:",
-      option.id,
-    );
-  };
-
-  return (
-    <Combobox
-      {...args}
-      multiSelect
-      label="Team Members"
-      onSelect={setSelected}
-      selected={selected}
-      onSelectAll={handleSelectAll}
-      onClear={handleClear}
-    >
-      <Combobox.Option
-        id="1"
-        label="Alice Johnson"
-        onClick={option => handleOptionClick(option)}
-      />
-      <Combobox.Option
-        id="2"
-        label="Bob Smith"
-        onClick={option => handleOptionClick(option)}
-      />
-      <Combobox.Option
-        id="3"
-        label="Charlie Brown"
-        onClick={option => handleOptionClick(option)}
-      />
-      <Combobox.Option
-        id="4"
-        label="Diana Prince"
-        onClick={option => handleOptionClick(option)}
-      />
-      <Combobox.Option
-        id="5"
-        label="Edward Norton"
-        onClick={option => handleOptionClick(option)}
-      />
-
-      <Combobox.Action
-        label="Add Team Member"
-        onClick={() => console.log("Action: Add Team Member clicked")}
-      />
-    </Combobox>
-  );
-};
-
 export const CustomRenderOptions = ComboboxCustomRenderOptions.bind({});
 CustomRenderOptions.args = {
   multiSelect: true,
@@ -1013,9 +946,6 @@ DynamicAction.args = {};
 
 export const CustomSearch = ComboboxCustomSearch.bind({});
 CustomSearch.args = {};
-
-export const CallbackProps = ComboboxCallbackProps.bind({});
-CallbackProps.args = {};
 
 export const InfiniteScroll = ComboboxInfiniteScroll.bind({});
 InfiniteScroll.args = {};
