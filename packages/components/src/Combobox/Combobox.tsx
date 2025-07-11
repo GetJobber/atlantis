@@ -17,11 +17,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   const options = useMemo(
     () =>
       optionElements?.map(option => ({
-        id: option.props.id,
-        label: option.props.label,
-        prefix: option.props.prefix,
-        customRender: option.props.customRender,
-        onClick: option.props.onClick,
+        ...option.props,
       })) || [],
     [optionElements],
   );
