@@ -62,7 +62,7 @@
       },
       "onSelectAll": {
         "defaultValue": null,
-        "description": "Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.",
+        "description": "Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.\nThis is only available when `multiSelect` is `true`.",
         "name": "onSelectAll",
         "parent": {
           "fileName": "packages/components/src/Combobox/Combobox.types.ts",
@@ -75,7 +75,7 @@
       },
       "onClear": {
         "defaultValue": null,
-        "description": "Callback function invoked upon the clearing of all options.",
+        "description": "Callback function invoked upon the clearing of all options.\nThis is only available when `multiSelect` is `true`.",
         "name": "onClear",
         "parent": {
           "fileName": "packages/components/src/Combobox/Combobox.types.ts",
