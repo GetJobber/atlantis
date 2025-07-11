@@ -13,6 +13,7 @@ import { PopoverProps } from "./Popover.types";
 
 const POPOVER_OFFSET = 10;
 const POPOVER_SHIFT_PADDING = 8;
+const POPOVER_ARROW_PADDING = 6;
 
 export const usePopover = ({
   preferredPlacement,
@@ -45,6 +46,7 @@ export const usePopover = ({
       placementMiddleware,
       arrow({
         element: arrowElement || null,
+        padding: POPOVER_ARROW_PADDING,
       }),
     ];
   }, [arrowElement, preferredPlacement]);
