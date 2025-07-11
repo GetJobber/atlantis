@@ -22,8 +22,7 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       role="option"
       aria-selected={isSelected}
       onClick={() => {
-        selectionHandler &&
-          selectionHandler({ id: props.id, label: props.label });
+        selectionHandler?.({ id: props.id, label: props.label });
         onClick?.(props);
       }}
       className={classnames(styles.option)}
