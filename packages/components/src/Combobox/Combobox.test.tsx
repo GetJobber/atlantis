@@ -589,6 +589,39 @@ describe("Infinite scroll", () => {
   });
 });
 
+describe("ComboboxOption onClick", () => {
+  const handleOptionClick = jest.fn();
+
+  beforeEach(() => {
+    handleOptionClick.mockClear();
+  });
+
+  it("should call onClick when an option is clicked", async () => {
+    render(
+      <Combobox label={activatorLabel} selected={[]} onSelect={handleSelect}>
+        <Combobox.Option
+          id="1"
+          label="Bilbo Baggins"
+          onClick={handleOptionClick}
+        />
+        <Combobox.Option id="2" label="Frodo Baggins" />
+      </Combobox>,
+    );
+
+    await userEvent.click(screen.getByRole("combobox"));
+    await userEvent.click(screen.getByText("Bilbo Baggins"));
+
+    expect(handleOptionClick).toHaveBeenCalledTimes(1);
+    expect(handleOptionClick).toHaveBeenCalledWith({
+      id: "1",
+      label: "Bilbo Baggins",
+      prefix: undefined,
+      customRender: undefined,
+      onClick: handleOptionClick,
+    });
+  });
+});
+
 function renderCustomOnSearchCombobox(
   loading: boolean,
   renderWithoutOptions = false,
