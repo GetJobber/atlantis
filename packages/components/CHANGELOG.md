@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.65.0...@jobber/components@6.66.0) (2025-07-11)
+
+
+### Features
+
+* **components:** Popover implementation using floating-ui ([#2610](https://github.com/GetJobber/atlantis/issues/2610)) ([872f17f](https://github.com/GetJobber/atlantis/commit/872f17f86de9aab61401251c2227238d61ee1afc))
+
+
+
+
+
 # [6.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.64.0...@jobber/components@6.65.0) (2025-07-04)
 
 
