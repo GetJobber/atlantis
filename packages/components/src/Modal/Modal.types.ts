@@ -3,6 +3,7 @@ import {
   ExtendedRefs,
   FloatingContext,
   ReferenceType,
+  UseInteractionsReturn,
 } from "@floating-ui/react";
 import { XOR } from "ts-xor";
 import sizes from "./ModalSizes.module.css";
@@ -74,6 +75,11 @@ export interface ModalContextType {
    * @default "ATL-Modal-Header"
    */
   readonly modalLabelledBy?: string;
+
+  /**
+   * Floating-ui props to position the modal.
+   */
+  readonly getFloatingProps: UseInteractionsReturn["getFloatingProps"];
 }
 
 export interface ModalActionsProps {

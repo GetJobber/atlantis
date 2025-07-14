@@ -18,7 +18,7 @@ export const VisualTestListPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>List Examples</Heading>
+        <Heading level={3}>List Examples</Heading>
 
         <Stack gap="large">
           {/* Basic List */}

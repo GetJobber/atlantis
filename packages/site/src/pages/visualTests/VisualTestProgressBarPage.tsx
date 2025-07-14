@@ -11,7 +11,7 @@ export const VisualTestProgressBarPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>ProgressBar Examples</Heading>
+        <Heading level={3}>ProgressBar Examples</Heading>
 
         <Stack gap="large">
           {/* Base Progress Bar */}

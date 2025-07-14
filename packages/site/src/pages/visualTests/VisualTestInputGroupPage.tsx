@@ -12,7 +12,7 @@ export const VisualTestInputGroupPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InputGroup Examples</Heading>
+        <Heading level={3}>InputGroup Examples</Heading>
 
         <Stack gap="large">
           {/* Vertical InputGroup */}

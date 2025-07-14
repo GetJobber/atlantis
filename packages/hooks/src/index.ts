@@ -14,4 +14,5 @@ export * from "./useRefocusOnActivator";
 export * from "./useResizeObserver";
 export * from "./useSafeLayoutEffect";
 export * from "./useShowClear";
+export * from "./useStepper";
 export * from "./useWindowDimensions";

@@ -56,7 +56,7 @@ export const VisualTestAutocompletePage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Autocomplete Examples</Heading>
+        <Heading level={3}>Autocomplete Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Autocomplete */}

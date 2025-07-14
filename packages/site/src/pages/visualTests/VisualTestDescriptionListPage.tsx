@@ -89,7 +89,7 @@ export const VisualTestDescriptionListPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>DescriptionList Examples</Heading>
+        <Heading level={3}>DescriptionList Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Example */}

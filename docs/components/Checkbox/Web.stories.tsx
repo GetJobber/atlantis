@@ -22,6 +22,22 @@ const BasicTemplate: ComponentStory<typeof Checkbox> = args => {
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   label: "Save card for future use",
+  name: "save-card",
+};
+
+const Invalid_v2Template: ComponentStory<typeof Checkbox> = args => {
+  const [checked, setChecked] = useState(true);
+
+  return <Checkbox {...args} checked={checked} onChange={setChecked} />;
+};
+
+export const Invalid_v2 = Invalid_v2Template.bind({});
+Invalid_v2.args = {
+  label: "Invalid checkbox (requires version 2 prop)",
+  invalid: true,
+  indeterminate: false,
+  disabled: false,
+  version: 2,
 };
 
 const IndeterminateTemplate: ComponentStory<typeof Checkbox> = () => {

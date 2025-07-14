@@ -8,7 +8,7 @@ export const VisualTestInputTextPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>InputText Examples</Heading>
+        <Heading level={3}>InputText Examples</Heading>
 
         <Stack gap="large">
           {/* Basic InputText */}

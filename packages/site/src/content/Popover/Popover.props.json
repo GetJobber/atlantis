@@ -110,7 +110,7 @@
     "props": {
       "preferredPlacement": {
         "defaultValue": {
-          "value": "'auto'"
+          "value": "auto"
         },
         "description": "Describes the preferred placement of the Popover.",
         "name": "preferredPlacement",

@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.2...@jobber/design@0.81.0) (2025-07-09)
+
+
+### Features
+
+* **design:** Adds four new icons to our existing icon component [JOB-128112] ([#2613](https://github.com/GetJobber/atlantis/issues/2613)) ([6213997](https://github.com/GetJobber/atlantis/commit/62139979b99b19fa47f85507040a0bf6f28201da))
+
+
+
+
+
+## [0.80.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.1...@jobber/design@0.80.2) (2025-06-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.80.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.0...@jobber/design@0.80.1) (2025-05-27)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.79.0...@jobber/design@0.80.0) (2025-05-15)
+
+
+### Features
+
+* **components:** Support iconColor on Menu actions ([#2555](https://github.com/GetJobber/atlantis/issues/2555)) ([806775a](https://github.com/GetJobber/atlantis/commit/806775a925e35e2f8d0e088bb8335edd828f063f))
+
+
+
+
+
 # [0.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.78.0...@jobber/design@0.79.0) (2025-05-08)
 
 
