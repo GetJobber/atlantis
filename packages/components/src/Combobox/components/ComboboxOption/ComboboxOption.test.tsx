@@ -223,9 +223,6 @@ describe("ComboboxOption", () => {
       expect(handleClick).toHaveBeenCalledWith({
         id: "1",
         label: "Michael",
-        prefix: undefined,
-        customRender: undefined,
-        onClick: handleClick,
       });
     });
   });

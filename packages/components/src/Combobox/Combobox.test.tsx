@@ -615,9 +615,6 @@ describe("ComboboxOption onClick", () => {
     expect(handleOptionClick).toHaveBeenCalledWith({
       id: "1",
       label: "Bilbo Baggins",
-      prefix: undefined,
-      customRender: undefined,
-      onClick: handleOptionClick,
     });
   });
 });

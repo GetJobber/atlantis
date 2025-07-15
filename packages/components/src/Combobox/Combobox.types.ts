@@ -27,13 +27,13 @@ export interface ComboboxProps {
   /**
    * Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.
    */
-  readonly onSelect: (selection: ComboboxOption[]) => void;
+  readonly onSelect: (selection: ComboboxSelection[]) => void;
 
   /**
    * Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.
    * This is only available when `multiSelect` is `true`.
    */
-  readonly onSelectAll?: (selection: ComboboxOption[]) => void;
+  readonly onSelectAll?: (selection: ComboboxSelection[]) => void;
 
   /**
    * Callback function invoked upon the clearing of all options.
@@ -155,6 +155,8 @@ export interface ComboboxOptionProps {
 }
 
 export type ComboboxOption = ComboboxOptionProps;
+
+export type ComboboxSelection = Pick<ComboboxOptionProps, "id" | "label">;
 
 export interface ComboboxContentProps {
   /**

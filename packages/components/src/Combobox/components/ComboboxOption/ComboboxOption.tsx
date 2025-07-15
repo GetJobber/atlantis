@@ -14,6 +14,12 @@ export function ComboboxOption(props: ComboboxOptionProps) {
     selection => selection.id.toString() === props.id.toString(),
   );
 
+  const handleClick = () => {
+    const { id, label } = props;
+    selectionHandler?.({ id, label });
+    onClick?.({ id, label });
+  };
+
   return (
     <li
       key={props.id}
@@ -21,10 +27,7 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       data-selected={isSelected}
       role="option"
       aria-selected={isSelected}
-      onClick={() => {
-        selectionHandler?.({ id: props.id, label: props.label });
-        onClick?.(props);
-      }}
+      onClick={handleClick}
       className={classnames(styles.option)}
     >
       {customRender ? (
