@@ -11,57 +11,44 @@ import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
 import {
   AnyOption,
-  AutocompleteLegacyProps,
+  AutocompleteRebuiltProps,
   Option,
 } from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
 import { InputText, InputTextRef } from "../InputText";
-import { useDebounce } from "../utils/useDebounce";
 import { mergeRefs } from "../utils/mergeRefs";
 
-// Max statements increased to make room for the debounce functions
-// eslint-disable-next-line max-statements
-function AutocompleteInternal<
+function AutocompleteRebuiltInternal<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
   GenericGetOptionsValue extends AnyOption = AnyOption,
 >(
   {
-    initialOptions = [],
     value,
     allowFreeForm = true,
     size = undefined,
-    debounce: debounceRate = 300,
     onChange,
-    getOptions,
     placeholder,
     onBlur,
     onFocus,
-    validations,
+    options,
+    error,
+    onInputChange,
     customRenderMenu,
+    // this spreading is somewhat risky
     ...inputProps
-  }: AutocompleteLegacyProps<
+  }: AutocompleteRebuiltProps<
     GenericOption,
     GenericOptionValue,
     GenericGetOptionsValue
   >,
   ref: Ref<InputTextRef>,
 ) {
-  const initialOptionsMemo = useMemo(
-    () => mapToOptions(initialOptions),
-    [initialOptions],
-  );
-  const [options, setOptions] =
-    useState<Array<GenericOption | GenericGetOptionsValue>>(initialOptionsMemo);
   const [inputFocused, setInputFocused] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
   const autocompleteRef = useRef(null);
-  const delayedSearch = useDebounce(updateSearch, debounceRate);
   const inputRef = useRef<InputTextRef | null>(null);
-
-  useEffect(() => {
-    delayedSearch();
-  }, [inputText]);
+  const mappedOptions = useMemo(() => mapToOptions(options), [options]);
 
   useEffect(() => {
     updateInput(value?.label ?? "");
@@ -71,21 +58,21 @@ function AutocompleteInternal<
     <div className={styles.autocomplete} ref={autocompleteRef}>
       <InputText
         ref={mergeRefs([ref, inputRef])}
-        autocomplete={false}
+        autoComplete="off"
         size={size}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        validations={validations}
+        error={error}
         {...inputProps}
       />
       <Menu
         attachTo={autocompleteRef}
         inputRef={inputRef}
         inputFocused={inputFocused}
-        options={options}
+        options={mappedOptions}
         customRenderMenu={customRenderMenu}
         selectedOption={value}
         onOptionSelect={handleMenuChange}
@@ -95,19 +82,6 @@ function AutocompleteInternal<
 
   function updateInput(newText: string) {
     setInputText(newText);
-
-    if (newText === "") {
-      setOptions(mapToOptions(initialOptions));
-    }
-  }
-
-  async function updateSearch() {
-    const updatedOptions = await getOptions(inputText);
-    const filteredOptions = updatedOptions.filter(option =>
-      isOptionGroup(option) ? option.options.length > 0 : true,
-    );
-
-    setOptions(mapToOptions(filteredOptions));
   }
 
   function handleMenuChange(chosenOption?: GenericOptionValue) {
@@ -118,19 +92,36 @@ function AutocompleteInternal<
 
   function handleInputChange(newText: string) {
     updateInput(newText);
-
-    if (allowFreeForm) {
-      onChange({ label: newText } as GenericOptionValue);
-    }
+    // Is it right to call onChange here?
+    // We don't know if this is a selection yet
+    // it might be freeform e.g SomethingNew
+    // or at this point it might be Happy Bir
+    // and part of a search term
+    onInputChange?.(newText);
   }
 
   function handleInputBlur() {
     setInputFocused(false);
 
-    if (value == undefined || value.label !== inputText) {
+    // clear the input because it's not real
+    // this must happen every time
+    if (!allowFreeForm) {
       setInputText("");
-      onChange(undefined);
+
+      // if we don't allow free form, then.....
+      // and we don't have value, say we got nothing.
+      // though does this timinig work? if onChange is what would set the value, it won't be able to be called
+      // ah right, so the way I did this in the other one is that if we have something highlighted, unless a prop that says not to do this is present, we will
+      // use that highlighted value as the value
+      // if nothing is highlighted, then yes we say nothing was chosen
+      if (!value) {
+        onChange(undefined);
+      }
+    } else {
+      // if we allow freeform, then we can inform the consumer of onChange with the current text value
+      onChange({ label: inputText } as GenericOptionValue);
     }
+
     onBlur && onBlur();
   }
 
@@ -160,15 +151,15 @@ function mapToOptions<GenericOption extends AnyOption = AnyOption>(
 }
 
 // Casts the Generics to the forward ref so autocomplete works as expected for consumers
-export const Autocomplete = forwardRef(AutocompleteInternal) as <
+export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
   GenericGetOptionsValue extends AnyOption = AnyOption,
 >(
-  props: AutocompleteLegacyProps<
+  props: AutocompleteRebuiltProps<
     GenericOption,
     GenericOptionValue,
     GenericGetOptionsValue
   > &
     RefAttributes<InputTextRef>,
-) => ReturnType<typeof AutocompleteInternal>;
+) => ReturnType<typeof AutocompleteRebuiltInternal>;

@@ -60,33 +60,36 @@ const defaultOptions = [
 // are not undefined in the code preview
 
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const basicOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
+  const [options, setOptions] = useState<Option[]>(defaultOptions);
 
   return (
     <Autocomplete
-      {...args}
+      options={options}
       value={value}
-      onChange={newValue => setValue(newValue)}
-      getOptions={getOptions}
-      validations={{
-        maxLength: 255,
-        required: {
-          value: true,
-          message: "This is a required field",
-        },
+      allowFreeForm={false}
+      placeholder="Search for something"
+      onChange={newValue => {
+        console.log("newValue", newValue);
+        if (newValue) {
+          setValue(newValue);
+        } else {
+          setValue(undefined);
+          setOptions(defaultOptions);
+        }
       }}
+      onInputChange={searchTerm => {
+        const filterRegex = new RegExp(searchTerm, "i");
+        setOptions(
+          defaultOptions.filter(option =>
+            option.label.match(filterRegex),
+          ),
+        );
+      }}
+      version={2}
     />
   );
 
-  function getOptions(text: string) {
-    if (text === "") {
-      return basicOptions;
-    }
-    const filterRegex = new RegExp(text, "i");
-
-    return basicOptions.filter(option => option.label.match(filterRegex));
-  }
 };
 
 const withDetailsOptions = [
