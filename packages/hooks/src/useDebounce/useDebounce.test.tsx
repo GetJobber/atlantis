@@ -218,7 +218,7 @@ describe("useDebounce", () => {
     });
 
     expect(debouncedValue.textContent).toBe("test");
-  }, 10000);
+  }, 10_000);
 
   it("should properly handle options object with maxWait in component", async () => {
     function DebouncedMaxWaitComponent() {
