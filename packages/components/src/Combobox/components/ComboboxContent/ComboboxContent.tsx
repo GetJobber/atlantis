@@ -13,7 +13,10 @@ import { COMBOBOX_MENU_ID } from "../../constants";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
-  const { optionsListRef } = useComboboxContent(props.open, props.selected);
+  const { onClear, onSelectAll, optionsListRef } = useComboboxContent(
+    props.open,
+    props.selected,
+  );
 
   const { popperRef, popperStyles, floatingProps, nodeId, parentNodeId } =
     useComboboxAccessibility(
@@ -52,9 +55,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           selectedCount={props.selected.length}
           onClearAll={() => {
             props.selectedStateSetter([]);
+            onClear?.();
           }}
           onSelectAll={() => {
             props.selectedStateSetter(props.options);
+            onSelectAll?.(props.options);
           }}
         />
       )}
