@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.67.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.66.0...@jobber/components@6.67.0) (2025-07-16)
+
+
+### Features
+
+* **components:** add onSelectAll, onClear and onClick callbacks to Combobox ([#2615](https://github.com/GetJobber/atlantis/issues/2615)) ([88e7f02](https://github.com/GetJobber/atlantis/commit/88e7f020ad2499509e949af7d05449e420b2116c))
+
+
+
+
+
 # [6.66.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.65.0...@jobber/components@6.66.0) (2025-07-11)
 
 
