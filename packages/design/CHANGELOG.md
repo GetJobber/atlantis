@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.81.0...@jobber/design@0.82.0) (2025-07-16)
+
+
+### Features
+
+* **design:** Adding a new circle icon ([#2616](https://github.com/GetJobber/atlantis/issues/2616)) ([a6f71d3](https://github.com/GetJobber/atlantis/commit/a6f71d3cca81675f940d6c0c6eec2695aa9b06ee))
+
+
+
+
+
 # [0.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.2...@jobber/design@0.81.0) (2025-07-09)
 
 
