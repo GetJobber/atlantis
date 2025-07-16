@@ -1,11 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
-import {
-  act,
-  fireEvent,
-  render,
-  renderHook,
-  screen,
-} from "@testing-library/react";
+import { act, render, renderHook, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { useDebounce } from "./useDebounce";
 
 const DEBOUNCE_WAIT = 300;
@@ -151,15 +146,19 @@ describe("useDebounce", () => {
     expect(mockFn).toHaveBeenCalledWith("second");
   });
 
-  it("should not recreate debounced function when options object is memoized", () => {
+  // We're repeating some typing actions making it a long test, refactoring isn't valuable
+  // eslint-disable-next-line max-statements
+  it("should not recreate debounced function when options object is memoized", async () => {
     render(<MemoizedOptionsComponent />);
 
     const input = screen.getByTestId("input");
     const calls = screen.getByTestId("calls");
 
-    fireEvent.change(input, { target: { value: "a" } });
-    fireEvent.change(input, { target: { value: "ab" } });
-    fireEvent.change(input, { target: { value: "abc" } });
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+
+    // Type a complete string instead of individual characters
+    await user.clear(input);
+    await user.type(input, "abc");
 
     expect(calls.textContent).toBe("");
 
@@ -169,7 +168,8 @@ describe("useDebounce", () => {
 
     expect(calls.textContent).toBe("abc");
 
-    fireEvent.change(input, { target: { value: "abcd" } });
+    await user.clear(input);
+    await user.type(input, "abcd");
 
     act(() => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
@@ -208,8 +208,8 @@ describe("useDebounce", () => {
     const input = screen.getByTestId("input") as HTMLInputElement;
     const debouncedValue = screen.getByTestId("debounced-value");
 
-    // Using fireEvent instead of userEvent for simplicity
-    fireEvent.change(input, { target: { value: "test" } });
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    await user.type(input, "test");
 
     expect(debouncedValue.textContent).toBe("");
 
@@ -220,7 +220,7 @@ describe("useDebounce", () => {
     expect(debouncedValue.textContent).toBe("test");
   }, 10000);
 
-  it("should properly handle options object with maxWait in component", () => {
+  it("should properly handle options object with maxWait in component", async () => {
     function DebouncedMaxWaitComponent() {
       const [count, setCount] = useState(0);
       const [debouncedCount, setDebouncedCount] = useState(0);
@@ -259,9 +259,10 @@ describe("useDebounce", () => {
     const incrementButton = screen.getByTestId("increment");
     const debouncedCount = screen.getByTestId("debounced-count");
 
-    fireEvent.click(incrementButton);
-    fireEvent.click(incrementButton);
-    fireEvent.click(incrementButton);
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+    await user.click(incrementButton);
+    await user.click(incrementButton);
+    await user.click(incrementButton);
 
     expect(debouncedCount.textContent).toBe("0");
 
