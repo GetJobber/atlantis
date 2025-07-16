@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   act,
   fireEvent,
@@ -9,6 +9,34 @@ import {
 import { useDebounce } from "./useDebounce";
 
 const DEBOUNCE_WAIT = 300;
+
+function MemoizedOptionsComponent() {
+  const [inputValue, setInputValue] = useState("");
+  const [calls, setCalls] = useState<string[]>([]);
+
+  const options = useMemo(() => ({ maxWait: 1000 }), []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    debouncedFunction(newValue);
+  };
+
+  const debouncedFunction = useDebounce(
+    (value: string) => {
+      setCalls(prev => [...prev, value]);
+    },
+    DEBOUNCE_WAIT,
+    options,
+  );
+
+  return (
+    <div>
+      <input data-testid="input" value={inputValue} onChange={handleChange} />
+      <div data-testid="calls">{calls.join(",")}</div>
+    </div>
+  );
+}
 
 describe("useDebounce", () => {
   beforeEach(() => {
@@ -26,7 +54,6 @@ describe("useDebounce", () => {
     result.current("test");
     expect(mockFn).not.toHaveBeenCalled();
 
-    // Fast-forward time
     act(() => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
@@ -44,7 +71,6 @@ describe("useDebounce", () => {
     result.current("test");
     unmount();
 
-    // Fast-forward time
     act(() => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
@@ -58,20 +84,98 @@ describe("useDebounce", () => {
 
     result.current("first");
 
-    // Fast-forward half the debounce time
     act(() => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT / 2);
     });
 
     result.current("second");
 
-    // Fast-forward remaining debounce time
     act(() => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
 
     expect(mockFn).toHaveBeenCalledTimes(1);
     expect(mockFn).toHaveBeenCalledWith("second");
+  });
+
+  it("should work with options as a regular JS object", () => {
+    const mockFn = jest.fn();
+    const options = { leading: true, trailing: false };
+
+    const { result } = renderHook(() =>
+      useDebounce(mockFn, DEBOUNCE_WAIT, options),
+    );
+
+    // First call should execute immediately due to leading: true
+    result.current("test");
+    expect(mockFn).toHaveBeenCalledWith("test");
+    expect(mockFn).toHaveBeenCalledTimes(1);
+
+    // Reset mock to check trailing behavior
+    mockFn.mockReset();
+
+    result.current("test2");
+
+    // Should NOT be called immediately again because we're still within the debounce period
+    expect(mockFn).not.toHaveBeenCalled();
+
+    act(() => {
+      jest.advanceTimersByTime(DEBOUNCE_WAIT);
+    });
+
+    // No additional calls due to trailing: false
+    expect(mockFn).toHaveBeenCalledTimes(0);
+  });
+
+  it("should recreate debounced function when options object reference changes", () => {
+    const mockFn = jest.fn();
+
+    // Use a function that returns a new options object each time
+    const { result, rerender } = renderHook(
+      ({ options }) => useDebounce(mockFn, DEBOUNCE_WAIT, options),
+      { initialProps: { options: { maxWait: 1000 } } },
+    );
+
+    result.current("first");
+
+    rerender({ options: { maxWait: 1000 } });
+
+    result.current("second");
+
+    act(() => {
+      jest.advanceTimersByTime(DEBOUNCE_WAIT);
+    });
+
+    expect(mockFn).toHaveBeenCalledTimes(1);
+
+    expect(mockFn).toHaveBeenCalledWith("second");
+  });
+
+  it("should not recreate debounced function when options object is memoized", () => {
+    render(<MemoizedOptionsComponent />);
+
+    const input = screen.getByTestId("input");
+    const calls = screen.getByTestId("calls");
+
+    fireEvent.change(input, { target: { value: "a" } });
+    fireEvent.change(input, { target: { value: "ab" } });
+    fireEvent.change(input, { target: { value: "abc" } });
+
+    expect(calls.textContent).toBe("");
+
+    act(() => {
+      jest.advanceTimersByTime(DEBOUNCE_WAIT);
+    });
+
+    expect(calls.textContent).toBe("abc");
+
+    fireEvent.change(input, { target: { value: "abcd" } });
+
+    act(() => {
+      jest.advanceTimersByTime(DEBOUNCE_WAIT);
+    });
+
+    expect(calls.textContent).toBe("abc,abcd");
   });
 
   it("should work with React components", async () => {
@@ -104,16 +208,67 @@ describe("useDebounce", () => {
     const input = screen.getByTestId("input") as HTMLInputElement;
     const debouncedValue = screen.getByTestId("debounced-value");
 
-    // Using fireEvent instead of userEvent
+    // Using fireEvent instead of userEvent for simplicity
     fireEvent.change(input, { target: { value: "test" } });
 
     expect(debouncedValue.textContent).toBe("");
 
-    // Fast-forward time
     act(() => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT + 100);
     });
 
     expect(debouncedValue.textContent).toBe("test");
-  }, 10000); // 10 second timeout
+  }, 10000);
+
+  it("should properly handle options object with maxWait in component", () => {
+    function DebouncedMaxWaitComponent() {
+      const [count, setCount] = useState(0);
+      const [debouncedCount, setDebouncedCount] = useState(0);
+
+      const options = { maxWait: 1000 };
+
+      const debouncedSetCount = useDebounce(
+        (value: number) => {
+          setDebouncedCount(value);
+        },
+        DEBOUNCE_WAIT,
+        options,
+      );
+
+      return (
+        <div>
+          <button
+            data-testid="increment"
+            onClick={() => {
+              const newCount = count + 1;
+              setCount(newCount);
+              debouncedSetCount(newCount);
+            }}
+            type="button"
+          >
+            Increment
+          </button>
+          <div data-testid="count">{count}</div>
+          <div data-testid="debounced-count">{debouncedCount}</div>
+        </div>
+      );
+    }
+
+    render(<DebouncedMaxWaitComponent />);
+
+    const incrementButton = screen.getByTestId("increment");
+    const debouncedCount = screen.getByTestId("debounced-count");
+
+    fireEvent.click(incrementButton);
+    fireEvent.click(incrementButton);
+    fireEvent.click(incrementButton);
+
+    expect(debouncedCount.textContent).toBe("0");
+
+    act(() => {
+      jest.advanceTimersByTime(DEBOUNCE_WAIT);
+    });
+
+    expect(debouncedCount.textContent).toBe("3");
+  });
 });

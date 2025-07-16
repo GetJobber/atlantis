@@ -19,13 +19,18 @@ export function useDebounce<T extends AnyFunction>(
 ) {
   const funcRef = useCallbackRef(func);
 
+  // Note: do not add additional dependencies! There is currently no use case where we would change
+  // the wait delay or options between renders. By not tracking as dependencies, this allows
+  // consumers of useDebounce to provide a raw object for options rather than forcing them to
+  // memoize that param. Same with the func they provide, we're using a ref to keep that up
+  // to date and to avoid forcing the consumer to memoize it.
   const debounced = useMemo(() => {
     return debounce(
       (...args: Parameters<T>) => funcRef(...args),
       wait,
       options,
     );
-  }, [funcRef, wait, options]);
+  }, [funcRef]);
 
   useEffect(() => {
     // If the debounced function is recreated (or unmounted), cancel the last call.
