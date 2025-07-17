@@ -6,59 +6,71 @@ import { Icon } from "@jobber/components/Icon";
 
 <Meta title="Components/Status and Feedback/Banner" />
 
-Banners provide information about important changes, persistent conditions, and
-system errors. They're positioned at the top of the screen or near the content
-they reference and are persistent until dismissed or the issue is resolved.
+## Summary
 
-## Design & usage guidelines
+Banners are persistent messages used to communicate important changes, ongoing conditions, or
+system errors. They appear at the top of a screen or near related content and remain visible
+until dismissed or the condition is resolved.
 
-### Layout and alignment
+At Jobber, Banners help service providers (SPs) stay informed about updates that impact their
+business, without unnecessarily interrupting their flow. 
 
-Banner should align to the left and right of the content it is related to.
+## Anatomy
 
-When using a Banner within a modal or a page layout, this means Banner should
-align with the text, inputs or other UI elements beneath it. For best results,
-use [Content](/components/Content) to ensure consistent vertical spacing between
-Banner and adjacent elements.
+A Banner typically includes:
 
-#### "Global" Banner (web)
+<ul>
+  <li> Icon (optional): Adds visual context, usually for warning or error types </li>
+  <li> Message text: 1–2 clear, concise sentences </li>
+  <li> CTA or link (optional): For related action </li>
+  <li> Dismiss button (optional): For SP-controlled removal </li>
+</ul>
 
-If the Banner is being used as a system-wide message or some other context which
-is outside of the main application layout, it should take up the full available
-width.
+## Behaviour
 
-#### "Global" Banner (mobile)
+- Alignment: Banner should align with the left and right of the content it relates to. In a
+modal or page layout, this means aligning with text, inputs, or other components beneath it.
+Use the use [Content](/components/Content) to ensure consistent vertical spacing between
+the Banner and adjacent elements.
 
-If the Banner is used to display a system-wide message, or a message that
-applies to a broader context than just a specific view/function, it should be
-positioned directly beneath the Status Bar and above the Navigation Header, and
-be flush with the edges of the screen.
+- Dismissal: Banners remain visible until they are dismissed or the condition resolves. Include
+a dismiss button only when no further user action is required.
 
-### Types of Banner
+#### Global Banner (Web) 
+If the Banner is used as a system-wide message or outside of the main
+layout, it should span the full available width.
+
+#### Global Banner (Mobile)
+Use for system-wide messages that apply beyond a specific view or function. 
+It should be positioned directly beneath the status bar and above the navigation header, flush with the
+screen edges.
+
+## Variants
 
 Banners come in four types; `success`, `notice`, `warning` and `error`. Each
 type has guidelines for usage:
 
-### Success message (Web only)
+### Success (Web only)
 
 <Canvas>
-  <Banner type="success">Account details updated</Banner>
+  <Banner type="success">You've connected your bank account and can start receiving payouts.</Banner>
 </Canvas>
 
 Success banners are appropriate when:
 
 <ul>
-  <li>success feedback had a call to action</li>
-  <li>success feedback is delayed</li>
+  <li>A meaningful user action is complete and feedback is delayed or needs to persist</li>
+  <li>It’s important for SPs to understand that a key change has been applied</li>
 </ul>
 
 Otherwise, use [Toast](/components/Toast) as the default for success messages.
+Do not use the term "Success" when writing a success banner.
 
-#### Success messages (mobile)
+#### Success (mobile)
 
 On mobile, use [Toast](/components/Toast) for a success message.
 
-### Notice message
+### Notice
 
 <Canvas>
   <Banner type="notice">Your visits are being scheduled</Banner>
@@ -67,16 +79,15 @@ On mobile, use [Toast](/components/Toast) for a success message.
 Use notice banners to provide information about:
 
 <ul>
-  <li>new functionality</li>
-  <li>background operations</li>
-  <li>general non-blocking advice</li>
-  <li>maintenance or outage notices</li>
+  <li>Informing SPs of background operations such as visits being scheduled</li>
+  <li>Communicating new features or non-blocking advice</li>
+  <li>Maintenance windows or known system states</li>
 </ul>
 
 Notices should get to the point and inform the user about why the functionality
-or change is important if the context is not provided elsewhere.
+or change is important, especially if the impact isn't obvious.
 
-### Warning message
+### Warning
 
 <Canvas>
   <Banner type="warning">
@@ -87,23 +98,36 @@ or change is important if the context is not provided elsewhere.
 Use warning banners when:
 
 <ul>
-  <li>an action could have unseen consequences</li>
-  <li>additional action has to be taken by the user</li>
+  <li>An SPs action may cause unintended effects or a system state change</li>
+  <li>Additional action has to be taken by the SP</li>
 </ul>
 
 Warning messages should be one to two short sentences that describe the possibly
-unknown impact a user's changes or actions will have. They should not begin with
-"Warning:" and should not be used as a way to block or redirect a workflow.
+unknown impact changes or actions will have.
+
+They should not use "alarmist" language such as start with "Warning" and should
+avoid exclamation points. Additionally, they should not be used as a way of
+blocking or redirecting a workflow.
+
+#### Warning banner vs. Confirmation modal
 
 On web, you should use [ConfirmationModal](/components/ConfirmationModal) when
-you need to get explicit confirmation from the user before they complete an
+you need to get explicit confirmation from the SP before they complete an
 action that is difficult to reverse.
+
+| Use a **Warning Banner** when...                     | Use a **Confirmation Modal** when...                   |
+|------------------------------------------------------|--------------------------------------------------------|
+| You’re communicating a persistent or upcoming state  | You need to confirm intent before proceeding           |
+| The SP needs to act, but isn’t initiating the risk   | The SP is triggering a high-impact change              |
+| The risk persists until resolved (e.g. paused plan)  | The action could disrupt billing, payments, or data    |
+| You want the message visible across sessions         | You want to keep context to current action             |
+| The SP may need time to decide or follow up          | The SP must make a choice before continuing            |
 
 ### Error message
 
 <Canvas>
   <Banner type="error" icon="alert">
-    Something went wrong. Please try again in a few minutes.
+   Your changes couldn't be saved. Check your connection and try again.
   </Banner>
 </Canvas>
 
@@ -111,7 +135,7 @@ Use error banners when:
 
 <ul>
   <li>an issue requires immediate attention</li>
-  <li>an issue blocks the user</li>
+  <li>an issue is blocking the SP</li>
   <li>inline validation can not be used</li>
 </ul>
 
@@ -119,7 +143,7 @@ Errors should explain what happened, and how to address the issue in a concise
 manner.
 
 System errors should avoid technical or intimidating language, and provide ways
-to resolve or troubleshoot the issue if possible.
+to resolve or troubleshoot the issue if possible. Don't use error codes.
 
 Using an `icon` prop is optional, but can be used to provide additional visual
 context to the user.
@@ -151,12 +175,83 @@ individual input(s).
 
 ## Content guidelines
 
-Content in Banner should:
+Banner messages should be concise, clear, and actionable. They inform users of system states,
+requirements, or follow-ups—especially ones that persist until resolved.
 
-- Be concise and kept to only 1 to 2 sentences where possible
-- Avoid exceeding 200 characters
-- Follow the [Product Vocabulary](/content/product-vocabulary) where applicable
-- In the case of warning or error banners, explain how to resolve the issue
+This guidance helps ensure Banners are useful for all users, and particularly for SPs who may be
+multitasking, working on mobile, or managing their business on the go.
+
+#### General guidance
+<ul>
+ <li>Use plain, direct language.</li>
+ <li>Limit to 1–2 short sentences (ideally under 200 characters).</li>
+ <li>Start with what’s happening, then what’s needed (if anything).</li>
+ <li>Be specific—avoid vague phrases like “something went wrong.”</li>
+ <li>You can reuse key terms from the message in the CTA, especially to reinforce the action.</li>
+ <li>Use full sentences for clarity. Avoid fragments or trailing thoughts.</li>
+</ul>
+
+#### SP specific tips
+
+<ul>
+ <li>Prioritize clarity over cleverness. SPs need fast, scannable guidance.</li>
+ <li>Avoid backend or system terms (e.g. “system error,” “processing failed”).</li>
+ <li>Frame language around outcomes: payouts, scheduling, client experience.</li>
+ <li>Keep urgency proportional to actual impact.</li>
+</ul>
+
+#### Language Rules
+
+<ul>
+ <li>Avoid exclamation points. They add unnecessary emotion and visual noise.</li>
+ <li>Don’t use “Heads up,” “FYI,” or “Just so you know.” These take space but say nothing.</li>
+ <li>Get to the point as quickly as possible. Start with the action required if there is one.</li>
+ <li>Avoid apologizing in system messages. Focus on clarity and resolution rather than sentiment.</li>
+</ul>
+
+#### Language examples
+
+| Type    | ✅ Better phrasing                                                                   | ❌ Less clear phrasing                         |
+|---------|--------------------------------------------------------------------------------------|------------------------------------------------|
+| Success | “You've connected your bank account and can start recieving payouts.”                | “Bank connection successful!”                  |
+|         | “Your logo has been added to your invoices.”                                         | “Update saved successfully.”                   |
+| Notice  | “Client reminders now include a booking link.”                                       | “We’ve made updates to reminders.”             |
+|         | “You can now double-book visits on your calendar.”                                   | “New scheduling feature added.”                |
+| Warning | “To receive payouts, you need to add your bank account details.” CTA: “Add bank account”  | “Missing payout details!”                 |
+|         | “Your trial ends in 2 days. Select a plan to keep your account active.” CTA: “Select plan” | “Trial ending—don’t forget to upgrade!”  |
+| Error   | “We couldn’t sync your calendar. Try reconnecting your account.”                     | “Calendar sync failed: error 503.”             |
+|         | “We couldn’t save your changes. Check your connection and try again.”                | “Something went wrong. Please try again later.”|
+
+Use these examples as starting points. Focus on clarity, relevance, and next steps.
+For actions that must be taken, make the language outcome-focused, rather than technical or emotional.
+
+## Dos and Don'ts
+
+In summary, here are some general rules to follow when working with the banner component:
+
+#### Do:
+<ul>
+  <li> ✅ Use for persistent and important messages </li>
+  <li> ✅ Try to keep the content to under 200 characters </li>
+  <li> ✅ Align messaging with SP context and workflows </li>
+  <li> ✅ Provide a CTA if user action is needed </li>
+  <li> ✅ Use inline validation for field-level form errors </li>
+</ul>
+
+#### Don't:
+<ul>
+  <li> ❌ Use Banners for short-lived success feedback (use the Toast component instead) </li>
+  <li> ❌ Stack multiple Banners without clear visual hierarchy </li>
+  <li> ❌ Add filler intros like “Heads up” or “FYI" </li>
+  <li> ❌ Over-explain or apologize; stay focused and practical </li>
+
+## Accessibility notes
+
+ <ul>
+  <li>Banners should be announced to screen readers when rendered</li>
+  <li>Ensure high contrast between background and text—especially for error and warning states</li>
+  <li>Avoid positioning mobile Banners over navigation or actionable UI</li>
+</ul>
 
 ## Related components
 
