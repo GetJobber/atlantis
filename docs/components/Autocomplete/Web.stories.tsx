@@ -80,6 +80,7 @@ const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
       }}
       onInputChange={searchTerm => {
         const filterRegex = new RegExp(searchTerm, "i");
+        console.log("searchTerm", searchTerm);
         setOptions(
           defaultOptions.filter(option =>
             option.label.match(filterRegex),
@@ -163,10 +164,11 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
 
   return (
     <Autocomplete
-      {...args}
       value={value}
+      version={2}
       onChange={newValue => setValue(newValue)}
-      getOptions={getOptions}
+      options={headingOptions}
+      placeholder="Search for something under a section heading"
     />
   );
 

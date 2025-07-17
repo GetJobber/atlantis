@@ -4,7 +4,9 @@ export function isOptionSelected(
   selectedOption: Option | undefined,
   option: Option,
 ) {
-  return Boolean(selectedOption && selectedOption.value === option.value);
+  // label is required, value is not which is pretty weird and wrong.
+  // maybe chagne that for v2
+  return Boolean(selectedOption && selectedOption.label === option.label);
 }
 
 /**

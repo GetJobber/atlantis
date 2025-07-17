@@ -15,6 +15,8 @@ import {
   Option,
 } from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
+import { AutocompleteContextProvider } from "./AutocompleteProvider";
+import { useKeyboardNavigation } from "./useKeyboardNavigation";
 import { InputText, InputTextRef } from "../InputText";
 import { useDebounce } from "../utils/useDebounce";
 import { mergeRefs } from "../utils/mergeRefs";
@@ -58,6 +60,13 @@ function AutocompleteInternal<
   const autocompleteRef = useRef(null);
   const delayedSearch = useDebounce(updateSearch, debounceRate);
   const inputRef = useRef<InputTextRef | null>(null);
+  const [menuRef, setMenuRef] = useState<HTMLElement | null>(null);
+  const { highlightedIndex } = useKeyboardNavigation({
+    onOptionSelect: handleMenuChange,
+    options: options,
+    visible: inputFocused,
+    menuRef,
+  });
 
   useEffect(() => {
     delayedSearch();
@@ -69,27 +78,33 @@ function AutocompleteInternal<
 
   return (
     <div className={styles.autocomplete} ref={autocompleteRef}>
-      <InputText
-        ref={mergeRefs([ref, inputRef])}
-        autocomplete={false}
-        size={size}
-        value={inputText}
-        onChange={handleInputChange}
-        placeholder={placeholder}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        validations={validations}
-        {...inputProps}
-      />
-      <Menu
-        attachTo={autocompleteRef}
-        inputRef={inputRef}
-        inputFocused={inputFocused}
-        options={options}
-        customRenderMenu={customRenderMenu}
-        selectedOption={value}
-        onOptionSelect={handleMenuChange}
-      />
+      <AutocompleteContextProvider
+        menuRef={menuRef}
+        setMenuRef={setMenuRef}
+        highlightedIndex={highlightedIndex}
+      >
+        <InputText
+          ref={mergeRefs([ref, inputRef])}
+          autocomplete={false}
+          size={size}
+          value={inputText}
+          onChange={handleInputChange}
+          placeholder={placeholder}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          validations={validations}
+          {...inputProps}
+        />
+        <Menu
+          attachTo={autocompleteRef}
+          inputRef={inputRef}
+          inputFocused={inputFocused}
+          options={options}
+          customRenderMenu={customRenderMenu}
+          selectedOption={value}
+          onOptionSelect={handleMenuChange}
+        />
+      </AutocompleteContextProvider>
     </div>
   );
 
