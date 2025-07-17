@@ -98,12 +98,7 @@ function CustomMenu<
   inputFocused,
   inputRef,
 }: InternalCustomMenuProps<GenericOption, GenericOptionValue>) {
-  const [menuRef, setMenuRef] = React.useState<HTMLElement | null>(null);
-  const { MenuWrapper } = useAutocompleteMenu({
-    attachTo,
-    setMenuRef,
-    menuRef,
-  });
+  const { MenuWrapper, menuRef } = useAutocompleteMenu({ attachTo });
 
   const menuContent = customRenderMenu({
     options,

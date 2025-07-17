@@ -109,7 +109,7 @@ export interface AutocompleteLegacyProps<
    * is returned from this method to the user as available options.
    * @param newInputText
    */
-  readonly getOptions: (
+  readonly getOptions?: (
     newInputText: string,
   ) =>
     | Array<GenericGetOptionsValue | GenericOption>

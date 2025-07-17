@@ -1,10 +1,10 @@
-import React, { RefObject, useContext } from "react";
+import React, { RefObject } from "react";
 import { BaseAutocompleteMenuWrapper } from "./MenuWrapper";
 import { AnyOption, Option } from "../Autocomplete.types";
 import { isOptionSelected } from "../Autocomplete.utils";
 import { MenuOption } from "../Option";
+import { useKeyboardNavigation } from "../useKeyboardNavigation";
 import { useRepositionMenu } from "../useRepositionMenu";
-import { AutocompleteContext } from "../AutocompleteProvider";
 
 export interface DefaultMenuProps {
   readonly options: AnyOption[];
@@ -27,18 +27,24 @@ export function DefaultMenu({
   attachTo,
   visible,
 }: DefaultMenuProps) {
-  const { menuRef, setMenuRef, highlightedIndex } =
-    useContext(AutocompleteContext);
   const {
+    menuRef,
+    setMenuRef,
     styles: popperStyles,
     attributes,
     targetWidth,
-  } = useRepositionMenu(attachTo, menuRef, visible);
+  } = useRepositionMenu(attachTo, visible);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
 
   const addSeparators = options.some(detectSeparatorCondition);
+  const { highlightedIndex } = useKeyboardNavigation({
+    onOptionSelect,
+    options,
+    visible,
+    menuRef,
+  });
 
   return (
     <BaseAutocompleteMenuWrapper

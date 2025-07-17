@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useCallback } from "react";
+import React, { PropsWithChildren, useCallback, useEffect } from "react";
 import classNames from "classnames";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { createPortal } from "react-dom";
@@ -6,7 +6,7 @@ import styles from "../Autocomplete.module.css";
 import { UseRepositionMenu, useRepositionMenu } from "../useRepositionMenu";
 
 export interface BaseAutocompleteMenuWrapperInternalProps {
-  readonly setMenuRef: (ref: HTMLElement | null) => void;
+  readonly setMenuRef: UseRepositionMenu["setMenuRef"];
   readonly popperStyles: UseRepositionMenu["styles"];
   readonly attributes: UseRepositionMenu["attributes"];
   readonly targetWidth: UseRepositionMenu["targetWidth"];
@@ -40,13 +40,10 @@ function BaseAutocompleteMenuWrapperInternal({
  */
 export function useAutocompleteMenu({
   attachTo,
-  setMenuRef,
-  menuRef,
 }: {
   attachTo: React.RefObject<Element | null>;
-  setMenuRef: (ref: HTMLElement | null) => void;
-  menuRef: HTMLElement | null;
 }) {
+  const [menuRef, setMenuRef] = React.useState<HTMLElement | null>(null);
   const AutocompleteMenuWrapper = useCallback(
     ({
       children,
@@ -55,13 +52,16 @@ export function useAutocompleteMenu({
       children?: React.ReactNode;
       visible: boolean;
     }): React.ReactElement => {
-      const menuPopperProps = useRepositionMenu(attachTo, menuRef, visible);
+      const menuPopperProps = useRepositionMenu(attachTo, visible);
+      useEffect(() => {
+        setMenuRef(menuPopperProps.menuRef);
+      }, [menuPopperProps.menuRef]);
 
       return (
         <BaseAutocompleteMenuWrapper
           attributes={menuPopperProps.attributes}
           popperStyles={menuPopperProps.styles}
-          setMenuRef={setMenuRef}
+          setMenuRef={menuPopperProps.setMenuRef}
           targetWidth={menuPopperProps.targetWidth}
           visible={visible}
         >

@@ -15,12 +15,9 @@ import {
   Option,
 } from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
-import { AutocompleteContextProvider } from "./AutocompleteProvider";
-import { useKeyboardNavigation } from "./useKeyboardNavigation";
 import { InputText, InputTextRef } from "../InputText";
 import { mergeRefs } from "../utils/mergeRefs";
 
-// eslint-disable-next-line max-statements
 function AutocompleteRebuiltInternal<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
@@ -52,16 +49,6 @@ function AutocompleteRebuiltInternal<
   const autocompleteRef = useRef(null);
   const inputRef = useRef<InputTextRef | null>(null);
   const mappedOptions = useMemo(() => mapToOptions(options), [options]);
-  const [menuRef, setMenuRef] = useState<HTMLElement | null>(null);
-
-  const { highlightedIndex } = useKeyboardNavigation({
-    onOptionSelect: handleMenuChange,
-    options: mappedOptions,
-    visible: inputFocused,
-    menuRef,
-  });
-
-  console.log({ value });
 
   useEffect(() => {
     updateInput(value?.label ?? "");
@@ -69,38 +56,31 @@ function AutocompleteRebuiltInternal<
 
   return (
     <div className={styles.autocomplete} ref={autocompleteRef}>
-      <AutocompleteContextProvider
-        menuRef={menuRef}
-        setMenuRef={setMenuRef}
-        highlightedIndex={highlightedIndex}
-      >
-        <InputText
-          ref={mergeRefs([ref, inputRef])}
-          autoComplete="off"
-          size={size}
-          value={inputText}
-          onChange={handleInputChange}
-          placeholder={placeholder}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          error={error}
-          {...inputProps}
-        />
-        <Menu
-          attachTo={autocompleteRef}
-          inputRef={inputRef}
-          inputFocused={inputFocused}
-          options={mappedOptions}
-          customRenderMenu={customRenderMenu}
-          selectedOption={value}
-          onOptionSelect={handleMenuChange}
-        />
-      </AutocompleteContextProvider>
+      <InputText
+        ref={mergeRefs([ref, inputRef])}
+        autoComplete="off"
+        size={size}
+        value={inputText}
+        onChange={handleInputChange}
+        placeholder={placeholder}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        error={error}
+        {...inputProps}
+      />
+      <Menu
+        attachTo={autocompleteRef}
+        inputRef={inputRef}
+        inputFocused={inputFocused}
+        options={mappedOptions}
+        customRenderMenu={customRenderMenu}
+        selectedOption={value}
+        onOptionSelect={handleMenuChange}
+      />
     </div>
   );
 
   function updateInput(newText: string) {
-    console.log("updateInput", newText);
     setInputText(newText);
   }
 
@@ -123,14 +103,18 @@ function AutocompleteRebuiltInternal<
   function handleInputBlur() {
     setInputFocused(false);
 
+    // clear the input because it's not real
+    // this must happen every time
     if (!allowFreeForm) {
-      const selectedOption = mappedOptions[highlightedIndex];
+      setInputText("");
 
-      if (selectedOption) {
-        onChange(selectedOption);
-        setInputText(selectedOption?.label);
-      } else {
-        setInputText("");
+      // if we don't allow free form, then.....
+      // and we don't have value, say we got nothing.
+      // though does this timinig work? if onChange is what would set the value, it won't be able to be called
+      // ah right, so the way I did this in the other one is that if we have something highlighted, unless a prop that says not to do this is present, we will
+      // use that highlighted value as the value
+      // if nothing is highlighted, then yes we say nothing was chosen
+      if (!value) {
         onChange(undefined);
       }
     } else {
