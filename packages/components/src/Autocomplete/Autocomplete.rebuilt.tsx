@@ -103,20 +103,11 @@ function AutocompleteRebuiltInternal<
   function handleInputBlur() {
     setInputFocused(false);
 
-    // clear the input because it's not real
-    // this must happen every time
-    if (!allowFreeForm) {
+    // this is different because now we are not assuming that the onChange firing constantly
+    // has already set the value. hence the allowFreeForm check
+    if (!allowFreeForm && inputText !== value?.label) {
       setInputText("");
-
-      // if we don't allow free form, then.....
-      // and we don't have value, say we got nothing.
-      // though does this timinig work? if onChange is what would set the value, it won't be able to be called
-      // ah right, so the way I did this in the other one is that if we have something highlighted, unless a prop that says not to do this is present, we will
-      // use that highlighted value as the value
-      // if nothing is highlighted, then yes we say nothing was chosen
-      if (!value) {
-        onChange(undefined);
-      }
+      onChange(undefined);
     } else {
       // if we allow freeform, then we can inform the consumer of onChange with the current text value
       onChange({ label: inputText } as GenericOptionValue);
