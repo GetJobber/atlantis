@@ -7,7 +7,7 @@ import { UseRepositionMenu, useRepositionMenu } from "../useRepositionMenu";
 
 export interface BaseAutocompleteMenuWrapperInternalProps {
   readonly setMenuRef: UseRepositionMenu["setMenuRef"];
-  readonly popperStyles: UseRepositionMenu["styles"];
+  readonly floatStyles: UseRepositionMenu["styles"];
   readonly attributes: UseRepositionMenu["attributes"];
   readonly targetWidth: UseRepositionMenu["targetWidth"];
   readonly visible?: boolean;
@@ -15,7 +15,7 @@ export interface BaseAutocompleteMenuWrapperInternalProps {
 
 function BaseAutocompleteMenuWrapperInternal({
   setMenuRef,
-  popperStyles,
+  floatStyles,
   attributes,
   targetWidth,
   visible,
@@ -25,9 +25,9 @@ function BaseAutocompleteMenuWrapperInternal({
     <div
       className={classNames(styles.options, { [styles.visible]: visible })}
       ref={setMenuRef}
-      style={{ ...popperStyles.popper, width: targetWidth }}
+      style={{ ...floatStyles.float, width: targetWidth }}
       data-elevation={"elevated"}
-      {...attributes.popper}
+      {...attributes.float}
     >
       {children}
     </div>
@@ -52,17 +52,17 @@ export function useAutocompleteMenu({
       children?: React.ReactNode;
       visible: boolean;
     }): React.ReactElement => {
-      const menuPopperProps = useRepositionMenu(attachTo);
+      const menuFloatProps = useRepositionMenu(attachTo);
       useEffect(() => {
-        setMenuRef(menuPopperProps.menuRef);
-      }, [menuPopperProps.menuRef]);
+        setMenuRef(menuFloatProps.menuRef);
+      }, [menuFloatProps.menuRef]);
 
       return (
         <BaseAutocompleteMenuWrapper
-          attributes={menuPopperProps.attributes}
-          popperStyles={menuPopperProps.styles}
-          setMenuRef={menuPopperProps.setMenuRef}
-          targetWidth={menuPopperProps.targetWidth}
+          attributes={menuFloatProps.attributes}
+          floatStyles={menuFloatProps.styles}
+          setMenuRef={menuFloatProps.setMenuRef}
+          targetWidth={menuFloatProps.targetWidth}
           visible={visible}
         >
           {children}

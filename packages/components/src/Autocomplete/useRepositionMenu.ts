@@ -6,10 +6,10 @@ export interface UseRepositionMenu {
   readonly setMenuRef: (ref: HTMLElement | null) => void;
   readonly targetWidth: number | undefined;
   readonly styles: {
-    popper: React.CSSProperties;
+    float: React.CSSProperties;
   };
   readonly attributes: {
-    popper: Record<string, string>;
+    float: Record<string, string>;
   };
 }
 
@@ -34,8 +34,8 @@ export function useRepositionMenu(
     setMenuRef: refs.setFloating,
     targetWidth,
     styles: {
-      popper: floatingStyles,
+      float: floatingStyles,
     },
-    attributes: { popper: {} },
+    attributes: { float: {} },
   };
 }

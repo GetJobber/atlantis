@@ -30,7 +30,7 @@ export function DefaultMenu({
   const {
     menuRef,
     setMenuRef,
-    styles: popperStyles,
+    styles: floatStyles,
     attributes,
     targetWidth,
   } = useRepositionMenu(attachTo);
@@ -48,7 +48,7 @@ export function DefaultMenu({
 
   return (
     <BaseAutocompleteMenuWrapper
-      {...{ setMenuRef, popperStyles, attributes, targetWidth, visible }}
+      {...{ setMenuRef, floatStyles, attributes, targetWidth, visible }}
     >
       {options?.map((option, index) => {
         return (
