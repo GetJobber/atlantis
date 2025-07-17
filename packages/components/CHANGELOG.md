@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.67.0...@jobber/components@6.68.0) (2025-07-17)
+
+
+### Features
+
+* **components:** Add stretch type to Cluster align prop ([#2617](https://github.com/GetJobber/atlantis/issues/2617)) ([8b492a6](https://github.com/GetJobber/atlantis/commit/8b492a6a18cbeb36c96aba48151291e00eaae722))
+
+
+
+
+
 # [6.67.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.66.0...@jobber/components@6.67.0) (2025-07-16)
 
 
