@@ -69,6 +69,7 @@ export interface ChipSuffixProps extends PropsWithChildren {
 export const allowedSuffixIcons = [
   "cross",
   "add",
+  "edit",
   "checkmark",
   "remove",
   "arrowDown",
