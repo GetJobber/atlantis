@@ -52,7 +52,7 @@ export function useAutocompleteMenu({
       children?: React.ReactNode;
       visible: boolean;
     }): React.ReactElement => {
-      const menuPopperProps = useRepositionMenu(attachTo, visible);
+      const menuPopperProps = useRepositionMenu(attachTo);
       useEffect(() => {
         setMenuRef(menuPopperProps.menuRef);
       }, [menuPopperProps.menuRef]);

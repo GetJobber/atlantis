@@ -33,7 +33,7 @@ export function DefaultMenu({
     styles: popperStyles,
     attributes,
     targetWidth,
-  } = useRepositionMenu(attachTo, visible);
+  } = useRepositionMenu(attachTo);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;

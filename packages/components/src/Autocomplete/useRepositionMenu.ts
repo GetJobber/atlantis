@@ -1,4 +1,3 @@
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { autoUpdate, flip, offset, useFloating } from "@floating-ui/react";
 import { MenuProps } from "./Autocomplete.types";
 
@@ -16,11 +15,10 @@ export interface UseRepositionMenu {
 
 export function useRepositionMenu(
   attachTo: MenuProps["attachTo"],
-  visible = false,
 ): UseRepositionMenu {
   const referenceElement = attachTo.current;
 
-  const { refs, floatingStyles, update } = useFloating({
+  const { refs, floatingStyles } = useFloating({
     placement: "bottom",
     middleware: [offset(8), flip({ fallbackPlacements: ["top"] })],
     elements: {
@@ -28,12 +26,6 @@ export function useRepositionMenu(
     },
     whileElementsMounted: autoUpdate,
   });
-
-  useSafeLayoutEffect(() => {
-    if (visible && update) {
-      update();
-    }
-  }, [visible, update]);
 
   const targetWidth = attachTo.current?.clientWidth;
 
