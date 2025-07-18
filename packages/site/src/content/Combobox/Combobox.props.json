@@ -57,7 +57,7 @@
         },
         "required": true,
         "type": {
-          "name": "(selection: ComboboxSelection[]) => void"
+          "name": "(selection: ComboboxOptionProps[]) => void"
         }
       },
       "onSelectAll": {
@@ -70,7 +70,7 @@
         },
         "required": false,
         "type": {
-          "name": "(selection: ComboboxSelection[]) => void"
+          "name": "(selection: ComboboxOptionProps[]) => void"
         }
       },
       "onClear": {
