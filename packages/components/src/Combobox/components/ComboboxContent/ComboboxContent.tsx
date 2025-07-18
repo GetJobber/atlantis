@@ -29,7 +29,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   // options that are passed back to consumers via onSelectAll callback
   // should only contain id and label
-  const consumerOptions = useMemo(() => {
+  const optionsData = useMemo(() => {
     return props.options.map(option => ({
       id: option.id,
       label: option.label,
@@ -68,7 +68,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           }}
           onSelectAll={() => {
             props.selectedStateSetter(props.options);
-            onSelectAll?.(consumerOptions);
+            onSelectAll?.(optionsData);
           }}
         />
       )}

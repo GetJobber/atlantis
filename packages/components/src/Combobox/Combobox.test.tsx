@@ -372,6 +372,7 @@ describe("Combobox Multiselect", () => {
   });
 
   it("should call onSelectAll with options with only id and label when clicking Select all", async () => {
+    // Not directly using mockOnClick, it is used to confirm its absence in the onSelectAll callback argument
     const mockOnClick = jest.fn();
 
     render(
