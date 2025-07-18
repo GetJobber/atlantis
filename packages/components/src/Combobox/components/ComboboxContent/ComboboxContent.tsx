@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import classnames from "classnames";
 import { FloatingNode, FloatingPortal, FloatingTree } from "@floating-ui/react";
 import ReactDOM from "react-dom";
@@ -26,6 +26,15 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       props.open,
       props.wrapperRef,
     );
+
+  // options that are passed back to consumers via onSelectAll callback
+  // should only contain id and label
+  const consumerOptions = useMemo(() => {
+    return props.options.map(option => ({
+      id: option.id,
+      label: option.label,
+    }));
+  }, [props.options]);
 
   const content = (
     <div
@@ -59,7 +68,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           }}
           onSelectAll={() => {
             props.selectedStateSetter(props.options);
-            onSelectAll?.(props.options);
+            onSelectAll?.(consumerOptions);
           }}
         />
       )}
