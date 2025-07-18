@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.68.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.68.1...@jobber/components@6.68.2) (2025-07-18)
+
+
+### Bug Fixes
+
+* **components:** Undo ComboboxSelection type for callback props ([#2622](https://github.com/GetJobber/atlantis/issues/2622)) ([10eed09](https://github.com/GetJobber/atlantis/commit/10eed09b90a514836c7431576c7c6b222df7ec11))
+
+
+
+
+
 ## [6.68.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.68.0...@jobber/components@6.68.1) (2025-07-17)
 
 **Note:** Version bump only for package @jobber/components
