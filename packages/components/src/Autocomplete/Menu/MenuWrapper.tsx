@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useCallback, useEffect } from "react";
 import classNames from "classnames";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import { createPortal } from "react-dom";
+import { FloatingPortal } from "@floating-ui/react";
 import styles from "../Autocomplete.module.css";
 import { UseRepositionMenu, useRepositionMenu } from "../useRepositionMenu";
 
@@ -77,5 +77,5 @@ export function BaseAutocompleteMenuWrapper(
   const mounted = useIsMounted();
   const menu = <BaseAutocompleteMenuWrapperInternal {...props} />;
 
-  return mounted.current ? createPortal(menu, document.body) : menu;
+  return mounted.current ? <FloatingPortal>{menu}</FloatingPortal> : menu;
 }
