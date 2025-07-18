@@ -8,9 +8,6 @@ export interface UseRepositionMenu {
   readonly styles: {
     float: React.CSSProperties;
   };
-  readonly attributes: {
-    float: Record<string, string>;
-  };
 }
 
 export function useRepositionMenu(
@@ -36,6 +33,5 @@ export function useRepositionMenu(
     styles: {
       float: floatingStyles,
     },
-    attributes: { float: {} },
   };
 }

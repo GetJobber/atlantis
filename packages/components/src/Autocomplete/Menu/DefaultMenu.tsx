@@ -31,7 +31,6 @@ export function DefaultMenu({
     menuRef,
     setMenuRef,
     styles: floatStyles,
-    attributes,
     targetWidth,
   } = useRepositionMenu(attachTo);
 
@@ -48,7 +47,7 @@ export function DefaultMenu({
 
   return (
     <BaseAutocompleteMenuWrapper
-      {...{ setMenuRef, floatStyles, attributes, targetWidth, visible }}
+      {...{ setMenuRef, floatStyles, targetWidth, visible }}
     >
       {options?.map((option, index) => {
         return (

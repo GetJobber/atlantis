@@ -8,7 +8,6 @@ import { UseRepositionMenu, useRepositionMenu } from "../useRepositionMenu";
 export interface BaseAutocompleteMenuWrapperInternalProps {
   readonly setMenuRef: UseRepositionMenu["setMenuRef"];
   readonly floatStyles: UseRepositionMenu["styles"];
-  readonly attributes: UseRepositionMenu["attributes"];
   readonly targetWidth: UseRepositionMenu["targetWidth"];
   readonly visible?: boolean;
 }
@@ -16,7 +15,6 @@ export interface BaseAutocompleteMenuWrapperInternalProps {
 function BaseAutocompleteMenuWrapperInternal({
   setMenuRef,
   floatStyles,
-  attributes,
   targetWidth,
   visible,
   children,
@@ -27,7 +25,6 @@ function BaseAutocompleteMenuWrapperInternal({
       ref={setMenuRef}
       style={{ ...floatStyles.float, width: targetWidth }}
       data-elevation={"elevated"}
-      {...attributes.float}
     >
       {children}
     </div>
@@ -59,7 +56,6 @@ export function useAutocompleteMenu({
 
       return (
         <BaseAutocompleteMenuWrapper
-          attributes={menuFloatProps.attributes}
           floatStyles={menuFloatProps.styles}
           setMenuRef={menuFloatProps.setMenuRef}
           targetWidth={menuFloatProps.targetWidth}
