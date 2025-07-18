@@ -30,10 +30,9 @@ export function DefaultMenu({
   const {
     menuRef,
     setMenuRef,
-    styles: popperStyles,
-    attributes,
+    styles: floatStyles,
     targetWidth,
-  } = useRepositionMenu(attachTo, visible);
+  } = useRepositionMenu(attachTo);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -48,7 +47,7 @@ export function DefaultMenu({
 
   return (
     <BaseAutocompleteMenuWrapper
-      {...{ setMenuRef, popperStyles, attributes, targetWidth, visible }}
+      {...{ setMenuRef, floatStyles, targetWidth, visible }}
     >
       {options?.map((option, index) => {
         return (
