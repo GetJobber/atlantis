@@ -63,7 +63,14 @@ export function useRepositionMenu(
     }
 
     return undefined;
-  }, [cssManagedVisibility, visible, attachTo, refs.floating.current]);
+  }, [
+    cssManagedVisibility,
+    visible,
+    attachTo,
+    refs.floating.current,
+    update,
+    autoUpdate,
+  ]);
 
   const targetWidth = attachTo?.clientWidth;
 
