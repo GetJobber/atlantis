@@ -7,7 +7,7 @@ import {
 } from "@floating-ui/react";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { MenuProps } from "./Autocomplete.types";
-import { AUTOCOMPLETE_MAX_HEIGHT } from "./constants";
+import { AUTCOMPLETE_MIN_HEIGHT, AUTOCOMPLETE_MAX_HEIGHT } from "./constants";
 
 export interface UseRepositionMenu {
   readonly menuRef: HTMLElement | null;
@@ -27,6 +27,7 @@ export function useRepositionMenu(
     placement: "bottom",
     middleware: [
       offset(8),
+      flip({ fallbackPlacements: ["top"] }),
       size({
         apply({ availableHeight, elements }) {
           // Limit the height for a true maximum
@@ -34,14 +35,13 @@ export function useRepositionMenu(
           const maxHeight =
             availableHeight > AUTOCOMPLETE_MAX_HEIGHT
               ? AUTOCOMPLETE_MAX_HEIGHT
-              : Math.max(0, availableHeight);
+              : Math.max(AUTCOMPLETE_MIN_HEIGHT, availableHeight);
 
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
           });
         },
       }),
-      flip({ fallbackPlacements: ["top"] }),
     ],
     elements: {
       reference: attachTo,
