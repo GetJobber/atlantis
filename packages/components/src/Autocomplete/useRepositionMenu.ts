@@ -6,7 +6,6 @@ import {
   useFloating,
 } from "@floating-ui/react";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
-import { useCallback } from "react";
 import { MenuProps } from "./Autocomplete.types";
 import { AUTOCOMPLETE_MAX_HEIGHT } from "./constants";
 
@@ -54,7 +53,7 @@ export function useRepositionMenu(
       : {}),
   });
 
-  const conditionalUpdate = useCallback(() => {
+  useSafeLayoutEffect(() => {
     if (cssManagedVisibility && visible && attachTo && refs.floating.current) {
       const cleanup = autoUpdate(attachTo, refs.floating.current, update);
 
@@ -62,11 +61,7 @@ export function useRepositionMenu(
     }
 
     return undefined;
-  }, [update, cssManagedVisibility, visible, attachTo, refs.floating.current]);
-
-  useSafeLayoutEffect(() => {
-    conditionalUpdate();
-  }, [conditionalUpdate, visible]);
+  }, [cssManagedVisibility, visible, attachTo, refs.floating.current]);
 
   const targetWidth = attachTo?.clientWidth;
 
