@@ -118,7 +118,7 @@ export interface MenuProps<
   /**
    * Element that the menu is attached to when the menu opens.
    */
-  readonly attachTo: RefObject<Element | null>;
+  readonly attachTo: HTMLDivElement | null;
   /**
    * Ref to the TextInput element.
    */
