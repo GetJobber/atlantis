@@ -1,7 +1,14 @@
-import { autoUpdate, flip, offset, useFloating } from "@floating-ui/react";
+import {
+  autoUpdate,
+  flip,
+  offset,
+  size,
+  useFloating,
+} from "@floating-ui/react";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { useCallback } from "react";
 import { MenuProps } from "./Autocomplete.types";
+import { AUTOCOMPLETE_MAX_HEIGHT } from "./constants";
 
 export interface UseRepositionMenu {
   readonly menuRef: HTMLElement | null;
@@ -19,7 +26,24 @@ export function useRepositionMenu(
 ): UseRepositionMenu {
   const { refs, floatingStyles, update } = useFloating({
     placement: "bottom",
-    middleware: [offset(8), flip({ fallbackPlacements: ["top"] })],
+    middleware: [
+      offset(8),
+      size({
+        apply({ availableHeight, elements }) {
+          // Limit the height for a true maximum
+          // However if we have less space than that, then reduce it to allow scrolling
+          const maxHeight =
+            availableHeight > AUTOCOMPLETE_MAX_HEIGHT
+              ? AUTOCOMPLETE_MAX_HEIGHT
+              : Math.max(0, availableHeight);
+
+          Object.assign(elements.floating.style, {
+            maxHeight: `${maxHeight}px`,
+          });
+        },
+      }),
+      flip({ fallbackPlacements: ["top"] }),
+    ],
     elements: {
       reference: attachTo,
     },

@@ -23,7 +23,10 @@ function BaseAutocompleteMenuWrapperInternal({
     <div
       className={classNames(styles.options, { [styles.visible]: visible })}
       ref={setMenuRef}
-      style={{ ...floatStyles.float, width: targetWidth }}
+      style={{
+        ...floatStyles.float,
+        width: targetWidth,
+      }}
       data-elevation={"elevated"}
     >
       {children}
