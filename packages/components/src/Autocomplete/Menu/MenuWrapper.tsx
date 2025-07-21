@@ -49,7 +49,7 @@ export function useAutocompleteMenu({
       children?: React.ReactNode;
       visible: boolean;
     }): React.ReactElement => {
-      const menuFloatProps = useRepositionMenu(attachTo);
+      const menuFloatProps = useRepositionMenu(attachTo, visible, true);
       useEffect(() => {
         setMenuRef(menuFloatProps.menuRef);
       }, [menuFloatProps.menuRef]);

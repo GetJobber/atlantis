@@ -14,7 +14,7 @@ export interface DefaultMenuProps {
    */
   readonly attachTo: HTMLDivElement | null;
   onOptionSelect(chosenOption?: Option): void;
-  readonly visible?: boolean;
+  readonly visible: boolean;
 }
 
 /**
@@ -32,7 +32,7 @@ export function DefaultMenu({
     setMenuRef,
     styles: floatStyles,
     targetWidth,
-  } = useRepositionMenu(attachTo);
+  } = useRepositionMenu(attachTo, visible, false);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
