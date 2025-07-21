@@ -53,6 +53,8 @@ export function useRepositionMenu(
       : {}),
   });
 
+  // While DefaultMenu leverages conditional rendering, CustomMenu is hidden with CSS
+  // We need to apply the correct update method to each case
   useSafeLayoutEffect(() => {
     if (cssManagedVisibility && visible && attachTo && refs.floating.current) {
       const cleanup = autoUpdate(attachTo, refs.floating.current, update);
