@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.69.0...@jobber/components@6.70.0) (2025-07-21)
+
+
+### Features
+
+* **components:** Remove Chip.Suffix icon allowed list check ([#2623](https://github.com/GetJobber/atlantis/issues/2623)) ([e1ac1d2](https://github.com/GetJobber/atlantis/commit/e1ac1d2699a86080c0b7b5a5b903b76449f6c57c))
+
+
+
+
+
 # [6.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.68.2...@jobber/components@6.69.0) (2025-07-21)
 
 
