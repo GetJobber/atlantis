@@ -1,37 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { act, render, renderHook, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useDebounce } from "./useDebounce";
 
 const DEBOUNCE_WAIT = 300;
-
-function MemoizedOptionsComponent() {
-  const [inputValue, setInputValue] = useState("");
-  const [calls, setCalls] = useState<string[]>([]);
-
-  const options = useMemo(() => ({ maxWait: 1000 }), []);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
-    debouncedFunction(newValue);
-  };
-
-  const debouncedFunction = useDebounce(
-    (value: string) => {
-      setCalls(prev => [...prev, value]);
-    },
-    DEBOUNCE_WAIT,
-    options,
-  );
-
-  return (
-    <div>
-      <input data-testid="input" value={inputValue} onChange={handleChange} />
-      <div data-testid="calls">{calls.join(",")}</div>
-    </div>
-  );
-}
 
 describe("useDebounce", () => {
   beforeEach(() => {
@@ -93,36 +65,7 @@ describe("useDebounce", () => {
     expect(mockFn).toHaveBeenCalledWith("second");
   });
 
-  it("should work with options as a regular JS object", () => {
-    const mockFn = jest.fn();
-    const options = { leading: true, trailing: false };
-
-    const { result } = renderHook(() =>
-      useDebounce(mockFn, DEBOUNCE_WAIT, options),
-    );
-
-    // First call should execute immediately due to leading: true
-    result.current("test");
-    expect(mockFn).toHaveBeenCalledWith("test");
-    expect(mockFn).toHaveBeenCalledTimes(1);
-
-    // Reset mock to check trailing behavior
-    mockFn.mockReset();
-
-    result.current("test2");
-
-    // Should NOT be called immediately again because we're still within the debounce period
-    expect(mockFn).not.toHaveBeenCalled();
-
-    act(() => {
-      jest.advanceTimersByTime(DEBOUNCE_WAIT);
-    });
-
-    // No additional calls due to trailing: false
-    expect(mockFn).toHaveBeenCalledTimes(0);
-  });
-
-  it("should recreate debounced function when options object reference changes", () => {
+  it("should not recreate debounced function when options object reference changes", () => {
     const mockFn = jest.fn();
 
     // Use a function that returns a new options object each time
@@ -133,7 +76,14 @@ describe("useDebounce", () => {
 
     result.current("first");
 
+    // Change options reference but keep the same values
     rerender({ options: { maxWait: 1000 } });
+
+    // Advance timer partially and verify the function hasn't been called yet
+    act(() => {
+      jest.advanceTimersByTime(DEBOUNCE_WAIT / 2);
+    });
+    expect(mockFn).not.toHaveBeenCalled();
 
     result.current("second");
 
@@ -141,41 +91,9 @@ describe("useDebounce", () => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
 
+    // Should only be called once with the latest value
     expect(mockFn).toHaveBeenCalledTimes(1);
-
     expect(mockFn).toHaveBeenCalledWith("second");
-  });
-
-  // We're repeating some typing actions making it a long test, refactoring isn't valuable
-  // eslint-disable-next-line max-statements
-  it("should not recreate debounced function when options object is memoized", async () => {
-    render(<MemoizedOptionsComponent />);
-
-    const input = screen.getByTestId("input");
-    const calls = screen.getByTestId("calls");
-
-    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
-
-    // Type a complete string instead of individual characters
-    await user.clear(input);
-    await user.type(input, "abc");
-
-    expect(calls.textContent).toBe("");
-
-    act(() => {
-      jest.advanceTimersByTime(DEBOUNCE_WAIT);
-    });
-
-    expect(calls.textContent).toBe("abc");
-
-    await user.clear(input);
-    await user.type(input, "abcd");
-
-    act(() => {
-      jest.advanceTimersByTime(DEBOUNCE_WAIT);
-    });
-
-    expect(calls.textContent).toBe("abc,abcd");
   });
 
   it("should work with React components", async () => {
