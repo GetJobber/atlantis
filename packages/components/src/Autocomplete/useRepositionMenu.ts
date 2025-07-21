@@ -13,18 +13,16 @@ export interface UseRepositionMenu {
 export function useRepositionMenu(
   attachTo: MenuProps["attachTo"],
 ): UseRepositionMenu {
-  const referenceElement = attachTo.current;
-
   const { refs, floatingStyles } = useFloating({
     placement: "bottom",
     middleware: [offset(8), flip({ fallbackPlacements: ["top"] })],
     elements: {
-      reference: referenceElement || null,
+      reference: attachTo,
     },
     whileElementsMounted: autoUpdate,
   });
 
-  const targetWidth = attachTo.current?.clientWidth;
+  const targetWidth = attachTo?.clientWidth;
 
   return {
     menuRef: refs.floating.current,

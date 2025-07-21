@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import React from "react";
 import { BaseAutocompleteMenuWrapper } from "./MenuWrapper";
 import { AnyOption, Option } from "../Autocomplete.types";
 import { isOptionSelected } from "../Autocomplete.utils";
@@ -12,7 +12,7 @@ export interface DefaultMenuProps {
   /**
    * Element that it's attached to when the menu opens.
    */
-  readonly attachTo: RefObject<Element | null>;
+  readonly attachTo: HTMLDivElement | null;
   onOptionSelect(chosenOption?: Option): void;
   readonly visible?: boolean;
 }

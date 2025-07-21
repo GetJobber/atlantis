@@ -38,7 +38,7 @@ function BaseAutocompleteMenuWrapperInternal({
 export function useAutocompleteMenu({
   attachTo,
 }: {
-  attachTo: React.RefObject<Element | null>;
+  attachTo: HTMLDivElement | null;
 }) {
   const [menuRef, setMenuRef] = React.useState<HTMLElement | null>(null);
   const AutocompleteMenuWrapper = useCallback(
