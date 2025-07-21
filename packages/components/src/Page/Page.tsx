@@ -24,7 +24,7 @@ interface PageFoundationProps {
   /**
    * Title of the page.
    */
-  readonly title: string;
+  readonly title: ReactNode;
 
   /**
    * TitleMetaData component to be displayed
