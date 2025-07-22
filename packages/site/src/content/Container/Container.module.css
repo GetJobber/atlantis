@@ -1,38 +1,38 @@
 @container example (min-width: 600px) {
-    .item {
-        background-color: var(--color-surface--background);
-        padding: var(--space-large);
-        padding-right: var(--space-largest);
-        border-radius: var(--radius-base);
-    }
+  .item {
+    background-color: var(--color-surface--background);
+    padding: var(--space-large);
+    padding-right: var(--space-largest);
+    border-radius: var(--radius-base);
+  }
 
-    .item>* {
-        padding: var(--space-small);
-    }
+  .item > * {
+    padding: var(--space-small);
+  }
 }
 
 @container first (min-width: 0px) {
-    .item {
-        background-color: var(--color-surface--background);
-        padding: var(--space-large);
-        padding-right: var(--space-largest);
-        border-radius: var(--radius-base);
-    }
+  .item {
+    background-color: var(--color-surface--background);
+    padding: var(--space-large);
+    padding-right: var(--space-largest);
+    border-radius: var(--radius-base);
+  }
 
-    .item>* {
-        padding: var(--space-small);
-    }
+  .item > * {
+    padding: var(--space-small);
+  }
 }
 
 @container second (min-width: 0px) {
-    .item {
-        background-color: var(--color-success);
-        padding: var(--space-large);
-        padding-right: var(--space-largest);
-        border-radius: var(--radius-base);
-    }
+  .item {
+    background-color: var(--color-success);
+    padding: var(--space-large);
+    padding-right: var(--space-largest);
+    border-radius: var(--radius-base);
+  }
 
-    .item>* {
-        padding: var(--space-small);
-    }
+  .item > * {
+    padding: var(--space-small);
+  }
 }

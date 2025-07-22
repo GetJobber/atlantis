@@ -1,14 +1,14 @@
 .container {
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  opacity: 0;
 }
 
 .container:focus-within {
-    pointer-events: auto;
-    z-index: var(--elevation-modal);
-    margin-top: var(--space-base);
-    padding: var(--space-smaller);
-    opacity: 1;
+  pointer-events: auto;
+  z-index: var(--elevation-modal);
+  margin-top: var(--space-base);
+  padding: var(--space-smaller);
+  opacity: 1;
 }

@@ -10,8 +10,8 @@
   transition: all var(--timing-base) ease-out;
 
   &:focus-visible {
-      box-shadow: var(--shadow-focus);
-      background-color: var(--color-surface--background--hover);
+    box-shadow: var(--shadow-focus);
+    background-color: var(--color-surface--background--hover);
   }
 }
 

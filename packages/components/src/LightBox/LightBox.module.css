@@ -190,8 +190,7 @@
   height: 64px;
   border-radius: var(--radius-small);
   background-color: var(--color-surface);
-  transition:
-    border var(--timing-base) ease-in,
+  transition: border var(--timing-base) ease-in,
     border-radius var(--timing-quick) ease-in,
     transform var(--timing-quick) ease-in-out;
   flex-shrink: 0;

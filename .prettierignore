@@ -1,4 +1,39 @@
 packages/generators/templates
-packages/components/dist/styles.css
 packages/design/icons/
 **/CHANGELOG.md
+.storybook/**
+
+# Ignore all built/compiled files
+**/dist/**
+**/build/**
+**/.rollup.cache/**
+storybook-static/**
+
+# Ignore configuration and data files
+*.json
+
+# Ignore auto-generated files
+**/*.css.d.ts
+**/*.module.css.d.ts
+**/tokens.*.ts
+**/icon.map.ts
+**/iconMap.ts
+
+# Ignore public assets and bundles
+**/public/**/*.js
+**/public/**/*.css
+**/public/**/*.html
+
+# Ignore test reports
+**/playwright-report/**
+**/test-results/**
+
+# Ignore HTML files (often generated)
+**/*.html
+
+# Ignore YAML files
+**/*.yml
+**/*.yaml
+
+# Ignore VS Code snippets
+**/*.code-snippets

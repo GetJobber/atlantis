@@ -41,8 +41,7 @@
   z-index: var(--elevation-base);
   padding: var(--sideDrawer--base-padding);
   background-color: var(--sideDrawer--background);
-  transition:
-    box-shadow var(--timing-base) ease-in-out,
+  transition: box-shadow var(--timing-base) ease-in-out,
     filter var(--timing-base) ease-in-out;
 }
 
@@ -65,8 +64,7 @@
 }
 
 .footer.hasShadow {
-  box-shadow:
-    0px var(--space-minuscule) var(--space-smaller) 0px
+  box-shadow: 0px var(--space-minuscule) var(--space-smaller) 0px
       rgba(var(--color-black--rgb), 0.1),
     0px -2px 12px 0px rgba(var(--color-black--rgb), 0.05);
 }
@@ -155,9 +153,7 @@
   width: 0;
   opacity: 0;
   transform: translateX(-8px);
-  transition:
-    width var(--transition),
-    transform var(--transition),
+  transition: width var(--transition), transform var(--transition),
     opacity var(--transition);
 
   &.backButtonVisible {

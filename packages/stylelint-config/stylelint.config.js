@@ -2,12 +2,10 @@
 module.exports = {
   extends: ["stylelint-config-recommended", "stylelint-config-css-modules"],
   plugins: [
-    "stylelint-prettier",
     "stylelint-order",
     "stylelint-declaration-block-no-ignored-properties",
   ],
   rules: {
-    "prettier/prettier": true,
     "color-named": "never",
     "color-no-hex": true,
     "plugin/declaration-block-no-ignored-properties": true,
