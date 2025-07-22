@@ -158,9 +158,9 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: "Run affected tests with nx"
+          name: "Run tests with jest"
           command:
-            npm run test:affected
+            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT_DIR: "reports/junit/"
             JEST_JUNIT_OUTPUT_NAME: "js-test-results.xml"
