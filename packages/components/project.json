@@ -37,7 +37,7 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "jest --testPathPattern=packages/components",
+        "command": "jest --config jest.config.js --testPathPattern=packages/components",
         "cwd": "."
       },
       "outputs": ["{projectRoot}/coverage"],

@@ -10,6 +10,31 @@
       },
       "outputs": [],
       "dependsOn": []
+    },
+    "bootstrap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean && nx run @jobber/generators:build",
+        "cwd": "packages/generators"
+      },
+      "outputs": [],
+      "dependsOn": []
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --config jest.config.js --testPathPattern=packages/generators --passWithNoTests",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/coverage"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/**/*.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.test.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.spec.{ts,tsx,js,jsx}",
+        "!{projectRoot}/node_modules/**/*"
+      ]
     }
   }
 } 
