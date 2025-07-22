@@ -67,15 +67,16 @@ describe("useDebounce", () => {
 
   it("should not recreate debounced function when options object reference changes", () => {
     const mockFn = jest.fn();
+    const debounceEgdesOption: Array<"leading" | "trailing"> = ["trailing"];
 
     // Use a function that returns a new options object each time
     const { result, rerender } = renderHook(
       ({ options }) => useDebounce(mockFn, DEBOUNCE_WAIT, options),
-      { initialProps: { options: { maxWait: 1000 } } },
+      { initialProps: { options: { edges: debounceEgdesOption } } },
     );
     const debounceRef = result.current;
 
-    rerender({ options: { maxWait: 1000 } });
+    rerender({ options: { edges: debounceEgdesOption } });
 
     expect(debounceRef).toBe(result.current);
   });
@@ -84,11 +85,13 @@ describe("useDebounce", () => {
     const mockFn = jest.fn();
     // Largely arbitrary, this value x 2 must simply be less than the debounce wait
     const TIME_INCREMENT_LESSER_THAN_DEBOUNCE_WAIT = 1;
+    // Start with trailing edge
+    const debounceEgdesOption: Array<"leading" | "trailing"> = ["trailing"];
 
     // Use a function that returns a new options object each time
     const { result, rerender } = renderHook(
       ({ options }) => useDebounce(mockFn, DEBOUNCE_WAIT, options),
-      { initialProps: { options: { leading: false } } },
+      { initialProps: { options: { edges: debounceEgdesOption } } },
     );
 
     result.current("first");
@@ -100,7 +103,7 @@ describe("useDebounce", () => {
     expect(mockFn).not.toHaveBeenCalled();
 
     // This means it calls immediately at the leading edge of the timeout.
-    rerender({ options: { leading: true } });
+    rerender({ options: { edges: ["leading"] } });
 
     result.current("second");
 
@@ -154,12 +157,14 @@ describe("useDebounce", () => {
     expect(debouncedValue.textContent).toBe("test");
   }, 10_000);
 
-  it("should properly handle options object with maxWait in component", async () => {
-    function DebouncedMaxWaitComponent() {
+  it("should properly handle options object", async () => {
+    function DebouncedComponent() {
       const [count, setCount] = useState(0);
       const [debouncedCount, setDebouncedCount] = useState(0);
 
-      const options = { maxWait: 1000 };
+      const options: { edges: Array<"leading" | "trailing"> } = {
+        edges: ["leading", "trailing"],
+      };
 
       const debouncedSetCount = useDebounce(
         (value: number) => {
@@ -188,22 +193,49 @@ describe("useDebounce", () => {
       );
     }
 
-    render(<DebouncedMaxWaitComponent />);
+    render(<DebouncedComponent />);
 
     const incrementButton = screen.getByTestId("increment");
     const debouncedCount = screen.getByTestId("debounced-count");
 
     const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     await user.click(incrementButton);
+
+    // With leading edge, the value should be updated immediately
+    expect(debouncedCount.textContent).toBe("1");
+
     await user.click(incrementButton);
     await user.click(incrementButton);
 
-    expect(debouncedCount.textContent).toBe("0");
+    // Additional clicks shouldn't update immediately (debounced)
+    expect(debouncedCount.textContent).toBe("1");
 
+    // After the debounce period, the trailing edge should update with the latest value
     act(() => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
 
     expect(debouncedCount.textContent).toBe("3");
+  });
+
+  it("should abort debounced function when signal is aborted", async () => {
+    const mockFn = jest.fn();
+    const controller = new AbortController();
+
+    const { result } = renderHook(() =>
+      useDebounce(mockFn, DEBOUNCE_WAIT, { signal: controller.signal }),
+    );
+
+    result.current("test");
+
+    act(() => {
+      controller.abort();
+    });
+
+    act(() => {
+      jest.advanceTimersByTime(DEBOUNCE_WAIT + 100);
+    });
+
+    expect(mockFn).not.toHaveBeenCalled();
   });
 });

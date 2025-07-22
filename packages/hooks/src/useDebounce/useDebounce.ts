@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import debounce from "lodash/debounce";
+import { debounce } from "es-toolkit";
 import { useCallbackRef } from "../useCallbackRef";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
