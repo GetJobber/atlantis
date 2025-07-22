@@ -33,6 +33,22 @@
         "cwd": "packages/components-native"
       }
     },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --config packages/components-native/jest.config.js",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/coverage"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/**/*.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.test.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.spec.{ts,tsx,js,jsx}",
+        "!{projectRoot}/node_modules/**/*"
+      ]
+    },
     "bootstrap": {
       "executor": "nx:run-commands",
       "options": {

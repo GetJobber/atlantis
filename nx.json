@@ -10,7 +10,8 @@
           "storybook:build",
           "site:build",
           "merge:dist",
-          "generate:sitemap"
+          "generate:sitemap",
+          "test"
         ],
         "parallel": 3
       }
@@ -41,6 +42,20 @@
         "{projectRoot}/vite.config.*"
       ],
       "outputs": ["{projectRoot}/dist"],
+      "cache": true
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/**/*.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.test.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.spec.{ts,tsx,js,jsx}",
+        "{projectRoot}/jest.config.*",
+        "!{projectRoot}/node_modules/**/*"
+      ],
+      "outputs": ["{projectRoot}/coverage"],
       "cache": true
     },
     "storybook:build": {
