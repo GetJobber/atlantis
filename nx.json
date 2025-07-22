@@ -45,7 +45,6 @@
       "cache": true
     },
     "test": {
-      "dependsOn": ["^build"],
       "inputs": [
         "default",
         "^default",
