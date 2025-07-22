@@ -21,7 +21,7 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "jest --config jest.web.config.js --testPathPattern=packages/hooks/src",
+        "command": "jest --testPathPattern=packages/hooks",
         "cwd": "."
       },
       "outputs": ["{projectRoot}/coverage"],
