@@ -73,27 +73,43 @@ describe("useDebounce", () => {
       ({ options }) => useDebounce(mockFn, DEBOUNCE_WAIT, options),
       { initialProps: { options: { maxWait: 1000 } } },
     );
+    const debounceRef = result.current;
+
+    rerender({ options: { maxWait: 1000 } });
+
+    expect(debounceRef).toBe(result.current);
+  });
+
+  it("should not recreate debounced function when options config changes", () => {
+    const mockFn = jest.fn();
+    // Largely arbitrary, this value x 2 must simply be less than the debounce wait
+    const TIME_INCREMENT_LESSER_THAN_DEBOUNCE_WAIT = 1;
+
+    // Use a function that returns a new options object each time
+    const { result, rerender } = renderHook(
+      ({ options }) => useDebounce(mockFn, DEBOUNCE_WAIT, options),
+      { initialProps: { options: { leading: false } } },
+    );
 
     result.current("first");
 
-    // Change options reference but keep the same values
-    rerender({ options: { maxWait: 1000 } });
-
-    // Advance timer partially and verify the function hasn't been called yet
     act(() => {
-      jest.advanceTimersByTime(DEBOUNCE_WAIT / 2);
+      jest.advanceTimersByTime(TIME_INCREMENT_LESSER_THAN_DEBOUNCE_WAIT);
     });
+
     expect(mockFn).not.toHaveBeenCalled();
+
+    // This means it calls immediately at the leading edge of the timeout.
+    rerender({ options: { leading: true } });
 
     result.current("second");
 
     act(() => {
-      jest.advanceTimersByTime(DEBOUNCE_WAIT);
+      jest.advanceTimersByTime(TIME_INCREMENT_LESSER_THAN_DEBOUNCE_WAIT);
     });
 
-    // Should only be called once with the latest value
-    expect(mockFn).toHaveBeenCalledTimes(1);
-    expect(mockFn).toHaveBeenCalledWith("second");
+    // The config change should be ignored, options are hardcoded
+    expect(mockFn).not.toHaveBeenCalled();
   });
 
   it("should work with React components", async () => {
