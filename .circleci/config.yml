@@ -153,7 +153,28 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
-  build_and_test:
+  test:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - run:
+          name: "Run tests with jest"
+          command:
+            npm run test:affected
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: "reports/junit/"
+            JEST_JUNIT_OUTPUT_NAME: "js-test-results.xml"
+            JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
+            JEST_JUNIT_SUITE_NAME: "{displayName} {title}"
+      - *persist_nx_cache_only
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+      - store_artifacts:
+          path: coverage
+
+  build_all:
     resource_class: medium+
     <<: *container_config
     steps:
@@ -275,19 +296,6 @@ jobs:
               fi
             fi
       - run:
-          name: Run Affected Tests with NX
-          command: |
-            echo "=== Starting Affected Test Run ==="
-            echo "Running: npm run test:affected"
-            echo "This will run tests only for affected packages..."
-            
-            npm run test:affected
-          environment:
-            JEST_JUNIT_OUTPUT_DIR: "reports/junit/"
-            JEST_JUNIT_OUTPUT_NAME: "js-test-results.xml"
-            JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
-            JEST_JUNIT_SUITE_NAME: "{displayName} {title}"
-      - run:
           name: Debug NX Cache After Build
           command: |
             echo "=== NX Cache After Build ==="
@@ -296,12 +304,6 @@ jobs:
             find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
             echo "=== End Debug Info ==="
       - *persist_nx_cache_only
-      - store_test_results:
-          path: reports/junit
-      - store_artifacts:
-          path: reports/junit
-      - store_artifacts:
-          path: coverage
       - *check_git_status
 
   release:
@@ -380,7 +382,10 @@ workflows:
       - lint_css:
           requires:
             - install_dependencies
-      - build_and_test:
+      - test:
+          requires:
+            - install_dependencies
+      - build_all:
           requires:
             - install_dependencies
       - e2e_tests:
@@ -388,7 +393,7 @@ workflows:
             - install_dependencies
       - save_nx_cache:
           requires:
-            - build_and_test
+            - build_all
       - release:
           filters:
             branches:
@@ -396,5 +401,6 @@ workflows:
           requires:
             - lint_javascript
             - lint_css
-            - build_and_test
+            - test
+            - build_all
             - e2e_tests
