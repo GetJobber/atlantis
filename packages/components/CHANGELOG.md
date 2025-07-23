@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.69.0...@jobber/components@6.70.0) (2025-07-21)
+
+
+### Features
+
+* **components:** Remove Chip.Suffix icon allowed list check ([#2623](https://github.com/GetJobber/atlantis/issues/2623)) ([e1ac1d2](https://github.com/GetJobber/atlantis/commit/e1ac1d2699a86080c0b7b5a5b903b76449f6c57c))
+
+
+
+
+
+# [6.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.68.2...@jobber/components@6.69.0) (2025-07-21)
+
+
+### Features
+
+* **components:** Replace Popper with FloatingUI in Autocomplete ([#2621](https://github.com/GetJobber/atlantis/issues/2621)) ([3e15edf](https://github.com/GetJobber/atlantis/commit/3e15edfddf5bcd706421b9046f7ba37948c96ca1))
+
+
+
+
+
+## [6.68.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.68.1...@jobber/components@6.68.2) (2025-07-18)
+
+
+### Bug Fixes
+
+* **components:** Undo ComboboxSelection type for callback props ([#2622](https://github.com/GetJobber/atlantis/issues/2622)) ([10eed09](https://github.com/GetJobber/atlantis/commit/10eed09b90a514836c7431576c7c6b222df7ec11))
+
+
+
+
+
 ## [6.68.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.68.0...@jobber/components@6.68.1) (2025-07-17)
 
 **Note:** Version bump only for package @jobber/components

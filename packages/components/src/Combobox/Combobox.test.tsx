@@ -371,7 +371,10 @@ describe("Combobox Multiselect", () => {
     expect(handleSelect).toHaveBeenCalledWith([]);
   });
 
-  it("should call onSelectAll when clicking Select all", async () => {
+  it("should call onSelectAll with options with only id and label when clicking Select all", async () => {
+    // Not directly using mockOnClick, it is used to confirm its absence in the onSelectAll callback argument
+    const mockOnClick = jest.fn();
+
     render(
       <Combobox
         label={activatorLabel}
@@ -381,8 +384,8 @@ describe("Combobox Multiselect", () => {
         onSelectAll={handleSelectAll}
         onClear={handleClear}
       >
-        <Combobox.Option id="1" label="Bilbo Baggins" />
-        <Combobox.Option id="2" label="Frodo Baggins" />
+        <Combobox.Option id="1" label="Bilbo Baggins" onClick={mockOnClick} />
+        <Combobox.Option id="2" label="Frodo Baggins" onClick={mockOnClick} />
       </Combobox>,
     );
 
