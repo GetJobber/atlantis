@@ -178,61 +178,6 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - run:
-          name: Debug NX Output Restoration
-          command: |
-            echo "=== Checking for dist folders before build ==="
-            echo "packages/components/dist exists: $(test -d packages/components/dist && echo 'YES' || echo 'NO')"
-            echo "packages/components-native/dist exists: $(test -d packages/components-native/dist && echo 'YES' || echo 'NO')"
-            echo "packages/hooks/dist exists: $(test -d packages/hooks/dist && echo 'YES' || echo 'NO')"
-            echo "packages/design/dist exists: $(test -d packages/design/dist && echo 'YES' || echo 'NO')"
-            echo "packages/formatters/dist exists: $(test -d packages/formatters/dist && echo 'YES' || echo 'NO')"
-            
-            if [ -d packages/components/dist ]; then
-              echo "packages/components/dist contents:"
-              ls -la packages/components/dist/
-            fi
-            
-            if [ -d packages/components-native/dist ]; then
-              echo "packages/components-native/dist contents:"
-              ls -la packages/components-native/dist/
-            fi
-            
-            echo "=== NX Cache Status ==="
-            npx nx show projects --affected || echo "No affected projects"
-            
-            echo "=== Checking NX cache for outputs ==="
-            if [ -d .nx/cache ]; then
-              echo "Looking for cached outputs..."
-              find .nx/cache -name "*.json" -exec grep -l "dist" {} \; | head -5
-            fi
-      - run:
-          name: Debug NX Cache Contents
-          command: |
-            echo "=== NX Cache Debug Info ==="
-            echo "Current directory: $(pwd)"
-            echo "NX cache directory exists: $(test -d .nx/cache && echo 'YES' || echo 'NO')"
-            if [ -d .nx/cache ]; then
-              echo "NX cache directory size: $(du -sh .nx/cache)"
-              echo "NX cache contents:"
-              find .nx/cache -type f -name "*.json" | head -10
-              echo "Recent cache entries (last 5):"
-              find .nx/cache -type d -name "[0-9]*" | sort | tail -5
-              echo "NX cache structure:"
-              tree .nx/cache -L 2 || ls -la .nx/cache
-              
-              # General check for many cache entries
-              CACHE_ENTRIES=$(find .nx/cache -type d -name "[0-9]*" | wc -l)
-              echo "Number of cache entries: $CACHE_ENTRIES"
-              if [ "$CACHE_ENTRIES" -gt 10 ]; then
-                echo "WARNING: Many cache entries detected. Consider cache cleanup if builds are slow."
-              fi
-            fi
-            echo "Node modules cache exists: $(test -d node_modules/.cache && echo 'YES' || echo 'NO')"
-            if [ -d node_modules/.cache ]; then
-              echo "Node modules cache size: $(du -sh node_modules/.cache)"
-            fi
-            echo "=== End Debug Info ==="
       - *generate_base_path
       - run:
           name: Build Storybook with NX
@@ -251,18 +196,6 @@ jobs:
               echo "=== Storybook Build Complete ==="
             else
               echo "=== Build Failed ==="
-              echo "Checking for TypeScript compilation errors..."
-              
-              # Check if the error is related to type conflicts by running again and checking output
-              if npm run storybook:build 2>&1 | grep -q "All declarations of.*must have identical type parameters\|Interface.*incorrectly extends interface"; then
-                echo "TypeScript compilation error detected. Clearing NX cache and retrying..."
-                rm -rf .nx/cache
-                echo "Cache cleared. Retrying build..."
-                npm run storybook:build
-              else
-                echo "Build failed for other reasons. Exiting."
-                exit 1
-              fi
             fi
       - run:
           name: Build Site with NX
@@ -281,27 +214,7 @@ jobs:
               echo "=== Site Build Complete ==="
             else
               echo "=== Build Failed ==="
-              echo "Checking for TypeScript compilation errors..."
-              
-              # Check if the error is related to type conflicts by running again and checking output
-              if npm run site:build 2>&1 | grep -q "All declarations of.*must have identical type parameters\|Interface.*incorrectly extends interface"; then
-                echo "TypeScript compilation error detected. Clearing NX cache and retrying..."
-                rm -rf .nx/cache
-                echo "Cache cleared. Retrying build..."
-                npm run site:build
-              else
-                echo "Build failed for other reasons. Exiting."
-                exit 1
-              fi
             fi
-      - run:
-          name: Debug NX Cache After Build
-          command: |
-            echo "=== NX Cache After Build ==="
-            echo "NX cache directory size after build: $(du -sh .nx/cache)"
-            echo "Recent cache entries:"
-            find .nx/cache -type f -name "*.json" -newer .nx/cache | head -5
-            echo "=== End Debug Info ==="
       - *persist_nx_cache_only
       - *check_git_status
 
