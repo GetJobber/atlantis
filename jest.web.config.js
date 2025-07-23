@@ -25,6 +25,7 @@ module.exports = {
     "/node_modules/",
     "/packages/generators/templates/",
     "/packages/components-native/",
+    "/.nx/",
   ],
   transformIgnorePatterns: ["node_modules/(?!@codesandbox/sandpack-react)/"],
 };

@@ -13,7 +13,7 @@ module.exports = {
   moduleNameMapper: {
     "^@jobber/hooks/(.*)$": "<rootDir>/../hooks/dist/$1",
   },
-  testPathIgnorePatterns: ["/node_modules/"],
+  testPathIgnorePatterns: ["/node_modules/", "/.nx/"],
   transformIgnorePatterns: [
     "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-native)",
   ],
