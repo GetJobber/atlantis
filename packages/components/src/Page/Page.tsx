@@ -27,7 +27,8 @@ interface PageFoundationProps {
    * Supports any React node. If a string is provided, it will be rendered as an H1 heading.
    * Otherwise it will be rendered as is.
    *
-   * **Important**: If you're passing a custom element, it must include an H1 heading within it.
+   * **Important**: If you're passing a custom element, it must include an H1-level heading within it.
+   * Ideally <Heading level={1}> should be used here.
    */
   readonly title: ReactNode;
 
