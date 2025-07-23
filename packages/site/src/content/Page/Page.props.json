@@ -32,6 +32,19 @@
           "name": "boolean"
         }
       },
+      "title": {
+        "defaultValue": null,
+        "description": "Title of the page.\n\nSupports any React node. If a string is provided, it will be rendered as an H1 heading.\nOtherwise it will be rendered as is.\nTitle of the page.",
+        "name": "title",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | (ReactElement<...> & string) | (Iterable<...> & string) | (ReactPortal & string)"
+        }
+      },
       "subtitle": {
         "defaultValue": null,
         "description": "Subtitle of the page.",
@@ -112,19 +125,6 @@
         "required": false,
         "type": {
           "name": "ReactNode"
-        }
-      },
-      "title": {
-        "defaultValue": null,
-        "description": "Custom title component.\nTitle of the page.",
-        "name": "title",
-        "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "TitleNodeProps"
-        },
-        "required": true,
-        "type": {
-          "name": "any"
         }
       }
     }

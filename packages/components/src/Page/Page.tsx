@@ -20,6 +20,15 @@ export type ButtonActionProps = ButtonProps & {
 
 interface PageFoundationProps {
   readonly children: ReactNode | ReactNode[];
+
+  /**
+   * Title of the page.
+   *
+   * Supports any React node. If a string is provided, it will be rendered as an H1 heading.
+   * Otherwise it will be rendered as is.
+   */
+  readonly title: ReactNode;
+
   /**
    * Subtitle of the page.
    */
@@ -72,7 +81,7 @@ interface PageWithIntroProps extends PageFoundationProps {
   readonly externalIntroLinks?: boolean;
 }
 
-interface TitleStringProps {
+interface TitleStringProps extends PageFoundationProps {
   /**
    * Title of the page.
    */
@@ -85,15 +94,8 @@ interface TitleStringProps {
   readonly titleMetaData?: ReactNode;
 }
 
-interface TitleNodeProps {
-  /**
-   * Custom title component.
-   */
-  readonly title: React.ReactElement | React.ReactElement[];
-}
-
 export type PageProps = XOR<PageFoundationProps, PageWithIntroProps> &
-  XOR<TitleStringProps, TitleNodeProps>;
+  XOR<PageFoundationProps, TitleStringProps>;
 
 export function Page({
   title,
