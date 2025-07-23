@@ -20,6 +20,5 @@
       ]
     }
   },
-  "useWorkspaces": true,
-  "useNx": true
+  "useWorkspaces": true
 }
