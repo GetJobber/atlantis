@@ -145,6 +145,3 @@ export type ButtonProps = XOR<
   ButtonWithChildrenProps,
   ButtonWithoutChildrenProps
 >;
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const test = "Test";
