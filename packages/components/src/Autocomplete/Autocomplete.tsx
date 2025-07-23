@@ -51,7 +51,9 @@ function AutocompleteInternal<
     useState<Array<GenericOption | GenericGetOptionsValue>>(initialOptionsMemo);
   const [inputFocused, setInputFocused] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
-  const autocompleteRef = useRef(null);
+  const [autocompleteRef, setAutocompleteRef] = useState<HTMLDivElement | null>(
+    null,
+  );
   const delayedSearch = useDebounce(updateSearch, debounceRate);
   const inputRef = useRef<InputTextRef | null>(null);
 
@@ -64,7 +66,7 @@ function AutocompleteInternal<
   }, [value]);
 
   return (
-    <div className={styles.autocomplete} ref={autocompleteRef}>
+    <div className={styles.autocomplete} ref={setAutocompleteRef}>
       <InputText
         ref={mergeRefs([ref, inputRef])}
         autocomplete={false}

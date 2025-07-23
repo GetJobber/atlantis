@@ -1,6 +1,8 @@
 [
   {
-    "tags": {},
+    "tags": {
+      "deprecated": "RecurringSelect will be removed in the next major version"
+    },
     "filePath": "../components/src/RecurringSelect/RecurringSelect.tsx",
     "description": "",
     "displayName": "RecurringSelect",

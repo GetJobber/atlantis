@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import classnames from "classnames";
 import { FloatingNode, FloatingPortal, FloatingTree } from "@floating-ui/react";
 import ReactDOM from "react-dom";
@@ -13,7 +13,10 @@ import { COMBOBOX_MENU_ID } from "../../constants";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
-  const { optionsListRef } = useComboboxContent(props.open, props.selected);
+  const { onClear, onSelectAll, optionsListRef } = useComboboxContent(
+    props.open,
+    props.selected,
+  );
 
   const { popperRef, popperStyles, floatingProps, nodeId, parentNodeId } =
     useComboboxAccessibility(
@@ -23,6 +26,15 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       props.open,
       props.wrapperRef,
     );
+
+  // options that are passed back to consumers via onSelectAll callback
+  // should only contain id and label
+  const optionsData = useMemo(() => {
+    return props.options.map(option => ({
+      id: option.id,
+      label: option.label,
+    }));
+  }, [props.options]);
 
   const content = (
     <div
@@ -52,9 +64,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           selectedCount={props.selected.length}
           onClearAll={() => {
             props.selectedStateSetter([]);
+            onClear?.();
           }}
           onSelectAll={() => {
             props.selectedStateSetter(props.options);
+            onSelectAll?.(optionsData);
           }}
         />
       )}

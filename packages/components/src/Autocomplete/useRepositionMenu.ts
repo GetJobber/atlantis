@@ -1,31 +1,85 @@
+import {
+  autoUpdate,
+  flip,
+  offset,
+  size,
+  useFloating,
+} from "@floating-ui/react";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
-import { useState } from "react";
-import { usePopper } from "react-popper";
 import { MenuProps } from "./Autocomplete.types";
+import { AUTCOMPLETE_MIN_HEIGHT, AUTOCOMPLETE_MAX_HEIGHT } from "./constants";
 
-export interface UseRepositionMenu extends ReturnType<typeof usePopper> {
+export interface UseRepositionMenu {
   readonly menuRef: HTMLElement | null;
   readonly setMenuRef: (ref: HTMLElement | null) => void;
   readonly targetWidth: number | undefined;
+  readonly styles: {
+    float: React.CSSProperties;
+  };
 }
 
 export function useRepositionMenu(
   attachTo: MenuProps["attachTo"],
-  visible = false,
-) {
-  const [menuRef, setMenuRef] = useState<HTMLElement | null>(null);
-  const popper = usePopper(attachTo.current, menuRef, {
-    modifiers: [
-      { name: "offset", options: { offset: [0, 8] } },
-      { name: "flip", options: { fallbackPlacements: ["top"] } },
+  visible: boolean,
+  cssManagedVisibility: boolean,
+): UseRepositionMenu {
+  const { refs, floatingStyles, update } = useFloating({
+    placement: "bottom",
+    middleware: [
+      offset(8),
+      flip({ fallbackPlacements: ["top"] }),
+      size({
+        apply({ availableHeight, elements }) {
+          // Limit the height for a true maximum
+          // However if we have less space than that, then reduce it to allow scrolling
+          const maxHeight =
+            availableHeight > AUTOCOMPLETE_MAX_HEIGHT
+              ? AUTOCOMPLETE_MAX_HEIGHT
+              : Math.max(AUTCOMPLETE_MIN_HEIGHT, availableHeight);
+
+          Object.assign(elements.floating.style, {
+            maxHeight: `${maxHeight}px`,
+          });
+        },
+      }),
     ],
+    elements: {
+      reference: attachTo,
+    },
+    ...(!cssManagedVisibility
+      ? {
+          whileElementsMounted: autoUpdate,
+        }
+      : {}),
   });
 
+  // While DefaultMenu leverages conditional rendering, CustomMenu is hidden with CSS
+  // We need to apply the correct update method to each case
   useSafeLayoutEffect(() => {
-    popper?.update?.();
-  }, [visible]);
+    if (cssManagedVisibility && visible && attachTo && refs.floating.current) {
+      const cleanup = autoUpdate(attachTo, refs.floating.current, update);
 
-  const targetWidth = attachTo.current?.clientWidth;
+      return cleanup;
+    }
 
-  return { ...popper, menuRef, setMenuRef, targetWidth };
+    return undefined;
+  }, [
+    cssManagedVisibility,
+    visible,
+    attachTo,
+    refs.floating.current,
+    update,
+    autoUpdate,
+  ]);
+
+  const targetWidth = attachTo?.clientWidth;
+
+  return {
+    menuRef: refs.floating.current,
+    setMenuRef: refs.setFloating,
+    targetWidth,
+    styles: {
+      float: floatingStyles,
+    },
+  };
 }
