@@ -158,15 +158,14 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: "Run affected tests with nx"
+          name: "Run tests with Jest"
           command:
-            npx nx affected --target=test --base=origin/master --head=$CIRCLE_BRANCH
+            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT_DIR: "reports/junit/"
             JEST_JUNIT_OUTPUT_NAME: "js-test-results.xml"
             JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
             JEST_JUNIT_SUITE_NAME: "{displayName} {title}"
-      - *persist_nx_cache_only
       - store_test_results:
           path: reports/junit
       - store_artifacts:
