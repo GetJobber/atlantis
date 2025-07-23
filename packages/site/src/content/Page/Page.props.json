@@ -32,32 +32,6 @@
           "name": "boolean"
         }
       },
-      "title": {
-        "defaultValue": null,
-        "description": "Title of the page.",
-        "name": "title",
-        "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "titleMetaData": {
-        "defaultValue": null,
-        "description": "TitleMetaData component to be displayed\nnext to the title.",
-        "name": "titleMetaData",
-        "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
       "subtitle": {
         "defaultValue": null,
         "description": "Subtitle of the page.",
@@ -125,6 +99,32 @@
         "required": false,
         "type": {
           "name": "SectionProps[]"
+        }
+      },
+      "titleMetaData": {
+        "defaultValue": null,
+        "description": "TitleMetaData component to be displayed\nnext to the title.",
+        "name": "titleMetaData",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "TitleStringProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Custom title component.\nTitle of the page.",
+        "name": "title",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "TitleNodeProps"
+        },
+        "required": true,
+        "type": {
+          "name": "any"
         }
       }
     }
