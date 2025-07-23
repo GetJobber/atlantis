@@ -20,18 +20,6 @@ export type ButtonActionProps = ButtonProps & {
 
 interface PageFoundationProps {
   readonly children: ReactNode | ReactNode[];
-
-  /**
-   * Title of the page.
-   */
-  readonly title: string;
-
-  /**
-   * TitleMetaData component to be displayed
-   * next to the title.
-   */
-  readonly titleMetaData?: ReactNode;
-
   /**
    * Subtitle of the page.
    */
@@ -84,7 +72,28 @@ interface PageWithIntroProps extends PageFoundationProps {
   readonly externalIntroLinks?: boolean;
 }
 
-export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
+interface TitleStringProps {
+  /**
+   * Title of the page.
+   */
+  readonly title: string;
+
+  /**
+   * TitleMetaData component to be displayed
+   * next to the title.
+   */
+  readonly titleMetaData?: ReactNode;
+}
+
+interface TitleNodeProps {
+  /**
+   * Custom title component.
+   */
+  readonly title: React.ReactElement | React.ReactElement[];
+}
+
+export type PageProps = XOR<PageFoundationProps, PageWithIntroProps> &
+  XOR<TitleStringProps, TitleNodeProps>;
 
 export function Page({
   title,
@@ -140,8 +149,10 @@ export function Page({
                   <Heading level={1}>{title}</Heading>
                   {titleMetaData}
                 </div>
-              ) : (
+              ) : typeof title === "string" ? (
                 <Heading level={1}>{title}</Heading>
+              ) : (
+                title
               )}
               {subtitle && (
                 <div className={styles.subtitle}>
