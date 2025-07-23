@@ -34,7 +34,7 @@
       },
       "title": {
         "defaultValue": null,
-        "description": "Title of the page.\n\nSupports any React node. If a string is provided, it will be rendered as an H1 heading.\nOtherwise it will be rendered as is.\nTitle of the page.",
+        "description": "Title of the page.\n\nSupports any React node. If a string is provided, it will be rendered as an H1 heading.\nOtherwise it will be rendered as is.\n\n**Important**: If you're passing a custom element, it must include an H1 heading within it.",
         "name": "title",
         "parent": {
           "fileName": "../components/src/Page/Page.tsx",
@@ -42,7 +42,20 @@
         },
         "required": true,
         "type": {
-          "name": "string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | (ReactElement<...> & string) | (Iterable<...> & string) | (ReactPortal & string)"
+          "name": "ReactNode"
+        }
+      },
+      "titleMetaData": {
+        "defaultValue": null,
+        "description": "TitleMetaData component to be displayed\nnext to the title. Only compatible with string titles.",
+        "name": "titleMetaData",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
         }
       },
       "subtitle": {
@@ -112,19 +125,6 @@
         "required": false,
         "type": {
           "name": "SectionProps[]"
-        }
-      },
-      "titleMetaData": {
-        "defaultValue": null,
-        "description": "TitleMetaData component to be displayed\nnext to the title.",
-        "name": "titleMetaData",
-        "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "TitleStringProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
         }
       }
     }
