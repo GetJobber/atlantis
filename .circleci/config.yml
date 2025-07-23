@@ -158,9 +158,9 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: "Run tests with jest"
+          name: "Run affected tests with nx"
           command:
-            npm run test:affected
+            npx nx affected --target=test --base=origin/master --head=$CIRCLE_BRANCH
           environment:
             JEST_JUNIT_OUTPUT_DIR: "reports/junit/"
             JEST_JUNIT_OUTPUT_NAME: "js-test-results.xml"

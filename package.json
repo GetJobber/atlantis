@@ -45,7 +45,7 @@
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6005",
     "storybook:build": "nx run atlantis:storybook:build",
     "test": "jest",
-    "test:affected": "nx affected --target=test --base=master --head=HEAD --verbose"
+    "test:affected": "nx affected --target=test --base=origin/master --head=HEAD --verbose"
   },
   "repository": {
     "type": "git",
