@@ -1,7 +1,6 @@
 {
   "name": "atlantis",
   "$schema": "node_modules/nx/schemas/project-schema.json",
-  "description": "Trigger CI build to test NX caching improvements",
   "targets": {
     "build": {
       "executor": "nx:run-commands",
