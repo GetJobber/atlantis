@@ -12,5 +12,5 @@ jobber-*.tgz
 .npmrc
 styles.css.backup
 
-# NX (for useNx option)
+# NX cache
 .nx/cache
