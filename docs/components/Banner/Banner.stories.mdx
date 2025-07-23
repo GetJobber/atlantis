@@ -20,7 +20,7 @@ business, without unnecessarily interrupting their flow.
 A Banner typically includes:
 
 <ul>
-  <li> Icon (optional): Adds visual context, usually for warning or error types </li>
+  <li> Icon: Adds visual context, usually for warning or error types </li>
   <li> Message text: 1–2 clear, concise sentences </li>
   <li> CTA or link (optional): For related action </li>
   <li> Dismiss button (optional): For SP-controlled removal </li>
@@ -30,20 +30,21 @@ A Banner typically includes:
 
 - Alignment: Banner should align with the left and right of the content it relates to. In a
 modal or page layout, this means aligning with text, inputs, or other components beneath it.
-Use the use [Content](/components/Content) to ensure consistent vertical spacing between
+Use the [Content](/components/Content) to ensure consistent vertical spacing between
 the Banner and adjacent elements.
 
 - Dismissal: Banners remain visible until they are dismissed or the condition resolves. Include
 a dismiss button only when no further user action is required.
 
-#### Global Banner (Web) 
-If the Banner is used as a system-wide message or outside of the main
-layout, it should span the full available width.
+#### Global Banner (Web and Mobile) 
+Use Global banner for system-wide messages that need to persist beyond a specific view or layout.
 
-#### Global Banner (Mobile)
-Use for system-wide messages that apply beyond a specific view or function. 
-It should be positioned directly beneath the status bar and above the navigation header, flush with the
-screen edges.
+<ul>
+ <li>It should be positioned above the top navigation bar</li>
+ <li>It should be full-width, flush with the screen edges</li>
+</ul>
+
+Note that Global Banner is a separate component (there's a version of it in Jobber and Jobber Online repos). 
 
 ## Variants
 
@@ -66,17 +67,17 @@ Success banners are appropriate when:
 Otherwise, use [Toast](/components/Toast) as the default for success messages.
 Do not use the term "Success" when writing a success banner.
 
-#### Success (mobile)
+### Success (Mobile)
 
 On mobile, use [Toast](/components/Toast) for a success message.
 
-### Notice
+### Notice (Info)
 
 <Canvas>
   <Banner type="notice">Your visits are being scheduled</Banner>
 </Canvas>
 
-Use notice banners to provide information about:
+Use notice (info) banners to provide information about:
 
 <ul>
   <li>Informing SPs of background operations such as visits being scheduled</li>
@@ -148,14 +149,14 @@ to resolve or troubleshoot the issue if possible. Don't use error codes.
 Using an `icon` prop is optional, but can be used to provide additional visual
 context to the user.
 
-#### Errors in forms (web)
+#### Errors in forms (Web)
 
 If an error is directly related to an input, don't use a banner. Use the
 [InputText validation message](../?path=/docs/components-forms-and-inputs-inputtext--docs#validation-message)
 component or, if unavailable, [InputValidation](/components/InputValidation).
 Scroll to the first affected field on submission.
 
-#### Errors in forms (mobile)
+#### Errors in forms (Mobile)
 
 In forms, use the error Banner when the response from submitting the form has
 returned errors. See
@@ -260,3 +261,5 @@ In summary, here are some general rules to follow when working with the banner c
   use [Toast](/components/Toast) instead.
 - Use [ConfirmationModal](/components/ConfirmationModal) when you need to get
   explicit confirmation from the user before they complete an action.
+- As stated in the Behaviour section, Global Banner is a a separate component 
+  (shared component, a version exists in both the Jobber and Jobber Online repos).
