@@ -37,8 +37,25 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
           scope: '@jobber'
+          cache: 'npm'
+
+      - name: Setup NX Cache
+        uses: actions/cache@v3
+        with:
+          path: .nx/cache
+          key: nx-cache-${{ runner.os }}-${{ github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            nx-cache-${{ runner.os }}-${{ github.ref_name }}-
+            nx-cache-${{ runner.os }}-
+
       - name: NPM CI
         run: npm ci
+
+      - name: Build with NX (if needed)
+        run: npm run build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.JOBBER_NPM_TOKEN }}
+
       - name: NPM Publish
         id: npmPublish
         env:
@@ -73,6 +90,7 @@ jobs:
       - name: Send Summary File
         id: summaryFile
         run: echo "releaseSummary=$(cat ./lerna-publish-summary.json)" >> $GITHUB_OUTPUT
+
   send_build_information:
     permissions: write-all
     runs-on: ubuntu-latest
