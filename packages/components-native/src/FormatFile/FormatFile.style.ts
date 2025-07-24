@@ -8,6 +8,8 @@ export const useStyles = buildThemedStyles(tokens => {
       borderColor: tokens["color-border"],
       borderRadius: tokens["radius-base"],
       marginBottom: tokens["space-small"],
+      // This is to prevent the image from overflowing the container's border radius, otherwise it can "bleed" out the corners
+      overflow: "hidden",
     },
     thumbnailContainerGrid: {
       width: tokens["space-extravagant"],

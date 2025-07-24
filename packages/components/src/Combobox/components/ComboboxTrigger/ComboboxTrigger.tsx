@@ -7,6 +7,7 @@ import { ComboboxTriggerProps } from "../../Combobox.types";
 export function ComboboxTrigger({
   label = "Select",
   selected,
+  activatorRef,
 }: ComboboxTriggerProps) {
   const { handleOpen } = React.useContext(ComboboxContext);
 
@@ -21,6 +22,7 @@ export function ComboboxTrigger({
       heading={label}
       onClick={handleOpen}
       role="combobox"
+      ref={activatorRef}
     >
       {!hasSelection && (
         <Chip.Suffix>

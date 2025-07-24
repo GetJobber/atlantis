@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { CheckboxLegacy } from "./Checkbox";
 import { CheckboxRebuilt } from "./Checkbox.rebuilt";
 import { CheckboxLegacyProps, CheckboxRebuiltProps } from "./Checkbox.types";
@@ -11,12 +11,17 @@ function isNewCheckboxProps(
   return props.version === 2;
 }
 
-export function Checkbox(props: CheckboxShimProps) {
+export const Checkbox = forwardRef(function CheckboxShim(
+  props: CheckboxShimProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
   if (isNewCheckboxProps(props)) {
-    return <CheckboxRebuilt {...props} />;
+    return <CheckboxRebuilt {...props} ref={ref} />;
   }
 
   return <CheckboxLegacy {...props} />;
-}
+});
+
+Checkbox.displayName = "Checkbox";
 
 export type { CheckboxLegacyProps, CheckboxRebuiltProps };

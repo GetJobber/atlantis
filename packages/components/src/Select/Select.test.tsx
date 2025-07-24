@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { Option, Select } from ".";
+import { Select } from "./Select";
+import { Option } from "./Option";
 
 it("renders a Select with no options", () => {
   const { container } = render(<Select />);

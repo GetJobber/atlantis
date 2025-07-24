@@ -2,6 +2,7 @@
   --checkbox--size: 20px;
   --checkbox--border--checked: var(--color-interactive);
   --checkbox--border--unchecked: var(--color-border--interactive);
+  --checkbox--border--invalid: var(--color-critical);
   --checkbox--border--hover: var(--color-interactive);
   display: inline-block;
 }
@@ -79,6 +80,23 @@
 .disabled .input.indeterminate + .checkBox > *,
 .disabled .input:checked + .checkBox > * {
   opacity: 1;
+}
+
+/* Invalid states set border and fill color when field not disabled
+     - note, some rules are duplicated to ensure selectors follow
+       descending cascade linting rules
+*/
+.invalid:not(.disabled) .input + .checkBox {
+  border-color: var(--checkbox--border--invalid);
+}
+.invalid:not(.disabled) .input:checked + .checkBox,
+.invalid:not(.disabled) .input.indeterminate + .checkBox {
+  background-color: var(--color-critical);
+}
+
+.invalid:not(.disabled):focus-within .input + .checkBox,
+.invalid:not(.disabled) .input.indeterminate:focus-within + .checkBox {
+  border-color: var(--checkbox--border--invalid);
 }
 
 .label {

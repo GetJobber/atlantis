@@ -1,3 +1,4 @@
+import { Placement } from "@floating-ui/react";
 import React, { CSSProperties, createContext, useContext } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
@@ -8,11 +9,18 @@ import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 interface PopoverContextProps {
   setArrowElement: (element: HTMLElement | null) => void;
-  popperStyles: { [key: string]: CSSProperties };
+  popperStyles: {
+    popper: CSSProperties;
+    arrow?: {
+      x?: number;
+      y?: number;
+    };
+  };
+  placement?: Placement;
 }
 
 const PopoverContext = createContext<PopoverContextProps>({
-  popperStyles: {},
+  popperStyles: { popper: {} },
   setArrowElement: () => {
     // noop
   },
@@ -24,13 +32,13 @@ export function usePopoverContext() {
 
 export function PopoverProvider({
   children,
-  preferredPlacement,
+  preferredPlacement = "auto",
   attachTo,
   open,
   UNSAFE_className,
   UNSAFE_style,
 }: PopoverProviderProps) {
-  const { setPopperElement, setArrowElement, popperStyles, attributes } =
+  const { setPopperElement, setArrowElement, popperStyles, placement } =
     usePopover({
       preferredPlacement,
       attachTo,
@@ -44,13 +52,14 @@ export function PopoverProvider({
       value={{
         setArrowElement,
         popperStyles,
+        placement,
       }}
     >
       <PopoverWrapper
-        attributes={attributes}
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
         setPopperElement={setPopperElement}
+        placement={placement}
       >
         {children}
       </PopoverWrapper>
@@ -60,14 +69,14 @@ export function PopoverProvider({
 
 function PopoverWrapper({
   children,
-  attributes,
   setPopperElement,
   UNSAFE_className,
   UNSAFE_style,
+  placement,
 }: {
   readonly children: React.ReactNode;
-  readonly attributes: Record<string, { [key: string]: string } | undefined>;
   readonly setPopperElement: (element: HTMLElement | null) => void;
+  readonly placement?: Placement;
 } & Pick<PopoverProviderProps, "UNSAFE_className" | "UNSAFE_style">) {
   const popoverStyles = usePopoverStyles();
   const { popperStyles } = usePopoverContext();
@@ -85,7 +94,7 @@ function PopoverWrapper({
         ref={setPopperElement}
         style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
         className={classes}
-        {...attributes.popper}
+        data-popover-placement={placement}
         data-testid="ATL-Popover-Container"
       >
         {children}

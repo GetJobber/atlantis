@@ -17,11 +17,15 @@ import CheckboxContent from "./Checkbox";
 import CardContent from "./Card";
 import ChipContent from "./Chip";
 import ChipsContent from "./Chips";
+import ClusterContent from "./Cluster";
 import ComboboxContent from "./Combobox";
 import ConfirmationModalContent from "./ConfirmationModal";
+import ContainerContent from "./Container";
 import ContentStuff from "./Content";
+import ContentBlockContent from "./ContentBlock";
 import ContentOverlayContent from "./ContentOverlay";
 import CountdownContent from "./Countdown";
+import CoverContent from "./Cover";
 import DataDumpContent from "./DataDump";
 import DataListContent from "./DataList";
 import DataTableContent from "./DataTable";
@@ -41,6 +45,7 @@ import FormatFileContent from "./FormatFile";
 import FormatRelativeDateTimeContent from "./FormatRelativeDateTime";
 import FormatTimeContent from "./FormatTime";
 import FormFieldContent from "./FormField";
+import FrameContent from "./Frame";
 import GalleryContent from "./Gallery";
 import GlimmerContent from "./Glimmer";
 import GridContent from "./Grid";
@@ -75,16 +80,20 @@ import PopoverContent from "./Popover";
 import ProgressBarContent from "./ProgressBar";
 import RadioGroupContent from "./RadioGroup";
 import RecurringSelectContent from "./RecurringSelect";
+import ResponsiveSwitcherContent from "./ResponsiveSwitcher";
 import SegmentedControlContent from "./SegmentedControl";
 import SelectContent from "./Select";
 import SideDrawerContent from "./SideDrawer";
+import SideKickContent from "./SideKick";
 import SpinnerContent from "./Spinner";
+import StackContent from "./Stack";
 import StatusIndicatorContent from "./StatusIndicator";
 import StatusLabelContent from "./StatusLabel";
 import SwitchContent from "./Switch";
 import TableContent from "./Table";
 import TabsContent from "./Tabs";
 import TextContent from "./Text";
+import TilesContent from "./Tiles";
 import ToastContent from "./Toast";
 import TooltipContent from "./Tooltip";
 import TypographyContent from "./Typography";
@@ -154,20 +163,32 @@ export const SiteContent: Record<string, ContentExport> = {
   Chips: {
     ...ChipsContent,
   },
+  Cluster: {
+    ...ClusterContent,
+  },
   Combobox: {
     ...ComboboxContent,
   },
   ConfirmationModal: {
     ...ConfirmationModalContent,
   },
+  Container: {
+    ...ContainerContent,
+  },
   Content: {
     ...ContentStuff,
+  },
+  ContentBlock: {
+    ...ContentBlockContent,
   },
   ContentOverlay: {
     ...ContentOverlayContent,
   },
   Countdown: {
     ...CountdownContent,
+  },
+  Cover: {
+    ...CoverContent,
   },
   DataDump: {
     ...DataDumpContent,
@@ -225,6 +246,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   FormField: {
     ...FormFieldContent,
+  },
+  Frame: {
+    ...FrameContent,
   },
   Gallery: {
     ...GalleryContent,
@@ -328,6 +352,9 @@ export const SiteContent: Record<string, ContentExport> = {
   RecurringSelect: {
     ...RecurringSelectContent,
   },
+  ResponsiveSwitcher: {
+    ...ResponsiveSwitcherContent,
+  },
   SegmentedControl: {
     ...SegmentedControlContent,
   },
@@ -337,8 +364,14 @@ export const SiteContent: Record<string, ContentExport> = {
   SideDrawer: {
     ...SideDrawerContent,
   },
+  SideKick: {
+    ...SideKickContent,
+  },
   Spinner: {
     ...SpinnerContent,
+  },
+  Stack: {
+    ...StackContent,
   },
   StatusIndicator: {
     ...StatusIndicatorContent,
@@ -363,6 +396,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   ThumbnailList: {
     ...ThumbnailListContent,
+  },
+  Tiles: {
+    ...TilesContent,
   },
   Toast: {
     ...ToastContent,

@@ -33,7 +33,9 @@ export function ProgressBar({
         <ProgressBarStepped
           total={total}
           current={current}
-          color={reverseTheme ? undefined : tokens["color-surface--background"]}
+          color={
+            reverseTheme ? undefined : tokens["color-interactive--background"]
+          }
           loading={loading}
           inProgress={inProgress}
         />
@@ -43,7 +45,7 @@ export function ProgressBar({
             width={100}
             animationDuration={0}
             color={
-              reverseTheme ? undefined : tokens["color-surface--background"]
+              reverseTheme ? undefined : tokens["color-interactive--background"]
             }
           />
           {!loading && (

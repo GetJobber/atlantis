@@ -4,6 +4,7 @@ import {
   MonthlyDayOfWeekSelect,
   WeeklySelect,
 } from "./components";
+/* eslint-disable import/no-deprecated */
 import {
   DayOfMonth,
   DurationPeriod,

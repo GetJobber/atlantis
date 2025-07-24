@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "container": string;
   readonly "wrapper": string;
+  readonly "disabled": string;
   readonly "horizontalWrapper": string;
   readonly "textarea": string;
   readonly "safari": string;
@@ -9,7 +10,6 @@ declare const styles: {
   readonly "large": string;
   readonly "text": string;
   readonly "invalid": string;
-  readonly "disabled": string;
   readonly "small": string;
   readonly "inline": string;
   readonly "center": string;
@@ -25,7 +25,6 @@ declare const styles: {
   readonly "postfix": string;
   readonly "affixIcon": string;
   readonly "suffix": string;
-  readonly "hasAction": string;
   readonly "affixLabel": string;
   readonly "description": string;
   readonly "toolbar": string;

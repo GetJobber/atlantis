@@ -1,27 +1,33 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, forwardRef, useId } from "react";
 import classnames from "classnames";
 import styles from "./Checkbox.module.css";
 import { CheckboxRebuiltProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
-export function CheckboxRebuilt({
-  checked,
-  defaultChecked,
-  disabled,
-  label,
-  name,
-  value,
-  indeterminate = false,
-  description,
-  id,
-  onBlur,
-  onChange,
-  onFocus,
-}: CheckboxRebuiltProps) {
+export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
+  {
+    checked,
+    defaultChecked,
+    disabled,
+    label,
+    name,
+    value,
+    indeterminate = false,
+    description,
+    id,
+    onBlur,
+    onChange,
+    onFocus,
+    invalid,
+  }: CheckboxRebuiltProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const descriptionIdentifier = useId();
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
+    invalid && styles.invalid,
   );
   const inputClassName = classnames(styles.input, {
     [styles.indeterminate]: indeterminate,
@@ -48,10 +54,12 @@ export function CheckboxRebuilt({
       <label className={wrapperClassName}>
         <span className={styles.checkHolder}>
           <input
+            ref={ref}
             type="checkbox"
             id={id}
             className={inputClassName}
             name={name}
+            aria-describedby={description ? descriptionIdentifier : undefined}
             checked={checked}
             value={value}
             defaultChecked={defaultChecked}
@@ -68,8 +76,12 @@ export function CheckboxRebuilt({
         {labelContent && <span className={styles.label}>{labelContent}</span>}
       </label>
       {description && (
-        <div className={styles.description}>{descriptionContent}</div>
+        <div id={descriptionIdentifier} className={styles.description}>
+          {descriptionContent}
+        </div>
       )}
     </div>
   );
-}
+});
+
+CheckboxRebuilt.displayName = "CheckboxRebuilt";

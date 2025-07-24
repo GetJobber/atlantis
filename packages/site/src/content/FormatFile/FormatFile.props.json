@@ -11,7 +11,7 @@
         "description": "File upload details object. (See FileUpload type.)",
         "name": "file",
         "parent": {
-          "fileName": "../components/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components/src/FormatFile/types.ts",
           "name": "FormatFileProps"
         },
         "required": true,
@@ -26,7 +26,7 @@
         "description": "To display as either a file row or thumbnail",
         "name": "display",
         "parent": {
-          "fileName": "../components/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components/src/FormatFile/types.ts",
           "name": "FormatFileProps"
         },
         "required": false,
@@ -41,7 +41,7 @@
         "description": "The base dimensions of the thumbnail",
         "name": "displaySize",
         "parent": {
-          "fileName": "../components/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components/src/FormatFile/types.ts",
           "name": "FormatFileProps"
         },
         "required": false,
@@ -54,12 +54,12 @@
         "description": "Function to execute when format file is clicked",
         "name": "onClick",
         "parent": {
-          "fileName": "../components/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components/src/FormatFile/types.ts",
           "name": "FormatFileProps"
         },
         "required": false,
         "type": {
-          "name": "(event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void"
+          "name": "(event: MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>) => void"
         }
       },
       "onDelete": {
@@ -67,12 +67,219 @@
         "description": "onDelete callback - this function will be called when the delete action is triggered",
         "name": "onDelete",
         "parent": {
-          "fileName": "../components/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components/src/FormatFile/types.ts",
           "name": "FormatFileProps"
         },
         "required": false,
         "type": {
           "name": "() => void"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatFile/FormatFile.tsx",
+    "description": "",
+    "displayName": "FormatFile.DeleteButtonContainer",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "isHidden": {
+        "defaultValue": null,
+        "description": "",
+        "name": "isHidden",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatFile/FormatFile.tsx",
+    "description": "",
+    "displayName": "FormatFile.ProgressContainer",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "isHidden": {
+        "defaultValue": null,
+        "description": "",
+        "name": "isHidden",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatFile/FormatFile.tsx",
+    "description": "",
+    "displayName": "FormatFile.ThumbnailContainer",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatFile/FormatFile.tsx",
+    "description": "",
+    "displayName": "FormatFile.Body",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "required": false,
+        "type": {
+          "name": "\"button\" | \"submit\" | \"reset\""
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "required": false,
+        "type": {
+          "name": "React.MouseEventHandler<HTMLButtonElement | HTMLDivElement>"
+        }
+      },
+      "tabIndex": {
+        "defaultValue": null,
+        "description": "",
+        "name": "tabIndex",
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "ariaBusy": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaBusy",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "isComplete": {
+        "defaultValue": null,
+        "description": "",
+        "name": "isComplete",
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatFile/FormatFile.tsx",
+    "description": "",
+    "displayName": "FormatFile.Expanded",
+    "methods": [],
+    "props": {
+      "file": {
+        "defaultValue": null,
+        "description": "",
+        "name": "file",
+        "required": true,
+        "type": {
+          "name": "FileUpload"
+        }
+      },
+      "fileSize": {
+        "defaultValue": null,
+        "description": "",
+        "name": "fileSize",
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "isVisible": {
+        "defaultValue": null,
+        "description": "",
+        "name": "isVisible",
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatFile/FormatFile.tsx",
+    "description": "",
+    "displayName": "FormatFile.Wrapper",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatFile/FormatFile.tsx",
+    "description": "",
+    "displayName": "FormatFile.DeleteButton",
+    "methods": [],
+    "props": {
+      "onDelete": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onDelete",
+        "required": false,
+        "type": {
+          "name": "(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void"
         }
       }
     }

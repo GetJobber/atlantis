@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "6.33.1",
+  "version": "6.71.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -85,6 +85,11 @@
       "import": "./dist/Chips/index.mjs",
       "require": "./dist/Chips/index.cjs"
     },
+    "./Cluster": {
+      "types": "./dist/Cluster/index.d.ts",
+      "import": "./dist/Cluster/index.mjs",
+      "require": "./dist/Cluster/index.cjs"
+    },
     "./Combobox": {
       "types": "./dist/Combobox/index.d.ts",
       "import": "./dist/Combobox/index.mjs",
@@ -95,10 +100,25 @@
       "import": "./dist/ConfirmationModal/index.mjs",
       "require": "./dist/ConfirmationModal/index.cjs"
     },
+    "./Cover": {
+      "types": "./dist/Cover/index.d.ts",
+      "import": "./dist/Cover/index.mjs",
+      "require": "./dist/Cover/index.cjs"
+    },
+    "./Container": {
+      "types": "./dist/Container/index.d.ts",
+      "import": "./dist/Container/index.mjs",
+      "require": "./dist/Container/index.cjs"
+    },
     "./Content": {
       "types": "./dist/Content/index.d.ts",
       "import": "./dist/Content/index.mjs",
       "require": "./dist/Content/index.cjs"
+    },
+    "./ContentBlock": {
+      "types": "./dist/ContentBlock/index.d.ts",
+      "import": "./dist/ContentBlock/index.mjs",
+      "require": "./dist/ContentBlock/index.cjs"
     },
     "./Countdown": {
       "types": "./dist/Countdown/index.d.ts",
@@ -194,6 +214,11 @@
       "types": "./dist/FormatTime/index.d.ts",
       "import": "./dist/FormatTime/index.mjs",
       "require": "./dist/FormatTime/index.cjs"
+    },
+    "./Frame": {
+      "types": "./dist/Frame/index.d.ts",
+      "import": "./dist/Frame/index.mjs",
+      "require": "./dist/Frame/index.cjs"
     },
     "./Gallery": {
       "types": "./dist/Gallery/index.d.ts",
@@ -340,10 +365,20 @@
       "import": "./dist/RecurringSelect/index.mjs",
       "require": "./dist/RecurringSelect/index.cjs"
     },
+    "./ResponsiveSwitcher": {
+      "types": "./dist/ResponsiveSwitcher/index.d.ts",
+      "import": "./dist/ResponsiveSwitcher/index.mjs",
+      "require": "./dist/ResponsiveSwitcher/index.cjs"
+    },
     "./Select": {
       "types": "./dist/Select/index.d.ts",
       "import": "./dist/Select/index.mjs",
       "require": "./dist/Select/index.cjs"
+    },
+    "./SideKick": {
+      "types": "./dist/SideKick/index.d.ts",
+      "import": "./dist/SideKick/index.mjs",
+      "require": "./dist/SideKick/index.cjs"
     },
     "./Spinner": {
       "types": "./dist/Spinner/index.d.ts",
@@ -359,6 +394,11 @@
       "types": "./dist/StatusLabel/index.d.ts",
       "import": "./dist/StatusLabel/index.mjs",
       "require": "./dist/StatusLabel/index.cjs"
+    },
+    "./Stack": {
+      "types": "./dist/Stack/index.d.ts",
+      "import": "./dist/Stack/index.mjs",
+      "require": "./dist/Stack/index.cjs"
     },
     "./Switch": {
       "types": "./dist/Switch/index.d.ts",
@@ -379,6 +419,16 @@
       "types": "./dist/Text/index.d.ts",
       "import": "./dist/Text/index.mjs",
       "require": "./dist/Text/index.cjs"
+    },
+    "./Thumbnail": {
+      "types": "./dist/Thumbnail/index.d.ts",
+      "import": "./dist/Thumbnail/index.mjs",
+      "require": "./dist/Thumbnail/index.cjs"
+    },
+    "./Tiles": {
+      "types": "./dist/Tiles/index.d.ts",
+      "import": "./dist/Tiles/index.mjs",
+      "require": "./dist/Tiles/index.cjs"
     },
     "./Toast": {
       "types": "./dist/Toast/index.d.ts",
@@ -402,7 +452,9 @@
     }
   },
   "scripts": {
-    "build": "rollup --config",
+    "build": "npm run build:pre && rollup --config && npm run build:post",
+    "build:pre": "PREBUILD_CSS=true rollup --config && cp dist/styles.css ./styles.css.backup && npm run clean",
+    "build:post": "mv ./styles.css.backup dist/styles.css",
     "bootstrap": "npm run clean; npm run build",
     "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
@@ -433,6 +485,7 @@
     "filesize": "^6.1.0",
     "framer-motion": "^11.0.3",
     "lodash": "^4.17.21",
+    "react-aria-components": "^1.7.1",
     "react-countdown": "^2.3.2",
     "react-datepicker": "~4.10.0",
     "react-dropzone": "^11.0.2",
@@ -468,7 +521,7 @@
   "peerDependencies": {
     "@apollo/client": "^3",
     "@jobber/design": "*",
-    "@jobber/hooks": "^2",
+    "@jobber/hooks": ">=2",
     "@tanstack/react-table": "^8",
     "axios": "^1",
     "classnames": "^2",
@@ -482,8 +535,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7",
     "react-popper": "^2",
-    "react-router-dom": "^6",
-    "zxcvbn": "^4"
+    "react-router-dom": "^6"
   },
   "browserslist": [
     "last 1 version",

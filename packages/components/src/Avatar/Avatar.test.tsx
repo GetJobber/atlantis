@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Avatar } from ".";
 
 it("renders a Avatar", () => {
@@ -37,4 +37,115 @@ it("displays an icon if no image and no initials are set", () => {
 it("Renders light text color if `color` is dark", () => {
   const { container } = render(<Avatar initials="JB" color="black" />);
   expect(container.firstChild).toHaveClass("isDark");
+});
+
+describe("UNSAFE props", () => {
+  describe("UNSAFE_className", () => {
+    it("applies to Avatar container", () => {
+      render(
+        <Avatar
+          name="Custom Container Class Name"
+          imageUrl="https://api.adorable.io/avatars/150/jobbler"
+          UNSAFE_className={{ container: "customContainerClassName" }}
+        />,
+      );
+      expect(screen.getByLabelText("Custom Container Class Name")).toHaveClass(
+        "customContainerClassName",
+      );
+    });
+
+    it("applies to Avatar initials", () => {
+      render(
+        <Avatar
+          initials="JB"
+          UNSAFE_className={{ initials: "customInitialsClassName" }}
+        />,
+      );
+      expect(screen.getByText("JB")).toHaveClass("customInitialsClassName");
+    });
+
+    it("applies to Avatar fallback icon", () => {
+      render(
+        <Avatar
+          initials=""
+          UNSAFE_className={{
+            fallbackIcon: {
+              svg: "customFallbackIconSvgClassName",
+              path: "customFallbackIconPathClassName",
+            },
+          }}
+        />,
+      );
+      expect(screen.getByTestId("person")).toHaveClass(
+        "customFallbackIconSvgClassName",
+      );
+      expect(screen.getByTestId("person").querySelector("path")).toHaveClass(
+        "customFallbackIconPathClassName",
+      );
+    });
+  });
+
+  describe("UNSAFE_style", () => {
+    it("applies to Avatar container", () => {
+      render(
+        <Avatar
+          name="Custom Container Style"
+          imageUrl="https://api.adorable.io/avatars/150/jobbler"
+          UNSAFE_style={{
+            container: {
+              borderColor: "var(--color-green)",
+            },
+          }}
+        />,
+      );
+
+      expect(screen.getByLabelText("Custom Container Style")).toHaveStyle({
+        borderColor: "var(--color-green)",
+      });
+    });
+
+    it("applies to Avatar initials", () => {
+      render(
+        <Avatar
+          initials="JB"
+          UNSAFE_style={{
+            initials: {
+              color: "var(--color-blue)",
+            },
+          }}
+        />,
+      );
+
+      expect(screen.getByText("JB")).toHaveStyle({
+        color: "var(--color-blue)",
+      });
+    });
+
+    it("applies to Avatar fallback icon", () => {
+      render(
+        <Avatar
+          initials=""
+          UNSAFE_style={{
+            fallbackIcon: {
+              svg: {
+                width: "59px",
+                height: "59px",
+              },
+              path: {
+                fill: "var(--color-blue)",
+              },
+            },
+          }}
+        />,
+      );
+
+      expect(screen.getByTestId("person")).toHaveStyle({
+        width: "59px",
+        height: "59px",
+      });
+      expect(screen.getByTestId("person").querySelector("path")).toHaveStyle({
+        fill: "var(--color-blue)",
+      });
+    });
+  });
 });

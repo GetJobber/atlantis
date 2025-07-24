@@ -17,10 +17,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   const options = useMemo(
     () =>
       optionElements?.map(option => ({
-        id: option.props.id,
-        label: option.props.label,
-        prefix: option.props.prefix,
-        customRender: option.props.customRender,
+        ...option.props,
       })) || [],
     [optionElements],
   );
@@ -58,17 +55,23 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       shouldScroll={shouldScroll}
       searchValue={searchValue}
       label={props.label}
+      onClear={props.onClear}
+      onSelectAll={props.onSelectAll}
     >
       <div ref={wrapperRef} className={styles.wrapper}>
         {open && (
           <div
             className={styles.overlay}
-            onClick={() => handleClose()}
+            onClick={handleClose}
             data-testid="ATL-Combobox-Overlay"
           />
         )}
         {triggerElement || (
-          <ComboboxTrigger label={props.label} selected={props.selected} />
+          <ComboboxTrigger
+            label={props.label}
+            selected={props.selected}
+            activatorRef={props.defaultActivatorRef}
+          />
         )}
         <ComboboxContent
           multiselect={props.multiSelect}

@@ -1,5 +1,6 @@
 import omit from "lodash/omit";
 import React, { useEffect, useRef, useState } from "react";
+import isValid from "date-fns/isValid";
 import { InputDateProps } from "./InputDate.types";
 import { FieldActionsRef, FormField, Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
@@ -18,7 +19,7 @@ export function InputDate(inputProps: InputDateProps) {
       maxDate={inputProps.maxDate}
       smartAutofocus={false}
       activator={activatorProps => {
-        const { onChange, onClick, value } = activatorProps;
+        const { onChange, onClick, value, pickerRef } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
         const [isFocused, setIsFocused] = useState(false);
         const suffix =
@@ -26,7 +27,7 @@ export function InputDate(inputProps: InputDateProps) {
             ? ({
                 icon: "calendar",
                 ariaLabel: "Show calendar",
-                onClick: onClick && onClick,
+                onClick: !inputProps.disabled && onClick && onClick,
               } as Suffix)
             : undefined;
 
@@ -54,6 +55,28 @@ export function InputDate(inputProps: InputDateProps) {
                 inputProps.onBlur && inputProps.onBlur();
                 activatorProps.onBlur && activatorProps.onBlur();
                 setIsFocused(false);
+
+                /**
+                 * This is an experimental workaround to solve a specific UX problem we have under certain conditions.
+                 * When you click to focus InputDate, ReactDatePicker becomes visible. If you delete the current date and blur
+                 * the input field by clicking away, ReactDatePicker will automatically set the date to whatever date was
+                 * currently selected.
+                 *
+                 * The above works great and is the expected user experience. ReactDatePicker fills in the empty value for us.
+                 *
+                 * However, there's a specific scenario where ReactDatePicker isn't visible: when you tab into the input date.
+                 * When you tab into it, clear the value, and tab away to blur, ReactDatePicker doesn't automatically fill in
+                 * the empty value because it wasn't visible/active.
+                 *
+                 * To solve this, we need to handle the blur event here and check if the value is empty or invalid. If it is,
+                 * we have to call onChange with the original input value which informs ReactDatePicker that is the current value.
+                 */
+                if (inputProps.restoreLastValueOnBlur) {
+                  if ((!value || !isValid(value)) && inputProps.value) {
+                    // @ts-expect-error -- ReactDatePicker types don't include setSelected
+                    pickerRef.current?.setSelected(inputProps.value);
+                  }
+                }
               }}
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();

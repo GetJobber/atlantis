@@ -58,6 +58,7 @@
 
 .compact .wrapper:focus {
   box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-base);
   outline: none;
 }
 
@@ -75,10 +76,20 @@
   width: 100%;
   height: 100%;
   box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-base);
 }
 
 .deleteButton {
   z-index: var(--elevation-base);
+}
+
+.compact .customDeleteButton {
+  border-radius: var(--radius-small);
+}
+
+.compact.base .customDeleteButton {
+  max-width: 24px;
+  min-height: 24px;
 }
 
 .expanded .thumbnail {
@@ -135,9 +146,15 @@
   position: absolute;
   top: var(--space-smaller);
   right: var(--space-smaller);
+  box-shadow: var(--shadow-base);
 }
 
-@media (--medium-screens-and-up) {
+.compact.large .deleteButton {
+  top: var(--space-small);
+  right: var(--space-small);
+}
+
+@media (any-pointer: fine) {
   .deleteable ~ .deleteButton {
     visibility: hidden;
   }
