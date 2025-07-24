@@ -3,6 +3,7 @@ import {
   autoPlacement,
   autoUpdate,
   flip,
+  limitShift,
   offset,
   shift,
   useFloating,
@@ -29,6 +30,7 @@ export const usePopover = ({
         mainAxis: true,
         crossAxis: false,
         padding: POPOVER_SHIFT_PADDING,
+        limiter: limitShift(),
       }),
     ];
 
