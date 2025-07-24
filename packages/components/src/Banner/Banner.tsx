@@ -4,43 +4,10 @@ import { IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.module.css";
 import { BannerIcon } from "./components/BannerIcon";
-import { BannerType } from "./Banner.types";
+import { BannerProps, BannerType } from "./Banner.types";
 import { Text } from "../Text";
-import { Button, ButtonProps } from "../Button";
+import { Button } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss/ButtonDismiss";
-
-interface BannerProps {
-  readonly children: ReactNode;
-
-  /**
-   * Sets the status-based theme of the Banner
-   */
-  readonly type: BannerType;
-
-  /**
-   * Accepts props for Button. Default action uses a 'subtle' Button
-   */
-  readonly primaryAction?: ButtonProps;
-
-  /**
-   * Set to false to hide the dismiss button
-   * @default true
-   */
-  readonly dismissible?: boolean;
-
-  /**
-   * Use to override the default status Icon
-   */
-  readonly icon?: IconNames;
-
-  onDismiss?(): void;
-
-  /**
-   * When provided, Banner's visibility is controlled by this value
-   * @default undefined
-   */
-  readonly controlledVisiblity?: boolean;
-}
 
 export function Banner({
   children,
