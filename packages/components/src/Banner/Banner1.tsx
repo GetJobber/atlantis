@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import classnames from "classnames";
 import { tokens } from "@jobber/design";
 import { BannerProvider, useBanner } from "./BannerProvider";
@@ -9,6 +9,7 @@ import { Icon, IconNames, IconProps } from "../Icon";
 import { ButtonDismiss, type ButtonDismissProps } from "../ButtonDismiss";
 import type { Colors } from "../Box/Box.types";
 import { Button, type ButtonProps } from "../Button";
+import { Text } from "../Text";
 
 export interface BannerProps extends React.PropsWithChildren {
   readonly type: BannerType;
@@ -56,11 +57,13 @@ Banner.Icon = function BannerIcon(
   );
 };
 
-Banner.Content = function BannerContent({
-  children,
-}: {
-  readonly children: React.ReactNode;
-}) {
+Banner.Content = function BannerContent(props: PropsWithChildren) {
+  let children = props.children;
+
+  if (children && typeof children === "string") {
+    children = <Text>{children}</Text>;
+  }
+
   return <div className={styles.bannerChildren}>{children}</div>;
 };
 
@@ -87,7 +90,11 @@ Banner.DismissButton = function DismissButton({
 };
 
 Banner.Action = function Action(props: ButtonProps) {
-  return <Button size="small" type="primary" variation="subtle" {...props} />;
+  return (
+    <div className={styles.bannerAction}>
+      <Button size="small" type="primary" variation="subtle" {...props} />
+    </div>
+  );
 };
 
 function getBannerIcon(type: BannerType): IconNames {
