@@ -4,7 +4,7 @@ import { tokens } from "@jobber/design";
 import { BannerProvider, useBanner } from "./BannerProvider";
 import { BannerType } from "./Banner.types";
 import styles from "./Banner.module.css";
-import bannerIconStyles from "./components/BannerIcon/BannerIcon.module.css";
+import bannerIconStyles from "./BannerIcon.module.css";
 import { Icon, IconNames, IconProps } from "../Icon";
 import { ButtonDismiss, type ButtonDismissProps } from "../ButtonDismiss";
 import type { Colors } from "../Box/Box.types";
@@ -38,9 +38,11 @@ Banner.Icon = function BannerIcon(
   } & Partial<IconProps>,
 ) {
   const { type } = useBanner();
-  const name = props.name ?? getBannerIcon(type);
+  const name = props.name || getBannerIcon(type);
   const color = "surface";
   const size = "small";
+
+  if (!name) return null;
 
   const overrideStyles: React.CSSProperties = {};
 
@@ -97,14 +99,14 @@ Banner.Action = function Action(props: ButtonProps) {
   );
 };
 
-function getBannerIcon(type: BannerType): IconNames {
+function getBannerIcon(type: BannerType): IconNames | undefined {
   switch (type) {
     case "notice":
-      return "starburst";
+      return "info";
     case "success":
       return "checkmark";
     case "warning":
-      return "help";
+      return "warning";
     case "error":
       return "alert";
   }
