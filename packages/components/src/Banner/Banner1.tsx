@@ -37,7 +37,7 @@ Banner.Icon = function BannerIcon(
   } & Partial<IconProps>,
 ) {
   const { type } = useBanner();
-  const name = getBannerIcon(type);
+  const name = props.name ?? getBannerIcon(type);
   const color = "surface";
   const size = "small";
 
@@ -51,7 +51,7 @@ Banner.Icon = function BannerIcon(
 
   return (
     <span className={classNames} style={overrideStyles}>
-      <Icon name={name} color={color} size={size} {...props} />
+      <Icon color={color} size={size} {...props} name={name} />
     </span>
   );
 };
