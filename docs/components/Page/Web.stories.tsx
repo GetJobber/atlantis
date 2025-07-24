@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { StatusLabel } from "@jobber/components";
+import { Heading, StatusLabel, Tooltip } from "@jobber/components";
 import { Page } from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -22,6 +22,25 @@ const BasicTemplate: ComponentStory<typeof Page> = args => (
     </Content>
   </Page>
 );
+
+const CustomTitleTemplate: ComponentStory<typeof Page> = args => {
+  const props = { ...args, titleMetaData: undefined };
+
+  return (
+    <Page
+      {...props}
+      title={
+        <Tooltip message="This is a tooltip">
+          <Heading level={1}>Title with tooltip</Heading>
+        </Tooltip>
+      }
+    >
+      <Content>
+        <Text>Page content here</Text>
+      </Content>
+    </Page>
+  );
+};
 
 const PopoverTemplate: ComponentStory<typeof Page> = args => {
   const primaryDivRef = useRef(null);
@@ -79,6 +98,8 @@ Basic.args = {
   intro:
     "Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us).",
 };
+
+export const CustomTitle = CustomTitleTemplate.bind({});
 
 export const WithActions = PopoverTemplate.bind({});
 WithActions.args = {

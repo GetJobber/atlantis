@@ -23,12 +23,18 @@ interface PageFoundationProps {
 
   /**
    * Title of the page.
+   *
+   * Supports any React node. If a string is provided, it will be rendered as an H1 heading.
+   * Otherwise it will be rendered as is.
+   *
+   * **Important**: If you're passing a custom element, it must include an H1-level heading within it.
+   * Ideally <Heading level={1}> should be used here.
    */
-  readonly title: string;
+  readonly title: ReactNode;
 
   /**
    * TitleMetaData component to be displayed
-   * next to the title.
+   * next to the title. Only compatible with string titles.
    */
   readonly titleMetaData?: ReactNode;
 
@@ -135,13 +141,15 @@ export function Page({
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
-              {titleMetaData ? (
+              {typeof title === "string" && titleMetaData ? (
                 <div className={styles.titleRow}>
                   <Heading level={1}>{title}</Heading>
                   {titleMetaData}
                 </div>
-              ) : (
+              ) : typeof title === "string" ? (
                 <Heading level={1}>{title}</Heading>
+              ) : (
+                title
               )}
               {subtitle && (
                 <div className={styles.subtitle}>
