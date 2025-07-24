@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.70.0...@jobber/components@6.71.0) (2025-07-24)
+
+
+### Features
+
+* **components:** Support any react node for Page title prop ([#2627](https://github.com/GetJobber/atlantis/issues/2627)) ([21941d8](https://github.com/GetJobber/atlantis/commit/21941d81966ce1b56664aa3ea15f72a7b769f54a))
+
+
+
+
+
 # [6.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.69.0...@jobber/components@6.70.0) (2025-07-21)
 
 
