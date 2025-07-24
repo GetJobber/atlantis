@@ -89,7 +89,7 @@ const ControlledTemplate: ComponentStory<typeof Banner> = args => {
   );
 };
 
-const ComposableDemoTemplate: ComponentStory<typeof Banner> = () => {
+const ComposedTemplate: ComponentStory<typeof Banner> = () => {
   return (
     <Content>
       <Banner1 type="success">
@@ -157,7 +157,7 @@ Controlled.args = {
   type: "notice",
 };
 
-export const ComposableDemo = ComposableDemoTemplate.bind({});
-ComposableDemo.args = {
+export const Composed = ComposedTemplate.bind({});
+Composed.args = {
   type: "notice",
 };
