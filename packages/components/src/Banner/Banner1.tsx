@@ -39,7 +39,7 @@ Banner.Icon = function BannerIcon(
 ) {
   const { type } = useBanner();
   const name = props.name || getBannerIcon(type);
-  const color = "surface";
+  const color = props.customColor ? undefined : "surface";
   const size = "small";
 
   if (!name) return null;
