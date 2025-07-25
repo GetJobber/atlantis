@@ -12,33 +12,47 @@ import styles from "./Banner.module.css";
 
 interface BannerProviderProps {
   /**
-   * Sets the status-based theme of the Banner
+   * Sets the status-based theme of the Banner.
    */
   readonly type: BannerType;
 
   /**
-   * When provided, Banner's visibility is controlled by this value
+   * When provided, Banner's visibility is controlled by this value.
    */
   readonly visible?: boolean;
 
   /**
-   * Callback to be called when the Banner is dismissed
+   * Callback to be called when the Banner is dismissed.
    */
   readonly onDismiss?: () => void;
+
+  /**
+   * Icon to be used for the Banner.
+   *
+   * Use <Banner.Icon/> if you want the default icon. Can also be customized via props.
+   */
+  readonly icon?: React.ReactNode;
+
+  /**
+   * Dismiss button to be used for the Banner.
+   *
+   * Use <Banner.Dismiss/> if you want the default dismiss button. Can also be customized via props.
+   */
+  readonly dismissButton?: React.ReactNode;
 }
 
 interface BannerContextValue {
   /**
-   * The status-based theme of the Banner
+   * The status-based theme of the Banner.
    */
   readonly type: BannerType;
   /**
-   * Whether the Banner is currently visible
+   * Whether the Banner is currently visible.
    */
   readonly isVisible: boolean;
 
   /**
-   * Sets the visibility of the Banner
+   * Sets the visibility of the Banner.
    */
   readonly setIsVisible: (visible: boolean) => void;
 }
@@ -60,6 +74,8 @@ export function BannerProvider({
   visible,
   type,
   onDismiss,
+  icon,
+  dismissButton,
 }: {
   readonly children: React.ReactNode;
 } & BannerProviderProps) {
@@ -85,12 +101,21 @@ export function BannerProvider({
         setIsVisible,
       }}
     >
-      <BannerWrapper>{children}</BannerWrapper>
+      <BannerWrapper icon={icon} dismissButton={dismissButton}>
+        {children}
+      </BannerWrapper>
     </BannerContext.Provider>
   );
 }
 
-function BannerWrapper({ children }: PropsWithChildren) {
+function BannerWrapper({
+  children,
+  icon,
+  dismissButton,
+}: PropsWithChildren & {
+  readonly icon?: React.ReactNode;
+  readonly dismissButton?: React.ReactNode;
+}) {
   const { isVisible, type } = useBanner();
 
   const bannerWidths = {
@@ -115,7 +140,11 @@ function BannerWrapper({ children }: PropsWithChildren) {
       className={bannerClassNames}
       role={type === "error" ? "alert" : "status"}
     >
-      {children}
+      <div className={styles.bannerContent}>
+        {icon}
+        {children}
+      </div>
+      {dismissButton}
     </div>
   );
 }
