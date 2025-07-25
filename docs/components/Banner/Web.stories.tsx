@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Banner } from "@jobber/components/Banner";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
-import { useAtlantisTheme } from "@jobber/components/AtlantisThemeContext";
 import { Heading } from "@jobber/components/Heading";
 
 export default {
@@ -90,8 +89,6 @@ const ControlledTemplate: ComponentStory<typeof Banner> = args => {
 };
 
 const ComposedTemplate: ComponentStory<typeof Banner> = () => {
-  const { tokens } = useAtlantisTheme();
-
   return (
     <Content>
       <Banner.Provider type="success">
@@ -127,7 +124,7 @@ const ComposedTemplate: ComponentStory<typeof Banner> = () => {
         icon={
           <Banner.Icon
             name="sparkles"
-            customColor={tokens["color-base-purple--700"]}
+            customColor="var(--color-base-purple--700)"
             backgroundColor="base-purple--300"
           />
         }
