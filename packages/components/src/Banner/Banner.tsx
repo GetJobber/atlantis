@@ -119,10 +119,10 @@ function BannerWrapper({
       role={type === "error" ? "alert" : "status"}
     >
       <div className={styles.bannerContent}>
-        {icon}
+        {icon ?? <Banner.Icon />}
         {children}
       </div>
-      {dismissButton}
+      {dismissButton ?? <Banner.DismissButton />}
     </div>
   );
 }

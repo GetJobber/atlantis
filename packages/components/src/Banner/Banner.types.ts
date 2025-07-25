@@ -55,11 +55,15 @@ export interface BannerProviderProps {
 
   /**
    * Icon to be used for the Banner.
+   * If you want to remove the icon, set to false.
+   * @default <Banner.Icon/>
    */
   readonly icon?: React.ReactNode;
 
   /**
    * Dismiss button to be used for the Banner.
+   * If you want to remove the dismiss button, set to false.
+   * @default <Banner.DismissButton/>
    */
   readonly dismissButton?: React.ReactNode;
 }
