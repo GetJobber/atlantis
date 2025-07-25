@@ -11,26 +11,11 @@ import type { Colors } from "../Box/Box.types";
 import { Button, type ButtonProps } from "../Button";
 import { Text } from "../Text";
 
-export interface BannerProps extends React.PropsWithChildren {
-  readonly type: BannerType;
+export function Banner() {
+  // TODO delete this
 }
 
-export function Banner(props: BannerProps) {
-  return (
-    <BannerProvider type={props.type}>
-      <BannerInternal {...props} />
-    </BannerProvider>
-  );
-}
-
-function BannerInternal(props: BannerProps) {
-  const { isVisible } = useBanner();
-  const classNames = classnames(styles.banner, [styles[props.type]]);
-
-  if (!isVisible) return null;
-
-  return <div className={classNames}>{props.children}</div>;
-}
+Banner.Provider = BannerProvider;
 
 Banner.Icon = function BannerIcon(
   props: {
@@ -57,6 +42,10 @@ Banner.Icon = function BannerIcon(
       <Icon color={color} size={size} {...props} name={name} />
     </span>
   );
+};
+
+Banner.ContentWrapper = function ContentWrapper(props: PropsWithChildren) {
+  return <div className={styles.bannerContent}>{props.children}</div>;
 };
 
 Banner.Content = function BannerContent(props: PropsWithChildren) {
