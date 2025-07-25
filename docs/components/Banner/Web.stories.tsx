@@ -91,6 +91,8 @@ const ControlledTemplate: ComponentStory<typeof Banner> = args => {
 const ComposedTemplate: ComponentStory<typeof Banner> = () => {
   return (
     <Content>
+      <Heading level={2}>Default banner styling</Heading>
+
       <Banner.Provider type="success">
         <Banner.Content>Your account was upgraded successfully</Banner.Content>
       </Banner.Provider>
@@ -128,7 +130,9 @@ const ComposedTemplate: ComponentStory<typeof Banner> = () => {
             backgroundColor="base-purple--300"
           />
         }
-        dismissButton={<Button label="Remind me later" variation="subtle" />}
+        dismissButton={
+          <Button size="small" label="Remind me later" variation="subtle" />
+        }
       >
         <Banner.Content>Custom icon and dismiss button</Banner.Content>
       </Banner.Provider>
@@ -145,6 +149,40 @@ const ComposedTemplate: ComponentStory<typeof Banner> = () => {
         <Banner.Content>
           Payment could not be processed because of a network error
         </Banner.Content>
+      </Banner.Provider>
+
+      <Banner.Provider
+        type="notice"
+        icon={
+          <Banner.Icon
+            name="sparkles"
+            customColor="var(--color-base-purple--700)"
+            backgroundColor="base-purple--100"
+          />
+        }
+        UNSAFE_style={{
+          container: {
+            backgroundColor: "var(--color-surface)",
+            border: "var(--border-base) solid var(--color-border)",
+            color: "var(--color-text--secondary)",
+          },
+        }}
+      >
+        <Banner.Content>This is a sparkly purple banner!</Banner.Content>
+        <Banner.Action
+          label="Take action"
+          onClick={() => alert("Take action")}
+          UNSAFE_style={{
+            buttonLabel: {
+              textStyle: {
+                color: "var(--color-base-white)",
+              },
+            },
+            container: {
+              backgroundColor: "var(--color-base-purple--900)",
+            },
+          }}
+        />
       </Banner.Provider>
     </Content>
   );
