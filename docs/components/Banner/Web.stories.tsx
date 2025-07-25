@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Banner } from "@jobber/components/Banner";
 import { Button } from "@jobber/components/Button";
-import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
-import { Banner as Banner1 } from "@jobber/components/Banner/Banner1";
+import { useAtlantisTheme } from "@jobber/components/AtlantisThemeContext";
+import { Heading } from "@jobber/components/Heading";
 
 export default {
   title: "Components/Status and Feedback/Banner/Web",
@@ -90,48 +90,65 @@ const ControlledTemplate: ComponentStory<typeof Banner> = args => {
 };
 
 const ComposedTemplate: ComponentStory<typeof Banner> = () => {
+  const { tokens } = useAtlantisTheme();
+
   return (
     <Content>
-      <Banner1 type="success">
-        <Banner1.Icon />
-        <Banner1.Content>
-          <Text>Default banner style</Text>
-        </Banner1.Content>
-        <Banner1.DismissButton onDismiss={() => alert("Dismissed")} />
-      </Banner1>
+      <Banner.Provider type="success">
+        <Banner.Content>Your account was upgraded successfully</Banner.Content>
+      </Banner.Provider>
 
-      <Banner1 type="notice">
-        <Banner1.Icon
-          name="job"
-          color="blue"
-          backgroundColor="base-purple--400"
-        />
-        <Banner1.Content>
-          <Text>Custom icon and color, override dismiss button onClick</Text>
-        </Banner1.Content>
-        <Banner1.DismissButton onClick={() => alert("Run custom behaviour")} />
-      </Banner1>
+      <Banner.Provider type="notice">
+        <Banner.Content>
+          Jobber will be performing scheduled maintenance on Feb. 21
+        </Banner.Content>
+      </Banner.Provider>
 
-      <Banner1 type="warning">
-        <Banner1.Icon />
-        <Banner1.Content>
-          <Text>Action button</Text>
-        </Banner1.Content>
-        <Banner1.Action
+      <Banner.Provider type="warning">
+        <Banner.Content>
+          Changes to this visit will not be applied to future visits
+        </Banner.Content>
+      </Banner.Provider>
+
+      <Banner.Provider type="error">
+        <Banner.Content>
+          Payment could not be processed because of a network error
+        </Banner.Content>
+      </Banner.Provider>
+
+      <Heading level={2}>Custom styling and content</Heading>
+
+      <Banner.Provider type="success" icon={false} dismissButton={false}>
+        <Banner.Content>Disabled icon and dismiss button</Banner.Content>
+      </Banner.Provider>
+
+      <Banner.Provider
+        type="notice"
+        icon={
+          <Banner.Icon
+            name="sparkles"
+            customColor={tokens["color-base-purple--700"]}
+            backgroundColor="base-purple--300"
+          />
+        }
+        dismissButton={<Button label="Remind me later" variation="subtle" />}
+      >
+        <Banner.Content>Custom icon and dismiss button</Banner.Content>
+      </Banner.Provider>
+
+      <Banner.Provider type="warning">
+        <Banner.Content>With a primary action button</Banner.Content>
+        <Banner.Action
           label="More info"
           onClick={() => alert("More info...")}
         />
-      </Banner1>
+      </Banner.Provider>
 
-      <Banner1 type="error">
-        <Banner1.Icon />
-        <Banner1.Content>
-          <Text>Custom button</Text>
-        </Banner1.Content>
-        <Button onClick={() => alert("Custom button...")}>
-          <Button.Label>Custom button</Button.Label>
-        </Button>
-      </Banner1>
+      <Banner.Provider type="error">
+        <Banner.Content>
+          Payment could not be processed because of a network error
+        </Banner.Content>
+      </Banner.Provider>
     </Content>
   );
 };
