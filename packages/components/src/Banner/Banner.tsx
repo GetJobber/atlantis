@@ -1,8 +1,13 @@
-import React from "react";
+import React, { ReactNode, useState } from "react";
+import classnames from "classnames";
+import { IconNames } from "@jobber/design";
+import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.module.css";
-import { BannerProps } from "./Banner.types";
-import { BannerProvider } from "./BannerProvider";
-import { Banner as Banner1 } from "./Banner1";
+import { BannerIcon } from "./components/BannerIcon";
+import { BannerProps, BannerType } from "./Banner.types";
+import { Text } from "../Text";
+import { Button } from "../Button";
+import { ButtonDismiss } from "../ButtonDismiss/ButtonDismiss";
 
 export function Banner({
   children,
@@ -13,6 +18,21 @@ export function Banner({
   onDismiss,
   controlledVisiblity,
 }: BannerProps) {
+  const [showBanner, setShowBanner] = useState(true);
+  const bannerIcon = icon || getBannerIcon(type);
+  const controlledVisible = controlledVisiblity ?? true;
+  const visible = controlledVisible && showBanner;
+
+  const bannerWidths = {
+    small: 320,
+    medium: 480,
+  };
+
+  const [bannerRef, { width: bannerWidth = bannerWidths.small }] =
+    useResizeObserver<HTMLDivElement>({
+      widths: bannerWidths,
+    });
+
   if (primaryAction != undefined) {
     primaryAction = Object.assign(
       {
@@ -24,21 +44,74 @@ export function Banner({
     );
   }
 
+  const bannerClassNames = classnames(styles.banner, [styles[type]], {
+    [styles.medium]: bannerWidth >= bannerWidths.medium,
+  });
+
+  if (!visible) return null;
+
   return (
-    <BannerProvider
-      type={type}
-      visible={controlledVisiblity}
-      onDismiss={onDismiss}
+    <div
+      className={bannerClassNames}
+      ref={bannerRef}
+      role={type === "error" ? "alert" : "status"}
     >
-      <Banner1.ContentWrapper>
-        <Banner1.Icon name={icon} />
+      <div className={styles.bannerContent}>
+        {bannerIcon && <BannerIcon icon={bannerIcon} type={type} />}
 
-        <Banner1.Content>{children}</Banner1.Content>
+        <div className={styles.bannerChildren}>
+          <BannerChildren>{children}</BannerChildren>
+        </div>
 
-        {primaryAction && <Banner1.Action {...primaryAction} />}
-      </Banner1.ContentWrapper>
+        {primaryAction && (
+          <div className={styles.bannerAction}>
+            <Button {...primaryAction} />
+          </div>
+        )}
+      </div>
 
-      {dismissible && <Banner1.DismissButton />}
-    </BannerProvider>
+      {dismissible && (
+        <div className={styles.closeButton}>
+          <ButtonDismiss
+            ariaLabel={"Dismiss notification"}
+            onClick={handleClose}
+          />
+        </div>
+      )}
+    </div>
   );
+
+  function handleClose() {
+    if (typeof controlledVisiblity === "undefined") {
+      setShowBanner(!showBanner);
+    }
+    onDismiss?.();
+  }
+}
+
+function getBannerIcon(type: BannerType): IconNames | undefined {
+  switch (type) {
+    case "notice":
+      return "info";
+    case "success":
+      return "checkmark";
+    case "warning":
+      return "warning";
+    case "error":
+      return "alert";
+  }
+}
+
+function BannerChildren({
+  children,
+}: {
+  readonly children?: ReactNode;
+}): JSX.Element {
+  if (!children) return <></>;
+
+  if (children && typeof children === "string") {
+    return <Text>{children}</Text>;
+  }
+
+  return <>{children}</>;
 }

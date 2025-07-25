@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Banner } from "@jobber/components/Banner";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 import { Banner as Banner1 } from "@jobber/components/Banner/Banner1";
-import { useAtlantisTheme } from "@jobber/components/AtlantisThemeContext";
 
 export default {
   title: "Components/Status and Feedback/Banner/Web",
@@ -16,32 +15,20 @@ export default {
   },
 } as ComponentMeta<typeof Banner>;
 
-const BasicTemplate: ComponentStory<typeof Banner> = () => {
-  // const [counter, setCount] = useState(1);
-
-  return (
-    <Content>
-      <Banner type="success">Your account was upgraded successfully</Banner>
-      <Banner type="notice">
-        Jobber will be performing scheduled maintenance on Feb. 21
-      </Banner>
-      <Banner
-        type="warning"
-        controlledVisiblity={true}
-        primaryAction={{
-          label: "View Plans",
-          onClick: () => alert("Plans"),
-        }}
-        onDismiss={() => alert("Dismissed")}
-      >
-        Changes to this visit will not be applied to future visits
-      </Banner>
-      <Banner type="error">
-        Payment could not be processed because of a network error
-      </Banner>
-    </Content>
-  );
-};
+const BasicTemplate: ComponentStory<typeof Banner> = () => (
+  <Content>
+    <Banner type="success">Your account was upgraded successfully</Banner>
+    <Banner type="notice">
+      Jobber will be performing scheduled maintenance on Feb. 21
+    </Banner>
+    <Banner type="warning">
+      Changes to this visit will not be applied to future visits
+    </Banner>
+    <Banner type="error">
+      Payment could not be processed because of a network error
+    </Banner>
+  </Content>
+);
 
 const ActionsTemplate: ComponentStory<typeof Banner> = args => (
   <>
@@ -103,171 +90,48 @@ const ControlledTemplate: ComponentStory<typeof Banner> = args => {
 };
 
 const ComposedTemplate: ComponentStory<typeof Banner> = () => {
-  const { tokens } = useAtlantisTheme();
-
   return (
     <Content>
-      <Banner1.Provider type="success">
-        <Banner1.ContentWrapper>
-          <Banner1.Icon />
-          <Banner1.Content>
-            <Text>Default banner style</Text>
-          </Banner1.Content>
-        </Banner1.ContentWrapper>
+      <Banner1 type="success">
+        <Banner1.Icon />
+        <Banner1.Content>
+          <Text>Default banner style</Text>
+        </Banner1.Content>
         <Banner1.DismissButton onDismiss={() => alert("Dismissed")} />
-      </Banner1.Provider>
+      </Banner1>
 
-      <Banner1.Provider type="notice">
-        <Banner1.ContentWrapper>
-          <Banner1.Icon
-            name="job"
-            color="blue"
-            backgroundColor="base-purple--400"
-          />
-          <Banner1.Content>
-            <Text>With Banner1.Content</Text>
-            <Text>
-              Custom icon and color, override dismiss button onClick lasdjfalk
-              sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj kasdjkasd sda sd sadk
-              sadkj asdfskld asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf lasdjfalk sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj
-              kasdjkasd sda sd sadk sadkj asdfskld asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf
-            </Text>
-            <a href="https://www.google.com">Google</a>
-          </Banner1.Content>
-          <Banner1.Action
-            label="More info"
-            onClick={() => alert("More info...")}
-          />
-        </Banner1.ContentWrapper>
+      <Banner1 type="notice">
+        <Banner1.Icon
+          name="job"
+          color="blue"
+          backgroundColor="base-purple--400"
+        />
+        <Banner1.Content>
+          <Text>Custom icon and color, override dismiss button onClick</Text>
+        </Banner1.Content>
         <Banner1.DismissButton onClick={() => alert("Run custom behaviour")} />
-      </Banner1.Provider>
+      </Banner1>
 
-      <Banner1.Provider type="notice">
-        <Banner1.ContentWrapper>
-          <Banner1.Icon
-            name="sparkles"
-            customColor={tokens["color-base-purple--700"]}
-            backgroundColor="base-purple--400"
-          />
-          <Banner1.Content>
-            <Text>Without Banner1.Content</Text>
-            <Text>
-              Custom icon and color, override dismiss button onClick lasdjfalk
-              sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj kasdjkasd sda sd sadk
-              sadkj asdfskld asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf lasdjfalk sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj
-              kasdjkasd sda sd sadk sadkj asdfskld asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf
-            </Text>
-            <a href="https://www.google.com">Google</a>
-          </Banner1.Content>
-        </Banner1.ContentWrapper>
-        <Banner1.DismissButton onClick={() => alert("Run custom behaviour")} />
-      </Banner1.Provider>
+      <Banner1 type="warning">
+        <Banner1.Icon />
+        <Banner1.Content>
+          <Text>Action button</Text>
+        </Banner1.Content>
+        <Banner1.Action
+          label="More info"
+          onClick={() => alert("More info...")}
+        />
+      </Banner1>
 
-      <Banner1.Provider type="warning">
-        <Banner1.ContentWrapper>
-          <Banner1.Icon />
-          <Banner1.Content>
-            <Text>With Banner1.Content</Text>
-            <Text>
-              Action button lasdjfalk sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj
-              kasdjkasd sda sd sadk sadkj asdfskld asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf lasdjfalk
-              sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj kasdjkasd sda sd sadk
-              sadkj asdfskld asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf
-            </Text>
-            <a href="https://www.google.com">Google</a>
-          </Banner1.Content>
-          <Banner1.Action
-            label="More info"
-            onClick={() => alert("More info...")}
-          />
-        </Banner1.ContentWrapper>
-        <Banner1.DismissButton onDismiss={() => alert("Dismissed")} />
-      </Banner1.Provider>
-
-      <Banner1.Provider type="warning">
-        <Banner1.ContentWrapper>
-          <Banner1.Icon />
-          <Banner1.Content>
-            <Text>Without Banner1.Content</Text>
-            <Text>
-              Action button lasdjfalk sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj
-              kasdjkasd sda sd sadk sadkj asdfskld asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf lasdjfalk
-              sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj kasdjkasd sda sd sadk
-              sadkj asdfskld asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf
-            </Text>
-            <a href="https://www.google.com">Google</a>
-          </Banner1.Content>
-          <Banner1.Action
-            label="More info"
-            onClick={() => alert("More info...")}
-          />
-        </Banner1.ContentWrapper>
-        <Banner1.DismissButton onDismiss={() => alert("Dismissed")} />
-      </Banner1.Provider>
-
-      <Banner1.Provider type="error">
-        <Banner1.ContentWrapper>
-          <Banner1.Icon />
-          <Banner1.Content>
-            <Text>With Banner1.Content</Text>
-            <Text>
-              Custom button lasdjfalk sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj
-              kasdjkasd sda sd sadk sadkj asdfskld asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf lasdjfalk
-              sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj kasdjkasd sda sd sadk
-              sadkj asdfskld asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf
-            </Text>
-            <a href="https://www.google.com">Google</a>
-          </Banner1.Content>
-          <Button onClick={() => alert("Custom button...")}>
-            <Button.Label>Custom button</Button.Label>
-          </Button>
-        </Banner1.ContentWrapper>
-        <Banner1.DismissButton onDismiss={() => alert("Dismissed")} />
-      </Banner1.Provider>
-
-      <Banner1.Provider type="error">
-        <Banner1.ContentWrapper>
-          <Banner1.Icon />
-          <Banner1.Content>
-            <Text>Without Banner1.Content</Text>
-            <Text>
-              Custom button lasdjfalk sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj
-              kasdjkasd sda sd sadk sadkj asdfskld asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf asdkjfaskjfskd asd
-              ksdjfkasjfksdalj akslskdf asdfks jadklfd ksadf lasdjfalk
-              sflasjdfkajsflkasflkajsdfkasjdfsdf sdasj kasdjkasd sda sd sadk
-              sadkj asdfskld asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf asdkjfaskjfskd asd ksdjfkasjfksdalj akslskdf asdfks
-              jadklfd ksadf
-            </Text>
-            <a href="https://www.google.com">Google</a>
-          </Banner1.Content>
-          <Button onClick={() => alert("Custom button...")}>
-            <Button.Label>Custom button</Button.Label>
-          </Button>
-        </Banner1.ContentWrapper>
-        <Banner1.DismissButton onDismiss={() => alert("Dismissed")} />
-      </Banner1.Provider>
+      <Banner1 type="error">
+        <Banner1.Icon />
+        <Banner1.Content>
+          <Text>Custom button</Text>
+        </Banner1.Content>
+        <Button onClick={() => alert("Custom button...")}>
+          <Button.Label>Custom button</Button.Label>
+        </Button>
+      </Banner1>
     </Content>
   );
 };
