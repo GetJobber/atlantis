@@ -79,14 +79,14 @@ Banner.Provider = function BannerProvider({
         setIsVisible,
       }}
     >
-      <BannerWrapper icon={icon} dismissButton={dismissButton}>
+      <InternalWrapper icon={icon} dismissButton={dismissButton}>
         {children}
-      </BannerWrapper>
+      </InternalWrapper>
     </BannerContext.Provider>
   );
 };
 
-function BannerWrapper({
+function InternalWrapper({
   children,
   icon,
   dismissButton,
