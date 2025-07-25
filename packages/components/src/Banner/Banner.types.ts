@@ -28,6 +28,9 @@ export interface BannerProps {
    */
   readonly icon?: IconNames;
 
+  /**
+   * Callback to be called when the Banner is dismissed.
+   */
   onDismiss?(): void;
 
   /**

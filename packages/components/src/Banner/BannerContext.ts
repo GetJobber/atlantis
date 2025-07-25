@@ -6,6 +6,7 @@ interface BannerContextValue {
    * The status-based theme of the Banner.
    */
   readonly type: BannerType;
+
   /**
    * Whether the Banner is currently visible.
    */
