@@ -1,0 +1,61 @@
+{
+  "name": "@jobber/components-native",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build:clean && npm run compile",
+        "cwd": "packages/components-native"
+      },
+      "outputs": ["{projectRoot}/dist"],
+      "dependsOn": []
+    },
+    "build:clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf ./dist",
+        "cwd": "packages/components-native"
+      }
+    },
+    "compile": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -b",
+        "cwd": "packages/components-native"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf dist/* tsconfig.tsbuildinfo",
+        "cwd": "packages/components-native"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --config packages/components-native/jest.config.js --testPathPattern=packages/components-native/src",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/coverage"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/**/*.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.test.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.spec.{ts,tsx,js,jsx}",
+        "!{projectRoot}/node_modules/**/*"
+      ]
+    },
+    "bootstrap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx run @jobber/components-native:build",
+        "cwd": "packages/components-native"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
+}
