@@ -20,6 +20,11 @@ interface BannerProviderProps {
    * When provided, Banner's visibility is controlled by this value
    */
   readonly visible?: boolean;
+
+  /**
+   * Callback to be called when the Banner is dismissed
+   */
+  readonly onDismiss?: () => void;
 }
 
 interface BannerContextValue {
@@ -54,6 +59,7 @@ export function BannerProvider({
   children,
   visible,
   type,
+  onDismiss,
 }: {
   readonly children: React.ReactNode;
 } & BannerProviderProps) {
@@ -66,6 +72,7 @@ export function BannerProvider({
       if (typeof visible === "undefined") {
         _setIsVisible(newValue);
       }
+      onDismiss?.();
     },
     [visible],
   );

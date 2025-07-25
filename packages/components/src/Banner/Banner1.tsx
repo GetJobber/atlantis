@@ -69,19 +69,15 @@ Banner.Content = function BannerContent(props: PropsWithChildren) {
   return <div className={styles.bannerChildren}>{children}</div>;
 };
 
-Banner.DismissButton = function DismissButton({
-  onDismiss,
-  ...buttonDismissProps
-}: {
-  readonly onDismiss?: () => void;
-} & Partial<ButtonDismissProps>) {
+Banner.DismissButton = function DismissButton(
+  buttonDismissProps: Partial<ButtonDismissProps>,
+) {
   const { setIsVisible } = useBanner();
   const ariaLabel = buttonDismissProps.ariaLabel ?? "Dismiss notification";
   const onClick =
     buttonDismissProps.onClick ??
     (() => {
       setIsVisible(false);
-      onDismiss?.();
     });
 
   return (
