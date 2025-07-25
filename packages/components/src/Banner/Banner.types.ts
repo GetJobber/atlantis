@@ -36,3 +36,30 @@ export interface BannerProps {
    */
   readonly controlledVisiblity?: boolean;
 }
+
+export interface BannerProviderProps {
+  /**
+   * Sets the status-based theme of the Banner.
+   */
+  readonly type: BannerType;
+
+  /**
+   * When provided, Banner's visibility is controlled by this value.
+   */
+  readonly visible?: boolean;
+
+  /**
+   * Callback to be called when the Banner is dismissed.
+   */
+  readonly onDismiss?: () => void;
+
+  /**
+   * Icon to be used for the Banner.
+   */
+  readonly icon?: React.ReactNode;
+
+  /**
+   * Dismiss button to be used for the Banner.
+   */
+  readonly dismissButton?: React.ReactNode;
+}
