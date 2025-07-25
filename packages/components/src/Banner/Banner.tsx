@@ -4,7 +4,6 @@ import { tokens } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import { BannerProps, BannerProviderProps, BannerType } from "./Banner.types";
 import styles from "./Banner.module.css";
-import bannerIconStyles from "./BannerIcon.module.css";
 import { BannerContextProvider, useBanner } from "./BannerContext";
 import { Icon, IconNames, IconProps } from "../Icon";
 import { ButtonDismiss, type ButtonDismissProps } from "../ButtonDismiss";
@@ -145,7 +144,7 @@ Banner.Icon = function BannerIcon(
     overrideStyles.backgroundColor = tokens[`color-${props.backgroundColor}`];
   }
 
-  const classNames = classnames(styles.iconWrapper, bannerIconStyles[type]);
+  const classNames = classnames(styles.iconWrapper, styles[`${type}Icon`]);
 
   return (
     <span className={classNames} style={overrideStyles}>
