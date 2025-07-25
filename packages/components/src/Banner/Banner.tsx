@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useCallback, useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import classnames from "classnames";
 import { tokens } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
@@ -61,16 +61,13 @@ Banner.Provider = function BannerProvider({
   const [isVisible, _setIsVisible] = useState(true);
   const showBanner = visible ?? isVisible;
 
-  const setIsVisible = useCallback(
-    (newValue: boolean) => {
-      // Only update internal visibility if it's not controlled by the parent.
-      if (typeof visible === "undefined") {
-        _setIsVisible(newValue);
-      }
-      onDismiss?.();
-    },
-    [visible],
-  );
+  const setIsVisible = (newValue: boolean) => {
+    // Only update internal visibility if it's not controlled by the parent.
+    if (typeof visible === "undefined") {
+      _setIsVisible(newValue);
+    }
+    onDismiss?.();
+  };
 
   return (
     <BannerContextProvider
