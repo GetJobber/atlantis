@@ -10,7 +10,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
       class="bannerContent"
     >
       <span
-        class="iconWrapper notice"
+        class="iconWrapper noticeIcon"
       >
         <svg
           data-testid="info"
@@ -90,7 +90,7 @@ exports[`renders a banner with a primary action 1`] = `
       class="bannerContent"
     >
       <span
-        class="iconWrapper success"
+        class="iconWrapper successIcon"
       >
         <svg
           data-testid="checkmark"
@@ -162,7 +162,7 @@ exports[`renders a notice banner 1`] = `
       class="bannerContent"
     >
       <span
-        class="iconWrapper notice"
+        class="iconWrapper noticeIcon"
       >
         <svg
           data-testid="info"
@@ -228,7 +228,7 @@ exports[`renders a success banner 1`] = `
       class="bannerContent"
     >
       <span
-        class="iconWrapper success"
+        class="iconWrapper successIcon"
       >
         <svg
           data-testid="checkmark"
@@ -286,7 +286,7 @@ exports[`renders a warning banner 1`] = `
       class="bannerContent"
     >
       <span
-        class="iconWrapper warning"
+        class="iconWrapper warningIcon"
       >
         <svg
           data-testid="warning"
@@ -352,7 +352,7 @@ exports[`renders an error banner 1`] = `
       class="bannerContent"
     >
       <span
-        class="iconWrapper error"
+        class="iconWrapper errorIcon"
       >
         <svg
           data-testid="alert"
