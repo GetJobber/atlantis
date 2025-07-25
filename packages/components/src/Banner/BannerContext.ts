@@ -17,13 +17,15 @@ interface BannerContextValue {
   readonly setIsVisible: (visible: boolean) => void;
 }
 
-export const BannerContext = createContext<BannerContextValue>({
+const BannerContext = createContext<BannerContextValue>({
   type: "success",
   isVisible: true,
   setIsVisible: () => {
     // noop
   },
 });
+
+export const BannerContextProvider = BannerContext.Provider;
 
 export function useBanner() {
   return useContext(BannerContext);

@@ -5,7 +5,7 @@ import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import { BannerProps, BannerProviderProps, BannerType } from "./Banner.types";
 import styles from "./Banner.module.css";
 import bannerIconStyles from "./BannerIcon.module.css";
-import { BannerContext, useBanner } from "./BannerContext";
+import { BannerContextProvider, useBanner } from "./BannerContext";
 import { Icon, IconNames, IconProps } from "../Icon";
 import { ButtonDismiss, type ButtonDismissProps } from "../ButtonDismiss";
 import type { Colors } from "../Box/Box.types";
@@ -72,7 +72,7 @@ Banner.Provider = function BannerProvider({
   );
 
   return (
-    <BannerContext.Provider
+    <BannerContextProvider
       value={{
         type,
         isVisible: showBanner,
@@ -82,7 +82,7 @@ Banner.Provider = function BannerProvider({
       <InternalWrapper icon={icon} dismissButton={dismissButton}>
         {children}
       </InternalWrapper>
-    </BannerContext.Provider>
+    </BannerContextProvider>
   );
 };
 
