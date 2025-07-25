@@ -53,6 +53,8 @@ Banner.Provider = function BannerProvider({
   onDismiss,
   icon,
   dismissButton,
+  UNSAFE_className,
+  UNSAFE_style,
 }: {
   readonly children: React.ReactNode;
 } & BannerProviderProps) {
@@ -78,7 +80,12 @@ Banner.Provider = function BannerProvider({
         setIsVisible,
       }}
     >
-      <InternalWrapper icon={icon} dismissButton={dismissButton}>
+      <InternalWrapper
+        icon={icon}
+        dismissButton={dismissButton}
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+      >
         {children}
       </InternalWrapper>
     </BannerContextProvider>
@@ -89,10 +96,13 @@ function InternalWrapper({
   children,
   icon,
   dismissButton,
-}: PropsWithChildren & {
-  readonly icon?: React.ReactNode;
-  readonly dismissButton?: React.ReactNode;
-}) {
+  UNSAFE_className,
+  UNSAFE_style,
+}: PropsWithChildren &
+  Pick<
+    BannerProviderProps,
+    "icon" | "dismissButton" | "UNSAFE_className" | "UNSAFE_style"
+  >) {
   const { isVisible, type } = useBanner();
 
   const bannerWidths = {
@@ -105,9 +115,14 @@ function InternalWrapper({
       widths: bannerWidths,
     });
 
-  const bannerClassNames = classnames(styles.banner, [styles[type]], {
-    [styles.medium]: bannerWidth >= bannerWidths.medium,
-  });
+  const bannerClassNames = classnames(
+    styles.banner,
+    [styles[type]],
+    {
+      [styles.medium]: bannerWidth >= bannerWidths.medium,
+    },
+    UNSAFE_className?.container,
+  );
 
   if (!isVisible) return null;
 
@@ -115,6 +130,7 @@ function InternalWrapper({
     <div
       ref={bannerRef}
       className={bannerClassNames}
+      style={UNSAFE_style?.container}
       role={type === "error" ? "alert" : "status"}
     >
       <div className={styles.bannerContent}>

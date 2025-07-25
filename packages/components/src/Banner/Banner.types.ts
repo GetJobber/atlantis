@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { IconNames } from "@jobber/design";
 import { ButtonProps } from "../Button";
 
@@ -69,4 +69,22 @@ export interface BannerProviderProps {
    * @default <Banner.DismissButton/>
    */
   readonly dismissButton?: React.ReactNode;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    readonly container?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    readonly container?: CSSProperties;
+  };
 }
