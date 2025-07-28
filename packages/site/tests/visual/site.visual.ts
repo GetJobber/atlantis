@@ -443,6 +443,14 @@ test.describe("Atlantis Visual Tests", () => {
   });
 
   test.describe("status components", () => {
+    test("banner components", async ({ page }) => {
+      await page.goto("/visual-tests/banner");
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("visual-test-banner-page.png", {
+        fullPage: true,
+      });
+    });
+
     test("spinner components", async ({ page }) => {
       await page.goto("/visual-tests/spinner");
       await page.waitForTimeout(500);
