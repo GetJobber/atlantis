@@ -83,7 +83,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "string | ReactElement<any, string | JSXElementConstructor<any>>"
         }
       },
       "disabled": {
