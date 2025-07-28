@@ -10,6 +10,7 @@ import {
   DatePickerActivatorProps,
 } from "./DatePickerActivator";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
+import { DayOfWeek } from "../sharedHelpers/types";
 import { useAtlantisContext } from "../AtlantisContext";
 
 interface BaseDatePickerProps {
@@ -38,6 +39,14 @@ interface BaseDatePickerProps {
    * Dates on the calendar to highlight
    */
   readonly highlightDates?: Date[];
+
+  /**
+   * Sets which day is considered the first day of the week.
+   * 0 = Sunday, 1 = Monday, etc.
+   *
+   * @default 0
+   */
+  readonly firstDayOfWeek?: DayOfWeek;
 
   /**
    * Change handler that will return the date selected.
@@ -83,7 +92,7 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-/*eslint max-statements: ["error", 13]*/
+/*eslint max-statements: ["error", 14]*/
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -97,10 +106,13 @@ export function DatePicker({
   maxDate,
   minDate,
   highlightDates,
+  firstDayOfWeek,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
-  const { dateFormat } = useAtlantisContext();
+  const { dateFormat, firstDayOfWeek: contextFirstDayOfWeek } =
+    useAtlantisContext();
+  const effectiveFirstDayOfWeek = firstDayOfWeek ?? contextFirstDayOfWeek;
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -138,7 +150,11 @@ export function DatePicker({
         minDate={minDate}
         useWeekdaysShort={true}
         customInput={
-          <DatePickerActivator activator={activator} fullWidth={fullWidth} />
+          <DatePickerActivator
+            pickerRef={pickerRef}
+            activator={activator}
+            fullWidth={fullWidth}
+          />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
@@ -153,6 +169,7 @@ export function DatePicker({
         ]}
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
+        calendarStartDay={effectiveFirstDayOfWeek}
       />
     </div>
   );

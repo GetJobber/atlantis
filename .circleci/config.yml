@@ -67,6 +67,11 @@ references:
         echo 'export PULL_REQUEST_NUMBER=$(basename "${CIRCLE_PULL_REQUEST}")' >> $BASH_ENV
         echo 'export BASE_PATH=${PULL_REQUEST_NUMBER:-${CIRCLE_BRANCH}}' >> $BASH_ENV
 
+  playwright_config: &playwright_config
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+    working_directory: ~/atlantis
+
 jobs:
   checkout_code:
     <<: *container_config
@@ -182,6 +187,41 @@ jobs:
               npm run ci:release
             fi
 
+  e2e_tests:
+    <<: *playwright_config
+    resource_class: medium
+    steps:
+      - *attach_workspace
+      - run:
+          name: Start dev server for e2e tests
+          command: cd packages/site && npm run dev
+          background: true
+      - run:
+          name: Wait for dev server to be ready
+          command: |
+            timeout=60
+            counter=0
+            until $(curl --output /dev/null --silent --head --fail http://localhost:5173); do
+              if [ $counter -gt $timeout ]; then
+                echo "ERROR: Timed out waiting for server to start"
+                exit 1
+              fi
+              echo "Waiting for server to be ready..."
+              sleep 1
+              counter=$((counter+1))
+            done
+      - run:
+          name: Run Playwright tests
+          command: cd packages/site && npm run test:visual:ci
+          env:
+            CI: 'true'
+      - store_test_results:
+          path: packages/site/playwright-report
+      - store_artifacts:
+          path: packages/site/playwright-report
+      - store_artifacts:
+          path: packages/site/test-results
+
 workflows:
   version: 2
 
@@ -209,6 +249,9 @@ workflows:
       - build_new_docs:
           requires:
             - install_dependencies
+      - e2e_tests:
+          requires:
+            - install_dependencies
       - release:
           filters:
             branches:
@@ -219,3 +262,4 @@ workflows:
             - test
             - build_storybook
             - build_new_docs
+            - e2e_tests

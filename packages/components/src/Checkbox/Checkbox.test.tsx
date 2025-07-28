@@ -134,4 +134,12 @@ describe("Checkbox", () => {
       expect(onBlur).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe("ref", () => {
+    it("should be forwarded to the input element", () => {
+      const ref = React.createRef<HTMLInputElement>();
+      render(<Checkbox version={2} ref={ref} />);
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+  });
 });

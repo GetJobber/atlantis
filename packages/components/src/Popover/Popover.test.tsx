@@ -47,6 +47,64 @@ describe("Non-composable Popover", () => {
     expect(screen.queryByText(content)).toBeNull();
   });
 
+  describe("preferredPlacement", () => {
+    it("should use bottom placement by default", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("data-popover-placement", "bottom");
+    });
+
+    it("should use specified placement value", () => {
+      renderPopover({
+        open: true,
+        preferredPlacement: "top",
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("data-popover-placement", "top");
+    });
+  });
+
+  describe("Accessibility", () => {
+    it("should have proper ARIA attributes when open", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const popover = screen.getByTestId("ATL-Popover-Container");
+      expect(popover).toHaveAttribute("role", "dialog");
+    });
+
+    it("should have dismiss button with proper accessibility attributes", () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const dismissButton = screen.getByLabelText("Close dialog");
+      expect(dismissButton).toBeInTheDocument();
+      expect(dismissButton).toHaveAttribute("aria-label", "Close dialog");
+    });
+
+    it("should be focusable and keyboard accessible", async () => {
+      renderPopover({
+        open: true,
+        children: content,
+      });
+
+      const dismissButton = screen.getByLabelText("Close dialog");
+
+      await userEvent.tab();
+      expect(dismissButton).toHaveFocus();
+    });
+  });
+
   describe("UNSAFE_ props", () => {
     it("should apply the UNSAFE_className to the container", () => {
       renderPopover({

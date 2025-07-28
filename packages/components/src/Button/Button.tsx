@@ -54,7 +54,10 @@ function ButtonWrapper(props: ButtonProps) {
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(!disabled && { onMouseDown: onMouseDown }),
-    ...(external && { target: "_blank" }),
+    ...(external && {
+      target: "_blank",
+      rel: "noopener noreferrer",
+    }),
     ...(url === undefined && to === undefined && { type: buttonType }),
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,

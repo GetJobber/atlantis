@@ -8,6 +8,10 @@ export interface CommonAtlantisProps {
   /** Standard HTML id attribute. */
   id?: string;
 }
+
+/** Represents a day of the week as a number where 0 = Sunday, 1 = Monday, etc. */
+export type DayOfWeek = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+
 export type CommonAllowedElements =
   | "section"
   | "p"

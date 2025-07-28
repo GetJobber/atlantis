@@ -3,6 +3,225 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.59.0...@jobber/atlantis-site@0.60.0) (2025-05-12)
+
+
+### Features
+
+* **components-native:** BREAKING CHANGE: Upgrade React Native Version ([#2528](https://github.com/GetJobber/atlantis/issues/2528)) ([ca67b7e](https://github.com/GetJobber/atlantis/commit/ca67b7efa686f03017a9af86189a62de993c72a4)), closes [#2540](https://github.com/GetJobber/atlantis/issues/2540)
+
+
+
+
+
+# [0.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.58.1...@jobber/atlantis-site@0.59.0) (2025-05-12)
+
+
+### Features
+
+* **components:** Format File Composed ([#2538](https://github.com/GetJobber/atlantis/issues/2538)) ([4f1f931](https://github.com/GetJobber/atlantis/commit/4f1f93110d7b4b090b0e94f124232aaf8bd1f777))
+
+
+
+
+
+## [0.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.58.0...@jobber/atlantis-site@0.58.1) (2025-05-08)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.57.0...@jobber/atlantis-site@0.58.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Add disableContextMenu prop for DataList.ItemActions ([#2545](https://github.com/GetJobber/atlantis/issues/2545)) ([cf5a22f](https://github.com/GetJobber/atlantis/commit/cf5a22f60e95651cb60bd99a93e22196213d2871))
+
+
+
+
+
+# [0.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.56.1...@jobber/atlantis-site@0.57.0) (2025-05-08)
+
+
+### Features
+
+* **components:** Update tiles to support alignment prop. ([#2544](https://github.com/GetJobber/atlantis/issues/2544)) ([f9c2cd7](https://github.com/GetJobber/atlantis/commit/f9c2cd742ba7bf4edf0077f21e20c96ae91a225b))
+
+
+
+
+
+## [0.56.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.56.0...@jobber/atlantis-site@0.56.1) (2025-05-07)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.55.0...@jobber/atlantis-site@0.56.0) (2025-05-07)
+
+
+### Features
+
+* **components:** Add InputDate prop to replace invalid values with last value on blur ([#2541](https://github.com/GetJobber/atlantis/issues/2541)) ([5958b7c](https://github.com/GetJobber/atlantis/commit/5958b7c4265423c1ef9188f9f236af4937f98aab))
+
+
+
+
+
+# [0.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.6...@jobber/atlantis-site@0.55.0) (2025-05-06)
+
+
+### Features
+
+* **components:** InputPhoneNumber v2 ([#2534](https://github.com/GetJobber/atlantis/issues/2534)) ([f1220e8](https://github.com/GetJobber/atlantis/commit/f1220e8ef62cd42ff67c075b9f17eff6fbebd96b))
+* **design:** Add surface and onSurface colors for color-client ([#2539](https://github.com/GetJobber/atlantis/issues/2539)) ([4c9f741](https://github.com/GetJobber/atlantis/commit/4c9f7415e31add63da9428c084bc23855e4615fa))
+
+
+
+
+
+## [0.54.6](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.5...@jobber/atlantis-site@0.54.6) (2025-05-05)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.5](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.4...@jobber/atlantis-site@0.54.5) (2025-05-05)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.4](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.3...@jobber/atlantis-site@0.54.4) (2025-05-01)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.2...@jobber/atlantis-site@0.54.3) (2025-05-01)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.1...@jobber/atlantis-site@0.54.2) (2025-05-01)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.54.0...@jobber/atlantis-site@0.54.1) (2025-04-30)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.53.0...@jobber/atlantis-site@0.54.0) (2025-04-30)
+
+
+### Bug Fixes
+
+* **components-native:** Adjusting Type mismatch in ThumbnailList ([#2523](https://github.com/GetJobber/atlantis/issues/2523)) ([d340a9e](https://github.com/GetJobber/atlantis/commit/d340a9eb3c2fbd7ff2d26934491ed59dfc3e2cbb))
+
+
+### Features
+
+* **docx:** Fixing "Show Code" examples with the weird numbers and dollar signs and such. ([#2521](https://github.com/GetJobber/atlantis/issues/2521)) ([dacdd56](https://github.com/GetJobber/atlantis/commit/dacdd5685bc05c5275d581b453c09f2973e40ef2))
+
+
+
+
+
+# [0.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.52.0...@jobber/atlantis-site@0.53.0) (2025-04-28)
+
+
+### Features
+
+* **components-native:** Add UNSAFE_style to Content ([#2520](https://github.com/GetJobber/atlantis/issues/2520)) ([00408b2](https://github.com/GetJobber/atlantis/commit/00408b2d9a534d74cffbaf2a34d01bf887f154e7))
+* **components:** Add element prop to Text ([#2515](https://github.com/GetJobber/atlantis/issues/2515)) ([b946b00](https://github.com/GetJobber/atlantis/commit/b946b001467a7a9d34d52b3da2097f50a0808b5c))
+
+
+
+
+
+# [0.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.51.0...@jobber/atlantis-site@0.52.0) (2025-04-28)
+
+
+### Features
+
+* **components:** Add firstDayOfWeek to DatePicker and AtlantisContext ([#2499](https://github.com/GetJobber/atlantis/issues/2499)) ([3a33836](https://github.com/GetJobber/atlantis/commit/3a3383699619e3a013f82d796bf5cb9a70355b32))
+
+
+
+
+
+# [0.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.3...@jobber/atlantis-site@0.51.0) (2025-04-28)
+
+
+### Features
+
+* **components:** Add Default Activator Ref to Combobox ([#2513](https://github.com/GetJobber/atlantis/issues/2513)) ([28eba8d](https://github.com/GetJobber/atlantis/commit/28eba8d96f9f8835e27e4f21d060d45fbd2c95bc))
+
+
+
+
+
+## [0.50.3](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.2...@jobber/atlantis-site@0.50.3) (2025-04-28)
+
+
+### Bug Fixes
+
+* **components:** Allow DataList.ItemActions to support onClick and url together ([#2519](https://github.com/GetJobber/atlantis/issues/2519)) ([110fb1e](https://github.com/GetJobber/atlantis/commit/110fb1ebf742099f366688fd3a7ac31a4556aa56))
+
+
+
+
+
+## [0.50.2](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.1...@jobber/atlantis-site@0.50.2) (2025-04-28)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+## [0.50.1](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.50.0...@jobber/atlantis-site@0.50.1) (2025-04-25)
+
+**Note:** Version bump only for package @jobber/atlantis-site
+
+
+
+
+
+# [0.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.49.0...@jobber/atlantis-site@0.50.0) (2025-04-25)
+
+
+### Features
+
+* **components:** Visual Regression Testing ([#2479](https://github.com/GetJobber/atlantis/issues/2479)) ([04357d6](https://github.com/GetJobber/atlantis/commit/04357d6bee0c6bfeb159a51b0d0b2649880c32e9))
+
+
+
+
+
 # [0.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/atlantis-site@0.48.1...@jobber/atlantis-site@0.49.0) (2025-04-24)
 
 

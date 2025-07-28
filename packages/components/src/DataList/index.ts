@@ -8,4 +8,7 @@ export {
   type DataListSelectedAllType,
   type DataListProps,
   type DataListEmptyStateProps,
+  type DataListItemActionsProps,
+  type DataListBulkActionProps,
+  type DataListSearchProps,
 } from "./DataList.types";

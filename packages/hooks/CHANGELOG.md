@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.15.0...@jobber/hooks@2.16.0) (2025-05-28)
+
+
+### Features
+
+* **hooks:** Adding useStepper hook [JOB-124608] ([#2567](https://github.com/GetJobber/atlantis/issues/2567)) ([843c863](https://github.com/GetJobber/atlantis/commit/843c863dabd2056a76a438d72c15258d0d3714e0))
+
+
+
+
+
 # [2.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.14.0...@jobber/hooks@2.15.0) (2025-04-22)
 
 

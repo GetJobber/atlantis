@@ -2,11 +2,12 @@ import React, {
   ChangeEvent,
   ReactElement,
   Ref,
+  RefObject,
   cloneElement,
   forwardRef,
   isValidElement,
 } from "react";
-import { ReactDatePickerProps } from "react-datepicker";
+import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
 import omit from "lodash/omit";
 import { Button } from "../Button";
 
@@ -33,6 +34,7 @@ export interface DatePickerActivatorProps
   onClick?(): void;
   onFocus?(): void;
   onKeyDown?(): void;
+  readonly pickerRef: RefObject<ReactDatePicker>;
 }
 
 export const DatePickerActivator = forwardRef(InternalActivator);

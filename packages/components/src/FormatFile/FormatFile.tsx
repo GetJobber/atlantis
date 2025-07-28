@@ -1,43 +1,14 @@
-import React from "react";
-import classnames from "classnames";
-import getHumanReadableFileSize from "filesize";
+import React, { useState } from "react";
 import styles from "./FormatFile.module.css";
-import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
-import { InternalThumbnail } from "./InternalThumbnail";
-import { FileUpload } from "../InputFile";
+import { FormatFileProps } from "./types";
+import { useFormatFile } from "./useFormatFile";
+import { useFormatFileStyles } from "./useFormatFileStyles";
+import { Thumbnail } from "../Thumbnail";
 import { Text } from "../Text";
 import { ProgressBar } from "../ProgressBar";
-
-interface FormatFileProps {
-  /**
-   * File upload details object. (See FileUpload type.)
-   */
-  readonly file: FileUpload;
-
-  /**
-   * To display as either a file row or thumbnail
-   *
-   * @default "expanded"
-   */
-  readonly display?: "expanded" | "compact";
-
-  /**
-   * The base dimensions of the thumbnail
-   *
-   * @default "base"
-   */
-  readonly displaySize?: "base" | "large";
-
-  /**
-   * Function to execute when format file is clicked
-   */
-  onClick?(event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void;
-
-  /**
-   * onDelete callback - this function will be called when the delete action is triggered
-   */
-  onDelete?(): void;
-}
+import { Button } from "../Button";
+import { ConfirmationModal } from "../ConfirmationModal";
+import { FileUpload } from "../InputFile";
 
 export function FormatFile({
   file,
@@ -46,86 +17,212 @@ export function FormatFile({
   onDelete,
   onClick,
 }: FormatFileProps) {
-  const isComplete = file.progress >= 1;
-  const fileSize = getHumanReadableFileSize(file.size);
-  const wrapperClassNames = classnames(styles[display], styles.formatFile, {
-    [styles[displaySize]]: display === "compact",
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+
+  const { isComplete, fileSize } = useFormatFile({
+    file,
+    display,
+    displaySize,
+    onClick,
+    onDelete,
   });
-
-  const DetailsContainer = isComplete && onClick ? "button" : "div";
-
-  const detailsClassNames = classnames(styles.wrapper, {
-    [styles[displaySize]]: display === "compact",
-    [styles.hoverable]: isHoverable({ display, isComplete, onClick, onDelete }),
-    [styles.clickable]: onClick,
-    [styles.deleteable]: display === "compact",
+  const {
+    wrapperClassNames,
+    detailsClassNames,
+    progressClassNames,
+    thumbnailContainerClassNames,
+    deleteButtonContainerClassNames,
+  } = useFormatFileStyles({
+    display,
+    displaySize,
+    isComplete,
+    onClick,
+    onDelete,
   });
-
-  const thumbnailContainerClassNames = classnames(
-    styles.thumbnail,
-    styles[displaySize],
-  );
 
   return (
-    <div className={wrapperClassNames}>
-      <DetailsContainer
+    <FormatFile.Wrapper className={wrapperClassNames}>
+      <FormatFile.Body
         type="button"
         className={detailsClassNames}
         onClick={isComplete ? onClick : undefined}
         tabIndex={0}
-        aria-busy={!isComplete}
+        ariaBusy={!isComplete}
+        isComplete={isComplete}
       >
-        <div className={thumbnailContainerClassNames}>
-          <InternalThumbnail
+        <FormatFile.ThumbnailContainer className={thumbnailContainerClassNames}>
+          <Thumbnail
             key={file.key}
             compact={display === "compact"}
             file={file}
             size={displaySize}
           />
+          <FormatFile.ProgressContainer
+            isHidden={isComplete}
+            className={progressClassNames}
+          >
+            <ProgressBar
+              size="small"
+              currentStep={file.progress * 100}
+              totalSteps={100}
+            />
+          </FormatFile.ProgressContainer>
+        </FormatFile.ThumbnailContainer>
 
-          {!isComplete && (
-            <div className={styles.progress}>
-              <ProgressBar
-                size="small"
-                currentStep={file.progress * 100}
-                totalSteps={100}
-              />
-            </div>
-          )}
-        </div>
-
-        {display === "expanded" && (
-          <div className={styles.contentBlock}>
-            <Text size="base">{file.name}</Text>
-            <Text size="small">{fileSize}</Text>
-          </div>
-        )}
-      </DetailsContainer>
-      {isComplete && onDelete && (
-        <div className={styles.deleteButton}>
-          <FormatFileDeleteButton
-            size={display === "expanded" ? "large" : displaySize}
-            onDelete={onDelete}
+        <FormatFile.Expanded
+          isVisible={display === "expanded"}
+          file={file}
+          fileSize={fileSize}
+        />
+      </FormatFile.Body>
+      <FormatFile.DeleteButtonContainer
+        className={deleteButtonContainerClassNames}
+        isHidden={!isComplete || onDelete === undefined}
+      >
+        <FormatFile.DeleteButton
+          onDelete={() => {
+            setDeleteConfirmationOpen(true);
+          }}
+        >
+          <ConfirmationModal
+            title="Confirm Deletion"
+            message={`Are you sure you want to delete this file?`}
+            confirmLabel="Delete"
+            variation="destructive"
+            open={deleteConfirmationOpen}
+            onConfirm={() => onDelete?.()}
+            onRequestClose={() => setDeleteConfirmationOpen(false)}
           />
-        </div>
-      )}
-    </div>
+        </FormatFile.DeleteButton>
+      </FormatFile.DeleteButtonContainer>
+    </FormatFile.Wrapper>
   );
 }
 
-function isHoverable({
-  display,
-  isComplete,
-  onClick,
-  onDelete,
-}: Pick<FormatFileProps, "display" | "onClick" | "onDelete"> & {
-  isComplete: boolean;
-}): boolean {
-  if (display === "compact") {
-    return Boolean(isComplete && (onClick || onDelete));
-  } else if (display === "expanded") {
-    return Boolean(isComplete && onClick);
-  }
+FormatFile.DeleteButtonContainer = function FormatFileDeleteButtonContainer({
+  children,
+  className,
+  isHidden,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly isHidden?: boolean;
+}) {
+  if (isHidden) return null;
 
-  return false;
-}
+  return <div className={className}>{children}</div>;
+};
+
+FormatFile.ProgressContainer = function FormatFileProgressContainer({
+  isHidden,
+  children,
+  className,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly isHidden?: boolean;
+}) {
+  if (isHidden) return null;
+
+  return <div className={className}>{children}</div>;
+};
+
+FormatFile.ThumbnailContainer = function FormatFileThumbnailContainer({
+  children,
+  className,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+}) {
+  return <div className={className}>{children}</div>;
+};
+
+FormatFile.Body = function FormatFileBody({
+  children,
+  className,
+  type,
+  onClick,
+  tabIndex,
+  ariaBusy,
+  isComplete,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly type?: "button" | "submit" | "reset";
+  readonly onClick?: React.MouseEventHandler<
+    HTMLButtonElement | HTMLDivElement
+  >;
+  readonly tabIndex?: number;
+  readonly ariaBusy?: boolean;
+  readonly isComplete: boolean;
+}) {
+  const FormatFileBodyTag = isComplete && onClick ? "button" : "div";
+
+  return (
+    <FormatFileBodyTag
+      type={type}
+      className={className}
+      onClick={onClick}
+      tabIndex={tabIndex}
+      aria-busy={ariaBusy}
+    >
+      {children}
+    </FormatFileBodyTag>
+  );
+};
+
+FormatFile.Expanded = function FormatFileExpanded({
+  file,
+  fileSize,
+  isVisible,
+}: {
+  readonly file: FileUpload;
+  readonly fileSize: string;
+  readonly isVisible: boolean;
+}) {
+  if (!isVisible) return null;
+
+  return (
+    <div className={styles.contentBlock}>
+      <Text size="base">{file.name}</Text>
+      <Text size="small">{fileSize}</Text>
+    </div>
+  );
+};
+
+FormatFile.Wrapper = function FormatFileWrapper({
+  children,
+  className,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+}) {
+  return <div className={className}>{children}</div>;
+};
+
+FormatFile.DeleteButton = function FormatFileDeleteButton({
+  onDelete,
+  children,
+}: {
+  readonly onDelete?: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
+  readonly children?: React.ReactNode;
+}) {
+  return (
+    <>
+      <Button
+        UNSAFE_className={{
+          container: styles.customDeleteButton,
+        }}
+        onClick={onDelete}
+        variation="destructive"
+        type="tertiary"
+        icon="trash"
+        ariaLabel="Delete File"
+        size={"small"}
+      />
+      {children}
+    </>
+  );
+};

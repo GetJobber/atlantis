@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import React from "react";
 import { BaseAutocompleteMenuWrapper } from "./MenuWrapper";
 import { type AnyOption, type Option } from "../Autocomplete.types";
 import { isOptionSelected } from "../Autocomplete.utils";
@@ -12,9 +12,9 @@ export interface DefaultMenuProps {
   /**
    * Element that it's attached to when the menu opens.
    */
-  readonly attachTo: RefObject<Element | null>;
+  readonly attachTo: HTMLDivElement | null;
   onOptionSelect(chosenOption?: Option): void;
-  readonly visible?: boolean;
+  readonly visible: boolean;
 }
 
 /**
@@ -30,10 +30,9 @@ export function DefaultMenu({
   const {
     menuRef,
     setMenuRef,
-    styles: popperStyles,
-    attributes,
+    styles: floatStyles,
     targetWidth,
-  } = useRepositionMenu(attachTo, visible);
+  } = useRepositionMenu(attachTo, visible, false);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -48,7 +47,7 @@ export function DefaultMenu({
 
   return (
     <BaseAutocompleteMenuWrapper
-      {...{ setMenuRef, popperStyles, attributes, targetWidth, visible }}
+      {...{ setMenuRef, floatStyles, targetWidth, visible }}
     >
       {options?.map((option, index) => {
         return (

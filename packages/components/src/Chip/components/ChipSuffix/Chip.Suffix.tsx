@@ -12,7 +12,7 @@ export function ChipSuffix({
   testID,
   ariaLabel,
 }: ChipSuffixProps) {
-  let singleChild = useChildComponent(
+  const singleChild = useChildComponent(
     children,
     d => d.type === Icon || d.type == InternalChipButton,
   );
@@ -29,12 +29,6 @@ export function ChipSuffix({
     event.stopPropagation();
     onClick(event);
   };
-
-  const iconName = singleChild?.props?.name || singleChild?.props?.icon;
-
-  if (!allowedSuffixIcons.includes(iconName)) {
-    singleChild = undefined;
-  }
 
   return (
     <span
@@ -65,11 +59,3 @@ export interface ChipSuffixProps extends PropsWithChildren {
       | React.KeyboardEvent<HTMLSpanElement>,
   ) => void;
 }
-
-export const allowedSuffixIcons = [
-  "cross",
-  "add",
-  "checkmark",
-  "remove",
-  "arrowDown",
-];

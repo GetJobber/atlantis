@@ -96,6 +96,11 @@ export const routes: Array<AtlantisRoute> = [
         handle: "Disabled states",
         exact: true,
       },
+      {
+        path: "/patterns/settings",
+        handle: "Settings",
+        exact: true,
+      },
     ],
   },
   {
@@ -195,6 +200,16 @@ export const routes: Array<AtlantisRoute> = [
     component: GuidesPage,
     children: [
       {
+        path: "/guides/atlantis-overview",
+        handle: "Atlantis overview",
+        exact: true,
+      },
+      {
+        path: "/guides/contributing",
+        handle: "Contributing",
+        exact: true,
+      },
+      {
         path: "/guides/create-a-react-component",
         handle: "Create a React component",
         exact: true,
@@ -220,6 +235,11 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/guides/figma-101",
+        handle: "Figma 101",
+        exact: true,
+      },
+      {
         path: "/guides/getting-started-with-react",
         handle: "Getting started with React",
         exact: true,
@@ -231,7 +251,7 @@ export const routes: Array<AtlantisRoute> = [
       },
       {
         path: "/guides/page-layouts",
-        handle: "Page Layouts",
+        handle: "Page layouts",
         exact: true,
       },
       {

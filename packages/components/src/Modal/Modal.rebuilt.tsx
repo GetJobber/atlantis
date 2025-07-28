@@ -55,12 +55,12 @@ export function ModalActions({
           <div className={rightAction}>
             {primary && <Button {...primary} />}
             {secondary && (
-              <Button {...secondary} type="primary" variation="subtle" />
+              <Button type="primary" variation="subtle" {...secondary} />
             )}
           </div>
           {tertiary && (
             <div className={leftAction}>
-              <Button {...tertiary} type="secondary" variation="destructive" />
+              <Button type="secondary" variation="destructive" {...tertiary} />
             </div>
           )}
         </div>
@@ -108,6 +108,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     size,
     floatingNodeId,
     modalLabelledBy,
+    getFloatingProps,
   } = useModalContext();
   const { modal, overlay } = useModalStyles(size);
 
@@ -128,6 +129,7 @@ export function ModalContent({ children }: ModalContainerProps) {
                     role="dialog"
                     tabIndex={0}
                     aria-labelledby={modalLabelledBy}
+                    {...getFloatingProps()}
                   >
                     <ModalOverlay />
                     <motion.div

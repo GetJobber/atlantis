@@ -32,7 +32,8 @@ export function DataListItem<T extends DataListObject>({
 
   const generatedItem = useMemo(() => generateListItemElement(item), [item]);
 
-  const { actions, hasActions } = useGetItemActions<T>(item);
+  const { actions, hasActions, disableContextMenu } =
+    useGetItemActions<T>(item);
   const isContextMenuVisible = Boolean(contextPosition);
 
   const shouldShowContextMenu = showMenu && isContextMenuVisible && hasActions;
@@ -46,7 +47,7 @@ export function DataListItem<T extends DataListObject>({
         onMouseLeave={handleHideMenu}
         onFocus={handleShowMenu}
         onBlur={handleHideMenu}
-        onContextMenu={handleContextMenu}
+        onContextMenu={disableContextMenu ? undefined : handleContextMenu}
         className={classNames(styles.listItem, {
           [styles.active]: showMenu && isContextMenuVisible,
         })}

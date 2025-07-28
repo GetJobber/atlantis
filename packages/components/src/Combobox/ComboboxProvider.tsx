@@ -11,6 +11,8 @@ export interface ComboboxProviderProps {
   readonly shouldScroll: MutableRefObject<boolean>;
   readonly searchValue: string;
   readonly label?: string;
+  readonly onClear?: () => void;
+  readonly onSelectAll?: (selection: ComboboxOption[]) => void;
 }
 
 export const ComboboxContext = React.createContext(

@@ -200,4 +200,30 @@ describe("ComboboxOption", () => {
       });
     });
   });
+
+  describe("onClick callback", () => {
+    const handleClick = jest.fn();
+
+    beforeEach(() => {
+      handleClick.mockClear();
+    });
+
+    it("should call onClick when the option is clicked", async () => {
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [],
+        onSelect,
+        onClick: handleClick,
+      });
+
+      await userEvent.click(POM.getOption("Michael"));
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
+      expect(handleClick).toHaveBeenCalledWith({
+        id: "1",
+        label: "Michael",
+      });
+    });
+  });
 });
