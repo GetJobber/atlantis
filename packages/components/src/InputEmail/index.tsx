@@ -2,8 +2,8 @@ import React, { ForwardedRef, forwardRef } from "react";
 import { InputEmail as InputEmailLegacy } from "./InputEmail";
 import { InputEmailRebuilt } from "./InputEmail.rebuilt";
 import {
-  InputEmailLegacyProps,
-  InputEmailRebuiltProps,
+  type InputEmailLegacyProps,
+  type InputEmailRebuiltProps,
 } from "./InputEmail.types";
 
 export type InputEmailShimProps =
