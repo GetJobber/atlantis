@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import { ChangeEvent, FocusEvent, KeyboardEvent, ReactElement } from "react";
 import styles from "../FormField/FormField.module.css";
 
 export interface useInputTextFormFieldProps
@@ -29,7 +29,7 @@ export interface useInputTextFormFieldProps
   /**
    * Further description of the input, can be used for a hint.
    */
-  readonly description?: string;
+  readonly description?: string | ReactElement;
 
   /**
    * Callback for when the field value changes
