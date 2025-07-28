@@ -4,7 +4,7 @@
   "version": "0.60.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run bundle && npm run copyFiles && vite",
+    "dev": "npm run bundle && npm run copyFiles && vite --force",
     "bundle": "rollup -c editorBundle.rollup.config.js && rollup -c editorMobileBundle.rollup.config.js",
     "copyFiles": "cp ../design/dist/foundation.css ./public/foundation.css && cp ../components/dist/styles.css ./public/styles.css && cp ../design/dist/dark.mode.css ./public/dark.mode.css && cp ./node_modules/axios/dist/esm/axios.js ./public",
     "build": "npm run bundle && npm run copyFiles && tsc -b && vite build",

@@ -11,7 +11,7 @@ cd ../..
 # The bash script does the following:
 # 1. Install dependencies for this linux container environment
 # 2. Bundle and copyFiles (part of npm run dev)
-# 3. Start the vite dev server in the background
+# 3. Start the vite dev server in the background. Use --force to clear the vite cache.
 # 4. Wait for 3 seconds to ensure the server is ready
 # 5. Run the playwright tests
 
@@ -25,4 +25,4 @@ docker run --rm -it \
     -v $(pwd)/packages/site/node_modules.e2e:/atlantis/packages/site/node_modules \
     -w /atlantis/packages/site \
     mcr.microsoft.com/playwright:v1.52.0-noble \
-    bash -c "npm install --ignore-scripts && npm run bundle && npm run copyFiles && (npx vite &) && sleep 3 && npx $PLAYWRIGHT_COMMAND"
+    bash -c "npm install --ignore-scripts && npm run bundle && npm run copyFiles && (npx vite --force &) && sleep 3 && npx $PLAYWRIGHT_COMMAND"
