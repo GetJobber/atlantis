@@ -1,11 +1,11 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, ReactElement } from "react";
 
 export interface UseSelectFormFieldProps {
   readonly id: string;
   readonly name: string;
   readonly disabled?: boolean;
   readonly autofocus?: boolean;
-  readonly description?: string;
+  readonly description?: string | ReactElement;
   readonly inline?: boolean;
   readonly error?: string;
   readonly invalid?: boolean;
