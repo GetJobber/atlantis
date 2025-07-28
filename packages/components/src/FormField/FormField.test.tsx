@@ -95,9 +95,17 @@ describe("FormField", () => {
   describe("with a description", () => {
     const label = "This is a hint!";
 
-    it("renders", () => {
+    const elementTestId = "i-am-a-description";
+    const element = <div data-testid={elementTestId} />;
+
+    it("renders text description", () => {
       const { getByText } = render(<FormField description={label} />);
       expect(getByText(label)).toBeInTheDocument();
+    });
+
+    it("renders element description", () => {
+      render(<FormField description={element} />);
+      expect(screen.getByTestId(elementTestId)).toBeInTheDocument();
     });
 
     it("should have assistive descriptor `aria-describedby`", () => {
@@ -106,11 +114,18 @@ describe("FormField", () => {
     });
 
     describe("and inline", () => {
-      it("shouldn't display description", () => {
+      it("shouldn't display text description", () => {
         const { queryByText } = render(
           <FormField description={label} inline />,
         );
         expect(queryByText(label)).not.toBeInTheDocument();
+      });
+
+      it("shouldn't display element description", () => {
+        const { queryByTestId } = render(
+          <FormField description={element} inline />,
+        );
+        expect(queryByTestId(elementTestId)).not.toBeInTheDocument();
       });
 
       it("shouldn't have assistive descriptor `aria-describedby`", () => {
