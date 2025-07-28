@@ -21,8 +21,10 @@
   display: flex;
   position: relative;
   z-index: var(--elevation-base);
-  margin-bottom: var(--space-small);
+  margin-bottom: 0;
+  padding-bottom: var(--space-small);
   align-items: center;
+  background-color: var(--color-surface);
 }
 
 .headerFilters {
