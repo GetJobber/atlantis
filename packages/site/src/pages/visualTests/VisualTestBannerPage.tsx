@@ -6,7 +6,7 @@ export const VisualTestBannerPage = () => {
       <Stack gap="large">
         <Heading level={3}>Banner Examples</Heading>
 
-        {/* Basic Banner */}
+        <Heading level={4}>Default</Heading>
         <section>
           <Stack>
             <Banner type="success">
@@ -25,7 +25,26 @@ export const VisualTestBannerPage = () => {
           </Stack>
         </section>
 
-        {/* Banner with primary action */}
+        <Heading level={4}>Non-dismissible</Heading>
+        <section>
+          <Stack>
+            <Banner type="success" dismissible={false}>
+              Your account was upgraded successfully
+            </Banner>
+            <Banner type="notice" dismissible={false}>
+              Jobber will be performing scheduled maintenance on Feb. 21
+            </Banner>
+            <Banner type="warning" dismissible={false}>
+              Changes to this visit will not be applied to future visits
+            </Banner>
+
+            <Banner type="error" dismissible={false}>
+              Payment could not be processed because of a network error
+            </Banner>
+          </Stack>
+        </section>
+
+        <Heading level={4}>Primary action</Heading>
         <section>
           <Stack>
             <Banner
