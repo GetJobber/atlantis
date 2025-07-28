@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.1...@jobber/components@6.71.2) (2025-07-28)
+
+
+### Bug Fixes
+
+* **components:** Popover floating-ui shift limiter ([#2630](https://github.com/GetJobber/atlantis/issues/2630)) ([f53e0d8](https://github.com/GetJobber/atlantis/commit/f53e0d87f814cb19029ca759c289484d79d33186))
+
+
+
+
+
 ## [6.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.0...@jobber/components@6.71.1) (2025-07-28)
 
 
