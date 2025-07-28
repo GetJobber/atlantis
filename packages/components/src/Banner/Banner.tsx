@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, useState } from "react";
 import classnames from "classnames";
-import { tokens } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import { BannerProps, BannerProviderProps, BannerType } from "./Banner.types";
 import styles from "./Banner.module.css";
@@ -154,7 +153,7 @@ Banner.Icon = function BannerIcon(
   const overrideStyles: React.CSSProperties = {};
 
   if (props.backgroundColor) {
-    overrideStyles.backgroundColor = tokens[`color-${props.backgroundColor}`];
+    overrideStyles.backgroundColor = `var(--color-${props.backgroundColor})`;
   }
 
   const classNames = classnames(styles.iconWrapper, styles[`${type}Icon`]);
