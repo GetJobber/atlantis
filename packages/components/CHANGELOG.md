@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.0...@jobber/components@6.71.1) (2025-07-28)
+
+
+### Bug Fixes
+
+* **components:** Fixing DataList title styling on loadingState filtering ([#2634](https://github.com/GetJobber/atlantis/issues/2634)) ([17cdc89](https://github.com/GetJobber/atlantis/commit/17cdc89d892255a646d635066841ad74b78ae735))
+
+
+
+
+
 # [6.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.70.0...@jobber/components@6.71.0) (2025-07-24)
 
 
