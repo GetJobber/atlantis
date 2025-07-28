@@ -1,20 +1,20 @@
 export { Autocomplete } from "./Autocomplete";
 export {
-  MenuOptionProps,
+  type MenuOptionProps,
   BaseMenuOption,
-  BaseMenuOptionProps,
+  type BaseMenuOptionProps,
   MenuOption,
   BaseMenuGroupOption,
-  BaseMenuGroupOptionProps,
+  type BaseMenuGroupOptionProps,
 } from "./Option";
 export {
-  AnyOption,
-  AutocompleteProps,
-  BaseOption,
-  CustomOptionsMenuProp,
-  GroupOption,
-  OptionCollection,
-  Option,
+  type AnyOption,
+  type AutocompleteProps,
+  type BaseOption,
+  type CustomOptionsMenuProp,
+  type GroupOption,
+  type OptionCollection,
+  type Option,
 } from "./Autocomplete.types";
 export {
   KeyboardAction,

@@ -16,7 +16,7 @@ import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import { Combobox, type ComboboxOption } from "@jobber/components/Combobox";
 import { Flex } from "@jobber/components/Flex";
 // eslint-disable-next-line import/no-internal-modules
 import { useDebounce } from "@jobber/components/utils/useDebounce";

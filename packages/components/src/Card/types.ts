@@ -1,7 +1,7 @@
 import { ReactElement, ReactNode } from "react";
 import colors from "./cardcolors.module.css";
-import { ButtonProps } from "../Button";
-import { MenuProps } from "../Menu";
+import { type ButtonProps } from "../Button";
+import { type MenuProps } from "../Menu";
 
 export type ActionProps = ReactElement<
   Omit<ButtonProps, "size" | "fullWidth"> | MenuProps

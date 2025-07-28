@@ -1,1 +1,1 @@
-export { Page, PageProps } from "./Page";
+export { Page, type PageProps } from "./Page";

@@ -1,7 +1,7 @@
 import React, { ForwardedRef, forwardRef } from "react";
 import {
-  InputPhoneNumberLegacyProps,
-  InputPhoneNumberRebuiltProps,
+  type InputPhoneNumberLegacyProps,
+  type InputPhoneNumberRebuiltProps,
 } from "./InputPhoneNumber.types";
 import { InputPhoneNumberRebuilt } from "./InputPhoneNumber.rebuilt";
 import { InputPhoneNumber as InputPhoneNumberLegacy } from "./InputPhoneNumber";

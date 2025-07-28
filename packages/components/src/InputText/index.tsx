@@ -2,9 +2,9 @@ import React, { ForwardedRef, forwardRef } from "react";
 import { InputText as InputTextLegacy } from "./InputText";
 import { InputTextSPAR } from "./InputText.rebuilt";
 import {
-  InputTextLegacyProps,
-  InputTextRebuiltProps,
-  InputTextRef,
+  type InputTextLegacyProps,
+  type InputTextRebuiltProps,
+  type InputTextRef,
 } from "./InputText.types";
 
 export type InputTextShimProps = InputTextLegacyProps | InputTextRebuiltProps;

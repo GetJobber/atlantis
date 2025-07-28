@@ -1,12 +1,12 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
-import { IconNames } from "@jobber/design";
+import { type IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.module.css";
 import { BannerIcon } from "./components/BannerIcon";
-import { BannerType } from "./Banner.types";
+import { type BannerType } from "./Banner.types";
 import { Text } from "../Text";
-import { Button, ButtonProps } from "../Button";
+import { Button, type ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss/ButtonDismiss";
 
 interface BannerProps {

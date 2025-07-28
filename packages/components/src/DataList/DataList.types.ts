@@ -1,10 +1,10 @@
 import { ReactElement, ReactNode } from "react";
 import { IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
-import { Breakpoints } from "./DataList.const";
-import { ButtonProps } from "../Button";
+import { type Breakpoints } from "./DataList.const";
+import { type ButtonProps } from "../Button";
 
-export { Breakpoints } from "./DataList.const";
+export { type Breakpoints } from "./DataList.const";
 
 export type DataListItemType<T extends DataListObject[]> = Record<
   keyof T[number],

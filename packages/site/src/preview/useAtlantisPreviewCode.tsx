@@ -1,6 +1,6 @@
 import { RefObject, useCallback, useState } from "react";
 import { transform } from "@babel/standalone";
-import { Theme } from "@jobber/components";
+import { type Theme } from "@jobber/components";
 import { useAtlantisPreviewSkeleton } from "./useAtlantisPreviewSkeleton";
 
 export const useAtlantisPreviewCode = ({

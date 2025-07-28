@@ -2,7 +2,7 @@ import classnames from "classnames";
 import { RefObject, useEffect, useState } from "react";
 import { useIsSafari } from "./useIsSafari";
 import styles from "../FormField.module.css";
-import { FormFieldProps } from "../FormFieldTypes";
+import type { FormFieldProps } from "../FormFieldTypes";
 
 export interface useFormFieldWrapperStylesProps
   extends Pick<
