@@ -92,3 +92,42 @@ For action buttons, you should use `Banner.Action`:
   />
 </Banner.Provider>
 ```
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+Banner has one element that can be targeted with classes or styles: `Banner.Provider`. This is
+the container for the composable Banner.
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Popover updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the `Banner.Provider`. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// YourComponent.tsx
+UNSAFE_className={{
+  container: styles.bannerContainer,
+}}
+
+// YourComponent.module.css
+.bannerContainer {
+  background-color: var(--color-surface--background);
+}
+```
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the `Banner.Provider`.
+
+```tsx
+UNSAFE_style={{
+  container: { backgroundColor: "var(--color-surface--background)" },
+}}
+```
