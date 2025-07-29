@@ -100,7 +100,9 @@ describe("FormField", () => {
 
     it("renders text description", () => {
       const { getByText } = render(<FormField description={label} />);
-      expect(getByText(label)).toBeInTheDocument();
+      const textElement = getByText(label);
+      expect(textElement).toBeInstanceOf(HTMLParagraphElement);
+      expect(textElement).toBeInTheDocument();
     });
 
     it("renders element description", () => {
