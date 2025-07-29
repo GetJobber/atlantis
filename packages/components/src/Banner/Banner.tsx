@@ -1,11 +1,11 @@
 import React, { type PropsWithChildren, useState } from "react";
 import classnames from "classnames";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
-import {
-  type BannerProps,
-  type BannerProviderProps,
-  type BannerType,
-  type Colors,
+import type {
+  BannerProps,
+  BannerProviderProps,
+  BannerType,
+  Colors,
 } from "./Banner.types";
 import styles from "./Banner.module.css";
 import { BannerContextProvider, useBanner } from "./BannerContext";

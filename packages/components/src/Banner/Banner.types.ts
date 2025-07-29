@@ -1,5 +1,5 @@
 import { type CSSProperties, type ReactNode } from "react";
-import { IconNames, type tokens } from "@jobber/design";
+import { type IconNames, tokens } from "@jobber/design";
 import { type ButtonProps } from "../Button";
 
 export type BannerType = "notice" | "success" | "warning" | "error";
