@@ -133,13 +133,15 @@ export const VisualTestBannerPage = () => {
               label="Take action"
               onClick={() => alert("Take action")}
               UNSAFE_style={{
-                buttonLabel: {
-                  textStyle: {
-                    color: "var(--color-base-white)",
+                button: {
+                  buttonLabel: {
+                    textStyle: {
+                      color: "var(--color-base-white)",
+                    },
                   },
-                },
-                container: {
-                  backgroundColor: "var(--color-base-purple--900)",
+                  container: {
+                    backgroundColor: "var(--color-base-purple--900)",
+                  },
                 },
               }}
             />
