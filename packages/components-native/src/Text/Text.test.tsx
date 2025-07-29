@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { Text } from ".";
 import { tokens } from "../utils/design";
 
@@ -166,5 +166,64 @@ describe("UNSAFE_style", () => {
     expect(textElement.props.style).toContainEqual(
       expect.objectContaining(customStyle.textStyle),
     );
+  });
+});
+
+describe("onTextLayout", () => {
+  it("calls onTextLayout callback when text layout event occurs", () => {
+    const onTextLayoutMock = jest.fn();
+    const { getByRole } = render(
+      <Text onTextLayout={onTextLayoutMock}>Test Text</Text>,
+    );
+
+    const textElement = getByRole("text");
+    const mockEvent = {
+      nativeEvent: {
+        lines: [
+          {
+            text: "Test Text",
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 20,
+            ascender: 15,
+            descender: -5,
+            capHeight: 14,
+            xHeight: 10,
+          },
+        ],
+      },
+    };
+    fireEvent(textElement, "onTextLayout", mockEvent);
+    expect(onTextLayoutMock).toHaveBeenCalledTimes(1);
+    expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
+  });
+
+  it("does not call onTextLayout when prop is not provided", () => {
+    const { getByRole } = render(<Text>Test Text</Text>);
+
+    const textElement = getByRole("text");
+    const mockEvent = {
+      nativeEvent: {
+        lines: [
+          {
+            text: "Test Text",
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 20,
+            ascender: 15,
+            descender: -5,
+            capHeight: 14,
+            xHeight: 10,
+          },
+        ],
+      },
+    };
+
+    // This should not throw an error
+    expect(() => {
+      fireEvent(textElement, "onTextLayout", mockEvent);
+    }).not.toThrow();
   });
 });

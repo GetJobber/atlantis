@@ -2,9 +2,11 @@ import React from "react";
 import {
   AccessibilityProps,
   I18nManager,
+  NativeSyntheticEvent,
   StyleProp,
   StyleSheet,
   Text,
+  TextLayoutEventData,
   TextProps,
   TextStyle,
   ViewStyle,
@@ -120,6 +122,8 @@ export interface TypographyProps<T extends FontFamily>
   readonly strikeThrough?: boolean;
 
   readonly UNSAFE_style?: TypographyUnsafeStyle;
+
+  readonly onTextLayout?: OnTextLayoutEvent;
 }
 
 const maxNumberOfLines = {
@@ -160,6 +164,7 @@ function InternalTypography<T extends FontFamily = "base">({
   underline,
   UNSAFE_style,
   selectable = true,
+  onTextLayout,
 }: TypographyProps<T>): JSX.Element {
   const styles = useTypographyStyles();
   const sizeAndHeight = getSizeAndHeightStyle(size, styles, lineHeight);
@@ -217,6 +222,7 @@ function InternalTypography<T extends FontFamily = "base">({
         )}
         selectable={selectable}
         selectionColor={tokens["color-brand--highlight"]}
+        onTextLayout={onTextLayout}
       >
         {text}
       </Text>
@@ -477,3 +483,7 @@ export type TruncateLength =
   | "large"
   | "extraLarge"
   | "unlimited";
+
+export type OnTextLayoutEvent = (
+  event: NativeSyntheticEvent<TextLayoutEventData>,
+) => void;
