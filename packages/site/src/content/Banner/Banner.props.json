@@ -203,11 +203,41 @@
     "props": {
       "backgroundColor": {
         "defaultValue": null,
-        "description": "",
+        "description": "Sets the background color of the icon.",
         "name": "backgroundColor",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerIconProps"
+        },
         "required": false,
         "type": {
           "name": "\"success\" | \"warning\" | \"icon\" | \"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | ... 272 more ... | \"client--onSurface\""
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerIconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly container?: string; readonly icon?: { svg?: string; path?: string; }; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerIconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly container?: CSSProperties; readonly icon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
         }
       },
       "name": {
@@ -276,32 +306,6 @@
         "type": {
           "name": "string"
         }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom classnames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ svg?: string; path?: string; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ svg?: CSSProperties; path?: CSSProperties; }"
-        }
       }
     }
   },
@@ -311,7 +315,34 @@
     "description": "",
     "displayName": "Banner.Content",
     "methods": [],
-    "props": {}
+    "props": {
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly container?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly container?: CSSProperties; }"
+        }
+      }
+    }
   },
   {
     "tags": {},
@@ -325,8 +356,8 @@
         "description": "",
         "name": "onClick",
         "parent": {
-          "fileName": "packages/components/src/ButtonDismiss/ButtonDismiss.tsx",
-          "name": "ButtonDismissProps"
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerDismissButtonProps"
         },
         "required": false,
         "type": {
@@ -338,12 +369,38 @@
         "description": "",
         "name": "ariaLabel",
         "parent": {
-          "fileName": "packages/components/src/ButtonDismiss/ButtonDismiss.tsx",
-          "name": "ButtonDismissProps"
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerDismissButtonProps"
         },
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerDismissButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly container?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerDismissButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly container?: CSSProperties; }"
         }
       }
     }
@@ -459,6 +516,19 @@
           "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
         }
       },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonSize"
+        }
+      },
       "disabled": {
         "defaultValue": null,
         "description": "",
@@ -561,19 +631,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "size": {
-        "defaultValue": null,
-        "description": "",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonSize"
         }
       },
       "ariaLabel": {
