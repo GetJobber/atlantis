@@ -2,6 +2,7 @@ import React, { type PropsWithChildren, useState } from "react";
 import classnames from "classnames";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import type {
+  BannerDismissButtonProps,
   BannerProps,
   BannerProviderProps,
   BannerType,
@@ -10,7 +11,7 @@ import type {
 import styles from "./Banner.module.css";
 import { BannerContextProvider, useBanner } from "./BannerContext";
 import { Icon, type IconNames, type IconProps } from "../Icon";
-import { ButtonDismiss, type ButtonDismissProps } from "../ButtonDismiss";
+import { ButtonDismiss } from "../ButtonDismiss";
 import { Button, type ButtonProps } from "../Button";
 import { Text } from "../Text";
 
@@ -177,19 +178,23 @@ Banner.Content = function BannerContent(props: PropsWithChildren) {
   return <div className={styles.bannerChildren}>{children}</div>;
 };
 
-Banner.DismissButton = function DismissButton(
-  buttonDismissProps: Partial<ButtonDismissProps>,
-) {
+Banner.DismissButton = function DismissButton(props: BannerDismissButtonProps) {
   const { setIsVisible } = useBanner();
-  const ariaLabel = buttonDismissProps.ariaLabel ?? "Dismiss notification";
+  const ariaLabel = props.ariaLabel ?? "Dismiss notification";
   const onClick =
-    buttonDismissProps.onClick ??
+    props.onClick ??
     (() => {
       setIsVisible(false);
     });
 
   return (
-    <div className={styles.closeButton}>
+    <div
+      className={classnames(
+        styles.closeButton,
+        props.UNSAFE_className?.container,
+      )}
+      style={props.UNSAFE_style?.container}
+    >
       <ButtonDismiss onClick={onClick} ariaLabel={ariaLabel} />
     </div>
   );
