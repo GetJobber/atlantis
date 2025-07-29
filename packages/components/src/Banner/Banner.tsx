@@ -1,12 +1,16 @@
-import React, { PropsWithChildren, useState } from "react";
+import React, { type PropsWithChildren, useState } from "react";
 import classnames from "classnames";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
-import { BannerProps, BannerProviderProps, BannerType } from "./Banner.types";
+import {
+  type BannerProps,
+  type BannerProviderProps,
+  type BannerType,
+  type Colors,
+} from "./Banner.types";
 import styles from "./Banner.module.css";
 import { BannerContextProvider, useBanner } from "./BannerContext";
-import { Icon, IconNames, IconProps } from "../Icon";
+import { Icon, type IconNames, type IconProps } from "../Icon";
 import { ButtonDismiss, type ButtonDismissProps } from "../ButtonDismiss";
-import type { Colors } from "../Box/Box.types";
 import { Button, type ButtonProps } from "../Button";
 import { Text } from "../Text";
 

@@ -1,8 +1,17 @@
-import { CSSProperties, ReactNode } from "react";
-import { IconNames } from "@jobber/design";
-import { ButtonProps } from "../Button";
+import { type CSSProperties, type ReactNode } from "react";
+import { IconNames, type tokens } from "@jobber/design";
+import { type ButtonProps } from "../Button";
 
 export type BannerType = "notice" | "success" | "warning" | "error";
+
+type TokensType = keyof typeof tokens;
+
+type Prefixes = TokensType extends `${infer Prefix}-${string}` ? Prefix : never;
+type ExtractTokens<T extends string> = Extract<TokensType, `${T}-${string}`>;
+type Tokenize<T extends Prefixes> =
+  ExtractTokens<T> extends `${T}-${infer Value}` ? Value : never;
+
+export type Colors = Tokenize<"color">;
 
 export interface BannerProps {
   readonly children: ReactNode;
