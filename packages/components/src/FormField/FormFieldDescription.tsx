@@ -4,7 +4,7 @@ import { Text } from "../Text";
 
 interface FormFieldDescriptionProps {
   readonly id: string;
-  readonly description?: string | ReactElement;
+  readonly description?: ReactNode;
   readonly visible?: boolean;
 }
 
