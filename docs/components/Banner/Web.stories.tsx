@@ -150,40 +150,6 @@ const ComposedTemplate: ComponentStory<typeof Banner> = () => {
           Payment could not be processed because of a network error
         </Banner.Content>
       </Banner.Provider>
-
-      <Banner.Provider
-        type="notice"
-        icon={
-          <Banner.Icon
-            name="sparkles"
-            customColor="var(--color-base-purple--700)"
-            backgroundColor="base-purple--100"
-          />
-        }
-        UNSAFE_style={{
-          container: {
-            backgroundColor: "var(--color-surface)",
-            border: "var(--border-base) solid var(--color-border)",
-            color: "var(--color-text--secondary)",
-          },
-        }}
-      >
-        <Banner.Content>This is a sparkly purple banner!</Banner.Content>
-        <Banner.Action
-          label="Take action"
-          onClick={() => alert("Take action")}
-          UNSAFE_style={{
-            buttonLabel: {
-              textStyle: {
-                color: "var(--color-base-white)",
-              },
-            },
-            container: {
-              backgroundColor: "var(--color-base-purple--900)",
-            },
-          }}
-        />
-      </Banner.Provider>
     </Content>
   );
 };
