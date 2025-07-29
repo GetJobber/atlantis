@@ -98,8 +98,11 @@ For action buttons, you should use `Banner.Action`:
 General information for using `UNSAFE_` props can be found
 [here](/guides/customizing-components).
 
-Banner has one element that can be targeted with classes or styles: `Banner.Provider`. This is
-the container for the composable Banner.
+Banner has three elements that can be targeted with classes or styles: `Banner.Provider`, `Banner.Icon`,
+and `Banner.Action`. Because `Banner.Icon` and `Banner.Action` are wrappers around
+[`Icon`](/components/Icon) and [`Button`](/components/Button) respectively, they inherit `UNSAFE_` props
+from those components. In the examples below, we'll show how to use `UNSAFE_` props to customize the
+Banner's container `Banner.Provider`.
 
 **Note**: Use of `UNSAFE_` props is **at your own risk** and should be
 considered a **last resort**. Future Popover updates may lead to unintended
