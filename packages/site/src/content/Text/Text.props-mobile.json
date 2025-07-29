@@ -231,6 +231,19 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "onTextLayout": {
+        "defaultValue": null,
+        "description": "Callback that is called when the text is laid out.",
+        "name": "onTextLayout",
+        "parent": {
+          "fileName": "../components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "OnTextLayoutEvent"
+        }
       }
     }
   }
