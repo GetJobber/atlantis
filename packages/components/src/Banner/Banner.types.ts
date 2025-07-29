@@ -99,6 +99,26 @@ export interface BannerProviderProps {
   };
 }
 
+export interface BannerContentProps {
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    readonly container?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    readonly container?: CSSProperties;
+  };
+}
+
 export interface BannerDismissButtonProps {
   readonly onClick?: ButtonDismissProps["onClick"];
   readonly ariaLabel?: ButtonDismissProps["ariaLabel"];

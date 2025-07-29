@@ -2,6 +2,7 @@ import React, { type PropsWithChildren, useState } from "react";
 import classnames from "classnames";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import type {
+  BannerContentProps,
   BannerDismissButtonProps,
   BannerProps,
   BannerProviderProps,
@@ -168,14 +169,26 @@ Banner.Icon = function BannerIcon(
   );
 };
 
-Banner.Content = function BannerContent(props: PropsWithChildren) {
+Banner.Content = function BannerContent(
+  props: PropsWithChildren<BannerContentProps>,
+) {
   let children = props.children;
 
   if (children && typeof children === "string") {
     children = <Text>{children}</Text>;
   }
 
-  return <div className={styles.bannerChildren}>{children}</div>;
+  return (
+    <div
+      className={classnames(
+        styles.bannerChildren,
+        props.UNSAFE_className?.container,
+      )}
+      style={props.UNSAFE_style?.container}
+    >
+      {children}
+    </div>
+  );
 };
 
 Banner.DismissButton = function DismissButton(props: BannerDismissButtonProps) {

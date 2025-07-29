@@ -3,4 +3,5 @@ export type {
   BannerType,
   BannerDismissButtonProps,
   BannerProviderProps,
+  BannerContentProps,
 } from "./Banner.types";
