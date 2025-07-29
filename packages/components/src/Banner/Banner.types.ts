@@ -174,3 +174,26 @@ export interface BannerIconProps
     readonly icon?: IconProps["UNSAFE_style"];
   };
 }
+
+export interface BannerActionProps
+  extends Omit<ButtonProps, "UNSAFE_className" | "UNSAFE_style"> {
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    readonly container?: string;
+    readonly button?: ButtonProps["UNSAFE_className"];
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    readonly container?: CSSProperties;
+    readonly button?: ButtonProps["UNSAFE_style"];
+  };
+}

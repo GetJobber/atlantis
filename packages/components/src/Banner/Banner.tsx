@@ -2,6 +2,7 @@ import React, { type PropsWithChildren, useState } from "react";
 import classnames from "classnames";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import type {
+  BannerActionProps,
   BannerContentProps,
   BannerDismissButtonProps,
   BannerIconProps,
@@ -229,10 +230,26 @@ Banner.DismissButton = function DismissButton(props: BannerDismissButtonProps) {
   );
 };
 
-Banner.Action = function Action(props: ButtonProps) {
+Banner.Action = function Action({
+  UNSAFE_className,
+  UNSAFE_style,
+  ...buttonProps
+}: BannerActionProps) {
+  const classNames = classnames(
+    styles.bannerAction,
+    UNSAFE_className?.container,
+  );
+
   return (
-    <div className={styles.bannerAction}>
-      <Button size="small" type="primary" variation="subtle" {...props} />
+    <div className={classNames} style={UNSAFE_style?.container}>
+      <Button
+        size="small"
+        type="primary"
+        variation="subtle"
+        UNSAFE_className={UNSAFE_className?.button}
+        UNSAFE_style={UNSAFE_style?.button}
+        {...(buttonProps as ButtonProps)}
+      />
     </div>
   );
 };
