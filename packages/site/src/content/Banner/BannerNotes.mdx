@@ -18,3 +18,77 @@ will render the action using an [ActionLabel](/components/ActionLabel).
 See
 [Actions in Banners](../?path=/story/components-status-and-feedback-banner-mobile--actions-in-banners)
 for an example.
+
+## Component customization
+
+### Composable usage
+
+Banner exposes its internal building blocks as subcomponents: `Banner.Provider`, `Banner.Content`,
+`Banner.DismissButton`, `Banner.Icon`, and `Banner.Action`. This gives you more control over the Banner's
+appearance and behaviour.
+
+Here's a basic example of how our current non-composable Banner is used:
+
+```tsx
+<Banner type="success">
+  Your account was upgraded successfully
+</Banner>
+```
+
+Using Banner's built-in subcomponents, this UI can alternatively be expressed as:
+
+```tsx
+<Banner.Provider type="success">
+  <Banner.Content>Your account was upgraded successfully</Banner.Content>
+</Banner.Provider>
+```
+
+If you want to completelydisable the icon or dismiss button, you can set them to false:
+
+```tsx
+<Banner.Provider type="success" icon={false} dismissButton={false}>
+  <Banner.Content>No icon or dismiss button</Banner.Content>
+</Banner.Provider>
+```
+
+If you need a custom icon, you can either configure `Banner.Icon` or pass in your own element:
+
+```tsx
+<Banner.Provider
+  type="notice"
+  icon={
+    <Banner.Icon
+      name="sparkles"
+      customColor="var(--color-base-purple--700)"
+      backgroundColor="base-purple--300"
+    />
+  }
+>
+  <Banner.Content>Custom purple sparkles icon</Banner.Content>
+</Banner.Provider>
+```
+
+If you need to customize the dismiss button, you can either configure `Banner.DismissButton` or pass in your own element:
+
+```tsx
+<Banner.Provider
+  type="success"
+  dismissButton={
+    <Banner.DismissButton onClick={() => alert("Dismissed")} />
+  }
+>
+  <Banner.Content>Your account was upgraded successfully</Banner.Content>
+</Banner.Provider>
+```
+
+For action buttons, you should use `Banner.Action`:
+
+```tsx
+<Banner.Provider type="warning">
+  <Banner.Content>Changes to this visit will not be applied to future visits</Banner.Content>
+  <Banner.Action
+    label="More info"
+    onClick={() => alert("More info...")}
+  />
+</Banner.Provider>
+```
