@@ -6,6 +6,7 @@ import {
 import { type IconNames, tokens } from "@jobber/design";
 import { type ButtonProps } from "../Button";
 import { type ButtonDismissProps } from "../ButtonDismiss";
+import { IconProps } from "../Icon";
 
 export type BannerType = "notice" | "success" | "warning" | "error";
 
@@ -16,7 +17,7 @@ type ExtractTokens<T extends string> = Extract<TokensType, `${T}-${string}`>;
 type Tokenize<T extends Prefixes> =
   ExtractTokens<T> extends `${T}-${infer Value}` ? Value : never;
 
-export type Colors = Tokenize<"color">;
+type Colors = Tokenize<"color">;
 
 export interface BannerProps {
   readonly children: ReactNode;
@@ -143,5 +144,33 @@ export interface BannerDismissButtonProps {
    */
   readonly UNSAFE_style?: {
     readonly container?: CSSProperties;
+  };
+}
+
+export interface BannerIconProps
+  extends Partial<Omit<IconProps, "UNSAFE_className" | "UNSAFE_style">> {
+  /**
+   * Sets the background color of the icon.
+   */
+  readonly backgroundColor?: Colors;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    readonly container?: string;
+    readonly icon?: IconProps["UNSAFE_className"];
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    readonly container?: CSSProperties;
+    readonly icon?: IconProps["UNSAFE_style"];
   };
 }

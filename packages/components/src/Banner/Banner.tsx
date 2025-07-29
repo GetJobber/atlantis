@@ -8,11 +8,10 @@ import type {
   BannerProps,
   BannerProviderProps,
   BannerType,
-  Colors,
 } from "./Banner.types";
 import styles from "./Banner.module.css";
 import { BannerContextProvider, useBanner } from "./BannerContext";
-import { Icon, type IconNames, type IconProps } from "../Icon";
+import { Icon, type IconNames } from "../Icon";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button, type ButtonProps } from "../Button";
 import { Text } from "../Text";
@@ -143,29 +142,47 @@ function InternalWrapper({
   );
 }
 
-Banner.Icon = function BannerIcon(
-  props: {
-    readonly backgroundColor?: Colors;
-  } & Partial<IconProps>,
-) {
+Banner.Icon = function BannerIcon({
+  backgroundColor,
+  UNSAFE_className,
+  UNSAFE_style,
+  ...iconProps
+}: BannerIconProps) {
   const { type } = useBanner();
-  const name = props.name || getBannerIcon(type);
-  const color = props.customColor ? undefined : "surface";
+  const name = iconProps.name || getBannerIcon(type);
+  const color = iconProps.customColor ? undefined : "surface";
   const size = "small";
 
   if (!name) return null;
 
   const overrideStyles: React.CSSProperties = {};
 
-  if (props.backgroundColor) {
-    overrideStyles.backgroundColor = `var(--color-${props.backgroundColor})`;
+  if (backgroundColor) {
+    overrideStyles.backgroundColor = `var(--color-${backgroundColor})`;
   }
 
-  const classNames = classnames(styles.iconWrapper, styles[`${type}Icon`]);
+  const classNames = classnames(
+    styles.iconWrapper,
+    styles[`${type}Icon`],
+    UNSAFE_className?.container,
+  );
 
   return (
-    <span className={classNames} style={overrideStyles}>
-      <Icon color={color} size={size} {...props} name={name} />
+    <span
+      className={classNames}
+      style={{
+        ...overrideStyles,
+        ...UNSAFE_style?.container,
+      }}
+    >
+      <Icon
+        color={color}
+        size={size}
+        UNSAFE_className={UNSAFE_className?.icon}
+        UNSAFE_style={UNSAFE_style?.icon}
+        {...iconProps}
+        name={name}
+      />
     </span>
   );
 };
