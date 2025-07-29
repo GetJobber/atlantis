@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.82.0...@jobber/design@0.83.0) (2025-07-29)
+
+
+### Features
+
+* **design:** Add map icon ([#2635](https://github.com/GetJobber/atlantis/issues/2635)) ([e32b292](https://github.com/GetJobber/atlantis/commit/e32b29283dc6303ce04ddb7e02050d696efbb8ba))
+
+
+
+
+
 # [0.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.81.0...@jobber/design@0.82.0) (2025-07-16)
 
 
