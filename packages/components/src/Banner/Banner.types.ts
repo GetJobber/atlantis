@@ -1,4 +1,8 @@
-import { type CSSProperties, type ReactNode } from "react";
+import {
+  type CSSProperties,
+  type PropsWithChildren,
+  type ReactNode,
+} from "react";
 import { type IconNames, tokens } from "@jobber/design";
 import { type ButtonProps } from "../Button";
 import { type ButtonDismissProps } from "../ButtonDismiss";
@@ -50,7 +54,7 @@ export interface BannerProps {
   readonly controlledVisiblity?: boolean;
 }
 
-export interface BannerProviderProps {
+export interface BannerProviderProps extends PropsWithChildren {
   /**
    * Sets the status-based theme of the Banner.
    */
@@ -99,7 +103,7 @@ export interface BannerProviderProps {
   };
 }
 
-export interface BannerContentProps {
+export interface BannerContentProps extends PropsWithChildren {
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.

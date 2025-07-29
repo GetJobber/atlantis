@@ -4,6 +4,7 @@ import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import type {
   BannerContentProps,
   BannerDismissButtonProps,
+  BannerIconProps,
   BannerProps,
   BannerProviderProps,
   BannerType,
@@ -60,7 +61,7 @@ Banner.Provider = function BannerProvider({
   dismissButton,
   UNSAFE_className,
   UNSAFE_style,
-}: PropsWithChildren<BannerProviderProps>) {
+}: BannerProviderProps) {
   const [isVisible, _setIsVisible] = useState(true);
   const showBanner = visible ?? isVisible;
 
@@ -169,9 +170,7 @@ Banner.Icon = function BannerIcon(
   );
 };
 
-Banner.Content = function BannerContent(
-  props: PropsWithChildren<BannerContentProps>,
-) {
+Banner.Content = function BannerContent(props: BannerContentProps) {
   let children = props.children;
 
   if (children && typeof children === "string") {
