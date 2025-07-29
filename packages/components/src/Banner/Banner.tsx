@@ -54,9 +54,7 @@ Banner.Provider = function BannerProvider({
   dismissButton,
   UNSAFE_className,
   UNSAFE_style,
-}: {
-  readonly children: React.ReactNode;
-} & BannerProviderProps) {
+}: PropsWithChildren<BannerProviderProps>) {
   const [isVisible, _setIsVisible] = useState(true);
   const showBanner = visible ?? isVisible;
 
