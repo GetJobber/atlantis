@@ -206,6 +206,19 @@
           "name": "TypographyUnsafeStyle"
         }
       },
+      "onTextLayout": {
+        "defaultValue": null,
+        "description": "Callback that is called when the text is laid out.",
+        "name": "onTextLayout",
+        "parent": {
+          "fileName": "../components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "OnTextLayoutEvent"
+        }
+      },
       "maxFontScaleSize": {
         "defaultValue": null,
         "description": "Set the maximum font the text can go to size when the user scales their\ndevice font size",
@@ -230,19 +243,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "onTextLayout": {
-        "defaultValue": null,
-        "description": "Callback that is called when the text is laid out.",
-        "name": "onTextLayout",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "OnTextLayoutEvent"
         }
       }
     }
