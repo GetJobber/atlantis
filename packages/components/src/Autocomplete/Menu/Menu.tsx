@@ -16,6 +16,7 @@ export function Menu<
   options,
   selectedOption,
   onOptionSelect,
+  handleUpdateOptions,
   inputFocused,
   attachTo,
   inputRef,
@@ -30,6 +31,7 @@ export function Menu<
         customRenderMenu={customRenderMenu}
         options={options}
         onOptionSelect={onOptionSelect}
+        handleUpdateOptions={handleUpdateOptions}
         selectedOption={selectedOption}
       />
     );
@@ -56,6 +58,7 @@ interface InternalCustomMenuProps<
   readonly selectedOption?: GenericOptionValue;
   readonly attachTo: MenuProps["attachTo"];
   readonly inputRef: RefObject<InputTextRef | null>;
+  readonly handleUpdateOptions: (query: object | string) => void;
   readonly onOptionSelect: (chosenOption?: GenericOptionValue) => void;
   readonly customRenderMenu: (
     props: CustomOptionsMenuProp<GenericOption, GenericOptionValue>,
@@ -77,6 +80,7 @@ function CustomMenu<
   attachTo,
   inputFocused,
   inputRef,
+  handleUpdateOptions,
 }: InternalCustomMenuProps<GenericOption, GenericOptionValue>) {
   const { MenuWrapper, menuRef } = useAutocompleteMenu({ attachTo });
 
@@ -86,6 +90,7 @@ function CustomMenu<
     onOptionSelect,
     selectedOption,
     inputFocused,
+    handleUpdateOptions,
     MenuWrapper,
     inputRef,
   });
