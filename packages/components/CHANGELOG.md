@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.72.0...@jobber/components@6.73.0) (2025-07-30)
+
+
+### Features
+
+* **components:** Form Field Component's Description can be any Element ([#2633](https://github.com/GetJobber/atlantis/issues/2633)) ([d0b201c](https://github.com/GetJobber/atlantis/commit/d0b201c5692183e3abd912159dfba0bbff88721f))
+
+
+
+
+
 # [6.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.3...@jobber/components@6.72.0) (2025-07-30)
 
 
