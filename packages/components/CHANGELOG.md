@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.3...@jobber/components@6.72.0) (2025-07-30)
+
+
+### Features
+
+* **components:** Composable Banner ([#2631](https://github.com/GetJobber/atlantis/issues/2631)) ([e648a07](https://github.com/GetJobber/atlantis/commit/e648a07b8e60b5f3fcf67fc8e49b6acee4acf024))
+
+
+
+
+
 ## [6.71.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.2...@jobber/components@6.71.3) (2025-07-29)
 
 
