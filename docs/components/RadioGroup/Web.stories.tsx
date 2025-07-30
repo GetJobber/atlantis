@@ -42,6 +42,24 @@ const BasicTemplate: ComponentStory<typeof RadioGroup> = args => {
   );
 };
 
+const HorizontalTemplate: ComponentStory<typeof RadioGroup> = args => {
+  const [company, setCompany] = useState("apple");
+
+  return (
+    <RadioGroup
+      {...args}
+      layout="horizontal"
+      onChange={(value: string) => setCompany(value)}
+      value={company}
+      ariaLabel="Companies"
+    >
+      <RadioOption value="apple" label="Apple" />
+      <RadioOption value="google" label="Google" />
+      <RadioOption value="microsoft" label="Microsoft" />
+    </RadioGroup>
+  );
+};
+
 const DisabledTemplate: ComponentStory<typeof RadioGroup> = args => {
   const [company, setCompany] = useState("apple");
   const [checked, setChecked] = useState(true);
@@ -153,6 +171,8 @@ const CustomRadioOptionContentTemplate: ComponentStory<
 };
 
 export const Basic = BasicTemplate.bind({});
+
+export const Horizontal = HorizontalTemplate.bind({});
 
 export const Description = DescriptionTemplate.bind({});
 
