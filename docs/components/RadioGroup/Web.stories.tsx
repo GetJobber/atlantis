@@ -46,17 +46,47 @@ const HorizontalTemplate: ComponentStory<typeof RadioGroup> = args => {
   const [company, setCompany] = useState("apple");
 
   return (
-    <RadioGroup
-      {...args}
-      layout="horizontal"
-      onChange={(value: string) => setCompany(value)}
-      value={company}
-      ariaLabel="Companies"
-    >
-      <RadioOption value="apple" label="Apple" />
-      <RadioOption value="google" label="Google" />
-      <RadioOption value="microsoft" label="Microsoft" />
-    </RadioGroup>
+    <Content spacing="large">
+      <div>
+        <RadioGroup
+          {...args}
+          onChange={(value: string) => setCompany(value)}
+          value={company}
+          ariaLabel="Companies"
+          layout="horizontal"
+        >
+          <RadioOption value="apple" label="Apple" />
+          <RadioOption value="google" label="Google" />
+          <RadioOption value="microsoft" label="Microsoft" />
+        </RadioGroup>
+      </div>
+
+      <div>
+        <RadioGroup
+          {...args}
+          onChange={(value: string) => setCompany(value)}
+          value={company}
+          ariaLabel="Companies"
+          layout="horizontal"
+        >
+          <RadioOption
+            value="apple"
+            label="Apple"
+            description="A delicious fruit that fends off doctors"
+          />
+          <RadioOption
+            value="amazon"
+            label="Amazon"
+            description="The worlds largest rainforest"
+          />
+          <RadioOption
+            value="google"
+            label="Google"
+            description="A search engine"
+          />
+        </RadioGroup>
+      </div>
+    </Content>
   );
 };
 
