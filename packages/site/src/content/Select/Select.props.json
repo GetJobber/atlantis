@@ -55,7 +55,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "ReactNode"
         }
       },
       "disabled": {
