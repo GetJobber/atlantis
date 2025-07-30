@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement, ReactNode, RefObject } from "react";
+import React, { ChangeEvent, ReactNode, RefObject } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { Clearable } from "@jobber/hooks";
@@ -66,7 +66,7 @@ export interface CommonFormFieldProps {
   /**
    * Further description of the input, can be used for a hint.
    */
-  readonly description?: string | ReactElement;
+  readonly description?: ReactNode;
 
   /**
    * Disable the input
