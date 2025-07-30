@@ -85,6 +85,37 @@ test.describe("Atlantis Visual Tests", () => {
     });
   });
 
+  test.describe("banner components", () => {
+    test("banner components", async ({ page }) => {
+      await page.goto("/visual-tests/banner");
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("visual-test-banner-page.png", {
+        fullPage: true,
+      });
+    });
+
+    test("banner components (small window)", async ({ page }) => {
+      await page.setViewportSize({ width: 320, height: 1000 });
+      await page.goto("/visual-tests/banner");
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("visual-test-banner-small-page.png", {
+        fullPage: true,
+      });
+    });
+
+    test("banner components (medium window)", async ({ page }) => {
+      await page.setViewportSize({ width: 550, height: 1000 });
+      await page.goto("/visual-tests/banner");
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot(
+        "visual-test-banner-medium-page.png",
+        {
+          fullPage: true,
+        },
+      );
+    });
+  });
+
   test.describe("form components", () => {
     test("form field components", async ({ page }) => {
       await page.goto("/visual-tests/form-field");
