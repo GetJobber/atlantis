@@ -8,7 +8,7 @@
 
 .layoutHorizontal {
   flex-direction: row;
-  gap: var(--space-base);
+  gap: var(--space-large);
 }
 
 .input {
