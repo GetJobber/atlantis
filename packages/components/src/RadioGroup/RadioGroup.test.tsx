@@ -97,6 +97,23 @@ test("it should render a label, description, and children", () => {
   expect(screen.getByText("Children")).toBeInstanceOf(HTMLElement);
 });
 
+test("applies the horizontal layout classname when layout=horizontal", () => {
+  render(
+    <RadioGroup
+      value="foo"
+      onChange={jest.fn()}
+      ariaLabel="Test Label"
+      layout="horizontal"
+    >
+      <RadioOption value="foo" label="Option 1" />
+      <RadioOption value="bar" label="Option 2" />
+    </RadioGroup>,
+  );
+
+  const radioGroup = screen.getByRole("radiogroup");
+  expect(radioGroup).toHaveClass("layoutHorizontal");
+});
+
 interface MockProps {
   onChange?(val: string): void;
 }
