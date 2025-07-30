@@ -31,7 +31,47 @@ export const VisualTestRadioGroupPage = () => {
             </RadioGroup>
           </section>
 
-          <Heading level={4}>RadioGroup with Custom Content</Heading>
+          <Heading level={4}>Horizontal</Heading>
+          <section>
+            <RadioGroup
+              value={basicValue}
+              onChange={setBasicValue}
+              ariaLabel="Horizontal radio group"
+              layout="horizontal"
+            >
+              <RadioOption value="1" label="Option 1" />
+              <RadioOption value="2" label="Option 2" />
+              <RadioOption value="3" label="Option 3" />
+            </RadioGroup>
+          </section>
+
+          <Heading level={4}>Horizontal with description</Heading>
+          <section>
+            <RadioGroup
+              value={basicValue}
+              onChange={setBasicValue}
+              ariaLabel="Horizontal radio group with description"
+              layout="horizontal"
+            >
+              <RadioOption
+                value="1"
+                label="Option 1"
+                description="Description 1"
+              />
+              <RadioOption
+                value="2"
+                label="Option 2"
+                description="Description 2"
+              />
+              <RadioOption
+                value="3"
+                label="Option 3"
+                description="Description 3"
+              />
+            </RadioGroup>
+          </section>
+
+          <Heading level={4}>Custom content</Heading>
           <section>
             <RadioGroup
               value={customValue}
@@ -53,7 +93,7 @@ export const VisualTestRadioGroupPage = () => {
             </RadioGroup>
           </section>
 
-          <Heading level={4}>RadioGroup with Disabled Options</Heading>
+          <Heading level={4}>Disabled options</Heading>
           <section>
             <RadioGroup
               value={basicValue}
