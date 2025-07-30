@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { XOR } from "ts-xor";
 
 export interface BaseCheckboxProps {
@@ -39,7 +39,7 @@ export interface BaseCheckboxProps {
   /**
    * Further description of the label
    */
-  readonly description?: string;
+  readonly description?: ReactNode;
 
   /**
    * ID for the checkbox input
@@ -97,7 +97,7 @@ export type CheckboxRebuiltProps = Omit<
    * String will be rendered with the default markup.
    * ReactElement will be rendered with provided positioning.
    */
-  description?: string | ReactElement;
+  description?: ReactNode;
 
   /**
    * Called when the checkbox value changes.
