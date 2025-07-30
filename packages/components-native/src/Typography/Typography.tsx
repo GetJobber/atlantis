@@ -2,11 +2,9 @@ import React from "react";
 import {
   AccessibilityProps,
   I18nManager,
-  NativeSyntheticEvent,
   StyleProp,
   StyleSheet,
   Text,
-  TextLayoutEventData,
   TextProps,
   TextStyle,
   ViewStyle,
@@ -484,6 +482,4 @@ export type TruncateLength =
   | "extraLarge"
   | "unlimited";
 
-export type OnTextLayoutEvent = (
-  event: NativeSyntheticEvent<TextLayoutEventData>,
-) => void;
+export type OnTextLayoutEvent = Exclude<TextProps["onTextLayout"], undefined>;

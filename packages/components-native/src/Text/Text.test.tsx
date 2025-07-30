@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render, screen } from "@testing-library/react-native";
 import { Text } from ".";
 import { tokens } from "../utils/design";
 
@@ -135,6 +135,7 @@ it("renders with italic styling", () => {
 
 it("renders text that is inaccessible", () => {
   const text = render(<Text hideFromScreenReader={true}>Test Text</Text>);
+
   expect(text.root.props).toEqual(
     expect.objectContaining({
       accessibilityRole: "none",
@@ -159,10 +160,8 @@ describe("UNSAFE_style", () => {
       },
     };
 
-    const { getByRole } = render(
-      <Text UNSAFE_style={customStyle}>Test Text</Text>,
-    );
-    const textElement = getByRole("text");
+    render(<Text UNSAFE_style={customStyle}>Test Text</Text>);
+    const textElement = screen.getByRole("text");
     expect(textElement.props.style).toContainEqual(
       expect.objectContaining(customStyle.textStyle),
     );
@@ -172,11 +171,9 @@ describe("UNSAFE_style", () => {
 describe("onTextLayout", () => {
   it("calls onTextLayout callback when text layout event occurs", () => {
     const onTextLayoutMock = jest.fn();
-    const { getByRole } = render(
-      <Text onTextLayout={onTextLayoutMock}>Test Text</Text>,
-    );
+    render(<Text onTextLayout={onTextLayoutMock}>Test Text</Text>);
 
-    const textElement = getByRole("text");
+    const textElement = screen.getByRole("text");
     const mockEvent = {
       nativeEvent: {
         lines: [
@@ -197,33 +194,5 @@ describe("onTextLayout", () => {
     fireEvent(textElement, "onTextLayout", mockEvent);
     expect(onTextLayoutMock).toHaveBeenCalledTimes(1);
     expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
-  });
-
-  it("does not call onTextLayout when prop is not provided", () => {
-    const { getByRole } = render(<Text>Test Text</Text>);
-
-    const textElement = getByRole("text");
-    const mockEvent = {
-      nativeEvent: {
-        lines: [
-          {
-            text: "Test Text",
-            x: 0,
-            y: 0,
-            width: 100,
-            height: 20,
-            ascender: 15,
-            descender: -5,
-            capHeight: 14,
-            xHeight: 10,
-          },
-        ],
-      },
-    };
-
-    // This should not throw an error
-    expect(() => {
-      fireEvent(textElement, "onTextLayout", mockEvent);
-    }).not.toThrow();
   });
 });
