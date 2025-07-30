@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RadioGroup, RadioOption } from ".";
 
@@ -8,19 +8,19 @@ test("renders a RadioGroup", () => {
   expect(container).toMatchSnapshot();
 });
 
-test("it should call the handler with the new value", () => {
+test("it should call the handler with the new value", async () => {
+  const user = userEvent.setup();
   const changeHandler = jest.fn();
-  const { getAllByLabelText } = render(
-    <MockRadioGroup onChange={changeHandler} />,
-  );
-  fireEvent.click(getAllByLabelText("Two")[0]);
+  render(<MockRadioGroup onChange={changeHandler} />);
+  await user.click(screen.getAllByLabelText("Two")[0]);
   expect(changeHandler).toHaveBeenCalledWith("two");
 });
 
-test("it should not call the handler if the value does not change", () => {
+test("it should not call the handler if the value does not change", async () => {
+  const user = userEvent.setup();
   const changeHandler = jest.fn();
-  const { getAllByText } = render(<MockRadioGroup onChange={changeHandler} />);
-  fireEvent.click(getAllByText("One")[0]);
+  render(<MockRadioGroup onChange={changeHandler} />);
+  await user.click(screen.getAllByText("One")[0]);
   expect(changeHandler).not.toHaveBeenCalled();
 });
 
@@ -42,48 +42,49 @@ test("it should be able to disable options", () => {
 });
 
 test("it should have unique ids on all radio options", async () => {
-  const { getAllByRole } = render(<MockRadioGroup />);
-  const radio1 = getAllByRole("radio")[0] as HTMLInputElement;
-  const radio2 = getAllByRole("radio")[1] as HTMLInputElement;
+  const user = userEvent.setup();
+  render(<MockRadioGroup />);
+  const radio1 = screen.getAllByRole("radio")[0] as HTMLInputElement;
+  const radio2 = screen.getAllByRole("radio")[1] as HTMLInputElement;
   expect(radio1.checked).toBeTruthy();
   expect(radio2.checked).toBeFalsy();
-  await userEvent.click(radio2);
+  await user.click(radio2);
   expect(radio1.checked).toBeFalsy();
   expect(radio2.checked).toBeTruthy();
 });
 
 test("it should render an option from `label` prop", () => {
-  const { getByText } = render(
+  render(
     <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
       <RadioOption value="foo" label="Radio" />
     </RadioGroup>,
   );
 
-  expect(getByText("Radio")).toBeInstanceOf(HTMLLabelElement);
+  expect(screen.getByText("Radio")).toBeInstanceOf(HTMLLabelElement);
 });
 
 test("it should render an option from `children` prop", () => {
-  const { getByText } = render(
+  render(
     <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
       <RadioOption value="foo">Radio</RadioOption>
     </RadioGroup>,
   );
 
-  expect(getByText("Radio")).toBeInstanceOf(HTMLLabelElement);
+  expect(screen.getByText("Radio")).toBeInstanceOf(HTMLLabelElement);
 });
 
 test("it should render a description", () => {
-  const { getByText } = render(
+  render(
     <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
       <RadioOption value="foo" description="A sound box" label="Radio" />
     </RadioGroup>,
   );
 
-  expect(getByText("A sound box")).toBeInstanceOf(HTMLParagraphElement);
+  expect(screen.getByText("A sound box")).toBeInstanceOf(HTMLParagraphElement);
 });
 
 test("it should render a label, description, and children", () => {
-  const { getByText } = render(
+  render(
     <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
       <RadioOption value="foo" description="Description" label="Label">
         Children
@@ -91,9 +92,9 @@ test("it should render a label, description, and children", () => {
     </RadioGroup>,
   );
 
-  expect(getByText("Label")).toBeInstanceOf(HTMLLabelElement);
-  expect(getByText("Description")).toBeInstanceOf(HTMLParagraphElement);
-  expect(getByText("Children")).toBeInstanceOf(HTMLElement);
+  expect(screen.getByText("Label")).toBeInstanceOf(HTMLLabelElement);
+  expect(screen.getByText("Description")).toBeInstanceOf(HTMLParagraphElement);
+  expect(screen.getByText("Children")).toBeInstanceOf(HTMLElement);
 });
 
 interface MockProps {
