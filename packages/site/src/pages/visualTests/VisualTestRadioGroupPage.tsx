@@ -19,9 +19,8 @@ export const VisualTestRadioGroupPage = () => {
         <Heading level={3}>RadioGroup Examples</Heading>
 
         <Stack gap="large">
-          {/* Basic RadioGroup */}
+          <Heading level={4}>Basic RadioGroup</Heading>
           <section>
-            <Text size="large">Basic RadioGroup</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <RadioGroup
@@ -37,9 +36,8 @@ export const VisualTestRadioGroupPage = () => {
             </Grid>
           </section>
 
-          {/* RadioGroup with Custom Content */}
+          <Heading level={4}>RadioGroup with Custom Content</Heading>
           <section>
-            <Text size="large">RadioGroup with Custom Content</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <RadioGroup
@@ -68,9 +66,8 @@ export const VisualTestRadioGroupPage = () => {
             </Grid>
           </section>
 
-          {/* RadioGroup with Disabled Options */}
+          <Heading level={4}>RadioGroup with Disabled Options</Heading>
           <section>
-            <Text size="large">RadioGroup with Disabled Options</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <RadioGroup
