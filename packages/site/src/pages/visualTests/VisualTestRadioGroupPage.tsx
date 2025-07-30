@@ -1,6 +1,5 @@
 import {
   Box,
-  Grid,
   Heading,
   RadioGroup,
   RadioOption,
@@ -21,66 +20,50 @@ export const VisualTestRadioGroupPage = () => {
         <Stack gap="large">
           <Heading level={4}>Basic RadioGroup</Heading>
           <section>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <RadioGroup
-                  value={basicValue}
-                  onChange={setBasicValue}
-                  ariaLabel="Basic radio group"
-                >
-                  <RadioOption value="1" label="Option 1" />
-                  <RadioOption value="2" label="Option 2" />
-                  <RadioOption value="3" label="Option 3" />
-                </RadioGroup>
-              </Grid.Cell>
-            </Grid>
+            <RadioGroup
+              value={basicValue}
+              onChange={setBasicValue}
+              ariaLabel="Basic radio group"
+            >
+              <RadioOption value="1" label="Option 1" />
+              <RadioOption value="2" label="Option 2" />
+              <RadioOption value="3" label="Option 3" />
+            </RadioGroup>
           </section>
 
           <Heading level={4}>RadioGroup with Custom Content</Heading>
           <section>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <RadioGroup
-                  value={customValue}
-                  onChange={setCustomValue}
-                  ariaLabel="Custom content radio group"
-                >
-                  <RadioOption value="custom1">
-                    <Stack>
-                      <Text>Custom Option 1</Text>
-                      <Text variation="subdued">
-                        With additional description
-                      </Text>
-                    </Stack>
-                  </RadioOption>
-                  <RadioOption value="custom2">
-                    <Stack>
-                      <Text>Custom Option 2</Text>
-                      <Text variation="subdued">
-                        With additional description
-                      </Text>
-                    </Stack>
-                  </RadioOption>
-                </RadioGroup>
-              </Grid.Cell>
-            </Grid>
+            <RadioGroup
+              value={customValue}
+              onChange={setCustomValue}
+              ariaLabel="Custom content radio group"
+            >
+              <RadioOption value="custom1">
+                <Stack>
+                  <Text>Custom Option 1</Text>
+                  <Text variation="subdued">With additional description</Text>
+                </Stack>
+              </RadioOption>
+              <RadioOption value="custom2">
+                <Stack>
+                  <Text>Custom Option 2</Text>
+                  <Text variation="subdued">With additional description</Text>
+                </Stack>
+              </RadioOption>
+            </RadioGroup>
           </section>
 
           <Heading level={4}>RadioGroup with Disabled Options</Heading>
           <section>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <RadioGroup
-                  value={basicValue}
-                  onChange={setBasicValue}
-                  ariaLabel="Radio group with disabled options"
-                >
-                  <RadioOption value="1" label="Enabled Option" />
-                  <RadioOption value="2" label="Disabled Option" disabled />
-                  <RadioOption value="3" label="Another Enabled Option" />
-                </RadioGroup>
-              </Grid.Cell>
-            </Grid>
+            <RadioGroup
+              value={basicValue}
+              onChange={setBasicValue}
+              ariaLabel="Radio group with disabled options"
+            >
+              <RadioOption value="1" label="Enabled Option" />
+              <RadioOption value="2" label="Disabled Option" disabled />
+              <RadioOption value="3" label="Another Enabled Option" />
+            </RadioGroup>
           </section>
         </Stack>
       </Stack>
