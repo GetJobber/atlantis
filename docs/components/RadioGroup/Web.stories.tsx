@@ -56,8 +56,8 @@ const HorizontalTemplate: ComponentStory<typeof RadioGroup> = args => {
           layout="horizontal"
         >
           <RadioOption value="apple" label="Apple" />
+          <RadioOption value="amazon" label="Amazon" />
           <RadioOption value="google" label="Google" />
-          <RadioOption value="microsoft" label="Microsoft" />
         </RadioGroup>
       </div>
 
