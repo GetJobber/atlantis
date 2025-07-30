@@ -60,12 +60,12 @@
           "name": "string"
         }
       },
-      "layout": {
+      "direction": {
         "defaultValue": {
           "value": "vertical"
         },
         "description": "Layout direction for the options.",
-        "name": "layout",
+        "name": "direction",
         "parent": {
           "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
           "name": "RadioGroupProps"
