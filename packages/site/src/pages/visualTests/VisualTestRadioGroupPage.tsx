@@ -37,7 +37,7 @@ export const VisualTestRadioGroupPage = () => {
               value={basicValue}
               onChange={setBasicValue}
               ariaLabel="Horizontal radio group"
-              layout="horizontal"
+              direction="horizontal"
             >
               <RadioOption value="1" label="Option 1" />
               <RadioOption value="2" label="Option 2" />
@@ -51,7 +51,7 @@ export const VisualTestRadioGroupPage = () => {
               value={basicValue}
               onChange={setBasicValue}
               ariaLabel="Horizontal radio group with description"
-              layout="horizontal"
+              direction="horizontal"
             >
               <RadioOption
                 value="1"

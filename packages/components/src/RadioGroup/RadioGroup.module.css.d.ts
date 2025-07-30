@@ -1,6 +1,6 @@
 declare const styles: {
   readonly "radioGroup": string;
-  readonly "layoutHorizontal": string;
+  readonly "directionHorizontal": string;
   readonly "input": string;
   readonly "label": string;
   readonly "description": string;

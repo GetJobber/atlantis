@@ -53,7 +53,7 @@ const HorizontalTemplate: ComponentStory<typeof RadioGroup> = args => {
           onChange={(value: string) => setCompany(value)}
           value={company}
           ariaLabel="Companies"
-          layout="horizontal"
+          direction="horizontal"
         >
           <RadioOption value="apple" label="Apple" />
           <RadioOption value="amazon" label="Amazon" />
@@ -67,7 +67,7 @@ const HorizontalTemplate: ComponentStory<typeof RadioGroup> = args => {
           onChange={(value: string) => setCompany(value)}
           value={company}
           ariaLabel="Companies"
-          layout="horizontal"
+          direction="horizontal"
         >
           <RadioOption
             value="apple"

@@ -35,7 +35,7 @@ export interface RadioGroupProps {
    * Layout direction for the options.
    * @default "vertical"
    */
-  readonly layout?: "vertical" | "horizontal";
+  readonly direction?: "vertical" | "horizontal";
 }
 
 export function RadioGroup({
@@ -44,10 +44,10 @@ export function RadioGroup({
   ariaLabel,
   onChange,
   name = useId(),
-  layout = "vertical",
+  direction = "vertical",
 }: RadioGroupProps) {
   const className = classnames(styles.radioGroup, {
-    [styles.layoutHorizontal]: layout === "horizontal",
+    [styles.directionHorizontal]: direction === "horizontal",
   });
 
   return (
