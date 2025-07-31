@@ -9,7 +9,11 @@ import React, {
 } from "react";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
-import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
+import {
+  AnyOption,
+  AutocompleteLegacyProps,
+  Option,
+} from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
 import { InputText, InputTextRef } from "../InputText";
 import { useDebounce } from "../utils/useDebounce";
@@ -36,7 +40,7 @@ function AutocompleteInternal<
     validations,
     customRenderMenu,
     ...inputProps
-  }: AutocompleteProps<
+  }: AutocompleteLegacyProps<
     GenericOption,
     GenericOptionValue,
     GenericGetOptionsValue
@@ -163,7 +167,7 @@ export const Autocomplete = forwardRef(AutocompleteInternal) as <
   GenericOptionValue extends Option = Option,
   GenericGetOptionsValue extends AnyOption = AnyOption,
 >(
-  props: AutocompleteProps<
+  props: AutocompleteLegacyProps<
     GenericOption,
     GenericOptionValue,
     GenericGetOptionsValue

@@ -1,6 +1,6 @@
-import { RefObject } from "react";
+import { Key, Ref, RefObject } from "react";
 import { FormFieldProps } from "../FormField";
-import { InputTextRef } from "../InputText";
+import { InputTextRebuiltProps, InputTextRef } from "../InputText";
 
 type OptionValue = string | number;
 
@@ -27,7 +27,7 @@ export type OptionInGroup<T extends AnyOption> = T extends GroupOption
   ? T["options"][number]
   : T;
 
-export interface AutocompleteProps<
+export interface AutocompleteBaseProps<
   GenericOption extends AnyOption = AnyOption,
   GenericOptionValue extends Option = Option,
   GenericGetOptionsValue extends AnyOption = AnyOption,
@@ -42,7 +42,6 @@ export interface AutocompleteProps<
     | "prefix"
     | "size"
     | "suffix"
-    | "validations"
   > {
   /**
    * @deprecated
@@ -103,6 +102,97 @@ export interface AutocompleteProps<
     >,
   ) => React.ReactElement;
 }
+
+export interface AutocompleteLegacyProps<
+  GenericOption extends AnyOption = AnyOption,
+  GenericOptionValue extends Option = Option,
+  GenericGetOptionsValue extends AnyOption = AnyOption,
+> extends AutocompleteBaseProps<
+    GenericOption,
+    GenericOptionValue,
+    GenericGetOptionsValue
+  > {
+  /**
+   * Version of the component to use.
+   * @default 1
+   */
+  readonly version?: 1;
+
+  /**
+   * @deprecated
+   * Use `ref` instead.
+   */
+  readonly inputRef?: FormFieldProps["inputRef"];
+
+  /**
+   * Initial options to display in the autocomplete.
+   */
+  readonly initialOptions?: GenericOption[];
+
+  /**
+   * Called as the user types in the input. The autocomplete will display what
+   * is returned from this method to the user as available options.
+   * @param newInputText
+   */
+  readonly getOptions: (
+    newInputText: string,
+  ) =>
+    | Array<GenericGetOptionsValue | GenericOption>
+    | Promise<Array<GenericGetOptionsValue | GenericOption>>;
+
+  /**
+   * Debounce in milliseconds for getOptions
+   *
+   * @default 300
+   */
+  readonly debounce?: number;
+
+  /**
+   * Validations to run on the input.
+   */
+  readonly validations?: FormFieldProps["validations"];
+}
+
+export interface AutocompleteRebuiltProps<
+  GenericOption extends AnyOption = AnyOption,
+  GenericOptionValue extends Option = Option,
+  GenericGetOptionsValue extends AnyOption = AnyOption,
+> extends AutocompleteBaseProps<
+    GenericOption,
+    GenericOptionValue,
+    GenericGetOptionsValue
+  > {
+  /**
+   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
+   */
+  readonly version: 2;
+
+  /**
+   * Options to display in the autocomplete.
+   */
+  readonly options: GenericOption[];
+
+  /**
+   * Callback when the input value changes. (Distinct from `onChange`)
+   */
+  readonly onInputChange?: (inputValue: string) => void;
+
+  /**
+   * Error message to display
+   */
+  readonly error?: string;
+}
+
+// For backward compatibility
+export type AutocompleteProps<
+  GenericOption extends AnyOption = AnyOption,
+  GenericOptionValue extends Option = Option,
+  GenericGetOptionsValue extends AnyOption = AnyOption,
+> = AutocompleteLegacyProps<
+  GenericOption,
+  GenericOptionValue,
+  GenericGetOptionsValue
+>;
 
 export type CustomOptionsMenuType<GenericOption extends AnyOption = AnyOption> =
   (props: CustomOptionsMenuProp<GenericOption>) => React.ReactElement;
@@ -165,4 +255,136 @@ export interface CustomOptionsMenuProp<
     children: React.ReactNode;
     visible: boolean;
   }) => React.ReactElement;
+}
+
+// Base constraint for any option value - must be an object that can provide label/value
+export interface OptionLike {
+  // Minimal constraint allowing any additional properties
+  // The actual label/value access is handled by getOptionLabel/getOptionValue functions
+  [key: string]: unknown;
+}
+
+interface MenuAction {
+  type: "action";
+  id: Key;
+  label: string;
+  onClick: () => void;
+  disabled?: boolean;
+  icon?: string; // or React.ReactNode
+}
+
+interface MenuSection<T extends OptionLike> {
+  type: "section";
+  id: Key;
+  label: string;
+  options: T[];
+  actions?: MenuAction[]; // Section-specific actions
+}
+
+interface MenuOptions<T extends OptionLike> {
+  type: "options";
+  options: T[]; // For flat lists without sections
+}
+
+type MenuItem<T extends OptionLike> =
+  | MenuAction
+  | MenuSection<T>
+  | MenuOptions<T>;
+
+export interface AutocompleteProposedProps<
+  Value extends OptionLike = OptionLike,
+> {
+  version: 2;
+
+  /*
+   * Must-haves
+   */
+  // Controlled state
+  readonly value: Value | Value[] | undefined;
+  // consider including the event and "reason"
+  // undefined is debatable, could make sense for single select
+  readonly onChange: (value: Value | Value[] | undefined) => void;
+  readonly inputValue: string;
+  readonly onInputChange: (value: string) => void;
+
+  readonly onBlur?: () => void;
+  readonly onFocus?: () => void;
+
+  readonly allowFreeForm?: boolean;
+
+  // Menu structure
+  // prefer items or options? menu does describe the purpose better. tbd.
+  readonly menu: MenuItem<Value>[];
+
+  // Filtering & display
+  readonly filterOptions: (option: Value, inputValue: string) => boolean;
+  readonly getOptionLabel: (option: Value) => string;
+  readonly getOptionValue: (option: Value) => string | number;
+
+  // Rendering
+  readonly renderOption?: (option: Value) => React.ReactNode;
+  readonly renderSection?: (section: {
+    id: string;
+    label: string;
+  }) => React.ReactNode;
+  readonly renderAction?: (action: MenuAction) => React.ReactNode;
+
+  readonly placeholder?: string;
+  readonly disabled?: boolean;
+  readonly error?: string;
+  readonly invalid?: boolean;
+  readonly readonly?: boolean;
+  readonly required?: boolean;
+  readonly open?: boolean;
+  readonly description?: string;
+  readonly name?: string;
+  readonly size?: "small" | "base" | "large";
+
+  readonly clearable?: boolean;
+
+  /*
+   * Not necessary but trivial to add so might as well
+   */
+  readonly onOpen?: () => void;
+  readonly onClose?: () => void;
+
+  /*
+   * Technically a must-have but implemented in a different way to solve the same problem
+   */
+  // this replace suffix, prefix and anything else you'd want to modify on the input
+  readonly renderInput?: (props: {
+    inputRef: Ref<InputTextRef>;
+    inputProps: InputTextRebuiltProps;
+  }) => React.ReactNode;
+
+  /*
+   * Nice-to-haves & improvements
+   */
+  readonly multiple?: boolean;
+  readonly renderSelectedItems?: (props: {
+    items: Value[];
+    onRemove: (item: Value) => void;
+  }) => React.ReactNode;
+
+  // this one I'd argue for including but requires a bit of design possibly
+  // and other loading props eg. text/element
+  readonly loading?: boolean;
+
+  readonly autoHighlight?: boolean;
+  readonly autoSelect?: boolean;
+  readonly blurOnSelect?: boolean;
+
+  readonly clearOnEscape?: boolean;
+  readonly filterSelectedOptions?: boolean;
+
+  // groupBy?
+  // sectionBy? this could replace the renderSection prop
+
+  readonly isOptionEqualToValue?: (option: Value, value: Value) => boolean;
+
+  readonly onHighlightChange?: (option: Value) => void;
+
+  readonly openOnFocus?: boolean;
+
+  readonly selectOnFocus?: boolean;
 }
