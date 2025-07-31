@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.73.0...@jobber/components@6.74.0) (2025-07-31)
+
+
+### Features
+
+* **components:** Horizontal direction prop for RadioGroup ([#2639](https://github.com/GetJobber/atlantis/issues/2639)) ([d596ad5](https://github.com/GetJobber/atlantis/commit/d596ad5f1bc9a365b074931014681d93244467d7))
+
+
+
+
+
 # [6.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.72.0...@jobber/components@6.73.0) (2025-07-30)
 
 
