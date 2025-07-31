@@ -73,6 +73,7 @@ exports[`when Heading called with maxLines should match snapshot 1`] = `
   adjustsFontSizeToFit={false}
   allowFontScaling={true}
   collapsable={false}
+  ellipsizeMode="tail"
   numberOfLines={1}
   selectable={true}
   selectionColor="hsl(86, 100%, 46%)"
