@@ -1,0 +1,7 @@
+.row {
+  position: relative;
+}
+
+.row:hover {
+  background-color: var(--color-surface--hover);
+}

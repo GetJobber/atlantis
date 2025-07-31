@@ -1,0 +1,1 @@
+export { DataTableTableBody } from "./DataTableTableBody";

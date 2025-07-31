@@ -12,6 +12,16 @@ import { Pagination } from "./Pagination";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import { DataTableTable } from "./components/DataTableTable";
+import { DataTableHeader } from "./components/DataTableHeader";
+import { DataTableHeaderCell } from "./components/DataTableHeaderCell";
+import { DataTableRow } from "./components/DataTableRow";
+import { DataTableCell } from "./components/DataTableCell";
+import { DataTableRowActions } from "./components/DataTableRowActions";
+import { DataTableTableActions } from "./components/DataTableTableActions";
+import { DataTableTableBody } from "./components/DataTableTableBody";
+import { DataTableTableRoot } from "./components/DataTableTableRoot";
+import { DataTableTableLayout } from "./components/DataTableTableLayout";
 
 export interface DataTableProps<T> {
   /**
@@ -149,3 +159,15 @@ export function DataTable<T extends object>({
     </div>
   );
 }
+
+// Attach atomic components as compound components
+DataTable.Table = DataTableTable;
+DataTable.Header = DataTableHeader;
+DataTable.HeaderCell = DataTableHeaderCell;
+DataTable.Row = DataTableRow;
+DataTable.Cell = DataTableCell;
+DataTable.RowActions = DataTableRowActions;
+DataTable.TableActions = DataTableTableActions;
+DataTable.TableBody = DataTableTableBody;
+DataTable.TableRoot = DataTableTableRoot;
+DataTable.TableLayout = DataTableTableLayout;

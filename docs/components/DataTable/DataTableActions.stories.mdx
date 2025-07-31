@@ -1,0 +1,75 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import { DataTable } from "@jobber/components/DataTable";
+import { Button } from "@jobber/components/Button";
+
+<Meta title="Components/DataTable/Actions" />
+
+# DataTable Actions
+
+This demonstrates the different types of actions available in DataTable
+components.
+
+## Table Actions (Above Table)
+
+<Canvas>
+  <Story name="Table Actions">
+    {() => (
+      <div>
+        <DataTable.TableActions>
+          <Button icon="add" label="Add New" type="primary" />
+          <Button icon="filter" label="Filter" type="secondary" />
+          <Button icon="download" label="Export" type="secondary" />
+        </DataTable.TableActions>
+
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Status</DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.TableBody>
+            <DataTable.Row>
+              <DataTable.Cell>John Doe</DataTable.Cell>
+              <DataTable.Cell>Active</DataTable.Cell>
+            </DataTable.Row>
+            <DataTable.Row>
+              <DataTable.Cell>Jane Smith</DataTable.Cell>
+              <DataTable.Cell>Inactive</DataTable.Cell>
+            </DataTable.Row>
+          </DataTable.TableBody>
+        </DataTable.Table>
+      </div>
+    )}
+  </Story>
+</Canvas>
+
+## Row Actions (On Hover)
+
+Row actions appear when hovering over individual rows:
+
+```tsx
+const [hoveredRow, setHoveredRow] = useState<string | null>(null);
+
+<DataTable.Row
+  onMouseEnter={() => setHoveredRow(row.id)}
+  onMouseLeave={() => setHoveredRow(null)}
+>
+  <DataTable.Cell>Content</DataTable.Cell>
+
+  {hoveredRow === row.id && (
+    <DataTable.RowActions>
+      <Button
+        icon="checkmark"
+        ariaLabel="Complete"
+        type="secondary"
+        variation="subtle"
+      />
+      <Button
+        icon="edit"
+        ariaLabel="Edit"
+        type="secondary"
+        variation="subtle"
+      />
+    </DataTable.RowActions>
+  )}
+</DataTable.Row>;
+```

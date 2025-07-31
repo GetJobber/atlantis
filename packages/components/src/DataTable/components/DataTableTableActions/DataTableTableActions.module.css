@@ -1,0 +1,4 @@
+.tableActions {
+  display: flex;
+  gap: var(--space-slim);
+}
