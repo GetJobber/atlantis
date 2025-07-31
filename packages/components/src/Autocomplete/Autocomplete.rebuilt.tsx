@@ -1,23 +1,9 @@
-import React, { Ref, RefAttributes, forwardRef } from "react";
-import {
-  AnyOption,
-  AutocompleteRebuiltProps,
-  Option,
-} from "./Autocomplete.types";
+import React, { Ref, forwardRef } from "react";
+import { AutocompleteProposedProps, OptionLike } from "./Autocomplete.types";
 import { InputTextRef } from "../InputText";
 
-function AutocompleteRebuiltInternal<
-  GenericOption extends AnyOption = AnyOption,
-  GenericOptionValue extends Option = Option,
-  GenericGetOptionsValue extends AnyOption = AnyOption,
->(
-  {
-    ...props
-  }: AutocompleteRebuiltProps<
-    GenericOption,
-    GenericOptionValue,
-    GenericGetOptionsValue
-  >,
+function AutocompleteRebuiltInternal<Value extends OptionLike = OptionLike>(
+  { ...props }: AutocompleteProposedProps<Value>,
   ref: Ref<InputTextRef>,
 ) {
   console.log(ref);
@@ -26,16 +12,4 @@ function AutocompleteRebuiltInternal<
   return <div data-testid="ATL-AutocompleteRebuilt">AutocompleteRebuilt</div>;
 }
 
-// Casts the Generics to the forward ref so autocomplete works as expected for consumers
-export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
-  GenericOption extends AnyOption = AnyOption,
-  GenericOptionValue extends Option = Option,
-  GenericGetOptionsValue extends AnyOption = AnyOption,
->(
-  props: AutocompleteRebuiltProps<
-    GenericOption,
-    GenericOptionValue,
-    GenericGetOptionsValue
-  > &
-    RefAttributes<InputTextRef>,
-) => ReturnType<typeof AutocompleteRebuiltInternal>;
+export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal);

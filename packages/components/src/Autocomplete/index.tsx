@@ -1,7 +1,8 @@
 import React, { forwardRef } from "react";
 import {
   AutocompleteLegacyProps,
-  AutocompleteRebuiltProps,
+  AutocompleteProposedProps,
+  OptionLike,
 } from "./Autocomplete.types";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import { Autocomplete as AutocompleteLegacy } from "./Autocomplete";
@@ -42,11 +43,13 @@ export {
 
 export { isOptionSelected, isOptionGroup } from "./Autocomplete.utils";
 
-type AutocompleteShimProps = AutocompleteLegacyProps | AutocompleteRebuiltProps;
+type AutocompleteShimProps =
+  | AutocompleteLegacyProps
+  | AutocompleteProposedProps<OptionLike>;
 
 function isNewAutocompleteProps(
   props: AutocompleteShimProps,
-): props is AutocompleteRebuiltProps {
+): props is AutocompleteProposedProps<OptionLike> {
   return props.version === 2;
 }
 
@@ -55,8 +58,12 @@ export const Autocomplete = forwardRef(function AutocompleteShim(
   ref: React.Ref<InputTextRef>,
 ) {
   if (isNewAutocompleteProps(props)) {
+    console.log("AutocompleteRebuilt", props);
+
     return <AutocompleteRebuilt {...props} ref={ref} />;
   }
+
+  console.log("AutocompleteLegacy", props);
 
   return <AutocompleteLegacy {...props} ref={ref} />;
 });
@@ -65,6 +72,6 @@ Autocomplete.displayName = "Autocomplete";
 
 export type {
   AutocompleteLegacyProps,
-  AutocompleteRebuiltProps,
+  AutocompleteProposedProps,
   AutocompleteShimProps,
 };
