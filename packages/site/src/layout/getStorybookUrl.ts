@@ -5,11 +5,15 @@
 // others as we bring them in. Originally there was an optional 'type' parameter that defaulted to 'legacy'
 // but when I commented that out because it's future code, I got a warning that the parameter was unused so add a 'type'
 // param back in when you're ready to support Storybook 8.0 and beyond.
-export const getStorybookUrl = (path: string) => {
+export const getStorybookUrl = (path: string, type?: "web" | "mobile") => {
   let hostname = (window as AtlantisWindow)?.env?.VITE_STORYBOOK_URL;
 
-  if (!hostname && import.meta.env.DEV) {
+  if (import.meta.env.DEV && typeof type === "undefined") {
     hostname = "http://localhost:6005/";
+  } else if (import.meta.env.DEV && type === "web") {
+    hostname = "http://localhost:6007/";
+  } else if (import.meta.env.DEV && type === "mobile") {
+    hostname = "http://localhost:6008/";
   } else if (!hostname) {
     hostname = `https://${window.location.hostname}/`;
   }
