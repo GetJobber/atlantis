@@ -7,6 +7,7 @@ function AutocompleteRebuiltInternal<Value extends OptionLike = OptionLike>(
   ref: Ref<InputTextRef>,
 ) {
   console.log(ref);
+  console.log("yeah");
   console.log(props);
 
   return <div data-testid="ATL-AutocompleteRebuilt">AutocompleteRebuilt</div>;
