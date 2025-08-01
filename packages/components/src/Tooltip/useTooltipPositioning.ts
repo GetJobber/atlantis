@@ -1,8 +1,17 @@
 import { useRef, useState } from "react";
-import { usePopper } from "react-popper";
+import {
+  arrow,
+  autoUpdate,
+  flip,
+  limitShift,
+  shift,
+  useFloating,
+} from "@floating-ui/react";
 import { Placement } from "./Tooltip.types";
 
 const DEFAULT_PLACEMENT: Placement = "top";
+const TOOLTIP_SHIFT_PADDING = 8;
+const TOOLTIP_ARROW_PADDING = 6;
 
 interface ToolTipPositionOptions {
   readonly preferredPlacement?: Placement;
@@ -12,29 +21,41 @@ export function useTooltipPositioning({
   preferredPlacement,
 }: ToolTipPositionOptions) {
   const shadowRef = useRef<HTMLSpanElement>(null);
-  const [positionElement, setTooltipRef] = useState<HTMLDivElement | null>();
   const [arrowElement, setArrowRef] = useState<HTMLDivElement | null>();
 
-  const popper = usePopper(
-    shadowRef.current?.nextElementSibling,
-    positionElement,
-    {
-      placement: preferredPlacement,
-      modifiers: [
-        { name: "flip", options: { fallbackPlacements: ["bottom"] } },
-        {
-          name: "arrow",
-          options: { element: arrowElement },
-        },
-      ],
+  const referenceElement = shadowRef.current?.nextElementSibling;
+
+  const { refs, floatingStyles, middlewareData, placement } = useFloating({
+    placement: preferredPlacement,
+    strategy: "absolute",
+    middleware: [
+      shift({
+        mainAxis: true,
+        crossAxis: false,
+        padding: TOOLTIP_SHIFT_PADDING,
+        limiter: limitShift(),
+      }),
+      flip({ fallbackPlacements: ["bottom", "left", "right"] }),
+      arrow({
+        element: arrowElement || null,
+        padding: TOOLTIP_ARROW_PADDING,
+      }),
+    ],
+    elements: {
+      reference: referenceElement || null,
     },
-  );
+    whileElementsMounted: autoUpdate,
+  });
 
   return {
-    ...popper,
-    placement: popper.state?.placement || DEFAULT_PLACEMENT,
+    styles: {
+      popper: floatingStyles,
+      arrow: middlewareData.arrow,
+    },
+    attributes: { popper: {} },
+    placement: placement || DEFAULT_PLACEMENT,
     shadowRef,
     setArrowRef,
-    setTooltipRef,
+    setTooltipRef: refs.setFloating,
   };
 }

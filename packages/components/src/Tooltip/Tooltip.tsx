@@ -1,9 +1,8 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import classnames from "classnames";
-import ReactDOM from "react-dom";
+import { FloatingPortal } from "@floating-ui/react";
 import { motion } from "framer-motion";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Tooltip.module.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 import { Placement } from "./Tooltip.types";
@@ -40,7 +39,7 @@ export function Tooltip({
     attributes,
     placement,
     shadowRef,
-    styles: popperStyles,
+    styles: floatingStyles,
     setArrowRef,
     setTooltipRef,
   } = useTooltipPositioning({ preferredPlacement: preferredPlacement });
@@ -59,13 +58,14 @@ export function Tooltip({
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
-      <TooltipPortal>
+      <FloatingPortal>
         {show && Boolean(message) && (
           <div
             className={toolTipClassNames}
-            style={popperStyles.popper}
+            style={floatingStyles.popper}
             ref={setTooltipRef}
             role="tooltip"
+            data-placement={placement}
             {...attributes.popper}
           >
             <motion.div
@@ -83,13 +83,23 @@ export function Tooltip({
               <p className={styles.tooltipMessage}>{message}</p>
               <div
                 ref={setArrowRef}
-                style={popperStyles.arrow}
+                style={{
+                  position: "absolute",
+                  left:
+                    floatingStyles.arrow?.x != null
+                      ? `${floatingStyles.arrow?.x}px`
+                      : "",
+                  top:
+                    floatingStyles.arrow?.y != null
+                      ? `${floatingStyles.arrow?.y}px`
+                      : "",
+                }}
                 className={styles.arrow}
               />
             </motion.div>
           </div>
         )}
-      </TooltipPortal>
+      </FloatingPortal>
     </>
   );
 
@@ -146,18 +156,4 @@ export function Tooltip({
       };
     }, []);
   }
-}
-
-interface TooltipPortalProps {
-  readonly children: ReactNode;
-}
-
-function TooltipPortal({ children }: TooltipPortalProps) {
-  const mounted = useIsMounted();
-
-  if (!mounted?.current) {
-    return null;
-  }
-
-  return ReactDOM.createPortal(children, document.body);
 }
