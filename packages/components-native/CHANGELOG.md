@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.82.0...@jobber/components-native@0.83.0) (2025-08-01)
+
+
+### Features
+
+* **hooks:** Add useDebounce Hook to Hooks ([#2561](https://github.com/GetJobber/atlantis/issues/2561)) ([a3e4009](https://github.com/GetJobber/atlantis/commit/a3e4009d861021e472e26726694fe53ea9fb1d30))
+
+
+
+
+
 # [0.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.2...@jobber/components-native@0.82.0) (2025-07-03)
 
 
