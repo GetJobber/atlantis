@@ -42,7 +42,7 @@ export function useResizeObserver<T extends HTMLElement>({
       }
       setSize({ width, height });
     }, wait);
-  }, [wait]);
+  }, []);
   const { ref } = useResizeObserverPackage<T>({
     onResize,
   });
