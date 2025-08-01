@@ -19,8 +19,10 @@ import {
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
-import { Icon } from "@jobber/components/Icon";
+import { Icon, IconNames } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+import { Typography } from "@jobber/components/Typography";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web/Composable",
@@ -35,7 +37,92 @@ export default {
   },
 } as ComponentMeta<typeof DataTable>;
 
-// Example data
+// Example data - Financial transactions
+const transactionData = [
+  {
+    id: "1",
+    item: "Payment",
+    appliedTo: "Invoice #22",
+    createdDate: "Jul 15, 2025",
+    amount: "-$2,400.00",
+    icon: "wallet",
+  },
+  {
+    id: "2",
+    item: "Deposit",
+    appliedTo: "Quote #21",
+    createdDate: "Jul 10, 2025",
+    amount: "-$215.00",
+    icon: "wallet",
+  },
+  {
+    id: "3",
+    item: "Invoice #22",
+    appliedTo: "—",
+    createdDate: "Jun 05, 2025",
+    amount: "$2,400.00",
+    icon: "invoice",
+  },
+  {
+    id: "4",
+    item: "Invoice #74",
+    appliedTo: "—",
+    createdDate: "Jul 3, 2025",
+    amount: "$2400.00",
+    icon: "invoice",
+  },
+  {
+    id: "5",
+    item: "Refunded payment",
+    appliedTo: "Invoice #21, #17",
+    createdDate: "Apr 22, 2025",
+    amount: "$200.00",
+    icon: "redo",
+  },
+  {
+    id: "6",
+    item: "Payment",
+    appliedTo: "Invoice #21, #17",
+    createdDate: "Apr 20, 2025",
+    amount: "$400.00",
+    icon: "wallet",
+    badge: "Refunded",
+  },
+  {
+    id: "7",
+    item: "Invoice #21",
+    appliedTo: "—",
+    createdDate: "Mar 15, 2025",
+    amount: "$1,650.00",
+    icon: "paidInvoice",
+  },
+  {
+    id: "8",
+    item: "Invoice #17",
+    appliedTo: "—",
+    createdDate: "Mar 10, 2025",
+    amount: "$2,500.00",
+    icon: "paidInvoice",
+  },
+  {
+    id: "9",
+    item: "Payment",
+    appliedTo: "Invoice #11",
+    createdDate: "Mar 05, 2025",
+    amount: "-$3,000.00",
+    icon: "wallet",
+  },
+  {
+    id: "10",
+    item: "Initial balance",
+    appliedTo: "—",
+    createdDate: "Feb 30, 2025",
+    amount: "$400.00",
+    icon: "download",
+  },
+];
+
+// Original contact data for other examples
 const exampleData = [
   {
     id: "1",
@@ -143,7 +230,9 @@ export const Basic = () => {
         <DataTable.TableBody>
           {exampleData.map(row => (
             <DataTable.Row key={row.id}>
-              <DataTable.Cell>{row.name}</DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold">{row.name}</Typography>
+              </DataTable.Cell>
               <DataTable.Cell>{row.role}</DataTable.Cell>
               <DataTable.Cell>{row.email}</DataTable.Cell>
             </DataTable.Row>
@@ -173,6 +262,9 @@ export const WithTableActions = () => {
       {
         accessorKey: "name",
         header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
       },
       {
         accessorKey: "role",
@@ -281,6 +373,52 @@ export const WithTableActions = () => {
 export const WithRowActions = () => {
   const [hoveredRow, setHoveredRow] = React.useState<string | null>(null);
 
+  // TanStack table setup
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+        cell: ({ row }) => (
+          <div>
+            {row.original.email}
+            {hoveredRow === row.original.id && (
+              <DataTable.RowActions>
+                <Button
+                  icon="checkmark"
+                  ariaLabel={`Complete ${row.original.name}`}
+                  type="secondary"
+                  variation="subtle"
+                  onClick={() => alert(`Complete ${row.original.name}`)}
+                />
+                <Button
+                  icon="edit"
+                  ariaLabel={`Edit ${row.original.name}`}
+                  type="secondary"
+                  variation="subtle"
+                  onClick={() => alert(`Edit ${row.original.name}`)}
+                />
+              </DataTable.RowActions>
+            )}
+          </div>
+        ),
+      },
+    ],
+    getCoreRowModel: getCoreRowModel(),
+  });
+
   return (
     <DataTable.TableLayout>
       <DataTable.Table>
@@ -290,35 +428,17 @@ export const WithRowActions = () => {
           <DataTable.HeaderCell>Email</DataTable.HeaderCell>
         </DataTable.Header>
         <DataTable.TableBody>
-          {exampleData.map(row => (
+          {table.getRowModel().rows.map(row => (
             <DataTable.Row
               key={row.id}
-              onMouseEnter={() => setHoveredRow(row.id)}
+              onMouseEnter={() => setHoveredRow(row.original.id)}
               onMouseLeave={() => setHoveredRow(null)}
             >
-              <DataTable.Cell>{row.name}</DataTable.Cell>
-              <DataTable.Cell>{row.role}</DataTable.Cell>
-              <DataTable.Cell>
-                {row.email}
-                {hoveredRow === row.id && (
-                  <DataTable.RowActions>
-                    <Button
-                      icon="checkmark"
-                      ariaLabel={`Complete ${row.name}`}
-                      type="secondary"
-                      variation="subtle"
-                      onClick={() => console.log(`Complete ${row.name}`)}
-                    />
-                    <Button
-                      icon="edit"
-                      ariaLabel={`Edit ${row.name}`}
-                      type="secondary"
-                      variation="subtle"
-                      onClick={() => console.log(`Edit ${row.name}`)}
-                    />
-                  </DataTable.RowActions>
-                )}
-              </DataTable.Cell>
+              {row.getVisibleCells().map(cell => (
+                <DataTable.Cell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </DataTable.Cell>
+              ))}
             </DataTable.Row>
           ))}
         </DataTable.TableBody>
@@ -337,6 +457,9 @@ export const Sortable = () => {
       {
         accessorKey: "name",
         header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
       },
       {
         accessorKey: "role",
@@ -394,6 +517,9 @@ export const WithPagination = () => {
       {
         accessorKey: "name",
         header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
       },
       {
         accessorKey: "role",
@@ -442,7 +568,137 @@ export const WithPagination = () => {
             >
               <Text>
                 Showing {table.getRowModel().rows.length} of{" "}
-                {exampleData.length} rows
+                {exampleData.length} items
+              </Text>
+
+              <div style={{ display: "flex", gap: "var(--space-small)" }}>
+                <DataTable.PaginationButton
+                  direction="previous"
+                  disabled={!table.getCanPreviousPage()}
+                  onClick={() => table.previousPage()}
+                />
+                <DataTable.PaginationButton
+                  direction="next"
+                  disabled={!table.getCanNextPage()}
+                  onClick={() => table.nextPage()}
+                />
+              </div>
+            </DataTable.Pagination>
+          </DataTable.Footer>
+        </DataTable.Table>
+      </DataTable.TableLayout>
+    </div>
+  );
+};
+
+export const FinancialTransactions = () => {
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 6,
+  });
+
+  const currentBalance = 2000;
+
+  const table = useReactTable({
+    data: transactionData,
+    columns: [
+      {
+        accessorKey: "item",
+        header: "Item",
+        cell: ({ row }) => (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "var(--space-small)",
+            }}
+          >
+            <Icon name={row.original.icon as IconNames} />
+            <Typography fontWeight="bold">{row.original.item}</Typography>
+            {row.original.badge && (
+              <StatusLabel status="warning" label={row.original.badge} />
+            )}
+          </div>
+        ),
+      },
+      {
+        accessorKey: "appliedTo",
+        header: "Applied to",
+      },
+      {
+        accessorKey: "createdDate",
+        header: "Created date",
+      },
+      {
+        accessorKey: "amount",
+        header: "Amount",
+        cell: ({ row }) => (
+          <div style={{ textAlign: "right" }}>{row.original.amount}</div>
+        ),
+      },
+    ],
+    state: {
+      pagination,
+    },
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
+  return (
+    <div>
+      <DataTable.TableLayout>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Item</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Applied to</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Created date</DataTable.HeaderCell>
+            <DataTable.HeaderCell style={{ textAlign: "right" }}>
+              Amount
+            </DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+
+          {/* Current balance footer */}
+          <DataTable.Footer>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "var(--space-base)",
+                fontWeight: "bold",
+              }}
+            >
+              <Typography fontWeight="bold">Current balance</Typography>
+              <Typography fontWeight="bold">
+                ${currentBalance.toLocaleString()}.00
+              </Typography>
+            </div>
+          </DataTable.Footer>
+
+          {/* Pagination footer */}
+          <DataTable.Footer style={{ borderTopWidth: "var(--border-thick)" }}>
+            <DataTable.Pagination
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text>
+                Showing {table.getRowModel().rows.length} of{" "}
+                {transactionData.length} items
               </Text>
 
               <div style={{ display: "flex", gap: "var(--space-small)" }}>
