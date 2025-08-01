@@ -1,5 +1,11 @@
 import React from "react";
-import { autoUpdate, flip, offset, useFloating } from "@floating-ui/react";
+import {
+  autoUpdate,
+  flip,
+  offset,
+  size,
+  useFloating,
+} from "@floating-ui/react";
 
 export interface UseRepositionMenu {
   readonly floatingElement: HTMLElement | null;
@@ -16,7 +22,19 @@ export function useRepositionMenu(
 ): UseRepositionMenu {
   const { refs, floatingStyles, update } = useFloating({
     placement: "bottom",
-    middleware: [offset(8), flip({ fallbackPlacements: ["top"] })],
+    middleware: [
+      offset(8),
+      flip({ fallbackPlacements: ["top"] }),
+      size({
+        apply({ availableHeight, elements }) {
+          // Simple max height - either 320px or available space, whichever is smaller
+          const maxHeight = Math.min(320, availableHeight);
+          Object.assign(elements.floating.style, {
+            maxHeight: `${maxHeight}px`,
+          });
+        },
+      }),
+    ],
     elements: {
       reference: attachTo,
     },

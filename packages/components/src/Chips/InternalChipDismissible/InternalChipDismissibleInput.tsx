@@ -77,44 +77,42 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
 
   const menuContent = (
     <div
-      ref={setFloatingRef}
+      ref={node => {
+        setFloatingRef(node);
+        scrollableRef.current = node;
+      }}
+      role="listbox"
+      id={menuId}
       className={styles.menu}
       style={floatingStyles.float}
+      data-testid="chip-menu"
     >
-      <div
-        ref={scrollableRef}
-        role="listbox"
-        id={menuId}
-        className={styles.menuList}
-        data-testid="chip-menu"
-      >
-        {allOptions.map((option, i) => (
-          <button
-            key={option.value}
-            role="option"
-            type="button"
-            id={generateDescendantId(i)}
-            className={classNames(styles.menuListOption, {
-              [styles.activeOption]: activeIndex === i,
-            })}
-            onClick={() => handleSelectOption(option)}
-            onMouseEnter={handleSetActiveOnMouseOver(i)}
-            onMouseDown={handleCancelBlur}
-            onMouseUp={handleEnableBlur}
-          >
-            <span aria-hidden>{option.prefix}</span>
-            <Text>{option.label}</Text>
-          </button>
-        ))}
+      {allOptions.map((option, i) => (
+        <button
+          key={option.value}
+          role="option"
+          type="button"
+          id={generateDescendantId(i)}
+          className={classNames(styles.menuListOption, {
+            [styles.activeOption]: activeIndex === i,
+          })}
+          onClick={() => handleSelectOption(option)}
+          onMouseEnter={handleSetActiveOnMouseOver(i)}
+          onMouseDown={handleCancelBlur}
+          onMouseUp={handleEnableBlur}
+        >
+          <span aria-hidden>{option.prefix}</span>
+          <Text>{option.label}</Text>
+        </button>
+      ))}
 
-        <div ref={visibleChildRef} />
+      <div ref={visibleChildRef} />
 
-        {isLoadingMore && (
-          <div className={styles.loadingIndicator}>
-            <Spinner size="small" inline />
-          </div>
-        )}
-      </div>
+      {isLoadingMore && (
+        <div className={styles.loadingIndicator}>
+          <Spinner size="small" inline />
+        </div>
+      )}
     </div>
   );
 
