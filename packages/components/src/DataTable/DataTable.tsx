@@ -22,6 +22,8 @@ import { DataTableTableActions } from "./components/DataTableTableActions";
 import { DataTableTableBody } from "./components/DataTableTableBody";
 import { DataTableTableRoot } from "./components/DataTableTableRoot";
 import { DataTableTableLayout } from "./components/DataTableTableLayout";
+import { DataTableProvider } from "./context/DataTableContext";
+import { DataTableSortableHeader } from "./components/DataTableSortableHeader";
 
 export interface DataTableProps<T> {
   /**
@@ -171,3 +173,5 @@ DataTable.TableActions = DataTableTableActions;
 DataTable.TableBody = DataTableTableBody;
 DataTable.TableRoot = DataTableTableRoot;
 DataTable.TableLayout = DataTableTableLayout;
+DataTable.DataTableProvider = DataTableProvider;
+DataTable.SortableHeader = DataTableSortableHeader;
