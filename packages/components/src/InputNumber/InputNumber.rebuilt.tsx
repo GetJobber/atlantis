@@ -73,6 +73,8 @@ export const InputNumberRebuilt = forwardRef(
       ...ariaNumberFieldProps
     } = props;
 
+    const stringDescription = typeof description === "string";
+
     return (
       <AriaNumberField
         {...ariaNumberFieldProps}
@@ -119,9 +121,13 @@ export const InputNumberRebuilt = forwardRef(
             elementType="div"
             slot="description"
           >
-            <Text size="small" variation="subdued">
-              {description}
-            </Text>
+            {stringDescription ? (
+              <Text size="small" variation="subdued">
+                {description}
+              </Text>
+            ) : (
+              description
+            )}
           </AriaText>
         )}
         {error && (
