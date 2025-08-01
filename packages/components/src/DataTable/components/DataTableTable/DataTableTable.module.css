@@ -2,13 +2,12 @@
   width: 100%;
   table-layout: auto;
   border-collapse: collapse;
-  /* border-bottom: var(--border-base) solid var(--color-border); */
 }
 
 .table tbody tr {
   border-bottom: var(--border-base) solid var(--color-border);
 }
 
-/* .table tbody tr:last-child {
+.table tbody tr:last-child {
   border-bottom: none;
-} */
+}
