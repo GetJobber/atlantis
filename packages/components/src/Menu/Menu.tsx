@@ -30,7 +30,7 @@ import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
-const MENU_MAX_HEIGHT = 400;
+const MENU_MAX_HEIGHT_VH = 72; // 72vh as percentage
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -134,7 +134,11 @@ export function Menu({
           ) as HTMLElement;
 
           if (menuElement) {
-            const maxHeight = Math.min(MENU_MAX_HEIGHT, availableHeight);
+            const viewportHeight = window.innerHeight;
+            const maxHeightVh = (viewportHeight * MENU_MAX_HEIGHT_VH) / 100;
+
+            // Use the smaller of 72vh or available space
+            const maxHeight = Math.min(maxHeightVh, availableHeight);
 
             Object.assign(menuElement.style, {
               maxHeight: `${maxHeight}px`,
