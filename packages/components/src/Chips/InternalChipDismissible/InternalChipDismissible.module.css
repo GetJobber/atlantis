@@ -40,7 +40,7 @@
   box-shadow: var(--shadow-base);
   padding: var(--space-small) 0;
   border-radius: var(--radius-base);
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: var(--color-surface);
 }
 

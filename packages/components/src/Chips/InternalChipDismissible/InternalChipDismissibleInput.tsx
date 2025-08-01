@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { FloatingPortal } from "@floating-ui/react";
 import styles from "./InternalChipDismissible.module.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import {
@@ -13,6 +14,8 @@ import { Text } from "../../Text";
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
 
+// Adding Portal moves it over the limit, but doesn't impact the readabiltiy
+// eslint-disable-next-line max-statements
 export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
@@ -44,14 +47,13 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleDebouncedSearch,
   } = useInternalChipDismissibleInput(props);
 
-  const menuRef = useScrollToActive(activeIndex);
+  const scrollableRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
 
   const {
-    styles: popperStyles,
-    attributes,
+    styles: floatingStyles,
     update,
-    setPositionedElementRef,
+    setFloatingRef,
   } = useRepositionMenu(attachTo);
   useSafeLayoutEffect(() => {
     update?.();
@@ -73,6 +75,49 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
 
   const shouldShowMenu = menuOpen && (hasAvailableOptions || isLoadingMore);
 
+  const menuContent = (
+    <div
+      ref={setFloatingRef}
+      className={styles.menu}
+      style={floatingStyles.float}
+    >
+      <div
+        ref={scrollableRef}
+        role="listbox"
+        id={menuId}
+        className={styles.menuList}
+        data-testid="chip-menu"
+      >
+        {allOptions.map((option, i) => (
+          <button
+            key={option.value}
+            role="option"
+            type="button"
+            id={generateDescendantId(i)}
+            className={classNames(styles.menuListOption, {
+              [styles.activeOption]: activeIndex === i,
+            })}
+            onClick={() => handleSelectOption(option)}
+            onMouseEnter={handleSetActiveOnMouseOver(i)}
+            onMouseDown={handleCancelBlur}
+            onMouseUp={handleEnableBlur}
+          >
+            <span aria-hidden>{option.prefix}</span>
+            <Text>{option.label}</Text>
+          </button>
+        ))}
+
+        <div ref={visibleChildRef} />
+
+        {isLoadingMore && (
+          <div className={styles.loadingIndicator}>
+            <Spinner size="small" inline />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <>
       <input
@@ -93,49 +138,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         autoFocus={true}
       />
 
-      {shouldShowMenu && (
-        <div
-          ref={setPositionedElementRef}
-          className={styles.menu}
-          style={popperStyles.popper}
-          {...attributes.popper}
-        >
-          <div
-            ref={menuRef}
-            role="listbox"
-            id={menuId}
-            className={styles.menuList}
-            data-testid="chip-menu"
-          >
-            {allOptions.map((option, i) => (
-              <button
-                key={option.value}
-                role="option"
-                type="button"
-                id={generateDescendantId(i)}
-                className={classNames(styles.menuListOption, {
-                  [styles.activeOption]: activeIndex === i,
-                })}
-                onClick={() => handleSelectOption(option)}
-                onMouseEnter={handleSetActiveOnMouseOver(i)}
-                onMouseDown={handleCancelBlur}
-                onMouseUp={handleEnableBlur}
-              >
-                <span aria-hidden>{option.prefix}</span>
-                <Text>{option.label}</Text>
-              </button>
-            ))}
-
-            <div ref={visibleChildRef} />
-
-            {isLoadingMore && (
-              <div className={styles.loadingIndicator}>
-                <Spinner size="small" inline />
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {shouldShowMenu && <FloatingPortal>{menuContent}</FloatingPortal>}
     </>
   );
 }
