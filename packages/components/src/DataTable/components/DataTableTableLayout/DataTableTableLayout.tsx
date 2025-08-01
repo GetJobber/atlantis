@@ -3,10 +3,10 @@ import classNames from "classnames";
 import styles from "./DataTableTableLayout.module.css";
 
 export function DataTableTableLayout(
-  props: PropsWithChildren<{ readonly className?: string }>,
+  props: PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>,
 ) {
   return (
-    <div className={classNames(styles.tableLayout, props.className)}>
+    <div className={classNames(styles.tableLayout, props.className)} {...props}>
       {props.children}
     </div>
   );

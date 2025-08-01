@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { ComponentMeta } from "@storybook/react";
 import {
   ColumnFiltersState,
+  PaginationState,
   SortingState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -18,6 +20,7 @@ import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Icon } from "@jobber/components/Icon";
+import { Text } from "@jobber/components/Text";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web/Composable",
@@ -375,5 +378,89 @@ export const Sortable = () => {
         </DataTable.Table>
       </DataTable.TableLayout>
     </DataTable.DataTableProvider>
+  );
+};
+
+export const WithPagination = () => {
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 4,
+  });
+
+  // TanStack table setup with pagination
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      {
+        accessorKey: "name",
+        header: "Name",
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+      },
+    ],
+    state: {
+      pagination,
+    },
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
+  return (
+    <div>
+      <DataTable.TableLayout>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Role</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+          <DataTable.Footer>
+            <DataTable.Pagination
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text>
+                Showing {table.getRowModel().rows.length} of{" "}
+                {exampleData.length} rows
+              </Text>
+
+              <div style={{ display: "flex", gap: "var(--space-small)" }}>
+                <DataTable.PaginationButton
+                  direction="previous"
+                  disabled={!table.getCanPreviousPage()}
+                  onClick={() => table.previousPage()}
+                />
+                <DataTable.PaginationButton
+                  direction="next"
+                  disabled={!table.getCanNextPage()}
+                  onClick={() => table.nextPage()}
+                />
+              </div>
+            </DataTable.Pagination>
+          </DataTable.Footer>
+        </DataTable.Table>
+      </DataTable.TableLayout>
+    </div>
   );
 };

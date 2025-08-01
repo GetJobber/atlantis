@@ -3,10 +3,10 @@ import classNames from "classnames";
 import styles from "./DataTableHeader.module.css";
 
 export function DataTableHeader(
-  props: PropsWithChildren<{ readonly className?: string }>,
+  props: PropsWithChildren<React.HTMLAttributes<HTMLTableSectionElement>>,
 ) {
   return (
-    <thead className={classNames(styles.headers, props.className)}>
+    <thead className={classNames(styles.headers, props.className)} {...props}>
       <tr>{props.children}</tr>
     </thead>
   );

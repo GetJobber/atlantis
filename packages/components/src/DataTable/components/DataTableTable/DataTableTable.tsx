@@ -3,10 +3,10 @@ import classNames from "classnames";
 import styles from "./DataTableTable.module.css";
 
 export function DataTableTable(
-  props: PropsWithChildren<{ readonly className?: string }>,
+  props: PropsWithChildren<React.HTMLAttributes<HTMLTableElement>>,
 ) {
   return (
-    <table className={classNames(styles.table, props.className)}>
+    <table className={classNames(styles.table, props.className)} {...props}>
       {props.children}
     </table>
   );
