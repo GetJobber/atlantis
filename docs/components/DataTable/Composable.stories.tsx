@@ -122,6 +122,31 @@ const transactionData = [
   },
 ];
 
+// Payment methods data
+const paymentMethodsData = [
+  {
+    id: "1",
+    method: "**** **** **** 4242",
+    isDefault: true,
+    icon: "payment",
+    expiry: "08/2025",
+  },
+  {
+    id: "2",
+    method: "**** **** **** 7534",
+    isDefault: false,
+    icon: "bank",
+    expiry: "—",
+  },
+  {
+    id: "3",
+    method: "**** **** **** 1129",
+    isDefault: false,
+    icon: "payment",
+    expiry: "08/2025",
+  },
+];
+
 // Original contact data for other examples
 const exampleData = [
   {
@@ -434,6 +459,67 @@ export const WithRowActions = () => {
               onMouseEnter={() => setHoveredRow(row.original.id)}
               onMouseLeave={() => setHoveredRow(null)}
             >
+              {row.getVisibleCells().map(cell => (
+                <DataTable.Cell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </DataTable.Cell>
+              ))}
+            </DataTable.Row>
+          ))}
+        </DataTable.TableBody>
+      </DataTable.Table>
+    </DataTable.TableLayout>
+  );
+};
+
+export const PaymentMethods = () => {
+  const table = useReactTable({
+    data: paymentMethodsData,
+    columns: [
+      {
+        accessorKey: "method",
+        header: "Method",
+        cell: ({ row }) => (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "var(--space-small)",
+            }}
+          >
+            <Icon name={row.original.icon as IconNames} />
+            <div>
+              <Typography fontWeight="bold">{row.original.method}</Typography>
+              {row.original.isDefault && (
+                <Text variation="subdued">Default method</Text>
+              )}
+            </div>
+          </div>
+        ),
+      },
+      {
+        accessorKey: "expiry",
+        header: "Expiry",
+        cell: ({ row }) => (
+          <div style={{ textAlign: "right" }}>{row.original.expiry}</div>
+        ),
+      },
+    ],
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <DataTable.TableLayout>
+      <DataTable.Table>
+        <DataTable.Header>
+          <DataTable.HeaderCell>Method</DataTable.HeaderCell>
+          <DataTable.HeaderCell style={{ textAlign: "right" }}>
+            Expiry
+          </DataTable.HeaderCell>
+        </DataTable.Header>
+        <DataTable.TableBody>
+          {table.getRowModel().rows.map(row => (
+            <DataTable.Row key={row.id}>
               {row.getVisibleCells().map(cell => (
                 <DataTable.Cell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
