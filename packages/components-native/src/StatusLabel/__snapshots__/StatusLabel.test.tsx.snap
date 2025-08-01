@@ -25,7 +25,6 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      ellipsizeMode="tail"
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
@@ -105,7 +104,6 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      ellipsizeMode="tail"
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
@@ -185,7 +183,6 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      ellipsizeMode="tail"
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
@@ -265,7 +262,6 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      ellipsizeMode="tail"
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
@@ -345,7 +341,6 @@ exports[`StatusLabel status when status prop set to "informative" should match s
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      ellipsizeMode="tail"
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
@@ -425,7 +420,6 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      ellipsizeMode="tail"
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
@@ -505,7 +499,6 @@ exports[`StatusLabel status when status prop set to default ("success") should m
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      ellipsizeMode="tail"
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
