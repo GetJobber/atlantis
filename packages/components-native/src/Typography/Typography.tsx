@@ -212,7 +212,7 @@ function InternalTypography<T extends FontFamily = "base">({
           adjustsFontSizeToFit,
           style,
           numberOfLines: numberOfLinesForNativeText,
-          ellipsizeMode: numberOfLinesForNativeText ? "tail" : undefined,
+          ellipsizeMode: numberOfLinesForNativeText ? "middle" : undefined,
         }}
         {...accessibilityProps}
         maxFontSizeMultiplier={getScaleMultiplier(
