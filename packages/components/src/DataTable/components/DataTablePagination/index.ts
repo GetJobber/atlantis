@@ -1,0 +1,1 @@
+export { DataTablePagination } from "./DataTablePagination";

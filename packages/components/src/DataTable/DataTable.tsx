@@ -24,6 +24,9 @@ import { DataTableTableRoot } from "./components/DataTableTableRoot";
 import { DataTableTableLayout } from "./components/DataTableTableLayout";
 import { DataTableProvider } from "./context/DataTableContext";
 import { DataTableSortableHeader } from "./components/DataTableSortableHeader";
+import { DataTableFooter } from "./components/DataTableFooter";
+import { DataTablePagination } from "./components/DataTablePagination";
+import { DataTablePaginationButton } from "./components/DataTablePaginationButton";
 
 export interface DataTableProps<T> {
   /**
@@ -175,3 +178,6 @@ DataTable.TableRoot = DataTableTableRoot;
 DataTable.TableLayout = DataTableTableLayout;
 DataTable.DataTableProvider = DataTableProvider;
 DataTable.SortableHeader = DataTableSortableHeader;
+DataTable.Footer = DataTableFooter;
+DataTable.Pagination = DataTablePagination;
+DataTable.PaginationButton = DataTablePaginationButton;
