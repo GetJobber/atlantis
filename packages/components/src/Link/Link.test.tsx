@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import {
   Route,
-  RouteChildrenProps,
   BrowserRouter as Router,
   Switch,
 } from "react-router-dom";
@@ -19,19 +18,19 @@ describe("when a Link is rendered", () => {
   });
 
   it("opens in a new tab if external is set to true", () => {
-    const { getByText } = render(
+    const { container } = render(
       <Link url={testUrl} external={true}>
         {testText}
       </Link>,
     );
-    const link = getByText(testText);
-    expect(link.getAttribute("target")).toBe("_blank");
+    const link = container.querySelector("a");
+    expect(link?.getAttribute("target")).toBe("_blank");
   });
 
   it("links to the correct url provided", () => {
-    const { getByText } = render(<Link url={testUrl}>{testText}</Link>);
-    const link = getByText(testText);
-    expect(link.getAttribute("href")).toBe(testUrl);
+    const { container } = render(<Link url={testUrl}>{testText}</Link>);
+    const link = container.querySelector("a");
+    expect(link?.getAttribute("href")).toBe(testUrl);
   });
 
   describe("styling variations", () => {
@@ -277,39 +276,39 @@ describe("when a Link is rendered", () => {
         </Router>,
       );
 
-      expect(queryByText("This is my home, time to get cozy.")).toBeInstanceOf(
-        HTMLElement,
-      );
+      expect(
+        queryByText("This is my home, time to get cozy."),
+      ).toBeInTheDocument();
       expect(
         queryByText("This is my office, time to get to work."),
-      ).not.toBeInstanceOf(HTMLElement);
+      ).not.toBeInTheDocument();
       expect(
         queryByText("This is the dentist, time to get my teeth fixed."),
-      ).not.toBeInstanceOf(HTMLElement);
+      ).not.toBeInTheDocument();
 
       fireEvent.click(getByText("Office"));
 
       expect(
         queryByText("This is my home, time to get cozy."),
-      ).not.toBeInstanceOf(HTMLElement);
+      ).not.toBeInTheDocument();
       expect(
         queryByText("This is my office, time to get to work."),
-      ).toBeInstanceOf(HTMLElement);
+      ).toBeInTheDocument();
       expect(
         queryByText("This is the dentist, time to get my teeth fixed."),
-      ).not.toBeInstanceOf(HTMLElement);
+      ).not.toBeInTheDocument();
 
       fireEvent.click(getByText("Dentist"));
 
       expect(
         queryByText("This is my home, time to get cozy."),
-      ).not.toBeInstanceOf(HTMLElement);
+      ).not.toBeInTheDocument();
       expect(
         queryByText("This is my office, time to get to work."),
-      ).not.toBeInstanceOf(HTMLElement);
+      ).not.toBeInTheDocument();
       expect(
         queryByText("This is the dentist, time to get my teeth fixed."),
-      ).toBeInstanceOf(HTMLElement);
+      ).toBeInTheDocument();
     });
 
     it("renders Link with button-like appearance for navigation", () => {

@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import classnames from "classnames";
 import { Icon } from "../Icon";
 import { LinkProps } from "./Link.types";
@@ -60,6 +61,25 @@ export function Link({
       >
         {content}
       </span>
+    );
+  }
+
+  // Use React Router Link for internal navigation when available
+  const isInternalLink = !external && url && url.startsWith("/");
+  
+  if (isInternalLink) {
+    return (
+      <RouterLink
+        to={url}
+        {...(ariaLabel && { "aria-label": ariaLabel })}
+        {...(ariaExpanded && { "aria-expanded": ariaExpanded })}
+        {...(ariaControls && { "aria-controls": ariaControls })}
+        {...(ariaHaspopup && { "aria-haspopup": ariaHaspopup })}
+        className={linkClassNames}
+        style={UNSAFE_style.container}
+      >
+        {content}
+      </RouterLink>
     );
   }
 
