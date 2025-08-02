@@ -1,5 +1,11 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
+import {
+  Route,
+  RouteChildrenProps,
+  BrowserRouter as Router,
+  Switch,
+} from "react-router-dom";
 import { Link } from ".";
 
 const testUrl = "https://getjobber.com";
@@ -241,6 +247,84 @@ describe("when a Link is rendered", () => {
       );
       const link = container.querySelector("a");
       expect(link?.style.marginTop).toBe("10px");
+    });
+  });
+
+  describe("client-side routing", () => {
+    it("navigates when links with button styling are clicked", () => {
+      const { getByText, queryByText } = render(
+        <Router>
+          <Link url="/" type="primary" variation="work">
+            Home
+          </Link>
+          <Link url="/office" type="secondary" variation="work">
+            Office
+          </Link>
+          <Link url="/dentist" type="tertiary" variation="destructive">
+            Dentist
+          </Link>
+          <Switch>
+            <Route exact path="/">
+              This is my home, time to get cozy.
+            </Route>
+            <Route exact path="/office">
+              This is my office, time to get to work.
+            </Route>
+            <Route exact path="/dentist">
+              This is the dentist, time to get my teeth fixed.
+            </Route>
+          </Switch>
+        </Router>,
+      );
+
+      expect(queryByText("This is my home, time to get cozy.")).toBeInstanceOf(
+        HTMLElement,
+      );
+      expect(
+        queryByText("This is my office, time to get to work."),
+      ).not.toBeInstanceOf(HTMLElement);
+      expect(
+        queryByText("This is the dentist, time to get my teeth fixed."),
+      ).not.toBeInstanceOf(HTMLElement);
+
+      fireEvent.click(getByText("Office"));
+
+      expect(
+        queryByText("This is my home, time to get cozy."),
+      ).not.toBeInstanceOf(HTMLElement);
+      expect(
+        queryByText("This is my office, time to get to work."),
+      ).toBeInstanceOf(HTMLElement);
+      expect(
+        queryByText("This is the dentist, time to get my teeth fixed."),
+      ).not.toBeInstanceOf(HTMLElement);
+
+      fireEvent.click(getByText("Dentist"));
+
+      expect(
+        queryByText("This is my home, time to get cozy."),
+      ).not.toBeInstanceOf(HTMLElement);
+      expect(
+        queryByText("This is my office, time to get to work."),
+      ).not.toBeInstanceOf(HTMLElement);
+      expect(
+        queryByText("This is the dentist, time to get my teeth fixed."),
+      ).toBeInstanceOf(HTMLElement);
+    });
+
+    it("renders Link with button-like appearance for navigation", () => {
+      const { container } = render(
+        <Router>
+          <Link url="/jobber" type="primary" size="large" icon="dashboard">
+            Go to Dashboard
+          </Link>
+        </Router>,
+      );
+      const link = container.querySelector("a");
+      expect(link?.className).toContain("primary");
+      expect(link?.className).toContain("large");
+      expect(link?.className).toContain("withIcon");
+      expect(link?.getAttribute("href")).toBe("/jobber");
     });
   });
 });
