@@ -1,1 +1,0 @@
-export { DataTableTableRoot } from "./DataTableTableRoot";

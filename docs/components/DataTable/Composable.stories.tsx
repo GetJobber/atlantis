@@ -245,7 +245,7 @@ function CustomHeader() {
 
 export const Basic = () => {
   return (
-    <DataTable.TableLayout>
+    <DataTable.TableContainer>
       <DataTable.Table>
         <DataTable.Header>
           <DataTable.HeaderCell>Name</DataTable.HeaderCell>
@@ -264,7 +264,7 @@ export const Basic = () => {
           ))}
         </DataTable.TableBody>
       </DataTable.Table>
-    </DataTable.TableLayout>
+    </DataTable.TableContainer>
   );
 };
 
@@ -330,7 +330,7 @@ export const WithTableActions = () => {
   };
 
   return (
-    <div>
+    <DataTable.DataTableProvider table={table}>
       <DataTable.TableActions>
         <Combobox
           label="Role"
@@ -371,7 +371,7 @@ export const WithTableActions = () => {
         </Combobox>
       </DataTable.TableActions>
 
-      <DataTable.TableLayout>
+      <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Name</DataTable.HeaderCell>
@@ -390,8 +390,8 @@ export const WithTableActions = () => {
             ))}
           </DataTable.TableBody>
         </DataTable.Table>
-      </DataTable.TableLayout>
-    </div>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
   );
 };
 
@@ -445,30 +445,32 @@ export const WithRowActions = () => {
   });
 
   return (
-    <DataTable.TableLayout>
-      <DataTable.Table>
-        <DataTable.Header>
-          <DataTable.HeaderCell>Name</DataTable.HeaderCell>
-          <DataTable.HeaderCell>Role</DataTable.HeaderCell>
-          <DataTable.HeaderCell>Email</DataTable.HeaderCell>
-        </DataTable.Header>
-        <DataTable.TableBody>
-          {table.getRowModel().rows.map(row => (
-            <DataTable.Row
-              key={row.id}
-              onMouseEnter={() => setHoveredRow(row.original.id)}
-              onMouseLeave={() => setHoveredRow(null)}
-            >
-              {row.getVisibleCells().map(cell => (
-                <DataTable.Cell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </DataTable.Cell>
-              ))}
-            </DataTable.Row>
-          ))}
-        </DataTable.TableBody>
-      </DataTable.Table>
-    </DataTable.TableLayout>
+    <DataTable.DataTableProvider table={table}>
+      <DataTable.TableContainer>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Role</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row
+                key={row.id}
+                onMouseEnter={() => setHoveredRow(row.original.id)}
+                onMouseLeave={() => setHoveredRow(null)}
+              >
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+        </DataTable.Table>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
   );
 };
 
@@ -509,27 +511,29 @@ export const PaymentMethods = () => {
   });
 
   return (
-    <DataTable.TableLayout>
-      <DataTable.Table>
-        <DataTable.Header>
-          <DataTable.HeaderCell>Method</DataTable.HeaderCell>
-          <DataTable.HeaderCell style={{ textAlign: "right" }}>
-            Expiry
-          </DataTable.HeaderCell>
-        </DataTable.Header>
-        <DataTable.TableBody>
-          {table.getRowModel().rows.map(row => (
-            <DataTable.Row key={row.id}>
-              {row.getVisibleCells().map(cell => (
-                <DataTable.Cell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </DataTable.Cell>
-              ))}
-            </DataTable.Row>
-          ))}
-        </DataTable.TableBody>
-      </DataTable.Table>
-    </DataTable.TableLayout>
+    <DataTable.DataTableProvider table={table}>
+      <DataTable.TableContainer>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Method</DataTable.HeaderCell>
+            <DataTable.HeaderCell style={{ textAlign: "right" }}>
+              Expiry
+            </DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+        </DataTable.Table>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
   );
 };
 
@@ -568,7 +572,7 @@ export const Sortable = () => {
 
   return (
     <DataTable.DataTableProvider table={table}>
-      <DataTable.TableLayout>
+      <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
             <CustomHeader />
@@ -585,7 +589,7 @@ export const Sortable = () => {
             ))}
           </DataTable.TableBody>
         </DataTable.Table>
-      </DataTable.TableLayout>
+      </DataTable.TableContainer>
     </DataTable.DataTableProvider>
   );
 };
@@ -625,8 +629,8 @@ export const WithPagination = () => {
   });
 
   return (
-    <div>
-      <DataTable.TableLayout>
+    <DataTable.DataTableProvider table={table}>
+      <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Name</DataTable.HeaderCell>
@@ -672,8 +676,8 @@ export const WithPagination = () => {
             </DataTable.Pagination>
           </DataTable.Footer>
         </DataTable.Table>
-      </DataTable.TableLayout>
-    </div>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
   );
 };
 
@@ -732,8 +736,8 @@ export const FinancialTransactions = () => {
   });
 
   return (
-    <div>
-      <DataTable.TableLayout>
+    <DataTable.DataTableProvider table={table}>
+      <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Item</DataTable.HeaderCell>
@@ -802,7 +806,360 @@ export const FinancialTransactions = () => {
             </DataTable.Pagination>
           </DataTable.Footer>
         </DataTable.Table>
-      </DataTable.TableLayout>
-    </div>
+      </DataTable.TableContainer>
+      {/* </div> */}
+    </DataTable.DataTableProvider>
+  );
+};
+
+const businessObjectsData = [
+  {
+    id: "1",
+    type: "invoice",
+    item: "Invoice #123",
+    description: "For Services rendered",
+    property: "1234 Maple Street",
+    date: "Due July 3, 2025",
+    status: "Late",
+    statusType: "warning" as const,
+    amount: "$2400.00",
+    icon: "file" as IconNames,
+  },
+  {
+    id: "2",
+    type: "job",
+    item: "Job #22",
+    description: "Hardscaping - Lory",
+    property: "789 Pine Blvd",
+    date: "Scheduled for Jul 1, 2025",
+    status: "Today",
+    statusType: "success" as const,
+    amount: "$2700.00",
+    icon: "job" as IconNames,
+  },
+  {
+    id: "3",
+    type: "job",
+    item: "Job #72",
+    description: "Hardscaping",
+    property: "1234 Maple Street",
+    date: "Completed Jul 1, 2025",
+    status: "Archived",
+    statusType: "inactive" as const,
+    amount: "$2400.00",
+    icon: "job" as IconNames,
+  },
+  {
+    id: "4",
+    type: "quote",
+    item: "Quote #42",
+    description: "Hardscaping",
+    property: "1234 Maple Street",
+    date: "Created Jun 17, 2025",
+    status: "Converted",
+    statusType: "informative" as const,
+    amount: "$2400.00",
+    icon: "quote" as IconNames,
+  },
+  {
+    id: "5",
+    type: "invoice",
+    item: "Invoice #124",
+    description: "Landscaping services",
+    property: "456 Oak Avenue",
+    date: "Due Aug 15, 2025",
+    status: "Pending",
+    statusType: "inactive" as const,
+    amount: "$1800.00",
+    icon: "invoice" as IconNames,
+  },
+  {
+    id: "6",
+    type: "request",
+    item: "Request #88",
+    description: "Lawn maintenance",
+    property: "789 Pine Blvd",
+    date: "Received Jul 20, 2025",
+    status: "New",
+    statusType: "success" as const,
+    amount: "$500.00",
+    icon: "request" as IconNames,
+  },
+  {
+    id: "7",
+    type: "quote",
+    item: "Quote #51",
+    description: "Pool installation",
+    property: "321 Cedar Street",
+    date: "Created Jul 10, 2025",
+    status: "Pending",
+    statusType: "inactive" as const,
+    amount: "$15000.00",
+    icon: "quote" as IconNames,
+  },
+  {
+    id: "8",
+    type: "job",
+    item: "Job #45",
+    description: "Deck construction",
+    property: "456 Oak Avenue",
+    date: "In Progress Jul 25, 2025",
+    status: "Active",
+    statusType: "informative" as const,
+    amount: "$3200.00",
+    icon: "job" as IconNames,
+  },
+];
+
+type ObjectType = "all" | "invoice" | "job" | "quote" | "request";
+
+export const ObjectsTable = () => {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [selectedObjectType, setSelectedObjectType] =
+    useState<ObjectType>("all");
+  const [selectedProperties, setSelectedProperties] = useState<
+    ComboboxOption[]
+  >([]);
+
+  // Get unique properties for combobox options
+  const propertyOptions = Array.from(
+    new Set(businessObjectsData.map(item => item.property)),
+  ).map(property => ({
+    id: property,
+    label: property,
+  }));
+
+  // Object type options with counts (excluding "all")
+  const objectTypeOptions: Array<{
+    id: ObjectType;
+    label: string;
+    count: number;
+    icon: IconNames;
+  }> = [
+    {
+      id: "request",
+      label: "Requests",
+      count: businessObjectsData.filter(item => item.type === "request").length,
+      icon: "request",
+    },
+    {
+      id: "quote",
+      label: "Quotes",
+      count: businessObjectsData.filter(item => item.type === "quote").length,
+      icon: "quote",
+    },
+    {
+      id: "job",
+      label: "Jobs",
+      count: businessObjectsData.filter(item => item.type === "job").length,
+      icon: "job",
+    },
+    {
+      id: "invoice",
+      label: "Invoices",
+      count: businessObjectsData.filter(item => item.type === "invoice").length,
+      icon: "invoice",
+    },
+  ];
+
+  // TanStack table setup with filtering
+  const table = useReactTable({
+    data: businessObjectsData,
+    columns: [
+      {
+        accessorKey: "item",
+        header: "Item",
+        cell: ({ row }) => (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "var(--space-small)",
+            }}
+          >
+            <Icon name={row.original.icon} />
+            <div>
+              <Typography fontWeight="bold">{row.original.item}</Typography>
+              <Text variation="subdued">{row.original.description}</Text>
+            </div>
+          </div>
+        ),
+      },
+      {
+        accessorKey: "property",
+        header: "Property",
+        filterFn: (row, columnId, filterValue) => {
+          // Handle array filtering for multiple property selection
+          if (!filterValue || filterValue.length === 0) return true;
+          const rowValue = row.getValue(columnId) as string;
+
+          return filterValue.includes(rowValue);
+        },
+      },
+      {
+        accessorKey: "date",
+        header: "Date",
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => (
+          <StatusLabel
+            status={row.original.statusType}
+            label={row.original.status}
+          />
+        ),
+      },
+      {
+        accessorKey: "amount",
+        header: "Amount",
+        cell: ({ row }) => (
+          <div style={{ textAlign: "right" }}>{row.original.amount}</div>
+        ),
+      },
+      {
+        accessorKey: "type",
+        header: "Type",
+        filterFn: (row, columnId, filterValue) => {
+          if (!filterValue) return true;
+          const rowValue = row.getValue(columnId) as string;
+
+          return rowValue === filterValue;
+        },
+      },
+    ],
+    state: {
+      columnFilters,
+    },
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+  });
+
+  // Update filters when selections change
+  React.useEffect(() => {
+    // Update object type filter - only set if not "all"
+    table
+      .getColumn("type")
+      ?.setFilterValue(
+        selectedObjectType === "all" ? undefined : selectedObjectType,
+      );
+  }, [selectedObjectType, table]);
+
+  React.useEffect(() => {
+    // Update property filter
+    const propertyValues = selectedProperties.map(option => option.label);
+    table.getColumn("property")?.setFilterValue(propertyValues);
+  }, [selectedProperties, table]);
+
+  const handleObjectTypeSelect = (objectType: ObjectType) => {
+    setSelectedObjectType(objectType);
+  };
+
+  const handlePropertySelect = (selectedOptions: ComboboxOption[]) => {
+    setSelectedProperties(selectedOptions);
+  };
+
+  const clearPropertyFilter = () => {
+    setSelectedProperties([]);
+  };
+
+  return (
+    <DataTable.DataTableProvider table={table}>
+      {/* <div> */}
+      <DataTable.TableActions>
+        <Combobox
+          label="Property"
+          selected={selectedProperties}
+          onSelect={handlePropertySelect}
+          multiSelect
+        >
+          <Combobox.Activator>
+            <Chip
+              label={
+                selectedProperties.length > 0
+                  ? selectedProperties.map(option => option.label).join(", ")
+                  : ""
+              }
+              heading="Property"
+              variation={selectedProperties.length > 0 ? "base" : "subtle"}
+            >
+              <Chip.Suffix
+                {...(selectedProperties.length > 0
+                  ? { onClick: clearPropertyFilter }
+                  : {})}
+              >
+                <Icon
+                  name={selectedProperties.length > 0 ? "cross" : "add"}
+                  size="small"
+                />
+              </Chip.Suffix>
+            </Chip>
+          </Combobox.Activator>
+
+          {propertyOptions.map(option => (
+            <Combobox.Option
+              key={option.id}
+              id={option.id}
+              label={option.label}
+            />
+          ))}
+        </Combobox>
+
+        {/* Object type chips - mutually exclusive */}
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--space-small)",
+          }}
+        >
+          {objectTypeOptions.map(option => (
+            <Chip
+              key={option.id}
+              label={option.label}
+              variation={selectedObjectType === option.id ? "base" : "subtle"}
+              onClick={() => handleObjectTypeSelect(option.id)}
+            >
+              <Chip.Prefix>
+                <Icon name={option.icon} size="large" />
+              </Chip.Prefix>
+            </Chip>
+          ))}
+        </div>
+      </DataTable.TableActions>
+
+      <DataTable.TableContainer>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Item</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Property</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Date</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Status</DataTable.HeaderCell>
+            <DataTable.HeaderCell style={{ textAlign: "right" }}>
+              Amount
+            </DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => {
+                  // Skip rendering the type column since it's used for filtering only
+                  if (cell.column.id === "type") return null;
+
+                  return (
+                    <DataTable.Cell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </DataTable.Cell>
+                  );
+                })}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+        </DataTable.Table>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
   );
 };
