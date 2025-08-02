@@ -1,4 +1,235 @@
+:root {
+  --public--link--color-variation: var(--color-interactive);
+  --public--link--color-variation--hover: var(--color-interactive--hover);
+}
+
 .link {
-  color: var(--color-interactive);
-  text-decoration: underline;
+  --link--color-surface: var(--color-surface);
+  --link--color-surface--hover: var(--color-surface--hover);
+  --link--color-primaryLabel: var(--color-surface);
+  --link--duration-loading: var(--timing-loading--extended);
+  --link--size: 40px;
+
+  display: inline-flex;
+  min-height: var(--link--size);
+  box-sizing: border-box;
+  margin: 0;
+  border: var(--border-base) solid transparent;
+  border-radius: var(--radius-base);
+  color: var(--public--link--color-variation);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all var(--timing-base) ease-out;
+  appearance: none;
+  fill: var(--public--link--color-variation);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-smaller);
+}
+
+.link * {
+  color: inherit;
+  fill: inherit !important;
+}
+
+.link:hover,
+.link:focus-visible,
+.link:active {
+  text-decoration: none;
+  outline: none;
+}
+
+/* Size variations */
+.small {
+  --link--size: 32px;
+  padding: var(--space-smallest) var(--space-small);
+  font-size: var(--typography--fontSize-small);
+}
+
+.base {
+  --link--size: 40px;
+  padding: var(--space-smaller) var(--space-base);
+  font-size: var(--typography--fontSize-base);
+}
+
+.large {
+  --link--size: 48px;
+  padding: var(--space-small) var(--space-large);
+  font-size: var(--typography--fontSize-large);
+}
+
+/* Type variations */
+.primary {
+  border-color: var(--public--link--color-variation);
+  color: var(--link--color-primaryLabel);
+  background-color: var(--public--link--color-variation);
+  fill: var(--link--color-primaryLabel);
+}
+
+.primary:hover,
+.primary:focus-visible,
+.primary:active {
+  border-color: var(--public--link--color-variation--hover);
+  background-color: var(--public--link--color-variation--hover);
+}
+
+.secondary {
+  border-color: var(--public--link--color-variation);
+  color: var(--public--link--color-variation);
+  background-color: var(--link--color-surface);
+  fill: var(--public--link--color-variation);
+}
+
+.secondary:hover,
+.secondary:focus-visible,
+.secondary:active {
+  border-color: var(--public--link--color-variation--hover);
+  color: var(--public--link--color-variation--hover);
+  fill: var(--public--link--color-variation--hover);
+  background-color: var(--link--color-surface--hover);
+}
+
+.tertiary {
+  border-color: transparent;
+  color: var(--public--link--color-variation);
+  background-color: transparent;
+  fill: var(--public--link--color-variation);
+}
+
+.tertiary:hover,
+.tertiary:focus-visible,
+.tertiary:active {
+  color: var(--public--link--color-variation--hover);
+  fill: var(--public--link--color-variation--hover);
+  background-color: var(--color-surface--hover);
+}
+
+/* Variation colors */
+.work {
+  --public--link--color-variation: var(--color-interactive);
+  --public--link--color-variation--hover: var(--color-interactive--hover);
+}
+
+.learning {
+  --public--link--color-variation: var(--color-informative);
+  --public--link--color-variation--hover: var(--color-informative--hover);
+}
+
+.subtle {
+  --public--link--color-variation: var(--color-text--secondary);
+  --public--link--color-variation--hover: var(--color-text);
+}
+
+.destructive {
+  --public--link--color-variation: var(--color-critical);
+  --public--link--color-variation--hover: var(--color-critical--hover);
+}
+
+/* States */
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.loading {
+  position: relative;
+  color: transparent;
+  fill: transparent;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--public--link--color-variation);
+  border-radius: 50%;
+  animation: spin var(--link--duration-loading) linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Icon handling */
+.withIcon {
+  gap: var(--space-smaller);
+}
+
+.iconOnly {
+  padding: var(--space-smaller);
+}
+
+.iconOnly.small {
+  width: var(--link--size);
+  padding: var(--space-smallest);
+}
+
+.iconOnly.base {
+  width: var(--link--size);
+  padding: var(--space-smaller);
+}
+
+.iconOnly.large {
+  width: var(--link--size);
+  padding: var(--space-small);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Focus styles */
+.link:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Subtle variation specific overrides */
+.subtle.primary {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  fill: var(--color-text);
+}
+
+.subtle.primary:hover,
+.subtle.primary:focus-visible,
+.subtle.primary:active {
+  border-color: var(--color-border--hover);
+  color: var(--color-text);
+  background-color: var(--color-surface--hover);
+}
+
+.subtle.secondary {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  fill: var(--color-text);
+}
+
+.subtle.secondary:hover,
+.subtle.secondary:focus-visible,
+.subtle.secondary:active {
+  border-color: var(--color-border--hover);
+  color: var(--color-text);
+  background-color: var(--color-surface--hover);
 }
