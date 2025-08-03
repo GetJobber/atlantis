@@ -16,9 +16,11 @@
     "packages/site"
   ],
   "scripts": {
+    "bootstrap": "pnpm run --recursive --if-present bootstrap",
     "build": "npm run build:all && npm run generate:sitemap",
     "build:all": "npm run storybook:build && npm run site:build && npm run merge:dist",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
+    "build:packages": "pnpm run --recursive --filter='!@jobber/atlantis-site' --if-present build",
     "ci:release": "lerna publish --yes --no-private",
     "clean": "lerna clean --yes && rm -rf node_modules storybook-static",
     "generate": "plop -- --path='./packages/components/src/'",
@@ -30,6 +32,7 @@
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
     "merge:dist": "mv storybook-static packages/site/dist/storybook && mv packages/site/dist storybook-static",
     "pack": "npm pack -w",
+    "postinstall:build": "pnpm run build:packages",
     "prestart": "npm run build:hooksIndex",
     "preventManualRelease": "node scripts/preventManualRelease.js",
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
