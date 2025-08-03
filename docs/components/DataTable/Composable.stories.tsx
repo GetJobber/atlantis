@@ -3,6 +3,7 @@ import { ComponentMeta } from "@storybook/react";
 import {
   ColumnFiltersState,
   PaginationState,
+  RowSelectionState,
   SortingState,
   VisibilityState,
   flexRender,
@@ -1169,7 +1170,6 @@ export const ObjectsTable = () => {
 export const WithColumnVisibility = () => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
-  // TanStack table setup with column visibility
   const table = useReactTable({
     data: exampleData,
     columns: [
@@ -1221,6 +1221,108 @@ export const WithColumnVisibility = () => {
                 {column.columnDef.header as string}
               </DataTable.HeaderCell>
             ))}
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+        </DataTable.Table>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
+  );
+};
+
+export const WithBulkSelection = () => {
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      {
+        id: "select",
+        header: ({ table: tableInstance }) => (
+          <Checkbox
+            checked={tableInstance.getIsAllRowsSelected()}
+            indeterminate={tableInstance.getIsSomeRowsSelected()}
+            onChange={checked => tableInstance.toggleAllRowsSelected(checked)}
+          />
+        ),
+        cell: ({ row }) => (
+          <Checkbox
+            checked={row.getIsSelected()}
+            disabled={!row.getCanSelect()}
+            onChange={checked => row.toggleSelected(checked)}
+          />
+        ),
+      },
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+      },
+    ],
+    state: {
+      rowSelection,
+    },
+    enableRowSelection: true,
+    onRowSelectionChange: setRowSelection,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  const selectedCount = Object.keys(rowSelection).length;
+
+  return (
+    <DataTable.DataTableProvider table={table}>
+      <DataTable.TableActions>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--space-base)",
+            alignItems: "center",
+          }}
+        >
+          <Typography fontWeight="bold">
+            {selectedCount > 0
+              ? `${selectedCount} selected`
+              : "Select rows for bulk actions"}
+          </Typography>
+        </div>
+      </DataTable.TableActions>
+
+      <DataTable.TableContainer>
+        <DataTable.Table>
+          <DataTable.Header>
+            {table
+              .getHeaderGroups()
+              .map(headerGroup =>
+                headerGroup.headers.map(header => (
+                  <DataTable.HeaderCell key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                  </DataTable.HeaderCell>
+                )),
+              )}
           </DataTable.Header>
           <DataTable.TableBody>
             {table.getRowModel().rows.map(row => (
