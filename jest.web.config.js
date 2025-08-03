@@ -12,6 +12,8 @@ module.exports = {
       "<rootDir>/node_modules/react-markdown/react-markdown.min.js",
     "^@jobber/hooks/(.*)$": "<rootDir>/packages/hooks/dist/$1",
     "^@jobber/components/(.*)$": "<rootDir>/packages/components/src/$1",
+    "^@jobber/design$": "<rootDir>/packages/design/src/index.ts",
+    "^@jobber/formatters$": "<rootDir>/packages/formatters/src/index.ts",
   },
   // Automatically clear mock calls and instances between every test
   clearMocks: true,
