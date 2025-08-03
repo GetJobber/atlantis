@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React, { useEffect, useState } from "react";
 import { ComponentMeta } from "@storybook/react";
 import {
@@ -20,6 +21,7 @@ import {
 } from "@jobber/components/DataTable";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
+import { ChipDismissible } from "@jobber/components/Chips";
 import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Icon, IconNames } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
@@ -1069,6 +1071,10 @@ export const AdvancedFiltering = () => {
     setSelectedProperties([]);
   };
 
+  const clearObjectTypeFilter = () => {
+    setSelectedObjectType("all");
+  };
+
   return (
     <DataTable.DataTableProvider table={table}>
       {/* <div> */}
@@ -1118,18 +1124,34 @@ export const AdvancedFiltering = () => {
             gap: "var(--space-small)",
           }}
         >
-          {objectTypeOptions.map(option => (
-            <Chip
-              key={option.id}
-              label={option.label}
-              variation={selectedObjectType === option.id ? "base" : "subtle"}
-              onClick={() => handleObjectTypeSelect(option.id)}
-            >
-              <Chip.Prefix>
-                <Icon name={option.icon} size="large" />
-              </Chip.Prefix>
-            </Chip>
-          ))}
+          {objectTypeOptions.map(option => {
+            const isSelected = selectedObjectType === option.id;
+
+            if (isSelected) {
+              return (
+                <ChipDismissible
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleObjectTypeSelect(option.id)}
+                  onRequestRemove={clearObjectTypeFilter}
+                  prefix={<Icon name={option.icon} size="large" />}
+                />
+              );
+            }
+
+            return (
+              <Chip
+                key={option.id}
+                label={option.label}
+                variation="subtle"
+                onClick={() => handleObjectTypeSelect(option.id)}
+              >
+                <Chip.Prefix>
+                  <Icon name={option.icon} size="large" />
+                </Chip.Prefix>
+              </Chip>
+            );
+          })}
         </div>
       </DataTable.TableActions>
 
