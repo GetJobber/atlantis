@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ComponentMeta } from "@storybook/react";
 import {
   ColumnFiltersState,
@@ -26,6 +26,8 @@ import { Text } from "@jobber/components/Text";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Typography } from "@jobber/components/Typography";
 import { Checkbox } from "@jobber/components/Checkbox";
+import { InputText } from "@jobber/components/InputText";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web/Composable",
@@ -271,7 +273,7 @@ export const Basic = () => {
   );
 };
 
-export const WithTableActions = () => {
+export const TableActions = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [selectedRoles, setSelectedRoles] = useState<ComboboxOption[]>([]);
 
@@ -398,7 +400,7 @@ export const WithTableActions = () => {
   );
 };
 
-export const WithRowActions = () => {
+export const RowActions = () => {
   const [hoveredRow, setHoveredRow] = React.useState<string | null>(null);
 
   // TanStack table setup
@@ -477,7 +479,7 @@ export const WithRowActions = () => {
   );
 };
 
-export const PaymentMethods = () => {
+export const EndAlignedColumns = () => {
   const table = useReactTable({
     data: paymentMethodsData,
     columns: [
@@ -684,7 +686,7 @@ export const WithPagination = () => {
   );
 };
 
-export const FinancialTransactions = () => {
+export const DoubleFooter = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 6,
@@ -916,7 +918,7 @@ const businessObjectsData = [
 
 type ObjectType = "all" | "invoice" | "job" | "quote" | "request";
 
-export const ObjectsTable = () => {
+export const AdvancedFiltering = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [selectedObjectType, setSelectedObjectType] =
     useState<ObjectType>("all");
@@ -1167,7 +1169,7 @@ export const ObjectsTable = () => {
   );
 };
 
-export const WithColumnVisibility = () => {
+export const ColumnVisibility = () => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
   const table = useReactTable({
@@ -1239,7 +1241,7 @@ export const WithColumnVisibility = () => {
   );
 };
 
-export const WithBulkSelection = () => {
+export const BulkSelection = () => {
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const table = useReactTable({
@@ -1323,6 +1325,223 @@ export const WithBulkSelection = () => {
                   </DataTable.HeaderCell>
                 )),
               )}
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+        </DataTable.Table>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
+  );
+};
+
+export const GlobalSearch = () => {
+  const [globalFilter, setGlobalFilter] = useState("");
+
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+      },
+    ],
+    state: {
+      globalFilter,
+    },
+    onGlobalFilterChange: setGlobalFilter,
+    globalFilterFn: "includesString",
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+  });
+
+  return (
+    <DataTable.DataTableProvider table={table}>
+      <DataTable.TableActions>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--space-base)",
+            alignItems: "center",
+          }}
+        >
+          <InputText
+            version={1}
+            value={globalFilter ?? ""}
+            onChange={value => setGlobalFilter(String(value))}
+            placeholder="Search all columns..."
+          />
+          {/* {globalFilter && (
+            <Typography size="small">
+              {table.getFilteredRowModel().rows.length} results
+            </Typography>
+          )} */}
+        </div>
+      </DataTable.TableActions>
+
+      <DataTable.TableContainer>
+        <DataTable.Table>
+          <DataTable.Header>
+            {table
+              .getHeaderGroups()
+              .map(headerGroup =>
+                headerGroup.headers.map(header => (
+                  <DataTable.HeaderCell key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                  </DataTable.HeaderCell>
+                )),
+              )}
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+        </DataTable.Table>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
+  );
+};
+
+export const MobileResponsive = () => {
+  const { mediumAndUp } = useBreakpoints();
+  const isDesktop = mediumAndUp;
+  const isMobile = !isDesktop;
+
+  const [columnVisibility, setColumnVisibility] = useState({});
+
+  // Update column visibility based on screen size
+  useEffect(() => {
+    setColumnVisibility({
+      // Mobile: Only show the combined cell
+      mobileContent: isMobile,
+
+      // Desktop: Show individual columns, hide combined cell
+      name: isDesktop,
+      role: isDesktop,
+      email: isDesktop,
+      actions: isDesktop,
+    });
+  }, [isDesktop]);
+
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      // Mobile: Combined cell with all information
+      {
+        id: "mobileContent",
+        header: "Contact Information",
+        cell: ({ row }) => (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "var(--space-small)",
+            }}
+          >
+            <Typography fontWeight="bold">{row.original.name}</Typography>
+            <Text variation="subdued">{row.original.role}</Text>
+            <Text variation="subdued">{row.original.email}</Text>
+          </div>
+        ),
+      },
+      // Desktop: Individual columns
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+        cell: ({ row }) => <Text>{row.original.role}</Text>,
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+        cell: ({ row }) => <Text>{row.original.email}</Text>,
+      },
+    ],
+    state: {
+      columnVisibility,
+    },
+    onColumnVisibilityChange: setColumnVisibility,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <DataTable.DataTableProvider table={table}>
+      <DataTable.TableActions>
+        <div
+          style={{
+            display: "flex",
+            gap: "var(--space-base)",
+            alignItems: "center",
+          }}
+        >
+          <Typography fontWeight="bold">
+            {isMobile ? "Mobile Layout" : "Desktop Layout"}
+          </Typography>
+          <Text variation="subdued" size="small">
+            Resize window to see responsive behavior
+          </Text>
+        </div>
+      </DataTable.TableActions>
+
+      <DataTable.TableContainer>
+        <DataTable.Table>
+          <DataTable.Header>
+            {table.getHeaderGroups().map(headerGroup =>
+              headerGroup.headers.map(header => {
+                // Only render headers for visible columns
+                if (header.column.getIsVisible()) {
+                  return (
+                    <DataTable.HeaderCell key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </DataTable.HeaderCell>
+                  );
+                }
+
+                return null;
+              }),
+            )}
           </DataTable.Header>
           <DataTable.TableBody>
             {table.getRowModel().rows.map(row => (
