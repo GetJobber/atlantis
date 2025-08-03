@@ -4,6 +4,7 @@ import {
   ColumnFiltersState,
   PaginationState,
   SortingState,
+  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -23,6 +24,7 @@ import { Icon, IconNames } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Typography } from "@jobber/components/Typography";
+import { Checkbox } from "@jobber/components/Checkbox";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web/Composable",
@@ -1155,6 +1157,79 @@ export const ObjectsTable = () => {
                     </DataTable.Cell>
                   );
                 })}
+              </DataTable.Row>
+            ))}
+          </DataTable.TableBody>
+        </DataTable.Table>
+      </DataTable.TableContainer>
+    </DataTable.DataTableProvider>
+  );
+};
+
+export const WithColumnVisibility = () => {
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+
+  // TanStack table setup with column visibility
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+      },
+    ],
+    state: {
+      columnVisibility,
+    },
+    onColumnVisibilityChange: setColumnVisibility,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <DataTable.DataTableProvider table={table}>
+      <DataTable.TableActions>
+        <div style={{ display: "flex", gap: "var(--space-base)" }}>
+          <Typography fontWeight="bold">Show Columns:</Typography>
+          {table.getAllLeafColumns().map(column => (
+            <Checkbox
+              key={column.id}
+              label={column.columnDef.header as string}
+              checked={column.getIsVisible()}
+              disabled={!column.getCanHide()}
+              onChange={checked => column.toggleVisibility(checked)}
+            />
+          ))}
+        </div>
+      </DataTable.TableActions>
+
+      <DataTable.TableContainer>
+        <DataTable.Table>
+          <DataTable.Header>
+            {table.getVisibleLeafColumns().map(column => (
+              <DataTable.HeaderCell key={column.id}>
+                {column.columnDef.header as string}
+              </DataTable.HeaderCell>
+            ))}
+          </DataTable.Header>
+          <DataTable.TableBody>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
               </DataTable.Row>
             ))}
           </DataTable.TableBody>
