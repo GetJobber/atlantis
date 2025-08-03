@@ -15,7 +15,7 @@ module.exports = {
   },
   testPathIgnorePatterns: ["/node_modules/"],
   transformIgnorePatterns: [
-    "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-native|@react-native/.*)",
+    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)/)",
   ],
   testMatch: ["**/*.test.tsx", "**/*.test.ts"],
   clearMocks: true,
