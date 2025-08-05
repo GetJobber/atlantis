@@ -17,6 +17,7 @@ export interface UseRepositionMenu {
 }
 
 const ROUNDED_BORDER_ARROW_EDGE_OFFSET = 8;
+const PREFERRED_MAX_HEIGHT = 320;
 
 export function useRepositionMenu(
   attachTo: HTMLElement | null,
@@ -28,8 +29,7 @@ export function useRepositionMenu(
       flip({ fallbackPlacements: ["top"] }),
       size({
         apply({ availableHeight, elements }) {
-          // Simple max height - either 320px or available space, whichever is smaller
-          const maxHeight = Math.min(320, availableHeight);
+          const maxHeight = Math.min(PREFERRED_MAX_HEIGHT, availableHeight);
 
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
