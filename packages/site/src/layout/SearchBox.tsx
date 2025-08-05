@@ -61,7 +61,7 @@ export const SearchBox = ({
     );
   };
 
-  useOnKeyDown(event => {
+  useOnKeyDown((event: KeyboardEvent) => {
     event.preventDefault();
     setOpen(true);
   }, "/");
