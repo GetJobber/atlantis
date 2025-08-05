@@ -1,8 +1,8 @@
 import React, { type PropsWithChildren } from "react";
 import classNames from "classnames";
-import styles from "./DataTableTableContainer.module.css";
+import styles from "./DataTableContainer.module.css";
 
-export function DataTableTableContainer(
+export function DataTableContainer(
   props: PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>,
 ) {
   return (

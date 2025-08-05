@@ -254,14 +254,14 @@ function CustomHeader() {
 
 export const Basic = () => {
   return (
-    <DataTable.TableContainer>
+    <DataTable.Container>
       <DataTable.Table>
         <DataTable.Header>
           <DataTable.HeaderCell>Name</DataTable.HeaderCell>
           <DataTable.HeaderCell>Role</DataTable.HeaderCell>
           <DataTable.HeaderCell>Email</DataTable.HeaderCell>
         </DataTable.Header>
-        <DataTable.TableBody>
+        <DataTable.Body>
           {exampleData.map(row => (
             <DataTable.Row key={row.id}>
               <DataTable.Cell>
@@ -271,9 +271,9 @@ export const Basic = () => {
               <DataTable.Cell>{row.email}</DataTable.Cell>
             </DataTable.Row>
           ))}
-        </DataTable.TableBody>
+        </DataTable.Body>
       </DataTable.Table>
-    </DataTable.TableContainer>
+    </DataTable.Container>
   );
 };
 
@@ -340,7 +340,7 @@ export const TableActions = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableActions>
+      <DataTable.Actions>
         <Combobox
           label="Role"
           selected={selectedRoles}
@@ -378,16 +378,16 @@ export const TableActions = () => {
             />
           ))}
         </Combobox>
-      </DataTable.TableActions>
+      </DataTable.Actions>
 
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Name</DataTable.HeaderCell>
             <DataTable.HeaderCell>Role</DataTable.HeaderCell>
             <DataTable.HeaderCell>Email</DataTable.HeaderCell>
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -397,9 +397,9 @@ export const TableActions = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -455,14 +455,14 @@ export const RowActions = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Name</DataTable.HeaderCell>
             <DataTable.HeaderCell>Role</DataTable.HeaderCell>
             <DataTable.HeaderCell>Email</DataTable.HeaderCell>
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row
                 key={row.id}
@@ -476,9 +476,9 @@ export const RowActions = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -521,7 +521,7 @@ export const EndAlignedColumns = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Method</DataTable.HeaderCell>
@@ -529,7 +529,7 @@ export const EndAlignedColumns = () => {
               Expiry
             </DataTable.HeaderCell>
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -539,9 +539,9 @@ export const EndAlignedColumns = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -581,12 +581,12 @@ export const Sortable = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             <CustomHeader />
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {sortedRows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -596,9 +596,9 @@ export const Sortable = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -639,14 +639,14 @@ export const WithPagination = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Name</DataTable.HeaderCell>
             <DataTable.HeaderCell>Role</DataTable.HeaderCell>
             <DataTable.HeaderCell>Email</DataTable.HeaderCell>
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -656,7 +656,7 @@ export const WithPagination = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
           <DataTable.Footer>
             <DataTable.Pagination
               style={{
@@ -685,7 +685,7 @@ export const WithPagination = () => {
             </DataTable.Pagination>
           </DataTable.Footer>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -746,7 +746,7 @@ export const DoubleFooter = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Item</DataTable.HeaderCell>
@@ -756,7 +756,7 @@ export const DoubleFooter = () => {
               Amount
             </DataTable.HeaderCell>
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -766,7 +766,7 @@ export const DoubleFooter = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
 
           {/* Current balance footer */}
           <DataTable.Footer>
@@ -815,7 +815,7 @@ export const DoubleFooter = () => {
             </DataTable.Pagination>
           </DataTable.Footer>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
       {/* </div> */}
     </DataTable.Provider>
   );
@@ -1080,7 +1080,7 @@ export const AdvancedFiltering = () => {
   return (
     <DataTable.Provider table={table}>
       {/* <div> */}
-      <DataTable.TableActions>
+      <DataTable.Actions>
         <Combobox
           label="Property"
           selected={selectedProperties}
@@ -1155,9 +1155,9 @@ export const AdvancedFiltering = () => {
             );
           })}
         </div>
-      </DataTable.TableActions>
+      </DataTable.Actions>
 
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Item</DataTable.HeaderCell>
@@ -1168,7 +1168,7 @@ export const AdvancedFiltering = () => {
               Amount
             </DataTable.HeaderCell>
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => {
@@ -1186,9 +1186,9 @@ export const AdvancedFiltering = () => {
                 })}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -1224,7 +1224,7 @@ export const ColumnVisibility = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableActions>
+      <DataTable.Actions>
         <div style={{ display: "flex", gap: "var(--space-base)" }}>
           <Typography fontWeight="bold">Show Columns:</Typography>
           {table.getAllLeafColumns().map(column => (
@@ -1237,9 +1237,9 @@ export const ColumnVisibility = () => {
             />
           ))}
         </div>
-      </DataTable.TableActions>
+      </DataTable.Actions>
 
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             {table.getVisibleLeafColumns().map(column => (
@@ -1248,7 +1248,7 @@ export const ColumnVisibility = () => {
               </DataTable.HeaderCell>
             ))}
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -1258,9 +1258,9 @@ export const ColumnVisibility = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -1316,7 +1316,7 @@ export const BulkSelection = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableActions>
+      <DataTable.Actions>
         <div
           style={{
             display: "flex",
@@ -1330,9 +1330,9 @@ export const BulkSelection = () => {
               : "Select rows for bulk actions"}
           </Typography>
         </div>
-      </DataTable.TableActions>
+      </DataTable.Actions>
 
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             {table
@@ -1350,7 +1350,7 @@ export const BulkSelection = () => {
                 )),
               )}
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -1360,9 +1360,9 @@ export const BulkSelection = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -1400,7 +1400,7 @@ export const GlobalSearch = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableActions>
+      <DataTable.Actions>
         <div
           style={{
             display: "flex",
@@ -1420,9 +1420,9 @@ export const GlobalSearch = () => {
             </Typography>
           )} */}
         </div>
-      </DataTable.TableActions>
+      </DataTable.Actions>
 
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             {table
@@ -1440,7 +1440,7 @@ export const GlobalSearch = () => {
                 )),
               )}
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -1450,9 +1450,9 @@ export const GlobalSearch = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -1527,7 +1527,7 @@ export const MobileResponsive = () => {
 
   return (
     <DataTable.Provider table={table}>
-      <DataTable.TableActions>
+      <DataTable.Actions>
         <div
           style={{
             display: "flex",
@@ -1542,9 +1542,9 @@ export const MobileResponsive = () => {
             Resize window to see responsive behavior
           </Text>
         </div>
-      </DataTable.TableActions>
+      </DataTable.Actions>
 
-      <DataTable.TableContainer>
+      <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
             {table.getHeaderGroups().map(headerGroup =>
@@ -1567,7 +1567,7 @@ export const MobileResponsive = () => {
               }),
             )}
           </DataTable.Header>
-          <DataTable.TableBody>
+          <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
@@ -1577,9 +1577,9 @@ export const MobileResponsive = () => {
                 ))}
               </DataTable.Row>
             ))}
-          </DataTable.TableBody>
+          </DataTable.Body>
         </DataTable.Table>
-      </DataTable.TableContainer>
+      </DataTable.Container>
     </DataTable.Provider>
   );
 };
@@ -1626,7 +1626,7 @@ export const RowSelection = () => {
   return (
     <>
       <DataTable.Provider table={table}>
-        <DataTable.TableActions>
+        <DataTable.Actions>
           <div
             style={{
               display: "flex",
@@ -1641,9 +1641,9 @@ export const RowSelection = () => {
               Row selection opens a modal with detailed information
             </Text>
           </div>
-        </DataTable.TableActions>
+        </DataTable.Actions>
 
-        <DataTable.TableContainer>
+        <DataTable.Container>
           <DataTable.Table>
             <DataTable.Header>
               {table
@@ -1661,7 +1661,7 @@ export const RowSelection = () => {
                   )),
                 )}
             </DataTable.Header>
-            <DataTable.TableBody>
+            <DataTable.Body>
               {table.getRowModel().rows.map(row => (
                 <DataTable.Row
                   key={row.id}
@@ -1678,9 +1678,9 @@ export const RowSelection = () => {
                   ))}
                 </DataTable.Row>
               ))}
-            </DataTable.TableBody>
+            </DataTable.Body>
           </DataTable.Table>
-        </DataTable.TableContainer>
+        </DataTable.Container>
       </DataTable.Provider>
 
       <Modal
