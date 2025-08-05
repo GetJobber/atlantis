@@ -4,7 +4,7 @@ export * from "./types";
 
 export * from "./test-utilities/helpers";
 
-export * from "./context/DataTableContext";
+export * from "./DataTableProvider";
 
 export { SortIcon, SortDirection } from "./SortIcon";
 
