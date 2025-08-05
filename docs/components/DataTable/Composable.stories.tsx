@@ -29,7 +29,9 @@ import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Typography } from "@jobber/components/Typography";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
+import { Modal } from "@jobber/components/Modal";
 import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
+import { Content } from "@jobber/components/Content";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web/Composable",
@@ -337,7 +339,7 @@ export const TableActions = () => {
   };
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableActions>
         <Combobox
           label="Role"
@@ -398,7 +400,7 @@ export const TableActions = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -452,7 +454,7 @@ export const RowActions = () => {
   });
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
@@ -477,7 +479,7 @@ export const RowActions = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -518,7 +520,7 @@ export const EndAlignedColumns = () => {
   });
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
@@ -540,7 +542,7 @@ export const EndAlignedColumns = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -578,7 +580,7 @@ export const Sortable = () => {
   const sortedRows = table.getRowModel().rows;
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
@@ -597,7 +599,7 @@ export const Sortable = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -636,7 +638,7 @@ export const WithPagination = () => {
   });
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
@@ -684,7 +686,7 @@ export const WithPagination = () => {
           </DataTable.Footer>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -743,7 +745,7 @@ export const DoubleFooter = () => {
   });
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableContainer>
         <DataTable.Table>
           <DataTable.Header>
@@ -815,7 +817,7 @@ export const DoubleFooter = () => {
         </DataTable.Table>
       </DataTable.TableContainer>
       {/* </div> */}
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -1076,7 +1078,7 @@ export const AdvancedFiltering = () => {
   };
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       {/* <div> */}
       <DataTable.TableActions>
         <Combobox
@@ -1187,7 +1189,7 @@ export const AdvancedFiltering = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -1221,7 +1223,7 @@ export const ColumnVisibility = () => {
   });
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableActions>
         <div style={{ display: "flex", gap: "var(--space-base)" }}>
           <Typography fontWeight="bold">Show Columns:</Typography>
@@ -1259,7 +1261,7 @@ export const ColumnVisibility = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -1313,7 +1315,7 @@ export const BulkSelection = () => {
   const selectedCount = Object.keys(rowSelection).length;
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableActions>
         <div
           style={{
@@ -1361,7 +1363,7 @@ export const BulkSelection = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -1397,7 +1399,7 @@ export const GlobalSearch = () => {
   });
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableActions>
         <div
           style={{
@@ -1451,7 +1453,7 @@ export const GlobalSearch = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
   );
 };
 
@@ -1524,7 +1526,7 @@ export const MobileResponsive = () => {
   });
 
   return (
-    <DataTable.DataTableProvider table={table}>
+    <DataTable.Provider table={table}>
       <DataTable.TableActions>
         <div
           style={{
@@ -1578,6 +1580,134 @@ export const MobileResponsive = () => {
           </DataTable.TableBody>
         </DataTable.Table>
       </DataTable.TableContainer>
-    </DataTable.DataTableProvider>
+    </DataTable.Provider>
+  );
+};
+
+export const RowSelection = () => {
+  const [selectedRow, setSelectedRow] = useState<
+    (typeof exampleData)[0] | null
+  >(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+      },
+    ],
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  const handleRowClick = (row: (typeof exampleData)[0]) => {
+    console.log("Row clicked:", row);
+    setSelectedRow(row);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedRow(null);
+  };
+
+  return (
+    <>
+      <DataTable.Provider table={table}>
+        <DataTable.TableActions>
+          <div
+            style={{
+              display: "flex",
+              gap: "var(--space-base)",
+              alignItems: "center",
+            }}
+          >
+            <Typography fontWeight="bold">
+              Click any row to view details
+            </Typography>
+            <Text variation="subdued" size="small">
+              Row selection opens a modal with detailed information
+            </Text>
+          </div>
+        </DataTable.TableActions>
+
+        <DataTable.TableContainer>
+          <DataTable.Table>
+            <DataTable.Header>
+              {table
+                .getHeaderGroups()
+                .map(headerGroup =>
+                  headerGroup.headers.map(header => (
+                    <DataTable.HeaderCell key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </DataTable.HeaderCell>
+                  )),
+                )}
+            </DataTable.Header>
+            <DataTable.TableBody>
+              {table.getRowModel().rows.map(row => (
+                <DataTable.Row
+                  key={row.id}
+                  onClick={() => handleRowClick(row.original)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {row.getVisibleCells().map(cell => (
+                    <DataTable.Cell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </DataTable.Cell>
+                  ))}
+                </DataTable.Row>
+              ))}
+            </DataTable.TableBody>
+          </DataTable.Table>
+        </DataTable.TableContainer>
+      </DataTable.Provider>
+
+      <Modal
+        open={isModalOpen}
+        onRequestClose={closeModal}
+        title="Row Details"
+        secondaryAction={{ label: "Close", onClick: closeModal }}
+      >
+        {selectedRow && (
+          <Content>
+            <div>
+              <Typography fontWeight="bold" size="large">
+                {selectedRow.name}
+              </Typography>
+              <Text variation="subdued">{selectedRow.role}</Text>
+            </div>
+            <div>
+              <Typography fontWeight="bold">Email</Typography>
+              <Text>{selectedRow.email}</Text>
+            </div>
+            <div>
+              <Typography fontWeight="bold">Role</Typography>
+              <Text>{selectedRow.role}</Text>
+            </div>
+          </Content>
+        )}
+      </Modal>
+    </>
   );
 };
