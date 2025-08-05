@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import { View } from "react-native-web";
 import { Modalize } from "react-native-modalize";
 import { IntlProvider } from "react-intl";
-import { useFormState, useIsMounted } from "@jobber/hooks";
+import { useFormState } from "@jobber/hooks/useFormState";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 
 window.React = React;
 window.ReactDOM = ReactDOM;

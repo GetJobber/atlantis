@@ -3,7 +3,7 @@ import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Keyboard, View } from "react-native";
-import { Clearable } from "@jobber/hooks";
+import { Clearable } from "@jobber/hooks/useShowClear";
 import { styles } from "./InputTime.style";
 import { getTimeZoneOffsetInMinutes, roundUpToNearestMinutes } from "./utils";
 import { useAtlantisContext } from "../AtlantisContext";

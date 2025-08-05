@@ -1,5 +1,5 @@
 import { Box, Button, Tooltip } from "@jobber/components";
-import { useBreakpoints } from "@jobber/hooks";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import { Link } from "react-router-dom";
 import { SearchButton } from "./SearchButton";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";

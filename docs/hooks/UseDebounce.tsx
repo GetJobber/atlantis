@@ -3,7 +3,7 @@ import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";
-import { useDebounce } from "@jobber/hooks";
+import { useDebounce } from "@jobber/hooks/useDebounce";
 import { Heading } from "@jobber/components/Heading";
 
 export function UseDebounce() {

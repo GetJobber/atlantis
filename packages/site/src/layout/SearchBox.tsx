@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@jobber/components";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useOnKeyDown } from "@jobber/hooks";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import styles from "./SearchBox.module.css";
 import { SearchBoxSection } from "./SearchBoxSection";
 import { ToolBoxIllustration } from "../assets/ToolBoxIllustration";

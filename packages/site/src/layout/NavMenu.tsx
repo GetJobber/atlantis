@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@jobber/components";
 import { Link, useLocation } from "react-router-dom";
 import { Fragment, PropsWithChildren, useRef } from "react";
-import { useBreakpoints } from "@jobber/hooks";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import AnimatedPresenceDisclosure from "./AnimatedPresenceDisclosure";
 import styles from "./NavMenu.module.css";
 import { LeftDrawer } from "./LeftDrawer";
