@@ -398,6 +398,33 @@ export const TableActions = () => {
               </DataTable.Row>
             ))}
           </DataTable.Body>
+          <DataTable.Footer>
+            <DataTable.Pagination
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text>
+                Showing {table.getRowModel().rows.length} of{" "}
+                {exampleData.length} items
+              </Text>
+
+              <div style={{ display: "flex", gap: "var(--space-small)" }}>
+                <DataTable.PaginationButton
+                  direction="previous"
+                  disabled={!table.getCanPreviousPage()}
+                  onClick={() => table.previousPage()}
+                />
+                <DataTable.PaginationButton
+                  direction="next"
+                  disabled={!table.getCanNextPage()}
+                  onClick={() => table.nextPage()}
+                />
+              </div>
+            </DataTable.Pagination>
+          </DataTable.Footer>
         </DataTable.Table>
       </DataTable.Container>
     </DataTable.Provider>
@@ -425,29 +452,41 @@ export const RowActions = () => {
       {
         accessorKey: "email",
         header: "Email",
+      },
+      {
+        id: "actions",
+        header: "",
         cell: ({ row }) => (
-          <div>
-            {row.original.email}
-            {hoveredRow === row.original.id && (
-              <DataTable.RowActions>
-                <Button
-                  icon="checkmark"
-                  ariaLabel={`Complete ${row.original.name}`}
-                  type="secondary"
-                  variation="subtle"
-                  onClick={() => alert(`Complete ${row.original.name}`)}
-                />
-                <Button
-                  icon="edit"
-                  ariaLabel={`Edit ${row.original.name}`}
-                  type="secondary"
-                  variation="subtle"
-                  onClick={() => alert(`Edit ${row.original.name}`)}
-                />
-              </DataTable.RowActions>
-            )}
+          <div
+            style={{
+              opacity: hoveredRow === row.original.id ? 1 : 0,
+              transition: "opacity 0.2s ease",
+              width: "100%",
+            }}
+          >
+            <DataTable.RowActions>
+              <Button
+                icon="checkmark"
+                ariaLabel={`Complete ${row.original.name}`}
+                type="secondary"
+                variation="subtle"
+                onClick={() => alert(`Complete ${row.original.name}`)}
+              />
+              <Button
+                icon="edit"
+                ariaLabel={`Edit ${row.original.name}`}
+                type="secondary"
+                variation="subtle"
+                onClick={() => alert(`Edit ${row.original.name}`)}
+              />
+            </DataTable.RowActions>
           </div>
         ),
+        enableHiding: false, // Always remain visible regardless of column visibility
+        meta: {
+          isActionsColumn: true,
+          shouldShowOnHover: true,
+        },
       },
     ],
     getCoreRowModel: getCoreRowModel(),
