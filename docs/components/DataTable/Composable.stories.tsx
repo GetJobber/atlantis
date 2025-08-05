@@ -398,33 +398,6 @@ export const TableActions = () => {
               </DataTable.Row>
             ))}
           </DataTable.Body>
-          <DataTable.Footer>
-            <DataTable.Pagination
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text>
-                Showing {table.getRowModel().rows.length} of{" "}
-                {exampleData.length} items
-              </Text>
-
-              <div style={{ display: "flex", gap: "var(--space-small)" }}>
-                <DataTable.PaginationButton
-                  direction="previous"
-                  disabled={!table.getCanPreviousPage()}
-                  onClick={() => table.previousPage()}
-                />
-                <DataTable.PaginationButton
-                  direction="next"
-                  disabled={!table.getCanNextPage()}
-                  onClick={() => table.nextPage()}
-                />
-              </div>
-            </DataTable.Pagination>
-          </DataTable.Footer>
         </DataTable.Table>
       </DataTable.Container>
     </DataTable.Provider>
