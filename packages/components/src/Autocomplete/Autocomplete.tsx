@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useDebounce } from "@jobber/hooks";
+import { useDebounce } from "@jobber/hooks/useDebounce";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
 import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
