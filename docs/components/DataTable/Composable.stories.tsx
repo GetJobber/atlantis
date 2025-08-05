@@ -14,11 +14,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  DataTable,
-  SortDirection,
-  useDataTableContext,
-} from "@jobber/components/DataTable";
+import { DataTable, SortDirection } from "@jobber/components/DataTable";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { ChipDismissible } from "@jobber/components/Chips";
@@ -208,50 +204,6 @@ const exampleData = [
   },
 ];
 
-// Custom header that uses the new SortableHeader atom
-function CustomHeader() {
-  const { table } = useDataTableContext();
-
-  // Helper to get sort direction for a column using TanStack's built-in method
-  const getSortDirection = (columnId: string): SortDirection => {
-    const column = table.getColumn(columnId);
-    if (!column) return SortDirection.equilibrium;
-
-    const sortDirection = column.getIsSorted();
-    if (sortDirection === false) return SortDirection.equilibrium;
-
-    return sortDirection === "desc"
-      ? SortDirection.descending
-      : SortDirection.ascending;
-  };
-
-  // Define which columns are sortable
-  const sortableColumns = ["name", "role"]; // Only name and role are sortable
-
-  return (
-    <>
-      {table.getAllColumns().map(column => {
-        const isSortable = sortableColumns.includes(column.id);
-
-        return (
-          <DataTable.SortableHeader
-            key={column.id}
-            direction={isSortable ? getSortDirection(column.id) : undefined}
-            onSort={
-              isSortable
-                ? () =>
-                    column.getToggleSortingHandler()?.({} as React.MouseEvent)
-                : undefined
-            }
-          >
-            {column.columnDef.header as string}
-          </DataTable.SortableHeader>
-        );
-      })}
-    </>
-  );
-}
-
 export const Basic = () => {
   return (
     <DataTable.Container>
@@ -339,7 +291,7 @@ export const TableActions = () => {
   };
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Actions>
         <Combobox
           label="Role"
@@ -400,7 +352,42 @@ export const TableActions = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
+  );
+};
+
+// Storybook-specific context for providing table instance
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const StorybookTableContext = React.createContext<any>(null);
+
+// Hook to access table instance in stories
+// Available for use in story components that need table access
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const useStorybookTable = () => {
+  const table = React.useContext(StorybookTableContext);
+
+  if (!table) {
+    throw new Error(
+      "useStorybookTable must be used within StorybookTableProvider",
+    );
+  }
+
+  return table;
+};
+
+// Provider component for Storybook examples
+const StorybookTableProvider = ({
+  children,
+  table,
+}: {
+  readonly children: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  readonly table: any;
+}) => {
+  return (
+    <StorybookTableContext.Provider value={table}>
+      {children}
+    </StorybookTableContext.Provider>
   );
 };
 
@@ -455,7 +442,7 @@ export const RowActions = () => {
             </DataTable.RowActions>
           </div>
         ),
-        enableHiding: false, // Always remain visible regardless of column visibility
+        enableHiding: false,
         meta: {
           isActionsColumn: true,
           shouldShowOnHover: true,
@@ -466,7 +453,7 @@ export const RowActions = () => {
   });
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
@@ -491,7 +478,7 @@ export const RowActions = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -532,7 +519,7 @@ export const EndAlignedColumns = () => {
   });
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
@@ -554,7 +541,7 @@ export const EndAlignedColumns = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -568,6 +555,7 @@ export const Sortable = () => {
       {
         accessorKey: "name",
         header: "Name",
+        enableSorting: true, // TanStack handles sortability
         cell: ({ row }) => (
           <Typography fontWeight="bold">{row.original.name}</Typography>
         ),
@@ -575,10 +563,12 @@ export const Sortable = () => {
       {
         accessorKey: "role",
         header: "Role",
+        enableSorting: true, // TanStack handles sortability
       },
       {
         accessorKey: "email",
         header: "Email",
+        enableSorting: false, // Email is not sortable
       },
     ],
     state: {
@@ -592,11 +582,41 @@ export const Sortable = () => {
   const sortedRows = table.getRowModel().rows;
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
-            <CustomHeader />
+            {table.getHeaderGroups().map(headerGroup =>
+              headerGroup.headers.map(header => (
+                <DataTable.SortableHeader
+                  key={header.id}
+                  direction={
+                    header.column.getCanSort()
+                      ? header.column.getIsSorted() === "desc"
+                        ? SortDirection.descending
+                        : header.column.getIsSorted() === "asc"
+                        ? SortDirection.ascending
+                        : SortDirection.equilibrium
+                      : undefined
+                  }
+                  onSort={
+                    header.column.getCanSort()
+                      ? () =>
+                          header.column.getToggleSortingHandler()?.(
+                            {} as React.MouseEvent,
+                          )
+                      : undefined
+                  }
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                </DataTable.SortableHeader>
+              )),
+            )}
           </DataTable.Header>
           <DataTable.Body>
             {sortedRows.map(row => (
@@ -611,7 +631,7 @@ export const Sortable = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -650,7 +670,7 @@ export const WithPagination = () => {
   });
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
@@ -698,7 +718,7 @@ export const WithPagination = () => {
           </DataTable.Footer>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -757,7 +777,7 @@ export const DoubleFooter = () => {
   });
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
@@ -829,7 +849,7 @@ export const DoubleFooter = () => {
         </DataTable.Table>
       </DataTable.Container>
       {/* </div> */}
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -1090,7 +1110,7 @@ export const AdvancedFiltering = () => {
   };
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       {/* <div> */}
       <DataTable.Actions>
         <Combobox
@@ -1201,7 +1221,7 @@ export const AdvancedFiltering = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -1235,7 +1255,7 @@ export const ColumnVisibility = () => {
   });
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Actions>
         <div style={{ display: "flex", gap: "var(--space-base)" }}>
           <Typography fontWeight="bold">Show Columns:</Typography>
@@ -1273,7 +1293,7 @@ export const ColumnVisibility = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -1327,7 +1347,7 @@ export const BulkSelection = () => {
   const selectedCount = Object.keys(rowSelection).length;
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Actions>
         <div
           style={{
@@ -1375,7 +1395,7 @@ export const BulkSelection = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -1411,7 +1431,7 @@ export const GlobalSearch = () => {
   });
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Actions>
         <div
           style={{
@@ -1465,7 +1485,7 @@ export const GlobalSearch = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -1538,7 +1558,7 @@ export const MobileResponsive = () => {
   });
 
   return (
-    <DataTable.Provider table={table}>
+    <StorybookTableProvider table={table}>
       <DataTable.Actions>
         <div
           style={{
@@ -1592,7 +1612,7 @@ export const MobileResponsive = () => {
           </DataTable.Body>
         </DataTable.Table>
       </DataTable.Container>
-    </DataTable.Provider>
+    </StorybookTableProvider>
   );
 };
 
@@ -1637,7 +1657,7 @@ export const RowSelection = () => {
 
   return (
     <>
-      <DataTable.Provider table={table}>
+      <StorybookTableProvider table={table}>
         <DataTable.Actions>
           <div
             style={{
@@ -1693,7 +1713,7 @@ export const RowSelection = () => {
             </DataTable.Body>
           </DataTable.Table>
         </DataTable.Container>
-      </DataTable.Provider>
+      </StorybookTableProvider>
 
       <Modal
         open={isModalOpen}

@@ -4,8 +4,6 @@ export * from "./types";
 
 export * from "./test-utilities/helpers";
 
-export * from "./DataTableProvider";
-
 export { SortIcon, SortDirection } from "./SortIcon";
 
 export * from "./components/DataTableSortableHeader";
