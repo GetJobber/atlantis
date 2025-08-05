@@ -1,7 +1,7 @@
 import React, { ChangeEvent, ReactNode, RefObject } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { XOR } from "ts-xor";
-import { type Clearable } from "@jobber/hooks/useShowClear";
+import { Clearable } from "@jobber/hooks";
 import { IconNames } from "../Icon";
 
 export type FormFieldTypes =
