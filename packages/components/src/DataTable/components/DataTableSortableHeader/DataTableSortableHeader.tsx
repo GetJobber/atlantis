@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./DataTableSortableHeader.module.css";
 import { DataTableHeaderCell } from "../DataTableHeaderCell";
 import { SortDirection, SortIcon } from "../../SortIcon";
 
@@ -30,28 +31,40 @@ export function DataTableSortableHeader(
   const { children, direction, onSort, className, ...rest } = props;
   const isSortable = direction !== undefined && onSort !== undefined;
 
+  if (!isSortable) {
+    return (
+      <DataTableHeaderCell className={className} {...rest}>
+        {children}
+      </DataTableHeaderCell>
+    );
+  }
+
   return (
-    <DataTableHeaderCell
-      {...rest}
-      onClick={onSort}
-      style={{ cursor: isSortable ? "pointer" : "default" }}
-      className={className}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "var(--space-small)",
-          minHeight: "24px", // Ensure consistent height
+    <DataTableHeaderCell className={className} {...rest}>
+      <button
+        type="button"
+        onClick={onSort}
+        className={styles.sortableButton}
+        onFocus={e => {
+          const span = e.target.querySelector("span");
+
+          if (span) {
+            span.style.boxShadow = "var(--shadow-focus)";
+          }
+        }}
+        onBlur={e => {
+          const span = e.target.querySelector("span");
+
+          if (span) {
+            span.style.boxShadow = "none";
+          }
         }}
       >
-        {children}
-        {isSortable ? (
+        <span className={styles.focusArea}>
+          {children}
           <SortIcon direction={direction} />
-        ) : (
-          <div style={{ width: "24px", height: "24px" }} /> // Spacer for alignment
-        )}
-      </div>
+        </span>
+      </button>
     </DataTableHeaderCell>
   );
 }
