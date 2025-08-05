@@ -8,7 +8,7 @@ import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import classNames from "classnames";
-import { useDebounce } from "@jobber/hooks";
+import { useDebounce } from "@jobber/hooks/useDebounce";
 import styles from "./LightBox.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Text } from "../Text";
