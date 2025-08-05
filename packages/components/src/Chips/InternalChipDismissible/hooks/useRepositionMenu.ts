@@ -8,7 +8,6 @@ import {
 } from "@floating-ui/react";
 
 export interface UseRepositionMenu {
-  readonly floatingElement: HTMLElement | null;
   readonly setFloatingRef: (ref: HTMLElement | null) => void;
   readonly targetWidth: number | undefined;
   readonly styles: {
@@ -17,18 +16,21 @@ export interface UseRepositionMenu {
   readonly update: () => void;
 }
 
+const ROUNDED_BORDER_ARROW_EDGE_OFFSET = 8;
+
 export function useRepositionMenu(
   attachTo: HTMLElement | null,
 ): UseRepositionMenu {
   const { refs, floatingStyles, update } = useFloating({
     placement: "bottom",
     middleware: [
-      offset(8),
+      offset(ROUNDED_BORDER_ARROW_EDGE_OFFSET),
       flip({ fallbackPlacements: ["top"] }),
       size({
         apply({ availableHeight, elements }) {
           // Simple max height - either 320px or available space, whichever is smaller
           const maxHeight = Math.min(320, availableHeight);
+
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
           });
@@ -44,7 +46,6 @@ export function useRepositionMenu(
   const targetWidth = attachTo?.clientWidth;
 
   return {
-    floatingElement: refs.floating.current,
     setFloatingRef: refs.setFloating,
     targetWidth,
     styles: {
