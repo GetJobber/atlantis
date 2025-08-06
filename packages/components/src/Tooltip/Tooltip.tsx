@@ -1,8 +1,9 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import { FloatingPortal } from "@floating-ui/react";
 import { motion } from "framer-motion";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Tooltip.module.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 import { Placement } from "./Tooltip.types";
@@ -71,7 +72,7 @@ export function Tooltip({
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
-      <FloatingPortal>
+      <TooltipPortal>
         {show && Boolean(message) && (
           <div
             className={toolTipClassNames}
@@ -101,7 +102,7 @@ export function Tooltip({
             </motion.div>
           </div>
         )}
-      </FloatingPortal>
+      </TooltipPortal>
     </>
   );
 
@@ -158,4 +159,18 @@ export function Tooltip({
       };
     }, []);
   }
+}
+
+interface TooltipPortalProps {
+  readonly children: ReactNode;
+}
+
+function TooltipPortal({ children }: TooltipPortalProps) {
+  const mounted = useIsMounted();
+
+  if (!mounted?.current) {
+    return null;
+  }
+
+  return <FloatingPortal>{children}</FloatingPortal>;
 }
