@@ -872,7 +872,6 @@ export const DoubleFooter = () => {
           </DataTable.Footer>
         </DataTable.Table>
       </DataTable.Container>
-      {/* </div> */}
     </StorybookTableProvider>
   );
 };
@@ -1154,7 +1153,6 @@ export const AdvancedFiltering = () => {
 
   return (
     <StorybookTableProvider table={table}>
-      {/* <div> */}
       <DataTable.Actions>
         <Combobox
           label="Property"
@@ -1194,7 +1192,6 @@ export const AdvancedFiltering = () => {
           ))}
         </Combobox>
 
-        {/* Object type chips - mutually exclusive */}
         <div
           style={{
             display: "flex",
@@ -1616,7 +1613,6 @@ export const MobileResponsive = () => {
           <DataTable.Header>
             {table.getHeaderGroups().map(headerGroup =>
               headerGroup.headers.map(header => {
-                // Only render headers for visible columns
                 if (header.column.getIsVisible()) {
                   return (
                     <DataTable.HeaderCell key={header.id}>
