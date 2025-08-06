@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import { ChangeEvent, FocusEvent, KeyboardEvent, ReactNode } from "react";
 
 export interface useInputPhoneFormFieldProps {
   /**
@@ -27,7 +27,7 @@ export interface useInputPhoneFormFieldProps {
   /**
    * Further description of the input, can be used for a hint.
    */
-  readonly description?: string;
+  readonly description?: ReactNode;
 
   /**
    * Callback for when the field value changes

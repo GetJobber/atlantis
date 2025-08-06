@@ -1,6 +1,6 @@
 import React, { Ref, forwardRef, useEffect } from "react";
 import { View } from "react-native";
-import debounce from "lodash/debounce";
+import { useDebounce } from "@jobber/hooks/useDebounce";
 import { styles } from "./InputSearch.style";
 import { InputText, InputTextProps, InputTextRef } from "../InputText";
 
@@ -49,14 +49,12 @@ function SearchInputInternal(
   }: InputSearchProps,
   ref: Ref<InputTextRef>,
 ) {
-  const delayedSearch = debounce(onDebouncedChange, wait);
+  const debouncedSearch = useDebounce(onDebouncedChange, wait);
   const handleChange = (newValue = "") => onChange(newValue);
 
   useEffect(() => {
-    delayedSearch(value);
-
-    return delayedSearch.cancel;
-  }, [value, delayedSearch]);
+    debouncedSearch(value);
+  }, [value, debouncedSearch]);
 
   return (
     <View style={styles.container}>

@@ -82,3 +82,23 @@ test("it should clamp value to minValue when value is below minValue", () => {
   expect(input).toBeVisible();
   expect(input).toHaveValue("10");
 });
+
+test("it should render element description directly without wrapping in paragraph", () => {
+  const customDescription = (
+    <div data-testid="custom-description">Custom element description</div>
+  );
+
+  const { getByTestId } = render(
+    <InputNumber
+      version={2}
+      placeholder="Number"
+      description={customDescription}
+    />,
+  );
+
+  const descriptionElement = getByTestId("custom-description");
+  expect(descriptionElement).toBeVisible();
+  expect(descriptionElement.parentElement).not.toBeInstanceOf(
+    HTMLParagraphElement,
+  );
+});

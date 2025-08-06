@@ -18,3 +18,212 @@ will render the action using an [ActionLabel](/components/ActionLabel).
 See
 [Actions in Banners](../?path=/story/components-status-and-feedback-banner-mobile--actions-in-banners)
 for an example.
+
+## Component customization
+
+### Composable usage
+
+Banner exposes its internal building blocks as subcomponents: `Banner.Provider`, `Banner.Content`,
+`Banner.DismissButton`, `Banner.Icon`, and `Banner.Action`. This gives you more control over the Banner's
+appearance and behaviour.
+
+Here's a basic example of how our current non-composable Banner is used:
+
+```tsx
+<Banner type="success">
+  Your account was upgraded successfully
+</Banner>
+```
+
+Using Banner's built-in subcomponents, this UI can alternatively be expressed as:
+
+```tsx
+<Banner.Provider type="success">
+  <Banner.Content>Your account was upgraded successfully</Banner.Content>
+</Banner.Provider>
+```
+
+If you want to completely disable the icon or dismiss button, you can set them to false:
+
+```tsx
+<Banner.Provider type="success" icon={false} dismissButton={false}>
+  <Banner.Content>No icon or dismiss button</Banner.Content>
+</Banner.Provider>
+```
+
+If you need a custom icon, you can either configure `Banner.Icon` or pass in your own element:
+
+```tsx
+<Banner.Provider
+  type="notice"
+  icon={
+    <Banner.Icon
+      name="sparkles"
+      customColor="var(--color-base-purple--700)"
+      backgroundColor="base-purple--300"
+    />
+  }
+>
+  <Banner.Content>Custom purple sparkles icon</Banner.Content>
+</Banner.Provider>
+```
+
+If you need to customize the dismiss button, you can either configure `Banner.DismissButton` or pass in your own element:
+
+```tsx
+<Banner.Provider
+  type="success"
+  dismissButton={
+    <Banner.DismissButton onClick={() => alert("Dismissed")} />
+  }
+>
+  <Banner.Content>Your account was upgraded successfully</Banner.Content>
+</Banner.Provider>
+```
+
+For action buttons, you should use `Banner.Action`:
+
+```tsx
+<Banner.Provider type="warning">
+  <Banner.Content>Changes to this visit will not be applied to future visits</Banner.Content>
+  <Banner.Action
+    label="More info"
+    onClick={() => alert("More info...")}
+  />
+</Banner.Provider>
+```
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+Banner has a few elements that can be targeted with classes or styles: `Banner.Provider`,
+`Banner.Content`, `Banner.Icon`, `Banner.Action`, and `Banner.DismissButton`.
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Popover updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the Banner. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// YourComponent.module.css
+.customContainer {
+  background-color: var(--color-surface--background);
+}
+
+.customIconContainer {
+  background-color: var(--color-base-red--600);
+}
+
+.customDismissButton {
+  background-color: var(--color-base-blue--200);
+}
+
+.customContent {
+  background-color: var(--color-base-pink--200);
+}
+
+.customActionButton {
+  background-color: var(--color-base-green--600);
+}
+
+// YourComponent.tsx
+<Banner.Provider
+  type="error"
+  UNSAFE_className={{
+    container: styles.customContainer,
+  }}
+  icon={
+    <Banner.Icon
+      name="offline"
+      backgroundColor="base-purple--300"
+      UNSAFE_className={{
+        container: styles.customIconContainer,
+        icon: {
+          /* See Icon's UNSAFE_className for more information */
+        },
+      }}
+    />
+  }
+  dismissButton={
+    <Banner.DismissButton
+      UNSAFE_className={{
+        container: styles.customDismissButton,
+      }}
+    />
+  }
+>
+  <Banner.Content
+    UNSAFE_className={{
+      container: styles.customContent,
+    }}
+  >
+    Banner content goes here
+  </Banner.Content>
+  <Banner.Action
+    label="More info"
+    onClick={() => alert("More info...")}
+    UNSAFE_className={{
+      container: styles.customActionButton,
+      button: {
+        /* See Button's UNSAFE_className for more information */
+      },
+    }}
+  />
+</Banner.Provider>
+```
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the Banner.
+
+```tsx
+<Banner.Provider
+  type="error"
+  UNSAFE_style={{
+    container: { backgroundColor: "var(--color-surface--background)" },
+  }}
+  icon={
+    <Banner.Icon
+      name="offline"
+      backgroundColor="base-purple--300"
+      UNSAFE_style={{
+        container: { backgroundColor: "var(--color-base-red--600)" },
+        icon: {
+          /* See Icon's UNSAFE_style for more information */
+        },
+      }}
+    />
+  }
+  dismissButton={
+    <Banner.DismissButton
+      UNSAFE_style={{
+        container: { backgroundColor: "var(--color-base-blue--200)" },
+      }}
+    />
+  }
+>
+  <Banner.Content
+    UNSAFE_style={{
+      container: { backgroundColor: "var(--color-base-pink--200)" },
+    }}
+  >
+    Banner content goes here
+  </Banner.Content>
+  <Banner.Action
+    label="More info"
+    onClick={() => alert("More info...")}
+    UNSAFE_style={{
+      container: { backgroundColor: "var(--color-base-green--600)" },
+      button: {
+        /* See Button's UNSAFE_style for more information */
+      },
+    }}
+  />
+</Banner.Provider>
+```

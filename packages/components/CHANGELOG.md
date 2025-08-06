@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.75.1...@jobber/components@6.75.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **components:** Don't import directly from the hooks barrel file ([#2649](https://github.com/GetJobber/atlantis/issues/2649)) ([8cf538b](https://github.com/GetJobber/atlantis/commit/8cf538bb122d525a55ff370a22940d88db0b4a42))
+
+
+
+
+
+## [6.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.75.0...@jobber/components@6.75.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **components:** Fix InputNumber v2 to not wrap react node description in Text ([#2645](https://github.com/GetJobber/atlantis/issues/2645)) ([8d8dcd7](https://github.com/GetJobber/atlantis/commit/8d8dcd7acbb63d44da888ec8568c7ff4529e4c5b))
+
+
+
+
+
+# [6.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.74.0...@jobber/components@6.75.0) (2025-08-01)
+
+
+### Features
+
+* **hooks:** Add useDebounce Hook to Hooks ([#2561](https://github.com/GetJobber/atlantis/issues/2561)) ([a3e4009](https://github.com/GetJobber/atlantis/commit/a3e4009d861021e472e26726694fe53ea9fb1d30))
+
+
+
+
+
+# [6.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.73.0...@jobber/components@6.74.0) (2025-07-31)
+
+
+### Features
+
+* **components:** Horizontal direction prop for RadioGroup ([#2639](https://github.com/GetJobber/atlantis/issues/2639)) ([d596ad5](https://github.com/GetJobber/atlantis/commit/d596ad5f1bc9a365b074931014681d93244467d7))
+
+
+
+
+
+# [6.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.72.0...@jobber/components@6.73.0) (2025-07-30)
+
+
+### Features
+
+* **components:** Form Field Component's Description can be any Element ([#2633](https://github.com/GetJobber/atlantis/issues/2633)) ([d0b201c](https://github.com/GetJobber/atlantis/commit/d0b201c5692183e3abd912159dfba0bbff88721f))
+
+
+
+
+
+# [6.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.3...@jobber/components@6.72.0) (2025-07-30)
+
+
+### Features
+
+* **components:** Composable Banner ([#2631](https://github.com/GetJobber/atlantis/issues/2631)) ([e648a07](https://github.com/GetJobber/atlantis/commit/e648a07b8e60b5f3fcf67fc8e49b6acee4acf024))
+
+
+
+
+
+## [6.71.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.2...@jobber/components@6.71.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* **components:** export DataListHeader type ([#2636](https://github.com/GetJobber/atlantis/issues/2636)) ([59f5521](https://github.com/GetJobber/atlantis/commit/59f5521ae331a06f57054b5a394f1b709ced203e))
+
+
+
+
+
 ## [6.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.71.1...@jobber/components@6.71.2) (2025-07-28)
 
 
