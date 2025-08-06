@@ -9,7 +9,6 @@ import {
 } from "@floating-ui/react";
 import { Placement } from "./Tooltip.types";
 
-const DEFAULT_PLACEMENT: Placement = "top";
 const TOOLTIP_SHIFT_PADDING = 8;
 const TOOLTIP_ARROW_PADDING = 6;
 
@@ -52,8 +51,7 @@ export function useTooltipPositioning({
       popper: floatingStyles,
       arrow: middlewareData.arrow,
     },
-    attributes: { popper: {} },
-    placement: placement || DEFAULT_PLACEMENT,
+    placement: placement,
     shadowRef,
     setArrowRef,
     setTooltipRef: refs.setFloating,

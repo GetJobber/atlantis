@@ -36,7 +36,6 @@ export function Tooltip({
   const [show, setShow] = useState(false);
 
   const {
-    attributes,
     placement,
     shadowRef,
     styles: floatingStyles,
@@ -66,7 +65,6 @@ export function Tooltip({
             ref={setTooltipRef}
             role="tooltip"
             data-placement={placement}
-            {...attributes.popper}
           >
             <motion.div
               className={styles.tooltip}
