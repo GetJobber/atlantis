@@ -53,15 +53,18 @@ export function Tooltip({
     placement === "right" && styles.right,
   );
 
+  const arrowX = floatingStyles.arrow?.x;
+  const arrowY = floatingStyles.arrow?.y;
   const arrowStyles: React.CSSProperties = {
     position: "absolute",
-    // only left or top will be defined at a time
-    left: Number.isFinite(floatingStyles.arrow?.x)
-      ? `${floatingStyles.arrow?.x}px`
-      : "",
-    top: Number.isFinite(floatingStyles.arrow?.y)
-      ? `${floatingStyles.arrow?.y}px`
-      : "",
+    left:
+      arrowX !== null && arrowX !== undefined
+        ? `${floatingStyles.arrow?.x}px`
+        : "",
+    top:
+      arrowY !== null && arrowY !== undefined
+        ? `${floatingStyles.arrow?.y}px`
+        : "",
   };
 
   return (
