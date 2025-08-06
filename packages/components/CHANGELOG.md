@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.76.1...@jobber/components@6.77.0) (2025-08-06)
+
+
+### Features
+
+* **components:** Use FloatingUI for Tooltip ([#2644](https://github.com/GetJobber/atlantis/issues/2644)) ([3d0a9c7](https://github.com/GetJobber/atlantis/commit/3d0a9c7d280cac69a381d4702fae72acca583761))
+
+
+
+
+
 ## [6.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.76.0...@jobber/components@6.76.1) (2025-08-06)
 
 
