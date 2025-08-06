@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.75.2...@jobber/components@6.76.0) (2025-08-06)
+
+
+### Features
+
+* **components:** Use FloatingUI for Dismissible Chips ([#2640](https://github.com/GetJobber/atlantis/issues/2640)) ([8862829](https://github.com/GetJobber/atlantis/commit/88628298e492b0b5dded6db294b952a3216e0be2))
+
+
+
+
+
 ## [6.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.75.1...@jobber/components@6.75.2) (2025-08-05)
 
 
