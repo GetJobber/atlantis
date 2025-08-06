@@ -22,6 +22,7 @@ import {
   useFloating,
 } from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -182,7 +183,7 @@ export function Menu({
           ariaHaspopup: true,
         })}
       </div>
-      <FloatingPortal>
+      <MenuPortal>
         <AnimatePresence>
           {visible && (
             <>
@@ -251,7 +252,7 @@ export function Menu({
             </>
           )}
         </AnimatePresence>
-      </FloatingPortal>
+      </MenuPortal>
     </div>
   );
 
@@ -394,4 +395,14 @@ function Action({
       </Typography>
     </button>
   );
+}
+
+function MenuPortal({ children }: { readonly children: React.ReactElement }) {
+  const mounted = useIsMounted();
+
+  if (!mounted?.current) {
+    return null;
+  }
+
+  return <FloatingPortal>{children}</FloatingPortal>;
 }
