@@ -1,4 +1,4 @@
-.tableActions {
+.actions {
   display: flex;
   gap: var(--space-slim);
   padding-bottom: var(--space-base);

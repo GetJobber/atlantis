@@ -6,7 +6,10 @@ export function DataTableTable(
   props: PropsWithChildren<React.HTMLAttributes<HTMLTableElement>>,
 ) {
   return (
-    <table className={classNames(styles.table, props.className)} {...props}>
+    <table
+      className={classNames(styles.tableElement, props.className)}
+      {...props}
+    >
       {props.children}
     </table>
   );
