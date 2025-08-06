@@ -92,6 +92,79 @@ enabling rich, interactive table layouts:
 </DataTable.Row>
 ```
 
+### Sortable Headers
+
+For sortable columns, use DataTable.SortableHeader with the required props:
+
+```tsx
+<DataTable.Header>
+  <DataTable.SortableHeader
+    direction={
+      currentSort === "desc"
+        ? SortDirection.descending
+        : currentSort === "asc"
+        ? SortDirection.ascending
+        : SortDirection.equilibrium
+    }
+    onSort={() => handleColumnSort("name")}
+  >
+    Name
+  </DataTable.SortableHeader>
+  <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+</DataTable.Header>
+```
+
+The `direction` prop accepts:
+
+- `SortDirection.ascending` - ascending sort
+- `SortDirection.descending` - descending sort
+- `SortDirection.equilibrium` - no sort applied
+
+When both `direction` and `onSort` are provided, the header becomes interactive
+with a sort icon. When either is missing, it renders as a regular header cell.
+
+The `direction` prop represents the current sort state of the column. Your
+`onSort` callback should handle the state transitions (ascending → descending →
+equilibrium) based on your application's logic.
+
+### Pagination
+
+For pagination functionality, use DataTable.Pagination and
+DataTable.PaginationButton:
+
+```tsx
+<DataTable.Footer>
+  <DataTable.Pagination>
+    <DataTable.PaginationButton
+      direction="previous"
+      disabled={!canGoPrevious}
+      onClick={handlePreviousPage}
+      ariaLabel={direction =>
+        direction === "next" ? "Next page" : "Previous page"
+      }
+    />
+    <DataTable.PaginationButton
+      direction="next"
+      disabled={!canGoNext}
+      onClick={handleNextPage}
+      ariaLabel={direction =>
+        direction === "next" ? "Next page" : "Previous page"
+      }
+    />
+  </DataTable.Pagination>
+</DataTable.Footer>
+```
+
+**Important**: The `ariaLabel` prop is required and should be a function that
+takes a direction parameter and returns translated strings for accessibility.
+Consider using your application's translation system:
+
+```tsx
+ariaLabel={(direction) =>
+  direction === "next" ? t("Next page") : t("Previous page")
+}
+```
+
 ### Setting Up Your Own Provider
 
 Atomic DataTable components are fully functional on their own, no provider is
