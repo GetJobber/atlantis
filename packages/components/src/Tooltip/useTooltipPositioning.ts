@@ -48,7 +48,7 @@ export function useTooltipPositioning({
 
   return {
     styles: {
-      popper: floatingStyles,
+      float: floatingStyles,
       arrow: middlewareData.arrow,
     },
     placement: placement,

@@ -76,7 +76,7 @@ export function Tooltip({
         {show && Boolean(message) && (
           <div
             className={toolTipClassNames}
-            style={floatingStyles.popper}
+            style={floatingStyles.float}
             ref={setTooltipRef}
             role="tooltip"
             data-placement={placement}
