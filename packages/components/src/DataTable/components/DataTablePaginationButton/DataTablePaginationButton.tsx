@@ -5,12 +5,14 @@ export interface DataTablePaginationButtonProps {
   readonly direction: "previous" | "next";
   readonly onClick?: () => void;
   readonly disabled?: boolean;
+  readonly ariaLabel: (direction: "previous" | "next") => string;
 }
 
 export function DataTablePaginationButton({
   direction,
   onClick,
   disabled = false,
+  ariaLabel,
 }: DataTablePaginationButtonProps) {
   const isNext = direction === "next";
 
@@ -22,7 +24,7 @@ export function DataTablePaginationButton({
       type="secondary"
       variation="learning"
       disabled={disabled}
-      ariaLabel={isNext ? "Next page" : "Previous page"}
+      ariaLabel={ariaLabel(direction)}
     />
   );
 }

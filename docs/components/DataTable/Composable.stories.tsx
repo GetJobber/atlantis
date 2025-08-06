@@ -719,11 +719,17 @@ export const WithPagination = () => {
                   direction="previous"
                   disabled={!table.getCanPreviousPage()}
                   onClick={() => table.previousPage()}
+                  ariaLabel={direction =>
+                    direction === "next" ? "Next page" : "Previous page"
+                  }
                 />
                 <DataTable.PaginationButton
                   direction="next"
                   disabled={!table.getCanNextPage()}
                   onClick={() => table.nextPage()}
+                  ariaLabel={direction =>
+                    direction === "next" ? "Next page" : "Previous page"
+                  }
                 />
               </div>
             </DataTable.Pagination>
@@ -849,11 +855,17 @@ export const DoubleFooter = () => {
                   direction="previous"
                   disabled={!table.getCanPreviousPage()}
                   onClick={() => table.previousPage()}
+                  ariaLabel={direction =>
+                    direction === "next" ? "Next page" : "Previous page"
+                  }
                 />
                 <DataTable.PaginationButton
                   direction="next"
                   disabled={!table.getCanNextPage()}
                   onClick={() => table.nextPage()}
+                  ariaLabel={direction =>
+                    direction === "next" ? "Next page" : "Previous page"
+                  }
                 />
               </div>
             </DataTable.Pagination>
