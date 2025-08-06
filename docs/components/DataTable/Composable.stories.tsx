@@ -1,5 +1,5 @@
 /* eslint-disable max-statements */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ComponentMeta } from "@storybook/react";
 import {
   ColumnFiltersState,
@@ -42,7 +42,6 @@ export default {
   },
 } as ComponentMeta<typeof DataTable>;
 
-// Example data - Financial transactions
 const transactionData = [
   {
     id: "1",
@@ -127,7 +126,6 @@ const transactionData = [
   },
 ];
 
-// Payment methods data
 const paymentMethodsData = [
   {
     id: "1",
@@ -152,7 +150,6 @@ const paymentMethodsData = [
   },
 ];
 
-// Original contact data for other examples
 const exampleData = [
   {
     id: "1",
@@ -412,7 +409,6 @@ const StorybookTableProvider = ({
 export const RowActions = () => {
   const [hoveredRow, setHoveredRow] = React.useState<string | null>(null);
 
-  // TanStack table setup
   const table = useReactTable({
     data: exampleData,
     columns: [
@@ -566,14 +562,13 @@ export const EndAlignedColumns = () => {
 export const Sortable = () => {
   const [sorting, setSorting] = useState<SortingState>([]);
 
-  // Consumer creates TanStack table
   const table = useReactTable({
     data: exampleData,
     columns: [
       {
         accessorKey: "name",
         header: "Name",
-        enableSorting: true, // TanStack handles sortability
+        enableSorting: true,
         cell: ({ row }) => (
           <Typography fontWeight="bold">{row.original.name}</Typography>
         ),
@@ -581,12 +576,12 @@ export const Sortable = () => {
       {
         accessorKey: "role",
         header: "Role",
-        enableSorting: true, // TanStack handles sortability
+        enableSorting: true,
       },
       {
         accessorKey: "email",
         header: "Email",
-        enableSorting: false, // Email is not sortable
+        enableSorting: false,
       },
     ],
     state: {
@@ -659,7 +654,6 @@ export const WithPagination = () => {
     pageSize: 4,
   });
 
-  // TanStack table setup with pagination
   const table = useReactTable({
     data: exampleData,
     columns: [
@@ -974,11 +968,6 @@ type ObjectType = "all" | "invoice" | "job" | "quote" | "request";
 
 export const AdvancedFiltering = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [selectedObjectType, setSelectedObjectType] =
-    useState<ObjectType>("all");
-  const [selectedProperties, setSelectedProperties] = useState<
-    ComboboxOption[]
-  >([]);
 
   // Get unique properties for combobox options
   const propertyOptions = Array.from(
@@ -988,40 +977,34 @@ export const AdvancedFiltering = () => {
     label: property,
   }));
 
-  // Object type options with counts (excluding "all")
+  // Object type options (excluding "all")
   const objectTypeOptions: Array<{
     id: ObjectType;
     label: string;
-    count: number;
     icon: IconNames;
   }> = [
     {
       id: "request",
       label: "Requests",
-      count: businessObjectsData.filter(item => item.type === "request").length,
       icon: "request",
     },
     {
       id: "quote",
       label: "Quotes",
-      count: businessObjectsData.filter(item => item.type === "quote").length,
       icon: "quote",
     },
     {
       id: "job",
       label: "Jobs",
-      count: businessObjectsData.filter(item => item.type === "job").length,
       icon: "job",
     },
     {
       id: "invoice",
       label: "Invoices",
-      count: businessObjectsData.filter(item => item.type === "invoice").length,
       icon: "invoice",
     },
   ];
 
-  // TanStack table setup with filtering
   const table = useReactTable({
     data: businessObjectsData,
     columns: [
@@ -1048,7 +1031,6 @@ export const AdvancedFiltering = () => {
         accessorKey: "property",
         header: "Property",
         filterFn: (row, columnId, filterValue) => {
-          // Handle array filtering for multiple property selection
           if (!filterValue || filterValue.length === 0) return true;
           const rowValue = row.getValue(columnId) as string;
 
@@ -1095,36 +1077,67 @@ export const AdvancedFiltering = () => {
     getFilteredRowModel: getFilteredRowModel(),
   });
 
-  // Update filters when selections change
-  React.useEffect(() => {
-    // Update object type filter - only set if not "all"
-    table
-      .getColumn("type")
-      ?.setFilterValue(
-        selectedObjectType === "all" ? undefined : selectedObjectType,
-      );
-  }, [selectedObjectType, table]);
+  // Get current selected properties from TanStack filter state
+  const selectedProperties = React.useMemo(() => {
+    const propertyFilter = columnFilters.find(
+      filter => filter.id === "property",
+    );
 
-  React.useEffect(() => {
-    // Update property filter
-    const propertyValues = selectedProperties.map(option => option.label);
-    table.getColumn("property")?.setFilterValue(propertyValues);
-  }, [selectedProperties, table]);
+    if (!propertyFilter?.value || !Array.isArray(propertyFilter.value)) {
+      return [];
+    }
+
+    return (propertyFilter.value as string[]).map(property => ({
+      id: property,
+      label: property,
+    }));
+  }, [columnFilters]);
+
+  // Get current selected object type from TanStack filter state
+  const selectedObjectType = React.useMemo(() => {
+    const typeFilter = columnFilters.find(filter => filter.id === "type");
+
+    return (typeFilter?.value as ObjectType) || "all";
+  }, [columnFilters]);
 
   const handleObjectTypeSelect = (objectType: ObjectType) => {
-    setSelectedObjectType(objectType);
+    if (objectType === "all") {
+      setColumnFilters(prev => prev.filter(f => f.id !== "type"));
+    } else {
+      setColumnFilters(prev =>
+        prev
+          .filter(f => f.id !== "type")
+          .concat({
+            id: "type",
+            value: objectType,
+          }),
+      );
+    }
   };
 
   const handlePropertySelect = (selectedOptions: ComboboxOption[]) => {
-    setSelectedProperties(selectedOptions);
+    const propertyValues = selectedOptions.map(option => option.label);
+
+    if (propertyValues.length > 0) {
+      setColumnFilters(prev =>
+        prev
+          .filter(f => f.id !== "property")
+          .concat({
+            id: "property",
+            value: propertyValues,
+          }),
+      );
+    } else {
+      setColumnFilters(prev => prev.filter(f => f.id !== "property"));
+    }
   };
 
   const clearPropertyFilter = () => {
-    setSelectedProperties([]);
+    setColumnFilters(prev => prev.filter(f => f.id !== "property"));
   };
 
   const clearObjectTypeFilter = () => {
-    setSelectedObjectType("all");
+    setColumnFilters(prev => prev.filter(f => f.id !== "type"));
   };
 
   return (
@@ -1222,7 +1235,6 @@ export const AdvancedFiltering = () => {
             {table.getFilteredRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => {
-                  // Skip rendering the type column since it's used for filtering only
                   if (cell.column.id === "type") return null;
 
                   return (
@@ -1462,7 +1474,8 @@ export const GlobalSearch = () => {
             version={1}
             value={globalFilter ?? ""}
             onChange={value => setGlobalFilter(String(value))}
-            placeholder="Search all columns..."
+            placeholder="Search all columns"
+            clearable="while-editing"
           />
         </div>
       </DataTable.Actions>
@@ -1507,11 +1520,8 @@ export const MobileResponsive = () => {
   const isDesktop = mediumAndUp;
   const isMobile = !isDesktop;
 
-  const [columnVisibility, setColumnVisibility] = useState({});
-
-  // Update column visibility based on screen size
-  useEffect(() => {
-    setColumnVisibility({
+  const columnVisibility = React.useMemo(
+    () => ({
       // Mobile: Only show the combined cell
       mobileContent: isMobile,
 
@@ -1520,8 +1530,9 @@ export const MobileResponsive = () => {
       role: isDesktop,
       email: isDesktop,
       actions: isDesktop,
-    });
-  }, [isDesktop]);
+    }),
+    [isDesktop],
+  );
 
   const table = useReactTable({
     data: exampleData,
@@ -1566,7 +1577,6 @@ export const MobileResponsive = () => {
     state: {
       columnVisibility,
     },
-    onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
   });
 
@@ -1613,7 +1623,7 @@ export const MobileResponsive = () => {
             )}
           </DataTable.Header>
           <DataTable.Body>
-            {table.getRowModel().rows.map(row => (
+            {table.getFilteredRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
                   <DataTable.Cell key={cell.id}>
