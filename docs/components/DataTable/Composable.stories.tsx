@@ -231,7 +231,6 @@ export const Basic = () => {
 
 export const TableActions = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [selectedRoles, setSelectedRoles] = useState<ComboboxOption[]>([]);
 
   // Get unique roles for combobox options
   const roleOptions = Array.from(
@@ -241,7 +240,6 @@ export const TableActions = () => {
     label: role,
   }));
 
-  // TanStack table setup with filtering
   const table = useReactTable({
     data: exampleData,
     columns: [
@@ -256,11 +254,9 @@ export const TableActions = () => {
         accessorKey: "role",
         header: "Role",
         filterFn: (row, columnId, filterValue) => {
-          // Handle array filtering for multiple role selection
-          if (!filterValue || filterValue.length === 0) return true;
-          const rowValue = row.getValue(columnId) as string;
+          const cellValue = row.getValue(columnId) as string;
 
-          return filterValue.includes(rowValue);
+          return filterValue?.includes?.(cellValue);
         },
       },
       {
@@ -276,18 +272,29 @@ export const TableActions = () => {
     getFilteredRowModel: getFilteredRowModel(),
   });
 
-  // Update the role filter when selectedRoles changes
-  React.useEffect(() => {
-    const roleValues = selectedRoles.map(option => option.label);
-    table.getColumn("role")?.setFilterValue(roleValues);
-  }, [selectedRoles, table]);
+  const roleFilterValue = table.getColumn("role")?.getFilterValue() as
+    | string[]
+    | undefined;
 
   const handleRoleSelect = (selectedOptions: ComboboxOption[]) => {
-    setSelectedRoles(selectedOptions);
+    const roleValues = selectedOptions.map(option => option.label);
+
+    if (roleValues.length > 0) {
+      setColumnFilters(prev =>
+        prev
+          .filter(f => f.id !== "role")
+          .concat({
+            id: "role",
+            value: roleValues,
+          }),
+      );
+    } else {
+      setColumnFilters(prev => prev.filter(f => f.id !== "role"));
+    }
   };
 
   const clearRoleFilter = () => {
-    setSelectedRoles([]);
+    setColumnFilters(prev => prev.filter(f => f.id !== "role"));
   };
 
   return (
@@ -295,27 +302,38 @@ export const TableActions = () => {
       <DataTable.Actions>
         <Combobox
           label="Role"
-          selected={selectedRoles}
+          selected={(roleFilterValue ?? []).map(role => ({
+            id: role,
+            label: role,
+          }))}
           onSelect={handleRoleSelect}
           multiSelect
         >
           <Combobox.Activator>
             <Chip
               label={
-                selectedRoles.length > 0
-                  ? selectedRoles.map(option => option.label).join(", ")
+                roleFilterValue && roleFilterValue.length > 0
+                  ? roleFilterValue.join(", ")
                   : ""
               }
               heading="Role"
-              variation={selectedRoles.length > 0 ? "base" : "subtle"}
+              variation={
+                roleFilterValue && roleFilterValue.length > 0
+                  ? "base"
+                  : "subtle"
+              }
             >
               <Chip.Suffix
-                {...(selectedRoles.length > 0
+                {...(roleFilterValue && roleFilterValue.length > 0
                   ? { onClick: clearRoleFilter }
                   : {})}
               >
                 <Icon
-                  name={selectedRoles.length > 0 ? "cross" : "add"}
+                  name={
+                    roleFilterValue && roleFilterValue.length > 0
+                      ? "cross"
+                      : "add"
+                  }
                   size="small"
                 />
               </Chip.Suffix>
@@ -340,7 +358,7 @@ export const TableActions = () => {
             <DataTable.HeaderCell>Email</DataTable.HeaderCell>
           </DataTable.Header>
           <DataTable.Body>
-            {table.getRowModel().rows.map(row => (
+            {table.getFilteredRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
                   <DataTable.Cell key={cell.id}>
@@ -1201,7 +1219,7 @@ export const AdvancedFiltering = () => {
             </DataTable.HeaderCell>
           </DataTable.Header>
           <DataTable.Body>
-            {table.getRowModel().rows.map(row => (
+            {table.getFilteredRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => {
                   // Skip rendering the type column since it's used for filtering only
@@ -1344,7 +1362,7 @@ export const BulkSelection = () => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  const selectedCount = Object.keys(rowSelection).length;
+  const selectedCount = table.getFilteredSelectedRowModel().rows.length;
 
   return (
     <StorybookTableProvider table={table}>
@@ -1446,11 +1464,6 @@ export const GlobalSearch = () => {
             onChange={value => setGlobalFilter(String(value))}
             placeholder="Search all columns..."
           />
-          {/* {globalFilter && (
-            <Typography size="small">
-              {table.getFilteredRowModel().rows.length} results
-            </Typography>
-          )} */}
         </div>
       </DataTable.Actions>
 
@@ -1473,7 +1486,7 @@ export const GlobalSearch = () => {
               )}
           </DataTable.Header>
           <DataTable.Body>
-            {table.getRowModel().rows.map(row => (
+            {table.getFilteredRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
                   <DataTable.Cell key={cell.id}>
