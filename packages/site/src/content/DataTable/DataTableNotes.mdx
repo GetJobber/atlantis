@@ -1,0 +1,110 @@
+import { Canvas } from "@storybook/addon-docs";
+import { DataTable } from "@jobber/components/DataTable";
+import { Icon } from "@jobber/components/Icon";
+import { Text } from "@jobber/components/Text";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+import { Button } from "@jobber/components/Button";
+import { InlineLabel } from "@jobber/components/InlineLabel";
+import { Box } from "@jobber/components/Box";
+import { Typography } from "@jobber/components/Typography";
+
+## Configuration
+
+The DataTable component provides a quick and consistent solution for common
+table needs, with built-in support for features like sorting and pagination.
+
+For more advanced or customized experiences, such as dynamic filtering, bulk
+selection, or fully tailored interactions, use the atomic DataTable components.
+These building blocks give you full control over layout and behavior, while
+preserving the visual consistency of the Atlantis design system. They pair well
+with libraries like [TanStack Table](https://tanstack.com/table) to handle
+complex data management.
+
+### Basic Structure
+
+The DataTable uses a compound component pattern with these atomic components:
+
+```tsx
+<DataTable.Container>
+  <DataTable.Actions>{/* Filter controls, search, etc. */}</DataTable.Actions>
+
+  <DataTable.Table>
+    <DataTable.Header>
+      <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+      <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+      <DataTable.HeaderCell>Role</DataTable.HeaderCell>
+    </DataTable.Header>
+
+    <DataTable.Body>
+      <DataTable.Row>
+        <DataTable.Cell>John Doe</DataTable.Cell>
+        <DataTable.Cell>john@example.com</DataTable.Cell>
+        <DataTable.Cell>Admin</DataTable.Cell>
+      </DataTable.Row>
+    </DataTable.Body>
+  </DataTable.Table>
+
+  <DataTable.Footer>
+    <DataTable.Pagination>
+      <DataTable.PaginationButton direction="previous" />
+      <DataTable.PaginationButton direction="next" />
+    </DataTable.Pagination>
+  </DataTable.Footer>
+</DataTable.Container>
+```
+
+### Component Customization
+
+Atomic DataTable components are flexible and composable. Each component accepts
+standard HTML attributes, including className, style, onClick, onMouseEnter, and
+more.
+
+Rows and cells support fully custom content, including other components,
+enabling rich, interactive table layouts:
+
+```tsx
+<DataTable.Row>
+  <DataTable.Cell>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="invoice" />
+      <div>
+        <Typography fontWeight="bold">Invoice #123</Typography>
+        <Text variation="subdued">For Services rendered</Text>
+      </div>
+    </div>
+  </DataTable.Cell>
+  <DataTable.Cell>
+    <StatusLabel status="warning" label="Late" />
+  </DataTable.Cell>
+  <DataTable.Cell>
+    <div style={{ textAlign: "right" }}>$2400.00</div>
+  </DataTable.Cell>
+  <DataTable.RowActions>
+    <Button icon="edit" label="Edit" />
+    <Button icon="delete" label="Delete" />
+  </DataTable.RowActions>
+</DataTable.Row>
+```
+
+### Setting Up Your Own Provider
+
+Atomic DataTable components are fully functional on their own, no provider is
+required. You can render rows, cells, headers, and actions manually, using
+static data or your own logic.
+
+However, if you're integrating with a table library like TanStack Table, you may
+choose to create a context-based provider to pass the table instance down to the
+child components. This allows you to centralize state management, such as
+sorting, pagination, and row models, while keeping your table layout clean and
+declarative.
+
+This pattern is entirely optional, but it can help streamline more complex or
+dynamic table setups.
+
+{/* TODO: Link to examples in storybook once in production */}
