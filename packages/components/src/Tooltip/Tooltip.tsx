@@ -53,6 +53,17 @@ export function Tooltip({
     placement === "right" && styles.right,
   );
 
+  const arrowStyles: React.CSSProperties = {
+    position: "absolute",
+    // only left or top will be defined at a time
+    left: Number.isFinite(floatingStyles.arrow?.x)
+      ? `${floatingStyles.arrow?.x}px`
+      : "",
+    top: Number.isFinite(floatingStyles.arrow?.y)
+      ? `${floatingStyles.arrow?.y}px`
+      : "",
+  };
+
   return (
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
@@ -81,17 +92,7 @@ export function Tooltip({
               <p className={styles.tooltipMessage}>{message}</p>
               <div
                 ref={setArrowRef}
-                style={{
-                  position: "absolute",
-                  left:
-                    floatingStyles.arrow?.x != null
-                      ? `${floatingStyles.arrow?.x}px`
-                      : "",
-                  top:
-                    floatingStyles.arrow?.y != null
-                      ? `${floatingStyles.arrow?.y}px`
-                      : "",
-                }}
+                style={arrowStyles}
                 className={styles.arrow}
               />
             </motion.div>
