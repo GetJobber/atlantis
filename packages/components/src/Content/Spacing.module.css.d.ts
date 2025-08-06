@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "slim": string;
   readonly "minuscule": string;
   readonly "smallest": string;
   readonly "smaller": string;
