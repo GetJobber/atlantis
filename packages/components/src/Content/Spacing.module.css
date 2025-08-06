@@ -1,7 +1,3 @@
-.slim > :not(:last-child) {
-  margin-bottom: var(--space-slim);
-}
-
 .minuscule > :not(:last-child) {
   margin-bottom: var(--space-minuscule);
 }
@@ -16,6 +12,10 @@
 
 .small > :not(:last-child) {
   margin-bottom: var(--space-small);
+}
+
+.slim > :not(:last-child) {
+  margin-bottom: var(--space-slim);
 }
 
 .base > :not(:last-child) {
