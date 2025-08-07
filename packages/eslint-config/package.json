@@ -4,7 +4,8 @@
   "main": ".eslintrc.js",
   "license": "MIT",
   "files": [
-    "patch-eslint-plugin-resolution.js"
+    "patch-eslint-plugin-resolution.js",
+    "rules"
   ],
   "dependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
