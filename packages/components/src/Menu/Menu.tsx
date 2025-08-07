@@ -33,7 +33,8 @@ import { calculateMaxHeight } from "../utils/maxHeight";
 
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
-const MENU_MAX_HEIGHT_VH = 72; // 72vh as percentage
+const MENU_MAX_HEIGHT_PERCENTAGE = 72;
+const MENU_MIN_HEIGHT = 150;
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -93,8 +94,6 @@ export interface SectionProps {
   actions: ActionProps[];
 }
 
-const MENU_MIN_HEIGHT = 150;
-
 // eslint-disable-next-line max-statements
 export function Menu({
   activator,
@@ -138,7 +137,8 @@ export function Menu({
 
           if (menuElement) {
             const viewportHeight = window.innerHeight;
-            const maxHeightVh = (viewportHeight * MENU_MAX_HEIGHT_VH) / 100;
+            const maxHeightVh =
+              (viewportHeight * MENU_MAX_HEIGHT_PERCENTAGE) / 100;
 
             const maxHeight = calculateMaxHeight(availableHeight, {
               maxHeight: maxHeightVh,
