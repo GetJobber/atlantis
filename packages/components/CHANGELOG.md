@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.77.0...@jobber/components@6.78.0) (2025-08-07)
+
+
+### Features
+
+* **components:** Use Floating UI for Menu ([#2641](https://github.com/GetJobber/atlantis/issues/2641)) ([aa2cf4c](https://github.com/GetJobber/atlantis/commit/aa2cf4c68f3bf9856ea3dd9d61a7b4b2323b0926))
+
+
+
+
+
 # [6.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.76.1...@jobber/components@6.77.0) (2025-08-06)
 
 
