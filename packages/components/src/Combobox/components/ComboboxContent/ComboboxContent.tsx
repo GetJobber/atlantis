@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import classnames from "classnames";
 import { FloatingNode, FloatingPortal, FloatingTree } from "@floating-ui/react";
-import ReactDOM from "react-dom";
 import styles from "./ComboboxContent.module.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
@@ -109,7 +108,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     );
   }
 
-  return globalThis?.document
-    ? ReactDOM.createPortal(content, document.body)
-    : content;
+  return globalThis?.document ? (
+    <FloatingPortal>{content}</FloatingPortal>
+  ) : (
+    content
+  );
 }
