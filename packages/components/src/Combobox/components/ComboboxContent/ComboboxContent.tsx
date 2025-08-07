@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import classnames from "classnames";
-import { FloatingNode, FloatingPortal, FloatingTree } from "@floating-ui/react";
-import ReactDOM from "react-dom";
+import { FloatingPortal } from "@floating-ui/react";
 import styles from "./ComboboxContent.module.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
@@ -18,14 +17,13 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     props.selected,
   );
 
-  const { popperRef, popperStyles, floatingProps, nodeId, parentNodeId } =
-    useComboboxAccessibility(
-      props.handleSelection,
-      props.options,
-      optionsListRef,
-      props.open,
-      props.wrapperRef,
-    );
+  const { floatingRef, floatingStyles } = useComboboxAccessibility(
+    props.handleSelection,
+    props.options,
+    optionsListRef,
+    props.open,
+    props.wrapperRef,
+  );
 
   // options that are passed back to consumers via onSelectAll callback
   // should only contain id and label
@@ -38,7 +36,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   const content = (
     <div
-      ref={popperRef}
+      ref={floatingRef}
       id={COMBOBOX_MENU_ID}
       data-testid={COMBOBOX_MENU_ID}
       data-elevation={"elevated"}
@@ -46,8 +44,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       className={classnames(styles.content, {
         [styles.hidden]: !props.open,
       })}
-      style={popperStyles}
-      {...floatingProps}
+      style={floatingStyles}
     >
       <ComboboxContentSearch
         open={props.open}
@@ -99,17 +96,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     </div>
   );
 
-  if (parentNodeId) {
-    return (
-      <FloatingTree>
-        <FloatingNode id={nodeId}>
-          <FloatingPortal>{content}</FloatingPortal>
-        </FloatingNode>
-      </FloatingTree>
-    );
-  }
-
-  return globalThis?.document
-    ? ReactDOM.createPortal(content, document.body)
-    : content;
+  return globalThis?.document ? (
+    <FloatingPortal>{content}</FloatingPortal>
+  ) : (
+    content
+  );
 }
