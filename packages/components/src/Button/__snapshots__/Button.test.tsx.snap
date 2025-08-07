@@ -121,21 +121,6 @@ exports[`renders a Button with an icon on the right 1`] = `
 </div>
 `;
 
-exports[`renders a Link as a Button for routing 1`] = `
-<div>
-  <a
-    class="button base work primary buttonChildren"
-    href="/jobber"
-  >
-    <span
-      class="base semiBold base base"
-    >
-      Adding
-    </span>
-  </a>
-</div>
-`;
-
 exports[`renders a destructuve Button 1`] = `
 <div>
   <button

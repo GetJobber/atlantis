@@ -1,5 +1,4 @@
 import { IconNames } from "@jobber/design";
-import { LinkProps } from "react-router-dom";
 import { XOR } from "ts-xor";
 import { CSSProperties } from "react";
 import { TypographyProps } from "../Typography/Typography";
@@ -82,13 +81,6 @@ interface ButtonAnchorProps extends ButtonFoundationProps {
   readonly url?: string;
 }
 
-interface ButtonLinkProps<S = unknown> extends ButtonFoundationProps {
-  /**
-   * **Deprecated**: to will be removed in the next major version
-   * @deprecated
-   */
-  readonly to?: LinkProps<S>["to"];
-}
 
 interface BaseActionProps extends ButtonFoundationProps {
   readonly variation?: ButtonVariation;
@@ -129,7 +121,7 @@ type BaseButtonProps = XOR<
 > &
   XOR<
     XOR<SubmitButtonProps, BasicButtonProps>,
-    XOR<ButtonLinkProps, ButtonAnchorProps>
+    ButtonAnchorProps
   >;
 
 export type ButtonWithChildrenProps = BaseButtonProps & {
