@@ -47,7 +47,7 @@ Popover.Arrow = function PopoverArrow({
   UNSAFE_className,
   UNSAFE_style,
 }: PopoverArrowProps) {
-  const { setArrowElement, popperStyles, placement } = usePopoverContext();
+  const { setArrowElement, floatingStyles, placement } = usePopoverContext();
   const popoverStyles = usePopoverStyles();
   const classes = classnames(popoverStyles.arrow, UNSAFE_className?.arrow);
 
@@ -64,8 +64,8 @@ Popover.Arrow = function PopoverArrow({
   const arrowStyles: React.CSSProperties = {
     position: "absolute",
     // only left or top will be defined at a time
-    left: popperStyles.arrow?.x != null ? `${popperStyles.arrow?.x}px` : "",
-    top: popperStyles.arrow?.y != null ? `${popperStyles.arrow?.y}px` : "",
+    left: floatingStyles.arrow?.x != null ? `${floatingStyles.arrow?.x}px` : "",
+    top: floatingStyles.arrow?.y != null ? `${floatingStyles.arrow?.y}px` : "",
     right: "",
     bottom: "",
     [staticSide]: "var(--popover--position--offset)",
