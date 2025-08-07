@@ -6,6 +6,7 @@ import {
   size,
   useFloating,
 } from "@floating-ui/react";
+import { calculateMaxHeight } from "@jobber/components/utils/maxHeight";
 
 export interface UseRepositionMenu {
   readonly setFloatingRef: (ref: HTMLElement | null) => void;
@@ -18,6 +19,7 @@ export interface UseRepositionMenu {
 
 const ROUNDED_BORDER_ARROW_EDGE_OFFSET = 8;
 const PREFERRED_MAX_HEIGHT = 320;
+const MIN_HEIGHT = 100;
 
 export function useRepositionMenu(
   attachTo: HTMLElement | null,
@@ -29,7 +31,10 @@ export function useRepositionMenu(
       flip({ fallbackPlacements: ["top"] }),
       size({
         apply({ availableHeight, elements }) {
-          const maxHeight = Math.min(PREFERRED_MAX_HEIGHT, availableHeight);
+          const maxHeight = calculateMaxHeight(availableHeight, {
+            maxHeight: PREFERRED_MAX_HEIGHT,
+            minHeight: MIN_HEIGHT,
+          });
 
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
