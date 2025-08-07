@@ -14,6 +14,10 @@ export interface HeadingProps {
    */
   readonly element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
 
+  /**
+   * The maximum amount of lines the text can occupy before being truncated with "...".
+   * Uses predefined string values that correspond to a doubling scale for the amount of lines.
+   */
   readonly maxLines?:
     | "single"
     | "small"

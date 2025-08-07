@@ -38,7 +38,7 @@
         "defaultValue": {
           "value": "unlimited"
         },
-        "description": "",
+        "description": "The maximum amount of lines the text can occupy before being truncated with \"...\".\nUses predefined string values that correspond to a doubling scale for the amount of lines.",
         "name": "maxLines",
         "parent": {
           "fileName": "../components/src/Heading/Heading.tsx",
