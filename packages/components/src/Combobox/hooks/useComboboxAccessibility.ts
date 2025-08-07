@@ -8,8 +8,6 @@ import {
   shift,
   useDismiss,
   useFloating,
-  useFloatingNodeId,
-  useFloatingParentNodeId,
   useInteractions,
 } from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
@@ -26,27 +24,22 @@ export function useComboboxAccessibility(
   open: boolean,
   wrapperRef: React.RefObject<HTMLDivElement>,
 ): {
-  popperRef: React.RefObject<HTMLDivElement>;
-  popperStyles: React.CSSProperties;
+  floatingRef: React.RefObject<HTMLDivElement>;
+  floatingStyles: React.CSSProperties;
   floatingProps: ReturnType<UseInteractionsReturn["getFloatingProps"]>;
-  nodeId?: string;
-  parentNodeId: string | null;
 } {
   const { handleClose } = useContext(ComboboxContext);
   const hasOptionsVisible = open && filteredOptions.length > 0;
   const focusedIndex = useRef<number | null>(null);
-  const parentNodeId = useFloatingParentNodeId();
-  const nodeId = useFloatingNodeId();
 
   useRefocusOnActivator(open);
 
-  const popperRef = useFocusTrap<HTMLDivElement>(open);
+  const floatingRef = useFocusTrap<HTMLDivElement>(open);
 
   const { floatingStyles, update, context } = useFloating({
-    nodeId,
     elements: {
       reference: wrapperRef.current,
-      floating: popperRef.current,
+      floating: floatingRef.current,
     },
     open,
     onOpenChange: openState => {
@@ -75,11 +68,11 @@ export function useComboboxAccessibility(
 
   useEffect(() => {
     if (open) {
-      popperRef.current?.addEventListener("keydown", handleContentKeydown);
+      floatingRef.current?.addEventListener("keydown", handleContentKeydown);
     }
 
     return () => {
-      popperRef.current?.removeEventListener("keydown", handleContentKeydown);
+      floatingRef.current?.removeEventListener("keydown", handleContentKeydown);
     };
   }, [open, optionsListRef, filteredOptions]);
 
@@ -131,10 +124,8 @@ export function useComboboxAccessibility(
   }
 
   return {
-    popperRef,
-    popperStyles: floatingStyles,
+    floatingRef,
+    floatingStyles,
     floatingProps: getFloatingProps(),
-    nodeId,
-    parentNodeId,
   };
 }
