@@ -34,6 +34,19 @@
           "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"span\""
         }
       },
+      "numberOfLines": {
+        "defaultValue": null,
+        "description": "",
+        "name": "numberOfLines",
+        "parent": {
+          "fileName": "../components/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
       "UNSAFE_className": {
         "defaultValue": null,
         "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
