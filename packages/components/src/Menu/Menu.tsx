@@ -29,6 +29,7 @@ import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
+import { calculateMaxHeight } from "../utils/maxHeight";
 
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
@@ -92,6 +93,8 @@ export interface SectionProps {
   actions: ActionProps[];
 }
 
+const MENU_MIN_HEIGHT = 150;
+
 // eslint-disable-next-line max-statements
 export function Menu({
   activator,
@@ -137,8 +140,10 @@ export function Menu({
             const viewportHeight = window.innerHeight;
             const maxHeightVh = (viewportHeight * MENU_MAX_HEIGHT_VH) / 100;
 
-            // Use the smaller of 72vh or available space
-            const maxHeight = Math.min(maxHeightVh, availableHeight);
+            const maxHeight = calculateMaxHeight(availableHeight, {
+              maxHeight: maxHeightVh,
+              minHeight: MENU_MIN_HEIGHT,
+            });
 
             Object.assign(menuElement.style, {
               maxHeight: `${maxHeight}px`,

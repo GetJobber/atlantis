@@ -8,6 +8,7 @@ import {
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { MenuProps } from "./Autocomplete.types";
 import { AUTCOMPLETE_MIN_HEIGHT, AUTOCOMPLETE_MAX_HEIGHT } from "./constants";
+import { calculateMaxHeight } from "../utils/maxHeight";
 
 export interface UseRepositionMenu {
   readonly menuRef: HTMLElement | null;
@@ -30,12 +31,10 @@ export function useRepositionMenu(
       flip({ fallbackPlacements: ["top"] }),
       size({
         apply({ availableHeight, elements }) {
-          // Limit the height for a true maximum
-          // However if we have less space than that, then reduce it to allow scrolling
-          const maxHeight =
-            availableHeight > AUTOCOMPLETE_MAX_HEIGHT
-              ? AUTOCOMPLETE_MAX_HEIGHT
-              : Math.max(AUTCOMPLETE_MIN_HEIGHT, availableHeight);
+          const maxHeight = calculateMaxHeight(availableHeight, {
+            maxHeight: AUTOCOMPLETE_MAX_HEIGHT,
+            minHeight: AUTCOMPLETE_MIN_HEIGHT,
+          });
 
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
