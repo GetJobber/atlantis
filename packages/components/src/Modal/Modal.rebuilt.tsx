@@ -1,11 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  FloatingFocusManager,
-  FloatingNode,
-  FloatingOverlay,
-  FloatingPortal,
-} from "@floating-ui/react";
+import { FloatingOverlay, FloatingPortal } from "@floating-ui/react";
 import { useModalContext } from "./ModalContext.rebuilt";
 import {
   HeaderProps,
@@ -100,57 +95,41 @@ export function ModalOverlay() {
 }
 
 export function ModalContent({ children }: ModalContainerProps) {
-  const {
-    open,
-    floatingContext,
-    activatorRef,
-    floatingRefs,
-    size,
-    floatingNodeId,
-    modalLabelledBy,
-    getFloatingProps,
-  } = useModalContext();
+  const { open, floatingRefs, size, modalLabelledBy, getFloatingProps } =
+    useModalContext();
   const { modal, overlay } = useModalStyles(size);
 
   return (
     <AnimatePresence>
       {open && (
-        <FloatingNode id={floatingNodeId}>
-          <FloatingPortal>
-            <AtlantisPortalContent>
-              <FloatingOverlay className={overlay}>
-                <FloatingFocusManager
-                  context={floatingContext}
-                  returnFocus={activatorRef?.current ? activatorRef : true}
-                  initialFocus={floatingRefs?.floating}
+        <FloatingPortal>
+          <AtlantisPortalContent>
+            <FloatingOverlay className={overlay}>
+              <div
+                ref={floatingRefs?.setFloating}
+                role="dialog"
+                tabIndex={0}
+                aria-labelledby={modalLabelledBy}
+                {...getFloatingProps()}
+              >
+                <ModalOverlay />
+                <motion.div
+                  data-floating-ui-focusable
+                  className={modal}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  transition={{
+                    duration: 0.2,
+                    ease: "easeInOut",
+                  }}
                 >
-                  <div
-                    ref={floatingRefs?.setFloating}
-                    role="dialog"
-                    tabIndex={0}
-                    aria-labelledby={modalLabelledBy}
-                    {...getFloatingProps()}
-                  >
-                    <ModalOverlay />
-                    <motion.div
-                      data-floating-ui-focusable
-                      className={modal}
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      {children}
-                    </motion.div>
-                  </div>
-                </FloatingFocusManager>
-              </FloatingOverlay>
-            </AtlantisPortalContent>
-          </FloatingPortal>
-        </FloatingNode>
+                  {children}
+                </motion.div>
+              </div>
+            </FloatingOverlay>
+          </AtlantisPortalContent>
+        </FloatingPortal>
       )}
     </AnimatePresence>
   );

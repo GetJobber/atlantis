@@ -1,6 +1,5 @@
 import noop from "lodash/noop";
 import React, { MutableRefObject, createContext, useContext } from "react";
-import { FloatingContext, FloatingTree } from "@floating-ui/react";
 import identity from "lodash/identity";
 import sizes from "./ModalSizes.module.css";
 import { useModal } from "./useModal";
@@ -11,9 +10,7 @@ export const ModalContext = createContext<ModalContextType>({
   onRequestClose: noop,
   activatorRef: { current: null },
   floatingRefs: null,
-  floatingContext: {} as FloatingContext,
   size: undefined,
-  floatingNodeId: undefined,
   dismissible: true,
   getFloatingProps: identity,
 });
@@ -36,14 +33,7 @@ export function ModalProvider({
   dismissible = true,
   modalLabelledBy = "ATL-Modal-Header",
 }: ModalProviderProps) {
-  const {
-    floatingRefs,
-    floatingContext,
-    nodeId,
-    activatorRef,
-    parentId,
-    getFloatingProps,
-  } = useModal({
+  const { floatingRefs, activatorRef, getFloatingProps } = useModal({
     open,
     activatorRef: refProp,
     onRequestClose,
@@ -55,10 +45,8 @@ export function ModalProvider({
         onRequestClose,
         activatorRef,
         floatingRefs,
-        floatingContext,
         size,
         open,
-        floatingNodeId: nodeId,
         dismissible,
         modalLabelledBy,
         getFloatingProps,
@@ -68,11 +56,7 @@ export function ModalProvider({
     </ModalContext.Provider>
   );
 
-  if (parentId) {
-    return content;
-  }
-
-  return <FloatingTree>{content}</FloatingTree>;
+  return content;
 }
 
 export function useModalContext() {
