@@ -84,6 +84,23 @@ it("renders a non heading inline element", () => {
   `);
 });
 
+it("renders with numberOfLines prop", () => {
+  const { container } = render(
+    <Heading level={2} numberOfLines={2}>
+      This text should be truncated
+    </Heading>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h2
+        class="base bold largest heading textTruncate"
+      >
+        This text should be truncated
+      </h2>
+    </div>
+  `);
+});
+
 describe("UNSAFE_props", () => {
   it("should apply the UNSAFE_className to the element", () => {
     render(

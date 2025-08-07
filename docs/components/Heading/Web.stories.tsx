@@ -33,3 +33,31 @@ const LevelsTemplate: ComponentStory<typeof Heading> = args => {
 
 export const Levels = LevelsTemplate.bind({});
 Levels.args = { level: 1 };
+
+const TruncationTemplate: ComponentStory<typeof Heading> = () => {
+  return (
+    <div style={{ width: "300px", border: "1px dashed #ccc", padding: "16px" }}>
+      <Content>
+        <Heading level={3} numberOfLines={1}>
+          numberOfLines=1: This heading demonstrates single line truncation and
+          will cut off any text that exceeds the container width with ellipsis
+        </Heading>
+        <Divider />
+        <Heading level={3} numberOfLines={2}>
+          numberOfLines=2: This heading shows two line truncation behavior and
+          will allow text to wrap to exactly two lines before truncating with an
+          ellipsis at the end
+        </Heading>
+        <Divider />
+        <Heading level={3}>
+          No numberOfLines prop: This heading will wrap naturally without any
+          truncation limits and can span as many lines as needed to display all
+          the content
+        </Heading>
+      </Content>
+    </div>
+  );
+};
+
+export const Truncation = TruncationTemplate.bind({});
+Truncation.args = {};

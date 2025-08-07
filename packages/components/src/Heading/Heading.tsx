@@ -14,6 +14,8 @@ export interface HeadingProps {
    */
   readonly element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
 
+  readonly numberOfLines?: number;
+
   /**
    * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
@@ -35,6 +37,7 @@ export function Heading({
   level = 5,
   children,
   element,
+  numberOfLines,
   UNSAFE_className,
   UNSAFE_style,
 }: HeadingProps) {
@@ -82,6 +85,7 @@ export function Heading({
     <Typography
       {...levelMap[level]}
       element={element || levelMap[level].element}
+      numberOfLines={numberOfLines}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_style={UNSAFE_style}
     >
