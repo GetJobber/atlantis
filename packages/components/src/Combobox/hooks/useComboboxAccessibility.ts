@@ -2,10 +2,9 @@ import { useContext, useEffect, useRef } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import {
   UseInteractionsReturn,
-  autoPlacement,
   autoUpdate,
+  flip,
   offset,
-  shift,
   useDismiss,
   useFloating,
   useInteractions,
@@ -46,9 +45,8 @@ export function useComboboxAccessibility(
       if (!openState) handleClose();
     },
     middleware: [
-      autoPlacement({ allowedPlacements: ["bottom-start", "top-start"] }),
       offset(COMBOBOX_OFFSET),
-      shift({ padding: COMBOBOX_OFFSET }),
+      flip({ fallbackPlacements: ["top-start"] }),
     ],
     placement: "bottom-start",
     whileElementsMounted: autoUpdate,
