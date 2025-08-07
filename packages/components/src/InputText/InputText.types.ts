@@ -1,4 +1,4 @@
-import { Clearable } from "@jobber/hooks";
+import { Clearable } from "@jobber/hooks/useShowClear";
 import { XOR } from "ts-xor";
 import {
   AutocompleteTypes,

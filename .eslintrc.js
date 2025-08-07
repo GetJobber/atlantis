@@ -35,6 +35,10 @@ module.exports = {
             name: "lodash",
             message: "Import [module] from lodash/[module] instead.",
           },
+          {
+            name: "@jobber/hooks",
+            message: "Import [module] from @jobber/hooks/[module] instead.",
+          },
         ],
       },
     ],

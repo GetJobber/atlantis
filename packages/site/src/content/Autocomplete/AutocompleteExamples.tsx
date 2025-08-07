@@ -24,7 +24,7 @@ import {
   useCustomKeyboardNavigation,
   useKeyboardNavigation,
 } from "@jobber/components/Autocomplete";
-import { useCallbackRef } from "@jobber/hooks";
+import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const SectionHeadingOptions = [

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
-import { useOnMount } from "@jobber/hooks";
+import { useOnMount } from "@jobber/hooks/useOnMount";
 import ReactGA from "react-ga4";
 
 const IS_PROD = window.location.hostname === "atlantis.getjobber.com";

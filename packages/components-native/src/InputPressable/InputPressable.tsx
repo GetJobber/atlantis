@@ -2,7 +2,7 @@ import React, { Ref, forwardRef, useEffect, useState } from "react";
 import { IconNames } from "@jobber/design";
 import { FieldError } from "react-hook-form";
 import { Text as NativeText, Pressable } from "react-native";
-import { Clearable, useShowClear } from "@jobber/hooks";
+import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
 import { XOR } from "ts-xor";
 import { useStyles } from "./InputPressable.style";
 import { InputFieldWrapper, useCommonInputStyles } from "../InputFieldWrapper";

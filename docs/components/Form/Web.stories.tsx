@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useFormState } from "@jobber/hooks";
+import { useFormState } from "@jobber/hooks/useFormState";
 import { Form, FormRef } from "@jobber/components/Form";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";

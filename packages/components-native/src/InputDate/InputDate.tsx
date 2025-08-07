@@ -3,7 +3,7 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { Keyboard, Platform } from "react-native";
 import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
-import { Clearable } from "@jobber/hooks";
+import { Clearable } from "@jobber/hooks/useShowClear";
 import { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { FormField } from "../FormField";
 import { InputPressable } from "../InputPressable";
