@@ -18,7 +18,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     props.selected,
   );
 
-  const { popperRef, popperStyles, floatingProps, nodeId, parentNodeId } =
+  const { floatingRef, floatingStyles, floatingProps, nodeId, parentNodeId } =
     useComboboxAccessibility(
       props.handleSelection,
       props.options,
@@ -38,7 +38,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   const content = (
     <div
-      ref={popperRef}
+      ref={floatingRef}
       id={COMBOBOX_MENU_ID}
       data-testid={COMBOBOX_MENU_ID}
       data-elevation={"elevated"}
@@ -46,7 +46,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       className={classnames(styles.content, {
         [styles.hidden]: !props.open,
       })}
-      style={popperStyles}
+      style={floatingStyles}
       {...floatingProps}
     >
       <ComboboxContentSearch
