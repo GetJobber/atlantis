@@ -20,6 +20,11 @@ preserving the visual consistency of the Atlantis design system. They pair well
 with libraries like [TanStack Table](https://tanstack.com/table) to handle
 complex data management.
 
+To see examples of how the atomic DataTable components can be configured, see
+[this section of storybook](..?path=/story/components-lists-and-tables-datatable-web-composable--basic).
+These are just starting points, the components are fully composable and can
+support a wide range of use cases.
+
 ### Basic Structure
 
 The DataTable uses a compound component pattern with these atomic components:
@@ -60,7 +65,8 @@ standard HTML attributes, including className, style, onClick, onMouseEnter, and
 more.
 
 Rows and cells support fully custom content, including other components,
-enabling rich, interactive table layouts:
+enabling rich, interactive table layouts. See an example
+[here](/?path=/story/components-lists-and-tables-datatable-web-composable--advanced-filtering).
 
 ```tsx
 <DataTable.Row>
@@ -94,7 +100,9 @@ enabling rich, interactive table layouts:
 
 ### Sortable Headers
 
-For sortable columns, use DataTable.SortableHeader with the required props:
+For
+[sortable columns](../?path=/story/components-lists-and-tables-datatable-web-composable--sortable),
+use DataTable.SortableHeader with the required props:
 
 ```tsx
 <DataTable.Header>
@@ -129,8 +137,9 @@ equilibrium) based on your application's logic.
 
 ### Pagination
 
-For pagination functionality, use DataTable.Pagination and
-DataTable.PaginationButton:
+For
+[pagination functionality](../?path=/story/components-lists-and-tables-datatable-web-composable--with-pagination),
+use DataTable.Pagination and DataTable.PaginationButton:
 
 ```tsx
 <DataTable.Footer>
@@ -155,9 +164,9 @@ DataTable.PaginationButton:
 </DataTable.Footer>
 ```
 
-**Important**: The `ariaLabel` prop is required and should be a function that
-takes a direction parameter and returns translated strings for accessibility.
-Consider using your application's translation system:
+**Note**: The `ariaLabel` prop is required and should be a function that takes a
+direction parameter and returns translated strings for accessibility. Consider
+using your application's translation system:
 
 ```tsx
 ariaLabel={(direction) =>
@@ -179,5 +188,3 @@ declarative.
 
 This pattern is entirely optional, but it can help streamline more complex or
 dynamic table setups.
-
-{/* TODO: Link to examples in storybook once in production */}
