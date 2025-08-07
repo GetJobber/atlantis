@@ -53,7 +53,7 @@ export function useComboboxAccessibility(
     },
     middleware: [
       offset(COMBOBOX_OFFSET),
-      flip({ fallbackPlacements: ["top-start"] }),
+      flip({ fallbackPlacements: ["top-start", "bottom-end", "top-end"] }),
     ],
     placement: "bottom-start",
     whileElementsMounted: autoUpdate,
@@ -127,7 +127,6 @@ export function useComboboxAccessibility(
       selectionCallback(filteredOptions[focusedIndex.current]);
     }
   }
-  console.log(getFloatingProps());
 
   return {
     floatingRef,
