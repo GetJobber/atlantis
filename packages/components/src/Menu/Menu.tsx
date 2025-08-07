@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
 import { IconColorNames, IconNames } from "@jobber/design";
@@ -19,7 +18,9 @@ import {
   flip,
   offset,
   size,
+  useDismiss,
   useFloating,
+  useInteractions,
 } from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
@@ -113,8 +114,6 @@ export function Menu({
     [styles.fullWidth]: fullWidth,
   });
 
-  useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
-
   // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);
   const menuRef = useFocusTrap<HTMLDivElement>(visible);
@@ -153,6 +152,9 @@ export function Menu({
     },
     whileElementsMounted: autoUpdate,
   });
+
+  const dismiss = useDismiss(context);
+  const { getFloatingProps } = useInteractions([dismiss]);
 
   const positionAttributes =
     width >= SMALL_SCREEN_BREAKPOINT
@@ -202,6 +204,7 @@ export function Menu({
               <div
                 ref={refs.setFloating}
                 className={styles.floatingContainer}
+                {...getFloatingProps()}
                 {...positionAttributes}
                 {...formFieldFocusAttribute}
               >
@@ -265,15 +268,6 @@ export function Menu({
 
   function hide() {
     setVisible(false);
-  }
-
-  function handleKeyboardShortcut(event: KeyboardEvent) {
-    const { key } = event;
-    if (!visible) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-    key === "Escape" && hide();
   }
 
   function handleParentClick(event: MouseEvent<HTMLDivElement>) {
