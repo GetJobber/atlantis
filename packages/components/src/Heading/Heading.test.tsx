@@ -84,9 +84,9 @@ it("renders a non heading inline element", () => {
   `);
 });
 
-it("renders with numberOfLines prop", () => {
+it("renders with maxLines prop", () => {
   const { container } = render(
-    <Heading level={2} numberOfLines={2}>
+    <Heading level={2} maxLines="small">
       This text should be truncated
     </Heading>,
   );

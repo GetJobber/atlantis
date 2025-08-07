@@ -34,17 +34,19 @@
           "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"span\""
         }
       },
-      "numberOfLines": {
-        "defaultValue": null,
+      "maxLines": {
+        "defaultValue": {
+          "value": "unlimited"
+        },
         "description": "",
-        "name": "numberOfLines",
+        "name": "maxLines",
         "parent": {
           "fileName": "../components/src/Heading/Heading.tsx",
           "name": "HeadingProps"
         },
         "required": false,
         "type": {
-          "name": "number"
+          "name": "\"single\" | \"small\" | \"base\" | \"large\" | \"larger\" | \"unlimited\""
         }
       },
       "UNSAFE_className": {

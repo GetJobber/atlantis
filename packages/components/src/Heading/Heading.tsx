@@ -14,7 +14,13 @@ export interface HeadingProps {
    */
   readonly element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
 
-  readonly numberOfLines?: number;
+  readonly maxLines?:
+    | "single"
+    | "small"
+    | "base"
+    | "large"
+    | "larger"
+    | "unlimited";
 
   /**
    * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
@@ -37,7 +43,7 @@ export function Heading({
   level = 5,
   children,
   element,
-  numberOfLines,
+  maxLines = "unlimited",
   UNSAFE_className,
   UNSAFE_style,
 }: HeadingProps) {
@@ -81,11 +87,20 @@ export function Heading({
     },
   };
 
+  const maxLineToNumber = {
+    single: 1,
+    small: 2,
+    base: 4,
+    large: 8,
+    larger: 16,
+    unlimited: undefined,
+  };
+
   return (
     <Typography
       {...levelMap[level]}
       element={element || levelMap[level].element}
-      numberOfLines={numberOfLines}
+      numberOfLines={maxLineToNumber[maxLines]}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_style={UNSAFE_style}
     >
