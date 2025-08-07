@@ -3619,60 +3619,7 @@
     "description": "",
     "displayName": "DataTable.SortableHeader",
     "methods": [],
-    "props": {
-      "children": {
-        "defaultValue": null,
-        "description": "The header text to display",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader/DataTableSortableHeader.tsx",
-          "name": "DataTableSortableHeaderProps"
-        },
-        "required": true,
-        "type": {
-          "name": "React.ReactNode"
-        }
-      },
-      "direction": {
-        "defaultValue": null,
-        "description": "The current sort direction",
-        "name": "direction",
-        "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader/DataTableSortableHeader.tsx",
-          "name": "DataTableSortableHeaderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "SortDirection"
-        }
-      },
-      "onSort": {
-        "defaultValue": null,
-        "description": "Callback when sort is triggered",
-        "name": "onSort",
-        "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader/DataTableSortableHeader.tsx",
-          "name": "DataTableSortableHeaderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "className": {
-        "defaultValue": null,
-        "description": "Additional CSS classes",
-        "name": "className",
-        "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader/DataTableSortableHeader.tsx",
-          "name": "DataTableSortableHeaderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      }
-    }
+    "props": {}
   },
   {
     "tags": {},
@@ -3699,7 +3646,7 @@
     "props": {
       "direction": {
         "defaultValue": null,
-        "description": "",
+        "description": "The direction of the pagination button",
         "name": "direction",
         "parent": {
           "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton/DataTablePaginationButton.tsx",
@@ -3712,7 +3659,7 @@
       },
       "onClick": {
         "defaultValue": null,
-        "description": "",
+        "description": "Callback function when the pagination button is clicked",
         "name": "onClick",
         "parent": {
           "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton/DataTablePaginationButton.tsx",
@@ -3727,7 +3674,7 @@
         "defaultValue": {
           "value": false
         },
-        "description": "",
+        "description": "Whether the pagination button is disabled",
         "name": "disabled",
         "parent": {
           "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton/DataTablePaginationButton.tsx",
@@ -3740,7 +3687,7 @@
       },
       "ariaLabel": {
         "defaultValue": null,
-        "description": "",
+        "description": "Function that returns the aria-label for the button. Required for accessibility.\nShould return translated strings based on the direction parameter.",
         "name": "ariaLabel",
         "parent": {
           "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton/DataTablePaginationButton.tsx",
