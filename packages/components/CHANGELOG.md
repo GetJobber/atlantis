@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.76.1...@jobber/components@6.77.0) (2025-08-06)
+
+
+### Features
+
+* **components:** Use FloatingUI for Tooltip ([#2644](https://github.com/GetJobber/atlantis/issues/2644)) ([3d0a9c7](https://github.com/GetJobber/atlantis/commit/3d0a9c7d280cac69a381d4702fae72acca583761))
+
+
+
+
+
+## [6.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.76.0...@jobber/components@6.76.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* **components:** Add missing slim class for Content spacing ([#2654](https://github.com/GetJobber/atlantis/issues/2654)) ([a2d15d2](https://github.com/GetJobber/atlantis/commit/a2d15d2c2fb7ef3e84082182a2ffb967b07a0a94))
+
+
+
+
+
+# [6.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.75.2...@jobber/components@6.76.0) (2025-08-06)
+
+
+### Features
+
+* **components:** Use FloatingUI for Dismissible Chips ([#2640](https://github.com/GetJobber/atlantis/issues/2640)) ([8862829](https://github.com/GetJobber/atlantis/commit/88628298e492b0b5dded6db294b952a3216e0be2))
+
+
+
+
+
+## [6.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.75.1...@jobber/components@6.75.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **components:** Don't import directly from the hooks barrel file ([#2649](https://github.com/GetJobber/atlantis/issues/2649)) ([8cf538b](https://github.com/GetJobber/atlantis/commit/8cf538bb122d525a55ff370a22940d88db0b4a42))
+
+
+
+
+
+## [6.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.75.0...@jobber/components@6.75.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **components:** Fix InputNumber v2 to not wrap react node description in Text ([#2645](https://github.com/GetJobber/atlantis/issues/2645)) ([8d8dcd7](https://github.com/GetJobber/atlantis/commit/8d8dcd7acbb63d44da888ec8568c7ff4529e4c5b))
+
+
+
+
+
+# [6.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.74.0...@jobber/components@6.75.0) (2025-08-01)
+
+
+### Features
+
+* **hooks:** Add useDebounce Hook to Hooks ([#2561](https://github.com/GetJobber/atlantis/issues/2561)) ([a3e4009](https://github.com/GetJobber/atlantis/commit/a3e4009d861021e472e26726694fe53ea9fb1d30))
+
+
+
+
+
 # [6.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.73.0...@jobber/components@6.74.0) (2025-07-31)
 
 

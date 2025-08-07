@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { I18nManager } from "react-native";
 import { Typography } from "./Typography";
 
@@ -250,4 +250,35 @@ describe("underline", () => {
       expect(typography.toJSON()).toMatchSnapshot();
     },
   );
+});
+
+describe("onTextLayout", () => {
+  it("calls onTextLayout callback when text layout event occurs", () => {
+    const onTextLayoutMock = jest.fn();
+    const { getByRole } = render(
+      <Typography onTextLayout={onTextLayoutMock}>Test Text</Typography>,
+    );
+
+    const textElement = getByRole("text");
+    const mockEvent = {
+      nativeEvent: {
+        lines: [
+          {
+            text: "Test Text",
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 20,
+            ascender: 15,
+            descender: -5,
+            capHeight: 14,
+            xHeight: 10,
+          },
+        ],
+      },
+    };
+    fireEvent(textElement, "onTextLayout", mockEvent);
+    expect(onTextLayoutMock).toHaveBeenCalledTimes(1);
+    expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
+  });
 });

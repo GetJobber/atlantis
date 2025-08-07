@@ -2,6 +2,7 @@ export * from "./useBool";
 export * from "./useBreakpoints";
 export * from "./useCallbackRef";
 export * from "./useCollectionQuery";
+export * from "./useDebounce";
 export * from "./useFocusTrap";
 export * from "./useFormState";
 export * from "./useInView";
