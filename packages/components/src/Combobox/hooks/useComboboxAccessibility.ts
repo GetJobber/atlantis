@@ -7,6 +7,8 @@ import {
   offset,
   useDismiss,
   useFloating,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
   useInteractions,
 } from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
@@ -23,22 +25,27 @@ export function useComboboxAccessibility(
   open: boolean,
   wrapperRef: React.RefObject<HTMLDivElement>,
 ): {
-  floatingRef: React.RefObject<HTMLDivElement>;
-  floatingStyles: React.CSSProperties;
+  popperRef: React.RefObject<HTMLDivElement>;
+  popperStyles: React.CSSProperties;
   floatingProps: ReturnType<UseInteractionsReturn["getFloatingProps"]>;
+  nodeId?: string;
+  parentNodeId: string | null;
 } {
   const { handleClose } = useContext(ComboboxContext);
   const hasOptionsVisible = open && filteredOptions.length > 0;
   const focusedIndex = useRef<number | null>(null);
+  const parentNodeId = useFloatingParentNodeId();
+  const nodeId = useFloatingNodeId();
 
   useRefocusOnActivator(open);
 
-  const floatingRef = useFocusTrap<HTMLDivElement>(open);
+  const popperRef = useFocusTrap<HTMLDivElement>(open);
 
   const { floatingStyles, update, context } = useFloating({
+    nodeId,
     elements: {
       reference: wrapperRef.current,
-      floating: floatingRef.current,
+      floating: popperRef.current,
     },
     open,
     onOpenChange: openState => {
@@ -66,11 +73,11 @@ export function useComboboxAccessibility(
 
   useEffect(() => {
     if (open) {
-      floatingRef.current?.addEventListener("keydown", handleContentKeydown);
+      popperRef.current?.addEventListener("keydown", handleContentKeydown);
     }
 
     return () => {
-      floatingRef.current?.removeEventListener("keydown", handleContentKeydown);
+      popperRef.current?.removeEventListener("keydown", handleContentKeydown);
     };
   }, [open, optionsListRef, filteredOptions]);
 
@@ -122,8 +129,10 @@ export function useComboboxAccessibility(
   }
 
   return {
-    floatingRef,
-    floatingStyles,
+    popperRef,
+    popperStyles: floatingStyles,
     floatingProps: getFloatingProps(),
+    nodeId,
+    parentNodeId,
   };
 }
