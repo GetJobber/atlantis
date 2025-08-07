@@ -34,25 +34,7 @@ export function DataTableSortableHeader(
 
   return (
     <DataTableHeaderCell {...props}>
-      <button
-        type="button"
-        onClick={onSort}
-        className={styles.sortableButton}
-        onFocus={e => {
-          const span = e.target.querySelector("span");
-
-          if (span) {
-            span.style.boxShadow = "var(--shadow-focus)";
-          }
-        }}
-        onBlur={e => {
-          const span = e.target.querySelector("span");
-
-          if (span) {
-            span.style.boxShadow = "none";
-          }
-        }}
-      >
+      <button type="button" onClick={onSort} className={styles.sortableButton}>
         <span className={styles.focusArea}>
           {children}
           <SortIcon direction={direction} />
