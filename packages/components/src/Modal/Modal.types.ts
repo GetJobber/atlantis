@@ -1,7 +1,6 @@
 import React, { MutableRefObject, PropsWithChildren, ReactNode } from "react";
 import {
   ExtendedRefs,
-  FloatingContext,
   ReferenceType,
   UseInteractionsReturn,
 } from "@floating-ui/react";
@@ -54,17 +53,9 @@ export interface ModalContextType {
    */
   readonly floatingRefs: ExtendedRefs<ReferenceType> | null;
   /**
-   * Context used by floating-ui to position the modal.
-   */
-  readonly floatingContext: FloatingContext;
-  /**
    * Size of the modal.
    */
   readonly size?: keyof typeof sizes;
-  /**
-   * Floating-ui node id for the modal. Used to ensure the modal is aware of other floating-ui elements.
-   */
-  readonly floatingNodeId?: string;
   /**
    * Whether the modal is dismissible.
    */
