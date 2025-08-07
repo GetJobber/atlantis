@@ -5,42 +5,35 @@ import { SortDirection, SortIcon } from "../../SortIcon";
 
 export interface DataTableSortableHeaderProps {
   /**
-   * The header text to display
+   * The header content to display (text, icons, etc.)
    */
   readonly children: React.ReactNode;
 
   /**
-   * The current sort direction
+   * The current sort direction for this column. When undefined, the header renders as non-interactive.
    */
   readonly direction?: SortDirection;
 
   /**
-   * Callback when sort is triggered
+   * Callback function triggered when the sortable header is clicked.
+   * When undefined, the header renders as non-interactive.
    */
   readonly onSort?: () => void;
-
-  /**
-   * Additional CSS classes
-   */
-  readonly className?: string;
 }
 
 export function DataTableSortableHeader(
-  props: DataTableSortableHeaderProps,
+  props: DataTableSortableHeaderProps &
+    React.HTMLAttributes<HTMLTableCellElement>,
 ): JSX.Element {
-  const { children, direction, onSort, className, ...rest } = props;
+  const { children, direction, onSort } = props;
   const isSortable = direction !== undefined && onSort !== undefined;
 
   if (!isSortable) {
-    return (
-      <DataTableHeaderCell className={className} {...rest}>
-        {children}
-      </DataTableHeaderCell>
-    );
+    return <DataTableHeaderCell {...props}>{children}</DataTableHeaderCell>;
   }
 
   return (
-    <DataTableHeaderCell className={className} {...rest}>
+    <DataTableHeaderCell {...props}>
       <button
         type="button"
         onClick={onSort}

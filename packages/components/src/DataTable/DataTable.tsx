@@ -163,7 +163,6 @@ export function DataTable<T extends object>({
   );
 }
 
-// Attach atomic components as compound components
 DataTable.Table = DataTableTable;
 DataTable.Header = DataTableHeader;
 DataTable.HeaderCell = DataTableHeaderCell;

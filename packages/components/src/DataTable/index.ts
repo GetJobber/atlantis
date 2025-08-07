@@ -6,14 +6,6 @@ export * from "./test-utilities/helpers";
 
 export { SortIcon, SortDirection } from "./SortIcon";
 
-export * from "./components/DataTableSortableHeader";
-
-export * from "./components/DataTableFooter";
-
-export * from "./components/DataTablePagination";
-
-export * from "./components/DataTablePaginationButton";
-
 export {
   Row,
   ColumnDef,
