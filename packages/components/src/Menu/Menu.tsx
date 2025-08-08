@@ -13,10 +13,16 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
 import { IconColorNames, IconNames } from "@jobber/design";
-import { usePopper } from "react-popper";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import ReactDOM from "react-dom";
+import {
+  FloatingPortal,
+  autoUpdate,
+  flip,
+  offset,
+  size,
+  useFloating,
+} from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -25,6 +31,7 @@ import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
+const MENU_MAX_HEIGHT_VH = 72; // 72vh as percentage
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -92,7 +99,8 @@ export function Menu({
   UNSAFE_style,
 }: MenuProps) {
   const [visible, setVisible] = useState(false);
-  const popperRef = useRef<HTMLDivElement>(null);
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLDivElement | null>(null);
 
   const { width } = useWindowDimensions();
 
@@ -111,34 +119,45 @@ export function Menu({
   useRefocusOnActivator(visible);
   const menuRef = useFocusTrap<HTMLDivElement>(visible);
 
-  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
-  const {
-    styles: popperStyles,
-    attributes,
-    state,
-  } = usePopper(popperRef.current, popperElement, {
+  const { refs, floatingStyles, context } = useFloating({
+    open: visible,
+    onOpenChange: setVisible,
     placement: "bottom-start",
     strategy: "fixed",
-    modifiers: [
-      {
-        name: "flip",
-        options: {
-          flipVariations: true,
+    middleware: [
+      offset(MENU_OFFSET),
+      flip({ flipAlignment: false }),
+      size({
+        apply({ availableHeight, elements }) {
+          // The inner element is the scrollable menu that requires the max height
+          const menuElement = elements.floating.querySelector(
+            '[role="menu"]',
+          ) as HTMLElement;
+
+          if (menuElement) {
+            const viewportHeight = window.innerHeight;
+            const maxHeightVh = (viewportHeight * MENU_MAX_HEIGHT_VH) / 100;
+
+            // Use the smaller of 72vh or available space
+            const maxHeight = Math.min(maxHeightVh, availableHeight);
+
+            Object.assign(menuElement.style, {
+              maxHeight: `${maxHeight}px`,
+            });
+          }
         },
-      },
-      {
-        name: "offset",
-        options: {
-          offset: [0, MENU_OFFSET],
-        },
-      },
+      }),
     ],
+    elements: {
+      reference: referenceElement,
+    },
+    whileElementsMounted: autoUpdate,
   });
+
   const positionAttributes =
     width >= SMALL_SCREEN_BREAKPOINT
       ? {
-          ...attributes.popper,
-          style: popperStyles.popper,
+          style: floatingStyles,
         }
       : {};
 
@@ -155,7 +174,7 @@ export function Menu({
 
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
-      <div ref={popperRef}>
+      <div ref={setReferenceElement}>
         {React.cloneElement(activator, {
           onClick: toggle(activator.props.onClick),
           id: buttonID,
@@ -181,8 +200,8 @@ export function Menu({
                 }}
               />
               <div
-                ref={setPopperElement}
-                className={styles.popperContainer}
+                ref={refs.setFloating}
+                className={styles.floatingContainer}
                 {...positionAttributes}
                 {...formFieldFocusAttribute}
               >
@@ -198,7 +217,7 @@ export function Menu({
                     initial="startOrStop"
                     animate="done"
                     exit="startOrStop"
-                    custom={state?.placement}
+                    custom={context?.placement}
                     ref={menuRef}
                     transition={{
                       type: "tween",
@@ -385,5 +404,5 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
     return null;
   }
 
-  return ReactDOM.createPortal(children, document.body);
+  return <FloatingPortal>{children}</FloatingPortal>;
 }
