@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.78.0...@jobber/components@6.79.0) (2025-08-08)
+
+
+### Features
+
+* **components:** InputTime preserves date part of value on change ([#2652](https://github.com/GetJobber/atlantis/issues/2652)) ([2849832](https://github.com/GetJobber/atlantis/commit/28498325d0df75252e997518e780e2698db32275))
+
+
+
+
+
 # [6.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.77.0...@jobber/components@6.78.0) (2025-08-07)
 
 
