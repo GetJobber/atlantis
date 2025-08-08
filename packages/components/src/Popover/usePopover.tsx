@@ -72,14 +72,13 @@ export const usePopover = ({
   useRefocusOnActivator(open);
 
   return {
-    setPopperElement: refs.setFloating,
+    setFloatingElement: refs.setFloating,
     setArrowElement,
-    popperStyles: {
-      popper: floatingStyles,
+    floatingStyles: {
+      float: floatingStyles,
       arrow: middlewareData.arrow,
     },
     placement,
-    attributes: { popper: {} },
   };
 };
 
