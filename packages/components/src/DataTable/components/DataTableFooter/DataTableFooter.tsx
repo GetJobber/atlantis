@@ -5,17 +5,22 @@ import styles from "./DataTableFooter.module.css";
 export interface DataTableFooterProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {
   readonly children: React.ReactNode;
+  /**
+   * Number of columns to span across. This should match the number of columns in your table.
+   */
+  readonly colSpan: number;
 }
 
 export function DataTableFooter({
   children,
   className,
+  colSpan,
   ...props
 }: DataTableFooterProps) {
   return (
     <tfoot className={classNames(styles.footer, className)} {...props}>
       <tr>
-        <td colSpan={1000}>{children}</td>
+        <td colSpan={colSpan}>{children}</td>
       </tr>
     </tfoot>
   );

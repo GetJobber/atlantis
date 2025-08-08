@@ -701,7 +701,7 @@ export const WithPagination = () => {
               </DataTable.Row>
             ))}
           </DataTable.Body>
-          <DataTable.Footer>
+          <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
             <DataTable.Pagination
               style={{
                 display: "flex",
@@ -819,7 +819,7 @@ export const DoubleFooter = () => {
           </DataTable.Body>
 
           {/* Current balance footer */}
-          <DataTable.Footer>
+          <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
             <div
               style={{
                 display: "flex",
@@ -837,7 +837,10 @@ export const DoubleFooter = () => {
           </DataTable.Footer>
 
           {/* Pagination footer */}
-          <DataTable.Footer style={{ borderTopWidth: "var(--border-thick)" }}>
+          <DataTable.Footer
+            colSpan={table.getAllLeafColumns().length}
+            style={{ borderTopWidth: "var(--border-thick)" }}
+          >
             <DataTable.Pagination
               style={{
                 display: "flex",
