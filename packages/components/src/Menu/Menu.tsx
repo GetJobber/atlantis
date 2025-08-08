@@ -34,7 +34,6 @@ import { calculateMaxHeight } from "../utils/maxHeight";
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
 const MENU_MAX_HEIGHT_PERCENTAGE = 72;
-const MENU_MIN_HEIGHT = 150;
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -142,7 +141,6 @@ export function Menu({
 
             const maxHeight = calculateMaxHeight(availableHeight, {
               maxHeight: maxHeightVh,
-              minHeight: MENU_MIN_HEIGHT,
             });
 
             Object.assign(menuElement.style, {
