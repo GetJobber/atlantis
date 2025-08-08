@@ -61,11 +61,14 @@ Popover.Arrow = function PopoverArrow({
 
   const staticSide = staticSideMap[placement as Side];
 
+  const arrowX = floatingStyles.arrow?.x;
+  const arrowY = floatingStyles.arrow?.y;
+
   const arrowStyles: React.CSSProperties = {
     position: "absolute",
     // only left or top will be defined at a time
-    left: floatingStyles.arrow?.x != null ? `${floatingStyles.arrow?.x}px` : "",
-    top: floatingStyles.arrow?.y != null ? `${floatingStyles.arrow?.y}px` : "",
+    left: arrowX !== null && arrowX !== undefined ? `${arrowX}px` : "",
+    top: arrowY !== null && arrowY !== undefined ? `${arrowY}px` : "",
     right: "",
     bottom: "",
     [staticSide]: "var(--popover--position--offset)",
