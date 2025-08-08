@@ -1,0 +1,110 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable selector-pseudo-element-no-unknown */
+/**
+ * Chrome 123+ customizable select styling for option groups
+ * Based on: https://developer.chrome.com/blog/a-customizable-select
+ *
+ * IMPORTANT: All custom styling is gated behind a feature query so that
+ * unsupported browsers fall back to the native select without any layout
+ * regressions in our FormField wrapper.
+ */
+
+@supports (appearance: base-select) {
+  .select {
+    /* opt into customizing select */
+    &,
+    &::picker(select) {
+      appearance: base-select;
+
+      /* Dropdown styling */
+      &::picker(select) {
+        box-shadow: var(--shadow-base);
+        margin-top: var(--space-small);
+        padding: 0;
+        border: var(--border-base) solid var(--color-border);
+        border-radius: var(--radius-base);
+        background: var(--color-surface);
+      }
+    }
+
+    /* enable transitions in the drop down */
+    &::picker(select) {
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s var(--ease-out-3),
+        display 0.2s allow-discrete,
+        overlay 0.2s allow-discrete;
+    }
+
+    &::picker-icon {
+      display: none;
+    }
+
+    /* set the off stage styles */
+    &:not(:open)::picker(select) {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    /* set the on stage styles */
+    &:open::picker(select) {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* optgroup headers */
+    optgroup {
+      padding: var(--space-small) 0 var(--space-smaller) 0;
+      color: var(--color-heading);
+      font-size: var(--typography--fontSize-base);
+      font-style: normal;
+      font-weight: 700;
+      /* Indent just the text to preserve left spacing without affecting width */
+      text-indent: var(--space-small);
+      background-color: transparent;
+    }
+
+    optgroup:not(:first-child) {
+      padding-top: var(--space-small);
+    }
+
+    /* options within optgroups */
+    optgroup option {
+      padding: var(--space-smaller) 0;
+      color: var(--color-text);
+      /* Indent only the text to create left spacing without shrinking width */
+      text-indent: var(--space-small);
+      background-color: var(--color-surface);
+      cursor: pointer;
+    }
+
+    /* Divider directly under the group label */
+    optgroup option:first-child {
+      border-top: var(--border-base) solid var(--color-border);
+    }
+
+    optgroup option:hover {
+      background-color: var(--color-surface--hover);
+    }
+
+    optgroup option:focus,
+    optgroup option:focus-visible {
+      outline: none;
+      background-color: var(--color-surface--hover);
+    }
+
+    optgroup option:checked {
+      background-color: var(--color-surface--hover);
+    }
+
+    /* Animate the chevron rotation for the provided postfix class */
+    & + .selectPostfix svg {
+      transition: transform var(--timing-quick);
+      transform-origin: 50% 50%;
+    }
+    /* Rotate the postfix chevron when the select is open */
+    &:open + .selectPostfix svg {
+      transform: rotate(180deg);
+    }
+  }
+}
