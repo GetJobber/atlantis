@@ -1,1 +1,0 @@
-export { DataTableHeaderCell } from "./DataTableHeaderCell";

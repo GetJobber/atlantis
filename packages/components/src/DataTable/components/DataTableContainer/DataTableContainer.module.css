@@ -1,6 +1,0 @@
-.container {
-  box-shadow: var(--shadow-small);
-  border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-base);
-  overflow: hidden;
-}

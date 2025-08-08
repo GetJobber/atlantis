@@ -12,19 +12,21 @@ import { Pagination } from "./Pagination";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { DataTableTable } from "./components/DataTableTable";
-import { DataTableHeader } from "./components/DataTableHeader";
-import { DataTableHeaderCell } from "./components/DataTableHeaderCell";
-import { DataTableRow } from "./components/DataTableRow";
-import { DataTableCell } from "./components/DataTableCell";
-import { DataTableRowActions } from "./components/DataTableRowActions";
-import { DataTableActions } from "./components/DataTableActions";
-import { DataTableBody } from "./components/DataTableBody";
-import { DataTableContainer } from "./components/DataTableContainer";
-import { DataTableSortableHeader } from "./components/DataTableSortableHeader";
-import { DataTableFooter } from "./components/DataTableFooter";
-import { DataTablePagination } from "./components/DataTablePagination";
-import { DataTablePaginationButton } from "./components/DataTablePaginationButton";
+import {
+  DataTableActions,
+  DataTableBody,
+  DataTableCell,
+  DataTableContainer,
+  DataTableFooter,
+  DataTableHeader,
+  DataTableHeaderCell,
+  DataTablePagination,
+  DataTablePaginationButton,
+  DataTableRow,
+  DataTableRowActions,
+  DataTableSortableHeader,
+  DataTableTable,
+} from "./components";
 
 export interface DataTableProps<T> {
   /**

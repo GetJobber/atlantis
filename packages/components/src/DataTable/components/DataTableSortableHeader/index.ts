@@ -1,1 +1,0 @@
-export { DataTableSortableHeader } from "./DataTableSortableHeader";
