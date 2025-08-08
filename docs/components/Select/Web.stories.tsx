@@ -16,7 +16,7 @@ export default {
       code: {
         hidden: false,
         extraImports: {
-          "@jobber/components/Select": ["Select", "Option"],
+          "@jobber/components/Select": ["Option", "Select"],
         },
       },
     },
@@ -134,6 +134,97 @@ OnFocusAndBlur.args = {
   defaultValue: "bob",
 };
 
+const OptionGroupTemplate: ComponentStory<typeof Select> = args => (
+  <Select {...args}>
+    <Select.OptionGroup label="Marvel Heroes">
+      <Select.Option value="tony">Tony Stark</Select.Option>
+      <Select.Option value="steve">Steve Rogers</Select.Option>
+      <Select.Option value="natasha">Natasha Romanoff</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="DC Heroes">
+      <Select.Option value="superman">Superman</Select.Option>
+      <Select.Option value="batman">Batman</Select.Option>
+      <Select.Option value="wonderwoman">Wonder Woman</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="X-Men">
+      <Select.Option value="logan">Logan</Select.Option>
+      <Select.Option value="ororo">Ororo Munroe</Select.Option>
+      <Select.Option value="scott">Scott Summers</Select.Option>
+    </Select.OptionGroup>
+  </Select>
+);
+
+const OptionGroupSizesTemplate: ComponentStory<typeof Select> = () => {
+  return (
+    <Content>
+      <Select size="small" placeholder="Small with groups" version={2}>
+        <Select.OptionGroup label="Team A">
+          <Select.Option value="alice">Alice</Select.Option>
+          <Select.Option value="bob">Bob</Select.Option>
+        </Select.OptionGroup>
+        <Select.OptionGroup label="Team B">
+          <Select.Option value="charlie">Charlie</Select.Option>
+          <Select.Option value="diana">Diana</Select.Option>
+        </Select.OptionGroup>
+      </Select>
+      <Divider size="largest" />
+      <Select placeholder="Default with groups" version={2}>
+        <Select.OptionGroup label="Team A">
+          <Select.Option value="alice">Alice</Select.Option>
+          <Select.Option value="bob">Bob</Select.Option>
+        </Select.OptionGroup>
+        <Select.OptionGroup label="Team B">
+          <Select.Option value="charlie">Charlie</Select.Option>
+          <Select.Option value="diana">Diana</Select.Option>
+        </Select.OptionGroup>
+      </Select>
+      <Divider size="largest" />
+      <Select size="large" placeholder="Large with groups" version={2}>
+        <Select.OptionGroup label="Team A">
+          <Select.Option value="alice">Alice</Select.Option>
+          <Select.Option value="bob">Bob</Select.Option>
+        </Select.OptionGroup>
+        <Select.OptionGroup label="Team B">
+          <Select.Option value="charlie">Charlie</Select.Option>
+          <Select.Option value="diana">Diana</Select.Option>
+        </Select.OptionGroup>
+      </Select>
+    </Content>
+  );
+};
+
+const OptionGroupDisabledTemplate: ComponentStory<typeof Select> = args => (
+  <Select {...args}>
+    <Select.OptionGroup label="Available Heroes">
+      <Select.Option value="tony">Tony Stark</Select.Option>
+      <Select.Option value="steve">Steve Rogers</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="Unavailable Heroes" disabled>
+      <Select.Option value="thor">Thor</Select.Option>
+      <Select.Option value="hulk">Hulk</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="More Heroes">
+      <Select.Option value="natasha">Natasha Romanoff</Select.Option>
+      <Select.Option value="clint">Clint Barton</Select.Option>
+    </Select.OptionGroup>
+  </Select>
+);
+
+export const OptionGroups = OptionGroupTemplate.bind({});
+OptionGroups.args = {
+  placeholder: "Select a superhero",
+  version: 2,
+};
+
+export const OptionGroupSizes = OptionGroupSizesTemplate.bind({});
+OptionGroupSizes.args = {};
+
+export const OptionGroupDisabled = OptionGroupDisabledTemplate.bind({});
+OptionGroupDisabled.args = {
+  placeholder: "Select a hero",
+  version: 2,
+};
+
 export const VersionComparison = () => {
   const [values, setValues] = useState({
     basic: "",
@@ -150,6 +241,7 @@ export const VersionComparison = () => {
     sizeLarge: "",
     loading: "",
     maxLength: "",
+    optionGroups: "",
   });
 
   const [inline, setInline] = useState(false);
@@ -316,6 +408,48 @@ export const VersionComparison = () => {
           },
           "maxLength",
         )}
+
+        <Grid>
+          <Grid.Cell size={{ xs: 12 }}>
+            <h3>Option Groups</h3>
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Select
+              placeholder="V1 with groups"
+              version={1}
+              value={values.optionGroups}
+              onChange={handleChange("optionGroups")}
+              {...extraProps}
+            >
+              <Select.OptionGroup label="Heroes">
+                <Select.Option value="tony">Tony Stark</Select.Option>
+                <Select.Option value="steve">Steve Rogers</Select.Option>
+              </Select.OptionGroup>
+              <Select.OptionGroup label="Villains">
+                <Select.Option value="loki">Loki</Select.Option>
+                <Select.Option value="thanos">Thanos</Select.Option>
+              </Select.OptionGroup>
+            </Select>
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Select
+              placeholder="V2 with groups"
+              version={2}
+              value={values.optionGroups}
+              onChange={handleChange("optionGroups")}
+              {...extraProps}
+            >
+              <Select.OptionGroup label="Heroes">
+                <Select.Option value="tony">Tony Stark</Select.Option>
+                <Select.Option value="steve">Steve Rogers</Select.Option>
+              </Select.OptionGroup>
+              <Select.OptionGroup label="Villains">
+                <Select.Option value="loki">Loki</Select.Option>
+                <Select.Option value="thanos">Thanos</Select.Option>
+              </Select.OptionGroup>
+            </Select>
+          </Grid.Cell>
+        </Grid>
       </div>
 
       <Grid>
