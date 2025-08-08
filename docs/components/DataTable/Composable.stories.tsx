@@ -1564,6 +1564,7 @@ export const GlobalSearch = () => {
             onChange={value => setGlobalFilter(String(value))}
             placeholder="Search all columns"
             clearable="while-editing"
+            prefix={{ icon: "search" }}
           />
         </div>
       </DataTable.Actions>
