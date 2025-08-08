@@ -34,6 +34,21 @@
           "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"span\""
         }
       },
+      "maxLines": {
+        "defaultValue": {
+          "value": "unlimited"
+        },
+        "description": "The maximum amount of lines the text can occupy before being truncated with \"...\".\nUses predefined string values that correspond to a doubling scale for the amount of lines.",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "../components/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"single\" | \"small\" | \"base\" | \"large\" | \"larger\" | \"unlimited\""
+        }
+      },
       "UNSAFE_className": {
         "defaultValue": null,
         "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
