@@ -27,6 +27,7 @@ import { InputText } from "@jobber/components/InputText";
 import { Modal } from "@jobber/components/Modal";
 import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import { Content } from "@jobber/components/Content";
+import { Cluster } from "@jobber/components/Cluster";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web/Composable",
@@ -1409,9 +1410,7 @@ export const BulkSelection = () => {
           }}
         >
           <Typography fontWeight="bold">
-            {selectedCount > 0
-              ? `${selectedCount} selected`
-              : "Select rows for bulk actions"}
+            Select rows for bulk actions
           </Typography>
         </div>
       </DataTable.Actions>
@@ -1419,24 +1418,77 @@ export const BulkSelection = () => {
       <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
-            {table.getHeaderGroups().map(headerGroup =>
-              headerGroup.headers.map(header => (
+            {selectedCount > 0 ? (
+              <>
                 <DataTable.HeaderCell
-                  key={header.id}
                   style={{
-                    paddingRight: header.id === "select" ? 0 : undefined,
-                    paddingLeft:
-                      header.id === "name" ? "var(--space-smaller)" : undefined,
+                    padding: "var(--space-smallest) var(--space-base)",
+                    paddingRight: 0,
                   }}
                 >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Checkbox
+                      checked={table.getIsAllRowsSelected()}
+                      indeterminate={table.getIsSomeRowsSelected()}
+                      onChange={checked => table.toggleAllRowsSelected(checked)}
+                    />
+                  </div>
                 </DataTable.HeaderCell>
-              )),
+                <DataTable.HeaderCell
+                  colSpan={table.getAllLeafColumns().length - 1}
+                  style={{
+                    padding: "var(--space-smallest) var(--space-base)",
+                    paddingLeft: "var(--space-smaller)",
+                  }}
+                >
+                  <Cluster gap="small">
+                    <Typography fontWeight="bold">
+                      {selectedCount} selected
+                    </Typography>
+                    <Button
+                      type="secondary"
+                      variation="subtle"
+                      icon="edit"
+                      ariaLabel="Edit selected"
+                      onClick={() => alert("Edit selected rows")}
+                    />
+                    <Button
+                      type="secondary"
+                      variation="subtle"
+                      icon="trash"
+                      ariaLabel="Delete selected"
+                      onClick={() => alert("Delete selected rows")}
+                    />
+                  </Cluster>
+                </DataTable.HeaderCell>
+              </>
+            ) : (
+              table.getHeaderGroups().map(headerGroup =>
+                headerGroup.headers.map(header => (
+                  <DataTable.HeaderCell
+                    key={header.id}
+                    style={{
+                      paddingRight: header.id === "select" ? 0 : undefined,
+                      paddingLeft:
+                        header.id === "name"
+                          ? "var(--space-smaller)"
+                          : undefined,
+                    }}
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                  </DataTable.HeaderCell>
+                )),
+              )
             )}
           </DataTable.Header>
           <DataTable.Body>

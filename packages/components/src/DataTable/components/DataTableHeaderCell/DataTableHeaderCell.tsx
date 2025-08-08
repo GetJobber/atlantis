@@ -1,9 +1,9 @@
-import React, { type HTMLAttributes } from "react";
+import React from "react";
 import classNames from "classnames";
 import styles from "./DataTableHeaderCell.module.css";
 
 export function DataTableHeaderCell(
-  props: HTMLAttributes<HTMLTableCellElement>,
+  props: React.ThHTMLAttributes<HTMLTableCellElement>,
 ) {
   return (
     <th {...props} className={classNames(styles.headerCell, props.className)}>
@@ -11,3 +11,5 @@ export function DataTableHeaderCell(
     </th>
   );
 }
+
+DataTableHeaderCell.displayName = "DataTableHeaderCell";

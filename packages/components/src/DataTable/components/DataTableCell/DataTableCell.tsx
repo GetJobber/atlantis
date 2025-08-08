@@ -1,10 +1,10 @@
-import React, { type HTMLAttributes, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import classNames from "classnames";
 import styles from "./DataTableCell.module.css";
 
 export const DataTableCell = forwardRef<
   HTMLTableCellElement,
-  HTMLAttributes<HTMLTableCellElement>
+  React.TdHTMLAttributes<HTMLTableCellElement>
 >((props, ref) => {
   return (
     <td
