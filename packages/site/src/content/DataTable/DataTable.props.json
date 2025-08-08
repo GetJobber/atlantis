@@ -226,7 +226,7 @@
         "description": "Number of columns to span across. This should match the number of columns in your table.",
         "name": "colSpan",
         "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTableFooter/DataTableFooter.tsx",
+          "fileName": "packages/components/src/DataTable/components/DataTableFooter.tsx",
           "name": "DataTableFooterProps"
         },
         "required": true,
@@ -256,7 +256,7 @@
         "description": "The direction of the pagination button",
         "name": "direction",
         "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton/DataTablePaginationButton.tsx",
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
           "name": "DataTablePaginationButtonProps"
         },
         "required": true,
@@ -269,7 +269,7 @@
         "description": "Callback function when the pagination button is clicked",
         "name": "onClick",
         "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton/DataTablePaginationButton.tsx",
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
           "name": "DataTablePaginationButtonProps"
         },
         "required": false,
@@ -284,7 +284,7 @@
         "description": "Whether the pagination button is disabled",
         "name": "disabled",
         "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton/DataTablePaginationButton.tsx",
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
           "name": "DataTablePaginationButtonProps"
         },
         "required": false,
@@ -297,7 +297,7 @@
         "description": "Function that returns the aria-label for the button. Required for accessibility.\nShould return translated strings based on the direction parameter.",
         "name": "ariaLabel",
         "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton/DataTablePaginationButton.tsx",
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
           "name": "DataTablePaginationButtonProps"
         },
         "required": true,
