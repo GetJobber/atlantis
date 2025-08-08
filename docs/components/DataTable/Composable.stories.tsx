@@ -1344,18 +1344,32 @@ export const BulkSelection = () => {
       {
         id: "select",
         header: ({ table: tableInstance }) => (
-          <Checkbox
-            checked={tableInstance.getIsAllRowsSelected()}
-            indeterminate={tableInstance.getIsSomeRowsSelected()}
-            onChange={checked => tableInstance.toggleAllRowsSelected(checked)}
-          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Checkbox
+              checked={tableInstance.getIsAllRowsSelected()}
+              indeterminate={tableInstance.getIsSomeRowsSelected()}
+              onChange={checked => tableInstance.toggleAllRowsSelected(checked)}
+            />
+          </div>
         ),
         cell: ({ row }) => (
-          <Checkbox
-            checked={row.getIsSelected()}
-            disabled={!row.getCanSelect()}
-            onChange={checked => row.toggleSelected(checked)}
-          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Checkbox
+              checked={row.getIsSelected()}
+              disabled={!row.getCanSelect()}
+              onChange={checked => row.toggleSelected(checked)}
+            />
+          </div>
         ),
       },
       {
@@ -1405,26 +1419,40 @@ export const BulkSelection = () => {
       <DataTable.Container>
         <DataTable.Table>
           <DataTable.Header>
-            {table
-              .getHeaderGroups()
-              .map(headerGroup =>
-                headerGroup.headers.map(header => (
-                  <DataTable.HeaderCell key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                  </DataTable.HeaderCell>
-                )),
-              )}
+            {table.getHeaderGroups().map(headerGroup =>
+              headerGroup.headers.map(header => (
+                <DataTable.HeaderCell
+                  key={header.id}
+                  style={{
+                    paddingRight: header.id === "select" ? 0 : undefined,
+                    paddingLeft:
+                      header.id === "name" ? "var(--space-smaller)" : undefined,
+                  }}
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                </DataTable.HeaderCell>
+              )),
+            )}
           </DataTable.Header>
           <DataTable.Body>
             {table.getRowModel().rows.map(row => (
               <DataTable.Row key={row.id}>
                 {row.getVisibleCells().map(cell => (
-                  <DataTable.Cell key={cell.id}>
+                  <DataTable.Cell
+                    key={cell.id}
+                    style={{
+                      paddingRight: cell.column.id === "select" ? 0 : undefined,
+                      paddingLeft:
+                        cell.column.id === "name"
+                          ? "var(--space-smaller)"
+                          : undefined,
+                    }}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </DataTable.Cell>
                 ))}
