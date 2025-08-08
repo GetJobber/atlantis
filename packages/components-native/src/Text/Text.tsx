@@ -99,6 +99,16 @@ export interface TextProps
    * Callback that is called when the text is laid out.
    */
   readonly onTextLayout?: OnTextLayoutEvent;
+
+  /**
+   * Allow press events to pass through to parent components.
+   *
+   * Use this when text is inside pressable components like buttons,
+   * selects, or cards where the parent should handle the press event.
+   *
+   * @default false
+   */
+  readonly allowParentPress?: boolean;
 }
 
 export type TextLevel = "text" | "textSupporting";
@@ -143,6 +153,7 @@ export function Text({
   underline,
   selectable,
   onTextLayout,
+  allowParentPress,
 }: TextProps): JSX.Element {
   const accessibilityRole: TextAccessibilityRole = "text";
 
@@ -157,6 +168,7 @@ export function Text({
       selectable={selectable}
       underline={underline}
       onTextLayout={onTextLayout}
+      allowParentPress={allowParentPress}
       {...{
         ...levelStyles[level],
         allowFontScaling,

@@ -282,3 +282,31 @@ describe("onTextLayout", () => {
     expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
   });
 });
+
+describe("allowParentPress", () => {
+  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
+    const { getByRole } = render(<Typography>Test Text</Typography>);
+    const textElement = getByRole("text");
+
+    // When wrapped with TypographyGestureDetector, collapsable should be false
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("bypasses TypographyGestureDetector when allowParentPress=true (no collapsable prop)", () => {
+    const { getByRole } = render(
+      <Typography allowParentPress={true}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBeUndefined();
+  });
+
+  it("wraps text with TypographyGestureDetector when allowParentPress=false (collapsable=false)", () => {
+    const { getByRole } = render(
+      <Typography allowParentPress={false}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+});

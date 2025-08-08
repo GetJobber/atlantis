@@ -196,3 +196,31 @@ describe("onTextLayout", () => {
     expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
   });
 });
+
+describe("allowParentPress", () => {
+  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
+    const { getByRole } = render(<Text>Test Text</Text>);
+    const textElement = getByRole("text");
+
+    // When wrapped with TypographyGestureDetector, collapsable should be false
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("bypasses TypographyGestureDetector when allowParentPress=true (no collapsable prop)", () => {
+    const { getByRole } = render(
+      <Text allowParentPress={true}>Test Text</Text>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBeUndefined();
+  });
+
+  it("wraps text with TypographyGestureDetector when allowParentPress=false (collapsable=false)", () => {
+    const { getByRole } = render(
+      <Text allowParentPress={false}>Test Text</Text>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+});
