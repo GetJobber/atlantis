@@ -3,8 +3,8 @@ export {
   useAtlantisTheme,
 } from "./AtlantisThemeContext";
 export {
-  type Theme,
-  type AtlantisThemeContextProviderProps,
-  type AtlantisThemeContextValue,
+  Theme,
+  AtlantisThemeContextProviderProps,
+  AtlantisThemeContextValue,
 } from "./types";
 export { buildThemedStyles } from "./buildThemedStyles";
