@@ -40,7 +40,7 @@ export function InputTime({
   );
 
   function handleChange(newValue: string) {
-    onChange?.(timeStringToDate(newValue));
+    onChange?.(timeStringToDate(newValue, value));
   }
 
   function handleBlur() {

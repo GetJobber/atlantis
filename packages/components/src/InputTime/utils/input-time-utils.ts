@@ -11,7 +11,10 @@ export function dateToTimeString(date?: Date): string {
   return `${hours}:${minutes}`;
 }
 
-export function timeStringToDate(timeString: string): Date | undefined {
+export function timeStringToDate(
+  timeString: string,
+  baseDate?: Date,
+): Date | undefined {
   try {
     const [hours, minutes] = timeString.split(":").map(Number);
 
@@ -26,7 +29,11 @@ export function timeStringToDate(timeString: string): Date | undefined {
       return undefined;
     }
 
-    const date = new Date();
+    // Try to preserve the Date part of the Date object as long as it is valid
+    const date =
+      baseDate instanceof Date && !isNaN(baseDate.getTime())
+        ? new Date(baseDate)
+        : new Date();
     date.setHours(hours, minutes, 0, 0);
 
     return date;
