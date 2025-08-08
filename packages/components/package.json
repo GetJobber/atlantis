@@ -472,7 +472,6 @@
   "dependencies": {
     "@floating-ui/react": "^0.27.5",
     "@jobber/formatters": "^0.4.0",
-    "@popperjs/core": "^2.0.6",
     "@tanstack/react-table": "8.5.13",
     "@types/color": "^3.0.1",
     "@types/lodash": "^4.14.136",
@@ -491,7 +490,6 @@
     "react-dropzone": "^11.0.2",
     "react-hook-form": "^7.43.7",
     "react-markdown": "^8.0.3",
-    "react-popper": "^2.2.5",
     "react-router-dom": "^5.3.4",
     "ts-xor": "^1.0.8"
   },
@@ -534,7 +532,6 @@
     "react": "^18.2.0",
     "react-dom": "^18",
     "react-hook-form": "^7",
-    "react-popper": "^2",
     "react-router-dom": "^6"
   },
   "browserslist": [
