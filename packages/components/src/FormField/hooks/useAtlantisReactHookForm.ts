@@ -24,8 +24,7 @@ export function useAtlantisReactHookForm({
 }: useAtlantisReactHookFormProps) {
   const formContext = useFormContext();
   // If there isn't a Form Context being provided, get a form for this field.
-  const { control, setValue, watch } =
-    formContext ?? useForm({ mode: "onTouched" });
+  const { control, setValue } = formContext ?? useForm({ mode: "onTouched" });
   useImperativeHandle(actionsRef, () => ({
     setValue: newValue => {
       setValue(name, newValue, { shouldValidate: true });
@@ -46,7 +45,7 @@ export function useAtlantisReactHookForm({
     if (value != undefined) {
       setValue(name, value);
     }
-  }, [value, watch(name)]);
+  }, [value, field.value]);
 
   const inputRefs = mergeRefs([inputRef, fieldRef]);
 
