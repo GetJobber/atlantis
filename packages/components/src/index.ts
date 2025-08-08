@@ -70,9 +70,6 @@ export * from "./RadioGroup";
 export * from "./RecurringSelect";
 export * from "./ResponsiveSwitcher";
 export * from "./Select";
-// Explicitly export nested Select subcomponents as top-level for meta tooling
-export { OptionGroup } from "./Select/OptionGroup";
-export { Option as SelectOption } from "./Select/Option";
 export * from "./SegmentedControl";
 export * from "./SideDrawer";
 export * from "./SideKick";
