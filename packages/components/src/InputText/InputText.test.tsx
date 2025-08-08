@@ -235,7 +235,7 @@ describe("InputText V2", () => {
     expect(changeHandler).toHaveBeenCalledWith(newerValue, expect.anything());
   });
 
-  it("should render the description", () => {
+  it("should render text description", () => {
     const description = "This is a description";
     render(
       <InputText
@@ -246,6 +246,20 @@ describe("InputText V2", () => {
       />,
     );
     expect(screen.getByText(description)).toBeInTheDocument();
+  });
+
+  it("should render markup description", () => {
+    const testId = "i-am-a-description";
+    const element = <div data-testid={testId} />;
+    render(
+      <InputText
+        value={value}
+        version={2}
+        placeholder="Favourite colour"
+        description={element}
+      />,
+    );
+    expect(screen.getByTestId(testId)).toBeInTheDocument();
   });
 
   describe("focusing", () => {

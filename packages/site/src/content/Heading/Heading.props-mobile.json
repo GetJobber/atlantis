@@ -106,12 +106,14 @@
         }
       },
       "selectable": {
-        "defaultValue": null,
-        "description": "Lets the user select text, to use the native copy and paste functionality.",
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Lets the user select text, to use the native copy and paste functionality.\nWARNING: if true, this prevents ellipsis from being shown on Android.",
         "name": "selectable",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Text/Text.d.ts",
-          "name": "TextPropsAndroid"
+          "fileName": "packages/components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
         },
         "required": false,
         "type": {

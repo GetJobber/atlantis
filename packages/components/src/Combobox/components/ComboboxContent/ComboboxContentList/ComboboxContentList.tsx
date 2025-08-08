@@ -42,6 +42,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
                 label={option.label}
                 prefix={option.prefix}
                 customRender={option.customRender}
+                onClick={option.onClick}
               />
             );
           })}

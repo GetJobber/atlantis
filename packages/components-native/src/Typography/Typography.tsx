@@ -14,8 +14,7 @@ import { useTypographyStyles } from "./Typography.style";
 import { capitalize } from "../utils/intl";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
 
-export interface TypographyProps<T extends FontFamily>
-  extends Pick<TextProps, "selectable"> {
+export interface TypographyProps<T extends FontFamily> {
   /**
    * Text capitalization
    */
@@ -32,6 +31,13 @@ export interface TypographyProps<T extends FontFamily>
   readonly align?: TextAlign;
 
   /**
+   * Lets the user select text, to use the native copy and paste functionality.
+   * WARNING: if true, this prevents ellipsis from being shown on Android.
+   * @default true
+   */
+  readonly selectable?: boolean;
+
+  /**
    * Font size
    */
   readonly size?: TextSize;
@@ -44,6 +50,7 @@ export interface TypographyProps<T extends FontFamily>
   /**
    * The maximum amount of lines the text can occupy before being truncated with "...".
    * Uses predefined string values that correspond to a doubling scale for the amount of lines.
+   * WARNING: if `selectable` is true, Android will not show an ellipsis.
    */
   readonly maxLines?: TruncateLength;
 
@@ -120,6 +127,14 @@ export interface TypographyProps<T extends FontFamily>
   readonly strikeThrough?: boolean;
 
   readonly UNSAFE_style?: TypographyUnsafeStyle;
+
+  /**
+   * Callback behaves differently on iOS and Android.
+   * On iOS, it is called when the text is laid out.
+   * On Android, it is called before the text is laid out.
+   * @see https://reactnative.dev/docs/text#ontextlayout
+   */
+  readonly onTextLayout?: OnTextLayoutEvent;
 }
 
 const maxNumberOfLines = {
@@ -160,6 +175,7 @@ function InternalTypography<T extends FontFamily = "base">({
   underline,
   UNSAFE_style,
   selectable = true,
+  onTextLayout,
 }: TypographyProps<T>): JSX.Element {
   const styles = useTypographyStyles();
   const sizeAndHeight = getSizeAndHeightStyle(size, styles, lineHeight);
@@ -217,6 +233,7 @@ function InternalTypography<T extends FontFamily = "base">({
         )}
         selectable={selectable}
         selectionColor={tokens["color-brand--highlight"]}
+        onTextLayout={onTextLayout}
       >
         {text}
       </Text>
@@ -477,3 +494,5 @@ export type TruncateLength =
   | "large"
   | "extraLarge"
   | "unlimited";
+
+export type OnTextLayoutEvent = Exclude<TextProps["onTextLayout"], undefined>;

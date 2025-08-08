@@ -12,6 +12,7 @@ export function InputTime({
   ...params
 }: InputTimeProps) {
   const ref = useRef<HTMLInputElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const { setTypedTime } = useTimePredict({ value, handleChange });
 
   const fieldProps: FormFieldProps = omit(
@@ -34,11 +35,12 @@ export function InputTime({
         fieldProps.onKeyUp?.(e);
         !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
       }}
+      wrapperRef={wrapperRef}
     />
   );
 
   function handleChange(newValue: string) {
-    onChange?.(timeStringToDate(newValue));
+    onChange?.(timeStringToDate(newValue, value));
   }
 
   function handleBlur() {

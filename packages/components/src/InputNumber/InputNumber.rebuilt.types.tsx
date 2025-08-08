@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
 export type InputNumberVersion = 1 | 2 | undefined;
@@ -13,7 +13,7 @@ export interface InputNumberRebuiltProps
   readonly autocomplete?: boolean;
   readonly autoFocus?: boolean;
   readonly defaultValue?: number;
-  readonly description?: string;
+  readonly description?: ReactNode;
   readonly error?: string;
   readonly formatOptions?: Intl.NumberFormatOptions;
   readonly identifier?: string;

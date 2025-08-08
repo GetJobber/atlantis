@@ -68,7 +68,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "ReactNode"
         }
       },
       "disabled": {
