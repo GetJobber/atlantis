@@ -257,3 +257,49 @@ declarative.
 
 This pattern is entirely optional, but it can help streamline more complex or
 dynamic table setups.
+
+If you're using TanStack Table, here is a quick example of a starter provider
+you can use to share the table instance with your components:
+
+```tsx
+import { createContext, useContext } from "react";
+import type { Table } from "@tanstack/react-table";
+
+const DataTableContext = createContext<Table<any> | null>(null);
+
+const useDataTable = () => {
+  const table = useContext(DataTableContext);
+  return table as Table<any>;
+};
+
+const DataTableProvider = ({
+  children,
+  table,
+}: {
+  readonly children: React.ReactNode;
+  readonly table: Table<any>;
+}) => {
+  return (
+    <DataTableContext.Provider value={table}>
+      {children}
+    </DataTableContext.Provider>
+  );
+};
+```
+
+To use the provider, first create a TanStack table instance and then wrap your
+components:
+
+```tsx
+import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
+
+const table = useReactTable({
+  data,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+});
+
+<DataTableProvider table={table}>
+  <YourTableAtoms />
+</DataTableProvider>;
+```
