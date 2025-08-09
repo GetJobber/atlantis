@@ -28,6 +28,7 @@ import { Modal } from "@jobber/components/Modal";
 import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import { Content } from "@jobber/components/Content";
 import { Cluster } from "@jobber/components/Cluster";
+import { Glimmer } from "@jobber/components/Glimmer";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web/Composable",
@@ -1855,5 +1856,73 @@ export const RowSelection = () => {
         )}
       </Modal>
     </>
+  );
+};
+
+export const Loading = () => {
+  const isLoading = true;
+
+  const table = useReactTable({
+    // Always provide data; switch rendering via meta
+    data: exampleData,
+    columns: [
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row, table: tableInstance }) =>
+          (tableInstance.options.meta as { isLoading?: boolean })?.isLoading ? (
+            <Glimmer width={160} />
+          ) : (
+            <Typography fontWeight="bold">{row.original.name}</Typography>
+          ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+        cell: ({ row, table: tableInstance }) =>
+          (tableInstance.options.meta as { isLoading?: boolean })?.isLoading ? (
+            <Glimmer width={120} />
+          ) : (
+            <>{row.original.role}</>
+          ),
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+        cell: ({ row, table: tableInstance }) =>
+          (tableInstance.options.meta as { isLoading?: boolean })?.isLoading ? (
+            <Glimmer width={200} />
+          ) : (
+            <>{row.original.email}</>
+          ),
+      },
+    ],
+    getCoreRowModel: getCoreRowModel(),
+    meta: { isLoading },
+  });
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Container>
+        <DataTable.Table aria-busy={isLoading}>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Role</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+        </DataTable.Table>
+      </DataTable.Container>
+    </StorybookTableProvider>
   );
 };
