@@ -1,4 +1,6 @@
 .sortIcon {
+  display: flex;
+  align-items: center;
   padding-right: var(--space-small);
 }
 .sortIcon path {
