@@ -14,7 +14,7 @@ import { Markdown } from "../Markdown";
 import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
-import { Autocomplete, Option } from "../Autocomplete";
+import { Autocomplete, type Option } from "../Autocomplete";
 
 export type ButtonActionProps = ButtonProps & {
   ref?: React.RefObject<HTMLDivElement>;
@@ -262,11 +262,11 @@ export function Page({
         <Content>
           {/** Demo datasets */}
           {(() => {
-            type Simple = Option;
+            type Simple = { id: number; label: string; value?: string };
             const simpleOptions: Simple[] = [
-              { label: "One", value: "one" },
-              { label: "Two", value: "two" },
-              { label: "Three", value: "three" },
+              { id: 1, label: "One", value: "one" },
+              { id: 2, label: "Two", value: "two" },
+              { id: 3, label: "Three", value: "three" },
             ];
 
             type SectionX = { icon?: string; description?: string };
@@ -326,7 +326,7 @@ export function Page({
               <div>
                 <Heading level={2}>Flat lists</Heading>
                 <Text variation="subdued">1) Flat default options</Text>
-                <Autocomplete<Simple>
+                <Autocomplete
                   version={2}
                   value={f1Value}
                   onChange={setF1Value}
@@ -337,11 +337,11 @@ export function Page({
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Text variation="subdued">2) Flat custom options (Animal)</Text>
-                <Autocomplete<Animal>
+                <Autocomplete
                   version={2}
                   value={f2Value}
                   onChange={setF2Value}
@@ -358,7 +358,7 @@ export function Page({
                 />
 
                 <Text variation="subdued">3) Flat default options with default actions</Text>
-                <Autocomplete<Simple>
+                <Autocomplete
                   version={2}
                   value={f3Value}
                   onChange={setF3Value}
@@ -377,11 +377,11 @@ export function Page({
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Text variation="subdued">4) Flat custom options with custom actions</Text>
-                <Autocomplete<Animal, {}, ActionX>
+                <Autocomplete
                   version={2}
                   value={f4Value}
                   onChange={setF4Value}
@@ -413,7 +413,7 @@ export function Page({
                 />
 
                 <Text variation="subdued">5) Flat default options with custom actions</Text>
-                <Autocomplete<Simple, {}, ActionX>
+                <Autocomplete
                   version={2}
                   value={f5Value}
                   onChange={setF5Value}
@@ -439,12 +439,12 @@ export function Page({
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Heading level={2}>Sectioned lists</Heading>
                 <Text variation="subdued">6) Sectioned default options</Text>
-                <Autocomplete<Simple>
+                <Autocomplete
                   version={2}
                   value={s1Value}
                   onChange={setS1Value}
@@ -462,11 +462,11 @@ export function Page({
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Text variation="subdued">7) Sectioned custom options</Text>
-                <Autocomplete<Animal>
+                <Autocomplete
                   version={2}
                   value={s2Value}
                   onChange={setS2Value}
@@ -490,7 +490,7 @@ export function Page({
                 />
 
                 <Text variation="subdued">8) Sectioned default options with default actions</Text>
-                <Autocomplete<Simple>
+                <Autocomplete
                   version={2}
                   value={s3Value}
                   onChange={setS3Value}
@@ -511,11 +511,11 @@ export function Page({
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Text variation="subdued">9) Sectioned custom options with custom actions</Text>
-                <Autocomplete<Animal, SectionX, ActionX>
+                <Autocomplete
                   version={2}
                   value={s4Value}
                   onChange={setS4Value}
@@ -552,7 +552,7 @@ export function Page({
                 />
 
                 <Text variation="subdued">10) Sectioned default options with custom actions</Text>
-                <Autocomplete<Simple, {}, ActionX>
+                <Autocomplete
                   version={2}
                   value={s5Value}
                   onChange={setS5Value}
@@ -580,12 +580,12 @@ export function Page({
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 {/** No sections: missing custom options + default actions */}
                 <Text variation="subdued">11) Flat custom options with default actions</Text>
-                <Autocomplete<Animal>
+                <Autocomplete
                   version={2}
                   value={f2Value}
                   onChange={setF2Value}
@@ -610,7 +610,7 @@ export function Page({
 
                 <Heading level={3}>Sectioned (default section meta) — action combinations</Heading>
                 <Text variation="subdued">12) Simple opts — flat default actions only</Text>
-                <Autocomplete<Simple>
+                <Autocomplete
                   version={2}
                   value={s1Value}
                   onChange={setS1Value}
@@ -621,10 +621,10 @@ export function Page({
                   ]}
                   filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
                 <Text variation="subdued">12 B) Simple opts — section default actions only</Text>
-                <Autocomplete<Simple>
+                <Autocomplete
                   version={2}
                   value={s1Value}
                   onChange={setS1Value}
@@ -640,11 +640,11 @@ export function Page({
                   ]}
                   filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Text variation="subdued">13) Simple opts — section default actions only</Text>
-                <Autocomplete<Simple>
+                <Autocomplete
                   version={2}
                   value={s1Value}
                   onChange={setS1Value}
@@ -661,11 +661,11 @@ export function Page({
                   ]}
                   filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Text variation="subdued">14) Simple opts — flat default + section default actions</Text>
-                <Autocomplete<Simple>
+                <Autocomplete
                   version={2}
                   value={s1Value}
                   onChange={setS1Value}
@@ -687,11 +687,11 @@ export function Page({
                   ]}
                   filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Text variation="subdued">15) Animal opts — flat custom + section custom actions</Text>
-                <Autocomplete<Animal, SectionX, ActionX>
+                <Autocomplete
                   version={2}
                   value={s4Value}
                   onChange={setS4Value}
@@ -727,7 +727,7 @@ export function Page({
                 />
 
                 <Text variation="subdued">16) Animal opts — flat default + section custom actions</Text>
-                <Autocomplete<Animal, SectionX, ActionX>
+                <Autocomplete
                   version={2}
                   value={s4Value}
                   onChange={setS4Value}
@@ -747,7 +747,7 @@ export function Page({
                 />
 
                 <Text variation="subdued">17) Animal opts — flat custom + section default actions</Text>
-                <Autocomplete<Animal>
+                <Autocomplete
                   version={2}
                   value={s2Value}
                   onChange={setS2Value}
@@ -777,7 +777,7 @@ export function Page({
                 />
 
                 <Text variation="subdued">18) Simple opts — section no action</Text>
-                <Autocomplete<Simple, {}, ActionX>
+                <Autocomplete
                   version={2}
                   value={s5Value}
                   onChange={setS5Value}
@@ -786,11 +786,11 @@ export function Page({
                   menu={[{ type: "section", id: 18, label: "Numbers", options: simpleOptions }]}
                   filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
                 />
 
                 <Text variation="subdued">19) Simple opts — section actions and flat actions (no options)</Text>
-                <Autocomplete<Simple, {}, ActionX>
+                <Autocomplete
                   version={2}
                   value={s5Value}
                   onChange={setS5Value}
@@ -802,7 +802,22 @@ export function Page({
                   ]}
                   filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
                   getOptionLabel={o => o.label}
-                  getOptionValue={o => String(o.value ?? o.label)}
+                  getOptionValue={o => o.id}
+                />                
+                
+                <Text variation="subdued">20) Empty options</Text>
+                <Autocomplete
+                  version={2}
+                  value={s5Value}
+                  onChange={setS5Value}
+                  inputValue={s5Input}
+                  onInputChange={setS5Input}
+                  menu={[
+                    { type: "options", options: [] },
+                  ]}
+                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  getOptionLabel={o => o.label}
+                  getOptionValue={o => o.id}
                 />
               </div>
             );

@@ -257,8 +257,12 @@ export interface CustomOptionsMenuProp<
   }) => React.ReactElement;
 }
 
-// Base constraint for any option value - any non-primitive object
-export type OptionLike = object;
+// Base constraint for any v2 option value (minimal shape)
+// Arbitrary extra keys are allowed by structural typing of consumer types
+export interface OptionLike {
+  id: Key;
+  label: string;
+}
 
 interface MenuActionBase {
   type: "action";
