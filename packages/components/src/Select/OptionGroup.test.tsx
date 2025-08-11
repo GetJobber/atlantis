@@ -1,10 +1,10 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Select } from "./index";
 
 describe("OptionGroup", () => {
   it("renders with a label", () => {
-    const { container } = render(
+    render(
       <select>
         <Select.OptionGroup label="Test Group">
           <Select.Option value="test">Test Option</Select.Option>
@@ -12,13 +12,13 @@ describe("OptionGroup", () => {
       </select>,
     );
 
-    const optgroup = container.querySelector("optgroup");
+    const optgroup = screen.getByRole("group", { name: "Test Group" });
     expect(optgroup).toBeInTheDocument();
-    expect(optgroup).toHaveAttribute("label", "Test Group");
+    expect(optgroup).toHaveAccessibleName("Test Group");
   });
 
   it("renders children options", () => {
-    const { container } = render(
+    render(
       <select>
         <Select.OptionGroup label="Test Group">
           <Select.Option value="option1">Option 1</Select.Option>
@@ -27,14 +27,16 @@ describe("OptionGroup", () => {
       </select>,
     );
 
-    const options = container.querySelectorAll("option");
-    expect(options).toHaveLength(2);
-    expect(options[0]).toHaveTextContent("Option 1");
-    expect(options[1]).toHaveTextContent("Option 2");
+    expect(
+      screen.getByRole("option", { name: "Option 1" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("option", { name: "Option 2" }),
+    ).toBeInTheDocument();
   });
 
   it("supports disabled state", () => {
-    const { container } = render(
+    render(
       <select>
         <Select.OptionGroup label="Disabled Group" disabled>
           <Select.Option value="test">Test Option</Select.Option>
@@ -42,12 +44,12 @@ describe("OptionGroup", () => {
       </select>,
     );
 
-    const optgroup = container.querySelector("optgroup");
-    expect(optgroup).toHaveAttribute("disabled");
+    const optgroup = screen.getByRole("group", { name: "Disabled Group" });
+    expect(optgroup).toBeDisabled();
   });
 
   it("works without disabled attribute when not specified", () => {
-    const { container } = render(
+    render(
       <select>
         <Select.OptionGroup label="Enabled Group">
           <Select.Option value="test">Test Option</Select.Option>
@@ -55,8 +57,8 @@ describe("OptionGroup", () => {
       </select>,
     );
 
-    const optgroup = container.querySelector("optgroup");
-    expect(optgroup).not.toHaveAttribute("disabled");
+    const optgroup = screen.getByRole("group", { name: "Enabled Group" });
+    expect(optgroup).toBeEnabled();
   });
 
   it("applies UNSAFE_className", () => {
@@ -76,7 +78,7 @@ describe("OptionGroup", () => {
   });
 
   it("applies UNSAFE_style", () => {
-    const { container } = render(
+    render(
       <select>
         <Select.OptionGroup
           label="Styled Group"
@@ -87,7 +89,7 @@ describe("OptionGroup", () => {
       </select>,
     );
 
-    const optgroup = container.querySelector("optgroup");
+    const optgroup = screen.getByRole("group", { name: "Styled Group" });
     expect(optgroup).toHaveStyle({ fontWeight: "bold" });
   });
 });
