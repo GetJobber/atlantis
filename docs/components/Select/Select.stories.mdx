@@ -1,5 +1,5 @@
 import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
-import { Option, Select } from "@jobber/components/Select";
+import { Option, Select, OptionGroup } from "@jobber/components/Select";
 
 <Meta title="Components/Selections/Select" component={Select} />
 
@@ -14,15 +14,18 @@ selected. For grouping options with section headers, use Select.OptionGroup.
 
 #### Browser support
 
-The grouped menu styling (bold section headers, edge‑to‑edge dividers and hover backgrounds) is enhanced when the browser supports `appearance: base-select` (Chromium 123+). In unsupported browsers the Select gracefully falls back to the native menu while still rendering the same `OptionGroup` structure.
+The grouped menu styling (bold section headers, edge‑to‑edge dividers and hover
+backgrounds) is enhanced when the browser supports `appearance: base-select`
+(Chromium 123+). In unsupported browsers the Select gracefully falls back to the
+native menu while still rendering the same `OptionGroup` structure.
 
 #### Option Props
 
-<ArgsTable of={Select.Option} />
+<ArgsTable of={Option} />
 
 #### OptionGroup Props
 
-<ArgsTable of={Select.OptionGroup} />
+<ArgsTable of={OptionGroup} />
 
 ## States
 
@@ -46,7 +49,9 @@ The grouped menu styling (bold section headers, edge‑to‑edge dividers and ho
 
 ## Option Grouping
 
-Use `Select.OptionGroup` to organize options with section headers for better user experience and visual hierarchy. The `label` prop is required as it provides the section header text.
+Use `Select.OptionGroup` to organize options with section headers for better
+user experience and visual hierarchy. The `label` prop is required as it
+provides the section header text.
 
 ### Basic Option Groups
 
@@ -68,7 +73,7 @@ Use `Select.OptionGroup` to organize options with section headers for better use
 ### Disabled Option Groups
 
 <Canvas>
-  <Select placeholder="Select an option">
+  <Select version={2} placeholder="Select an option">
     <Select.OptionGroup label="Available Options">
       <Select.Option value="option1">Option 1</Select.Option>
       <Select.Option value="option2">Option 2</Select.Option>
