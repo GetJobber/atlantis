@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+/* eslint-disable max-statements */
+import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import {
@@ -13,6 +14,7 @@ import { Markdown } from "../Markdown";
 import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
+import { Autocomplete } from "../Autocomplete";
 
 export type ButtonActionProps = ButtonProps & {
   ref?: React.RefObject<HTMLDivElement>;
@@ -129,6 +131,27 @@ export function Page({
     );
   }
 
+  interface Animal {
+    label: string;
+    value: string;
+    id: number;
+    description?: string;
+  }
+  const animals: Animal[] = [
+    { id: 2, label: "Cat", value: "cat", description: "A cat is a small animal" },
+    { id: 3, label: "Dog", value: "dog", description: "A dog is a small animal" },
+    { id: 4, label: "Bird", value: "bird", description: "A bird is a small animal" },
+    { id: 5, label: "Fish", value: "fish", description: "A fish is a small animal" },
+    { id: 6, label: "Horse", value: "horse", description: "A horse is a small animal" },
+    { id: 7, label: "Rabbit", value: "rabbit", description: "A rabbit is a small animal" },
+    { id: 8, label: "Snake", value: "snake", description: "A snake is a small animal" },
+    { id: 9, label: "Tiger", value: "tiger", description: "A tiger is a small animal" },
+  ];
+  const [selected, setSelected] = useState<Animal | undefined>(undefined);
+  const [selected2, setSelected2] = useState<Animal | undefined>(undefined);
+  const [search, setSearch] = useState("");
+  const [search2, setSearch2] = useState("");
+
   return (
     <div className={pageStyles}>
       <Content>
@@ -186,7 +209,71 @@ export function Page({
             </Text>
           )}
         </Content>
-        <Content>{children}</Content>
+        <Content>
+          <Autocomplete<Animal>
+            version={2}
+            value={selected}
+            onChange={setSelected}
+            inputValue={search}
+            onInputChange={o => {
+              console.log("onInputChange", o);
+              setSearch(o);
+            }}
+            menu={[
+              {
+                type: "options",
+                options: animals,
+              },
+            ]}
+            filterOptions={(option, input) =>
+              option.label.toLowerCase().includes(input.toLowerCase())
+            }
+            getOptionLabel={o => o.label}
+            getOptionValue={o => o.value}
+          />
+          {selected2 && <Text>{selected2.label}</Text>}
+          {search2 && <Text>{search2}</Text>}
+
+
+
+          <Autocomplete<Animal>
+            version={2}
+            value={selected2}
+            allowFreeForm={true}
+            onChange={setSelected2}
+            inputValue={search2}
+            onInputChange={setSearch2}
+            menu={[
+              {
+                type: "section",
+                label: "North America",
+                id: 1,
+                options: animals,
+                icon: "animal",
+                description: "Animals commonly found in North America",
+                actionsBottom: [
+                  {
+                    type: "action",
+                    id: "add",
+                    label: "Add",
+                    description: "Not seeing an animal? Add one now.",
+                    onClick: () => {
+                      console.log("Add");
+                    },
+                  },
+                ],
+              },
+            ]}
+            renderAction={action => <span>{action.description}</span>}
+            renderOption={option => <span>{option.description}</span>}
+            renderSection={section => <span>{section.description}</span>}
+            filterOptions={(option, input) =>
+              option.label.toLowerCase().includes(input.toLowerCase())
+            }
+            getOptionLabel={o => o.label}
+            getOptionValue={o => o.value}
+          />
+        </Content>
       </Content>
     </div>
   );

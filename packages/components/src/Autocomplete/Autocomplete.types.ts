@@ -257,14 +257,10 @@ export interface CustomOptionsMenuProp<
   }) => React.ReactElement;
 }
 
-// Base constraint for any option value - must be an object that can provide label/value
-export interface OptionLike {
-  // Minimal constraint allowing any additional properties
-  // The actual label/value access is handled by getOptionLabel/getOptionValue functions
-  [key: string]: unknown;
-}
+// Base constraint for any option value - any non-primitive object
+export type OptionLike = object;
 
-interface MenuAction {
+interface MenuActionBase {
   type: "action";
   id: Key;
   label: string;
@@ -273,26 +269,49 @@ interface MenuAction {
   icon?: string; // or React.ReactNode
 }
 
-interface MenuSection<T extends OptionLike> {
+export type MenuAction<Extra extends object = Record<string, unknown>> =
+  MenuActionBase & Extra;
+
+export type MenuSection<
+  T extends OptionLike,
+  SectionExtra extends object = Record<string, unknown>,
+  ActionExtra extends object = Record<string, unknown>,
+> = SectionExtra & {
   type: "section";
   id: Key;
   label: string;
   options: T[];
-  actions?: MenuAction[]; // Section-specific actions
-}
+  // Rendered at the bottom of this section
+  actionsBottom?: MenuAction<ActionExtra>[];
+};
 
-interface MenuOptions<T extends OptionLike> {
+export interface MenuOptions<
+  T extends OptionLike,
+  ActionExtra extends object = Record<string, unknown>,
+> {
   type: "options";
-  options: T[]; // For flat lists without sections
+  // For flat lists without sections
+  options: T[];
+  // Rendered at the bottom of the entire flat list
+  actionsBottom?: MenuAction<ActionExtra>[];
 }
 
-type MenuItem<T extends OptionLike> =
-  | MenuAction
-  | MenuSection<T>
-  | MenuOptions<T>;
+export type MenuItem<
+  T extends OptionLike,
+  SectionExtra extends object = Record<string, unknown>,
+  ActionExtra extends object = Record<string, unknown>,
+> = MenuSection<T, SectionExtra, ActionExtra> | MenuOptions<T, ActionExtra>;
+
+export type AutocompleteValue<
+  Value extends OptionLike,
+  Multiple extends boolean,
+> = Multiple extends true ? Value[] : Value | undefined;
 
 export interface AutocompleteProposedProps<
   Value extends OptionLike = OptionLike,
+  Multiple extends boolean = false,
+  SectionExtra extends object = Record<string, unknown>,
+  ActionExtra extends object = Record<string, unknown>,
 > {
   version: 2;
 
@@ -300,10 +319,11 @@ export interface AutocompleteProposedProps<
    * Must-haves
    */
   // Controlled state
-  readonly value: Value | Value[] | undefined;
+  readonly multiple?: Multiple;
+  readonly value: AutocompleteValue<Value, Multiple>;
   // consider including the event and "reason"
   // undefined is debatable, could make sense for single select
-  readonly onChange: (value: Value | Value[] | undefined) => void;
+  readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
   readonly inputValue: string;
   readonly onInputChange: (value: string) => void;
 
@@ -314,7 +334,7 @@ export interface AutocompleteProposedProps<
 
   // Menu structure
   // prefer items or options? menu does describe the purpose better. tbd.
-  readonly menu: MenuItem<Value>[];
+  readonly menu: MenuItem<Value, SectionExtra, ActionExtra>[];
 
   // Filtering & display
   readonly filterOptions: (option: Value, inputValue: string) => boolean;
@@ -323,11 +343,10 @@ export interface AutocompleteProposedProps<
 
   // Rendering
   readonly renderOption?: (option: Value) => React.ReactNode;
-  readonly renderSection?: (section: {
-    id: string;
-    label: string;
-  }) => React.ReactNode;
-  readonly renderAction?: (action: MenuAction) => React.ReactNode;
+  readonly renderSection?: (
+    section: MenuSection<Value, SectionExtra, ActionExtra>,
+  ) => React.ReactNode;
+  readonly renderAction?: (action: MenuAction<ActionExtra>) => React.ReactNode;
 
   readonly placeholder?: string;
   readonly disabled?: boolean;
@@ -360,7 +379,6 @@ export interface AutocompleteProposedProps<
   /*
    * Nice-to-haves & improvements
    */
-  readonly multiple?: boolean;
   readonly renderSelectedItems?: (props: {
     items: Value[];
     onRemove: (item: Value) => void;
@@ -388,3 +406,31 @@ export interface AutocompleteProposedProps<
 
   readonly selectOnFocus?: boolean;
 }
+
+// Convenience builder helpers (optional usage)
+export const menuOptions = <
+  T extends OptionLike,
+  ActionExtra extends object = Record<string, unknown>,
+>(
+  options: T[],
+  actionsBottom?: MenuAction<ActionExtra>[],
+): MenuOptions<T, ActionExtra> => ({ type: "options", options, actionsBottom });
+
+export const menuSection = <
+  T extends OptionLike,
+  SectionExtra extends object = Record<string, unknown>,
+  ActionExtra extends object = Record<string, unknown>,
+>(
+  id: Key,
+  label: string,
+  options: T[],
+  actionsBottom?: MenuAction<ActionExtra>[],
+  extra?: SectionExtra,
+): MenuSection<T, SectionExtra, ActionExtra> => ({
+  type: "section",
+  id,
+  label,
+  options,
+  actionsBottom,
+  ...(extra || ({} as SectionExtra)),
+});

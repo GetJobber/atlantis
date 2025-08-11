@@ -53,22 +53,31 @@ function isNewAutocompleteProps(
   return props.version === 2;
 }
 
-export const Autocomplete = forwardRef(function AutocompleteShim(
+function AutocompleteShim(
   props: AutocompleteShimProps,
   ref: React.Ref<InputTextRef>,
 ) {
   if (isNewAutocompleteProps(props)) {
-    console.log("AutocompleteRebuilt", props);
-
     return <AutocompleteRebuilt {...props} ref={ref} />;
   }
 
-  console.log("AutocompleteLegacy", props);
-
   return <AutocompleteLegacy {...props} ref={ref} />;
-});
+}
 
-Autocomplete.displayName = "Autocomplete";
+export const Autocomplete = forwardRef(AutocompleteShim) as <
+  T extends OptionLike = OptionLike,
+  M extends boolean = false,
+  S extends object = Record<string, unknown>,
+  A extends object = Record<string, unknown>,
+>(
+  props:
+    | AutocompleteLegacyProps
+    | (AutocompleteProposedProps<T, M, S, A> & {
+        ref?: React.Ref<InputTextRef>;
+      }),
+) => ReturnType<typeof AutocompleteShim>;
+// Assign displayName on the function prior to casting
+(AutocompleteShim as any).displayName = "Autocomplete";
 
 export type {
   AutocompleteLegacyProps,
