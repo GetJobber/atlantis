@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.80.0...@jobber/components@6.81.0) (2025-08-11)
+
+
+### Features
+
+* **components:** FloatingUI Cleanup ([#2655](https://github.com/GetJobber/atlantis/issues/2655)) ([f815dd8](https://github.com/GetJobber/atlantis/commit/f815dd899530bcba6fa6f42e454e5a0aa43019c8))
+
+
+
+
+
+# [6.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.79.0...@jobber/components@6.80.0) (2025-08-11)
+
+
+### Features
+
+* **components:** Add numberOfLines prop to Heading [132044] ([#2656](https://github.com/GetJobber/atlantis/issues/2656)) ([8cade97](https://github.com/GetJobber/atlantis/commit/8cade97a4224743eeaf281c219c414a69a2d0dcc))
+* **components:** Upgrades ([#2662](https://github.com/GetJobber/atlantis/issues/2662)) ([7e268b3](https://github.com/GetJobber/atlantis/commit/7e268b365eb60555bf87a887e432690c9e5c8d1d))
+
+
+
+
+
+# [6.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.78.0...@jobber/components@6.79.0) (2025-08-08)
+
+
+### Features
+
+* **components:** InputTime preserves date part of value on change ([#2652](https://github.com/GetJobber/atlantis/issues/2652)) ([2849832](https://github.com/GetJobber/atlantis/commit/28498325d0df75252e997518e780e2698db32275))
+
+
+
+
+
 # [6.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.77.0...@jobber/components@6.78.0) (2025-08-07)
 
 

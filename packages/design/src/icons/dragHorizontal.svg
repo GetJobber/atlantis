@@ -1,0 +1,12 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="dragHorizontal">
+<g id="Union">
+<path d="M20 8L19 7H17L16 8V10L17 11H19L20 10V8Z" fill="black"/>
+<path d="M14 8L13 7H11L10 8V10L11 11H13L14 10V8Z" fill="black"/>
+<path d="M8 8L7 7H5L4 8V10L5 11H7L8 10V8Z" fill="black"/>
+<path d="M20 14L19 13H17L16 14V16L17 17H19L20 16V14Z" fill="black"/>
+<path d="M14 14L13 13H11L10 14V16L11 17H13L14 16V14Z" fill="black"/>
+<path d="M8 14L7 13H5L4 14V16L5 17H7L8 16V14Z" fill="black"/>
+</g>
+</g>
+</svg>

@@ -69,7 +69,7 @@ export function InputTimeRebuilt({
   }
 
   function handleChange(newValue: string) {
-    onChange?.(timeStringToDate(newValue));
+    onChange?.(timeStringToDate(newValue, value));
   }
 
   function handleBlur(event?: React.FocusEvent<HTMLInputElement>) {
