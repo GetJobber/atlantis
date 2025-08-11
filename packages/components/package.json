@@ -461,12 +461,8 @@
     "entryPoints:clean": "npm run entryPoints:build clean",
     "prepack": "npm run entryPoints:build",
     "postpack": "npm run entryPoints:clean",
-    "dev:sb": "vite",
-    "build:sb": "tsc -b && vite build",
-    "lint:sb": "eslint .",
-    "preview:sb": "vite preview",
-    "storybook:sb": "storybook dev -p 6007",
-    "build-storybook:sb": "storybook build"
+    "storybook": "storybook dev -p 6007",
+    "build-storybook": "storybook build"
   },
   "files": [
     "*.js",
@@ -507,6 +503,10 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@storybook/addon-a11y": "^9.1.1",
+    "@storybook/addon-docs": "^9.1.1",
+    "@storybook/addon-onboarding": "^9.1.1",
+    "@storybook/react-vite": "^9.1.1",
     "@types/glob": "^7.1.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -522,10 +522,7 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
-    "storybook": "^9.1.0-alpha.3",
-    "@storybook/addon-docs": "^9.1.0-alpha.3",
-    "@storybook/addon-onboarding": "^9.1.0-alpha.3",
-    "@storybook/react-vite": "^9.1.0-alpha.3",
+    "storybook": "^9.1.1",
     "typed-css-modules": "^0.7.0"
   },
   "peerDependencies": {
