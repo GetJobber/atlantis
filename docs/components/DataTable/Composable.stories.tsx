@@ -29,6 +29,7 @@ import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import { Content } from "@jobber/components/Content";
 import { Cluster } from "@jobber/components/Cluster";
 import { Glimmer } from "@jobber/components/Glimmer";
+import { Stack } from "@jobber/components/Stack";
 
 export default {
   title: "Components/Lists and Tables/DataTable/Web/Composable",
@@ -505,13 +506,7 @@ export const EndAlignedColumns = () => {
         accessorKey: "method",
         header: "Method",
         cell: ({ row }) => (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "var(--space-small)",
-            }}
-          >
+          <Cluster gap="small" align="center">
             <Icon name={row.original.icon as IconNames} />
             <div>
               <Typography fontWeight="bold">{row.original.method}</Typography>
@@ -519,15 +514,13 @@ export const EndAlignedColumns = () => {
                 <Text variation="subdued">Default method</Text>
               )}
             </div>
-          </div>
+          </Cluster>
         ),
       },
       {
         accessorKey: "expiry",
         header: "Expiry",
-        cell: ({ row }) => (
-          <div style={{ textAlign: "right" }}>{row.original.expiry}</div>
-        ),
+        cell: ({ row }) => <Text align="end">{row.original.expiry}</Text>,
       },
     ],
     getCoreRowModel: getCoreRowModel(),
@@ -539,8 +532,8 @@ export const EndAlignedColumns = () => {
         <DataTable.Table>
           <DataTable.Header>
             <DataTable.HeaderCell>Method</DataTable.HeaderCell>
-            <DataTable.HeaderCell style={{ textAlign: "right" }}>
-              Expiry
+            <DataTable.HeaderCell>
+              <Text align="end">Expiry</Text>
             </DataTable.HeaderCell>
           </DataTable.Header>
           <DataTable.Body>
@@ -703,36 +696,32 @@ export const WithPagination = () => {
             ))}
           </DataTable.Body>
           <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
-            <DataTable.Pagination
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text>
-                Showing {table.getRowModel().rows.length} of{" "}
-                {exampleData.length} items
-              </Text>
+            <DataTable.Pagination>
+              <Cluster justify="space-between" align="center">
+                <Text>
+                  Showing {table.getRowModel().rows.length} of{" "}
+                  {exampleData.length} items
+                </Text>
 
-              <div style={{ display: "flex", gap: "var(--space-small)" }}>
-                <DataTable.PaginationButton
-                  direction="previous"
-                  disabled={!table.getCanPreviousPage()}
-                  onClick={() => table.previousPage()}
-                  ariaLabel={direction =>
-                    direction === "next" ? "Next page" : "Previous page"
-                  }
-                />
-                <DataTable.PaginationButton
-                  direction="next"
-                  disabled={!table.getCanNextPage()}
-                  onClick={() => table.nextPage()}
-                  ariaLabel={direction =>
-                    direction === "next" ? "Next page" : "Previous page"
-                  }
-                />
-              </div>
+                <Cluster gap="small">
+                  <DataTable.PaginationButton
+                    direction="previous"
+                    disabled={!table.getCanPreviousPage()}
+                    onClick={() => table.previousPage()}
+                    ariaLabel={direction =>
+                      direction === "next" ? "Next page" : "Previous page"
+                    }
+                  />
+                  <DataTable.PaginationButton
+                    direction="next"
+                    disabled={!table.getCanNextPage()}
+                    onClick={() => table.nextPage()}
+                    ariaLabel={direction =>
+                      direction === "next" ? "Next page" : "Previous page"
+                    }
+                  />
+                </Cluster>
+              </Cluster>
             </DataTable.Pagination>
           </DataTable.Footer>
         </DataTable.Table>
@@ -756,19 +745,13 @@ export const DoubleFooter = () => {
         accessorKey: "item",
         header: "Item",
         cell: ({ row }) => (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "var(--space-small)",
-            }}
-          >
+          <Cluster gap="small" align="center">
             <Icon name={row.original.icon as IconNames} />
             <Typography fontWeight="bold">{row.original.item}</Typography>
             {row.original.badge && (
               <StatusLabel status="warning" label={row.original.badge} />
             )}
-          </div>
+          </Cluster>
         ),
       },
       {
@@ -782,9 +765,7 @@ export const DoubleFooter = () => {
       {
         accessorKey: "amount",
         header: "Amount",
-        cell: ({ row }) => (
-          <div style={{ textAlign: "right" }}>{row.original.amount}</div>
-        ),
+        cell: ({ row }) => <Text align="end">{row.original.amount}</Text>,
       },
     ],
     state: {
@@ -803,8 +784,8 @@ export const DoubleFooter = () => {
             <DataTable.HeaderCell>Item</DataTable.HeaderCell>
             <DataTable.HeaderCell>Applied to</DataTable.HeaderCell>
             <DataTable.HeaderCell>Created date</DataTable.HeaderCell>
-            <DataTable.HeaderCell style={{ textAlign: "right" }}>
-              Amount
+            <DataTable.HeaderCell>
+              <Text align="end">Amount</Text>
             </DataTable.HeaderCell>
           </DataTable.Header>
           <DataTable.Body>
@@ -821,19 +802,13 @@ export const DoubleFooter = () => {
 
           {/* Current balance footer */}
           <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "var(--space-base)",
-                fontWeight: "bold",
-              }}
-            >
-              <Typography fontWeight="bold">Current balance</Typography>
-              <Typography fontWeight="bold">
-                ${currentBalance.toLocaleString()}.00
-              </Typography>
+            <div style={{ padding: "var(--space-base)", fontWeight: "bold" }}>
+              <Cluster justify="space-between" align="center">
+                <Typography fontWeight="bold">Current balance</Typography>
+                <Typography fontWeight="bold">
+                  ${currentBalance.toLocaleString()}.00
+                </Typography>
+              </Cluster>
             </div>
           </DataTable.Footer>
 
@@ -842,36 +817,32 @@ export const DoubleFooter = () => {
             colSpan={table.getAllLeafColumns().length}
             style={{ borderTopWidth: "var(--border-thick)" }}
           >
-            <DataTable.Pagination
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text>
-                Showing {table.getRowModel().rows.length} of{" "}
-                {transactionData.length} items
-              </Text>
+            <DataTable.Pagination>
+              <Cluster justify="space-between" align="center">
+                <Text>
+                  Showing {table.getRowModel().rows.length} of{" "}
+                  {transactionData.length} items
+                </Text>
 
-              <div style={{ display: "flex", gap: "var(--space-small)" }}>
-                <DataTable.PaginationButton
-                  direction="previous"
-                  disabled={!table.getCanPreviousPage()}
-                  onClick={() => table.previousPage()}
-                  ariaLabel={direction =>
-                    direction === "next" ? "Next page" : "Previous page"
-                  }
-                />
-                <DataTable.PaginationButton
-                  direction="next"
-                  disabled={!table.getCanNextPage()}
-                  onClick={() => table.nextPage()}
-                  ariaLabel={direction =>
-                    direction === "next" ? "Next page" : "Previous page"
-                  }
-                />
-              </div>
+                <Cluster gap="small">
+                  <DataTable.PaginationButton
+                    direction="previous"
+                    disabled={!table.getCanPreviousPage()}
+                    onClick={() => table.previousPage()}
+                    ariaLabel={direction =>
+                      direction === "next" ? "Next page" : "Previous page"
+                    }
+                  />
+                  <DataTable.PaginationButton
+                    direction="next"
+                    disabled={!table.getCanNextPage()}
+                    onClick={() => table.nextPage()}
+                    ariaLabel={direction =>
+                      direction === "next" ? "Next page" : "Previous page"
+                    }
+                  />
+                </Cluster>
+              </Cluster>
             </DataTable.Pagination>
           </DataTable.Footer>
         </DataTable.Table>
@@ -1027,19 +998,13 @@ export const AdvancedFiltering = () => {
         accessorKey: "item",
         header: "Item",
         cell: ({ row }) => (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "var(--space-small)",
-            }}
-          >
+          <Cluster gap="small" align="center">
             <Icon name={row.original.icon} />
             <div>
               <Typography fontWeight="bold">{row.original.item}</Typography>
               <Text variation="subdued">{row.original.description}</Text>
             </div>
-          </div>
+          </Cluster>
         ),
       },
       {
@@ -1069,9 +1034,7 @@ export const AdvancedFiltering = () => {
       {
         accessorKey: "amount",
         header: "Amount",
-        cell: ({ row }) => (
-          <div style={{ textAlign: "right" }}>{row.original.amount}</div>
-        ),
+        cell: ({ row }) => <Text align="end">{row.original.amount}</Text>,
       },
       {
         accessorKey: "type",
@@ -1158,50 +1121,45 @@ export const AdvancedFiltering = () => {
   return (
     <StorybookTableProvider table={table}>
       <DataTable.Actions>
-        <Combobox
-          label="Property"
-          selected={selectedProperties}
-          onSelect={handlePropertySelect}
-          multiSelect
-        >
-          <Combobox.Activator>
-            <Chip
-              label={
-                selectedProperties.length > 0
-                  ? selectedProperties.map(option => option.label).join(", ")
-                  : ""
-              }
-              heading="Property"
-              variation={selectedProperties.length > 0 ? "base" : "subtle"}
-            >
-              <Chip.Suffix
-                {...(selectedProperties.length > 0
-                  ? { onClick: clearPropertyFilter }
-                  : {})}
+        <Cluster gap="small">
+          <Combobox
+            label="Property"
+            selected={selectedProperties}
+            onSelect={handlePropertySelect}
+            multiSelect
+          >
+            <Combobox.Activator>
+              <Chip
+                label={
+                  selectedProperties.length > 0
+                    ? selectedProperties.map(option => option.label).join(", ")
+                    : ""
+                }
+                heading="Property"
+                variation={selectedProperties.length > 0 ? "base" : "subtle"}
               >
-                <Icon
-                  name={selectedProperties.length > 0 ? "cross" : "add"}
-                  size="small"
-                />
-              </Chip.Suffix>
-            </Chip>
-          </Combobox.Activator>
+                <Chip.Suffix
+                  {...(selectedProperties.length > 0
+                    ? { onClick: clearPropertyFilter }
+                    : {})}
+                >
+                  <Icon
+                    name={selectedProperties.length > 0 ? "cross" : "add"}
+                    size="small"
+                  />
+                </Chip.Suffix>
+              </Chip>
+            </Combobox.Activator>
 
-          {propertyOptions.map(option => (
-            <Combobox.Option
-              key={option.id}
-              id={option.id}
-              label={option.label}
-            />
-          ))}
-        </Combobox>
+            {propertyOptions.map(option => (
+              <Combobox.Option
+                key={option.id}
+                id={option.id}
+                label={option.label}
+              />
+            ))}
+          </Combobox>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "var(--space-small)",
-          }}
-        >
           {objectTypeOptions.map(option => {
             const isSelected = selectedObjectType === option.id;
 
@@ -1230,7 +1188,7 @@ export const AdvancedFiltering = () => {
               </Chip>
             );
           })}
-        </div>
+        </Cluster>
       </DataTable.Actions>
 
       <DataTable.Container>
@@ -1240,8 +1198,8 @@ export const AdvancedFiltering = () => {
             <DataTable.HeaderCell>Property</DataTable.HeaderCell>
             <DataTable.HeaderCell>Date</DataTable.HeaderCell>
             <DataTable.HeaderCell>Status</DataTable.HeaderCell>
-            <DataTable.HeaderCell style={{ textAlign: "right" }}>
-              Amount
+            <DataTable.HeaderCell>
+              <Text align="end">Amount</Text>
             </DataTable.HeaderCell>
           </DataTable.Header>
           <DataTable.Body>
@@ -1300,7 +1258,7 @@ export const ColumnVisibility = () => {
   return (
     <StorybookTableProvider table={table}>
       <DataTable.Actions>
-        <div style={{ display: "flex", gap: "var(--space-base)" }}>
+        <Cluster gap="base">
           <Typography fontWeight="bold">Show Columns:</Typography>
           {table.getAllLeafColumns().map(column => (
             <Checkbox
@@ -1311,7 +1269,7 @@ export const ColumnVisibility = () => {
               onChange={checked => column.toggleVisibility(checked)}
             />
           ))}
-        </div>
+        </Cluster>
       </DataTable.Actions>
 
       <DataTable.Container>
@@ -1555,13 +1513,7 @@ export const GlobalSearch = () => {
   return (
     <StorybookTableProvider table={table}>
       <DataTable.Actions>
-        <div
-          style={{
-            display: "flex",
-            gap: "var(--space-base)",
-            alignItems: "center",
-          }}
-        >
+        <div>
           <InputText
             version={1}
             value={globalFilter ?? ""}
@@ -1635,17 +1587,11 @@ export const MobileResponsive = () => {
         id: "mobileContent",
         header: "Contact Information",
         cell: ({ row }) => (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-small)",
-            }}
-          >
+          <Stack gap="small">
             <Typography fontWeight="bold">{row.original.name}</Typography>
             <Text variation="subdued">{row.original.role}</Text>
             <Text variation="subdued">{row.original.email}</Text>
-          </div>
+          </Stack>
         ),
       },
       // Desktop: Individual columns
@@ -1676,20 +1622,14 @@ export const MobileResponsive = () => {
   return (
     <StorybookTableProvider table={table}>
       <DataTable.Actions>
-        <div
-          style={{
-            display: "flex",
-            gap: "var(--space-base)",
-            alignItems: "center",
-          }}
-        >
+        <Cluster gap="base" align="center">
           <Typography fontWeight="bold">
             {isMobile ? "Mobile Layout" : "Desktop Layout"}
           </Typography>
           <Text variation="subdued" size="small">
             Resize window to see responsive behavior
           </Text>
-        </div>
+        </Cluster>
       </DataTable.Actions>
 
       <DataTable.Container>
@@ -1774,20 +1714,14 @@ export const RowSelection = () => {
     <>
       <StorybookTableProvider table={table}>
         <DataTable.Actions>
-          <div
-            style={{
-              display: "flex",
-              gap: "var(--space-base)",
-              alignItems: "center",
-            }}
-          >
+          <Cluster gap="base" align="center">
             <Typography fontWeight="bold">
               Click any row to view details
             </Typography>
             <Text variation="subdued" size="small">
               Row selection opens a modal with detailed information
             </Text>
-          </div>
+          </Cluster>
         </DataTable.Actions>
 
         <DataTable.Container>
@@ -1838,20 +1772,16 @@ export const RowSelection = () => {
       >
         {selectedRow && (
           <Content>
-            <div>
-              <Typography fontWeight="bold" size="large">
-                {selectedRow.name}
-              </Typography>
-              <Text variation="subdued">{selectedRow.role}</Text>
-            </div>
-            <div>
-              <Typography fontWeight="bold">Email</Typography>
-              <Text>{selectedRow.email}</Text>
-            </div>
-            <div>
-              <Typography fontWeight="bold">Role</Typography>
-              <Text>{selectedRow.role}</Text>
-            </div>
+            <Stack gap="base">
+              <div>
+                <Typography fontWeight="bold">{selectedRow.name}</Typography>
+                <Text variation="subdued">{selectedRow.role}</Text>
+              </div>
+              <div>
+                <Typography fontWeight="bold">Email</Typography>
+                <Text>{selectedRow.email}</Text>
+              </div>
+            </Stack>
           </Content>
         )}
       </Modal>
