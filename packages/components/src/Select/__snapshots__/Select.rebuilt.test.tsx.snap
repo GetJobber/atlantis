@@ -20,7 +20,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with many options 1`] = `
             tabindex="-1"
           >
             <select
-              class="input"
+              class="input select"
               id=":r2:"
               name="generatedName--:r2:"
             >
@@ -38,7 +38,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with many options 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -79,12 +79,12 @@ exports[`SelectRebuilt renders a SelectRebuilt with no options 1`] = `
             tabindex="-1"
           >
             <select
-              class="input"
+              class="input select"
               id=":r0:"
               name="generatedName--:r0:"
             />
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -125,7 +125,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with one option 1`] = `
             tabindex="-1"
           >
             <select
-              class="input"
+              class="input select"
               id=":r1:"
               name="generatedName--:r1:"
             >
@@ -134,7 +134,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with one option 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -175,7 +175,7 @@ exports[`SelectRebuilt renders correctly as large 1`] = `
             tabindex="-1"
           >
             <select
-              class="input"
+              class="input select"
               id=":r4:"
               name="generatedName--:r4:"
             >
@@ -184,7 +184,7 @@ exports[`SelectRebuilt renders correctly as large 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -225,7 +225,7 @@ exports[`SelectRebuilt renders correctly as small 1`] = `
             tabindex="-1"
           >
             <select
-              class="input"
+              class="input select"
               id=":r3:"
               name="generatedName--:r3:"
             >
@@ -234,7 +234,7 @@ exports[`SelectRebuilt renders correctly as small 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -275,7 +275,7 @@ exports[`SelectRebuilt renders correctly when disabled 1`] = `
             tabindex="-1"
           >
             <select
-              class="input"
+              class="input select"
               disabled=""
               id=":r5:"
               name="generatedName--:r5:"
@@ -285,7 +285,7 @@ exports[`SelectRebuilt renders correctly when disabled 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -326,7 +326,7 @@ exports[`SelectRebuilt renders correctly when invalid 1`] = `
             tabindex="-1"
           >
             <select
-              class="input"
+              class="input select"
               id=":r6:"
               name="generatedName--:r6:"
             >
@@ -335,7 +335,7 @@ exports[`SelectRebuilt renders correctly when invalid 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
