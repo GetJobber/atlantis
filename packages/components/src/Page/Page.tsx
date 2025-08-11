@@ -138,19 +138,63 @@ export function Page({
     description?: string;
   }
   const animals: Animal[] = [
-    { id: 2, label: "Cat", value: "cat", description: "A cat is a small animal" },
-    { id: 3, label: "Dog", value: "dog", description: "A dog is a small animal" },
-    { id: 4, label: "Bird", value: "bird", description: "A bird is a small animal" },
-    { id: 5, label: "Fish", value: "fish", description: "A fish is a small animal" },
-    { id: 6, label: "Horse", value: "horse", description: "A horse is a small animal" },
-    { id: 7, label: "Rabbit", value: "rabbit", description: "A rabbit is a small animal" },
-    { id: 8, label: "Snake", value: "snake", description: "A snake is a small animal" },
-    { id: 9, label: "Tiger", value: "tiger", description: "A tiger is a small animal" },
+    {
+      id: 2,
+      label: "Cat",
+      value: "cat",
+      description: "A cat is a small animal",
+    },
+    {
+      id: 3,
+      label: "Dog",
+      value: "dog",
+      description: "A dog is a small animal",
+    },
+    {
+      id: 4,
+      label: "Bird",
+      value: "bird",
+      description: "A bird is a small animal",
+    },
+    {
+      id: 5,
+      label: "Fish",
+      value: "fish",
+      description: "A fish is a small animal",
+    },
+    {
+      id: 6,
+      label: "Horse",
+      value: "horse",
+      description: "A horse is a small animal",
+    },
+    {
+      id: 7,
+      label: "Rabbit",
+      value: "rabbit",
+      description: "A rabbit is a small animal",
+    },
+    {
+      id: 8,
+      label: "Snake",
+      value: "snake",
+      description: "A snake is a small animal",
+    },
+    {
+      id: 9,
+      label: "Tiger",
+      value: "tiger",
+      description: "A tiger is a small animal",
+    },
   ];
   const [selected, setSelected] = useState<Animal | undefined>(undefined);
   const [selected2, setSelected2] = useState<Animal | undefined>(undefined);
   const [search, setSearch] = useState("");
   const [search2, setSearch2] = useState("");
+
+type SectionExtra = { icon: string; description: string };
+type ActionExtra = { description: string };
+
 
   return (
     <div className={pageStyles}>
@@ -234,9 +278,7 @@ export function Page({
           {selected2 && <Text>{selected2.label}</Text>}
           {search2 && <Text>{search2}</Text>}
 
-
-
-          <Autocomplete<Animal>
+          <Autocomplete<Animal, SectionExtra, ActionExtra>
             version={2}
             value={selected2}
             allowFreeForm={true}

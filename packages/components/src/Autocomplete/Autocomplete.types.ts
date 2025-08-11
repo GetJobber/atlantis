@@ -434,3 +434,12 @@ export const menuSection = <
   actionsBottom,
   ...(extra || ({} as SectionExtra)),
 });
+
+// Helper to improve inference from inline menu literals
+export function defineMenu<
+  T extends OptionLike,
+  S extends object = Record<string, unknown>,
+  A extends object = Record<string, unknown>,
+>(menu: MenuItem<T, S, A>[]): MenuItem<T, S, A>[] {
+  return menu;
+}

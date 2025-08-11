@@ -64,20 +64,31 @@ function AutocompleteShim(
   return <AutocompleteLegacy {...props} ref={ref} />;
 }
 
-export const Autocomplete = forwardRef(AutocompleteShim) as <
-  T extends OptionLike = OptionLike,
-  M extends boolean = false,
-  S extends object = Record<string, unknown>,
-  A extends object = Record<string, unknown>,
->(
-  props:
-    | AutocompleteLegacyProps
-    | (AutocompleteProposedProps<T, M, S, A> & {
-        ref?: React.Ref<InputTextRef>;
-      }),
-) => ReturnType<typeof AutocompleteShim>;
+export const Autocomplete = forwardRef(AutocompleteShim) as {
+  <
+    T extends OptionLike = OptionLike,
+    S extends object = Record<string, unknown>,
+    A extends object = Record<string, unknown>,
+  >(
+    props: AutocompleteProposedProps<T, false, S, A> & {
+      ref?: React.Ref<InputTextRef>;
+    },
+  ): ReturnType<typeof AutocompleteShim>;
+  <
+    T extends OptionLike = OptionLike,
+    S extends object = Record<string, unknown>,
+    A extends object = Record<string, unknown>,
+  >(
+    props: AutocompleteProposedProps<T, true, S, A> & {
+      ref?: React.Ref<InputTextRef>;
+    },
+  ): ReturnType<typeof AutocompleteShim>;
+  (props: AutocompleteLegacyProps): ReturnType<typeof AutocompleteShim>;
+};
 // Assign displayName on the function prior to casting
-(AutocompleteShim as any).displayName = "Autocomplete";
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+(AutocompleteShim as unknown as { displayName: string }).displayName =
+  "Autocomplete";
 
 export type {
   AutocompleteLegacyProps,
