@@ -40,13 +40,11 @@
       display: none;
     }
 
-    /* set the off stage styles */
     &:not(:open)::picker(select) {
       opacity: 0;
       transform: scale(0.95);
     }
 
-    /* set the on stage styles */
     &:open::picker(select) {
       opacity: 1;
       transform: translateY(0) scale(1);
@@ -59,7 +57,6 @@
       font-size: var(--typography--fontSize-base);
       font-style: normal;
       font-weight: 700;
-      /* Indent just the text to preserve left spacing without affecting width */
       text-indent: var(--space-small);
       background-color: transparent;
     }
@@ -72,7 +69,6 @@
     optgroup option {
       padding: var(--space-smaller) 0;
       color: var(--color-text);
-      /* Indent only the text to create left spacing without shrinking width */
       text-indent: var(--space-small);
       background-color: var(--color-surface);
       cursor: pointer;
@@ -87,6 +83,14 @@
       background-color: var(--color-surface--hover);
     }
 
+    /* Disabled groups and their options */
+    optgroup[disabled] {
+      color: var(--color-disabled);
+    }
+    optgroup[disabled] option {
+      color: var(--color-disabled);
+      cursor: default;
+    }
     optgroup option:focus,
     optgroup option:focus-visible {
       outline: none;
@@ -95,6 +99,14 @@
 
     optgroup option:checked {
       background-color: var(--color-surface--hover);
+    }
+
+    /* Ensure disabled overrides are declared after base focus/checked states */
+    optgroup[disabled] option:focus,
+    optgroup[disabled] option:focus-visible,
+    optgroup[disabled] option:checked,
+    optgroup[disabled] option:hover {
+      background-color: transparent;
     }
 
     /* Animate the chevron rotation for the provided postfix class */
