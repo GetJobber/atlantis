@@ -283,30 +283,29 @@ describe("onTextLayout", () => {
   });
 });
 
-describe("allowParentPress", () => {
-  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
+describe("TypographyGestureDetector behavior", () => {
+  it("wraps selectable text with TypographyGestureDetector by default (collapsable=false)", () => {
     const { getByRole } = render(<Typography>Test Text</Typography>);
     const textElement = getByRole("text");
 
-    // When wrapped with TypographyGestureDetector, collapsable should be false
     expect(textElement.props.collapsable).toBe(false);
   });
 
-  it("bypasses TypographyGestureDetector when allowParentPress=true (no collapsable prop)", () => {
+  it("wraps text with TypographyGestureDetector (collapsable=false) when selectable=true", () => {
     const { getByRole } = render(
-      <Typography allowParentPress={true}>Test Text</Typography>,
+      <Typography selectable={true}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("does not wrap text with TypographyGestureDetector when selectable=falsed", () => {
+    const { getByRole } = render(
+      <Typography selectable={false}>Test Text</Typography>,
     );
     const textElement = getByRole("text");
 
     expect(textElement.props.collapsable).toBeUndefined();
-  });
-
-  it("wraps text with TypographyGestureDetector when allowParentPress=false (collapsable=false)", () => {
-    const { getByRole } = render(
-      <Typography allowParentPress={false}>Test Text</Typography>,
-    );
-    const textElement = getByRole("text");
-
-    expect(textElement.props.collapsable).toBe(false);
   });
 });

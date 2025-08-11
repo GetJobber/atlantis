@@ -135,16 +135,6 @@ export interface TypographyProps<T extends FontFamily> {
    * @see https://reactnative.dev/docs/text#ontextlayout
    */
   readonly onTextLayout?: OnTextLayoutEvent;
-
-  /**
-   * Allow press events to pass through to parent components.
-   *
-   * Use this when text is inside pressable components like buttons,
-   * selects, or cards where the parent should handle the press event.
-   *
-   * @default false
-   */
-  readonly allowParentPress?: boolean;
 }
 
 const maxNumberOfLines = {
@@ -186,7 +176,6 @@ function InternalTypography<T extends FontFamily = "base">({
   UNSAFE_style,
   selectable = true,
   onTextLayout,
-  allowParentPress = false,
 }: TypographyProps<T>): JSX.Element {
   const styles = useTypographyStyles();
   const sizeAndHeight = getSizeAndHeightStyle(size, styles, lineHeight);
@@ -249,7 +238,9 @@ function InternalTypography<T extends FontFamily = "base">({
     </Text>
   );
 
-  if (allowParentPress) {
+  // If text is not selectable, there's no need for TypographyGestureDetector
+  // since it only prevents accidental highlighting of selectable text
+  if (!selectable) {
     return textComponent;
   }
 

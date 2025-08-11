@@ -219,21 +219,6 @@
           "name": "(event: NativeSyntheticEvent<TextLayoutEventData>) => void"
         }
       },
-      "allowParentPress": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Allow press events to pass through to parent components.\n\nUse this when text is inside pressable components like buttons,\nselects, or cards where the parent should handle the press event.",
-        "name": "allowParentPress",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "maxFontScaleSize": {
         "defaultValue": null,
         "description": "Set the maximum font the text can go to size when the user scales their\ndevice font size",
