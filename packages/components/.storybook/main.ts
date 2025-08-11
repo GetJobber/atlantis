@@ -6,7 +6,6 @@ const config: StorybookConfig = {
   ],
   "addons": [
     "@storybook/addon-docs",
-    "@storybook/addon-onboarding",
     "@storybook/addon-a11y",
   ],
   "framework": {
