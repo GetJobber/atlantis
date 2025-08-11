@@ -15,7 +15,7 @@ import { Grid } from "@jobber/components/Grid";
 import { Heading } from "@jobber/components/Heading";
 
 export default {
-  title: "Components/Actions/Button/Web",
+  title: "Components/Actions/Button",
   component: Button,
   parameters: {
     viewMode: "story",
