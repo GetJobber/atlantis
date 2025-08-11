@@ -30,10 +30,10 @@
     /* enable transitions in the drop down */
     &::picker(select) {
       transition:
-        opacity 0.2s ease,
-        transform 0.2s var(--ease-out-3),
-        display 0.2s allow-discrete,
-        overlay 0.2s allow-discrete;
+        opacity var(--timing-base) ease,
+        transform var(--timing-base) ease-out,
+        display var(--timing-base) allow-discrete,
+        overlay var(--timing-base) allow-discrete;
     }
 
     &::picker-icon {
@@ -65,7 +65,6 @@
       padding-top: var(--space-small);
     }
 
-    /* options within optgroups */
     optgroup option {
       padding: var(--space-smaller) 0;
       color: var(--color-text);
