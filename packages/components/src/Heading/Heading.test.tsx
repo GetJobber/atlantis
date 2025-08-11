@@ -87,15 +87,24 @@ it("renders a non heading inline element", () => {
 it("renders with maxLines prop", () => {
   const { container } = render(
     <Heading level={2} maxLines="small">
-      This text should be truncated
+      This is a very long heading text that would likely be truncated when the
+      maxLines prop is set to small, which corresponds to 2 lines maximum
     </Heading>,
   );
+
+  const heading = container.querySelector("h2");
+  expect(heading).toHaveClass("textTruncate");
+
+  expect(heading).toHaveTextContent(
+    "This is a very long heading text that would likely be truncated when the maxLines prop is set to small, which corresponds to 2 lines maximum",
+  );
+
   expect(container).toMatchInlineSnapshot(`
     <div>
       <h2
         class="base bold largest heading textTruncate"
       >
-        This text should be truncated
+        This is a very long heading text that would likely be truncated when the maxLines prop is set to small, which corresponds to 2 lines maximum
       </h2>
     </div>
   `);
