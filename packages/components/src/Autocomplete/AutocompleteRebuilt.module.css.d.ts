@@ -3,6 +3,7 @@ declare const styles: {
   readonly "option": string;
   readonly "optionActive": string;
   readonly "action": string;
+  readonly "sectionHeader": string;
 };
 export = styles;
 

@@ -26,3 +26,10 @@
   font-weight: 500;
   cursor: pointer;
 }
+
+.sectionHeader {
+  margin: 8px 12px 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-subdued, #666);
+}

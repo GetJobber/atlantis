@@ -26,9 +26,13 @@ import styles from "./AutocompleteRebuilt.module.css";
 import { InputText, InputTextRef } from "../InputText";
 
 // Local subcomponents kept inside this file for cohesion
-type RenderItem<T> =
+type RenderItem<T extends OptionLike> =
   | { kind: "option"; value: T }
-  | { kind: "action"; action: React.ReactNode };
+  | { kind: "action"; action: React.ReactNode }
+  | {
+      kind: "section";
+      section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>;
+    };
 
 function useComboboxListNav() {
   const [open, setOpen] = useState(false);
@@ -76,6 +80,7 @@ function MenuList<T extends OptionLike>({
   getItemProps,
   floatingProps,
   renderOption,
+  renderSection,
   getOptionLabel,
   onSelect,
   style,
@@ -86,6 +91,9 @@ function MenuList<T extends OptionLike>({
   readonly getItemProps: () => Record<string, unknown>;
   readonly floatingProps: Record<string, unknown>;
   readonly renderOption?: (option: T) => React.ReactNode;
+  readonly renderSection?: (
+    section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>,
+  ) => React.ReactNode;
   readonly getOptionLabel: (option: T) => string;
   readonly onSelect: (option: T) => void;
   readonly style?: React.CSSProperties;
@@ -99,6 +107,26 @@ function MenuList<T extends OptionLike>({
       {...floatingProps}
     >
       {items.map((item, index) => {
+        if (item.kind === "section") {
+          let headerNode: React.ReactNode;
+
+          if (renderSection) {
+            headerNode = renderSection(item.section);
+          } else {
+            headerNode = (
+              <h4 className={styles.sectionHeader}>
+                {String(item.section.label)}
+              </h4>
+            );
+          }
+
+          return (
+            <div key={`sec-${index}`} role="presentation" data-index={index}>
+              {headerNode}
+            </div>
+          );
+        }
+
         if (item.kind === "option") {
           const content = renderOption
             ? renderOption(item.value)
@@ -157,6 +185,10 @@ function buildRenderableList<Value extends OptionLike>(
   const items: Array<RenderItem<Value>> = [];
 
   for (const group of sections) {
+    if ((group as MenuSection<Value>).type === "section") {
+      items.push({ kind: "section", section: group as MenuSection<Value> });
+    }
+
     const filtered = optionFilter
       ? group.options.filter(optionFilter)
       : group.options;
@@ -190,6 +222,7 @@ function AutocompleteRebuiltInternal<
     isOptionEqualToValue,
     renderOption,
     renderAction,
+    renderSection,
     inputValue,
     onInputChange,
     value,
@@ -289,6 +322,7 @@ function AutocompleteRebuiltInternal<
               })
             }
             renderOption={renderOption}
+            renderSection={renderSection}
             getOptionLabel={getOptionLabel}
             onSelect={option => {
               selectOption(option);
