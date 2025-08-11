@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.79.0...@jobber/components@6.80.0) (2025-08-11)
+
+
+### Features
+
+* **components:** Add numberOfLines prop to Heading [132044] ([#2656](https://github.com/GetJobber/atlantis/issues/2656)) ([8cade97](https://github.com/GetJobber/atlantis/commit/8cade97a4224743eeaf281c219c414a69a2d0dcc))
+* **components:** Upgrades ([#2662](https://github.com/GetJobber/atlantis/issues/2662)) ([7e268b3](https://github.com/GetJobber/atlantis/commit/7e268b365eb60555bf87a887e432690c9e5c8d1d))
+
+
+
+
+
 # [6.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.78.0...@jobber/components@6.79.0) (2025-08-08)
 
 
