@@ -283,8 +283,8 @@ describe("onTextLayout", () => {
   });
 });
 
-describe("TypographyGestureDetector behavior", () => {
-  it("wraps selectable text with TypographyGestureDetector by default (collapsable=false)", () => {
+describe("TypographyGestureDetector", () => {
+  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
     const { getByRole } = render(<Typography>Test Text</Typography>);
     const textElement = getByRole("text");
 
@@ -300,7 +300,7 @@ describe("TypographyGestureDetector behavior", () => {
     expect(textElement.props.collapsable).toBe(false);
   });
 
-  it("does not wrap text with TypographyGestureDetector when selectable=falsed", () => {
+  it("does not wrap text with TypographyGestureDetector when selectable=false", () => {
     const { getByRole } = render(
       <Typography selectable={false}>Test Text</Typography>,
     );
