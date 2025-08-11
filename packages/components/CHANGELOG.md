@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.80.0...@jobber/components@6.81.0) (2025-08-11)
+
+
+### Features
+
+* **components:** FloatingUI Cleanup ([#2655](https://github.com/GetJobber/atlantis/issues/2655)) ([f815dd8](https://github.com/GetJobber/atlantis/commit/f815dd899530bcba6fa6f42e454e5a0aa43019c8))
+
+
+
+
+
 # [6.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.79.0...@jobber/components@6.80.0) (2025-08-11)
 
 
