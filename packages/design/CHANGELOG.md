@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.83.0...@jobber/design@0.84.0) (2025-08-11)
+
+
+### Features
+
+* **design:** Add request form builder icons ([#2663](https://github.com/GetJobber/atlantis/issues/2663)) ([111d544](https://github.com/GetJobber/atlantis/commit/111d544b98cd8c4bf34bcfdb757a54787fd3df54))
+
+
+
+
+
 # [0.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.82.0...@jobber/design@0.83.0) (2025-07-29)
 
 
