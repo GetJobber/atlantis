@@ -64,7 +64,10 @@ function AutocompleteShim(
   return <AutocompleteLegacy {...props} ref={ref} />;
 }
 
-export const Autocomplete = forwardRef(AutocompleteShim) as {
+const AutocompleteForwarded = forwardRef(AutocompleteShim);
+AutocompleteForwarded.displayName = "Autocomplete";
+
+export const Autocomplete = AutocompleteForwarded as {
   <
     T extends OptionLike = OptionLike,
     S extends object = Record<string, unknown>,
@@ -85,10 +88,6 @@ export const Autocomplete = forwardRef(AutocompleteShim) as {
   ): ReturnType<typeof AutocompleteShim>;
   (props: AutocompleteLegacyProps): ReturnType<typeof AutocompleteShim>;
 };
-// Assign displayName on the function prior to casting
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
-(AutocompleteShim as unknown as { displayName: string }).displayName =
-  "Autocomplete";
 
 export type {
   AutocompleteLegacyProps,

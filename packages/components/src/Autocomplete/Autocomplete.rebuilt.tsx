@@ -187,7 +187,7 @@ function AutocompleteRebuiltInternal<
   const {
     menu,
     getOptionLabel,
-    getOptionValue,
+    isOptionEqualToValue,
     renderOption,
     renderAction,
     inputValue,
@@ -236,13 +236,12 @@ function AutocompleteRebuiltInternal<
   function selectOption(option: Value) {
     if (multiple) {
       const current = (value as AutocompleteValue<Value, true>) ?? [];
-      const exists = (current as Value[]).some(
-        v => getOptionValue(v) === getOptionValue(option),
-      );
+      const equals =
+        isOptionEqualToValue ??
+        ((a: Value, b: Value) => getOptionLabel(a) === getOptionLabel(b));
+      const exists = (current as Value[]).some(v => equals(v, option));
       const next = exists
-        ? (current as Value[]).filter(
-            v => getOptionValue(v) !== getOptionValue(option),
-          )
+        ? (current as Value[]).filter(v => !equals(v, option))
         : [...(current as Value[]), option];
       onChange(next as AutocompleteValue<Value, Multiple>);
     } else {

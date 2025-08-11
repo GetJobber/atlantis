@@ -14,7 +14,7 @@ import { Markdown } from "../Markdown";
 import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
-import { Autocomplete } from "../Autocomplete";
+import { Autocomplete, Option } from "../Autocomplete";
 
 export type ButtonActionProps = ButtonProps & {
   ref?: React.RefObject<HTMLDivElement>;
@@ -192,6 +192,8 @@ export function Page({
   const [search, setSearch] = useState("");
   const [search2, setSearch2] = useState("");
 
+  const [selected3, setSelected3] = useState<Option | undefined>(undefined);
+
 type SectionExtra = { icon: string; description: string };
 type ActionExtra = { description: string };
 
@@ -254,6 +256,14 @@ type ActionExtra = { description: string };
           )}
         </Content>
         <Content>
+
+          <Autocomplete version={1}
+            getOptions={() => animals}
+            value={selected}
+            initialOptions={animals}
+            onChange={setSelected3}
+            placeholder="Select an animal"
+          />
           <Autocomplete<Animal>
             version={2}
             value={selected}
@@ -278,7 +288,7 @@ type ActionExtra = { description: string };
           {selected2 && <Text>{selected2.label}</Text>}
           {search2 && <Text>{search2}</Text>}
 
-          <Autocomplete<Animal, SectionExtra, ActionExtra>
+          <Autocomplete<Animal, SectionExtra>
             version={2}
             value={selected2}
             allowFreeForm={true}
@@ -297,8 +307,7 @@ type ActionExtra = { description: string };
                   {
                     type: "action",
                     id: "add",
-                    label: "Add",
-                    description: "Not seeing an animal? Add one now.",
+                    label: "Add an animal",
                     onClick: () => {
                       console.log("Add");
                     },
@@ -306,7 +315,7 @@ type ActionExtra = { description: string };
                 ],
               },
             ]}
-            renderAction={action => <span>{action.description}</span>}
+            renderAction={action => <span>{action.label}</span>}
             renderOption={option => <span>{option.description}</span>}
             renderSection={section => <span>{section.description}</span>}
             filterOptions={(option, input) =>

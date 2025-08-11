@@ -338,7 +338,9 @@ export interface AutocompleteProposedProps<
 
   // Filtering & display
   readonly filterOptions: (option: Value, inputValue: string) => boolean;
+  // Strongly recommended when Value is a custom object
   readonly getOptionLabel: (option: Value) => string;
+  // Strongly recommended when Value is a custom object
   readonly getOptionValue: (option: Value) => string | number;
 
   // Rendering
