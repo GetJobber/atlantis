@@ -51,7 +51,6 @@ h6 {
   text-transform: uppercase;
 }
 
-
 a {
   margin: calc(-1 * var(--space-smallest));
   padding: var(--space-smallest);
@@ -130,7 +129,6 @@ section[role="tabpanel"] {
     margin: 0;
     padding: var(--space-base);
   }
-
 }
 
 pre,
@@ -164,7 +162,7 @@ pre.root-pre {
   padding: var(--space-large);
 }
 
-section[role="tabpanel"]>div>h1:first-of-type {
+section[role="tabpanel"] > div > h1:first-of-type {
   display: none;
 }
 

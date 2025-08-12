@@ -35,7 +35,7 @@ export function Example({ of: size }) {
 
 export function BorderSize({ of: size }) {
   return getComputedStyle(document.documentElement).getPropertyValue(
-    `--border-${size}`
+    `--border-${size}`,
   );
 }
 
