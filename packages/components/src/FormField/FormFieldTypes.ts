@@ -66,7 +66,7 @@ export interface CommonFormFieldProps {
   /**
    * Further description of the input, can be used for a hint.
    */
-  readonly description?: string;
+  readonly description?: ReactNode;
 
   /**
    * Disable the input

@@ -3,10 +3,6 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
 
-// We automatically mock popper (__mocks__/@popperjs/core.js), but in this test suite
-// we are verifying certain behaviours that require popper to be active.
-jest.unmock("@popperjs/core");
-
 it("shouldn't show the tooltip", async () => {
   const message = "Imma not tip the tool";
   const content = "Don't show my tooltip";
@@ -143,7 +139,7 @@ describe("with a preferred placement", () => {
 
       const tooltip = screen.getByRole("tooltip");
 
-      expect(tooltip).toHaveAttribute("data-popper-placement", placement);
+      expect(tooltip).toHaveAttribute("data-placement", placement);
       expect(tooltip).toHaveClass(placement);
     },
   );

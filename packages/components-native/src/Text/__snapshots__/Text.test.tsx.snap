@@ -574,7 +574,7 @@ exports[`renders text with underline styling 1`] = `
         "letterSpacing": 0,
       },
       {
-        "textDecorationStyle": "dashed",
+        "textDecorationStyle": "dotted",
       },
       {
         "textDecorationColor": "hsl(197, 15%, 43%)",

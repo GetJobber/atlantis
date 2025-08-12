@@ -1,9 +1,10 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Page } from ".";
 import { getActionProps } from "./Page";
 import { SectionProps } from "../Menu";
+import { Heading } from "../Heading";
 
 jest.mock("@jobber/hooks", () => {
   return {
@@ -247,5 +248,32 @@ describe("When titleMetaData is provided", () => {
 
     expect(getByText(pageTitle)).toBeDefined();
     expect(getByTestId(titleMetaDataTestId)).toBeDefined();
+  });
+});
+
+describe("when title is a React node", () => {
+  it("renders a Page using that node as the title", () => {
+    render(
+      <Page title={<Heading level={1}>Custom Heading Title</Heading>}>
+        Page content
+      </Page>,
+    );
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Custom Heading Title" }),
+    ).toBeVisible();
+  });
+
+  it("does not render titleMetaData", () => {
+    render(
+      <Page
+        title={<Heading level={1}>Custom Heading Title</Heading>}
+        titleMetaData={<StatusLabel label={"Success"} status={"success"} />}
+      >
+        Page content
+      </Page>,
+    );
+
+    expect(screen.queryByText("Success")).not.toBeInTheDocument();
   });
 });

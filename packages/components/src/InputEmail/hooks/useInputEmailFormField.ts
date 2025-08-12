@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import { ChangeEvent, FocusEvent, KeyboardEvent, ReactNode } from "react";
 
 export interface UseInputEmailFormFieldProps {
   readonly id: string;
@@ -7,7 +7,7 @@ export interface UseInputEmailFormFieldProps {
   readonly autofocus?: boolean;
   readonly error?: string;
   readonly inline?: boolean;
-  readonly description?: string;
+  readonly description?: ReactNode;
   readonly invalid?: boolean;
   readonly value?: string;
   readonly handleChange: (event: ChangeEvent<HTMLInputElement>) => void;

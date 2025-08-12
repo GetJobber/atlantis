@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.0...@jobber/hooks@2.17.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **hooks:** Ignore invalid values coming from use-resize-observer  ([#2642](https://github.com/GetJobber/atlantis/issues/2642)) ([de804a5](https://github.com/GetJobber/atlantis/commit/de804a5a47d0a0b53dcd434f93ffb9e802efa294))
+
+
+
+
+
+# [2.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.16.0...@jobber/hooks@2.17.0) (2025-08-01)
+
+
+### Features
+
+* **hooks:** Add useDebounce Hook to Hooks ([#2561](https://github.com/GetJobber/atlantis/issues/2561)) ([a3e4009](https://github.com/GetJobber/atlantis/commit/a3e4009d861021e472e26726694fe53ea9fb1d30))
+
+
+
+
+
 # [2.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.15.0...@jobber/hooks@2.16.0) (2025-05-28)
 
 

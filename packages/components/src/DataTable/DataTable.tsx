@@ -12,6 +12,21 @@ import { Pagination } from "./Pagination";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import {
+  DataTableActions,
+  DataTableBody,
+  DataTableCell,
+  DataTableContainer,
+  DataTableFooter,
+  DataTableHeader,
+  DataTableHeaderCell,
+  DataTablePagination,
+  DataTablePaginationButton,
+  DataTableRow,
+  DataTableRowActions,
+  DataTableSortableHeader,
+  DataTableTable,
+} from "./components";
 
 export interface DataTableProps<T> {
   /**
@@ -149,3 +164,17 @@ export function DataTable<T extends object>({
     </div>
   );
 }
+
+DataTable.Table = DataTableTable;
+DataTable.Header = DataTableHeader;
+DataTable.HeaderCell = DataTableHeaderCell;
+DataTable.Row = DataTableRow;
+DataTable.Cell = DataTableCell;
+DataTable.RowActions = DataTableRowActions;
+DataTable.Actions = DataTableActions;
+DataTable.Body = DataTableBody;
+DataTable.Container = DataTableContainer;
+DataTable.SortableHeader = DataTableSortableHeader;
+DataTable.Footer = DataTableFooter;
+DataTable.Pagination = DataTablePagination;
+DataTable.PaginationButton = DataTablePaginationButton;

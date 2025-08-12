@@ -104,3 +104,19 @@
 .medium .iconWrapper {
   align-self: center;
 }
+
+.successIcon {
+  background-color: var(--color-success);
+}
+
+.errorIcon {
+  background-color: var(--color-destructive);
+}
+
+.warningIcon {
+  background-color: var(--color-warning);
+}
+
+.noticeIcon {
+  background-color: var(--color-informative);
+}
