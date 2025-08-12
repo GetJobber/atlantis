@@ -153,36 +153,6 @@ export interface AutocompleteLegacyProps<
   readonly validations?: FormFieldProps["validations"];
 }
 
-export interface AutocompleteRebuiltProps<
-  GenericOption extends AnyOption = AnyOption,
-  GenericOptionValue extends Option = Option,
-  GenericGetOptionsValue extends AnyOption = AnyOption,
-> extends AutocompleteBaseProps<
-    GenericOption,
-    GenericOptionValue,
-    GenericGetOptionsValue
-  > {
-  /**
-   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
-   */
-  readonly version: 2;
-
-  /**
-   * Options to display in the autocomplete.
-   */
-  readonly options: GenericOption[];
-
-  /**
-   * Callback when the input value changes. (Distinct from `onChange`)
-   */
-  readonly onInputChange?: (inputValue: string) => void;
-
-  /**
-   * Error message to display
-   */
-  readonly error?: string;
-}
-
 // For backward compatibility
 export type AutocompleteProps<
   GenericOption extends AnyOption = AnyOption,
