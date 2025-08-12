@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { ButtonProps, HTMLButtonType } from "./Button.types";
 import { useButtonStyles } from "./useButtonStyles";
@@ -32,7 +31,6 @@ function ButtonWrapper(props: ButtonProps) {
     role,
     value,
     submit,
-    to,
     url,
     UNSAFE_className = {},
     UNSAFE_style = {},
@@ -58,7 +56,7 @@ function ButtonWrapper(props: ButtonProps) {
       target: "_blank",
       rel: "noopener noreferrer",
     }),
-    ...(url === undefined && to === undefined && { type: buttonType }),
+    ...(url === undefined && { type: buttonType }),
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
@@ -67,14 +65,6 @@ function ButtonWrapper(props: ButtonProps) {
   };
 
   const buttonInternals = children || <ButtonContent {...props} />;
-
-  if (to) {
-    return (
-      <Link {...tagProps} to={to}>
-        {buttonInternals}
-      </Link>
-    );
-  }
 
   const Tag = url ? "a" : "button";
 

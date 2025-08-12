@@ -1,11 +1,5 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import {
-  Route,
-  RouteChildrenProps,
-  BrowserRouter as Router,
-  Switch,
-} from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import { Button } from "./Button";
 
@@ -127,15 +121,6 @@ test("it shouldn't call the handler on mouse down when disabled", () => {
   expect(mouseDownHandler).toHaveBeenCalledTimes(0);
 });
 
-it("renders a Link as a Button for routing", () => {
-  const { container } = render(
-    <Router>
-      <Button label="Adding" to="/jobber" />
-    </Router>,
-  );
-  expect(container).toMatchSnapshot();
-});
-
 it("renders button type='button' by default", () => {
   const { container } = render(<Button label="hello" />);
   const button = container.querySelector("button[type='button']");
@@ -146,83 +131,6 @@ it("renders button type='submit'", () => {
   const { container } = render(<Button label="hello" submit={true} />);
   const button = container.querySelector("button[type='submit']");
   expect(button).toBeInstanceOf(HTMLButtonElement);
-});
-describe("react router dom", () => {
-  it("routes when buttons are clicked", () => {
-    const { getByText, queryByText } = render(
-      <Router>
-        <Button label="One" to="/" />
-        <Button label="Two" to="/two" />
-        <Button label="Three" to="/three" />
-        <Switch>
-          <Route exact path="/">
-            Uno
-          </Route>
-          <Route exact path="/two">
-            Dos
-          </Route>
-          <Route exact path="/three">
-            Tres
-          </Route>
-        </Switch>
-      </Router>,
-    );
-
-    expect(queryByText("Uno")).toBeInstanceOf(HTMLElement);
-    expect(queryByText("Dos")).not.toBeInstanceOf(HTMLElement);
-    expect(queryByText("Tres")).not.toBeInstanceOf(HTMLElement);
-
-    fireEvent.click(getByText("Two"));
-
-    expect(queryByText("Uno")).not.toBeInstanceOf(HTMLElement);
-    expect(queryByText("Dos")).toBeInstanceOf(HTMLElement);
-    expect(queryByText("Tres")).not.toBeInstanceOf(HTMLElement);
-
-    fireEvent.click(getByText("Three"));
-
-    expect(queryByText("Uno")).not.toBeInstanceOf(HTMLElement);
-    expect(queryByText("Dos")).not.toBeInstanceOf(HTMLElement);
-    expect(queryByText("Tres")).toBeInstanceOf(HTMLElement);
-  });
-
-  it("routes with when buttons include link state", () => {
-    interface LocationStateTest {
-      locationStateTest: string;
-    }
-
-    function Test2(
-      props: RouteChildrenProps<
-        Record<string, string | undefined>,
-        LocationStateTest
-      >,
-    ) {
-      return <span>{props.location?.state?.locationStateTest}</span>;
-    }
-    const { getByText } = render(
-      <Router>
-        <Button label="One" to="/" />
-        <Button
-          label="Two"
-          to={{
-            pathname: "/two",
-            state: { locationStateTest: "This is state" },
-          }}
-        />
-        <Button label="Three" to="/three" />
-        <Switch>
-          <Route exact path="/">
-            Uno
-          </Route>
-          <Route path="/two" component={Test2}></Route>
-          <Route exact path="/three">
-            Tres
-          </Route>
-        </Switch>
-      </Router>,
-    );
-    fireEvent.click(getByText("Two"));
-    expect(getByText("This is state")).toBeDefined();
-  });
 });
 
 describe("Button role", () => {
