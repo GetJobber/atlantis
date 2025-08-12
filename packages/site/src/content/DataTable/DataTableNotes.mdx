@@ -1,0 +1,305 @@
+## Configuration
+
+The DataTable component provides a quick and consistent solution for common
+table needs, with built-in support for features like sorting and pagination.
+
+For more advanced or customized experiences, such as dynamic filtering, bulk
+selection, or fully tailored interactions, use the atomic DataTable components.
+These building blocks give you full control over layout and behavior, while
+preserving the visual consistency of the Atlantis design system. They pair well
+with libraries like [TanStack Table](https://tanstack.com/table) to handle
+complex data management.
+
+To see examples of how the atomic DataTable components can be configured, see
+[this section of storybook](../?path=/story/components-lists-and-tables-datatable-web-composable--basic).
+These are just starting points, the components are fully composable and can
+support a wide range of use cases.
+
+### Basic Structure
+
+The DataTable uses a compound component pattern with these atomic components:
+
+```tsx
+<DataTable.Container>
+  <DataTable.Actions>{/* Filter controls, search, etc. */}</DataTable.Actions>
+
+  <DataTable.Table>
+    <DataTable.Header>
+      <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+      <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+      <DataTable.HeaderCell>Role</DataTable.HeaderCell>
+    </DataTable.Header>
+
+    <DataTable.Body>
+      <DataTable.Row>
+        <DataTable.Cell>John Doe</DataTable.Cell>
+        <DataTable.Cell>john@example.com</DataTable.Cell>
+        <DataTable.Cell>Admin</DataTable.Cell>
+      </DataTable.Row>
+    </DataTable.Body>
+  </DataTable.Table>
+
+  <DataTable.Footer>
+    <DataTable.Pagination>
+      <DataTable.PaginationButton direction="previous" />
+      <DataTable.PaginationButton direction="next" />
+    </DataTable.Pagination>
+  </DataTable.Footer>
+</DataTable.Container>
+```
+
+## Component Customization
+
+Atomic DataTable components are flexible and composable. Each component accepts
+standard HTML attributes, including className, style, onClick, onMouseEnter, and
+more.
+
+Rows and cells support fully custom content, including other components,
+enabling rich, interactive table layouts. See an example
+[here](../?path=/story/components-lists-and-tables-datatable-web-composable--advanced-filtering).
+
+```tsx
+<DataTable.Row>
+  <DataTable.Cell>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="invoice" />
+      <div>
+        <Typography fontWeight="bold">Invoice #123</Typography>
+        <Text variation="subdued">For Services rendered</Text>
+      </div>
+    </div>
+  </DataTable.Cell>
+  <DataTable.Cell>
+    <StatusLabel status="warning" label="Late" />
+  </DataTable.Cell>
+  <DataTable.Cell>
+    <div style={{ textAlign: "right" }}>$2400.00</div>
+  </DataTable.Cell>
+  <DataTable.RowActions>
+    <Button icon="edit" label="Edit" />
+    <Button icon="delete" label="Delete" />
+  </DataTable.RowActions>
+</DataTable.Row>
+```
+
+### Row Actions
+
+Use `DataTable.RowActions` to render
+[per-row controls](../?path=/story/components-lists-and-tables-datatable-web-composable--row-actions)
+like buttons or menus. The content is fully custom; wire up events and state in
+your app.
+
+```tsx
+<DataTable.Row>
+  <DataTable.Cell>Invoice #123</DataTable.Cell>
+  <DataTable.Cell>$2400.00</DataTable.Cell>
+  <DataTable.RowActions>
+    <Button icon="edit" label="Edit" onClick={() => onEdit(row)} />
+    <Button icon="delete" label="Delete" onClick={() => onDelete(row)} />
+  </DataTable.RowActions>
+  {/* Other cells as needed */}
+  <DataTable.Cell>...</DataTable.Cell>
+  <DataTable.Cell>...</DataTable.Cell>
+</DataTable.Row>
+```
+
+### Bulk Actions
+
+[Bulk actions](../?path=/story/components-lists-and-tables-datatable-web-composable--bulk-selection)
+are composed by adding a selection column and showing actions in the the
+`DataTable.Actions` area when one or more rows are selected. State and behavior
+are controlled by your app or a table library.
+
+Selection column with checkboxes:
+
+```tsx
+<DataTable.Header>
+  <DataTable.HeaderCell>
+    <Checkbox
+      ariaLabel="Select all"
+      checked={allSelected}
+      indeterminate={someSelected && !allSelected}
+      onChange={toggleAll}
+    />
+  </DataTable.HeaderCell>
+  <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+  <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+</DataTable.Header>
+
+<DataTable.Body>
+  {rows.map(row => (
+    <DataTable.Row key={row.id}>
+      <DataTable.Cell>
+        <Checkbox
+          ariaLabel={`Select ${row.name}`}
+          checked={selectedRowIds.has(row.id)}
+          onChange={() => toggleRow(row.id)}
+        />
+      </DataTable.Cell>
+      <DataTable.Cell>{row.name}</DataTable.Cell>
+      <DataTable.Cell>{row.email}</DataTable.Cell>
+      <DataTable.RowActions>
+        <Button label="Edit" onClick={() => onEdit(row)} />
+        <Button label="Delete" onClick={() => onDelete(row)} />
+      </DataTable.RowActions>
+    </DataTable.Row>
+  ))}
+</DataTable.Body>
+```
+
+Show a bulk action bar when there are selected rows:
+
+```tsx
+{
+  selectedCount > 0 && (
+    <DataTable.Actions>
+      <InlineLabel label={`${selectedCount} selected`} />
+      <Button label="Archive" onClick={archiveSelected} />
+      <Button label="Delete" onClick={deleteSelected} />
+    </DataTable.Actions>
+  );
+}
+```
+
+### Sortable Headers
+
+For
+[sortable columns](../?path=/story/components-lists-and-tables-datatable-web-composable--sortable),
+use DataTable.SortableHeader with the required props:
+
+```tsx
+<DataTable.Header>
+  <DataTable.SortableHeader
+    direction={
+      currentSort === "desc"
+        ? SortDirection.descending
+        : currentSort === "asc"
+        ? SortDirection.ascending
+        : SortDirection.equilibrium
+    }
+    onSort={() => handleColumnSort("name")}
+  >
+    Name
+  </DataTable.SortableHeader>
+  <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+</DataTable.Header>
+```
+
+The `direction` prop accepts:
+
+- `SortDirection.ascending` - ascending sort
+- `SortDirection.descending` - descending sort
+- `SortDirection.equilibrium` - no sort applied
+
+When both `direction` and `onSort` are provided, the header becomes interactive
+with a sort icon. When either is missing, it renders as a regular header cell.
+
+The `direction` prop represents the current sort state of the column. Your
+`onSort` callback should handle the state transitions (ascending → descending →
+equilibrium) based on your application's logic.
+
+### Pagination
+
+For
+[pagination functionality](../?path=/story/components-lists-and-tables-datatable-web-composable--with-pagination),
+use DataTable.Pagination and DataTable.PaginationButton:
+
+```tsx
+<DataTable.Footer>
+  <DataTable.Pagination>
+    <DataTable.PaginationButton
+      direction="previous"
+      disabled={!canGoPrevious}
+      onClick={handlePreviousPage}
+      ariaLabel={direction =>
+        direction === "next" ? "Next page" : "Previous page"
+      }
+    />
+    <DataTable.PaginationButton
+      direction="next"
+      disabled={!canGoNext}
+      onClick={handleNextPage}
+      ariaLabel={direction =>
+        direction === "next" ? "Next page" : "Previous page"
+      }
+    />
+  </DataTable.Pagination>
+</DataTable.Footer>
+```
+
+**Note**: The `ariaLabel` prop is required and should be a function that takes a
+direction parameter and returns translated strings for accessibility. Consider
+using your application's translation system:
+
+```tsx
+ariaLabel={(direction) =>
+  direction === "next" ? t("Next page") : t("Previous page")
+}
+```
+
+### Setting Up Your Own Provider
+
+Atomic DataTable components are fully functional on their own, no provider is
+required. You can render rows, cells, headers, and actions manually, using
+static data or your own logic.
+
+However, if you're integrating with a table library like TanStack Table, you may
+choose to create a context-based provider to pass the table instance down to the
+child components. This allows you to centralize state management, such as
+sorting, pagination, and row models, while keeping your table layout clean and
+declarative.
+
+This pattern is entirely optional, but it can help streamline more complex or
+dynamic table setups.
+
+If you're using TanStack Table, here is a quick example of a starter provider
+you can use to share the table instance with your components:
+
+```tsx
+import { createContext, useContext } from "react";
+import type { Table } from "@tanstack/react-table";
+
+const DataTableContext = createContext<Table<any> | null>(null);
+
+const useDataTable = () => {
+  const table = useContext(DataTableContext);
+  return table as Table<any>;
+};
+
+const DataTableProvider = ({
+  children,
+  table,
+}: {
+  readonly children: React.ReactNode;
+  readonly table: Table<any>;
+}) => {
+  return (
+    <DataTableContext.Provider value={table}>
+      {children}
+    </DataTableContext.Provider>
+  );
+};
+```
+
+To use the provider, first create a TanStack table instance and then wrap your
+components:
+
+```tsx
+import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
+
+const table = useReactTable({
+  data,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+});
+
+<DataTableProvider table={table}>
+  <YourTableAtoms />
+</DataTableProvider>;
+```

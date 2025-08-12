@@ -139,5 +139,172 @@
         }
       }
     }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Table",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Header",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.HeaderCell",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.RowActions",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Actions",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Body",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Container",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.SortableHeader",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Footer",
+    "methods": [],
+    "props": {
+      "colSpan": {
+        "defaultValue": null,
+        "description": "Number of columns to span across. This should match the number of columns in your table.",
+        "name": "colSpan",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableFooter.tsx",
+          "name": "DataTableFooterProps"
+        },
+        "required": true,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Pagination",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.PaginationButton",
+    "methods": [],
+    "props": {
+      "direction": {
+        "defaultValue": null,
+        "description": "The direction of the pagination button",
+        "name": "direction",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "\"previous\" | \"next\""
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Callback function when the pagination button is clicked",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "disabled": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether the pagination button is disabled",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Function that returns the aria-label for the button. Required for accessibility.\nShould return translated strings based on the direction parameter.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(direction: \"previous\" | \"next\") => string"
+        }
+      }
+    }
   }
 ]
