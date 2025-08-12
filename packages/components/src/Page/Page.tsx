@@ -143,7 +143,7 @@ export function Page({
     value: string;
     description?: string;
   }
-  
+
   const animals: Animal[] = [
     {
       id: 2,
@@ -271,14 +271,11 @@ export function Page({
         <Content>
           {/** Demo datasets */}
           {(() => {
-
-
             const simpleOptions: OptionLike[] = [
               { id: 1, label: "One" },
               { id: 2, label: "Two" },
               { id: 3, label: "Three" },
             ];
-
 
             const [f1Value, setF1Value] = useState<OptionLike | undefined>(
               undefined,
@@ -1096,7 +1093,14 @@ export function Page({
                   filterOptions={(o, i) =>
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
-                  renderInput={({inputRef, inputProps}) => <InputText {...inputProps} ref={inputRef} suffix={{icon: "arrowDown"}} placeholder="Overridden placeholder"/>}
+                  renderInput={({ inputRef, inputProps }) => (
+                    <InputText
+                      {...inputProps}
+                      ref={inputRef}
+                      suffix={{ icon: "arrowDown" }}
+                      placeholder="Overridden placeholder"
+                    />
+                  )}
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.id}
                 />
