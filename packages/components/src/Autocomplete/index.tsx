@@ -43,14 +43,25 @@ export {
 
 export { isOptionSelected, isOptionGroup } from "./Autocomplete.utils";
 
+// Use broad but specific defaults instead of any to satisfy linting
 type AutocompleteShimProps =
   | AutocompleteLegacyProps
-  | AutocompleteProposedProps<OptionLike>;
+  | AutocompleteProposedProps<
+      OptionLike,
+      boolean,
+      Record<string, unknown>,
+      Record<string, unknown>
+    >;
 
 function isNewAutocompleteProps(
   props: AutocompleteShimProps,
-): props is AutocompleteProposedProps<OptionLike> {
-  return props.version === 2;
+): props is AutocompleteProposedProps<
+  OptionLike,
+  boolean,
+  Record<string, unknown>,
+  Record<string, unknown>
+> {
+  return (props as { version?: number }).version === 2;
 }
 
 function AutocompleteShim(
