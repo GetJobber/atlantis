@@ -24,6 +24,7 @@ import {
 } from "./Autocomplete.types";
 import styles from "./AutocompleteRebuilt.module.css";
 import { InputText, InputTextRef } from "../InputText";
+import { InputTextRebuiltProps } from "../InputText/InputText.types";
 
 // Local subcomponents kept inside this file for cohesion
 type RenderItem<T extends OptionLike> =
@@ -228,6 +229,15 @@ function AutocompleteRebuiltInternal<
     value,
     onChange,
     multiple,
+    placeholder,
+    disabled,
+    error,
+    invalid,
+    description,
+    size,
+    clearable,
+    loading,
+    renderInput,
   } = props;
 
   // Flatten for navigation and typeahead
@@ -284,25 +294,48 @@ function AutocompleteRebuiltInternal<
     }
   }
 
+  // Build input props bag for default or custom input rendering
+  const mappedSize: InputTextRebuiltProps["size"] =
+    size === "base" ? undefined : size;
+  const inputProps: InputTextRebuiltProps = {
+    version: 2 as const,
+    value: inputValue,
+    onChange: val => onInputChange?.(val),
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+    placeholder,
+    disabled,
+    error: error ?? undefined,
+    invalid,
+    description,
+    size: mappedSize,
+    clearable: clearable ? "while-editing" : undefined,
+    loading,
+    ...getReferenceProps({
+      onKeyDown(event) {
+        // Arrow keys can open the list per APG guidance
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          if (!open) setOpen(true);
+        }
+      },
+    }),
+  };
+
+  // Ref the consumer must attach to their input
+  const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
+    node: HTMLInputElement | HTMLTextAreaElement | null,
+  ) => {
+    refs.setReference((node as unknown as Element) ?? null);
+  };
+
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
-      <InputText
-        ref={(node: HTMLInputElement | HTMLTextAreaElement | null) => {
-          // Forward DOM element to Floating UI reference (no virtual element)
-          refs.setReference((node as unknown as Element) ?? null);
-        }}
-        version={2}
-        value={inputValue}
-        onChange={val => onInputChange?.(val)}
-        {...getReferenceProps({
-          onKeyDown(event) {
-            // Arrow keys can open the list per APG guidance
-            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-              if (!open) setOpen(true);
-            }
-          },
-        })}
-      />
+      {renderInput ? (
+        // Consumer-provided input must attach the ref to the underlying input element
+        renderInput({ inputRef: referenceInputRef, inputProps })
+      ) : (
+        <InputText ref={referenceInputRef} {...inputProps} />
+      )}
       {open ? (
         <FloatingPortal>
           <MenuList<Value>

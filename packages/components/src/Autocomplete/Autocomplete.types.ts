@@ -348,7 +348,7 @@ export interface AutocompleteProposedProps<
    */
   // this replace suffix, prefix and anything else you'd want to modify on the input
   readonly renderInput?: (props: {
-    inputRef: Ref<InputTextRef>;
+    inputRef: Ref<HTMLInputElement | HTMLTextAreaElement>;
     inputProps: InputTextRebuiltProps;
   }) => React.ReactNode;
 

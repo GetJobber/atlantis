@@ -16,6 +16,7 @@ import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 import { Autocomplete, type Option } from "../Autocomplete";
 import { OptionLike } from "../Autocomplete/Autocomplete.types";
+import { InputText } from "../InputText";
 
 export type ButtonActionProps = ButtonProps & {
   ref?: React.RefObject<HTMLDivElement>;
@@ -328,6 +329,11 @@ export function Page({
               undefined,
             );
             const [s5Input, setS5Input] = useState("");
+
+            const [c1Value, setC1Value] = useState<OptionLike | undefined>(
+              undefined,
+            );
+            const [c1Input, setC1Input] = useState("");
 
             return (
               <div>
@@ -1075,6 +1081,22 @@ export function Page({
                   filterOptions={(o, i) =>
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
+                  getOptionLabel={o => o.label}
+                  getOptionValue={o => o.id}
+                />
+
+                <Text variation="subdued">20) Custom Input</Text>
+                <Autocomplete
+                  version={2}
+                  value={c1Value}
+                  onChange={setC1Value}
+                  inputValue={c1Input}
+                  onInputChange={setC1Input}
+                  menu={[{ type: "options", options: simpleOptions }]}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
+                  renderInput={({inputRef, inputProps}) => <InputText {...inputProps} ref={inputRef} suffix={{icon: "arrowDown"}} placeholder="Overridden placeholder"/>}
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.id}
                 />
