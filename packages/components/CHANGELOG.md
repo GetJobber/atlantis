@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.81.0...@jobber/components@6.82.0) (2025-08-12)
+
+
+### Features
+
+* **components:** DataTable atoms ([#2648](https://github.com/GetJobber/atlantis/issues/2648)) ([529db73](https://github.com/GetJobber/atlantis/commit/529db739ed04d16a3d8dd6fc5129810b0cfe98f9))
+
+
+
+
+
 # [6.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.80.0...@jobber/components@6.81.0) (2025-08-11)
 
 
