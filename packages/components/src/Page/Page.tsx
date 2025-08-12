@@ -15,6 +15,7 @@ import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 import { Autocomplete, type Option } from "../Autocomplete";
+import { OptionLike } from "../Autocomplete/Autocomplete.types";
 
 export type ButtonActionProps = ButtonProps & {
   ref?: React.RefObject<HTMLDivElement>;
@@ -131,12 +132,11 @@ export function Page({
     );
   }
 
-  interface Animal {
-    label: string;
+  interface Animal extends OptionLike {
     value: string;
-    id: number;
     description?: string;
   }
+  
   const animals: Animal[] = [
     {
       id: 2,
@@ -262,17 +262,16 @@ export function Page({
         <Content>
           {/** Demo datasets */}
           {(() => {
-            type Simple = { id: number; label: string; value?: string };
-            const simpleOptions: Simple[] = [
-              { id: 1, label: "One", value: "one" },
-              { id: 2, label: "Two", value: "two" },
-              { id: 3, label: "Three", value: "three" },
+
+
+            const simpleOptions: OptionLike[] = [
+              { id: 1, label: "One" },
+              { id: 2, label: "Two" },
+              { id: 3, label: "Three" },
             ];
 
-            type SectionX = { icon?: string; description?: string };
-            type ActionX = { description?: string };
 
-            const [f1Value, setF1Value] = useState<Simple | undefined>(
+            const [f1Value, setF1Value] = useState<OptionLike | undefined>(
               undefined,
             );
             const [f1Input, setF1Input] = useState("");
@@ -282,7 +281,7 @@ export function Page({
             );
             const [f2Input, setF2Input] = useState("");
 
-            const [f3Value, setF3Value] = useState<Simple | undefined>(
+            const [f3Value, setF3Value] = useState<OptionLike | undefined>(
               undefined,
             );
             const [f3Input, setF3Input] = useState("");
@@ -292,12 +291,12 @@ export function Page({
             );
             const [f4Input, setF4Input] = useState("");
 
-            const [f5Value, setF5Value] = useState<Simple | undefined>(
+            const [f5Value, setF5Value] = useState<OptionLike | undefined>(
               undefined,
             );
             const [f5Input, setF5Input] = useState("");
 
-            const [s1Value, setS1Value] = useState<Simple | undefined>(
+            const [s1Value, setS1Value] = useState<OptionLike | undefined>(
               undefined,
             );
             const [s1Input, setS1Input] = useState("");
@@ -307,7 +306,7 @@ export function Page({
             );
             const [s2Input, setS2Input] = useState("");
 
-            const [s3Value, setS3Value] = useState<Simple | undefined>(
+            const [s3Value, setS3Value] = useState<OptionLike | undefined>(
               undefined,
             );
             const [s3Input, setS3Input] = useState("");
@@ -317,7 +316,7 @@ export function Page({
             );
             const [s4Input, setS4Input] = useState("");
 
-            const [s5Value, setS5Value] = useState<Simple | undefined>(
+            const [s5Value, setS5Value] = useState<OptionLike | undefined>(
               undefined,
             );
             const [s5Input, setS5Input] = useState("");
@@ -353,11 +352,17 @@ export function Page({
                   }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.value}
-                  renderOption={o => <span>{o.label} — {o.description}</span>}
+                  renderOption={o => (
+                    <span>
+                      {o.label} — {o.description}
+                    </span>
+                  )}
                   isOptionEqualToValue={(a, b) => a.id === b.id}
                 />
 
-                <Text variation="subdued">3) Flat default options with default actions</Text>
+                <Text variation="subdued">
+                  3) Flat default options with default actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={f3Value}
@@ -369,7 +374,12 @@ export function Page({
                       type: "options",
                       options: simpleOptions,
                       actionsBottom: [
-                        { type: "action", id: "add", label: "Add", onClick: () => {} },
+                        {
+                          type: "action",
+                          id: "add",
+                          label: "Add",
+                          onClick: () => {},
+                        },
                       ],
                     },
                   ]}
@@ -380,7 +390,9 @@ export function Page({
                   getOptionValue={o => o.id}
                 />
 
-                <Text variation="subdued">4) Flat custom options with custom actions</Text>
+                <Text variation="subdued">
+                  4) Flat custom options with custom actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={f4Value}
@@ -402,8 +414,16 @@ export function Page({
                       ],
                     },
                   ]}
-                  renderAction={a => <span>{a.label}: {a.description}</span>}
-                  renderOption={o => <span>{o.label} — {o.description}</span>}
+                  renderAction={a => (
+                    <span>
+                      {a.label}: {a.description}
+                    </span>
+                  )}
+                  renderOption={o => (
+                    <span>
+                      {o.label} — {o.description}
+                    </span>
+                  )}
                   filterOptions={(o, i) =>
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
@@ -412,7 +432,9 @@ export function Page({
                   isOptionEqualToValue={(a, b) => a.id === b.id}
                 />
 
-                <Text variation="subdued">5) Flat default options with custom actions</Text>
+                <Text variation="subdued">
+                  5) Flat default options with custom actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={f5Value}
@@ -434,7 +456,11 @@ export function Page({
                       ],
                     },
                   ]}
-                  renderAction={a => <span>{a.label}: {a.description}</span>}
+                  renderAction={a => (
+                    <span>
+                      {a.label}: {a.description}
+                    </span>
+                  )}
                   filterOptions={(o, i) =>
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
@@ -480,7 +506,11 @@ export function Page({
                       options: animals,
                     },
                   ]}
-                  renderOption={o => <span>{o.label} — {o.description}</span>}
+                  renderOption={o => (
+                    <span>
+                      {o.label} — {o.description}
+                    </span>
+                  )}
                   filterOptions={(o, i) =>
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
@@ -489,7 +519,9 @@ export function Page({
                   isOptionEqualToValue={(a, b) => a.id === b.id}
                 />
 
-                <Text variation="subdued">8) Sectioned default options with default actions</Text>
+                <Text variation="subdued">
+                  8) Sectioned default options with default actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s3Value}
@@ -503,7 +535,12 @@ export function Page({
                       label: "Numbers",
                       options: simpleOptions,
                       actionsBottom: [
-                        { type: "action", id: "add", label: "Add", onClick: () => {} },
+                        {
+                          type: "action",
+                          id: "add",
+                          label: "Add",
+                          onClick: () => {},
+                        },
                       ],
                     },
                   ]}
@@ -514,7 +551,9 @@ export function Page({
                   getOptionValue={o => o.id}
                 />
 
-                <Text variation="subdued">9) Sectioned custom options with custom actions</Text>
+                <Text variation="subdued">
+                  9) Sectioned custom options with custom actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s4Value}
@@ -540,9 +579,21 @@ export function Page({
                       ],
                     },
                   ]}
-                  renderSection={s => <span>{s.icon} — {s.description}</span>}
-                  renderAction={a => <span>{a.label}: {a.description}</span>}
-                  renderOption={o => <span>{o.label} — {o.description}</span>}
+                  renderSection={s => (
+                    <span>
+                      {s.icon} — {s.description}
+                    </span>
+                  )}
+                  renderAction={a => (
+                    <span>
+                      {a.label}: {a.description}
+                    </span>
+                  )}
+                  renderOption={o => (
+                    <span>
+                      {o.label} — {o.description}
+                    </span>
+                  )}
                   filterOptions={(o, i) =>
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
@@ -551,7 +602,9 @@ export function Page({
                   isOptionEqualToValue={(a, b) => a.id === b.id}
                 />
 
-                <Text variation="subdued">10) Sectioned default options with custom actions</Text>
+                <Text variation="subdued">
+                  10) Sectioned default options with custom actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s5Value}
@@ -575,7 +628,11 @@ export function Page({
                       ],
                     },
                   ]}
-                  renderAction={a => <span>{a.label}: {a.description}</span>}
+                  renderAction={a => (
+                    <span>
+                      {a.label}: {a.description}
+                    </span>
+                  )}
                   filterOptions={(o, i) =>
                     o.label.toLowerCase().includes(i.toLowerCase())
                   }
@@ -584,7 +641,9 @@ export function Page({
                 />
 
                 {/** No sections: missing custom options + default actions */}
-                <Text variation="subdued">11) Flat custom options with default actions</Text>
+                <Text variation="subdued">
+                  11) Flat custom options with default actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={f2Value}
@@ -596,7 +655,12 @@ export function Page({
                       type: "options",
                       options: animals,
                       actionsBottom: [
-                        { type: "action", id: "add2", label: "Add", onClick: () => {} },
+                        {
+                          type: "action",
+                          id: "add2",
+                          label: "Add",
+                          onClick: () => {},
+                        },
                       ],
                     },
                   ]}
@@ -608,8 +672,12 @@ export function Page({
                   isOptionEqualToValue={(a, b) => a.id === b.id}
                 />
 
-                <Heading level={3}>Sectioned (default section meta) — action combinations</Heading>
-                <Text variation="subdued">12) Simple opts — flat default actions only</Text>
+                <Heading level={3}>
+                  Sectioned (default section meta) — action combinations
+                </Heading>
+                <Text variation="subdued">
+                  12) Simple opts — flat default actions only
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s1Value}
@@ -617,13 +685,22 @@ export function Page({
                   inputValue={s1Input}
                   onInputChange={setS1Input}
                   menu={[
-                    { type: "section", id: 11, label: "Numbers", options: simpleOptions },
+                    {
+                      type: "section",
+                      id: 11,
+                      label: "Numbers",
+                      options: simpleOptions,
+                    },
                   ]}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.id}
                 />
-                <Text variation="subdued">12 B) Simple opts — section default actions only</Text>
+                <Text variation="subdued">
+                  12 B) Simple opts — section default actions only
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s1Value}
@@ -634,16 +711,32 @@ export function Page({
                     {
                       type: "options",
                       options: simpleOptions,
-                      actionsBottom: [{ type: "action", id: "add3", label: "Add", onClick: () => {} }],
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "add3",
+                          label: "Add",
+                          onClick: () => {},
+                        },
+                      ],
                     },
-                    { type: "section", id: 12, label: "More Numbers", options: simpleOptions },
+                    {
+                      type: "section",
+                      id: 12,
+                      label: "More Numbers",
+                      options: simpleOptions,
+                    },
                   ]}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.id}
                 />
 
-                <Text variation="subdued">13) Simple opts — section default actions only</Text>
+                <Text variation="subdued">
+                  13) Simple opts — section default actions only
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s1Value}
@@ -656,15 +749,26 @@ export function Page({
                       id: 13,
                       label: "Numbers",
                       options: simpleOptions,
-                      actionsBottom: [{ type: "action", id: "add4", label: "Add", onClick: () => {} }],
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "add4",
+                          label: "Add",
+                          onClick: () => {},
+                        },
+                      ],
                     },
                   ]}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.id}
                 />
 
-                <Text variation="subdued">14) Simple opts — flat default + section default actions</Text>
+                <Text variation="subdued">
+                  14) Simple opts — flat default + section default actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s1Value}
@@ -675,22 +779,40 @@ export function Page({
                     {
                       type: "options",
                       options: simpleOptions,
-                      actionsBottom: [{ type: "action", id: "add5", label: "Add", onClick: () => {} }],
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "add5",
+                          label: "Add",
+                          onClick: () => {},
+                        },
+                      ],
                     },
                     {
                       type: "section",
                       id: 14,
                       label: "Numbers",
                       options: simpleOptions,
-                      actionsBottom: [{ type: "action", id: "add6", label: "Add", onClick: () => {} }],
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "add6",
+                          label: "Add",
+                          onClick: () => {},
+                        },
+                      ],
                     },
                   ]}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.id}
                 />
 
-                <Text variation="subdued">15) Animal opts — flat custom + section custom actions</Text>
+                <Text variation="subdued">
+                  15) Animal opts — flat custom + section custom actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s4Value}
@@ -702,7 +824,13 @@ export function Page({
                       type: "options",
                       options: animals,
                       actionsBottom: [
-                        { type: "action", id: "flat1", label: "Add", description: "Create", onClick: () => {} },
+                        {
+                          type: "action",
+                          id: "flat1",
+                          label: "Add",
+                          description: "Create",
+                          onClick: () => {},
+                        },
                       ],
                     },
                     {
@@ -713,20 +841,42 @@ export function Page({
                       icon: "animal",
                       description: "Animals section",
                       actionsBottom: [
-                        { type: "action", id: "sec1", label: "Add", description: "Add animal", onClick: () => {} },
+                        {
+                          type: "action",
+                          id: "sec1",
+                          label: "Add",
+                          description: "Add animal",
+                          onClick: () => {},
+                        },
                       ],
                     },
                   ]}
-                  renderSection={s => <span>{s.icon} — {s.description}</span>}
-                  renderAction={a => <span>{a.label}: {a.description}</span>}
-                  renderOption={o => <span>{o.label} — {o.description}</span>}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  renderSection={s => (
+                    <span>
+                      {s.icon} — {s.description}
+                    </span>
+                  )}
+                  renderAction={a => (
+                    <span>
+                      {a.label}: {a.description}
+                    </span>
+                  )}
+                  renderOption={o => (
+                    <span>
+                      {o.label} — {o.description}
+                    </span>
+                  )}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.value}
                   isOptionEqualToValue={(a, b) => a.id === b.id}
                 />
 
-                <Text variation="subdued">16) Animal opts — flat default + section custom actions</Text>
+                <Text variation="subdued">
+                  16) Animal opts — flat default + section custom actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s4Value}
@@ -734,19 +884,62 @@ export function Page({
                   inputValue={s4Input}
                   onInputChange={setS4Input}
                   menu={[
-                    { type: "options", options: animals, actionsBottom: [{ type: "action", id: "flat2", label: "Add", onClick: () => {} }] },
-                    { type: "section", id: 16, label: "Animals", options: animals, icon: "animal", description: "Animals", actionsBottom: [ { type: "action", id: "sec2", label: "Add", description: "Add", onClick: () => {} } ] },
+                    {
+                      type: "options",
+                      options: animals,
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "flat2",
+                          label: "Add",
+                          onClick: () => {},
+                        },
+                      ],
+                    },
+                    {
+                      type: "section",
+                      id: 16,
+                      label: "Animals",
+                      options: animals,
+                      icon: "animal",
+                      description: "Animals",
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "sec2",
+                          label: "Add",
+                          description: "Add",
+                          onClick: () => {},
+                        },
+                      ],
+                    },
                   ]}
-                  renderSection={s => <span>{s.icon} — {s.description}</span>}
-                  renderAction={a => <span>{a.label}: {a.description}</span>}
-                  renderOption={o => <span>{o.label} — {o.description}</span>}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  renderSection={s => (
+                    <span>
+                      {s.icon} — {s.description}
+                    </span>
+                  )}
+                  renderAction={a => (
+                    <span>
+                      {a.label}: {a.description}
+                    </span>
+                  )}
+                  renderOption={o => (
+                    <span>
+                      {o.label} — {o.description}
+                    </span>
+                  )}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.value}
                   isOptionEqualToValue={(a, b) => a.id === b.id}
                 />
 
-                <Text variation="subdued">17) Animal opts — flat custom + section default actions</Text>
+                <Text variation="subdued">
+                  17) Animal opts — flat custom + section default actions
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s2Value}
@@ -758,7 +951,12 @@ export function Page({
                       type: "options",
                       options: animals,
                       actionsBottom: [
-                        { type: "action", id: "flat3", label: "Add", onClick: () => {} },
+                        {
+                          type: "action",
+                          id: "flat3",
+                          label: "Add",
+                          onClick: () => {},
+                        },
                       ],
                     },
                     {
@@ -766,30 +964,32 @@ export function Page({
                       id: 17,
                       label: "Animals",
                       options: animals,
-                      actionsBottom: [ { type: "action", id: "sec3", label: "Add", onClick: () => {} } ],
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "sec3",
+                          label: "Add",
+                          onClick: () => {},
+                        },
+                      ],
                     },
                   ]}
-                  renderOption={o => <span>{o.label} — {o.description}</span>}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  renderOption={o => (
+                    <span>
+                      {o.label} — {o.description}
+                    </span>
+                  )}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.value}
                   isOptionEqualToValue={(a, b) => a.id === b.id}
                 />
 
-                <Text variation="subdued">18) Simple opts — section no action</Text>
-                <Autocomplete
-                  version={2}
-                  value={s5Value}
-                  onChange={setS5Value}
-                  inputValue={s5Input}
-                  onInputChange={setS5Input}
-                  menu={[{ type: "section", id: 18, label: "Numbers", options: simpleOptions }]}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">19) Simple opts — section actions and flat actions (no options)</Text>
+                <Text variation="subdued">
+                  18) Simple opts — section no action
+                </Text>
                 <Autocomplete
                   version={2}
                   value={s5Value}
@@ -797,14 +997,65 @@ export function Page({
                   inputValue={s5Input}
                   onInputChange={setS5Input}
                   menu={[
-                    { type: "options", options: [], actionsBottom: [{ type: "action", id: "add7", label: "Empty Options Action", onClick: () => {} }] },
-                    { type: "section", id: 19, label: "Numbers", options: simpleOptions, actionsBottom: [{ type: "action", id: "add8", label: "Add", onClick: () => {} }] }
+                    {
+                      type: "section",
+                      id: 18,
+                      label: "Numbers",
+                      options: simpleOptions,
+                    },
                   ]}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.id}
-                />                
-                
+                />
+
+                <Text variation="subdued">
+                  19) Simple opts — section actions and flat actions (no
+                  options)
+                </Text>
+                <Autocomplete
+                  version={2}
+                  value={s5Value}
+                  onChange={setS5Value}
+                  inputValue={s5Input}
+                  onInputChange={setS5Input}
+                  menu={[
+                    {
+                      type: "options",
+                      options: [],
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "add7",
+                          label: "Empty Options Action",
+                          onClick: () => {},
+                        },
+                      ],
+                    },
+                    {
+                      type: "section",
+                      id: 19,
+                      label: "Numbers",
+                      options: simpleOptions,
+                      actionsBottom: [
+                        {
+                          type: "action",
+                          id: "add8",
+                          label: "Add",
+                          onClick: () => {},
+                        },
+                      ],
+                    },
+                  ]}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
+                  getOptionLabel={o => o.label}
+                  getOptionValue={o => o.id}
+                />
+
                 <Text variation="subdued">20) Empty options</Text>
                 <Autocomplete
                   version={2}
@@ -812,10 +1063,10 @@ export function Page({
                   onChange={setS5Value}
                   inputValue={s5Input}
                   onInputChange={setS5Input}
-                  menu={[
-                    { type: "options", options: [] },
-                  ]}
-                  filterOptions={(o, i) => o.label.toLowerCase().includes(i.toLowerCase())}
+                  menu={[{ type: "options", options: [] }]}
+                  filterOptions={(o, i) =>
+                    o.label.toLowerCase().includes(i.toLowerCase())
+                  }
                   getOptionLabel={o => o.label}
                   getOptionValue={o => o.id}
                 />

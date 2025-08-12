@@ -345,7 +345,7 @@ export interface AutocompleteProposedProps<
   // Strongly recommended when Value is a custom object
   readonly getOptionLabel: (option: Value) => string;
   // Strongly recommended when Value is a custom object
-  readonly getOptionValue: (option: Value) => string | number;
+  readonly getOptionValue: (option: Value) => Key;
 
   // Rendering
   readonly renderOption?: (option: Value) => React.ReactNode;
