@@ -435,11 +435,19 @@ function AutocompleteRebuiltInternal<
   //   [renderable],
   // );
 
+  // Prevent auto-open when we change input programmatically on selection
+  const suppressOpenOnInputChangeRef = useRef(false);
+
   // Open on input text; close when cleared
   useEffect(() => {
+    if (suppressOpenOnInputChangeRef.current) {
+      suppressOpenOnInputChangeRef.current = false;
+
+      return;
+    }
+
     const hasText = inputValue.trim().length > 0;
-    if (hasText) setOpen(true);
-    else setOpen(false);
+    setOpen(hasText);
   }, [inputValue, setOpen]);
 
   function selectOption(option: Value) {
@@ -457,6 +465,7 @@ function AutocompleteRebuiltInternal<
     } else {
       onChange(option as AutocompleteValue<Value, Multiple>);
       // Always reflect explicit selection in the input text
+      suppressOpenOnInputChangeRef.current = true;
       onInputChange?.(getOptionLabel(option));
     }
   }
