@@ -3,6 +3,7 @@ import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Option } from "./Option";
 import { SelectRebuilt } from "./Select.rebuilt";
+import { OptionGroup } from "./OptionGroup";
 
 describe("SelectRebuilt", () => {
   it("renders a SelectRebuilt with no options", () => {
@@ -289,6 +290,100 @@ describe("SelectRebuilt", () => {
 
       focusSpy.mockRestore();
       blurSpy.mockRestore();
+    });
+  });
+
+  describe("OptionGroup integration", () => {
+    it("renders an optgroup with accessible label", () => {
+      render(
+        <SelectRebuilt version={2}>
+          <OptionGroup label="Group A">
+            <Option value="one">One</Option>
+          </OptionGroup>
+        </SelectRebuilt>,
+      );
+
+      const group = screen.getByRole("group", { name: "Group A" });
+      expect(group).toBeInTheDocument();
+      expect(group).toHaveAccessibleName("Group A");
+    });
+
+    it("renders children options within a group", () => {
+      render(
+        <SelectRebuilt version={2}>
+          <OptionGroup label="Group B">
+            <Option value="one">One</Option>
+            <Option value="two">Two</Option>
+          </OptionGroup>
+        </SelectRebuilt>,
+      );
+
+      expect(screen.getByRole("option", { name: "One" })).toBeInTheDocument();
+      expect(screen.getByRole("option", { name: "Two" })).toBeInTheDocument();
+    });
+
+    it("supports disabled optgroup state", () => {
+      render(
+        <SelectRebuilt version={2}>
+          <OptionGroup label="Disabled Group" disabled>
+            <Option value="x">X</Option>
+          </OptionGroup>
+        </SelectRebuilt>,
+      );
+
+      const group = screen.getByRole("group", { name: "Disabled Group" });
+      expect(group).toBeDisabled();
+    });
+
+    it("applies UNSAFE_className to the optgroup container", () => {
+      const { container } = render(
+        <SelectRebuilt version={2}>
+          <OptionGroup label="Custom Group" UNSAFE_className="custom-class">
+            <Option value="x">X</Option>
+          </OptionGroup>
+        </SelectRebuilt>,
+      );
+
+      const group = container.querySelector("optgroup");
+      expect(group).toHaveClass("custom-class");
+    });
+
+    it("applies UNSAFE_style.container to the optgroup", () => {
+      render(
+        <SelectRebuilt version={2}>
+          <OptionGroup
+            label="Styled Group"
+            UNSAFE_style={{ container: { fontWeight: "bold" } }}
+          >
+            <Option value="x">X</Option>
+          </OptionGroup>
+        </SelectRebuilt>,
+      );
+
+      const group = screen.getByRole("group", { name: "Styled Group" });
+      expect(group).toHaveStyle({ fontWeight: "bold" });
+    });
+
+    it("does not apply custom select class unless enableCustomSelect is true", () => {
+      const { container: nativeContainer } = render(
+        <SelectRebuilt version={2}>
+          <OptionGroup label="Group">
+            <Option value="1">One</Option>
+          </OptionGroup>
+        </SelectRebuilt>,
+      );
+      const nativeSelect = nativeContainer.querySelector("select");
+      expect(nativeSelect).not.toHaveClass("select");
+
+      const { container: customContainer } = render(
+        <SelectRebuilt version={2} enableCustomSelect>
+          <OptionGroup label="Group">
+            <Option value="1">One</Option>
+          </OptionGroup>
+        </SelectRebuilt>,
+      );
+      const customSelect = customContainer.querySelector("select");
+      expect(customSelect).toHaveClass("select");
     });
   });
 });
