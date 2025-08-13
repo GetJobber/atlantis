@@ -1,6 +1,7 @@
 import React, {
   Ref,
   forwardRef,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -364,6 +365,7 @@ function selectActiveOptionOnEnter<Value extends OptionLike>(
   }
 }
 
+// eslint-disable-next-line max-statements
 function AutocompleteRebuiltInternal<
   Value extends OptionLike,
   Multiple extends boolean = false,
@@ -459,6 +461,29 @@ function AutocompleteRebuiltInternal<
     }
   }
 
+  const onSelection = useCallback(
+    (option: Value) => {
+      selectOption(option);
+      setOpen(false);
+    },
+    [selectOption, setOpen],
+  );
+
+  const onAction = useCallback(
+    (action: {
+      onAction: () => void;
+      disabled?: boolean;
+      shouldClose?: boolean;
+    }) => {
+      if (action.disabled) return;
+
+      action.onAction();
+
+      if (action.shouldClose !== false) setOpen(false);
+    },
+    [setOpen],
+  );
+
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
@@ -487,15 +512,8 @@ function AutocompleteRebuiltInternal<
             event,
             activeIndex,
             renderable,
-            option => {
-              selectOption(option);
-              setOpen(false);
-            },
-            action => {
-              if (action.disabled) return;
-              action.onAction();
-              if (action.shouldClose !== false) setOpen(false);
-            },
+            onSelection,
+            onAction,
           );
         }
       },
@@ -545,15 +563,8 @@ function AutocompleteRebuiltInternal<
               renderOption={renderOption}
               renderSection={renderSection}
               getOptionLabel={getOptionLabel}
-              onSelect={option => {
-                selectOption(option);
-                setOpen(false);
-              }}
-              onAction={action => {
-                if (action.disabled) return;
-                action.onAction();
-                if (action.shouldClose !== false) setOpen(false);
-              }}
+              onSelect={onSelection}
+              onAction={onAction}
               style={floatingStyles}
             />
           </FloatingFocusManager>
