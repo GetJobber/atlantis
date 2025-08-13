@@ -63,6 +63,11 @@ export default {
           find: "@react-native-picker/picker",
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
         },
+        {
+          find: /@jobber\/hooks\/(.*)/,
+          replacement: (_, p1) =>
+            path.resolve(dirname, `../hooks/dist/${p1}/${p1}.js`),
+        },
       ],
     }),
     babel({
