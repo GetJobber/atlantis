@@ -135,7 +135,6 @@
     "Modal.Provider",
     "MultiSelect",
     "Option",
-    "OptionGroup",
     "Page",
     "Popover",
     "Popover.Arrow",
