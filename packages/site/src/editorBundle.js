@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { useFormState } from "@jobber/hooks";
+import { useFormState } from "@jobber/hooks/useFormState";
 import { updateTheme } from "@jobber/components/AtlantisThemeContext";
 
 window.React = React;

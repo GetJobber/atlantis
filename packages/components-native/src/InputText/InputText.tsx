@@ -21,7 +21,7 @@ import {
 import { RegisterOptions } from "react-hook-form";
 import { IconNames } from "@jobber/design";
 import identity from "lodash/identity";
-import { Clearable, useShowClear } from "@jobber/hooks";
+import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
 import { useStyles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
 import { useFormController } from "../hooks";
