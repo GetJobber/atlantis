@@ -21,7 +21,9 @@ const handleCustomOptionSelect = jest.fn();
 const handleSearch = jest.fn();
 const handleLoadMore = jest.fn();
 
-let attachToRef: HTMLDivElement | null = null;
+const attachToRef: React.MutableRefObject<HTMLDivElement | null> = {
+  current: null,
+};
 
 const optionsArray = ["Amazing", "Fabulous", "Magical"];
 const options: ChipProps[] = optionsArray.map(opt => ({
@@ -51,7 +53,7 @@ beforeAll(() => {
   const dummyElement = document.createElement("div");
   dummyElement.setAttribute("id", "dummy-attach-to");
   document.body.appendChild(dummyElement);
-  attachToRef = dummyElement;
+  attachToRef.current = dummyElement;
 });
 
 afterAll(() => {
@@ -60,7 +62,7 @@ afterAll(() => {
   if (dummyElement) {
     document.body.removeChild(dummyElement);
   }
-  attachToRef = null;
+  attachToRef.current = null;
 });
 
 beforeEach(() => {
