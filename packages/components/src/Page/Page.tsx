@@ -139,6 +139,7 @@ export function Page({
     );
   }
 
+
   interface Animal extends OptionLike {
     value: string;
     description?: string;
@@ -194,20 +195,33 @@ export function Page({
       description: "A tiger is a small animal",
     },
   ];
-  const [selected, setSelected] = useState<Animal | undefined>(undefined);
-  const [selected2, setSelected2] = useState<Animal | undefined>(undefined);
-  const [search, setSearch] = useState("");
-  const [search2, setSearch2] = useState("");
 
-  const [selected3, setSelected3] = useState<Option | undefined>(undefined);
+    const simpleOptions: OptionLike[] = [
+      { id: 1, label: "One" },
+      { id: 2, label: "Two" },
+      { id: 3, label: "Three" },
+    ];
 
-  interface SectionExtra {
-    icon: string;
-    description: string;
-  }
-  interface ActionExtra {
-    description: string;
-  }
+    interface ComplexOption extends OptionLike {
+      complex: boolean;
+    }
+
+    const complexOptions: ComplexOption[] = [
+      { id: 1, label: "One", complex: true },
+      { id: 2, label: "Two", complex: true },
+      { id: 3, label: "Three", complex: true },
+    ];
+
+    const [animalValue, setAnimalValue] = useState<Animal | undefined>(undefined);
+    const [f1Input, setF1Input] = useState("");
+    const [defaultValue, setDefaultValue] = useState<OptionLike | undefined>(undefined);
+    const [f2Input, setF2Input] = useState("");
+    const [complexValue, setComplexValue] = useState<ComplexOption | undefined>(undefined);
+    const [f3Input, setF3Input] = useState("");
+    const [complexValue2, setComplexValue2] = useState<ComplexOption | undefined>(undefined);
+    const [f4Input, setF4Input] = useState("");
+
+  
 
   return (
     <div className={pageStyles}>
@@ -269,844 +283,114 @@ export function Page({
           )}
         </Content>
         <Content>
-          {/** Demo datasets */}
-          {(() => {
-            const simpleOptions: OptionLike[] = [
-              { id: 1, label: "One" },
-              { id: 2, label: "Two" },
-              { id: 3, label: "Three" },
-            ];
+          <Text variation="subdued">Default Options</Text>
+            <Autocomplete
+              version={2}
+              value={defaultValue}
+              onChange={setDefaultValue}
+              inputValue={f1Input}
+              onInputChange={setF1Input}
+              menu={[{ type: "options", options: simpleOptions }]}
+              filterOptions={(o, i) =>
+                o.label.toLowerCase().includes(i.toLowerCase())
+              }
+              getOptionLabel={o => o.label}
+              getOptionValue={o => o.id}
+            />
 
-            const [f1Value, setF1Value] = useState<OptionLike | undefined>(
-              undefined,
-            );
-            const [f1Input, setF1Input] = useState("");
+            <Text variation="subdued">Custom Options</Text>
+            <Autocomplete
+              version={2}
+              value={animalValue}
+              onChange={setAnimalValue}
+              inputValue={f2Input}
+              onInputChange={setF2Input}
+              menu={[{ type: "options", options: animals }]}
+              filterOptions={(o, i) =>
+                o.label.toLowerCase().includes(i.toLowerCase())
+              }
+              getOptionLabel={o => o.label}
+              getOptionValue={o => o.value}
+              renderOption={o => (
+                <span>
+                  {o.label} — {o.description}
+                </span>
+              )}
+              isOptionEqualToValue={(a, b) => a.id === b.id}
+            />
 
-            const [f2Value, setF2Value] = useState<Animal | undefined>(
-              undefined,
-            );
-            const [f2Input, setF2Input] = useState("");
-
-            const [f3Value, setF3Value] = useState<OptionLike | undefined>(
-              undefined,
-            );
-            const [f3Input, setF3Input] = useState("");
-
-            const [f4Value, setF4Value] = useState<Animal | undefined>(
-              undefined,
-            );
-            const [f4Input, setF4Input] = useState("");
-
-            const [f5Value, setF5Value] = useState<OptionLike | undefined>(
-              undefined,
-            );
-            const [f5Input, setF5Input] = useState("");
-
-            const [s1Value, setS1Value] = useState<OptionLike | undefined>(
-              undefined,
-            );
-            const [s1Input, setS1Input] = useState("");
-
-            const [s2Value, setS2Value] = useState<Animal | undefined>(
-              undefined,
-            );
-            const [s2Input, setS2Input] = useState("");
-
-            const [s3Value, setS3Value] = useState<OptionLike | undefined>(
-              undefined,
-            );
-            const [s3Input, setS3Input] = useState("");
-
-            const [s4Value, setS4Value] = useState<Animal | undefined>(
-              undefined,
-            );
-            const [s4Input, setS4Input] = useState("");
-
-            const [s5Value, setS5Value] = useState<OptionLike | undefined>(
-              undefined,
-            );
-            const [s5Input, setS5Input] = useState("");
-
-            const [c1Value, setC1Value] = useState<OptionLike | undefined>(
-              undefined,
-            );
-            const [c1Input, setC1Input] = useState("");
-
-            return (
-              <div>
-                <Heading level={2}>Flat lists</Heading>
-                <Text variation="subdued">1) Flat default options</Text>
-                <Autocomplete
-                  version={2}
-                  value={f1Value}
-                  onChange={setF1Value}
-                  inputValue={f1Input}
-                  onInputChange={setF1Input}
-                  menu={[{ type: "options", options: simpleOptions }]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">2) Flat custom options (Animal)</Text>
-                <Autocomplete
-                  version={2}
-                  value={f2Value}
-                  onChange={setF2Value}
-                  inputValue={f2Input}
-                  onInputChange={setF2Input}
-                  menu={[{ type: "options", options: animals }]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.value}
-                  renderOption={o => (
-                    <span>
-                      {o.label} — {o.description}
-                    </span>
-                  )}
-                  isOptionEqualToValue={(a, b) => a.id === b.id}
-                />
-
-                <Text variation="subdued">
-                  3) Flat default options with default actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={f3Value}
-                  onChange={setF3Value}
-                  inputValue={f3Input}
-                  onInputChange={setF3Input}
-                  menu={[
+            <Text variation="subdued">
+              Custom Options with nested data
+            </Text>
+            <Autocomplete
+              version={2}
+              value={complexValue}
+              onChange={setComplexValue}
+              inputValue={f3Input}
+              onInputChange={setF3Input}
+              menu={[
+                {
+                  type: "section",
+                  id: "complex",
+                  label: "Complex",
+                  options: complexOptions,
+                  actionsBottom: [
                     {
-                      type: "options",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
+                      type: "action",
+                      id: "add",
+                      label: "Add",
+                      onClick: () => {
+                        console.log("adding");
+                      },
                     },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
+                  ],
+                },
+              ]}
+              filterOptions={(o, i) =>
+                o.label.toLowerCase().includes(i.toLowerCase())
+              }
+              getOptionLabel={o => o.label}
+              getOptionValue={o => o.id}
+            />
 
-                <Text variation="subdued">
-                  4) Flat custom options with custom actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={f4Value}
-                  onChange={setF4Value}
-                  inputValue={f4Input}
-                  onInputChange={setF4Input}
-                  menu={[
+            <Text variation="subdued">
+              Custom Options, custom input with nested data
+            </Text>
+            <Autocomplete
+              version={2}
+              value={complexValue2}
+              onChange={setComplexValue2}
+              inputValue={f4Input}
+              onInputChange={setF4Input}
+              menu={[
+                {
+                  type: "section",
+                  id: "complex2",
+                  label: "Complex",
+                  options: complexOptions,
+                  actionsBottom: [
                     {
-                      type: "options",
-                      options: animals,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add",
-                          label: "Add",
-                          description: "Create a new animal",
-                          onClick: () => {},
-                        },
-                      ],
+                      type: "action",
+                      id: "add2",
+                      label: "Add",
+                      onClick: () => {
+                        console.log("adding");
+                      },
                     },
-                  ]}
-                  renderAction={a => (
-                    <span>
-                      {a.label}: {a.description}
-                    </span>
-                  )}
-                  renderOption={o => (
-                    <span>
-                      {o.label} — {o.description}
-                    </span>
-                  )}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.value}
-                  isOptionEqualToValue={(a, b) => a.id === b.id}
-                />
-
-                <Text variation="subdued">
-                  5) Flat default options with custom actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={f5Value}
-                  onChange={setF5Value}
-                  inputValue={f5Input}
-                  onInputChange={setF5Input}
-                  menu={[
-                    {
-                      type: "options",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "info",
-                          label: "Info",
-                          description: "About these options",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  renderAction={a => (
-                    <span>
-                      {a.label}: {a.description}
-                    </span>
-                  )}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Heading level={2}>Sectioned lists</Heading>
-                <Text variation="subdued">6) Sectioned default options</Text>
-                <Autocomplete
-                  version={2}
-                  value={s1Value}
-                  onChange={setS1Value}
-                  inputValue={s1Input}
-                  onInputChange={setS1Input}
-                  menu={[
-                    {
-                      type: "section",
-                      id: 1,
-                      label: "Numbers",
-                      options: simpleOptions,
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">7) Sectioned custom options</Text>
-                <Autocomplete
-                  version={2}
-                  value={s2Value}
-                  onChange={setS2Value}
-                  inputValue={s2Input}
-                  onInputChange={setS2Input}
-                  menu={[
-                    {
-                      type: "section",
-                      id: 2,
-                      label: "Animals",
-                      options: animals,
-                    },
-                  ]}
-                  renderOption={o => (
-                    <span>
-                      {o.label} — {o.description}
-                    </span>
-                  )}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.value}
-                  isOptionEqualToValue={(a, b) => a.id === b.id}
-                />
-
-                <Text variation="subdued">
-                  8) Sectioned default options with default actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s3Value}
-                  onChange={setS3Value}
-                  inputValue={s3Input}
-                  onInputChange={setS3Input}
-                  menu={[
-                    {
-                      type: "section",
-                      id: 3,
-                      label: "Numbers",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">
-                  9) Sectioned custom options with custom actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s4Value}
-                  onChange={setS4Value}
-                  inputValue={s4Input}
-                  onInputChange={setS4Input}
-                  menu={[
-                    {
-                      type: "section",
-                      id: 4,
-                      label: "Animals",
-                      options: animals,
-                      icon: "animal",
-                      description: "Animals section",
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add",
-                          label: "Add",
-                          description: "Add a new animal",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  renderSection={s => (
-                    <span>
-                      {s.icon} — {s.description}
-                    </span>
-                  )}
-                  renderAction={a => (
-                    <span>
-                      {a.label}: {a.description}
-                    </span>
-                  )}
-                  renderOption={o => (
-                    <span>
-                      {o.label} — {o.description}
-                    </span>
-                  )}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.value}
-                  isOptionEqualToValue={(a, b) => a.id === b.id}
-                />
-
-                <Text variation="subdued">
-                  10) Sectioned default options with custom actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s5Value}
-                  onChange={setS5Value}
-                  inputValue={s5Input}
-                  onInputChange={setS5Input}
-                  menu={[
-                    {
-                      type: "section",
-                      id: 5,
-                      label: "Numbers",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "info",
-                          label: "Info",
-                          description: "About this section",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  renderAction={a => (
-                    <span>
-                      {a.label}: {a.description}
-                    </span>
-                  )}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                {/** No sections: missing custom options + default actions */}
-                <Text variation="subdued">
-                  11) Flat custom options with default actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={f2Value}
-                  onChange={setF2Value}
-                  inputValue={f2Input}
-                  onInputChange={setF2Input}
-                  menu={[
-                    {
-                      type: "options",
-                      options: animals,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add2",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.value}
-                  isOptionEqualToValue={(a, b) => a.id === b.id}
-                />
-
-                <Heading level={3}>
-                  Sectioned (default section meta) — action combinations
-                </Heading>
-                <Text variation="subdued">
-                  12) Simple opts — flat default actions only
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s1Value}
-                  onChange={setS1Value}
-                  inputValue={s1Input}
-                  onInputChange={setS1Input}
-                  menu={[
-                    {
-                      type: "section",
-                      id: 11,
-                      label: "Numbers",
-                      options: simpleOptions,
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-                <Text variation="subdued">
-                  12 B) Simple opts — section default actions only
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s1Value}
-                  onChange={setS1Value}
-                  inputValue={s1Input}
-                  onInputChange={setS1Input}
-                  menu={[
-                    {
-                      type: "options",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add3",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                    {
-                      type: "section",
-                      id: 12,
-                      label: "More Numbers",
-                      options: simpleOptions,
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">
-                  13) Simple opts — section default actions only
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s1Value}
-                  onChange={setS1Value}
-                  inputValue={s1Input}
-                  onInputChange={setS1Input}
-                  menu={[
-                    {
-                      type: "section",
-                      id: 13,
-                      label: "Numbers",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add4",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">
-                  14) Simple opts — flat default + section default actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s1Value}
-                  onChange={setS1Value}
-                  inputValue={s1Input}
-                  onInputChange={setS1Input}
-                  menu={[
-                    {
-                      type: "options",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add5",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                    {
-                      type: "section",
-                      id: 14,
-                      label: "Numbers",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add6",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">
-                  15) Animal opts — flat custom + section custom actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s4Value}
-                  onChange={setS4Value}
-                  inputValue={s4Input}
-                  onInputChange={setS4Input}
-                  menu={[
-                    {
-                      type: "options",
-                      options: animals,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "flat1",
-                          label: "Add",
-                          description: "Create",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                    {
-                      type: "section",
-                      id: 15,
-                      label: "Animals",
-                      options: animals,
-                      icon: "animal",
-                      description: "Animals section",
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "sec1",
-                          label: "Add",
-                          description: "Add animal",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  renderSection={s => (
-                    <span>
-                      {s.icon} — {s.description}
-                    </span>
-                  )}
-                  renderAction={a => (
-                    <span>
-                      {a.label}: {a.description}
-                    </span>
-                  )}
-                  renderOption={o => (
-                    <span>
-                      {o.label} — {o.description}
-                    </span>
-                  )}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.value}
-                  isOptionEqualToValue={(a, b) => a.id === b.id}
-                />
-
-                <Text variation="subdued">
-                  16) Animal opts — flat default + section custom actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s4Value}
-                  onChange={setS4Value}
-                  inputValue={s4Input}
-                  onInputChange={setS4Input}
-                  menu={[
-                    {
-                      type: "options",
-                      options: animals,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "flat2",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                    {
-                      type: "section",
-                      id: 16,
-                      label: "Animals",
-                      options: animals,
-                      icon: "animal",
-                      description: "Animals",
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "sec2",
-                          label: "Add",
-                          description: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  renderSection={s => (
-                    <span>
-                      {s.icon} — {s.description}
-                    </span>
-                  )}
-                  renderAction={a => (
-                    <span>
-                      {a.label}: {a.description}
-                    </span>
-                  )}
-                  renderOption={o => (
-                    <span>
-                      {o.label} — {o.description}
-                    </span>
-                  )}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.value}
-                  isOptionEqualToValue={(a, b) => a.id === b.id}
-                />
-
-                <Text variation="subdued">
-                  17) Animal opts — flat custom + section default actions
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s2Value}
-                  onChange={setS2Value}
-                  inputValue={s2Input}
-                  onInputChange={setS2Input}
-                  menu={[
-                    {
-                      type: "options",
-                      options: animals,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "flat3",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                    {
-                      type: "section",
-                      id: 17,
-                      label: "Animals",
-                      options: animals,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "sec3",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  renderOption={o => (
-                    <span>
-                      {o.label} — {o.description}
-                    </span>
-                  )}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.value}
-                  isOptionEqualToValue={(a, b) => a.id === b.id}
-                />
-
-                <Text variation="subdued">
-                  18) Simple opts — section no action
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s5Value}
-                  onChange={setS5Value}
-                  inputValue={s5Input}
-                  onInputChange={setS5Input}
-                  menu={[
-                    {
-                      type: "section",
-                      id: 18,
-                      label: "Numbers",
-                      options: simpleOptions,
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">
-                  19) Simple opts — section actions and flat actions (no
-                  options)
-                </Text>
-                <Autocomplete
-                  version={2}
-                  value={s5Value}
-                  onChange={setS5Value}
-                  inputValue={s5Input}
-                  onInputChange={setS5Input}
-                  menu={[
-                    {
-                      type: "options",
-                      options: [],
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add7",
-                          label: "Empty Options Action",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                    {
-                      type: "section",
-                      id: 19,
-                      label: "Numbers",
-                      options: simpleOptions,
-                      actionsBottom: [
-                        {
-                          type: "action",
-                          id: "add8",
-                          label: "Add",
-                          onClick: () => {},
-                        },
-                      ],
-                    },
-                  ]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">20) Empty options</Text>
-                <Autocomplete
-                  version={2}
-                  value={s5Value}
-                  onChange={setS5Value}
-                  inputValue={s5Input}
-                  onInputChange={setS5Input}
-                  menu={[{ type: "options", options: [] }]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-
-                <Text variation="subdued">20) Custom Input</Text>
-                <Autocomplete
-                  version={2}
-                  value={c1Value}
-                  onChange={setC1Value}
-                  inputValue={c1Input}
-                  onInputChange={setC1Input}
-                  menu={[{ type: "options", options: simpleOptions }]}
-                  filterOptions={(o, i) =>
-                    o.label.toLowerCase().includes(i.toLowerCase())
-                  }
-                  renderInput={({ inputRef, inputProps }) => (
-                    <InputText
-                      {...inputProps}
-                      ref={inputRef}
-                      suffix={{ icon: "arrowDown" }}
-                      placeholder="Overridden placeholder"
-                    />
-                  )}
-                  getOptionLabel={o => o.label}
-                  getOptionValue={o => o.id}
-                />
-              </div>
-            );
-          })()}
+                  ],
+                },
+              ]}
+              renderInput={({ inputRef, inputProps }) => (
+                <InputText ref={inputRef} {...inputProps}  suffix={{
+                  icon: "arrowDown"
+                }}/>
+              )}
+              filterOptions={(o, i) =>
+                o.label.toLowerCase().includes(i.toLowerCase())
+              }
+              getOptionLabel={o => o.label}
+              getOptionValue={o => o.id}
+            />
         </Content>
       </Content>
     </div>

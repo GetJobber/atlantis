@@ -37,7 +37,12 @@ import { calculateMaxHeight } from "../utils/maxHeight";
 
 type RenderItem<T extends OptionLike> =
   | { kind: "option"; value: T }
-  | { kind: "action"; action: React.ReactNode }
+  | {
+      kind: "action";
+      content: React.ReactNode;
+      onAction: () => void;
+      disabled?: boolean;
+    }
   | {
       kind: "section";
       section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>;
@@ -105,6 +110,7 @@ function useAutocompleteListNav({
   const listNav = useListNavigation(context, {
     listRef,
     activeIndex,
+    // scrollItemIntoView: true,
     onNavigate: setActiveIndex,
     // TODO: make it "real" via roles on actually focusable elements
     virtual: true,
@@ -241,8 +247,11 @@ function MenuList<T extends OptionLike>({
             }
             data-index={navigableIndex}
             {...getItemProps()}
+            onClick={() => {
+              if (!item.disabled) item.onAction();
+            }}
           >
-            {item.action}
+            {item.content}
           </div>
         );
       })}
@@ -290,13 +299,49 @@ function buildRenderableList<Value extends OptionLike>(
       for (const action of group.actionsBottom) {
         items.push({
           kind: "action",
-          action: renderAction ? renderAction(action) : action.label,
+          content: renderAction ? renderAction(action) : action.label,
+          onAction: action.onClick,
+          disabled: action.disabled,
         });
       }
     }
   }
 
   return items;
+}
+
+function getNavigableItemAtIndex<Value extends OptionLike>(
+  activeIndex: number | null,
+  renderable: Array<RenderItem<Value>>,
+): RenderItem<Value> | null {
+  if (activeIndex == null) return null;
+  let navigableIndex = -1;
+
+  for (const item of renderable) {
+    if (item.kind === "section") continue;
+    navigableIndex += 1;
+    if (navigableIndex === activeIndex) return item;
+  }
+
+  return null;
+}
+
+function selectActiveOptionOnEnter<Value extends OptionLike>(
+  event: React.KeyboardEvent,
+  activeIndex: number | null,
+  renderable: Array<RenderItem<Value>>,
+  onSelect: (option: Value) => void,
+  onAction: (action: { onAction: () => void; disabled?: boolean }) => void,
+): void {
+  const selected = getNavigableItemAtIndex<Value>(activeIndex, renderable);
+  if (!selected) return;
+  event.preventDefault();
+
+  if (selected.kind === "option") {
+    onSelect(selected.value);
+  } else if (selected.kind === "action") {
+    onAction({ onAction: selected.onAction, disabled: selected.disabled });
+  }
 }
 
 function AutocompleteRebuiltInternal<
@@ -375,10 +420,8 @@ function AutocompleteRebuiltInternal<
     else setOpen(false);
   }, [inputValue, setOpen]);
 
-  // (moved clamping into useAutocompleteListNav)
-
-  // Selection handler respects single/multiple types
   function selectOption(option: Value) {
+    // TODO: if we have time, implement multiple selection
     if (multiple) {
       const current = (value as AutocompleteValue<Value, true>) ?? [];
       const equals =
@@ -396,9 +439,6 @@ function AutocompleteRebuiltInternal<
     }
   }
 
-  // Do we even need size if we allow custom input rendering?
-  const mappedSize: InputTextRebuiltProps["size"] =
-    sizeProp === "base" ? undefined : sizeProp;
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
@@ -410,13 +450,34 @@ function AutocompleteRebuiltInternal<
     error: error ?? undefined,
     invalid,
     description,
-    size: mappedSize,
+    // Do we even need size if we allow custom input rendering?
+    size: sizeProp === "base" ? undefined : sizeProp,
     clearable: clearable ? "while-editing" : undefined,
     loading,
     ...getReferenceProps({
       onKeyDown(event) {
         if (event.key === "ArrowDown" || event.key === "ArrowUp") {
           if (!open) setOpen(true);
+
+          return;
+        }
+
+        if (event.key === "Enter") {
+          selectActiveOptionOnEnter<Value>(
+            event,
+            activeIndex,
+            renderable,
+            option => {
+              selectOption(option);
+              setOpen(false);
+            },
+            action => {
+              if (!action.disabled) {
+                action.onAction();
+                setOpen(false);
+              }
+            },
+          );
         }
       },
     }),

@@ -297,6 +297,7 @@ export interface AutocompleteProposedProps<
   readonly value: AutocompleteValue<Value, Multiple>;
   // consider including the event and "reason"
   // undefined is debatable, could make sense for single select
+  // reason?
   readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
   readonly inputValue: string;
   readonly onInputChange: (value: string) => void;
