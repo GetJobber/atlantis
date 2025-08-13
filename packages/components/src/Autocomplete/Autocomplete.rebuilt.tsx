@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import {
+  FloatingFocusManager,
   FloatingPortal,
   UseFloatingReturn,
   UseInteractionsReturn,
@@ -49,6 +50,7 @@ const AUTOCOMPLETE_MAX_HEIGHT = 300;
 interface UseAutocompleteListNavReturn {
   refs: UseFloatingReturn["refs"];
   floatingStyles: UseFloatingReturn["context"]["floatingStyles"];
+  context: UseFloatingReturn["context"];
   getReferenceProps: UseInteractionsReturn["getReferenceProps"];
   getFloatingProps: UseInteractionsReturn["getFloatingProps"];
   getItemProps: UseInteractionsReturn["getItemProps"];
@@ -123,6 +125,7 @@ function useAutocompleteListNav({
   return {
     refs,
     floatingStyles,
+    context,
     getReferenceProps,
     getFloatingProps,
     getItemProps,
@@ -197,7 +200,7 @@ function MenuList<T extends OptionLike>({
             <div
               key={`opt-${index}`}
               role="option"
-              tabIndex={activeIndex === index ? 0 : -1}
+              tabIndex={-1}
               className={
                 activeIndex === index ? styles.optionActive : styles.option
               }
@@ -310,6 +313,7 @@ function AutocompleteRebuiltInternal<
   const {
     refs,
     floatingStyles,
+    context,
     getReferenceProps,
     getFloatingProps,
     getItemProps,
@@ -402,31 +406,39 @@ function AutocompleteRebuiltInternal<
       )}
       {open && (
         <FloatingPortal>
-          <MenuList<Value>
-            items={renderable}
-            activeIndex={activeIndex}
-            setNodeRef={refs.setFloating}
-            floatingProps={getFloatingProps()}
-            getItemProps={() =>
-              getItemProps({
-                ref(node: HTMLElement | null) {
-                  const idx = Number(node?.getAttribute("data-index"));
+          <FloatingFocusManager
+            context={context}
+            modal={false}
+            initialFocus={-1}
+            // closeOnFocusOut defaults to true; keeping it explicit for clarity
+            closeOnFocusOut
+          >
+            <MenuList<Value>
+              items={renderable}
+              activeIndex={activeIndex}
+              setNodeRef={refs.setFloating}
+              floatingProps={getFloatingProps()}
+              getItemProps={() =>
+                getItemProps({
+                  ref(node: HTMLElement | null) {
+                    const idx = Number(node?.getAttribute("data-index"));
 
-                  if (!Number.isNaN(idx)) {
-                    listRef.current[idx] = node;
-                  }
-                },
-              })
-            }
-            renderOption={renderOption}
-            renderSection={renderSection}
-            getOptionLabel={getOptionLabel}
-            onSelect={option => {
-              selectOption(option);
-              setOpen(false);
-            }}
-            style={floatingStyles}
-          />
+                    if (!Number.isNaN(idx)) {
+                      listRef.current[idx] = node;
+                    }
+                  },
+                })
+              }
+              renderOption={renderOption}
+              renderSection={renderSection}
+              getOptionLabel={getOptionLabel}
+              onSelect={option => {
+                selectOption(option);
+                setOpen(false);
+              }}
+              style={floatingStyles}
+            />
+          </FloatingFocusManager>
         </FloatingPortal>
       )}
     </div>
