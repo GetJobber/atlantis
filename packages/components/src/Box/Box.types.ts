@@ -1,13 +1,13 @@
-import type { CSSProperties, PropsWithChildren } from "react";
+import type { CSSProperties, HTMLAttributes, PropsWithChildren } from "react";
 import type { tokens } from "@jobber/design";
 
 export interface BoxProps
   extends PropsWithChildren,
+    HTMLAttributes<HTMLElement>,
     Pick<
       CSSProperties,
       "position" | "justifyContent" | "alignItems" | "alignSelf" | "overflow"
-    >,
-    Partial<Pick<HTMLElement, "tabIndex">> {
+    > {
   readonly as?: "div" | "span" | "section" | "article" | "aside" | "main";
   readonly background?: Colors;
   readonly border?: BorderWidth | BoxBorderWidth;

@@ -37,6 +37,7 @@ export function Box({
   preserveWhiteSpace,
   radius,
   width = "auto",
+  style,
   ...props
 }: BoxProps) {
   return (
@@ -52,6 +53,7 @@ export function Box({
         getBorderClassNames(border),
         radius && radiusStyles[`radius-${radius}`],
         gap && gapStyles[`gap-${gap}`],
+        props.className,
       )}
       style={{
         ...getPaddingVars(padding),
@@ -67,6 +69,7 @@ export function Box({
         justifyContent,
         overflow,
         position,
+        ...style,
       }}
     >
       {children}
