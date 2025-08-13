@@ -63,10 +63,12 @@ interface UseAutocompleteListNavReturn {
 
 interface UseAutocompleteListNavProps {
   openOnFocus: boolean;
+  optionCount: number;
 }
 
 function useAutocompleteListNav({
   openOnFocus,
+  optionCount,
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
   const { refs, floatingStyles, context } = useFloating({
@@ -122,6 +124,12 @@ function useAutocompleteListNav({
     [listNav, dismiss, focus],
   );
 
+  // When the rendered options change due to filtering, reset to the first option
+  useEffect(() => {
+    listRef.current.length = optionCount;
+    setActiveIndex(optionCount > 0 ? 0 : null);
+  }, [optionCount]);
+
   return {
     refs,
     floatingStyles,
@@ -162,6 +170,8 @@ function MenuList<T extends OptionLike>({
   readonly onSelect: (option: T) => void;
   readonly style?: React.CSSProperties;
 }) {
+  let optionRenderIndex = -1;
+
   return (
     <div
       ref={setNodeRef}
@@ -185,7 +195,7 @@ function MenuList<T extends OptionLike>({
           }
 
           return (
-            <div key={`sec-${index}`} role="presentation" data-index={index}>
+            <div key={`sec-${index}`} role="presentation">
               {headerNode}
             </div>
           );
@@ -195,6 +205,7 @@ function MenuList<T extends OptionLike>({
           const content = renderOption
             ? renderOption(item.value)
             : getOptionLabel(item.value);
+          optionRenderIndex += 1;
 
           return (
             <div
@@ -202,9 +213,11 @@ function MenuList<T extends OptionLike>({
               role="option"
               tabIndex={-1}
               className={
-                activeIndex === index ? styles.optionActive : styles.option
+                activeIndex === optionRenderIndex
+                  ? styles.optionActive
+                  : styles.option
               }
-              data-index={index}
+              data-index={optionRenderIndex}
               {...getItemProps()}
               onClick={() => onSelect(item.value)}
             >
@@ -309,6 +322,24 @@ function AutocompleteRebuiltInternal<
   // Flatten for navigation and typeahead
   const { sections } = useMemo(() => flattenMenu(menu), [menu]);
 
+  const renderable = useMemo(() => {
+    // TODO: add default filter method
+    // TODO: add opt-out filter method for consumer to use with async
+    const filterMethod = (opt: Value) =>
+      props.filterOptions ? props.filterOptions(opt, inputValue) : true;
+
+    return buildRenderableList(sections, renderAction, filterMethod);
+  }, [sections, renderAction, props.filterOptions, inputValue]);
+
+  const optionCount = useMemo(
+    () =>
+      renderable.reduce(
+        (count, item) => count + (item.kind === "option" ? 1 : 0),
+        0,
+      ),
+    [renderable],
+  );
+
   // Floating UI wiring (keep input focus; use virtual list navigation)
   const {
     refs,
@@ -321,16 +352,7 @@ function AutocompleteRebuiltInternal<
     listRef,
     open,
     setOpen,
-  } = useAutocompleteListNav({ openOnFocus });
-
-  const renderable = useMemo(() => {
-    // TODO: add default filter method
-    // TODO: add opt-out filter method for consumer to use with async
-    const filterMethod = (opt: Value) =>
-      props.filterOptions ? props.filterOptions(opt, inputValue) : true;
-
-    return buildRenderableList(sections, renderAction, filterMethod);
-  }, [sections, renderAction, props.filterOptions, inputValue]);
+  } = useAutocompleteListNav({ openOnFocus, optionCount });
 
   // const hasMatch = useMemo(
   //   () => renderable.some(item => item.kind === "option"),
@@ -343,6 +365,8 @@ function AutocompleteRebuiltInternal<
     if (hasText) setOpen(true);
     else setOpen(false);
   }, [inputValue, setOpen]);
+
+  // (moved clamping into useAutocompleteListNav)
 
   // Selection handler respects single/multiple types
   function selectOption(option: Value) {
