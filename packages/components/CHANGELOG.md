@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.82.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.1...@jobber/components@6.82.2) (2025-08-13)
+
+
+### Bug Fixes
+
+* **components:** Provide Additional Fallback Placements ([#2668](https://github.com/GetJobber/atlantis/issues/2668)) ([012feea](https://github.com/GetJobber/atlantis/commit/012feea4e59b83467777550ba22ba408123245ed))
+
+
+
+
+
+## [6.82.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.0...@jobber/components@6.82.1) (2025-08-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [6.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.81.0...@jobber/components@6.82.0) (2025-08-12)
 
 

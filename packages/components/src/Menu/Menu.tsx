@@ -126,7 +126,7 @@ export function Menu({
     strategy: "fixed",
     middleware: [
       offset(MENU_OFFSET),
-      flip({ flipAlignment: false }),
+      flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
       size({
         apply({ availableHeight, elements }) {
           // The inner element is the scrollable menu that requires the max height
