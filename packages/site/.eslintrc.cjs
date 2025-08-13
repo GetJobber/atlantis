@@ -8,11 +8,7 @@ module.exports = {
     "import/no-unresolved": [
       "error",
       {
-        ignore: [
-          "^@atlantis/docs",
-          "^@atlantis/packages",
-          "^@jobber/component/styles",
-        ],
+        ignore: ["^@atlantis/docs", "^@atlantis/packages"],
       },
     ],
   },
