@@ -34,7 +34,7 @@ export function useTooltipPositioning({
         padding: TOOLTIP_SHIFT_PADDING,
         limiter: limitShift(),
       }),
-      flip({ fallbackPlacements: ["bottom", "left", "right"] }),
+      flip({ fallbackPlacements: ["top", "bottom", "left", "right"] }),
       arrow({
         element: arrowElement || null,
         padding: TOOLTIP_ARROW_PADDING,
