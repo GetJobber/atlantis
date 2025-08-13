@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 export function useScrollToActive(index: number) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!window.HTMLElement.prototype.scrollIntoView) return;

@@ -1,59 +1,17 @@
-import React from "react";
-import {
-  autoUpdate,
-  flip,
-  offset,
-  size,
-  useFloating,
-} from "@floating-ui/react";
-import { calculateMaxHeight } from "@jobber/components/utils/maxHeight";
+import { RefObject, useState } from "react";
+import { usePopper } from "react-popper";
 
-export interface UseRepositionMenu {
-  readonly setFloatingRef: (ref: HTMLElement | null) => void;
-  readonly targetWidth: number | undefined;
-  readonly styles: {
-    float: React.CSSProperties;
-  };
-  readonly update: () => void;
-}
-
-const ROUNDED_BORDER_ARROW_EDGE_OFFSET = 8;
-const PREFERRED_MAX_HEIGHT = 320;
-
-export function useRepositionMenu(
-  attachTo: HTMLElement | null,
-): UseRepositionMenu {
-  const { refs, floatingStyles, update } = useFloating({
-    placement: "bottom",
-    middleware: [
-      offset(ROUNDED_BORDER_ARROW_EDGE_OFFSET),
-      flip({ fallbackPlacements: ["top"] }),
-      size({
-        apply({ availableHeight, elements }) {
-          const maxHeight = calculateMaxHeight(availableHeight, {
-            maxHeight: PREFERRED_MAX_HEIGHT,
-          });
-
-          Object.assign(elements.floating.style, {
-            maxHeight: `${maxHeight}px`,
-          });
-        },
-      }),
+export function useRepositionMenu(attachTo: RefObject<Element | null>) {
+  const [positionElement, setPositionedElementRef] =
+    useState<HTMLElement | null>();
+  const popper = usePopper(attachTo.current, positionElement, {
+    modifiers: [
+      { name: "offset", options: { offset: [0, 8] } },
+      { name: "flip", options: { fallbackPlacements: ["top"] } },
     ],
-    elements: {
-      reference: attachTo,
-    },
-    whileElementsMounted: autoUpdate,
   });
 
-  const targetWidth = attachTo?.clientWidth;
+  const targetWidth = attachTo.current?.clientWidth;
 
-  return {
-    setFloatingRef: refs.setFloating,
-    targetWidth,
-    styles: {
-      float: floatingStyles,
-    },
-    update,
-  };
+  return { ...popper, setPositionedElementRef, targetWidth };
 }
