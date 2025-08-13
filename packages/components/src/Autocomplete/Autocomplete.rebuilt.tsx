@@ -170,7 +170,7 @@ function MenuList<T extends OptionLike>({
   readonly onSelect: (option: T) => void;
   readonly style?: React.CSSProperties;
 }) {
-  let optionRenderIndex = -1;
+  let navigableIndex = -1;
 
   return (
     <div
@@ -205,7 +205,7 @@ function MenuList<T extends OptionLike>({
           const content = renderOption
             ? renderOption(item.value)
             : getOptionLabel(item.value);
-          optionRenderIndex += 1;
+          navigableIndex += 1;
 
           return (
             <div
@@ -213,11 +213,11 @@ function MenuList<T extends OptionLike>({
               role="option"
               tabIndex={-1}
               className={
-                activeIndex === optionRenderIndex
+                activeIndex === navigableIndex
                   ? styles.optionActive
                   : styles.option
               }
-              data-index={optionRenderIndex}
+              data-index={navigableIndex}
               {...getItemProps()}
               onClick={() => onSelect(item.value)}
             >
@@ -226,12 +226,21 @@ function MenuList<T extends OptionLike>({
           );
         }
 
+        // action counts as navigable entry
+        navigableIndex += 1;
+
         return (
           <div
             key={`act-${index}`}
             tabIndex={-1}
             role="presentation"
-            className={styles.action}
+            className={
+              activeIndex === navigableIndex
+                ? styles.optionActive
+                : styles.action
+            }
+            data-index={navigableIndex}
+            {...getItemProps()}
           >
             {item.action}
           </div>
