@@ -134,8 +134,23 @@ OnFocusAndBlur.args = {
   defaultValue: "bob",
 };
 
-const OptionGroupTemplate: ComponentStory<typeof Select> = args => (
-  <Select {...args}>
+const BaseOptionGroupTemplate: ComponentStory<typeof Select> = () => (
+  <Select version={1} placeholder="Select an option">
+    <Select.OptionGroup label="Team A">
+      <Select.Option value="alice">Alice</Select.Option>
+      <Select.Option value="bob">Bob</Select.Option>
+      <Select.Option value="charlie">Charlie</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="Team B">
+      <Select.Option value="diana">Diana</Select.Option>
+      <Select.Option value="evan">Evan</Select.Option>
+      <Select.Option value="frank">Frank</Select.Option>
+    </Select.OptionGroup>
+  </Select>
+);
+
+const OptionGroupTemplate: ComponentStory<typeof Select> = () => (
+  <Select version={2} enableCustomSelect placeholder="Select an option">
     <Select.OptionGroup label="Team A">
       <Select.Option value="alice">Alice</Select.Option>
       <Select.Option value="bob">Bob</Select.Option>
@@ -157,7 +172,12 @@ const OptionGroupTemplate: ComponentStory<typeof Select> = args => (
 const OptionGroupSizesTemplate: ComponentStory<typeof Select> = () => {
   return (
     <Content>
-      <Select size="small" placeholder="Small with groups" version={2}>
+      <Select
+        size="small"
+        placeholder="Small with groups"
+        version={2}
+        enableCustomSelect
+      >
         <Select.OptionGroup label="Team A">
           <Select.Option value="alice">Alice</Select.Option>
           <Select.Option value="bob">Bob</Select.Option>
@@ -168,7 +188,7 @@ const OptionGroupSizesTemplate: ComponentStory<typeof Select> = () => {
         </Select.OptionGroup>
       </Select>
       <Divider size="largest" />
-      <Select placeholder="Default with groups" version={2}>
+      <Select placeholder="Default with groups" version={2} enableCustomSelect>
         <Select.OptionGroup label="Team A">
           <Select.Option value="alice">Alice</Select.Option>
           <Select.Option value="bob">Bob</Select.Option>
@@ -179,7 +199,12 @@ const OptionGroupSizesTemplate: ComponentStory<typeof Select> = () => {
         </Select.OptionGroup>
       </Select>
       <Divider size="largest" />
-      <Select size="large" placeholder="Large with groups" version={2}>
+      <Select
+        size="large"
+        placeholder="Large with groups"
+        version={2}
+        enableCustomSelect
+      >
         <Select.OptionGroup label="Team A">
           <Select.Option value="alice">Alice</Select.Option>
           <Select.Option value="bob">Bob</Select.Option>
@@ -193,8 +218,8 @@ const OptionGroupSizesTemplate: ComponentStory<typeof Select> = () => {
   );
 };
 
-const OptionGroupDisabledTemplate: ComponentStory<typeof Select> = args => (
-  <Select {...args}>
+const OptionGroupDisabledTemplate: ComponentStory<typeof Select> = () => (
+  <Select version={2} enableCustomSelect placeholder="Select an option">
     <Select.OptionGroup label="Available Items">
       <Select.Option value="option1">Option 1</Select.Option>
       <Select.Option value="option2">Option 2</Select.Option>
@@ -210,10 +235,17 @@ const OptionGroupDisabledTemplate: ComponentStory<typeof Select> = args => (
   </Select>
 );
 
-export const OptionGroups = OptionGroupTemplate.bind({});
-OptionGroups.args = {
+export const BaseOptionGroups = BaseOptionGroupTemplate.bind({});
+BaseOptionGroups.args = {
   placeholder: "Select an option",
   version: 2,
+};
+
+export const CustomOptionGroups = OptionGroupTemplate.bind({});
+CustomOptionGroups.args = {
+  placeholder: "Select an option",
+  version: 2,
+  enableCustomSelect: true,
 };
 
 export const OptionGroupSizes = OptionGroupSizesTemplate.bind({});
@@ -437,6 +469,7 @@ export const VersionComparison = () => {
               version={2}
               value={values.optionGroups}
               onChange={handleChange("optionGroups")}
+              enableCustomSelect
               {...extraProps}
             >
               <Select.OptionGroup label="Group A">

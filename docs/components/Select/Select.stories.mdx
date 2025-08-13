@@ -12,12 +12,17 @@ A Select is used to present a defined list of options to choose from.
 Nested within the Select component, Option defines the options that can be
 selected. For grouping options with section headers, use Select.OptionGroup.
 
-#### Browser support
+#### Custom grouped menu and browser support
 
-The grouped menu styling (bold section headers, edge‑to‑edge dividers and hover
-backgrounds) is enhanced when the browser supports `appearance: base-select`
-(Chromium 123+). In unsupported browsers the Select gracefully falls back to the
-native menu while still rendering the same `OptionGroup` structure.
+V2 remains a native `<select>` by default. To enable the enhanced grouped menu
+styling (bold section headers, edge‑to‑edge dividers and hover backgrounds), set
+the `enableCustomSelect` prop on `Select`.
+
+- When `enableCustomSelect` is true and the browser supports
+  `appearance: base-select` (Chromium 123+), the select renders with the
+  customizable grouped menu.
+- In unsupported browsers, or when `enableCustomSelect` is not provided, the
+  select remains native while still rendering the same `OptionGroup` structure.
 
 #### Option Props
 
@@ -56,7 +61,7 @@ provides the section header text.
 ### Basic Option Groups
 
 <Canvas>
-  <Select version={2} placeholder="Select an option">
+  <Select version={2} placeholder="Select an option" enableCustomSelect>
     <Select.OptionGroup label="Team A">
       <Select.Option value="alice">Alice</Select.Option>
       <Select.Option value="bob">Bob</Select.Option>
@@ -73,7 +78,7 @@ provides the section header text.
 ### Disabled Option Groups
 
 <Canvas>
-  <Select version={2} placeholder="Select an option">
+  <Select version={2} placeholder="Select an option" enableCustomSelect>
     <Select.OptionGroup label="Available Options">
       <Select.Option value="option1">Option 1</Select.Option>
       <Select.Option value="option2">Option 2</Select.Option>

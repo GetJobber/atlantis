@@ -79,7 +79,10 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
         <select
           {...fieldProps}
           ref={selectRef}
-          className={classnames(inputStyle, styles.select)}
+          className={classnames(
+            inputStyle,
+            props.enableCustomSelect && styles.select,
+          )}
         >
           {props.children}
         </select>

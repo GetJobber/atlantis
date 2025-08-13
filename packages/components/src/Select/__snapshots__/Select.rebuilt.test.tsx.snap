@@ -20,7 +20,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with many options 1`] = `
             tabindex="-1"
           >
             <select
-              class="input select"
+              class="input"
               id=":r2:"
               name="generatedName--:r2:"
             >
@@ -79,7 +79,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with no options 1`] = `
             tabindex="-1"
           >
             <select
-              class="input select"
+              class="input"
               id=":r0:"
               name="generatedName--:r0:"
             />
@@ -125,7 +125,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with one option 1`] = `
             tabindex="-1"
           >
             <select
-              class="input select"
+              class="input"
               id=":r1:"
               name="generatedName--:r1:"
             >
@@ -175,7 +175,7 @@ exports[`SelectRebuilt renders correctly as large 1`] = `
             tabindex="-1"
           >
             <select
-              class="input select"
+              class="input"
               id=":r4:"
               name="generatedName--:r4:"
             >
@@ -225,7 +225,7 @@ exports[`SelectRebuilt renders correctly as small 1`] = `
             tabindex="-1"
           >
             <select
-              class="input select"
+              class="input"
               id=":r3:"
               name="generatedName--:r3:"
             >
@@ -275,7 +275,7 @@ exports[`SelectRebuilt renders correctly when disabled 1`] = `
             tabindex="-1"
           >
             <select
-              class="input select"
+              class="input"
               disabled=""
               id=":r5:"
               name="generatedName--:r5:"
@@ -326,7 +326,7 @@ exports[`SelectRebuilt renders correctly when invalid 1`] = `
             tabindex="-1"
           >
             <select
-              class="input select"
+              class="input"
               id=":r6:"
               name="generatedName--:r6:"
             >

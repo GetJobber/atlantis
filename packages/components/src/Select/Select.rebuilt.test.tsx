@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Option } from "./Option";
 import { SelectRebuilt } from "./Select.rebuilt";
@@ -274,17 +274,21 @@ describe("SelectRebuilt", () => {
 
       const selectElement = screen.getByRole("combobox");
 
-      // Setup mocks
-      selectElement.focus = jest.fn();
-      selectElement.blur = jest.fn();
+      const focusSpy = jest.spyOn(selectElement, "focus");
+      const blurSpy = jest.spyOn(selectElement, "blur");
 
-      // Call native methods through ref
-      ref.current?.focus();
-      ref.current?.blur();
+      act(() => {
+        ref.current?.focus();
+      });
+      act(() => {
+        ref.current?.blur();
+      });
 
-      // Verify
-      expect(selectElement.focus).toHaveBeenCalled();
-      expect(selectElement.blur).toHaveBeenCalled();
+      expect(focusSpy).toHaveBeenCalledTimes(1);
+      expect(blurSpy).toHaveBeenCalledTimes(1);
+
+      focusSpy.mockRestore();
+      blurSpy.mockRestore();
     });
   });
 });
