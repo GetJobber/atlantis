@@ -25,9 +25,9 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Select> = args => (
   <Select {...args}>
-    <Option value="tony">Tony</Option>
-    <Option value="quincy">Quincy</Option>
-    <Option value="peppa">Peppa Pig</Option>
+    <Option value="alice">Alice</Option>
+    <Option value="bob">Bob</Option>
+    <Option value="charlie">Charlie</Option>
   </Select>
 );
 
@@ -35,9 +35,9 @@ const InlineTemplate: ComponentStory<typeof Select> = args => (
   <Flex template={["shrink", "shrink"]}>
     <p>My best Friend: </p>
     <Select {...args}>
-      <Option value="tony">Tony</Option>
-      <Option value="quincy">Quincy</Option>
-      <Option value="peppa">Peppa Pig</Option>
+      <Option value="alice">Alice</Option>
+      <Option value="bob">Bob</Option>
+      <Option value="charlie">Charlie</Option>
     </Select>
   </Flex>
 );
@@ -47,29 +47,29 @@ const SizesTemplate: ComponentStory<typeof Select> = args => {
     <Content>
       <Select size="small">
         <Option value="">Small</Option>
-        <Option value="tony" disabled>
-          Tony
+        <Option value="alice" disabled>
+          Alice
         </Option>
-        <Option value="steve">Steve</Option>
-        <Option value="natasha">Natasha</Option>
+        <Option value="bob">Bob</Option>
+        <Option value="charlie">Charlie</Option>
       </Select>
       <Divider size="largest" />
       <Select {...args}>
         <Option value="">Default</Option>
-        <Option value="tony" disabled>
-          Tony
+        <Option value="alice" disabled>
+          Alice
         </Option>
-        <Option value="steve">Steve</Option>
-        <Option value="natasha">Natasha</Option>
+        <Option value="bob">Bob</Option>
+        <Option value="charlie">Charlie</Option>
       </Select>
       <Divider size="largest" />
       <Select {...args} size="large">
         <Option value="">Large</Option>
-        <Option value="tony" disabled>
-          Tony
+        <Option value="alice" disabled>
+          Alice
         </Option>
-        <Option value="steve">Steve</Option>
-        <Option value="natasha">Natasha</Option>
+        <Option value="bob">Bob</Option>
+        <Option value="charlie">Charlie</Option>
       </Select>
     </Content>
   );
@@ -77,10 +77,10 @@ const SizesTemplate: ComponentStory<typeof Select> = args => {
 
 const InitialValueTemplate: ComponentStory<typeof Select> = args => (
   <Select {...args}>
-    <Option value="tony">Tony</Option>
-    <Option value="steve">Steve</Option>
-    <Option value="natasha">Natasha</Option>
+    <Option value="alice">Alice</Option>
     <Option value="bob">Bob</Option>
+    <Option value="charlie">Charlie</Option>
+    <Option value="diana">Diana</Option>
   </Select>
 );
 
@@ -92,10 +92,10 @@ const OnFocusAndBlurTemplate: ComponentStory<typeof Select> = args => (
     }}
     onBlur={() => console.log("I have been blurred!")}
   >
-    <Option value="tony">Tony</Option>
-    <Option value="steve">Steve</Option>
-    <Option value="natasha">Natasha</Option>
+    <Option value="alice">Alice</Option>
     <Option value="bob">Bob</Option>
+    <Option value="charlie">Charlie</Option>
+    <Option value="diana">Diana</Option>
   </Select>
 );
 
@@ -136,20 +136,20 @@ OnFocusAndBlur.args = {
 
 const OptionGroupTemplate: ComponentStory<typeof Select> = args => (
   <Select {...args}>
-    <Select.OptionGroup label="Marvel Heroes">
-      <Select.Option value="tony">Tony Stark</Select.Option>
-      <Select.Option value="steve">Steve Rogers</Select.Option>
-      <Select.Option value="natasha">Natasha Romanoff</Select.Option>
+    <Select.OptionGroup label="Team A">
+      <Select.Option value="alice">Alice</Select.Option>
+      <Select.Option value="bob">Bob</Select.Option>
+      <Select.Option value="charlie">Charlie</Select.Option>
     </Select.OptionGroup>
-    <Select.OptionGroup label="DC Heroes">
-      <Select.Option value="superman">Superman</Select.Option>
-      <Select.Option value="batman">Batman</Select.Option>
-      <Select.Option value="wonderwoman">Wonder Woman</Select.Option>
+    <Select.OptionGroup label="Team B">
+      <Select.Option value="diana">Diana</Select.Option>
+      <Select.Option value="evan">Evan</Select.Option>
+      <Select.Option value="frank">Frank</Select.Option>
     </Select.OptionGroup>
-    <Select.OptionGroup label="X-Men">
-      <Select.Option value="logan">Logan</Select.Option>
-      <Select.Option value="ororo">Ororo Munroe</Select.Option>
-      <Select.Option value="scott">Scott Summers</Select.Option>
+    <Select.OptionGroup label="Team C">
+      <Select.Option value="grace">Grace</Select.Option>
+      <Select.Option value="hector">Hector</Select.Option>
+      <Select.Option value="isabel">Isabel</Select.Option>
     </Select.OptionGroup>
   </Select>
 );
@@ -195,24 +195,24 @@ const OptionGroupSizesTemplate: ComponentStory<typeof Select> = () => {
 
 const OptionGroupDisabledTemplate: ComponentStory<typeof Select> = args => (
   <Select {...args}>
-    <Select.OptionGroup label="Available Heroes">
-      <Select.Option value="tony">Tony Stark</Select.Option>
-      <Select.Option value="steve">Steve Rogers</Select.Option>
+    <Select.OptionGroup label="Available Items">
+      <Select.Option value="option1">Option 1</Select.Option>
+      <Select.Option value="option2">Option 2</Select.Option>
     </Select.OptionGroup>
-    <Select.OptionGroup label="Unavailable Heroes" disabled>
-      <Select.Option value="thor">Thor</Select.Option>
-      <Select.Option value="hulk">Hulk</Select.Option>
+    <Select.OptionGroup label="Unavailable Items" disabled>
+      <Select.Option value="option3">Option 3</Select.Option>
+      <Select.Option value="option4">Option 4</Select.Option>
     </Select.OptionGroup>
-    <Select.OptionGroup label="More Heroes">
-      <Select.Option value="natasha">Natasha Romanoff</Select.Option>
-      <Select.Option value="clint">Clint Barton</Select.Option>
+    <Select.OptionGroup label="More Items">
+      <Select.Option value="option5">Option 5</Select.Option>
+      <Select.Option value="option6">Option 6</Select.Option>
     </Select.OptionGroup>
   </Select>
 );
 
 export const OptionGroups = OptionGroupTemplate.bind({});
 OptionGroups.args = {
-  placeholder: "Select a superhero",
+  placeholder: "Select an option",
   version: 2,
 };
 
@@ -221,7 +221,7 @@ OptionGroupSizes.args = {};
 
 export const OptionGroupDisabled = OptionGroupDisabledTemplate.bind({});
 OptionGroupDisabled.args = {
-  placeholder: "Select a hero",
+  placeholder: "Select an option",
   version: 2,
 };
 
@@ -277,9 +277,9 @@ export const VersionComparison = () => {
           value={values[field]}
           onChange={handleChange(field)}
         >
-          <Option value="tony">Tony</Option>
-          <Option value="steve">Steve</Option>
-          <Option value="natasha">Natasha</Option>
+          <Option value="alice">Alice</Option>
+          <Option value="bob">Bob</Option>
+          <Option value="charlie">Charlie</Option>
         </Select>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -289,9 +289,9 @@ export const VersionComparison = () => {
           value={values[field]}
           onChange={handleChange(field)}
         >
-          <Option value="tony">Tony</Option>
-          <Option value="steve">Steve</Option>
-          <Option value="natasha">Natasha</Option>
+          <Option value="alice">Alice</Option>
+          <Option value="bob">Bob</Option>
+          <Option value="charlie">Charlie</Option>
         </Select>
       </Grid.Cell>
     </Grid>
@@ -312,7 +312,7 @@ export const VersionComparison = () => {
         {renderBothVersions(
           "Basic Select",
           {
-            placeholder: "Select a hero",
+            placeholder: "Select an option",
             ...extraProps,
           },
           "basic",
@@ -421,13 +421,13 @@ export const VersionComparison = () => {
               onChange={handleChange("optionGroups")}
               {...extraProps}
             >
-              <Select.OptionGroup label="Heroes">
-                <Select.Option value="tony">Tony Stark</Select.Option>
-                <Select.Option value="steve">Steve Rogers</Select.Option>
+              <Select.OptionGroup label="Group A">
+                <Select.Option value="alice">Alice</Select.Option>
+                <Select.Option value="bob">Bob</Select.Option>
               </Select.OptionGroup>
-              <Select.OptionGroup label="Villains">
-                <Select.Option value="loki">Loki</Select.Option>
-                <Select.Option value="thanos">Thanos</Select.Option>
+              <Select.OptionGroup label="Group B">
+                <Select.Option value="charlie">Charlie</Select.Option>
+                <Select.Option value="diana">Diana</Select.Option>
               </Select.OptionGroup>
             </Select>
           </Grid.Cell>
@@ -439,13 +439,13 @@ export const VersionComparison = () => {
               onChange={handleChange("optionGroups")}
               {...extraProps}
             >
-              <Select.OptionGroup label="Heroes">
-                <Select.Option value="tony">Tony Stark</Select.Option>
-                <Select.Option value="steve">Steve Rogers</Select.Option>
+              <Select.OptionGroup label="Group A">
+                <Select.Option value="alice">Alice</Select.Option>
+                <Select.Option value="bob">Bob</Select.Option>
               </Select.OptionGroup>
-              <Select.OptionGroup label="Villains">
-                <Select.Option value="loki">Loki</Select.Option>
-                <Select.Option value="thanos">Thanos</Select.Option>
+              <Select.OptionGroup label="Group B">
+                <Select.Option value="charlie">Charlie</Select.Option>
+                <Select.Option value="diana">Diana</Select.Option>
               </Select.OptionGroup>
             </Select>
           </Grid.Cell>
