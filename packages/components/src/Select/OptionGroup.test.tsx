@@ -82,7 +82,7 @@ describe("OptionGroup", () => {
       <select>
         <Select.OptionGroup
           label="Styled Group"
-          UNSAFE_style={{ fontWeight: "bold" }}
+          UNSAFE_style={{ container: { fontWeight: "bold" } }}
         >
           <Select.Option value="test">Test Option</Select.Option>
         </Select.OptionGroup>

@@ -52,17 +52,13 @@
 
     /* optgroup headers */
     optgroup {
-      padding: var(--space-small) 0 var(--space-smaller) 0;
+      padding: var(--space-small) 0 0 0;
       color: var(--color-heading);
       font-size: var(--typography--fontSize-base);
       font-style: normal;
       font-weight: 700;
       text-indent: var(--space-small);
       background-color: transparent;
-    }
-
-    optgroup:not(:first-child) {
-      padding-top: var(--space-small);
     }
 
     optgroup option {
