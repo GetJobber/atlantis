@@ -373,6 +373,7 @@ export function Page({
                       type: "action",
                       id: "add2",
                       label: "Add",
+                      shouldClose: false,
                       onClick: () => {
                         console.log("adding");
                       },

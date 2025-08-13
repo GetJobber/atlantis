@@ -238,6 +238,12 @@ interface MenuActionBase {
   type: "action";
   id: Key;
   label: string;
+  /*
+   * Determines if the menu should close when the action is used.
+   *
+   * @default true
+   */
+  shouldClose?: boolean;
   onClick: () => void;
   disabled?: boolean;
   icon?: string; // or React.ReactNode

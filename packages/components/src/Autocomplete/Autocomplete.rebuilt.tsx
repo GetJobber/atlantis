@@ -42,6 +42,7 @@ type RenderItem<T extends OptionLike> =
       content: React.ReactNode;
       onAction: () => void;
       disabled?: boolean;
+      shouldClose?: boolean;
     }
   | {
       kind: "section";
@@ -161,6 +162,7 @@ function MenuList<T extends OptionLike>({
   renderSection,
   getOptionLabel,
   onSelect,
+  onAction,
   style,
 }: {
   readonly items: Array<RenderItem<T>>;
@@ -174,6 +176,11 @@ function MenuList<T extends OptionLike>({
   ) => React.ReactNode;
   readonly getOptionLabel: (option: T) => string;
   readonly onSelect: (option: T) => void;
+  readonly onAction: (action: {
+    onAction: () => void;
+    disabled?: boolean;
+    shouldClose?: boolean;
+  }) => void;
   readonly style?: React.CSSProperties;
 }) {
   let navigableIndex = -1;
@@ -248,7 +255,11 @@ function MenuList<T extends OptionLike>({
             data-index={navigableIndex}
             {...getItemProps()}
             onClick={() => {
-              if (!item.disabled) item.onAction();
+              onAction({
+                onAction: item.onAction,
+                disabled: item.disabled,
+                shouldClose: item.shouldClose,
+              });
             }}
           >
             {item.content}
@@ -302,6 +313,7 @@ function buildRenderableList<Value extends OptionLike>(
           content: renderAction ? renderAction(action) : action.label,
           onAction: action.onClick,
           disabled: action.disabled,
+          shouldClose: action.shouldClose,
         });
       }
     }
@@ -331,7 +343,11 @@ function selectActiveOptionOnEnter<Value extends OptionLike>(
   activeIndex: number | null,
   renderable: Array<RenderItem<Value>>,
   onSelect: (option: Value) => void,
-  onAction: (action: { onAction: () => void; disabled?: boolean }) => void,
+  onAction: (action: {
+    onAction: () => void;
+    disabled?: boolean;
+    shouldClose?: boolean;
+  }) => void,
 ): void {
   const selected = getNavigableItemAtIndex<Value>(activeIndex, renderable);
   if (!selected) return;
@@ -340,7 +356,11 @@ function selectActiveOptionOnEnter<Value extends OptionLike>(
   if (selected.kind === "option") {
     onSelect(selected.value);
   } else if (selected.kind === "action") {
-    onAction({ onAction: selected.onAction, disabled: selected.disabled });
+    onAction({
+      onAction: selected.onAction,
+      disabled: selected.disabled,
+      shouldClose: selected.shouldClose,
+    });
   }
 }
 
@@ -472,10 +492,9 @@ function AutocompleteRebuiltInternal<
               setOpen(false);
             },
             action => {
-              if (!action.disabled) {
-                action.onAction();
-                setOpen(false);
-              }
+              if (action.disabled) return;
+              action.onAction();
+              if (action.shouldClose !== false) setOpen(false);
             },
           );
         }
@@ -529,6 +548,11 @@ function AutocompleteRebuiltInternal<
               onSelect={option => {
                 selectOption(option);
                 setOpen(false);
+              }}
+              onAction={action => {
+                if (action.disabled) return;
+                action.onAction();
+                if (action.shouldClose !== false) setOpen(false);
               }}
               style={floatingStyles}
             />
