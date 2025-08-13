@@ -1,6 +1,5 @@
 import {
   Box,
-  Grid,
   Heading,
   RadioGroup,
   RadioOption,
@@ -19,71 +18,92 @@ export const VisualTestRadioGroupPage = () => {
         <Heading level={3}>RadioGroup Examples</Heading>
 
         <Stack gap="large">
-          {/* Basic RadioGroup */}
+          <Heading level={4}>Basic RadioGroup</Heading>
           <section>
-            <Text size="large">Basic RadioGroup</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <RadioGroup
-                  value={basicValue}
-                  onChange={setBasicValue}
-                  ariaLabel="Basic radio group"
-                >
-                  <RadioOption value="1" label="Option 1" />
-                  <RadioOption value="2" label="Option 2" />
-                  <RadioOption value="3" label="Option 3" />
-                </RadioGroup>
-              </Grid.Cell>
-            </Grid>
+            <RadioGroup
+              value={basicValue}
+              onChange={setBasicValue}
+              ariaLabel="Basic radio group"
+            >
+              <RadioOption value="1" label="Option 1" />
+              <RadioOption value="2" label="Option 2" />
+              <RadioOption value="3" label="Option 3" />
+            </RadioGroup>
           </section>
 
-          {/* RadioGroup with Custom Content */}
+          <Heading level={4}>Horizontal</Heading>
           <section>
-            <Text size="large">RadioGroup with Custom Content</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <RadioGroup
-                  value={customValue}
-                  onChange={setCustomValue}
-                  ariaLabel="Custom content radio group"
-                >
-                  <RadioOption value="custom1">
-                    <Stack>
-                      <Text>Custom Option 1</Text>
-                      <Text variation="subdued">
-                        With additional description
-                      </Text>
-                    </Stack>
-                  </RadioOption>
-                  <RadioOption value="custom2">
-                    <Stack>
-                      <Text>Custom Option 2</Text>
-                      <Text variation="subdued">
-                        With additional description
-                      </Text>
-                    </Stack>
-                  </RadioOption>
-                </RadioGroup>
-              </Grid.Cell>
-            </Grid>
+            <RadioGroup
+              value={basicValue}
+              onChange={setBasicValue}
+              ariaLabel="Horizontal radio group"
+              direction="horizontal"
+            >
+              <RadioOption value="1" label="Option 1" />
+              <RadioOption value="2" label="Option 2" />
+              <RadioOption value="3" label="Option 3" />
+            </RadioGroup>
           </section>
 
-          {/* RadioGroup with Disabled Options */}
+          <Heading level={4}>Horizontal with description</Heading>
           <section>
-            <Text size="large">RadioGroup with Disabled Options</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <RadioGroup
-                  value={basicValue}
-                  onChange={setBasicValue}
-                  ariaLabel="Radio group with disabled options"
-                >
-                  <RadioOption value="1" label="Enabled Option" />
-                  <RadioOption value="2" label="Disabled Option" disabled />
-                  <RadioOption value="3" label="Another Enabled Option" />
-                </RadioGroup>
-              </Grid.Cell>
-            </Grid>
+            <RadioGroup
+              value={basicValue}
+              onChange={setBasicValue}
+              ariaLabel="Horizontal radio group with description"
+              direction="horizontal"
+            >
+              <RadioOption
+                value="1"
+                label="Option 1"
+                description="Description 1"
+              />
+              <RadioOption
+                value="2"
+                label="Option 2"
+                description="Description 2"
+              />
+              <RadioOption
+                value="3"
+                label="Option 3"
+                description="Description 3"
+              />
+            </RadioGroup>
+          </section>
+
+          <Heading level={4}>Custom content</Heading>
+          <section>
+            <RadioGroup
+              value={customValue}
+              onChange={setCustomValue}
+              ariaLabel="Custom content radio group"
+            >
+              <RadioOption value="custom1">
+                <Stack>
+                  <Text>Custom Option 1</Text>
+                  <Text variation="subdued">With additional description</Text>
+                </Stack>
+              </RadioOption>
+              <RadioOption value="custom2">
+                <Stack>
+                  <Text>Custom Option 2</Text>
+                  <Text variation="subdued">With additional description</Text>
+                </Stack>
+              </RadioOption>
+            </RadioGroup>
+          </section>
+
+          <Heading level={4}>Disabled options</Heading>
+          <section>
+            <RadioGroup
+              value={basicValue}
+              onChange={setBasicValue}
+              ariaLabel="Radio group with disabled options"
+            >
+              <RadioOption value="1" label="Enabled Option" />
+              <RadioOption value="2" label="Disabled Option" disabled />
+              <RadioOption value="3" label="Another Enabled Option" />
+            </RadioGroup>
           </section>
         </Stack>
       </Stack>

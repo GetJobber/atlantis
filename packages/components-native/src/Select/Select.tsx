@@ -158,6 +158,7 @@ export function Select({
                 level="textSupporting"
                 variation={textVariation}
                 hideFromScreenReader={true}
+                selectable={false}
               >
                 {label}
               </Text>
@@ -167,6 +168,7 @@ export function Select({
                 <Text
                   variation={disabled ? "disabled" : "base"}
                   hideFromScreenReader={true}
+                  selectable={false}
                 >
                   {getValue()}
                 </Text>

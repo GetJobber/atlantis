@@ -10,6 +10,10 @@ declare const styles: {
   readonly "bannerAction": string;
   readonly "closeButton": string;
   readonly "iconWrapper": string;
+  readonly "successIcon": string;
+  readonly "errorIcon": string;
+  readonly "warningIcon": string;
+  readonly "noticeIcon": string;
 };
 export = styles;
 

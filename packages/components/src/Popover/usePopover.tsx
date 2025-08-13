@@ -3,6 +3,7 @@ import {
   autoPlacement,
   autoUpdate,
   flip,
+  limitShift,
   offset,
   shift,
   useFloating,
@@ -29,6 +30,7 @@ export const usePopover = ({
         mainAxis: true,
         crossAxis: false,
         padding: POPOVER_SHIFT_PADDING,
+        limiter: limitShift(),
       }),
     ];
 
@@ -70,14 +72,13 @@ export const usePopover = ({
   useRefocusOnActivator(open);
 
   return {
-    setPopperElement: refs.setFloating,
+    setFloatingElement: refs.setFloating,
     setArrowElement,
-    popperStyles: {
-      popper: floatingStyles,
+    floatingStyles: {
+      float: floatingStyles,
       arrow: middlewareData.arrow,
     },
     placement,
-    attributes: { popper: {} },
   };
 };
 

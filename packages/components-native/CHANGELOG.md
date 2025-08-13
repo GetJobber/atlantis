@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.84.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.84.0...@jobber/components-native@0.84.1) (2025-08-12)
+
+
+### Bug Fixes
+
+* **components-native:** Fix Select presses not always responding on Android [JOB-131539] ([#2657](https://github.com/GetJobber/atlantis/issues/2657)) ([063aee5](https://github.com/GetJobber/atlantis/commit/063aee5efc19a2654ce3db7e4c1fdb855b738c3b))
+
+
+
+
+
+# [0.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.83.0...@jobber/components-native@0.84.0) (2025-08-01)
+
+
+### Features
+
+* **components-native:** Add onTextLayout to Typography and Text ([#2637](https://github.com/GetJobber/atlantis/issues/2637)) ([0ac4ad6](https://github.com/GetJobber/atlantis/commit/0ac4ad6eb347c399110a99d3e6388031ba9d05fb))
+
+
+
+
+
+# [0.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.82.0...@jobber/components-native@0.83.0) (2025-08-01)
+
+
+### Features
+
+* **hooks:** Add useDebounce Hook to Hooks ([#2561](https://github.com/GetJobber/atlantis/issues/2561)) ([a3e4009](https://github.com/GetJobber/atlantis/commit/a3e4009d861021e472e26726694fe53ea9fb1d30))
+
+
+
+
+
 # [0.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.2...@jobber/components-native@0.82.0) (2025-07-03)
 
 

@@ -32,7 +32,17 @@ export function useResizeObserver<T extends HTMLElement>({
     width: undefined,
     height: undefined,
   });
-  const onResize = useMemo(() => throttle(setSize, wait), [wait]);
+  const onResize = useMemo(() => {
+    return throttle(({ width, height }: ObservedSize) => {
+      if (!width || width <= 1) {
+        // Ignore invalid values. ResizeObserver is unexpectedly looping between 1 and the actual
+        // width of the element. This is only happening in playwright chromium.
+        // Soon we need to replace this unmaintained package with a more reliable one.
+        return;
+      }
+      setSize({ width, height });
+    }, wait);
+  }, []);
   const { ref } = useResizeObserverPackage<T>({
     onResize,
   });

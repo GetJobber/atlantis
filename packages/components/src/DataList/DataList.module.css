@@ -21,8 +21,9 @@
   display: flex;
   position: relative;
   z-index: var(--elevation-base);
-  margin-bottom: var(--space-small);
+  padding-bottom: var(--space-small);
   align-items: center;
+  background-color: var(--color-surface);
 }
 
 .headerFilters {

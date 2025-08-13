@@ -1,12 +1,6 @@
-import React, {
-  Dispatch,
-  MutableRefObject,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
-import debounce from "lodash/debounce";
+import React, { Dispatch, MutableRefObject, useRef, useState } from "react";
 import noop from "lodash/noop";
+import { useDebounce } from "@jobber/hooks/useDebounce";
 import {
   UseMakeComboboxHandlersReturn,
   useMakeComboboxHandlers,
@@ -39,9 +33,9 @@ export function useCombobox(
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const searchCallback = useCallback(
-    debounce((value: string) => onSearch?.(value), debounceTime),
-    [onSearch, debounceTime],
+  const searchCallback = useDebounce(
+    (value: string) => onSearch?.(value),
+    debounceTime,
   );
 
   const { handleClose, handleSelection, handleOpen } = useMakeComboboxHandlers(

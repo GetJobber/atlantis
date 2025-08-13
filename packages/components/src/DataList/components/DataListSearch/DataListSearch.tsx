@@ -1,7 +1,7 @@
-import React, { useCallback, useRef, useState } from "react";
-import debounce from "lodash/debounce";
+import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
+import { useDebounce } from "@jobber/hooks/useDebounce";
 import styles from "./DataListSearch.module.css";
 import { InputText, InputTextRef } from "../../../InputText";
 import { useDataListContext } from "../../context/DataListContext";
@@ -28,12 +28,9 @@ export function InternalDataListSearch() {
   const { searchComponent, filterComponent, sorting, title } =
     useDataListContext();
 
-  const debouncedSearch = useCallback(
-    debounce(
-      (value: string) => searchComponent?.props?.onSearch(value),
-      SEARCH_DEBOUNCE_DELAY,
-    ),
-    [searchComponent?.props.onSearch],
+  const debouncedSearch = useDebounce(
+    (value: string) => searchComponent?.props?.onSearch(value),
+    SEARCH_DEBOUNCE_DELAY,
   );
 
   if (!searchComponent) return null;

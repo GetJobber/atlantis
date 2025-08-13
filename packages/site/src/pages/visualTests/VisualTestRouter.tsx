@@ -50,6 +50,7 @@ import { VisualTestTooltipPage } from "./VisualTestTooltipPage";
 import { VisualTestTypographyPage } from "./VisualTestTypographyPage";
 import { VisualTestTabsPage } from "./VisualTestTabsPage";
 import { VisualTestToastPage } from "./VisualTestToastPage";
+import { VisualTestBannerPage } from "./VisualTestBannerPage";
 
 export const VisualTestRouter = () => {
   return (
@@ -78,6 +79,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/autocomplete"
         exact={true}
         component={VisualTestAutocompletePage}
+      />
+      <Route
+        path="/visual-tests/banner"
+        exact={true}
+        component={VisualTestBannerPage}
       />
       <Route
         path="/visual-tests/chip"
