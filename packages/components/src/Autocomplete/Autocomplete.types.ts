@@ -324,6 +324,13 @@ export interface AutocompleteProposedProps<
   ) => React.ReactNode;
   readonly renderAction?: (action: MenuAction<ActionExtra>) => React.ReactNode;
 
+  /*
+   * Determines if the menu should open when the input is focused.
+   *
+   * @default false
+   */
+  readonly openOnFocus?: boolean;
+
   readonly placeholder?: string;
   readonly disabled?: boolean;
   readonly error?: string;
@@ -377,8 +384,6 @@ export interface AutocompleteProposedProps<
   readonly isOptionEqualToValue?: (option: Value, value: Value) => boolean;
 
   readonly onHighlightChange?: (option: Value) => void;
-
-  readonly openOnFocus?: boolean;
 
   readonly selectOnFocus?: boolean;
 }

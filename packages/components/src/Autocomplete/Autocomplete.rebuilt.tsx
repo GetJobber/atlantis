@@ -8,8 +8,15 @@ import React, {
 } from "react";
 import {
   FloatingPortal,
+  UseFloatingReturn,
+  UseInteractionsReturn,
+  autoUpdate,
+  flip,
+  offset,
+  size,
   useDismiss,
   useFloating,
+  useFocus,
   useInteractions,
   useListNavigation,
 } from "@floating-ui/react";
@@ -25,8 +32,8 @@ import {
 import styles from "./AutocompleteRebuilt.module.css";
 import { InputText, InputTextRef } from "../InputText";
 import { InputTextRebuiltProps } from "../InputText/InputText.types";
+import { calculateMaxHeight } from "../utils/maxHeight";
 
-// Local subcomponents kept inside this file for cohesion
 type RenderItem<T extends OptionLike> =
   | { kind: "option"; value: T }
   | { kind: "action"; action: React.ReactNode }
@@ -35,12 +42,59 @@ type RenderItem<T extends OptionLike> =
       section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>;
     };
 
-function useComboboxListNav() {
+const MENU_OFFSET = 8;
+// Make this configurable?
+const AUTOCOMPLETE_MAX_HEIGHT = 300;
+
+interface UseAutocompleteListNavReturn {
+  refs: UseFloatingReturn["refs"];
+  floatingStyles: UseFloatingReturn["context"]["floatingStyles"];
+  getReferenceProps: UseInteractionsReturn["getReferenceProps"];
+  getFloatingProps: UseInteractionsReturn["getFloatingProps"];
+  getItemProps: UseInteractionsReturn["getItemProps"];
+  activeIndex: number | null;
+  setActiveIndex: (index: number | null) => void;
+  listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+interface UseAutocompleteListNavProps {
+  openOnFocus: boolean;
+}
+
+function useAutocompleteListNav({
+  openOnFocus,
+}: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
   const { refs, floatingStyles, context } = useFloating({
+    placement: "bottom-start",
+    whileElementsMounted: autoUpdate,
     open,
-    onOpenChange: setOpen,
+    onOpenChange: (nextOpen, event, reason) => {
+      setOpen(nextOpen);
+
+      if (reason === "outside-press" || reason === "escape-key") {
+        // TODO: invoke onClose or onBlur callback or maybe onDismiss
+      }
+    },
+    middleware: [
+      offset(MENU_OFFSET),
+      flip({ fallbackPlacements: ["top-start", "bottom-end", "top-end"] }),
+      size({
+        apply({ availableHeight, elements }) {
+          const maxHeight = calculateMaxHeight(availableHeight, {
+            maxHeight: AUTOCOMPLETE_MAX_HEIGHT,
+          });
+
+          Object.assign(elements.floating.style, {
+            maxHeight: `${maxHeight}px`,
+          });
+        },
+      }),
+    ],
   });
+
   const listRef = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -48,16 +102,22 @@ function useComboboxListNav() {
     listRef,
     activeIndex,
     onNavigate: setActiveIndex,
+    // TODO: make it "real" via roles on actually focusable elements
     virtual: true,
   });
 
   const dismiss = useDismiss(context, {
     outsidePress: true,
     escapeKey: true,
+    outsidePressEvent: "click",
+  });
+
+  const focus = useFocus(context, {
+    enabled: openOnFocus,
   });
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
-    [listNav, dismiss],
+    [listNav, dismiss, focus],
   );
 
   return {
@@ -71,7 +131,7 @@ function useComboboxListNav() {
     listRef,
     open,
     setOpen,
-  } as const;
+  };
 }
 
 function MenuList<T extends OptionLike>({
@@ -190,6 +250,7 @@ function buildRenderableList<Value extends OptionLike>(
       items.push({ kind: "section", section: group as MenuSection<Value> });
     }
 
+    // TODO: default + opt-out
     const filtered = optionFilter
       ? group.options.filter(optionFilter)
       : group.options;
@@ -197,6 +258,7 @@ function buildRenderableList<Value extends OptionLike>(
       kind: "option" as const,
       value: o,
     }));
+
     items.push(...options);
 
     if (group.actionsBottom?.length) {
@@ -234,10 +296,11 @@ function AutocompleteRebuiltInternal<
     error,
     invalid,
     description,
-    size,
+    size: sizeProp,
     clearable,
     loading,
     renderInput,
+    openOnFocus = false,
   } = props;
 
   // Flatten for navigation and typeahead
@@ -254,13 +317,15 @@ function AutocompleteRebuiltInternal<
     listRef,
     open,
     setOpen,
-  } = useComboboxListNav();
+  } = useAutocompleteListNav({ openOnFocus });
 
   const renderable = useMemo(() => {
-    const predicate = (opt: Value) =>
+    // TODO: add default filter method
+    // TODO: add opt-out filter method for consumer to use with async
+    const filterMethod = (opt: Value) =>
       props.filterOptions ? props.filterOptions(opt, inputValue) : true;
 
-    return buildRenderableList(sections, renderAction, predicate);
+    return buildRenderableList(sections, renderAction, filterMethod);
   }, [sections, renderAction, props.filterOptions, inputValue]);
 
   // const hasMatch = useMemo(
@@ -294,9 +359,9 @@ function AutocompleteRebuiltInternal<
     }
   }
 
-  // Build input props bag for default or custom input rendering
+  // Do we even need size if we allow custom input rendering?
   const mappedSize: InputTextRebuiltProps["size"] =
-    size === "base" ? undefined : size;
+    sizeProp === "base" ? undefined : sizeProp;
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
@@ -313,7 +378,6 @@ function AutocompleteRebuiltInternal<
     loading,
     ...getReferenceProps({
       onKeyDown(event) {
-        // Arrow keys can open the list per APG guidance
         if (event.key === "ArrowDown" || event.key === "ArrowUp") {
           if (!open) setOpen(true);
         }
@@ -325,7 +389,7 @@ function AutocompleteRebuiltInternal<
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
     node: HTMLInputElement | HTMLTextAreaElement | null,
   ) => {
-    refs.setReference((node as unknown as Element) ?? null);
+    refs.setReference((node as Element) ?? null);
   };
 
   return (
@@ -336,7 +400,7 @@ function AutocompleteRebuiltInternal<
       ) : (
         <InputText ref={referenceInputRef} {...inputProps} />
       )}
-      {open ? (
+      {open && (
         <FloatingPortal>
           <MenuList<Value>
             items={renderable}
@@ -364,7 +428,7 @@ function AutocompleteRebuiltInternal<
             style={floatingStyles}
           />
         </FloatingPortal>
-      ) : null}
+      )}
     </div>
   );
 }
