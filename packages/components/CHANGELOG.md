@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.82.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.4...@jobber/components@6.82.5) (2025-08-14)
+
+
+### Bug Fixes
+
+* **components:** Use type import specifier in packages/components ([#2670](https://github.com/GetJobber/atlantis/issues/2670)) ([4b1d38e](https://github.com/GetJobber/atlantis/commit/4b1d38eb6c1f660b13f6a0b23a2e155e1add80cd))
+
+
+
+
+
 ## [6.82.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.3...@jobber/components@6.82.4) (2025-08-13)
 
 
