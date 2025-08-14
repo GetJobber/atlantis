@@ -112,10 +112,13 @@ function useAutocompleteListNav({
   const listNav = useListNavigation(context, {
     listRef,
     activeIndex,
-    // scrollItemIntoView: true,
+    scrollItemIntoView: true,
     onNavigate: setActiveIndex,
     // TODO: make it "real" via roles on actually focusable elements
     virtual: true,
+    // Only handle keyboard navigation when the menu is open so the
+    // first ArrowDown opens without moving the active index
+    enabled: open,
   });
 
   const dismiss = useDismiss(context, {
@@ -132,11 +135,16 @@ function useAutocompleteListNav({
     [listNav, dismiss, focus],
   );
 
-  // When the rendered options change due to filtering, reset to the first option
+  // When the rendered options change due to filtering, clamp or initialize the index
   useEffect(() => {
     listRef.current.length = optionCount;
-    setActiveIndex(optionCount > 0 ? 0 : null);
-  }, [optionCount]);
+    setActiveIndex(prev => {
+      if (optionCount <= 0) return null;
+      if (prev == null) return 0;
+
+      return prev >= optionCount ? optionCount - 1 : prev;
+    });
+  }, [optionCount, setActiveIndex]);
 
   return {
     refs,
@@ -232,6 +240,7 @@ function MenuList<T extends OptionLike>({
                   : styles.option
               }
               data-index={navigableIndex}
+              data-active={activeIndex === navigableIndex ? true : undefined}
               {...getItemProps()}
               onClick={() => onSelect(item.value)}
             >
@@ -254,6 +263,7 @@ function MenuList<T extends OptionLike>({
                 : styles.action
             }
             data-index={navigableIndex}
+            data-active={activeIndex === navigableIndex ? true : undefined}
             {...getItemProps()}
             onClick={() => {
               onAction({
@@ -277,7 +287,9 @@ function flattenMenu<Value extends OptionLike>(menu: MenuItem<Value>[]) {
 
   for (const item of menu) {
     sections.push(item);
+
     const opts = item.type === "section" ? item.options : item.options;
+
     optionItems.push(...opts);
   }
 
@@ -334,6 +346,25 @@ function getNavigableItemAtIndex<Value extends OptionLike>(
     if (item.kind === "section") continue;
     navigableIndex += 1;
     if (navigableIndex === activeIndex) return item;
+  }
+
+  return null;
+}
+
+function findNavigableIndexForValue<Value extends OptionLike>(
+  renderable: Array<RenderItem<Value>>,
+  equals: (a: Value, b: Value) => boolean,
+  selectedValue: Value,
+): number | null {
+  let navigableIndex = -1;
+
+  for (const item of renderable) {
+    if (item.kind === "section") continue;
+    navigableIndex += 1;
+
+    if (item.kind === "option" && equals(item.value, selectedValue)) {
+      return navigableIndex;
+    }
   }
 
   return null;
@@ -396,16 +427,35 @@ function AutocompleteRebuiltInternal<
   } = props;
 
   // Flatten for navigation and typeahead
-  const { sections } = useMemo(() => flattenMenu(menu), [menu]);
+  const { sections, optionItems } = useMemo(() => flattenMenu(menu), [menu]);
+
+  const exactLabelMatch = useMemo(() => {
+    return optionItems.some(o => getOptionLabel(o) === inputValue);
+  }, [optionItems, getOptionLabel, inputValue]);
+
+  // Track if the most recent input change was from the user typing
+  const lastInputWasUserRef = useRef(false);
 
   const renderable = useMemo(() => {
     // TODO: add default filter method
     // TODO: add opt-out filter method for consumer to use with async
     const filterMethod = (opt: Value) =>
-      props.filterOptions ? props.filterOptions(opt, inputValue) : true;
+      // Unfilter only for programmatic matches (selection/prepopulation).
+      // If the user typed to get an exact match, still treat it as a search.
+      exactLabelMatch && !lastInputWasUserRef.current
+        ? true
+        : props.filterOptions
+        ? props.filterOptions(opt, inputValue)
+        : true;
 
     return buildRenderableList(sections, renderAction, filterMethod);
-  }, [sections, renderAction, props.filterOptions, inputValue]);
+  }, [
+    sections,
+    renderAction,
+    props.filterOptions,
+    inputValue,
+    exactLabelMatch,
+  ]);
 
   const optionCount = useMemo(
     () =>
@@ -425,6 +475,7 @@ function AutocompleteRebuiltInternal<
     getFloatingProps,
     getItemProps,
     activeIndex,
+    setActiveIndex,
     listRef,
     open,
     setOpen,
@@ -438,7 +489,8 @@ function AutocompleteRebuiltInternal<
   // Prevent auto-open when we change input programmatically on selection
   const suppressOpenOnInputChangeRef = useRef(false);
 
-  // Open on input text; close when cleared
+  // Open on user typing; close when cleared. Do not auto-open for programmatic
+  // input (prepopulation/selection) when openOnFocus is false.
   useEffect(() => {
     if (suppressOpenOnInputChangeRef.current) {
       suppressOpenOnInputChangeRef.current = false;
@@ -447,7 +499,10 @@ function AutocompleteRebuiltInternal<
     }
 
     const hasText = inputValue.trim().length > 0;
-    setOpen(hasText);
+
+    if (lastInputWasUserRef.current) {
+      setOpen(hasText);
+    }
   }, [inputValue, setOpen]);
 
   function selectOption(option: Value) {
@@ -464,11 +519,53 @@ function AutocompleteRebuiltInternal<
       onChange(next as AutocompleteValue<Value, Multiple>);
     } else {
       onChange(option as AutocompleteValue<Value, Multiple>);
-      // Always reflect explicit selection in the input text
+      // Set flags to prevent auto-open on next input change
       suppressOpenOnInputChangeRef.current = true;
+      lastInputWasUserRef.current = false;
+      // Always reflect explicit selection in the input text for single-select
       onInputChange?.(getOptionLabel(option));
     }
   }
+
+  // When opening and the input text exactly matches an option label,
+  // move the activeIndex to that selected value
+  useEffect(() => {
+    if (!open) return;
+    if (!exactLabelMatch) return;
+    // Do not override navigation if the exact match came from user typing
+    if (lastInputWasUserRef.current) return;
+    // Only consider single-select's primary value for now
+    const selectedValue = multiple
+      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
+      : (value as Value | undefined);
+
+    if (!selectedValue) return;
+
+    const equals =
+      isOptionEqualToValue ??
+      ((a: Value, b: Value) => getOptionLabel(a) === getOptionLabel(b));
+
+    const selectedNavigableIndex = findNavigableIndexForValue(
+      renderable,
+      equals,
+      selectedValue,
+    );
+
+    if (selectedNavigableIndex != null) {
+      setActiveIndex(selectedNavigableIndex);
+    }
+
+    // No flag to reset here; behavior is purely derived
+  }, [
+    open,
+    exactLabelMatch,
+    multiple,
+    value,
+    renderable,
+    isOptionEqualToValue,
+    getOptionLabel,
+    setActiveIndex,
+  ]);
 
   const onSelection = useCallback(
     (option: Value) => {
@@ -496,7 +593,10 @@ function AutocompleteRebuiltInternal<
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
-    onChange: val => onInputChange?.(val),
+    onChange: val => {
+      lastInputWasUserRef.current = true;
+      onInputChange?.(val);
+    },
     onBlur: props.onBlur,
     onFocus: props.onFocus,
     placeholder,
