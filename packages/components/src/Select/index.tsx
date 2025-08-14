@@ -21,4 +21,4 @@ export function Select(props: SelectShimProps) {
   }
 }
 
-export { SelectRebuiltProps, SelectLegacyProps };
+export type { SelectRebuiltProps, SelectLegacyProps };

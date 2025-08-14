@@ -1,8 +1,9 @@
-import React, { KeyboardEvent, MouseEvent, useId } from "react";
+import type { KeyboardEvent, MouseEvent } from "react";
+import React, { useId } from "react";
 import classNames from "classnames";
 import styles from "./InternalChip.module.css";
 import { InternalChip } from "./InternalChip";
-import { ChipSingleSelectProps } from "./ChipsTypes";
+import type { ChipSingleSelectProps } from "./ChipsTypes";
 import { useInternalChips } from "./hooks/useInternalChip";
 
 type InternalChipChoiceProps = Pick<

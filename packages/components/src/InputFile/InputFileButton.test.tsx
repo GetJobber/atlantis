@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { InputFileButton } from "./InputFileButton";
 import { InputFileContentContext } from "./InputFileContentContext";
-import { ButtonSize } from "../Button/Button.types";
+import type { ButtonSize } from "../Button/Button.types";
 
 describe("InputFileButton", () => {
   const defaultContextValue = {

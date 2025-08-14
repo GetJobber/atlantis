@@ -6,7 +6,7 @@ import {
   useFloating,
 } from "@floating-ui/react";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
-import { MenuProps } from "./Autocomplete.types";
+import type { MenuProps } from "./Autocomplete.types";
 import { AUTOCOMPLETE_MAX_HEIGHT } from "./constants";
 import { calculateMaxHeight } from "../utils/maxHeight";
 

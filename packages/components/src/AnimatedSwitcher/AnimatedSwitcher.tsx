@@ -1,6 +1,8 @@
-import React, { ReactElement, useState } from "react";
-import { AnimatePresence, Variants, motion } from "framer-motion";
-import { IconNames } from "@jobber/design";
+import type { ReactElement } from "react";
+import React, { useState } from "react";
+import type { Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import type { IconNames } from "@jobber/design";
 import {
   DURATION_AVERAGE,
   DURATION_SIMPLE,

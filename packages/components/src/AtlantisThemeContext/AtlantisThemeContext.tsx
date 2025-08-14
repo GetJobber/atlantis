@@ -1,6 +1,6 @@
 import { darkTokens, tokens } from "@jobber/design";
+import type { PropsWithChildren } from "react";
 import React, {
-  PropsWithChildren,
   createContext,
   useCallback,
   useContext,
@@ -8,10 +8,10 @@ import React, {
   useState,
 } from "react";
 import merge from "lodash/merge";
-import {
+import { THEME_CHANGE_EVENT } from "./types";
+import type {
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,
-  THEME_CHANGE_EVENT,
   type Theme,
   type ThemeChangeDetails,
 } from "./types";

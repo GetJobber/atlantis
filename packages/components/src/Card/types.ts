@@ -1,5 +1,5 @@
-import { ReactElement, ReactNode } from "react";
-import colors from "./cardcolors.module.css";
+import type { ReactElement, ReactNode } from "react";
+import type colors from "./cardcolors.module.css";
 import { type ButtonProps } from "../Button";
 import { type MenuProps } from "../Menu";
 

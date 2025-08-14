@@ -1,10 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { InputFileDescription } from "./InputFileDescription";
-import {
-  InputFileContentContext,
-  InputFileContentContextValue,
-} from "./InputFileContentContext";
+import type { InputFileContentContextValue } from "./InputFileContentContext";
+import { InputFileContentContext } from "./InputFileContentContext";
 
 describe("InputFileDescription", () => {
   const defaultContextValue: InputFileContentContextValue = {

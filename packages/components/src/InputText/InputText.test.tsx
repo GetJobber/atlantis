@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { InputText } from ".";
-import { InputTextRef } from "./InputText.types";
+import type { InputTextRef } from "./InputText.types";
 
 describe("InputText Version 1", () => {
   it("renders a regular input for text and numbers", () => {

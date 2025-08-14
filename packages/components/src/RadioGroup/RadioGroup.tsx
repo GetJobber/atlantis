@@ -1,4 +1,5 @@
-import React, { ReactElement, useId } from "react";
+import type { ReactElement } from "react";
+import React, { useId } from "react";
 import classnames from "classnames";
 import { InternalRadioOption } from "./RadioOption";
 import styles from "./RadioGroup.module.css";

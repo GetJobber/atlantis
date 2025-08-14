@@ -1,4 +1,5 @@
-import React, { ForwardedRef, forwardRef } from "react";
+import type { ForwardedRef } from "react";
+import React, { forwardRef } from "react";
 import { InputText as InputTextLegacy } from "./InputText";
 import { InputTextSPAR } from "./InputText.rebuilt";
 import {
@@ -33,4 +34,4 @@ export const InputText = forwardRef(function InputTextShim(
   }
 });
 
-export { InputTextRef, InputTextRebuiltProps, InputTextLegacyProps };
+export type { InputTextRef, InputTextRebuiltProps, InputTextLegacyProps };

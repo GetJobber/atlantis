@@ -1,5 +1,5 @@
-import { PaginationState, SortingState } from "@tanstack/react-table";
-import { Dispatch, SetStateAction } from "react";
+import type { PaginationState, SortingState } from "@tanstack/react-table";
+import type { Dispatch, SetStateAction } from "react";
 
 export interface ManualPagination {
   /**

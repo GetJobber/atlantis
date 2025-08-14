@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./SideKick.module.css";
-import { SideKickProps } from "./types";
+import type { SideKickProps } from "./types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function SideKick({

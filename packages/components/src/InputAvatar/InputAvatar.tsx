@@ -1,7 +1,9 @@
-import React, { PropsWithChildren, useState } from "react";
+import type { PropsWithChildren } from "react";
+import React, { useState } from "react";
 import styles from "./InputAvatar.module.css";
 import { Avatar, type AvatarProps } from "../Avatar";
-import { FileUpload, InputFile, UploadParams } from "../InputFile";
+import type { FileUpload, UploadParams } from "../InputFile";
+import { InputFile } from "../InputFile";
 import { ProgressBar } from "../ProgressBar";
 import { Button } from "../Button";
 

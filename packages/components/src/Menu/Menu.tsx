@@ -1,17 +1,10 @@
-import React, {
-  CSSProperties,
-  MouseEvent,
-  ReactElement,
-  RefObject,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import type { CSSProperties, MouseEvent, ReactElement, RefObject } from "react";
+import React, { useId, useRef, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
-import { IconColorNames, IconNames } from "@jobber/design";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import {
   FloatingPortal,
   autoUpdate,

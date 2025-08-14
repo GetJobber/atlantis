@@ -3,11 +3,11 @@ import classnames from "classnames";
 import get from "lodash/get";
 import groupBy from "lodash/groupBy";
 import { Typography } from "@jobber/components/Typography";
-import {
+import type {
   BaseListItemProps,
-  ListItem,
   ListItemProps,
 } from "@jobber/components/List/ListItem";
+import { ListItem } from "@jobber/components/List/ListItem";
 import sectionStyles from "./SectionHeader.module.css";
 import styles from "./List.module.css";
 

@@ -1,6 +1,7 @@
-import React, { ChangeEvent, useId, useRef } from "react";
+import type { ChangeEvent } from "react";
+import React, { useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
-import { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.types";
+import type { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.types";
 import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 

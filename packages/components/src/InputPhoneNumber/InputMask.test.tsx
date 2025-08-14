@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { InputMask, InputMaskProps } from "./InputMask";
+import type { InputMaskProps } from "./InputMask";
+import { InputMask } from "./InputMask";
 import { FormField } from "../FormField";
 
 const placeholder = "Expiry date";

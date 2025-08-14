@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionProps, CardProps, HeaderActionProps } from "./types";
+import type { ActionProps, CardProps, HeaderActionProps } from "./types";
 import styles from "./Card.module.css";
 import { Heading } from "../Heading";
 import { Button, type ButtonProps } from "../Button";

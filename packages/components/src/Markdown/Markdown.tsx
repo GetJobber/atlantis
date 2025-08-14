@@ -1,4 +1,5 @@
-import React, { DetailedHTMLProps, HTMLAttributes } from "react";
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";

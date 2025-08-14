@@ -7,7 +7,7 @@ import {
   shift,
   useFloating,
 } from "@floating-ui/react";
-import { Placement } from "./Tooltip.types";
+import type { Placement } from "./Tooltip.types";
 
 const TOOLTIP_SHIFT_PADDING = 8;
 const TOOLTIP_ARROW_PADDING = 6;

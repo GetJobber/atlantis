@@ -1,6 +1,7 @@
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
+import type { XOR } from "ts-xor";
 import {
   Breakpoints,
   useResizeObserver,

@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
-import { Side } from "@floating-ui/utils";
-import {
+import type { Side } from "@floating-ui/utils";
+import type {
   PopoverArrowProps,
   PopoverDismissButtonProps,
   PopoverProps,

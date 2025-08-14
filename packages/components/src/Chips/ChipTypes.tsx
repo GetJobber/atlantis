@@ -1,4 +1,4 @@
-import { KeyboardEvent, MouseEvent, ReactElement } from "react";
+import type { KeyboardEvent, MouseEvent, ReactElement } from "react";
 import { type ChipButtonProps } from "./InternalChipButton";
 import { type AvatarProps } from "../Avatar";
 import { type IconProps } from "../Icon";

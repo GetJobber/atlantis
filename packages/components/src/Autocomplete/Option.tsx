@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import classnames from "classnames";
 import styles from "./Autocomplete.module.css";
 import { isOptionGroup } from "./Autocomplete.utils";

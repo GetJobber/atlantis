@@ -1,4 +1,4 @@
-import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
+import type { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
 import {
   type CommonAllowedElements,
   type CommonAtlantisProps,

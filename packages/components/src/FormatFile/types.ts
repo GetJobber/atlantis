@@ -1,4 +1,4 @@
-import { FileUpload } from "../InputFile";
+import type { FileUpload } from "../InputFile";
 
 export interface FormatFileProps {
   /**

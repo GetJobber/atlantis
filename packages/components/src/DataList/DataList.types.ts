@@ -1,6 +1,6 @@
-import { ReactElement, ReactNode } from "react";
-import { IconNames } from "@jobber/design";
-import { XOR } from "ts-xor";
+import type { ReactElement, ReactNode } from "react";
+import type { IconNames } from "@jobber/design";
+import type { XOR } from "ts-xor";
 import { type Breakpoints } from "./DataList.const";
 import { type ButtonProps } from "../Button";
 

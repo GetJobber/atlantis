@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./Tiles.module.css";
-import { TilesProps } from "./types";
+import type { TilesProps } from "./types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Tiles({

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import classNames from "classnames";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import styles from "./InternalChipDismissible.module.css";
-import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
+import type { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import {
   useInView,
   useInternalChipDismissibleInput,

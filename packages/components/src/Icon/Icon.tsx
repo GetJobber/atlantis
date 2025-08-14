@@ -1,5 +1,7 @@
-import React, { CSSProperties } from "react";
-import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
+import type { CSSProperties } from "react";
+import React from "react";
+import type { IconColorNames, IconNames, IconSizes } from "@jobber/design";
+import { getIcon } from "@jobber/design";
 
 export type { IconColorNames, IconNames } from "@jobber/design";
 

@@ -1,7 +1,7 @@
 import { useEffect, useImperativeHandle } from "react";
 import { useController, useForm, useFormContext } from "react-hook-form";
 import { mergeRefs } from "@jobber/components/utils/mergeRefs";
-import { FormFieldProps } from "../FormFieldTypes";
+import type { FormFieldProps } from "../FormFieldTypes";
 
 interface useAtlantisReactHookFormProps
   extends Pick<

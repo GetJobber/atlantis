@@ -1,12 +1,14 @@
-import React, { Children, ReactElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import React, { Children, isValidElement } from "react";
 import isEmpty from "lodash/isEmpty";
-import {
+import type {
   DataListHeader,
   type DataListItemType,
   type DataListItemTypeFromHeader,
   type DataListObject,
 } from "./DataList.types";
-import { BREAKPOINTS, Breakpoints } from "./DataList.const";
+import type { Breakpoints } from "./DataList.const";
+import { BREAKPOINTS } from "./DataList.const";
 import { DataListTags } from "./components/DataListTags";
 import { DataListHeaderTile } from "./components/DataListHeaderTile/DataListHeaderTile";
 import { FormatDate } from "../FormatDate";

@@ -1,5 +1,6 @@
-import React, { PropsWithChildren, createContext, useContext } from "react";
-import { ButtonSize } from "./Button.types";
+import type { PropsWithChildren } from "react";
+import React, { createContext, useContext } from "react";
+import type { ButtonSize } from "./Button.types";
 
 interface ButtonContextProps {
   size: ButtonSize;

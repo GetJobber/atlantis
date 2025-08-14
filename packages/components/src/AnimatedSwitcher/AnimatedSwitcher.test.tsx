@@ -1,7 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Variant } from "framer-motion";
-import { AnimatedSwitcher, AnimatedSwitcherProps } from "./AnimatedSwitcher";
+import type { Variant } from "framer-motion";
+import type { AnimatedSwitcherProps } from "./AnimatedSwitcher";
+import { AnimatedSwitcher } from "./AnimatedSwitcher";
 import {
   FADE,
   SLIDE_IN_DOWN,

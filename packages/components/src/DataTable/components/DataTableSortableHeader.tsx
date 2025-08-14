@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./DataTableStyles.module.css";
 import { DataTableHeaderCell } from "./DataTableHeaderCell";
-import { SortDirection, SortIcon } from "../SortIcon";
+import type { SortDirection } from "../SortIcon";
+import { SortIcon } from "../SortIcon";
 
 export interface DataTableSortableHeaderProps {
   /**

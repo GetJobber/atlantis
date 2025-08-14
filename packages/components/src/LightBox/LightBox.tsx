@@ -1,6 +1,8 @@
 /* eslint-disable max-statements */
-import React, { CSSProperties, useEffect, useRef, useState } from "react";
-import { AnimatePresence, PanInfo, motion } from "framer-motion";
+import type { CSSProperties } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import type { PanInfo } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ReactDOM from "react-dom";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";

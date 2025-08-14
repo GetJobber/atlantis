@@ -47,4 +47,4 @@ export const InputNumber = forwardRef(function InputNumberShim(
   }
 });
 
-export { InputNumberRef, InputNumberRebuiltProps, InputNumberLegacyProps };
+export type { InputNumberRef, InputNumberRebuiltProps, InputNumberLegacyProps };

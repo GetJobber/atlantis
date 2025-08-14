@@ -1,4 +1,5 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import { type ChipButtonProps, InternalChipButton } from "./InternalChipButton";
 import styles from "./InternalChip.module.css";
 import { type InternalChipProps } from "./ChipTypes";

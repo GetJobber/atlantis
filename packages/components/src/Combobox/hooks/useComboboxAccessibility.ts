@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import type { UseInteractionsReturn } from "@floating-ui/react";
 import {
-  UseInteractionsReturn,
   autoUpdate,
   flip,
   offset,

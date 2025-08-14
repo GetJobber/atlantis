@@ -1,4 +1,5 @@
-import { Children, ReactElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import { Children, isValidElement } from "react";
 import { ComboboxActivator } from "../components/ComboboxActivator";
 import {
   type ComboboxActionProps,

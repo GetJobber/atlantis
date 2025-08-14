@@ -1,4 +1,5 @@
-import React, { ForwardedRef, forwardRef } from "react";
+import type { ForwardedRef } from "react";
+import React, { forwardRef } from "react";
 import {
   type InputPhoneNumberLegacyProps,
   type InputPhoneNumberRebuiltProps,
@@ -27,4 +28,4 @@ export const InputPhoneNumber = forwardRef(function InputPhoneNumberShim(
   }
 });
 
-export { InputPhoneNumberLegacyProps, InputPhoneNumberRebuiltProps };
+export type { InputPhoneNumberLegacyProps, InputPhoneNumberRebuiltProps };
