@@ -3,9 +3,9 @@ import React, { Children, isValidElement } from "react";
 import isEmpty from "lodash/isEmpty";
 import type {
   DataListHeader,
-  type DataListItemType,
-  type DataListItemTypeFromHeader,
-  type DataListObject,
+  DataListItemType,
+  DataListItemTypeFromHeader,
+  DataListObject,
 } from "./DataList.types";
 import type { Breakpoints } from "./DataList.const";
 import { BREAKPOINTS } from "./DataList.const";

@@ -3,7 +3,7 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from "react";
-import type { type IconNames, tokens } from "@jobber/design";
+import type { IconNames, tokens } from "@jobber/design";
 import { type ButtonProps } from "../Button";
 import { type ButtonDismissProps } from "../ButtonDismiss";
 import type { IconProps } from "../Icon";

@@ -8,13 +8,13 @@ import React, {
   useState,
 } from "react";
 import merge from "lodash/merge";
-import { THEME_CHANGE_EVENT } from "./types";
 import type {
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,
-  type Theme,
-  type ThemeChangeDetails,
+  Theme,
+  ThemeChangeDetails,
 } from "./types";
+import { THEME_CHANGE_EVENT } from "./types";
 import styles from "./AtlantisThemeContext.module.css";
 
 export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
