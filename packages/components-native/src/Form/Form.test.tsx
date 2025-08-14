@@ -2,8 +2,10 @@ import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert, Keyboard } from "react-native";
 import { Host } from "react-native-portalize";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { Form, FormBannerMessage, FormBannerMessageType } from ".";
 import { FormBannerErrors, FormSubmitErrorType } from "./types";
+import * as useInternalFormModule from "./hooks/useInternalForm";
 import { atlantisContextDefaultValues } from "../AtlantisContext";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 import { Text } from "../Text";
@@ -298,6 +300,69 @@ describe("Form", () => {
           [testSwitchName]: true,
         });
       });
+    });
+
+    function mockUseInternalForm() {
+      const originalUseInternalForm = useInternalFormModule.useInternalForm;
+      let resolveInternalPromise: () => void;
+
+      const mockSubmitHandler = jest
+        .spyOn(useInternalFormModule, "useInternalForm")
+        .mockImplementation(formMethods => {
+          const originalHookValues = originalUseInternalForm(formMethods);
+
+          function handleSubmitWrapper(fn: SubmitHandler<FieldValues>) {
+            return async () => {
+              await originalHookValues.handleSubmit(fn)();
+
+              return new Promise<void>(resolve => {
+                resolveInternalPromise = resolve;
+              });
+            };
+          }
+
+          return {
+            ...originalHookValues,
+            handleSubmit: handleSubmitWrapper,
+          };
+        });
+
+      return {
+        mockSubmitHandler,
+        resolveFormSubmitPromise: () => {
+          resolveInternalPromise?.();
+        },
+      };
+    }
+
+    it("should call onSubmitSuccess after form submit promise resolves", async () => {
+      const formMock = mockUseInternalForm();
+      onSubmitMock.mockImplementationOnce(() => {
+        return Promise.resolve({
+          resolvedPromiseData: "passed",
+        });
+      });
+      const { getByLabelText } = render(<FormTest onSubmit={onSubmitMock} />);
+
+      fireEvent.changeText(
+        getByLabelText(testInputTextPlaceholder),
+        "New Value",
+      );
+      fireEvent.press(getByLabelText(saveButtonText));
+
+      await waitFor(() => {
+        expect(onSubmitMock).toHaveBeenCalled();
+      });
+      expect(onSuccessMock).not.toHaveBeenCalled();
+
+      act(() => formMock.resolveFormSubmitPromise());
+
+      await waitFor(() => {
+        expect(onSuccessMock).toHaveBeenCalledWith({
+          resolvedPromiseData: "passed",
+        });
+      });
+      formMock.mockSubmitHandler.mockRestore();
     });
 
     it("should dismiss keyboard when form is saved", async () => {
