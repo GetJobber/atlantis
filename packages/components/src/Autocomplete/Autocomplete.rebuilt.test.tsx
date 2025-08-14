@@ -18,7 +18,6 @@ import {
 // TODO: POM to abstract the interactions and give them meaningful names
 
 interface TestOption {
-  id: string | number;
   label: string;
 }
 
@@ -35,11 +34,7 @@ function buildMenu(overrides?: {
   return {
     menu: [
       menuOptions(
-        [
-          { id: "one", label: "One" },
-          { id: "two", label: "Two" },
-          { id: "three", label: "Three" },
-        ],
+        [{ label: "One" }, { label: "Two" }, { label: "Three" }],
         [
           {
             type: "action",
@@ -64,7 +59,6 @@ function buildMenu(overrides?: {
 
 function Wrapper({
   initialValue,
-  initialInputValue,
   onChange,
   onInputChange,
   menu,
@@ -81,7 +75,7 @@ function Wrapper({
     initialValue,
   );
   const [inputValue, setInputValue] = React.useState<string>(
-    initialInputValue ?? "",
+    initialValue?.label ?? "",
   );
   const built = React.useMemo(() => buildMenu(), []);
 
@@ -93,9 +87,6 @@ function Wrapper({
       inputValue={inputValue}
       onInputChange={onInputChange ?? setInputValue}
       menu={menu ?? built.menu}
-      filterOptions={() => true}
-      getOptionLabel={opt => opt.label}
-      getOptionKey={opt => opt.id}
       placeholder=""
       openOnFocus={openOnFocus}
     />
@@ -142,7 +133,7 @@ describe("AutocompleteRebuilt", () => {
     await navigateDown(1);
     await selectWithKeyboard();
 
-    expect(onChange).toHaveBeenCalledWith({ id: "one", label: "One" });
+    expect(onChange).toHaveBeenCalledWith({ label: "One" });
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
@@ -154,7 +145,7 @@ describe("AutocompleteRebuilt", () => {
     await openAutocomplete("arrowDown");
     await selectWithClick("Two");
 
-    expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
+    expect(onChange).toHaveBeenCalledWith({ label: "Two" });
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
@@ -226,17 +217,27 @@ describe("AutocompleteRebuilt", () => {
     await navigateDown(1);
     await selectWithKeyboard();
 
-    expect(onChange).toHaveBeenCalledWith({ id: "one", label: "One" });
+    expect(onChange).toHaveBeenCalledWith({ label: "One" });
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
+
+  describe("with a selection", () => {
+    it("highlights the selected option on open", async () => {
+      render(<Wrapper initialValue={{ label: "Two" }} />);
+
+      await openAutocomplete("arrowDown");
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Two");
+    });
   });
 
   describe("openOnFocus=false (default)", () => {
     it("shows full list when input exactly matches an option label (unfiltered) after user opens", async () => {
       render(
-        <Wrapper
-          initialValue={{ id: "two", label: "Two" }}
-          initialInputValue="Two"
-        />,
+        <Wrapper initialValue={{ label: "Two" }} initialInputValue="Two" />,
       );
 
       await openAutocomplete("arrowDown");
@@ -290,7 +291,7 @@ describe("AutocompleteRebuilt", () => {
     it("opens on focus and shows full list when input exactly matches an option label and highlights selected", async () => {
       render(
         <Wrapper
-          initialValue={{ id: "two", label: "Two" }}
+          initialValue={{ label: "Two" }}
           initialInputValue="Two"
           openOnFocus
         />,
@@ -323,7 +324,6 @@ describe("AutocompleteRebuilt", () => {
             allowFreeForm
             createFreeFormValue={input => ({
               label: input,
-              id: "1998",
             })}
             value={undefined}
             onChange={onChange}
@@ -341,7 +341,6 @@ describe("AutocompleteRebuilt", () => {
       await blurAutocomplete();
 
       expect(onChange).toHaveBeenCalledWith({
-        id: "1998",
         label: "NewCity",
       });
     });
@@ -359,7 +358,6 @@ describe("AutocompleteRebuilt", () => {
             allowFreeForm
             createFreeFormValue={input => ({
               label: input,
-              id: "1998",
             })}
             value={undefined}
             onChange={onChange}
@@ -378,7 +376,6 @@ describe("AutocompleteRebuilt", () => {
       await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledWith({
-        id: "1998",
         label: "Zed",
       });
     });
@@ -396,7 +393,6 @@ describe("AutocompleteRebuilt", () => {
             allowFreeForm
             createFreeFormValue={input => ({
               label: input,
-              id: "1998",
             })}
             value={undefined}
             onChange={onChange}
@@ -413,7 +409,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete("type", "Two");
       await blurAutocomplete();
 
-      expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
+      expect(onChange).toHaveBeenCalledWith({ label: "Two" });
     });
 
     it("treats different case as free-form by default (case-sensitive)", async () => {
@@ -429,7 +425,6 @@ describe("AutocompleteRebuilt", () => {
             allowFreeForm
             createFreeFormValue={input => ({
               label: input,
-              id: "1998",
             })}
             value={undefined}
             onChange={onChange}
@@ -447,7 +442,6 @@ describe("AutocompleteRebuilt", () => {
       await blurAutocomplete();
 
       expect(onChange).toHaveBeenCalledWith({
-        id: "1998",
         label: "two",
       });
     });
@@ -465,7 +459,6 @@ describe("AutocompleteRebuilt", () => {
             allowFreeForm
             createFreeFormValue={input => ({
               label: input,
-              id: "1998",
             })}
             value={undefined}
             onChange={onChange}
@@ -485,7 +478,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete("type", "two");
       await blurAutocomplete();
 
-      expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
+      expect(onChange).toHaveBeenCalledWith({ label: "Two" });
     });
 
     it("commits free-form on Enter when menu is closed", async () => {
@@ -501,7 +494,6 @@ describe("AutocompleteRebuilt", () => {
             allowFreeForm
             createFreeFormValue={input => ({
               label: input,
-              id: "1998",
             })}
             value={undefined}
             onChange={onChange}
@@ -520,19 +512,13 @@ describe("AutocompleteRebuilt", () => {
       await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledWith({
-        id: "1998",
         label: "Custom",
       });
     });
   });
 
   it("highlights selected item on reopen when input exactly matches that option", async () => {
-    render(
-      <Wrapper
-        initialValue={{ id: "two", label: "Two" }}
-        initialInputValue="Two"
-      />,
-    );
+    render(<Wrapper initialValue={{ label: "Two" }} initialInputValue="Two" />);
 
     await openAutocomplete("arrowDown");
     await screen.findByRole("listbox");
@@ -556,6 +542,21 @@ describe("AutocompleteRebuilt", () => {
   });
 
   it("highlights the correct option reopening after a selection", async () => {
+    render(<Wrapper />);
+    await openAutocomplete("arrowDown");
+    await navigateDown(3);
+    await selectWithKeyboard();
+
+    // selection closed the menu
+    await openAutocomplete("arrowUp");
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).not.toBeNull();
+    expect(activeOption?.textContent).toContain("Three");
+  });
+
+  it("highlights the correct option reopening after bluring", async () => {
     render(<Wrapper />);
     await openAutocomplete("arrowDown");
     await navigateDown(3);
@@ -619,7 +620,7 @@ describe("AutocompleteRebuilt", () => {
       render(
         <AutocompleteRebuilt<TestOption>
           version={2}
-          value={{ id: "two", label: "Two" }}
+          value={{ label: "Two" }}
           onChange={jest.fn()}
           inputValue={"Two"}
           onInputChange={jest.fn()}
