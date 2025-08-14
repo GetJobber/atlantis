@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import classnames from "classnames";
+import { fn } from "storybook/test";
 import type { ButtonType, ButtonVariation } from "@jobber/components/Button";
 import { Button, useButtonStyles } from "@jobber/components/Button";
 import { Form } from "@jobber/components/Form";
@@ -10,28 +11,20 @@ import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Heading } from "@jobber/components/Heading";
 
-export default {
+const meta = {
   title: "Components/Actions/Button",
   component: Button,
-  parameters: {
-    viewMode: "story",
-    previewTabs: { code: { hidden: false } },
-  },
-  decorators: [
-    // Workaround Storybook's wrapping flex parent that make everything full width
-    Story => (
-      <div>
-        <Story />
-      </div>
-    ),
-  ],
-} as Meta<typeof Button>;
-
-export const Basic: StoryObj<typeof Button> = {
   args: {
     label: "New Job",
+    onClick: fn(),
+  },
+} satisfies Meta<typeof Button>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {
+  args: {
     type: "primary",
-    onClick: () => alert("👍"),
   },
 };
 
@@ -55,22 +48,8 @@ const RoutingTemplate = () => (
   </Router>
 );
 
-export const ClientSideRouting: StoryObj<typeof Button> = {
+export const ClientSideRouting: Story = {
   render: RoutingTemplate,
-  parameters: {
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "react-router-dom": [
-            "Route",
-            { name: "BrowserRouter", alias: "Router" },
-            "Switch",
-          ],
-        },
-      },
-    },
-  },
 };
 
 const FormTemplate = () => (
@@ -358,37 +337,14 @@ const ComposedLinksTemplate = () => {
   );
 };
 
-export const ComposedLinks: StoryObj<typeof Button> = {
+export const ComposedLinks: Story = {
   render: ComposedLinksTemplate,
-  parameters: {
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "react-router-dom": [
-            "Route",
-            { name: "BrowserRouter", alias: "Router" },
-            "Switch",
-          ],
-          "@jobber/components/Button": ["useButtonStyles"],
-        },
-      },
-    },
-  },
 };
 
-export const Comparison: StoryObj<typeof Button> = {
+export const Comparison: Story = {
   render: ComparisonTemplate,
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Comparison between Button and ButtonComposed components with various props.",
-      },
-    },
-  },
 };
 
-export const FormSubmit: StoryObj<typeof Button> = {
+export const FormSubmit: Story = {
   render: FormTemplate,
 };
