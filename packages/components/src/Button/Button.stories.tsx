@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import classnames from "classnames";
-import {
-  Button,
-  ButtonType,
-  ButtonVariation,
-  useButtonStyles,
-} from "@jobber/components/Button";
+import type { ButtonType, ButtonVariation } from "@jobber/components/Button";
+import { Button, useButtonStyles } from "@jobber/components/Button";
 import { Form } from "@jobber/components/Form";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
