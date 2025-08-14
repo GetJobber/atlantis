@@ -99,9 +99,12 @@ export const Autocomplete = AutocompleteForwarded as {
       ref?: React.Ref<InputTextRef>;
     },
   ): ReturnType<typeof AutocompleteShim>;
-  (props: AutocompleteLegacyProps & { version?: 1 }): ReturnType<
-    typeof AutocompleteShim
-  >;
+  (
+    props: AutocompleteLegacyProps & {
+      version?: 1;
+      ref?: React.Ref<InputTextRef>;
+    },
+  ): ReturnType<typeof AutocompleteShim>;
 };
 
 export type {
