@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import omit from "lodash/omit";
 import { useTimePredict } from "./hooks/useTimePredict";
-import { InputTimeProps } from "./InputTime.types";
+import type { InputTimeProps } from "./InputTime.types";
 import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
-import { FormField, FormFieldProps } from "../FormField";
+import type { FormFieldProps } from "../FormField";
+import { FormField } from "../FormField";
 
 export function InputTime({
   defaultValue,

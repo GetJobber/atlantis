@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
-import React, { ReactPortal } from "react";
+import type { ReactPortal } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import {
   BREAKPOINT_SIZES,

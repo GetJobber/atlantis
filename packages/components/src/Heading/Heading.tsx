@@ -1,5 +1,7 @@
-import React, { ReactNode } from "react";
-import { Typography, TypographyOptions, TypographyProps } from "../Typography";
+import type { ReactNode } from "react";
+import React from "react";
+import type { TypographyOptions, TypographyProps } from "../Typography";
+import { Typography } from "../Typography";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 

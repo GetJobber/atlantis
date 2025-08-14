@@ -10,7 +10,7 @@ import {
   Text,
 } from "@jobber/components";
 import {
-  AnyOption,
+  type AnyOption,
   Autocomplete,
   BaseMenuGroupOption,
   BaseMenuOption,

@@ -1,5 +1,6 @@
 import React from "react";
-import { Table, flexRender } from "@tanstack/react-table";
+import type { Table } from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
 import styles from "./Footer.module.css";
 
 export type ViewType = "desktop" | "handheld";

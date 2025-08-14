@@ -1,4 +1,4 @@
-import { LegacyRef, MutableRefObject, RefCallback } from "react";
+import type { LegacyRef, MutableRefObject, RefCallback } from "react";
 
 /**
  * Given an array of refs, merge them into a single ref callback.

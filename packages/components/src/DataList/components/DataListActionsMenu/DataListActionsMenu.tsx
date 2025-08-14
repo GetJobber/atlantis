@@ -1,10 +1,7 @@
-import React, {
-  CSSProperties,
-  MouseEvent,
-  PropsWithChildren,
-  useState,
-} from "react";
-import { AnimatePresence, Variants, motion } from "framer-motion";
+import type { CSSProperties, MouseEvent, PropsWithChildren } from "react";
+import React, { useState } from "react";
+import type { Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";

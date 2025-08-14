@@ -1,7 +1,8 @@
-import React, { ForwardedRef, forwardRef } from "react";
+import type { ForwardedRef } from "react";
+import React, { forwardRef } from "react";
 import { InputDate as InputDateLegacy } from "./InputDate";
 import { InputDateRebuilt } from "./InputDate.rebuilt";
-import {
+import type {
   InputDateProps as InputDateLegacyProps,
   InputDateRebuiltProps,
 } from "./InputDate.types";

@@ -1,7 +1,8 @@
-import React, { Children, ReactElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import React, { Children, isValidElement } from "react";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Button } from "@jobber/components/Button";
-import {
+import type {
   DataListActionProps,
   DataListActionsProps,
   DataListObject,

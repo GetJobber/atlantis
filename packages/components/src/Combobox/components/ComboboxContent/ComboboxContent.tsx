@@ -7,7 +7,7 @@ import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxContentHeader } from "./ComboboxContentHeader";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
-import { ComboboxContentProps } from "../../Combobox.types";
+import type { ComboboxContentProps } from "../../Combobox.types";
 import { COMBOBOX_MENU_ID } from "../../constants";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {

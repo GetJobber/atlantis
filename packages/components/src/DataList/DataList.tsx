@@ -22,7 +22,7 @@ import { DataListItemActions } from "./components/DataListItemActions";
 import { DataListAction } from "./components/DataListAction";
 import { DataListLayoutActions } from "./components/DataListLayoutActions";
 import { DataListContext, useDataListContext } from "./context/DataListContext";
-import {
+import type {
   DataListBulkActionProps,
   DataListBulkActionsProps,
   DataListEmptyStateProps,
@@ -39,8 +39,8 @@ import {
   getCompoundComponents,
   sortBreakpoints,
 } from "./DataList.utils";
+import type { Breakpoints } from "./DataList.const";
 import {
-  Breakpoints,
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
   DATA_LIST_TITLE_CONTAINER_TEST_ID,
 } from "./DataList.const";

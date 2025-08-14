@@ -1,6 +1,6 @@
-import { Clearable } from "@jobber/hooks";
-import { XOR } from "ts-xor";
-import {
+import type { Clearable } from "@jobber/hooks";
+import type { XOR } from "ts-xor";
+import type {
   AutocompleteTypes,
   CommonFormFieldProps,
   FormFieldProps,

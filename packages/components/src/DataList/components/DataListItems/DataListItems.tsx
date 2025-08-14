@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { DataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListItem } from "@jobber/components/DataList/components/DataListItem";
-import {
+import type {
   Breakpoints,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";

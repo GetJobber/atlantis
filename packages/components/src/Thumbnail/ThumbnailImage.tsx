@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import styles from "./ThumbnailImage.module.css";
-import { FileUpload } from "../InputFile";
+import type { FileUpload } from "../InputFile";
 import { Glimmer } from "../Glimmer";
 
 interface InternalThumbnailImageProps {

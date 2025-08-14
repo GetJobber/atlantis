@@ -1,8 +1,9 @@
-import React, { MouseEvent, useMemo, useState } from "react";
+import type { MouseEvent } from "react";
+import React, { useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
-import {
+import type {
   DataListLayoutProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";

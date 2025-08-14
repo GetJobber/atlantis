@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
 import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
-import { InputDateRebuiltProps } from "./InputDate.types";
-import { Suffix } from "../FormField";
+import type { InputDateRebuiltProps } from "./InputDate.types";
+import type { Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
-import { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
+import type { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
 import { InputText } from "../InputText";
 
 export const InputDateRebuilt = forwardRef<

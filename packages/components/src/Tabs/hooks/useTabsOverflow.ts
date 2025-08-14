@@ -1,10 +1,5 @@
-import {
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import type { MutableRefObject } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import throttle from "lodash/throttle";
 
 interface UseTabsOverflow {

@@ -1,13 +1,7 @@
-import React, {
-  ChangeEvent,
-  ReactElement,
-  Ref,
-  RefObject,
-  cloneElement,
-  forwardRef,
-  isValidElement,
-} from "react";
-import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
+import type { ChangeEvent, ReactElement, Ref, RefObject } from "react";
+import React, { cloneElement, forwardRef, isValidElement } from "react";
+import type { ReactDatePickerProps } from "react-datepicker";
+import type ReactDatePicker from "react-datepicker";
 import omit from "lodash/omit";
 import { Button } from "../Button";
 

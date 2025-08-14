@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ComboboxContext } from "../ComboboxProvider";
 import { COMBOBOX_MENU_ID } from "../constants";
-import { ComboboxActivatorAccessibility } from "../Combobox.types";
+import type { ComboboxActivatorAccessibility } from "../Combobox.types";
 
 export function useComboboxActivatorAccessibility(): ComboboxActivatorAccessibility {
   const { label, open } = useContext(ComboboxContext);

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ButtonSize } from "../Button";
+import type { ButtonSize } from "../Button";
 
 export interface InputFileContentContextValue {
   readonly fileType: string;

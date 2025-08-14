@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import styles from "./FormatFile.module.css";
-import { FormatFileProps } from "./types";
+import type { FormatFileProps } from "./types";
 
 export const useFormatFileStyles = ({
   display = "expanded",

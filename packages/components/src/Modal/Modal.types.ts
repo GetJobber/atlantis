@@ -1,13 +1,14 @@
-import React, { MutableRefObject, PropsWithChildren, ReactNode } from "react";
-import {
+import type { MutableRefObject, PropsWithChildren, ReactNode } from "react";
+import type React from "react";
+import type {
   ExtendedRefs,
   FloatingContext,
   ReferenceType,
   UseInteractionsReturn,
 } from "@floating-ui/react";
-import { XOR } from "ts-xor";
-import sizes from "./ModalSizes.module.css";
-import { ButtonProps } from "../Button";
+import type { XOR } from "ts-xor";
+import type sizes from "./ModalSizes.module.css";
+import type { ButtonProps } from "../Button";
 
 export interface ModalProviderProps {
   readonly children: React.ReactNode;

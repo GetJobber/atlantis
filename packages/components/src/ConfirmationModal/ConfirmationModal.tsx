@@ -1,6 +1,5 @@
+import type { ReactNode, Ref } from "react";
 import React, {
-  ReactNode,
-  Ref,
   forwardRef,
   useEffect,
   useImperativeHandle,

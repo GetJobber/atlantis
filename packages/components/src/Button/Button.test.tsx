@@ -1,11 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import {
-  Route,
-  RouteChildrenProps,
-  BrowserRouter as Router,
-  Switch,
-} from "react-router-dom";
+import type { RouteChildrenProps } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import { Button } from "./Button";
 
