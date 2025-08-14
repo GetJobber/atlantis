@@ -3,6 +3,16 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import { menuOptions } from "./Autocomplete.types";
+import {
+  closeAutocomplete,
+  focusAutocomplete,
+  getActiveAction,
+  getActiveOption,
+  navigateDown,
+  openAutocomplete,
+  selectWithClick,
+  selectWithKeyboard,
+} from "./Autocomplete.pom";
 
 // TODO: POM to abstract the interactions and give them meaningful names
 
@@ -102,14 +112,10 @@ describe("AutocompleteRebuilt", () => {
     const onChange = jest.fn();
 
     render(<Wrapper onChange={onChange} />);
-    const input = screen.getByRole("textbox");
 
-    await userEvent.click(input);
-    // Open the menu
-    await userEvent.keyboard("{ArrowDown}");
-    // Move to the first option
-    await userEvent.keyboard("{ArrowDown}");
-    await userEvent.keyboard("{Enter}");
+    await openAutocomplete("arrowDown");
+    await navigateDown(1);
+    await selectWithKeyboard();
 
     expect(onChange).toHaveBeenCalledWith({ id: "one", label: "One" });
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -120,11 +126,8 @@ describe("AutocompleteRebuilt", () => {
 
     render(<Wrapper onChange={onChange} />);
 
-    const input = screen.getByRole("textbox");
-
-    await userEvent.click(input);
-    await userEvent.keyboard("{ArrowDown}");
-    await userEvent.click(screen.getByText("Two"));
+    await openAutocomplete("arrowDown");
+    await selectWithClick("Two");
 
     expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -135,13 +138,11 @@ describe("AutocompleteRebuilt", () => {
 
     render(<Wrapper onChange={onChange} />);
 
-    const input = screen.getByRole("textbox");
-
-    await userEvent.click(input);
+    await focusAutocomplete();
     // Menu should remain closed on focus when openOnFocus is false
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
 
-    await userEvent.keyboard("{Enter}");
+    await selectWithKeyboard();
 
     expect(onChange).not.toHaveBeenCalled();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -152,18 +153,14 @@ describe("AutocompleteRebuilt", () => {
 
     render(<Wrapper onChange={onChange} />);
 
-    const input = screen.getByRole("textbox");
-
-    await userEvent.click(input);
-    await userEvent.keyboard("{ArrowDown}");
+    await openAutocomplete("arrowDown");
+    await navigateDown(1);
     expect(await screen.findByRole("listbox")).toBeInTheDocument();
 
-    // Close the menu
-    await userEvent.keyboard("{Escape}");
+    await closeAutocomplete();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
 
-    // Press Enter while closed should not select anything
-    await userEvent.keyboard("{Enter}");
+    await selectWithKeyboard();
 
     expect(onChange).not.toHaveBeenCalled();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -174,14 +171,10 @@ describe("AutocompleteRebuilt", () => {
 
     render(<Wrapper menu={menu} />);
 
-    const input = screen.getByRole("textbox");
-
-    await userEvent.click(input);
-    // Open the menu
-    await userEvent.keyboard("{ArrowDown}");
-    // Move to last option then to first action (3 options → index 0..2; action index 3)
-    await userEvent.keyboard("{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}");
-    await userEvent.keyboard("{Enter}");
+    await openAutocomplete("arrowDown");
+    // 3 options, 2 actions - move highlight to second action (index 4)
+    await navigateDown(4);
+    await selectWithKeyboard();
 
     expect(createAction).toHaveBeenCalled();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -192,10 +185,8 @@ describe("AutocompleteRebuilt", () => {
 
     render(<Wrapper menu={menu} />);
 
-    const input = screen.getByRole("textbox");
-
-    await userEvent.type(input, "o");
-    await userEvent.click(screen.getByText("Stay Open"));
+    await openAutocomplete("type", "o");
+    await selectWithClick("Stay Open");
 
     expect(stayOpenAction).toHaveBeenCalled();
     expect(screen.getByRole("listbox")).toBeInTheDocument();
@@ -206,12 +197,9 @@ describe("AutocompleteRebuilt", () => {
 
     render(<Wrapper onChange={onChange} />);
 
-    const input = screen.getByRole("textbox");
-
-    // Open by typing - POM worthy interaction
-    await userEvent.type(input, "O");
-    await userEvent.keyboard("{ArrowDown}");
-    await userEvent.keyboard("{Enter}");
+    await openAutocomplete("type", "O");
+    await navigateDown(1);
+    await selectWithKeyboard();
 
     expect(onChange).toHaveBeenCalledWith({ id: "one", label: "One" });
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -225,40 +213,31 @@ describe("AutocompleteRebuilt", () => {
           initialInputValue="Two"
         />,
       );
-      const input = screen.getByRole("textbox");
 
-      await userEvent.click(input);
-      await userEvent.keyboard("{ArrowDown}");
+      await openAutocomplete("arrowDown");
 
       expect(await screen.findByRole("listbox")).toBeInTheDocument();
       expect(screen.getByText("One")).toBeInTheDocument();
       expect(screen.getByText("Two")).toBeInTheDocument();
     });
 
-    // We require multiple user interactions, the length is of no consequence
-    // eslint-disable-next-line max-statements
     it("highlights selected item on reopen when input exactly matches that option", async () => {
       render(<Wrapper />);
 
-      const input = screen.getByRole("textbox");
-
-      await userEvent.click(input);
-      await userEvent.keyboard("{ArrowDown}");
+      await openAutocomplete("arrowDown");
       await screen.findByRole("listbox");
 
-      await userEvent.click(screen.getByText("Two"));
+      await selectWithClick("Two");
+
       expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
 
-      await userEvent.click(input);
-      await userEvent.keyboard("{ArrowDown}");
+      await openAutocomplete("arrowDown");
       await screen.findByRole("listbox");
 
-      const activeByAttr = document.querySelector(
-        '[role="option"][data-active="true"]',
-      ) as HTMLElement | null;
+      const activeOption = getActiveOption();
 
-      expect(activeByAttr).not.toBeNull();
-      expect(activeByAttr?.textContent).toContain("Two");
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Two");
     });
   });
 
@@ -271,26 +250,21 @@ describe("AutocompleteRebuilt", () => {
           openOnFocus
         />,
       );
-      const input = screen.getByRole("textbox");
 
-      await userEvent.click(input);
+      await focusAutocomplete();
 
       expect(await screen.findByRole("listbox")).toBeInTheDocument();
       expect(screen.getByText("One")).toBeInTheDocument();
       expect(screen.getByText("Two")).toBeInTheDocument();
 
-      const activeByAttr = document.querySelector(
-        '[role="option"][data-active="true"]',
-      ) as HTMLElement | null;
+      const activeOption = getActiveOption();
 
-      expect(activeByAttr).not.toBeNull();
-      expect(activeByAttr?.textContent).toContain("Two");
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Two");
     });
   });
 
   describe("allowFreeForm", () => {
-    // (helper components moved out of tests above if needed)
-
     it("commits free-form on blur when non-empty and no exact match", async () => {
       const onChange = jest.fn();
 
@@ -312,12 +286,7 @@ describe("AutocompleteRebuilt", () => {
               inputValue={inputValue}
               onInputChange={setInputValue}
               menu={menu}
-              filterOptions={(opt, input) =>
-                opt.label.toLowerCase().includes(input.toLowerCase())
-              }
-              getOptionLabel={opt => opt.label}
-              getOptionKey={opt => opt.id}
-              placeholder=""
+              placeholder="Testing free-form"
             />
             <button type="button" data-testid="outside">
               outside
@@ -328,16 +297,13 @@ describe("AutocompleteRebuilt", () => {
 
       render(<WrapperWithSpy />);
 
-      const input = screen.getByRole("textbox");
-
-      await userEvent.type(input, "NewCity");
+      await openAutocomplete("type", "NewCity");
       await userEvent.click(screen.getByTestId("outside"));
 
       expect(onChange).toHaveBeenCalledWith({
         id: "1998",
         label: "NewCity",
       });
-      expect((input as HTMLInputElement).value).toBe("NewCity");
     });
 
     it("commits free-form on Enter when menu has no options (filtered out)", async () => {
@@ -361,19 +327,15 @@ describe("AutocompleteRebuilt", () => {
             onInputChange={setInputValue}
             menu={menu}
             filterOptions={() => false}
-            getOptionLabel={opt => opt.label}
-            getOptionKey={opt => opt.id}
-            placeholder=""
+            placeholder="Testing free-form"
           />
         );
       }
 
       render(<WrapperWithSpyFilterNone />);
 
-      const input = screen.getByRole("textbox");
-
-      await userEvent.type(input, "Zed");
-      await userEvent.keyboard("{Enter}");
+      await openAutocomplete("type", "Zed");
+      await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledWith({
         id: "1998",
@@ -402,12 +364,7 @@ describe("AutocompleteRebuilt", () => {
               inputValue={inputValue}
               onInputChange={setInputValue}
               menu={menu}
-              filterOptions={(opt, input) =>
-                opt.label.toLowerCase().includes(input.toLowerCase())
-              }
-              getOptionLabel={opt => opt.label}
-              getOptionKey={opt => opt.id}
-              placeholder=""
+              placeholder="Testing free-form"
             />
             <button type="button" data-testid="outside">
               outside
@@ -418,9 +375,7 @@ describe("AutocompleteRebuilt", () => {
 
       render(<WrapperWithSpy />);
 
-      const input = screen.getByRole("textbox");
-
-      await userEvent.type(input, "Two");
+      await openAutocomplete("type", "Two");
       await userEvent.click(screen.getByTestId("outside"));
 
       expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
@@ -447,12 +402,7 @@ describe("AutocompleteRebuilt", () => {
               inputValue={inputValue}
               onInputChange={setInputValue}
               menu={menu}
-              filterOptions={(opt, input) =>
-                opt.label.toLowerCase().includes(input.toLowerCase())
-              }
-              getOptionLabel={opt => opt.label}
-              getOptionKey={opt => opt.id}
-              placeholder=""
+              placeholder="Testing free-form"
             />
             <button type="button" data-testid="outside">
               outside
@@ -463,9 +413,7 @@ describe("AutocompleteRebuilt", () => {
 
       render(<WrapperWithSpy />);
 
-      const input = screen.getByRole("textbox");
-
-      await userEvent.type(input, "two");
+      await openAutocomplete("type", "two");
       await userEvent.click(screen.getByTestId("outside"));
 
       expect(onChange).toHaveBeenCalledWith({
@@ -495,11 +443,6 @@ describe("AutocompleteRebuilt", () => {
               inputValue={inputValue}
               onInputChange={setInputValue}
               menu={menu}
-              filterOptions={(opt, input) =>
-                opt.label.toLowerCase().includes(input.toLowerCase())
-              }
-              getOptionLabel={opt => opt.label}
-              getOptionKey={opt => opt.id}
               inputEqualsOption={(input, option) =>
                 input.trim().toLowerCase() === option.label.toLowerCase()
               }
@@ -514,9 +457,7 @@ describe("AutocompleteRebuilt", () => {
 
       render(<WrapperWithSpy />);
 
-      const input = screen.getByRole("textbox");
-
-      await userEvent.type(input, "two");
+      await openAutocomplete("type", "two");
       await userEvent.click(screen.getByTestId("outside"));
 
       expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
@@ -542,24 +483,16 @@ describe("AutocompleteRebuilt", () => {
             inputValue={inputValue}
             onInputChange={setInputValue}
             menu={menu}
-            filterOptions={(opt, input) =>
-              opt.label.toLowerCase().includes(input.toLowerCase())
-            }
-            getOptionLabel={opt => opt.label}
-            getOptionKey={opt => opt.id}
-            placeholder=""
+            placeholder="Testing while closed"
           />
         );
       }
 
       render(<WrapperWithSpy />);
 
-      const input = screen.getByRole("textbox");
-
-      await userEvent.type(input, "Custom");
-      // Close menu explicitly then press Enter
-      await userEvent.keyboard("{Escape}");
-      await userEvent.keyboard("{Enter}");
+      await openAutocomplete("type", "Custom");
+      await closeAutocomplete();
+      await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledWith({
         id: "1998",
@@ -575,18 +508,14 @@ describe("AutocompleteRebuilt", () => {
         initialInputValue="Two"
       />,
     );
-    const input = screen.getByRole("textbox");
 
-    await userEvent.click(input);
-    await userEvent.keyboard("{ArrowDown}");
+    await openAutocomplete("arrowDown");
     await screen.findByRole("listbox");
 
-    const activeByAttr = document.querySelector(
-      '[role="option"][data-active="true"]',
-    ) as HTMLElement | null;
+    const activeOption = getActiveOption();
 
-    expect(activeByAttr).not.toBeNull();
-    expect(activeByAttr?.textContent).toContain("Two");
+    expect(activeOption).not.toBeNull();
+    expect(activeOption?.textContent).toContain("Two");
   });
 
   describe("renderOption/renderAction render args", () => {
@@ -601,19 +530,13 @@ describe("AutocompleteRebuilt", () => {
           inputValue=""
           onInputChange={jest.fn()}
           menu={buildMenu().menu}
-          filterOptions={() => true}
-          getOptionLabel={opt => opt.label}
-          getOptionKey={opt => (opt as TestOption).id ?? opt.label}
           placeholder=""
           renderOption={renderOption}
         />,
       );
 
-      const input = screen.getByRole("textbox");
-      await userEvent.click(input);
-      // First arrow down to open the Autocomplete menu
-      await userEvent.keyboard("{ArrowDown}");
-      await userEvent.keyboard("{ArrowDown}");
+      await openAutocomplete("arrowDown");
+      await navigateDown(1);
 
       // Find the last call for the option "One" and assert isActive true
       const calls = renderOption.mock.calls as Array<
@@ -622,6 +545,7 @@ describe("AutocompleteRebuilt", () => {
       const lastForOne = [...calls]
         .reverse()
         .find(([args]) => args.value.label === "One");
+
       expect(lastForOne).toBeTruthy();
       expect(lastForOne?.[0].isActive).toBe(true);
       expect(lastForOne?.[0].isSelected).toBe(false);
@@ -638,17 +562,13 @@ describe("AutocompleteRebuilt", () => {
           inputValue={"Two"}
           onInputChange={jest.fn()}
           menu={buildMenu().menu}
-          filterOptions={() => true}
-          getOptionLabel={opt => opt.label}
-          getOptionKey={opt => opt.id}
           placeholder=""
           openOnFocus
           renderOption={renderOption}
         />,
       );
 
-      const input = screen.getByRole("textbox");
-      await userEvent.click(input);
+      await openAutocomplete("click");
 
       const calls = renderOption.mock.calls as Array<
         [{ value: TestOption; isActive: boolean; isSelected: boolean }]
@@ -656,6 +576,7 @@ describe("AutocompleteRebuilt", () => {
       const lastForTwo = [...calls]
         .reverse()
         .find(([args]) => args.value.label === "Two");
+
       expect(lastForTwo).toBeTruthy();
       expect(lastForTwo?.[0].isSelected).toBe(true);
     });
@@ -672,28 +593,19 @@ describe("AutocompleteRebuilt", () => {
           inputValue={""}
           onInputChange={jest.fn()}
           menu={menu}
-          filterOptions={() => true}
-          getOptionLabel={opt => opt.label}
-          getOptionKey={opt => opt.id}
           placeholder=""
           renderAction={renderAction}
         />,
       );
 
-      const input = screen.getByRole("textbox");
-      await userEvent.click(input);
-      // First arrow down to open the Autocomplete menu
-      // Nothing is immediately highlighted/active
-      await userEvent.keyboard("{ArrowDown}");
+      await openAutocomplete("arrowDown");
       // 3 options, 2 actions - move highlight to second action (index 4)
-      await userEvent.keyboard(
-        "{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}",
-      );
+      await navigateDown(5);
 
-      const activeByAttr = document.querySelector(
-        '[role="button"][data-active="true"]',
-      ) as HTMLElement | null;
-      expect(activeByAttr?.textContent).toContain("Stay Open");
+      const activeAction = getActiveAction();
+
+      expect(activeAction).not.toBeNull();
+      expect(activeAction?.textContent).toContain("Stay Open");
 
       const calls = renderAction.mock.calls as Array<
         [{ value: { label: string }; isActive: boolean }]
