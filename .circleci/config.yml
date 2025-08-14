@@ -25,6 +25,13 @@ references:
       keys:
         - npm-cache-v1
 
+  restore_nx_cache: &restore_nx_cache
+    restore_cache:
+      name: Restore NX cache
+      key: nx-cache-v11-{{ .Branch }}-
+
+
+
   attach_workspace: &attach_workspace
     attach_workspace:
         at: .
@@ -34,6 +41,19 @@ references:
       root: .
       paths:
         - '*'
+
+  persist_nx_cache_only: &persist_nx_cache_only
+    persist_to_workspace:
+      root: .
+      paths:
+        - .nx/cache
+
+  save_nx_cache: &save_nx_cache
+    save_cache:
+      name: Save NX cache
+      key: nx-cache-v11-{{ .Branch }}-{{ epoch }}
+      paths:
+        - .nx/cache
 
   npm_install: &npm_install
     run:
@@ -88,6 +108,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *restore_nx_cache
       - *restore_npm_cache
       - run:
           name: Authenticate with npm
@@ -137,7 +158,7 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: "Run tests with jest"
+          name: "Run tests with Jest"
           command:
             npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
@@ -152,22 +173,49 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  build_storybook:
+  build_all:
     resource_class: medium+
     <<: *container_config
     steps:
       - *attach_workspace
       - *generate_base_path
       - run:
-          command: npm run storybook:build
-      - *check_git_status
-
-  build_new_docs:
-    <<: *container_config
-    steps:
-      - *attach_workspace
+          name: Build Storybook with NX
+          command: |
+            echo "=== Starting Storybook Build ==="
+            echo "Running: npm run storybook:build"
+            echo "This should use NX caching if available..."
+            
+            # Show NX cache status before build
+            echo "=== NX Cache Status Before Build ==="
+            npx nx show projects --affected || echo "No affected projects or NX not available"
+            echo "=== End NX Cache Status ==="
+            
+            # Run the build and capture output
+            if npm run storybook:build; then
+              echo "=== Storybook Build Complete ==="
+            else
+              echo "=== Build Failed ==="
+            fi
       - run:
-          command: cd packages/site && npm run generate && npm run build
+          name: Build Site with NX
+          command: |
+            echo "=== Starting Site Build ==="
+            echo "Running: npm run site:build"
+            echo "This should use NX caching if available..."
+            
+            # Show NX cache status before build
+            echo "=== NX Cache Status Before Build ==="
+            npx nx show projects --affected || echo "No affected projects or NX not available"
+            echo "=== End NX Cache Status ==="
+            
+            # Run the build and capture output
+            if npm run site:build; then
+              echo "=== Site Build Complete ==="
+            else
+              echo "=== Build Failed ==="
+            fi
+      - *persist_nx_cache_only
       - *check_git_status
 
   release:
@@ -222,6 +270,12 @@ jobs:
       - store_artifacts:
           path: packages/site/test-results
 
+  save_nx_cache:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - *save_nx_cache
+
 workflows:
   version: 2
 
@@ -243,15 +297,15 @@ workflows:
       - test:
           requires:
             - install_dependencies
-      - build_storybook:
-          requires:
-            - install_dependencies
-      - build_new_docs:
+      - build_all:
           requires:
             - install_dependencies
       - e2e_tests:
           requires:
             - install_dependencies
+      - save_nx_cache:
+          requires:
+            - build_all
       - release:
           filters:
             branches:
@@ -260,6 +314,5 @@ workflows:
             - lint_javascript
             - lint_css
             - test
-            - build_storybook
-            - build_new_docs
+            - build_all
             - e2e_tests
