@@ -1,4 +1,4 @@
-import { KeyboardEvent, MouseEvent, useState } from "react";
+import { KeyboardEvent, MouseEvent, useRef } from "react";
 import sortBy from "lodash/sortBy";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
 import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
@@ -38,9 +38,7 @@ export function useInternalChipDismissible({
   onClick,
   onCustomAdd,
 }: InternalChipDismissibleProps) {
-  const [wrapperElement, setWrapperElement] = useState<HTMLDivElement | null>(
-    null,
-  );
+  const ref = useRef<HTMLDivElement>(null);
   const chipOptions = children.map(chip => chip.props);
   const visibleChipOptions = chipOptions.filter(chip =>
     selected.includes(chip.value),
@@ -122,8 +120,7 @@ export function useInternalChipDismissible({
 
   return {
     ...actions,
-    ref: setWrapperElement,
-    wrapperElement,
+    ref,
     sortedVisibleChipOptions,
     availableChipOptions,
   };

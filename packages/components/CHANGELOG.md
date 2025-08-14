@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.82.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.3...@jobber/components@6.82.4) (2025-08-13)
+
+
+### Reverts
+
+* **components:** Use FloatingUI for Dismissible Chips ([#2672](https://github.com/GetJobber/atlantis/issues/2672)) ([e56e0d3](https://github.com/GetJobber/atlantis/commit/e56e0d3df74cd44a306f22cf1ea04fed039e659b)), closes [#2640](https://github.com/GetJobber/atlantis/issues/2640)
+
+
+
+
+
+## [6.82.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.2...@jobber/components@6.82.3) (2025-08-13)
+
+
+### Reverts
+
+* **components:** Remove Popper Library ([#2671](https://github.com/GetJobber/atlantis/issues/2671)) ([387c58d](https://github.com/GetJobber/atlantis/commit/387c58da4f93b1b74be253c572af969be100200a)), closes [#2659](https://github.com/GetJobber/atlantis/issues/2659)
+
+
+
+
+
+## [6.82.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.1...@jobber/components@6.82.2) (2025-08-13)
+
+
+### Bug Fixes
+
+* **components:** Provide Additional Fallback Placements ([#2668](https://github.com/GetJobber/atlantis/issues/2668)) ([012feea](https://github.com/GetJobber/atlantis/commit/012feea4e59b83467777550ba22ba408123245ed))
+
+
+
+
+
+## [6.82.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.0...@jobber/components@6.82.1) (2025-08-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.81.0...@jobber/components@6.82.0) (2025-08-12)
+
+
+### Features
+
+* **components:** DataTable atoms ([#2648](https://github.com/GetJobber/atlantis/issues/2648)) ([529db73](https://github.com/GetJobber/atlantis/commit/529db739ed04d16a3d8dd6fc5129810b0cfe98f9))
+
+
+
+
+
+# [6.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.80.0...@jobber/components@6.81.0) (2025-08-11)
+
+
+### Features
+
+* **components:** FloatingUI Cleanup ([#2655](https://github.com/GetJobber/atlantis/issues/2655)) ([f815dd8](https://github.com/GetJobber/atlantis/commit/f815dd899530bcba6fa6f42e454e5a0aa43019c8))
+
+
+
+
+
 # [6.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.79.0...@jobber/components@6.80.0) (2025-08-11)
 
 
