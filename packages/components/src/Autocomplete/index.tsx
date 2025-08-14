@@ -85,6 +85,7 @@ export const Autocomplete = AutocompleteForwarded as {
     A extends object = Record<string, unknown>,
   >(
     props: AutocompleteProposedProps<T, false, S, A> & {
+      version: 2;
       ref?: React.Ref<InputTextRef>;
     },
   ): ReturnType<typeof AutocompleteShim>;
@@ -94,10 +95,13 @@ export const Autocomplete = AutocompleteForwarded as {
     A extends object = Record<string, unknown>,
   >(
     props: AutocompleteProposedProps<T, true, S, A> & {
+      version: 2;
       ref?: React.Ref<InputTextRef>;
     },
   ): ReturnType<typeof AutocompleteShim>;
-  (props: AutocompleteLegacyProps): ReturnType<typeof AutocompleteShim>;
+  (props: AutocompleteLegacyProps & { version?: 1 }): ReturnType<
+    typeof AutocompleteShim
+  >;
 };
 
 export type {

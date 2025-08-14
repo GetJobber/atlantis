@@ -230,7 +230,6 @@ export interface CustomOptionsMenuProp<
 // Base constraint for any v2 option value (minimal shape)
 // Arbitrary extra keys are allowed by structural typing of consumer types
 export interface OptionLike {
-  id: Key;
   label: string;
 }
 
@@ -287,42 +286,41 @@ export type AutocompleteValue<
   Multiple extends boolean,
 > = Multiple extends true ? Value[] : Value | undefined;
 
-export interface AutocompleteProposedProps<
-  Value extends OptionLike = OptionLike,
-  Multiple extends boolean = false,
-  SectionExtra extends object = Record<string, unknown>,
-  ActionExtra extends object = Record<string, unknown>,
+interface AutocompleteRebuiltBaseProps<
+  Value extends OptionLike,
+  Multiple extends boolean,
+  SectionExtra extends object,
+  ActionExtra extends object,
 > {
   version: 2;
 
-  /*
-   * Must-haves
-   */
   // Controlled state
   readonly multiple?: Multiple;
   readonly value: AutocompleteValue<Value, Multiple>;
-  // consider including the event and "reason"
-  // undefined is debatable, could make sense for single select
-  // reason?
-  readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
   readonly inputValue: string;
   readonly onInputChange: (value: string) => void;
 
   readonly onBlur?: () => void;
   readonly onFocus?: () => void;
 
-  readonly allowFreeForm?: boolean;
+  /**
+   * Custom equality for input text to option mapping.
+   * Defaults to case-sensitive label equality via getOptionLabel.
+   */
+  readonly inputEqualsOption?: (input: string, option: Value) => boolean;
 
   // Menu structure
-  // prefer items or options? menu does describe the purpose better. tbd.
   readonly menu: MenuItem<Value, SectionExtra, ActionExtra>[];
 
   // Filtering & display
-  readonly filterOptions: (option: Value, inputValue: string) => boolean;
-  // Strongly recommended when Value is a custom object
-  readonly getOptionLabel: (option: Value) => string;
-  // Strongly recommended when Value is a custom object
-  readonly getOptionValue: (option: Value) => Key;
+  readonly filterOptions?: (option: Value, inputValue: string) => boolean;
+  readonly getOptionLabel?: (option: Value) => string;
+  /**
+   * Used to determine the key for a given option. This can be useful when the
+   * labels of options are not unique (since labels are used as keys by default).
+   * Defaults to the option label.
+   */
+  readonly getOptionKey?: (option: Value) => Key;
 
   // Rendering
   readonly renderOption?: (option: Value) => React.ReactNode;
@@ -331,11 +329,7 @@ export interface AutocompleteProposedProps<
   ) => React.ReactNode;
   readonly renderAction?: (action: MenuAction<ActionExtra>) => React.ReactNode;
 
-  /*
-   * Determines if the menu should open when the input is focused.
-   *
-   * @default false
-   */
+  // Behavior
   readonly openOnFocus?: boolean;
 
   readonly placeholder?: string;
@@ -351,31 +345,19 @@ export interface AutocompleteProposedProps<
 
   readonly clearable?: boolean;
 
-  /*
-   * Not necessary but trivial to add so might as well
-   */
   readonly onOpen?: () => void;
   readonly onClose?: () => void;
 
-  /*
-   * Technically a must-have but implemented in a different way to solve the same problem
-   */
-  // this replace suffix, prefix and anything else you'd want to modify on the input
   readonly renderInput?: (props: {
     inputRef: Ref<HTMLInputElement | HTMLTextAreaElement>;
     inputProps: InputTextRebuiltProps;
   }) => React.ReactNode;
 
-  /*
-   * Nice-to-haves & improvements
-   */
   readonly renderSelectedItems?: (props: {
     items: Value[];
     onRemove: (item: Value) => void;
   }) => React.ReactNode;
 
-  // this one I'd argue for including but requires a bit of design possibly
-  // and other loading props eg. text/element
   readonly loading?: boolean;
 
   readonly autoHighlight?: boolean;
@@ -385,15 +367,35 @@ export interface AutocompleteProposedProps<
   readonly clearOnEscape?: boolean;
   readonly filterSelectedOptions?: boolean;
 
-  // groupBy?
-  // sectionBy? this could replace the renderSection prop
-
   readonly isOptionEqualToValue?: (option: Value, value: Value) => boolean;
 
   readonly onHighlightChange?: (option: Value) => void;
-
   readonly selectOnFocus?: boolean;
 }
+
+interface FreeFormOff<Value extends OptionLike, Multiple extends boolean> {
+  readonly allowFreeForm?: false;
+  readonly value: AutocompleteValue<Value, Multiple>;
+  readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
+}
+
+interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
+  readonly allowFreeForm: true;
+  readonly value: AutocompleteValue<Value, Multiple>;
+  /**
+   * Factory used to create a Value from free-form input when committing.
+   */
+  readonly createFreeFormValue: (input: string) => Value;
+  readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
+}
+
+export type AutocompleteProposedProps<
+  Value extends OptionLike = OptionLike,
+  Multiple extends boolean = false,
+  SectionExtra extends object = Record<string, unknown>,
+  ActionExtra extends object = Record<string, unknown>,
+> = AutocompleteRebuiltBaseProps<Value, Multiple, SectionExtra, ActionExtra> &
+  (FreeFormOn<Value, Multiple> | FreeFormOff<Value, Multiple>);
 
 // Convenience builder helpers (optional usage)
 export const menuOptions = <

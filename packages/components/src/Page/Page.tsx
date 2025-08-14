@@ -143,6 +143,7 @@ export function Page({
   interface Animal extends OptionLike {
     value: string;
     description?: string;
+    id: number;
   }
 
   const animals: Animal[] = [
@@ -197,13 +198,14 @@ export function Page({
   ];
 
     const simpleOptions: OptionLike[] = [
-      { id: 1, label: "One" },
-      { id: 2, label: "Two" },
-      { id: 3, label: "Three" },
+      {  label: "One" },
+      {  label: "Two" },
+      {  label: "Three" },
     ];
 
     interface ComplexOption extends OptionLike {
       complex: boolean;
+      id: number;
     }
 
     const complexOptions: ComplexOption[] = [
@@ -221,10 +223,14 @@ export function Page({
     const [complexValue2, setComplexValue2] = useState<ComplexOption | undefined>(undefined);
     const [f4Input, setF4Input] = useState("");
 
+    const [freeFormValue, setFreeFormValue] = useState< OptionLike  | undefined>(undefined);
+    const [freeFormInput, setFreeFormInput] = useState("");
+
   
 
   return (
     <div className={pageStyles}>
+      {<h1>{freeFormValue?.label}</h1>}
       <Content>
         <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
@@ -295,7 +301,7 @@ export function Page({
                 o.label.toLowerCase().includes(i.toLowerCase())
               }
               getOptionLabel={o => o.label}
-              getOptionValue={o => o.id}
+              getOptionKey={o => o.label}
             />
 
             <Text variation="subdued">Custom Options</Text>
@@ -310,7 +316,7 @@ export function Page({
                 o.label.toLowerCase().includes(i.toLowerCase())
               }
               getOptionLabel={o => o.label}
-              getOptionValue={o => o.value}
+              getOptionKey={o => o.value}
               renderOption={o => (
                 <span>
                   {o.label} — {o.description}
@@ -350,7 +356,7 @@ export function Page({
                 o.label.toLowerCase().includes(i.toLowerCase())
               }
               getOptionLabel={o => o.label}
-              getOptionValue={o => o.id}
+              getOptionKey={o => o.id}
             />
 
             <Text variation="subdued">
@@ -362,6 +368,7 @@ export function Page({
               onChange={setComplexValue2}
               inputValue={f4Input}
               onInputChange={setF4Input}
+              openOnFocus={true}
               menu={[
                 {
                   type: "section",
@@ -390,7 +397,51 @@ export function Page({
                 o.label.toLowerCase().includes(i.toLowerCase())
               }
               getOptionLabel={o => o.label}
-              getOptionValue={o => o.id}
+              getOptionKey={o => o.id}
+            />
+            <Text variation="subdued">
+              Free Form
+            </Text>
+            <Autocomplete
+              version={2}
+              value={freeFormValue}
+              onChange={setFreeFormValue}
+              inputValue={freeFormInput}
+              onInputChange={setFreeFormInput}
+              allowFreeForm={true}
+              createFreeFormValue={(input) => ({
+                label: input,
+                id: Math.random().toString(),
+              })}
+              menu={[
+                {
+                  type: "section",
+                  id: "complex2",
+                  label: "Complex",
+                  options: complexOptions,
+                  actionsBottom: [
+                    {
+                      type: "action",
+                      id: "add2",
+                      label: "Add",
+                      shouldClose: false,
+                      onClick: () => {
+                        console.log("adding");
+                      },
+                    },
+                  ],
+                },
+              ]}
+              renderInput={({ inputRef, inputProps }) => (
+                <InputText ref={inputRef} {...inputProps}  suffix={{
+                  icon: "arrowDown"
+                }}/>
+              )}
+              filterOptions={(o, i) =>
+                o.label.toLowerCase().includes(i.toLowerCase())
+              }
+              getOptionLabel={o => o.label}
+              getOptionKey={o => o.label}
             />
         </Content>
       </Content>

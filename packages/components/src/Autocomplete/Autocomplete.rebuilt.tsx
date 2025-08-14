@@ -170,6 +170,7 @@ function MenuList<T extends OptionLike>({
   renderOption,
   renderSection,
   getOptionLabel,
+  getOptionKey,
   onSelect,
   onAction,
   style,
@@ -184,6 +185,7 @@ function MenuList<T extends OptionLike>({
     section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>,
   ) => React.ReactNode;
   readonly getOptionLabel: (option: T) => string;
+  readonly getOptionKey: (option: T) => React.Key;
   readonly onSelect: (option: T) => void;
   readonly onAction: (action: {
     onAction: () => void;
@@ -231,7 +233,7 @@ function MenuList<T extends OptionLike>({
 
           return (
             <div
-              key={`opt-${index}`}
+              key={`opt-${getOptionKey(item.value)}`}
               role="option"
               tabIndex={-1}
               className={
@@ -404,7 +406,8 @@ function AutocompleteRebuiltInternal<
   void _ref;
   const {
     menu,
-    getOptionLabel,
+    getOptionLabel: getOptionLabelProp,
+    getOptionKey: getOptionKeyProp,
     isOptionEqualToValue,
     renderOption,
     renderAction,
@@ -426,12 +429,27 @@ function AutocompleteRebuiltInternal<
     openOnFocus = false,
   } = props;
 
+  const getOptionLabel = useCallback(
+    (o: Value) => (getOptionLabelProp ? getOptionLabelProp(o) : o.label),
+    [getOptionLabelProp],
+  );
+
+  const getOptionKey = useCallback(
+    (o: Value) => (getOptionKeyProp ? getOptionKeyProp(o) : getOptionLabel(o)),
+    [getOptionKeyProp, getOptionLabel],
+  );
+
   // Flatten for navigation and typeahead
   const { sections, optionItems } = useMemo(() => flattenMenu(menu), [menu]);
 
   const exactLabelMatch = useMemo(() => {
-    return optionItems.some(o => getOptionLabel(o) === inputValue);
-  }, [optionItems, getOptionLabel, inputValue]);
+    const inputEqualsOption = props.inputEqualsOption;
+    const equalsInput = inputEqualsOption
+      ? (o: Value) => inputEqualsOption(inputValue, o)
+      : (o: Value) => getOptionLabel(o) === inputValue;
+
+    return optionItems.some(equalsInput as (o: Value) => boolean);
+  }, [optionItems, getOptionLabel, inputValue, props.inputEqualsOption]);
 
   // Track if the most recent input change was from the user typing
   const lastInputWasUserRef = useRef(false);
@@ -446,7 +464,7 @@ function AutocompleteRebuiltInternal<
         ? true
         : props.filterOptions
         ? props.filterOptions(opt, inputValue)
-        : true;
+        : getOptionLabel(opt).toLowerCase().includes(inputValue.toLowerCase());
 
     return buildRenderableList(sections, renderAction, filterMethod);
   }, [
@@ -527,6 +545,41 @@ function AutocompleteRebuiltInternal<
     }
   }
 
+  // TODO: refactor this to be smaller
+  // eslint-disable-next-line max-statements
+  function tryCommitFreeFormOnEnter(): boolean {
+    if (props.allowFreeForm !== true) return false;
+    if (open && activeIndex != null) return false;
+
+    const inputText = inputValue.trim();
+
+    if (inputText.length === 0) return false;
+
+    const inputEqualsOption = props.inputEqualsOption;
+    const match = optionItems.find(o =>
+      inputEqualsOption
+        ? inputEqualsOption(inputText, o)
+        : getOptionLabel(o) === inputText,
+    );
+
+    if (match) {
+      onSelection(match);
+    } else {
+      setOpen(false);
+
+      // Commit free-form via factory
+      const created = props.allowFreeForm
+        ? props.createFreeFormValue?.(inputText)
+        : undefined;
+
+      if (created) {
+        props.onChange(created as AutocompleteValue<Value, Multiple>);
+      }
+    }
+
+    return true;
+  }
+
   // When opening and the input text exactly matches an option label,
   // move the activeIndex to that selected value
   useEffect(() => {
@@ -597,7 +650,43 @@ function AutocompleteRebuiltInternal<
       lastInputWasUserRef.current = true;
       onInputChange?.(val);
     },
-    onBlur: props.onBlur,
+    // TODO: refactor this to be smaller
+    // eslint-disable-next-line max-statements
+    onBlur: () => {
+      const allowFree = props.allowFreeForm === true;
+
+      if (allowFree) {
+        const inputText = inputValue.trim();
+        const hasText = inputText.length > 0;
+
+        const inputEqualsOption = props.inputEqualsOption;
+        const match = optionItems.find(o =>
+          inputEqualsOption
+            ? inputEqualsOption(inputText, o)
+            : getOptionLabel(o) === inputText,
+        );
+
+        if (hasText) {
+          if (match) {
+            onSelection(match);
+          } else {
+            setOpen(false);
+            const created = props.allowFreeForm
+              ? props.createFreeFormValue?.(inputText)
+              : undefined;
+
+            if (created) {
+              props.onChange(created as AutocompleteValue<Value, Multiple>);
+            }
+          }
+        } else {
+          // Empty input: commit only if there was an existing value previously
+          // Otherwise, no-op
+        }
+      }
+
+      props.onBlur?.();
+    },
     onFocus: props.onFocus,
     placeholder,
     disabled,
@@ -617,6 +706,13 @@ function AutocompleteRebuiltInternal<
         }
 
         if (event.key === "Enter") {
+          // If menu is closed or there is no active option, support free-form commit
+          if (tryCommitFreeFormOnEnter()) {
+            event.preventDefault();
+
+            return;
+          }
+
           selectActiveOptionOnEnter<Value>(
             event,
             activeIndex,
@@ -672,6 +768,7 @@ function AutocompleteRebuiltInternal<
               renderOption={renderOption}
               renderSection={renderSection}
               getOptionLabel={getOptionLabel}
+              getOptionKey={getOptionKey}
               onSelect={onSelection}
               onAction={onAction}
               style={floatingStyles}

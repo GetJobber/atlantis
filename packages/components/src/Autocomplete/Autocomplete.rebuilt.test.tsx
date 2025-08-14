@@ -4,6 +4,11 @@ import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import { menuOptions } from "./Autocomplete.types";
 
+interface TestOption {
+  id: string | number;
+  label: string;
+}
+
 function buildMenu(overrides?: {
   createAction?: jest.Mock;
   stayOpenAction?: jest.Mock;
@@ -49,16 +54,16 @@ function Wrapper({
   menu,
   openOnFocus,
 }: {
-  readonly initialValue?: { id: string; label: string };
+  readonly initialValue?: TestOption;
   readonly initialInputValue?: string;
-  readonly onChange?: (v: { id: string; label: string } | undefined) => void;
+  readonly onChange?: (v: TestOption | undefined) => void;
   readonly onInputChange?: (v: string) => void;
   readonly menu?: ReturnType<typeof buildMenu>["menu"];
   readonly openOnFocus?: boolean;
 }) {
-  const [value, setValue] = React.useState<
-    { id: string; label: string } | undefined
-  >(initialValue);
+  const [value, setValue] = React.useState<TestOption | undefined>(
+    initialValue,
+  );
   const [inputValue, setInputValue] = React.useState<string>(
     initialInputValue ?? "",
   );
@@ -74,7 +79,7 @@ function Wrapper({
       menu={menu ?? built.menu}
       filterOptions={() => true}
       getOptionLabel={opt => opt.label}
-      getOptionValue={opt => opt.id}
+      getOptionKey={opt => opt.id}
       placeholder=""
       openOnFocus={openOnFocus}
     />
@@ -228,6 +233,286 @@ describe("AutocompleteRebuilt", () => {
 
       expect(activeByAttr).not.toBeNull();
       expect(activeByAttr?.textContent).toContain("Two");
+    });
+  });
+
+  describe("allowFreeForm", () => {
+    // (helper components moved out of tests above if needed)
+
+    it("commits free-form on blur when non-empty and no exact match", async () => {
+      const onChange = jest.fn();
+
+      function WrapperWithSpy() {
+        const [inputValue, setInputValue] = React.useState("");
+        const { menu } = buildMenu();
+
+        return (
+          <>
+            <AutocompleteRebuilt
+              version={2}
+              allowFreeForm
+              createFreeFormValue={input => ({
+                label: input,
+                id: "1998",
+              })}
+              value={undefined}
+              onChange={onChange}
+              inputValue={inputValue}
+              onInputChange={setInputValue}
+              menu={menu}
+              filterOptions={(opt, input) =>
+                opt.label.toLowerCase().includes(input.toLowerCase())
+              }
+              getOptionLabel={opt => opt.label}
+              getOptionKey={opt => opt.id}
+              placeholder=""
+            />
+            <button type="button" data-testid="outside">
+              outside
+            </button>
+          </>
+        );
+      }
+
+      render(<WrapperWithSpy />);
+
+      const input = screen.getByRole("textbox");
+
+      await userEvent.type(input, "NewCity");
+      await userEvent.click(screen.getByTestId("outside"));
+
+      expect(onChange).toHaveBeenCalledWith({
+        id: "1998",
+        label: "NewCity",
+      });
+      expect((input as HTMLInputElement).value).toBe("NewCity");
+    });
+
+    it("commits free-form on Enter when menu has no options (filtered out)", async () => {
+      const onChange = jest.fn();
+
+      function WrapperWithSpyFilterNone() {
+        const [inputValue, setInputValue] = React.useState("");
+        const { menu } = buildMenu();
+
+        return (
+          <AutocompleteRebuilt
+            version={2}
+            allowFreeForm
+            createFreeFormValue={input => ({
+              label: input,
+              id: "1998",
+            })}
+            value={undefined}
+            onChange={onChange}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+            menu={menu}
+            filterOptions={() => false}
+            getOptionLabel={opt => opt.label}
+            getOptionKey={opt => opt.id}
+            placeholder=""
+          />
+        );
+      }
+
+      render(<WrapperWithSpyFilterNone />);
+
+      const input = screen.getByRole("textbox");
+
+      await userEvent.type(input, "Zed");
+      await userEvent.keyboard("{Enter}");
+
+      expect(onChange).toHaveBeenCalledWith({
+        id: "1998",
+        label: "Zed",
+      });
+    });
+
+    it("selects existing option on blur when input exactly matches (case-sensitive by default)", async () => {
+      const onChange = jest.fn();
+
+      function WrapperWithSpy() {
+        const [inputValue, setInputValue] = React.useState("");
+        const { menu } = buildMenu();
+
+        return (
+          <>
+            <AutocompleteRebuilt<TestOption>
+              version={2}
+              allowFreeForm
+              createFreeFormValue={input => ({
+                label: input,
+                id: "1998",
+              })}
+              value={undefined}
+              onChange={onChange}
+              inputValue={inputValue}
+              onInputChange={setInputValue}
+              menu={menu}
+              filterOptions={(opt, input) =>
+                opt.label.toLowerCase().includes(input.toLowerCase())
+              }
+              getOptionLabel={opt => opt.label}
+              getOptionKey={opt => opt.id}
+              placeholder=""
+            />
+            <button type="button" data-testid="outside">
+              outside
+            </button>
+          </>
+        );
+      }
+
+      render(<WrapperWithSpy />);
+
+      const input = screen.getByRole("textbox");
+
+      await userEvent.type(input, "Two");
+      await userEvent.click(screen.getByTestId("outside"));
+
+      expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
+    });
+
+    it("treats different case as free-form by default (case-sensitive)", async () => {
+      const onChange = jest.fn();
+
+      function WrapperWithSpy() {
+        const [inputValue, setInputValue] = React.useState("");
+        const { menu } = buildMenu();
+
+        return (
+          <>
+            <AutocompleteRebuilt<TestOption>
+              version={2}
+              allowFreeForm
+              createFreeFormValue={input => ({
+                label: input,
+                id: "1998",
+              })}
+              value={undefined}
+              onChange={onChange}
+              inputValue={inputValue}
+              onInputChange={setInputValue}
+              menu={menu}
+              filterOptions={(opt, input) =>
+                opt.label.toLowerCase().includes(input.toLowerCase())
+              }
+              getOptionLabel={opt => opt.label}
+              getOptionKey={opt => opt.id}
+              placeholder=""
+            />
+            <button type="button" data-testid="outside">
+              outside
+            </button>
+          </>
+        );
+      }
+
+      render(<WrapperWithSpy />);
+
+      const input = screen.getByRole("textbox");
+
+      await userEvent.type(input, "two");
+      await userEvent.click(screen.getByTestId("outside"));
+
+      expect(onChange).toHaveBeenCalledWith({
+        id: "1998",
+        label: "two",
+      });
+    });
+
+    it("can match case-insensitively with inputEqualsOption override", async () => {
+      const onChange = jest.fn();
+
+      function WrapperWithSpy() {
+        const [inputValue, setInputValue] = React.useState("");
+        const { menu } = buildMenu();
+
+        return (
+          <>
+            <AutocompleteRebuilt<TestOption>
+              version={2}
+              allowFreeForm
+              createFreeFormValue={input => ({
+                label: input,
+                id: "1998",
+              })}
+              value={undefined}
+              onChange={onChange}
+              inputValue={inputValue}
+              onInputChange={setInputValue}
+              menu={menu}
+              filterOptions={(opt, input) =>
+                opt.label.toLowerCase().includes(input.toLowerCase())
+              }
+              getOptionLabel={opt => opt.label}
+              getOptionKey={opt => opt.id}
+              inputEqualsOption={(input, option) =>
+                input.trim().toLowerCase() === option.label.toLowerCase()
+              }
+              placeholder=""
+            />
+            <button type="button" data-testid="outside">
+              outside
+            </button>
+          </>
+        );
+      }
+
+      render(<WrapperWithSpy />);
+
+      const input = screen.getByRole("textbox");
+
+      await userEvent.type(input, "two");
+      await userEvent.click(screen.getByTestId("outside"));
+
+      expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
+    });
+
+    it("commits free-form on Enter when menu is closed", async () => {
+      const onChange = jest.fn();
+
+      function WrapperWithSpy() {
+        const [inputValue, setInputValue] = React.useState("");
+        const { menu } = buildMenu();
+
+        return (
+          <AutocompleteRebuilt
+            version={2}
+            allowFreeForm
+            createFreeFormValue={input => ({
+              label: input,
+              id: "1998",
+            })}
+            value={undefined}
+            onChange={onChange}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+            menu={menu}
+            filterOptions={(opt, input) =>
+              opt.label.toLowerCase().includes(input.toLowerCase())
+            }
+            getOptionLabel={opt => opt.label}
+            getOptionKey={opt => opt.id}
+            placeholder=""
+          />
+        );
+      }
+
+      render(<WrapperWithSpy />);
+
+      const input = screen.getByRole("textbox");
+
+      await userEvent.type(input, "Custom");
+      // Close menu explicitly then press Enter
+      await userEvent.keyboard("{Escape}");
+      await userEvent.keyboard("{Enter}");
+
+      expect(onChange).toHaveBeenCalledWith({
+        id: "1998",
+        label: "Custom",
+      });
     });
   });
 
