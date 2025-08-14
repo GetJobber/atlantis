@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import { menuOptions } from "./Autocomplete.types";
 import {
+  blurAutocomplete,
   closeAutocomplete,
   focusAutocomplete,
   getActiveAction,
@@ -12,6 +12,7 @@ import {
   openAutocomplete,
   selectWithClick,
   selectWithKeyboard,
+  typeInInput,
 } from "./Autocomplete.pom";
 
 // TODO: POM to abstract the interactions and give them meaningful names
@@ -105,7 +106,31 @@ function Wrapper({
 describe("AutocompleteRebuilt", () => {
   it("renders", () => {
     render(<Wrapper />);
-    expect(screen.getByTestId("ATL-AutocompleteRebuilt")).toBeInTheDocument();
+    expect(screen.getByTestId("ATL-AutocompleteRebuilt")).toBeVisible();
+  });
+
+  it("opens the menu when arrowUp is pressed", async () => {
+    render(<Wrapper />);
+    await openAutocomplete("arrowUp");
+    await navigateDown(1);
+
+    expect(screen.getByRole("listbox")).toBeVisible();
+  });
+
+  it("opens the menu when arrowDown is pressed", async () => {
+    render(<Wrapper />);
+    await openAutocomplete("arrowDown");
+    await navigateDown(1);
+
+    expect(screen.getByRole("listbox")).toBeVisible();
+  });
+
+  it("opens the menu when user types", async () => {
+    render(<Wrapper />);
+    await openAutocomplete("type", "o");
+    await navigateDown(1);
+
+    expect(screen.getByRole("listbox")).toBeVisible();
   });
 
   it("selects the highlighted option on Enter and closes", async () => {
@@ -155,7 +180,7 @@ describe("AutocompleteRebuilt", () => {
 
     await openAutocomplete("arrowDown");
     await navigateDown(1);
-    expect(await screen.findByRole("listbox")).toBeInTheDocument();
+    expect(await screen.findByRole("listbox")).toBeVisible();
 
     await closeAutocomplete();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -189,7 +214,7 @@ describe("AutocompleteRebuilt", () => {
     await selectWithClick("Stay Open");
 
     expect(stayOpenAction).toHaveBeenCalled();
-    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    expect(screen.getByRole("listbox")).toBeVisible();
   });
 
   it("does not auto-reopen from programmatic input update after selection", async () => {
@@ -216,9 +241,9 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(await screen.findByRole("listbox")).toBeInTheDocument();
-      expect(screen.getByText("One")).toBeInTheDocument();
-      expect(screen.getByText("Two")).toBeInTheDocument();
+      expect(await screen.findByRole("listbox")).toBeVisible();
+      expect(screen.getByText("One")).toBeVisible();
+      expect(screen.getByText("Two")).toBeVisible();
     });
 
     it("highlights selected item on reopen when input exactly matches that option", async () => {
@@ -242,6 +267,26 @@ describe("AutocompleteRebuilt", () => {
   });
 
   describe("openOnFocus=true", () => {
+    it("opens on focus", async () => {
+      render(<Wrapper openOnFocus />);
+
+      await focusAutocomplete();
+
+      expect(screen.getByRole("listbox")).toBeVisible();
+    });
+
+    it("does not highlight an option or action when the menu is opened for the first time", async () => {
+      render(<Wrapper openOnFocus />);
+
+      await focusAutocomplete();
+
+      const activeOption = getActiveOption();
+      const activeAction = getActiveAction();
+
+      expect(activeOption).toBeNull();
+      expect(activeAction).toBeNull();
+    });
+
     it("opens on focus and shows full list when input exactly matches an option label and highlights selected", async () => {
       render(
         <Wrapper
@@ -253,9 +298,9 @@ describe("AutocompleteRebuilt", () => {
 
       await focusAutocomplete();
 
-      expect(await screen.findByRole("listbox")).toBeInTheDocument();
-      expect(screen.getByText("One")).toBeInTheDocument();
-      expect(screen.getByText("Two")).toBeInTheDocument();
+      expect(await screen.findByRole("listbox")).toBeVisible();
+      expect(screen.getByText("One")).toBeVisible();
+      expect(screen.getByText("Two")).toBeVisible();
 
       const activeOption = getActiveOption();
 
@@ -273,32 +318,27 @@ describe("AutocompleteRebuilt", () => {
         const { menu } = buildMenu();
 
         return (
-          <>
-            <AutocompleteRebuilt
-              version={2}
-              allowFreeForm
-              createFreeFormValue={input => ({
-                label: input,
-                id: "1998",
-              })}
-              value={undefined}
-              onChange={onChange}
-              inputValue={inputValue}
-              onInputChange={setInputValue}
-              menu={menu}
-              placeholder="Testing free-form"
-            />
-            <button type="button" data-testid="outside">
-              outside
-            </button>
-          </>
+          <AutocompleteRebuilt
+            version={2}
+            allowFreeForm
+            createFreeFormValue={input => ({
+              label: input,
+              id: "1998",
+            })}
+            value={undefined}
+            onChange={onChange}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+            menu={menu}
+            placeholder="Testing free-form"
+          />
         );
       }
 
       render(<WrapperWithSpy />);
 
       await openAutocomplete("type", "NewCity");
-      await userEvent.click(screen.getByTestId("outside"));
+      await blurAutocomplete();
 
       expect(onChange).toHaveBeenCalledWith({
         id: "1998",
@@ -351,32 +391,27 @@ describe("AutocompleteRebuilt", () => {
         const { menu } = buildMenu();
 
         return (
-          <>
-            <AutocompleteRebuilt<TestOption>
-              version={2}
-              allowFreeForm
-              createFreeFormValue={input => ({
-                label: input,
-                id: "1998",
-              })}
-              value={undefined}
-              onChange={onChange}
-              inputValue={inputValue}
-              onInputChange={setInputValue}
-              menu={menu}
-              placeholder="Testing free-form"
-            />
-            <button type="button" data-testid="outside">
-              outside
-            </button>
-          </>
+          <AutocompleteRebuilt<TestOption>
+            version={2}
+            allowFreeForm
+            createFreeFormValue={input => ({
+              label: input,
+              id: "1998",
+            })}
+            value={undefined}
+            onChange={onChange}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+            menu={menu}
+            placeholder="Testing free-form"
+          />
         );
       }
 
       render(<WrapperWithSpy />);
 
       await openAutocomplete("type", "Two");
-      await userEvent.click(screen.getByTestId("outside"));
+      await blurAutocomplete();
 
       expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
     });
@@ -389,32 +424,27 @@ describe("AutocompleteRebuilt", () => {
         const { menu } = buildMenu();
 
         return (
-          <>
-            <AutocompleteRebuilt<TestOption>
-              version={2}
-              allowFreeForm
-              createFreeFormValue={input => ({
-                label: input,
-                id: "1998",
-              })}
-              value={undefined}
-              onChange={onChange}
-              inputValue={inputValue}
-              onInputChange={setInputValue}
-              menu={menu}
-              placeholder="Testing free-form"
-            />
-            <button type="button" data-testid="outside">
-              outside
-            </button>
-          </>
+          <AutocompleteRebuilt<TestOption>
+            version={2}
+            allowFreeForm
+            createFreeFormValue={input => ({
+              label: input,
+              id: "1998",
+            })}
+            value={undefined}
+            onChange={onChange}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+            menu={menu}
+            placeholder="Testing free-form"
+          />
         );
       }
 
       render(<WrapperWithSpy />);
 
       await openAutocomplete("type", "two");
-      await userEvent.click(screen.getByTestId("outside"));
+      await blurAutocomplete();
 
       expect(onChange).toHaveBeenCalledWith({
         id: "1998",
@@ -430,35 +460,30 @@ describe("AutocompleteRebuilt", () => {
         const { menu } = buildMenu();
 
         return (
-          <>
-            <AutocompleteRebuilt<TestOption>
-              version={2}
-              allowFreeForm
-              createFreeFormValue={input => ({
-                label: input,
-                id: "1998",
-              })}
-              value={undefined}
-              onChange={onChange}
-              inputValue={inputValue}
-              onInputChange={setInputValue}
-              menu={menu}
-              inputEqualsOption={(input, option) =>
-                input.trim().toLowerCase() === option.label.toLowerCase()
-              }
-              placeholder=""
-            />
-            <button type="button" data-testid="outside">
-              outside
-            </button>
-          </>
+          <AutocompleteRebuilt<TestOption>
+            version={2}
+            allowFreeForm
+            createFreeFormValue={input => ({
+              label: input,
+              id: "1998",
+            })}
+            value={undefined}
+            onChange={onChange}
+            inputValue={inputValue}
+            onInputChange={setInputValue}
+            menu={menu}
+            inputEqualsOption={(input, option) =>
+              input.trim().toLowerCase() === option.label.toLowerCase()
+            }
+            placeholder=""
+          />
         );
       }
 
       render(<WrapperWithSpy />);
 
       await openAutocomplete("type", "two");
-      await userEvent.click(screen.getByTestId("outside"));
+      await blurAutocomplete();
 
       expect(onChange).toHaveBeenCalledWith({ id: "two", label: "Two" });
     });
@@ -516,6 +541,43 @@ describe("AutocompleteRebuilt", () => {
 
     expect(activeOption).not.toBeNull();
     expect(activeOption?.textContent).toContain("Two");
+  });
+
+  it("does not highlight an option or action when the menu is opened for the first time", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+
+    const activeOption = getActiveOption();
+    const activeAction = getActiveAction();
+
+    expect(activeOption).toBeNull();
+    expect(activeAction).toBeNull();
+  });
+
+  it("highlights the correct option reopening after a selection", async () => {
+    render(<Wrapper />);
+    await openAutocomplete("arrowDown");
+    await navigateDown(3);
+    await selectWithKeyboard();
+
+    // selection closed the menu
+    await openAutocomplete("arrowUp");
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).not.toBeNull();
+    expect(activeOption?.textContent).toContain("Three");
+  });
+
+  it("does not highlight an option from typing alone", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+    await typeInInput("Thr");
+
+    const activeOption = getActiveOption();
+    expect(activeOption).toBeNull();
   });
 
   describe("renderOption/renderAction render args", () => {

@@ -53,6 +53,22 @@ export async function closeAutocomplete() {
   await user.keyboard("{Escape}");
 }
 
+export async function typeInInput(text: string) {
+  await user.type(screen.getByRole("textbox"), text);
+}
+
+export async function deleteInput(times: number) {
+  await user.keyboard("{Backspace}".repeat(times));
+}
+
+export async function clearInput() {
+  await user.clear(screen.getByRole("textbox"));
+}
+
+export async function blurAutocomplete() {
+  await user.tab();
+}
+
 export function getActiveOption() {
   return document.querySelector(
     '[role="option"][data-active="true"]',
