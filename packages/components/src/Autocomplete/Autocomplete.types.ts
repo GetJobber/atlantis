@@ -323,11 +323,18 @@ interface AutocompleteRebuiltBaseProps<
   readonly getOptionKey?: (option: Value) => Key;
 
   // Rendering
-  readonly renderOption?: (option: Value) => React.ReactNode;
+  readonly renderOption?: (args: {
+    value: Value;
+    isActive: boolean;
+    isSelected: boolean;
+  }) => React.ReactNode;
   readonly renderSection?: (
     section: MenuSection<Value, SectionExtra, ActionExtra>,
   ) => React.ReactNode;
-  readonly renderAction?: (action: MenuAction<ActionExtra>) => React.ReactNode;
+  readonly renderAction?: (args: {
+    value: MenuAction<ActionExtra>;
+    isActive: boolean;
+  }) => React.ReactNode;
 
   // Behavior
   readonly openOnFocus?: boolean;

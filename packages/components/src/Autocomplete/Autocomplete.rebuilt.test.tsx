@@ -4,11 +4,16 @@ import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import { menuOptions } from "./Autocomplete.types";
 
+// TODO: POM to abstract the interactions and give them meaningful names
+
 interface TestOption {
   id: string | number;
   label: string;
 }
 
+// TODO: allow opting out of actions
+// and sections
+// and clearly define how many of each are rendered so the test is easy to read
 function buildMenu(overrides?: {
   createAction?: jest.Mock;
   stayOpenAction?: jest.Mock;
@@ -85,6 +90,8 @@ function Wrapper({
     />
   );
 }
+// They're tests, limit isn't helpful here
+// eslint-disable-next-line max-statements
 describe("AutocompleteRebuilt", () => {
   it("renders", () => {
     render(<Wrapper />);
@@ -98,6 +105,9 @@ describe("AutocompleteRebuilt", () => {
     const input = screen.getByRole("textbox");
 
     await userEvent.click(input);
+    // Open the menu
+    await userEvent.keyboard("{ArrowDown}");
+    // Move to the first option
     await userEvent.keyboard("{ArrowDown}");
     await userEvent.keyboard("{Enter}");
 
@@ -167,9 +177,10 @@ describe("AutocompleteRebuilt", () => {
     const input = screen.getByRole("textbox");
 
     await userEvent.click(input);
+    // Open the menu
     await userEvent.keyboard("{ArrowDown}");
     // Move to last option then to first action (3 options → index 0..2; action index 3)
-    await userEvent.keyboard("{ArrowDown}{ArrowDown}{ArrowDown}");
+    await userEvent.keyboard("{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}");
     await userEvent.keyboard("{Enter}");
 
     expect(createAction).toHaveBeenCalled();
@@ -197,7 +208,9 @@ describe("AutocompleteRebuilt", () => {
 
     const input = screen.getByRole("textbox");
 
+    // Open by typing - POM worthy interaction
     await userEvent.type(input, "O");
+    await userEvent.keyboard("{ArrowDown}");
     await userEvent.keyboard("{Enter}");
 
     expect(onChange).toHaveBeenCalledWith({ id: "one", label: "One" });
@@ -574,5 +587,120 @@ describe("AutocompleteRebuilt", () => {
 
     expect(activeByAttr).not.toBeNull();
     expect(activeByAttr?.textContent).toContain("Two");
+  });
+
+  describe("renderOption/renderAction render args", () => {
+    it("passes isActive correctly to renderOption for the highlighted option", async () => {
+      const renderOption = jest.fn(({ value }) => value.label);
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          value={undefined}
+          onChange={jest.fn()}
+          inputValue=""
+          onInputChange={jest.fn()}
+          menu={buildMenu().menu}
+          filterOptions={() => true}
+          getOptionLabel={opt => opt.label}
+          getOptionKey={opt => (opt as TestOption).id ?? opt.label}
+          placeholder=""
+          renderOption={renderOption}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+      // First arrow down to open the Autocomplete menu
+      await userEvent.keyboard("{ArrowDown}");
+      await userEvent.keyboard("{ArrowDown}");
+
+      // Find the last call for the option "One" and assert isActive true
+      const calls = renderOption.mock.calls as Array<
+        [{ value: TestOption; isActive: boolean; isSelected: boolean }]
+      >;
+      const lastForOne = [...calls]
+        .reverse()
+        .find(([args]) => args.value.label === "One");
+      expect(lastForOne).toBeTruthy();
+      expect(lastForOne?.[0].isActive).toBe(true);
+      expect(lastForOne?.[0].isSelected).toBe(false);
+    });
+
+    it("passes isSelected correctly to renderOption for the selected option", async () => {
+      const renderOption = jest.fn(({ value }) => value.label);
+
+      render(
+        <AutocompleteRebuilt<TestOption>
+          version={2}
+          value={{ id: "two", label: "Two" }}
+          onChange={jest.fn()}
+          inputValue={"Two"}
+          onInputChange={jest.fn()}
+          menu={buildMenu().menu}
+          filterOptions={() => true}
+          getOptionLabel={opt => opt.label}
+          getOptionKey={opt => opt.id}
+          placeholder=""
+          openOnFocus
+          renderOption={renderOption}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+
+      const calls = renderOption.mock.calls as Array<
+        [{ value: TestOption; isActive: boolean; isSelected: boolean }]
+      >;
+      const lastForTwo = [...calls]
+        .reverse()
+        .find(([args]) => args.value.label === "Two");
+      expect(lastForTwo).toBeTruthy();
+      expect(lastForTwo?.[0].isSelected).toBe(true);
+    });
+
+    it("passes isActive to renderAction for the highlighted action", async () => {
+      const { menu } = buildMenu();
+      const renderAction = jest.fn(({ value }) => value.label);
+
+      render(
+        <AutocompleteRebuilt<TestOption>
+          version={2}
+          value={undefined}
+          onChange={jest.fn()}
+          inputValue={""}
+          onInputChange={jest.fn()}
+          menu={menu}
+          filterOptions={() => true}
+          getOptionLabel={opt => opt.label}
+          getOptionKey={opt => opt.id}
+          placeholder=""
+          renderAction={renderAction}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+      // First arrow down to open the Autocomplete menu
+      // Nothing is immediately highlighted/active
+      await userEvent.keyboard("{ArrowDown}");
+      // 3 options, 2 actions - move highlight to second action (index 4)
+      await userEvent.keyboard(
+        "{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}{ArrowDown}",
+      );
+
+      const activeByAttr = document.querySelector(
+        '[role="button"][data-active="true"]',
+      ) as HTMLElement | null;
+      expect(activeByAttr?.textContent).toContain("Stay Open");
+
+      const calls = renderAction.mock.calls as Array<
+        [{ value: { label: string }; isActive: boolean }]
+      >;
+      const lastAction = [...calls].reverse()[0]?.[0];
+
+      expect(lastAction?.isActive).toBe(true);
+    });
   });
 });

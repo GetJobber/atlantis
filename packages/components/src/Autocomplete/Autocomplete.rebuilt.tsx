@@ -40,10 +40,7 @@ type RenderItem<T extends OptionLike> =
   | { kind: "option"; value: T }
   | {
       kind: "action";
-      content: React.ReactNode;
-      onAction: () => void;
-      disabled?: boolean;
-      shouldClose?: boolean;
+      action: MenuAction<Record<string, unknown>>;
     }
   | {
       kind: "section";
@@ -138,9 +135,11 @@ function useAutocompleteListNav({
   // When the rendered options change due to filtering, clamp or initialize the index
   useEffect(() => {
     listRef.current.length = optionCount;
+
     setActiveIndex(prev => {
       if (optionCount <= 0) return null;
-      if (prev == null) return 0;
+      // Null is our initial state, we should not change it without an interaction
+      if (prev == null) return null;
 
       return prev >= optionCount ? optionCount - 1 : prev;
     });
@@ -169,10 +168,12 @@ function MenuList<T extends OptionLike>({
   floatingProps,
   renderOption,
   renderSection,
+  renderAction,
   getOptionLabel,
   getOptionKey,
   onSelect,
   onAction,
+  isOptionSelected,
   style,
 }: {
   readonly items: Array<RenderItem<T>>;
@@ -180,10 +181,9 @@ function MenuList<T extends OptionLike>({
   readonly setNodeRef: (el: HTMLDivElement | null) => void;
   readonly getItemProps: () => Record<string, unknown>;
   readonly floatingProps: Record<string, unknown>;
-  readonly renderOption?: (option: T) => React.ReactNode;
-  readonly renderSection?: (
-    section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>,
-  ) => React.ReactNode;
+  readonly renderOption?: AutocompleteProposedProps<T, false>["renderOption"];
+  readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
+  readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
   readonly getOptionLabel: (option: T) => string;
   readonly getOptionKey: (option: T) => React.Key;
   readonly onSelect: (option: T) => void;
@@ -192,9 +192,89 @@ function MenuList<T extends OptionLike>({
     disabled?: boolean;
     shouldClose?: boolean;
   }) => void;
+  readonly isOptionSelected: (option: T) => boolean;
   readonly style?: React.CSSProperties;
 }) {
   let navigableIndex = -1;
+
+  // eslint-disable-next-line max-statements
+  function renderItemNode(item: RenderItem<T>, index: number) {
+    if (item.kind === "section") {
+      let headerNode: React.ReactNode;
+
+      if (renderSection) {
+        headerNode = renderSection(item.section);
+      } else {
+        headerNode = (
+          <h4 className={styles.sectionHeader}>{String(item.section.label)}</h4>
+        );
+      }
+
+      return (
+        <div key={`sec-${index}`} role="presentation">
+          {headerNode}
+        </div>
+      );
+    }
+
+    if (item.kind === "option") {
+      const nextNavigableIndex = navigableIndex + 1;
+      const isActive = activeIndex === nextNavigableIndex;
+      const isSelected = isOptionSelected(item.value);
+      const content = renderOption
+        ? renderOption({ value: item.value, isActive, isSelected })
+        : getOptionLabel(item.value);
+      navigableIndex = nextNavigableIndex;
+
+      return (
+        <div
+          key={`opt-${getOptionKey(item.value)}`}
+          role="option"
+          tabIndex={-1}
+          className={
+            activeIndex === navigableIndex ? styles.optionActive : styles.option
+          }
+          data-index={navigableIndex}
+          data-active={activeIndex === navigableIndex ? true : undefined}
+          {...getItemProps()}
+          onClick={() => onSelect(item.value)}
+        >
+          {content}
+        </div>
+      );
+    }
+
+    // action counts as navigable entry
+    navigableIndex += 1;
+
+    return (
+      <div
+        key={`act-${index}`}
+        tabIndex={-1}
+        role="button"
+        className={
+          activeIndex === navigableIndex ? styles.optionActive : styles.action
+        }
+        data-index={navigableIndex}
+        data-active={activeIndex === navigableIndex ? true : undefined}
+        {...getItemProps()}
+        onClick={() => {
+          onAction({
+            onAction: item.action.onClick,
+            disabled: item.action.disabled,
+            shouldClose: item.action.shouldClose,
+          });
+        }}
+      >
+        {renderAction
+          ? renderAction({
+              value: item.action,
+              isActive: activeIndex === navigableIndex,
+            })
+          : item.action.label}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -204,81 +284,7 @@ function MenuList<T extends OptionLike>({
       style={style}
       {...floatingProps}
     >
-      {items.map((item, index) => {
-        if (item.kind === "section") {
-          let headerNode: React.ReactNode;
-
-          if (renderSection) {
-            headerNode = renderSection(item.section);
-          } else {
-            headerNode = (
-              <h4 className={styles.sectionHeader}>
-                {String(item.section.label)}
-              </h4>
-            );
-          }
-
-          return (
-            <div key={`sec-${index}`} role="presentation">
-              {headerNode}
-            </div>
-          );
-        }
-
-        if (item.kind === "option") {
-          const content = renderOption
-            ? renderOption(item.value)
-            : getOptionLabel(item.value);
-          navigableIndex += 1;
-
-          return (
-            <div
-              key={`opt-${getOptionKey(item.value)}`}
-              role="option"
-              tabIndex={-1}
-              className={
-                activeIndex === navigableIndex
-                  ? styles.optionActive
-                  : styles.option
-              }
-              data-index={navigableIndex}
-              data-active={activeIndex === navigableIndex ? true : undefined}
-              {...getItemProps()}
-              onClick={() => onSelect(item.value)}
-            >
-              {content}
-            </div>
-          );
-        }
-
-        // action counts as navigable entry
-        navigableIndex += 1;
-
-        return (
-          <div
-            key={`act-${index}`}
-            tabIndex={-1}
-            role="presentation"
-            className={
-              activeIndex === navigableIndex
-                ? styles.optionActive
-                : styles.action
-            }
-            data-index={navigableIndex}
-            data-active={activeIndex === navigableIndex ? true : undefined}
-            {...getItemProps()}
-            onClick={() => {
-              onAction({
-                onAction: item.onAction,
-                disabled: item.disabled,
-                shouldClose: item.shouldClose,
-              });
-            }}
-          >
-            {item.content}
-          </div>
-        );
-      })}
+      {items.map(renderItemNode)}
     </div>
   );
 }
@@ -300,7 +306,6 @@ function flattenMenu<Value extends OptionLike>(menu: MenuItem<Value>[]) {
 
 function buildRenderableList<Value extends OptionLike>(
   sections: Array<MenuSection<Value> | MenuOptions<Value>>,
-  renderAction?: (action: MenuAction) => React.ReactNode,
   optionFilter?: (opt: Value) => boolean,
 ) {
   const items: Array<RenderItem<Value>> = [];
@@ -325,10 +330,7 @@ function buildRenderableList<Value extends OptionLike>(
       for (const action of group.actionsBottom) {
         items.push({
           kind: "action",
-          content: renderAction ? renderAction(action) : action.label,
-          onAction: action.onClick,
-          disabled: action.disabled,
-          shouldClose: action.shouldClose,
+          action: action as unknown as MenuAction<Record<string, unknown>>,
         });
       }
     }
@@ -391,9 +393,9 @@ function selectActiveOptionOnEnter<Value extends OptionLike>(
     onSelect(selected.value);
   } else if (selected.kind === "action") {
     onAction({
-      onAction: selected.onAction,
-      disabled: selected.disabled,
-      shouldClose: selected.shouldClose,
+      onAction: selected.action.onClick,
+      disabled: selected.action.disabled,
+      shouldClose: selected.action.shouldClose,
     });
   }
 }
@@ -439,6 +441,29 @@ function AutocompleteRebuiltInternal<
     [getOptionKeyProp, getOptionLabel],
   );
 
+  const equals = useCallback(
+    (a: Value, b: Value) =>
+      isOptionEqualToValue
+        ? isOptionEqualToValue(a, b)
+        : getOptionLabel(a) === getOptionLabel(b),
+    [isOptionEqualToValue, getOptionLabel],
+  );
+
+  const isOptionSelected = useCallback(
+    (opt: Value) => {
+      if (multiple) {
+        const current = (value as AutocompleteValue<Value, true>) ?? [];
+
+        return (current as Value[]).some(v => equals(v, opt));
+      }
+
+      const current = value as Value | undefined;
+
+      return current != null ? equals(current, opt) : false;
+    },
+    [multiple, value, equals],
+  );
+
   // Flatten for navigation and typeahead
   const { sections, optionItems } = useMemo(() => flattenMenu(menu), [menu]);
 
@@ -466,14 +491,8 @@ function AutocompleteRebuiltInternal<
         ? props.filterOptions(opt, inputValue)
         : getOptionLabel(opt).toLowerCase().includes(inputValue.toLowerCase());
 
-    return buildRenderableList(sections, renderAction, filterMethod);
-  }, [
-    sections,
-    renderAction,
-    props.filterOptions,
-    inputValue,
-    exactLabelMatch,
-  ]);
+    return buildRenderableList(sections, filterMethod);
+  }, [sections, props.filterOptions, inputValue, exactLabelMatch]);
 
   const optionCount = useMemo(
     () =>
@@ -527,9 +546,6 @@ function AutocompleteRebuiltInternal<
     // TODO: if we have time, implement multiple selection
     if (multiple) {
       const current = (value as AutocompleteValue<Value, true>) ?? [];
-      const equals =
-        isOptionEqualToValue ??
-        ((a: Value, b: Value) => getOptionLabel(a) === getOptionLabel(b));
       const exists = (current as Value[]).some(v => equals(v, option));
       const next = exists
         ? (current as Value[]).filter(v => !equals(v, option))
@@ -593,10 +609,6 @@ function AutocompleteRebuiltInternal<
       : (value as Value | undefined);
 
     if (!selectedValue) return;
-
-    const equals =
-      isOptionEqualToValue ??
-      ((a: Value, b: Value) => getOptionLabel(a) === getOptionLabel(b));
 
     const selectedNavigableIndex = findNavigableIndexForValue(
       renderable,
@@ -772,10 +784,12 @@ function AutocompleteRebuiltInternal<
               }
               renderOption={renderOption}
               renderSection={renderSection}
+              renderAction={renderAction}
               getOptionLabel={getOptionLabel}
               getOptionKey={getOptionKey}
               onSelect={onSelection}
               onAction={onAction}
+              isOptionSelected={isOptionSelected}
               style={floatingStyles}
             />
           </FloatingFocusManager>
