@@ -87,6 +87,9 @@ export const Autocomplete = AutocompleteForwarded as {
     props: AutocompleteProposedProps<T, false, S, A> & {
       version: 2;
       ref?: React.Ref<InputTextRef>;
+      // Disallow legacy-only props for clearer DX
+      initialOptions?: never;
+      getOptions?: never;
     },
   ): ReturnType<typeof AutocompleteShim>;
   <
@@ -97,12 +100,17 @@ export const Autocomplete = AutocompleteForwarded as {
     props: AutocompleteProposedProps<T, true, S, A> & {
       version: 2;
       ref?: React.Ref<InputTextRef>;
+      // Disallow legacy-only props for clearer DX
+      initialOptions?: never;
+      getOptions?: never;
     },
   ): ReturnType<typeof AutocompleteShim>;
   (
     props: AutocompleteLegacyProps & {
       version?: 1;
       ref?: React.Ref<InputTextRef>;
+      // Disallow v2-only props for clearer DX
+      menu?: never;
     },
   ): ReturnType<typeof AutocompleteShim>;
 };
