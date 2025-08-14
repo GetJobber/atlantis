@@ -713,6 +713,11 @@ function AutocompleteRebuiltInternal<
             return;
           }
 
+          // Prevent selecting a default item when the menu is closed
+          if (!open) {
+            return;
+          }
+
           selectActiveOptionOnEnter<Value>(
             event,
             activeIndex,

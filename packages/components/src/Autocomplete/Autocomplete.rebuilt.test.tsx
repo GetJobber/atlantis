@@ -120,6 +120,45 @@ describe("AutocompleteRebuilt", () => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
+  it("does not select on Enter when menu is closed and free-form is disabled", async () => {
+    const onChange = jest.fn();
+
+    render(<Wrapper onChange={onChange} />);
+
+    const input = screen.getByRole("textbox");
+
+    await userEvent.click(input);
+    // Menu should remain closed on focus when openOnFocus is false
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+    await userEvent.keyboard("{Enter}");
+
+    expect(onChange).not.toHaveBeenCalled();
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
+
+  it("does not select on Enter after menu was manually closed (free-form disabled)", async () => {
+    const onChange = jest.fn();
+
+    render(<Wrapper onChange={onChange} />);
+
+    const input = screen.getByRole("textbox");
+
+    await userEvent.click(input);
+    await userEvent.keyboard("{ArrowDown}");
+    expect(await screen.findByRole("listbox")).toBeInTheDocument();
+
+    // Close the menu
+    await userEvent.keyboard("{Escape}");
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+    // Press Enter while closed should not select anything
+    await userEvent.keyboard("{Enter}");
+
+    expect(onChange).not.toHaveBeenCalled();
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
+
   it("invokes action on Enter and closes when shouldClose is true/undefined", async () => {
     const { menu, createAction } = buildMenu();
 
