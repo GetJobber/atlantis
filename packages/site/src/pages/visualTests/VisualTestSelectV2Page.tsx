@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export const VisualTestSelectV2Page = () => {
   const [selectedValue, setSelectedValue] = useState("");
+  const [customSelectedValue, setCustomSelectedValue] = useState("");
 
   return (
     <Box padding="large">
@@ -149,6 +150,125 @@ export const VisualTestSelectV2Page = () => {
                   <Select version={2} placeholder="Inline" inline>
                     <Option value="1">Option 1</Option>
                     <Option value="2">Option 2</Option>
+                  </Select>
+                </Stack>
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Custom Select (enableCustomSelect) */}
+          <section>
+            <Text size="large">Custom Select (enableCustomSelect)</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Stack gap="base">
+                  {/* Basic custom select */}
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    value={customSelectedValue}
+                    onChange={value => setCustomSelectedValue(value as string)}
+                    placeholder="Custom select"
+                  >
+                    <Option value="a">Alpha</Option>
+                    <Option value="b">Beta</Option>
+                    <Option value="g">Gamma</Option>
+                  </Select>
+
+                  {/* Custom select with description */}
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="With description"
+                    description="This is a custom select"
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
+                  </Select>
+
+                  {/* Custom select: invalid + disabled */}
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="Invalid custom select"
+                    invalid
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
+                  </Select>
+
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="Disabled custom select"
+                    disabled
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
+                  </Select>
+
+                  {/* Sizes */}
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="Small custom select"
+                    size="small"
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
+                  </Select>
+
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="Large custom select"
+                    size="large"
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
+                  </Select>
+
+                  {/* Affixes */}
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="Prefix"
+                    prefix={{ icon: "search" }}
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
+                  </Select>
+
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="Suffix"
+                    suffix={{ icon: "sparkles" }}
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
+                  </Select>
+
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="Prefix + Suffix"
+                    prefix={{ label: "Pre" }}
+                    suffix={{ label: "Suf" }}
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
+                  </Select>
+
+                  {/* Inline */}
+                  <Select
+                    version={2}
+                    enableCustomSelect
+                    placeholder="Inline custom select"
+                    inline
+                  >
+                    <Option value="1">One</Option>
+                    <Option value="2">Two</Option>
                   </Select>
                 </Stack>
               </Grid.Cell>
