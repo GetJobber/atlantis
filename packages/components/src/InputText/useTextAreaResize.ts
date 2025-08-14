@@ -1,6 +1,6 @@
-import { RefObject } from "react";
+import type { RefObject } from "react";
 import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
-import { RowRange } from "./InputText.types";
+import type { RowRange } from "./InputText.types";
 
 /**
  * Hook for resizing a textarea based on its content. The textarea will grow up to the max number of rows specified.

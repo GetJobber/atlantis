@@ -2,11 +2,9 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import noop from "lodash/noop";
 import { ComboboxOption } from "./ComboboxOption";
-import { ComboboxOptionProps } from "../../Combobox.types";
-import {
-  ComboboxContextProvider,
-  ComboboxProviderProps,
-} from "../../ComboboxProvider";
+import { type ComboboxOptionProps } from "../../Combobox.types";
+import type { ComboboxProviderProps } from "../../ComboboxProvider";
+import { ComboboxContextProvider } from "../../ComboboxProvider";
 
 export function renderOption({
   id,

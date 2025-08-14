@@ -1,11 +1,12 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import classnames from "classnames";
 import styles from "./Card.module.css";
 import colors from "./cardcolors.module.css";
 import elevations from "./CardElevations.module.css";
 import { CardClickable } from "./CardClickable";
 import { CardHeader } from "./CardHeader";
-import {
+import type {
   CardBodyProps,
   CardHeaderProps,
   CardProps,

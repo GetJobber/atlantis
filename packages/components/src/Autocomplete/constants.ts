@@ -1,2 +1,1 @@
 export const AUTOCOMPLETE_MAX_HEIGHT = 300;
-export const AUTCOMPLETE_MIN_HEIGHT = 100;

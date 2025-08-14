@@ -83,4 +83,5 @@ function ButtonWrapper(props: ButtonProps) {
 
 Button.Label = ButtonLabel;
 Button.Icon = ButtonIcon;
-export { Button, ButtonProps };
+export type { ButtonProps };
+export { Button };

@@ -1,6 +1,6 @@
 import noop from "lodash/noop";
 import { createContext, useContext } from "react";
-import { DataListLayoutContextProps } from "@jobber/components/DataList/DataList.types";
+import type { DataListLayoutContextProps } from "@jobber/components/DataList/DataList.types";
 
 export const defaultValues: DataListLayoutContextProps = {
   isInLayoutProvider: false,

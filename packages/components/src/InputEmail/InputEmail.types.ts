@@ -1,5 +1,5 @@
-import { Clearable } from "@jobber/hooks";
-import { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type { Clearable } from "@jobber/hooks";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
 export type InputEmailLegacyProps = CommonFormFieldProps &
   Pick<

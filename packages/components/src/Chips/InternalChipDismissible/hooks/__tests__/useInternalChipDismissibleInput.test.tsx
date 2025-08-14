@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, MutableRefObject } from "react";
+import type { ChangeEvent, KeyboardEvent, MutableRefObject } from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import { useInternalChipDismissibleInput } from "../useInternalChipDismissibleInput";
 

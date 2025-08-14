@@ -1,9 +1,9 @@
-import { type IconNames } from "@jobber/design";
-import { LinkProps } from "react-router-dom";
-import { XOR } from "ts-xor";
-import { CSSProperties } from "react";
-import { TypographyProps } from "../Typography/Typography";
-import { IconProps } from "../Icon/Icon";
+import type { IconNames } from "@jobber/design";
+import type { LinkProps } from "react-router-dom";
+import type { XOR } from "ts-xor";
+import type { CSSProperties } from "react";
+import type { TypographyProps } from "../Typography/Typography";
+import type { IconProps } from "../Icon/Icon";
 
 export type HTMLButtonType = "button" | "submit";
 export type ButtonVariation = "work" | "learning" | "subtle" | "destructive";

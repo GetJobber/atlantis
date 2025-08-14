@@ -7,7 +7,7 @@ import { DataListSortingArrows } from "./DataListSortingArrows";
 import { DataListSortingOptions } from "./components/DataListSortingOptions";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
-import {
+import type {
   DataListHeader,
   DataListObject,
   SortableOptions,

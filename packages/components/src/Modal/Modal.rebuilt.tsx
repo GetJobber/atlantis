@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   FloatingFocusManager,
@@ -7,7 +8,7 @@ import {
   FloatingPortal,
 } from "@floating-ui/react";
 import { useModalContext } from "./ModalContext.rebuilt";
-import {
+import type {
   HeaderProps,
   ModalActionsProps,
   ModalContentProps as ModalContainerProps,

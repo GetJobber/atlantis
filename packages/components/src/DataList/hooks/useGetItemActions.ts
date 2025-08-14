@@ -1,6 +1,7 @@
-import { Children, ReactElement, isValidElement, useMemo } from "react";
+import type { ReactElement } from "react";
+import { Children, isValidElement, useMemo } from "react";
 import { useDataListContext } from "../context/DataListContext";
-import { DataListActionProps, DataListObject } from "../DataList.types";
+import type { DataListActionProps, DataListObject } from "../DataList.types";
 
 export function useGetItemActions<T extends DataListObject>(item: T) {
   const { itemActionComponent } = useDataListContext<T>();

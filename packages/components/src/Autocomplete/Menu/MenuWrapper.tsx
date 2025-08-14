@@ -1,9 +1,11 @@
-import React, { PropsWithChildren, useCallback, useEffect } from "react";
+import type { PropsWithChildren } from "react";
+import React, { useCallback, useEffect } from "react";
 import classNames from "classnames";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { FloatingPortal } from "@floating-ui/react";
 import styles from "../Autocomplete.module.css";
-import { UseRepositionMenu, useRepositionMenu } from "../useRepositionMenu";
+import type { UseRepositionMenu } from "../useRepositionMenu";
+import { useRepositionMenu } from "../useRepositionMenu";
 
 export interface BaseAutocompleteMenuWrapperInternalProps {
   readonly setMenuRef: UseRepositionMenu["setMenuRef"];

@@ -1,4 +1,4 @@
-import { Dispatch, ReactElement, SetStateAction } from "react";
+import type { Dispatch, ReactElement, SetStateAction } from "react";
 
 type ComboboxFragment = Iterable<ComboboxNode>;
 type ComboboxNode = ReactElement | ComboboxFragment;

@@ -1,4 +1,4 @@
-import { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
 export interface SelectLegacyProps
   extends Pick<

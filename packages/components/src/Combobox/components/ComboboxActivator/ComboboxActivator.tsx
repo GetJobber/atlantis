@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxActivatorProps } from "../../Combobox.types";
+import type { ComboboxActivatorProps } from "../../Combobox.types";
 import { useComboboxActivatorAccessibility } from "../../hooks/useComboboxActivatorAccessibility";
 
 export function ComboboxActivator(props: ComboboxActivatorProps) {

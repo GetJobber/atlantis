@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { DayOfWeek } from "../sharedHelpers/types";
+import type { DayOfWeek } from "../sharedHelpers/types";
 
 export interface AtlantisContextProps {
   /**

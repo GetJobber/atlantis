@@ -1,1 +1,1 @@
-export { InlineLabel, InlineLabelColors } from "./InlineLabel";
+export { InlineLabel, type InlineLabelColors } from "./InlineLabel";

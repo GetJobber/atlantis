@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./Stack.module.css";
-import { StackProps } from "./types";
+import type { StackProps } from "./types";
 import {
   getMappedAtlantisSpaceToken,
   spaceTokens,

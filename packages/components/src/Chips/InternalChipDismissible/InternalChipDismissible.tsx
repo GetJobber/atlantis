@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./InternalChipDismissible.module.css";
 import { useInternalChipDismissible } from "./hooks";
 import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
-import { InternalChipDismissibleProps } from "./InternalChipDismissibleTypes";
+import type { InternalChipDismissibleProps } from "./InternalChipDismissibleTypes";
 import { InternalChip } from "../InternalChip";
 import { InternalChipButton } from "../InternalChipButton";
 
@@ -10,7 +10,6 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
   const {
     availableChipOptions,
     ref: wrapperRef,
-    wrapperElement,
     sortedVisibleChipOptions,
     handleChipAdd,
     handleChipClick,
@@ -50,7 +49,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
 
       <InternalChipDismissibleInput
         activator={props.activator}
-        attachTo={wrapperElement}
+        attachTo={wrapperRef}
         isLoadingMore={props.isLoadingMore}
         options={availableChipOptions}
         onOptionSelect={handleChipAdd}

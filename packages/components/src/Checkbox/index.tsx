@@ -1,7 +1,10 @@
 import React, { forwardRef } from "react";
 import { CheckboxLegacy } from "./Checkbox";
 import { CheckboxRebuilt } from "./Checkbox.rebuilt";
-import { CheckboxLegacyProps, CheckboxRebuiltProps } from "./Checkbox.types";
+import type {
+  CheckboxLegacyProps,
+  CheckboxRebuiltProps,
+} from "./Checkbox.types";
 
 type CheckboxShimProps = CheckboxLegacyProps | CheckboxRebuiltProps;
 

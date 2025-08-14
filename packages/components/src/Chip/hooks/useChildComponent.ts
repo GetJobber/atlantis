@@ -1,4 +1,5 @@
-import React, { ReactNode, isValidElement, useMemo } from "react";
+import type { ReactNode } from "react";
+import React, { isValidElement, useMemo } from "react";
 
 /**
  * Returns the first React Child that receives `true` from isCorrectComponent

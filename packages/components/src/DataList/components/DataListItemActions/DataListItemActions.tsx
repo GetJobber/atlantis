@@ -1,7 +1,9 @@
-import React, { MouseEvent, ReactElement } from "react";
-import { Variants, motion } from "framer-motion";
+import type { MouseEvent, ReactElement } from "react";
+import React from "react";
+import type { Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "./DataListItemActions.module.css";
-import {
+import type {
   DataListActionProps,
   DataListItemActionsProps,
   DataListObject,

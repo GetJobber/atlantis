@@ -1,12 +1,14 @@
-import {
+import type {
   ColumnDef,
   PaginationState,
   TableOptions,
+} from "@tanstack/react-table";
+import {
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
 } from "@tanstack/react-table";
-import { PaginationType, SortingType } from "./types";
+import type { PaginationType, SortingType } from "./types";
 
 export function createTableSettings<T>(
   data: T[],

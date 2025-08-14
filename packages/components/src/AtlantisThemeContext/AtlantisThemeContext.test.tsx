@@ -6,7 +6,7 @@ import {
   AtlantisThemeContextProvider,
   useAtlantisTheme,
 } from "./AtlantisThemeContext";
-import { AtlantisThemeContextProviderProps, Theme } from "./types";
+import type { AtlantisThemeContextProviderProps, Theme } from "./types";
 import { updateTheme } from "./updateTheme";
 import { InlineLabel } from "../InlineLabel";
 
