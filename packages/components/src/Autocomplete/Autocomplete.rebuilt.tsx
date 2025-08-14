@@ -68,13 +68,18 @@ interface UseAutocompleteListNavReturn {
 interface UseAutocompleteListNavProps {
   openOnFocus: boolean;
   optionCount: number;
+  shouldResetActiveIndexOnClose?: () => boolean;
 }
 
 function useAutocompleteListNav({
   openOnFocus,
   optionCount,
+  shouldResetActiveIndexOnClose,
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const listRef = useRef<Array<HTMLElement | null>>([]);
+
   const { refs, floatingStyles, context } = useFloating({
     placement: "bottom-start",
     whileElementsMounted: autoUpdate,
@@ -84,6 +89,10 @@ function useAutocompleteListNav({
 
       if (reason === "outside-press" || reason === "escape-key") {
         // TODO: invoke onClose or onBlur callback or maybe onDismiss
+      }
+
+      if (!nextOpen && shouldResetActiveIndexOnClose?.()) {
+        setActiveIndex(null);
       }
     },
     middleware: [
@@ -102,9 +111,6 @@ function useAutocompleteListNav({
       }),
     ],
   });
-
-  const listRef = useRef<Array<HTMLElement | null>>([]);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const listNav = useListNavigation(context, {
     listRef,
@@ -503,7 +509,17 @@ function AutocompleteRebuiltInternal<
     [renderable],
   );
 
-  // Floating UI wiring (keep input focus; use virtual list navigation)
+  // Determine if there is a current selection (used for index reset behavior)
+  const hasSelection = useMemo(() => {
+    if (multiple) {
+      const current = (value as AutocompleteValue<Value, true>) ?? [];
+
+      return Array.isArray(current) && current.length > 0;
+    }
+
+    return (value as Value | undefined) != null;
+  }, [multiple, value]);
+
   const {
     refs,
     floatingStyles,
@@ -516,12 +532,11 @@ function AutocompleteRebuiltInternal<
     listRef,
     open,
     setOpen,
-  } = useAutocompleteListNav({ openOnFocus, optionCount });
-
-  // const hasMatch = useMemo(
-  //   () => renderable.some(item => item.kind === "option"),
-  //   [renderable],
-  // );
+  } = useAutocompleteListNav({
+    openOnFocus,
+    optionCount,
+    shouldResetActiveIndexOnClose: () => !hasSelection,
+  });
 
   // Prevent auto-open when we change input programmatically on selection
   const suppressOpenOnInputChangeRef = useRef(false);
@@ -540,7 +555,12 @@ function AutocompleteRebuiltInternal<
     if (lastInputWasUserRef.current) {
       setOpen(hasText);
     }
-  }, [inputValue, setOpen]);
+
+    // If the input was cleared by the user and there is no selection, reset active index
+    if (!hasText && !hasSelection) {
+      setActiveIndex(null);
+    }
+  }, [inputValue, setOpen, hasSelection, setActiveIndex]);
 
   function selectOption(option: Value) {
     // TODO: if we have time, implement multiple selection
@@ -619,8 +639,6 @@ function AutocompleteRebuiltInternal<
     if (selectedNavigableIndex != null) {
       setActiveIndex(selectedNavigableIndex);
     }
-
-    // No flag to reset here; behavior is purely derived
   }, [
     open,
     exactLabelMatch,

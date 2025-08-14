@@ -5,6 +5,7 @@ import { menuOptions } from "./Autocomplete.types";
 import {
   blurAutocomplete,
   closeAutocomplete,
+  deleteInput,
   focusAutocomplete,
   getActiveAction,
   getActiveOption,
@@ -579,6 +580,88 @@ describe("AutocompleteRebuilt", () => {
 
     const activeOption = getActiveOption();
     expect(activeOption).toBeNull();
+  });
+
+  it("resets the highlight to initial, not visible state when the menu is closed without a selection", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+    await navigateDown(1);
+
+    const firstActiveOption = getActiveOption();
+
+    expect(firstActiveOption).not.toBeNull();
+
+    await closeAutocomplete();
+
+    await openAutocomplete("arrowDown");
+
+    const secondActiveOption = getActiveOption();
+
+    expect(secondActiveOption).toBeNull();
+  });
+
+  it("resets the highlight to initial, not visible state when the input is cleared with backspaces", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("type", "Th");
+    await navigateDown(1);
+
+    const firstActiveOption = getActiveOption();
+
+    expect(firstActiveOption).not.toBeNull();
+
+    await deleteInput(2);
+    await openAutocomplete("arrowDown");
+
+    const secondActiveOption = getActiveOption();
+
+    expect(secondActiveOption).toBeNull();
+  });
+
+  it("resets the highlight to initial, not visible state when the autocomplete loses focus (blur)", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("type", "Th");
+    await navigateDown(1);
+
+    const firstActiveOption = getActiveOption();
+
+    expect(firstActiveOption).not.toBeNull();
+
+    await blurAutocomplete();
+
+    await openAutocomplete("arrowDown");
+
+    const secondActiveOption = getActiveOption();
+
+    expect(secondActiveOption).toBeNull();
+  });
+
+  it("highlights the selected option on reopen after blur", async () => {
+    render(<Wrapper initialValue={{ label: "Two" }} />);
+
+    await openAutocomplete("arrowDown");
+    await blurAutocomplete();
+    await openAutocomplete("arrowDown");
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).not.toBeNull();
+    expect(activeOption?.textContent).toContain("Two");
+  });
+
+  it("highlights the selected option on reopon after dismissing the menu", async () => {
+    render(<Wrapper initialValue={{ label: "Two" }} />);
+
+    await openAutocomplete("arrowDown");
+    await closeAutocomplete();
+    await openAutocomplete("arrowDown");
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).not.toBeNull();
+    expect(activeOption?.textContent).toContain("Two");
   });
 
   describe("renderOption/renderAction render args", () => {
