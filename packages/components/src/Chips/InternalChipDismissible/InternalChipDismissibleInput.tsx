@@ -53,7 +53,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     styles: floatingStyles,
     update,
-    targetWidth,
     setFloatingRef,
   } = useRepositionMenu(attachTo);
   useSafeLayoutEffect(() => {
@@ -85,7 +84,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
       role="listbox"
       id={menuId}
       className={styles.menu}
-      style={{ width: targetWidth, ...floatingStyles.float }}
+      style={floatingStyles.float}
       data-testid="chip-menu"
     >
       {allOptions.map((option, i) => (
