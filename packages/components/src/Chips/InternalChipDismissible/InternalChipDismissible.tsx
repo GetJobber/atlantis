@@ -10,6 +10,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
   const {
     availableChipOptions,
     ref: wrapperRef,
+    wrapperElement,
     sortedVisibleChipOptions,
     handleChipAdd,
     handleChipClick,
@@ -49,7 +50,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
 
       <InternalChipDismissibleInput
         activator={props.activator}
-        attachTo={wrapperRef}
+        attachTo={wrapperElement}
         isLoadingMore={props.isLoadingMore}
         options={availableChipOptions}
         onOptionSelect={handleChipAdd}
