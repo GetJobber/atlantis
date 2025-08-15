@@ -353,7 +353,11 @@ interface AutocompleteRebuiltBaseProps<
   readonly invalid?: boolean;
   readonly readonly?: boolean;
   readonly required?: boolean;
+  // do we need this? I don't think so really
   readonly open?: boolean;
+  // TODO: someone was asking for an imperativeHandle to call things like "select"
+  // not sure if that's needed if InputText has it
+  // readonly ref?: Ref<AutocompleteRebuiltRef>;
   readonly description?: string;
   readonly name?: string;
   readonly size?: "small" | "base" | "large";

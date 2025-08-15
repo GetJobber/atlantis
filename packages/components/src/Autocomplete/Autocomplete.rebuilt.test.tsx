@@ -23,6 +23,7 @@ import {
   typeInInput,
 } from "./Autocomplete.pom";
 import { InputText } from "../InputText";
+import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
 // TODO: POM to abstract the interactions and give them meaningful names
 
@@ -77,6 +78,7 @@ function Wrapper<T extends OptionLike>({
   renderAction,
   renderSection,
   renderInput,
+  loading,
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -89,6 +91,7 @@ function Wrapper<T extends OptionLike>({
   readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
   readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
   readonly renderInput?: AutocompleteProposedProps<T, false>["renderInput"];
+  readonly loading?: boolean;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -111,6 +114,7 @@ function Wrapper<T extends OptionLike>({
       renderAction={renderAction}
       renderSection={renderSection}
       renderInput={renderInput}
+      loading={loading}
     />
   );
 }
@@ -120,6 +124,26 @@ describe("AutocompleteRebuilt", () => {
   it("renders", () => {
     render(<Wrapper />);
     expect(screen.getByTestId("ATL-AutocompleteRebuilt")).toBeVisible();
+  });
+
+  describe("loading", () => {
+    it("renders 3 Glimmers when open and loading is true", async () => {
+      render(<Wrapper loading />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByRole("listbox")).toBeVisible();
+      expect(screen.getAllByTestId(GLIMMER_TEST_ID)).toHaveLength(3);
+    });
+
+    it("does not render Glimmers when loading is false or omitted", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.queryByRole("listbox")).toBeVisible();
+      expect(screen.queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
+    });
   });
 
   it("opens the menu when arrowUp is pressed", async () => {

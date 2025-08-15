@@ -22,6 +22,7 @@ import {
   useInteractions,
   useListNavigation,
 } from "@floating-ui/react";
+import classNames from "classnames";
 import {
   AutocompleteProposedProps,
   AutocompleteValue,
@@ -35,6 +36,7 @@ import styles from "./AutocompleteRebuilt.module.css";
 import { InputText, InputTextRef } from "../InputText";
 import { InputTextRebuiltProps } from "../InputText/InputText.types";
 import { calculateMaxHeight } from "../utils/maxHeight";
+import { Glimmer } from "../Glimmer";
 
 type RenderItem<T extends OptionLike> =
   | { kind: "option"; value: T }
@@ -63,6 +65,7 @@ interface UseAutocompleteListNavReturn {
   listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   open: boolean;
   setOpen: (open: boolean) => void;
+  setReferenceElement: (el: HTMLElement | null) => void;
 }
 
 interface UseAutocompleteListNavProps {
@@ -80,10 +83,13 @@ function useAutocompleteListNav({
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const listRef = useRef<Array<HTMLElement | null>>([]);
 
+  const [referenceEl, setReferenceEl] = useState<HTMLElement | null>(null);
+
   const { refs, floatingStyles, context } = useFloating({
     placement: "bottom-start",
     whileElementsMounted: autoUpdate,
     open,
+    elements: { reference: referenceEl },
     onOpenChange: (nextOpen, event, reason) => {
       setOpen(nextOpen);
 
@@ -99,13 +105,18 @@ function useAutocompleteListNav({
       offset(MENU_OFFSET),
       flip({ fallbackPlacements: ["top-start", "bottom-end", "top-end"] }),
       size({
-        apply({ availableHeight, elements }) {
+        apply({ availableHeight, elements, rects }) {
           const maxHeight = calculateMaxHeight(availableHeight, {
             maxHeight: AUTOCOMPLETE_MAX_HEIGHT,
           });
 
+          // TODO: this is just a bit shorter than the full width of the input. need to fix.
+          const referenceWidth = rects.reference.width;
+
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
+            width: `${referenceWidth}px`,
+            minWidth: `${referenceWidth}px`,
           });
         },
       }),
@@ -163,6 +174,7 @@ function useAutocompleteListNav({
     listRef,
     open,
     setOpen,
+    setReferenceElement: setReferenceEl,
   };
 }
 
@@ -532,7 +544,7 @@ function AutocompleteRebuiltInternal<
     description,
     size: sizeProp,
     clearable,
-    loading,
+    loading = false,
     renderInput,
     openOnFocus = false,
   } = props;
@@ -638,6 +650,7 @@ function AutocompleteRebuiltInternal<
     listRef,
     open,
     setOpen,
+    setReferenceElement,
   } = useAutocompleteListNav({
     openOnFocus,
     optionCount,
@@ -832,7 +845,6 @@ function AutocompleteRebuiltInternal<
     // Do we even need size if we allow custom input rendering?
     size: sizeProp === "base" ? undefined : sizeProp,
     clearable: clearable ? "while-editing" : undefined,
-    loading,
     ...getReferenceProps({
       onKeyDown(event) {
         if (event.key === "ArrowDown" || event.key === "ArrowUp") {
@@ -870,7 +882,7 @@ function AutocompleteRebuiltInternal<
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
     node: HTMLInputElement | HTMLTextAreaElement | null,
   ) => {
-    refs.setReference((node as Element) ?? null);
+    setReferenceElement((node as unknown as HTMLElement) ?? null);
   };
 
   return (
@@ -890,32 +902,46 @@ function AutocompleteRebuiltInternal<
             // closeOnFocusOut defaults to true; keeping it explicit for clarity
             closeOnFocusOut
           >
-            <MenuList<Value>
-              items={renderable}
-              activeIndex={activeIndex}
-              setNodeRef={refs.setFloating}
-              floatingProps={getFloatingProps()}
-              getItemProps={() =>
-                getItemProps({
-                  ref(node: HTMLElement | null) {
-                    const idx = Number(node?.getAttribute("data-index"));
+            {loading ? (
+              <div
+                ref={refs.setFloating}
+                role="listbox"
+                className={classNames(styles.list, styles.loadingList)}
+                style={floatingStyles}
+                {...getFloatingProps()}
+              >
+                <Glimmer />
+                <Glimmer />
+                <Glimmer />
+              </div>
+            ) : (
+              <MenuList<Value>
+                items={renderable}
+                activeIndex={activeIndex}
+                setNodeRef={refs.setFloating}
+                floatingProps={getFloatingProps()}
+                getItemProps={() =>
+                  getItemProps({
+                    ref(node: HTMLElement | null) {
+                      const idx = Number(node?.getAttribute("data-index"));
 
-                    if (!Number.isNaN(idx)) {
-                      listRef.current[idx] = node;
-                    }
-                  },
-                })
-              }
-              renderOption={renderOption}
-              renderSection={renderSection}
-              renderAction={renderAction}
-              getOptionLabel={getOptionLabel}
-              getOptionKey={getOptionKey}
-              onSelect={onSelection}
-              onAction={onAction}
-              isOptionSelected={isOptionSelected}
-              style={floatingStyles}
-            />
+                      if (!Number.isNaN(idx)) {
+                        listRef.current[idx] = node;
+                      }
+                    },
+                  })
+                }
+                renderOption={renderOption}
+                renderSection={renderSection}
+                renderAction={renderAction}
+                getOptionLabel={getOptionLabel}
+                getOptionKey={getOptionKey}
+                onSelect={onSelection}
+                onAction={onAction}
+                isOptionSelected={isOptionSelected}
+                style={floatingStyles}
+              />
+            )}
           </FloatingFocusManager>
         </FloatingPortal>
       )}
