@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import type { ReactNode } from "react";
 
 export interface OptionGroupProps {
   readonly children?: ReactNode;
@@ -10,9 +11,8 @@ export interface OptionGroupProps {
    * last resort. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    *
-   * Additional details: The provided class names are applied to the root
-   * `<optgroup>` element. Native `optgroup` styling capabilities are limited and
-   * inconsistent across browsers; prefer the default styles whenever possible.
+   * Additional details: The provided class names are applied to the root `<optgroup>` element.
+   * Only effective when `Select` version={2} is used with `UNSAFE_experimentalStyles`.
    */
   readonly UNSAFE_className?: string;
   /**
@@ -20,9 +20,9 @@ export interface OptionGroupProps {
    * last resort. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    *
-   * Additional details: Styles are applied directly to the root `<optgroup>`
-   * element via UNSAFE_style.container. Some CSS properties may not be supported or may render differently
-   * across browsers when targeting `optgroup`.
+   * Additional details: Styles are applied directly to the root `<optgroup>` element via
+   * `UNSAFE_style.container`. Only effective when `Select` version={2} is used with
+   * `UNSAFE_experimentalStyles`.
    */
   readonly UNSAFE_style?: { container?: React.CSSProperties };
 }
