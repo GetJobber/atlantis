@@ -354,7 +354,6 @@ function MenuList<T extends OptionLike>({
 }: MenuListProps<T>) {
   let navigableIndex = -1;
 
-  // eslint-disable-next-line max-statements
   function renderItemNode(item: RenderItem<T>, index: number) {
     if (item.kind === "section") {
       return handleSectionRendering<T>({
@@ -913,9 +912,9 @@ function AutocompleteRebuiltInternal<
                 style={floatingStyles}
                 {...getFloatingProps()}
               >
-                <Glimmer />
-                <Glimmer />
-                <Glimmer />
+                <Glimmer shape="rectangle" size="largest" />
+                <Glimmer shape="rectangle" size="largest" />
+                <Glimmer shape="rectangle" size="largest" />
               </div>
             ) : (
               <MenuList<Value>
