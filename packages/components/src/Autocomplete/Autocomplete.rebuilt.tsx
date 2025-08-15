@@ -1,5 +1,5 @@
+import type { Ref } from "react";
 import React, {
-  Ref,
   forwardRef,
   useCallback,
   useEffect,
@@ -7,11 +7,13 @@ import React, {
   useRef,
   useState,
 } from "react";
+import type {
+  UseFloatingReturn,
+  UseInteractionsReturn,
+} from "@floating-ui/react";
 import {
   FloatingFocusManager,
   FloatingPortal,
-  UseFloatingReturn,
-  UseInteractionsReturn,
   autoUpdate,
   flip,
   offset,
@@ -23,7 +25,7 @@ import {
   useListNavigation,
 } from "@floating-ui/react";
 import classNames from "classnames";
-import {
+import type {
   AutocompleteProposedProps,
   AutocompleteValue,
   MenuAction,
@@ -33,8 +35,9 @@ import {
   OptionLike,
 } from "./Autocomplete.types";
 import styles from "./AutocompleteRebuilt.module.css";
-import { InputText, InputTextRef } from "../InputText";
-import { InputTextRebuiltProps } from "../InputText/InputText.types";
+import type { InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
+import type { InputTextRebuiltProps } from "../InputText/InputText.types";
 import { calculateMaxHeight } from "../utils/maxHeight";
 import { Glimmer } from "../Glimmer";
 
