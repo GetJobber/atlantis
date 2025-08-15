@@ -28,7 +28,7 @@ export {
 } from "./Autocomplete.types";
 
 export {
-  type KeyboardAction,
+  KeyboardAction,
   getRequestedIndexChange,
   useKeyboardNavigation,
   useCustomKeyboardNavigation,
