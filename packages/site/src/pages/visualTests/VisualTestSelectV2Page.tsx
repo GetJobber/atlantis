@@ -156,16 +156,16 @@ export const VisualTestSelectV2Page = () => {
             </Grid>
           </section>
 
-          {/* Custom Select (enableCustomSelect) */}
+          {/* Custom Select (experimental styles) */}
           <section>
-            <Text size="large">Custom Select (enableCustomSelect)</Text>
+            <Text size="large">Custom Select (experimental)</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Stack gap="base">
                   {/* Basic custom select */}
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     value={customSelectedValue}
                     onChange={value => setCustomSelectedValue(value as string)}
                     placeholder="Custom select"
@@ -178,7 +178,7 @@ export const VisualTestSelectV2Page = () => {
                   {/* Custom select with description */}
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="With description"
                     description="This is a custom select"
                   >
@@ -189,7 +189,7 @@ export const VisualTestSelectV2Page = () => {
                   {/* Custom select: invalid + disabled */}
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="Invalid custom select"
                     invalid
                   >
@@ -199,7 +199,7 @@ export const VisualTestSelectV2Page = () => {
 
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="Disabled custom select"
                     disabled
                   >
@@ -210,7 +210,7 @@ export const VisualTestSelectV2Page = () => {
                   {/* Sizes */}
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="Small custom select"
                     size="small"
                   >
@@ -220,7 +220,7 @@ export const VisualTestSelectV2Page = () => {
 
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="Large custom select"
                     size="large"
                   >
@@ -231,7 +231,7 @@ export const VisualTestSelectV2Page = () => {
                   {/* Affixes */}
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="Prefix"
                     prefix={{ icon: "search" }}
                   >
@@ -241,7 +241,7 @@ export const VisualTestSelectV2Page = () => {
 
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="Suffix"
                     suffix={{ icon: "sparkles" }}
                   >
@@ -251,7 +251,7 @@ export const VisualTestSelectV2Page = () => {
 
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="Prefix + Suffix"
                     prefix={{ label: "Pre" }}
                     suffix={{ label: "Suf" }}
@@ -263,7 +263,7 @@ export const VisualTestSelectV2Page = () => {
                   {/* Inline */}
                   <Select
                     version={2}
-                    enableCustomSelect
+                    UNSAFE_experimentalStyles
                     placeholder="Inline custom select"
                     inline
                   >
