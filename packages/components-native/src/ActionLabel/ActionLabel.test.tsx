@@ -1,6 +1,7 @@
-import React, { CSSProperties } from "react";
+import type { CSSProperties } from "react";
+import React from "react";
 import { render } from "@testing-library/react-native";
-import { ReactTestInstance } from "react-test-renderer";
+import type { ReactTestInstance } from "react-test-renderer";
 import { ActionLabel } from "./ActionLabel";
 import { tokens } from "../utils/design";
 

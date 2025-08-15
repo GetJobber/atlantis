@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { ThumbnailList } from "./ThumbnailList";
-import { File } from "../FormatFile/types";
+import type { File } from "../FormatFile/types";
 
 const snapshotFile: File[] = [
   {

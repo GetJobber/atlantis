@@ -1,8 +1,10 @@
 import React from "react";
-import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
+import type { RenderAPI } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { Alert } from "react-native";
-import { File, FormatFile } from ".";
+import type { File } from ".";
+import { FormatFile } from ".";
 import {
   FILE_MOCK_FILE,
   FILE_MOCK_IMAGE,
@@ -12,8 +14,9 @@ import {
   FILE_UPLOAD_MOCK_IMAGE,
   FILE_UPLOAD_MOCK_PDF,
 } from "./components/_mocks/mockFiles";
-import { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
-import { FileUpload, StatusCode } from "./types";
+import type { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
+import type { FileUpload } from "./types";
+import { StatusCode } from "./types";
 import { tokens } from "../utils/design";
 
 let Platform: { OS: "ios" | "android" };

@@ -1,5 +1,6 @@
 import { act, renderHook } from "@testing-library/react-hooks";
-import { DeviceEventEmitter, KeyboardEvent } from "react-native";
+import type { KeyboardEvent } from "react-native";
+import { DeviceEventEmitter } from "react-native";
 import { useKeyboardVisibility } from "./useKeyboardVisibility";
 
 const keyboardEvent: Partial<KeyboardEvent> = {

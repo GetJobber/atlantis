@@ -1,12 +1,12 @@
-import React, { ReactNode } from "react";
-import {
+import type { ReactNode } from "react";
+import React from "react";
+import type {
   LayoutChangeEvent,
-  Pressable,
   PressableStateCallbackType,
-  View,
 } from "react-native";
-import { IconNames } from "@jobber/design";
-import { XOR } from "ts-xor";
+import { Pressable, View } from "react-native";
+import type { IconNames } from "@jobber/design";
+import type { XOR } from "ts-xor";
 import { useStyles } from "./Card.style";
 import { InternalCardHeader } from "./components/InternalCardHeader";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LayoutChangeEvent } from "react-native";
+import type { LayoutChangeEvent } from "react-native";
 
 export function useViewLayoutHeight(): {
   readonly handleLayout: ({ nativeEvent }: LayoutChangeEvent) => void;

@@ -1,20 +1,16 @@
 import React from "react";
-import {
-  Text as RNText,
-  StyleProp,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
-import { FieldError } from "react-hook-form";
-import { IconNames } from "@jobber/design";
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { Text as RNText, View } from "react-native";
+import type { FieldError } from "react-hook-form";
+import type { IconNames } from "@jobber/design";
 import { useStyles } from "./InputFieldWrapper.style";
 import { PrefixIcon, PrefixLabel } from "./components/Prefix/Prefix";
 import { SuffixIcon, SuffixLabel } from "./components/Suffix/Suffix";
 import { ClearAction } from "./components/ClearAction";
 import { Glimmer } from "../Glimmer/Glimmer";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
-import { TextVariation, useTypographyStyles } from "../Typography";
+import type { TextVariation } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 import { Text } from "../Text";
 import { ActivityIndicator } from "../ActivityIndicator";
 

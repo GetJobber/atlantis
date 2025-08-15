@@ -1,9 +1,11 @@
-import React, { CSSProperties, ReactElement } from "react";
+import type { CSSProperties, ReactElement } from "react";
+import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { Path } from "react-native-svg";
-import { ReactTestInstance } from "react-test-renderer";
-import { Button, ButtonType, ButtonVariation } from ".";
-import { ButtonSize } from "./types";
+import type { ReactTestInstance } from "react-test-renderer";
+import type { ButtonType, ButtonVariation } from ".";
+import { Button } from ".";
+import type { ButtonSize } from "./types";
 import { baseButtonHeight, smallButtonHeight } from "./Button.style";
 import { tokens } from "../utils/design";
 

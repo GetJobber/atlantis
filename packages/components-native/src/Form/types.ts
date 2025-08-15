@@ -1,5 +1,5 @@
-import { MutableRefObject, RefObject } from "react";
-import {
+import type { MutableRefObject, RefObject } from "react";
+import type {
   ControllerProps,
   DeepPartial,
   FieldPath,
@@ -8,8 +8,8 @@ import {
   UnpackNestedValue,
   UseFormReturn,
 } from "react-hook-form";
-import { IconNames } from "@jobber/design";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import type { IconNames } from "@jobber/design";
+import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export type FormValues<T> = UnpackNestedValue<T>;
 export type FormErrors = FormNetworkErrors | FormUserErrors;

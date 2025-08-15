@@ -1,8 +1,10 @@
-import React, { Ref, forwardRef, useEffect } from "react";
+import type { Ref } from "react";
+import React, { forwardRef, useEffect } from "react";
 import { View } from "react-native";
 import { useDebounce } from "@jobber/hooks/useDebounce";
 import { styles } from "./InputSearch.style";
-import { InputText, InputTextProps, InputTextRef } from "../InputText";
+import type { InputTextProps, InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
 
 export const InputSearch = forwardRef(SearchInputInternal);
 

@@ -1,8 +1,7 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import {
-  AtlantisThemeContextValue,
-  buildThemedStyles,
-} from "../AtlantisThemeContext";
+import type { TextStyle, ViewStyle } from "react-native";
+import { StyleSheet } from "react-native";
+import type { AtlantisThemeContextValue } from "../AtlantisThemeContext";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 import { getTypographyStyles } from "../Typography";
 import { tokens as staticTokens } from "../utils/design";
 

@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
+import type { RenderAPI } from "@testing-library/react-native";
 import {
-  RenderAPI,
   fireEvent,
   render,
   renderHook,
   waitFor,
 } from "@testing-library/react-native";
-import { Platform, TextStyle } from "react-native";
+import type { TextStyle } from "react-native";
+import { Platform } from "react-native";
 import { FormProvider, useForm } from "react-hook-form";
-import { InputText, InputTextProps } from "./InputText";
+import type { InputTextProps } from "./InputText";
+import { InputText } from "./InputText";
 import { InputAccessoriesProvider } from "./context";
-import {
-  Clearable,
-  InputFieldWrapperProps,
-  useCommonInputStyles,
-} from "../InputFieldWrapper";
+import type { Clearable, InputFieldWrapperProps } from "../InputFieldWrapper";
+import { useCommonInputStyles } from "../InputFieldWrapper";
 
 const MockInputFieldWrapper = jest.fn();
 jest.mock("../InputFieldWrapper", () => ({

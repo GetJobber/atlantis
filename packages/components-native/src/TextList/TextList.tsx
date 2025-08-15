@@ -1,8 +1,10 @@
 import React from "react";
 import { View } from "react-native";
 import { useStyles } from "./TextList.style";
-import { Content, Spacing } from "../Content";
-import { Text, TextLevel } from "../Text";
+import type { Spacing } from "../Content";
+import { Content } from "../Content";
+import type { TextLevel } from "../Text";
+import { Text } from "../Text";
 
 const BULLET_SYMBOL = `\u2022`;
 

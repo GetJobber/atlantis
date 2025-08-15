@@ -1,9 +1,6 @@
 import { set } from "date-fns";
-import {
-  MinutesIncrement,
-  getTimeZoneOffsetInMinutes,
-  roundUpToNearestMinutes,
-} from ".";
+import type { MinutesIncrement } from ".";
+import { getTimeZoneOffsetInMinutes, roundUpToNearestMinutes } from ".";
 
 describe("roundUpToNearestMinutes", () => {
   it.each<[MinutesIncrement, Record<string, number>]>([

@@ -1,6 +1,7 @@
 import React from "react";
 import { tokens } from "../utils/design";
-import { TextAlign, TextColor, Typography } from "../Typography";
+import type { TextAlign, TextColor } from "../Typography";
+import { Typography } from "../Typography";
 
 export type ActionLabelVariation = Extract<
   TextColor,

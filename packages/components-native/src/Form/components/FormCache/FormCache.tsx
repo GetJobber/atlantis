@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from "react";
-import { FieldValues, useFormContext, useWatch } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import omit from "lodash/omit";
 
 interface FormCacheProps<T extends FieldValues> {

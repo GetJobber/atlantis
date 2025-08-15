@@ -1,5 +1,5 @@
+import type { Ref } from "react";
 import React, {
-  Ref,
   forwardRef,
   useCallback,
   useImperativeHandle,
@@ -9,10 +9,9 @@ import React, {
 } from "react";
 import { Modalize } from "react-native-modalize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import {
   AccessibilityInfo,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
   Platform,
   View,
   findNodeHandle,
@@ -22,7 +21,7 @@ import { Portal } from "react-native-portalize";
 import { useKeyboardVisibility } from "./hooks/useKeyboardVisibility";
 import { useStyles } from "./ContentOverlay.style";
 import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
-import {
+import type {
   ContentOverlayProps,
   ContentOverlayRef,
   ModalBackgroundColor,

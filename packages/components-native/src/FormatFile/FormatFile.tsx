@@ -2,22 +2,15 @@ import React, { createRef, useCallback, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useStyles } from "./FormatFile.style";
 import { MediaView } from "./components/MediaView";
-import {
-  BottomSheetOptionsSuffix,
-  FormatFileBottomSheet,
-} from "./components/FormatFileBottomSheet";
+import type { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
+import { FormatFileBottomSheet } from "./components/FormatFileBottomSheet";
 import { FileView } from "./components/FileView";
 import { acceptedExtensions, videoExtensions } from "./constants";
-import {
-  CreateThumbnail,
-  File,
-  FileUpload,
-  FormattedFile,
-  StatusCode,
-} from "./types";
+import type { CreateThumbnail, File, FileUpload, FormattedFile } from "./types";
+import { StatusCode } from "./types";
 import { AtlantisFormatFileContext } from "./context/FormatFileContext";
 import { createUseCreateThumbnail } from "./utils/createUseCreateThumbnail";
-import { BottomSheetRef } from "../BottomSheet/BottomSheet";
+import type { BottomSheetRef } from "../BottomSheet/BottomSheet";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface FormatFileProps<T> {

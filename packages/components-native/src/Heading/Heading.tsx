@@ -1,12 +1,12 @@
 import React from "react";
-import {
+import type {
   FontFamily,
   TextAlign,
   TextColor,
   TruncateLength,
-  Typography,
   TypographyProps,
 } from "../Typography";
+import { Typography } from "../Typography";
 import { tokens } from "../utils/design";
 
 type HeadingStyle = Pick<

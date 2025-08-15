@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Pressable,
-  Text as RNText,
-  StyleProp,
-  TextStyle,
-  View,
-} from "react-native";
-import { IconNames } from "@jobber/design";
+import type { StyleProp, TextStyle } from "react-native";
+import { Pressable, Text as RNText, View } from "react-native";
+import type { IconNames } from "@jobber/design";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
 import { useTypographyStyles } from "../../../Typography";

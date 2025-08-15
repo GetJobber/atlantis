@@ -1,14 +1,11 @@
 import React, { useCallback } from "react";
 import { Alert } from "react-native";
-import {
+import type {
   ButtonGroupActionElement,
   ButtonGroupPrimaryActionElement,
 } from "./types";
-import {
-  ButtonGroupActionProps,
-  PrimaryAction,
-  SecondaryAction,
-} from "./ButtonGroupAction";
+import type { ButtonGroupActionProps } from "./ButtonGroupAction";
+import { PrimaryAction, SecondaryAction } from "./ButtonGroupAction";
 import { useAtlantisContext } from "../AtlantisContext/AtlantisContext";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 

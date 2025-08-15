@@ -1,8 +1,9 @@
-import React, { ElementType } from "react";
+import type { ElementType } from "react";
+import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { View } from "react-native";
 import { SelectInternalPicker } from ".";
-import { SelectInternalPickerProps } from "../../types";
+import type { SelectInternalPickerProps } from "../../types";
 import { Text } from "../../../Text";
 
 let Platform: { OS: "ios" | "android"; Version: string | number };

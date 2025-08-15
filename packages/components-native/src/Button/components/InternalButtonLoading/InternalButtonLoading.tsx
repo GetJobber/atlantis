@@ -10,7 +10,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { styles } from "./InternalButtonLoading.style";
 import { tokens } from "../../../utils/design";
-import { ButtonType, ButtonVariation } from "../../types";
+import type { ButtonType, ButtonVariation } from "../../types";
 
 interface InternalButtonLoadingProps {
   readonly variation: ButtonVariation;

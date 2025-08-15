@@ -1,6 +1,8 @@
-import React, { RefObject } from "react";
+import type { RefObject } from "react";
+import React from "react";
 import { Portal } from "react-native-portalize";
-import { BottomSheet, BottomSheetRef } from "../../../BottomSheet/BottomSheet";
+import type { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
+import { BottomSheet } from "../../../BottomSheet/BottomSheet";
 import { BottomSheetOption } from "../../../BottomSheet/components/BottomSheetOption";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 

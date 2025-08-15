@@ -4,9 +4,9 @@ import { PrimaryAction, SecondaryAction } from "./ButtonGroupAction";
 import { useStyles } from "./ButtonGroup.style";
 import { SecondaryActionSheet } from "./components/SecondaryActionSheet";
 import { getActions, usePreventTapWhenOffline } from "./utils";
-import { ButtonGroupActionElement } from "./types";
+import type { ButtonGroupActionElement } from "./types";
 import { Button } from "../Button";
-import { BottomSheetRef } from "../BottomSheet/BottomSheet";
+import type { BottomSheetRef } from "../BottomSheet/BottomSheet";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface ButtonGroupProps {

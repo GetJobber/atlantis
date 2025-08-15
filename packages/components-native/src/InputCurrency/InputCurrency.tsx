@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { FormatNumberOptions, useIntl } from "react-intl";
+import type { FormatNumberOptions } from "react-intl";
+import { useIntl } from "react-intl";
 import { Platform } from "react-native";
-import { ControllerRenderProps, FieldValues } from "react-hook-form";
+import type { ControllerRenderProps, FieldValues } from "react-hook-form";
 import {
   NUMBER_VALIDATION_REGEX,
   checkLastChar,
@@ -12,7 +13,8 @@ import {
   parseGivenInput,
 } from "./utils";
 import { useAtlantisContext } from "../AtlantisContext";
-import { InputText, InputTextProps } from "../InputText";
+import type { InputTextProps } from "../InputText";
+import { InputText } from "../InputText";
 import { useFormController } from "../hooks/useFormController";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 

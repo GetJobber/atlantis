@@ -1,14 +1,12 @@
 import React from "react";
-import {
+import type {
   AccessibilityProps,
-  I18nManager,
   StyleProp,
-  StyleSheet,
-  Text,
   TextProps,
   TextStyle,
   ViewStyle,
 } from "react-native";
+import { I18nManager, StyleSheet, Text } from "react-native";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
 import { useTypographyStyles } from "./Typography.style";
 import { capitalize } from "../utils/intl";

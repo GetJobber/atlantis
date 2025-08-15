@@ -5,7 +5,7 @@ import {
   darkPattern,
   lightPattern,
 } from "./InternalButtonLoading";
-import { ButtonType, ButtonVariation } from "../../types";
+import type { ButtonType, ButtonVariation } from "../../types";
 
 describe("Loading pattern", () => {
   it.each<[string, ButtonType, ButtonVariation]>([

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { useMemo } from "react";
-import { AtlantisThemeContextValue } from "./types";
+import type { AtlantisThemeContextValue } from "./types";
 import { useAtlantisTheme } from "./AtlantisThemeContext";
 
 /**

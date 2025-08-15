@@ -1,4 +1,4 @@
-import { FormattedFile } from "../types";
+import type { FormattedFile } from "../types";
 
 export interface UseCreateThumbnailResponse {
   readonly thumbnail: string | undefined;

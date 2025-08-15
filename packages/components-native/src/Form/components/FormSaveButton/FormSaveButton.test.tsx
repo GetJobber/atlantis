@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
-import { IconNames } from "@jobber/design";
+import type { IconNames } from "@jobber/design";
 import { FormSaveButton } from "./FormSaveButton";
 
 interface TestSecondaryActionProp {

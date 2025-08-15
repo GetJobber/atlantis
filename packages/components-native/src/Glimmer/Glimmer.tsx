@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, Easing, LayoutChangeEvent, View } from "react-native";
+import type { LayoutChangeEvent } from "react-native";
+import { Animated, Easing, View } from "react-native";
 import Svg, { Defs, LinearGradient, Rect, Stop } from "react-native-svg";
 import { shineWidth, useStyles } from "./Glimmer.style";
 import { useSizeStyles } from "./Glimmer.size.style";

@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
-import { AccessibilityRole, Pressable, View } from "react-native";
-import { IconNames } from "@jobber/design";
+import type { AccessibilityRole } from "react-native";
+import { Pressable, View } from "react-native";
+import type { IconNames } from "@jobber/design";
 import { useStyles } from "./Chip.style";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";

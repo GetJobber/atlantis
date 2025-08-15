@@ -1,5 +1,7 @@
-import React, { Ref, forwardRef } from "react";
-import { InputText, InputTextProps, InputTextRef } from "../InputText";
+import type { Ref } from "react";
+import React, { forwardRef } from "react";
+import type { InputTextProps, InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
 
 export const InputEmail = forwardRef(InputEmailInternal);
 type InputEmailProps = Omit<InputTextProps, "keyboard">;

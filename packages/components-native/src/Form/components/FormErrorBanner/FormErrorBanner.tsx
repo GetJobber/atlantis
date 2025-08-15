@@ -1,5 +1,5 @@
 import React from "react";
-import { FormBannerErrors } from "../../types";
+import type { FormBannerErrors } from "../../types";
 import { Banner } from "../../../Banner";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 

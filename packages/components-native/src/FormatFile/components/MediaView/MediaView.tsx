@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ImageBackground, View } from "react-native";
 import { useStyles } from "./MediaView.style";
-import { FormattedFile, StatusCode } from "../../types";
+import type { FormattedFile } from "../../types";
+import { StatusCode } from "../../types";
 import { computeA11yLabel } from "../../utils";
 import { ActivityIndicator } from "../../../ActivityIndicator";
 import { Icon } from "../../../Icon";

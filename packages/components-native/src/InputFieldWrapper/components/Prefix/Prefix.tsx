@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Text as RNText,
-  StyleProp,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
-import { IconNames } from "@jobber/design";
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { Text as RNText, View } from "react-native";
+import type { IconNames } from "@jobber/design";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
 import { useAtlantisTheme } from "../../../AtlantisThemeContext";

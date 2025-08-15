@@ -1,6 +1,5 @@
+import type { Ref, SyntheticEvent } from "react";
 import React, {
-  Ref,
-  SyntheticEvent,
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -8,24 +7,24 @@ import React, {
   useRef,
   useState,
 } from "react";
-import {
+import type {
   NativeSyntheticEvent,
-  Platform,
   ReturnKeyTypeOptions,
   StyleProp,
-  TextInput,
   TextInputFocusEventData,
   TextInputProps,
   TextStyle,
 } from "react-native";
-import { RegisterOptions } from "react-hook-form";
-import { IconNames } from "@jobber/design";
+import { Platform, TextInput } from "react-native";
+import type { RegisterOptions } from "react-hook-form";
+import type { IconNames } from "@jobber/design";
 import identity from "lodash/identity";
-import { Clearable, useShowClear } from "@jobber/hooks";
+import type { Clearable } from "@jobber/hooks";
+import { useShowClear } from "@jobber/hooks";
 import { useStyles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
 import { useFormController } from "../hooks";
-import {
+import type {
   InputFieldStyleOverride,
   InputFieldWrapperProps,
 } from "../InputFieldWrapper/InputFieldWrapper";

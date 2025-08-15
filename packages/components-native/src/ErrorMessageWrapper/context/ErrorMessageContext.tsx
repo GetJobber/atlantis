@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, useContext } from "react";
-import { ErrorMessageContextProps } from "./types";
+import type { ErrorMessageContextProps } from "./types";
 
 const defaultValues: ErrorMessageContextProps = {
   elements: {},

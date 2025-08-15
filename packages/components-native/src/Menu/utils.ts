@@ -1,5 +1,5 @@
-import { LayoutRectangle } from "react-native";
-import { useStyles } from "./Menu.style";
+import type { LayoutRectangle } from "react-native";
+import type { useStyles } from "./Menu.style";
 
 interface ScreenInfo {
   windowHeight: number;

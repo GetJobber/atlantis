@@ -1,10 +1,11 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import { View, ViewStyle } from "react-native";
-import { ReactTestInstance } from "react-test-renderer";
+import type { ViewStyle } from "react-native";
+import { View } from "react-native";
+import type { ReactTestInstance } from "react-test-renderer";
 import { tokens } from "@jobber/design/foundation";
 import { Flex } from "./Flex";
-import { FlexProps, Spacing } from "./types";
+import type { FlexProps, Spacing } from "./types";
 import { columnStyles } from "./Flex.styles";
 import { Text } from "../Text";
 import { Icon } from "../Icon";

@@ -1,5 +1,7 @@
-import { StyleSheet, ViewStyle } from "react-native";
-import { ColumnKeys, Spacing, spacing } from "./types";
+import type { ViewStyle } from "react-native";
+import { StyleSheet } from "react-native";
+import type { ColumnKeys, Spacing } from "./types";
+import { spacing } from "./types";
 import { tokens as staticTokens } from "../utils/design";
 
 export const styles = StyleSheet.create({

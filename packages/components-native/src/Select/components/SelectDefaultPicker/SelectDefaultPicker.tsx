@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { styles } from "./SelectDefaultPicker.style";
-import { SelectInternalPickerProps } from "../../types";
+import type { SelectInternalPickerProps } from "../../types";
 import { SelectPressable } from "../SelectPressable";
 import { useAtlantisTheme } from "../../../AtlantisThemeContext";
 

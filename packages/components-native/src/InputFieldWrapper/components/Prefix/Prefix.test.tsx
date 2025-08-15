@@ -1,12 +1,11 @@
 import React from "react";
 import { render, renderHook } from "@testing-library/react-native";
-import { TextStyle } from "react-native";
-import { ReactTestInstance } from "react-test-renderer";
+import type { TextStyle } from "react-native";
+import type { ReactTestInstance } from "react-test-renderer";
+import type { PrefixIconProps, PrefixLabelProps } from "./Prefix";
 import {
   PrefixIcon,
-  PrefixIconProps,
   PrefixLabel,
-  PrefixLabelProps,
   prefixIconTestId,
   prefixLabelTestId,
 } from "./Prefix";

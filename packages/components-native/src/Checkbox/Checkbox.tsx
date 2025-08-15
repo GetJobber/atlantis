@@ -1,6 +1,7 @@
 import React from "react";
-import { ColorValue, Pressable, View } from "react-native";
-import { XOR } from "ts-xor";
+import type { ColorValue } from "react-native";
+import { Pressable, View } from "react-native";
+import type { XOR } from "ts-xor";
 import { useStyles } from "./Checkbox.style";
 import { Text } from "../Text";
 import { Icon } from "../Icon";

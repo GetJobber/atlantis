@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react-native";
-import { ReactTestInstance } from "react-test-renderer";
+import type { ReactTestInstance } from "react-test-renderer";
 import { Disclosure } from ".";
 import { Text } from "../Text";
 

@@ -2,10 +2,11 @@ import React, { Fragment, useReducer } from "react";
 import { View } from "react-native";
 import isEmpty from "lodash/isEmpty";
 import reduce from "lodash/reduce";
-import { XOR } from "ts-xor";
+import type { XOR } from "ts-xor";
 import { useStyles } from "./CheckboxGroup.style";
-import { Checkbox, CheckboxProps } from "./Checkbox";
-import { CheckboxElement, CheckboxGroupState } from "./types";
+import type { CheckboxProps } from "./Checkbox";
+import { Checkbox } from "./Checkbox";
+import type { CheckboxElement, CheckboxGroupState } from "./types";
 import {
   checkboxGroupReducer,
   initCheckboxGroupState,

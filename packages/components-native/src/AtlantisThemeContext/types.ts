@@ -1,4 +1,4 @@
-import { iosTokens } from "@jobber/design";
+import type { iosTokens } from "@jobber/design";
 
 export interface AtlantisThemeContextValue {
   /**

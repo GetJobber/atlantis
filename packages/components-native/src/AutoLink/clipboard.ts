@@ -1,5 +1,6 @@
 import Clipboard from "@react-native-clipboard/clipboard";
-import { ShowToastParams, showToast } from "../Toast";
+import type { ShowToastParams } from "../Toast";
+import { showToast } from "../Toast";
 
 export function copyTextToClipboard(
   text: string,

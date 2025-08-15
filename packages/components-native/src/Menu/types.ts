@@ -1,5 +1,5 @@
-import { IconColorNames, IconNames } from "@jobber/design";
-import { TextAlign } from "../Typography";
+import type { IconColorNames, IconNames } from "@jobber/design";
+import type { TextAlign } from "../Typography";
 
 export interface MenuOptionProps {
   readonly label: string;

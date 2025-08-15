@@ -1,6 +1,6 @@
 import React from "react";
 import { Platform } from "react-native";
-import { ComposeTextWithLinksProps } from "../../types";
+import type { ComposeTextWithLinksProps } from "../../types";
 import { onLongPressLink, onPressLink } from "../../utils";
 import { Link } from "../Link/Link";
 import { Text } from "../../../Text";

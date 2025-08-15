@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { InputPassword } from "./InputPassword";
-import { InputFieldWrapperProps } from "../InputFieldWrapper";
+import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 
 const MockInputFieldWrapper = jest.fn();
 jest.mock("../InputFieldWrapper", () => ({

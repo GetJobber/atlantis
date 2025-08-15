@@ -1,8 +1,9 @@
 import React from "react";
 import { render, renderHook } from "@testing-library/react-native";
 import { View } from "react-native";
-import { ReactTestInstance } from "react-test-renderer";
-import { Content, ContentProps } from "./Content";
+import type { ReactTestInstance } from "react-test-renderer";
+import type { ContentProps } from "./Content";
+import { Content } from "./Content";
 import { useSpaceAroundStyles } from "./ContentSpaceAround.style";
 import { useVerticalStyles } from "./ContentVertical.style";
 import { useHorizontalStyles } from "./ContentHorizontal.style";

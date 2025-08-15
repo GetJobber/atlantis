@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, View } from "react-native";
 import { useStyles } from "./Overlay.style";
-import { OverlayProp } from "../../types";
+import type { OverlayProp } from "../../types";
 
 export function Overlay({ setOpen }: OverlayProp): JSX.Element {
   const styles = useStyles();

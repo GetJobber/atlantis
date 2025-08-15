@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { Checkbox, CheckboxProps } from "./Checkbox";
+import type { ReactElement } from "react";
+import type { Checkbox, CheckboxProps } from "./Checkbox";
 
 export interface CheckboxGroupChildrenState {
   [key: string]: boolean;

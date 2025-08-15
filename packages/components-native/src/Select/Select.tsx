@@ -1,11 +1,12 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import { View } from "react-native";
-import { RegisterOptions } from "react-hook-form";
+import type { RegisterOptions } from "react-hook-form";
 import { useStyles } from "./Select.style";
 import { SelectInternalPicker } from "./components/SelectInternalPicker";
 import { InputFieldWrapper } from "../InputFieldWrapper";
 import { Icon } from "../Icon";
-import { TextVariation } from "../Typography";
+import type { TextVariation } from "../Typography";
 import { Text } from "../Text";
 import { useFormController } from "../hooks";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";

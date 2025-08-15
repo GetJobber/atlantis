@@ -1,4 +1,5 @@
-import React, { ReactNode, Ref, RefObject, forwardRef, useState } from "react";
+import type { ReactNode, Ref, RefObject } from "react";
+import React, { forwardRef, useState } from "react";
 import { Modalize } from "react-native-modalize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Keyboard, View } from "react-native";

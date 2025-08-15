@@ -1,5 +1,5 @@
 import { createContext, useContext, useRef } from "react";
-import { AtlantisFormContextProps } from "./types";
+import type { AtlantisFormContextProps } from "./types";
 
 export const atlantisFormContextDefaultValues = {
   useConfirmBeforeBack: () => {

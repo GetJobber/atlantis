@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { InternalFormMessage } from "./components/InternalFormMessage";
-import { EmptyStateProps } from "../../../EmptyState";
+import type { EmptyStateProps } from "../../../EmptyState";
 
 type FormMessageData = EmptyStateProps;
 

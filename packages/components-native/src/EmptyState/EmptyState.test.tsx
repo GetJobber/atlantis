@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
-import { EmptyState, EmptyStateProps } from "./EmptyState";
+import type { EmptyStateProps } from "./EmptyState";
+import { EmptyState } from "./EmptyState";
 import * as IconComponent from "../Icon/Icon";
 
 const primaryOnPress = jest.fn();

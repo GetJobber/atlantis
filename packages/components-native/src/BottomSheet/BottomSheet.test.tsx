@@ -3,7 +3,7 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
 import { Host, Portal } from "react-native-portalize";
 import { BottomSheet } from ".";
-import { BottomSheetRef } from "./BottomSheet";
+import type { BottomSheetRef } from "./BottomSheet";
 import { waitForUntestableRender } from "../utils/test/wait";
 import { Text } from "../Text";
 

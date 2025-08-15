@@ -1,4 +1,4 @@
-import { MissingTranslationError } from "react-intl";
+import type { MissingTranslationError } from "react-intl";
 import * as ReactNative from "react-native";
 import React from "react";
 import { MockModal } from "./MockModal";

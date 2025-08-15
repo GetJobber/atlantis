@@ -1,4 +1,5 @@
-import Autolinker, { Match } from "autolinker";
+import type { Match } from "autolinker";
+import Autolinker from "autolinker";
 import { useTokenGenerator } from "./useTokenGenerator";
 import { shouldIgnoreURL } from "../utils";
 

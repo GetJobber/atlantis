@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  RenderAPI,
-  fireEvent,
-  render,
-  waitFor,
-} from "@testing-library/react-native";
+import type { RenderAPI } from "@testing-library/react-native";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { FormProvider, useForm } from "react-hook-form";
 import { CheckboxGroup } from "./CheckboxGroup";
 import { Checkbox } from "./Checkbox";
-import { CheckboxGroupState } from "./types";
+import type { CheckboxGroupState } from "./types";
 import { Button } from "../Button";
 
 const onSubmitMock = jest.fn();

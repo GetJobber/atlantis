@@ -1,12 +1,8 @@
 import React from "react";
 import { render, renderHook } from "@testing-library/react-native";
-import { TextStyle } from "react-native";
-import {
-  SuffixIcon,
-  SuffixIconProps,
-  SuffixLabel,
-  SuffixLabelProps,
-} from "./Suffix";
+import type { TextStyle } from "react-native";
+import type { SuffixIconProps, SuffixLabelProps } from "./Suffix";
+import { SuffixIcon, SuffixLabel } from "./Suffix";
 import { useTypographyStyles } from "../../../Typography";
 
 const mockLabel = "$";
