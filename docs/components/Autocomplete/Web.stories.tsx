@@ -2,19 +2,21 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
-  type AnyOption,
   Autocomplete,
   BaseMenuGroupOption,
   BaseMenuOption,
-  type CustomOptionsMenuProp,
   KeyboardAction,
   MenuOption,
-  Option,
   getRequestedIndexChange,
   isOptionGroup,
   isOptionSelected,
   useCustomKeyboardNavigation,
   useKeyboardNavigation,
+} from "@jobber/components/Autocomplete";
+import type {
+  AnyOption,
+  CustomOptionsMenuProp,
+  Option,
 } from "@jobber/components/Autocomplete";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
@@ -60,7 +62,7 @@ const defaultOptions = [
 // are not undefined in the code preview
 
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const basicOptions = args.initialOptions;
+  const basicOptions = args.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -109,7 +111,7 @@ const withDetailsOptions = [
 ];
 
 const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const detailsOptions = args.initialOptions;
+  const detailsOptions = args.initialOptions ?? withDetailsOptions;
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -155,7 +157,8 @@ const SectionHeadingOptions = [
 ];
 
 const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const headingOptions = args.initialOptions;
+  const headingOptionsAll = args.initialOptions ?? SectionHeadingOptions;
+  const headingOptions = headingOptionsAll.filter(isOptionGroup);
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -183,7 +186,7 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
 };
 
 const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const valueOptions = args.initialOptions;
+  const valueOptions = args.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
 
   return (
