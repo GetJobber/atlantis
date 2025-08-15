@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import {
+import type {
   DataListLayoutActionsContextProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";

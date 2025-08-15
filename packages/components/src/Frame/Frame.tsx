@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./Frame.module.css";
-import { FrameProps } from "./types";
+import type { FrameProps } from "./types";
 
 export function Frame({
   children,

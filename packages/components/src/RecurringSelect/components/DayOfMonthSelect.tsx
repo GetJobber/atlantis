@@ -2,7 +2,7 @@ import React, { useId } from "react";
 import styles from "./DayOfMonthSelect.module.css";
 import checkboxStyles from "../DateCellCheckbox.module.css";
 /* eslint-disable import/no-deprecated */
-import { DayOfMonth } from "../types";
+import type { DayOfMonth } from "../types";
 
 interface DayOfMonthSelectProps {
   readonly selectedDays: Set<DayOfMonth>;

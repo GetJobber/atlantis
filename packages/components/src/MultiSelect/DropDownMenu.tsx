@@ -1,16 +1,13 @@
-import React, {
+import type {
   Dispatch,
   KeyboardEvent,
   MouseEvent,
   MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
 } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import styles from "./DropDownMenu.module.css";
-import { Option, Options } from "./types";
+import type { Option, Options } from "./types";
 import { Checkbox } from "../Checkbox";
 
 interface DropDownMenuProps {

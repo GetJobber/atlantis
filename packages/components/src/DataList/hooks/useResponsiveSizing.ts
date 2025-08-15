@@ -1,5 +1,6 @@
 import { useMediaQuery } from "./useMediaQuery";
-import { BREAKPOINT_SIZES, Breakpoints } from "../DataList.const";
+import type { Breakpoints } from "../DataList.const";
+import { BREAKPOINT_SIZES } from "../DataList.const";
 
 export function useResponsiveSizing(): Record<Breakpoints, boolean> {
   // This was originally written to look for "min-width: 0" which would always

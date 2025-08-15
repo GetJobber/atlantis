@@ -1,7 +1,7 @@
 import React, { useId, useRef } from "react";
 import omit from "lodash/omit";
 import classnames from "classnames";
-import { SelectRebuiltProps } from "./Select.types";
+import type { SelectRebuiltProps } from "./Select.types";
 import { useSelectActions } from "./hooks/useSelectActions";
 import { useSelectFormField } from "./hooks/useSelectFormField";
 import styles from "./Select.module.css";

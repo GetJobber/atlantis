@@ -1,5 +1,6 @@
-import React, { ReactNode } from "react";
-import { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type { ReactNode } from "react";
+import type React from "react";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
 export type InputNumberVersion = 1 | 2 | undefined;
 

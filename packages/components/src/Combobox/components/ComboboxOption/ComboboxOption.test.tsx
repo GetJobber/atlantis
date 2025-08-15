@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as POM from "./ComboboxOption.pom";
-import { ComboboxOptionProps } from "../../Combobox.types";
+import type { ComboboxOptionProps } from "../../Combobox.types";
 
 const onSelect = jest.fn();
 

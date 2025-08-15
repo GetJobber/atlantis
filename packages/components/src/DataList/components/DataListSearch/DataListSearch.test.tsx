@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import userEvent, { UserEvent } from "@testing-library/user-event";
+import type { UserEvent } from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import {
   DATA_LIST_SEARCH_TEST_ID,
   DataListSearch,
@@ -8,7 +9,10 @@ import {
 } from "./DataListSearch";
 import { defaultValues } from "../../context/DataListContext";
 import * as dataListContext from "../../context/DataListContext/DataListContext";
-import { DataListContextProps, DataListObject } from "../../DataList.types";
+import type {
+  DataListContextProps,
+  DataListObject,
+} from "../../DataList.types";
 
 const spy = jest.spyOn(dataListContext, "useDataListContext");
 const contextValueWithRenderableChildren: DataListContextProps<DataListObject> =

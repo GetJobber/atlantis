@@ -1,5 +1,5 @@
 import React from "react";
-import { InternalChipProps } from "./ChipTypes";
+import type { InternalChipProps } from "./ChipTypes";
 
 export interface ChipProps
   extends Pick<InternalChipProps, "label" | "prefix" | "disabled" | "invalid"> {

@@ -1,6 +1,8 @@
-import { Row, Table, flexRender } from "@tanstack/react-table";
+import type { Row, Table } from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { ReactNode, useCallback } from "react";
+import type { ReactNode } from "react";
+import React, { useCallback } from "react";
 import styles from "./DataTable.module.css";
 import { BodyLoading } from "./BodyLoading";
 

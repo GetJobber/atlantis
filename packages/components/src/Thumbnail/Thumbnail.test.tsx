@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import { FileUpload } from "@jobber/components/InputFile";
+import type { FileUpload } from "@jobber/components/InputFile";
 import { Thumbnail } from "./Thumbnail";
 import * as browserUtilities from "../utils/getClientBrowser";
 

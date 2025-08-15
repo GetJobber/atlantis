@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { render as renderComponent, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { DataList } from "../DataList";
-import { DataListSelectedType } from "../DataList.types";
+import type { DataListSelectedType } from "../DataList.types";
 
 const mockOnSearch = jest.fn();
 const mockData = [

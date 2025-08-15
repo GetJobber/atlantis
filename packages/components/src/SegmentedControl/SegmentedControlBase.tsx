@@ -1,10 +1,6 @@
 import classNames from "classnames";
-import React, {
-  CSSProperties,
-  Children,
-  PropsWithChildren,
-  forwardRef,
-} from "react";
+import type { CSSProperties, PropsWithChildren } from "react";
+import React, { Children, forwardRef } from "react";
 import styles from "./SegmentedControl.module.css";
 
 export interface SegmentedControlBaseProps extends PropsWithChildren {

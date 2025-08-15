@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import ReactCountdown, { CountdownRenderProps } from "react-countdown";
+import type { CountdownRenderProps } from "react-countdown";
+import ReactCountdown from "react-countdown";
 import { computeTimeUnit } from "./computeTimeUnit";
 
 /**

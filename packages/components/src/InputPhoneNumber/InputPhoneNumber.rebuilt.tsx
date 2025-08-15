@@ -3,10 +3,8 @@ import classNames from "classnames";
 import { MaskElement } from "./InputMask";
 import { useInputMask } from "./useInputMask";
 import styles from "./InputMask.module.css";
-import {
-  DEFAULT_PATTERN,
-  InputPhoneNumberRebuiltProps,
-} from "./InputPhoneNumber.types";
+import type { InputPhoneNumberRebuiltProps } from "./InputPhoneNumber.types";
+import { DEFAULT_PATTERN } from "./InputPhoneNumber.types";
 import { useInputPhoneActions } from "./hooks/useInputPhoneActions";
 import { useInputPhoneFormField } from "./hooks/useInputPhoneFormField";
 import {

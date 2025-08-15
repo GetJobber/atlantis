@@ -1,4 +1,9 @@
-export { InputFile, updateFiles, FileUpload, UploadParams } from "./InputFile";
+export {
+  InputFile,
+  updateFiles,
+  type FileUpload,
+  type UploadParams,
+} from "./InputFile";
 export {
   InputFileContentContext,
   useInputFileContentContext,

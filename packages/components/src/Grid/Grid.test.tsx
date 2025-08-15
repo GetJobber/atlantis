@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { GRID_TEST_ID, Grid } from ".";
-import alignments from "./GridAlign.module.css";
+import type alignments from "./GridAlign.module.css";
 
 const children = [
   <Grid.Cell key="1" size={{ xs: 12, sm: 8, md: 6, lg: 4, xl: 3 }}>

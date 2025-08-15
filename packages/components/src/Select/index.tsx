@@ -1,9 +1,12 @@
 import React from "react";
 import { Select as SelectLegacy } from "./Select";
 import { SelectRebuilt } from "./Select.rebuilt";
-import { SelectLegacyProps, SelectRebuiltProps } from "./Select.types";
 import { Option } from "./Option";
 import { OptionGroup } from "./OptionGroup";
+import {
+  type SelectLegacyProps,
+  type SelectRebuiltProps,
+} from "./Select.types";
 
 export { Option } from "./Option";
 export type SelectShimProps = SelectLegacyProps | SelectRebuiltProps;
@@ -23,4 +26,4 @@ export function Select(props: SelectShimProps) {
 Select.Option = Option;
 Select.OptionGroup = OptionGroup;
 
-export { SelectRebuiltProps, SelectLegacyProps };
+export type { SelectRebuiltProps, SelectLegacyProps };

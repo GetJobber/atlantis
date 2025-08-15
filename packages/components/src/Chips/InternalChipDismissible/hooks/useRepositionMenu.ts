@@ -1,4 +1,5 @@
-import { RefObject, useState } from "react";
+import type { RefObject } from "react";
+import { useState } from "react";
 import { usePopper } from "react-popper";
 
 export function useRepositionMenu(attachTo: RefObject<Element | null>) {

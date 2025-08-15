@@ -1,13 +1,13 @@
-import React, { ForwardedRef, forwardRef } from "react";
+import React, { type ForwardedRef, forwardRef } from "react";
 import { InputNumberRebuilt } from "./InputNumber.rebuilt";
 import {
   InputNumber as InputNumberLegacy,
-  InputNumberProps as InputNumberLegacyProps,
-  InputNumberRef as InputNumberLegacyRef,
+  type InputNumberProps as InputNumberLegacyProps,
+  type InputNumberRef as InputNumberLegacyRef,
 } from "./InputNumber";
 import {
-  InputNumberRebuiltProps,
-  InputNumberRebuiltRef,
+  type InputNumberRebuiltProps,
+  type InputNumberRebuiltRef,
 } from "./InputNumber.rebuilt.types";
 
 export type InputNumberProps =
@@ -47,4 +47,4 @@ export const InputNumber = forwardRef(function InputNumberShim(
   }
 });
 
-export { InputNumberRef, InputNumberRebuiltProps, InputNumberLegacyProps };
+export type { InputNumberRef, InputNumberRebuiltProps, InputNumberLegacyProps };

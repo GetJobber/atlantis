@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./FormatFile.module.css";
-import { FormatFileProps } from "./types";
+import type { FormatFileProps } from "./types";
 import { useFormatFile } from "./useFormatFile";
 import { useFormatFileStyles } from "./useFormatFileStyles";
 import { Thumbnail } from "../Thumbnail";
@@ -8,7 +8,7 @@ import { Text } from "../Text";
 import { ProgressBar } from "../ProgressBar";
 import { Button } from "../Button";
 import { ConfirmationModal } from "../ConfirmationModal";
-import { FileUpload } from "../InputFile";
+import type { FileUpload } from "../InputFile";
 
 export function FormatFile({
   file,

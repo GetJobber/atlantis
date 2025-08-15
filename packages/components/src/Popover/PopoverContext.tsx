@@ -1,7 +1,9 @@
-import { FloatingPortal, Placement } from "@floating-ui/react";
-import React, { CSSProperties, createContext, useContext } from "react";
+import type { Placement } from "@floating-ui/react";
+import { FloatingPortal } from "@floating-ui/react";
+import type { CSSProperties } from "react";
+import React, { createContext, useContext } from "react";
 import classnames from "classnames";
-import { PopoverProviderProps } from "./Popover.types";
+import type { PopoverProviderProps } from "./Popover.types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";

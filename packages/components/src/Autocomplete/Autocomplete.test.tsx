@@ -1,8 +1,9 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { AnyOption, Autocomplete, CustomOptionsMenuProp } from ".";
-import { InputTextRef } from "../InputText";
+import type { AnyOption, CustomOptionsMenuProp } from ".";
+import { Autocomplete } from ".";
+import type { InputTextRef } from "../InputText";
 import { Text } from "../Text";
 
 function returnOptions(options: AnyOption[]) {
