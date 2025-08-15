@@ -38,7 +38,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with many options 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -84,7 +84,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with no options 1`] = `
               name="generatedName--:r0:"
             />
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -134,7 +134,7 @@ exports[`SelectRebuilt renders a SelectRebuilt with one option 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -184,7 +184,7 @@ exports[`SelectRebuilt renders correctly as large 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -234,7 +234,7 @@ exports[`SelectRebuilt renders correctly as small 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -285,7 +285,7 @@ exports[`SelectRebuilt renders correctly when disabled 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"
@@ -335,7 +335,7 @@ exports[`SelectRebuilt renders correctly when invalid 1`] = `
               </option>
             </select>
             <span
-              class="postfix"
+              class="postfix selectPostfix"
             >
               <svg
                 data-testid="arrowDown"

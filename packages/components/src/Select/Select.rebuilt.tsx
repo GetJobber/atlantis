@@ -1,8 +1,10 @@
 import React, { useId, useRef } from "react";
 import omit from "lodash/omit";
+import classnames from "classnames";
 import type { SelectRebuiltProps } from "./Select.types";
 import { useSelectActions } from "./hooks/useSelectActions";
 import { useSelectFormField } from "./hooks/useSelectFormField";
+import styles from "./Select.module.css";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -74,10 +76,17 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       maxLength={props.maxLength}
     >
       <>
-        <select {...fieldProps} ref={selectRef} className={inputStyle}>
+        <select
+          {...fieldProps}
+          ref={selectRef}
+          className={classnames(
+            inputStyle,
+            props.UNSAFE_experimentalStyles && styles.select,
+          )}
+        >
           {props.children}
         </select>
-        <FormFieldPostFix variation="select" />
+        <FormFieldPostFix variation="select" className={styles.selectPostfix} />
       </>
     </FormFieldWrapper>
   );

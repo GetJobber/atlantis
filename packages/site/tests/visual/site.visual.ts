@@ -176,6 +176,14 @@ test.describe("Atlantis Visual Tests", () => {
       });
     });
 
+    test("select v2 components", async ({ page }) => {
+      await page.goto("/visual-tests/select-v2");
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("visual-test-select-v2-page.png", {
+        fullPage: true,
+      });
+    });
+
     /*
 
     We have a font rendering issue between local and CI with JobberPro. Instead of slowing down this PR, we're commenting out for now.

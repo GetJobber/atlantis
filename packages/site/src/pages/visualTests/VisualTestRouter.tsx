@@ -41,6 +41,7 @@ import { VisualTestProgressBarPage } from "./VisualTestProgressBarPage";
 import { VisualTestRadioGroupPage } from "./VisualTestRadioGroupPage";
 import { VisualTestSegmentedControlPage } from "./VisualTestSegmentedControlPage";
 import { VisualTestSelectPage } from "./VisualTestSelectPage";
+import { VisualTestSelectV2Page } from "./VisualTestSelectV2Page";
 import { VisualTestSideDrawerPage } from "./VisualTestSideDrawerPage";
 import { VisualTestSpinnerPage } from "./VisualTestSpinnerPage";
 import { VisualTestSwitchPage } from "./VisualTestSwitchPage";
@@ -269,6 +270,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/select"
         exact={true}
         component={VisualTestSelectPage}
+      />
+      <Route
+        path="/visual-tests/select-v2"
+        exact={true}
+        component={VisualTestSelectV2Page}
       />
       <Route
         path="/visual-tests/side-drawer"
