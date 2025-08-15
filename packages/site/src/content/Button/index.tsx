@@ -1,4 +1,4 @@
-import ButtonContent from "@atlantis/docs/components/Button/Button.stories.mdx";
+import ButtonContent from "./Button.stories.mdx";
 import Props from "./Button.props.json";
 import MobileProps from "./Button.props-mobile.json";
 import Notes from "./ButtonNotes.mdx";
