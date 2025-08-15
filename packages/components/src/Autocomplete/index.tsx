@@ -1,8 +1,10 @@
 import React, { forwardRef } from "react";
-import {
-  type AutocompleteLegacyProps,
-  type AutocompleteProposedProps,
-  type OptionLike,
+import type {
+  AnyOption,
+  AutocompleteLegacyProps,
+  AutocompleteProposedProps,
+  Option,
+  OptionLike,
 } from "./Autocomplete.types";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import { Autocomplete as AutocompleteLegacy } from "./Autocomplete";
@@ -43,7 +45,6 @@ export {
 
 export { isOptionSelected, isOptionGroup } from "./Autocomplete.utils";
 
-// Use broad but specific defaults instead of any to satisfy linting
 type AutocompleteShimProps =
   | AutocompleteLegacyProps
   | AutocompleteProposedProps<
@@ -105,6 +106,25 @@ export const Autocomplete = AutocompleteForwarded as {
       getOptions?: never;
     },
   ): ReturnType<typeof AutocompleteShim>;
+
+  // Generic v1 overload
+  <
+    GenericOption extends AnyOption = AnyOption,
+    GenericOptionValue extends Option = Option,
+    GenericGetOptionsValue extends AnyOption = AnyOption,
+  >(
+    props: AutocompleteLegacyProps<
+      GenericOption,
+      GenericOptionValue,
+      GenericGetOptionsValue
+    > & {
+      version?: 1;
+      ref?: React.Ref<InputTextRef>;
+      // Disallow v2-only props for clearer DX
+      menu?: never;
+    },
+  ): ReturnType<typeof AutocompleteShim>;
+
   (
     props: AutocompleteLegacyProps & {
       version?: 1;
