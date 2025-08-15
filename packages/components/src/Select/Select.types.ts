@@ -59,6 +59,7 @@ export interface SelectRebuiltProps
    * Opt-in to the customizable select UI (Chromium 123+).
    * When true, the component will apply the custom select styles
    * Defaults to false for native behavior.
+   * Only supported by Select version={2}.
    */
-  readonly enableCustomSelect?: boolean;
+  readonly UNSAFE_experimentalStyles?: boolean;
 }

@@ -81,7 +81,7 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
           ref={selectRef}
           className={classnames(
             inputStyle,
-            props.enableCustomSelect && styles.select,
+            props.UNSAFE_experimentalStyles && styles.select,
           )}
         >
           {props.children}

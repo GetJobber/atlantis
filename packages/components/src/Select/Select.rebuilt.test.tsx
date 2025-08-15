@@ -1,5 +1,5 @@
 import React from "react";
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Option } from "./Option";
 import { SelectRebuilt } from "./Select.rebuilt";
@@ -274,22 +274,13 @@ describe("SelectRebuilt", () => {
       );
 
       const selectElement = screen.getByRole("combobox");
+      expect(ref.current).toBe(selectElement);
 
-      const focusSpy = jest.spyOn(selectElement, "focus");
-      const blurSpy = jest.spyOn(selectElement, "blur");
+      ref.current?.focus();
+      expect(selectElement).toHaveFocus();
 
-      act(() => {
-        ref.current?.focus();
-      });
-      act(() => {
-        ref.current?.blur();
-      });
-
-      expect(focusSpy).toHaveBeenCalledTimes(1);
-      expect(blurSpy).toHaveBeenCalledTimes(1);
-
-      focusSpy.mockRestore();
-      blurSpy.mockRestore();
+      ref.current?.blur();
+      expect(selectElement).not.toHaveFocus();
     });
   });
 
@@ -364,7 +355,7 @@ describe("SelectRebuilt", () => {
       expect(group).toHaveStyle({ fontWeight: "bold" });
     });
 
-    it("does not apply custom select class unless enableCustomSelect is true", () => {
+    it("does not apply custom select class unless experimental styles are enabled", () => {
       const { container: nativeContainer } = render(
         <SelectRebuilt version={2}>
           <OptionGroup label="Group">
@@ -376,7 +367,7 @@ describe("SelectRebuilt", () => {
       expect(nativeSelect).not.toHaveClass("select");
 
       const { container: customContainer } = render(
-        <SelectRebuilt version={2} enableCustomSelect>
+        <SelectRebuilt version={2} UNSAFE_experimentalStyles>
           <OptionGroup label="Group">
             <Option value="1">One</Option>
           </OptionGroup>
