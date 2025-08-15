@@ -1,7 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
-import { MenuItem, OptionLike, menuOptions } from "./Autocomplete.types";
+import {
+  AutocompleteProposedProps,
+  MenuItem,
+  MenuSection,
+  OptionLike,
+  menuOptions,
+  menuSection,
+} from "./Autocomplete.types";
 import {
   blurAutocomplete,
   closeAutocomplete,
@@ -15,6 +22,7 @@ import {
   selectWithKeyboard,
   typeInInput,
 } from "./Autocomplete.pom";
+import { InputText } from "../InputText";
 
 // TODO: POM to abstract the interactions and give them meaningful names
 
@@ -65,6 +73,10 @@ function Wrapper<T extends OptionLike>({
   menu,
   openOnFocus,
   filterOptions,
+  renderOption,
+  renderAction,
+  renderSection,
+  renderInput,
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -73,6 +85,10 @@ function Wrapper<T extends OptionLike>({
   readonly menu?: MenuItem<T>[];
   readonly openOnFocus?: boolean;
   readonly filterOptions?: false | ((o: T, i: string) => boolean);
+  readonly renderOption?: AutocompleteProposedProps<T, false>["renderOption"];
+  readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
+  readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
+  readonly renderInput?: AutocompleteProposedProps<T, false>["renderInput"];
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -91,6 +107,10 @@ function Wrapper<T extends OptionLike>({
       placeholder=""
       openOnFocus={openOnFocus}
       filterOptions={filterOptions}
+      renderOption={renderOption}
+      renderAction={renderAction}
+      renderSection={renderSection}
+      renderInput={renderInput}
     />
   );
 }
@@ -182,6 +202,57 @@ describe("AutocompleteRebuilt", () => {
 
     expect(onChange).not.toHaveBeenCalled();
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
+
+  describe("sections", () => {
+    it("renders a default section header when data provided", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection("one", "Hello from a section", [
+              { label: "One" },
+              { label: "Two" },
+            ]),
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowUp");
+
+      expect(screen.getByText("Hello from a section")).toBeVisible();
+      // Double check options are there too for good measure
+      expect(screen.getByText("One")).toBeVisible();
+      expect(screen.getByText("Two")).toBeVisible();
+    });
+
+    it("renders actions within sections", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>(
+              "one",
+              "Hello from a section",
+              [{ label: "Krabby" }, { label: "Patty" }],
+              [
+                {
+                  type: "action",
+                  id: "a1",
+                  label: "Experience the high tide",
+                  onClick: jest.fn(),
+                },
+              ],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowUp");
+
+      expect(screen.getByText("Hello from a section")).toBeVisible();
+      expect(screen.getByText("Krabby")).toBeVisible();
+      expect(screen.getByText("Patty")).toBeVisible();
+      expect(screen.getByText("Experience the high tide")).toBeVisible();
+    });
   });
 
   describe("actions", () => {
@@ -728,7 +799,103 @@ describe("AutocompleteRebuilt", () => {
     expect(activeOption?.textContent).toContain("Two");
   });
 
+  describe("renderInput", () => {
+    it("renders a custom layout for renderInput when provided", async () => {
+      const onChange = jest.fn();
+      render(
+        <Wrapper
+          renderInput={({ inputRef, inputProps }) => {
+            return (
+              <InputText
+                ref={inputRef}
+                {...inputProps}
+                version={2}
+                // Compose with internal onChange so Autocomplete behavior still works
+                onChange={(val, evt) => {
+                  inputProps.onChange?.(val, evt);
+                  onChange(val);
+                }}
+                placeholder="Just a Pineapple"
+              />
+            );
+          }}
+        />,
+      );
+
+      await openAutocomplete("type", "Just a Pineapple");
+
+      expect(screen.getByRole("textbox")).toBeVisible();
+      expect(onChange).toHaveBeenCalledWith("Just a Pineapple");
+    });
+  });
+
+  describe("renderSection", () => {
+    it("renders a custom layout for renderSection when provided", async () => {
+      const renderSection = (section: MenuSection<OptionLike>) => {
+        return (
+          <strong data-testid="custom-section-header">{section.label}</strong>
+        );
+      };
+      const sectionedMenu: MenuItem<OptionLike>[] = [
+        {
+          type: "section",
+          id: "one",
+          label: "One",
+          options: [{ label: "One" }, { label: "Two" }],
+        },
+      ];
+
+      render(<Wrapper renderSection={renderSection} menu={sectionedMenu} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByTestId("custom-section-header")).toBeVisible();
+    });
+  });
+
+  describe("renderOption", () => {
+    it("renders a custom layout for renderOption when provided", async () => {
+      const renderOption = ({ value }: { value: OptionLike }) => {
+        return <strong data-testid="custom-option">{value.label}</strong>;
+      };
+
+      render(<Wrapper renderOption={renderOption} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getAllByTestId("custom-option")).toHaveLength(3);
+    });
+  });
+
+  describe("renderAction", () => {
+    it("renders a custom layout for renderAction when provided", async () => {
+      const renderAction = ({ value }: { value: OptionLike }) => {
+        return <strong data-testid="custom-action">{value.label}</strong>;
+      };
+
+      render(<Wrapper renderAction={renderAction} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getAllByTestId("custom-action")).toHaveLength(2);
+    });
+  });
+
   describe("renderOption/renderAction render args", () => {
+    it("renders a custom layout for renderOption when provided", async () => {
+      const renderOption = jest.fn(({ value }) => value.label);
+
+      render(<Wrapper renderOption={renderOption} />);
+
+      await openAutocomplete("arrowDown");
+    });
+
+    it("renders a custom layout for renderAction when provided", async () => {
+      const renderAction = jest.fn(({ value }) => value.label);
+
+      render(<Wrapper renderAction={renderAction} />);
+    });
+
     it("passes isActive correctly to renderOption for the highlighted option", async () => {
       const renderOption = jest.fn(({ value }) => value.label);
 
