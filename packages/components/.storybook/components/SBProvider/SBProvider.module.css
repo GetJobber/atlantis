@@ -1,0 +1,12 @@
+:global(.sb-show-main.sb-main-padded),
+:global(.sb-show-main.sb-main-fullscreen) {
+  padding: 0;
+  height: 100vh;
+}
+
+.storyWrapper {
+  background-color: var(--color-surface);
+  height: 100vh;
+  padding: var(--space-base);
+  box-sizing: border-box;
+}
