@@ -1,6 +1,6 @@
-import { IconColorNames, IconNames } from "@jobber/design";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import React from "react";
-import { ButtonType, ButtonVariation } from "../Button";
+import type { ButtonType, ButtonVariation } from "../Button";
 
 export interface ButtonGroupActionProps {
   /**

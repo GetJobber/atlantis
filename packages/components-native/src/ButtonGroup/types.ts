@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import {
+import type { ReactElement } from "react";
+import type {
   ButtonGroupActionProps,
   ButtonGroupPrimaryActionProps,
   ButtonGroupSecondaryActionProps,

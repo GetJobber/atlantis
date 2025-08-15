@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import {
+import type {
   SelectInternalPickerProps,
   SelectOnOptionPressEvent,
 } from "../../types";

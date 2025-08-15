@@ -1,10 +1,9 @@
-import { Platform, StyleSheet, TextStyle } from "react-native";
+import type { TextStyle } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { webFonts } from "./webFonts";
 import { tokens as staticTokens } from "../utils/design";
-import {
-  AtlantisThemeContextValue,
-  buildThemedStyles,
-} from "../AtlantisThemeContext";
+import type { AtlantisThemeContextValue } from "../AtlantisThemeContext";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
 const extravagantLineHeight =
   staticTokens["typography--lineHeight-extravagant"];

@@ -1,1 +1,2 @@
-export { Text, TextLevel, TEXT_MAX_SCALED_FONT_SIZES } from "./Text";
+export type { TextLevel } from "./Text";
+export { Text, TEXT_MAX_SCALED_FONT_SIZES } from "./Text";
