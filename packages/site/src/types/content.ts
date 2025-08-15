@@ -41,6 +41,5 @@ interface GeneratedProp {
 
 export interface ContentExportLinks {
   label: string;
-  type?: "web" | "mobile";
   url: string;
 }

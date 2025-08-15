@@ -17,19 +17,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      type: "web",
-      url: getStorybookUrl(
-        "?path=/story/components-actions-button-web--basic",
-        "web",
-      ),
-    },
-    {
-      label: "Storybook",
-      type: "mobile",
-      url: getStorybookUrl(
-        "?path=/story/components-actions-button-mobile--basic",
-        "mobile",
-      ),
+      url: getStorybookUrl("?path=/docs/components-actions-button--docs"),
     },
   ],
   notes: () => <Notes />,
