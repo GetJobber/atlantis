@@ -166,22 +166,141 @@ function useAutocompleteListNav({
   };
 }
 
-function MenuList<T extends OptionLike>({
-  items,
-  activeIndex,
-  setNodeRef,
-  getItemProps,
-  floatingProps,
-  renderOption,
+function handleSectionRendering<T extends OptionLike>({
   renderSection,
-  renderAction,
+  section,
+  index,
+}: {
+  readonly section: MenuSection<T>;
+  readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
+  readonly index: number;
+}) {
+  const headerNode = renderSection ? (
+    renderSection(section)
+  ) : (
+    <h4 className={styles.sectionHeader}>{String(section.label)}</h4>
+  );
+
+  return (
+    <div
+      key={`sec-${index}`}
+      role="presentation"
+      data-testid="ATL-AutocompleteRebuilt-Section"
+    >
+      {headerNode}
+    </div>
+  );
+}
+
+interface HandleOptionRenderingProps<T extends OptionLike> {
+  readonly option: T;
+  readonly activeIndex: number | null;
+  readonly navigableIndex: number;
+  readonly getItemProps: () => Record<string, unknown>;
+  readonly isOptionSelected: (option: T) => boolean;
+  readonly renderOption?: AutocompleteProposedProps<T, false>["renderOption"];
+  readonly getOptionLabel: (option: T) => string;
+  readonly getOptionKey: (option: T) => React.Key;
+  readonly onSelect: (option: T) => void;
+}
+
+function handleOptionRendering<T extends OptionLike>({
+  option,
+  activeIndex,
+  navigableIndex,
+  getItemProps,
+  isOptionSelected,
+  renderOption,
   getOptionLabel,
   getOptionKey,
   onSelect,
+}: HandleOptionRenderingProps<T>): {
+  node: React.ReactNode;
+  nextNavigableIndex: number;
+} {
+  const nextNavigableIndex = navigableIndex + 1;
+  const isActive = activeIndex === nextNavigableIndex;
+  const isSelected = isOptionSelected(option);
+  const content = renderOption
+    ? renderOption({ value: option, isActive, isSelected })
+    : getOptionLabel(option);
+
+  return {
+    node: (
+      <div
+        key={`opt-${getOptionKey(option)}`}
+        role="option"
+        tabIndex={-1}
+        className={isActive ? styles.optionActive : styles.option}
+        data-index={nextNavigableIndex}
+        data-active={isActive ? true : undefined}
+        {...getItemProps()}
+        onClick={() => onSelect(option)}
+      >
+        {content}
+      </div>
+    ),
+    nextNavigableIndex,
+  };
+}
+
+interface HandleActionRenderingProps<T extends OptionLike> {
+  readonly action: MenuAction<Record<string, unknown>>;
+  readonly index: number;
+  readonly activeIndex: number | null;
+  readonly navigableIndex: number;
+  readonly getItemProps: () => Record<string, unknown>;
+  readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
+  readonly onAction: (action: {
+    onAction: () => void;
+    disabled?: boolean;
+    shouldClose?: boolean;
+  }) => void;
+}
+
+function handleActionRendering<T extends OptionLike>({
+  action,
+  index,
+  activeIndex,
+  navigableIndex,
+  getItemProps,
+  renderAction,
   onAction,
-  isOptionSelected,
-  style,
-}: {
+}: HandleActionRenderingProps<T>): {
+  node: React.ReactNode;
+  nextNavigableIndex: number;
+} {
+  const nextNavigableIndex = navigableIndex + 1;
+  const isActive = activeIndex === nextNavigableIndex;
+
+  return {
+    node: (
+      <div
+        key={`act-${index}`}
+        tabIndex={-1}
+        role="button"
+        className={isActive ? styles.optionActive : styles.action}
+        data-index={nextNavigableIndex}
+        data-active={isActive ? true : undefined}
+        {...getItemProps()}
+        onClick={() => {
+          onAction({
+            onAction: action.onClick,
+            disabled: action.disabled,
+            shouldClose: action.shouldClose,
+          });
+        }}
+      >
+        {renderAction
+          ? renderAction({ value: action, isActive })
+          : action.label}
+      </div>
+    ),
+    nextNavigableIndex,
+  };
+}
+
+interface MenuListProps<T extends OptionLike> {
   readonly items: Array<RenderItem<T>>;
   readonly activeIndex: number | null;
   readonly setNodeRef: (el: HTMLDivElement | null) => void;
@@ -200,86 +319,67 @@ function MenuList<T extends OptionLike>({
   }) => void;
   readonly isOptionSelected: (option: T) => boolean;
   readonly style?: React.CSSProperties;
-}) {
+}
+
+function MenuList<T extends OptionLike>({
+  items,
+  activeIndex,
+  setNodeRef,
+  getItemProps,
+  floatingProps,
+  renderOption,
+  renderSection,
+  renderAction,
+  getOptionLabel,
+  getOptionKey,
+  onSelect,
+  onAction,
+  isOptionSelected,
+  style,
+}: MenuListProps<T>) {
   let navigableIndex = -1;
 
   // eslint-disable-next-line max-statements
   function renderItemNode(item: RenderItem<T>, index: number) {
     if (item.kind === "section") {
-      let headerNode: React.ReactNode;
-
-      if (renderSection) {
-        headerNode = renderSection(item.section);
-      } else {
-        headerNode = (
-          <h4 className={styles.sectionHeader}>{String(item.section.label)}</h4>
-        );
-      }
-
-      return (
-        <div key={`sec-${index}`} role="presentation">
-          {headerNode}
-        </div>
-      );
+      return handleSectionRendering<T>({
+        section: item.section,
+        index,
+        renderSection,
+      });
     }
 
     if (item.kind === "option") {
-      const nextNavigableIndex = navigableIndex + 1;
-      const isActive = activeIndex === nextNavigableIndex;
-      const isSelected = isOptionSelected(item.value);
-      const content = renderOption
-        ? renderOption({ value: item.value, isActive, isSelected })
-        : getOptionLabel(item.value);
-      navigableIndex = nextNavigableIndex;
+      const result = handleOptionRendering<T>({
+        option: item.value,
+        activeIndex,
+        navigableIndex,
+        getItemProps,
+        isOptionSelected,
+        renderOption,
+        getOptionLabel,
+        getOptionKey,
+        onSelect,
+      });
 
-      return (
-        <div
-          key={`opt-${getOptionKey(item.value)}`}
-          role="option"
-          tabIndex={-1}
-          className={
-            activeIndex === navigableIndex ? styles.optionActive : styles.option
-          }
-          data-index={navigableIndex}
-          data-active={activeIndex === navigableIndex ? true : undefined}
-          {...getItemProps()}
-          onClick={() => onSelect(item.value)}
-        >
-          {content}
-        </div>
-      );
+      navigableIndex = result.nextNavigableIndex;
+
+      return result.node;
     }
 
-    // action counts as navigable entry
-    navigableIndex += 1;
+    const result = handleActionRendering<T>({
+      action: item.action,
+      index,
+      activeIndex,
+      navigableIndex,
+      getItemProps,
+      renderAction,
+      onAction,
+    });
 
-    return (
-      <div
-        key={`act-${index}`}
-        tabIndex={-1}
-        role="button"
-        className={
-          activeIndex === navigableIndex ? styles.optionActive : styles.action
-        }
-        data-index={navigableIndex}
-        data-active={activeIndex === navigableIndex ? true : undefined}
-        {...getItemProps()}
-        onClick={() => {
-          onAction({
-            onAction: item.action.onClick,
-            disabled: item.action.disabled,
-            shouldClose: item.action.shouldClose,
-          });
-        }}
-      >
-        {renderAction
-          ? renderAction({
-              value: item.action,
-              isActive: activeIndex === navigableIndex,
-            })
-          : item.action.label}
-      </div>
-    );
+    navigableIndex = result.nextNavigableIndex;
+
+    return result.node;
   }
 
   return (
