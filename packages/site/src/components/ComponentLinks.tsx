@@ -100,19 +100,18 @@ export const ComponentLinks = ({
         >
           Links
         </Typography>
-        <Box gap="smaller" alignItems="center">
-          {links?.map((link, index) => (
-            <Cluster
-              key={index}
-              dataAttributes={{ "data-storybook-link": "true" }}
-            >
-              <Icon size="small" color="interactive" name="link" />
-              <Link key={index} url={link.url} external>
-                {link.type ? link.type + " - " : ""} {link.label}
-              </Link>
-            </Cluster>
-          ))}
-        </Box>
+        <Content spacing="smaller">
+          <Box direction="row" gap="smaller" alignItems="center">
+            <Icon size="small" color="interactive" name="link" />
+            {links?.map((link, index) => (
+              <div key={index} data-storybook-link>
+                <Link key={index} url={link.url} external>
+                  {link.label}
+                </Link>
+              </div>
+            ))}
+          </Box>
+        </Content>
       </Content>
     </Content>
   );
