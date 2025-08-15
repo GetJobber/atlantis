@@ -3,18 +3,18 @@
 ### Custom (Chromium) vs native
 
 Select (V2) is native by default. Opt into the customizable Chrome UI with
-`enableCustomSelect`. This enhances grouped menus in Chromium 123+ when the
-browser supports `appearance: base-select`.
+`UNSAFE_experimentalStyles`. This enhances grouped menus in Chromium 123+ when
+the browser supports `appearance: base-select`.
 
 #### Alignment limitation (custom UI)
 
-When using `enableCustomSelect`, the closed control (what you see as the
+When using `UNSAFE_experimentalStyles`, the closed control (what you see as the
 displayed value) is still rendered by the browser's picker. As a result,
 right/center alignment of the displayed value is not configurable in Chromium's
 customizable select.
 
 - Need right/center alignment? Use the native Select (omit
-  `enableCustomSelect`).
+  `UNSAFE_experimentalStyles`).
 - You can still style the grouped dropdown (optgroup/option) in the custom UI,
   but the closed value alignment will remain default.
 
@@ -26,7 +26,8 @@ Select supports composition via subcomponents:
 
 - `Select.Option`: item in the list. Provide `value` and children as the label.
 - `Select.OptionGroup`: group options under a `label`. Use with
-  `enableCustomSelect` to opt into the customizable grouped menu in Chromium.
+  `UNSAFE_experimentalStyles` to opt into the customizable grouped menu in
+  Chromium.
 
 #### Customization links
 
