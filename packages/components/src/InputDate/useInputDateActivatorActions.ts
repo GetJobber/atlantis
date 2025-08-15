@@ -1,6 +1,7 @@
-import { ChangeEvent, FocusEvent, useState } from "react";
-import { InputDateRebuiltProps } from "./InputDate.types";
-import { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
+import type { ChangeEvent, FocusEvent } from "react";
+import { useState } from "react";
+import type { InputDateRebuiltProps } from "./InputDate.types";
+import type { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
 
 export interface useInputDateActivatorActionsProps
   extends Pick<InputDateRebuiltProps, "onFocus" | "onBlur"> {

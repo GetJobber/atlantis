@@ -1,7 +1,8 @@
-import { KeyboardEvent, MouseEvent, useState } from "react";
+import type { KeyboardEvent, MouseEvent } from "react";
+import { useRef } from "react";
 import sortBy from "lodash/sortBy";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
-import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
+import type { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 
 /**
  * Recursively finds a focusable element (div or button) in the specified direction
@@ -38,9 +39,7 @@ export function useInternalChipDismissible({
   onClick,
   onCustomAdd,
 }: InternalChipDismissibleProps) {
-  const [wrapperElement, setWrapperElement] = useState<HTMLDivElement | null>(
-    null,
-  );
+  const ref = useRef<HTMLDivElement>(null);
   const chipOptions = children.map(chip => chip.props);
   const visibleChipOptions = chipOptions.filter(chip =>
     selected.includes(chip.value),
@@ -122,8 +121,7 @@ export function useInternalChipDismissible({
 
   return {
     ...actions,
-    ref: setWrapperElement,
-    wrapperElement,
+    ref,
     sortedVisibleChipOptions,
     availableChipOptions,
   };

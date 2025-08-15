@@ -1,4 +1,5 @@
-import { MutableRefObject, useRef } from "react";
+import type { MutableRefObject } from "react";
+import { useRef } from "react";
 
 export function useFocusOnSelectedDate() {
   const ref = useRef() as MutableRefObject<HTMLDivElement>;

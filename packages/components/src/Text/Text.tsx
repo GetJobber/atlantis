@@ -1,5 +1,7 @@
-import React, { PropsWithChildren } from "react";
-import { Typography, TypographyOptions, TypographyProps } from "../Typography";
+import type { PropsWithChildren } from "react";
+import React from "react";
+import type { TypographyOptions, TypographyProps } from "../Typography";
+import { Typography } from "../Typography";
 
 type TextElement = Extract<
   TypographyProps["element"],

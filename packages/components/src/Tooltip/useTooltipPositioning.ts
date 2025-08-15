@@ -7,7 +7,7 @@ import {
   shift,
   useFloating,
 } from "@floating-ui/react";
-import { Placement } from "./Tooltip.types";
+import type { Placement } from "./Tooltip.types";
 
 const TOOLTIP_SHIFT_PADDING = 8;
 const TOOLTIP_ARROW_PADDING = 6;
@@ -34,7 +34,7 @@ export function useTooltipPositioning({
         padding: TOOLTIP_SHIFT_PADDING,
         limiter: limitShift(),
       }),
-      flip({ fallbackPlacements: ["bottom", "left", "right"] }),
+      flip({ fallbackPlacements: ["top", "bottom", "left", "right"] }),
       arrow({
         element: arrowElement || null,
         padding: TOOLTIP_ARROW_PADDING,

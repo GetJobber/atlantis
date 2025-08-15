@@ -2,7 +2,7 @@ import React from "react";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxTriggerProps } from "../../Combobox.types";
+import type { ComboboxTriggerProps } from "../../Combobox.types";
 
 export function ComboboxTrigger({
   label = "Select",

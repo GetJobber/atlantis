@@ -1,6 +1,6 @@
-import { Key, Ref, RefObject } from "react";
-import { FormFieldProps } from "../FormField";
-import { InputTextRebuiltProps, InputTextRef } from "../InputText";
+import type { Key, Ref, RefObject } from "react";
+import type { FormFieldProps } from "../FormField";
+import type { InputTextRebuiltProps, InputTextRef } from "../InputText";
 
 type OptionValue = string | number;
 

@@ -1,4 +1,4 @@
-import { FormFieldProps } from "../FormFieldTypes";
+import type { FormFieldProps } from "../FormFieldTypes";
 
 interface UseToolBarProps {
   focused: boolean;

@@ -1,5 +1,5 @@
-import { CommonFormFieldProps, FormFieldProps } from "../FormField";
-import { InputTextRebuiltProps } from "../InputText/InputText.types";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type { InputTextRebuiltProps } from "../InputText/InputText.types";
 
 export interface InputDateRebuiltProps
   extends Omit<

@@ -1,5 +1,5 @@
-import { MouseEvent, ReactElement } from "react";
-import { ChipProps } from "./Chip";
+import type { MouseEvent, ReactElement } from "react";
+import type { ChipProps } from "./Chip";
 
 interface ChipFoundationProps {
   readonly children: ReactElement<ChipProps>[];

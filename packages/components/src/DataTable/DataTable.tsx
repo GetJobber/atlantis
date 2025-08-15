@@ -1,6 +1,8 @@
-import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
+import type { ColumnDef, Row } from "@tanstack/react-table";
+import { useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { LegacyRef, ReactNode } from "react";
+import type { LegacyRef, ReactNode } from "react";
+import React from "react";
 import {
   Breakpoints,
   useResizeObserver,
@@ -9,7 +11,7 @@ import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.module.css";
 import { Pagination } from "./Pagination";
-import { PaginationType, SortingType } from "./types";
+import type { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import {

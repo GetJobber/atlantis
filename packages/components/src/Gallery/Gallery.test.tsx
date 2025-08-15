@@ -6,7 +6,7 @@ import {
 } from "@jobber/hooks/useBreakpoints";
 import * as browserUtilities from "@jobber/components/utils/getClientBrowser";
 import { Gallery } from ".";
-import { File } from "./GalleryTypes";
+import type { File } from "./GalleryTypes";
 
 const files: File[] = [
   {

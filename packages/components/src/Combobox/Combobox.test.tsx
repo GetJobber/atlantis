@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { act, render, screen } from "@testing-library/react";
-import { UserEvent, userEvent } from "@testing-library/user-event";
+import type { UserEvent } from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import { mockIntersectionObserver } from "jsdom-testing-mocks";
 import { Combobox } from "./Combobox";
-import { ComboboxOption } from "./Combobox.types";
+import type { ComboboxOption } from "./Combobox.types";
 import * as POM from "./Combobox.pom";
 import { Button } from "../Button";
 

@@ -1,5 +1,5 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
-import { InputEmailRebuiltProps } from "../InputEmail.types";
+import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import type { InputEmailRebuiltProps } from "../InputEmail.types";
 
 export interface UseInputEmailActionsProps
   extends Pick<

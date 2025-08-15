@@ -1,7 +1,8 @@
-import React, { MouseEvent, ReactElement, useState } from "react";
+import type { MouseEvent, ReactElement } from "react";
+import React, { useState } from "react";
 import { Button } from "../../../Button";
 import { Tooltip } from "../../../Tooltip";
-import { DataListActionProps, DataListObject } from "../../DataList.types";
+import type { DataListActionProps, DataListObject } from "../../DataList.types";
 import { DataListActionsMenu } from "../DataListActionsMenu";
 
 interface DataListItemActionsOverflowProps<T extends DataListObject> {

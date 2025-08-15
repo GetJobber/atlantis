@@ -1,34 +1,34 @@
 import React, { forwardRef } from "react";
 import {
-  AutocompleteLegacyProps,
-  AutocompleteProposedProps,
-  OptionLike,
+  type AutocompleteLegacyProps,
+  type AutocompleteProposedProps,
+  type OptionLike,
 } from "./Autocomplete.types";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import { Autocomplete as AutocompleteLegacy } from "./Autocomplete";
-import { InputTextRef } from "../InputText";
+import type { InputTextRef } from "../InputText";
 
 export {
-  MenuOptionProps,
+  type MenuOptionProps,
   BaseMenuOption,
-  BaseMenuOptionProps,
+  type BaseMenuOptionProps,
   MenuOption,
   BaseMenuGroupOption,
-  BaseMenuGroupOptionProps,
+  type BaseMenuGroupOptionProps,
 } from "./Option";
 
 export {
-  AnyOption,
-  AutocompleteProps,
-  BaseOption,
-  CustomOptionsMenuProp,
-  GroupOption,
-  OptionCollection,
-  Option,
+  type AnyOption,
+  type AutocompleteProps,
+  type BaseOption,
+  type CustomOptionsMenuProp,
+  type GroupOption,
+  type OptionCollection,
+  type Option,
 } from "./Autocomplete.types";
 
 export {
-  KeyboardAction,
+  type KeyboardAction,
   getRequestedIndexChange,
   useKeyboardNavigation,
   useCustomKeyboardNavigation,

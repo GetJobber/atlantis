@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useSideDrawerContext } from "./SideDrawerContext";
-import { Button, ButtonProps } from "../Button";
+import type { ButtonProps } from "../Button";
+import { Button } from "../Button";
 
 export function SideDrawerBackButton({
   onClick,

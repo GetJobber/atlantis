@@ -1,8 +1,9 @@
-import React, { ChangeEvent, useEffect, useId, useState } from "react";
+import type { ChangeEvent } from "react";
+import React, { useEffect, useId, useState } from "react";
 import classnames from "classnames";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import styles from "./Checkbox.module.css";
-import { CheckboxLegacyProps } from "./Checkbox.types";
+import type { CheckboxLegacyProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 

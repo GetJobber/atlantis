@@ -1,5 +1,5 @@
 import React from "react";
-import { InputFileValidationError } from "./types";
+import type { InputFileValidationError } from "./types";
 import styles from "./InputFile.module.css";
 import { InputValidation } from "../InputValidation";
 

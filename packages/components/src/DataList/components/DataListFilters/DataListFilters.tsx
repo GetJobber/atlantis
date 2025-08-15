@@ -1,4 +1,5 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import { DataListSort } from "./components/DataListSort";
 import { DataListOverflowFade } from "../DataListOverflowFade";
 import { useDataListContext } from "../../context/DataListContext";

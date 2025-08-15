@@ -1,13 +1,14 @@
 /* eslint-disable max-statements */
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
 import userEvent from "@testing-library/user-event";
 import { Banner } from "@jobber/components/Banner";
 import { DataList } from "./DataList";
+import type { Breakpoints } from "./DataList.const";
 import {
   BREAKPOINT_SIZES,
-  Breakpoints,
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
   DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
   DATA_LIST_STICKY_HEADER_TEST_ID,
@@ -15,7 +16,7 @@ import {
   DATA_LOAD_MORE_TEST_ID,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import {
+import type {
   DataListItemType,
   DataListProps,
   DataListSortable,

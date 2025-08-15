@@ -1,5 +1,5 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
-import { InputTextRebuiltProps } from "./InputText.types";
+import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import type { InputTextRebuiltProps } from "./InputText.types";
 
 export interface useInputTextActionsProps
   extends Pick<

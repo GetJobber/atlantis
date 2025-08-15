@@ -2,10 +2,10 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import {
-  AutocompleteProposedProps,
-  MenuItem,
-  MenuSection,
-  OptionLike,
+  type AutocompleteProposedProps,
+  type MenuItem,
+  type MenuSection,
+  type OptionLike,
   menuOptions,
   menuSection,
 } from "./Autocomplete.types";

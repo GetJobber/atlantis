@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { IconColorNames, IconNames } from "@jobber/design";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import styles from "./ListItem.module.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";

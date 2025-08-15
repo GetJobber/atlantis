@@ -1,5 +1,5 @@
 import React, { useId } from "react";
-import { FormFieldProps } from "./FormFieldTypes";
+import type { FormFieldProps } from "./FormFieldTypes";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 import { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";

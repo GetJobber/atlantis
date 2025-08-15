@@ -1,17 +1,10 @@
-import React, {
-  CSSProperties,
-  MouseEvent,
-  ReactElement,
-  RefObject,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import type { CSSProperties, MouseEvent, ReactElement, RefObject } from "react";
+import React, { useId, useRef, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
-import { IconColorNames, IconNames } from "@jobber/design";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import {
   FloatingPortal,
   autoUpdate,
@@ -126,7 +119,7 @@ export function Menu({
     strategy: "fixed",
     middleware: [
       offset(MENU_OFFSET),
-      flip({ flipAlignment: false }),
+      flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
       size({
         apply({ availableHeight, elements }) {
           // The inner element is the scrollable menu that requires the max height

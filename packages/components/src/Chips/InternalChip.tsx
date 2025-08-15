@@ -1,5 +1,5 @@
 import React from "react";
-import { InternalChipProps } from "./ChipTypes";
+import type { InternalChipProps } from "./ChipTypes";
 import { Chip } from "../Chip";
 
 export function InternalChip({

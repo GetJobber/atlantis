@@ -217,28 +217,34 @@ function InternalTypography<T extends FontFamily = "base">({
 
   const { tokens } = useAtlantisTheme();
 
-  return (
-    <TypographyGestureDetector>
-      <Text
-        {...{
-          allowFontScaling,
-          adjustsFontSizeToFit,
-          style,
-          numberOfLines: numberOfLinesForNativeText,
-        }}
-        {...accessibilityProps}
-        maxFontSizeMultiplier={getScaleMultiplier(
-          maxFontScaleSize,
-          sizeAndHeight.fontSize,
-        )}
-        selectable={selectable}
-        selectionColor={tokens["color-brand--highlight"]}
-        onTextLayout={onTextLayout}
-      >
-        {text}
-      </Text>
-    </TypographyGestureDetector>
+  const textComponent = (
+    <Text
+      {...{
+        allowFontScaling,
+        adjustsFontSizeToFit,
+        style,
+        numberOfLines: numberOfLinesForNativeText,
+      }}
+      {...accessibilityProps}
+      maxFontSizeMultiplier={getScaleMultiplier(
+        maxFontScaleSize,
+        sizeAndHeight.fontSize,
+      )}
+      selectable={selectable}
+      selectionColor={tokens["color-brand--highlight"]}
+      onTextLayout={onTextLayout}
+    >
+      {text}
+    </Text>
   );
+
+  // If text is not selectable, there's no need for TypographyGestureDetector
+  // since it only prevents accidental highlighting of selectable text
+  if (!selectable) {
+    return textComponent;
+  }
+
+  return <TypographyGestureDetector>{textComponent}</TypographyGestureDetector>;
 }
 
 function getScaleMultiplier(maxFontScaleSize = 0, size = 1) {

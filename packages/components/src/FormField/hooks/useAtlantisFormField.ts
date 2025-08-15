@@ -1,5 +1,6 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent, useEffect } from "react";
-import { UseControllerReturn } from "react-hook-form";
+import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import { useEffect } from "react";
+import type { UseControllerReturn } from "react-hook-form";
 import classNames from "classnames";
 import styles from "../FormField.module.css";
 import type { FormFieldProps, KeyBoardTypes } from "../FormFieldTypes";

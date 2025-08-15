@@ -1,5 +1,5 @@
 import { useDataListContext } from "../context/DataListContext";
-import { DataListSelectedType } from "../DataList.types";
+import type { DataListSelectedType } from "../DataList.types";
 
 export function useBatchSelect() {
   const { selected, onSelect, onSelectAll } = useDataListContext();

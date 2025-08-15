@@ -1,8 +1,9 @@
-import React, { ChangeEvent, ReactNode, RefObject } from "react";
-import { RegisterOptions } from "react-hook-form";
-import { XOR } from "ts-xor";
-import { Clearable } from "@jobber/hooks";
-import { IconNames } from "../Icon";
+import type { ChangeEvent, ReactNode, RefObject } from "react";
+import type React from "react";
+import type { RegisterOptions } from "react-hook-form";
+import type { XOR } from "ts-xor";
+import type { Clearable } from "@jobber/hooks";
+import type { IconNames } from "../Icon";
 
 export type FormFieldTypes =
   | "text"

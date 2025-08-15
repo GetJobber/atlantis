@@ -1,7 +1,7 @@
-/* eslint-disable max-statements */
-import React, { ReactNode, useState } from "react";
+import type { ReactNode } from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
+import type { XOR } from "ts-xor";
 import {
   Breakpoints,
   useResizeObserver,
@@ -11,11 +11,11 @@ import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
-import { Button, ButtonProps } from "../Button";
-import { Menu, SectionProps } from "../Menu";
+import { Button, type ButtonProps } from "../Button";
+import { Menu, type SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
-import { Autocomplete, type Option } from "../Autocomplete";
-import { OptionLike } from "../Autocomplete/Autocomplete.types";
+import { Autocomplete } from "../Autocomplete";
+import type { OptionLike } from "../Autocomplete/Autocomplete.types";
 import { InputText } from "../InputText";
 
 export type ButtonActionProps = ButtonProps & {
@@ -139,7 +139,6 @@ export function Page({
     );
   }
 
-
   interface Animal extends OptionLike {
     value: string;
     description?: string;
@@ -197,36 +196,42 @@ export function Page({
     },
   ];
 
-    const simpleOptions: OptionLike[] = [
-      {  label: "One" },
-      {  label: "Two" },
-      {  label: "Three" },
-    ];
+  const simpleOptions: OptionLike[] = [
+    { label: "One" },
+    { label: "Two" },
+    { label: "Three" },
+  ];
 
-    interface ComplexOption extends OptionLike {
-      complex: boolean;
-      id: number;
-    }
+  interface ComplexOption extends OptionLike {
+    complex: boolean;
+    id: number;
+  }
 
-    const complexOptions: ComplexOption[] = [
-      { id: 1, label: "One", complex: true },
-      { id: 2, label: "Two", complex: true },
-      { id: 3, label: "Three", complex: true },
-    ];
+  const complexOptions: ComplexOption[] = [
+    { id: 1, label: "One", complex: true },
+    { id: 2, label: "Two", complex: true },
+    { id: 3, label: "Three", complex: true },
+  ];
 
-    const [animalValue, setAnimalValue] = useState<Animal | undefined>(undefined);
-    const [f1Input, setF1Input] = useState("");
-    const [defaultValue, setDefaultValue] = useState<OptionLike | undefined>(undefined);
-    const [f2Input, setF2Input] = useState("");
-    const [complexValue, setComplexValue] = useState<ComplexOption | undefined>(undefined);
-    const [f3Input, setF3Input] = useState("");
-    const [complexValue2, setComplexValue2] = useState<ComplexOption | undefined>(undefined);
-    const [f4Input, setF4Input] = useState("");
+  const [animalValue, setAnimalValue] = useState<Animal | undefined>(undefined);
+  const [f1Input, setF1Input] = useState("");
+  const [defaultValue, setDefaultValue] = useState<OptionLike | undefined>(
+    undefined,
+  );
+  const [f2Input, setF2Input] = useState("");
+  const [complexValue, setComplexValue] = useState<ComplexOption | undefined>(
+    undefined,
+  );
+  const [f3Input, setF3Input] = useState("");
+  const [complexValue2, setComplexValue2] = useState<ComplexOption | undefined>(
+    undefined,
+  );
+  const [f4Input, setF4Input] = useState("");
 
-    const [freeFormValue, setFreeFormValue] = useState< OptionLike  | undefined>(undefined);
-    const [freeFormInput, setFreeFormInput] = useState("");
-
-  
+  const [freeFormValue, setFreeFormValue] = useState<OptionLike | undefined>(
+    undefined,
+  );
+  const [freeFormInput, setFreeFormInput] = useState("");
 
   return (
     <div className={pageStyles}>
@@ -290,159 +295,163 @@ export function Page({
         </Content>
         <Content>
           <Text variation="subdued">Default Options</Text>
-            <Autocomplete
-              version={2}
-              value={defaultValue}
-              onChange={setDefaultValue}
-              inputValue={f1Input}
-              onInputChange={setF1Input}
-              menu={[{ type: "options", options: simpleOptions }]}
-              filterOptions={(o, i) =>
-                o.label.toLowerCase().includes(i.toLowerCase())
-              }
-              getOptionLabel={o => o.label}
-              getOptionKey={o => o.label}
-            />
+          <Autocomplete
+            version={2}
+            value={defaultValue}
+            onChange={setDefaultValue}
+            inputValue={f1Input}
+            onInputChange={setF1Input}
+            menu={[{ type: "options", options: simpleOptions }]}
+            filterOptions={(o, i) =>
+              o.label.toLowerCase().includes(i.toLowerCase())
+            }
+            getOptionLabel={o => o.label}
+            getOptionKey={o => o.label}
+          />
 
-            <Text variation="subdued">Custom Options</Text>
-            <Autocomplete
-              version={2}
-              value={animalValue}
-              onChange={setAnimalValue}
-              inputValue={f2Input}
-              onInputChange={setF2Input}
-              menu={[{ type: "options", options: animals }]}
-              filterOptions={(o, i) =>
-                o.label.toLowerCase().includes(i.toLowerCase())
-              }
-              getOptionLabel={o => o.label}
-              getOptionKey={o => o.value}
-              renderOption={o => (
-                <span>
-                  {o.label} — {o.description}
-                </span>
-              )}
-              isOptionEqualToValue={(a, b) => a.id === b.id}
-            />
+          <Text variation="subdued">Custom Options</Text>
+          <Autocomplete
+            version={2}
+            value={animalValue}
+            onChange={setAnimalValue}
+            inputValue={f2Input}
+            onInputChange={setF2Input}
+            menu={[{ type: "options", options: animals }]}
+            filterOptions={(o, i) =>
+              o.label.toLowerCase().includes(i.toLowerCase())
+            }
+            getOptionLabel={o => o.label}
+            getOptionKey={o => o.value}
+            renderOption={o => (
+              <span>
+                {o.label} — {o.description}
+              </span>
+            )}
+            isOptionEqualToValue={(a, b) => a.id === b.id}
+          />
 
-            <Text variation="subdued">
-              Custom Options with nested data
-            </Text>
-            <Autocomplete
-              version={2}
-              value={complexValue}
-              onChange={setComplexValue}
-              inputValue={f3Input}
-              onInputChange={setF3Input}
-              menu={[
-                {
-                  type: "section",
-                  id: "complex",
-                  label: "Complex",
-                  options: complexOptions,
-                  actionsBottom: [
-                    {
-                      type: "action",
-                      id: "add",
-                      label: "Add",
-                      onClick: () => {
-                        console.log("adding");
-                      },
+          <Text variation="subdued">Custom Options with nested data</Text>
+          <Autocomplete
+            version={2}
+            value={complexValue}
+            onChange={setComplexValue}
+            inputValue={f3Input}
+            onInputChange={setF3Input}
+            menu={[
+              {
+                type: "section",
+                id: "complex",
+                label: "Complex",
+                options: complexOptions,
+                actionsBottom: [
+                  {
+                    type: "action",
+                    id: "add",
+                    label: "Add",
+                    onClick: () => {
+                      console.log("adding");
                     },
-                  ],
-                },
-              ]}
-              filterOptions={(o, i) =>
-                o.label.toLowerCase().includes(i.toLowerCase())
-              }
-              getOptionLabel={o => o.label}
-              getOptionKey={o => o.id}
-            />
+                  },
+                ],
+              },
+            ]}
+            filterOptions={(o, i) =>
+              o.label.toLowerCase().includes(i.toLowerCase())
+            }
+            getOptionLabel={o => o.label}
+            getOptionKey={o => o.id}
+          />
 
-            <Text variation="subdued">
-              Custom Options, custom input with nested data
-            </Text>
-            <Autocomplete
-              version={2}
-              value={complexValue2}
-              onChange={setComplexValue2}
-              inputValue={f4Input}
-              onInputChange={setF4Input}
-              openOnFocus={true}
-              menu={[
-                {
-                  type: "section",
-                  id: "complex2",
-                  label: "Complex",
-                  options: complexOptions,
-                  actionsBottom: [
-                    {
-                      type: "action",
-                      id: "add2",
-                      label: "Add",
-                      shouldClose: false,
-                      onClick: () => {
-                        console.log("adding");
-                      },
+          <Text variation="subdued">
+            Custom Options, custom input with nested data
+          </Text>
+          <Autocomplete
+            version={2}
+            value={complexValue2}
+            onChange={setComplexValue2}
+            inputValue={f4Input}
+            onInputChange={setF4Input}
+            openOnFocus={true}
+            menu={[
+              {
+                type: "section",
+                id: "complex2",
+                label: "Complex",
+                options: complexOptions,
+                actionsBottom: [
+                  {
+                    type: "action",
+                    id: "add2",
+                    label: "Add",
+                    shouldClose: false,
+                    onClick: () => {
+                      console.log("adding");
                     },
-                  ],
-                },
-              ]}
-              renderInput={({ inputRef, inputProps }) => (
-                <InputText ref={inputRef} {...inputProps}  suffix={{
-                  icon: "arrowDown"
-                }}/>
-              )}
-              filterOptions={(o, i) =>
-                o.label.toLowerCase().includes(i.toLowerCase())
-              }
-              getOptionLabel={o => o.label}
-              getOptionKey={o => o.id}
-            />
-            <Text variation="subdued">
-              Free Form
-            </Text>
-            <Autocomplete
-              version={2}
-              value={freeFormValue}
-              onChange={setFreeFormValue}
-              inputValue={freeFormInput}
-              onInputChange={setFreeFormInput}
-              allowFreeForm={true}
-              createFreeFormValue={(input) => ({
-                label: input,
-                id: Math.random().toString(),
-              })}
-              menu={[
-                {
-                  type: "section",
-                  id: "complex2",
-                  label: "Complex",
-                  options: complexOptions,
-                  actionsBottom: [
-                    {
-                      type: "action",
-                      id: "add2",
-                      label: "Add",
-                      shouldClose: false,
-                      onClick: () => {
-                        console.log("adding");
-                      },
+                  },
+                ],
+              },
+            ]}
+            renderInput={({ inputRef, inputProps }) => (
+              <InputText
+                ref={inputRef}
+                {...inputProps}
+                suffix={{
+                  icon: "arrowDown",
+                }}
+              />
+            )}
+            filterOptions={(o, i) =>
+              o.label.toLowerCase().includes(i.toLowerCase())
+            }
+            getOptionLabel={o => o.label}
+            getOptionKey={o => o.id}
+          />
+          <Text variation="subdued">Free Form</Text>
+          <Autocomplete
+            version={2}
+            value={freeFormValue}
+            onChange={setFreeFormValue}
+            inputValue={freeFormInput}
+            onInputChange={setFreeFormInput}
+            allowFreeForm={true}
+            createFreeFormValue={input => ({
+              label: input,
+              id: Math.random().toString(),
+            })}
+            menu={[
+              {
+                type: "section",
+                id: "complex2",
+                label: "Complex",
+                options: complexOptions,
+                actionsBottom: [
+                  {
+                    type: "action",
+                    id: "add2",
+                    label: "Add",
+                    shouldClose: false,
+                    onClick: () => {
+                      console.log("adding");
                     },
-                  ],
-                },
-              ]}
-              renderInput={({ inputRef, inputProps }) => (
-                <InputText ref={inputRef} {...inputProps}  suffix={{
-                  icon: "arrowDown"
-                }}/>
-              )}
-              filterOptions={(o, i) =>
-                o.label.toLowerCase().includes(i.toLowerCase())
-              }
-              getOptionLabel={o => o.label}
-              getOptionKey={o => o.label}
-            />
+                  },
+                ],
+              },
+            ]}
+            renderInput={({ inputRef, inputProps }) => (
+              <InputText
+                ref={inputRef}
+                {...inputProps}
+                suffix={{
+                  icon: "arrowDown",
+                }}
+              />
+            )}
+            filterOptions={(o, i) =>
+              o.label.toLowerCase().includes(i.toLowerCase())
+            }
+            getOptionLabel={o => o.label}
+            getOptionKey={o => o.label}
+          />
         </Content>
       </Content>
     </div>

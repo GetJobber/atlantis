@@ -2,10 +2,11 @@ import React from "react";
 import { MonthlySelect } from "./components";
 import { CurrentRecurrenceComponent } from "./CurrentRecurrenceComponent";
 import styles from "./RecurringSelect.module.css";
+/* eslint-disable import/no-deprecated */
+import type { RecurrenceRule } from "./types";
 import {
   /* eslint-disable import/no-deprecated */
   DurationPeriod,
-  RecurrenceRule,
   isMonthly,
   typeInitialStateMap,
 } from "./types";
