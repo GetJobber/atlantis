@@ -1,11 +1,4 @@
-import {
-  Box,
-  Cluster,
-  Content,
-  Icon,
-  Link,
-  Typography,
-} from "@jobber/components";
+import { Box, Content, Icon, Link, Typography } from "@jobber/components";
 import { AnchorLinks } from "./AnchorLinks";
 import { ContentExportLinks } from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
