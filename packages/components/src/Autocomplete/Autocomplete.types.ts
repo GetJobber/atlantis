@@ -313,7 +313,15 @@ interface AutocompleteRebuiltBaseProps<
   readonly menu: MenuItem<Value, SectionExtra, ActionExtra>[];
 
   // Filtering & display
-  readonly filterOptions?: (option: Value, inputValue: string) => boolean;
+  /**
+   * Controls how options are filtered in response to the current input value.
+   * - Omit to use the default case-insensitive substring match against labels
+   * - Provide a function to implement custom filtering logic
+   * - Set to `false` to opt out of filtering entirely (useful for async options)
+   */
+  readonly filterOptions?:
+    | ((option: Value, inputValue: string) => boolean)
+    | false;
   readonly getOptionLabel?: (option: Value) => string;
   /**
    * Used to determine the key for a given option. This can be useful when the

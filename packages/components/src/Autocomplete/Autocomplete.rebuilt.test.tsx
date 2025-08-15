@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
-import { menuOptions } from "./Autocomplete.types";
+import { MenuItem, OptionLike, menuOptions } from "./Autocomplete.types";
 import {
   blurAutocomplete,
   closeAutocomplete,
@@ -34,7 +34,7 @@ function buildMenu(overrides?: {
 
   return {
     menu: [
-      menuOptions(
+      menuOptions<OptionLike>(
         [{ label: "One" }, { label: "Two" }, { label: "Three" }],
         [
           {
@@ -58,23 +58,23 @@ function buildMenu(overrides?: {
   };
 }
 
-function Wrapper({
+function Wrapper<T extends OptionLike>({
   initialValue,
   onChange,
   onInputChange,
   menu,
   openOnFocus,
+  filterOptions,
 }: {
-  readonly initialValue?: TestOption;
+  readonly initialValue?: T;
   readonly initialInputValue?: string;
-  readonly onChange?: (v: TestOption | undefined) => void;
+  readonly onChange?: (v: T | undefined) => void;
   readonly onInputChange?: (v: string) => void;
-  readonly menu?: ReturnType<typeof buildMenu>["menu"];
+  readonly menu?: MenuItem<T>[];
   readonly openOnFocus?: boolean;
+  readonly filterOptions?: false | ((o: T, i: string) => boolean);
 }) {
-  const [value, setValue] = React.useState<TestOption | undefined>(
-    initialValue,
-  );
+  const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
     initialValue?.label ?? "",
   );
@@ -87,9 +87,10 @@ function Wrapper({
       onChange={onChange ?? setValue}
       inputValue={inputValue}
       onInputChange={onInputChange ?? setInputValue}
-      menu={menu ?? built.menu}
+      menu={menu ?? (built.menu as unknown as MenuItem<T>[])}
       placeholder=""
       openOnFocus={openOnFocus}
+      filterOptions={filterOptions}
     />
   );
 }
@@ -183,30 +184,32 @@ describe("AutocompleteRebuilt", () => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
-  it("invokes action on Enter and closes when shouldClose is true/undefined", async () => {
-    const { menu, createAction } = buildMenu();
+  describe("actions", () => {
+    it("invokes action on Enter and closes when shouldClose is true/undefined", async () => {
+      const { menu, createAction } = buildMenu();
 
-    render(<Wrapper menu={menu} />);
+      render(<Wrapper menu={menu} />);
 
-    await openAutocomplete("arrowDown");
-    // 3 options, 2 actions - move highlight to second action (index 4)
-    await navigateDown(4);
-    await selectWithKeyboard();
+      await openAutocomplete("arrowDown");
+      // 3 options, 2 actions - move highlight to second action (index 4)
+      await navigateDown(4);
+      await selectWithKeyboard();
 
-    expect(createAction).toHaveBeenCalled();
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-  });
+      expect(createAction).toHaveBeenCalled();
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    });
 
-  it("invokes action on click and stays open when shouldClose is false", async () => {
-    const { menu, stayOpenAction } = buildMenu();
+    it("invokes action on click and stays open when shouldClose is false", async () => {
+      const { menu, stayOpenAction } = buildMenu();
 
-    render(<Wrapper menu={menu} />);
+      render(<Wrapper menu={menu} />);
 
-    await openAutocomplete("type", "o");
-    await selectWithClick("Stay Open");
+      await openAutocomplete("type", "o");
+      await selectWithClick("Stay Open");
 
-    expect(stayOpenAction).toHaveBeenCalled();
-    expect(screen.getByRole("listbox")).toBeVisible();
+      expect(stayOpenAction).toHaveBeenCalled();
+      expect(screen.getByRole("listbox")).toBeVisible();
+    });
   });
 
   it("does not auto-reopen from programmatic input update after selection", async () => {
@@ -220,6 +223,67 @@ describe("AutocompleteRebuilt", () => {
 
     expect(onChange).toHaveBeenCalledWith({ label: "One" });
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
+
+  describe("filterOptions", () => {
+    it("can opt-out of filtering entirely with filterOptions=false (async pattern)", async () => {
+      render(<Wrapper filterOptions={false} />);
+
+      await openAutocomplete(
+        "type",
+        "Any way you want it, that's the way I need it",
+      );
+
+      // With opt-out, all options should be visible regardless of input
+      expect(await screen.findByRole("listbox")).toBeVisible();
+      expect(screen.getByText("One")).toBeVisible();
+      expect(screen.getByText("Two")).toBeVisible();
+      expect(screen.getByText("Three")).toBeVisible();
+    });
+
+    it("can provide a custom filter function", async () => {
+      // Ignore the search term, just return things that have "t"
+      render(<Wrapper filterOptions={o => o.label.includes("T")} />);
+
+      await openAutocomplete("type", "n");
+
+      expect(await screen.findByRole("listbox")).toBeVisible();
+      // Two and Three should be visible
+      expect(screen.getByText("Two")).toBeVisible();
+      expect(screen.getByText("Three")).toBeVisible();
+    });
+
+    it("can provide a custom filter function capable of searching custom values", async () => {
+      const customOptionMenu: MenuItem<{
+        label: string;
+        squareRoot: number;
+      }>[] = [
+        {
+          type: "options",
+          options: [
+            { label: "9", squareRoot: 3 },
+            { label: "16", squareRoot: 4 },
+          ],
+        },
+      ];
+
+      const filterOptions = (
+        o: { label: string; squareRoot: number },
+        i: string,
+      ) => o.squareRoot === parseInt(i, 10);
+
+      render(
+        <Wrapper<{ label: string; squareRoot: number }>
+          menu={customOptionMenu}
+          filterOptions={filterOptions}
+        />,
+      );
+
+      await openAutocomplete("type", "4");
+
+      expect(await screen.findByRole("listbox")).toBeVisible();
+      expect(screen.getByText("16")).toBeVisible();
+    });
   });
 
   describe("with a selection", () => {

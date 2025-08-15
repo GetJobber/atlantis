@@ -486,16 +486,22 @@ function AutocompleteRebuiltInternal<
   const lastInputWasUserRef = useRef(false);
 
   const renderable = useMemo(() => {
-    // TODO: add default filter method
-    // TODO: add opt-out filter method for consumer to use with async
-    const filterMethod = (opt: Value) =>
+    const filterMethod = (opt: Value) => {
       // Unfilter only for programmatic matches (selection/prepopulation).
       // If the user typed to get an exact match, still treat it as a search.
-      exactLabelMatch && !lastInputWasUserRef.current
-        ? true
-        : props.filterOptions
-        ? props.filterOptions(opt, inputValue)
-        : getOptionLabel(opt).toLowerCase().includes(inputValue.toLowerCase());
+      if (exactLabelMatch && !lastInputWasUserRef.current) return true;
+
+      if (props.filterOptions === false) return true; // explicit opt-out
+
+      if (typeof props.filterOptions === "function") {
+        return props.filterOptions(opt, inputValue);
+      }
+
+      // default filtering: case-insensitive substring on label
+      return getOptionLabel(opt)
+        .toLowerCase()
+        .includes(inputValue.toLowerCase());
+    };
 
     return buildRenderableList(sections, filterMethod);
   }, [sections, props.filterOptions, inputValue, exactLabelMatch]);
