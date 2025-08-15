@@ -253,6 +253,47 @@ describe("AutocompleteRebuilt", () => {
       expect(screen.getByText("Patty")).toBeVisible();
       expect(screen.getByText("Experience the high tide")).toBeVisible();
     });
+
+    it("renders section actions and actions on the root", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>(
+              "one",
+              "Hello from a section",
+              [{ label: "Krabby" }, { label: "Patty" }],
+              [
+                {
+                  type: "action",
+                  id: "a1",
+                  label: "Experience the high tide",
+                  onClick: jest.fn(),
+                },
+              ],
+            ),
+            menuOptions<OptionLike>(
+              [{ label: "One" }, { label: "Two" }],
+              [
+                {
+                  type: "action",
+                  id: "a2",
+                  label: "Experience the low tide",
+                  onClick: jest.fn(),
+                },
+              ],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowUp");
+
+      expect(screen.getByText("Hello from a section")).toBeVisible();
+      expect(screen.getByText("Krabby")).toBeVisible();
+      expect(screen.getByText("Patty")).toBeVisible();
+      expect(screen.getByText("Experience the high tide")).toBeVisible();
+      expect(screen.getByText("Experience the low tide")).toBeVisible();
+    });
   });
 
   describe("actions", () => {
