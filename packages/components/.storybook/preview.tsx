@@ -1,7 +1,6 @@
 import type { Preview } from '@storybook/react-vite'
 import "../../design/dist/foundation.css";
 import "../../design/dist/dark.mode.css";
-import "../dist/styles.css";
 
 const preview: Preview = {
   parameters: {
