@@ -294,13 +294,28 @@ interface AutocompleteRebuiltBaseProps<
 > {
   version: 2;
 
-  // Controlled state
   readonly multiple?: Multiple;
+  /*
+   * The currently selected value of the Autocomplete.
+   * Single-select: undefined indicates no selection
+   */
   readonly value: AutocompleteValue<Value, Multiple>;
+  /*
+   * The current input value of the Autocomplete.
+   */
   readonly inputValue: string;
+  /*
+   * Callback invoked when the input value changes.
+   */
   readonly onInputChange: (value: string) => void;
 
+  /*
+   * TODO decide if blur means the input or the overall autocomplete
+   */
   readonly onBlur?: () => void;
+  /*
+   * TODO decide if focus means the input or the overall autocomplete
+   */
   readonly onFocus?: () => void;
 
   /**
@@ -309,111 +324,223 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly inputEqualsOption?: (input: string, option: Value) => boolean;
 
-  // Menu structure
+  /*
+   * Data structure for the menu.
+   * Observes a data hierarchy to determine elements, order, and grouping.
+   * Accepts Sections, Options as top level objects in the array.
+   * Actions may appear in both sections and options.
+   */
   readonly menu: MenuItem<Value, SectionExtra, ActionExtra>[];
 
-  // Filtering & display
   /**
    * Controls how options are filtered in response to the current input value.
-   * - Omit to use the default case-insensitive substring match against labels
+   * - Omit to use the default case-insensitive substring match against labels using getOptionLabel
    * - Provide a function to implement custom filtering logic
    * - Set to `false` to opt out of filtering entirely (useful for async options)
    */
   readonly filterOptions?:
     | ((option: Value, inputValue: string) => boolean)
     | false;
+
+  /*
+   * Used to determine the label for a given option, useful for custom data for options.
+   * Defaults to  option.label.
+   */
   readonly getOptionLabel?: (option: Value) => string;
+
   /**
    * Used to determine the key for a given option. This can be useful when the
    * labels of options are not unique (since labels are used as keys by default).
-   * Defaults to the option label.
+   * Defaults to the option.label.
    */
   readonly getOptionKey?: (option: Value) => Key;
 
-  // Rendering
+  /*
+   * Render prop to customize the rendering of an option.
+   * @param args.value - The option value including all extra keys from the menu item
+   * @param args.isActive - Whether the option is currently highlighted/active
+   * @param args.isSelected - Whether the option is currently selected
+   */
   readonly renderOption?: (args: {
     value: Value;
     isActive: boolean;
     isSelected: boolean;
   }) => React.ReactNode;
+  /*
+   * Render prop to customize the rendering of a section.
+   * @param args.section - The section value including all extra keys from the menu item
+   */
   readonly renderSection?: (
     section: MenuSection<Value, SectionExtra, ActionExtra>,
   ) => React.ReactNode;
+  /*
+   * Render prop to customize the rendering of an action.
+   * @param args.value - The action value including all extra keys from the menu item
+   * @param args.isActive - Whether the action is currently highlighted/active
+   */
   readonly renderAction?: (args: {
     value: MenuAction<ActionExtra>;
     isActive: boolean;
   }) => React.ReactNode;
+
+  /*
+   * Render prop to customize the rendering of the input.
+   * @param props.inputRef - The ref to the input element
+   * @param props.inputProps - The props to pass to the input element
+   * Note that you must pass the inputRef to the input
+   */
+  readonly renderInput?: (props: {
+    inputRef: Ref<HTMLInputElement | HTMLTextAreaElement>;
+    inputProps: InputTextRebuiltProps;
+  }) => React.ReactNode;
+
   /*
    * Render a custom empty state when the menu is empty.
    *
    * @default string "No options"
    */
   readonly emptyState?: React.ReactNode;
-  // Behavior
+
+  /*
+   * Whether the menu should open when the input gains focus.
+   *
+   * @default false
+   */
   readonly openOnFocus?: boolean;
 
+  /*
+   * The placeholder text for the input.
+   */
   readonly placeholder?: string;
+  /*
+   * Whether the input is disabled.
+   */
   readonly disabled?: boolean;
+  /*
+   * Error message to display below the input
+   * When present, invalid appearance applied to the input
+   */
   readonly error?: string;
+  /*
+   * Whether the input is invalid. Receives invalid appearance.
+   */
   readonly invalid?: boolean;
+  /*
+   * Whether the input is read-only.
+   * TODO: implement
+   * @default false
+   */
   readonly readonly?: boolean;
+  /*
+   * Whether the input is required.
+   * TODO: implement, maybe
+   */
   readonly required?: boolean;
-  // do we need this? I don't think so really
-  readonly open?: boolean;
-  // TODO: someone was asking for an imperativeHandle to call things like "select"
-  // not sure if that's needed if InputText has it
-  // readonly ref?: Ref<AutocompleteRebuiltRef>;
+  /*
+   * Description to display below the input
+   */
   readonly description?: string;
+  /*
+   * TODO: implement
+   * Name of the input for form submission
+   */
   readonly name?: string;
+  /*
+   * Size of the input
+   * TODO: implement?
+   */
   readonly size?: "small" | "base" | "large";
 
+  /*
+   * Whether the input is clearable.
+   * TODO: implement
+   */
   readonly clearable?: boolean;
 
+  /*
+   * Callback invoked when the menu opens.
+
+   */
   readonly onOpen?: () => void;
+  /*
+   * Callback invoked when the menu closes.
+
+   */
   readonly onClose?: () => void;
 
-  readonly renderInput?: (props: {
-    inputRef: Ref<HTMLInputElement | HTMLTextAreaElement>;
-    inputProps: InputTextRebuiltProps;
-  }) => React.ReactNode;
-
+  // TODO: for multi select - not used yet
   readonly renderSelectedItems?: (props: {
     items: Value[];
     onRemove: (item: Value) => void;
   }) => React.ReactNode;
 
+  /*
+   * Whether the menu is loading.
+   * Displays glimmers in the menu
+   */
   readonly loading?: boolean;
 
-  readonly autoHighlight?: boolean;
-  readonly autoSelect?: boolean;
-  readonly blurOnSelect?: boolean;
-
-  readonly clearOnEscape?: boolean;
-  readonly filterSelectedOptions?: boolean;
-
+  /*
+   * Custom equality for option to value mapping.
+   * TODO: decide if we wanna keep this
+   */
   readonly isOptionEqualToValue?: (option: Value, value: Value) => boolean;
-
-  readonly onHighlightChange?: (option: Value) => void;
-  readonly selectOnFocus?: boolean;
 }
 
 interface FreeFormOff<Value extends OptionLike, Multiple extends boolean> {
+  /*
+   * Whether the autocomplete allows free-form input.
+   * When true, the input value is not restricted to the options in the menu. Input can be used to create a new value.
+   * When false, the input value must match an option in the menu.
+   * Input value will be cleared if no selection is made and focus is lost.
+   */
   readonly allowFreeForm?: false;
+  /*
+   * The current selection value of the Autocomplete.
+   */
   readonly value: AutocompleteValue<Value, Multiple>;
+  /*
+   * Callback invoked when the selection value changes.
+   */
   readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
 }
 
 interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
+  /*
+   * Whether the autocomplete allows free-form input.
+   * When true, the input value is not restricted to the options * in the menu. Input can be used to create a new value.
+   * When false, the input value must match an option in the menu.
+   * Input value will be cleared if no selection is made and   /*
+   * Whether the autocomplete allows free-form input.
+   * When true, the input value is not restricted to the options in the menu. Input can be used to create a new value.
+   * When false, the input value must match an option in the menu.
+   * Input value will be cleared if no selection is made and focus is lost.
+   * */
   readonly allowFreeForm: true;
+  /*
+   * The current selection value of the Autocomplete.
+   */
   readonly value: AutocompleteValue<Value, Multiple>;
   /**
-   * Factory used to create a Value from free-form input when committing.
+   * Factory used to create a Value from free-form input when committing. Necessary with complex option values. The only value the input can produce is a string.
+   * @param input - The input value
    */
   readonly createFreeFormValue: (input: string) => Value;
+  /*
+   * Callback invoked when the selection value changes.
+   * This is called when we consider a selection "committed"
+   * - The user presses enter
+   * - The user clicks outside the menu with a selection typed
+   * - The user clicks the clear button
+   * The user clears a previous selection by deleting the input value
+   * - The user selects an option with click or enter
+   * - The user types a value that matches an option
+   * - The user types a value that does not match an option and allowFreeForm is true
+   */
   readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
 }
 
-export type AutocompleteProposedProps<
+export type AutocompleteRebuiltProps<
   Value extends OptionLike = OptionLike,
   Multiple extends boolean = false,
   SectionExtra extends object = Record<string, unknown>,

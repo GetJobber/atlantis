@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import {
-  type AutocompleteProposedProps,
+  type AutocompleteRebuiltProps,
   type MenuItem,
   type MenuSection,
   type OptionLike,
@@ -89,10 +89,10 @@ function Wrapper<T extends OptionLike>({
   readonly menu?: MenuItem<T>[];
   readonly openOnFocus?: boolean;
   readonly filterOptions?: false | ((o: T, i: string) => boolean);
-  readonly renderOption?: AutocompleteProposedProps<T, false>["renderOption"];
-  readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
-  readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
-  readonly renderInput?: AutocompleteProposedProps<T, false>["renderInput"];
+  readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
+  readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
+  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
+  readonly renderInput?: AutocompleteRebuiltProps<T, false>["renderInput"];
   readonly loading?: boolean;
   readonly emptyState?: React.ReactNode;
 }) {

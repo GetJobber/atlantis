@@ -26,7 +26,7 @@ import {
 } from "@floating-ui/react";
 import classNames from "classnames";
 import type {
-  AutocompleteProposedProps,
+  AutocompleteRebuiltProps,
   AutocompleteValue,
   MenuAction,
   MenuItem,
@@ -192,7 +192,7 @@ function handleSectionRendering<T extends OptionLike>({
   index,
 }: {
   readonly section: MenuSection<T>;
-  readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
+  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly index: number;
 }) {
   const headerNode = renderSection ? (
@@ -218,7 +218,7 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   readonly navigableIndex: number;
   readonly getItemProps: () => Record<string, unknown>;
   readonly isOptionSelected: (option: T) => boolean;
-  readonly renderOption?: AutocompleteProposedProps<T, false>["renderOption"];
+  readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly getOptionLabel: (option: T) => string;
   readonly getOptionKey: (option: T) => React.Key;
   readonly onSelect: (option: T) => void;
@@ -270,7 +270,7 @@ interface HandleActionRenderingProps<T extends OptionLike> {
   readonly activeIndex: number | null;
   readonly navigableIndex: number;
   readonly getItemProps: () => Record<string, unknown>;
-  readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
+  readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
   readonly onAction: (action: {
     onAction: () => void;
     disabled?: boolean;
@@ -327,9 +327,9 @@ interface MenuListProps<T extends OptionLike> {
   readonly setNodeRef: (el: HTMLDivElement | null) => void;
   readonly getItemProps: () => Record<string, unknown>;
   readonly floatingProps: Record<string, unknown>;
-  readonly renderOption?: AutocompleteProposedProps<T, false>["renderOption"];
-  readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
-  readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
+  readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
+  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
+  readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
   readonly getOptionLabel: (option: T) => string;
   readonly getOptionKey: (option: T) => React.Key;
   readonly onSelect: (option: T) => void;
@@ -530,7 +530,7 @@ function selectActiveOptionOnEnter<Value extends OptionLike>(
 function AutocompleteRebuiltInternal<
   Value extends OptionLike,
   Multiple extends boolean = false,
->(props: AutocompleteProposedProps<Value, Multiple>, _ref: Ref<InputTextRef>) {
+>(props: AutocompleteRebuiltProps<Value, Multiple>, _ref: Ref<InputTextRef>) {
   void _ref;
   const {
     menu,
@@ -1015,7 +1015,7 @@ export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   Value extends OptionLike = OptionLike,
   Multiple extends boolean = false,
 >(
-  props: AutocompleteProposedProps<Value, Multiple> & {
+  props: AutocompleteRebuiltProps<Value, Multiple> & {
     ref?: Ref<InputTextRef>;
   },
 ) => ReturnType<typeof AutocompleteRebuiltInternal>;

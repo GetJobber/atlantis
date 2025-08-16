@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import type {
   AnyOption,
   AutocompleteLegacyProps,
-  AutocompleteProposedProps,
+  AutocompleteRebuiltProps,
   Option,
   OptionLike,
 } from "./Autocomplete.types";
@@ -49,7 +49,7 @@ export { isOptionSelected, isOptionGroup } from "./Autocomplete.utils";
 
 type AutocompleteShimProps =
   | AutocompleteLegacyProps
-  | AutocompleteProposedProps<
+  | AutocompleteRebuiltProps<
       OptionLike,
       boolean,
       Record<string, unknown>,
@@ -58,7 +58,7 @@ type AutocompleteShimProps =
 
 function isNewAutocompleteProps(
   props: AutocompleteShimProps,
-): props is AutocompleteProposedProps<
+): props is AutocompleteRebuiltProps<
   OptionLike,
   boolean,
   Record<string, unknown>,
@@ -87,7 +87,7 @@ export const Autocomplete = AutocompleteForwarded as {
     S extends object = Record<string, unknown>,
     A extends object = Record<string, unknown>,
   >(
-    props: AutocompleteProposedProps<T, false, S, A> & {
+    props: AutocompleteRebuiltProps<T, false, S, A> & {
       version: 2;
       ref?: React.Ref<InputTextRef>;
       // Disallow legacy-only props for clearer DX
@@ -100,7 +100,7 @@ export const Autocomplete = AutocompleteForwarded as {
     S extends object = Record<string, unknown>,
     A extends object = Record<string, unknown>,
   >(
-    props: AutocompleteProposedProps<T, true, S, A> & {
+    props: AutocompleteRebuiltProps<T, true, S, A> & {
       version: 2;
       ref?: React.Ref<InputTextRef>;
       // Disallow legacy-only props for clearer DX
@@ -139,6 +139,6 @@ export const Autocomplete = AutocompleteForwarded as {
 
 export type {
   AutocompleteLegacyProps,
-  AutocompleteProposedProps,
+  AutocompleteRebuiltProps as AutocompleteProposedProps,
   AutocompleteShimProps,
 };
