@@ -952,6 +952,7 @@ function AutocompleteRebuiltInternal<
             closeOnFocusOut
           >
             {loading ? (
+              // TODO: 3x floatingStyle assignments is not the best
               <div
                 ref={refs.setFloating}
                 role="listbox"
@@ -962,6 +963,18 @@ function AutocompleteRebuiltInternal<
                 <Glimmer shape="rectangle" size="largest" />
                 <Glimmer shape="rectangle" size="largest" />
                 <Glimmer shape="rectangle" size="largest" />
+              </div>
+            ) : optionCount === 0 ? (
+              <div
+                ref={refs.setFloating}
+                role="listbox"
+                className={styles.list}
+                style={floatingStyles}
+                {...getFloatingProps()}
+              >
+                <div className={styles.emptyStateMessage}>
+                  {props.emptyState ?? "No options"}
+                </div>
               </div>
             ) : (
               <MenuList<Value>

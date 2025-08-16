@@ -80,6 +80,7 @@ function Wrapper<T extends OptionLike>({
   renderSection,
   renderInput,
   loading,
+  emptyState,
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -93,6 +94,7 @@ function Wrapper<T extends OptionLike>({
   readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
   readonly renderInput?: AutocompleteProposedProps<T, false>["renderInput"];
   readonly loading?: boolean;
+  readonly emptyState?: React.ReactNode;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -116,6 +118,7 @@ function Wrapper<T extends OptionLike>({
       renderSection={renderSection}
       renderInput={renderInput}
       loading={loading}
+      emptyState={emptyState}
     />
   );
 }
@@ -1067,6 +1070,55 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
+  describe("emptyState", () => {
+    it("shows default empty state when there are no options to render", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      render(<Wrapper menu={emptyMenu} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByRole("listbox")).toBeVisible();
+      expect(screen.getByText("No options")).toBeVisible();
+    });
+    it("shows default empty state when there are no options to render and filtering is disabled", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      render(<Wrapper menu={emptyMenu} filterOptions={false} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByRole("listbox")).toBeVisible();
+      expect(screen.getByText("No options")).toBeVisible();
+    });
+
+    it("shows custom empty state when provided", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      render(
+        <Wrapper
+          menu={emptyMenu}
+          emptyState={<span data-testid="custom-empty">Nothing here</span>}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByRole("listbox")).toBeVisible();
+      expect(screen.getByTestId("custom-empty")).toBeVisible();
+      expect(screen.queryByText("No options")).not.toBeInTheDocument();
+    });
+
+    it("shows empty state when filtering removes all options", async () => {
+      render(<Wrapper filterOptions={() => false} />);
+
+      await openAutocomplete("type", "anything");
+
+      expect(screen.getByRole("listbox")).toBeVisible();
+      expect(screen.getByText("No options")).toBeVisible();
+    });
+  });
+
   describe("renderOption/renderAction render args", () => {
     it("renders a custom layout for renderOption when provided", async () => {
       const renderOption = jest.fn(({ value }) => value.label);
@@ -1074,12 +1126,15 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper renderOption={renderOption} />);
 
       await openAutocomplete("arrowDown");
+      expect(renderOption).toHaveBeenCalled();
     });
 
     it("renders a custom layout for renderAction when provided", async () => {
       const renderAction = jest.fn(({ value }) => value.label);
 
       render(<Wrapper renderAction={renderAction} />);
+      await openAutocomplete("arrowDown");
+      expect(renderAction).toHaveBeenCalled();
     });
 
     it("passes isActive correctly to renderOption for the highlighted option", async () => {

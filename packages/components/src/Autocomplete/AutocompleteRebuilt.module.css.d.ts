@@ -5,6 +5,7 @@ declare const styles: {
   readonly "optionActive": string;
   readonly "action": string;
   readonly "sectionHeader": string;
+  readonly "emptyStateMessage": string;
 };
 export = styles;
 

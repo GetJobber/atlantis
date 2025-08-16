@@ -343,7 +343,12 @@ interface AutocompleteRebuiltBaseProps<
     value: MenuAction<ActionExtra>;
     isActive: boolean;
   }) => React.ReactNode;
-
+  /*
+   * Render a custom empty state when the menu is empty.
+   *
+   * @default string "No options"
+   */
+  readonly emptyState?: React.ReactNode;
   // Behavior
   readonly openOnFocus?: boolean;
 
