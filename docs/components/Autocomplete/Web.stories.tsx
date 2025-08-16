@@ -2,19 +2,22 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
-  type AnyOption,
   Autocomplete,
   BaseMenuGroupOption,
   BaseMenuOption,
-  type CustomOptionsMenuProp,
   KeyboardAction,
   MenuOption,
-  Option,
   getRequestedIndexChange,
   isOptionGroup,
   isOptionSelected,
   useCustomKeyboardNavigation,
   useKeyboardNavigation,
+} from "@jobber/components/Autocomplete";
+import type {
+  AnyOption,
+  CustomOptionsMenuProp,
+  Option,
+  OptionLike,
 } from "@jobber/components/Autocomplete";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
@@ -44,6 +47,49 @@ export default {
   },
 } as ComponentMeta<typeof Autocomplete>;
 
+interface ServiceOption extends OptionLike {
+  description: string;
+  details: string;
+  price: number;
+  id: React.Key;
+}
+
+const simpleOptions: OptionLike[] = [
+  {
+    label: "Drain Cleaning",
+  },
+  {
+    label: "Pipe Replacement",
+  },
+  {
+    label: "Sewer Line Repair",
+  },
+];
+
+const serviceOptions: ServiceOption[] = [
+  {
+    label: "Drain Cleaning",
+    description: "Clear drains of accumulated debris and build up",
+    details: "Recommended every 3 months",
+    price: 100,
+    id: "dc1",
+  },
+  {
+    label: "Pipe Replacement",
+    description: "Replace old poly-b pipes with new PVC",
+    details: "Recommended every 10 years",
+    price: 10_000,
+    id: "pr1",
+  },
+  {
+    label: "Sewer Line Repair",
+    description: "Repair damaged sewer lines",
+    details: "Recommended every 10 years",
+    price: 2000,
+    id: "slr1",
+  },
+];
+
 const defaultOptions = [
   { value: 1, label: "Nostromo" },
   { value: 2, label: "Rodger Young" },
@@ -60,7 +106,7 @@ const defaultOptions = [
 // are not undefined in the code preview
 
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const basicOptions = args.initialOptions;
+  const basicOptions = args.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -109,7 +155,7 @@ const withDetailsOptions = [
 ];
 
 const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const detailsOptions = args.initialOptions;
+  const detailsOptions = args.initialOptions ?? withDetailsOptions;
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -155,7 +201,8 @@ const SectionHeadingOptions = [
 ];
 
 const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const headingOptions = args.initialOptions;
+  const headingOptionsAll = args.initialOptions ?? SectionHeadingOptions;
+  const headingOptions = headingOptionsAll.filter(isOptionGroup);
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -183,7 +230,7 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
 };
 
 const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const valueOptions = args.initialOptions;
+  const valueOptions = args.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
 
   return (
@@ -219,6 +266,171 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
     return valueOptions.filter(option => option.label.match(filterRegex));
   }
 };
+
+const V2Template: ComponentStory<typeof Autocomplete> = () => {
+  const [defaultValue, setDefaultValue] = useState<OptionLike | undefined>();
+  const [inputValue, setInputValue] = useState("");
+
+  const [customOptionValue, setCustomOptionValue] = useState<
+    ServiceOption | undefined
+  >();
+  const [customOptionInputValue, setCustomOptionInputValue] = useState("");
+
+  const [defaultSectionedValue, setDefaultSectionedValue] = useState<
+    OptionLike | undefined
+  >();
+  const [sectionedInputValue, setSectionedInputValue] = useState("");
+
+  const [sectionActionDefaultValue, setSectionActionDefaultValue] = useState<
+    OptionLike | undefined
+  >();
+  const [sectionActionInputValue, setSectionActionInputValue] = useState("");
+
+  return (
+    <Content>
+      <Heading level={4}>Flat, default layout</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={defaultValue}
+        onChange={setDefaultValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        menu={[{ type: "options", options: simpleOptions }]}
+      />
+
+      <Heading level={4}>Sectioned, default layout</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={defaultSectionedValue}
+        onChange={setDefaultSectionedValue}
+        inputValue={sectionedInputValue}
+        onInputChange={setSectionedInputValue}
+        menu={[
+          {
+            type: "section",
+            id: "services",
+            label: "Services",
+            options: simpleOptions,
+          },
+        ]}
+      />
+
+      <Heading level={4}>Sectioned, default layout with action</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={sectionActionDefaultValue}
+        onChange={setSectionActionDefaultValue}
+        inputValue={sectionActionInputValue}
+        onInputChange={setSectionActionInputValue}
+        menu={[
+          {
+            type: "section",
+            id: "services",
+            label: "Services",
+            options: simpleOptions,
+            actionsBottom: [
+              {
+                type: "action",
+                label: "Add Service",
+                id: "add-service",
+                onClick: () => {
+                  alert("Add Service");
+                },
+              },
+            ],
+          },
+        ]}
+      />
+
+      <Heading level={4}>Flat, custom option layout</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={customOptionValue}
+        onChange={setCustomOptionValue}
+        inputValue={customOptionInputValue}
+        onInputChange={setCustomOptionInputValue}
+        menu={[
+          {
+            type: "options",
+            options: serviceOptions,
+            actionsBottom: [
+              {
+                type: "action",
+                label: "Add Service",
+                id: "add-service",
+                onClick: () => {
+                  alert("Add Service");
+                },
+              },
+            ],
+          },
+        ]}
+        renderOption={({ value, isActive, isSelected }) => {
+          return (
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <Text variation={isActive ? "info" : "default"}>
+                  {value.label}
+                </Text>
+                <Text variation={isActive ? "info" : "default"}>
+                  {value.description}
+                </Text>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  padding: "0 var(--space-small)",
+                }}
+              >
+                {isSelected && <Icon name="checkmark" />}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginLeft: "auto",
+                }}
+              >
+                <Text>{value.details}</Text>
+                <Text align="end">
+                  {value.price.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </Text>
+              </div>
+            </div>
+          );
+        }}
+      />
+
+      <Heading level={4}>Loading</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={undefined}
+        onChange={() => {
+          // Noop
+        }}
+        inputValue={"Loading..."}
+        onInputChange={() => {
+          // Noop
+        }}
+        loading
+        menu={[]}
+      />
+    </Content>
+  );
+};
+
+export const Version2 = V2Template.bind({});
+Version2.args = {};
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {

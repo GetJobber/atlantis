@@ -1,0 +1,1021 @@
+import type { Ref } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import type {
+  UseFloatingReturn,
+  UseInteractionsReturn,
+} from "@floating-ui/react";
+import {
+  FloatingFocusManager,
+  FloatingPortal,
+  autoUpdate,
+  flip,
+  offset,
+  size,
+  useDismiss,
+  useFloating,
+  useFocus,
+  useInteractions,
+  useListNavigation,
+} from "@floating-ui/react";
+import classNames from "classnames";
+import type {
+  AutocompleteProposedProps,
+  AutocompleteValue,
+  MenuAction,
+  MenuItem,
+  MenuOptions,
+  MenuSection,
+  OptionLike,
+} from "./Autocomplete.types";
+import styles from "./AutocompleteRebuilt.module.css";
+import type { InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
+import type { InputTextRebuiltProps } from "../InputText/InputText.types";
+import { calculateMaxHeight } from "../utils/maxHeight";
+import { Glimmer } from "../Glimmer";
+
+type RenderItem<T extends OptionLike> =
+  | { kind: "option"; value: T }
+  | {
+      kind: "action";
+      action: MenuAction<Record<string, unknown>>;
+    }
+  | {
+      kind: "section";
+      section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>;
+    };
+
+const MENU_OFFSET = 8;
+// Make this configurable?
+const AUTOCOMPLETE_MAX_HEIGHT = 300;
+
+interface UseAutocompleteListNavReturn {
+  refs: UseFloatingReturn["refs"];
+  floatingStyles: UseFloatingReturn["context"]["floatingStyles"];
+  context: UseFloatingReturn["context"];
+  getReferenceProps: UseInteractionsReturn["getReferenceProps"];
+  getFloatingProps: UseInteractionsReturn["getFloatingProps"];
+  getItemProps: UseInteractionsReturn["getItemProps"];
+  activeIndex: number | null;
+  setActiveIndex: (index: number | null) => void;
+  listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  setReferenceElement: (el: HTMLElement | null) => void;
+}
+
+interface UseAutocompleteListNavProps {
+  openOnFocus: boolean;
+  optionCount: number;
+  shouldResetActiveIndexOnClose?: () => boolean;
+  onMenuClose?: (reason?: string) => void;
+}
+
+function useAutocompleteListNav({
+  openOnFocus,
+  optionCount,
+  shouldResetActiveIndexOnClose,
+  onMenuClose,
+}: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const listRef = useRef<Array<HTMLElement | null>>([]);
+
+  const [referenceEl, setReferenceEl] = useState<HTMLElement | null>(null);
+
+  const { refs, floatingStyles, context } = useFloating({
+    placement: "bottom-start",
+    whileElementsMounted: autoUpdate,
+    open,
+    elements: { reference: referenceEl },
+    onOpenChange: (nextOpen, event, reason) => {
+      setOpen(nextOpen);
+
+      if (reason === "outside-press" || reason === "escape-key") {
+        // TODO: invoke onClose or onBlur callback or maybe onDismiss
+      }
+
+      if (nextOpen === false) {
+        if (shouldResetActiveIndexOnClose?.()) {
+          setActiveIndex(null);
+        }
+        onMenuClose?.(String(reason ?? ""));
+      }
+    },
+    middleware: [
+      offset(MENU_OFFSET),
+      flip({ fallbackPlacements: ["top-start", "bottom-end", "top-end"] }),
+      size({
+        apply({ availableHeight, elements, rects }) {
+          const maxHeight = calculateMaxHeight(availableHeight, {
+            maxHeight: AUTOCOMPLETE_MAX_HEIGHT,
+          });
+
+          // TODO: this is just a bit shorter than the full width of the input. need to fix.
+          const referenceWidth = rects.reference.width;
+
+          Object.assign(elements.floating.style, {
+            maxHeight: `${maxHeight}px`,
+            width: `${referenceWidth}px`,
+            minWidth: `${referenceWidth}px`,
+          });
+        },
+      }),
+    ],
+  });
+
+  const listNav = useListNavigation(context, {
+    listRef,
+    activeIndex,
+    scrollItemIntoView: true,
+    onNavigate: setActiveIndex,
+    // TODO: make it "real" via roles on actually focusable elements
+    virtual: true,
+    // Only handle keyboard navigation when the menu is open so the
+    // first ArrowDown opens without moving the active index
+    enabled: open,
+  });
+
+  const dismiss = useDismiss(context, {
+    outsidePress: true,
+    escapeKey: true,
+    outsidePressEvent: "click",
+  });
+
+  const focus = useFocus(context, {
+    enabled: openOnFocus,
+  });
+
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
+    [listNav, dismiss, focus],
+  );
+
+  // When the rendered options change due to filtering, clamp or initialize the index
+  useEffect(() => {
+    listRef.current.length = optionCount;
+
+    setActiveIndex(prev => {
+      if (optionCount <= 0) return null;
+      // Null is our initial state, we should not change it without an interaction
+      if (prev == null) return null;
+
+      return prev >= optionCount ? optionCount - 1 : prev;
+    });
+  }, [optionCount, setActiveIndex]);
+
+  return {
+    refs,
+    floatingStyles,
+    context,
+    getReferenceProps,
+    getFloatingProps,
+    getItemProps,
+    activeIndex,
+    setActiveIndex,
+    listRef,
+    open,
+    setOpen,
+    setReferenceElement: setReferenceEl,
+  };
+}
+
+function handleSectionRendering<T extends OptionLike>({
+  renderSection,
+  section,
+  index,
+}: {
+  readonly section: MenuSection<T>;
+  readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
+  readonly index: number;
+}) {
+  const headerNode = renderSection ? (
+    renderSection(section)
+  ) : (
+    <h4 className={styles.sectionHeader}>{String(section.label)}</h4>
+  );
+
+  return (
+    <div
+      key={`sec-${index}`}
+      role="presentation"
+      data-testid="ATL-AutocompleteRebuilt-Section"
+    >
+      {headerNode}
+    </div>
+  );
+}
+
+interface HandleOptionRenderingProps<T extends OptionLike> {
+  readonly option: T;
+  readonly activeIndex: number | null;
+  readonly navigableIndex: number;
+  readonly getItemProps: () => Record<string, unknown>;
+  readonly isOptionSelected: (option: T) => boolean;
+  readonly renderOption?: AutocompleteProposedProps<T, false>["renderOption"];
+  readonly getOptionLabel: (option: T) => string;
+  readonly getOptionKey: (option: T) => React.Key;
+  readonly onSelect: (option: T) => void;
+}
+
+function handleOptionRendering<T extends OptionLike>({
+  option,
+  activeIndex,
+  navigableIndex,
+  getItemProps,
+  isOptionSelected,
+  renderOption,
+  getOptionLabel,
+  getOptionKey,
+  onSelect,
+}: HandleOptionRenderingProps<T>): {
+  node: React.ReactNode;
+  nextNavigableIndex: number;
+} {
+  const nextNavigableIndex = navigableIndex + 1;
+  const isActive = activeIndex === nextNavigableIndex;
+  const isSelected = isOptionSelected(option);
+  const content = renderOption
+    ? renderOption({ value: option, isActive, isSelected })
+    : getOptionLabel(option);
+
+  return {
+    node: (
+      <div
+        key={`opt-${getOptionKey(option)}`}
+        role="option"
+        tabIndex={-1}
+        className={isActive ? styles.optionActive : styles.option}
+        data-index={nextNavigableIndex}
+        data-active={isActive ? true : undefined}
+        {...getItemProps()}
+        onClick={() => onSelect(option)}
+      >
+        {content}
+      </div>
+    ),
+    nextNavigableIndex,
+  };
+}
+
+interface HandleActionRenderingProps<T extends OptionLike> {
+  readonly action: MenuAction<Record<string, unknown>>;
+  readonly index: number;
+  readonly activeIndex: number | null;
+  readonly navigableIndex: number;
+  readonly getItemProps: () => Record<string, unknown>;
+  readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
+  readonly onAction: (action: {
+    onAction: () => void;
+    disabled?: boolean;
+    shouldClose?: boolean;
+  }) => void;
+}
+
+function handleActionRendering<T extends OptionLike>({
+  action,
+  index,
+  activeIndex,
+  navigableIndex,
+  getItemProps,
+  renderAction,
+  onAction,
+}: HandleActionRenderingProps<T>): {
+  node: React.ReactNode;
+  nextNavigableIndex: number;
+} {
+  const nextNavigableIndex = navigableIndex + 1;
+  const isActive = activeIndex === nextNavigableIndex;
+
+  return {
+    node: (
+      <div
+        key={`act-${index}`}
+        tabIndex={-1}
+        role="button"
+        className={isActive ? styles.optionActive : styles.action}
+        data-index={nextNavigableIndex}
+        data-active={isActive ? true : undefined}
+        {...getItemProps()}
+        // TODO: rename this onAction -> onAction is awkward
+        onClick={() => {
+          onAction({
+            onAction: action.onClick,
+            disabled: action.disabled,
+            shouldClose: action.shouldClose,
+          });
+        }}
+      >
+        {renderAction
+          ? renderAction({ value: action, isActive })
+          : action.label}
+      </div>
+    ),
+    nextNavigableIndex,
+  };
+}
+
+interface MenuListProps<T extends OptionLike> {
+  readonly items: Array<RenderItem<T>>;
+  readonly activeIndex: number | null;
+  readonly setNodeRef: (el: HTMLDivElement | null) => void;
+  readonly getItemProps: () => Record<string, unknown>;
+  readonly floatingProps: Record<string, unknown>;
+  readonly renderOption?: AutocompleteProposedProps<T, false>["renderOption"];
+  readonly renderSection?: AutocompleteProposedProps<T, false>["renderSection"];
+  readonly renderAction?: AutocompleteProposedProps<T, false>["renderAction"];
+  readonly getOptionLabel: (option: T) => string;
+  readonly getOptionKey: (option: T) => React.Key;
+  readonly onSelect: (option: T) => void;
+  readonly onAction: (action: {
+    onAction: () => void;
+    disabled?: boolean;
+    shouldClose?: boolean;
+  }) => void;
+  readonly isOptionSelected: (option: T) => boolean;
+  readonly style?: React.CSSProperties;
+}
+
+function MenuList<T extends OptionLike>({
+  items,
+  activeIndex,
+  setNodeRef,
+  getItemProps,
+  floatingProps,
+  renderOption,
+  renderSection,
+  renderAction,
+  getOptionLabel,
+  getOptionKey,
+  onSelect,
+  onAction,
+  isOptionSelected,
+  style,
+}: MenuListProps<T>) {
+  let navigableIndex = -1;
+
+  function renderItemNode(item: RenderItem<T>, index: number) {
+    if (item.kind === "section") {
+      return handleSectionRendering<T>({
+        section: item.section,
+        index,
+        renderSection,
+      });
+    }
+
+    if (item.kind === "option") {
+      const result = handleOptionRendering<T>({
+        option: item.value,
+        activeIndex,
+        navigableIndex,
+        getItemProps,
+        isOptionSelected,
+        renderOption,
+        getOptionLabel,
+        getOptionKey,
+        onSelect,
+      });
+
+      navigableIndex = result.nextNavigableIndex;
+
+      return result.node;
+    }
+
+    const result = handleActionRendering<T>({
+      action: item.action,
+      index,
+      activeIndex,
+      navigableIndex,
+      getItemProps,
+      renderAction,
+      onAction,
+    });
+
+    navigableIndex = result.nextNavigableIndex;
+
+    return result.node;
+  }
+
+  return (
+    <div
+      ref={setNodeRef}
+      role="listbox"
+      className={styles.list}
+      style={style}
+      {...floatingProps}
+    >
+      {items.map(renderItemNode)}
+    </div>
+  );
+}
+
+function flattenMenu<Value extends OptionLike>(menu: MenuItem<Value>[]) {
+  const optionItems: Value[] = [];
+  const sections: Array<MenuSection<Value> | MenuOptions<Value>> = [];
+
+  for (const item of menu) {
+    sections.push(item);
+
+    const opts = item.type === "section" ? item.options : item.options;
+
+    optionItems.push(...opts);
+  }
+
+  return { optionItems, sections };
+}
+
+function buildRenderableList<Value extends OptionLike>(
+  sections: Array<MenuSection<Value> | MenuOptions<Value>>,
+  optionFilter?: (opt: Value) => boolean,
+) {
+  const items: Array<RenderItem<Value>> = [];
+
+  for (const group of sections) {
+    if ((group as MenuSection<Value>).type === "section") {
+      items.push({ kind: "section", section: group as MenuSection<Value> });
+    }
+
+    // TODO: default + opt-out
+    const filtered = optionFilter
+      ? group.options.filter(optionFilter)
+      : group.options;
+    const options = filtered.map(o => ({
+      kind: "option" as const,
+      value: o,
+    }));
+
+    items.push(...options);
+
+    if (group.actionsBottom?.length) {
+      for (const action of group.actionsBottom) {
+        items.push({
+          kind: "action",
+          action: action as unknown as MenuAction<Record<string, unknown>>,
+        });
+      }
+    }
+  }
+
+  return items;
+}
+
+function getNavigableItemAtIndex<Value extends OptionLike>(
+  activeIndex: number | null,
+  renderable: Array<RenderItem<Value>>,
+): RenderItem<Value> | null {
+  if (activeIndex == null) return null;
+  let navigableIndex = -1;
+
+  for (const item of renderable) {
+    if (item.kind === "section") continue;
+    navigableIndex += 1;
+    if (navigableIndex === activeIndex) return item;
+  }
+
+  return null;
+}
+
+function findNavigableIndexForValue<Value extends OptionLike>(
+  renderable: Array<RenderItem<Value>>,
+  equals: (a: Value, b: Value) => boolean,
+  selectedValue: Value,
+): number | null {
+  let navigableIndex = -1;
+
+  for (const item of renderable) {
+    if (item.kind === "section") continue;
+    navigableIndex += 1;
+
+    if (item.kind === "option" && equals(item.value, selectedValue)) {
+      return navigableIndex;
+    }
+  }
+
+  return null;
+}
+
+function selectActiveOptionOnEnter<Value extends OptionLike>(
+  event: React.KeyboardEvent,
+  activeIndex: number | null,
+  renderable: Array<RenderItem<Value>>,
+  onSelect: (option: Value) => void,
+  onAction: (action: {
+    onAction: () => void;
+    disabled?: boolean;
+    shouldClose?: boolean;
+  }) => void,
+): void {
+  const selected = getNavigableItemAtIndex<Value>(activeIndex, renderable);
+  if (!selected) return;
+  event.preventDefault();
+
+  if (selected.kind === "option") {
+    onSelect(selected.value);
+  } else if (selected.kind === "action") {
+    onAction({
+      onAction: selected.action.onClick,
+      disabled: selected.action.disabled,
+      shouldClose: selected.action.shouldClose,
+    });
+  }
+}
+
+// eslint-disable-next-line max-statements
+function AutocompleteRebuiltInternal<
+  Value extends OptionLike,
+  Multiple extends boolean = false,
+>(props: AutocompleteProposedProps<Value, Multiple>, _ref: Ref<InputTextRef>) {
+  void _ref;
+  const {
+    menu,
+    getOptionLabel: getOptionLabelProp,
+    getOptionKey: getOptionKeyProp,
+    isOptionEqualToValue,
+    renderOption,
+    renderAction,
+    renderSection,
+    inputValue,
+    onInputChange,
+    value,
+    onChange,
+    multiple,
+    placeholder,
+    disabled,
+    error,
+    invalid,
+    description,
+    size: sizeProp,
+    clearable,
+    loading = false,
+    renderInput,
+    openOnFocus = false,
+  } = props;
+
+  const getOptionLabel = useCallback(
+    (o: Value) => (getOptionLabelProp ? getOptionLabelProp(o) : o.label),
+    [getOptionLabelProp],
+  );
+
+  const getOptionKey = useCallback(
+    (o: Value) => (getOptionKeyProp ? getOptionKeyProp(o) : getOptionLabel(o)),
+    [getOptionKeyProp, getOptionLabel],
+  );
+
+  const equals = useCallback(
+    (a: Value, b: Value) =>
+      isOptionEqualToValue
+        ? isOptionEqualToValue(a, b)
+        : getOptionLabel(a) === getOptionLabel(b),
+    [isOptionEqualToValue, getOptionLabel],
+  );
+
+  const isOptionSelected = useCallback(
+    (opt: Value) => {
+      if (multiple) {
+        const current = (value as AutocompleteValue<Value, true>) ?? [];
+
+        return (current as Value[]).some(v => equals(v, opt));
+      }
+
+      const current = value as Value | undefined;
+
+      return current != null ? equals(current, opt) : false;
+    },
+    [multiple, value, equals],
+  );
+
+  // Flatten for navigation and typeahead
+  const { sections, optionItems } = useMemo(() => flattenMenu(menu), [menu]);
+
+  const exactLabelMatch = useMemo(() => {
+    const inputEqualsOption = props.inputEqualsOption;
+    const equalsInput = inputEqualsOption
+      ? (o: Value) => inputEqualsOption(inputValue, o)
+      : (o: Value) => getOptionLabel(o) === inputValue;
+
+    return optionItems.some(equalsInput as (o: Value) => boolean);
+  }, [optionItems, getOptionLabel, inputValue, props.inputEqualsOption]);
+
+  // Track if the most recent input change was from the user typing
+  const lastInputWasUserRef = useRef(false);
+
+  const renderable = useMemo(() => {
+    const filterMethod = (opt: Value) => {
+      // Unfilter only for programmatic matches (selection/prepopulation).
+      // If the user typed to get an exact match, still treat it as a search.
+      if (exactLabelMatch && !lastInputWasUserRef.current) return true;
+
+      if (props.filterOptions === false) return true; // explicit opt-out
+
+      if (typeof props.filterOptions === "function") {
+        return props.filterOptions(opt, inputValue);
+      }
+
+      // default filtering: case-insensitive substring on label
+      return getOptionLabel(opt)
+        .toLowerCase()
+        .includes(inputValue.toLowerCase());
+    };
+
+    return buildRenderableList(sections, filterMethod);
+  }, [sections, props.filterOptions, inputValue, exactLabelMatch]);
+
+  const optionCount = useMemo(
+    () =>
+      renderable.reduce(
+        (count, item) => count + (item.kind === "option" ? 1 : 0),
+        0,
+      ),
+    [renderable],
+  );
+
+  // Determine if there is a current selection (used for index reset behavior)
+  const hasSelection = useMemo(() => {
+    if (multiple) {
+      const current = (value as AutocompleteValue<Value, true>) ?? [];
+
+      return Array.isArray(current) && current.length > 0;
+    }
+
+    return (value as Value | undefined) != null;
+  }, [multiple, value]);
+
+  const {
+    refs,
+    floatingStyles,
+    context,
+    getReferenceProps,
+    getFloatingProps,
+    getItemProps,
+    activeIndex,
+    setActiveIndex,
+    listRef,
+    open,
+    setOpen,
+    setReferenceElement,
+  } = useAutocompleteListNav({
+    openOnFocus,
+    optionCount,
+    shouldResetActiveIndexOnClose: () => !hasSelection,
+    onMenuClose: () => {
+      // If free-form is disabled, and there is no selection and the user typed text, clear input on close
+      if (props.allowFreeForm !== true) {
+        const hasText = inputValue.trim().length > 0;
+
+        if (hasText && !hasSelection) {
+          suppressOpenOnInputChangeRef.current = true;
+          lastInputWasUserRef.current = false;
+          onInputChange?.("");
+          setActiveIndex(null);
+        }
+      }
+    },
+  });
+
+  // Prevent auto-open when we change input programmatically on selection
+  const suppressOpenOnInputChangeRef = useRef(false);
+
+  // Open on user typing; close when cleared. Do not auto-open for programmatic
+  // input (prepopulation/selection) when openOnFocus is false.
+  useEffect(() => {
+    if (suppressOpenOnInputChangeRef.current) {
+      suppressOpenOnInputChangeRef.current = false;
+
+      return;
+    }
+
+    const hasText = inputValue.trim().length > 0;
+
+    if (lastInputWasUserRef.current) {
+      setOpen(hasText);
+    }
+
+    // If the user cleared the input, reset highlight and clear selection if present
+    if (!hasText) {
+      if (hasSelection) {
+        // Treat clearing as an explicit intent to clear the selection
+        onChange?.(undefined as AutocompleteValue<Value, Multiple>);
+        setActiveIndex(null);
+      } else {
+        setActiveIndex(null);
+      }
+    }
+  }, [inputValue, setOpen, hasSelection, setActiveIndex]);
+
+  function selectOption(option: Value) {
+    // TODO: if we have time, implement multiple selection
+    if (multiple) {
+      const current = (value as AutocompleteValue<Value, true>) ?? [];
+      const exists = (current as Value[]).some(v => equals(v, option));
+      const next = exists
+        ? (current as Value[]).filter(v => !equals(v, option))
+        : [...(current as Value[]), option];
+      onChange(next as AutocompleteValue<Value, Multiple>);
+    } else {
+      onChange(option as AutocompleteValue<Value, Multiple>);
+      // Set flags to prevent auto-open on next input change
+      suppressOpenOnInputChangeRef.current = true;
+      lastInputWasUserRef.current = false;
+      // Always reflect explicit selection in the input text for single-select
+      onInputChange?.(getOptionLabel(option));
+    }
+  }
+
+  // TODO: refactor this to be smaller
+  // eslint-disable-next-line max-statements
+  function tryCommitFreeFormOnEnter(): boolean {
+    if (props.allowFreeForm !== true) return false;
+    if (open && activeIndex != null) return false;
+
+    const inputText = inputValue.trim();
+
+    if (inputText.length === 0) return false;
+
+    const inputEqualsOption = props.inputEqualsOption;
+    const match = optionItems.find(o =>
+      inputEqualsOption
+        ? inputEqualsOption(inputText, o)
+        : getOptionLabel(o) === inputText,
+    );
+
+    if (match) {
+      onSelection(match);
+    } else {
+      setOpen(false);
+
+      // Commit free-form via factory
+      const created = props.allowFreeForm
+        ? props.createFreeFormValue?.(inputText)
+        : undefined;
+
+      if (created) {
+        props.onChange(created as AutocompleteValue<Value, Multiple>);
+      }
+    }
+
+    return true;
+  }
+
+  // When opening and the input text exactly matches an option label,
+  // move the activeIndex to that selected value
+  useEffect(() => {
+    if (!open) return;
+    if (!exactLabelMatch) return;
+    // Do not override navigation if the exact match came from user typing
+    if (lastInputWasUserRef.current) return;
+    // Only consider single-select's primary value for now
+    const selectedValue = multiple
+      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
+      : (value as Value | undefined);
+
+    if (!selectedValue) return;
+
+    const selectedNavigableIndex = findNavigableIndexForValue(
+      renderable,
+      equals,
+      selectedValue,
+    );
+
+    if (selectedNavigableIndex != null) {
+      setActiveIndex(selectedNavigableIndex);
+    }
+  }, [
+    open,
+    exactLabelMatch,
+    multiple,
+    value,
+    renderable,
+    isOptionEqualToValue,
+    getOptionLabel,
+    setActiveIndex,
+  ]);
+
+  const onSelection = useCallback(
+    (option: Value) => {
+      selectOption(option);
+      setOpen(false);
+    },
+    [selectOption, setOpen],
+  );
+
+  const onAction = useCallback(
+    (action: {
+      onAction: () => void;
+      disabled?: boolean;
+      shouldClose?: boolean;
+    }) => {
+      if (action.disabled) return;
+
+      action.onAction();
+      // Actions should not preserve active index
+      setActiveIndex(null);
+      if (action.shouldClose !== false) setOpen(false);
+    },
+    [setOpen],
+  );
+
+  const inputProps: InputTextRebuiltProps = {
+    version: 2 as const,
+    value: inputValue,
+    onChange: val => {
+      lastInputWasUserRef.current = true;
+      onInputChange?.(val);
+    },
+    // TODO: refactor this to be smaller
+    // eslint-disable-next-line max-statements
+    onBlur: () => {
+      const allowFree = props.allowFreeForm === true;
+
+      if (allowFree) {
+        const inputText = inputValue.trim();
+        const hasText = inputText.length > 0;
+
+        const inputEqualsOption = props.inputEqualsOption;
+        const match = optionItems.find(o =>
+          inputEqualsOption
+            ? inputEqualsOption(inputText, o)
+            : getOptionLabel(o) === inputText,
+        );
+
+        if (hasText) {
+          if (match) {
+            onSelection(match);
+          } else {
+            setOpen(false);
+            const created = props.allowFreeForm
+              ? props.createFreeFormValue?.(inputText)
+              : undefined;
+
+            if (created) {
+              props.onChange(created as AutocompleteValue<Value, Multiple>);
+            }
+          }
+        } else {
+          // Empty input: commit only if there was an existing value previously
+          // Otherwise, no-op
+        }
+      }
+
+      props.onBlur?.();
+    },
+    onFocus: props.onFocus,
+    placeholder,
+    disabled,
+    error: error ?? undefined,
+    invalid,
+    description,
+    // Do we even need size if we allow custom input rendering?
+    size: sizeProp === "base" ? undefined : sizeProp,
+    clearable: clearable ? "while-editing" : undefined,
+    ...getReferenceProps({
+      // TODO: refactor this to be smaller
+      // eslint-disable-next-line max-statements
+      onKeyDown(event) {
+        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+          // If the menu is closed, either direction should open it
+          if (!open) {
+            setOpen(true);
+
+            return;
+          }
+
+          // When open and there is no active index yet, explicitly start at a deterministic index
+          if (activeIndex == null) {
+            if (event.key === "ArrowDown") {
+              setActiveIndex(0);
+              event.preventDefault();
+
+              return;
+            }
+
+            if (event.key === "ArrowUp") {
+              setActiveIndex(optionCount > 0 ? optionCount - 1 : null);
+              event.preventDefault();
+
+              return;
+            }
+          }
+          // Otherwise, let list navigation handle it
+        }
+
+        if (event.key === "Enter") {
+          // If menu is closed or there is no active option, support free-form commit
+          if (tryCommitFreeFormOnEnter()) {
+            event.preventDefault();
+
+            return;
+          }
+
+          // Prevent selecting a default item when the menu is closed
+          if (!open) {
+            return;
+          }
+
+          selectActiveOptionOnEnter<Value>(
+            event,
+            activeIndex,
+            renderable,
+            onSelection,
+            onAction,
+          );
+        }
+      },
+    }),
+  };
+
+  // Ref the consumer MUST attach to their input
+  const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
+    node: HTMLInputElement | HTMLTextAreaElement | null,
+  ) => {
+    setReferenceElement((node as unknown as HTMLElement) ?? null);
+  };
+
+  return (
+    <div data-testid="ATL-AutocompleteRebuilt">
+      {renderInput ? (
+        renderInput({ inputRef: referenceInputRef, inputProps })
+      ) : (
+        <InputText ref={referenceInputRef} {...inputProps} />
+      )}
+      {open && (
+        <FloatingPortal>
+          <FloatingFocusManager
+            context={context}
+            modal={false}
+            initialFocus={-1}
+            closeOnFocusOut
+          >
+            {loading ? (
+              // TODO: 3x floatingStyle assignments is not the best
+              <div
+                ref={refs.setFloating}
+                role="listbox"
+                className={classNames(styles.list, styles.loadingList)}
+                style={floatingStyles}
+                {...getFloatingProps()}
+              >
+                <Glimmer shape="rectangle" size="largest" />
+                <Glimmer shape="rectangle" size="largest" />
+                <Glimmer shape="rectangle" size="largest" />
+              </div>
+            ) : optionCount === 0 ? (
+              <div
+                ref={refs.setFloating}
+                role="listbox"
+                className={styles.list}
+                style={floatingStyles}
+                {...getFloatingProps()}
+              >
+                <div className={styles.emptyStateMessage}>
+                  {props.emptyState ?? "No options"}
+                </div>
+              </div>
+            ) : (
+              <MenuList<Value>
+                items={renderable}
+                activeIndex={activeIndex}
+                setNodeRef={refs.setFloating}
+                floatingProps={getFloatingProps()}
+                getItemProps={() =>
+                  getItemProps({
+                    ref(node: HTMLElement | null) {
+                      const idx = Number(node?.getAttribute("data-index"));
+
+                      if (!Number.isNaN(idx)) {
+                        listRef.current[idx] = node;
+                      }
+                    },
+                  })
+                }
+                renderOption={renderOption}
+                renderSection={renderSection}
+                renderAction={renderAction}
+                getOptionLabel={getOptionLabel}
+                getOptionKey={getOptionKey}
+                onSelect={onSelection}
+                onAction={onAction}
+                isOptionSelected={isOptionSelected}
+                style={floatingStyles}
+              />
+            )}
+          </FloatingFocusManager>
+        </FloatingPortal>
+      )}
+    </div>
+  );
+}
+
+export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
+  Value extends OptionLike = OptionLike,
+  Multiple extends boolean = false,
+>(
+  props: AutocompleteProposedProps<Value, Multiple> & {
+    ref?: Ref<InputTextRef>;
+  },
+) => ReturnType<typeof AutocompleteRebuiltInternal>;
