@@ -75,12 +75,14 @@ interface UseAutocompleteListNavProps {
   openOnFocus: boolean;
   optionCount: number;
   shouldResetActiveIndexOnClose?: () => boolean;
+  onMenuClose?: (reason?: string) => void;
 }
 
 function useAutocompleteListNav({
   openOnFocus,
   optionCount,
   shouldResetActiveIndexOnClose,
+  onMenuClose,
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -100,8 +102,11 @@ function useAutocompleteListNav({
         // TODO: invoke onClose or onBlur callback or maybe onDismiss
       }
 
-      if (!nextOpen && shouldResetActiveIndexOnClose?.()) {
-        setActiveIndex(null);
+      if (nextOpen === false) {
+        if (shouldResetActiveIndexOnClose?.()) {
+          setActiveIndex(null);
+        }
+        onMenuClose?.(String(reason ?? ""));
       }
     },
     middleware: [
@@ -298,6 +303,7 @@ function handleActionRendering<T extends OptionLike>({
         data-index={nextNavigableIndex}
         data-active={isActive ? true : undefined}
         {...getItemProps()}
+        // TODO: rename this onAction -> onAction is awkward
         onClick={() => {
           onAction({
             onAction: action.onClick,
@@ -657,6 +663,19 @@ function AutocompleteRebuiltInternal<
     openOnFocus,
     optionCount,
     shouldResetActiveIndexOnClose: () => !hasSelection,
+    onMenuClose: () => {
+      // If free-form is disabled, and there is no selection and the user typed text, clear input on close
+      if (props.allowFreeForm !== true) {
+        const hasText = inputValue.trim().length > 0;
+
+        if (hasText && !hasSelection) {
+          suppressOpenOnInputChangeRef.current = true;
+          lastInputWasUserRef.current = false;
+          onInputChange?.("");
+          setActiveIndex(null);
+        }
+      }
+    },
   });
 
   // Prevent auto-open when we change input programmatically on selection
@@ -677,9 +696,15 @@ function AutocompleteRebuiltInternal<
       setOpen(hasText);
     }
 
-    // If the input was cleared by the user and there is no selection, reset active index
-    if (!hasText && !hasSelection) {
-      setActiveIndex(null);
+    // If the user cleared the input, reset highlight and clear selection if present
+    if (!hasText) {
+      if (hasSelection) {
+        // Treat clearing as an explicit intent to clear the selection
+        onChange?.(undefined as AutocompleteValue<Value, Multiple>);
+        setActiveIndex(null);
+      } else {
+        setActiveIndex(null);
+      }
     }
   }, [inputValue, setOpen, hasSelection, setActiveIndex]);
 
@@ -788,7 +813,8 @@ function AutocompleteRebuiltInternal<
       if (action.disabled) return;
 
       action.onAction();
-
+      // Actions should not preserve active index
+      setActiveIndex(null);
       if (action.shouldClose !== false) setOpen(false);
     },
     [setOpen],
@@ -848,11 +874,34 @@ function AutocompleteRebuiltInternal<
     size: sizeProp === "base" ? undefined : sizeProp,
     clearable: clearable ? "while-editing" : undefined,
     ...getReferenceProps({
+      // TODO: refactor this to be smaller
+      // eslint-disable-next-line max-statements
       onKeyDown(event) {
         if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-          if (!open) setOpen(true);
+          // If the menu is closed, either direction should open it
+          if (!open) {
+            setOpen(true);
 
-          return;
+            return;
+          }
+
+          // When open and there is no active index yet, explicitly start at a deterministic index
+          if (activeIndex == null) {
+            if (event.key === "ArrowDown") {
+              setActiveIndex(0);
+              event.preventDefault();
+
+              return;
+            }
+
+            if (event.key === "ArrowUp") {
+              setActiveIndex(optionCount > 0 ? optionCount - 1 : null);
+              event.preventDefault();
+
+              return;
+            }
+          }
+          // Otherwise, let list navigation handle it
         }
 
         if (event.key === "Enter") {
@@ -880,7 +929,7 @@ function AutocompleteRebuiltInternal<
     }),
   };
 
-  // Ref the consumer must attach to their input
+  // Ref the consumer MUST attach to their input
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
     node: HTMLInputElement | HTMLTextAreaElement | null,
   ) => {
@@ -890,7 +939,6 @@ function AutocompleteRebuiltInternal<
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
       {renderInput ? (
-        // Consumer-provided input must attach the ref to the underlying input element
         renderInput({ inputRef: referenceInputRef, inputProps })
       ) : (
         <InputText ref={referenceInputRef} {...inputProps} />
@@ -901,7 +949,6 @@ function AutocompleteRebuiltInternal<
             context={context}
             modal={false}
             initialFocus={-1}
-            // closeOnFocusOut defaults to true; keeping it explicit for clarity
             closeOnFocusOut
           >
             {loading ? (

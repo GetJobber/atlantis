@@ -69,6 +69,10 @@ export async function blurAutocomplete() {
   await user.tab();
 }
 
+export async function selectAll() {
+  await user.keyboard("{Control>}a{/Control}");
+}
+
 export function getActiveOption() {
   return document.querySelector(
     '[role="option"][data-active="true"]',

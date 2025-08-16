@@ -18,6 +18,7 @@ import {
   getActiveOption,
   navigateDown,
   openAutocomplete,
+  selectAll,
   selectWithClick,
   selectWithKeyboard,
   typeInInput,
@@ -782,15 +783,18 @@ describe("AutocompleteRebuilt", () => {
     expect(activeOption).toBeNull();
   });
 
+  // Test requires multiple interactions
+  // eslint-disable-next-line max-statements
   it("resets the highlight to initial, not visible state when the menu is closed without a selection", async () => {
     render(<Wrapper />);
 
     await openAutocomplete("arrowDown");
-    await navigateDown(1);
+    await navigateDown(2);
 
     const firstActiveOption = getActiveOption();
 
     expect(firstActiveOption).not.toBeNull();
+    expect(firstActiveOption?.textContent).toContain("Two");
 
     await closeAutocomplete();
 
@@ -799,8 +803,18 @@ describe("AutocompleteRebuilt", () => {
     const secondActiveOption = getActiveOption();
 
     expect(secondActiveOption).toBeNull();
+
+    await navigateDown(1);
+
+    // we expect this to be back on the first option since resetting brings us to null
+    const thirdActiveOption = getActiveOption();
+
+    expect(thirdActiveOption).not.toBeNull();
+    expect(thirdActiveOption?.textContent).toContain("One");
   });
 
+  // Test requires multiple interactions
+  // eslint-disable-next-line max-statements
   it("resets the highlight to initial, not visible state when the input is cleared with backspaces", async () => {
     render(<Wrapper />);
 
@@ -817,8 +831,49 @@ describe("AutocompleteRebuilt", () => {
     const secondActiveOption = getActiveOption();
 
     expect(secondActiveOption).toBeNull();
+
+    await navigateDown(1);
+
+    // we expect this to be back on the first option since resetting brings us to null
+    const thirdActiveOption = getActiveOption();
+
+    expect(thirdActiveOption).not.toBeNull();
+    expect(thirdActiveOption?.textContent).toContain("One");
   });
 
+  // Test requires multiple interactions
+  // eslint-disable-next-line max-statements
+  it("resets the highlight to initial, not visible state after using an action", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+    await navigateDown(4);
+
+    const activeAction = getActiveAction();
+
+    expect(activeAction).not.toBeNull();
+
+    await selectWithKeyboard();
+
+    await openAutocomplete("arrowDown");
+
+    const secondActiveOption = getActiveOption();
+
+    expect(secondActiveOption).toBeNull();
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).toBeNull();
+
+    await navigateDown(1);
+
+    const thirdActiveOption = getActiveOption();
+
+    expect(thirdActiveOption).not.toBeNull();
+    expect(thirdActiveOption?.textContent).toContain("One");
+  });
+  // Test requires multiple interactions
+  // eslint-disable-next-line max-statements
   it("resets the highlight to initial, not visible state when the autocomplete loses focus (blur)", async () => {
     render(<Wrapper />);
 
@@ -836,6 +891,72 @@ describe("AutocompleteRebuilt", () => {
     const secondActiveOption = getActiveOption();
 
     expect(secondActiveOption).toBeNull();
+
+    await navigateDown(1);
+
+    // we expect this to be back on the first option since resetting brings us to null
+    const thirdActiveOption = getActiveOption();
+
+    expect(thirdActiveOption).not.toBeNull();
+    expect(thirdActiveOption?.textContent).toContain("One");
+  });
+
+  // Test requires elaborate amount of interactions
+  // eslint-disable-next-line max-statements
+  it("resets the highlight to initial, not visible state after making a selection, deleting it and reopening the menu", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+    await navigateDown(1);
+
+    await selectWithKeyboard();
+
+    await openAutocomplete("arrowDown");
+    await deleteInput(3);
+
+    expect(screen.getByRole("textbox")).toHaveValue("");
+
+    await navigateDown(1);
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).toBeNull();
+
+    await navigateDown(1);
+
+    const secondActiveOption = getActiveOption();
+
+    expect(secondActiveOption).not.toBeNull();
+    expect(secondActiveOption?.textContent).toContain("One");
+  });
+  // Test requires elaborate amount of interactions
+  // eslint-disable-next-line max-statements
+  it("resets the highlight to initial, not visible state after making a selection, select-all + delete and reopening the menu", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+    await navigateDown(1);
+
+    await selectWithKeyboard();
+
+    await openAutocomplete("arrowDown");
+    await selectAll();
+    await deleteInput(1);
+
+    expect(screen.getByRole("textbox")).toHaveValue("");
+
+    await navigateDown(1);
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).toBeNull();
+
+    await navigateDown(1);
+
+    const secondActiveOption = getActiveOption();
+
+    expect(secondActiveOption).not.toBeNull();
+    expect(secondActiveOption?.textContent).toContain("One");
   });
 
   it("highlights the selected option on reopen after blur", async () => {
