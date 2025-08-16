@@ -409,6 +409,22 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
           );
         }}
       />
+
+      <Heading level={4}>Loading</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={undefined}
+        onChange={() => {
+          // Noop
+        }}
+        inputValue={"Loading..."}
+        onInputChange={() => {
+          // Noop
+        }}
+        loading
+        menu={[]}
+      />
     </Content>
   );
 };
