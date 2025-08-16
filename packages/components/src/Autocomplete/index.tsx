@@ -10,6 +10,8 @@ import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import { Autocomplete as AutocompleteLegacy } from "./Autocomplete";
 import type { InputTextRef } from "../InputText";
 
+export type { OptionLike } from "./Autocomplete.types";
+
 export {
   type MenuOptionProps,
   BaseMenuOption,

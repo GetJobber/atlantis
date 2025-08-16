@@ -17,6 +17,7 @@ import type {
   AnyOption,
   CustomOptionsMenuProp,
   Option,
+  OptionLike,
 } from "@jobber/components/Autocomplete";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
@@ -45,6 +46,49 @@ export default {
     },
   },
 } as ComponentMeta<typeof Autocomplete>;
+
+interface ServiceOption extends OptionLike {
+  description: string;
+  details: string;
+  price: number;
+  id: React.Key;
+}
+
+const simpleOptions: OptionLike[] = [
+  {
+    label: "Drain Cleaning",
+  },
+  {
+    label: "Pipe Replacement",
+  },
+  {
+    label: "Sewer Line Repair",
+  },
+];
+
+const serviceOptions: ServiceOption[] = [
+  {
+    label: "Drain Cleaning",
+    description: "Clear drains of accumulated debris and build up",
+    details: "Recommended every 3 months",
+    price: 100,
+    id: "dc1",
+  },
+  {
+    label: "Pipe Replacement",
+    description: "Replace old poly-b pipes with new PVC",
+    details: "Recommended every 10 years",
+    price: 10_000,
+    id: "pr1",
+  },
+  {
+    label: "Sewer Line Repair",
+    description: "Repair damaged sewer lines",
+    details: "Recommended every 10 years",
+    price: 2000,
+    id: "slr1",
+  },
+];
 
 const defaultOptions = [
   { value: 1, label: "Nostromo" },
@@ -222,6 +266,155 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
     return valueOptions.filter(option => option.label.match(filterRegex));
   }
 };
+
+const V2Template: ComponentStory<typeof Autocomplete> = () => {
+  const [defaultValue, setDefaultValue] = useState<OptionLike | undefined>();
+  const [inputValue, setInputValue] = useState("");
+
+  const [customOptionValue, setCustomOptionValue] = useState<
+    ServiceOption | undefined
+  >();
+  const [customOptionInputValue, setCustomOptionInputValue] = useState("");
+
+  const [defaultSectionedValue, setDefaultSectionedValue] = useState<
+    OptionLike | undefined
+  >();
+  const [sectionedInputValue, setSectionedInputValue] = useState("");
+
+  const [sectionActionDefaultValue, setSectionActionDefaultValue] = useState<
+    OptionLike | undefined
+  >();
+  const [sectionActionInputValue, setSectionActionInputValue] = useState("");
+
+  return (
+    <Content>
+      <Heading level={4}>Flat, default layout</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={defaultValue}
+        onChange={setDefaultValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        menu={[{ type: "options", options: simpleOptions }]}
+      />
+
+      <Heading level={4}>Sectioned, default layout</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={defaultSectionedValue}
+        onChange={setDefaultSectionedValue}
+        inputValue={sectionedInputValue}
+        onInputChange={setSectionedInputValue}
+        menu={[
+          {
+            type: "section",
+            id: "services",
+            label: "Services",
+            options: simpleOptions,
+          },
+        ]}
+      />
+
+      <Heading level={4}>Sectioned, default layout with action</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={sectionActionDefaultValue}
+        onChange={setSectionActionDefaultValue}
+        inputValue={sectionActionInputValue}
+        onInputChange={setSectionActionInputValue}
+        menu={[
+          {
+            type: "section",
+            id: "services",
+            label: "Services",
+            options: simpleOptions,
+            actionsBottom: [
+              {
+                type: "action",
+                label: "Add Service",
+                id: "add-service",
+                onClick: () => {
+                  alert("Add Service");
+                },
+              },
+            ],
+          },
+        ]}
+      />
+
+      <Heading level={4}>Flat, custom option layout</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={customOptionValue}
+        onChange={setCustomOptionValue}
+        inputValue={customOptionInputValue}
+        onInputChange={setCustomOptionInputValue}
+        menu={[
+          {
+            type: "options",
+            options: serviceOptions,
+            actionsBottom: [
+              {
+                type: "action",
+                label: "Add Service",
+                id: "add-service",
+                onClick: () => {
+                  alert("Add Service");
+                },
+              },
+            ],
+          },
+        ]}
+        renderOption={({ value, isActive, isSelected }) => {
+          return (
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <Text variation={isActive ? "info" : "default"}>
+                  {value.label}
+                </Text>
+                <Text variation={isActive ? "info" : "default"}>
+                  {value.description}
+                </Text>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  padding: "0 var(--space-small)",
+                }}
+              >
+                {isSelected && <Icon name="checkmark" />}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginLeft: "auto",
+                }}
+              >
+                <Text>{value.details}</Text>
+                <Text align="end">
+                  {value.price.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </Text>
+              </div>
+            </div>
+          );
+        }}
+      />
+    </Content>
+  );
+};
+
+export const Version2 = V2Template.bind({});
+Version2.args = {};
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
