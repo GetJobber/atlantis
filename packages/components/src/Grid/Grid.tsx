@@ -4,7 +4,7 @@ import classNames from "classnames";
 import styles from "./Grid.module.css";
 import alignments from "./GridAlign.module.css";
 import { GridCell } from "./GridCell";
-import { GapSpacing } from "../sharedHelpers/types";
+import type { GapSpacing } from "../sharedHelpers/types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export interface GridProps {
