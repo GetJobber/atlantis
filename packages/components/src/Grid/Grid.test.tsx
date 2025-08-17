@@ -39,7 +39,6 @@ describe("Grid", () => {
     });
 
     describe("GapSpacing tokens", () => {
-      // Test different standard token values
       it.each<[Spaces]>([
         ["none"],
         ["small"],
