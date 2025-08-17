@@ -248,8 +248,9 @@ interface MenuActionBase {
    */
   shouldClose?: boolean;
   onClick: () => void;
+  // Does this make sense? Should you really show disabled actions or just not render them?
   disabled?: boolean;
-  icon?: string; // or React.ReactNode
+  icon?: string;
 }
 
 export type MenuAction<Extra extends object = Record<string, unknown>> =
