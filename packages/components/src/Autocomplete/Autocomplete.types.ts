@@ -183,9 +183,7 @@ export interface MenuProps<
    * Ref to the TextInput element.
    * v1 provides InputTextRef; v2 provides a DOM element ref.
    */
-  readonly inputRef: RefObject<
-    InputTextRef | HTMLInputElement | HTMLTextAreaElement | null
-  >;
+  readonly inputRef: RefObject<InputTextRef | null>;
   onOptionSelect(chosenOption?: GenericOptionValue): void;
   readonly customRenderMenu?: (
     props: CustomOptionsMenuProp<GenericOption, GenericOptionValue>,
