@@ -181,8 +181,11 @@ export interface MenuProps<
   readonly attachTo: HTMLDivElement | null;
   /**
    * Ref to the TextInput element.
+   * v1 provides InputTextRef; v2 provides a DOM element ref.
    */
-  readonly inputRef: RefObject<InputTextRef | null>;
+  readonly inputRef: RefObject<
+    InputTextRef | HTMLInputElement | HTMLTextAreaElement | null
+  >;
   onOptionSelect(chosenOption?: GenericOptionValue): void;
   readonly customRenderMenu?: (
     props: CustomOptionsMenuProp<GenericOption, GenericOptionValue>,
@@ -216,8 +219,11 @@ export interface CustomOptionsMenuProp<
 
   /**
    * Ref to the TextInput element.
+   * v1 provides InputTextRef; v2 provides a DOM element ref.
    */
-  readonly inputRef: RefObject<InputTextRef | null>;
+  readonly inputRef: RefObject<
+    InputTextRef | HTMLInputElement | HTMLTextAreaElement | null
+  >;
   /**
    * Component that wraps the menu content. Used for handling keyboard scroll behavior.
    */

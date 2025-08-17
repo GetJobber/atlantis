@@ -81,6 +81,7 @@ function Wrapper<T extends OptionLike>({
   renderInput,
   loading,
   emptyState,
+  ref,
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -95,6 +96,7 @@ function Wrapper<T extends OptionLike>({
   readonly renderInput?: AutocompleteRebuiltProps<T, false>["renderInput"];
   readonly loading?: boolean;
   readonly emptyState?: React.ReactNode;
+  readonly ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -119,6 +121,7 @@ function Wrapper<T extends OptionLike>({
       renderInput={renderInput}
       loading={loading}
       emptyState={emptyState}
+      ref={ref}
     />
   );
 }
@@ -1231,6 +1234,30 @@ describe("AutocompleteRebuilt", () => {
       const lastAction = [...calls].reverse()[0]?.[0];
 
       expect(lastAction?.isActive).toBe(true);
+    });
+  });
+
+  describe("ref", () => {
+    it("forwards ref to the input element", () => {
+      const ref = React.createRef<HTMLInputElement | HTMLTextAreaElement>();
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          menu={[]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={undefined}
+          onChange={jest.fn()}
+          placeholder=""
+          ref={ref}
+        />,
+      );
+
+      expect(
+        ref.current instanceof HTMLInputElement ||
+          ref.current instanceof HTMLTextAreaElement,
+      ).toBe(true);
     });
   });
 });

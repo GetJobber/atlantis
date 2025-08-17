@@ -69,13 +69,18 @@ function isNewAutocompleteProps(
 
 function AutocompleteShim(
   props: AutocompleteShimProps,
-  ref: React.Ref<InputTextRef>,
+  ref: React.Ref<InputTextRef | HTMLInputElement | HTMLTextAreaElement>,
 ) {
   if (isNewAutocompleteProps(props)) {
-    return <AutocompleteRebuilt {...props} ref={ref} />;
+    return (
+      <AutocompleteRebuilt
+        {...props}
+        ref={ref as React.Ref<HTMLInputElement | HTMLTextAreaElement>}
+      />
+    );
   }
 
-  return <AutocompleteLegacy {...props} ref={ref} />;
+  return <AutocompleteLegacy {...props} ref={ref as React.Ref<InputTextRef>} />;
 }
 
 const AutocompleteForwarded = forwardRef(AutocompleteShim);
@@ -89,7 +94,7 @@ export const Autocomplete = AutocompleteForwarded as {
   >(
     props: AutocompleteRebuiltProps<T, false, S, A> & {
       version: 2;
-      ref?: React.Ref<InputTextRef>;
+      ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
       // Disallow legacy-only props for clearer DX
       initialOptions?: never;
       getOptions?: never;
@@ -102,7 +107,7 @@ export const Autocomplete = AutocompleteForwarded as {
   >(
     props: AutocompleteRebuiltProps<T, true, S, A> & {
       version: 2;
-      ref?: React.Ref<InputTextRef>;
+      ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
       // Disallow legacy-only props for clearer DX
       initialOptions?: never;
       getOptions?: never;

@@ -35,11 +35,11 @@ import type {
   OptionLike,
 } from "./Autocomplete.types";
 import styles from "./AutocompleteRebuilt.module.css";
-import type { InputTextRef } from "../InputText";
 import { InputText } from "../InputText";
 import type { InputTextRebuiltProps } from "../InputText/InputText.types";
 import { calculateMaxHeight } from "../utils/maxHeight";
 import { Glimmer } from "../Glimmer";
+import { mergeRefs } from "../utils/mergeRefs";
 
 type RenderItem<T extends OptionLike> =
   | { kind: "option"; value: T }
@@ -500,7 +500,7 @@ function findNavigableIndexForValue<Value extends OptionLike>(
   return null;
 }
 
-function selectActiveOptionOnEnter<Value extends OptionLike>(
+function commitActiveItemOnEnter<Value extends OptionLike>(
   event: React.KeyboardEvent,
   activeIndex: number | null,
   renderable: Array<RenderItem<Value>>,
@@ -534,8 +534,10 @@ function selectActiveOptionOnEnter<Value extends OptionLike>(
 function AutocompleteRebuiltInternal<
   Value extends OptionLike,
   Multiple extends boolean = false,
->(props: AutocompleteRebuiltProps<Value, Multiple>, _ref: Ref<InputTextRef>) {
-  void _ref;
+>(
+  props: AutocompleteRebuiltProps<Value, Multiple>,
+  forwardedRef: Ref<HTMLInputElement | HTMLTextAreaElement>,
+) {
   const {
     menu,
     getOptionLabel: getOptionLabelProp,
@@ -738,7 +740,7 @@ function AutocompleteRebuiltInternal<
     const inputText = inputValue.trim();
     if (inputText.length === 0) return false;
 
-    void commitFromInputText(inputText);
+    commitFromInputText(inputText);
 
     return true;
   }
@@ -845,7 +847,7 @@ function AutocompleteRebuiltInternal<
       const hasText = inputText.length > 0;
 
       if (hasText) {
-        void commitFromInputText(inputText);
+        commitFromInputText(inputText);
       } else {
         // Empty input: commit only if there was an existing value previously
         // Otherwise, no-op
@@ -893,7 +895,7 @@ function AutocompleteRebuiltInternal<
 
       if (!open) return;
 
-      selectActiveOptionOnEnter<Value>(
+      commitActiveItemOnEnter<Value>(
         event,
         activeIndex,
         renderable,
@@ -942,12 +944,17 @@ function AutocompleteRebuiltInternal<
     setReferenceElement((node as unknown as HTMLElement) ?? null);
   };
 
+  const combinedInputRef = mergeRefs<HTMLInputElement | HTMLTextAreaElement>([
+    referenceInputRef,
+    forwardedRef,
+  ]);
+
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
       {renderInput ? (
-        renderInput({ inputRef: referenceInputRef, inputProps })
+        renderInput({ inputRef: combinedInputRef, inputProps })
       ) : (
-        <InputText ref={referenceInputRef} {...inputProps} />
+        <InputText ref={combinedInputRef} {...inputProps} />
       )}
       {open && (
         <FloatingPortal>
@@ -1022,6 +1029,6 @@ export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   Multiple extends boolean = false,
 >(
   props: AutocompleteRebuiltProps<Value, Multiple> & {
-    ref?: Ref<InputTextRef>;
+    ref?: Ref<HTMLInputElement | HTMLTextAreaElement>;
   },
 ) => ReturnType<typeof AutocompleteRebuiltInternal>;
