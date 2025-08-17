@@ -25,6 +25,10 @@
   background-color: var(--color-surface--background);
 }
 
+:global(.sb-show-main.sb-main-padded) {
+  padding: 0px;
+}
+
 :global(.sbdocs-table) {
   width: 100%;
 }
@@ -38,6 +42,10 @@
   background-color: var(--color-surface--background);
 }
 
+:global(.sbdocs.sbdocs-table tr:nth-of-type(2n)) {
+  background-color: transparent;
+}
+
 :global(.sbdocs.sbdocs-a) {
   color: var(--color-interactive);
   font-family: inherit;
@@ -48,6 +56,68 @@
   max-width: calc(var(--base-unit) * 48);
 }
 
-:global(.sbdocs.sbdocs-table tr:nth-of-type(2n)) {
-  background-color: transparent;
+/* Markup Tables on Docs pages */
+:global(.sb-unstyled thead) {
+  background-color: var(--color-surface--background);
+}
+
+:global(.sb-unstyled table tr th),
+:global(.docblock-argstable-head tr th) {
+  color: var(--color-text) !important;
+}
+
+:global(.sb-unstyled table tr td) {
+  background-color: var(--color-surface--background--subtle);
+  border: solid 1px var(--color-border);
+  color: var(--color-text);
+}
+
+/* <Canvas/> & similar code blocks on Docs pages */
+:global(.sbdocs.sbdocs-preview),
+:global(.docblock-argstable-body tr td),
+:global(.docblock-source.sb-unstyled) {
+  background-color: var(--color-surface--background--subtle) !important;
+}
+
+:global(.language-sh),
+:global(.language-ts),
+:global(.language-css),
+:global(.docblock-source.sb-unstyled span),
+:global(.docblock-source.sb-unstyled .token.punctuation),
+:global(.docblock-source.sb-unstyled .token.tag.punctuation),
+:global(.docblock-source.sb-unstyled .token.spread.operator),
+:global(.docblock-source.sb-unstyled .token.operator),
+:global(.docblock-source.sb-unstyled .token.string),
+:global(.docblock-source.sb-unstyled .token.selector),
+:global(.docblock-source.sb-unstyled .token.property),
+:global(.docblock-source.sb-unstyled .token.tag.attr-name),
+:global(.docblock-source.sb-unstyled .token.tag.script),
+:global(.docblock-source.sb-unstyled .token.tag.attr-value.punctuation) {
+  color: var(--color-text);
+}
+
+:global(.docblock-source.sb-unstyled .token.keyword),
+:global(.docblock-source.sb-unstyled .token.atrule) {
+  color: var(--color-base-teal--500);
+}
+
+:global(.docblock-source.sb-unstyled .token.tag.attr-value) {
+  color: #36acaa;
+}
+
+:global(.docblock-source.sb-unstyled .maybe-class-name),
+:global(.docblock-source.sb-unstyled .token.tag),
+:global(.docblock-source.sb-unstyled .token.tag.class-name),
+:global(.docblock-source.sb-unstyled .token.function) {
+  color: var(--color-base-purple--500);
+}
+
+:global(.docblock-source.sb-unstyled .token.comment),
+:global(.docblock-source.sb-unstyled .token.plain-text) {
+  color: var(--color-text--secondary);
+}
+
+/* <Canvas/> "Show code button" */
+:global(button.docblock-code-toggle) {
+  background-color: var(--color-surface--background--subtle--hover);
 }
