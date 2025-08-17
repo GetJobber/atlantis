@@ -1,6 +1,6 @@
 import React from "react";
 import { Glimmer } from "@jobber/components/Glimmer";
-import {
+import type {
   DataListItemType,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";

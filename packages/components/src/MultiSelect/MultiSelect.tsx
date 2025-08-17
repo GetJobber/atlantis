@@ -1,15 +1,9 @@
-import React, {
-  Dispatch,
-  KeyboardEvent,
-  MutableRefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import type { Dispatch, KeyboardEvent, MutableRefObject } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import styles from "./MultiSelect.module.css";
 import { DropDownMenu } from "./DropDownMenu";
-import { Options } from "./types";
+import type { Options } from "./types";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 

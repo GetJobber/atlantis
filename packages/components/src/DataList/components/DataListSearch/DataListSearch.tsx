@@ -1,14 +1,15 @@
-import React, { useCallback, useRef, useState } from "react";
-import debounce from "lodash/debounce";
+import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
+import { useDebounce } from "@jobber/hooks/useDebounce";
 import styles from "./DataListSearch.module.css";
-import { InputText, InputTextRef } from "../../../InputText";
+import type { InputTextRef } from "../../../InputText";
+import { InputText } from "../../../InputText";
 import { useDataListContext } from "../../context/DataListContext";
 import { SEARCH_DEBOUNCE_DELAY } from "../../DataList.const";
 import { Button } from "../../../Button";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
-import { DataListSearchProps } from "../../DataList.types";
+import type { DataListSearchProps } from "../../DataList.types";
 
 export const DATA_LIST_SEARCH_TEST_ID = "ATL-DataList-Search-input-wrapper";
 
@@ -28,12 +29,9 @@ export function InternalDataListSearch() {
   const { searchComponent, filterComponent, sorting, title } =
     useDataListContext();
 
-  const debouncedSearch = useCallback(
-    debounce(
-      (value: string) => searchComponent?.props?.onSearch(value),
-      SEARCH_DEBOUNCE_DELAY,
-    ),
-    [searchComponent?.props.onSearch],
+  const debouncedSearch = useDebounce(
+    (value: string) => searchComponent?.props?.onSearch(value),
+    SEARCH_DEBOUNCE_DELAY,
   );
 
   if (!searchComponent) return null;

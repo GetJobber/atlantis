@@ -18,7 +18,7 @@ export const VisualTestPopoverPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Popover Examples</Heading>
+        <Heading level={3}>Popover Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Popover */}

@@ -11,7 +11,7 @@ export const VisualTestTypographyPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Typography Examples</Heading>
+        <Heading level={3}>Typography Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Typography */}

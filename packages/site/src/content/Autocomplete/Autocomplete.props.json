@@ -150,7 +150,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "ReactNode"
         }
       },
       "invalid": {
@@ -259,7 +259,7 @@
       },
       "ref": {
         "defaultValue": null,
-        "description": "",
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
         "name": "ref",
         "parent": {
           "fileName": "atlantis/node_modules/@types/react/index.d.ts",
@@ -267,7 +267,7 @@
         },
         "required": false,
         "type": {
-          "name": "Ref<InputTextRef>"
+          "name": "LegacyRef<InputTextRef>"
         }
       },
       "key": {

@@ -34,11 +34,15 @@ describe("Checkbox", () => {
   });
 
   it("renders a description when provided markup", () => {
-    const { getByText } = render(
-      <Checkbox version={2} label="Label" description="Additional info" />,
+    const elementTestId = "i-am-a-description";
+    const { getByTestId } = render(
+      <Checkbox
+        version={2}
+        label="Label"
+        description={<div data-testid={elementTestId} />}
+      />,
     );
-    const description = getByText("Additional info");
-    expect(description).toBeInTheDocument();
+    expect(getByTestId(elementTestId)).toBeInTheDocument();
   });
 
   describe("Label rendering", () => {

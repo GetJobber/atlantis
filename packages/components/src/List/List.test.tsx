@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { BaseListItemProps, List } from ".";
+import type { BaseListItemProps } from ".";
+import { List } from ".";
 import { Text } from "../Text";
 
 it("renders 1 List item with all the props", () => {

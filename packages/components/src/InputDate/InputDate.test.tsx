@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { InputDate, InputDateProps } from ".";
+import type { InputDateProps } from ".";
+import { InputDate } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
 import { Text } from "../Text";

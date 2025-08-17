@@ -1,2 +1,6 @@
 export { List } from "./List";
-export { BaseListItemProps, ListItem, ListItemProps } from "./ListItem";
+export {
+  type BaseListItemProps,
+  ListItem,
+  type ListItemProps,
+} from "./ListItem";

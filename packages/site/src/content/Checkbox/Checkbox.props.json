@@ -122,7 +122,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "ReactNode"
         }
       },
       "id": {
@@ -175,6 +175,19 @@
         "required": false,
         "type": {
           "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Whether the checkbox is invalid",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "version": {

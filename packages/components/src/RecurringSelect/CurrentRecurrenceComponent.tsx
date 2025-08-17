@@ -4,13 +4,14 @@ import {
   MonthlyDayOfWeekSelect,
   WeeklySelect,
 } from "./components";
-import {
+/* eslint-disable import/no-deprecated */
+import type {
   DayOfMonth,
-  DurationPeriod,
   RecurrenceRule,
   RecurrenceRuleWeekDayOfMonth,
   WeekDay,
 } from "./types";
+import { DurationPeriod } from "./types";
 
 interface RecurringSelectProps {
   readonly disabled?: boolean;

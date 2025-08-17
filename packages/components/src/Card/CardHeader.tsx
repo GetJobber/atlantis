@@ -1,9 +1,9 @@
 import React from "react";
-import { ActionProps, CardProps, HeaderActionProps } from "./types";
+import type { ActionProps, CardProps, HeaderActionProps } from "./types";
 import styles from "./Card.module.css";
 import { Heading } from "../Heading";
-import { Button, ButtonProps } from "../Button";
-import { Menu, MenuProps } from "../Menu";
+import { Button, type ButtonProps } from "../Button";
+import { Menu, type MenuProps } from "../Menu";
 
 /**
  * Intended to be used in the Card component.

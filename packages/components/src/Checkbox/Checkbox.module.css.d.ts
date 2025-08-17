@@ -6,6 +6,7 @@ declare const styles: {
   readonly "input": string;
   readonly "checkBox": string;
   readonly "indeterminate": string;
+  readonly "invalid": string;
   readonly "label": string;
   readonly "description": string;
 };

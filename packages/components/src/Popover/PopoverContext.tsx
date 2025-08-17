@@ -1,18 +1,27 @@
-import React, { CSSProperties, createContext, useContext } from "react";
+import type { Placement } from "@floating-ui/react";
+import { FloatingPortal } from "@floating-ui/react";
+import type { CSSProperties } from "react";
+import React, { createContext, useContext } from "react";
 import classnames from "classnames";
-import ReactDOM from "react-dom";
-import { PopoverProviderProps } from "./Popover.types";
+import type { PopoverProviderProps } from "./Popover.types";
 import { usePopover } from "./usePopover";
 import { usePopoverStyles } from "./usePopoverStyles";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
 interface PopoverContextProps {
   setArrowElement: (element: HTMLElement | null) => void;
-  popperStyles: { [key: string]: CSSProperties };
+  floatingStyles: {
+    float: CSSProperties;
+    arrow?: {
+      x?: number;
+      y?: number;
+    };
+  };
+  placement?: Placement;
 }
 
 const PopoverContext = createContext<PopoverContextProps>({
-  popperStyles: {},
+  floatingStyles: { float: {} },
   setArrowElement: () => {
     // noop
   },
@@ -24,13 +33,13 @@ export function usePopoverContext() {
 
 export function PopoverProvider({
   children,
-  preferredPlacement,
+  preferredPlacement = "auto",
   attachTo,
   open,
   UNSAFE_className,
   UNSAFE_style,
 }: PopoverProviderProps) {
-  const { setPopperElement, setArrowElement, popperStyles, attributes } =
+  const { setFloatingElement, setArrowElement, floatingStyles, placement } =
     usePopover({
       preferredPlacement,
       attachTo,
@@ -43,14 +52,15 @@ export function PopoverProvider({
     <PopoverContext.Provider
       value={{
         setArrowElement,
-        popperStyles,
+        floatingStyles,
+        placement,
       }}
     >
       <PopoverWrapper
-        attributes={attributes}
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
-        setPopperElement={setPopperElement}
+        setFloatingElement={setFloatingElement}
+        placement={placement}
       >
         {children}
       </PopoverWrapper>
@@ -60,17 +70,17 @@ export function PopoverProvider({
 
 function PopoverWrapper({
   children,
-  attributes,
-  setPopperElement,
+  setFloatingElement,
   UNSAFE_className,
   UNSAFE_style,
+  placement,
 }: {
   readonly children: React.ReactNode;
-  readonly attributes: Record<string, { [key: string]: string } | undefined>;
-  readonly setPopperElement: (element: HTMLElement | null) => void;
+  readonly setFloatingElement: (element: HTMLElement | null) => void;
+  readonly placement?: Placement;
 } & Pick<PopoverProviderProps, "UNSAFE_className" | "UNSAFE_style">) {
   const popoverStyles = usePopoverStyles();
-  const { popperStyles } = usePopoverContext();
+  const { floatingStyles } = usePopoverContext();
 
   const classes = classnames(
     popoverStyles.container,
@@ -82,10 +92,10 @@ function PopoverWrapper({
       <div
         role="dialog"
         data-elevation="elevated"
-        ref={setPopperElement}
-        style={{ ...popperStyles.popper, ...UNSAFE_style?.container }}
+        ref={setFloatingElement}
+        style={{ ...floatingStyles.float, ...UNSAFE_style?.container }}
         className={classes}
-        {...attributes.popper}
+        data-popover-placement={placement}
         data-testid="ATL-Popover-Container"
       >
         {children}
@@ -93,5 +103,5 @@ function PopoverWrapper({
     </AtlantisPortalContent>
   );
 
-  return ReactDOM.createPortal(content, document.body);
+  return <FloatingPortal>{content}</FloatingPortal>;
 }

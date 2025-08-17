@@ -12,7 +12,7 @@ import {
 } from "../../DataList.const";
 import { Button } from "../../../Button";
 import { Flex } from "../../../Flex";
-import { DataListEmptyStateProps } from "../../DataList.types";
+import type { DataListEmptyStateProps } from "../../DataList.types";
 
 describe("DataListEmptyState", () => {
   it("should not render anything", () => {

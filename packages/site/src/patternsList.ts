@@ -19,4 +19,9 @@ export const patternsList = [
     to: "/patterns/disabled-states",
     imageURL: "/DisabledStates.png",
   },
+  {
+    title: "Settings",
+    to: "/patterns/settings",
+    imageURL: "/Settings.png",
+  },
 ];

@@ -1,5 +1,6 @@
-import React, { MutableRefObject } from "react";
-import { ComboboxOption } from "./Combobox.types";
+import type { MutableRefObject } from "react";
+import React from "react";
+import { type ComboboxOption } from "./Combobox.types";
 
 export interface ComboboxProviderProps {
   readonly children: React.ReactNode;
@@ -11,6 +12,8 @@ export interface ComboboxProviderProps {
   readonly shouldScroll: MutableRefObject<boolean>;
   readonly searchValue: string;
   readonly label?: string;
+  readonly onClear?: () => void;
+  readonly onSelectAll?: (selection: ComboboxOption[]) => void;
 }
 
 export const ComboboxContext = React.createContext(

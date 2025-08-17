@@ -1,9 +1,12 @@
 import noop from "lodash/noop";
-import React, { MutableRefObject, createContext, useContext } from "react";
-import { FloatingContext, FloatingTree } from "@floating-ui/react";
-import sizes from "./ModalSizes.module.css";
+import type { MutableRefObject } from "react";
+import React, { createContext, useContext } from "react";
+import type { FloatingContext } from "@floating-ui/react";
+import { FloatingTree } from "@floating-ui/react";
+import identity from "lodash/identity";
+import type sizes from "./ModalSizes.module.css";
 import { useModal } from "./useModal";
-import { ModalContextType } from "./Modal.types";
+import type { ModalContextType } from "./Modal.types";
 
 export const ModalContext = createContext<ModalContextType>({
   open: false,
@@ -14,6 +17,7 @@ export const ModalContext = createContext<ModalContextType>({
   size: undefined,
   floatingNodeId: undefined,
   dismissible: true,
+  getFloatingProps: identity,
 });
 export interface ModalProviderProps {
   readonly children: React.ReactNode;
@@ -34,12 +38,18 @@ export function ModalProvider({
   dismissible = true,
   modalLabelledBy = "ATL-Modal-Header",
 }: ModalProviderProps) {
-  const { floatingRefs, floatingContext, nodeId, activatorRef, parentId } =
-    useModal({
-      open,
-      activatorRef: refProp,
-      onRequestClose,
-    });
+  const {
+    floatingRefs,
+    floatingContext,
+    nodeId,
+    activatorRef,
+    parentId,
+    getFloatingProps,
+  } = useModal({
+    open,
+    activatorRef: refProp,
+    onRequestClose,
+  });
 
   const content = (
     <ModalContext.Provider
@@ -53,6 +63,7 @@ export function ModalProvider({
         floatingNodeId: nodeId,
         dismissible,
         modalLabelledBy,
+        getFloatingProps,
       }}
     >
       {children}

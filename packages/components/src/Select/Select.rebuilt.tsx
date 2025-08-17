@@ -1,6 +1,6 @@
 import React, { useId, useRef } from "react";
 import omit from "lodash/omit";
-import { SelectRebuiltProps } from "./Select.types";
+import type { SelectRebuiltProps } from "./Select.types";
 import { useSelectActions } from "./hooks/useSelectActions";
 import { useSelectFormField } from "./hooks/useSelectFormField";
 import {
@@ -60,7 +60,7 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       autofocus={props.autofocus}
       name={name}
       wrapperRef={wrapperRef}
-      error={""}
+      error={props.error ?? ""}
       invalid={props.invalid}
       identifier={id}
       descriptionIdentifier={descriptionIdentifier}

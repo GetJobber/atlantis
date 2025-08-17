@@ -1,9 +1,9 @@
-import {
+import type {
   CommonAllowedElements,
   CommonAtlantisProps,
   GapSpacing,
 } from "../sharedHelpers/types";
-import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
+import type { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
 
 export interface ContentBlockProps extends CommonAtlantisProps {
   readonly children: React.ReactNode;

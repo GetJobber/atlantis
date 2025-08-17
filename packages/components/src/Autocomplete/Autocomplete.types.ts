@@ -1,6 +1,6 @@
-import { RefObject } from "react";
-import { FormFieldProps } from "../FormField";
-import { InputTextRef } from "../InputText";
+import type { RefObject } from "react";
+import type { FormFieldProps } from "../FormField";
+import type { InputTextRef } from "../InputText";
 
 type OptionValue = string | number;
 
@@ -118,7 +118,7 @@ export interface MenuProps<
   /**
    * Element that the menu is attached to when the menu opens.
    */
-  readonly attachTo: RefObject<Element | null>;
+  readonly attachTo: HTMLDivElement | null;
   /**
    * Ref to the TextInput element.
    */

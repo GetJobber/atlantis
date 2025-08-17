@@ -1,7 +1,8 @@
 import classnames from "classnames";
-import React, { RefObject } from "react";
-import { XOR } from "ts-xor";
-import { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
+import type { RefObject } from "react";
+import React from "react";
+import type { XOR } from "ts-xor";
+import type { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -47,7 +48,6 @@ export function AffixIcon({
 }: AffixIconProps & XOR<Affix, Suffix>) {
   const affixIconClass = classnames(styles.affixIcon, {
     [styles.suffix]: variation === "suffix",
-    [styles.hasAction]: onClick,
   });
 
   const iconSize = size === "small" ? "small" : "base";

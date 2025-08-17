@@ -39,11 +39,11 @@ export function useModal({
   const dismiss = useDismiss(floatingContext, {
     outsidePressEvent: "click",
     escapeKey: true,
-    bubbles: true,
+    bubbles: false,
   });
   const role = useRole(floatingContext);
 
-  useInteractions([click, dismiss, role]);
+  const { getFloatingProps } = useInteractions([click, dismiss, role]);
   const parentId = useFloatingParentNodeId();
 
   return {
@@ -52,5 +52,6 @@ export function useModal({
     nodeId,
     activatorRef,
     parentId,
+    getFloatingProps,
   };
 }

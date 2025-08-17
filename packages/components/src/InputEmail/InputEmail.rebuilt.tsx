@@ -1,7 +1,8 @@
 import React, { forwardRef, useId, useRef } from "react";
+import omit from "lodash/omit";
 import { useInputEmailActions } from "./hooks/useInputEmailActions";
 import { useInputEmailFormField } from "./hooks/useInputEmailFormField";
-import { InputEmailRebuiltProps } from "./InputEmail.types";
+import type { InputEmailRebuiltProps } from "./InputEmail.types";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -47,8 +48,20 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       inputRef,
     });
 
+  const inputProps = omit(props, [
+    "placeholder",
+    "onChange",
+    "onBlur",
+    "onFocus",
+    "onEnter",
+    "size",
+    "prefix",
+    "suffix",
+    "version",
+  ]);
+
   const { fieldProps, descriptionIdentifier } = useInputEmailFormField({
-    ...props,
+    ...inputProps,
     id,
     name,
     handleChange,
@@ -76,6 +89,9 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       disabled={props.disabled}
       type="email"
       value={props.value}
+      placeholder={props.placeholder}
+      autofocus={props.autoFocus}
+      name={name}
     >
       <input
         {...fieldProps}

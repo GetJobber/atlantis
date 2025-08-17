@@ -81,6 +81,7 @@ export * from "./Switch";
 export * from "./Table";
 export * from "./Tabs";
 export * from "./Text";
+export * from "./Thumbnail";
 export * from "./Tiles";
 export * from "./Toast";
 export * from "./Tooltip";

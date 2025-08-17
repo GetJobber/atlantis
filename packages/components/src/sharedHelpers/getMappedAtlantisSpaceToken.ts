@@ -1,4 +1,4 @@
-import { Spaces } from "./types";
+import type { Spaces } from "./types";
 
 export const spaceTokens: Record<Spaces, string> = {
   none: "0px",

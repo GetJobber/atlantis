@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import * as POM from "./ComboboxOption.pom";
-import { ComboboxOptionProps } from "../../Combobox.types";
+import type { ComboboxOptionProps } from "../../Combobox.types";
 
 const onSelect = jest.fn();
 
@@ -195,6 +195,32 @@ describe("ComboboxOption", () => {
       await userEvent.click(POM.getOption("Michael"));
       expect(onSelect).toHaveBeenCalledTimes(1);
       expect(onSelect).toHaveBeenCalledWith({
+        id: "1",
+        label: "Michael",
+      });
+    });
+  });
+
+  describe("onClick callback", () => {
+    const handleClick = jest.fn();
+
+    beforeEach(() => {
+      handleClick.mockClear();
+    });
+
+    it("should call onClick when the option is clicked", async () => {
+      POM.renderOption({
+        id: "1",
+        label: "Michael",
+        selected: [],
+        onSelect,
+        onClick: handleClick,
+      });
+
+      await userEvent.click(POM.getOption("Michael"));
+
+      expect(handleClick).toHaveBeenCalledTimes(1);
+      expect(handleClick).toHaveBeenCalledWith({
         id: "1",
         label: "Michael",
       });

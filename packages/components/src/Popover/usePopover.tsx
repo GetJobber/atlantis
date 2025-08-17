@@ -1,48 +1,85 @@
-import { usePopper } from "react-popper";
+import {
+  arrow,
+  autoPlacement,
+  autoUpdate,
+  flip,
+  limitShift,
+  offset,
+  shift,
+  useFloating,
+} from "@floating-ui/react";
 import { useMemo, useState } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { PopoverProps } from "./Popover.types";
+import type { PopoverProps } from "./Popover.types";
+
+const POPOVER_OFFSET = 10;
+const POPOVER_SHIFT_PADDING = 8;
+const POPOVER_ARROW_PADDING = 6;
 
 export const usePopover = ({
   preferredPlacement,
   attachTo,
   open,
 }: Pick<PopoverProps, "preferredPlacement" | "attachTo" | "open">) => {
-  const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
 
   const modifiers = useMemo(() => {
-    return [
-      {
-        name: "arrow",
-        options: { element: arrowElement, padding: 10 },
-      },
-      {
-        name: "offset",
-        options: {
-          offset: [0, 10],
-        },
-      },
-      {
-        name: "flip",
-        options: {
-          fallbackPlacements: ["auto"],
-        },
-      },
+    const baseModifiers = [
+      offset(POPOVER_OFFSET),
+      shift({
+        mainAxis: true,
+        crossAxis: false,
+        padding: POPOVER_SHIFT_PADDING,
+        limiter: limitShift(),
+      }),
     ];
-  }, [arrowElement]);
 
-  const { styles: popperStyles, attributes } = usePopper(
-    isHTMLElement(attachTo) ? attachTo : attachTo.current,
-    popperElement,
-    {
-      modifiers,
-      placement: preferredPlacement,
+    const placementMiddleware =
+      preferredPlacement === "auto"
+        ? autoPlacement({
+            allowedPlacements: ["top", "bottom", "left", "right"],
+          })
+        : flip({
+            fallbackPlacements: ["top", "bottom", "left", "right"],
+          });
+
+    return [
+      ...baseModifiers,
+      placementMiddleware,
+      arrow({
+        element: arrowElement || null,
+        padding: POPOVER_ARROW_PADDING,
+      }),
+    ];
+  }, [arrowElement, preferredPlacement]);
+
+  const referenceElement = isHTMLElement(attachTo)
+    ? attachTo
+    : attachTo.current;
+
+  const { refs, floatingStyles, middlewareData, placement } = useFloating({
+    placement: preferredPlacement === "auto" ? undefined : preferredPlacement,
+    strategy: "absolute",
+    middleware: modifiers,
+    elements: {
+      reference: referenceElement || null,
     },
-  );
+    // Only use this option when the floating element is conditionally rendered
+    // (which we are), not hidden with css. https://floating-ui.com/docs/autoUpdate
+    whileElementsMounted: autoUpdate,
+  });
+
   useRefocusOnActivator(open);
 
-  return { setPopperElement, setArrowElement, popperStyles, attributes };
+  return {
+    setFloatingElement: refs.setFloating,
+    setArrowElement,
+    floatingStyles: {
+      float: floatingStyles,
+      arrow: middlewareData.arrow,
+    },
+    placement,
+  };
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

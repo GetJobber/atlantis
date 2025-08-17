@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 import classNames from "classnames";
 import styles from "./Grid.module.css";
 import alignments from "./GridAlign.module.css";

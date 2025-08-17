@@ -1,11 +1,10 @@
 import { useContext, useEffect, useRef } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import type { UseInteractionsReturn } from "@floating-ui/react";
 import {
-  UseInteractionsReturn,
-  autoPlacement,
   autoUpdate,
+  flip,
   offset,
-  shift,
   useDismiss,
   useFloating,
   useFloatingNodeId,
@@ -13,7 +12,7 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { ComboboxOption } from "../Combobox.types";
+import { type ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
 const COMBOBOX_OFFSET = 8;
@@ -26,8 +25,8 @@ export function useComboboxAccessibility(
   open: boolean,
   wrapperRef: React.RefObject<HTMLDivElement>,
 ): {
-  popperRef: React.RefObject<HTMLDivElement>;
-  popperStyles: React.CSSProperties;
+  floatingRef: React.RefObject<HTMLDivElement>;
+  floatingStyles: React.CSSProperties;
   floatingProps: ReturnType<UseInteractionsReturn["getFloatingProps"]>;
   nodeId?: string;
   parentNodeId: string | null;
@@ -40,22 +39,21 @@ export function useComboboxAccessibility(
 
   useRefocusOnActivator(open);
 
-  const popperRef = useFocusTrap<HTMLDivElement>(open);
+  const floatingRef = useFocusTrap<HTMLDivElement>(open);
 
   const { floatingStyles, update, context } = useFloating({
     nodeId,
     elements: {
       reference: wrapperRef.current,
-      floating: popperRef.current,
+      floating: floatingRef.current,
     },
     open,
     onOpenChange: openState => {
       if (!openState) handleClose();
     },
     middleware: [
-      autoPlacement({ allowedPlacements: ["bottom-start", "top-start"] }),
       offset(COMBOBOX_OFFSET),
-      shift({ padding: COMBOBOX_OFFSET }),
+      flip({ fallbackPlacements: ["top-start", "bottom-end", "top-end"] }),
     ],
     placement: "bottom-start",
     whileElementsMounted: autoUpdate,
@@ -75,11 +73,11 @@ export function useComboboxAccessibility(
 
   useEffect(() => {
     if (open) {
-      popperRef.current?.addEventListener("keydown", handleContentKeydown);
+      floatingRef.current?.addEventListener("keydown", handleContentKeydown);
     }
 
     return () => {
-      popperRef.current?.removeEventListener("keydown", handleContentKeydown);
+      floatingRef.current?.removeEventListener("keydown", handleContentKeydown);
     };
   }, [open, optionsListRef, filteredOptions]);
 
@@ -131,8 +129,8 @@ export function useComboboxAccessibility(
   }
 
   return {
-    popperRef,
-    popperStyles: floatingStyles,
+    floatingRef,
+    floatingStyles,
     floatingProps: getFloatingProps(),
     nodeId,
     parentNodeId,

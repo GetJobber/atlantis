@@ -13,7 +13,7 @@ export const VisualTestIconPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Icon Examples</Heading>
+        <Heading level={3}>Icon Examples</Heading>
 
         <Stack gap="large">
           {/* Icon Sizes */}

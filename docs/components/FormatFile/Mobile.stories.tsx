@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { FormatFile } from "@jobber/components-native";
 
 export default {
@@ -11,9 +11,9 @@ export default {
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },
-} as ComponentMeta<typeof FormatFile>;
+} as Meta<typeof FormatFile>;
 
-const BasicTemplate: ComponentStory<typeof FormatFile> = args => (
+const BasicTemplate: StoryFn<typeof FormatFile> = args => (
   <FormatFile {...args} />
 );
 
@@ -26,6 +26,18 @@ Image.args = {
     thumbnailUrl: "https://picsum.photos/250",
     fileSize: 1024,
   },
+};
+
+export const ImageGrid = BasicTemplate.bind({});
+ImageGrid.args = {
+  file: {
+    fileName: "image.png",
+    contentType: "image/png",
+    url: "https://picsum.photos/250",
+    thumbnailUrl: "https://picsum.photos/250",
+    fileSize: 1024,
+  },
+  styleInGrid: true,
 };
 
 export const Video = BasicTemplate.bind({});

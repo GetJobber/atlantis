@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { DataListLayoutActions } from "./DataListLayoutActions";
 import { DataListContext, defaultValues } from "../../context/DataListContext";

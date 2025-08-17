@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
-import {
+import type { Side } from "@floating-ui/utils";
+import type {
   PopoverArrowProps,
   PopoverDismissButtonProps,
   PopoverProps,
@@ -46,15 +47,40 @@ Popover.Arrow = function PopoverArrow({
   UNSAFE_className,
   UNSAFE_style,
 }: PopoverArrowProps) {
-  const { setArrowElement, popperStyles } = usePopoverContext();
+  const { setArrowElement, floatingStyles, placement } = usePopoverContext();
   const popoverStyles = usePopoverStyles();
   const classes = classnames(popoverStyles.arrow, UNSAFE_className?.arrow);
+
+  // the arrow will get positioned opposite to the placement side
+  const staticSideMap: Record<Side, Side> = {
+    top: "bottom",
+    right: "left",
+    bottom: "top",
+    left: "right",
+  } as const;
+
+  const staticSide = staticSideMap[placement as Side];
+
+  const arrowX = floatingStyles.arrow?.x;
+  const arrowY = floatingStyles.arrow?.y;
+
+  const arrowStyles: React.CSSProperties = {
+    position: "absolute",
+    // only left or top will be defined at a time
+    left: arrowX !== null && arrowX !== undefined ? `${arrowX}px` : "",
+    top: arrowY !== null && arrowY !== undefined ? `${arrowY}px` : "",
+    right: "",
+    bottom: "",
+    [staticSide]: "var(--popover--position--offset)",
+    width: "var(--base-unit)",
+    height: "var(--base-unit)",
+  };
 
   return (
     <div
       ref={setArrowElement}
       className={classes}
-      style={{ ...popperStyles.arrow, ...UNSAFE_style?.arrow }}
+      style={{ ...arrowStyles, ...UNSAFE_style?.arrow }}
       data-testid="ATL-Popover-Arrow"
     />
   );

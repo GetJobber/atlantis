@@ -1,5 +1,5 @@
-import { tokens } from "@jobber/design";
-import { PropsWithChildren } from "react";
+import type { tokens } from "@jobber/design";
+import type { PropsWithChildren } from "react";
 
 export interface AtlantisThemeContextValue {
   /**

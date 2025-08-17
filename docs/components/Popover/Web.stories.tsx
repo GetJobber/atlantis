@@ -21,17 +21,20 @@ export default {
 } as ComponentMeta<typeof Popover>;
 
 const BasicTemplate: ComponentStory<typeof Popover> = args => {
-  const divRef = useRef<HTMLSpanElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
   const [showPopover, setShowPopover] = useState(args.open);
 
   return (
     <>
-      <span ref={divRef}>
+      <div
+        ref={divRef}
+        style={{ display: "inline-block", width: "fit-content" }}
+      >
         <Button
           label="Toggle Popover"
           onClick={() => setShowPopover(!showPopover)}
         />
-      </span>
+      </div>
       <Popover
         {...args}
         attachTo={divRef}
@@ -47,17 +50,20 @@ const BasicTemplate: ComponentStory<typeof Popover> = args => {
 export const Basic = BasicTemplate.bind({});
 
 const InformationalTemplate: ComponentStory<typeof Popover> = args => {
-  const newFeatureButton = useRef<HTMLSpanElement>(null);
+  const newFeatureButton = useRef<HTMLDivElement>(null);
   const [showPopover, setShowPopover] = useState(true);
 
   return (
     <>
-      <span ref={newFeatureButton}>
+      <div
+        ref={newFeatureButton}
+        style={{ display: "inline-block", width: "fit-content" }}
+      >
         <Button
           label="New Feature"
           onClick={() => setShowPopover(!showPopover)}
         />
-      </span>
+      </div>
       <Popover
         {...args}
         attachTo={newFeatureButton}

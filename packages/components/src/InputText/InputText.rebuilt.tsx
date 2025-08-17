@@ -1,12 +1,10 @@
 import React, { forwardRef, useId } from "react";
 import omit from "lodash/omit";
-import { InputTextRebuiltProps } from "./InputText.types";
+import type { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { useInputTextActions } from "./useInputTextActions";
-import {
-  UseInputTextFormFieldReturn,
-  useInputTextFormField,
-} from "./useInputTextFormField";
+import type { UseInputTextFormFieldReturn } from "./useInputTextFormField";
+import { useInputTextFormField } from "./useInputTextFormField";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -28,6 +26,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     ...props,
     version: 1,
   };
+
   const id = useInputTextId(props);
 
   const { rowRange } = useTextAreaResize({

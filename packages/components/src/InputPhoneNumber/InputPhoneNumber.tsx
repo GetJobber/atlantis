@@ -3,7 +3,7 @@ import { useForm, useFormContext } from "react-hook-form";
 import { InputMask } from "./InputMask";
 import {
   DEFAULT_PATTERN,
-  InputPhoneNumberLegacyProps,
+  type InputPhoneNumberLegacyProps,
 } from "./InputPhoneNumber.types";
 import { FormField } from "../FormField";
 

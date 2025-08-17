@@ -4,15 +4,21 @@ import { Icon } from "@jobber/components/Icon";
 import { Flex } from "@jobber/components/Flex";
 import styles from "./ComboboxOption.module.css";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxOptionProps } from "../../Combobox.types";
+import { type ComboboxOptionProps } from "../../Combobox.types";
 
 export function ComboboxOption(props: ComboboxOptionProps) {
-  const { customRender, ...contentProps } = props;
+  const { customRender, onClick, ...contentProps } = props;
   const { selected, selectionHandler } = useContext(ComboboxContext);
 
   const isSelected = selected.some(
     selection => selection.id.toString() === props.id.toString(),
   );
+
+  const handleClick = () => {
+    const { id, label } = props;
+    selectionHandler?.({ id, label });
+    onClick?.({ id, label });
+  };
 
   return (
     <li
@@ -21,10 +27,7 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       data-selected={isSelected}
       role="option"
       aria-selected={isSelected}
-      onClick={() =>
-        selectionHandler &&
-        selectionHandler({ id: props.id, label: props.label })
-      }
+      onClick={handleClick}
       className={classnames(styles.option)}
     >
       {customRender ? (

@@ -1,22 +1,22 @@
-import React, { PropsWithChildren, useCallback, useEffect } from "react";
+import type { PropsWithChildren } from "react";
+import React, { useCallback, useEffect } from "react";
 import classNames from "classnames";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import { createPortal } from "react-dom";
+import { FloatingPortal } from "@floating-ui/react";
 import styles from "../Autocomplete.module.css";
-import { UseRepositionMenu, useRepositionMenu } from "../useRepositionMenu";
+import type { UseRepositionMenu } from "../useRepositionMenu";
+import { useRepositionMenu } from "../useRepositionMenu";
 
 export interface BaseAutocompleteMenuWrapperInternalProps {
   readonly setMenuRef: UseRepositionMenu["setMenuRef"];
-  readonly popperStyles: UseRepositionMenu["styles"];
-  readonly attributes: UseRepositionMenu["attributes"];
+  readonly floatStyles: UseRepositionMenu["styles"];
   readonly targetWidth: UseRepositionMenu["targetWidth"];
   readonly visible?: boolean;
 }
 
 function BaseAutocompleteMenuWrapperInternal({
   setMenuRef,
-  popperStyles,
-  attributes,
+  floatStyles,
   targetWidth,
   visible,
   children,
@@ -25,9 +25,11 @@ function BaseAutocompleteMenuWrapperInternal({
     <div
       className={classNames(styles.options, { [styles.visible]: visible })}
       ref={setMenuRef}
-      style={{ ...popperStyles.popper, width: targetWidth }}
+      style={{
+        ...floatStyles.float,
+        width: targetWidth,
+      }}
       data-elevation={"elevated"}
-      {...attributes.popper}
     >
       {children}
     </div>
@@ -41,7 +43,7 @@ function BaseAutocompleteMenuWrapperInternal({
 export function useAutocompleteMenu({
   attachTo,
 }: {
-  attachTo: React.RefObject<Element | null>;
+  attachTo: HTMLDivElement | null;
 }) {
   const [menuRef, setMenuRef] = React.useState<HTMLElement | null>(null);
   const AutocompleteMenuWrapper = useCallback(
@@ -52,17 +54,16 @@ export function useAutocompleteMenu({
       children?: React.ReactNode;
       visible: boolean;
     }): React.ReactElement => {
-      const menuPopperProps = useRepositionMenu(attachTo, visible);
+      const menuFloatProps = useRepositionMenu(attachTo, visible, true);
       useEffect(() => {
-        setMenuRef(menuPopperProps.menuRef);
-      }, [menuPopperProps.menuRef]);
+        setMenuRef(menuFloatProps.menuRef);
+      }, [menuFloatProps.menuRef]);
 
       return (
         <BaseAutocompleteMenuWrapper
-          attributes={menuPopperProps.attributes}
-          popperStyles={menuPopperProps.styles}
-          setMenuRef={menuPopperProps.setMenuRef}
-          targetWidth={menuPopperProps.targetWidth}
+          floatStyles={menuFloatProps.styles}
+          setMenuRef={menuFloatProps.setMenuRef}
+          targetWidth={menuFloatProps.targetWidth}
           visible={visible}
         >
           {children}
@@ -81,5 +82,5 @@ export function BaseAutocompleteMenuWrapper(
   const mounted = useIsMounted();
   const menu = <BaseAutocompleteMenuWrapperInternal {...props} />;
 
-  return mounted.current ? createPortal(menu, document.body) : menu;
+  return mounted.current ? <FloatingPortal>{menu}</FloatingPortal> : menu;
 }

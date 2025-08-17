@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "6.56.1",
+  "version": "6.82.5",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -420,6 +420,11 @@
       "import": "./dist/Text/index.mjs",
       "require": "./dist/Text/index.cjs"
     },
+    "./Thumbnail": {
+      "types": "./dist/Thumbnail/index.d.ts",
+      "import": "./dist/Thumbnail/index.mjs",
+      "require": "./dist/Thumbnail/index.cjs"
+    },
     "./Tiles": {
       "types": "./dist/Tiles/index.d.ts",
       "import": "./dist/Tiles/index.mjs",
@@ -447,7 +452,9 @@
     }
   },
   "scripts": {
-    "build": "rollup --config",
+    "build": "npm run build:pre && rollup --config && npm run build:post",
+    "build:pre": "PREBUILD_CSS=true rollup --config && cp dist/styles.css ./styles.css.backup && npm run clean",
+    "build:post": "mv ./styles.css.backup dist/styles.css",
     "bootstrap": "npm run clean; npm run build",
     "clean": "rm -rf dist/* tsconfig.rollup.tsbuildinfo",
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
@@ -472,12 +479,13 @@
     "@types/react-datepicker": "^4.8.0",
     "@types/react-router": "5.1.7",
     "@types/react-router-dom": "^5.3.3",
-    "axios": "^1.6.0",
+    "axios": "^1.11.0",
     "classnames": "^2.3.2",
     "color": "^3.1.2",
     "filesize": "^6.1.0",
     "framer-motion": "^11.0.3",
     "lodash": "^4.17.21",
+    "react-aria-components": "^1.7.1",
     "react-countdown": "^2.3.2",
     "react-datepicker": "~4.10.0",
     "react-dropzone": "^11.0.2",
@@ -513,9 +521,9 @@
   "peerDependencies": {
     "@apollo/client": "^3",
     "@jobber/design": "*",
-    "@jobber/hooks": "^2",
+    "@jobber/hooks": ">=2",
     "@tanstack/react-table": "^8",
-    "axios": "^1",
+    "axios": "^1.11.0",
     "classnames": "^2",
     "color": "^4",
     "date-fns": "^2.30.0",

@@ -17,7 +17,7 @@ export const VisualTestDrawerPage = () => {
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Drawer Examples</Heading>
+        <Heading level={3}>Drawer Examples</Heading>
 
         <Stack gap="large">
           {/* Basic Drawer */}

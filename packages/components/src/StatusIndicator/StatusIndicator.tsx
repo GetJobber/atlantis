@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./StatusIndicator.module.css";
-import { StatusIndicatorType } from "./StatusIndicator.type";
+import type { StatusIndicatorType } from "./StatusIndicator.type";
 
 interface StatusIndicatorProps {
   readonly status: StatusIndicatorType;

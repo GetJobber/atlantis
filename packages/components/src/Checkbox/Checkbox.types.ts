@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { XOR } from "ts-xor";
+import type { ReactElement, ReactNode } from "react";
+import type { XOR } from "ts-xor";
 
 export interface BaseCheckboxProps {
   /**
@@ -39,7 +39,7 @@ export interface BaseCheckboxProps {
   /**
    * Further description of the label
    */
-  readonly description?: string;
+  readonly description?: ReactNode;
 
   /**
    * ID for the checkbox input
@@ -60,6 +60,11 @@ export interface BaseCheckboxProps {
    * Called when the checkbox loses focus
    */
   onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
+
+  /**
+   * Whether the checkbox is invalid
+   */
+  invalid?: boolean;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
@@ -92,7 +97,7 @@ export type CheckboxRebuiltProps = Omit<
    * String will be rendered with the default markup.
    * ReactElement will be rendered with provided positioning.
    */
-  description?: string | ReactElement;
+  description?: ReactNode;
 
   /**
    * Called when the checkbox value changes.

@@ -1,4 +1,4 @@
-import { Table } from "@tanstack/react-table";
+import type { Table } from "@tanstack/react-table";
 import React, { useMemo } from "react";
 import styles from "./Pagination.module.css";
 import { Option, Select } from "../Select";
