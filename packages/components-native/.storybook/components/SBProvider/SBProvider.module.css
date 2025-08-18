@@ -4,7 +4,6 @@
 }
 
 .storyWrapper {
-  background-color: var(--color-surface);
   height: 100vh;
   padding: var(--space-base);
   box-sizing: border-box;
