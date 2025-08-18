@@ -1,5 +1,5 @@
-import { PlatformColor } from "react-native";
 import { buildThemedStyles } from "../../AtlantisThemeContext";
+import { PlatformColor } from "../../utils/reactNativePolyfill";
 
 const BAR_HEIGHT = 44;
 
@@ -18,8 +18,7 @@ export const useStyles = buildThemedStyles(tokens => {
       backgroundColor: tokens["color-surface--background"],
     },
     darkTheme: {
-      // PlatformColor has to be conditional for Storybook to run without error
-      backgroundColor: PlatformColor?.("systemGray3"),
+      backgroundColor: PlatformColor("systemGray3"),
     },
   };
 });
