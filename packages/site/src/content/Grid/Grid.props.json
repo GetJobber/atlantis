@@ -10,7 +10,7 @@
         "defaultValue": {
           "value": true
         },
-        "description": "Add spacing between elements. Can be a boolean for default spacing,\nor a semantic token for custom spacing.",
+        "description": "Add spacing between elements. Can be a boolean for default spacing,\nor a semantic token for custom spacing.\n@deprecated The boolean type for the 'gap' prop is deprecated and will be removed in a future version.\nPlease use a GapSpacing token (e.g., 'small', 'base', 'large') for fixed spacing.\nUsing 'true' applies default responsive spacing. Using 'false' results in no gap.",
         "name": "gap",
         "parent": {
           "fileName": "../components/src/Grid/Grid.tsx",
