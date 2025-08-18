@@ -50,6 +50,21 @@
       transform: translateY(0) scale(1);
     }
 
+    /* options */
+    option {
+      padding: var(--space-smaller) 0;
+      color: var(--color-text);
+      text-indent: var(--space-small);
+      cursor: pointer;
+    }
+
+    option:hover,
+    option:focus,
+    option:focus-visible,
+    option:checked {
+      background-color: var(--color-surface--hover);
+    }
+
     /* optgroup headers */
     optgroup {
       padding: var(--space-small) 0 0 0;
@@ -61,46 +76,29 @@
       background-color: transparent;
     }
 
-    optgroup option {
-      padding: var(--space-smaller) 0;
-      color: var(--color-text);
-      text-indent: var(--space-small);
-      background-color: var(--color-surface);
-      cursor: pointer;
-    }
-
     /* Divider directly under the group label */
     optgroup option:first-child {
       border-top: var(--border-base) solid var(--color-border);
-    }
-
-    optgroup option:hover {
-      background-color: var(--color-surface--hover);
     }
 
     /* Disabled groups and their options */
     optgroup[disabled] {
       color: var(--color-disabled);
     }
-    optgroup[disabled] option {
+    optgroup[disabled] option,
+    option[disabled] {
       color: var(--color-disabled);
       cursor: default;
     }
-    optgroup option:focus,
-    optgroup option:focus-visible {
-      outline: none;
-      background-color: var(--color-surface--hover);
-    }
 
-    optgroup option:checked {
-      background-color: var(--color-surface--hover);
-    }
-
-    /* Ensure disabled overrides are declared after base focus/checked states */
     optgroup[disabled] option:focus,
     optgroup[disabled] option:focus-visible,
     optgroup[disabled] option:checked,
-    optgroup[disabled] option:hover {
+    optgroup[disabled] option:hover,
+    option[disabled]:focus,
+    option[disabled]:focus-visible,
+    option[disabled]:checked,
+    option[disabled]:hover {
       background-color: transparent;
     }
 
