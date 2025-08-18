@@ -166,6 +166,8 @@
     "SegmentedControlContext.Provider",
     "SegmentedControlProvider",
     "Select",
+    "Select.Option",
+    "Select.OptionGroup",
     "SideDrawer",
     "SideDrawer.Actions",
     "SideDrawer.BackButton",
