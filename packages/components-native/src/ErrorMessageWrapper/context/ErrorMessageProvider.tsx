@@ -1,12 +1,9 @@
-import React, { ReactNode, RefObject, useState } from "react";
-import {
-  AccessibilityInfo,
-  NativeMethods,
-  View,
-  findNodeHandle,
-} from "react-native";
+import type { ReactNode, RefObject } from "react";
+import React, { useState } from "react";
+import type { NativeMethods, View } from "react-native";
+import { AccessibilityInfo, findNodeHandle } from "react-native";
 import { ErrorMessageContext } from "./ErrorMessageContext";
-import {
+import type {
   Element,
   ErrorMessageContextProps,
   ErrorMessageContextRegisterParams,

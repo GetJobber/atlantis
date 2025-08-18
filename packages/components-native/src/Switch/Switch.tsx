@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { XOR } from "ts-xor";
-import { BaseSwitch, BaseSwitchProps } from "./components/BaseSwitch";
+import type { XOR } from "ts-xor";
+import type { BaseSwitchProps } from "./components/BaseSwitch";
+import { BaseSwitch } from "./components/BaseSwitch";
 import { useStyles } from "./Switch.styles";
 import { Text } from "../Text";
 

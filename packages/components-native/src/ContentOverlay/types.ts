@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Modalize } from "react-native-modalize";
+import type { ReactNode } from "react";
+import type { Modalize } from "react-native-modalize";
 
 export interface ContentOverlayProps {
   /**

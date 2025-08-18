@@ -1,16 +1,10 @@
 import React from "react";
-import {
-  RenderAPI,
-  fireEvent,
-  render,
-  renderHook,
-} from "@testing-library/react-native";
-import { Text, ViewStyle } from "react-native";
-import {
-  InputFieldWrapper,
-  InputFieldWrapperProps,
-  useCommonInputStyles,
-} from ".";
+import type { RenderAPI } from "@testing-library/react-native";
+import { fireEvent, render, renderHook } from "@testing-library/react-native";
+import type { ViewStyle } from "react-native";
+import { Text } from "react-native";
+import type { InputFieldWrapperProps } from ".";
+import { InputFieldWrapper, useCommonInputStyles } from ".";
 import { useStyles } from "./InputFieldWrapper.style";
 import {
   INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID,

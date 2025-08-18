@@ -1,5 +1,6 @@
 import React from "react";
-import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
+import type { RenderAPI } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { tokens } from "@jobber/design/foundation";
 import { AccessibilityInfo } from "react-native";
 import { Option, Select } from ".";

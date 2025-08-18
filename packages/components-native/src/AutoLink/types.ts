@@ -1,5 +1,5 @@
-import { Match } from "autolinker";
-import { TextProps } from "react-native";
+import type { Match } from "autolinker";
+import type { TextProps } from "react-native";
 
 export interface AutoLinkProps extends Pick<TextProps, "selectable"> {
   /**
