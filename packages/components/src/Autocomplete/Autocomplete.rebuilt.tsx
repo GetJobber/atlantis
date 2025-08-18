@@ -18,6 +18,7 @@ import { mergeRefs } from "../utils/mergeRefs";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Typography } from "../Typography";
+import { Icon } from "../Icon";
 
 export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   Value extends OptionLike = OptionLike,
@@ -362,7 +363,10 @@ function handleOptionRendering<T extends OptionLike>({
   const optionContent = renderOption ? (
     renderOption({ value: option, isActive, isSelected })
   ) : (
-    <Text>{getOptionLabel(option)}</Text>
+    <DefaultOptionContent
+      isSelected={isSelected}
+      text={getOptionLabel(option)}
+    />
   );
 
   return {
@@ -389,6 +393,23 @@ function handleOptionRendering<T extends OptionLike>({
     ),
     nextNavigableIndex,
   };
+}
+
+function DefaultOptionContent({
+  isSelected,
+  text,
+}: {
+  readonly isSelected: boolean;
+  readonly text: string;
+}) {
+  return (
+    <div className={styles.defaultOptionContent}>
+      <div className={styles.icon}>
+        {isSelected && <Icon name="checkmark" size="small" />}
+      </div>
+      <Text>{text}</Text>
+    </div>
+  );
 }
 
 interface HandleActionRenderingProps<T extends OptionLike> {

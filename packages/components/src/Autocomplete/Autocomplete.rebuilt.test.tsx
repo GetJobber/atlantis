@@ -163,28 +163,30 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  it("opens the menu when arrowUp is pressed", async () => {
-    render(<Wrapper />);
-    await openAutocomplete("arrowUp");
-    await navigateDown(1);
+  describe("standard open behavior", () => {
+    it("opens the menu when arrowUp is pressed", async () => {
+      render(<Wrapper />);
+      await openAutocomplete("arrowUp");
+      await navigateDown(1);
 
-    expect(screen.getByRole("listbox")).toBeVisible();
-  });
+      expect(screen.getByRole("listbox")).toBeVisible();
+    });
 
-  it("opens the menu when arrowDown is pressed", async () => {
-    render(<Wrapper />);
-    await openAutocomplete("arrowDown");
-    await navigateDown(1);
+    it("opens the menu when arrowDown is pressed", async () => {
+      render(<Wrapper />);
+      await openAutocomplete("arrowDown");
+      await navigateDown(1);
 
-    expect(screen.getByRole("listbox")).toBeVisible();
-  });
+      expect(screen.getByRole("listbox")).toBeVisible();
+    });
 
-  it("opens the menu when user types", async () => {
-    render(<Wrapper />);
-    await openAutocomplete("type", "o");
-    await navigateDown(1);
+    it("opens the menu when user types", async () => {
+      render(<Wrapper />);
+      await openAutocomplete("type", "o");
+      await navigateDown(1);
 
-    expect(screen.getByRole("listbox")).toBeVisible();
+      expect(screen.getByRole("listbox")).toBeVisible();
+    });
   });
 
   it("selects the highlighted option on Enter and closes", async () => {
@@ -362,6 +364,26 @@ describe("AutocompleteRebuilt", () => {
 
       expect(stayOpenAction).toHaveBeenCalled();
       expect(screen.getByRole("listbox")).toBeVisible();
+    });
+  });
+
+  describe("default options", () => {
+    it("renders default option content", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByText("One")).toBeVisible();
+      expect(screen.queryByTestId("checkmark")).not.toBeInTheDocument();
+    });
+
+    it("renders default selected option content", async () => {
+      render(<Wrapper initialValue={{ label: "Two" }} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByText("Two")).toBeVisible();
+      expect(screen.getByTestId("checkmark")).toBeVisible();
     });
   });
 

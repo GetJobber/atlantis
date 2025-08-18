@@ -2,6 +2,8 @@ declare const styles: {
   readonly "list": string;
   readonly "loadingList": string;
   readonly "option": string;
+  readonly "defaultOptionContent": string;
+  readonly "icon": string;
   readonly "optionActive": string;
   readonly "actionActive": string;
   readonly "action": string;

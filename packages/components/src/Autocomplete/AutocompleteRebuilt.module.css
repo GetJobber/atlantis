@@ -21,8 +21,28 @@
 }
 
 .option {
+  width: 100%;
+  box-sizing: border-box;
   padding: var(--space-small);
+  border: none;
+  background-color: transparent;
   cursor: pointer;
+}
+
+.defaultOptionContent {
+  display: flex;
+  text-align: left;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: center;
+}
+
+.option .icon {
+  flex: 0 1 auto;
+  align-self: auto;
+  width: var(--space-large);
 }
 
 .optionActive,
@@ -31,6 +51,7 @@
 }
 
 .action {
+  box-sizing: border-box;
   padding: var(--space-small);
   cursor: pointer;
 }
