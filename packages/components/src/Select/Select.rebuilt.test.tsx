@@ -273,18 +273,13 @@ describe("SelectRebuilt", () => {
       );
 
       const selectElement = screen.getByRole("combobox");
+      expect(ref.current).toBe(selectElement);
 
-      // Setup mocks
-      selectElement.focus = jest.fn();
-      selectElement.blur = jest.fn();
-
-      // Call native methods through ref
       ref.current?.focus();
-      ref.current?.blur();
+      expect(selectElement).toHaveFocus();
 
-      // Verify
-      expect(selectElement.focus).toHaveBeenCalled();
-      expect(selectElement.blur).toHaveBeenCalled();
+      ref.current?.blur();
+      expect(selectElement).not.toHaveFocus();
     });
   });
 });
