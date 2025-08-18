@@ -1,7 +1,8 @@
 import React from "react";
 import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { InputNumber, InputNumberRef } from ".";
+import type { InputNumberRef } from ".";
+import { InputNumber } from ".";
 
 it("renders an input type number", () => {
   const { getByLabelText } = render(

@@ -1,5 +1,6 @@
 import React from "react";
-import { InputEmailLegacyProps, validationMessage } from "./InputEmail.types";
+import type { InputEmailLegacyProps } from "./InputEmail.types";
+import { validationMessage } from "./InputEmail.types";
 import { FormField } from "../FormField";
 
 export function InputEmail(props: InputEmailLegacyProps) {

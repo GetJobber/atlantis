@@ -1,6 +1,8 @@
-import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
-import { RegisterOptions } from "react-hook-form";
-import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
+import type { Ref } from "react";
+import React, { createRef, forwardRef, useImperativeHandle } from "react";
+import type { RegisterOptions } from "react-hook-form";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import { FormField } from "../FormField";
 
 export interface InputNumberProps
   extends Omit<CommonFormFieldProps, "version">,

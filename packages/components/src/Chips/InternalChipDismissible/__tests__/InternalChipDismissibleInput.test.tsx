@@ -2,7 +2,7 @@ import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
-import { ChipProps } from "../../Chip";
+import type { ChipProps } from "../../Chip";
 
 let mockCurrentIsInView = false;
 

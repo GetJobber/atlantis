@@ -1,5 +1,5 @@
 import { tokens } from "@jobber/design";
-import { Variants } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 export const TIMING_QUICK = toSeconds(tokens["timing-quick"]);
 export const TIMING_BASE = toSeconds(tokens["timing-base"]);

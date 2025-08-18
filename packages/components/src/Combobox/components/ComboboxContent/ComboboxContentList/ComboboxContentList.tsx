@@ -5,7 +5,7 @@ import { Glimmer } from "@jobber/components/Glimmer";
 import { Spinner } from "@jobber/components/Spinner";
 import { AnimatedPresence } from "@jobber/components/AnimatedPresence";
 import styles from "./ComboboxContentList.module.css";
-import {
+import type {
   ComboboxListProps,
   ComboboxOptionProps,
 } from "../../../Combobox.types";

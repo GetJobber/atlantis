@@ -1,5 +1,6 @@
 import { v4 } from "react-native-uuid";
-import { File, FileUpload, StatusCode } from "../../types";
+import type { File, FileUpload } from "../../types";
+import { StatusCode } from "../../types";
 
 export const FILE_UPLOAD_MOCK_FILE = ({
   progress,

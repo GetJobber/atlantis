@@ -1,5 +1,6 @@
-import { MutableRefObject, useContext, useEffect, useRef } from "react";
-import { ComboboxOption } from "../Combobox.types";
+import type { MutableRefObject } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { type ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
 interface useComboboxContent {

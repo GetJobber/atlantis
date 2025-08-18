@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./Cover.module.css";
-import { CoverCenterContentProps, CoverProps } from "./types";
+import type { CoverCenterContentProps, CoverProps } from "./types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Cover({

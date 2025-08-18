@@ -1,4 +1,4 @@
-import { Variants } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 export const DURATION_SIMPLE = 0.1;
 export const DURATION_AVERAGE = 0.2;

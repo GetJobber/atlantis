@@ -1,6 +1,7 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import { View } from "react-native";
-import { ActionItem, ActionItemProps } from "./ActionItem";
+import type { ActionItem, ActionItemProps } from "./ActionItem";
 import { useStyles } from "./ActionItem.style";
 import { Divider } from "../Divider";
 

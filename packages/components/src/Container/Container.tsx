@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./Container.module.css";
-import { ContainerApplyProps, ContainerProps } from "./types";
+import type { ContainerApplyProps, ContainerProps } from "./types";
 
 export const Container = ({
   children,

@@ -1,7 +1,8 @@
-import { KeyboardEvent, MouseEvent, useState } from "react";
+import type { KeyboardEvent, MouseEvent } from "react";
+import { useState } from "react";
 import sortBy from "lodash/sortBy";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
-import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
+import type { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 
 /**
  * Recursively finds a focusable element (div or button) in the specified direction

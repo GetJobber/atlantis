@@ -1,5 +1,5 @@
 import React from "react";
-import { ChipsProps } from "./ChipsTypes";
+import type { ChipsProps } from "./ChipsTypes";
 import { InternalChipSingleSelect } from "./InternalChipSingleSelect";
 import { InternalChipMultiSelect } from "./InternalChipMultiSelect";
 import { InternalChipDismissible } from "./InternalChipDismissible";

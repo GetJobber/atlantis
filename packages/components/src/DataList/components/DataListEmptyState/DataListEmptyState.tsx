@@ -1,9 +1,11 @@
-import React, { ReactElement, cloneElement, useContext } from "react";
+import type { ReactElement } from "react";
+import React, { cloneElement, useContext } from "react";
 import styles from "./DataListEmptyState.module.css";
 import { DataListContext } from "../../context/DataListContext";
-import { DataListEmptyStateProps } from "../../DataList.types";
+import type { DataListEmptyStateProps } from "../../DataList.types";
 import { Text } from "../../../Text";
-import { Button, ButtonProps } from "../../../Button";
+import type { ButtonProps } from "../../../Button";
+import { Button } from "../../../Button";
 import {
   EMPTY_FILTER_RESULTS_MESSAGE,
   EMPTY_RESULTS_MESSAGE,

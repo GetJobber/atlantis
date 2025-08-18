@@ -1,1 +1,4 @@
-export { ConfirmationModal, ConfirmationModalRef } from "./ConfirmationModal";
+export {
+  type ConfirmationModalRef,
+  ConfirmationModal,
+} from "./ConfirmationModal";

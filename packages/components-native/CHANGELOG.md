@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.84.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.84.1...@jobber/components-native@0.84.2) (2025-08-18)
+
+
+### Bug Fixes
+
+* **components-native:** Use type import specifier in packages/components-native ([#2677](https://github.com/GetJobber/atlantis/issues/2677)) ([2bcf019](https://github.com/GetJobber/atlantis/commit/2bcf0194707d9ed1e80126cb9511a72ebd3c239d))
+
+
+
+
+
+## [0.84.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.84.0...@jobber/components-native@0.84.1) (2025-08-12)
+
+
+### Bug Fixes
+
+* **components-native:** Fix Select presses not always responding on Android [JOB-131539] ([#2657](https://github.com/GetJobber/atlantis/issues/2657)) ([063aee5](https://github.com/GetJobber/atlantis/commit/063aee5efc19a2654ce3db7e4c1fdb855b738c3b))
+
+
+
+
+
 # [0.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.83.0...@jobber/components-native@0.84.0) (2025-08-01)
 
 

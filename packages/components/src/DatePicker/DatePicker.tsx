@@ -1,16 +1,15 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import type { ReactElement } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
-import { XOR } from "ts-xor";
+import type { XOR } from "ts-xor";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
-import {
-  DatePickerActivator,
-  DatePickerActivatorProps,
-} from "./DatePickerActivator";
+import type { DatePickerActivatorProps } from "./DatePickerActivator";
+import { DatePickerActivator } from "./DatePickerActivator";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
-import { DayOfWeek } from "../sharedHelpers/types";
+import type { DayOfWeek } from "../sharedHelpers/types";
 import { useAtlantisContext } from "../AtlantisContext";
 
 interface BaseDatePickerProps {

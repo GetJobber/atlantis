@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
-import { DataListObject } from "@jobber/components/DataList/DataList.types";
+import type { DataListObject } from "@jobber/components/DataList/DataList.types";
 import {
   DataListContext,
   defaultValues,

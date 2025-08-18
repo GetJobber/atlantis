@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
 import { FloatingPortal } from "@floating-ui/react";
 import styles from "./InternalChipDismissible.module.css";
-import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
+import type { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import {
   useInView,
   useInternalChipDismissibleInput,
@@ -14,8 +13,6 @@ import { Text } from "../../Text";
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
 
-// Adding Portal moves it over the limit, but doesn't impact the readabiltiy
-// eslint-disable-next-line max-statements
 export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
@@ -50,15 +47,8 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const scrollableRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
 
-  const {
-    styles: floatingStyles,
-    update,
-    setFloatingRef,
-  } = useRepositionMenu(attachTo);
-  useSafeLayoutEffect(() => {
-    update?.();
-  }, [allOptions, menuOpen, update, options]);
-
+  const { styles: floatingStyles, setFloatingRef } =
+    useRepositionMenu(attachTo);
   useEffect(() => {
     handleDebouncedSearch(searchValue, options);
 

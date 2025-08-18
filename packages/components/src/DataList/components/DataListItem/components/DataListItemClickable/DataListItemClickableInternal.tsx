@@ -1,6 +1,7 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import {
+import type {
   DataListItemActionsProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";

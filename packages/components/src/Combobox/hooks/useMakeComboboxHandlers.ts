@@ -1,5 +1,6 @@
-import React, { useCallback } from "react";
-import { ComboboxOption } from "../Combobox.types";
+import type React from "react";
+import { useCallback } from "react";
+import { type ComboboxOption } from "../Combobox.types";
 
 export interface UseMakeComboboxHandlersReturn {
   handleClose: () => void;

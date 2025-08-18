@@ -1,4 +1,4 @@
-import {
+import type {
   CommonAllowedElements,
   CommonAtlantisProps,
 } from "../sharedHelpers/types";

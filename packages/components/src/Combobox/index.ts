@@ -1,3 +1,6 @@
 export * from "./Combobox";
 export { ComboboxContextProvider } from "./ComboboxProvider";
-export { ComboboxOption, ComboboxCustomActivatorProps } from "./Combobox.types";
+export {
+  type ComboboxCustomActivatorProps,
+  type ComboboxOption,
+} from "./Combobox.types";

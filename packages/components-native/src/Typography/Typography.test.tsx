@@ -282,3 +282,30 @@ describe("onTextLayout", () => {
     expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
   });
 });
+
+describe("TypographyGestureDetector", () => {
+  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
+    const { getByRole } = render(<Typography>Test Text</Typography>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("wraps text with TypographyGestureDetector (collapsable=false) when selectable=true", () => {
+    const { getByRole } = render(
+      <Typography selectable={true}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("does not wrap text with TypographyGestureDetector when selectable=false", () => {
+    const { getByRole } = render(
+      <Typography selectable={false}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBeUndefined();
+  });
+});

@@ -1,0 +1,52 @@
+## Configuration
+
+### Custom (Chromium) vs native
+
+Select (V2) is native by default. Opt into the customizable Chrome UI with
+`UNSAFE_experimentalStyles`. This enhances grouped menus in Chromium 123+ when
+the browser supports `appearance: base-select`.
+
+#### Alignment limitation (custom UI)
+
+When using `UNSAFE_experimentalStyles`, the closed control (what you see as the
+displayed value) is still rendered by the browser's picker. As a result,
+right/center alignment of the displayed value is not configurable in Chromium's
+customizable select.
+
+- Need right/center alignment? Use the native Select (omit
+  `UNSAFE_experimentalStyles`).
+- You can still style the grouped dropdown (optgroup/option) in the custom UI,
+  but the closed value alignment will remain default.
+
+## Component customization
+
+### Composable usage
+
+Select supports composition via subcomponents:
+
+- `Select.Option`: item in the list. Provide `value` and children as the label.
+- `Select.OptionGroup`: group options under a `label`. Use with
+  `UNSAFE_experimentalStyles` to opt into the customizable grouped menu in
+  Chromium.
+
+#### Customization links
+
+- See
+  ["A customizable select"](https://developer.chrome.com/blog/a-customizable-select)
+  article for what the Chrome UI exposes: `::picker(select)`, option/optgroup
+  styling, and transitions.
+
+## UNSAFE\_ props (advanced usage)
+
+General guidance on `UNSAFE_` props can be found in
+[Customizing components](/guides/customizing-components).
+
+Select subcomponents allow `UNSAFE_className` and `UNSAFE_style` to target the
+native elements:
+
+- `Select.OptionGroup` maps to `<optgroup>`
+- `Select.Option` maps to `<option>`
+
+Note that native `<select>` UX differs per browser. Use `UNSAFE_` props with
+caution and test across environments. In the custom UI (Chromium), only the
+dropdown content is stylable; the closed value alignment is not.

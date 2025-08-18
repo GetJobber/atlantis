@@ -2,7 +2,7 @@ import React from "react";
 import { Pressable, View } from "react-native";
 import capitalize from "lodash/capitalize";
 import { useStyles } from "./MenuOption.style";
-import { MenuOptionInternalProps } from "../../types";
+import type { MenuOptionInternalProps } from "../../types";
 import { Flex } from "../../../Flex";
 import { Typography } from "../../../Typography";
 import { Icon } from "../../../Icon";

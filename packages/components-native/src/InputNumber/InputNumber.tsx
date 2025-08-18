@@ -1,8 +1,10 @@
-import React, { Ref, forwardRef, useState } from "react";
+import type { Ref } from "react";
+import React, { forwardRef, useState } from "react";
 import { Platform } from "react-native";
 import flow from "lodash/flow";
 import identity from "lodash/identity";
-import { InputText, InputTextProps, InputTextRef } from "../InputText";
+import type { InputTextProps, InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 type NumberKeyboard = "decimal-pad" | "numbers-and-punctuation";

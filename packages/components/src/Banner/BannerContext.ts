@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { BannerType } from "./Banner.types";
+import type { BannerType } from "./Banner.types";
 
 interface BannerContextValue {
   /**

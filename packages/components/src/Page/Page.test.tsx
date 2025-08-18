@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Page } from ".";
 import { getActionProps } from "./Page";
-import { SectionProps } from "../Menu";
+import type { SectionProps } from "../Menu";
 import { Heading } from "../Heading";
 
 jest.mock("@jobber/hooks", () => {

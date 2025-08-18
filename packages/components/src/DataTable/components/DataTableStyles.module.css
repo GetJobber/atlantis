@@ -1,0 +1,98 @@
+.container {
+  box-shadow: var(--shadow-small);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+}
+
+.tableElement {
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+.tableElement tbody tr {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.tableElement tbody tr:last-child {
+  border-bottom: none;
+}
+
+.header {
+  border-bottom: var(--border-thick) solid var(--color-border);
+}
+
+.headerCell {
+  padding: var(--space-slim) var(--space-base);
+  text-align: start;
+}
+
+.sortableButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small);
+  width: 100%;
+  min-height: 24px;
+  padding: 0;
+  border: none;
+  outline: transparent;
+  color: inherit;
+  font: inherit;
+  background: none;
+  cursor: pointer;
+}
+
+.focusArea {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small);
+  padding: var(--space-smallest);
+  border-radius: var(--radius-base);
+}
+
+.sortableButton:focus-visible .focusArea {
+  box-shadow: var(--shadow-focus);
+}
+
+.row {
+  position: relative;
+}
+
+.row:hover {
+  background-color: var(--color-surface--hover);
+}
+
+.cell {
+  padding: var(--space-slim) var(--space-base);
+  text-align: start;
+}
+
+.footer {
+  border-top: var(--border-base) solid var(--color-border);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-slim);
+  padding-bottom: var(--space-base);
+}
+
+.rowActions {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: var(--space-base);
+  z-index: var(--elevation-menu);
+  box-shadow: var(--shadow-base);
+  padding: var(--space-smallest);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+  transform: translateY(-50%);
+  gap: var(--space-smallest);
+}
+
+.pagination {
+  padding: var(--space-small) var(--space-base);
+}
