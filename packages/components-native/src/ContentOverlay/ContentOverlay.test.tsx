@@ -2,12 +2,10 @@ import React, { createRef } from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
 import { Host } from "react-native-portalize";
-import { ReactTestInstance, act } from "react-test-renderer";
-import {
-  ContentOverlay,
-  ContentOverlayRef,
-  ModalBackgroundColor,
-} from "./ContentOverlay";
+import type { ReactTestInstance } from "react-test-renderer";
+import { act } from "react-test-renderer";
+import type { ContentOverlayRef, ModalBackgroundColor } from "./ContentOverlay";
+import { ContentOverlay } from "./ContentOverlay";
 import { tokens } from "../utils/design";
 import { Button } from "../Button";
 import { Content } from "../Content";

@@ -1,1 +1,2 @@
-export { ActionLabel, ActionLabelVariation } from "./ActionLabel";
+export type { ActionLabelVariation } from "./ActionLabel";
+export { ActionLabel } from "./ActionLabel";

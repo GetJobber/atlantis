@@ -1,11 +1,13 @@
 import { useCallback, useState } from "react";
-import { FieldValues, FormState, Path, UseFormSetFocus } from "react-hook-form";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import {
-  Keyboard,
-  MeasureInWindowOnSuccessCallback,
-  Platform,
-} from "react-native";
+import type {
+  FieldValues,
+  FormState,
+  Path,
+  UseFormSetFocus,
+} from "react-hook-form";
+import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import type { MeasureInWindowOnSuccessCallback } from "react-native";
+import { Keyboard, Platform } from "react-native";
 import { useIsScreenReaderEnabled } from "../../../hooks";
 import { useErrorMessageContext } from "../../../ErrorMessageWrapper";
 

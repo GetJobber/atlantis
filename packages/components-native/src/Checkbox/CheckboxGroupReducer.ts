@@ -1,5 +1,8 @@
 import deepmerge from "deepmerge";
-import { CheckboxGroupState, CheckboxGroupStateInitializer } from "./types";
+import type {
+  CheckboxGroupState,
+  CheckboxGroupStateInitializer,
+} from "./types";
 
 interface UpdateAction {
   type: "Update";

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { LayoutChangeEvent, TouchableOpacity, View } from "react-native";
+import type { LayoutChangeEvent } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import Reanimated, {
   Easing,
   useAnimatedStyle,

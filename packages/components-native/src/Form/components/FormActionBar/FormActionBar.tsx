@@ -1,8 +1,9 @@
 import React from "react";
-import { LayoutChangeEvent, StyleSheet } from "react-native";
+import type { LayoutChangeEvent } from "react-native";
+import { StyleSheet } from "react-native";
 import Reanimated from "react-native-reanimated";
 import { useStyles } from "./FormActionBar.style";
-import { SecondaryActionProp } from "../../types";
+import type { SecondaryActionProp } from "../../types";
 import { FormSaveButton } from "../FormSaveButton";
 
 const ReanimatedView = Reanimated.View;

@@ -1,5 +1,5 @@
-import { MutableRefObject } from "react";
-import { FieldValues, UseFormReturn } from "react-hook-form";
+import type { MutableRefObject } from "react";
+import type { FieldValues, UseFormReturn } from "react-hook-form";
 
 export interface UseConfirmBeforeBackProps {
   alwaysPreventBack: boolean;
