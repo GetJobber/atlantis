@@ -15,4 +15,9 @@ export const contentList = [
     to: "/content/voice-and-tone",
     imageURL: "/Voice & Tone.png",
   },
+  {
+    title: "New Document from George",
+    to: "/content/new-document-from-george",
+    imageURL: "/Placeholder.png",
+  },
 ];
