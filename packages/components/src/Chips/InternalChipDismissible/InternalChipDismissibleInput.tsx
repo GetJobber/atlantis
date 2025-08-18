@@ -13,8 +13,6 @@ import { Text } from "../../Text";
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
 
-// Adding Portal moves it over the limit, but doesn't impact the readabiltiy
-// eslint-disable-next-line max-statements
 export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
