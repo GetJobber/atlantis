@@ -1,0 +1,81 @@
+{
+  "name": "atlantis",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "description": "Trigger CI build to test NX caching improvements",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build:all && npm run generate:sitemap",
+        "parallel": false
+      },
+      "dependsOn": ["build:all", "generate:sitemap"]
+    },
+    "build:all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run storybook:build && npm run site:build && npm run merge:dist",
+        "parallel": false
+      },
+      "dependsOn": ["storybook:build", "site:build", "merge:dist"]
+    },
+    "storybook:build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/storybook-static"],
+      "dependsOn": ["@jobber/components:build", "@jobber/components-native:build", "@jobber/design:build", "@jobber/formatters:build", "@jobber/hooks:build"]
+    },
+    "site:build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd packages/site && npm run build",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/packages/site/dist"],
+      "dependsOn": ["@jobber/components:build", "@jobber/components-native:build", "@jobber/design:build", "@jobber/formatters:build", "@jobber/hooks:build"]
+    },
+    "merge:dist": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mv storybook-static packages/site/dist/storybook && mv packages/site/dist storybook-static",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/storybook-static"],
+      "dependsOn": ["storybook:build", "site:build"]
+    },
+    "generate:sitemap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node sitemap-generator.js",
+        "cwd": "."
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest",
+        "cwd": "."
+      },
+      "outputs": ["{projectRoot}/coverage"],
+      "inputs": [
+        "default",
+        "^default",
+        "{projectRoot}/**/*.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.test.{ts,tsx,js,jsx}",
+        "{projectRoot}/**/*.spec.{ts,tsx,js,jsx}",
+        "!{projectRoot}/node_modules/**/*"
+      ]
+    },
+    "bootstrap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Bootstrap complete'",
+        "cwd": "."
+      },
+      "dependsOn": ["@jobber/components:bootstrap", "@jobber/components-native:bootstrap", "@jobber/design:bootstrap", "@jobber/formatters:bootstrap", "@jobber/hooks:bootstrap"]
+    }
+  }
+}
