@@ -1,7 +1,6 @@
 :global(.sb-show-main.sb-main-padded),
 :global(.sb-show-main.sb-main-fullscreen) {
   padding: 0;
-  height: 100vh;
 }
 
 .storyWrapper {
