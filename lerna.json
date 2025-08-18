@@ -13,6 +13,8 @@
     },
     "publish": {
       "ignoreChanges": [
+        "**/.storybook/**",
+        "**/*.stories.tsx",
         "lerna.json",
         "package.json",
         "package-lock.json",
