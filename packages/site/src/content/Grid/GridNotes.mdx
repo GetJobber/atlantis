@@ -2,10 +2,10 @@
 
 The `gap` prop currently accepts both boolean values and semantic spacing
 tokens. However, using a boolean is deprecated and will be removed in a future
-release. A console warning is logged when a boolean is passed, which is to help
-identify and migrate existing usages, as well as remind developers to use a
-semantic spacing token (`small`, `base`, `large`, etc.) when introducing new
-Grids.
+release. The deprecation is communicated through JSDoc comments, which will show
+warnings in IDEs and during development. This helps identify and migrate
+existing usages, as well as remind developers to use a semantic spacing token
+(`small`, `base`, `large`, etc.) when introducing new Grids.
 
 If you find yourself implementing `gap="none"` and the Grid consists only of
 Input components, consider using an [InputGroup](/components/InputGroup)

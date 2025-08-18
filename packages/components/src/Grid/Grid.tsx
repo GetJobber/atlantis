@@ -12,6 +12,10 @@ export interface GridProps {
    * Add spacing between elements. Can be a boolean for default spacing,
    * or a semantic token for custom spacing.
    * @default true
+   *
+   * @deprecated The boolean type for the 'gap' prop is deprecated and will be removed in a future version.
+   * Please use a GapSpacing token (e.g., 'small', 'base', 'large') for fixed spacing.
+   * Using 'true' applies default responsive spacing. Using 'false' results in no gap.
    */
   readonly gap?: boolean | GapSpacing;
 
@@ -56,14 +60,6 @@ export function Grid({
   gap = true,
   children,
 }: GridProps) {
-  if (typeof gap === "boolean") {
-    console.warn(
-      "Deprecation Warning: The boolean type for the 'gap' prop in the Grid component is deprecated and will be removed in a future version. " +
-        "Please use a GapSpacing token (e.g., 'small', 'base', 'large') for fixed spacing. " +
-        "Using 'true' applies default responsive spacing. Using 'false' results in no gap.",
-    );
-  }
-
   const { className: gapClass, style: gapStyle } = getGapStyles(gap);
 
   return (
