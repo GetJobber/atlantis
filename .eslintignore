@@ -1,4 +1,6 @@
-node_modules
+node_modules/
+**/node_modules/
+**/node_modules/**/*
 dist
 .rpt2_cache
 packages/design/colors.js
@@ -12,4 +14,5 @@ packages/site/test-results
 storybook-static
 
 *.css.d.ts
+*.css
 *.md
