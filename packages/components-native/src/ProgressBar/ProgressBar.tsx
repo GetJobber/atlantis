@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { ProgressBarProps } from "./types";
+import type { ProgressBarProps } from "./types";
 import { useStyles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
 import { ProgressBarStepped } from "./ProgressBarStepped";

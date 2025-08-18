@@ -1,4 +1,4 @@
-import { CreateThumbnail, File } from "../FormatFile";
+import type { CreateThumbnail, File } from "../FormatFile";
 
 export enum RowCount {
   TwoRows = 2,

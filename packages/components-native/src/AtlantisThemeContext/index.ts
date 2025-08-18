@@ -2,7 +2,7 @@ export {
   AtlantisThemeContextProvider,
   useAtlantisTheme,
 } from "./AtlantisThemeContext";
-export {
+export type {
   Theme,
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,

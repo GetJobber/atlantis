@@ -1,7 +1,7 @@
-import { EmailMatch, Match, PhoneMatch } from "autolinker";
+import type { EmailMatch, Match, PhoneMatch } from "autolinker";
 import { Linking } from "react-native";
 import { copyTextToClipboard } from "./clipboard";
-import { I18nKeys, useAtlantisI18nValue } from "../hooks/useAtlantisI18n";
+import type { I18nKeys, useAtlantisI18nValue } from "../hooks/useAtlantisI18n";
 
 function hasPrefix(text: string, prefixes: string[]): boolean {
   return prefixes.some(prefix => text.includes(prefix));

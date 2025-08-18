@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react-native";
-import { ProgressBar, ProgressBarProps } from ".";
+import type { ProgressBarProps } from ".";
+import { ProgressBar } from ".";
 
 const defaultSetupProps = {
   total: 0,

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { AtlantisFormatFileContextProps } from "./types";
+import type { AtlantisFormatFileContextProps } from "./types";
 
 export const formatFileContextDefaultValues = {
   useCreateThumbnail: () => ({ thumbnail: undefined, error: false }),
