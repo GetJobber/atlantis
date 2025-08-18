@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.6...@jobber/components@6.83.0) (2025-08-18)
+
+
+### Features
+
+* **components:** Add Select.OptionGroup and experimental custom styling ([#2664](https://github.com/GetJobber/atlantis/issues/2664)) ([cf3fe35](https://github.com/GetJobber/atlantis/commit/cf3fe35ec542699b8e99bbee95637b2484d77c48))
+
+
+
+
+
 ## [6.82.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.5...@jobber/components@6.82.6) (2025-08-18)
 
 **Note:** Version bump only for package @jobber/components
