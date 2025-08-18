@@ -31,8 +31,10 @@ function AutocompleteInternal<
     placeholder,
     onBlur,
     onFocus,
+    updateOptions,
     validations,
     customRenderMenu,
+    version,
     ...inputProps
   }: AutocompleteProps<
     GenericOption,
@@ -63,19 +65,34 @@ function AutocompleteInternal<
     updateInput(value?.label ?? "");
   }, [value]);
 
+  const inputTextProps =
+    version === 2
+      ? {
+          ...inputProps,
+          version: 2 as const,
+          value: inputText,
+          onChange: handleInputChange,
+          error: validations ? "" : undefined,
+          invalid: Boolean(validations),
+        }
+      : {
+          ...inputProps,
+          version,
+          value: inputText,
+          onChange: handleInputChange,
+          validations,
+        };
+
   return (
     <div className={styles.autocomplete} ref={setAutocompleteRef}>
       <InputText
         ref={mergeRefs([ref, inputRef])}
         autocomplete={false}
         size={size}
-        value={inputText}
-        onChange={handleInputChange}
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        validations={validations}
-        {...inputProps}
+        {...inputTextProps}
       />
       <Menu
         attachTo={autocompleteRef}
@@ -85,6 +102,7 @@ function AutocompleteInternal<
         customRenderMenu={customRenderMenu}
         selectedOption={value}
         onOptionSelect={handleMenuChange}
+        handleUpdateOptions={handleUpdateOptions}
       />
     </div>
   );
@@ -110,6 +128,14 @@ function AutocompleteInternal<
     onChange(chosenOption);
     updateInput(chosenOption?.label ?? "");
     setInputFocused(false);
+  }
+
+  async function handleUpdateOptions(query: object | string) {
+    if (updateOptions) {
+      const updatedOptions = await updateOptions(query);
+
+      setOptions(mapToOptions(updatedOptions));
+    }
   }
 
   function handleInputChange(newText: string) {

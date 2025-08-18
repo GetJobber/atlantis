@@ -101,6 +101,19 @@
           "name": "(newInputText: string) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
         }
       },
+      "updateOptions": {
+        "defaultValue": null,
+        "description": "Called by advanced usage scenarios to update the options.\n@param newInputText",
+        "name": "updateOptions",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(newInputText: string | object) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
+        }
+      },
       "placeholder": {
         "defaultValue": null,
         "description": "Hint text that goes above the value once the form is filled out.",
@@ -125,6 +138,19 @@
         "required": false,
         "type": {
           "name": "(props: CustomOptionsMenuProp<GenericOption | GenericGetOptionsValue, GenericOptionValue>) => ReactElement<...>"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1 | 2"
         }
       },
       "clearable": {
