@@ -1297,8 +1297,11 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByText(ACTION2_LABEL)).toHaveClass("custom-action");
-      expect(screen.getByText(ACTION1_LABEL)).toHaveClass("custom-action");
+      expect(
+        screen
+          .getAllByTestId("ATL-AutocompleteRebuilt-Action")
+          .every(action => action.classList.contains("custom-action")),
+      ).toBe(true);
     });
 
     it("passes styles to the action", async () => {
@@ -1308,12 +1311,11 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByText(ACTION2_LABEL)).toHaveStyle({
-        backgroundColor: "red",
-      });
-      expect(screen.getByText(ACTION1_LABEL)).toHaveStyle({
-        backgroundColor: "red",
-      });
+      expect(
+        screen
+          .getAllByTestId("ATL-AutocompleteRebuilt-Action")
+          .every(action => action.style.backgroundColor === "red"),
+      ).toBe(true);
     });
   });
 

@@ -15,6 +15,9 @@ import { InputText } from "../InputText";
 import type { InputTextRebuiltProps } from "../InputText/InputText.types";
 import { Glimmer } from "../Glimmer";
 import { mergeRefs } from "../utils/mergeRefs";
+import { Heading } from "../Heading";
+import { Text } from "../Text";
+import { Typography } from "../Typography";
 
 export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   Value extends OptionLike = OptionLike,
@@ -307,7 +310,7 @@ function handleSectionRendering<T extends OptionLike>({
   const headerContent = renderSection ? (
     renderSection(section)
   ) : (
-    <h4 className={styles.sectionHeader}>{String(section.label)}</h4>
+    <Heading level={5}>{section.label}</Heading>
   );
 
   return (
@@ -315,7 +318,7 @@ function handleSectionRendering<T extends OptionLike>({
       key={`sec-${index}`}
       role="presentation"
       data-testid="ATL-AutocompleteRebuilt-Section"
-      className={sectionClassName}
+      className={classNames(styles.section, styles.stickyTop, sectionClassName)}
       style={sectionStyle}
     >
       {headerContent}
@@ -356,9 +359,11 @@ function handleOptionRendering<T extends OptionLike>({
   const nextNavigableIndex = navigableIndex + 1;
   const isActive = activeIndex === nextNavigableIndex;
   const isSelected = isOptionSelected(option);
-  const optionContent = renderOption
-    ? renderOption({ value: option, isActive, isSelected })
-    : getOptionLabel(option);
+  const optionContent = renderOption ? (
+    renderOption({ value: option, isActive, isSelected })
+  ) : (
+    <Text>{getOptionLabel(option)}</Text>
+  );
 
   return {
     node: (
@@ -368,9 +373,11 @@ function handleOptionRendering<T extends OptionLike>({
         tabIndex={-1}
         // TODO selected attrs
         className={classNames(
-          isActive ? styles.optionActive : styles.option,
+          styles.option,
+          isActive && styles.optionActive,
           optionClassName,
         )}
+        aria-selected={isSelected ? true : undefined}
         data-index={nextNavigableIndex}
         data-active={isActive ? true : undefined}
         {...getItemProps()}
@@ -417,9 +424,11 @@ function handleActionRendering<T extends OptionLike>({
 } {
   const nextNavigableIndex = navigableIndex + 1;
   const isActive = activeIndex === nextNavigableIndex;
-  const actionContent = renderAction
-    ? renderAction({ value: action, isActive })
-    : action.label;
+  const actionContent = renderAction ? (
+    renderAction({ value: action, isActive })
+  ) : (
+    <Typography textColor="interactive">{action.label}</Typography>
+  );
 
   // TODO: disabled style
   return {
@@ -428,8 +437,10 @@ function handleActionRendering<T extends OptionLike>({
         key={`act-${index}`}
         tabIndex={-1}
         role="button"
+        data-testid="ATL-AutocompleteRebuilt-Action"
         className={classNames(
-          isActive ? styles.optionActive : styles.action,
+          styles.action,
+          isActive && styles.actionActive,
           actionClassName,
         )}
         data-index={nextNavigableIndex}

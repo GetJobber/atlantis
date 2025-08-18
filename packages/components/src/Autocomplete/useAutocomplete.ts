@@ -38,7 +38,7 @@ export type RenderItem<T extends OptionLike> =
       section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>;
     };
 
-const MENU_OFFSET = tokens["space-smaller"];
+const MENU_OFFSET = tokens["space-small"];
 // Maybe make this configurable?
 const AUTOCOMPLETE_MAX_HEIGHT = 300;
 

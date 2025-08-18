@@ -64,6 +64,53 @@ const simpleOptions: OptionLike[] = [
   {
     label: "Sewer Line Repair",
   },
+  {
+    label: "Seasonal Refreshment",
+  },
+  {
+    label: "Window Cleaning",
+  },
+  {
+    label: "Roof Inspection",
+  },
+  {
+    label: "Flooring Installation",
+  },
+];
+
+const simpleOptionsSecondSection: OptionLike[] = [
+  {
+    label: "Grout Cleaning",
+  },
+  {
+    label: "Tile Cleaning",
+  },
+  {
+    label: "Lock Repair",
+  },
+  {
+    label: "Window Repair",
+  },
+  {
+    label: "Door Repair",
+  },
+];
+const simpleOptionsThirdSection: OptionLike[] = [
+  {
+    label: "Yard Work",
+  },
+  {
+    label: "Lawn Care",
+  },
+  {
+    label: "Tree Removal",
+  },
+  {
+    label: "Snow Removal",
+  },
+  {
+    label: "Gutter Cleaning",
+  },
 ];
 
 const serviceOptions: ServiceOption[] = [
@@ -341,6 +388,18 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
                 },
               },
             ],
+          },
+          {
+            type: "section",
+            id: "services-second",
+            label: "Additional Services",
+            options: simpleOptionsSecondSection,
+          },
+          {
+            type: "section",
+            id: "services-third",
+            label: "Outdoor Services",
+            options: simpleOptionsThirdSection,
           },
         ]}
       />

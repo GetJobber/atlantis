@@ -1,54 +1,52 @@
 .list {
   display: block;
+  z-index: var(--elevation-modal);
   max-height: 320px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-base);
   box-sizing: border-box;
-  padding: 4px 0;
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
+  margin: 0;
+  padding: 0;
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
   overflow: auto;
   background: var(--color-surface);
+  scroll-behavior: smooth;
 }
 
 .loadingList {
   display: flex;
   flex-direction: column;
   gap: var(--space-small);
-  padding: var(--space-small);
+  padding: var(--space-small) var(--space-base);
 }
 
 .option {
-  padding: 8px 12px;
+  padding: var(--space-small);
   cursor: pointer;
 }
 
-.optionActive {
-  padding: 8px 12px;
-  color: var(--color-text);
+.optionActive,
+.actionActive {
   background: var(--color-surface--hover);
 }
 
 .action {
-  padding: 8px 12px;
-  color: var(--color-text-subdued);
-  font-weight: 500;
+  padding: var(--space-small);
   cursor: pointer;
 }
 
-.action:hover,
-.action:focus,
-.action:active,
-.action:focus-visible {
-  background: var(--color-surface--hover);
-}
-
-.sectionHeader {
-  margin: 8px 12px 4px;
-  color: var(--color-text-subdued);
-  font-size: 0.9rem;
-  font-weight: 600;
+.section {
+  padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
+  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .emptyStateMessage {
   padding: var(--space-small) var(--space-base);
+}
+
+.stickyTop {
+  position: sticky;
+  top: 0;
+  z-index: var(--elevation-base);
+  background: var(--color-surface);
 }
