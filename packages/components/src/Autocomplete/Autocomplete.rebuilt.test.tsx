@@ -26,7 +26,8 @@ import {
 import { InputText } from "../InputText";
 import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
-// TODO: POM to abstract the interactions and give them meaningful names
+const ACTION1_LABEL = "Create";
+const ACTION2_LABEL = "Stay Open";
 
 interface TestOption {
   label: string;
@@ -50,13 +51,13 @@ function buildMenu(overrides?: {
           {
             type: "action",
             id: "a1",
-            label: "Create",
+            label: ACTION1_LABEL,
             onClick: createAction,
           },
           {
             type: "action",
             id: "a2",
-            label: "Stay Open",
+            label: ACTION2_LABEL,
             onClick: stayOpenAction,
             shouldClose: false,
           },
@@ -82,6 +83,8 @@ function Wrapper<T extends OptionLike>({
   loading,
   emptyState,
   ref,
+  UNSAFE_className,
+  UNSAFE_styles,
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -97,6 +100,11 @@ function Wrapper<T extends OptionLike>({
   readonly loading?: boolean;
   readonly emptyState?: React.ReactNode;
   readonly ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
+  readonly UNSAFE_className?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["UNSAFE_className"];
+  readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, false>["UNSAFE_styles"];
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -122,6 +130,8 @@ function Wrapper<T extends OptionLike>({
       loading={loading}
       emptyState={emptyState}
       ref={ref}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_styles={UNSAFE_styles}
     />
   );
 }
@@ -1234,6 +1244,76 @@ describe("AutocompleteRebuilt", () => {
       const lastAction = [...calls].reverse()[0]?.[0];
 
       expect(lastAction?.isActive).toBe(true);
+    });
+  });
+
+  describe("UNSAFE props", () => {
+    it("passes className to the menu", async () => {
+      render(<Wrapper UNSAFE_className={{ menu: "custom-menu" }} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByRole("listbox")).toHaveClass("custom-menu");
+    });
+
+    it("passes styles to the menu", async () => {
+      render(<Wrapper UNSAFE_styles={{ menu: { backgroundColor: "red" } }} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByRole("listbox")).toHaveStyle({
+        backgroundColor: "red",
+      });
+    });
+
+    it("passes className to the option", async () => {
+      render(<Wrapper UNSAFE_className={{ option: "custom-option" }} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(
+        screen
+          .getAllByRole("option")
+          .every(option => option.classList.contains("custom-option")),
+      ).toBe(true);
+    });
+
+    it("passes styles to the option", async () => {
+      render(
+        <Wrapper UNSAFE_styles={{ option: { backgroundColor: "red" } }} />,
+      );
+
+      await openAutocomplete("arrowDown");
+
+      expect(
+        screen
+          .getAllByRole("option")
+          .every(option => option.style.backgroundColor === "red"),
+      ).toBe(true);
+    });
+
+    it("passes className to the action", async () => {
+      render(<Wrapper UNSAFE_className={{ action: "custom-action" }} />);
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByText(ACTION2_LABEL)).toHaveClass("custom-action");
+      expect(screen.getByText(ACTION1_LABEL)).toHaveClass("custom-action");
+    });
+
+    it("passes styles to the action", async () => {
+      render(
+        <Wrapper UNSAFE_styles={{ action: { backgroundColor: "red" } }} />,
+      );
+
+      await openAutocomplete("arrowDown");
+
+      expect(screen.getByText(ACTION2_LABEL)).toHaveStyle({
+        backgroundColor: "red",
+      });
+      expect(screen.getByText(ACTION1_LABEL)).toHaveStyle({
+        backgroundColor: "red",
+      });
     });
   });
 

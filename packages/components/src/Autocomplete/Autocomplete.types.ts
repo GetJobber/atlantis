@@ -1,4 +1,4 @@
-import type { Key, Ref, RefObject } from "react";
+import type { CSSProperties, Key, Ref, RefObject } from "react";
 import type { FormFieldProps } from "../FormField";
 import type { InputTextRebuiltProps, InputTextRef } from "../InputText";
 
@@ -181,7 +181,6 @@ export interface MenuProps<
   readonly attachTo: HTMLDivElement | null;
   /**
    * Ref to the TextInput element.
-   * v1 provides InputTextRef; v2 provides a DOM element ref.
    */
   readonly inputRef: RefObject<InputTextRef | null>;
   onOptionSelect(chosenOption?: GenericOptionValue): void;
@@ -398,6 +397,22 @@ interface AutocompleteRebuiltBaseProps<
     inputRef: Ref<HTMLInputElement | HTMLTextAreaElement>;
     inputProps: InputTextRebuiltProps;
   }) => React.ReactNode;
+
+  readonly UNSAFE_className?: {
+    menu?: string;
+    option?: string;
+    section?: string;
+    action?: string;
+    input?: string;
+  };
+
+  readonly UNSAFE_styles?: {
+    menu?: CSSProperties;
+    option?: CSSProperties;
+    section?: CSSProperties;
+    action?: CSSProperties;
+    input?: CSSProperties;
+  };
 
   /*
    * Render a custom empty state when the menu is empty.

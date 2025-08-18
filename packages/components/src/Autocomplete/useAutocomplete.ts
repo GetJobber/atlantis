@@ -540,8 +540,6 @@ export function useAutocomplete<
     [setOpen, setActiveIndex],
   );
 
-  // Kept slightly longer for clarity.
-  // eslint-disable-next-line max-statements
   function commitFromInputText(inputText: string): boolean {
     if (inputText.length === 0) return false;
 

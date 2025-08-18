@@ -98,6 +98,12 @@ function AutocompleteRebuiltInternal<
     forwardedRef,
   ]);
 
+  const menuClassName = classNames(
+    styles.list,
+    loading && styles.loadingList,
+    props.UNSAFE_className?.menu,
+  );
+
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
       {renderInput ? (
@@ -113,59 +119,60 @@ function AutocompleteRebuiltInternal<
             initialFocus={-1}
             closeOnFocusOut
           >
-            {loading ? (
-              // TODO: I don't love that we have 3x listbox/floatingStyles - consolidate them
-              <div
-                ref={refs.setFloating}
-                role="listbox"
-                className={classNames(styles.list, styles.loadingList)}
-                style={floatingStyles}
-                {...getFloatingProps()}
-              >
-                <Glimmer shape="rectangle" size="largest" />
-                <Glimmer shape="rectangle" size="largest" />
-                <Glimmer shape="rectangle" size="largest" />
-              </div>
-            ) : optionCount === 0 ? (
-              <div
-                ref={refs.setFloating}
-                role="listbox"
-                className={styles.list}
-                style={floatingStyles}
-                {...getFloatingProps()}
-              >
-                <div className={styles.emptyStateMessage}>
-                  {props.emptyState ?? "No options"}
-                </div>
-              </div>
-            ) : (
-              <MenuList<Value>
-                items={renderable}
-                activeIndex={activeIndex}
-                setNodeRef={refs.setFloating}
-                floatingProps={getFloatingProps()}
-                getItemProps={() =>
-                  getItemProps({
-                    ref(node: HTMLElement | null) {
-                      const idx = Number(node?.getAttribute("data-index"));
+            <div
+              ref={refs.setFloating}
+              role="listbox"
+              className={menuClassName}
+              style={{
+                ...floatingStyles,
+                ...props.UNSAFE_styles?.menu,
+              }}
+              {...getFloatingProps()}
+            >
+              {loading ? (
+                <AutocompleteLoadingContent />
+              ) : optionCount === 0 ? (
+                <AutocompleteEmptyStateContent emptyState={props.emptyState} />
+              ) : (
+                <MenuList<Value>
+                  items={renderable}
+                  activeIndex={activeIndex}
+                  getItemProps={() =>
+                    getItemProps({
+                      ref(node: HTMLElement | null) {
+                        const idx = Number(node?.getAttribute("data-index"));
 
-                      if (!Number.isNaN(idx)) {
-                        listRef.current[idx] = node;
-                      }
+                        if (!Number.isNaN(idx)) {
+                          listRef.current[idx] = node;
+                        }
+                      },
+                    })
+                  }
+                  renderOption={renderOption}
+                  renderSection={renderSection}
+                  renderAction={renderAction}
+                  getOptionLabel={getOptionLabel}
+                  getOptionKey={getOptionKey}
+                  onSelect={onSelection}
+                  onAction={onAction}
+                  isOptionSelected={isOptionSelected}
+                  slotOverrides={{
+                    option: {
+                      className: props.UNSAFE_className?.option,
+                      style: props.UNSAFE_styles?.option,
                     },
-                  })
-                }
-                renderOption={renderOption}
-                renderSection={renderSection}
-                renderAction={renderAction}
-                getOptionLabel={getOptionLabel}
-                getOptionKey={getOptionKey}
-                onSelect={onSelection}
-                onAction={onAction}
-                isOptionSelected={isOptionSelected}
-                style={floatingStyles}
-              />
-            )}
+                    action: {
+                      className: props.UNSAFE_className?.action,
+                      style: props.UNSAFE_styles?.action,
+                    },
+                    section: {
+                      className: props.UNSAFE_className?.section,
+                      style: props.UNSAFE_styles?.section,
+                    },
+                  }}
+                />
+              )}
+            </div>
           </FloatingFocusManager>
         </FloatingPortal>
       )}
@@ -173,12 +180,31 @@ function AutocompleteRebuiltInternal<
   );
 }
 
+function AutocompleteLoadingContent() {
+  return (
+    <>
+      <Glimmer shape="rectangle" size="largest" />
+      <Glimmer shape="rectangle" size="largest" />
+      <Glimmer shape="rectangle" size="largest" />
+    </>
+  );
+}
+
+function AutocompleteEmptyStateContent({
+  emptyState,
+}: {
+  readonly emptyState: React.ReactNode;
+}) {
+  const emptyStateDefault = "No options";
+  const emptyStateContent = emptyState ?? emptyStateDefault;
+
+  return <div className={styles.emptyStateMessage}>{emptyStateContent}</div>;
+}
+
 interface MenuListProps<T extends OptionLike> {
   readonly items: Array<RenderItem<T>>;
   readonly activeIndex: number | null;
-  readonly setNodeRef: (el: HTMLDivElement | null) => void;
   readonly getItemProps: () => Record<string, unknown>;
-  readonly floatingProps: Record<string, unknown>;
   readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
@@ -191,15 +217,17 @@ interface MenuListProps<T extends OptionLike> {
     shouldClose?: boolean;
   }) => void;
   readonly isOptionSelected: (option: T) => boolean;
-  readonly style?: React.CSSProperties;
+  readonly slotOverrides?: {
+    option?: { className?: string; style?: React.CSSProperties };
+    action?: { className?: string; style?: React.CSSProperties };
+    section?: { className?: string; style?: React.CSSProperties };
+  };
 }
 
 function MenuList<T extends OptionLike>({
   items,
   activeIndex,
-  setNodeRef,
   getItemProps,
-  floatingProps,
   renderOption,
   renderSection,
   renderAction,
@@ -208,7 +236,7 @@ function MenuList<T extends OptionLike>({
   onSelect,
   onAction,
   isOptionSelected,
-  style,
+  slotOverrides,
 }: MenuListProps<T>) {
   let navigableIndex = -1;
 
@@ -218,6 +246,8 @@ function MenuList<T extends OptionLike>({
         section: item.section,
         index,
         renderSection,
+        sectionClassName: slotOverrides?.section?.className,
+        sectionStyle: slotOverrides?.section?.style,
       });
     }
 
@@ -232,6 +262,8 @@ function MenuList<T extends OptionLike>({
         getOptionLabel,
         getOptionKey,
         onSelect,
+        optionClassName: slotOverrides?.option?.className,
+        optionStyle: slotOverrides?.option?.style,
       });
 
       navigableIndex = result.nextNavigableIndex;
@@ -247,6 +279,8 @@ function MenuList<T extends OptionLike>({
       getItemProps,
       renderAction,
       onAction,
+      actionClassName: slotOverrides?.action?.className,
+      actionStyle: slotOverrides?.action?.style,
     });
 
     navigableIndex = result.nextNavigableIndex;
@@ -254,28 +288,21 @@ function MenuList<T extends OptionLike>({
     return result.node;
   }
 
-  return (
-    <div
-      ref={setNodeRef}
-      role="listbox"
-      // We have this elsewhere too
-      className={styles.list}
-      style={style}
-      {...floatingProps}
-    >
-      {items.map(renderItemNode)}
-    </div>
-  );
+  return <>{items.map(renderItemNode)}</>;
 }
 
 function handleSectionRendering<T extends OptionLike>({
   renderSection,
   section,
   index,
+  sectionClassName,
+  sectionStyle,
 }: {
   readonly section: MenuSection<T>;
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly index: number;
+  readonly sectionClassName?: string;
+  readonly sectionStyle?: React.CSSProperties;
 }) {
   const headerContent = renderSection ? (
     renderSection(section)
@@ -288,6 +315,8 @@ function handleSectionRendering<T extends OptionLike>({
       key={`sec-${index}`}
       role="presentation"
       data-testid="ATL-AutocompleteRebuilt-Section"
+      className={sectionClassName}
+      style={sectionStyle}
     >
       {headerContent}
     </div>
@@ -304,6 +333,8 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   readonly getOptionLabel: (option: T) => string;
   readonly getOptionKey: (option: T) => React.Key;
   readonly onSelect: (option: T) => void;
+  readonly optionClassName?: string;
+  readonly optionStyle?: React.CSSProperties;
 }
 
 function handleOptionRendering<T extends OptionLike>({
@@ -316,6 +347,8 @@ function handleOptionRendering<T extends OptionLike>({
   getOptionLabel,
   getOptionKey,
   onSelect,
+  optionClassName,
+  optionStyle,
 }: HandleOptionRenderingProps<T>): {
   node: React.ReactNode;
   nextNavigableIndex: number;
@@ -334,11 +367,15 @@ function handleOptionRendering<T extends OptionLike>({
         role="option"
         tabIndex={-1}
         // TODO selected attrs
-        className={isActive ? styles.optionActive : styles.option}
+        className={classNames(
+          isActive ? styles.optionActive : styles.option,
+          optionClassName,
+        )}
         data-index={nextNavigableIndex}
         data-active={isActive ? true : undefined}
         {...getItemProps()}
         onClick={() => onSelect(option)}
+        style={optionStyle}
       >
         {optionContent}
       </div>
@@ -360,6 +397,8 @@ interface HandleActionRenderingProps<T extends OptionLike> {
     disabled?: boolean;
     shouldClose?: boolean;
   }) => void;
+  readonly actionClassName?: string;
+  readonly actionStyle?: React.CSSProperties;
 }
 
 function handleActionRendering<T extends OptionLike>({
@@ -370,6 +409,8 @@ function handleActionRendering<T extends OptionLike>({
   getItemProps,
   renderAction,
   onAction,
+  actionClassName,
+  actionStyle,
 }: HandleActionRenderingProps<T>): {
   node: React.ReactNode;
   nextNavigableIndex: number;
@@ -387,7 +428,10 @@ function handleActionRendering<T extends OptionLike>({
         key={`act-${index}`}
         tabIndex={-1}
         role="button"
-        className={isActive ? styles.optionActive : styles.action}
+        className={classNames(
+          isActive ? styles.optionActive : styles.action,
+          actionClassName,
+        )}
         data-index={nextNavigableIndex}
         data-active={isActive ? true : undefined}
         {...getItemProps()}
@@ -399,6 +443,7 @@ function handleActionRendering<T extends OptionLike>({
             shouldClose: action.shouldClose,
           });
         }}
+        style={actionStyle}
       >
         {actionContent}
       </div>
