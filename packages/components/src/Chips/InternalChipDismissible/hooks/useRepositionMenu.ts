@@ -12,7 +12,6 @@ export interface UseRepositionMenu {
   readonly styles: {
     float: React.CSSProperties;
   };
-  readonly update: () => void;
 }
 
 const ROUNDED_BORDER_ARROW_EDGE_OFFSET = 8;
@@ -21,7 +20,7 @@ const PREFERRED_MAX_HEIGHT = 320;
 export function useRepositionMenu(
   attachTo: HTMLElement | null,
 ): UseRepositionMenu {
-  const { refs, floatingStyles, update } = useFloating({
+  const { refs, floatingStyles } = useFloating({
     placement: "bottom",
     middleware: [
       offset(ROUNDED_BORDER_ARROW_EDGE_OFFSET),
@@ -50,6 +49,5 @@ export function useRepositionMenu(
     styles: {
       float: floatingStyles,
     },
-    update,
   };
 }
