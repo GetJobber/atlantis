@@ -10,7 +10,7 @@ export * from "react-native-web";
 
 export function PlatformColor() {
   return undefined;
-};
+}
 
 export function InputAccessoryView({ children }: InputAccessoryViewProps) {
   return children;

@@ -1,14 +1,16 @@
+/* eslint-disable import/no-default-export */
 import React from "react";
-import type { Preview } from '@storybook/react-native-web-vite'
+import type { Preview } from "@storybook/react-native-web-vite";
+// eslint-disable-next-line
 import "../../design/dist/foundation.css";
-import { SBProvider } from './components/SBProvider';
+import { SBProvider } from "./components/SBProvider";
 
 const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
       expanded: true,
       sort: "alpha",
@@ -16,32 +18,35 @@ const preview: Preview = {
   },
   globalTypes: {
     theme: {
-      description: 'Toggle the Atlantis theme',
+      description: "Toggle the Atlantis theme",
       toolbar: {
         icon: "sun",
-        items: [{
-          title: 'Light',
-          value: 'light',
-          icon: 'sun',
-        }, {
-          title: 'Dark',
-          value: 'dark',
-          icon: 'moon',
-        }],
+        items: [
+          {
+            title: "Light",
+            value: "light",
+            icon: "sun",
+          },
+          {
+            title: "Dark",
+            value: "dark",
+            icon: "moon",
+          },
+        ],
       },
     },
   },
   initialGlobals: {
-    theme: 'light',
-    viewport: { value: 'mobile1' },
+    theme: "light",
+    viewport: { value: "mobile1" },
   },
   decorators: [
     (Story, context) => (
       <SBProvider theme={context.globals.theme}>
         <Story />
       </SBProvider>
-    )
-  ]
+    ),
+  ],
 };
 
 export default preview;

@@ -1,6 +1,7 @@
+/* eslint-disable import/no-default-export */
+import path from "path";
 import type { StorybookConfig } from "@storybook/react-native-web-vite";
 import type { Plugin, PluginOption } from "vite";
-import path from "path";
 
 export default {
   framework: {
@@ -18,6 +19,7 @@ export default {
     config.plugins = removeUnnecessaryPlugins(config.plugins || []);
 
     config.plugins.push(injectReactNativeWebShims());
+
     return mergeConfig(config, {
       resolve: {
         alias: [
@@ -55,14 +57,20 @@ function injectReactNativeWebShims(): Plugin {
   return {
     name: "override-react-native-web-alias",
     config(config) {
-      const aliases = Array.isArray(config.resolve?.alias) ? config.resolve.alias : [];
+      const aliases = Array.isArray(config.resolve?.alias)
+        ? config.resolve.alias
+        : [];
+
       for (const alias of aliases) {
         if (alias.find === "react-native") {
-          alias.replacement = path.resolve(__dirname, "./reactNativeWebShim.ts");
+          alias.replacement = path.resolve(
+            __dirname,
+            "./reactNativeWebShim.ts",
+          );
         }
       }
     },
-  }
+  };
 }
 
 /**
@@ -72,10 +80,11 @@ function removeUnnecessaryPlugins(plugins: PluginOption[]) {
   return plugins.filter((plugin: PluginOption) => {
     if (plugin && typeof plugin === "object") {
       // This plugin parses all tsconfig.json files within the project, which is not needed.
-      if ('name' in plugin && plugin.name === "vite-tsconfig-paths") {
+      if ("name" in plugin && plugin.name === "vite-tsconfig-paths") {
         return false;
       }
     }
+
     return true;
   });
 }

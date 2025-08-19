@@ -1,6 +1,11 @@
-import React, { useEffect, type PropsWithChildren } from "react";
-import { IntlProvider, IntlConfig } from "react-intl";
-import { AtlantisThemeContextProvider, Theme,useAtlantisTheme } from "@jobber/components-native";
+import React, { type PropsWithChildren, useEffect } from "react";
+import type { IntlConfig } from "react-intl";
+import { IntlProvider } from "react-intl";
+import type { Theme } from "@jobber/components-native";
+import {
+  AtlantisThemeContextProvider,
+  useAtlantisTheme,
+} from "@jobber/components-native";
 // @ts-expect-error Storybook needs a custom tsconfig to understand that vite can load *.module.css files.
 import styles from "./SBProvider.module.css";
 
@@ -8,7 +13,7 @@ export function SBProvider({
   children,
   theme = "light",
 }: PropsWithChildren<{
-  theme: Theme
+  readonly theme: Theme;
 }>): JSX.Element {
   /*
   For now, client's locale is hard coded to "en-US".
@@ -48,7 +53,10 @@ export function SBProvider({
   }
 }
 
-function StoryWrapper({ theme, children }: PropsWithChildren<{theme: Theme}>) {
+function StoryWrapper({
+  theme,
+  children,
+}: PropsWithChildren<{ readonly theme: Theme }>) {
   const { tokens, setTheme } = useAtlantisTheme();
 
   useEffect(() => {
@@ -56,7 +64,11 @@ function StoryWrapper({ theme, children }: PropsWithChildren<{theme: Theme}>) {
   }, [theme]);
 
   return (
-    <div className={styles.storyWrapper} style={{ backgroundColor: tokens["color-surface"] }}>
+    // eslint-disable-next-line react/forbid-elements -- We're using div here because it's the storybook DOM environment
+    <div
+      className={styles.storyWrapper}
+      style={{ backgroundColor: tokens["color-surface"] }}
+    >
       {children}
     </div>
   );

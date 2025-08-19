@@ -13,3 +13,5 @@ storybook-static
 
 *.css.d.ts
 *.md
+
+!packages/components-native/.storybook
