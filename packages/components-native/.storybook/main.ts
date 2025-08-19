@@ -1,4 +1,3 @@
-/* eslint-disable import/no-default-export */
 import path from "path";
 import type { StorybookConfig } from "@storybook/react-native-web-vite";
 import type { Plugin, PluginOption } from "vite";

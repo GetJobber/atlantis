@@ -1,7 +1,5 @@
-/* eslint-disable import/no-default-export */
 import React from "react";
 import type { Preview } from "@storybook/react-native-web-vite";
-// eslint-disable-next-line
 import "../../design/dist/foundation.css";
 import { SBProvider } from "./components/SBProvider";
 
