@@ -990,6 +990,48 @@ describe("AutocompleteRebuilt", () => {
     expect(secondActiveOption?.textContent).toContain("One");
   });
 
+  it("resets the highlight to initial, not visible state after moving index and typing a search term", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+    await navigateDown(2);
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).not.toBeNull();
+
+    await typeInInput("O");
+
+    const secondActiveOption = getActiveOption();
+
+    expect(secondActiveOption).toBeNull();
+
+    await navigateDown(1);
+
+    const thirdActiveOption = getActiveOption();
+
+    expect(thirdActiveOption).not.toBeNull();
+    expect(thirdActiveOption?.textContent).toContain("One");
+  });
+
+  it("keeps the selected item highlighted as characters are deleted", async () => {
+    render(<Wrapper initialValue={{ label: "Two" }} />);
+
+    await openAutocomplete("arrowDown");
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).not.toBeNull();
+    expect(activeOption?.textContent).toContain("Two");
+
+    await deleteInput(2);
+
+    const secondActiveOption = getActiveOption();
+
+    expect(secondActiveOption).not.toBeNull();
+    expect(secondActiveOption?.textContent).toContain("Two");
+  });
+
   it("highlights the selected option on reopen after blur", async () => {
     render(<Wrapper initialValue={{ label: "Two" }} />);
 

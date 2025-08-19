@@ -676,9 +676,15 @@ export function useAutocomplete<
   const onInputChangeFromUser = useCallback(
     (val: string) => {
       lastInputWasUser.current = true;
+      // Reset highlight on additions to the search term
+
+      if (val.length > inputValue.length) {
+        setActiveIndex(null);
+      }
+
       onInputChange?.(val);
     },
-    [onInputChange],
+    [onInputChange, inputValue, setActiveIndex],
   );
 
   return {
