@@ -17,6 +17,7 @@ import {
   getActiveAction,
   getActiveOption,
   navigateDown,
+  navigateUp,
   openAutocomplete,
   selectAll,
   selectWithClick,
@@ -1012,6 +1013,34 @@ describe("AutocompleteRebuilt", () => {
 
     expect(thirdActiveOption).not.toBeNull();
     expect(thirdActiveOption?.textContent).toContain("One");
+  });
+
+  it("wraps highlight from first option to last on ArrowUp", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+    // Move to first option
+    await navigateUp(1);
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).not.toBeNull();
+    expect(activeOption?.textContent).toContain("Three");
+  });
+
+  it("wraps highlight from last option to first on ArrowDown", async () => {
+    render(<Wrapper />);
+
+    await openAutocomplete("arrowDown");
+    // Move to last option (3 options + 2 actions)
+    await navigateDown(5);
+    // One more to wrap
+    await navigateDown(1);
+
+    const activeOption = getActiveOption();
+
+    expect(activeOption).not.toBeNull();
+    expect(activeOption?.textContent).toContain("One");
   });
 
   it("keeps the selected item highlighted as characters are deleted", async () => {

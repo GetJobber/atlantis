@@ -115,6 +115,7 @@ function useAutocompleteListNav({
     listRef,
     activeIndex,
     scrollItemIntoView: true,
+    loop: true,
     onNavigate: setActiveIndex,
     virtual: true,
     enabled: open,
