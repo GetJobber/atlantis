@@ -2,7 +2,7 @@ import React, { forwardRef, useId, useRef } from "react";
 import omit from "lodash/omit";
 import { useInputEmailActions } from "./hooks/useInputEmailActions";
 import { useInputEmailFormField } from "./hooks/useInputEmailFormField";
-import { InputEmailRebuiltProps } from "./InputEmail.types";
+import type { InputEmailRebuiltProps } from "./InputEmail.types";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,

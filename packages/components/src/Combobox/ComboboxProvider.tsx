@@ -1,5 +1,6 @@
-import React, { MutableRefObject } from "react";
-import { ComboboxOption } from "./Combobox.types";
+import type { MutableRefObject } from "react";
+import React from "react";
+import { type ComboboxOption } from "./Combobox.types";
 
 export interface ComboboxProviderProps {
   readonly children: React.ReactNode;

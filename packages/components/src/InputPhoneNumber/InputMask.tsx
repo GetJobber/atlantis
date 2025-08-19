@@ -1,7 +1,8 @@
-import React, { ReactElement, cloneElement } from "react";
+import type { ReactElement } from "react";
+import React, { cloneElement } from "react";
 import styles from "./InputMask.module.css";
 import { useInputMask } from "./useInputMask";
-import { FormFieldProps } from "../FormField";
+import type { FormFieldProps } from "../FormField";
 
 interface MaskElementProps {
   readonly isMasking: boolean;

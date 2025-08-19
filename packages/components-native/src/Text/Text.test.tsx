@@ -196,3 +196,26 @@ describe("onTextLayout", () => {
     expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
   });
 });
+
+describe("TypographyGestureDetector", () => {
+  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
+    const { getByRole } = render(<Text>Test Text</Text>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("wraps text with TypographyGestureDetector (collapsable=false) when selectable=true", () => {
+    const { getByRole } = render(<Text selectable={true}>Test Text</Text>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("does not wrap text with TypographyGestureDetector when selectable=false", () => {
+    const { getByRole } = render(<Text selectable={false}>Test Text</Text>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBeUndefined();
+  });
+});

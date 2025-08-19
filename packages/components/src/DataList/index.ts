@@ -1,5 +1,5 @@
 export * from "./DataList";
-export {
+export type {
   DataListHeader,
   DataListItemType,
   DataListObject,

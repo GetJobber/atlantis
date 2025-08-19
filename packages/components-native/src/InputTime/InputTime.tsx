@@ -1,15 +1,15 @@
 import React, { useMemo, useState } from "react";
-import { FieldError, UseControllerProps } from "react-hook-form";
-import { XOR } from "ts-xor";
+import type { FieldError, UseControllerProps } from "react-hook-form";
+import type { XOR } from "ts-xor";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Keyboard, View } from "react-native";
-import { Clearable } from "@jobber/hooks";
+import type { Clearable } from "@jobber/hooks";
 import { styles } from "./InputTime.style";
 import { getTimeZoneOffsetInMinutes, roundUpToNearestMinutes } from "./utils";
 import { useAtlantisContext } from "../AtlantisContext";
 import { InputPressable } from "../InputPressable";
 import { FormField } from "../FormField";
-import { InputFieldWrapperProps } from "../InputFieldWrapper";
+import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 interface InputTimeBaseProps

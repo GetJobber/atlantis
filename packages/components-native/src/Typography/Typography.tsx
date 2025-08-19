@@ -1,14 +1,12 @@
 import React from "react";
-import {
+import type {
   AccessibilityProps,
-  I18nManager,
   StyleProp,
-  StyleSheet,
-  Text,
   TextProps,
   TextStyle,
   ViewStyle,
 } from "react-native";
+import { I18nManager, StyleSheet, Text } from "react-native";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
 import { useTypographyStyles } from "./Typography.style";
 import { capitalize } from "../utils/intl";
@@ -217,28 +215,34 @@ function InternalTypography<T extends FontFamily = "base">({
 
   const { tokens } = useAtlantisTheme();
 
-  return (
-    <TypographyGestureDetector>
-      <Text
-        {...{
-          allowFontScaling,
-          adjustsFontSizeToFit,
-          style,
-          numberOfLines: numberOfLinesForNativeText,
-        }}
-        {...accessibilityProps}
-        maxFontSizeMultiplier={getScaleMultiplier(
-          maxFontScaleSize,
-          sizeAndHeight.fontSize,
-        )}
-        selectable={selectable}
-        selectionColor={tokens["color-brand--highlight"]}
-        onTextLayout={onTextLayout}
-      >
-        {text}
-      </Text>
-    </TypographyGestureDetector>
+  const textComponent = (
+    <Text
+      {...{
+        allowFontScaling,
+        adjustsFontSizeToFit,
+        style,
+        numberOfLines: numberOfLinesForNativeText,
+      }}
+      {...accessibilityProps}
+      maxFontSizeMultiplier={getScaleMultiplier(
+        maxFontScaleSize,
+        sizeAndHeight.fontSize,
+      )}
+      selectable={selectable}
+      selectionColor={tokens["color-brand--highlight"]}
+      onTextLayout={onTextLayout}
+    >
+      {text}
+    </Text>
   );
+
+  // If text is not selectable, there's no need for TypographyGestureDetector
+  // since it only prevents accidental highlighting of selectable text
+  if (!selectable) {
+    return textComponent;
+  }
+
+  return <TypographyGestureDetector>{textComponent}</TypographyGestureDetector>;
 }
 
 function getScaleMultiplier(maxFontScaleSize = 0, size = 1) {

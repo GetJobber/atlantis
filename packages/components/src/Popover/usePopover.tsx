@@ -10,7 +10,7 @@ import {
 } from "@floating-ui/react";
 import { useMemo, useState } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { PopoverProps } from "./Popover.types";
+import type { PopoverProps } from "./Popover.types";
 
 const POPOVER_OFFSET = 10;
 const POPOVER_SHIFT_PADDING = 8;
@@ -72,14 +72,13 @@ export const usePopover = ({
   useRefocusOnActivator(open);
 
   return {
-    setPopperElement: refs.setFloating,
+    setFloatingElement: refs.setFloating,
     setArrowElement,
-    popperStyles: {
-      popper: floatingStyles,
+    floatingStyles: {
+      float: floatingStyles,
       arrow: middlewareData.arrow,
     },
     placement,
-    attributes: { popper: {} },
   };
 };
 

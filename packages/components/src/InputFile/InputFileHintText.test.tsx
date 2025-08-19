@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { InputFileHintText } from "./InputFileHintText";
 import { InputFileContentContext } from "./InputFileContentContext";
-import { ButtonSize } from "../Button/Button.types";
+import type { ButtonSize } from "../Button/Button.types";
 
 describe("InputFileHintText", () => {
   const defaultContextValue = {

@@ -1,5 +1,5 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
-import { InputPhoneNumberRebuiltProps } from "../InputPhoneNumber.types";
+import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import type { InputPhoneNumberRebuiltProps } from "../InputPhoneNumber.types";
 
 export interface useInputPhoneActionsProps
   extends Pick<

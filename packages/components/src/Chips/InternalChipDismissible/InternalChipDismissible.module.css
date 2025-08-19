@@ -31,13 +31,10 @@
 
 .menu {
   position: relative;
-  z-index: var(--elevation-menu);
+  z-index: var(--elevation-modal);
   width: 100%;
-}
-
-.menuList {
-  max-height: 320px;
   box-shadow: var(--shadow-base);
+  box-sizing: border-box;
   padding: var(--space-small) 0;
   border-radius: var(--radius-base);
   overflow-y: scroll;

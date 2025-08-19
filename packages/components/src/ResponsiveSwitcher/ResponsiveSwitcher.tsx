@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./ResponsiveSwitcher.module.css";
-import { ResponsiveSwitcherProps } from "./types";
+import type { ResponsiveSwitcherProps } from "./types";
 import {
   getMappedAtlantisSpaceToken,
   spaceTokens,

@@ -1,6 +1,6 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
-import { FieldValues, UseFormSetValue } from "react-hook-form";
-import { FormFieldProps, FormFieldTypes } from "../FormFieldTypes";
+import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import type { FieldValues, UseFormSetValue } from "react-hook-form";
+import type { FormFieldProps, FormFieldTypes } from "../FormFieldTypes";
 
 export interface useAtlantisFormFieldActionsProps
   extends Pick<

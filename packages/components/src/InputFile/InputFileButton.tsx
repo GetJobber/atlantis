@@ -1,6 +1,7 @@
 import React from "react";
 import { useInputFileContentContext } from "./InputFileContentContext";
-import { Button, ButtonProps } from "../Button";
+import type { ButtonProps } from "../Button";
+import { Button } from "../Button";
 
 // If you need to pass children use Button directly instead of this component
 interface InputFileButtonProps

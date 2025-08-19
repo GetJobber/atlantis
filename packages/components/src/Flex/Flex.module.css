@@ -4,6 +4,10 @@
   flex: 1;
 }
 
+.minusculeGap {
+  gap: var(--space-minuscule);
+}
+
 .smallestGap {
   gap: var(--space-smallest);
 }
@@ -16,12 +20,28 @@
   gap: var(--space-small);
 }
 
+.slimGap {
+  gap: var(--space-slim);
+}
+
 .baseGap {
   gap: var(--space-base);
 }
 
 .largeGap {
   gap: var(--space-large);
+}
+
+.largerGap {
+  gap: var(--space-larger);
+}
+
+.largestGap {
+  gap: var(--space-largest);
+}
+
+.extravagantGap {
+  gap: var(--space-extravagant);
 }
 
 .noneGap {

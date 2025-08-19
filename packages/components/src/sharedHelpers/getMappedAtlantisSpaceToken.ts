@@ -1,6 +1,7 @@
-import { Spaces } from "./types";
+import type { Spaces } from "./types";
 
 export const spaceTokens: Record<Spaces, string> = {
+  none: "0px",
   minuscule: "var(--space-minuscule)",
   slim: "var(--space-slim)",
   smallest: "var(--space-smallest)",

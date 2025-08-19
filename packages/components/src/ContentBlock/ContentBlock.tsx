@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import styles from "./ContentBlock.module.css";
-import { ContentBlockProps } from "./types";
+import type { ContentBlockProps } from "./types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 import { getMappedBreakpointWidth } from "../sharedHelpers/getMappedBreakpointWidth";
 

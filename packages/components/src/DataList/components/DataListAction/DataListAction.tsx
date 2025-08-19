@@ -1,5 +1,5 @@
 import React from "react";
-import {
+import type {
   DataListActionProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";

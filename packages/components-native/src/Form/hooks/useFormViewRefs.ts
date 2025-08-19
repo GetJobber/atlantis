@@ -1,6 +1,7 @@
-import { RefObject, useCallback, useRef } from "react";
-import { View } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import type { RefObject } from "react";
+import { useCallback, useRef } from "react";
+import type { View } from "react-native";
+import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 interface UseFormViewRefsReturn {
   readonly scrollViewRef: RefObject<KeyboardAwareScrollView>;

@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "6.75.2",
+  "version": "6.85.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -460,7 +460,9 @@
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
     "entryPoints:clean": "npm run entryPoints:build clean",
     "prepack": "npm run entryPoints:build",
-    "postpack": "npm run entryPoints:clean"
+    "postpack": "npm run entryPoints:clean",
+    "storybook": "storybook dev -p 6007 --disable-telemetry",
+    "build-storybook": "storybook build --disable-telemetry"
   },
   "files": [
     "*.js",
@@ -479,7 +481,7 @@
     "@types/react-datepicker": "^4.8.0",
     "@types/react-router": "5.1.7",
     "@types/react-router-dom": "^5.3.3",
-    "axios": "^1.6.0",
+    "axios": "^1.11.0",
     "classnames": "^2.3.2",
     "color": "^3.1.2",
     "filesize": "^6.1.0",
@@ -501,6 +503,8 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@storybook/addon-a11y": "^9.1.1",
+    "@storybook/react-vite": "^9.1.1",
     "@types/glob": "^7.1.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -516,6 +520,7 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^9.1.1",
     "typed-css-modules": "^0.7.0"
   },
   "peerDependencies": {
@@ -523,7 +528,7 @@
     "@jobber/design": "*",
     "@jobber/hooks": ">=2",
     "@tanstack/react-table": "^8",
-    "axios": "^1",
+    "axios": "^1.11.0",
     "classnames": "^2",
     "color": "^4",
     "date-fns": "^2.30.0",

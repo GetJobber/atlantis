@@ -1,9 +1,10 @@
-import React, { ReactElement } from "react";
-import { ChipButtonProps, InternalChipButton } from "./InternalChipButton";
+import type { ReactElement } from "react";
+import React from "react";
+import { type ChipButtonProps, InternalChipButton } from "./InternalChipButton";
 import styles from "./InternalChip.module.css";
-import { InternalChipProps } from "./ChipTypes";
-import { Avatar, AvatarProps } from "../Avatar";
-import { Icon, IconProps } from "../Icon";
+import { type InternalChipProps } from "./ChipTypes";
+import { Avatar, type AvatarProps } from "../Avatar";
+import { Icon, type IconProps } from "../Icon";
 
 interface InternalChipAffixProps
   extends Pick<InternalChipProps, "active" | "invalid" | "disabled"> {

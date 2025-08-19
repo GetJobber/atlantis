@@ -1,11 +1,5 @@
-import React, {
-  ChangeEventHandler,
-  PropsWithChildren,
-  createContext,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import type { ChangeEventHandler, PropsWithChildren } from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 
 interface SegmentedControlProviderContext<T = unknown> {
   handleChange: ChangeEventHandler<HTMLInputElement>;

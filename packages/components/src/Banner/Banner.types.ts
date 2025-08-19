@@ -3,10 +3,10 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from "react";
-import { type IconNames, tokens } from "@jobber/design";
+import type { IconNames, tokens } from "@jobber/design";
 import { type ButtonProps } from "../Button";
 import { type ButtonDismissProps } from "../ButtonDismiss";
-import { IconProps } from "../Icon";
+import type { IconProps } from "../Icon";
 
 export type BannerType = "notice" | "success" | "warning" | "error";
 

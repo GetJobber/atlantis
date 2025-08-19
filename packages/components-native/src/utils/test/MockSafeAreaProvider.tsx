@@ -1,9 +1,6 @@
 import React from "react";
-import {
-  EdgeInsets,
-  Rect,
-  SafeAreaProvider,
-} from "react-native-safe-area-context";
+import type { EdgeInsets, Rect } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 interface MockSafeAreaProviderProps {
   readonly children: React.ReactNode;

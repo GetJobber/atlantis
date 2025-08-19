@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Breakpoints } from "@jobber/components/DataList/DataList.types";
+import type { Breakpoints } from "@jobber/components/DataList/DataList.types";
 import { BREAKPOINT_SIZES } from "@jobber/components/DataList/DataList.const";
 import {
   DataListContext,

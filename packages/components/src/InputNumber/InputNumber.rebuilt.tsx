@@ -10,7 +10,7 @@ import {
 } from "react-aria-components";
 import classnames from "classnames";
 import styles from "./InputNumber.rebuilt.module.css";
-import { InputNumberRebuiltProps } from "./InputNumber.rebuilt.types";
+import type { InputNumberRebuiltProps } from "./InputNumber.rebuilt.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { InputNumber, InputNumberRef } from ".";
+import type { InputNumberRef } from ".";
+import { InputNumber } from ".";
 
 it("renders an input type number", () => {
   const { container } = render(<InputNumber value={123} />);

@@ -1,6 +1,8 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import { useInputFileContentContext } from "./InputFileContentContext";
-import { Text, TextProps } from "../Text";
+import type { TextProps } from "../Text";
+import { Text } from "../Text";
 
 export function InputFileHintText({
   size = "small",

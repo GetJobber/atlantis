@@ -1,7 +1,8 @@
-import React, { CSSProperties, PropsWithChildren } from "react";
+import type { CSSProperties, PropsWithChildren } from "react";
+import React from "react";
 // import chunk from "lodash/chunk";
 import classnames from "classnames";
-import { ColumnKeys, Direction, Spacing } from "./Flex.types";
+import type { ColumnKeys, Direction, Spacing } from "./Flex.types";
 import styles from "./Flex.module.css";
 
 interface FlexProps extends PropsWithChildren {

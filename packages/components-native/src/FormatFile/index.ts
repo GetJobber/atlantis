@@ -1,4 +1,5 @@
-export { FormatFile, FormatFileProps } from "./FormatFile";
+export type { FormatFileProps } from "./FormatFile";
+export { FormatFile } from "./FormatFile";
 export type {
   FormattedFile,
   File,
