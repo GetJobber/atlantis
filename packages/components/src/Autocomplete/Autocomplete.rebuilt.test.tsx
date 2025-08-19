@@ -331,6 +331,41 @@ describe("AutocompleteRebuilt", () => {
       expect(screen.getByText("Experience the high tide")).toBeVisible();
       expect(screen.getByText("Experience the low tide")).toBeVisible();
     });
+
+    it("does not render empty sections", async () => {
+      render(
+        <Wrapper
+          menu={[menuSection<OptionLike>("Section Header Label", [], [])]}
+        />,
+      );
+
+      await openAutocomplete("arrowUp");
+
+      expect(
+        screen.queryByText("Section Header Label"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("does not render sections that become empty after filtering", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>("O Letter Section", [{ label: "One" }], []),
+            menuSection<OptionLike>(
+              "T Letter Section",
+              [{ label: "Two" }, { label: "Three" }],
+              [],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowUp");
+
+      await typeInInput("T");
+
+      expect(screen.queryByText("O Letter Section")).not.toBeInTheDocument();
+    });
   });
 
   describe("actions", () => {

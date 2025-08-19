@@ -181,6 +181,46 @@ function flattenMenu<
   return { optionItems, sections };
 }
 
+function buildItemsForGroup<
+  Value extends OptionLike,
+  S extends object,
+  A extends object,
+>(
+  group: MenuSection<Value, S, A> | MenuOptions<Value, A>,
+  optionFilter?: (opt: Value) => boolean,
+): Array<RenderItem<Value, S, A>> {
+  const isSection = (group as MenuSection<Value, S, A>).type === "section";
+  const filtered = optionFilter
+    ? group.options.filter(optionFilter)
+    : group.options;
+  const actions = group.actionsBottom ?? [];
+  const result: Array<RenderItem<Value, S, A>> = [];
+  const sectionHasContent =
+    isSection && (filtered.length > 0 || actions.length > 0);
+
+  if (sectionHasContent) {
+    result.push({
+      kind: "section",
+      section: group as MenuSection<Value, S, A>,
+    });
+  }
+
+  if (filtered.length > 0) {
+    result.push(...filtered.map(o => ({ kind: "option" as const, value: o })));
+  }
+
+  if (actions.length > 0) {
+    result.push(
+      ...actions.map(action => ({
+        kind: "action" as const,
+        action: action as MenuAction<A>,
+      })),
+    );
+  }
+
+  return result;
+}
+
 function buildRenderableList<
   Value extends OptionLike,
   S extends object,
@@ -192,28 +232,7 @@ function buildRenderableList<
   const items: Array<RenderItem<Value, S, A>> = [];
 
   for (const group of sections) {
-    if ((group as MenuSection<Value, S, A>).type === "section") {
-      items.push({
-        kind: "section",
-        section: group as MenuSection<Value, S, A>,
-      });
-    }
-
-    const filtered = optionFilter
-      ? group.options.filter(optionFilter)
-      : group.options;
-    const options = filtered.map(o => ({
-      kind: "option" as const,
-      value: o,
-    }));
-
-    items.push(...options);
-
-    if (group.actionsBottom?.length) {
-      for (const action of group.actionsBottom) {
-        items.push({ kind: "action", action: action as MenuAction<A> });
-      }
-    }
+    items.push(...buildItemsForGroup<Value, S, A>(group, optionFilter));
   }
 
   return items;
