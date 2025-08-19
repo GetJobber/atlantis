@@ -1,5 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-native-web-vite";
-import type { Plugin } from "vite";
+import type { Plugin, PluginOption } from "vite";
 import path from "path";
 
 export default {
@@ -14,11 +14,7 @@ export default {
   },
   async viteFinal(config) {
     const { mergeConfig } = await import("vite");
-
-    // Remove unnecessary plugin which parses all tsconfig.json files within the project.
-    config.plugins = (config.plugins || []).filter(
-      (plugin: any) => plugin?.name !== "vite-tsconfig-paths"
-    );
+    config.plugins = removeUnnecessaryPlugins(config.plugins || []);
 
     config.plugins.push(injectReactNativeWebShims());
     return mergeConfig(config, {
@@ -66,4 +62,14 @@ function injectReactNativeWebShims(): Plugin {
       }
     },
   }
+}
+
+/**
+ * Remove any unnecessary plugins.
+ */
+function removeUnnecessaryPlugins(plugins: PluginOption[]) {
+  return plugins.filter(
+    // This plugin parses all tsconfig.json files within the project, which is not needed.
+    (plugin: any) => plugin?.name !== "vite-tsconfig-paths"
+  );
 }
