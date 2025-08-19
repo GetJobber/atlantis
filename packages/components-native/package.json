@@ -53,6 +53,7 @@
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^9.1.2",
     "@storybook/react": "^9.1.2",
     "@storybook/react-native-web-vite": "^9.1.2",
     "@testing-library/jest-native": "^5.4.2",

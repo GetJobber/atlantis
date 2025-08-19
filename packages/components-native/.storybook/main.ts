@@ -8,6 +8,7 @@ export default {
     options: {}
   },
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  addons: ["@storybook/addon-a11y"],
   typescript: {
     // Correctly parses our prop types and generates controls for stories
     reactDocgen: "react-docgen-typescript",
