@@ -333,6 +333,11 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
   >();
   const [sectionActionInputValue, setSectionActionInputValue] = useState("");
 
+  const [emptyExampleValue, setEmptyExampleValue] = useState<
+    OptionLike | undefined
+  >();
+  const [emptyInputValue, setEmptyInputValue] = useState("");
+
   return (
     <Content>
       <Heading level={4}>Flat, default layout</Heading>
@@ -406,6 +411,7 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
         value={customOptionValue}
         onChange={setCustomOptionValue}
         inputValue={customOptionInputValue}
+        emptyState="No services found"
         onInputChange={setCustomOptionInputValue}
         menu={[
           {
@@ -477,6 +483,31 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
         }}
         loading
         menu={[]}
+      />
+
+      <Heading level={4}>Interactive Empty Actions</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={emptyExampleValue}
+        onChange={setEmptyExampleValue}
+        inputValue={emptyInputValue}
+        onInputChange={setEmptyInputValue}
+        emptyActions={[
+          {
+            type: "action",
+            label: "Add Service",
+            onClick: () => {
+              alert("Add Service");
+            },
+          },
+        ]}
+        menu={[
+          {
+            type: "options",
+            options: simpleOptions,
+          },
+        ]}
       />
     </Content>
   );

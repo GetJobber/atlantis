@@ -18,6 +18,7 @@ import {
 import { tokens } from "@jobber/design";
 import type {
   ActionConfig,
+  ActionOrigin,
   AutocompleteRebuiltProps,
   AutocompleteValue,
   MenuAction,
@@ -34,7 +35,7 @@ export type RenderItem<
   A extends object = Record<string, unknown>,
 > =
   | { kind: "option"; value: T }
-  | { kind: "action"; action: MenuAction<A> }
+  | { kind: "action"; action: MenuAction<A>; origin?: ActionOrigin }
   | { kind: "section"; section: MenuSection<T, S, A> };
 
 const MENU_OFFSET = tokens["space-small"];
@@ -187,11 +188,11 @@ function buildItemsForGroup<
   A extends object,
 >(
   group: MenuSection<Value, S, A> | MenuOptions<Value, A>,
-  optionFilter?: (opt: Value) => boolean,
+  optionsTransform?: (opts: Value[]) => Value[],
 ): Array<RenderItem<Value, S, A>> {
   const isSection = (group as MenuSection<Value, S, A>).type === "section";
-  const filtered = optionFilter
-    ? group.options.filter(optionFilter)
+  const filtered = optionsTransform
+    ? optionsTransform(group.options)
     : group.options;
   const actions = group.actionsBottom ?? [];
   const result: Array<RenderItem<Value, S, A>> = [];
@@ -214,6 +215,7 @@ function buildItemsForGroup<
       ...actions.map(action => ({
         kind: "action" as const,
         action: action as MenuAction<A>,
+        origin: "menu" as ActionOrigin,
       })),
     );
   }
@@ -227,12 +229,12 @@ function buildRenderableList<
   A extends object,
 >(
   sections: Array<MenuSection<Value, S, A> | MenuOptions<Value, A>>,
-  optionFilter?: (opt: Value) => boolean,
+  optionsTransform?: (opts: Value[]) => Value[],
 ) {
   const items: Array<RenderItem<Value, S, A>> = [];
 
   for (const group of sections) {
-    items.push(...buildItemsForGroup<Value, S, A>(group, optionFilter));
+    items.push(...buildItemsForGroup<Value, S, A>(group, optionsTransform));
   }
 
   return items;
@@ -328,6 +330,7 @@ export function useAutocomplete<
 >(props: AutocompleteRebuiltProps<Value, Multiple, SectionExtra, ActionExtra>) {
   const {
     menu,
+    emptyActions,
     getOptionLabel: getOptionLabelProp,
     getOptionKey: getOptionKeyProp,
     getActionKey: getActionKeyProp,
@@ -405,30 +408,55 @@ export function useAutocomplete<
 
   // This includes options, actions, and sections
   const renderable = useMemo(() => {
-    const filterMethod = (opt: Value) => {
-      if (exactLabelMatch && !lastInputWasUser.current) return true;
-      if (props.filterOptions === false) return true;
+    const transform = (opts: Value[]): Value[] => {
+      if (exactLabelMatch && !lastInputWasUser.current) return opts;
+      if (props.filterOptions === false) return opts;
 
       if (typeof props.filterOptions === "function") {
-        return props.filterOptions(opt, inputValue);
+        return props.filterOptions(opts, inputValue);
       }
 
       // Default to case-insensitive includes
-      return getOptionLabel(opt)
-        .toLowerCase()
-        .includes(inputValue.toLowerCase());
+      const term = inputValue.toLowerCase();
+
+      return opts.filter(opt =>
+        getOptionLabel(opt).toLowerCase().includes(term),
+      );
     };
 
-    return buildRenderableList<Value, SectionExtra, ActionExtra>(
+    const items = buildRenderableList<Value, SectionExtra, ActionExtra>(
       sections,
-      filterMethod,
+      transform,
     );
+
+    const hasAnyOptions = items.some(i => i.kind === "option");
+
+    if (!hasAnyOptions) {
+      if (emptyActions) {
+        const derived =
+          typeof emptyActions === "function"
+            ? emptyActions({ inputValue })
+            : emptyActions;
+
+        return derived.map(act => ({
+          kind: "action" as const,
+          action: act as MenuAction<ActionExtra>,
+          origin: "empty" as ActionOrigin,
+        }));
+      }
+
+      // No options and no emptyActions: render empty state
+      return [];
+    }
+
+    return items;
   }, [
     sections,
     props.filterOptions,
     inputValue,
     exactLabelMatch,
     getOptionLabel,
+    emptyActions,
   ]);
 
   // This is only options
@@ -528,7 +556,15 @@ export function useAutocomplete<
       suppressOpenOnInputChange.current = true;
       lastInputWasUser.current = false;
 
-      onInputChange?.(getOptionLabel(option));
+      // Only update the input text from a selection when the selected option
+      // originated from the provided menu. This prevents synthetic options
+      // (e.g., interactive empty states injected via filterOptions) from
+      // replacing the user's typed text with their synthetic label.
+      const isFromOriginalMenu = optionItems.includes(option);
+
+      if (isFromOriginalMenu) {
+        onInputChange?.(getOptionLabel(option));
+      }
     }
   }
 

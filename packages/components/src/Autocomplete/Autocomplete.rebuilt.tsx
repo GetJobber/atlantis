@@ -9,6 +9,7 @@ import classNames from "classnames";
 import { tokens } from "@jobber/design";
 import type {
   ActionConfig,
+  ActionOrigin,
   AutocompleteRebuiltProps,
   MenuAction,
   MenuSection,
@@ -60,7 +61,6 @@ function AutocompleteRebuiltInternal<
 
   const {
     renderable,
-    optionCount,
     getOptionLabel,
     getOptionKey,
     isOptionSelected,
@@ -153,9 +153,9 @@ function AutocompleteRebuiltInternal<
               {...getFloatingProps()}
             >
               {loading ? (
-                <AutocompleteLoadingContent />
-              ) : optionCount === 0 ? (
-                <AutocompleteEmptyStateContent emptyState={props.emptyState} />
+                <LoadingContent />
+              ) : renderable.length === 0 ? (
+                <BasicEmptyStateContent emptyState={props.emptyState} />
               ) : (
                 <MenuList<Value>
                   items={renderable}
@@ -205,7 +205,7 @@ function AutocompleteRebuiltInternal<
   );
 }
 
-function AutocompleteLoadingContent() {
+function LoadingContent() {
   return (
     <>
       <Glimmer shape="rectangle" size="largest" />
@@ -215,7 +215,11 @@ function AutocompleteLoadingContent() {
   );
 }
 
-function AutocompleteEmptyStateContent({
+/*
+ * Basic empty state content used when no emptyActions are provided.
+ * If emptyActions are provided, the emptyState is not rendered.
+ */
+function BasicEmptyStateContent({
   emptyState,
 }: {
   readonly emptyState: React.ReactNode;
@@ -312,6 +316,7 @@ function MenuList<T extends OptionLike>({
       onAction,
       actionClassName: slotOverrides?.action?.className,
       actionStyle: slotOverrides?.action?.style,
+      origin: item.origin,
     });
 
     navigableIndex = result.nextNavigableIndex;
@@ -455,6 +460,7 @@ interface HandleActionRenderingProps<T extends OptionLike> {
   readonly onAction: (action: ActionConfig) => void;
   readonly actionClassName?: string;
   readonly actionStyle?: React.CSSProperties;
+  readonly origin?: ActionOrigin;
 }
 
 function handleActionRendering<T extends OptionLike>({
@@ -468,6 +474,7 @@ function handleActionRendering<T extends OptionLike>({
   onAction,
   actionClassName,
   actionStyle,
+  origin,
 }: HandleActionRenderingProps<T>): {
   node: React.ReactNode;
   nextNavigableIndex: number;
@@ -475,7 +482,7 @@ function handleActionRendering<T extends OptionLike>({
   const nextNavigableIndex = navigableIndex + 1;
   const isActive = activeIndex === nextNavigableIndex;
   const actionContent = renderAction ? (
-    renderAction({ value: action, isActive })
+    renderAction({ value: action, isActive, origin })
   ) : (
     <Typography textColor="interactive">{action.label}</Typography>
   );
@@ -493,6 +500,7 @@ function handleActionRendering<T extends OptionLike>({
           actionClassName,
         )}
         data-index={nextNavigableIndex}
+        data-origin={origin}
         data-active={isActive ? true : undefined}
         {...getItemProps()}
         onClick={() => {

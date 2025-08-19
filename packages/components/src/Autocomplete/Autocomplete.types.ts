@@ -344,7 +344,7 @@ interface AutocompleteRebuiltBaseProps<
    * - Set to `false` to opt out of filtering entirely (useful for async options)
    */
   readonly filterOptions?:
-    | ((option: Value, inputValue: string) => boolean)
+    | ((options: Value[], inputValue: string) => Value[])
     | false;
 
   /*
@@ -402,6 +402,7 @@ interface AutocompleteRebuiltBaseProps<
   readonly renderAction?: (args: {
     value: MenuAction<ActionExtra>;
     isActive: boolean;
+    origin?: ActionOrigin;
   }) => React.ReactNode;
 
   /*
@@ -433,10 +434,22 @@ interface AutocompleteRebuiltBaseProps<
 
   /*
    * Render a custom empty state when the menu is empty.
+   * NOTE: Do not put interactive elements in the empty state, it will break accessibility.
+   * If you require interactive elements in the empty state, use the `emptyActions` prop.
    *
    * @default string "No options"
    */
   readonly emptyState?: React.ReactNode;
+
+  /*
+   * Actions to display when there are no options to render after filtering.
+   * Can be a static list or a function that derives actions from the current input value.
+   * When provided and options are empty, these are rendered as navigable actions
+   * instead of the emptyState.
+   */
+  readonly emptyActions?:
+    | MenuAction<ActionExtra>[]
+    | ((args: { inputValue: string }) => MenuAction<ActionExtra>[]);
 
   /*
    * Whether the menu should open when the input gains focus.
@@ -568,6 +581,8 @@ interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
    */
   readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
 }
+
+export type ActionOrigin = "menu" | "empty";
 
 export type AutocompleteRebuiltProps<
   Value extends OptionLike = OptionLike,

@@ -80,6 +80,7 @@ function Wrapper<T extends OptionLike>({
   menu,
   openOnFocus,
   filterOptions,
+  emptyActions,
   renderOption,
   renderAction,
   renderSection,
@@ -99,7 +100,8 @@ function Wrapper<T extends OptionLike>({
   readonly onFocus?: () => void;
   readonly menu?: MenuItem<T>[];
   readonly openOnFocus?: boolean;
-  readonly filterOptions?: false | ((o: T, i: string) => boolean);
+  readonly filterOptions?: false | ((opts: T[], input: string) => T[]);
+  readonly emptyActions?: AutocompleteRebuiltProps<T, false>["emptyActions"];
   readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
@@ -133,6 +135,7 @@ function Wrapper<T extends OptionLike>({
       placeholder=""
       openOnFocus={openOnFocus}
       filterOptions={filterOptions}
+      emptyActions={emptyActions}
       renderOption={renderOption}
       renderAction={renderAction}
       renderSection={renderSection}
@@ -470,7 +473,11 @@ describe("AutocompleteRebuilt", () => {
 
     it("can provide a custom filter function", async () => {
       // Ignore the search term, just return things that have "t"
-      render(<Wrapper filterOptions={o => o.label.includes("T")} />);
+      render(
+        <Wrapper
+          filterOptions={opts => opts.filter(o => o.label.includes("T"))}
+        />,
+      );
 
       await openAutocomplete("type", "n");
 
@@ -495,9 +502,9 @@ describe("AutocompleteRebuilt", () => {
       ];
 
       const filterOptions = (
-        o: { label: string; squareRoot: number },
-        i: string,
-      ) => o.squareRoot === parseInt(i, 10);
+        options: { label: string; squareRoot: number }[],
+        input: string,
+      ) => options.filter(o => o.squareRoot === parseInt(input, 10));
 
       render(
         <Wrapper<{ label: string; squareRoot: number }>
@@ -696,7 +703,7 @@ describe("AutocompleteRebuilt", () => {
             inputValue={inputValue}
             onInputChange={setInputValue}
             menu={menu}
-            filterOptions={() => false}
+            filterOptions={() => []}
             placeholder="Testing free-form"
           />
         );
@@ -1309,13 +1316,100 @@ describe("AutocompleteRebuilt", () => {
       expect(screen.queryByText("No options")).not.toBeInTheDocument();
     });
 
-    it("shows empty state when filtering removes all options", async () => {
-      render(<Wrapper filterOptions={() => false} />);
+    it("shows basic empty state when filtering removes all options", async () => {
+      render(<Wrapper filterOptions={() => []} />);
 
       await openAutocomplete("type", "anything");
 
       await expectMenuShown();
       expect(screen.getByText("No options")).toBeVisible();
+    });
+
+    it("does not render standard actions when empty", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>(
+              "Hello from a section",
+              [{ label: "One" }, { label: "Two" }],
+              [
+                { type: "action", label: "Create new", onClick: jest.fn() },
+                {
+                  type: "action",
+                  label: "Browse templates",
+                  onClick: jest.fn(),
+                },
+              ],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete("type", "something with no matches");
+      await expectMenuShown();
+
+      expect(screen.queryByText("Create new")).not.toBeInTheDocument();
+      expect(screen.queryByText("Browse templates")).not.toBeInTheDocument();
+    });
+
+    it("renders emptyActions (array) instead of empty state when there are no options", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      const create = jest.fn();
+      const browse = jest.fn();
+
+      render(
+        <Wrapper
+          menu={emptyMenu}
+          emptyActions={[
+            { type: "action", label: "Create new", onClick: create },
+            { type: "action", label: "Browse templates", onClick: browse },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      // Empty state suppressed
+      expect(screen.queryByText("No options")).not.toBeInTheDocument();
+
+      // Actions are present and navigable
+      expect(screen.getByText("Create new")).toBeVisible();
+      expect(screen.getByText("Browse templates")).toBeVisible();
+
+      // Keyboard navigation to first action and invoke
+      await navigateDown(1);
+      await selectWithKeyboard();
+      expect(create).toHaveBeenCalled();
+    });
+
+    it("renders emptyActions (function) using current input", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+      const create = jest.fn();
+
+      render(
+        <Wrapper
+          menu={emptyMenu}
+          emptyActions={({ inputValue }) => [
+            {
+              type: "action",
+              label: `Add "${inputValue}"`,
+              onClick: create,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("type", "Zed");
+      await expectMenuShown();
+
+      // Action reflects typed input
+      expect(screen.getByText('Add "Zed"')).toBeVisible();
+
+      await navigateDown(1);
+      await selectWithKeyboard();
+      expect(create).toHaveBeenCalled();
     });
   });
 
