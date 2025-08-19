@@ -6,7 +6,17 @@ import type { Plugin, PluginOption } from "vite";
 export default {
   framework: {
     name: "@storybook/react-native-web-vite",
-    options: {}
+    options: {
+      modulesToTranspile: ["react-native-reanimated"],
+      pluginReactOptions: {
+        babel: {
+          plugins: [
+            "@babel/plugin-proposal-export-namespace-from",
+            "react-native-reanimated/plugin",
+          ],
+        },
+      },
+    },
   },
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: ["@storybook/addon-a11y"],
