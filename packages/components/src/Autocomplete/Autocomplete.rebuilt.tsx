@@ -1,7 +1,12 @@
 import type { Ref } from "react";
 import React, { forwardRef } from "react";
-import { FloatingFocusManager, FloatingPortal } from "@floating-ui/react";
+import {
+  FloatingFocusManager,
+  FloatingPortal,
+  useTransitionStyles,
+} from "@floating-ui/react";
 import classNames from "classnames";
+import { tokens } from "@jobber/design";
 import type {
   ActionConfig,
   AutocompleteRebuiltProps,
@@ -65,7 +70,6 @@ function AutocompleteRebuiltInternal<
     getReferenceProps,
     getFloatingProps,
     getItemProps,
-    open,
     activeIndex,
     listRef,
     onSelection,
@@ -76,6 +80,14 @@ function AutocompleteRebuiltInternal<
     onInputKeyDown,
     setReferenceElement,
   } = useAutocomplete<Value, Multiple>(props);
+
+  // Provides mount/unmount-aware transition styles for the floating element
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    initial: { opacity: 0 },
+    open: { opacity: 1 },
+    close: { opacity: 0 },
+    duration: { open: tokens["timing-base"], close: tokens["timing-base"] },
+  });
 
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
@@ -121,7 +133,7 @@ function AutocompleteRebuiltInternal<
       ) : (
         <InputText ref={mergedInputRef} {...inputProps} />
       )}
-      {open && !props.readOnly && (
+      {isMounted && !props.readOnly && (
         <FloatingPortal>
           <FloatingFocusManager
             context={context}
@@ -135,6 +147,7 @@ function AutocompleteRebuiltInternal<
               className={menuClassName}
               style={{
                 ...floatingStyles,
+                ...transitionStyles,
                 ...props.UNSAFE_styles?.menu,
               }}
               {...getFloatingProps()}

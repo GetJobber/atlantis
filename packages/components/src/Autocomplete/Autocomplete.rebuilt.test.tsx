@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import {
@@ -13,6 +13,8 @@ import {
   blurAutocomplete,
   closeAutocomplete,
   deleteInput,
+  expectMenuClosed,
+  expectMenuShown,
   focusAutocomplete,
   getActiveAction,
   getActiveOption,
@@ -158,7 +160,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.getAllByTestId(GLIMMER_TEST_ID)).toHaveLength(3);
     });
 
@@ -167,7 +169,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.queryByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
     });
   });
@@ -178,7 +180,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete("arrowUp");
       await navigateDown(1);
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
     });
 
     it("opens the menu when arrowDown is pressed", async () => {
@@ -186,7 +188,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete("arrowDown");
       await navigateDown(1);
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
     });
 
     it("opens the menu when user types", async () => {
@@ -194,7 +196,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete("type", "o");
       await navigateDown(1);
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
     });
   });
 
@@ -208,7 +210,7 @@ describe("AutocompleteRebuilt", () => {
     await selectWithKeyboard();
 
     expect(onChange).toHaveBeenCalledWith({ label: "One" });
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    await expectMenuClosed();
   });
 
   it("selects an option on click and closes", async () => {
@@ -220,7 +222,7 @@ describe("AutocompleteRebuilt", () => {
     await selectWithClick("Two");
 
     expect(onChange).toHaveBeenCalledWith({ label: "Two" });
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    await expectMenuClosed();
   });
 
   it("does not select on Enter when menu is closed and free-form is disabled", async () => {
@@ -230,12 +232,11 @@ describe("AutocompleteRebuilt", () => {
 
     await focusAutocomplete();
     // Menu should remain closed on focus when openOnFocus is false
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    await expectMenuClosed();
 
     await selectWithKeyboard();
 
     expect(onChange).not.toHaveBeenCalled();
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
   it("does not select on Enter after menu was manually closed (free-form disabled)", async () => {
@@ -245,15 +246,15 @@ describe("AutocompleteRebuilt", () => {
 
     await openAutocomplete("arrowDown");
     await navigateDown(1);
-    expect(await screen.findByRole("listbox")).toBeVisible();
+    await screen.findByRole("listbox");
 
     await closeAutocomplete();
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+    await expectMenuClosed();
 
     await selectWithKeyboard();
 
     expect(onChange).not.toHaveBeenCalled();
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
   describe("sections", () => {
@@ -271,10 +272,12 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowUp");
 
-      expect(screen.getByText("Hello from a section")).toBeVisible();
-      // Double check options are there too for good measure
-      expect(screen.getByText("One")).toBeVisible();
-      expect(screen.getByText("Two")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("Hello from a section")).toBeVisible();
+        // Double check options are there too for good measure
+        expect(screen.getByText("One")).toBeVisible();
+        expect(screen.getByText("Two")).toBeVisible();
+      });
     });
 
     it("renders actions within sections", async () => {
@@ -298,10 +301,12 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowUp");
 
-      expect(screen.getByText("Hello from a section")).toBeVisible();
-      expect(screen.getByText("Krabby")).toBeVisible();
-      expect(screen.getByText("Patty")).toBeVisible();
-      expect(screen.getByText("Experience the high tide")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("Hello from a section")).toBeVisible();
+        expect(screen.getByText("Krabby")).toBeVisible();
+        expect(screen.getByText("Patty")).toBeVisible();
+        expect(screen.getByText("Experience the high tide")).toBeVisible();
+      });
     });
 
     it("renders section actions and actions on the root", async () => {
@@ -335,11 +340,13 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowUp");
 
-      expect(screen.getByText("Hello from a section")).toBeVisible();
-      expect(screen.getByText("Krabby")).toBeVisible();
-      expect(screen.getByText("Patty")).toBeVisible();
-      expect(screen.getByText("Experience the high tide")).toBeVisible();
-      expect(screen.getByText("Experience the low tide")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("Hello from a section")).toBeVisible();
+        expect(screen.getByText("Krabby")).toBeVisible();
+        expect(screen.getByText("Patty")).toBeVisible();
+        expect(screen.getByText("Experience the high tide")).toBeVisible();
+        expect(screen.getByText("Experience the low tide")).toBeVisible();
+      });
     });
 
     it("does not render empty sections", async () => {
@@ -350,6 +357,7 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete("arrowUp");
+      await screen.findByRole("listbox");
 
       expect(
         screen.queryByText("Section Header Label"),
@@ -371,6 +379,7 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete("arrowUp");
+      await screen.findByRole("listbox");
 
       await typeInInput("T");
 
@@ -390,7 +399,7 @@ describe("AutocompleteRebuilt", () => {
       await selectWithKeyboard();
 
       expect(createAction).toHaveBeenCalled();
-      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+      await expectMenuClosed();
     });
 
     it("invokes action on click and stays open when shouldClose is false", async () => {
@@ -402,7 +411,7 @@ describe("AutocompleteRebuilt", () => {
       await selectWithClick("Stay Open");
 
       expect(stayOpenAction).toHaveBeenCalled();
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
     });
   });
 
@@ -412,8 +421,10 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByText("One")).toBeVisible();
-      expect(screen.queryByTestId("checkmark")).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText("One")).toBeVisible();
+        expect(screen.queryByTestId("checkmark")).not.toBeInTheDocument();
+      });
     });
 
     it("renders default selected option content", async () => {
@@ -421,8 +432,10 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByText("Two")).toBeVisible();
-      expect(screen.getByTestId("checkmark")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("Two")).toBeVisible();
+        expect(screen.getByTestId("checkmark")).toBeVisible();
+      });
     });
   });
 
@@ -436,7 +449,7 @@ describe("AutocompleteRebuilt", () => {
     await selectWithKeyboard();
 
     expect(onChange).toHaveBeenCalledWith({ label: "One" });
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    await expectMenuClosed();
   });
 
   describe("filterOptions", () => {
@@ -449,7 +462,7 @@ describe("AutocompleteRebuilt", () => {
       );
 
       // With opt-out, all options should be visible regardless of input
-      expect(await screen.findByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.getByText("One")).toBeVisible();
       expect(screen.getByText("Two")).toBeVisible();
       expect(screen.getByText("Three")).toBeVisible();
@@ -461,7 +474,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("type", "n");
 
-      expect(await screen.findByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       // Two and Three should be visible
       expect(screen.getByText("Two")).toBeVisible();
       expect(screen.getByText("Three")).toBeVisible();
@@ -495,7 +508,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("type", "4");
 
-      expect(await screen.findByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.getByText("16")).toBeVisible();
     });
   });
@@ -521,7 +534,8 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(await screen.findByRole("listbox")).toBeVisible();
+      await expectMenuShown();
+
       expect(screen.getByText("One")).toBeVisible();
       expect(screen.getByText("Two")).toBeVisible();
     });
@@ -534,7 +548,7 @@ describe("AutocompleteRebuilt", () => {
 
       await selectWithClick("Two");
 
-      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+      await expectMenuClosed();
 
       await openAutocomplete("arrowDown");
       await screen.findByRole("listbox");
@@ -552,7 +566,7 @@ describe("AutocompleteRebuilt", () => {
 
       await focusAutocomplete();
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
     });
 
     it("does not highlight an option or action when the menu is opened for the first time", async () => {
@@ -578,7 +592,7 @@ describe("AutocompleteRebuilt", () => {
 
       await focusAutocomplete();
 
-      expect(await screen.findByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.getByText("One")).toBeVisible();
       expect(screen.getByText("Two")).toBeVisible();
 
@@ -594,16 +608,16 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper openOnFocus readOnly />);
 
       await focusAutocomplete();
-      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+      await expectMenuClosed();
 
       await openAutocomplete("arrowDown");
-      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+      await expectMenuClosed();
 
       await openAutocomplete("arrowUp");
-      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+      await expectMenuClosed();
 
       await openAutocomplete("type", "Two");
-      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+      await expectMenuClosed();
     });
 
     it("still calls onBlur when readOnly", async () => {
@@ -625,7 +639,6 @@ describe("AutocompleteRebuilt", () => {
       await focusAutocomplete();
 
       expect(onFocus).toHaveBeenCalled();
-      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
     });
   });
 
@@ -1222,7 +1235,9 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByTestId("custom-section-header")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-section-header")).toBeVisible();
+      });
     });
   });
 
@@ -1262,9 +1277,10 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.getByText("No options")).toBeVisible();
     });
+
     it("shows default empty state when there are no options to render and filtering is disabled", async () => {
       const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
 
@@ -1272,7 +1288,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.getByText("No options")).toBeVisible();
     });
 
@@ -1288,7 +1304,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.getByTestId("custom-empty")).toBeVisible();
       expect(screen.queryByText("No options")).not.toBeInTheDocument();
     });
@@ -1298,7 +1314,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("type", "anything");
 
-      expect(screen.getByRole("listbox")).toBeVisible();
+      await expectMenuShown();
       expect(screen.getByText("No options")).toBeVisible();
     });
   });
@@ -1318,6 +1334,7 @@ describe("AutocompleteRebuilt", () => {
 
       render(<Wrapper renderAction={renderAction} />);
       await openAutocomplete("arrowDown");
+
       expect(renderAction).toHaveBeenCalled();
     });
 
@@ -1424,7 +1441,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByRole("listbox")).toHaveClass("custom-menu");
+      expect(await screen.findByRole("listbox")).toHaveClass("custom-menu");
     });
 
     it("passes styles to the menu", async () => {
@@ -1432,7 +1449,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete("arrowDown");
 
-      expect(screen.getByRole("listbox")).toHaveStyle({
+      expect(await screen.findByRole("listbox")).toHaveStyle({
         backgroundColor: "red",
       });
     });

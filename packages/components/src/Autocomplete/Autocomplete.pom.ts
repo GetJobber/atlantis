@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
 const user = userEvent.setup();
@@ -83,4 +83,22 @@ export function getActiveAction() {
   return document.querySelector(
     '[role="button"][data-active="true"]',
   ) as HTMLElement | null;
+}
+
+/**
+ * Wait until the Autocomplete menu is visible (accounts for transitions)
+ */
+export async function expectMenuShown() {
+  await waitFor(() => {
+    expect(screen.getByRole("listbox")).toBeVisible();
+  });
+}
+
+/**
+ * Wait until the Autocomplete menu is fully closed (unmounted)
+ */
+export async function expectMenuClosed() {
+  await waitFor(() => {
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
 }
