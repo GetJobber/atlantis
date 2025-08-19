@@ -411,7 +411,7 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
         value={customOptionValue}
         onChange={setCustomOptionValue}
         inputValue={customOptionInputValue}
-        emptyState="No services found"
+        emptyStateMessage="No services found"
         onInputChange={setCustomOptionInputValue}
         menu={[
           {

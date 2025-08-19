@@ -86,7 +86,7 @@ function Wrapper<T extends OptionLike>({
   renderSection,
   renderInput,
   loading,
-  emptyState,
+  emptyStateMessage,
   ref,
   UNSAFE_className,
   UNSAFE_styles,
@@ -107,7 +107,7 @@ function Wrapper<T extends OptionLike>({
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly renderInput?: AutocompleteRebuiltProps<T, false>["renderInput"];
   readonly loading?: boolean;
-  readonly emptyState?: React.ReactNode;
+  readonly emptyStateMessage?: React.ReactNode;
   readonly ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
   readonly UNSAFE_className?: AutocompleteRebuiltProps<
     T,
@@ -141,7 +141,7 @@ function Wrapper<T extends OptionLike>({
       renderSection={renderSection}
       renderInput={renderInput}
       loading={loading}
-      emptyState={emptyState}
+      emptyStateMessage={emptyStateMessage}
       ref={ref}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_styles={UNSAFE_styles}
@@ -1305,7 +1305,9 @@ describe("AutocompleteRebuilt", () => {
       render(
         <Wrapper
           menu={emptyMenu}
-          emptyState={<span data-testid="custom-empty">Nothing here</span>}
+          emptyStateMessage={
+            <span data-testid="custom-empty">Nothing here</span>
+          }
         />,
       );
 
@@ -1453,7 +1455,7 @@ describe("AutocompleteRebuilt", () => {
       render(
         <Wrapper
           menu={emptyMenu}
-          emptyState={false}
+          emptyStateMessage={false}
           emptyActions={[
             { type: "action", label: "Create new", onClick: create },
           ]}

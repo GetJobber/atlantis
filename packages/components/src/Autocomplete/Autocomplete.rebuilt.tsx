@@ -127,7 +127,8 @@ function AutocompleteRebuiltInternal<
     props.UNSAFE_className?.menu,
   );
 
-  const showEmptyStateMessage = optionCount === 0 && props.emptyState !== false;
+  const showEmptyStateMessage =
+    optionCount === 0 && props.emptyStateMessage !== false;
 
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
@@ -160,7 +161,7 @@ function AutocompleteRebuiltInternal<
               ) : (
                 <>
                   {showEmptyStateMessage && (
-                    <EmptyStateMessage emptyState={props.emptyState} />
+                    <EmptyStateMessage emptyState={props.emptyStateMessage} />
                   )}
                   {renderable.length > 0 && (
                     <MenuList<Value>
