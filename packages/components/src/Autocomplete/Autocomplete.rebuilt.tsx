@@ -3,6 +3,7 @@ import React, { forwardRef } from "react";
 import { FloatingFocusManager, FloatingPortal } from "@floating-ui/react";
 import classNames from "classnames";
 import type {
+  ActionConfig,
   AutocompleteRebuiltProps,
   MenuAction,
   MenuSection,
@@ -157,6 +158,8 @@ function AutocompleteRebuiltInternal<
                   renderAction={renderAction}
                   getOptionLabel={getOptionLabel}
                   getOptionKey={getOptionKey}
+                  getActionKey={action => action.label}
+                  getSectionKey={section => section.label}
                   onSelect={onSelection}
                   onAction={onAction}
                   isOptionSelected={isOptionSelected}
@@ -214,12 +217,14 @@ interface MenuListProps<T extends OptionLike> {
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
   readonly getOptionLabel: (option: T) => string;
   readonly getOptionKey: (option: T) => React.Key;
+  readonly getActionKey: (
+    action: MenuAction<Record<string, unknown>>,
+  ) => React.Key;
+  readonly getSectionKey: (
+    section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>,
+  ) => React.Key;
   readonly onSelect: (option: T) => void;
-  readonly onAction: (action: {
-    onAction: () => void;
-    disabled?: boolean;
-    shouldClose?: boolean;
-  }) => void;
+  readonly onAction: (action: ActionConfig) => void;
   readonly isOptionSelected: (option: T) => boolean;
   readonly slotOverrides?: {
     option?: { className?: string; style?: React.CSSProperties };
@@ -237,6 +242,8 @@ function MenuList<T extends OptionLike>({
   renderAction,
   getOptionLabel,
   getOptionKey,
+  getActionKey,
+  getSectionKey,
   onSelect,
   onAction,
   isOptionSelected,
@@ -250,6 +257,7 @@ function MenuList<T extends OptionLike>({
         section: item.section,
         index,
         renderSection,
+        getSectionKey,
         sectionClassName: slotOverrides?.section?.className,
         sectionStyle: slotOverrides?.section?.style,
       });
@@ -282,6 +290,7 @@ function MenuList<T extends OptionLike>({
       navigableIndex,
       getItemProps,
       renderAction,
+      getActionKey,
       onAction,
       actionClassName: slotOverrides?.action?.className,
       actionStyle: slotOverrides?.action?.style,
@@ -299,12 +308,16 @@ function handleSectionRendering<T extends OptionLike>({
   renderSection,
   section,
   index,
+  getSectionKey,
   sectionClassName,
   sectionStyle,
 }: {
   readonly section: MenuSection<T>;
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly index: number;
+  readonly getSectionKey: (
+    section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>,
+  ) => React.Key;
   readonly sectionClassName?: string;
   readonly sectionStyle?: React.CSSProperties;
 }) {
@@ -316,7 +329,7 @@ function handleSectionRendering<T extends OptionLike>({
 
   return (
     <div
-      key={`sec-${index}`}
+      key={`sec-${getSectionKey(section)}-${index}`}
       role="presentation"
       data-testid="ATL-AutocompleteRebuilt-Section"
       className={classNames(styles.section, styles.stickyTop, sectionClassName)}
@@ -419,12 +432,10 @@ interface HandleActionRenderingProps<T extends OptionLike> {
   readonly navigableIndex: number;
   readonly getItemProps: () => Record<string, unknown>;
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
-  // TODO: rename this onAction -> onAction is awkward
-  readonly onAction: (action: {
-    onAction: () => void;
-    disabled?: boolean;
-    shouldClose?: boolean;
-  }) => void;
+  readonly getActionKey: (
+    action: MenuAction<Record<string, unknown>>,
+  ) => React.Key;
+  readonly onAction: (action: ActionConfig) => void;
   readonly actionClassName?: string;
   readonly actionStyle?: React.CSSProperties;
 }
@@ -436,6 +447,7 @@ function handleActionRendering<T extends OptionLike>({
   navigableIndex,
   getItemProps,
   renderAction,
+  getActionKey,
   onAction,
   actionClassName,
   actionStyle,
@@ -451,11 +463,10 @@ function handleActionRendering<T extends OptionLike>({
     <Typography textColor="interactive">{action.label}</Typography>
   );
 
-  // TODO: disabled style
   return {
     node: (
       <div
-        key={`act-${index}`}
+        key={`act-${getActionKey(action)}-${index}`}
         tabIndex={-1}
         role="button"
         data-testid="ATL-AutocompleteRebuilt-Action"
@@ -467,12 +478,10 @@ function handleActionRendering<T extends OptionLike>({
         data-index={nextNavigableIndex}
         data-active={isActive ? true : undefined}
         {...getItemProps()}
-        // TODO: rename this onAction -> onAction is awkward
         onClick={() => {
           onAction({
-            onAction: action.onClick,
-            disabled: action.disabled,
-            shouldClose: action.shouldClose,
+            run: action.onClick,
+            closeOnRun: action.shouldClose,
           });
         }}
         style={actionStyle}

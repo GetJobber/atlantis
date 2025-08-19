@@ -50,13 +50,11 @@ function buildMenu(overrides?: {
         [
           {
             type: "action",
-            id: "a1",
             label: ACTION1_LABEL,
             onClick: createAction,
           },
           {
             type: "action",
-            id: "a2",
             label: ACTION2_LABEL,
             onClick: stayOpenAction,
             shouldClose: false,
@@ -252,7 +250,7 @@ describe("AutocompleteRebuilt", () => {
       render(
         <Wrapper
           menu={[
-            menuSection("one", "Hello from a section", [
+            menuSection("Hello from a section", [
               { label: "One" },
               { label: "Two" },
             ]),
@@ -273,13 +271,11 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper
           menu={[
             menuSection<OptionLike>(
-              "one",
               "Hello from a section",
               [{ label: "Krabby" }, { label: "Patty" }],
               [
                 {
                   type: "action",
-                  id: "a1",
                   label: "Experience the high tide",
                   onClick: jest.fn(),
                 },
@@ -302,13 +298,11 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper
           menu={[
             menuSection<OptionLike>(
-              "one",
               "Hello from a section",
               [{ label: "Krabby" }, { label: "Patty" }],
               [
                 {
                   type: "action",
-                  id: "a1",
                   label: "Experience the high tide",
                   onClick: jest.fn(),
                 },
@@ -319,7 +313,6 @@ describe("AutocompleteRebuilt", () => {
               [
                 {
                   type: "action",
-                  id: "a2",
                   label: "Experience the low tide",
                   onClick: jest.fn(),
                 },

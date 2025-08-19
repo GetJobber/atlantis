@@ -357,7 +357,6 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
         menu={[
           {
             type: "section",
-            id: "services",
             label: "Services",
             options: simpleOptions,
           },
@@ -375,14 +374,12 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
         menu={[
           {
             type: "section",
-            id: "services",
             label: "Services",
             options: simpleOptions,
             actionsBottom: [
               {
                 type: "action",
                 label: "Add Service",
-                id: "add-service",
                 onClick: () => {
                   alert("Add Service");
                 },
@@ -391,13 +388,11 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
           },
           {
             type: "section",
-            id: "services-second",
             label: "Additional Services",
             options: simpleOptionsSecondSection,
           },
           {
             type: "section",
-            id: "services-third",
             label: "Outdoor Services",
             options: simpleOptionsThirdSection,
           },
@@ -420,7 +415,6 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Service",
-                id: "add-service",
                 onClick: () => {
                   alert("Add Service");
                 },

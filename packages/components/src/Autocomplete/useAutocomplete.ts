@@ -17,6 +17,7 @@ import {
 } from "@floating-ui/react";
 import { tokens } from "@jobber/design";
 import type {
+  ActionConfig,
   AutocompleteRebuiltProps,
   AutocompleteValue,
   MenuAction,
@@ -27,16 +28,14 @@ import type {
 } from "./Autocomplete.types";
 import { calculateMaxHeight } from "../utils/maxHeight";
 
-export type RenderItem<T extends OptionLike> =
+export type RenderItem<
+  T extends OptionLike,
+  S extends object = Record<string, unknown>,
+  A extends object = Record<string, unknown>,
+> =
   | { kind: "option"; value: T }
-  | {
-      kind: "action";
-      action: MenuAction<Record<string, unknown>>;
-    }
-  | {
-      kind: "section";
-      section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>;
-    };
+  | { kind: "action"; action: MenuAction<A> }
+  | { kind: "section"; section: MenuSection<T, S, A> };
 
 const MENU_OFFSET = tokens["space-small"];
 // Maybe make this configurable?
@@ -162,9 +161,13 @@ function useAutocompleteListNav({
   };
 }
 
-function flattenMenu<Value extends OptionLike>(menu: MenuItem<Value>[]) {
+function flattenMenu<
+  Value extends OptionLike,
+  S extends object,
+  A extends object,
+>(menu: MenuItem<Value, S, A>[]) {
   const optionItems: Value[] = [];
-  const sections: Array<MenuSection<Value> | MenuOptions<Value>> = [];
+  const sections: Array<MenuSection<Value, S, A> | MenuOptions<Value, A>> = [];
 
   for (const item of menu) {
     sections.push(item);
@@ -177,15 +180,22 @@ function flattenMenu<Value extends OptionLike>(menu: MenuItem<Value>[]) {
   return { optionItems, sections };
 }
 
-function buildRenderableList<Value extends OptionLike>(
-  sections: Array<MenuSection<Value> | MenuOptions<Value>>,
+function buildRenderableList<
+  Value extends OptionLike,
+  S extends object,
+  A extends object,
+>(
+  sections: Array<MenuSection<Value, S, A> | MenuOptions<Value, A>>,
   optionFilter?: (opt: Value) => boolean,
 ) {
-  const items: Array<RenderItem<Value>> = [];
+  const items: Array<RenderItem<Value, S, A>> = [];
 
   for (const group of sections) {
-    if ((group as MenuSection<Value>).type === "section") {
-      items.push({ kind: "section", section: group as MenuSection<Value> });
+    if ((group as MenuSection<Value, S, A>).type === "section") {
+      items.push({
+        kind: "section",
+        section: group as MenuSection<Value, S, A>,
+      });
     }
 
     const filtered = optionFilter
@@ -200,10 +210,7 @@ function buildRenderableList<Value extends OptionLike>(
 
     if (group.actionsBottom?.length) {
       for (const action of group.actionsBottom) {
-        items.push({
-          kind: "action",
-          action: action as MenuAction<Record<string, unknown>>,
-        });
+        items.push({ kind: "action", action: action as MenuAction<A> });
       }
     }
   }
@@ -211,10 +218,14 @@ function buildRenderableList<Value extends OptionLike>(
   return items;
 }
 
-function getNavigableItemAtIndex<Value extends OptionLike>(
+function getNavigableItemAtIndex<
+  Value extends OptionLike,
+  S extends object,
+  A extends object,
+>(
   activeIndex: number | null,
-  renderable: Array<RenderItem<Value>>,
-): RenderItem<Value> | null {
+  renderable: Array<RenderItem<Value, S, A>>,
+): RenderItem<Value, S, A> | null {
   if (activeIndex == null) return null;
 
   let navigableIndex = -1;
@@ -231,8 +242,12 @@ function getNavigableItemAtIndex<Value extends OptionLike>(
   return null;
 }
 
-function findNavigableIndexForValue<Value extends OptionLike>(
-  renderable: Array<RenderItem<Value>>,
+function findNavigableIndexForValue<
+  Value extends OptionLike,
+  S extends object,
+  A extends object,
+>(
+  renderable: Array<RenderItem<Value, S, A>>,
   equals: (a: Value, b: Value) => boolean,
   selectedValue: Value,
 ): number | null {
@@ -252,18 +267,21 @@ function findNavigableIndexForValue<Value extends OptionLike>(
   return null;
 }
 
-function invokeActiveItemOnEnter<Value extends OptionLike>(
+function invokeActiveItemOnEnter<
+  Value extends OptionLike,
+  S extends object,
+  A extends object,
+>(
   event: React.KeyboardEvent,
   activeIndex: number | null,
-  renderable: Array<RenderItem<Value>>,
+  renderable: Array<RenderItem<Value, S, A>>,
   onSelect: (option: Value) => void,
-  onAction: (action: {
-    onAction: () => void;
-    disabled?: boolean;
-    shouldClose?: boolean;
-  }) => void,
+  onAction: (action: ActionConfig) => void,
 ): void {
-  const activeItem = getNavigableItemAtIndex<Value>(activeIndex, renderable);
+  const activeItem = getNavigableItemAtIndex<Value, S, A>(
+    activeIndex,
+    renderable,
+  );
 
   if (!activeItem) return;
 
@@ -273,9 +291,8 @@ function invokeActiveItemOnEnter<Value extends OptionLike>(
     onSelect(activeItem.value);
   } else if (activeItem.kind === "action") {
     onAction({
-      onAction: activeItem.action.onClick,
-      disabled: activeItem.action.disabled,
-      shouldClose: activeItem.action.shouldClose,
+      run: activeItem.action.onClick,
+      closeOnRun: activeItem.action.shouldClose,
     });
   }
 }
@@ -286,11 +303,15 @@ function invokeActiveItemOnEnter<Value extends OptionLike>(
 export function useAutocomplete<
   Value extends OptionLike,
   Multiple extends boolean = false,
->(props: AutocompleteRebuiltProps<Value, Multiple>) {
+  SectionExtra extends object = Record<string, unknown>,
+  ActionExtra extends object = Record<string, unknown>,
+>(props: AutocompleteRebuiltProps<Value, Multiple, SectionExtra, ActionExtra>) {
   const {
     menu,
     getOptionLabel: getOptionLabelProp,
     getOptionKey: getOptionKeyProp,
+    getActionKey: getActionKeyProp,
+    getSectionKey: getSectionKeyProp,
     isOptionEqualToValue,
     inputValue,
     onInputChange,
@@ -319,6 +340,18 @@ export function useAutocomplete<
     [isOptionEqualToValue, getOptionLabel],
   );
 
+  const getActionKey = useCallback(
+    (action: MenuAction<ActionExtra>) =>
+      getActionKeyProp ? getActionKeyProp(action) : action.label,
+    [getActionKeyProp],
+  );
+
+  const getSectionKey = useCallback(
+    (section: MenuSection<Value, SectionExtra, ActionExtra>) =>
+      getSectionKeyProp ? getSectionKeyProp(section) : section.label,
+    [getSectionKeyProp],
+  );
+
   const isOptionSelected = useCallback(
     (opt: Value) => {
       if (multiple) {
@@ -333,7 +366,10 @@ export function useAutocomplete<
     [multiple, value, equals],
   );
 
-  const { sections, optionItems } = useMemo(() => flattenMenu(menu), [menu]);
+  const { sections, optionItems } = useMemo(
+    () => flattenMenu<Value, SectionExtra, ActionExtra>(menu),
+    [menu],
+  );
   // inputValue changes very often, is this worth memoizing?
   const exactLabelMatch = useMemo(() => {
     const inputEqualsOption = props.inputEqualsOption;
@@ -362,7 +398,10 @@ export function useAutocomplete<
         .includes(inputValue.toLowerCase());
     };
 
-    return buildRenderableList(sections, filterMethod);
+    return buildRenderableList<Value, SectionExtra, ActionExtra>(
+      sections,
+      filterMethod,
+    );
   }, [
     sections,
     props.filterOptions,
@@ -524,18 +563,12 @@ export function useAutocomplete<
   );
 
   const onAction = useCallback(
-    (action: {
-      onAction: () => void;
-      disabled?: boolean;
-      shouldClose?: boolean;
-    }) => {
-      if (action.disabled) return;
-
-      action.onAction();
+    (action: ActionConfig) => {
+      action.run();
 
       setActiveIndex(null);
 
-      if (action.shouldClose !== false) setOpen(false);
+      if (action.closeOnRun !== false) setOpen(false);
     },
     [setOpen, setActiveIndex],
   );
@@ -607,7 +640,7 @@ export function useAutocomplete<
 
     if (!open) return;
 
-    invokeActiveItemOnEnter<Value>(
+    invokeActiveItemOnEnter<Value, SectionExtra, ActionExtra>(
       event,
       activeIndex,
       renderable,
@@ -655,6 +688,8 @@ export function useAutocomplete<
     optionCount,
     getOptionLabel,
     getOptionKey,
+    getActionKey,
+    getSectionKey,
     isOptionSelected,
     // floating-ui
     refs,

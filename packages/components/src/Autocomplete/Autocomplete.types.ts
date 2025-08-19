@@ -238,7 +238,6 @@ export interface OptionLike {
 
 interface MenuActionBase {
   type: "action";
-  id: Key;
   label: string;
   /*
    * Determines if the menu should close when the action is used.
@@ -247,13 +246,16 @@ interface MenuActionBase {
    */
   shouldClose?: boolean;
   onClick: () => void;
-  // Does this make sense? Should you really show disabled actions or just not render them?
-  disabled?: boolean;
   icon?: string;
 }
 
 export type MenuAction<Extra extends object = Record<string, unknown>> =
   MenuActionBase & Extra;
+
+export interface ActionConfig {
+  run: () => void;
+  closeOnRun?: boolean;
+}
 
 export type MenuSection<
   T extends OptionLike,
@@ -261,7 +263,6 @@ export type MenuSection<
   ActionExtra extends object = Record<string, unknown>,
 > = SectionExtra & {
   type: "section";
-  id: Key;
   label: string;
   options: T[];
   // Rendered at the bottom of this section
@@ -358,6 +359,22 @@ interface AutocompleteRebuiltBaseProps<
    * Defaults to the option.label.
    */
   readonly getOptionKey?: (option: Value) => Key;
+
+  /**
+   * Used to determine the key for a given action. This can be useful when action labels
+   * are not unique (since labels are used as keys by default).
+   * Defaults to the action.label.
+   */
+  readonly getActionKey?: (action: MenuAction<ActionExtra>) => Key;
+
+  /**
+   * Used to determine the key for a given section. This can be useful when section labels
+   * are not unique (since labels are used as keys by default).
+   * Defaults to the section.label.
+   */
+  readonly getSectionKey?: (
+    section: MenuSection<Value, SectionExtra, ActionExtra>,
+  ) => Key;
 
   /*
    * Render prop to customize the rendering of an option.
@@ -582,14 +599,12 @@ export const menuSection = <
   SectionExtra extends object = Record<string, unknown>,
   ActionExtra extends object = Record<string, unknown>,
 >(
-  id: Key,
   label: string,
   options: T[],
   actionsBottom?: MenuAction<ActionExtra>[],
   extra?: SectionExtra,
 ): MenuSection<T, SectionExtra, ActionExtra> => ({
   type: "section",
-  id,
   label,
   options,
   actionsBottom,
