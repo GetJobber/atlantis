@@ -68,8 +68,13 @@ function injectReactNativeWebShims(): Plugin {
  * Remove any unnecessary plugins.
  */
 function removeUnnecessaryPlugins(plugins: PluginOption[]) {
-  return plugins.filter(
-    // This plugin parses all tsconfig.json files within the project, which is not needed.
-    (plugin: any) => plugin?.name !== "vite-tsconfig-paths"
-  );
+  return plugins.filter((plugin: PluginOption) => {
+    if (plugin && typeof plugin === "object") {
+      // This plugin parses all tsconfig.json files within the project, which is not needed.
+      if ('name' in plugin && plugin.name === "vite-tsconfig-paths") {
+        return false;
+      }
+    }
+    return true;
+  });
 }
