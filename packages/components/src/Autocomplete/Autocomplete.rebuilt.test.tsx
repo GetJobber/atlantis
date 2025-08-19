@@ -1352,7 +1352,7 @@ describe("AutocompleteRebuilt", () => {
       expect(screen.queryByText("Browse templates")).not.toBeInTheDocument();
     });
 
-    it("renders emptyActions (array) instead of empty state when there are no options", async () => {
+    it("renders emptyActions (array) together with empty message when there are no options", async () => {
       const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
 
       const create = jest.fn();
@@ -1371,8 +1371,8 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete("arrowDown");
       await expectMenuShown();
 
-      // Empty state suppressed
-      expect(screen.queryByText("No options")).not.toBeInTheDocument();
+      // Empty message shown alongside actions by default
+      expect(screen.getByText("No options")).toBeVisible();
 
       // Actions are present and navigable
       expect(screen.getByText("Create new")).toBeVisible();
@@ -1410,6 +1410,64 @@ describe("AutocompleteRebuilt", () => {
       await navigateDown(1);
       await selectWithKeyboard();
       expect(create).toHaveBeenCalled();
+    });
+
+    it("can render emptyActions distinctly from standard actions", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>(
+              "Hello from a section",
+              [{ label: "One" }, { label: "Two" }],
+              [{ type: "action", label: "Create new", onClick: jest.fn() }],
+            ),
+          ]}
+          emptyActions={[
+            { type: "action", label: "Browse templates", onClick: jest.fn() },
+          ]}
+          renderAction={({ value, origin }) => {
+            if (origin === "empty") {
+              return <strong data-testid="empty-action">{value.label}</strong>;
+            }
+
+            return <div data-testid="regular-action">{value.label}</div>;
+          }}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      expect(screen.getByTestId("regular-action")).toBeVisible();
+
+      await typeInInput("something with no matches");
+
+      expect(screen.getByTestId("empty-action")).toBeVisible();
+      expect(screen.queryByTestId("regular-action")).not.toBeInTheDocument();
+    });
+
+    it("can suppress empty message when emptyState=false while showing emptyActions", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+      const create = jest.fn();
+
+      render(
+        <Wrapper
+          menu={emptyMenu}
+          emptyState={false}
+          emptyActions={[
+            { type: "action", label: "Create new", onClick: create },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      // Empty message suppressed
+      expect(screen.queryByText("No options")).not.toBeInTheDocument();
+
+      // Action visible
+      expect(screen.getByText("Create new")).toBeVisible();
     });
   });
 

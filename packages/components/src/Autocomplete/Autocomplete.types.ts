@@ -436,16 +436,16 @@ interface AutocompleteRebuiltBaseProps<
    * Render a custom empty state when the menu is empty.
    * NOTE: Do not put interactive elements in the empty state, it will break accessibility.
    * If you require interactive elements in the empty state, use the `emptyActions` prop.
+   * To opt out of the default empty state message entirely use "false".
    *
    * @default string "No options"
    */
-  readonly emptyState?: React.ReactNode;
+  readonly emptyStateMessage?: React.ReactNode;
 
   /*
    * Actions to display when there are no options to render after filtering.
    * Can be a static list or a function that derives actions from the current input value.
-   * When provided and options are empty, these are rendered as navigable actions
-   * instead of the emptyState.
+   * When provided and options are empty, these are rendered as navigable actions. Compatible with or without `emptyStateMessage`.
    */
   readonly emptyActions?:
     | MenuAction<ActionExtra>[]

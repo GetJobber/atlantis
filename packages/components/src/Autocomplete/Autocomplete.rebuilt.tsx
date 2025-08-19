@@ -61,6 +61,7 @@ function AutocompleteRebuiltInternal<
 
   const {
     renderable,
+    optionCount,
     getOptionLabel,
     getOptionKey,
     isOptionSelected,
@@ -126,6 +127,8 @@ function AutocompleteRebuiltInternal<
     props.UNSAFE_className?.menu,
   );
 
+  const showEmptyStateMessage = optionCount === 0 && props.emptyState !== false;
+
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
       {renderInput ? (
@@ -154,48 +157,55 @@ function AutocompleteRebuiltInternal<
             >
               {loading ? (
                 <LoadingContent />
-              ) : renderable.length === 0 ? (
-                <BasicEmptyStateContent emptyState={props.emptyState} />
               ) : (
-                <MenuList<Value>
-                  items={renderable}
-                  activeIndex={activeIndex}
-                  getItemProps={() =>
-                    getItemProps({
-                      ref(node: HTMLElement | null) {
-                        const idx = Number(node?.getAttribute("data-index"));
+                <>
+                  {showEmptyStateMessage && (
+                    <EmptyStateMessage emptyState={props.emptyState} />
+                  )}
+                  {renderable.length > 0 && (
+                    <MenuList<Value>
+                      items={renderable}
+                      activeIndex={activeIndex}
+                      getItemProps={() =>
+                        getItemProps({
+                          ref(node: HTMLElement | null) {
+                            const idx = Number(
+                              node?.getAttribute("data-index"),
+                            );
 
-                        if (!Number.isNaN(idx)) {
-                          listRef.current[idx] = node;
-                        }
-                      },
-                    })
-                  }
-                  renderOption={renderOption}
-                  renderSection={renderSection}
-                  renderAction={renderAction}
-                  getOptionLabel={getOptionLabel}
-                  getOptionKey={getOptionKey}
-                  getActionKey={action => action.label}
-                  getSectionKey={section => section.label}
-                  onSelect={onSelection}
-                  onAction={onAction}
-                  isOptionSelected={isOptionSelected}
-                  slotOverrides={{
-                    option: {
-                      className: props.UNSAFE_className?.option,
-                      style: props.UNSAFE_styles?.option,
-                    },
-                    action: {
-                      className: props.UNSAFE_className?.action,
-                      style: props.UNSAFE_styles?.action,
-                    },
-                    section: {
-                      className: props.UNSAFE_className?.section,
-                      style: props.UNSAFE_styles?.section,
-                    },
-                  }}
-                />
+                            if (!Number.isNaN(idx)) {
+                              listRef.current[idx] = node;
+                            }
+                          },
+                        })
+                      }
+                      renderOption={renderOption}
+                      renderSection={renderSection}
+                      renderAction={renderAction}
+                      getOptionLabel={getOptionLabel}
+                      getOptionKey={getOptionKey}
+                      getActionKey={action => action.label}
+                      getSectionKey={section => section.label}
+                      onSelect={onSelection}
+                      onAction={onAction}
+                      isOptionSelected={isOptionSelected}
+                      slotOverrides={{
+                        option: {
+                          className: props.UNSAFE_className?.option,
+                          style: props.UNSAFE_styles?.option,
+                        },
+                        action: {
+                          className: props.UNSAFE_className?.action,
+                          style: props.UNSAFE_styles?.action,
+                        },
+                        section: {
+                          className: props.UNSAFE_className?.section,
+                          style: props.UNSAFE_styles?.section,
+                        },
+                      }}
+                    />
+                  )}
+                </>
               )}
             </div>
           </FloatingFocusManager>
@@ -215,11 +225,7 @@ function LoadingContent() {
   );
 }
 
-/*
- * Basic empty state content used when no emptyActions are provided.
- * If emptyActions are provided, the emptyState is not rendered.
- */
-function BasicEmptyStateContent({
+function EmptyStateMessage({
   emptyState,
 }: {
   readonly emptyState: React.ReactNode;
