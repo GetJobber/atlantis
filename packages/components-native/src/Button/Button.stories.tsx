@@ -9,7 +9,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const BasicTemplate = args => <Button {...args} />;
+const BasicTemplate = (args: Story["args"]) => <Button {...args} />;
 
 export const Basic: Story = {
   render: BasicTemplate,
