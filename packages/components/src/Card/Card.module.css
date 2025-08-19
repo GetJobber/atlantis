@@ -1,3 +1,5 @@
+/* stylelint-disable color-no-hex */
+
 .card {
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
@@ -58,4 +60,61 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--space-small);
+}
+
+.ai {
+  border: var(--border-base) solid var(--color-ai--surface--bold);
+}
+
+@property --rotate-ai-animated {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+.ai-animated {
+  position: relative;
+  padding: var(--border-base);
+  border: none;
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+}
+
+.ai-animated::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  margin: var(--border-base);
+  border-radius: inherit;
+  background-image: conic-gradient(
+    from var(--rotate-ai-animated),
+    #3fb1c4,
+    #3fb1c4,
+    #bb4113,
+    #f15f1b,
+    #ffffd3,
+    #f15f1b,
+    #bb4113,
+    #3fb1c4,
+    #4b8f9d,
+    #bb4113,
+    #f15f1b,
+    #ffffd3,
+    #f15f1b,
+    #bb4113,
+    #3fb1c4,
+    #4b8f9d
+  );
+  animation: ai-animated-spin 3.5s linear infinite;
+  inset: calc(-1 * var(--border-thick));
+}
+
+@keyframes ai-animated-spin {
+  0% {
+    --rotate-ai-animated: 0deg;
+  }
+
+  100% {
+    --rotate-ai-animated: 360deg;
+  }
 }

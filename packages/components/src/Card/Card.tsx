@@ -149,6 +149,7 @@ export function Card(props: CardPropOptions) {
     onClick,
     url,
     external,
+    variation,
   } = props;
 
   const className = classnames(
@@ -157,6 +158,7 @@ export function Card(props: CardPropOptions) {
     (url || onClick) && styles.clickable,
     accent && colors[accent],
     elevation !== "none" && elevations[`${elevation}Elevation`],
+    variation && styles[variation],
   );
 
   const isUsingCompoundPattern = React.Children.toArray(children).some(

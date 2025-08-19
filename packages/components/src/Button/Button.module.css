@@ -78,6 +78,11 @@ a.button:active {
   --public--button--color-variation--hover: var(--color-destructive--hover);
 }
 
+.ai {
+  --public--button--color-variation: var(--color-interactive--ai);
+  --public--button--color-variation--hover: var(--color-interactive--ai--hover);
+}
+
 /* Type */
 
 .primary:not(.subtle, .disabled),

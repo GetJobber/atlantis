@@ -3,6 +3,8 @@ declare const styles: {
   readonly "accent": string;
   readonly "clickable": string;
   readonly "header": string;
+  readonly "ai": string;
+  readonly "ai-animated": string;
 };
 export = styles;
 

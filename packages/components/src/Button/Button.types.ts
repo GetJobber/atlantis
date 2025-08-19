@@ -6,7 +6,12 @@ import type { TypographyProps } from "../Typography/Typography";
 import type { IconProps } from "../Icon/Icon";
 
 export type HTMLButtonType = "button" | "submit";
-export type ButtonVariation = "work" | "learning" | "subtle" | "destructive";
+export type ButtonVariation =
+  | "work"
+  | "learning"
+  | "subtle"
+  | "destructive"
+  | "ai";
 export type ButtonSize = "small" | "base" | "large";
 export type ButtonType = "primary" | "secondary" | "tertiary";
 

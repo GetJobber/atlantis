@@ -38,6 +38,7 @@ export interface CardProps {
    */
   readonly header?: string | HeaderActionProps | ReactElement;
   readonly elevation?: elevationProp;
+  readonly variation?: "ai" | "ai-animated";
 }
 
 export interface CardHeaderProps {
