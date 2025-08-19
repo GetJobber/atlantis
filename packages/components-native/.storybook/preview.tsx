@@ -33,6 +33,7 @@ const preview: Preview = {
   },
   initialGlobals: {
     theme: 'light',
+    viewport: { value: 'mobile1' },
   },
   decorators: [
     (Story, context) => (
