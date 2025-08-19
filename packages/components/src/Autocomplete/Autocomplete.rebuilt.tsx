@@ -72,6 +72,7 @@ function AutocompleteRebuiltInternal<
     onAction,
     onInputChangeFromUser,
     onInputBlur,
+    onInputFocus,
     onInputKeyDown,
     setReferenceElement,
   } = useAutocomplete<Value, Multiple>(props);
@@ -79,17 +80,21 @@ function AutocompleteRebuiltInternal<
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
-    onChange: onInputChangeFromUser,
+    onChange: props.readOnly ? undefined : onInputChangeFromUser,
     onBlur: onInputBlur,
-    onFocus: props.onFocus,
+    onFocus: onInputFocus,
     placeholder,
     disabled,
+    readOnly: props.readOnly,
     error: error ?? undefined,
+    name: props.name,
     invalid,
     description,
     size: sizeProp === "base" ? undefined : sizeProp,
     clearable: clearable ? "while-editing" : undefined,
-    ...getReferenceProps({ onKeyDown: onInputKeyDown }),
+    ...(!props.readOnly
+      ? getReferenceProps({ onKeyDown: onInputKeyDown })
+      : {}),
   };
 
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
@@ -116,7 +121,7 @@ function AutocompleteRebuiltInternal<
       ) : (
         <InputText ref={mergedInputRef} {...inputProps} />
       )}
-      {open && (
+      {open && !props.readOnly && (
         <FloatingPortal>
           <FloatingFocusManager
             context={context}

@@ -315,11 +315,11 @@ interface AutocompleteRebuiltBaseProps<
   readonly onInputChange: (value: string) => void;
 
   /*
-   * TODO decide if blur means the input or the overall autocomplete
+   * Callback invoked when the input is blurred.
    */
   readonly onBlur?: () => void;
   /*
-   * TODO decide if focus means the input or the overall autocomplete
+   * Callback invoked when the input is focused.
    */
   readonly onFocus?: () => void;
 
@@ -464,33 +464,25 @@ interface AutocompleteRebuiltBaseProps<
   readonly invalid?: boolean;
   /*
    * Whether the input is read-only.
-   * TODO: implement
    * @default false
    */
-  readonly readonly?: boolean;
-  /*
-   * Whether the input is required.
-   * TODO: implement, maybe
-   */
-  readonly required?: boolean;
+  readonly readOnly?: boolean;
   /*
    * Description to display below the input
    */
   readonly description?: string;
   /*
-   * TODO: implement
    * Name of the input for form submission
    */
   readonly name?: string;
   /*
    * Size of the input
-   * TODO: implement?
    */
   readonly size?: "small" | "base" | "large";
 
   /*
    * Whether the input is clearable.
-   * TODO: implement
+   * TODO: implement (issue with width)
    */
   readonly clearable?: boolean;
 

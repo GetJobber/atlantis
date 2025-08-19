@@ -70,8 +70,11 @@ function buildMenu(overrides?: {
 
 function Wrapper<T extends OptionLike>({
   initialValue,
+  initialInputValue,
   onChange,
   onInputChange,
+  onBlur,
+  onFocus,
   menu,
   openOnFocus,
   filterOptions,
@@ -84,11 +87,14 @@ function Wrapper<T extends OptionLike>({
   ref,
   UNSAFE_className,
   UNSAFE_styles,
+  readOnly,
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
   readonly onChange?: (v: T | undefined) => void;
   readonly onInputChange?: (v: string) => void;
+  readonly onBlur?: () => void;
+  readonly onFocus?: () => void;
   readonly menu?: MenuItem<T>[];
   readonly openOnFocus?: boolean;
   readonly filterOptions?: false | ((o: T, i: string) => boolean);
@@ -104,10 +110,11 @@ function Wrapper<T extends OptionLike>({
     false
   >["UNSAFE_className"];
   readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, false>["UNSAFE_styles"];
+  readonly readOnly?: boolean;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
-    initialValue?.label ?? "",
+    initialInputValue ?? initialValue?.label ?? "",
   );
   const built = React.useMemo(() => buildMenu(), []);
 
@@ -118,6 +125,8 @@ function Wrapper<T extends OptionLike>({
       onChange={onChange ?? setValue}
       inputValue={inputValue}
       onInputChange={onInputChange ?? setInputValue}
+      onBlur={onBlur}
+      onFocus={onFocus}
       menu={menu ?? (built.menu as unknown as MenuItem<T>[])}
       placeholder=""
       openOnFocus={openOnFocus}
@@ -131,6 +140,7 @@ function Wrapper<T extends OptionLike>({
       ref={ref}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_styles={UNSAFE_styles}
+      readOnly={readOnly}
     />
   );
 }
@@ -576,6 +586,46 @@ describe("AutocompleteRebuilt", () => {
 
       expect(activeOption).not.toBeNull();
       expect(activeOption?.textContent).toContain("Two");
+    });
+  });
+
+  describe("readOnly", () => {
+    it("does not open on focus, arrows, or typing when readOnly", async () => {
+      render(<Wrapper openOnFocus readOnly />);
+
+      await focusAutocomplete();
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+      await openAutocomplete("arrowDown");
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+      await openAutocomplete("arrowUp");
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+      await openAutocomplete("type", "Two");
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    });
+
+    it("still calls onBlur when readOnly", async () => {
+      const onBlur = jest.fn();
+
+      render(<Wrapper readOnly onBlur={onBlur} />);
+
+      await focusAutocomplete();
+      await blurAutocomplete();
+
+      expect(onBlur).toHaveBeenCalled();
+    });
+
+    it("still calls onFocus when readOnly", async () => {
+      const onFocus = jest.fn();
+
+      render(<Wrapper openOnFocus readOnly onFocus={onFocus} />);
+
+      await focusAutocomplete();
+
+      expect(onFocus).toHaveBeenCalled();
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
     });
   });
 
@@ -1437,6 +1487,29 @@ describe("AutocompleteRebuilt", () => {
           .getAllByTestId("ATL-AutocompleteRebuilt-Action")
           .every(action => action.style.backgroundColor === "red"),
       ).toBe(true);
+    });
+  });
+
+  describe("onFocus/onBlur", () => {
+    it("calls onFocus when the input is focused", async () => {
+      const onFocus = jest.fn();
+
+      render(<Wrapper onFocus={onFocus} />);
+
+      await focusAutocomplete();
+
+      expect(onFocus).toHaveBeenCalled();
+    });
+
+    it("calls onBlur when the input is blurred", async () => {
+      const onBlur = jest.fn();
+
+      render(<Wrapper onBlur={onBlur} />);
+
+      await focusAutocomplete();
+      await blurAutocomplete();
+
+      expect(onBlur).toHaveBeenCalled();
     });
   });
 

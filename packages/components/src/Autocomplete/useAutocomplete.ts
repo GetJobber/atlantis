@@ -339,6 +339,7 @@ export function useAutocomplete<
     onChange,
     multiple,
     openOnFocus = false,
+    readOnly = false,
   } = props;
 
   const getOptionLabel = useCallback(
@@ -465,7 +466,7 @@ export function useAutocomplete<
     setOpen,
     setReferenceElement,
   } = useAutocompleteListNav({
-    openOnFocus,
+    openOnFocus: openOnFocus && !readOnly,
     optionCount,
     shouldResetActiveIndexOnClose: () => !hasSelection,
     onMenuClose: () => {
@@ -493,6 +494,8 @@ export function useAutocomplete<
 
       return;
     }
+
+    if (readOnly) return;
 
     const hasText = inputValue.trim().length > 0;
 
@@ -621,7 +624,17 @@ export function useAutocomplete<
     return true;
   }
 
+  const onInputFocus = useCallback(() => {
+    props.onFocus?.();
+  }, [readOnly, props.onFocus]);
+
   const onInputBlur = useCallback(() => {
+    if (readOnly) {
+      props.onBlur?.();
+
+      return;
+    }
+
     const allowFreeForm = props.allowFreeForm === true;
 
     if (allowFreeForm) {
@@ -633,7 +646,7 @@ export function useAutocomplete<
       }
     }
     props.onBlur?.();
-  }, [props.allowFreeForm, inputValue, props.onBlur]);
+  }, [readOnly, props.allowFreeForm, inputValue, props.onBlur]);
 
   function handleArrowNavigation(key: string, event: React.KeyboardEvent) {
     if (!open) {
@@ -735,6 +748,7 @@ export function useAutocomplete<
     // input handlers
     onInputChangeFromUser,
     onInputBlur,
+    onInputFocus,
     onInputKeyDown,
     // ref attachment
     setReferenceElement,
