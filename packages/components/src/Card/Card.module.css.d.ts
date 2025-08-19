@@ -5,6 +5,7 @@ declare const styles: {
   readonly "header": string;
   readonly "ai": string;
   readonly "ai-animated": string;
+  readonly "ai-animated-spin": string;
 };
 export = styles;
 
