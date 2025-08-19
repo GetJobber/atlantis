@@ -509,7 +509,6 @@ export function useAutocomplete<
     }
   }
 
-  // TODO: document what "commit" means
   function tryCommitFreeFormOnEnter(): boolean {
     if (props.allowFreeForm !== true) return false;
     if (open && activeIndex != null) return false;

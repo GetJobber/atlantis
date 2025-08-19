@@ -388,7 +388,6 @@ function handleOptionRendering<T extends OptionLike>({
         key={`opt-${getOptionKey(option)}`}
         role="option"
         tabIndex={-1}
-        // TODO selected attrs
         className={classNames(
           styles.option,
           isActive && styles.optionActive,
