@@ -1,5 +1,3 @@
-/* stylelint-disable color-no-hex */
-
 .card {
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
@@ -88,22 +86,24 @@
   border-radius: inherit;
   background-image: conic-gradient(
     from var(--rotate-ai-animated),
-    #3fb1c4,
-    #3fb1c4,
-    #bb4113,
-    #f15f1b,
-    #ffffd3,
-    #f15f1b,
-    #bb4113,
-    #3fb1c4,
-    #4b8f9d,
-    #bb4113,
-    #f15f1b,
-    #ffffd3,
-    #f15f1b,
-    #bb4113,
-    #3fb1c4,
-    #4b8f9d
+    var(--color-base-teal--600),
+    var(--color-base-teal--500),
+    var(--color-base-red--600),
+    var(--color-base-orange--500),
+    var(--color-base-yellow--200),
+    var(--color-base-red--600),
+    var(--color-base-orange--500),
+    var(--color-base-teal--600),
+    var(--color-base-teal--500),
+    var(--color-base-teal--600),
+    var(--color-base-teal--500),
+    var(--color-base-red--600),
+    var(--color-base-orange--500),
+    var(--color-base-yellow--200),
+    var(--color-base-red--600),
+    var(--color-base-orange--500),
+    var(--color-base-teal--600),
+    var(--color-base-teal--500)
   );
   animation: ai-animated-spin 3.5s linear infinite;
   inset: calc(-1 * var(--border-thick));
