@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 274 more ... | \"client--onSurface\""
+          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 280 more ... | \"client--onSurface\""
         }
       },
       "border": {
@@ -55,7 +55,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 274 more ... | \"client--onSurface\""
+          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 280 more ... | \"client--onSurface\""
         }
       },
       "direction": {

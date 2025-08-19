@@ -211,7 +211,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"success\" | \"warning\" | \"icon\" | \"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | ... 272 more ... | \"client--onSurface\""
+          "name": "\"success\" | \"warning\" | \"icon\" | \"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | ... 278 more ... | \"client--onSurface\""
         }
       },
       "UNSAFE_className": {
@@ -278,7 +278,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"success\" | \"warning\" | \"icon\" | \"blue\" | \"green\" | \"yellow\" | \"red\" | \"grey\" | \"white\" | \"greyBlue\" | \"lightBlue\" | \"orange\" | \"navy\" | \"interactive\" | \"destructive\" | \"disabled\" | ... 33 more ... | \"brandHighlight\""
+          "name": "\"success\" | \"warning\" | \"icon\" | \"blue\" | \"green\" | \"yellow\" | \"red\" | \"grey\" | \"white\" | \"greyBlue\" | \"lightBlue\" | \"orange\" | \"navy\" | \"interactive\" | \"destructive\" | \"disabled\" | ... 36 more ... | \"aiOnSurface\""
         }
       },
       "customColor": {
