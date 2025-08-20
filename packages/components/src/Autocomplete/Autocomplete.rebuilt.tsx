@@ -161,6 +161,7 @@ function AutocompleteRebuiltInternal<
             modal={false}
             initialFocus={-1}
             closeOnFocusOut
+            returnFocus={false}
           >
             <div
               ref={refs.setFloating}
@@ -643,7 +644,12 @@ function PersistentRegion<T extends OptionLike>({
   let navigableIndex = -1;
 
   return (
-    <div className={className} style={style} data-region={position}>
+    <div
+      className={className}
+      style={style}
+      data-region={position}
+      data-testid={`ATL-AutocompleteRebuilt-Persistent-${position}`}
+    >
       {items.map((p, i) => {
         const interactive = Boolean(p.onClick);
         let itemNode: React.ReactNode;
