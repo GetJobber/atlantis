@@ -3,7 +3,6 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import {
-  type AutocompleteRebuiltProps,
   type MenuItem,
   type MenuSection,
   type OptionLike,
@@ -28,136 +27,10 @@ import {
   selectWithKeyboard,
   typeInInput,
 } from "./Autocomplete.pom";
+import { FreeFormWrapper, Wrapper } from "./tests/Autocomplete.setup";
 import { InputText } from "../InputText";
 import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
-const ACTION1_LABEL = "Create";
-const ACTION2_LABEL = "Stay Open";
-
-interface TestOption {
-  label: string;
-  special?: boolean;
-}
-
-// TODO: allow opting out of actions
-// and sections
-// and clearly define how many of each are rendered so the test is easy to read
-function buildMenu(overrides?: {
-  createAction?: jest.Mock;
-  stayOpenAction?: jest.Mock;
-}) {
-  const createAction = overrides?.createAction ?? jest.fn();
-  const stayOpenAction = overrides?.stayOpenAction ?? jest.fn();
-
-  return {
-    menu: [
-      menuOptions<OptionLike>(
-        [{ label: "One" }, { label: "Two" }, { label: "Three" }],
-        [
-          {
-            type: "action",
-            label: ACTION1_LABEL,
-            onClick: createAction,
-          },
-          {
-            type: "action",
-            label: ACTION2_LABEL,
-            onClick: stayOpenAction,
-            shouldClose: false,
-          },
-        ],
-      ),
-    ],
-    createAction,
-    stayOpenAction,
-  };
-}
-
-function Wrapper<T extends OptionLike>({
-  initialValue,
-  initialInputValue,
-  onChange,
-  onInputChange,
-  onBlur,
-  onFocus,
-  menu,
-  openOnFocus,
-  filterOptions,
-  emptyActions,
-  renderOption,
-  renderAction,
-  renderSection,
-  renderInput,
-  loading,
-  emptyStateMessage,
-  ref,
-  UNSAFE_className,
-  UNSAFE_styles,
-  readOnly,
-  renderPersistent,
-}: {
-  readonly initialValue?: T;
-  readonly initialInputValue?: string;
-  readonly onChange?: (v: T | undefined) => void;
-  readonly onInputChange?: (v: string) => void;
-  readonly onBlur?: () => void;
-  readonly onFocus?: () => void;
-  readonly menu?: MenuItem<T>[];
-  readonly openOnFocus?: boolean;
-  readonly filterOptions?: false | ((opts: T[], input: string) => T[]);
-  readonly emptyActions?: AutocompleteRebuiltProps<T, false>["emptyActions"];
-  readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
-  readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
-  readonly renderInput?: AutocompleteRebuiltProps<T, false>["renderInput"];
-  readonly renderPersistent?: AutocompleteRebuiltProps<
-    T,
-    false
-  >["renderPersistent"];
-  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
-  readonly loading?: boolean;
-  readonly emptyStateMessage?: React.ReactNode;
-  readonly ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
-  readonly UNSAFE_className?: AutocompleteRebuiltProps<
-    T,
-    false
-  >["UNSAFE_className"];
-  readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, false>["UNSAFE_styles"];
-  readonly readOnly?: boolean;
-}) {
-  const [value, setValue] = React.useState<T | undefined>(initialValue);
-  const [inputValue, setInputValue] = React.useState<string>(
-    initialInputValue ?? initialValue?.label ?? "",
-  );
-  const built = React.useMemo(() => buildMenu(), []);
-
-  return (
-    <AutocompleteRebuilt
-      version={2}
-      value={value}
-      onChange={onChange ?? setValue}
-      inputValue={inputValue}
-      onInputChange={onInputChange ?? setInputValue}
-      onBlur={onBlur}
-      onFocus={onFocus}
-      menu={menu ?? (built.menu as MenuItem<T>[])}
-      placeholder=""
-      openOnFocus={openOnFocus}
-      filterOptions={filterOptions}
-      emptyActions={emptyActions}
-      renderOption={renderOption}
-      renderAction={renderAction}
-      renderSection={renderSection}
-      renderInput={renderInput}
-      loading={loading}
-      emptyStateMessage={emptyStateMessage}
-      ref={ref}
-      UNSAFE_className={UNSAFE_className}
-      UNSAFE_styles={UNSAFE_styles}
-      readOnly={readOnly}
-      renderPersistent={renderPersistent}
-    />
-  );
-}
 // They're tests, limit isn't helpful here
 // eslint-disable-next-line max-statements
 describe("AutocompleteRebuilt", () => {
@@ -170,8 +43,9 @@ describe("AutocompleteRebuilt", () => {
     it("renders 3 Glimmers when open and loading is true", async () => {
       render(<Wrapper loading />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
+      // Wait for menu
       await expectMenuShown();
       expect(screen.getAllByTestId(GLIMMER_TEST_ID)).toHaveLength(3);
     });
@@ -179,76 +53,114 @@ describe("AutocompleteRebuilt", () => {
     it("does not render Glimmers when loading is false or omitted", async () => {
       render(<Wrapper />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
+      // Wait for menu
       await expectMenuShown();
       expect(screen.queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
     });
   });
 
-  describe("standard open behavior", () => {
-    it("opens the menu when arrowUp is pressed", async () => {
+  describe("basic open behavior", () => {
+    it("opens on click", async () => {
       render(<Wrapper />);
+
+      await openAutocomplete();
+
+      await expectMenuShown();
+    });
+
+    it("opens on tab", async () => {
+      render(<Wrapper />);
+
+      await userEvent.tab();
+
+      await expectMenuShown();
+    });
+  });
+
+  describe("openOnFocus=false", () => {
+    it("opens the menu when arrowUp is pressed", async () => {
+      render(<Wrapper openOnFocus={false} />);
+
       await openAutocomplete("arrowUp");
-      await navigateDown(1);
 
       await expectMenuShown();
     });
 
     it("opens the menu when arrowDown is pressed", async () => {
-      render(<Wrapper />);
+      render(<Wrapper openOnFocus={false} />);
+
       await openAutocomplete("arrowDown");
-      await navigateDown(1);
 
       await expectMenuShown();
     });
 
     it("opens the menu when user types", async () => {
-      render(<Wrapper />);
-      await openAutocomplete("type", "o");
-      await navigateDown(1);
+      render(<Wrapper openOnFocus={false} />);
+
+      await openAutocomplete("type", "Two");
 
       await expectMenuShown();
     });
+
+    it("does not select on Enter when menu is closed and free-form is disabled", async () => {
+      const onChange = jest.fn();
+
+      render(<Wrapper onChange={onChange} openOnFocus={false} />);
+
+      await focusAutocomplete();
+
+      await expectMenuClosed();
+
+      await selectWithKeyboard();
+      await expectMenuClosed();
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
   });
 
-  it("selects the highlighted option on Enter and closes", async () => {
-    const onChange = jest.fn();
+  describe("basic selection interactions", () => {
+    it("selects the highlighted option on Enter and closes", async () => {
+      const onChange = jest.fn();
 
-    render(<Wrapper onChange={onChange} />);
+      render(<Wrapper onChange={onChange} />);
 
-    await openAutocomplete("arrowDown");
-    await navigateDown(1);
-    await selectWithKeyboard();
+      await openAutocomplete();
+      // Not waiting?
+      await navigateDown(1);
+      await selectWithKeyboard();
 
-    expect(onChange).toHaveBeenCalledWith({ label: "One" });
-    await expectMenuClosed();
-  });
+      expect(onChange).toHaveBeenCalledWith({ label: "One" });
+      await expectMenuClosed();
+    });
 
-  it("selects an option on click and closes", async () => {
-    const onChange = jest.fn();
+    it("selects an option on click and closes", async () => {
+      const onChange = jest.fn();
 
-    render(<Wrapper onChange={onChange} />);
+      render(<Wrapper onChange={onChange} />);
 
-    await openAutocomplete("arrowDown");
-    await selectWithClick("Two");
+      await openAutocomplete();
+      // Not waiting?
+      await selectWithClick("Two");
 
-    expect(onChange).toHaveBeenCalledWith({ label: "Two" });
-    await expectMenuClosed();
-  });
+      expect(onChange).toHaveBeenCalledWith({ label: "Two" });
+      await expectMenuClosed();
+    });
 
-  it("does not select on Enter when menu is closed and free-form is disabled", async () => {
-    const onChange = jest.fn();
+    it("does not auto-reopen from programmatic input update after selection", async () => {
+      const onChange = jest.fn();
 
-    render(<Wrapper onChange={onChange} />);
+      render(<Wrapper onChange={onChange} />);
 
-    await focusAutocomplete();
-    // Menu should remain closed on focus when openOnFocus is false
-    await expectMenuClosed();
+      await openAutocomplete();
+      // Not waiting?
+      await navigateDown(1);
+      await selectWithKeyboard();
 
-    await selectWithKeyboard();
-
-    expect(onChange).not.toHaveBeenCalled();
+      expect(onChange).toHaveBeenCalledWith({ label: "One" });
+      await expectMenuClosed();
+    });
   });
 
   it("does not select on Enter after menu was manually closed (free-form disabled)", async () => {
@@ -256,12 +168,13 @@ describe("AutocompleteRebuilt", () => {
 
     render(<Wrapper onChange={onChange} />);
 
-    await openAutocomplete("arrowDown");
+    await openAutocomplete();
     await navigateDown(1);
+    // Wait for menu
     await screen.findByRole("listbox");
 
     await closeAutocomplete();
-
+    // Wait for menu close
     await expectMenuClosed();
 
     await selectWithKeyboard();
@@ -282,7 +195,7 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowUp");
+      await openAutocomplete();
 
       await waitFor(() => {
         expect(screen.getByText("Hello from a section")).toBeVisible();
@@ -292,7 +205,7 @@ describe("AutocompleteRebuilt", () => {
       });
     });
 
-    it("renders actions within sections", async () => {
+    it("renders sections actions", async () => {
       render(
         <Wrapper
           menu={[
@@ -311,7 +224,7 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowUp");
+      await openAutocomplete();
 
       await waitFor(() => {
         expect(screen.getByText("Hello from a section")).toBeVisible();
@@ -320,28 +233,30 @@ describe("AutocompleteRebuilt", () => {
         expect(screen.getByText("Experience the high tide")).toBeVisible();
       });
     });
-
-    it("renders section actions and actions on the root", async () => {
+    // Many interactions in the test
+    // This is verifying both the order and arrow navigation/activeIndex
+    // eslint-disable-next-line max-statements
+    it("renders sections actions in the expected order", async () => {
       render(
         <Wrapper
           menu={[
-            menuSection<OptionLike>(
-              "Hello from a section",
-              [{ label: "Krabby" }, { label: "Patty" }],
+            menuOptions<OptionLike>(
+              [{ label: "First Option" }],
               [
                 {
                   type: "action",
-                  label: "Experience the high tide",
+                  label: "First Action",
                   onClick: jest.fn(),
                 },
               ],
             ),
-            menuOptions<OptionLike>(
-              [{ label: "One" }, { label: "Two" }],
+            menuSection<OptionLike>(
+              "Hello from a section",
+              [{ label: "First Section Option" }],
               [
                 {
                   type: "action",
-                  label: "Experience the low tide",
+                  label: "First Section Action",
                   onClick: jest.fn(),
                 },
               ],
@@ -350,15 +265,36 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowUp");
+      await openAutocomplete();
+      // Not waiting?
 
-      await waitFor(() => {
-        expect(screen.getByText("Hello from a section")).toBeVisible();
-        expect(screen.getByText("Krabby")).toBeVisible();
-        expect(screen.getByText("Patty")).toBeVisible();
-        expect(screen.getByText("Experience the high tide")).toBeVisible();
-        expect(screen.getByText("Experience the low tide")).toBeVisible();
-      });
+      await navigateDown(1);
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("First Option");
+
+      await navigateDown(1);
+
+      const firstAction = getActiveAction();
+
+      expect(firstAction).not.toBeNull();
+      expect(firstAction?.textContent).toContain("First Action");
+
+      await navigateDown(1);
+
+      const secondOption = getActiveOption();
+
+      expect(secondOption).not.toBeNull();
+      expect(secondOption?.textContent).toContain("First Section Option");
+
+      await navigateDown(1);
+
+      const secondAction = getActiveAction();
+
+      expect(secondAction).not.toBeNull();
+      expect(secondAction?.textContent).toContain("First Section Action");
     });
 
     it("does not render empty sections", async () => {
@@ -368,7 +304,8 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowUp");
+      await openAutocomplete();
+      // Wait for menu
       await screen.findByRole("listbox");
 
       expect(
@@ -390,7 +327,8 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowUp");
+      await openAutocomplete();
+      // Wait for menu
       await screen.findByRole("listbox");
 
       await typeInInput("T");
@@ -401,13 +339,28 @@ describe("AutocompleteRebuilt", () => {
 
   describe("actions", () => {
     it("invokes action on Enter and closes when shouldClose is true/undefined", async () => {
-      const { menu, createAction } = buildMenu();
+      const createAction = jest.fn();
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }],
+              actionsBottom: [
+                {
+                  type: "action",
+                  label: "Create Action",
+                  onClick: createAction,
+                },
+              ],
+            },
+          ]}
+        />,
+      );
 
-      render(<Wrapper menu={menu} />);
-
-      await openAutocomplete("arrowDown");
-      // 3 options, 2 actions - move highlight to second action (index 4)
-      await navigateDown(4);
+      await openAutocomplete();
+      // Not waiting?
+      await navigateDown(2);
       await selectWithKeyboard();
 
       expect(createAction).toHaveBeenCalled();
@@ -415,11 +368,29 @@ describe("AutocompleteRebuilt", () => {
     });
 
     it("invokes action on click and stays open when shouldClose is false", async () => {
-      const { menu, stayOpenAction } = buildMenu();
+      const stayOpenAction = jest.fn();
 
-      render(<Wrapper menu={menu} />);
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "Howdy" }],
+              actionsBottom: [
+                {
+                  type: "action",
+                  label: "Stay Open",
+                  onClick: stayOpenAction,
+                  shouldClose: false,
+                },
+              ],
+            },
+          ]}
+        />,
+      );
 
-      await openAutocomplete("type", "o");
+      await openAutocomplete();
+      // Not waiting?
       await selectWithClick("Stay Open");
 
       expect(stayOpenAction).toHaveBeenCalled();
@@ -427,11 +398,243 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
+  describe("Persistents", () => {
+    it("renders a default, uninteractive persistent header when provided", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }, { label: "Two" }],
+            },
+            {
+              type: "persistent",
+              label: "Persistent Text Header",
+              position: "header",
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      expect(screen.getByText("Persistent Text Header")).toBeVisible();
+    });
+    it("renders a default, uninteractive persistent footer async when provided", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }, { label: "Two" }],
+            },
+            {
+              type: "persistent",
+              label: "Persistent Text Footer",
+              position: "footer",
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      expect(screen.getByText("Persistent Text Footer")).toBeVisible();
+    });
+
+    it("should fire onClick and close menu by default when an interactive persistent header is clicked", async () => {
+      const onClick = jest.fn();
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      await userEvent.click(screen.getByText("Interactive Header"));
+      expect(onClick).toHaveBeenCalled();
+
+      await expectMenuClosed();
+    });
+
+    it("should fire onClick and close menu by default when an interactive persistent footer is invoked with Enter", async () => {
+      const onClick = jest.fn();
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }, { label: "Two" }],
+            },
+            {
+              type: "persistent",
+              label: "Interactive Footer",
+              position: "footer",
+              onClick,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+      // Also testing reverse looping behavior by doing this
+      await navigateUp(1);
+      await selectWithKeyboard();
+
+      expect(onClick).toHaveBeenCalled();
+      await expectMenuClosed();
+    });
+    it("does not close the menu if an interactive persistent has shouldClose=false when clicked", async () => {
+      const onClick = jest.fn();
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Footer",
+              position: "footer",
+              onClick,
+              shouldClose: false,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      await userEvent.click(screen.getByText("Interactive Footer"));
+      expect(onClick).toHaveBeenCalled();
+      await expectMenuShown();
+    });
+
+    it("does not close the menu if an interactive persistent has shouldClose=false when invoked with Enter", async () => {
+      const onClick = jest.fn();
+      // Note that there are no options, and it is still showing
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Footer",
+              position: "footer",
+              onClick,
+              shouldClose: false,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      await navigateDown(1);
+      await selectWithKeyboard();
+
+      expect(onClick).toHaveBeenCalled();
+      await expectMenuShown();
+    });
+    it("displays persistents after filtering", async () => {
+      render(
+        <Wrapper
+          menu={[
+            { type: "options", options: [{ label: "One" }, { label: "Two" }] },
+            {
+              type: "persistent",
+              label: "Persistent Text Header",
+              position: "header",
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+      await typeInInput("Gabagool");
+
+      expect(screen.getByText("Persistent Text Header")).toBeVisible();
+    });
+
+    it("highlights interactive persistents when they are active", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick: jest.fn(),
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      await navigateDown(1);
+
+      // Interactive persistent is also role="option"
+      const activePersistent = getActiveOption();
+
+      expect(activePersistent).toBeVisible();
+      expect(activePersistent).toHaveTextContent("Interactive Header");
+    });
+    it("highlights interactive persistents in the correct order when 'looping' forward", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }, { label: "Two" }],
+            },
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick: jest.fn(),
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+      // Two options, one persistent
+      await navigateDown(4);
+
+      const activePersistent = getActiveOption();
+      expect(activePersistent).toBeVisible();
+      expect(activePersistent).toHaveTextContent("Interactive Header");
+    });
+  });
+
   describe("default options", () => {
     it("renders default option content", async () => {
       render(<Wrapper />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       await waitFor(() => {
         expect(screen.getByText("One")).toBeVisible();
@@ -442,7 +645,7 @@ describe("AutocompleteRebuilt", () => {
     it("renders default selected option content", async () => {
       render(<Wrapper initialValue={{ label: "Two" }} />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       await waitFor(() => {
         expect(screen.getByText("Two")).toBeVisible();
@@ -451,27 +654,12 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  it("does not auto-reopen from programmatic input update after selection", async () => {
-    const onChange = jest.fn();
-
-    render(<Wrapper onChange={onChange} />);
-
-    await openAutocomplete("type", "O");
-    await navigateDown(1);
-    await selectWithKeyboard();
-
-    expect(onChange).toHaveBeenCalledWith({ label: "One" });
-    await expectMenuClosed();
-  });
-
   describe("filterOptions", () => {
     it("can opt-out of filtering entirely with filterOptions=false (async pattern)", async () => {
       render(<Wrapper filterOptions={false} />);
 
-      await openAutocomplete(
-        "type",
-        "Any way you want it, that's the way I need it",
-      );
+      await openAutocomplete();
+      await typeInInput("A bunch of text");
 
       // With opt-out, all options should be visible regardless of input
       await expectMenuShown();
@@ -488,7 +676,7 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("type", "n");
+      await openAutocomplete();
 
       await expectMenuShown();
       // Two and Three should be visible
@@ -522,8 +710,10 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("type", "4");
-
+      await openAutocomplete();
+      // Type in 4 to match 16
+      await typeInInput("4");
+      // Wait for menu
       await expectMenuShown();
       expect(screen.getByText("16")).toBeVisible();
     });
@@ -533,84 +723,90 @@ describe("AutocompleteRebuilt", () => {
     it("highlights the selected option on open", async () => {
       render(<Wrapper initialValue={{ label: "Two" }} />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
+      // Not waiting?
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Two");
+    });
+
+    it("keeps the selected item highlighted as characters are deleted", async () => {
+      render(<Wrapper initialValue={{ label: "Two" }} />);
+
+      await openAutocomplete();
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Two");
+
+      await deleteInput(2);
+
+      const activeOptionAfterDelete = getActiveOption();
+
+      expect(activeOptionAfterDelete).not.toBeNull();
+      expect(activeOptionAfterDelete?.textContent).toContain("Two");
+    });
+
+    it("highlights the selected option on reopen after blur", async () => {
+      render(<Wrapper initialValue={{ label: "Two" }} />);
+
+      await openAutocomplete();
+      await blurAutocomplete();
+      await openAutocomplete();
 
       const activeOption = getActiveOption();
 
       expect(activeOption).not.toBeNull();
       expect(activeOption?.textContent).toContain("Two");
     });
-  });
 
-  describe("openOnFocus=false (default)", () => {
-    it("shows full list when input exactly matches an option label (unfiltered) after user opens", async () => {
+    it("highlights the selected option on reopon after dismissing the menu", async () => {
+      render(<Wrapper initialValue={{ label: "Two" }} />);
+
+      await openAutocomplete();
+      await closeAutocomplete();
+      await openAutocomplete();
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Two");
+    });
+
+    it("shows full list when input value exactly matches an option label and highlights corresponding option", async () => {
       render(
         <Wrapper initialValue={{ label: "Two" }} initialInputValue="Two" />,
       );
 
-      await openAutocomplete("arrowDown");
-
+      await openAutocomplete();
+      // Wait for menu
       await expectMenuShown();
 
       expect(screen.getByText("One")).toBeVisible();
       expect(screen.getByText("Two")).toBeVisible();
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Two");
     });
 
     it("highlights selected item on reopen when input exactly matches that option", async () => {
       render(<Wrapper />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
+      // Wait for menu
       await screen.findByRole("listbox");
 
       await selectWithClick("Two");
-
+      // Wait for menu close
       await expectMenuClosed();
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
+      // Wait for menu
       await screen.findByRole("listbox");
-
-      const activeOption = getActiveOption();
-
-      expect(activeOption).not.toBeNull();
-      expect(activeOption?.textContent).toContain("Two");
-    });
-  });
-
-  describe("openOnFocus=true", () => {
-    it("opens on focus", async () => {
-      render(<Wrapper openOnFocus />);
-
-      await focusAutocomplete();
-
-      await expectMenuShown();
-    });
-
-    it("does not highlight an option or action when the menu is opened for the first time", async () => {
-      render(<Wrapper openOnFocus />);
-
-      await focusAutocomplete();
-
-      const activeOption = getActiveOption();
-      const activeAction = getActiveAction();
-
-      expect(activeOption).toBeNull();
-      expect(activeAction).toBeNull();
-    });
-
-    it("opens on focus and shows full list when input exactly matches an option label and highlights selected", async () => {
-      render(
-        <Wrapper
-          initialValue={{ label: "Two" }}
-          initialInputValue="Two"
-          openOnFocus
-        />,
-      );
-
-      await focusAutocomplete();
-
-      await expectMenuShown();
-      expect(screen.getByText("One")).toBeVisible();
-      expect(screen.getByText("Two")).toBeVisible();
 
       const activeOption = getActiveOption();
 
@@ -626,14 +822,17 @@ describe("AutocompleteRebuilt", () => {
       await focusAutocomplete();
       await expectMenuClosed();
 
-      await openAutocomplete("arrowDown");
+      await navigateDown(1);
       await expectMenuClosed();
 
-      await openAutocomplete("arrowUp");
+      await navigateUp(1);
       await expectMenuClosed();
 
-      await openAutocomplete("type", "Two");
+      await typeInInput("This is ignored");
       await expectMenuClosed();
+      await expect(
+        screen.queryByText("This is ignored"),
+      ).not.toBeInTheDocument();
     });
 
     it("still calls onBlur when readOnly", async () => {
@@ -659,68 +858,29 @@ describe("AutocompleteRebuilt", () => {
   });
 
   describe("allowFreeForm", () => {
-    it("commits free-form on blur when non-empty and no exact match", async () => {
+    it("commits free-form on blur when non-empty and no exact match in options", async () => {
       const onChange = jest.fn();
 
-      function WrapperWithSpy() {
-        const [inputValue, setInputValue] = React.useState("");
-        const { menu } = buildMenu();
+      render(<FreeFormWrapper onChange={onChange} />);
 
-        return (
-          <AutocompleteRebuilt
-            version={2}
-            allowFreeForm
-            createFreeFormValue={input => ({
-              label: input,
-            })}
-            value={undefined}
-            onChange={onChange}
-            inputValue={inputValue}
-            onInputChange={setInputValue}
-            menu={menu}
-            placeholder="Testing free-form"
-          />
-        );
-      }
-
-      render(<WrapperWithSpy />);
-
-      await openAutocomplete("type", "NewCity");
+      await openAutocomplete();
+      await typeInInput("TotallyNewValue");
       await blurAutocomplete();
-
+      await expectMenuClosed();
+      // TODO: Come back and fix, focus/blur are not firing
       expect(onChange).toHaveBeenCalledWith({
-        label: "NewCity",
+        label: "TotallyNewValue",
       });
     });
 
     it("commits free-form on Enter when menu has no options (filtered out)", async () => {
       const onChange = jest.fn();
 
-      function WrapperWithSpyFilterNone() {
-        const [inputValue, setInputValue] = React.useState("");
-        const { menu } = buildMenu();
+      render(<FreeFormWrapper onChange={onChange} />);
 
-        return (
-          <AutocompleteRebuilt
-            version={2}
-            allowFreeForm
-            createFreeFormValue={input => ({
-              label: input,
-            })}
-            value={undefined}
-            onChange={onChange}
-            inputValue={inputValue}
-            onInputChange={setInputValue}
-            menu={menu}
-            filterOptions={() => []}
-            placeholder="Testing free-form"
-          />
-        );
-      }
-
-      render(<WrapperWithSpyFilterNone />);
-
-      await openAutocomplete("type", "Zed");
+      await openAutocomplete();
+      // Not waiting?
+      await typeInInput("Zed");
       await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledWith({
@@ -731,63 +891,23 @@ describe("AutocompleteRebuilt", () => {
     it("selects existing option on blur when input exactly matches (case-sensitive by default)", async () => {
       const onChange = jest.fn();
 
-      function WrapperWithSpy() {
-        const [inputValue, setInputValue] = React.useState("");
-        const { menu } = buildMenu();
+      render(<FreeFormWrapper onChange={onChange} />);
 
-        return (
-          <AutocompleteRebuilt
-            version={2}
-            allowFreeForm
-            createFreeFormValue={input => ({
-              label: input,
-            })}
-            value={undefined}
-            onChange={onChange}
-            inputValue={inputValue}
-            onInputChange={setInputValue}
-            menu={menu}
-            placeholder="Testing free-form"
-          />
-        );
-      }
-
-      render(<WrapperWithSpy />);
-
-      await openAutocomplete("type", "Two");
+      await openAutocomplete();
+      await typeInInput("Two");
       await blurAutocomplete();
-
+      // TODO fix actual issue
       expect(onChange).toHaveBeenCalledWith({ label: "Two" });
     });
 
     it("treats different case as free-form by default (case-sensitive)", async () => {
       const onChange = jest.fn();
 
-      function WrapperWithSpy() {
-        const [inputValue, setInputValue] = React.useState("");
-        const { menu } = buildMenu();
+      render(<FreeFormWrapper onChange={onChange} />);
 
-        return (
-          <AutocompleteRebuilt
-            version={2}
-            allowFreeForm
-            createFreeFormValue={input => ({
-              label: input,
-            })}
-            value={undefined}
-            onChange={onChange}
-            inputValue={inputValue}
-            onInputChange={setInputValue}
-            menu={menu}
-            placeholder="Testing free-form"
-          />
-        );
-      }
-
-      render(<WrapperWithSpy />);
-
-      await openAutocomplete("type", "two");
-      await blurAutocomplete();
+      await openAutocomplete();
+      await typeInInput("two");
+      await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledWith({
         label: "two",
@@ -797,34 +917,19 @@ describe("AutocompleteRebuilt", () => {
     it("can match case-insensitively with inputEqualsOption override", async () => {
       const onChange = jest.fn();
 
-      function WrapperWithSpy() {
-        const [inputValue, setInputValue] = React.useState("");
-        const { menu } = buildMenu();
+      render(
+        <FreeFormWrapper
+          onChange={onChange}
+          inputEqualsOption={(input, option) =>
+            input.trim().toLowerCase() === option.label.toLowerCase()
+          }
+        />,
+      );
 
-        return (
-          <AutocompleteRebuilt
-            version={2}
-            allowFreeForm
-            createFreeFormValue={input => ({
-              label: input,
-            })}
-            value={undefined}
-            onChange={onChange}
-            inputValue={inputValue}
-            onInputChange={setInputValue}
-            menu={menu}
-            inputEqualsOption={(input, option) =>
-              input.trim().toLowerCase() === option.label.toLowerCase()
-            }
-            placeholder=""
-          />
-        );
-      }
-
-      render(<WrapperWithSpy />);
-
-      await openAutocomplete("type", "two");
-      await blurAutocomplete();
+      await openAutocomplete();
+      // Not waiting?
+      await typeInInput("two");
+      await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledWith({ label: "Two" });
     });
@@ -832,31 +937,11 @@ describe("AutocompleteRebuilt", () => {
     it("commits free-form on Enter when menu is closed", async () => {
       const onChange = jest.fn();
 
-      function WrapperWithSpy() {
-        const [inputValue, setInputValue] = React.useState("");
-        const { menu } = buildMenu();
+      render(<FreeFormWrapper onChange={onChange} />);
 
-        return (
-          <AutocompleteRebuilt
-            version={2}
-            allowFreeForm
-            createFreeFormValue={input => ({
-              label: input,
-            })}
-            value={undefined}
-            onChange={onChange}
-            inputValue={inputValue}
-            onInputChange={setInputValue}
-            menu={menu}
-            placeholder="Testing while closed"
-          />
-        );
-      }
-
-      render(<WrapperWithSpy />);
-
-      await openAutocomplete("type", "Custom");
-      await closeAutocomplete();
+      await openAutocomplete();
+      // Not waiting?
+      await typeInInput("Custom");
       await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledWith({
@@ -865,340 +950,489 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  it("highlights selected item on reopen when input exactly matches that option", async () => {
-    render(<Wrapper initialValue={{ label: "Two" }} initialInputValue="Two" />);
-
-    await openAutocomplete("arrowDown");
-    await screen.findByRole("listbox");
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-    expect(activeOption?.textContent).toContain("Two");
-  });
-
-  it("does not highlight an option or action when the menu is opened for the first time", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("arrowDown");
-
-    const activeOption = getActiveOption();
-    const activeAction = getActiveAction();
-
-    expect(activeOption).toBeNull();
-    expect(activeAction).toBeNull();
-  });
-
-  it("highlights the correct option reopening after a selection", async () => {
-    render(<Wrapper />);
-    await openAutocomplete("arrowDown");
-    await navigateDown(3);
-    await selectWithKeyboard();
-
-    // selection closed the menu
-    await openAutocomplete("arrowUp");
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-    expect(activeOption?.textContent).toContain("Three");
-  });
-
-  it("highlights the correct option reopening after bluring", async () => {
-    render(<Wrapper />);
-    await openAutocomplete("arrowDown");
-    await navigateDown(3);
-    await selectWithKeyboard();
-
-    // selection closed the menu
-    await openAutocomplete("arrowUp");
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-    expect(activeOption?.textContent).toContain("Three");
-  });
-
-  it("does not highlight an option from typing alone", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("arrowDown");
-    await typeInInput("Thr");
-
-    const activeOption = getActiveOption();
-    expect(activeOption).toBeNull();
-  });
-
-  // Test requires multiple interactions
   // eslint-disable-next-line max-statements
-  it("resets the highlight to initial, not visible state when the menu is closed without a selection", async () => {
-    render(<Wrapper />);
+  describe("highlighting", () => {
+    it("does not highlight an option or action when the menu is opened for the first time", async () => {
+      render(<Wrapper />);
 
-    await openAutocomplete("arrowDown");
-    await navigateDown(2);
+      await openAutocomplete();
 
-    const firstActiveOption = getActiveOption();
+      const activeOption = getActiveOption();
+      const activeAction = getActiveAction();
 
-    expect(firstActiveOption).not.toBeNull();
-    expect(firstActiveOption?.textContent).toContain("Two");
+      expect(activeOption).toBeNull();
+      expect(activeAction).toBeNull();
+    });
 
-    await closeAutocomplete();
+    it("highlights the correct option reopening after a selection", async () => {
+      render(<Wrapper />);
+      await openAutocomplete();
+      await navigateDown(3);
+      await selectWithKeyboard();
 
-    await openAutocomplete("arrowDown");
+      // selection closed the menu
+      await openAutocomplete();
+      // Not waiting?
+      const activeOption = getActiveOption();
 
-    const secondActiveOption = getActiveOption();
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Three");
+    });
 
-    expect(secondActiveOption).toBeNull();
+    it("highlights the correct option reopening after bluring", async () => {
+      render(<Wrapper />);
+      await openAutocomplete();
+      // Not waiting?
+      await navigateDown(3);
+      await selectWithKeyboard();
 
-    await navigateDown(1);
+      // selection closed the menu
+      await openAutocomplete();
+      // Not waiting?
+      const activeOption = getActiveOption();
 
-    // we expect this to be back on the first option since resetting brings us to null
-    const thirdActiveOption = getActiveOption();
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Three");
+    });
 
-    expect(thirdActiveOption).not.toBeNull();
-    expect(thirdActiveOption?.textContent).toContain("One");
+    it("does not highlight an option from typing alone", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      // Not waiting?
+      await typeInInput("Thr");
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).toBeNull();
+    });
+
+    // Test requires multiple interactions
+    // eslint-disable-next-line max-statements
+    it("resets the highlight to initial, not visible state when the menu is closed without a selection", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await navigateDown(2);
+
+      const firstActiveOption = getActiveOption();
+
+      expect(firstActiveOption).not.toBeNull();
+      expect(firstActiveOption?.textContent).toContain("Two");
+      // Closed, but not unfocused
+      await closeAutocomplete();
+
+      await openAutocomplete("arrowDown");
+
+      const activeOptionAfterReopen = getActiveOption();
+
+      expect(activeOptionAfterReopen).toBeNull();
+
+      await navigateDown(1);
+
+      // we expect this to be back on the first option since resetting brings us to null
+      const activeOptionAfterNavigation = getActiveOption();
+
+      expect(activeOptionAfterNavigation).not.toBeNull();
+      expect(activeOptionAfterNavigation?.textContent).toContain("One");
+    });
+
+    // Test requires multiple interactions
+    // eslint-disable-next-line max-statements
+    it("resets the highlight to initial, not visible state when the input is cleared with backspaces", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await typeInInput("Tw");
+      await navigateDown(1);
+
+      const firstActiveOption = getActiveOption();
+
+      expect(firstActiveOption).not.toBeNull();
+
+      await deleteInput(2);
+
+      const activeOptionAfterDelete = getActiveOption();
+
+      expect(activeOptionAfterDelete).toBeNull();
+      // TODO: Actual bug here, this is opening the menu because it's no longer visible
+      await navigateDown(1);
+
+      // we expect this to be back on the first option since resetting brings us to null
+      const thirdActiveOption = getActiveOption();
+
+      expect(thirdActiveOption).not.toBeNull();
+      expect(thirdActiveOption?.textContent).toContain("One");
+    });
+
+    // Test requires multiple interactions
+    // eslint-disable-next-line max-statements
+    it("resets the highlight to initial, not visible state after using an action", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await navigateDown(4);
+
+      const activeAction = getActiveAction();
+
+      expect(activeAction).not.toBeNull();
+
+      await selectWithKeyboard();
+      // Closed, but not unfocused so re-open with arrow down
+      await openAutocomplete("arrowDown");
+
+      const activeOptionAfterReopen = getActiveOption();
+
+      expect(activeOptionAfterReopen).toBeNull();
+
+      await navigateDown(1);
+
+      const activeOptionAfterNav = getActiveOption();
+
+      expect(activeOptionAfterNav).not.toBeNull();
+      expect(activeOptionAfterNav?.textContent).toContain("One");
+    });
+    // Test requires multiple interactions
+    // eslint-disable-next-line max-statements
+    it("resets the highlight to initial, not visible state when the autocomplete loses focus (blur)", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await navigateDown(1);
+
+      const firstActiveOption = getActiveOption();
+
+      expect(firstActiveOption).not.toBeNull();
+      expect(firstActiveOption?.textContent).toContain("One");
+      // TODO: rename to "dissmiss or use ESC"
+      await blurAutocomplete();
+      // TODO: consider if the no args version is opening or clicking
+      await openAutocomplete("arrowDown");
+
+      const activeOptionAfterReopen = getActiveOption();
+
+      expect(activeOptionAfterReopen).toBeNull();
+
+      await navigateDown(1);
+
+      // we expect this to be back on the first option since resetting brings us to null
+      const activeOptionAfterNav = getActiveOption();
+
+      expect(activeOptionAfterNav).not.toBeNull();
+      expect(activeOptionAfterNav?.textContent).toContain("One");
+    });
+
+    // Test requires elaborate amount of interactions
+    // eslint-disable-next-line max-statements
+    it("resets the highlight to initial, not visible state after making a selection, deleting it and reopening the menu", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await navigateDown(1);
+
+      await selectWithKeyboard();
+
+      await deleteInput(3);
+
+      expect(screen.getByRole("textbox")).toHaveValue("");
+
+      await navigateDown(1);
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).toBeNull();
+
+      await navigateDown(1);
+
+      const secondActiveOption = getActiveOption();
+
+      expect(secondActiveOption).not.toBeNull();
+      expect(secondActiveOption?.textContent).toContain("One");
+    });
+    // Test requires elaborate amount of interactions
+    // eslint-disable-next-line max-statements
+    it("resets the highlight to initial, not visible state after making a selection, select-all + delete and reopening the menu", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await navigateDown(1);
+
+      await selectWithKeyboard();
+
+      await selectAll();
+      await deleteInput(1);
+
+      expect(screen.getByRole("textbox")).toHaveValue("");
+
+      await navigateDown(1);
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).toBeNull();
+
+      await navigateDown(1);
+
+      const activeOptionAfterNav = getActiveOption();
+
+      expect(activeOptionAfterNav).not.toBeNull();
+      expect(activeOptionAfterNav?.textContent).toContain("One");
+    });
+
+    it("resets the highlight to initial, not visible state after moving index and typing a search term", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await navigateDown(2);
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+
+      await typeInInput("O");
+
+      const activeOptionAfterTyping = getActiveOption();
+
+      expect(activeOptionAfterTyping).toBeNull();
+
+      await navigateDown(1);
+
+      const activeOptionAfterNav = getActiveOption();
+
+      expect(activeOptionAfterNav).not.toBeNull();
+      expect(activeOptionAfterNav?.textContent).toContain("One");
+    });
+
+    it("wraps highlight from first option to last on ArrowUp", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      // At the very "top" where it's not visible
+      await navigateUp(1);
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Three");
+    });
+
+    it("wraps highlight from last option to first on ArrowDown", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      // Move to last option (3 options + 2 actions)
+      await navigateDown(5);
+      // One more to wrap
+      await navigateDown(1);
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("One");
+    });
   });
 
-  // Test requires multiple interactions
-  // eslint-disable-next-line max-statements
-  it("resets the highlight to initial, not visible state when the input is cleared with backspaces", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("type", "Th");
-    await navigateDown(1);
-
-    const firstActiveOption = getActiveOption();
-
-    expect(firstActiveOption).not.toBeNull();
-
-    await deleteInput(2);
-    await openAutocomplete("arrowDown");
-
-    const secondActiveOption = getActiveOption();
-
-    expect(secondActiveOption).toBeNull();
-
-    await navigateDown(1);
-
-    // we expect this to be back on the first option since resetting brings us to null
-    const thirdActiveOption = getActiveOption();
-
-    expect(thirdActiveOption).not.toBeNull();
-    expect(thirdActiveOption?.textContent).toContain("One");
-  });
-
-  // Test requires multiple interactions
-  // eslint-disable-next-line max-statements
-  it("resets the highlight to initial, not visible state after using an action", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("arrowDown");
-    await navigateDown(4);
-
-    const activeAction = getActiveAction();
-
-    expect(activeAction).not.toBeNull();
-
-    await selectWithKeyboard();
-
-    await openAutocomplete("arrowDown");
-
-    const secondActiveOption = getActiveOption();
-
-    expect(secondActiveOption).toBeNull();
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).toBeNull();
-
-    await navigateDown(1);
-
-    const thirdActiveOption = getActiveOption();
-
-    expect(thirdActiveOption).not.toBeNull();
-    expect(thirdActiveOption?.textContent).toContain("One");
-  });
-  // Test requires multiple interactions
-  // eslint-disable-next-line max-statements
-  it("resets the highlight to initial, not visible state when the autocomplete loses focus (blur)", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("type", "Th");
-    await navigateDown(1);
-
-    const firstActiveOption = getActiveOption();
-
-    expect(firstActiveOption).not.toBeNull();
-
-    await blurAutocomplete();
-
-    await openAutocomplete("arrowDown");
-
-    const secondActiveOption = getActiveOption();
-
-    expect(secondActiveOption).toBeNull();
-
-    await navigateDown(1);
-
-    // we expect this to be back on the first option since resetting brings us to null
-    const thirdActiveOption = getActiveOption();
-
-    expect(thirdActiveOption).not.toBeNull();
-    expect(thirdActiveOption?.textContent).toContain("One");
-  });
-
-  // Test requires elaborate amount of interactions
-  // eslint-disable-next-line max-statements
-  it("resets the highlight to initial, not visible state after making a selection, deleting it and reopening the menu", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("arrowDown");
-    await navigateDown(1);
-
-    await selectWithKeyboard();
-
-    await openAutocomplete("arrowDown");
-    await deleteInput(3);
-
-    expect(screen.getByRole("textbox")).toHaveValue("");
-
-    await navigateDown(1);
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).toBeNull();
-
-    await navigateDown(1);
-
-    const secondActiveOption = getActiveOption();
-
-    expect(secondActiveOption).not.toBeNull();
-    expect(secondActiveOption?.textContent).toContain("One");
-  });
-  // Test requires elaborate amount of interactions
-  // eslint-disable-next-line max-statements
-  it("resets the highlight to initial, not visible state after making a selection, select-all + delete and reopening the menu", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("arrowDown");
-    await navigateDown(1);
-
-    await selectWithKeyboard();
-
-    await openAutocomplete("arrowDown");
-    await selectAll();
-    await deleteInput(1);
-
-    expect(screen.getByRole("textbox")).toHaveValue("");
-
-    await navigateDown(1);
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).toBeNull();
-
-    await navigateDown(1);
-
-    const secondActiveOption = getActiveOption();
-
-    expect(secondActiveOption).not.toBeNull();
-    expect(secondActiveOption?.textContent).toContain("One");
-  });
-
-  it("resets the highlight to initial, not visible state after moving index and typing a search term", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("arrowDown");
-    await navigateDown(2);
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-
-    await typeInInput("O");
-
-    const secondActiveOption = getActiveOption();
-
-    expect(secondActiveOption).toBeNull();
-
-    await navigateDown(1);
-
-    const thirdActiveOption = getActiveOption();
-
-    expect(thirdActiveOption).not.toBeNull();
-    expect(thirdActiveOption?.textContent).toContain("One");
-  });
-
-  it("wraps highlight from first option to last on ArrowUp", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("arrowDown");
-    // Move to first option
-    await navigateUp(1);
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-    expect(activeOption?.textContent).toContain("Three");
-  });
-
-  it("wraps highlight from last option to first on ArrowDown", async () => {
-    render(<Wrapper />);
-
-    await openAutocomplete("arrowDown");
-    // Move to last option (3 options + 2 actions)
-    await navigateDown(5);
-    // One more to wrap
-    await navigateDown(1);
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-    expect(activeOption?.textContent).toContain("One");
-  });
-
-  it("keeps the selected item highlighted as characters are deleted", async () => {
-    render(<Wrapper initialValue={{ label: "Two" }} />);
-
-    await openAutocomplete("arrowDown");
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-    expect(activeOption?.textContent).toContain("Two");
-
-    await deleteInput(2);
-
-    const secondActiveOption = getActiveOption();
-
-    expect(secondActiveOption).not.toBeNull();
-    expect(secondActiveOption?.textContent).toContain("Two");
-  });
-
-  it("highlights the selected option on reopen after blur", async () => {
-    render(<Wrapper initialValue={{ label: "Two" }} />);
-
-    await openAutocomplete("arrowDown");
-    await blurAutocomplete();
-    await openAutocomplete("arrowDown");
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-    expect(activeOption?.textContent).toContain("Two");
-  });
-
-  it("highlights the selected option on reopon after dismissing the menu", async () => {
-    render(<Wrapper initialValue={{ label: "Two" }} />);
-
-    await openAutocomplete("arrowDown");
-    await closeAutocomplete();
-    await openAutocomplete("arrowDown");
-
-    const activeOption = getActiveOption();
-
-    expect(activeOption).not.toBeNull();
-    expect(activeOption?.textContent).toContain("Two");
+  describe("emptyState", () => {
+    it("shows default empty state when there are no options to render", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      render(<Wrapper menu={emptyMenu} />);
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+      expect(screen.getByText("No options")).toBeVisible();
+    });
+
+    it("shows default empty state when there are no options to render and filtering is disabled", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      render(<Wrapper menu={emptyMenu} filterOptions={false} />);
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+      expect(screen.getByText("No options")).toBeVisible();
+    });
+
+    it("shows custom empty state when provided", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      render(
+        <Wrapper
+          menu={emptyMenu}
+          emptyStateMessage={
+            <span data-testid="custom-empty">Nothing here</span>
+          }
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+      expect(screen.getByTestId("custom-empty")).toBeVisible();
+      expect(screen.queryByText("No options")).not.toBeInTheDocument();
+    });
+
+    it("shows basic empty state when filtering removes all options", async () => {
+      render(<Wrapper filterOptions={() => []} />);
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+      expect(screen.getByText("No options")).toBeVisible();
+    });
+
+    it("does not render standard actions when empty", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>(
+              "Hello from a section",
+              [{ label: "One" }, { label: "Two" }],
+              [
+                { type: "action", label: "Create new", onClick: jest.fn() },
+                {
+                  type: "action",
+                  label: "Browse templates",
+                  onClick: jest.fn(),
+                },
+              ],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      await typeInInput("Gabagool");
+      // Wait for menu
+      await expectMenuShown();
+
+      expect(screen.queryByText("Create new")).not.toBeInTheDocument();
+      expect(screen.queryByText("Browse templates")).not.toBeInTheDocument();
+    });
+
+    it("renders interactive emptyActions (array) together with empty message when there are no options", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      const create = jest.fn();
+      const browse = jest.fn();
+
+      render(
+        <Wrapper
+          menu={emptyMenu}
+          emptyActions={[
+            { type: "action", label: "Create new", onClick: create },
+            { type: "action", label: "Browse templates", onClick: browse },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      // Empty message shown alongside actions by default
+      expect(screen.getByText("No options")).toBeVisible();
+
+      // Actions are present and navigable
+      expect(screen.getByText("Create new")).toBeVisible();
+      expect(screen.getByText("Browse templates")).toBeVisible();
+
+      // Keyboard navigation to first action and invoke
+      await navigateDown(1);
+      await selectWithKeyboard();
+      expect(create).toHaveBeenCalled();
+    });
+
+    it("renders interactive emptyActions (function) using current input", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+      const create = jest.fn();
+
+      render(
+        <Wrapper
+          menu={emptyMenu}
+          emptyActions={({ inputValue }) => [
+            {
+              type: "action",
+              label: `Add "${inputValue}"`,
+              onClick: create,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      await typeInInput("Zed");
+      // Wait for menu
+      await expectMenuShown();
+
+      // Action reflects typed input
+      expect(screen.getByText('Add "Zed"')).toBeVisible();
+
+      await navigateDown(1);
+      await selectWithKeyboard();
+      expect(create).toHaveBeenCalled();
+    });
+
+    it("can render emptyActions distinctly from standard actions", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>(
+              "Hello from a section",
+              [{ label: "One" }, { label: "Two" }],
+              [{ type: "action", label: "Create new", onClick: jest.fn() }],
+            ),
+          ]}
+          emptyActions={[
+            { type: "action", label: "Browse templates", onClick: jest.fn() },
+          ]}
+          renderAction={({ value, origin }) => {
+            if (origin === "empty") {
+              return <strong data-testid="empty-action">{value.label}</strong>;
+            }
+
+            return <div data-testid="regular-action">{value.label}</div>;
+          }}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      expect(screen.getByTestId("regular-action")).toBeVisible();
+
+      await typeInInput("something with no matches");
+
+      expect(screen.getByTestId("empty-action")).toBeVisible();
+      expect(screen.queryByTestId("regular-action")).not.toBeInTheDocument();
+    });
+
+    it("can suppress empty message when emptyState=false while showing emptyActions", async () => {
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+      const create = jest.fn();
+
+      render(
+        <Wrapper
+          menu={emptyMenu}
+          emptyStateMessage={false}
+          emptyActions={[
+            { type: "action", label: "Empty Action", onClick: create },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      // Wait for menu
+      await expectMenuShown();
+
+      // Empty message suppressed
+      expect(screen.queryByText("No options")).not.toBeInTheDocument();
+
+      // Action visible
+      expect(screen.getByText("Empty Action")).toBeVisible();
+    });
   });
 
   describe("renderInput", () => {
@@ -1224,7 +1458,8 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("type", "Just a Pineapple");
+      await openAutocomplete();
+      await typeInInput("Just a Pineapple");
 
       expect(screen.getByRole("textbox")).toBeVisible();
       expect(onChange).toHaveBeenCalledWith("Just a Pineapple");
@@ -1262,7 +1497,7 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       await waitFor(() => {
         expect(
@@ -1274,7 +1509,7 @@ describe("AutocompleteRebuilt", () => {
 
   describe("renderOption", () => {
     it("renders a custom layout for renderOption when provided", async () => {
-      const renderOption = ({
+      const customRenderOption = ({
         value,
       }: {
         value: OptionLike & { special?: boolean };
@@ -1301,15 +1536,69 @@ describe("AutocompleteRebuilt", () => {
               ],
             },
           ])}
-          renderOption={renderOption}
+          renderOption={customRenderOption}
         />,
       );
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
+      // Wait for menu
       await expectMenuShown();
 
       expect(screen.getByTestId("custom-option-special")).toBeVisible();
       expect(screen.getByTestId("custom-option-normal")).toBeVisible();
+    });
+
+    it("passes isActive correctly to renderOption for the highlighted option", async () => {
+      render(
+        <Wrapper
+          renderOption={({ value, isActive }) => {
+            return (
+              <div
+                data-testid={`custom-option-${
+                  isActive ? "active" : "inactive"
+                }`}
+              >
+                {value.label}
+              </div>
+            );
+          }}
+        />,
+      );
+      await openAutocomplete();
+      await navigateDown(1);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-option-active")).toBeVisible();
+        expect(screen.getAllByTestId("custom-option-inactive")).toHaveLength(2);
+      });
+    });
+
+    it("passes isSelected correctly to renderOption for the selected option", async () => {
+      render(
+        <Wrapper
+          initialValue={{ label: "Two" }}
+          renderOption={({ value, isSelected }) => {
+            return (
+              <div
+                data-testid={`custom-option-${
+                  isSelected ? "selected" : "unselected"
+                }`}
+              >
+                {value.label}
+              </div>
+            );
+          }}
+        />,
+      );
+      await openAutocomplete();
+      await navigateDown(1);
+
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-option-selected")).toBeVisible();
+        expect(screen.getAllByTestId("custom-option-unselected")).toHaveLength(
+          2,
+        );
+      });
     });
   });
 
@@ -1351,431 +1640,45 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
+      // Wait for menu
       await expectMenuShown();
 
       expect(screen.getByTestId("custom-action-special")).toBeVisible();
     });
-  });
 
-  describe("emptyState", () => {
-    it("shows default empty state when there are no options to render", async () => {
-      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
-
-      render(<Wrapper menu={emptyMenu} />);
-
-      await openAutocomplete("arrowDown");
-
-      await expectMenuShown();
-      expect(screen.getByText("No options")).toBeVisible();
-    });
-
-    it("shows default empty state when there are no options to render and filtering is disabled", async () => {
-      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
-
-      render(<Wrapper menu={emptyMenu} filterOptions={false} />);
-
-      await openAutocomplete("arrowDown");
-
-      await expectMenuShown();
-      expect(screen.getByText("No options")).toBeVisible();
-    });
-
-    it("shows custom empty state when provided", async () => {
-      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
-
+    it("passes isActive to renderAction for the highlighted action", async () => {
       render(
         <Wrapper
-          menu={emptyMenu}
-          emptyStateMessage={
-            <span data-testid="custom-empty">Nothing here</span>
-          }
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-
-      await expectMenuShown();
-      expect(screen.getByTestId("custom-empty")).toBeVisible();
-      expect(screen.queryByText("No options")).not.toBeInTheDocument();
-    });
-
-    it("shows basic empty state when filtering removes all options", async () => {
-      render(<Wrapper filterOptions={() => []} />);
-
-      await openAutocomplete("type", "anything");
-
-      await expectMenuShown();
-      expect(screen.getByText("No options")).toBeVisible();
-    });
-
-    it("does not render standard actions when empty", async () => {
-      render(
-        <Wrapper
-          menu={[
-            menuSection<OptionLike>(
-              "Hello from a section",
-              [{ label: "One" }, { label: "Two" }],
-              [
-                { type: "action", label: "Create new", onClick: jest.fn() },
-                {
-                  type: "action",
-                  label: "Browse templates",
-                  onClick: jest.fn(),
-                },
-              ],
-            ),
-          ]}
-        />,
-      );
-
-      await openAutocomplete("type", "something with no matches");
-      await expectMenuShown();
-
-      expect(screen.queryByText("Create new")).not.toBeInTheDocument();
-      expect(screen.queryByText("Browse templates")).not.toBeInTheDocument();
-    });
-
-    it("renders emptyActions (array) together with empty message when there are no options", async () => {
-      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
-
-      const create = jest.fn();
-      const browse = jest.fn();
-
-      render(
-        <Wrapper
-          menu={emptyMenu}
-          emptyActions={[
-            { type: "action", label: "Create new", onClick: create },
-            { type: "action", label: "Browse templates", onClick: browse },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      await expectMenuShown();
-
-      // Empty message shown alongside actions by default
-      expect(screen.getByText("No options")).toBeVisible();
-
-      // Actions are present and navigable
-      expect(screen.getByText("Create new")).toBeVisible();
-      expect(screen.getByText("Browse templates")).toBeVisible();
-
-      // Keyboard navigation to first action and invoke
-      await navigateDown(1);
-      await selectWithKeyboard();
-      expect(create).toHaveBeenCalled();
-    });
-
-    it("renders emptyActions (function) using current input", async () => {
-      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
-      const create = jest.fn();
-
-      render(
-        <Wrapper
-          menu={emptyMenu}
-          emptyActions={({ inputValue }) => [
-            {
-              type: "action",
-              label: `Add "${inputValue}"`,
-              onClick: create,
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("type", "Zed");
-      await expectMenuShown();
-
-      // Action reflects typed input
-      expect(screen.getByText('Add "Zed"')).toBeVisible();
-
-      await navigateDown(1);
-      await selectWithKeyboard();
-      expect(create).toHaveBeenCalled();
-    });
-
-    it("can render emptyActions distinctly from standard actions", async () => {
-      render(
-        <Wrapper
-          menu={[
-            menuSection<OptionLike>(
-              "Hello from a section",
-              [{ label: "One" }, { label: "Two" }],
-              [{ type: "action", label: "Create new", onClick: jest.fn() }],
-            ),
-          ]}
-          emptyActions={[
-            { type: "action", label: "Browse templates", onClick: jest.fn() },
-          ]}
-          renderAction={({ value, origin }) => {
-            if (origin === "empty") {
-              return <strong data-testid="empty-action">{value.label}</strong>;
-            }
-
-            return <div data-testid="regular-action">{value.label}</div>;
+          renderAction={({ value, isActive }) => {
+            return (
+              <div
+                data-testid={`custom-action-${
+                  isActive ? "active" : "inactive"
+                }`}
+              >
+                {value.label}
+              </div>
+            );
           }}
         />,
       );
+      await openAutocomplete();
+      // 3 options, 2 actions - move highlight to second action (index 4)
+      await navigateDown(5);
 
-      await openAutocomplete("arrowDown");
-      await expectMenuShown();
+      const activeAction = getActiveAction();
 
-      expect(screen.getByTestId("regular-action")).toBeVisible();
+      expect(activeAction).not.toBeNull();
+      expect(activeAction?.textContent).toContain("Stay Open");
 
-      await typeInInput("something with no matches");
-
-      expect(screen.getByTestId("empty-action")).toBeVisible();
-      expect(screen.queryByTestId("regular-action")).not.toBeInTheDocument();
-    });
-
-    it("can suppress empty message when emptyState=false while showing emptyActions", async () => {
-      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
-      const create = jest.fn();
-
-      render(
-        <Wrapper
-          menu={emptyMenu}
-          emptyStateMessage={false}
-          emptyActions={[
-            { type: "action", label: "Create new", onClick: create },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      await expectMenuShown();
-
-      // Empty message suppressed
-      expect(screen.queryByText("No options")).not.toBeInTheDocument();
-
-      // Action visible
-      expect(screen.getByText("Create new")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-action-active")).toBeVisible();
+        expect(screen.getByTestId("custom-action-inactive")).toBeVisible();
+      });
     });
   });
 
-  describe("Persistents", () => {
-    it("renders a default, uninteractive persistent header when provided", async () => {
-      render(
-        <Wrapper
-          menu={[
-            {
-              type: "options",
-              options: [{ label: "One" }, { label: "Two" }],
-            },
-            {
-              type: "persistent",
-              label: "Persistent Text Header",
-              position: "header",
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      await expectMenuShown();
-
-      expect(screen.getByText("Persistent Text Header")).toBeVisible();
-    });
-    it("renders a default, uninteractive persistent footer async when provided", async () => {
-      render(
-        <Wrapper
-          menu={[
-            {
-              type: "options",
-              options: [{ label: "One" }, { label: "Two" }],
-            },
-            {
-              type: "persistent",
-              label: "Persistent Text Footer",
-              position: "footer",
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      await expectMenuShown();
-
-      expect(screen.getByText("Persistent Text Footer")).toBeVisible();
-    });
-
-    it("should fire onClick and close menu by default when an interactive persistent header is clicked", async () => {
-      const onClick = jest.fn();
-      render(
-        <Wrapper
-          menu={[
-            {
-              type: "persistent",
-              label: "Interactive Header",
-              position: "header",
-              onClick,
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      await expectMenuShown();
-
-      await userEvent.click(screen.getByText("Interactive Header"));
-      expect(onClick).toHaveBeenCalled();
-
-      await expectMenuClosed();
-    });
-
-    it("should fire onClick and close menu by default when an interactive persistent footer is invoked with Enter", async () => {
-      const onClick = jest.fn();
-      render(
-        <Wrapper
-          menu={[
-            {
-              type: "options",
-              options: [{ label: "One" }, { label: "Two" }],
-            },
-            {
-              type: "persistent",
-              label: "Interactive Footer",
-              position: "footer",
-              onClick,
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("type", "O");
-      await expectMenuShown();
-      // Also testing reverse looping behavior by doing this
-      await navigateUp(1);
-      await selectWithKeyboard();
-
-      expect(onClick).toHaveBeenCalled();
-      await expectMenuClosed();
-    });
-    it("does not close the menu if an interactive persistent has shouldClose=false when clicked", async () => {
-      const onClick = jest.fn();
-      render(
-        <Wrapper
-          menu={[
-            {
-              type: "persistent",
-              label: "Interactive Footer",
-              position: "footer",
-              onClick,
-              shouldClose: false,
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      await expectMenuShown();
-
-      await userEvent.click(screen.getByText("Interactive Footer"));
-      expect(onClick).toHaveBeenCalled();
-      await expectMenuShown();
-    });
-
-    it("does not close the menu if an interactive persistent has shouldClose=false when invoked with Enter", async () => {
-      const onClick = jest.fn();
-      // Note that there are no options, and it is still showing
-      render(
-        <Wrapper
-          menu={[
-            {
-              type: "persistent",
-              label: "Interactive Footer",
-              position: "footer",
-              onClick,
-              shouldClose: false,
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("type", "O");
-      await expectMenuShown();
-
-      await navigateDown(1);
-      await selectWithKeyboard();
-
-      expect(onClick).toHaveBeenCalled();
-      await expectMenuShown();
-    });
-    it("displays persistents after filtering", async () => {
-      render(
-        <Wrapper
-          menu={[
-            { type: "options", options: [{ label: "One" }, { label: "Two" }] },
-            {
-              type: "persistent",
-              label: "Persistent Text Header",
-              position: "header",
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("type", "One");
-      await expectMenuShown();
-
-      expect(screen.getByText("Persistent Text Header")).toBeVisible();
-    });
-
-    it("highlights interactive persistents when they are active", async () => {
-      render(
-        <Wrapper
-          menu={[
-            {
-              type: "persistent",
-              label: "Interactive Header",
-              position: "header",
-              onClick: jest.fn(),
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      await expectMenuShown();
-
-      await navigateDown(1);
-
-      // Interactive persistent is also role="option"
-      const activePersistent = getActiveOption();
-
-      expect(activePersistent).toBeVisible();
-      expect(activePersistent).toHaveTextContent("Interactive Header");
-    });
-    it("highlights interactive persistents in the correct order when 'looping' forward", async () => {
-      render(
-        <Wrapper
-          menu={[
-            {
-              type: "options",
-              options: [{ label: "One" }, { label: "Two" }],
-            },
-            {
-              type: "persistent",
-              label: "Interactive Header",
-              position: "header",
-              onClick: jest.fn(),
-            },
-          ]}
-        />,
-      );
-
-      await openAutocomplete("type", "o");
-      await expectMenuShown();
-      // Two options, one persistent
-      await navigateDown(4);
-
-      const activePersistent = getActiveOption();
-      expect(activePersistent).toBeVisible();
-      expect(activePersistent).toHaveTextContent("Interactive Header");
-    });
-  });
   describe("renderPersistent", () => {
     it("renders a custom layout for renderPersistent when provided", async () => {
       render(
@@ -1794,7 +1697,8 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("type", "i");
+      await openAutocomplete();
+      // Wait for menu
       await expectMenuShown();
 
       expect(screen.getByTestId("custom-persistent")).toBeVisible();
@@ -1828,7 +1732,8 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
+      // Wait for menu
       await expectMenuShown();
 
       await navigateDown(1);
@@ -1855,7 +1760,8 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
+      // Wait for menu
       await expectMenuShown();
 
       expect(screen.getByTestId("custom-persistent-header")).toBeVisible();
@@ -1887,7 +1793,8 @@ describe("AutocompleteRebuilt", () => {
         />,
       );
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
+      // Wait for menu
       await expectMenuShown();
 
       expect(screen.getByTestId("custom-persistent")).toBeVisible();
@@ -1896,128 +1803,12 @@ describe("AutocompleteRebuilt", () => {
       );
     });
   });
-  describe("renderOption/renderAction render args", () => {
-    it("renders a custom layout for renderOption when provided", async () => {
-      const renderOption = jest.fn(({ value }) => value.label);
-
-      render(<Wrapper renderOption={renderOption} />);
-
-      await openAutocomplete("arrowDown");
-      expect(renderOption).toHaveBeenCalled();
-    });
-
-    it("renders a custom layout for renderAction when provided", async () => {
-      const renderAction = jest.fn(({ value }) => value.label);
-
-      render(<Wrapper renderAction={renderAction} />);
-      await openAutocomplete("arrowDown");
-
-      expect(renderAction).toHaveBeenCalled();
-    });
-
-    it("passes isActive correctly to renderOption for the highlighted option", async () => {
-      // TODO: Consider consuming the value and using it as output to verify isActive rather than calls
-      const renderOption = jest.fn(({ value }) => value.label);
-
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          value={undefined}
-          onChange={jest.fn()}
-          inputValue=""
-          onInputChange={jest.fn()}
-          menu={buildMenu().menu}
-          placeholder=""
-          renderOption={renderOption}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      await navigateDown(1);
-
-      // Find the last call for the option "One" and assert isActive true
-      const calls = renderOption.mock.calls as Array<
-        [{ value: TestOption; isActive: boolean; isSelected: boolean }]
-      >;
-      const lastForOne = [...calls]
-        .reverse()
-        .find(([args]) => args.value.label === "One");
-
-      expect(lastForOne).toBeTruthy();
-      expect(lastForOne?.[0].isActive).toBe(true);
-      expect(lastForOne?.[0].isSelected).toBe(false);
-    });
-
-    it("passes isSelected correctly to renderOption for the selected option", async () => {
-      const renderOption = jest.fn(({ value }) => value.label);
-
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          value={{ label: "Two" }}
-          onChange={jest.fn()}
-          inputValue={"Two"}
-          onInputChange={jest.fn()}
-          menu={buildMenu().menu}
-          placeholder=""
-          openOnFocus
-          renderOption={renderOption}
-        />,
-      );
-
-      await openAutocomplete("click");
-
-      const calls = renderOption.mock.calls as Array<
-        [{ value: TestOption; isActive: boolean; isSelected: boolean }]
-      >;
-      const lastForTwo = [...calls]
-        .reverse()
-        .find(([args]) => args.value.label === "Two");
-
-      expect(lastForTwo).toBeTruthy();
-      expect(lastForTwo?.[0].isSelected).toBe(true);
-    });
-
-    it("passes isActive to renderAction for the highlighted action", async () => {
-      const { menu } = buildMenu();
-      const renderAction = jest.fn(({ value }) => value.label);
-
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          value={undefined}
-          onChange={jest.fn()}
-          inputValue={""}
-          onInputChange={jest.fn()}
-          menu={menu}
-          placeholder=""
-          renderAction={renderAction}
-        />,
-      );
-
-      await openAutocomplete("arrowDown");
-      // 3 options, 2 actions - move highlight to second action (index 4)
-      await navigateDown(5);
-
-      const activeAction = getActiveAction();
-
-      expect(activeAction).not.toBeNull();
-      expect(activeAction?.textContent).toContain("Stay Open");
-
-      const calls = renderAction.mock.calls as Array<
-        [{ value: { label: string }; isActive: boolean }]
-      >;
-      const lastAction = [...calls].reverse()[0]?.[0];
-
-      expect(lastAction?.isActive).toBe(true);
-    });
-  });
 
   describe("UNSAFE props", () => {
     it("passes className to the menu", async () => {
       render(<Wrapper UNSAFE_className={{ menu: "custom-menu" }} />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       expect(await screen.findByRole("listbox")).toHaveClass("custom-menu");
     });
@@ -2025,7 +1816,7 @@ describe("AutocompleteRebuilt", () => {
     it("passes styles to the menu", async () => {
       render(<Wrapper UNSAFE_styles={{ menu: { backgroundColor: "red" } }} />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       expect(await screen.findByRole("listbox")).toHaveStyle({
         backgroundColor: "red",
@@ -2035,7 +1826,7 @@ describe("AutocompleteRebuilt", () => {
     it("passes className to the option", async () => {
       render(<Wrapper UNSAFE_className={{ option: "custom-option" }} />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       expect(
         screen
@@ -2049,7 +1840,7 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper UNSAFE_styles={{ option: { backgroundColor: "red" } }} />,
       );
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       expect(
         screen
@@ -2061,7 +1852,7 @@ describe("AutocompleteRebuilt", () => {
     it("passes className to the action", async () => {
       render(<Wrapper UNSAFE_className={{ action: "custom-action" }} />);
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       expect(
         screen
@@ -2075,13 +1866,45 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper UNSAFE_styles={{ action: { backgroundColor: "red" } }} />,
       );
 
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       expect(
         screen
           .getAllByTestId("ATL-AutocompleteRebuilt-Action")
           .every(action => action.style.backgroundColor === "red"),
       ).toBe(true);
+    });
+
+    it("passes className to the persistent header and footer", async () => {
+      render(
+        <Wrapper
+          UNSAFE_className={{
+            persistentHeader: "custom-persistent-header",
+            persistentFooter: "custom-persistent-footer",
+          }}
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+            },
+            {
+              type: "persistent",
+              label: "Interactive Footer",
+              position: "footer",
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+
+      expect(
+        screen.getByTestId("ATL-AutocompleteRebuilt-Persistent-header"),
+      ).toHaveClass("custom-persistent-header");
+      expect(
+        screen.getByTestId("ATL-AutocompleteRebuilt-Persistent-footer"),
+      ).toHaveClass("custom-persistent-footer");
     });
   });
 

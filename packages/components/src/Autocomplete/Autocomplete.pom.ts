@@ -5,27 +5,22 @@ const user = userEvent.setup();
 
 /**
  * Open the Autocomplete menu
- * @param method - The method to open the menu
+ * @param method - The method to open the menu, only necessary if openOnFocus is false
  * @param text - The text to type into the input (if method is "type")
- * Note that "click" only works if the openOnFocus prop is true
  */
 export async function openAutocomplete(
-  method: "arrowDown" | "arrowUp" | "type" | "click",
+  method?: "arrowDown" | "arrowUp" | "type",
   text?: string,
 ) {
   const input = screen.getByRole("textbox");
+  await user.click(input);
 
   if (method === "arrowDown") {
-    await user.click(input);
     await user.keyboard("{ArrowDown}");
   } else if (method === "arrowUp") {
-    await user.click(input);
     await user.keyboard("{ArrowUp}");
   } else if (method === "type") {
-    await user.click(input);
     await user.type(input, text ?? "");
-  } else if (method === "click") {
-    await user.click(input);
   }
 }
 
