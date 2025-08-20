@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.85.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.85.0...@jobber/components@6.85.1) (2025-08-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.84.0...@jobber/components@6.85.0) (2025-08-19)
+
+
+### Features
+
+* **components:** Add additional gap spacings to Flex [JOB-133026] ([#2684](https://github.com/GetJobber/atlantis/issues/2684)) ([58dcb80](https://github.com/GetJobber/atlantis/commit/58dcb80c556c157893df46eea5f5c9380d7ef669))
+* **components:** Add semantic token support for Grid gap spacing ([#2548](https://github.com/GetJobber/atlantis/issues/2548)) ([c0dee7d](https://github.com/GetJobber/atlantis/commit/c0dee7dc3c56c5b6b6ced02188138da9dd700567))
+
+
+
+
+
+# [6.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.83.0...@jobber/components@6.84.0) (2025-08-18)
+
+
+### Features
+
+* **components:** Use FloatingUI for Dismissible Chips ([#2675](https://github.com/GetJobber/atlantis/issues/2675)) ([7ef791e](https://github.com/GetJobber/atlantis/commit/7ef791e388b9f61b55d787c75d42bbd8705f0941)), closes [#2672](https://github.com/GetJobber/atlantis/issues/2672)
+
+
+
+
+
+# [6.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.6...@jobber/components@6.83.0) (2025-08-18)
+
+
+### Features
+
+* **components:** Add Select.OptionGroup and experimental custom styling ([#2664](https://github.com/GetJobber/atlantis/issues/2664)) ([cf3fe35](https://github.com/GetJobber/atlantis/commit/cf3fe35ec542699b8e99bbee95637b2484d77c48))
+
+
+
+
+
 ## [6.82.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.82.5...@jobber/components@6.82.6) (2025-08-18)
 
 **Note:** Version bump only for package @jobber/components
