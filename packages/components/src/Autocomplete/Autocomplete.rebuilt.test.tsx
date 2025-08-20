@@ -1,11 +1,13 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
+import userEvent from "@testing-library/user-event";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import {
   type AutocompleteRebuiltProps,
   type MenuItem,
   type MenuSection,
   type OptionLike,
+  defineMenu,
   menuOptions,
   menuSection,
 } from "./Autocomplete.types";
@@ -34,6 +36,7 @@ const ACTION2_LABEL = "Stay Open";
 
 interface TestOption {
   label: string;
+  special?: boolean;
 }
 
 // TODO: allow opting out of actions
@@ -91,6 +94,7 @@ function Wrapper<T extends OptionLike>({
   UNSAFE_className,
   UNSAFE_styles,
   readOnly,
+  renderPersistent,
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -104,8 +108,12 @@ function Wrapper<T extends OptionLike>({
   readonly emptyActions?: AutocompleteRebuiltProps<T, false>["emptyActions"];
   readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
-  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly renderInput?: AutocompleteRebuiltProps<T, false>["renderInput"];
+  readonly renderPersistent?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["renderPersistent"];
+  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly loading?: boolean;
   readonly emptyStateMessage?: React.ReactNode;
   readonly ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
@@ -131,7 +139,7 @@ function Wrapper<T extends OptionLike>({
       onInputChange={onInputChange ?? setInputValue}
       onBlur={onBlur}
       onFocus={onFocus}
-      menu={menu ?? (built.menu as unknown as MenuItem<T>[])}
+      menu={menu ?? (built.menu as MenuItem<T>[])}
       placeholder=""
       openOnFocus={openOnFocus}
       filterOptions={filterOptions}
@@ -146,6 +154,7 @@ function Wrapper<T extends OptionLike>({
       UNSAFE_className={UNSAFE_className}
       UNSAFE_styles={UNSAFE_styles}
       readOnly={readOnly}
+      renderPersistent={renderPersistent}
     />
   );
 }
@@ -727,7 +736,7 @@ describe("AutocompleteRebuilt", () => {
         const { menu } = buildMenu();
 
         return (
-          <AutocompleteRebuilt<TestOption>
+          <AutocompleteRebuilt
             version={2}
             allowFreeForm
             createFreeFormValue={input => ({
@@ -759,7 +768,7 @@ describe("AutocompleteRebuilt", () => {
         const { menu } = buildMenu();
 
         return (
-          <AutocompleteRebuilt<TestOption>
+          <AutocompleteRebuilt
             version={2}
             allowFreeForm
             createFreeFormValue={input => ({
@@ -793,7 +802,7 @@ describe("AutocompleteRebuilt", () => {
         const { menu } = buildMenu();
 
         return (
-          <AutocompleteRebuilt<TestOption>
+          <AutocompleteRebuilt
             version={2}
             allowFreeForm
             createFreeFormValue={input => ({
@@ -1224,55 +1233,128 @@ describe("AutocompleteRebuilt", () => {
 
   describe("renderSection", () => {
     it("renders a custom layout for renderSection when provided", async () => {
-      const renderSection = (section: MenuSection<OptionLike>) => {
+      const renderSection = (
+        section: MenuSection<OptionLike & { special?: boolean }>,
+      ) => {
         return (
-          <strong data-testid="custom-section-header">{section.label}</strong>
+          <strong
+            data-testid={`custom-section-header-${
+              section.special ? "special" : "normal"
+            }`}
+          >
+            {section.label}
+          </strong>
         );
       };
-      const sectionedMenu: MenuItem<OptionLike>[] = [
+      const sectionedMenu = defineMenu<OptionLike & { special?: boolean }>([
         {
           type: "section",
-          id: "one",
+          special: true,
           label: "One",
           options: [{ label: "One" }, { label: "Two" }],
         },
-      ];
+      ]);
 
-      render(<Wrapper renderSection={renderSection} menu={sectionedMenu} />);
+      render(
+        <Wrapper<OptionLike & { special?: boolean }>
+          renderSection={renderSection}
+          menu={sectionedMenu}
+        />,
+      );
 
       await openAutocomplete("arrowDown");
 
       await waitFor(() => {
-        expect(screen.getByTestId("custom-section-header")).toBeVisible();
+        expect(
+          screen.getByTestId("custom-section-header-special"),
+        ).toBeVisible();
       });
     });
   });
 
   describe("renderOption", () => {
     it("renders a custom layout for renderOption when provided", async () => {
-      const renderOption = ({ value }: { value: OptionLike }) => {
-        return <strong data-testid="custom-option">{value.label}</strong>;
+      const renderOption = ({
+        value,
+      }: {
+        value: OptionLike & { special?: boolean };
+      }) => {
+        return (
+          <strong
+            data-testid={`custom-option-${
+              value.special ? "special" : "normal"
+            }`}
+          >
+            {value.label}
+          </strong>
+        );
       };
 
-      render(<Wrapper renderOption={renderOption} />);
+      render(
+        <Wrapper<OptionLike & { special?: boolean }>
+          menu={defineMenu<OptionLike & { special?: boolean }>([
+            {
+              type: "options",
+              options: [
+                { label: "One", special: true },
+                { label: "Two", special: false },
+              ],
+            },
+          ])}
+          renderOption={renderOption}
+        />,
+      );
 
       await openAutocomplete("arrowDown");
+      await expectMenuShown();
 
-      expect(screen.getAllByTestId("custom-option")).toHaveLength(3);
+      expect(screen.getByTestId("custom-option-special")).toBeVisible();
+      expect(screen.getByTestId("custom-option-normal")).toBeVisible();
     });
   });
 
   describe("renderAction", () => {
     it("renders a custom layout for renderAction when provided", async () => {
-      const renderAction = ({ value }: { value: OptionLike }) => {
-        return <strong data-testid="custom-action">{value.label}</strong>;
+      const renderAction = ({
+        value,
+      }: {
+        value: OptionLike & { special?: boolean };
+      }) => {
+        return (
+          <strong
+            data-testid={`custom-action-${
+              value.special ? "special" : "normal"
+            }`}
+          >
+            {value.label}
+          </strong>
+        );
       };
 
-      render(<Wrapper renderAction={renderAction} />);
+      render(
+        <Wrapper<OptionLike & { special?: boolean }>
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }],
+              actionsBottom: [
+                {
+                  type: "action",
+                  label: "Create new",
+                  special: true,
+                  onClick: jest.fn(),
+                },
+              ],
+            },
+          ]}
+          renderAction={renderAction}
+        />,
+      );
 
       await openAutocomplete("arrowDown");
+      await expectMenuShown();
 
-      expect(screen.getAllByTestId("custom-action")).toHaveLength(2);
+      expect(screen.getByTestId("custom-action-special")).toBeVisible();
     });
   });
 
@@ -1473,6 +1555,347 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
+  describe("Persistents", () => {
+    it("renders a default, uninteractive persistent header when provided", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }, { label: "Two" }],
+            },
+            {
+              type: "persistent",
+              label: "Persistent Text Header",
+              position: "header",
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      expect(screen.getByText("Persistent Text Header")).toBeVisible();
+    });
+    it("renders a default, uninteractive persistent footer async when provided", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }, { label: "Two" }],
+            },
+            {
+              type: "persistent",
+              label: "Persistent Text Footer",
+              position: "footer",
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      expect(screen.getByText("Persistent Text Footer")).toBeVisible();
+    });
+
+    it("should fire onClick and close menu by default when an interactive persistent header is clicked", async () => {
+      const onClick = jest.fn();
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      await userEvent.click(screen.getByText("Interactive Header"));
+      expect(onClick).toHaveBeenCalled();
+
+      await expectMenuClosed();
+    });
+
+    it("should fire onClick and close menu by default when an interactive persistent footer is invoked with Enter", async () => {
+      const onClick = jest.fn();
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }, { label: "Two" }],
+            },
+            {
+              type: "persistent",
+              label: "Interactive Footer",
+              position: "footer",
+              onClick,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("type", "O");
+      await expectMenuShown();
+      // Also testing reverse looping behavior by doing this
+      await navigateUp(1);
+      await selectWithKeyboard();
+
+      expect(onClick).toHaveBeenCalled();
+      await expectMenuClosed();
+    });
+    it("does not close the menu if an interactive persistent has shouldClose=false when clicked", async () => {
+      const onClick = jest.fn();
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Footer",
+              position: "footer",
+              onClick,
+              shouldClose: false,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      await userEvent.click(screen.getByText("Interactive Footer"));
+      expect(onClick).toHaveBeenCalled();
+      await expectMenuShown();
+    });
+
+    it("does not close the menu if an interactive persistent has shouldClose=false when invoked with Enter", async () => {
+      const onClick = jest.fn();
+      // Note that there are no options, and it is still showing
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Footer",
+              position: "footer",
+              onClick,
+              shouldClose: false,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("type", "O");
+      await expectMenuShown();
+
+      await navigateDown(1);
+      await selectWithKeyboard();
+
+      expect(onClick).toHaveBeenCalled();
+      await expectMenuShown();
+    });
+    it("displays persistents after filtering", async () => {
+      render(
+        <Wrapper
+          menu={[
+            { type: "options", options: [{ label: "One" }, { label: "Two" }] },
+            {
+              type: "persistent",
+              label: "Persistent Text Header",
+              position: "header",
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("type", "One");
+      await expectMenuShown();
+
+      expect(screen.getByText("Persistent Text Header")).toBeVisible();
+    });
+
+    it("highlights interactive persistents when they are active", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick: jest.fn(),
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      await navigateDown(1);
+
+      // Interactive persistent is also role="option"
+      const activePersistent = getActiveOption();
+
+      expect(activePersistent).toBeVisible();
+      expect(activePersistent).toHaveTextContent("Interactive Header");
+    });
+    it("highlights interactive persistents in the correct order when 'looping' forward", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "options",
+              options: [{ label: "One" }, { label: "Two" }],
+            },
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick: jest.fn(),
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete("type", "o");
+      await expectMenuShown();
+      // Two options, one persistent
+      await navigateDown(4);
+
+      const activePersistent = getActiveOption();
+      expect(activePersistent).toBeVisible();
+      expect(activePersistent).toHaveTextContent("Interactive Header");
+    });
+  });
+  describe("renderPersistent", () => {
+    it("renders a custom layout for renderPersistent when provided", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick: jest.fn(),
+            },
+          ]}
+          renderPersistent={({ value }) => (
+            <div data-testid="custom-persistent">{value.label}</div>
+          )}
+        />,
+      );
+
+      await openAutocomplete("type", "i");
+      await expectMenuShown();
+
+      expect(screen.getByTestId("custom-persistent")).toBeVisible();
+    });
+    it("passes isActive to renderPersistent when used with an interactive persistent", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick: jest.fn(),
+            },
+            {
+              type: "persistent",
+              label: "Interactive Footer",
+              position: "footer",
+              onClick: jest.fn(),
+            },
+          ]}
+          renderPersistent={({ value, isActive }) => (
+            <div
+              data-testid={`custom-persistent-${
+                isActive ? "active" : "inactive"
+              }`}
+            >
+              {value.label}
+            </div>
+          )}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      await navigateDown(1);
+
+      expect(screen.getByTestId("custom-persistent-active")).toBeVisible();
+      expect(screen.getByTestId("custom-persistent-inactive")).toBeVisible();
+    });
+    it("passes position to renderPersistent when provided", async () => {
+      render(
+        <Wrapper
+          menu={[
+            {
+              type: "persistent",
+              label: "Interactive Header",
+              position: "header",
+              onClick: jest.fn(),
+            },
+          ]}
+          renderPersistent={({ value, position }) => (
+            <div data-testid={`custom-persistent-${position}`}>
+              {value.label}
+            </div>
+          )}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      expect(screen.getByTestId("custom-persistent-header")).toBeVisible();
+    });
+    it("accepts and passes custom values to renderPersistent when provided", async () => {
+      const menu = defineMenu<
+        OptionLike,
+        Record<string, never>,
+        { arbitrary: string }
+      >([
+        {
+          type: "persistent",
+          label: "Interactive Header",
+          position: "header",
+          arbitrary: "something",
+          onClick: jest.fn(),
+        },
+      ]);
+
+      render(
+        <Wrapper<OptionLike>
+          // TODO: fix test types to not need this
+          menu={menu as unknown as MenuItem<OptionLike>[]}
+          renderPersistent={({ value }) => (
+            <div data-testid="custom-persistent">
+              {(value as unknown as { arbitrary: string }).arbitrary}
+            </div>
+          )}
+        />,
+      );
+
+      await openAutocomplete("arrowDown");
+      await expectMenuShown();
+
+      expect(screen.getByTestId("custom-persistent")).toBeVisible();
+      expect(screen.getByTestId("custom-persistent")).toHaveTextContent(
+        "something",
+      );
+    });
+  });
   describe("renderOption/renderAction render args", () => {
     it("renders a custom layout for renderOption when provided", async () => {
       const renderOption = jest.fn(({ value }) => value.label);
@@ -1493,6 +1916,7 @@ describe("AutocompleteRebuilt", () => {
     });
 
     it("passes isActive correctly to renderOption for the highlighted option", async () => {
+      // TODO: Consider consuming the value and using it as output to verify isActive rather than calls
       const renderOption = jest.fn(({ value }) => value.label);
 
       render(
@@ -1528,7 +1952,7 @@ describe("AutocompleteRebuilt", () => {
       const renderOption = jest.fn(({ value }) => value.label);
 
       render(
-        <AutocompleteRebuilt<TestOption>
+        <AutocompleteRebuilt
           version={2}
           value={{ label: "Two" }}
           onChange={jest.fn()}
@@ -1559,7 +1983,7 @@ describe("AutocompleteRebuilt", () => {
       const renderAction = jest.fn(({ value }) => value.label);
 
       render(
-        <AutocompleteRebuilt<TestOption>
+        <AutocompleteRebuilt
           version={2}
           value={undefined}
           onChange={jest.fn()}
