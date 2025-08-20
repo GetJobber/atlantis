@@ -497,7 +497,7 @@ interface AutocompleteRebuiltBaseProps<
   /*
    * Whether the menu should open when the input gains focus.
    *
-   * @default false
+   * @default true
    */
   readonly openOnFocus?: boolean;
 

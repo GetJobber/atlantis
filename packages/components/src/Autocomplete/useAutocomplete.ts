@@ -353,7 +353,7 @@ export function useAutocomplete<
     value,
     onChange,
     multiple,
-    openOnFocus = false,
+    openOnFocus = true,
     readOnly = false,
   } = props;
 
