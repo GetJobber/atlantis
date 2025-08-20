@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.84.0...@jobber/design@0.85.0) (2025-08-20)
+
+
+### Features
+
+* **design:** JOB-132716 Add new checkmarkCircle icon  ([#2680](https://github.com/GetJobber/atlantis/issues/2680)) ([3e65455](https://github.com/GetJobber/atlantis/commit/3e6545579c9754de2532495c5529b4217a3af42a))
+
+
+
+
+
 # [0.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.83.0...@jobber/design@0.84.0) (2025-08-11)
 
 
