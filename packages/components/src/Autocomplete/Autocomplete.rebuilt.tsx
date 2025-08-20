@@ -1,5 +1,5 @@
 import type { Ref } from "react";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useMemo } from "react";
 import {
   FloatingFocusManager,
   FloatingPortal,
@@ -12,6 +12,7 @@ import type {
   ActionOrigin,
   AutocompleteRebuiltProps,
   MenuAction,
+  MenuPersistent,
   MenuSection,
   OptionLike,
 } from "./Autocomplete.types";
@@ -62,6 +63,9 @@ function AutocompleteRebuiltInternal<
   const {
     renderable,
     optionCount,
+    persistentsHeaders,
+    persistentsFooters,
+    getPersistentKey,
     getOptionLabel,
     getOptionKey,
     isOptionSelected,
@@ -121,14 +125,27 @@ function AutocompleteRebuiltInternal<
     forwardedRef,
   ]);
 
-  const menuClassName = classNames(
-    styles.list,
-    loading && styles.loadingList,
-    props.UNSAFE_className?.menu,
-  );
+  const menuClassName = classNames(styles.list, props.UNSAFE_className?.menu);
 
   const showEmptyStateMessage =
     optionCount === 0 && props.emptyStateMessage !== false;
+
+  // Helper: counts for navigable index offsets
+  // We maintain one global navigable index: [header interactive] -> [middle (options/actions)] -> [footer interactive].
+  // Only the middle region is rendered inside a scrollable sub-list that uses local indices, so we subtract
+  // headerInteractiveCount when passing activeIndex down to the middle. Footers are always last and are rendered
+  // with an explicit indexOffset = headerInteractiveCount + middleNavigableCount, so we never need a separate
+  // "footerInteractiveCount" for mapping. Nothing comes after footers; their indices are absolute.
+  const headerInteractiveCount = useMemo(
+    () => persistentsHeaders.filter(p => Boolean(p.onClick)).length,
+    [persistentsHeaders],
+  );
+  const middleNavigableCount = useMemo(
+    () => renderable.reduce((c, i) => c + (i.kind === "section" ? 0 : 1), 0),
+    [renderable],
+  );
+  const activeIndexForMiddle =
+    activeIndex != null ? activeIndex - headerInteractiveCount : null;
 
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
@@ -156,58 +173,98 @@ function AutocompleteRebuiltInternal<
               }}
               {...getFloatingProps()}
             >
-              {loading ? (
-                <LoadingContent />
-              ) : (
-                <>
-                  {showEmptyStateMessage && (
-                    <EmptyStateMessage emptyState={props.emptyStateMessage} />
-                  )}
-                  {renderable.length > 0 && (
-                    <MenuList<Value>
-                      items={renderable}
-                      activeIndex={activeIndex}
-                      getItemProps={() =>
-                        getItemProps({
-                          ref(node: HTMLElement | null) {
-                            const idx = Number(
-                              node?.getAttribute("data-index"),
-                            );
+              {/* Header persistents */}
+              <PersistentRegion<Value>
+                items={persistentsHeaders}
+                position="header"
+                activeIndex={activeIndex}
+                indexOffset={0}
+                getItemProps={getItemProps}
+                listRef={listRef}
+                renderPersistent={props.renderPersistent}
+                getPersistentKey={getPersistentKey}
+                onAction={onAction}
+                className={classNames(
+                  styles.persistentHeader,
+                  props.UNSAFE_className?.persistentHeader,
+                )}
+                style={props.UNSAFE_styles?.persistentHeader}
+              />
 
-                            if (!Number.isNaN(idx)) {
-                              listRef.current[idx] = node;
-                            }
+              {/* Scrollable middle region */}
+              <div className={styles.scrollRegion}>
+                {loading ? (
+                  <LoadingContent />
+                ) : (
+                  <>
+                    {showEmptyStateMessage && (
+                      <EmptyStateMessage emptyState={props.emptyStateMessage} />
+                    )}
+                    {renderable.length > 0 && (
+                      <MenuList<Value>
+                        items={renderable}
+                        activeIndex={activeIndexForMiddle}
+                        indexOffset={headerInteractiveCount}
+                        getItemProps={() =>
+                          getItemProps({
+                            ref(node: HTMLElement | null) {
+                              const idx = Number(
+                                node?.getAttribute("data-index"),
+                              );
+
+                              if (!Number.isNaN(idx)) {
+                                listRef.current[idx] = node;
+                              }
+                            },
+                          })
+                        }
+                        renderOption={renderOption}
+                        renderSection={renderSection}
+                        renderAction={renderAction}
+                        getOptionLabel={getOptionLabel}
+                        getOptionKey={getOptionKey}
+                        getActionKey={action => action.label}
+                        getSectionKey={section => section.label}
+                        onSelect={onSelection}
+                        onAction={onAction}
+                        isOptionSelected={isOptionSelected}
+                        slotOverrides={{
+                          option: {
+                            className: props.UNSAFE_className?.option,
+                            style: props.UNSAFE_styles?.option,
                           },
-                        })
-                      }
-                      renderOption={renderOption}
-                      renderSection={renderSection}
-                      renderAction={renderAction}
-                      getOptionLabel={getOptionLabel}
-                      getOptionKey={getOptionKey}
-                      getActionKey={action => action.label}
-                      getSectionKey={section => section.label}
-                      onSelect={onSelection}
-                      onAction={onAction}
-                      isOptionSelected={isOptionSelected}
-                      slotOverrides={{
-                        option: {
-                          className: props.UNSAFE_className?.option,
-                          style: props.UNSAFE_styles?.option,
-                        },
-                        action: {
-                          className: props.UNSAFE_className?.action,
-                          style: props.UNSAFE_styles?.action,
-                        },
-                        section: {
-                          className: props.UNSAFE_className?.section,
-                          style: props.UNSAFE_styles?.section,
-                        },
-                      }}
-                    />
-                  )}
-                </>
-              )}
+                          action: {
+                            className: props.UNSAFE_className?.action,
+                            style: props.UNSAFE_styles?.action,
+                          },
+                          section: {
+                            className: props.UNSAFE_className?.section,
+                            style: props.UNSAFE_styles?.section,
+                          },
+                        }}
+                      />
+                    )}
+                  </>
+                )}
+              </div>
+
+              {/* Footer persistents */}
+              <PersistentRegion<Value>
+                items={persistentsFooters}
+                position={"footer"}
+                activeIndex={activeIndex}
+                indexOffset={headerInteractiveCount + middleNavigableCount}
+                getItemProps={getItemProps}
+                listRef={listRef}
+                renderPersistent={props.renderPersistent}
+                getPersistentKey={getPersistentKey}
+                onAction={onAction}
+                className={classNames(
+                  styles.persistentFooter,
+                  props.UNSAFE_className?.persistentFooter,
+                )}
+                style={props.UNSAFE_styles?.persistentFooter}
+              />
             </div>
           </FloatingFocusManager>
         </FloatingPortal>
@@ -218,11 +275,11 @@ function AutocompleteRebuiltInternal<
 
 function LoadingContent() {
   return (
-    <>
+    <div className={styles.loadingList}>
       <Glimmer shape="rectangle" size="largest" />
       <Glimmer shape="rectangle" size="largest" />
       <Glimmer shape="rectangle" size="largest" />
-    </>
+    </div>
   );
 }
 
@@ -240,6 +297,7 @@ function EmptyStateMessage({
 interface MenuListProps<T extends OptionLike> {
   readonly items: Array<RenderItem<T>>;
   readonly activeIndex: number | null;
+  readonly indexOffset?: number;
   readonly getItemProps: () => Record<string, unknown>;
   readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
@@ -265,6 +323,7 @@ interface MenuListProps<T extends OptionLike> {
 function MenuList<T extends OptionLike>({
   items,
   activeIndex,
+  indexOffset = 0,
   getItemProps,
   renderOption,
   renderSection,
@@ -303,6 +362,7 @@ function MenuList<T extends OptionLike>({
         getOptionLabel,
         getOptionKey,
         onSelect,
+        indexOffset,
         optionClassName: slotOverrides?.option?.className,
         optionStyle: slotOverrides?.option?.style,
       });
@@ -321,6 +381,7 @@ function MenuList<T extends OptionLike>({
       renderAction,
       getActionKey,
       onAction,
+      indexOffset,
       actionClassName: slotOverrides?.action?.className,
       actionStyle: slotOverrides?.action?.style,
       origin: item.origin,
@@ -380,6 +441,7 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   readonly getOptionLabel: (option: T) => string;
   readonly getOptionKey: (option: T) => React.Key;
   readonly onSelect: (option: T) => void;
+  readonly indexOffset?: number;
   readonly optionClassName?: string;
   readonly optionStyle?: React.CSSProperties;
 }
@@ -394,6 +456,7 @@ function handleOptionRendering<T extends OptionLike>({
   getOptionLabel,
   getOptionKey,
   onSelect,
+  indexOffset = 0,
   optionClassName,
   optionStyle,
 }: HandleOptionRenderingProps<T>): {
@@ -424,7 +487,7 @@ function handleOptionRendering<T extends OptionLike>({
           optionClassName,
         )}
         aria-selected={isSelected ? true : undefined}
-        data-index={nextNavigableIndex}
+        data-index={nextNavigableIndex + indexOffset}
         data-active={isActive ? true : undefined}
         {...getItemProps()}
         onClick={() => onSelect(option)}
@@ -465,6 +528,7 @@ interface HandleActionRenderingProps<T extends OptionLike> {
     action: MenuAction<Record<string, unknown>>,
   ) => React.Key;
   readonly onAction: (action: ActionConfig) => void;
+  readonly indexOffset?: number;
   readonly actionClassName?: string;
   readonly actionStyle?: React.CSSProperties;
   readonly origin?: ActionOrigin;
@@ -479,6 +543,7 @@ function handleActionRendering<T extends OptionLike>({
   renderAction,
   getActionKey,
   onAction,
+  indexOffset = 0,
   actionClassName,
   actionStyle,
   origin,
@@ -506,7 +571,7 @@ function handleActionRendering<T extends OptionLike>({
           isActive && styles.actionActive,
           actionClassName,
         )}
-        data-index={nextNavigableIndex}
+        data-index={nextNavigableIndex + indexOffset}
         data-origin={origin}
         data-active={isActive ? true : undefined}
         {...getItemProps()}
@@ -523,4 +588,112 @@ function handleActionRendering<T extends OptionLike>({
     ),
     nextNavigableIndex,
   };
+}
+
+interface PersistentRegionProps<T extends OptionLike> {
+  readonly items: Array<
+    MenuPersistent<Record<string, unknown>> & { position: "header" | "footer" }
+  >;
+  readonly position: "header" | "footer";
+  readonly activeIndex: number | null;
+  readonly indexOffset: number;
+  readonly getItemProps: (
+    args?: Record<string, unknown>,
+  ) => Record<string, unknown>;
+  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly renderPersistent?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["renderPersistent"];
+  readonly getPersistentKey: (
+    item: MenuPersistent<Record<string, unknown>>,
+  ) => React.Key;
+  readonly className?: string;
+  readonly style?: React.CSSProperties;
+  readonly onAction: (action: ActionConfig) => void;
+}
+
+function PersistentRegion<T extends OptionLike>({
+  items,
+  position,
+  activeIndex,
+  indexOffset,
+  getItemProps,
+  listRef,
+  renderPersistent,
+  getPersistentKey,
+  className,
+  style,
+  onAction,
+}: PersistentRegionProps<T>) {
+  if (!items || items.length === 0) return null;
+
+  let navigableIndex = -1;
+
+  return (
+    <div className={className} style={style} data-region={position}>
+      {items.map((p, i) => {
+        const interactive = Boolean(p.onClick);
+        let itemNode: React.ReactNode;
+
+        if (!interactive) {
+          const content = renderPersistent
+            ? renderPersistent({ value: p, position })
+            : p.label;
+
+          itemNode = (
+            <div
+              key={`per-${String(getPersistentKey(p))}-${i}`}
+              role="presentation"
+            >
+              <Text>{content}</Text>
+            </div>
+          );
+        } else {
+          navigableIndex += 1;
+          const nextIndex = navigableIndex;
+          const isActive = activeIndex === indexOffset + nextIndex;
+          const content = renderPersistent ? (
+            renderPersistent({ value: p, position, isActive })
+          ) : (
+            <Typography textColor="interactive">{p.label}</Typography>
+          );
+
+          itemNode = (
+            <div
+              key={`per-${String(getPersistentKey(p))}-${i}`}
+              role="option"
+              tabIndex={-1}
+              className={classNames(
+                styles.action,
+                isActive && styles.actionActive,
+              )}
+              data-index={indexOffset + nextIndex}
+              data-active={isActive ? true : undefined}
+              {...getItemProps({
+                ref(persistNode: HTMLElement | null) {
+                  const idx = Number(persistNode?.getAttribute("data-index"));
+
+                  if (!Number.isNaN(idx)) {
+                    listRef.current[idx] = persistNode;
+                  }
+                },
+              })}
+              // TODO: can we avoid this cast?
+              onClick={() =>
+                onAction({
+                  run: p.onClick as () => void,
+                  closeOnRun: p.shouldClose,
+                })
+              }
+            >
+              {content}
+            </div>
+          );
+        }
+
+        return itemNode;
+      })}
+    </div>
+  );
 }

@@ -10,6 +10,9 @@ declare const styles: {
   readonly "section": string;
   readonly "emptyStateMessage": string;
   readonly "stickyTop": string;
+  readonly "scrollRegion": string;
+  readonly "persistentHeader": string;
+  readonly "persistentFooter": string;
 };
 export = styles;
 

@@ -280,11 +280,33 @@ export interface MenuOptions<
   actionsBottom?: MenuAction<ActionExtra>[];
 }
 
+export type PersistentPosition = "header" | "footer";
+
+export type MenuPersistent<Extra extends object = Record<string, unknown>> =
+  Extra & {
+    type: "persistent";
+    position: PersistentPosition;
+    label: string;
+    /**
+     * If provided, the persistent item is interactive and participates in
+     * arrow-key navigation. Activated with Enter.
+     */
+    onClick?: () => void;
+    /**
+     * Determines if the menu should close when the persistent is activated.
+     * @default true
+     */
+    shouldClose?: boolean;
+  };
+
 export type MenuItem<
   T extends OptionLike,
   SectionExtra extends object = Record<string, unknown>,
   ActionExtra extends object = Record<string, unknown>,
-> = MenuSection<T, SectionExtra, ActionExtra> | MenuOptions<T, ActionExtra>;
+> =
+  | MenuSection<T, SectionExtra, ActionExtra>
+  | MenuOptions<T, ActionExtra>
+  | MenuPersistent<ActionExtra>;
 
 export type AutocompleteValue<
   Value extends OptionLike,
@@ -376,6 +398,12 @@ interface AutocompleteRebuiltBaseProps<
     section: MenuSection<Value, SectionExtra, ActionExtra>,
   ) => Key;
 
+  /**
+   * Used to determine the key for a given persistent item (header/footer).
+   * Defaults to the persistent.label.
+   */
+  readonly getPersistentKey?: (item: MenuPersistent<ActionExtra>) => Key;
+
   /*
    * Render prop to customize the rendering of an option.
    * @param args.value - The option value including all extra keys from the menu item
@@ -406,6 +434,17 @@ interface AutocompleteRebuiltBaseProps<
   }) => React.ReactNode;
 
   /*
+   * Render prop to customize the rendering of a persistent item.
+   * Persistent items are always visible at the top (header) or bottom (footer)
+   * of the menu. Non-interactive persistents are not part of navigation.
+   */
+  readonly renderPersistent?: (args: {
+    value: MenuPersistent<ActionExtra>;
+    position: "header" | "footer";
+    isActive?: boolean;
+  }) => React.ReactNode;
+
+  /*
    * Render prop to customize the rendering of the input.
    * @param props.inputRef - The ref to the input element
    * @param props.inputProps - The props to pass to the input element
@@ -422,6 +461,8 @@ interface AutocompleteRebuiltBaseProps<
     section?: string;
     action?: string;
     input?: string;
+    persistentHeader?: string;
+    persistentFooter?: string;
   };
 
   readonly UNSAFE_styles?: {
@@ -430,6 +471,8 @@ interface AutocompleteRebuiltBaseProps<
     section?: CSSProperties;
     action?: CSSProperties;
     input?: CSSProperties;
+    persistentHeader?: CSSProperties;
+    persistentFooter?: CSSProperties;
   };
 
   /*

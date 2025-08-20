@@ -1,5 +1,6 @@
 .list {
-  display: block;
+  display: flex;
+  flex-direction: column;
   z-index: var(--elevation-modal);
   max-height: 320px;
   box-shadow: var(--shadow-base);
@@ -8,7 +9,7 @@
   padding: 0;
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  overflow: auto;
+  overflow: hidden;
   background: var(--color-surface);
   scroll-behavior: smooth;
 }
@@ -70,4 +71,16 @@
   top: 0;
   z-index: var(--elevation-base);
   background: var(--color-surface);
+}
+
+.scrollRegion {
+  overflow: auto;
+}
+
+.persistentHeader {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.persistentFooter {
+  border-top: var(--border-base) solid var(--color-border);
 }

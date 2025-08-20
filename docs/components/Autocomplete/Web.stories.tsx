@@ -30,6 +30,7 @@ import { Heading } from "@jobber/components/Heading";
 import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
 import { StatusIndicatorType } from "@jobber/components/StatusIndicator";
 import { Modal } from "@jobber/components/Modal";
+import { Typography } from "@jobber/components/Typography";
 
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
@@ -75,6 +76,15 @@ const simpleOptions: OptionLike[] = [
   },
   {
     label: "Flooring Installation",
+  },
+  {
+    label: "Baseboard Installation",
+  },
+  {
+    label: "HVAC Repair",
+  },
+  {
+    label: "HVAC Installation",
   },
 ];
 
@@ -337,6 +347,10 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
     OptionLike | undefined
   >();
   const [emptyInputValue, setEmptyInputValue] = useState("");
+  const [persistentExampleValue, setPersistentExampleValue] = useState<
+    OptionLike | undefined
+  >();
+  const [persistentInputValue, setPersistentInputValue] = useState("");
 
   return (
     <Content>
@@ -508,6 +522,87 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
             options: simpleOptions,
           },
         ]}
+      />
+      <Heading level={4}>Persistent Actions (Header/Footer)</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={persistentExampleValue}
+        onChange={setPersistentExampleValue}
+        inputValue={persistentInputValue}
+        onInputChange={setPersistentInputValue}
+        emptyActions={[
+          {
+            type: "action",
+            label: "Add Service",
+            onClick: () => {
+              alert("Add Service");
+            },
+          },
+        ]}
+        menu={[
+          {
+            type: "options",
+            options: simpleOptions,
+            actionsBottom: [
+              {
+                type: "action",
+                label: "Add Service",
+                onClick: () => {
+                  alert("Add Service");
+                },
+              },
+            ],
+          },
+
+          {
+            type: "persistent",
+            label:
+              "This is some content that will remain at all times regardless of options, and empty states.",
+            position: "header",
+            shouldClose: false,
+            special: true,
+            onClick: () => {
+              alert("Sticky Header Action");
+            },
+          },
+          {
+            type: "persistent",
+            label: "'Sticky' Footer Action",
+            onClick: () => {
+              alert("Sticky Footer Action");
+            },
+            position: "footer",
+          },
+        ]}
+        renderPersistent={({ value, position, isActive }) => {
+          if (position === "header") {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
+              >
+                <Text variation={isActive ? "warn" : "default"}>
+                  {value.label}
+                </Text>
+              </div>
+            );
+          }
+
+          return (
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <Typography
+                fontWeight="bold"
+                textColor={isActive ? "greyBlue" : "interactive"}
+              >
+                {value.label}
+              </Typography>
+            </div>
+          );
+        }}
       />
     </Content>
   );
