@@ -144,7 +144,7 @@ const config: StorybookConfig = {
       "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),
       mdxUtils: path.resolve(__dirname, "components"),
       "@atlantis": path.resolve(__dirname, "../"),
-      'react-native-web/dist/exports/findNodeHandle': path.resolve(__dirname, "__mocks__/react-native-web-findNodeHandler.ts"),
+      'react-native-web/dist/exports/findNodeHandle': path.resolve(__dirname, "__mocks__/react-native-web-findNodeHandle.ts"),
     };
 
     // Return the altered config
