@@ -542,7 +542,8 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
         ]}
         menu={[
           {
-            type: "options",
+            type: "section",
+            label: "Services",
             options: simpleOptions,
             actionsBottom: [
               {
@@ -569,6 +570,14 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
           {
             type: "persistent",
             label: "'Sticky' Footer Action",
+            onClick: () => {
+              alert("Sticky Footer Action");
+            },
+            position: "footer",
+          },
+          {
+            type: "persistent",
+            label: "Another Footer Action",
             onClick: () => {
               alert("Sticky Footer Action");
             },
