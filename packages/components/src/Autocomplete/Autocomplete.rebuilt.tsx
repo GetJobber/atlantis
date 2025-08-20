@@ -276,9 +276,9 @@ function AutocompleteRebuiltInternal<
 function LoadingContent() {
   return (
     <div className={styles.loadingList}>
-      <Glimmer shape="rectangle" size="largest" />
-      <Glimmer shape="rectangle" size="largest" />
-      <Glimmer shape="rectangle" size="largest" />
+      <Glimmer shape="rectangle" size="base" />
+      <Glimmer shape="rectangle" size="base" />
+      <Glimmer shape="rectangle" size="base" />
     </div>
   );
 }
@@ -556,7 +556,19 @@ function handleActionRendering<T extends OptionLike>({
   const actionContent = renderAction ? (
     renderAction({ value: action, isActive, origin })
   ) : (
-    <Typography textColor="interactive">{action.label}</Typography>
+    <Typography
+      textColor="interactive"
+      fontWeight="semiBold"
+      underline="solid color-interactive"
+      UNSAFE_style={{
+        textStyle: {
+          textDecorationThickness: "var(--border-thick)",
+          textUnderlineOffset: "var(--space-smallest)",
+        },
+      }}
+    >
+      {action.label}
+    </Typography>
   );
 
   return {
