@@ -16,8 +16,7 @@ const config: StorybookConfig = {
       name: "@storybook/addon-react-native-web",
       options: {
         modulesToTranspile: ["react-native-reanimated"],
-        babelPlugins: [
-          "react-native-reanimated/plugin"],
+        babelPlugins: ["react-native-reanimated/plugin"],
       },
     },
   ],
@@ -145,6 +144,7 @@ const config: StorybookConfig = {
       "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),
       mdxUtils: path.resolve(__dirname, "components"),
       "@atlantis": path.resolve(__dirname, "../"),
+      'react-native-web/dist/exports/findNodeHandle': path.resolve(__dirname, "__mocks__/react-native-web-findNodeHandler.ts"),
     };
 
     // Return the altered config
