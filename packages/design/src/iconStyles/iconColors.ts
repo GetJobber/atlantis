@@ -150,14 +150,5 @@ export const iconColors = {
     task: {
       value: "{color.task}",
     },
-    ai: {
-      value: "{color.ai}",
-    },
-    aiSurface: {
-      value: "{color.ai-.surface}",
-    },
-    aiOnSurface: {
-      value: "{color.ai-.onSurface}",
-    },
   },
 };

@@ -58,19 +58,6 @@
           "name": "elevationProp"
         }
       },
-      "variation": {
-        "defaultValue": null,
-        "description": "",
-        "name": "variation",
-        "parent": {
-          "fileName": "packages/components/src/Card/types.ts",
-          "name": "CardProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"ai\" | \"ai-animated\""
-        }
-      },
       "url": {
         "defaultValue": null,
         "description": "URL that the card would navigate to once clicked.",

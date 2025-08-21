@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | \"interactive\" | ... 36 more ... | \"aiOnSurface\""
+          "name": "\"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | \"interactive\" | ... 33 more ... | \"brandHighlight\""
         }
       },
       "children": {

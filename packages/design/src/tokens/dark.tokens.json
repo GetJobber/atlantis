@@ -46,16 +46,6 @@
                     "$value": "{color.base.blue-.600}",
                     "$description": "Hover state for interactive--background."
                 }
-            },
-            "ai": {
-                "$value": "{color.base.teal-.600}",
-                "$description": "Use for AI related workflows."
-            },
-            "ai-": {
-                "hover": {
-                    "$value": "{color.base.teal-.700}",
-                    "$description": "Hover state for AI."
-                }
             }
         },
         "destructive": {
@@ -246,26 +236,6 @@
         "visit": {
             "$value": "{color.job}",
             "$description": "Visits inherit the green from jobs."
-        },
-        "ai": {
-            "$value": "{color.base.teal-.300}",
-            "$description": "Use for AI related workflows."
-        },
-        "ai-": {
-            "surface": {
-                "$value": "{color.base.teal-.800}",
-                "$description": "Use for the surface of an element that has AI status."
-            },
-            "onSurface": {
-                "$value": "{color.base.teal-.200}",
-                "$description": "Use for text or iconography that sits overtop an AI background."
-            },
-            "surface-": {
-                "bold": {
-                    "$value": "{color.base.teal-.700}",
-                    "$description": "Use for text or iconography that sits overtop an AI background."
-                }
-            }
         },
         "task": {
             "$value": "{color.base.blue-.500}",

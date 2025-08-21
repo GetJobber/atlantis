@@ -86,26 +86,6 @@
         "$description": "Use for text or iconography that sits overtop a visit background."
       }
     },
-    "ai": {
-      "$value": "{color.base.teal-.600}",
-      "$description": "Use for AI related workflows."
-    },
-    "ai-": {
-      "surface": {
-        "$value": "{color.base.teal-.200}",
-        "$description": "Use for the surface of an element that has AI status."
-      },
-      "onSurface": {
-        "$value": "{color.base.teal-.700}",
-        "$description": "Use for text or iconography that sits overtop an AI background."
-      },
-      "surface-": {
-        "bold": {
-          "$value": "{color.base.teal-.300}",
-          "$description": "Use for text or iconography that sits overtop an AI background."
-        }
-      }
-    },
     "event": {
       "$value": "{color.base.yellow-.400}",
       "$description": "Events use yellow."

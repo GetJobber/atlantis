@@ -31,6 +31,19 @@
         "type": {
           "name": "Theme"
         }
+      },
+      "overrideTokens": {
+        "defaultValue": null,
+        "description": "Override the design tokens with custom tokens. These tokens will be used instead of the naturally loaded tokens.\nIf provided, these tokens will be used for both light and dark themes.",
+        "name": "overrideTokens",
+        "parent": {
+          "fileName": "packages/components/src/AtlantisThemeContext/types.ts",
+          "name": "AtlantisThemeContextProviderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ \"base-unit\": string; \"border-base\": number; \"border-thick\": number; \"border-thicker\": number; \"border-thickest\": number; \"color-base-grey--100\": string; \"color-base-grey--200\": string; \"color-base-grey--300\": string; ... 337 more ...; \"typography--fontSize-smaller\": number; }"
+        }
       }
     }
   }

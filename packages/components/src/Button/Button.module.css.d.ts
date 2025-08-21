@@ -4,7 +4,6 @@ declare const styles: {
   readonly "learning": string;
   readonly "subtle": string;
   readonly "destructive": string;
-  readonly "ai": string;
   readonly "primary": string;
   readonly "disabled": string;
   readonly "secondary": string;

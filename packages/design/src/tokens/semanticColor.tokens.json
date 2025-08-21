@@ -30,16 +30,6 @@
           "$value": "{color.base.taupe-.400}",
           "$description": "Hover state for interactive--background."
         }
-      },
-      "ai": {
-        "$value": "{color.base.teal-.600}",
-        "$description": "Base colour for AI related elements."
-      },
-      "ai-": {
-        "hover": {
-          "$value": "{color.base.teal-.700}",
-          "$description": "Hover state for AI."
-        }
       }
     },
     "destructive": {

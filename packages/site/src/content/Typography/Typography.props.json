@@ -152,7 +152,7 @@
         },
         "required": false,
         "type": {
-          "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 666 more ... | \"dashed color-client--onSurface\""
+          "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 642 more ... | \"dashed color-client--onSurface\""
         }
       },
       "UNSAFE_className": {
