@@ -1096,8 +1096,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
 
-    // Test requires elaborate amount of interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state after making a selection, deleting it and reopening the menu", async () => {
       render(<Wrapper />);
 
