@@ -127,7 +127,7 @@ export function Wrapper<T extends OptionLike>({
   );
 }
 
-export function FreeFormWrapper<T extends OptionLike>({
+export function FreeFormWrapper({
   initialValue,
   initialInputValue,
   onChange,
@@ -136,16 +136,17 @@ export function FreeFormWrapper<T extends OptionLike>({
   openOnFocus,
   inputEqualsOption,
 }: {
-  readonly initialValue?: T;
+  readonly initialValue?: OptionLike;
   readonly initialInputValue?: string;
-  // TODO: Fix
-  readonly onChange?: any;
+  readonly onChange?: (v: OptionLike | undefined) => void;
   readonly onInputChange?: (v: string) => void;
-  readonly menu?: MenuItem<T>[];
+  readonly menu?: MenuItem<OptionLike>[];
   readonly openOnFocus?: boolean;
-  readonly inputEqualsOption?: (input: string, option: T) => boolean;
+  readonly inputEqualsOption?: (input: string, option: OptionLike) => boolean;
 }) {
-  const [value, setValue] = React.useState<T | undefined>(initialValue);
+  const [value, setValue] = React.useState<OptionLike | undefined>(
+    initialValue,
+  );
   const [inputValue, setInputValue] = React.useState<string>(
     initialInputValue ?? initialValue?.label ?? "",
   );
@@ -158,11 +159,11 @@ export function FreeFormWrapper<T extends OptionLike>({
       onChange={onChange ?? setValue}
       inputValue={inputValue}
       onInputChange={onInputChange ?? setInputValue}
-      menu={menu ?? (built.menu as MenuItem<T>[])}
+      menu={menu ?? (built.menu as MenuItem<OptionLike>[])}
       placeholder=""
       openOnFocus={openOnFocus}
       allowFreeForm
-      createFreeFormValue={input => ({ label: input })}
+      createFreeFormValue={(input: string) => ({ label: input })}
       inputEqualsOption={inputEqualsOption}
     />
   );
