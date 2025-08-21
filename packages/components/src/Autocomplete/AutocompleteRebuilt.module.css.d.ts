@@ -13,6 +13,7 @@ declare const styles: {
   readonly "scrollRegion": string;
   readonly "persistentHeader": string;
   readonly "persistentFooter": string;
+  readonly "textPersistent": string;
 };
 export = styles;
 

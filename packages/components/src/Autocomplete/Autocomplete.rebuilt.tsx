@@ -421,7 +421,7 @@ function handleSectionRendering<T extends OptionLike>({
   const headerContent = renderSection ? (
     renderSection(section)
   ) : (
-    <Heading level={5}>{section.label}</Heading>
+    <DefaultSectionContent section={section} />
   );
 
   return (
@@ -435,6 +435,14 @@ function handleSectionRendering<T extends OptionLike>({
       {headerContent}
     </div>
   );
+}
+
+function DefaultSectionContent({
+  section,
+}: {
+  readonly section: MenuSection<OptionLike>;
+}) {
+  return <Heading level={5}>{section.label}</Heading>;
 }
 
 interface HandleOptionRenderingProps<T extends OptionLike> {
@@ -562,19 +570,7 @@ function handleActionRendering<T extends OptionLike>({
   const actionContent = renderAction ? (
     renderAction({ value: action, isActive, origin })
   ) : (
-    <Typography
-      textColor="interactive"
-      fontWeight="semiBold"
-      underline="solid color-interactive"
-      UNSAFE_style={{
-        textStyle: {
-          textDecorationThickness: "var(--border-thick)",
-          textUnderlineOffset: "var(--space-smallest)",
-        },
-      }}
-    >
-      {action.label}
-    </Typography>
+    <DefaultActionContent textContent={action.label} />
   );
 
   return {
@@ -606,6 +602,28 @@ function handleActionRendering<T extends OptionLike>({
     ),
     nextNavigableIndex,
   };
+}
+
+function DefaultActionContent({
+  textContent,
+}: {
+  readonly textContent: string;
+}) {
+  return (
+    <Typography
+      textColor="interactive"
+      fontWeight="semiBold"
+      underline="solid color-interactive"
+      UNSAFE_style={{
+        textStyle: {
+          textDecorationThickness: "var(--border-thick)",
+          textUnderlineOffset: "var(--space-smallest)",
+        },
+      }}
+    >
+      {textContent}
+    </Typography>
+  );
 }
 
 interface PersistentRegionProps<T extends OptionLike> {
@@ -655,68 +673,183 @@ function PersistentRegion<T extends OptionLike>({
       data-region={position}
       data-testid={`ATL-AutocompleteRebuilt-Persistent-${position}`}
     >
-      {items.map((p, i) => {
-        const interactive = Boolean(p.onClick);
-        let itemNode: React.ReactNode;
+      {items.map((persistent, index) => {
+        const result = handlePersistentRendering({
+          persistent,
+          position,
+          activeIndex,
+          indexOffset,
+          getItemProps,
+          renderPersistent,
+          getPersistentKey,
+          listRef,
+          onAction,
+          index,
+          navigableIndex,
+        });
 
-        if (!interactive) {
-          const content = renderPersistent
-            ? renderPersistent({ value: p, position })
-            : p.label;
+        navigableIndex = result.nextNavigableIndex;
 
-          itemNode = (
-            <div
-              key={`per-${String(getPersistentKey(p))}-${i}`}
-              role="presentation"
-            >
-              <Text>{content}</Text>
-            </div>
-          );
-        } else {
-          navigableIndex += 1;
-          const nextIndex = navigableIndex;
-          const isActive = activeIndex === indexOffset + nextIndex;
-          const content = renderPersistent ? (
-            renderPersistent({ value: p, position, isActive })
-          ) : (
-            <Typography textColor="interactive">{p.label}</Typography>
-          );
-
-          itemNode = (
-            <div
-              key={`per-${String(getPersistentKey(p))}-${i}`}
-              role="option"
-              tabIndex={-1}
-              className={classNames(
-                styles.action,
-                isActive && styles.actionActive,
-              )}
-              data-index={indexOffset + nextIndex}
-              data-active={isActive ? true : undefined}
-              {...getItemProps({
-                ref(persistNode: HTMLElement | null) {
-                  const idx = Number(persistNode?.getAttribute("data-index"));
-
-                  if (!Number.isNaN(idx)) {
-                    listRef.current[idx] = persistNode;
-                  }
-                },
-              })}
-              // TODO: can we avoid this cast?
-              onClick={() =>
-                onAction({
-                  run: p.onClick as () => void,
-                  closeOnRun: p.shouldClose,
-                })
-              }
-            >
-              {content}
-            </div>
-          );
-        }
-
-        return itemNode;
+        return result.node;
       })}
     </div>
   );
+}
+
+interface HandlePersistentRenderingProps<T extends OptionLike> {
+  readonly renderPersistent?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["renderPersistent"];
+  readonly getPersistentKey: (
+    item: MenuPersistent<Record<string, unknown>>,
+  ) => React.Key;
+  readonly position: "header" | "footer";
+  readonly activeIndex: number | null;
+  readonly indexOffset: number;
+  readonly getItemProps: (
+    args?: Record<string, unknown>,
+  ) => Record<string, unknown>;
+  readonly persistent: MenuPersistent<Record<string, unknown>>;
+  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly onAction: (action: ActionConfig) => void;
+  readonly index: number;
+  readonly navigableIndex: number;
+}
+
+function handlePersistentRendering<T extends OptionLike>({
+  persistent,
+  position,
+  activeIndex,
+  indexOffset,
+  getItemProps,
+  renderPersistent,
+  getPersistentKey,
+  listRef,
+  onAction,
+  index,
+  navigableIndex,
+}: HandlePersistentRenderingProps<T>): {
+  node: React.ReactNode;
+  nextNavigableIndex: number;
+} {
+  const interactive = Boolean(persistent.onClick);
+
+  if (!interactive) {
+    const node = handleTextPersistentRendering({
+      persistent,
+      position,
+      renderPersistent,
+      getPersistentKey,
+      index,
+    });
+
+    return { node, nextNavigableIndex: navigableIndex };
+  }
+
+  return handleActionPersistentRendering({
+    persistent,
+    position,
+    activeIndex,
+    indexOffset,
+    getItemProps,
+    renderPersistent,
+    getPersistentKey,
+    listRef,
+    onAction,
+    index,
+    navigableIndex,
+  });
+}
+
+function handleTextPersistentRendering<T extends OptionLike>({
+  persistent,
+  position,
+  renderPersistent,
+  getPersistentKey,
+  index,
+}: Pick<
+  HandlePersistentRenderingProps<T>,
+  "persistent" | "position" | "renderPersistent" | "getPersistentKey" | "index"
+>): React.ReactNode {
+  const content = renderPersistent ? (
+    renderPersistent({ value: persistent, position })
+  ) : (
+    <DefaultTextPersistentContent persistent={persistent} />
+  );
+
+  return (
+    <div
+      key={`per-${String(getPersistentKey(persistent))}-${index}`}
+      role="presentation"
+      className={styles.textPersistent}
+    >
+      {content}
+    </div>
+  );
+}
+
+function handleActionPersistentRendering<T extends OptionLike>({
+  persistent,
+  position,
+  activeIndex,
+  indexOffset,
+  getItemProps,
+  renderPersistent,
+  getPersistentKey,
+  listRef,
+  onAction,
+  index,
+  navigableIndex,
+}: HandlePersistentRenderingProps<T>): {
+  node: React.ReactNode;
+  nextNavigableIndex: number;
+} {
+  const nextNavigableIndex = navigableIndex + 1;
+  const isActive = activeIndex === indexOffset + nextNavigableIndex;
+  const content = renderPersistent ? (
+    renderPersistent({ value: persistent, position, isActive })
+  ) : (
+    <DefaultActionContent textContent={persistent.label} />
+  );
+
+  return {
+    node: (
+      <div
+        key={`per-${String(getPersistentKey(persistent))}-${index}`}
+        role="option"
+        tabIndex={-1}
+        className={classNames(styles.action, isActive && styles.actionActive)}
+        data-index={indexOffset + nextNavigableIndex}
+        data-active={isActive ? true : undefined}
+        {...getItemProps({
+          ref(persistNode: HTMLElement | null) {
+            const idx = Number(persistNode?.getAttribute("data-index"));
+
+            if (!Number.isNaN(idx)) {
+              listRef.current[idx] = persistNode;
+            }
+          },
+        })}
+        // TODO: can we avoid this cast?
+        onClick={() =>
+          onAction({
+            run: persistent.onClick as () => void,
+            closeOnRun: persistent.shouldClose,
+          })
+        }
+      >
+        {content}
+      </div>
+    ),
+    nextNavigableIndex,
+  };
+}
+
+function DefaultTextPersistentContent({
+  persistent,
+}: {
+  readonly persistent: MenuPersistent<Record<string, unknown>>;
+}) {
+  return <Text>{persistent.label}</Text>;
 }

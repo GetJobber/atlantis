@@ -84,3 +84,7 @@
 .persistentFooter {
   border-top: var(--border-base) solid var(--color-border);
 }
+
+.textPersistent {
+  padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
+}
