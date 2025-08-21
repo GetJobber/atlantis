@@ -1,10 +1,10 @@
 import { darkTokens, tokens } from "@jobber/design";
-import type { PropsWithChildren } from "react";
 import React, {
   createContext,
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import merge from "lodash/merge";
@@ -29,10 +29,12 @@ const AtlantisThemeContext = createContext(atlantisThemeContextDefaultValues);
 export function AtlantisThemeContextProvider({
   children,
   dangerouslyOverrideTheme,
+  overrideTokens,
 }: AtlantisThemeContextProviderProps) {
   if (dangerouslyOverrideTheme) {
     return (
       <InternalStaticThemeProvider
+        overrideTokens={overrideTokens}
         dangerouslyOverrideTheme={dangerouslyOverrideTheme}
       >
         {children}
@@ -41,11 +43,19 @@ export function AtlantisThemeContextProvider({
   }
 
   return (
-    <InternalDynamicThemeProvider>{children}</InternalDynamicThemeProvider>
+    <InternalDynamicThemeProvider overrideTokens={overrideTokens}>
+      {children}
+    </InternalDynamicThemeProvider>
   );
 }
 
-function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
+function InternalDynamicThemeProvider({
+  children,
+  overrideTokens,
+}: {
+  readonly children: React.ReactNode;
+  readonly overrideTokens?: typeof tokens;
+}) {
   const initialTheme: Theme =
     (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
 
@@ -71,12 +81,15 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
       );
     };
   }, [handleThemeChangeEvent]);
+  const mergedTokens = useMemo(() => {
+    return merge({}, currentTokens, overrideTokens);
+  }, [overrideTokens, currentTokens]);
 
   return (
     <AtlantisThemeContext.Provider
       value={{
         theme: internalTheme,
-        tokens: currentTokens,
+        tokens: mergedTokens,
       }}
     >
       {children}
@@ -87,14 +100,24 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
 function InternalStaticThemeProvider({
   dangerouslyOverrideTheme,
   children,
+  overrideTokens,
 }: Required<
   Pick<
     AtlantisThemeContextProviderProps,
     "dangerouslyOverrideTheme" | "children"
-  >
+  > & {
+    readonly overrideTokens: typeof tokens | undefined;
+  }
 >) {
-  const currentTokens =
-    dangerouslyOverrideTheme === "dark" ? actualDarkTokens : tokens;
+  const currentTokens = useMemo(() => {
+    const t = dangerouslyOverrideTheme === "dark" ? actualDarkTokens : tokens;
+
+    if (overrideTokens) {
+      return merge({}, t, overrideTokens);
+    }
+
+    return t;
+  }, [dangerouslyOverrideTheme, overrideTokens]);
 
   return (
     <AtlantisThemeContext.Provider
