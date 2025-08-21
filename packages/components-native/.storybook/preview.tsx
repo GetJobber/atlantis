@@ -1,8 +1,8 @@
 import React from "react";
-import type { Preview } from "@storybook/react-vite";
+import type { Preview } from "@storybook/react-native-web-vite";
 import "../../design/dist/foundation.css";
-import "../../design/dist/dark.mode.css";
 import { SBProvider } from "./components/SBProvider";
+import "./reactNativeReanimatedShim";
 
 const preview: Preview = {
   parameters: {
@@ -37,6 +37,7 @@ const preview: Preview = {
   },
   initialGlobals: {
     theme: "light",
+    viewport: { value: "mobile1" },
   },
   decorators: [
     (Story, context) => (

@@ -42,8 +42,8 @@
     "release:unpublished-package": "npm ci && lerna publish from-package",
     "site:build": "cd packages/site && npm run build",
     "start": "npm run storybook",
-    "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6005",
-    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build",
+    "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6005 --disable-telemetry",
+    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build --disable-telemetry",
     "test": "jest"
   },
   "repository": {
@@ -103,7 +103,7 @@
     "autoprefixer": "^9.8.4",
     "axios": "^1.11.0",
     "babel-loader": "^8.3.0",
-    "babel-plugin-react-native-web": "^0.19.4",
+    "babel-plugin-react-native-web": "^0.20.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
     "chalk": "^4.1.2",
     "css-loader": "^3.4.2",
@@ -144,7 +144,7 @@
     "react-native-reanimated": "^3.7.1",
     "react-native-safe-area-context": "^5.4.0",
     "react-native-svg": "^15.1.0",
-    "react-native-web": "^0.18.12",
+    "react-native-web": "^0.20.0",
     "react-router-dom": "^5.3.4",
     "react-test-renderer": "^18.2.0",
     "storybook": "^7.6.20",
