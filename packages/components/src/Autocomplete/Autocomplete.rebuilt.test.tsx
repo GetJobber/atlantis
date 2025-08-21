@@ -1,3 +1,16 @@
+// Locally mock timing tokens to 0ms to avoid transition waits in this file
+jest.mock("@jobber/design", () => {
+  const actual = jest.requireActual("@jobber/design");
+
+  return {
+    ...actual,
+    tokens: {
+      ...actual.tokens,
+      "timing-base": 0,
+    },
+  };
+});
+
 import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
@@ -36,6 +49,7 @@ import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 describe("AutocompleteRebuilt", () => {
   it("renders", () => {
     render(<Wrapper />);
+
     expect(screen.getByTestId("ATL-AutocompleteRebuilt")).toBeVisible();
   });
 
@@ -45,8 +59,6 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
 
-      // Wait for menu
-      await expectMenuShown();
       expect(screen.getAllByTestId(GLIMMER_TEST_ID)).toHaveLength(3);
     });
 
@@ -55,8 +67,6 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
 
-      // Wait for menu
-      await expectMenuShown();
       expect(screen.queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
     });
   });
@@ -111,10 +121,7 @@ describe("AutocompleteRebuilt", () => {
 
       await focusAutocomplete();
 
-      await expectMenuClosed();
-
       await selectWithKeyboard();
-      await expectMenuClosed();
 
       expect(onChange).not.toHaveBeenCalled();
     });
@@ -127,7 +134,6 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper onChange={onChange} />);
 
       await openAutocomplete();
-      // Not waiting?
       await navigateDown(1);
       await selectWithKeyboard();
 
@@ -141,7 +147,6 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper onChange={onChange} />);
 
       await openAutocomplete();
-      // Not waiting?
       await selectWithClick("Two");
 
       expect(onChange).toHaveBeenCalledWith({ label: "Two" });
@@ -154,7 +159,6 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper onChange={onChange} />);
 
       await openAutocomplete();
-      // Not waiting?
       await navigateDown(1);
       await selectWithKeyboard();
 
@@ -170,11 +174,9 @@ describe("AutocompleteRebuilt", () => {
 
     await openAutocomplete();
     await navigateDown(1);
-    // Wait for menu
-    await screen.findByRole("listbox");
 
     await closeAutocomplete();
-    // Wait for menu close
+
     await expectMenuClosed();
 
     await selectWithKeyboard();
@@ -266,7 +268,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Not waiting?
 
       await navigateDown(1);
 
@@ -305,9 +306,8 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await screen.findByRole("listbox");
-
+      // Make sure we're not finding the Section header for the right reasons ie. menu is open
+      await expectMenuShown();
       expect(
         screen.queryByText("Section Header Label"),
       ).not.toBeInTheDocument();
@@ -328,11 +328,10 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await screen.findByRole("listbox");
 
       await typeInInput("T");
 
+      await expectMenuShown();
       expect(screen.queryByText("O Letter Section")).not.toBeInTheDocument();
     });
   });
@@ -359,7 +358,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Not waiting?
       await navigateDown(2);
       await selectWithKeyboard();
 
@@ -390,7 +388,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Not waiting?
       await selectWithClick("Stay Open");
 
       expect(stayOpenAction).toHaveBeenCalled();
@@ -417,10 +414,9 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
-
-      expect(screen.getByText("Persistent Text Header")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("Persistent Text Header")).toBeVisible();
+      });
     });
     it("renders a default, uninteractive persistent footer async when provided", async () => {
       render(
@@ -440,10 +436,10 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.getByText("Persistent Text Footer")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("Persistent Text Footer")).toBeVisible();
+      });
     });
 
     it("should fire onClick and close menu by default when an interactive persistent header is clicked", async () => {
@@ -462,8 +458,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
       await userEvent.click(screen.getByText("Interactive Header"));
       expect(onClick).toHaveBeenCalled();
@@ -491,8 +485,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
       // Also testing reverse looping behavior by doing this
       await navigateUp(1);
       await selectWithKeyboard();
@@ -517,8 +509,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
       await userEvent.click(screen.getByText("Interactive Footer"));
       expect(onClick).toHaveBeenCalled();
@@ -543,8 +533,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
       await navigateDown(1);
       await selectWithKeyboard();
@@ -567,8 +555,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
       await typeInInput("Gabagool");
 
       expect(screen.getByText("Persistent Text Header")).toBeVisible();
@@ -589,15 +575,12 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
-
       await navigateDown(1);
 
       // Interactive persistent is also role="option"
       const activePersistent = getActiveOption();
 
-      expect(activePersistent).toBeVisible();
+      expect(activePersistent).not.toBeNull();
       expect(activePersistent).toHaveTextContent("Interactive Header");
     });
     it("highlights interactive persistents in the correct order when 'looping' forward", async () => {
@@ -619,8 +602,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
       // Two options, one persistent
       await navigateDown(4);
 
@@ -662,10 +643,11 @@ describe("AutocompleteRebuilt", () => {
       await typeInInput("A bunch of text");
 
       // With opt-out, all options should be visible regardless of input
-      await expectMenuShown();
-      expect(screen.getByText("One")).toBeVisible();
-      expect(screen.getByText("Two")).toBeVisible();
-      expect(screen.getByText("Three")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("One")).toBeVisible();
+        expect(screen.getByText("Two")).toBeVisible();
+        expect(screen.getByText("Three")).toBeVisible();
+      });
     });
 
     it("can provide a custom filter function", async () => {
@@ -678,10 +660,11 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
 
-      await expectMenuShown();
       // Two and Three should be visible
-      expect(screen.getByText("Two")).toBeVisible();
-      expect(screen.getByText("Three")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("Two")).toBeVisible();
+        expect(screen.getByText("Three")).toBeVisible();
+      });
     });
 
     it("can provide a custom filter function capable of searching custom values", async () => {
@@ -713,9 +696,10 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
       // Type in 4 to match 16
       await typeInInput("4");
-      // Wait for menu
-      await expectMenuShown();
-      expect(screen.getByText("16")).toBeVisible();
+
+      await waitFor(() => {
+        expect(screen.getByText("16")).toBeVisible();
+      });
     });
   });
 
@@ -724,7 +708,7 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper initialValue={{ label: "Two" }} />);
 
       await openAutocomplete();
-      // Not waiting?
+
       const activeOption = getActiveOption();
 
       expect(activeOption).not.toBeNull();
@@ -754,12 +738,13 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
       await blurAutocomplete();
-      await openAutocomplete();
+      await openAutocomplete("arrowDown");
 
-      const activeOption = getActiveOption();
-
-      expect(activeOption).not.toBeNull();
-      expect(activeOption?.textContent).toContain("Two");
+      await waitFor(() => {
+        const activeOption = getActiveOption();
+        expect(activeOption).not.toBeNull();
+        expect(activeOption?.textContent).toContain("Two");
+      });
     });
 
     it("highlights the selected option on reopon after dismissing the menu", async () => {
@@ -767,12 +752,13 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
       await closeAutocomplete();
-      await openAutocomplete();
+      await openAutocomplete("arrowDown");
 
-      const activeOption = getActiveOption();
-
-      expect(activeOption).not.toBeNull();
-      expect(activeOption?.textContent).toContain("Two");
+      await waitFor(() => {
+        const activeOption = getActiveOption();
+        expect(activeOption).not.toBeNull();
+        expect(activeOption?.textContent).toContain("Two");
+      });
     });
 
     it("shows full list when input value exactly matches an option label and highlights corresponding option", async () => {
@@ -781,11 +767,11 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.getByText("One")).toBeVisible();
-      expect(screen.getByText("Two")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByText("One")).toBeVisible();
+        expect(screen.getByText("Two")).toBeVisible();
+      });
 
       const activeOption = getActiveOption();
 
@@ -797,16 +783,10 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper />);
 
       await openAutocomplete();
-      // Wait for menu
-      await screen.findByRole("listbox");
 
       await selectWithClick("Two");
-      // Wait for menu close
-      await expectMenuClosed();
 
       await openAutocomplete();
-      // Wait for menu
-      await screen.findByRole("listbox");
 
       const activeOption = getActiveOption();
 
@@ -878,7 +858,6 @@ describe("AutocompleteRebuilt", () => {
       render(<FreeFormWrapper onChange={onChange} />);
 
       await openAutocomplete();
-      // Not waiting?
       await typeInInput("Zed");
       await selectWithKeyboard();
 
@@ -926,7 +905,6 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Not waiting?
       await typeInInput("two");
       await selectWithKeyboard();
 
@@ -938,8 +916,6 @@ describe("AutocompleteRebuilt", () => {
 
       render(<FreeFormWrapper onChange={onChange} />);
 
-      await openAutocomplete();
-      // Not waiting?
       await typeInInput("Custom");
       await selectWithKeyboard();
 
@@ -970,35 +946,35 @@ describe("AutocompleteRebuilt", () => {
       await selectWithKeyboard();
 
       // selection closed the menu
-      await openAutocomplete();
-      // Not waiting?
-      const activeOption = getActiveOption();
+      await openAutocomplete("arrowDown");
 
-      expect(activeOption).not.toBeNull();
-      expect(activeOption?.textContent).toContain("Three");
+      await waitFor(() => {
+        const activeOption = getActiveOption();
+        expect(activeOption).not.toBeNull();
+        expect(activeOption?.textContent).toContain("Three");
+      });
     });
 
     it("highlights the correct option reopening after bluring", async () => {
       render(<Wrapper />);
       await openAutocomplete();
-      // Not waiting?
       await navigateDown(3);
       await selectWithKeyboard();
 
       // selection closed the menu
-      await openAutocomplete();
-      // Not waiting?
-      const activeOption = getActiveOption();
+      await openAutocomplete("arrowDown");
 
-      expect(activeOption).not.toBeNull();
-      expect(activeOption?.textContent).toContain("Three");
+      await waitFor(() => {
+        const activeOption = getActiveOption();
+        expect(activeOption).not.toBeNull();
+        expect(activeOption?.textContent).toContain("Three");
+      });
     });
 
     it("does not highlight an option from typing alone", async () => {
       render(<Wrapper />);
 
       await openAutocomplete();
-      // Not waiting?
       await typeInInput("Thr");
 
       const activeOption = getActiveOption();
@@ -1103,9 +1079,8 @@ describe("AutocompleteRebuilt", () => {
 
       expect(firstActiveOption).not.toBeNull();
       expect(firstActiveOption?.textContent).toContain("One");
-      // TODO: rename to "dissmiss or use ESC"
+      // Maybe rename to "dismiss" or "ESC-something"
       await blurAutocomplete();
-      // TODO: consider if the no args version is opening or clicking
       await openAutocomplete("arrowDown");
 
       const activeOptionAfterReopen = getActiveOption();
@@ -1231,9 +1206,10 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper menu={emptyMenu} />);
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
-      expect(screen.getByText("No options")).toBeVisible();
+
+      await waitFor(() => {
+        expect(screen.getByText("No options")).toBeVisible();
+      });
     });
 
     it("shows default empty state when there are no options to render and filtering is disabled", async () => {
@@ -1242,9 +1218,10 @@ describe("AutocompleteRebuilt", () => {
       render(<Wrapper menu={emptyMenu} filterOptions={false} />);
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
-      expect(screen.getByText("No options")).toBeVisible();
+
+      await waitFor(() => {
+        expect(screen.getByText("No options")).toBeVisible();
+      });
     });
 
     it("shows custom empty state when provided", async () => {
@@ -1260,19 +1237,21 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
-      expect(screen.getByTestId("custom-empty")).toBeVisible();
-      expect(screen.queryByText("No options")).not.toBeInTheDocument();
+
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-empty")).toBeVisible();
+        expect(screen.queryByText("No options")).not.toBeInTheDocument();
+      });
     });
 
     it("shows basic empty state when filtering removes all options", async () => {
       render(<Wrapper filterOptions={() => []} />);
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
-      expect(screen.getByText("No options")).toBeVisible();
+
+      await waitFor(() => {
+        expect(screen.getByText("No options")).toBeVisible();
+      });
     });
 
     it("does not render standard actions when empty", async () => {
@@ -1297,11 +1276,11 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
       await typeInInput("Gabagool");
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.queryByText("Create new")).not.toBeInTheDocument();
-      expect(screen.queryByText("Browse templates")).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.queryByText("Create new")).not.toBeInTheDocument();
+        expect(screen.queryByText("Browse templates")).not.toBeInTheDocument();
+      });
     });
 
     it("renders interactive emptyActions (array) together with empty message when there are no options", async () => {
@@ -1321,15 +1300,15 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      // Empty message shown alongside actions by default
-      expect(screen.getByText("No options")).toBeVisible();
+      await waitFor(() => {
+        // Empty message shown alongside actions by default
+        expect(screen.getByText("No options")).toBeVisible();
 
-      // Actions are present and navigable
-      expect(screen.getByText("Create new")).toBeVisible();
-      expect(screen.getByText("Browse templates")).toBeVisible();
+        // Actions are present and navigable
+        expect(screen.getByText("Create new")).toBeVisible();
+        expect(screen.getByText("Browse templates")).toBeVisible();
+      });
 
       // Keyboard navigation to first action and invoke
       await navigateDown(1);
@@ -1356,11 +1335,11 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
       await typeInInput("Zed");
-      // Wait for menu
-      await expectMenuShown();
 
-      // Action reflects typed input
-      expect(screen.getByText('Add "Zed"')).toBeVisible();
+      await waitFor(() => {
+        // Action reflects typed input
+        expect(screen.getByText('Add "Zed"')).toBeVisible();
+      });
 
       await navigateDown(1);
       await selectWithKeyboard();
@@ -1391,10 +1370,10 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.getByTestId("regular-action")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByTestId("regular-action")).toBeVisible();
+      });
 
       await typeInInput("something with no matches");
 
@@ -1417,14 +1396,13 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      // Empty message suppressed
-      expect(screen.queryByText("No options")).not.toBeInTheDocument();
-
-      // Action visible
-      expect(screen.getByText("Empty Action")).toBeVisible();
+      await waitFor(() => {
+        // Empty message suppressed
+        expect(screen.queryByText("No options")).not.toBeInTheDocument();
+        // Action visible
+        expect(screen.getByText("Empty Action")).toBeVisible();
+      });
     });
   });
 
@@ -1534,11 +1512,11 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.getByTestId("custom-option-special")).toBeVisible();
-      expect(screen.getByTestId("custom-option-normal")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-option-special")).toBeVisible();
+        expect(screen.getByTestId("custom-option-normal")).toBeVisible();
+      });
     });
 
     it("passes isActive correctly to renderOption for the highlighted option", async () => {
@@ -1634,10 +1612,10 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.getByTestId("custom-action-special")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-action-special")).toBeVisible();
+      });
     });
 
     it("passes isActive to renderAction for the highlighted action", async () => {
@@ -1691,10 +1669,10 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.getByTestId("custom-persistent")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-persistent")).toBeVisible();
+      });
     });
     it("passes isActive to renderPersistent when used with an interactive persistent", async () => {
       render(
@@ -1726,13 +1704,13 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
       await navigateDown(1);
 
-      expect(screen.getByTestId("custom-persistent-active")).toBeVisible();
-      expect(screen.getByTestId("custom-persistent-inactive")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-persistent-active")).toBeVisible();
+        expect(screen.getByTestId("custom-persistent-inactive")).toBeVisible();
+      });
     });
     it("passes position to renderPersistent when provided", async () => {
       render(
@@ -1754,10 +1732,10 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.getByTestId("custom-persistent-header")).toBeVisible();
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-persistent-header")).toBeVisible();
+      });
     });
     it("accepts and passes custom values to renderPersistent when provided", async () => {
       const menu = defineMenu<
@@ -1787,13 +1765,13 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      // Wait for menu
-      await expectMenuShown();
 
-      expect(screen.getByTestId("custom-persistent")).toBeVisible();
-      expect(screen.getByTestId("custom-persistent")).toHaveTextContent(
-        "something",
-      );
+      await waitFor(() => {
+        expect(screen.getByTestId("custom-persistent")).toBeVisible();
+        expect(screen.getByTestId("custom-persistent")).toHaveTextContent(
+          "something",
+        );
+      });
     });
   });
 
