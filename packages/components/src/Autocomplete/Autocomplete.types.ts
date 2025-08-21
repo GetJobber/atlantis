@@ -246,7 +246,6 @@ interface MenuActionBase {
    */
   shouldClose?: boolean;
   onClick: () => void;
-  icon?: string;
 }
 
 export type MenuAction<Extra extends object = Record<string, unknown>> =
@@ -426,6 +425,7 @@ interface AutocompleteRebuiltBaseProps<
    * Render prop to customize the rendering of an action.
    * @param args.value - The action value including all extra keys from the menu item
    * @param args.isActive - Whether the action is currently highlighted/active
+   * @param args.origin - The origin of the action ("menu" or "empty")
    */
   readonly renderAction?: (args: {
     value: MenuAction<ActionExtra>;
