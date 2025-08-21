@@ -1,5 +1,6 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-native-web-vite";
+import { fn } from "storybook/test";
 import { Button } from "@jobber/components-native";
 
 const meta = {
@@ -15,7 +16,7 @@ export const Basic: Story = {
   render: BasicTemplate,
   args: {
     label: "New Job",
-    onPress: () => alert("👍"),
+    onPress: fn(),
   },
 };
 
@@ -24,6 +25,6 @@ export const Cancel: Story = {
   args: {
     label: "Cancel",
     variation: "cancel",
-    onPress: () => alert("I have been cancelled"),
+    onPress: fn(),
   },
 };

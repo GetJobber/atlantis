@@ -2,6 +2,7 @@ import React from "react";
 import type { Preview } from "@storybook/react-native-web-vite";
 import "../../design/dist/foundation.css";
 import { SBProvider } from "./components/SBProvider";
+import "./reactNativeReanimatedShim";
 
 const preview: Preview = {
   parameters: {
