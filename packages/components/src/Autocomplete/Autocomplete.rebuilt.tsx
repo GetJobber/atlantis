@@ -37,6 +37,7 @@ export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   },
 ) => ReturnType<typeof AutocompleteRebuiltInternal>;
 
+// eslint-disable-next-line max-statements
 function AutocompleteRebuiltInternal<
   Value extends OptionLike,
   Multiple extends boolean = false,
@@ -94,12 +95,18 @@ function AutocompleteRebuiltInternal<
     duration: { open: tokens["timing-base"], close: tokens["timing-base"] },
   });
 
+  const composedReferenceProps = getReferenceProps({
+    onKeyDown: onInputKeyDown,
+    onFocus: onInputFocus,
+    onBlur: onInputBlur,
+  });
+
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
     onChange: props.readOnly ? undefined : onInputChangeFromUser,
-    onBlur: onInputBlur,
-    onFocus: onInputFocus,
+    // Ensure focus/blur callbacks still fire in readOnly mode where we don't spread getReferenceProps
+    ...(props.readOnly ? { onFocus: onInputFocus, onBlur: onInputBlur } : {}),
     placeholder,
     disabled,
     readOnly: props.readOnly,
@@ -109,9 +116,7 @@ function AutocompleteRebuiltInternal<
     description,
     size: sizeProp === "base" ? undefined : sizeProp,
     clearable: clearable ? "while-editing" : undefined,
-    ...(!props.readOnly
-      ? getReferenceProps({ onKeyDown: onInputKeyDown })
-      : {}),
+    ...(props.readOnly ? {} : composedReferenceProps),
   };
 
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (

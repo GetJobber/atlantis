@@ -553,7 +553,9 @@ export function useAutocomplete<
   });
 
   const suppressOpenOnInputChange = useRef(false);
+  const [inputFocused, setInputFocused] = useState(false);
 
+  // Open/close behavior driven by input changes
   useEffect(() => {
     if (suppressOpenOnInputChange.current) {
       suppressOpenOnInputChange.current = false;
@@ -566,18 +568,26 @@ export function useAutocomplete<
     const hasText = inputValue.trim().length > 0;
 
     if (lastInputWasUser.current) {
-      setOpen(hasText);
-    }
+      const keepOpenOnEmpty = openOnFocus && inputFocused;
 
-    if (!hasText) {
-      if (hasSelection) {
-        onChange?.(undefined as AutocompleteValue<Value, Multiple>);
-        setActiveIndex(null);
-      } else {
-        setActiveIndex(null);
-      }
+      setOpen(hasText || keepOpenOnEmpty);
     }
-  }, [inputValue, setOpen, hasSelection, setActiveIndex, onChange]);
+  }, [inputValue, readOnly, openOnFocus, inputFocused, setOpen]);
+
+  // Handles activeIndex reset and change propagation when input is emptied
+  useEffect(() => {
+    const hasText = inputValue.trim().length > 0;
+
+    if (hasText) return;
+
+    // If we started with a selection, we treat clearing it as a commit signal
+    if (hasSelection) {
+      onChange?.(undefined as AutocompleteValue<Value, Multiple>);
+      setActiveIndex(null);
+    } else {
+      setActiveIndex(null);
+    }
+  }, [inputValue, hasSelection, setActiveIndex, onChange]);
 
   function selectOption(option: Value) {
     if (multiple) {
@@ -721,10 +731,13 @@ export function useAutocomplete<
   }
 
   const onInputFocus = useCallback(() => {
+    setInputFocused(true);
     props.onFocus?.();
-  }, [readOnly, props.onFocus]);
+  }, [props.onFocus]);
 
   const onInputBlur = useCallback(() => {
+    setInputFocused(false);
+
     if (readOnly) {
       props.onBlur?.();
 

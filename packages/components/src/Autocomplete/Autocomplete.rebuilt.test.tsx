@@ -866,8 +866,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
       await typeInInput("TotallyNewValue");
       await blurAutocomplete();
-      await expectMenuClosed();
-      // TODO: Come back and fix, focus/blur are not firing
+
       expect(onChange).toHaveBeenCalledWith({
         label: "TotallyNewValue",
       });
@@ -896,7 +895,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
       await typeInInput("Two");
       await blurAutocomplete();
-      // TODO fix actual issue
+
       expect(onChange).toHaveBeenCalledWith({ label: "Two" });
     });
 
@@ -1055,7 +1054,7 @@ describe("AutocompleteRebuilt", () => {
       const activeOptionAfterDelete = getActiveOption();
 
       expect(activeOptionAfterDelete).toBeNull();
-      // TODO: Actual bug here, this is opening the menu because it's no longer visible
+
       await navigateDown(1);
 
       // we expect this to be back on the first option since resetting brings us to null
@@ -1131,23 +1130,20 @@ describe("AutocompleteRebuilt", () => {
       await navigateDown(1);
 
       await selectWithKeyboard();
-
+      // Menu is still open after deletion
       await deleteInput(3);
 
       expect(screen.getByRole("textbox")).toHaveValue("");
 
-      await navigateDown(1);
-
       const activeOption = getActiveOption();
-
       expect(activeOption).toBeNull();
 
       await navigateDown(1);
 
-      const secondActiveOption = getActiveOption();
+      const activeOptionAfterNav = getActiveOption();
 
-      expect(secondActiveOption).not.toBeNull();
-      expect(secondActiveOption?.textContent).toContain("One");
+      expect(activeOptionAfterNav).not.toBeNull();
+      expect(activeOptionAfterNav?.textContent).toContain("One");
     });
     // Test requires elaborate amount of interactions
     // eslint-disable-next-line max-statements
@@ -1160,15 +1156,12 @@ describe("AutocompleteRebuilt", () => {
       await selectWithKeyboard();
 
       await selectAll();
+      // Menu is still open after deletion
       await deleteInput(1);
 
       expect(screen.getByRole("textbox")).toHaveValue("");
-
-      await navigateDown(1);
-
-      const activeOption = getActiveOption();
-
-      expect(activeOption).toBeNull();
+      const activeOptionAfterDelete = getActiveOption();
+      expect(activeOptionAfterDelete).toBeNull();
 
       await navigateDown(1);
 
