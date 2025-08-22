@@ -187,7 +187,6 @@ function flattenMenu<
       return;
     }
 
-    // const group = item as MenuSection<Value, S, A> | MenuOptions<Value, A>;
     const group = item;
 
     sections.push(group);
@@ -420,7 +419,7 @@ export function useAutocomplete<
       ? (o: Value) => inputEqualsOption(inputValue, o)
       : (o: Value) => getOptionLabel(o) === inputValue;
 
-    return optionItems.some(equalsInput as (o: Value) => boolean);
+    return optionItems.some(equalsInput);
   }, [optionItems, getOptionLabel, inputValue, props.inputEqualsOption]);
 
   const lastInputWasUser = useRef(false);
