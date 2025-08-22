@@ -78,7 +78,7 @@ function useAutocompleteListNav({
   const [referenceEl, setReferenceEl] = useState<HTMLElement | null>(null);
 
   const { refs, floatingStyles, context } = useFloating({
-    placement: "bottom-start",
+    placement: "bottom",
     whileElementsMounted: autoUpdate,
     open,
     elements: { reference: referenceEl },
@@ -94,7 +94,7 @@ function useAutocompleteListNav({
     },
     middleware: [
       offset(MENU_OFFSET),
-      flip({ fallbackPlacements: ["top-start", "bottom-end", "top-end"] }),
+      flip({ fallbackPlacements: ["top"] }),
       size({
         apply({ availableHeight, elements, rects }) {
           const maxHeight = calculateMaxHeight(availableHeight, {
