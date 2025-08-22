@@ -1981,7 +1981,7 @@ export const VisibleRowActions = () => {
         UNSAFE_style={{
           buttonIcon: {
             path: {
-              fill: "var(--color-base-grey--500) !important",
+              fill: "var(--color-text--secondary) !important",
             },
           },
         }}
@@ -1996,7 +1996,7 @@ export const VisibleRowActions = () => {
         UNSAFE_style={{
           buttonIcon: {
             path: {
-              fill: "var(--color-base-grey--500) !important",
+              fill: "var(--color-text--secondary) !important",
             },
           },
         }}
