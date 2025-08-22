@@ -24,6 +24,7 @@
 
 :global(.react-datepicker__input-container),
 :global(.react-datepicker-wrapper) {
+  width: 100%;
   max-width: 100%;
 }
 

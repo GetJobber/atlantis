@@ -169,6 +169,7 @@ export function DatePicker({
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
         calendarStartDay={effectiveFirstDayOfWeek}
+        popperPlacement="bottom-start"
       />
     </div>
   );
