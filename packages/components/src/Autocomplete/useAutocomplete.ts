@@ -618,33 +618,30 @@ export function useAutocomplete<
 
   useEffect(() => {
     if (!open) return;
-    if (!exactLabelMatch) return;
-    if (lastInputWasUser.current) return;
 
+    // When opening the menu, initialize the highlight consistently:
+    // - If there is a current selection, highlight that option
+    // - Otherwise, leave the highlight unset (null)
     const selectedValue = multiple
       ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
       : (value as Value | undefined);
 
-    if (!selectedValue) return;
+    if (selectedValue) {
+      const selectedNavigableIndex = findNavigableIndexForValue(
+        renderable,
+        equals,
+        selectedValue,
+      );
 
-    const selectedNavigableIndex = findNavigableIndexForValue(
-      renderable,
-      equals,
-      selectedValue,
-    );
+      if (selectedNavigableIndex != null) {
+        setActiveIndex(selectedNavigableIndex);
 
-    if (selectedNavigableIndex != null) {
-      setActiveIndex(selectedNavigableIndex);
+        return;
+      }
     }
-  }, [
-    open,
-    exactLabelMatch,
-    multiple,
-    value,
-    renderable,
-    equals,
-    setActiveIndex,
-  ]);
+
+    setActiveIndex(null);
+  }, [open, multiple, value, renderable, equals, setActiveIndex]);
 
   // Keep the selected item highlighted when deleting characters from the input
   const prevInputLengthRef = useRef(inputValue.length);
@@ -743,12 +740,9 @@ export function useAutocomplete<
 
     if (allowFreeForm) {
       const inputText = inputValue.trim();
-      const hasText = inputText.length > 0;
-
-      if (hasText) {
-        commitFromInputText(inputText);
-      }
+      if (inputText.length > 0) commitFromInputText(inputText);
     }
+
     props.onBlur?.();
   }, [readOnly, props.allowFreeForm, inputValue, props.onBlur]);
 
