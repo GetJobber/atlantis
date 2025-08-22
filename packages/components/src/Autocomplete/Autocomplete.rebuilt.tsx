@@ -1,5 +1,5 @@
 import type { Ref } from "react";
-import React, { forwardRef, useMemo } from "react";
+import React, { forwardRef, useEffect, useMemo } from "react";
 import {
   FloatingFocusManager,
   FloatingPortal,
@@ -98,6 +98,9 @@ function AutocompleteRebuiltInternal<
   const [menuWidth, setMenuWidth] = React.useState<number | undefined>(
     undefined,
   );
+  const [positionRefEl, setPositionRefEl] = React.useState<Element | null>(
+    null,
+  );
 
   const composedReferenceProps = getReferenceProps({
     onKeyDown: onInputKeyDown,
@@ -128,17 +131,17 @@ function AutocompleteRebuiltInternal<
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
     node: HTMLInputElement | HTMLTextAreaElement | null,
   ) => {
-    setReferenceElement(node as unknown as HTMLElement | null);
+    setReferenceElement(node);
 
-    // Workaround to get the width of the visual InputText element, which is not the
-    // same as the literal input reference element when props
-    // like suffix/prefix/clearable are present.
+    // Workaround to get the width of the visual InputText element, which is not the same as
+    // the literal input reference element when props like suffix/prefix/clearable are present.
     const visualInputTextElement = node?.closest(
       "[data-testid='Form-Field-Wrapper']",
     );
 
     if (visualInputTextElement) {
       setMenuWidth(visualInputTextElement.clientWidth);
+      setPositionRefEl(visualInputTextElement);
     }
   };
 
@@ -146,6 +149,12 @@ function AutocompleteRebuiltInternal<
     referenceInputRef,
     forwardedRef,
   ]);
+
+  useEffect(() => {
+    if (!positionRefEl) return;
+    // Set the reference element to the visual InputText element so the menu aligns with the input.
+    refs.setPositionReference(positionRefEl);
+  }, [positionRefEl, refs]);
 
   const menuClassName = classNames(styles.list, props.UNSAFE_className?.menu);
 

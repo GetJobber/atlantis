@@ -75,13 +75,10 @@ function useAutocompleteListNav({
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const listRef = useRef<Array<HTMLElement | null>>([]);
 
-  const [referenceEl, setReferenceEl] = useState<HTMLElement | null>(null);
-
   const { refs, floatingStyles, context } = useFloating({
     placement: "bottom",
     whileElementsMounted: autoUpdate,
     open,
-    elements: { reference: referenceEl },
     onOpenChange: (isOpen, _event, reason) => {
       setOpen(isOpen);
 
@@ -158,7 +155,8 @@ function useAutocompleteListNav({
     listRef,
     open,
     setOpen,
-    setReferenceElement: setReferenceEl,
+    setReferenceElement: (el: HTMLElement | null) =>
+      refs.setReference(el as unknown as Element | null),
   };
 }
 
