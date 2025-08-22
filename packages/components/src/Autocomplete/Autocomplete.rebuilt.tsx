@@ -216,7 +216,7 @@ function AutocompleteRebuiltInternal<
               {/* Scrollable middle region */}
               <div className={styles.scrollRegion}>
                 {loading ? (
-                  <LoadingContent />
+                  props.renderLoading ?? <LoadingContent />
                 ) : (
                   <>
                     {showEmptyStateMessage && (

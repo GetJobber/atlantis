@@ -58,6 +58,7 @@ export function Wrapper<T extends OptionLike>({
   renderInput,
   renderPersistent,
   loading,
+  renderLoading,
   emptyStateMessage,
   ref,
   readOnly,
@@ -83,6 +84,7 @@ export function Wrapper<T extends OptionLike>({
   >["renderPersistent"];
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly loading?: boolean;
+  readonly renderLoading?: React.ReactNode;
   readonly emptyStateMessage?: React.ReactNode;
   readonly ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
   readonly UNSAFE_className?: AutocompleteRebuiltProps<
@@ -117,6 +119,7 @@ export function Wrapper<T extends OptionLike>({
       renderSection={renderSection}
       renderInput={renderInput}
       loading={loading}
+      renderLoading={renderLoading}
       emptyStateMessage={emptyStateMessage}
       ref={ref}
       UNSAFE_className={UNSAFE_className}

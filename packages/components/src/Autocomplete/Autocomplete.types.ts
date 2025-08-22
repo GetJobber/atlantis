@@ -569,6 +569,12 @@ interface AutocompleteRebuiltBaseProps<
   readonly loading?: boolean;
 
   /*
+   * Custom content to render when `loading` is true.
+   * If omitted, a default loading UI (Glimmers) is shown.
+   */
+  readonly renderLoading?: React.ReactNode;
+
+  /*
    * Custom equality for option to value mapping.
    * TODO: decide if we wanna keep this
    */
@@ -583,10 +589,6 @@ interface FreeFormOff<Value extends OptionLike, Multiple extends boolean> {
    * Input value will be cleared if no selection is made and focus is lost.
    */
   readonly allowFreeForm?: false;
-  /*
-   * The current selection value of the Autocomplete.
-   */
-  readonly value: AutocompleteValue<Value, Multiple>;
   /*
    * Callback invoked when the selection value changes.
    */
@@ -605,10 +607,6 @@ interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
    * Input value will be cleared if no selection is made and focus is lost.
    * */
   readonly allowFreeForm: true;
-  /*
-   * The current selection value of the Autocomplete.
-   */
-  readonly value: AutocompleteValue<Value, Multiple>;
   /**
    * Factory used to create a Value from free-form input when committing. Necessary with complex option values. The only value the input can produce is a string.
    * @param input - The input value

@@ -69,6 +69,32 @@ describe("AutocompleteRebuilt", () => {
 
       expect(screen.queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
     });
+
+    it("renders custom loading content when provided", async () => {
+      const CUSTOM_ID = "custom-loading";
+      render(
+        <Wrapper
+          loading
+          renderLoading={<div data-testid={CUSTOM_ID}>Loading…</div>}
+        />,
+      );
+
+      await openAutocomplete();
+
+      expect(screen.getByTestId(CUSTOM_ID)).toBeInTheDocument();
+      expect(screen.queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
+    });
+
+    it("does not render custom loading content when loading is false", async () => {
+      const CUSTOM_ID = "custom-loading";
+      render(
+        <Wrapper renderLoading={<div data-testid={CUSTOM_ID}>Loading…</div>} />,
+      );
+
+      await openAutocomplete();
+
+      expect(screen.queryByTestId(CUSTOM_ID)).not.toBeInTheDocument();
+    });
   });
 
   describe("basic open behavior", () => {
