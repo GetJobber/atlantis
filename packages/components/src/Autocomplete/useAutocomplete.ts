@@ -111,7 +111,10 @@ function useAutocompleteListNav({
   const listNav = useListNavigation(context, {
     listRef,
     activeIndex,
-    scrollItemIntoView: true,
+    scrollItemIntoView: {
+      behavior: "smooth",
+      block: "end",
+    },
     loop: true,
     onNavigate: setActiveIndex,
     virtual: true,
