@@ -63,6 +63,7 @@ interface UseAutocompleteListNavProps {
   navigableCount: number;
   shouldResetActiveIndexOnClose?: () => boolean;
   onMenuClose?: (reason?: string) => void;
+  selectedIndex?: number | null;
 }
 
 function useAutocompleteListNav({
@@ -70,6 +71,7 @@ function useAutocompleteListNav({
   navigableCount,
   shouldResetActiveIndexOnClose,
   onMenuClose,
+  selectedIndex,
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -108,6 +110,7 @@ function useAutocompleteListNav({
   const listNav = useListNavigation(context, {
     listRef,
     activeIndex,
+    selectedIndex,
     scrollItemIntoView: {
       behavior: "smooth",
       block: "end",
@@ -116,6 +119,9 @@ function useAutocompleteListNav({
     onNavigate: setActiveIndex,
     virtual: true,
     enabled: open,
+    openOnArrowKeyDown: false,
+    focusItemOnOpen: "auto",
+    focusItemOnHover: false,
   });
 
   const dismiss = useDismiss(context, {
@@ -132,6 +138,7 @@ function useAutocompleteListNav({
     [listNav, dismiss, focus],
   );
 
+  // Update the listRef as we filter
   useEffect(() => {
     listRef.current.length = navigableCount;
 
@@ -497,11 +504,11 @@ export function useAutocomplete<
     [props.getPersistentKey],
   );
 
-  const headerInteractive = useMemo(
+  const headerInteractiveCount = useMemo(
     () => persistentsHeaders.filter(p => Boolean(p.onClick)),
     [persistentsHeaders],
   );
-  const footerInteractive = useMemo(
+  const footerInteractiveCount = useMemo(
     () => persistentsFooters.filter(p => Boolean(p.onClick)),
     [persistentsFooters],
   );
@@ -511,8 +518,29 @@ export function useAutocomplete<
     [renderable],
   );
 
-  const navigableCount =
-    headerInteractive.length + mainNavigableCount + footerInteractive.length;
+  const totalNavigableCount =
+    headerInteractiveCount.length +
+    mainNavigableCount +
+    footerInteractiveCount.length;
+
+  // Compute the currently selected index in the global navigable list (header -> middle -> footer)
+  const selectedIndex: number | null = useMemo(() => {
+    const selectedValue = multiple
+      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
+      : (value as Value | undefined);
+
+    if (!selectedValue) return null;
+
+    const middleIndex = findNavigableIndexForValue(
+      renderable,
+      equals,
+      selectedValue,
+    );
+
+    if (middleIndex == null) return null;
+
+    return headerInteractiveCount.length + middleIndex;
+  }, [multiple, value, renderable, equals, headerInteractiveCount.length]);
 
   const {
     refs,
@@ -529,15 +557,14 @@ export function useAutocomplete<
     setReferenceElement,
   } = useAutocompleteListNav({
     openOnFocus: openOnFocus && !readOnly,
-    navigableCount,
+    navigableCount: totalNavigableCount,
     shouldResetActiveIndexOnClose: () => !hasSelection,
+    selectedIndex,
     onMenuClose: () => {
       if (props.allowFreeForm !== true) {
         const hasText = inputValue.trim().length > 0;
 
         if (hasText && !hasSelection) {
-          // ~3/4 lines of this is repeated elsewhere
-          // Maybe make a single close helpr function
           suppressOpenOnInputChange.current = true;
           lastInputWasUser.current = false;
 
@@ -570,7 +597,7 @@ export function useAutocomplete<
     }
   }, [inputValue, readOnly, openOnFocus, inputFocused, setOpen]);
 
-  // Handles activeIndex reset and change propagation when input is emptied
+  // Handles activeIndex reset and change propagation when input is empty
   useEffect(() => {
     const hasText = inputValue.trim().length > 0;
 
@@ -581,9 +608,10 @@ export function useAutocomplete<
       onChange?.(undefined as AutocompleteValue<Value, Multiple>);
       setActiveIndex(null);
     } else {
+      // this happens before render, can we optimize this?
       setActiveIndex(null);
     }
-  }, [inputValue, hasSelection, setActiveIndex, onChange]);
+  }, [inputValue, hasSelection, setActiveIndex, onChange, open]);
 
   function selectOption(option: Value) {
     if (multiple) {
@@ -617,33 +645,6 @@ export function useAutocomplete<
     return true;
   }
 
-  useEffect(() => {
-    if (!open) return;
-
-    // When opening the menu, initialize the highlight consistently:
-    // - If there is a current selection, highlight that option
-    // - Otherwise, leave the highlight unset (null)
-    const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
-
-    if (selectedValue) {
-      const selectedNavigableIndex = findNavigableIndexForValue(
-        renderable,
-        equals,
-        selectedValue,
-      );
-
-      if (selectedNavigableIndex != null) {
-        setActiveIndex(selectedNavigableIndex);
-
-        return;
-      }
-    }
-
-    setActiveIndex(null);
-  }, [open, multiple, value, renderable, equals, setActiveIndex]);
-
   // Keep the selected item highlighted when deleting characters from the input
   const prevInputLengthRef = useRef(inputValue.length);
   useEffect(() => {
@@ -673,6 +674,33 @@ export function useAutocomplete<
     multiple,
     setActiveIndex,
   ]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    // When opening the menu, initialize the highlight consistently:
+    // - If there is a current selection, highlight that option
+    // - Otherwise, leave the highlight unset (null)
+    const selectedValue = multiple
+      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
+      : (value as Value | undefined);
+
+    if (selectedValue) {
+      const selectedNavigableIndex = findNavigableIndexForValue(
+        renderable,
+        equals,
+        selectedValue,
+      );
+
+      if (selectedNavigableIndex != null) {
+        setActiveIndex(selectedNavigableIndex);
+
+        return;
+      }
+    }
+
+    setActiveIndex(null);
+  }, [open, multiple, value, renderable, equals, setActiveIndex]);
 
   const onSelection = useCallback(
     (option: Value) => {
@@ -747,47 +775,11 @@ export function useAutocomplete<
     props.onBlur?.();
   }, [readOnly, props.allowFreeForm, inputValue, props.onBlur]);
 
-  function computeInitialIndexForArrowUp(): number | null {
-    // If there are interactive footers, prefer the very last navigable item
-    if (footerInteractive.length > 0) {
-      return navigableCount > 0 ? navigableCount - 1 : null;
-    }
-
-    // Otherwise, prefer the last OPTION (not action), matching legacy behavior
-    let navigable = -1;
-    let lastOptionIdx = -1;
-
-    for (const item of renderable) {
-      if (item.kind === "section") continue;
-      navigable += 1;
-      if (item.kind === "option") lastOptionIdx = navigable;
-    }
-
-    if (lastOptionIdx >= 0) {
-      return headerInteractive.length + lastOptionIdx;
-    }
-
-    return navigableCount > 0 ? navigableCount - 1 : null;
-  }
-
-  function handleArrowNavigation(key: string, event: React.KeyboardEvent) {
-    if (!open) {
-      setOpen(true);
-
-      return;
-    }
-
-    if (activeIndex == null) {
-      setActiveIndex(key === "ArrowDown" ? 0 : computeInitialIndexForArrowUp());
-      event.preventDefault();
-    }
-  }
-
   function getRegionByActiveIndex(index: number): {
     region: "header" | "middle" | "footer";
     regionIndex: number;
   } {
-    const headerCount = headerInteractive.length;
+    const headerCount = headerInteractiveCount.length;
     const mainCount = mainNavigableCount;
 
     if (index < headerCount) return { region: "header", regionIndex: index };
@@ -802,6 +794,42 @@ export function useAutocomplete<
       region: "footer",
       regionIndex: middleIndex - mainCount,
     };
+  }
+
+  function computeInitialIndexForArrowUp(): number | null {
+    // If there are interactive footers, prefer the very last navigable item
+    if (footerInteractiveCount.length > 0) {
+      return totalNavigableCount > 0 ? totalNavigableCount - 1 : null;
+    }
+
+    // Otherwise, prefer the last OPTION (not action), matching legacy behavior
+    let navigable = -1;
+    let lastOptionIdx = -1;
+
+    for (const item of renderable) {
+      if (item.kind === "section") continue;
+      navigable += 1;
+      if (item.kind === "option") lastOptionIdx = navigable;
+    }
+
+    if (lastOptionIdx >= 0) {
+      return headerInteractiveCount.length + lastOptionIdx;
+    }
+
+    return totalNavigableCount > 0 ? totalNavigableCount - 1 : null;
+  }
+
+  function handleArrowNavigation(key: string, event: React.KeyboardEvent) {
+    if (!open) {
+      setOpen(true);
+
+      return;
+    }
+
+    if (activeIndex == null) {
+      setActiveIndex(key === "ArrowDown" ? 0 : computeInitialIndexForArrowUp());
+      event.preventDefault();
+    }
   }
 
   function handleEnterKey(event: React.KeyboardEvent) {
@@ -829,8 +857,8 @@ export function useAutocomplete<
 
     const persistent =
       region === "header"
-        ? headerInteractive[regionIndex]
-        : footerInteractive[regionIndex];
+        ? headerInteractiveCount[regionIndex]
+        : footerInteractiveCount[regionIndex];
 
     if (persistent?.onClick) {
       onAction({
@@ -850,19 +878,9 @@ export function useAutocomplete<
 
         return;
       }
-
       handleEnterKey(event);
     },
-    [
-      open,
-      setOpen,
-      activeIndex,
-      setActiveIndex,
-      navigableCount,
-      renderable,
-      onSelection,
-      onAction,
-    ],
+    [open, onSelection, onAction],
   );
 
   const onInputChangeFromUser = useCallback(
@@ -885,6 +903,8 @@ export function useAutocomplete<
     optionCount,
     persistentsHeaders,
     persistentsFooters,
+    headerInteractiveCount: headerInteractiveCount.length,
+    middleNavigableCount: mainNavigableCount,
     getOptionLabel,
     getOptionKey,
     getActionKey,

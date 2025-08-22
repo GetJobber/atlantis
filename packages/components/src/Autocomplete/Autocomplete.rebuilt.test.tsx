@@ -80,6 +80,16 @@ describe("AutocompleteRebuilt", () => {
       await expectMenuShown();
     });
 
+    it("does not show a highlighted option on open when opened with a click", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).toBeNull();
+    });
+
     it("opens on tab", async () => {
       render(<Wrapper />);
 
@@ -952,6 +962,30 @@ describe("AutocompleteRebuilt", () => {
         const activeOption = getActiveOption();
         expect(activeOption).not.toBeNull();
         expect(activeOption?.textContent).toContain("Three");
+      });
+    });
+
+    it("uses the correct index when reopening after a selection and navigating", async () => {
+      render(<Wrapper />);
+      await openAutocomplete();
+      await navigateDown(3);
+      await selectWithKeyboard();
+
+      // selection closed the menu
+      await openAutocomplete("arrowDown");
+
+      await waitFor(() => {
+        const activeOption = getActiveOption();
+        expect(activeOption).not.toBeNull();
+        expect(activeOption?.textContent).toContain("Three");
+      });
+
+      await navigateUp(1);
+
+      await waitFor(() => {
+        const activeOption = getActiveOption();
+        expect(activeOption).not.toBeNull();
+        expect(activeOption?.textContent).toContain("Two");
       });
     });
 

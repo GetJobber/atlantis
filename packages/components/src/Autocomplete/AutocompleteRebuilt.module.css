@@ -57,6 +57,11 @@
   cursor: pointer;
 }
 
+.option:hover,
+.action:hover {
+  background: var(--color-surface--hover);
+}
+
 .section {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);

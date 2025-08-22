@@ -1,5 +1,5 @@
 import type { Ref } from "react";
-import React, { forwardRef, useEffect, useMemo } from "react";
+import React, { forwardRef, useEffect } from "react";
 import {
   FloatingFocusManager,
   FloatingPortal,
@@ -66,6 +66,8 @@ function AutocompleteRebuiltInternal<
     optionCount,
     persistentsHeaders,
     persistentsFooters,
+    headerInteractiveCount,
+    middleNavigableCount,
     getPersistentKey,
     getOptionLabel,
     getOptionKey,
@@ -161,20 +163,6 @@ function AutocompleteRebuiltInternal<
   const showEmptyStateMessage =
     optionCount === 0 && props.emptyStateMessage !== false;
 
-  // Helper: counts for navigable index offsets
-  // We maintain one global navigable index: [header interactive] -> [middle (options/actions)] -> [footer interactive].
-  // Only the middle region is rendered inside a scrollable sub-list that uses local indices, so we subtract
-  // headerInteractiveCount when passing activeIndex down to the middle. Footers are always last and are rendered
-  // with an explicit indexOffset = headerInteractiveCount + middleNavigableCount, so we never need a separate
-  // "footerInteractiveCount" for mapping. Nothing comes after footers; their indices are absolute.
-  const headerInteractiveCount = useMemo(
-    () => persistentsHeaders.filter(p => Boolean(p.onClick)).length,
-    [persistentsHeaders],
-  );
-  const middleNavigableCount = useMemo(
-    () => renderable.reduce((c, i) => c + (i.kind === "section" ? 0 : 1), 0),
-    [renderable],
-  );
   const activeIndexForMiddle =
     activeIndex != null ? activeIndex - headerInteractiveCount : null;
 
