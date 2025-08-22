@@ -33,7 +33,8 @@ appear near the thing they affect, or in a place that makes
 sense for the next step.
 
 - In modals: Buttons usually sit at the bottom right. The main 
-action comes last, and cancel is placed before it.
+action comes last, and cancel is placed before it. In some cases tertiary buttons
+can be placed on the far left.
 
 - On pages: Buttons should line up with related content, like 
 form fields or cards. Avoid placing actions too far away from 
@@ -46,7 +47,10 @@ progress and don’t tap again by mistake.
 
 Buttons don’t dismiss things unless they’re meant to. If tapping 
 a button closes a modal or banner, that should feel intentional rather
-than surprising.
+than surprising. An example of this would be in confirmation modals.
+Secondary buttons that act as a way for the SP to reverse the action they've
+states they want to take, such as "Go Back", would dismiss the modal as this
+is the expected action.
 
 #### Sizes
 
@@ -76,8 +80,11 @@ As a best practice, do not design with disabled button states. This has negative
 impacts on accessibility as well as an increase in complexity for users to
 understand why the interface is disabled and how to resolve it.
 
-With that said, if you _can't_ design a flow without a disabled state, this is
-how you disable a button.
+Before progressing, [review Jobber's guidance on disabled states](https://atlantis.getjobber.com/patterns/disabled-states)
+to ensure you can't design a flow without it.
+
+If, after reviewing the documentation, you still believe you can't design a flow without disabling
+a button, this is how you do it:
 
 <Canvas>
   <Button label="Do the Thing" disabled />
@@ -85,9 +92,7 @@ how you disable a button.
 
 #### Use of icons
 
-You can use icons inside the buttons. They can stand-alone, or appear before,
-after, or on top of the button label. They can also be added before or after the
-label.
+You can use icons inside the buttons. They can stand-alone or appear alongside the button label.
 
 **Note:** If an icon is used in a stand-alone method, an `ariaLabel` must be
 present to describe the button.
@@ -260,7 +265,7 @@ Actions for all three levels.
 **Please note:** "Learn More" is the most common CTA for learning buttons. It should be
 the default text. It's important to ensure that the accompanying content is clear enough
 so that it's obvious to SPs what they'll be learning about when they interact with learning
-button with a "Lean More" CTA.
+button with a "Learn More" CTA.
 
 ### Destructive
 
@@ -512,7 +517,6 @@ In summary, here are some general rules to follow when working with the button c
 
 #### Do:
 
-
 - ✅ Use clear, verb-first labels that describe the outcome  
 - ✅ Keep button text short (1–3 words max)  
 - ✅ Use title case for button labels  
@@ -535,7 +539,6 @@ In summary, here are some general rules to follow when working with the button c
 
 
 ## Accessibility notes
-
 
 - Avoid using disabled buttons when possible—they increase 
   complexity and make it harder for SPs to understand what 
