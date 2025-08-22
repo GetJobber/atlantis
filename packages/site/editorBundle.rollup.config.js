@@ -16,7 +16,9 @@ export default {
     commonjs(),
     nodePolyfills({ util: true, process: true }),
     json(),
-    resolve(),
+    resolve({
+      dedupe: ["react", "react-dom"],
+    }),
     replace({
       "process.env.NODE_ENV": JSON.stringify("production"),
       preventAssignment: true,
