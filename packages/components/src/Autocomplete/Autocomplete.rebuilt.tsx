@@ -95,6 +95,10 @@ function AutocompleteRebuiltInternal<
     duration: { open: tokens["timing-base"], close: tokens["timing-base"] },
   });
 
+  const [menuWidth, setMenuWidth] = React.useState<number | undefined>(
+    undefined,
+  );
+
   const composedReferenceProps = getReferenceProps({
     onKeyDown: onInputKeyDown,
     onFocus: onInputFocus,
@@ -114,7 +118,9 @@ function AutocompleteRebuiltInternal<
     name: props.name,
     invalid,
     description,
-    size: sizeProp === "base" ? undefined : sizeProp,
+    size: sizeProp ? sizeProp : undefined,
+    prefix: props.prefix,
+    suffix: props.suffix,
     clearable: clearable ? "while-editing" : undefined,
     ...(props.readOnly ? {} : composedReferenceProps),
   };
@@ -122,7 +128,18 @@ function AutocompleteRebuiltInternal<
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
     node: HTMLInputElement | HTMLTextAreaElement | null,
   ) => {
-    setReferenceElement(node as HTMLElement | null);
+    setReferenceElement(node as unknown as HTMLElement | null);
+
+    // Workaround to get the width of the visual InputText element, which is not the
+    // same as the literal input reference element when props
+    // like suffix/prefix/clearable are present.
+    const visualInputTextElement = node?.closest(
+      "[data-testid='Form-Field-Wrapper']",
+    );
+
+    if (visualInputTextElement) {
+      setMenuWidth(visualInputTextElement.clientWidth);
+    }
   };
 
   const mergedInputRef = mergeRefs<HTMLInputElement | HTMLTextAreaElement>([
@@ -176,6 +193,7 @@ function AutocompleteRebuiltInternal<
                 ...floatingStyles,
                 ...transitionStyles,
                 ...props.UNSAFE_styles?.menu,
+                ...(menuWidth ? { width: menuWidth, maxWidth: menuWidth } : {}),
               }}
               {...getFloatingProps()}
             >

@@ -96,17 +96,12 @@ function useAutocompleteListNav({
       offset(MENU_OFFSET),
       flip({ fallbackPlacements: ["top"] }),
       size({
-        apply({ availableHeight, elements, rects }) {
+        apply({ availableHeight, elements }) {
           const maxHeight = calculateMaxHeight(availableHeight, {
             maxHeight: AUTOCOMPLETE_MAX_HEIGHT,
           });
-
-          const referenceWidth = rects.reference.width;
-
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
-            width: `${referenceWidth}px`,
-            minWidth: `${referenceWidth}px`,
           });
         },
       }),
