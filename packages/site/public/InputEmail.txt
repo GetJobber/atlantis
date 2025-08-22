@@ -1,0 +1,554 @@
+# InputEmail
+
+# Input Email
+
+InputEmail is used to display input with built-in email validation.
+
+## Design & usage guidelines
+
+Use the InputEmail component when you expect the user to input an email address.
+By default, the InputEmail component will validate email addresses.
+
+If you want to add additional validation within the Web/JO, you can pass in the
+`validations` prop with your own message. Note: The validations prop is not
+available on mobile.
+
+## Related components
+
+If you are not worried about email address validation, consider using
+[InputText](/components/InputText).
+
+## Web Component Code
+
+```tsx
+InputEmail Email Input Web React import React, { forwardRef, useId, useRef } from "react";
+import omit from "lodash/omit";
+import { useInputEmailActions } from "./hooks/useInputEmailActions";
+import { useInputEmailFormField } from "./hooks/useInputEmailFormField";
+import type { InputEmailRebuiltProps } from "./InputEmail.types";
+import {
+  FormFieldWrapper,
+  useAtlantisFormFieldName,
+  useFormFieldWrapperStyles,
+} from "../FormField";
+import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
+
+export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
+  props: InputEmailRebuiltProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const id = useId();
+  const inputRef =
+    (ref as React.RefObject<HTMLInputElement>) ??
+    useRef<HTMLInputElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const { inputStyle } = useFormFieldWrapperStyles({
+    size: props.size,
+    inline: props.inline,
+    align: props.align,
+    type: "email",
+    value: props.value,
+    invalid: props.invalid,
+    error: props.error,
+    maxLength: props.maxLength,
+    disabled: props.disabled,
+    placeholder: props.placeholder,
+  });
+
+  const { name } = useAtlantisFormFieldName({
+    nameProp: props.name,
+    id,
+  });
+
+  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
+    useInputEmailActions({
+      onChange: props.onChange,
+      onBlur: props.onBlur,
+      onFocus: props.onFocus,
+      onKeyDown: props.onKeyDown,
+      onEnter: props.onEnter,
+      inputRef,
+    });
+
+  const inputProps = omit(props, [
+    "placeholder",
+    "onChange",
+    "onBlur",
+    "onFocus",
+    "onEnter",
+    "size",
+    "prefix",
+    "suffix",
+    "version",
+  ]);
+
+  const { fieldProps, descriptionIdentifier } = useInputEmailFormField({
+    ...inputProps,
+    id,
+    name,
+    handleChange,
+    handleBlur,
+    handleFocus,
+    handleKeyDown,
+  });
+
+  return (
+    <FormFieldWrapper
+      error={props.error || ""}
+      invalid={props.invalid}
+      identifier={props.identifier || id}
+      descriptionIdentifier={descriptionIdentifier}
+      size={props.size}
+      inline={props.inline}
+      align={props.align}
+      prefix={props.prefix}
+      suffix={props.suffix}
+      description={props.description}
+      clearable={props.clearable ?? "never"}
+      onClear={handleClear}
+      wrapperRef={wrapperRef}
+      maxLength={props.maxLength}
+      disabled={props.disabled}
+      type="email"
+      value={props.value}
+      placeholder={props.placeholder}
+      autofocus={props.autoFocus}
+      name={name}
+    >
+      <input
+        {...fieldProps}
+        ref={inputRef}
+        type="email"
+        className={inputStyle}
+        value={props.value}
+        data-testid="ATL-InputEmail-input"
+      />
+      <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
+      {props.children}
+    </FormFieldWrapper>
+  );
+});
+import React from "react";
+import type { InputEmailLegacyProps } from "./InputEmail.types";
+import { validationMessage } from "./InputEmail.types";
+import { FormField } from "../FormField";
+
+export function InputEmail(props: InputEmailLegacyProps) {
+  const { validations } = props;
+
+  return (
+    <FormField
+      {...props}
+      type="email"
+      validations={{
+        ...validations,
+        validate: checkForValidEmail,
+      }}
+    />
+  );
+
+  function checkForValidEmail(value: string) {
+    const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (!value) {
+      return true;
+    }
+
+    if (!value.match(emailRegex)) {
+      return validationMessage;
+    }
+
+    return true;
+  }
+}
+import type { ForwardedRef } from "react";
+import React, { forwardRef } from "react";
+import { InputEmail as InputEmailLegacy } from "./InputEmail";
+import { InputEmailRebuilt } from "./InputEmail.rebuilt";
+import {
+  type InputEmailLegacyProps,
+  type InputEmailRebuiltProps,
+} from "./InputEmail.types";
+
+export type InputEmailShimProps =
+  | InputEmailRebuiltProps
+  | InputEmailLegacyProps;
+
+function isNewInputEmailProps(
+  props: InputEmailShimProps,
+): props is InputEmailRebuiltProps {
+  return props.version === 2;
+}
+
+export const InputEmail = forwardRef(function InputEmailShim(
+  props: InputEmailShimProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
+  if (isNewInputEmailProps(props)) {
+    return (
+      <InputEmailRebuilt
+        {...props}
+        ref={ref as ForwardedRef<HTMLInputElement>}
+      />
+    );
+  } else {
+    return <InputEmailLegacy {...props} />;
+  }
+});
+export type { InputEmailRebuiltProps, InputEmailLegacyProps };
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `id` | `string` | ❌ | `_none_` | A unique identifier for the input. |
+| `align` | `"center" | "right"` | ❌ | `_none_` | Determines the alignment of the text inside the input. |
+| `description` | `ReactNode` | ❌ | `_none_` | Further description of the input, can be used for a hint. |
+| `disabled` | `boolean` | ❌ | `_none_` | Disable the input |
+| `showMiniLabel` | `boolean` | ❌ | `true` | Controls the visibility of the mini label that appears inside the input
+when a value is entered. By default, the placeholder text moves up to
+become a mini label. Set to false to disable this behavior. |
+| `invalid` | `boolean` | ❌ | `_none_` | Highlights the field red to indicate an error. |
+| `inline` | `boolean` | ❌ | `_none_` | Adjusts the form field to go inline with a content. This also silences the
+given `validations` prop. You'd have to used the `onValidate` prop to
+capture the message and render it somewhere else using the
+`InputValidation` component. |
+| `loading` | `boolean` | ❌ | `_none_` | Show a spinner to indicate loading |
+| `name` | `string` | ❌ | `_none_` | Name of the input. |
+| `onChange` | `(newValue: string | number | boolean | Date, event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void` | ❌ | `_none_` | onChange handler that provides the new value (or event)
+@param newValue
+@param event |
+| `onValidation` | `(message: string) => void` | ❌ | `_none_` | Callback to get the the status and message when validating a field
+@param message |
+| `placeholder` | `string` | ❌ | `_none_` | Text that appears inside the input when empty and floats above the value
+as a mini label once the user enters a value.
+When showMiniLabel is false, this text only serves as a standard placeholder and
+disappears when the user types. |
+| `size` | `"small" | "large"` | ❌ | `_none_` | Adjusts the interface to either have small or large spacing. |
+| `value` | `string | number | Date` | ❌ | `_none_` | Set the component to the given value. |
+| `clearable` | `Clearable` | ❌ | `_none_` | Add a clear action on the input that clears the value.
+
+You should always use `while-editing` if you want the input to be
+clearable. if the input value isn't editable (i.e. `InputTime`) you can
+set it to `always`. |
+| `version` | `1` | ❌ | `_none_` | Experimental:
+Determine which version of the FormField to use.
+Right now this isn't used but it will be used in the future
+to allow us to release new versions of our form inputs without breaking existing functionality. |
+| `maxLength` | `number` | ❌ | `_none_` | Maximum character length for an input. This also changes the width to
+roughly the same size as the max length. This is to communicate that the
+user that on certain cases, they can only type a limited amount of
+characters. |
+| `readonly` | `boolean` | ❌ | `_none_` | Prevents users from editing the value. |
+| `validations` | `RegisterOptions` | ❌ | `_none_` | Show an error message above the field. This also
+highlights the the field red if an error message shows up. |
+| `defaultValue` | `string | Date` | ❌ | `_none_` | Initial value of the input. Only use this when you need to pre-populate
+the field with a data that is not controlled by the components state. If a
+state is controlling the value, use the `value` prop instead. |
+
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `toolbar` | `React.ReactNode` | ❌ | `_none_` | Add a toolbar below the input field for actions like rewriting the text. |
+| `toolbarVisibility` | `"always" | "while-editing"` | ❌ | `_none_` | Change the behaviour of when the toolbar becomes visible. |
+| `loading` | `boolean` | ❌ | `_none_` | Show loading indicator. |
+| `loadingType` | `"spinner" | "glimmer"` | ❌ | `_none_` | Change the type of loading indicator to spinner or glimmer. |
+| `invalid` | `string | boolean` | ❌ | `_none_` | Highlights the field red and shows message below (if string) to indicate an error |
+| `disabled` | `boolean` | ❌ | `_none_` | Disable the input |
+| `readonly` | `boolean` | ❌ | `_none_` | Makes the input read-only |
+| `name` | `string` | ❌ | `_none_` | Name of the input. |
+| `placeholder` | `string` | ❌ | `_none_` | Hint text that goes above the value once the field is filled out |
+| `assistiveText` | `string` | ❌ | `_none_` | Text that helps the user understand the input |
+| `value` | `string` | ❌ | `_none_` | Set the component to a given value |
+| `defaultValue` | `string` | ❌ | `_none_` | Default value for when component is uncontrolled |
+| `autoFocus` | `boolean` | ❌ | `_none_` | Automatically focus the input after it is rendered |
+| `validations` | `Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>` | ❌ | `_none_` | Shows an error message below the field and highlight the field red when value is invalid |
+| `onChangeText` | `(newValue: string) => void` | ❌ | `_none_` | Simplified callback that only provides the new value
+@param newValue |
+| `onSubmitEditing` | `(event?: SyntheticEvent<Element, Event>) => void` | ❌ | `_none_` | Callback that is called when the text input's submit button is pressed
+@param event |
+| `onFocus` | `(event?: NativeSyntheticEvent<TextInputFocusEventData>) => void` | ❌ | `_none_` | Callback that is called when the text input is focused
+@param event |
+| `onBlur` | `() => void` | ❌ | `_none_` | Callback that is called when the text input is blurred |
+| `accessibilityLabel` | `string` | ❌ | `_none_` | VoiceOver will read this string when a user selects the associated element |
+| `accessibilityHint` | `string` | ❌ | `_none_` | An accessibility hint helps users understand what will happen when they perform an action on the
+accessibility element when that result is not clear from the accessibility label |
+| `autoCorrect` | `boolean` | ❌ | `_none_` | Turn off autocorrect |
+| `autoCapitalize` | `"characters" | "words" | "sentences" | "none"` | ❌ | `_none_` | Determines where to autocapitalize |
+| `autoComplete` | `"name" | "additional-name" | "address-line1" | "address-line2" | "birthdate-day" | "birthdate-full" | "birthdate-month" | "birthdate-year" | "cc-csc" | "cc-exp" | "cc-exp-day" | ... 45 more ... | "off"` | ❌ | `_none_` | Determines which content to suggest on auto complete, e.g.`username`.
+Default is `off` which disables auto complete
+
+*Android Only* |
+| `textContentType` | `"name" | "none" | "nickname" | "password" | "username" | "URL" | "addressCity" | "addressCityAndState" | "addressState" | "countryName" | "creditCardNumber" | "creditCardExpiration" | ... 33 more ... | "shipmentTrackingNumber"` | ❌ | `_none_` | Determines which content to suggest on auto complete, e.g.`username`.
+Default is `none` which disables auto complete
+
+*iOS Only* |
+| `multiline` | `boolean` | ❌ | `_none_` | Determines if inputText will span multiple lines.
+Default is `false`
+
+https://reactnative.dev/docs/textinput#multiline |
+| `prefix` | `{ icon?: IconNames; label?: string; }` | ❌ | `_none_` | Symbol to display before the text input |
+| `suffix` | `{ icon?: IconNames; label?: string; onPress?: () => void; }` | ❌ | `_none_` | Symbol to display after the text input |
+| `transform` | `{ input?: (v: any) => string; output?: (v: string) => any; }` | ❌ | `_none_` | transform object is used to transform the internal TextInput value
+It's useful for components like InputNumber where we want to transform
+the internal value to a number.
+"input" is a function that transform the value to the string format that should be shown to the user
+"output" is a function that transform the string representation of the value to the value that is sent to onChange and the form |
+| `clearable` | `Clearable` | ❌ | `_none_` | Add a clear action on the input that clears the value.
+
+You should always use `while-editing` if you want the input to be
+clearable. if the input value isn't editable (i.e. `InputDateTime`) you can
+set it to `always`. |
+| `testID` | `string` | ❌ | `_none_` | Used to locate this view in end-to-end tests |
+| `secureTextEntry` | `boolean` | ❌ | `_none_` | Use secure text entry |
+| `spellCheck` | `boolean` | ❌ | `_none_` | Determines whether spell check is used. Turn it off to hide empty autoCorrect
+suggestions when autoCorrect is off.
+
+*iOS Only* |
+| `styleOverride` | `InputTextStyleOverride` | ❌ | `_none_` | Custom styling to override default style of the input text |
+| `ref` | `LegacyRef<InputTextRef>` | ❌ | `_none_` | Allows getting a ref to the component instance.
+Once the component unmounts, React will set `ref.current` to `null`
+(or call the ref with `null` if you passed a callback ref).
+@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs} |
+| `key` | `Key` | ❌ | `_none_` | _No description_ |
+
+
+## Categories
+
+- Forms & Inputs
+
+## Web Test Code
+
+```typescript
+InputEmail Email Input Web React Test Testing Jest import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { InputEmailRebuilt } from "./InputEmail.rebuilt";
+
+describe("InputEmailRebuilt", () => {
+  it("renders a basic InputEmailRebuilt", () => {
+    const { container } = render(<InputEmailRebuilt version={2} />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders correctly with placeholder", () => {
+    const { container } = render(
+      <InputEmailRebuilt version={2} placeholder="Enter email" />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders correctly as small", () => {
+    const { container } = render(
+      <InputEmailRebuilt version={2} size="small" />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders correctly as large", () => {
+    const { container } = render(
+      <InputEmailRebuilt version={2} size="large" />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders correctly when disabled", () => {
+    const { container } = render(<InputEmailRebuilt version={2} disabled />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders correctly when invalid", () => {
+    const { container } = render(<InputEmailRebuilt version={2} invalid />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders the value when set", () => {
+    const value = "test@example.com";
+    render(<InputEmailRebuilt version={2} value={value} />);
+    const inputElement = screen.getByRole("textbox");
+    expect(inputElement).toHaveValue(value);
+  });
+
+  describe("Action handlers", () => {
+    it("should call onChange with the new value when input changes", async () => {
+      const changeHandler = jest.fn();
+      const initialValue = "initial@example.com";
+      const newValue = "new@example.com";
+
+      render(
+        <InputEmailRebuilt
+          version={2}
+          value={initialValue}
+          onChange={changeHandler}
+        />,
+      );
+
+      const inputElement = screen.getByRole("textbox");
+      fireEvent.change(inputElement, { target: { value: newValue } });
+      expect(changeHandler).toHaveBeenCalledWith(newValue, expect.any(Object));
+    });
+
+    it("should call onFocus when the input is focused", async () => {
+      const focusHandler = jest.fn();
+      const value = "test@example.com";
+
+      render(
+        <InputEmailRebuilt version={2} value={value} onFocus={focusHandler} />,
+      );
+
+      await userEvent.click(screen.getByDisplayValue(value));
+      expect(focusHandler).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call onBlur when the input loses focus", async () => {
+      const blurHandler = jest.fn();
+
+      render(
+        <>
+          <InputEmailRebuilt version={2} onBlur={blurHandler} />
+          <button type="button" data-testid="other-element">
+            Other element
+          </button>
+        </>,
+      );
+
+      const inputElement = screen.getByRole("textbox");
+      await userEvent.click(inputElement);
+      await userEvent.click(screen.getByTestId("other-element"));
+
+      expect(blurHandler).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call onChange with undefined, call onBlur, and focus input when cleared", async () => {
+      const changeHandler = jest.fn();
+      const blurHandler = jest.fn();
+      const ref = React.createRef<HTMLInputElement>();
+      const initialValue = "test@example.com";
+
+      render(
+        <InputEmailRebuilt
+          version={2}
+          value={initialValue}
+          onChange={changeHandler}
+          onBlur={blurHandler}
+          clearable="always"
+          ref={ref}
+        />,
+      );
+
+      const clearButton = screen.getByTestId("ATL-FormField-clearButton");
+      await userEvent.click(clearButton);
+
+      expect(changeHandler).toHaveBeenCalledWith("");
+      expect(blurHandler).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("Ref handling", () => {
+    it("should forward ref to the input element", () => {
+      const ref = React.createRef<HTMLInputElement>();
+
+      render(<InputEmailRebuilt version={2} ref={ref} />);
+
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+
+    it("should allow access to native input methods through ref", async () => {
+      const ref = React.createRef<HTMLInputElement>();
+
+      render(<InputEmailRebuilt version={2} ref={ref} />);
+
+      const inputElement = screen.getByRole("textbox");
+      const focusSpy = jest.spyOn(inputElement, "focus");
+      const blurSpy = jest.spyOn(inputElement, "blur");
+
+      ref.current?.focus();
+      expect(focusSpy).toHaveBeenCalled();
+
+      ref.current?.blur();
+      expect(blurSpy).toHaveBeenCalled();
+    });
+  });
+});
+import React from "react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import { InputEmail } from "./InputEmail";
+import { validationMessage } from "./InputEmail.types";
+
+it("shows an error message for an invalid email", async () => {
+  const { getByLabelText, getByText } = render(
+    <InputEmail placeholder="Foo" />,
+  );
+
+  const input = getByLabelText("Foo");
+
+  input.focus();
+  fireEvent.change(input, { target: { value: "not an email" } });
+  input.blur();
+
+  await waitFor(() => {
+    expect(getByText(validationMessage)).toBeInstanceOf(HTMLParagraphElement);
+  });
+});
+
+it("clears the error message when the email is valid", async () => {
+  const { getByLabelText, getByText, queryByText } = render(
+    <InputEmail placeholder="Foo" />,
+  );
+
+  const input = getByLabelText("Foo");
+
+  input.focus();
+  fireEvent.change(input, { target: { value: "not an email" } });
+  input.blur();
+
+  await waitFor(() => {
+    expect(getByText(validationMessage)).toBeInstanceOf(HTMLParagraphElement);
+  });
+
+  await waitFor(() => {
+    fireEvent.change(input, { target: { value: "email@email.com" } });
+  });
+
+  await waitFor(() => {
+    expect(queryByText(validationMessage)).toBeNull();
+  });
+});
+
+it("Doesn't show validation when you're first typing", async () => {
+  const { getByLabelText, getByText, queryByText } = render(
+    <InputEmail placeholder="Foo" />,
+  );
+
+  const input = getByLabelText("Foo");
+
+  input.focus();
+  fireEvent.change(input, { target: { value: "not an email" } });
+
+  await waitFor(() => {
+    expect(queryByText(validationMessage)).toBeNull();
+  });
+  input.blur();
+
+  await waitFor(() => {
+    expect(getByText(validationMessage)).toBeInstanceOf(HTMLParagraphElement);
+  });
+});
+
+```
+
+## Component Path
+
+`/components/InputEmail`
+
+---
+
+_Generated on 2025-08-21T17:35:16.365Z_

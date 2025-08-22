@@ -1,0 +1,786 @@
+# Chips
+
+# Chips
+
+Chips are a flexible component that can be used for the selection of items from
+a group while preserving vertical space in the interface.
+
+## Design & usage guidelines
+
+The Chip will allow users to make selections in scenarios where vertical space
+is at a premium. It has three high-level usages: single-select, multi-select,
+and add/dismiss selection.
+
+<Tabs>
+  <Tab label="Web">
+
+### Single-select
+
+If you need the user to make a selection of a single item from among several
+items, and those items all have short (1–2 word) labels, single-select Chips
+will allow the user to choose one of those items.
+
+This preserves vertical space while allowing the user to clearly identify which
+item they have selected.
+
+Unlike [Radio](/components/RadioGroup), the selected single-select Chip can be
+de-selected by the user, leaving all selections blank.
+
+### Multi-select
+
+If you need the user to make a selection of one _or more_ items from amongst
+several items, and those items all have short (1–2 word) labels, a multi-select
+Chips will allow the user to choose as many items from the group as they wish.
+
+This preserves vertical space while allowing the user to clearly identify which
+items they have selected. To signify to the user that multiple selections are
+possible, a checkmark icon is present to reinforce the conceptual similarity to
+a [Checkbox](/components/Checkbox).
+
+Similar to Checkbox, a selected multi-select Chip can be de-selected by the
+user, leaving all selections blank.
+
+### Add/dismiss selection
+
+When the user will be selecting one or more items by inputting their own Chip
+options with, use the dismissible Chip.
+
+The dismissible Chip allows them to remove previous selections from the Chips.
+Use this option when the full list of possible selections is too great to
+reasonably display in one group of Chip. For example, "all of my phone contacts"
+would be far too many Chip options to present in one group, and would be
+overwhelming for the user to interpret.
+
+This format also allows the user to create their own "freeform" Chip options,
+which they can also remove once added.
+
+  </Tab>
+  <Tab label="Mobile">
+
+### Accent
+
+Chip can be themed to one of Jobber's "workflow" colours in an active state when
+the user may benefit from additional visual indication of the type of workflow
+item selected.
+
+### Dismissible
+
+In cases where there are existing selections that the user may need to remove,
+Chip can display a `cross` Icon signifying that these options can be removed.
+
+### Inactive Background Color
+
+In cases where the Chip is on an area whose background is
+`--color-surface--background`, Chip can be made visible by specifying the
+`inactiveBackgroundColor`.
+
+  </Tab>
+</Tabs>
+
+## Related components
+
+- [Chip](/components/Chip) is the building block that Chips is built on top of,
+  and has more flexibility to be used in isolation.
+- [RadioGroup](/components/RadioGroup) should be used to allow the user to
+  select "one-of-many" items (single-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [Checkbox](/components/Checkbox) should be used to allow the user to select
+  "one-or-more-of-many" items (multi-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [InlineLabel](/components/InlineLabel) should be used when you just need a
+  rectangular element that displays the status of another element.
+
+## Content guidelines
+
+Chip labels should be 1–2 words at most. If any of the options in the group may
+have longer labels, consider Checkbox or Radio as necessary for your selection
+type.
+
+## Accessibility
+
+<Tabs>
+  <Tab label="Web">
+
+Chips should convey to the user whether it is a "checkbox" or "radio" element
+based on single or multi-select. The Chips in this group have the appropriate
+roles and keyboard operation to allow the user to interact as though they are
+dealing with a checkbox or radio button.
+
+If Chips is set for add/dismiss selections, the dismiss button will notify the
+user that they will "dismiss \{label name\}" upon press.
+
+  </Tab>
+
+  <Tab label="Mobile">
+
+Chip accessibilityRole by default is `radio` so the view containing it should
+have the accessibilityRole `radiogroup`. Chip labels and the state `checked` or
+`not checked` state are read aloud when focused by assistive technology. If an
+Icon is present, it will not be read aloud as Icons are visually decorative in
+the case of a Chip.
+
+If the accessibilityRole is not `radio` the label is read aloud when focused by
+assistive technology.
+
+  </Tab>
+</Tabs>
+
+## Responsiveness
+
+The Chips themselves will take up as much space as their container allows, and
+the Chips will flow left to right. Chips may re-flow into new rows, or scroll
+out of view in a single row, depending on your use case.
+
+## Web Component Code
+
+```tsx
+Chips Pill Badge Tag Web React import React from "react";
+import type { InternalChipProps } from "./ChipTypes";
+
+export interface ChipProps
+  extends Pick<InternalChipProps, "label" | "prefix" | "disabled" | "invalid"> {
+  /**
+   * The value that gets returned on the `<Chips>`'s onChange callback.
+   */
+  readonly value: string;
+}
+
+// Only need the component to pass in the data as a react children
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function Chip(props: ChipProps) {
+  //eslint-disable-next-line react/jsx-no-useless-fragment
+  return <></>;
+}
+import type { MouseEvent } from "react";
+import React from "react";
+import type { InternalChipProps } from "./ChipTypes";
+import { InternalChip } from "./InternalChip";
+import { InternalChipButton } from "./InternalChipButton";
+
+interface ChipDismissibleProps
+  extends Pick<
+    InternalChipProps,
+    "label" | "disabled" | "invalid" | "prefix" | "onClick"
+  > {
+  onRequestRemove(event: MouseEvent<HTMLDivElement>): void;
+}
+
+export function ChipDismissible({
+  label,
+  disabled,
+  invalid,
+  prefix,
+  onClick,
+  onRequestRemove,
+}: ChipDismissibleProps) {
+  return (
+    <InternalChip
+      label={label}
+      disabled={disabled}
+      invalid={invalid}
+      prefix={prefix}
+      onClick={onClick}
+      suffix={
+        <InternalChipButton
+          icon="remove"
+          label={label}
+          invalid={invalid}
+          disabled={disabled}
+          onClick={onRequestRemove}
+        />
+      }
+    />
+  );
+}
+import type { KeyboardEvent, MouseEvent, ReactElement } from "react";
+import { type ChipButtonProps } from "./InternalChipButton";
+import { type AvatarProps } from "../Avatar";
+import { type IconProps } from "../Icon";
+
+export interface InternalChipProps {
+  /**
+   * Label of the chip.
+   */
+  readonly label: string;
+
+  /**
+   * Changes the style of the chip to look different than the default.
+   */
+  readonly active?: boolean;
+
+  /**
+   * Makes the chip look and feel uninteractable.
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Highlights the chip red.
+   */
+  readonly invalid?: boolean;
+
+  /**
+   * Adds an avatar or icon on the left side of the label.
+   *
+   * Size props on both components are overwritten on render.
+   *
+   * **Example**
+   *```jsx
+   * <Chip prefix={<Avatar initials="JBR" />} />
+   * <Chip prefix={<Icon name="quote" />} />
+   * ```
+   */
+  readonly prefix?: ReactElement<AvatarProps | IconProps>;
+
+  /**
+   * Adds a component on the right side of the label.
+   */
+  readonly suffix?: ReactElement<IconProps | ChipButtonProps>;
+
+  /**
+   * The label for the interactive chip element for voice over
+   */
+  readonly ariaLabel?: string;
+
+  /**
+   * Allows the chip to be focused.
+   *
+   * **NOTE**: Clickable chips are focusable by default so you don't need to
+   * specify this prop.
+   *
+   * This has the same effect as HTML [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex).
+   */
+  readonly tabIndex?: number;
+
+  /**
+   * Callback when the chip itself gets clicked.
+   */
+  onClick?(
+    event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement>,
+  ): void;
+
+  /**
+   * Callback for keyboard interaction with chips (e.g., chip deletion).
+   */
+  onKeyDown?(event: KeyboardEvent<HTMLDivElement | HTMLButtonElement>): void;
+}
+import React from "react";
+import type { ChipsProps } from "./ChipsTypes";
+import { InternalChipSingleSelect } from "./InternalChipSingleSelect";
+import { InternalChipMultiSelect } from "./InternalChipMultiSelect";
+import { InternalChipDismissible } from "./InternalChipDismissible";
+
+export function Chips(props: ChipsProps) {
+  switch (props.type) {
+    case "dismissible":
+      return <InternalChipDismissible {...props} />;
+    case "multiselect":
+      return <InternalChipMultiSelect {...props} />;
+    default:
+      return <InternalChipSingleSelect {...props} />;
+  }
+}
+import type { MouseEvent, ReactElement } from "react";
+import type { ChipProps } from "./Chip";
+
+interface ChipFoundationProps {
+  readonly children: ReactElement<ChipProps>[];
+
+  /**
+   * Change the interaction on the chip.
+   */
+  readonly type?: "singleselect" | "multiselect" | "dismissible";
+
+  /**
+   * Determines which chip gets highlighted.
+   */
+  readonly selected?: string | string[];
+
+  /**
+   * Callback whenever a chip is clicked. This returns a new value of
+   * selected chips.
+   *
+   * @param value
+   */
+  onChange(value?: string | string[]): void;
+
+  /**
+   * Callback when a specific chip is clicked
+   *
+   * @param event
+   * @param clickedChipValue - The value of the chip that was clicked
+   */
+  onClick?(
+    event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement>,
+    clickedChipValue?: string,
+  ): void;
+}
+
+export interface ChipSingleSelectProps extends ChipFoundationProps {
+  readonly type?: "singleselect";
+  readonly selected?: string;
+  /**
+   * Show the checkmark suffix on the selected Chip(s)
+   * defaults to true
+   */
+  readonly showSelectedSuffix?: boolean;
+  onChange(value?: string): void;
+
+  /**
+   * The Chip's radio input name.
+   *
+   * @link https://www.w3schools.com/tags/att_input_name.asp
+   */
+  readonly name?: string;
+}
+
+export interface ChipMultiSelectProps extends ChipFoundationProps {
+  readonly type: "multiselect";
+  readonly selected: string[];
+  /**
+   * Show the checkmark suffix on the selected Chip(s)
+   * defaults to true
+   */
+  readonly showSelectedSuffix?: boolean;
+  onChange(value: string[]): void;
+}
+
+export interface ChipDismissibleProps extends ChipFoundationProps {
+  readonly type: "dismissible";
+  readonly selected: string[];
+  onChange(value: string[]): void;
+
+  /**
+   * Use a custom activator to trigger the Chip option selector
+   */
+  readonly activator?: ReactElement;
+
+  /**
+   * Adds a loading indicator
+   */
+  readonly isLoadingMore?: boolean;
+
+  /**
+   * Callback when the user selects the custom option instead of the available
+   * chips.
+   *
+   * If not implemented, it won't allow custom add.
+   *
+   * @param value
+   */
+  onCustomAdd?(value: string): void;
+
+  /**
+   * Callback when a user types a word that filters the options. Use this when
+   * you need to query new options from the database based on the search value.
+   *
+   * @param searchValue - The input value
+   */
+  onSearch?(searchValue: string): void;
+
+  /**
+   * Callback when the user scrolls at the end of the chip option list. Use this
+   * to load more options from the database.
+   *
+   * @param searchValue - The input value
+   */
+  onLoadMore?(searchValue: string): void;
+
+  /**
+   * Control whether the menu only appears once the user types.
+   * @default false
+   */
+  readonly onlyShowMenuOnSearch?: boolean;
+
+  /**
+   * If true, automatically selects an option based on the current search value when the input loses focus.
+   * The automatic selection order is: an exact match of the search value if available, a custom option if
+   * onCustomOptionSelect is provided, or the closest match.
+   * @default false
+   */
+  readonly autoSelectOnClickOutside?: boolean;
+}
+
+export type ChipsProps =
+  | ChipSingleSelectProps
+  | (ChipMultiSelectProps | ChipDismissibleProps);
+import React from "react";
+import type { InternalChipProps } from "./ChipTypes";
+import { Chip } from "../Chip";
+
+export function InternalChip({
+  label,
+  active = false,
+  disabled = false,
+  invalid = false,
+  prefix,
+  suffix,
+  tabIndex,
+  ariaLabel,
+  onClick,
+  onKeyDown,
+}: InternalChipProps) {
+  return (
+    <Chip
+      disabled={disabled}
+      invalid={invalid}
+      onKeyDown={onKeyDown}
+      testID="ATL-InternalChip"
+      ariaLabel={ariaLabel}
+      tabIndex={tabIndex}
+      variation={active ? "base" : "subtle"}
+      role={tabIndex !== undefined ? "option" : undefined}
+      onClick={onClick ? (_, ev) => onClick(ev) : undefined}
+      label={label}
+    >
+      {prefix && <Chip.Prefix>{prefix}</Chip.Prefix>}
+      {suffix && <Chip.Suffix>{suffix}</Chip.Suffix>}
+    </Chip>
+  );
+}
+import type { ReactElement } from "react";
+import React from "react";
+import { type ChipButtonProps, InternalChipButton } from "./InternalChipButton";
+import styles from "./InternalChip.module.css";
+import { type InternalChipProps } from "./ChipTypes";
+import { Avatar, type AvatarProps } from "../Avatar";
+import { Icon, type IconProps } from "../Icon";
+
+interface InternalChipAffixProps
+  extends Pick<InternalChipProps, "active" | "invalid" | "disabled"> {
+  readonly affix?: ReactElement<AvatarProps | IconProps | ChipButtonProps>;
+}
+
+export function InternalChipAffix({
+  affix,
+  active,
+  invalid,
+  disabled,
+}: InternalChipAffixProps) {
+  if (affix?.type === Avatar) {
+    return <Avatar {...(affix.props as AvatarProps)} size="small" />;
+  }
+
+  if (affix?.type === Icon) {
+    return renderChipIcon(affix as ReactElement<IconProps>);
+  }
+
+  if (affix?.type === InternalChipButton) {
+    return <InternalChipButton {...(affix.props as ChipButtonProps)} />;
+  }
+
+  //eslint-disable-next-line react/jsx-no-useless-fragment
+  return <></>;
+
+  function renderChipIcon(icon: ReactElement<IconProps>) {
+    const color = getIconColor();
+
+    return (
+      <div className={styles.icon}>
+        {React.cloneElement(icon, {
+          size: "base",
+          ...(color && { color: color }),
+        })}
+      </div>
+    );
+  }
+
+  function getIconColor() {
+    if (disabled && !active) return "disabled";
+    if (invalid && !disabled) return "critical";
+    if (active) return "white";
+
+    return;
+  }
+}
+import type { KeyboardEvent, MouseEvent, MutableRefObject } from "react";
+import React, { useRef } from "react";
+import type { IconNames } from "@jobber/design";
+import styles from "./InternalChip.module.css";
+import { Icon } from "../Icon";
+
+export interface ChipButtonProps {
+  readonly icon: IconNames;
+  readonly invalid?: boolean;
+  readonly disabled?: boolean;
+  readonly label: string;
+  onClick(event: MouseEvent<HTMLDivElement>): void;
+}
+
+export function InternalChipButton({
+  icon,
+  invalid,
+  disabled,
+  label,
+  onClick,
+}: ChipButtonProps) {
+  const buttonRef = useRef() as MutableRefObject<HTMLDivElement>;
+
+  return (
+    <div
+      ref={buttonRef}
+      className={styles.button}
+      tabIndex={0}
+      onKeyUp={handleKeyUp}
+      onKeyDown={handleKeyDown}
+      onClick={handleClick}
+      role="button"
+      aria-label={`Remove ${label}`}
+      aria-hidden={disabled}
+      aria-disabled={disabled}
+      data-testid="remove-chip-button"
+    >
+      <Icon size="small" name={icon} color={getColor()} />
+    </div>
+  );
+
+  function handleKeyUp(event: KeyboardEvent) {
+    if (
+      document.activeElement === buttonRef.current &&
+      (event.key === " " || event.key === "Enter")
+    ) {
+      event.stopPropagation();
+      buttonRef.current.click();
+    }
+  }
+
+  function handleKeyDown(event: KeyboardEvent) {
+    if (document.activeElement === buttonRef.current && event.key === " ") {
+      // Don't scroll down
+      event.preventDefault();
+    }
+  }
+
+  function getColor() {
+    if (disabled) return "disabled";
+    if (invalid) return "critical";
+
+    return "interactiveSubtle";
+  }
+
+  function handleClick(event: MouseEvent<HTMLDivElement>) {
+    event.stopPropagation();
+    onClick?.(event);
+  }
+}
+import type { MouseEvent } from "react";
+import React from "react";
+import classNames from "classnames";
+import styles from "./InternalChip.module.css";
+import { InternalChip } from "./InternalChip";
+import type { ChipMultiSelectProps } from "./ChipsTypes";
+import { useInternalChips } from "./hooks/useInternalChip";
+
+type InternalChipChoiceMultipleProps = Pick<
+  ChipMultiSelectProps,
+  "selected" | "onChange" | "children" | "onClick" | "showSelectedSuffix"
+>;
+
+export function InternalChipMultiSelect({
+  children,
+  selected,
+  showSelectedSuffix = true,
+  onChange,
+  onClick,
+}: InternalChipChoiceMultipleProps) {
+  const { getSuffixProps } = useInternalChips();
+
+  return (
+    <div className={styles.wrapper} data-testid="multiselect-chips">
+      {React.Children.map(children, chip => {
+        const isChipActive = isChipSelected(chip.props.value);
+        const suffixProps = getSuffixProps(isChipActive, showSelectedSuffix);
+        const classes = classNames(styles.input, {
+          [styles.disabled]: chip.props.disabled,
+          [styles.invalid]: chip.props.invalid,
+          [styles.inactive]: !isChipActive,
+        });
+
+        return (
+          <label>
+            <input
+              type="checkbox"
+              checked={isChipActive}
+              className={classes}
+              onClick={handleClick(chip.props.value)}
+              onChange={handleChange(chip.props.value)}
+              disabled={chip.props.disabled}
+            />
+            <InternalChip
+              {...chip.props}
+              active={isChipActive}
+              {...suffixProps}
+              tabIndex={-1}
+            />
+          </label>
+        );
+      })}
+    </div>
+  );
+
+  function isChipSelected(value: string) {
+    return selected.includes(value);
+  }
+
+  function handleClick(value: string) {
+    return (event: MouseEvent<HTMLInputElement>) => onClick?.(event, value);
+  }
+
+  function handleChange(value: string) {
+    return () => {
+      if (isChipSelected(value)) {
+        handleDeselect(value);
+      } else {
+        handleSelect(value);
+      }
+    };
+  }
+
+  function handleSelect(value: string) {
+    const newVal = [...selected, value];
+    onChange(newVal);
+  }
+
+  function handleDeselect(value: string) {
+    const values = selected;
+    const newVal = values.filter(val => val !== value);
+    onChange(newVal);
+  }
+}
+import type { KeyboardEvent, MouseEvent } from "react";
+import React, { useId } from "react";
+import classNames from "classnames";
+import styles from "./InternalChip.module.css";
+import { InternalChip } from "./InternalChip";
+import type { ChipSingleSelectProps } from "./ChipsTypes";
+import { useInternalChips } from "./hooks/useInternalChip";
+
+type InternalChipChoiceProps = Pick<
+  ChipSingleSelectProps,
+  | "selected"
+  | "onChange"
+  | "children"
+  | "onClick"
+  | "name"
+  | "showSelectedSuffix"
+>;
+
+export function InternalChipSingleSelect({
+  children,
+  selected,
+  name = useId(),
+  showSelectedSuffix = true,
+  onChange,
+  onClick,
+}: InternalChipChoiceProps) {
+  const { getSuffixProps } = useInternalChips();
+
+  return (
+    <div className={styles.wrapper} data-testid="singleselect-chips">
+      {React.Children.map(children, child => {
+        const isSelected = child.props.value === selected;
+        const suffixProps = getSuffixProps(isSelected, showSelectedSuffix);
+        const classes = classNames(styles.input, {
+          [styles.disabled]: child.props.disabled,
+          [styles.invalid]: child.props.invalid,
+          [styles.inactive]: !isSelected,
+        });
+
+        return (
+          <label>
+            <input
+              type="radio"
+              checked={isSelected}
+              className={classes}
+              name={name}
+              onClick={handleClick(child.props.value)}
+              onKeyUp={handleKeyUp(isSelected, child.props.value)}
+              onChange={() => {
+                /* No op. onClick handles the change to allow deselecting. */
+              }}
+              disabled={child.props.disabled}
+            />
+            <InternalChip
+              {...child.props}
+              {...suffixProps}
+              active={isSelected}
+              tabIndex={-1}
+            />
+          </label>
+        );
+      })}
+    </div>
+  );
+
+  function handleKeyUp(active: boolean, value: string) {
+    if (!active) return;
+
+    return (event: KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === " ") {
+        // Wait for DOM changes before applying the new change.
+        setTimeout(() => handleChange(value), 0);
+      }
+    };
+  }
+
+  function handleClick(value: string) {
+    return (event: MouseEvent<HTMLInputElement>) => {
+      onClick?.(event, value);
+      handleChange(value);
+    };
+  }
+
+  function handleChange(value: string) {
+    const newValue = value !== selected ? value : undefined;
+    onChange(newValue);
+  }
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `type` | `"singleselect" | "multiselect" | "dismissible"` | ❌ | `_none_` | Change the interaction on the chip. |
+| `selected` | `string | string[]` | ❌ | `_none_` | Determines which chip gets highlighted. |
+| `showSelectedSuffix` | `boolean` | ❌ | `_none_` | Show the checkmark suffix on the selected Chip(s)
+defaults to true |
+| `onChange` | `((value?: string) => void) | ((value: string[]) => void) | ((value: string[]) => void)` | ✅ | `_none_` | Callback whenever a chip is clicked. This returns a new value of
+selected chips. |
+| `name` | `string` | ❌ | `_none_` | The Chip's radio input name.
+@link https://www.w3schools.com/tags/att_input_name.asp |
+| `onClick` | `(event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement, MouseEvent>, clickedChipValue?: string) => void` | ❌ | `_none_` | Callback when a specific chip is clicked
+@param event
+@param clickedChipValue - The value of the chip that was clicked |
+| `activator` | `ReactElement<any, string | JSXElementConstructor<any>>` | ❌ | `_none_` | Use a custom activator to trigger the Chip option selector |
+| `isLoadingMore` | `boolean` | ❌ | `_none_` | Adds a loading indicator |
+| `onCustomAdd` | `(value: string) => void` | ❌ | `_none_` | Callback when the user selects the custom option instead of the available
+chips.
+
+If not implemented, it won't allow custom add.
+@param value |
+| `onSearch` | `(searchValue: string) => void` | ❌ | `_none_` | Callback when a user types a word that filters the options. Use this when
+you need to query new options from the database based on the search value.
+@param searchValue - The input value |
+| `onLoadMore` | `(searchValue: string) => void` | ❌ | `_none_` | Callback when the user scrolls at the end of the chip option list. Use this
+to load more options from the database.
+@param searchValue - The input value |
+| `onlyShowMenuOnSearch` | `boolean` | ❌ | `false` | Control whether the menu only appears once the user types. |
+| `autoSelectOnClickOutside` | `boolean` | ❌ | `false` | If true, automatically selects an option based on the current search value when the input loses focus.
+The automatic selection order is: an exact match of the search value if available, a custom option if
+onCustomOptionSelect is provided, or the closest match. |
+
+
+## Categories
+
+- Selections
+
+## Component Path
+
+`/components/Chips`
+
+---
+
+_Generated on 2025-08-21T17:35:16.355Z_

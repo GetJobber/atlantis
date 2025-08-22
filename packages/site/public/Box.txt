@@ -1,0 +1,300 @@
+# Box
+
+<Meta
+  title="Components/Layouts and Structure/Box"
+  component={Box}
+  parameters={{ alpha: true }}
+/>
+
+# Box
+
+<Banner type="warning" dismissible={false}>
+  The Box component is currently in Alpha status and breaking changes may occur
+</Banner>
+
+A box is a generic way to add structure to your page. Stop reaching for CSS
+Modules to perform basic page layout, and instead use the Box component.
+
+## Design & usage guidelines
+
+A Box is useful for wrapping content with a specific HTML5 element, and with
+common Atlantis specific CSS styles. Box supports standard alignment, border,
+borderColor, borderRadius, direction, gap, height, justification, margin,
+overflow, padding, position, width and whitespace options.
+
+Use Box if your wrapping CSS styles can be achieved with a prop configuration of
+the Box component, to avoid the need for creating a CSS module. Some basic
+examples are below, all configuration options are provided in the Basic Web
+example via the left-hand navigation.
+
+## Related components
+
+[Card](/components/Card) is a more opionated layout container, with a set
+background, border, radius, and an optional preset header. It is the preferred
+way to group related information and tasks so that users can consistently scan
+and prioritize information more easily.
+
+### No Props
+
+<Canvas>
+  <Box>
+    This is Box without props. It marks your content as display: flex and
+    flex-direction: column
+  </Box>
+</Canvas>
+
+### Border Base and Padding Base
+
+<Canvas>
+  <Box border="base" padding="base">
+    By default you get no padding or borders, but with two 'base' props you can
+    have both.
+  </Box>
+</Canvas>
+
+### Border Thick and Padding Large
+
+<Canvas>
+  <Box border="thick" padding="large">
+    Standard paddings and margins are available, and different borders. This is
+    using the 'thick' border along with padding 'large'
+  </Box>
+</Canvas>
+
+### Border Thickest and Margin Largest and Padding Extravagant
+
+<Canvas>
+  <Box margin="largest" border="thickest" padding="extravagant">
+    Want a big margin and huge padding? Box has those too.
+  </Box>
+</Canvas>
+
+## What about actual layout usages?
+
+If you don't really want borders around everything but just want to lay out some
+content on the page? You can do that too.
+
+<Canvas>
+  <Box direction="row">
+    <Box padding="base" width="grow">
+      Left
+    </Box>
+    <Box padding="base" width="grow">
+      Right
+    </Box>
+  </Box>
+</Canvas>
+
+### Maybe some custom heights or widths?
+
+Box has those as well.
+
+<Canvas>
+  <Box direction="row" alignItems="center">
+    <Box padding="base" width={350} border="base">
+      Left, 350px wide
+    </Box>
+    <Box padding="base" height={75} border="base">
+      Right, 75px high
+    </Box>
+  </Box>
+</Canvas>
+
+### What about a gap between elements?
+
+Standard sizes are supported.
+
+<Canvas>
+  <Box direction="row" alignItems="center" gap="large">
+    <Box padding="base" width={50} border="base">
+      Left, 50px wide
+    </Box>
+    <Box padding="base" height={25} border="base">
+      Right, 25px high
+    </Box>
+  </Box>
+</Canvas>
+
+### I have specific border-left and margin-bottom requirements.
+
+Box supports objects for some of its props, including padding and margin
+"bottom, horizontal, left, right, top, vertical"
+
+<Canvas>
+  <Box padding={{ top: "large" }} border="thick">
+    Top Padding?
+  </Box>
+</Canvas>
+
+<Canvas>
+  <Box margin={{ left: "large" }} border="base" padding="base">
+    Left Margin?
+  </Box>
+</Canvas>
+
+## Web Component Code
+
+```tsx
+Box Layout Container Stack Wrapper Web React import React from "react";
+import classnames from "classnames";
+import { getBorderClassNames, getBorderVars } from "./utils/getBoxConfig";
+import {
+  getHeightClassName,
+  getHeightVars,
+  getWidthClassName,
+  getWidthVars,
+} from "./utils/getBoxDimension";
+import {
+  getMarginClassNames,
+  getMarginVars,
+  getPaddingClassNames,
+  getPaddingVars,
+} from "./utils/getBoxSpaces";
+import type { BoxProps } from "./Box.types";
+import styles from "./styles/Box.module.css";
+import gapStyles from "./styles/BoxGap.module.css";
+import radiusStyles from "./styles/BoxRadius.module.css";
+
+export function Box({
+  alignItems,
+  alignSelf,
+  as: Tag = "div",
+  background,
+  border,
+  borderColor,
+  children,
+  direction,
+  gap,
+  height = "auto",
+  justifyContent,
+  margin,
+  overflow,
+  padding,
+  position = "relative",
+  preserveWhiteSpace,
+  radius,
+  width = "auto",
+  ...props
+}: BoxProps) {
+  return (
+    <Tag
+      {...props}
+      className={classnames(
+        styles.box,
+        preserveWhiteSpace && styles["preserve-white-space"],
+        getPaddingClassNames(padding),
+        getMarginClassNames(margin),
+        getHeightClassName(height),
+        getWidthClassName(width),
+        getBorderClassNames(border),
+        radius && radiusStyles[`radius-${radius}`],
+        gap && gapStyles[`gap-${gap}`],
+      )}
+      style={{
+        ...getPaddingVars(padding),
+        ...getMarginVars(margin),
+        ...getHeightVars(height),
+        ...getWidthVars(width),
+        ...getBorderVars(border),
+        ...(background && { backgroundColor: `var(--color-${background})` }),
+        ...(borderColor && { borderColor: `var(--color-${borderColor})` }),
+        alignItems,
+        alignSelf,
+        flexDirection: direction,
+        justifyContent,
+        overflow,
+        position,
+      }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `as` | `"div" | "span" | "section" | "article" | "aside" | "main"` | ❌ | `_none_` | _No description_ |
+| `background` | `"base-grey--100" | "base-grey--200" | "base-grey--300" | "base-grey--400" | "base-grey--500" | "base-grey--600" | "base-grey--700" | "base-grey--800" | "base-grey--900" | ... 274 more ... | "client--onSurface"` | ❌ | `_none_` | _No description_ |
+| `border` | `"base" | "thick" | "thicker" | "thickest" | BoxBorderWidth` | ❌ | `_none_` | _No description_ |
+| `borderColor` | `"base-grey--100" | "base-grey--200" | "base-grey--300" | "base-grey--400" | "base-grey--500" | "base-grey--600" | "base-grey--700" | "base-grey--800" | "base-grey--900" | ... 274 more ... | "client--onSurface"` | ❌ | `_none_` | _No description_ |
+| `direction` | `FlexDirection` | ❌ | `_none_` | _No description_ |
+| `gap` | `"base" | "minuscule" | "smallest" | "smaller" | "small" | "slim" | "large" | "larger" | "largest" | "extravagant"` | ❌ | `_none_` | _No description_ |
+| `height` | `BoxDimension` | ❌ | `auto` | _No description_ |
+| `margin` | `"base" | "minuscule" | "smallest" | "smaller" | "small" | "slim" | "large" | "larger" | "largest" | "extravagant" | BoxSpace` | ❌ | `_none_` | _No description_ |
+| `padding` | `"base" | "minuscule" | "smallest" | "smaller" | "small" | "slim" | "large" | "larger" | "largest" | "extravagant" | BoxSpace` | ❌ | `_none_` | _No description_ |
+| `preserveWhiteSpace` | `boolean` | ❌ | `_none_` | _No description_ |
+| `radius` | `"base" | "small" | "large" | "larger" | "circle"` | ❌ | `_none_` | _No description_ |
+| `width` | `BoxDimension` | ❌ | `auto` | _No description_ |
+| `position` | `Position` | ❌ | `relative` | The **`position`** CSS property sets how an element is positioned in a document. The `top`, `right`, `bottom`, and `left` properties determine the final location of positioned elements.
+
+**Syntax**: `static | relative | absolute | sticky | fixed`
+
+**Initial value**: `static`
+
+| Chrome | Firefox | Safari |  Edge  |  IE   |
+| :----: | :-----: | :----: | :----: | :---: |
+| **1**  |  **1**  | **1**  | **12** | **4** |
+@see https://developer.mozilla.org/docs/Web/CSS/position |
+| `justifyContent` | `JustifyContent` | ❌ | `_none_` | The CSS **`justify-content`** property defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container.
+
+**Syntax**: `normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]`
+
+**Initial value**: `normal`
+
+|  Chrome  | Firefox | Safari  |  Edge  |   IE   |
+| :------: | :-----: | :-----: | :----: | :----: |
+|  **29**  | **20**  |  **9**  | **12** | **11** |
+| 21 _-x-_ |         | 7 _-x-_ |        |        |
+@see https://developer.mozilla.org/docs/Web/CSS/justify-content |
+| `alignItems` | `AlignItems` | ❌ | `_none_` | The CSS **`align-items`** property sets the `align-self` value on all direct children as a group. In Flexbox, it controls the alignment of items on the Cross Axis. In Grid Layout, it controls the alignment of items on the Block Axis within their grid area.
+
+**Syntax**: `normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]`
+
+**Initial value**: `normal`
+
+|  Chrome  | Firefox | Safari  |  Edge  |   IE   |
+| :------: | :-----: | :-----: | :----: | :----: |
+|  **29**  | **20**  |  **9**  | **12** | **11** |
+| 21 _-x-_ |         | 7 _-x-_ |        |        |
+@see https://developer.mozilla.org/docs/Web/CSS/align-items |
+| `alignSelf` | `AlignSelf` | ❌ | `_none_` | The **`align-self`** CSS property overrides a grid or flex item's `align-items` value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.
+
+**Syntax**: `auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>`
+
+**Initial value**: `auto`
+
+|  Chrome  | Firefox | Safari  |  Edge  |   IE   |
+| :------: | :-----: | :-----: | :----: | :----: |
+|  **29**  | **20**  |  **9**  | **12** | **10** |
+| 21 _-x-_ |         | 7 _-x-_ |        |        |
+@see https://developer.mozilla.org/docs/Web/CSS/align-self |
+| `overflow` | `Overflow` | ❌ | `_none_` | The **`overflow`** CSS shorthand property sets the desired behavior for an element's overflow — i.e. when an element's content is too big to fit in its block formatting context — in both directions.
+
+**Syntax**: `[ visible | hidden | clip | scroll | auto ]{1,2}`
+
+**Initial value**: `visible`
+
+| Chrome | Firefox | Safari |  Edge  |  IE   |
+| :----: | :-----: | :----: | :----: | :---: |
+| **1**  |  **1**  | **1**  | **12** | **4** |
+@see https://developer.mozilla.org/docs/Web/CSS/overflow |
+| `tabIndex` | `number` | ❌ | `_none_` | [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLElement/tabIndex) |
+
+
+## Categories
+
+- Layouts & Structure
+
+## Component Path
+
+`/components/Box`
+
+---
+
+_Generated on 2025-08-21T17:35:16.354Z_

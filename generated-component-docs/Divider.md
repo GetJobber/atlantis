@@ -1,0 +1,228 @@
+# Divider
+
+# Divider
+
+The Divider component is used to separate content into different sections.
+
+## Design & usage guidelines
+
+Divider comes with no spacing around it. This means that it should be used
+within a [Content](/components/Content) component.
+
+### Size
+
+For different levels of segmentation, you may find the need to use larger
+Dividers. As Dividers increase in size, they get lighter to offset the visual
+impact of their additional weight.
+
+## Related components
+
+- To segment different groups of content, use [Card](/components/Card)
+- For guidance on borders in general, see our [Borders guide](/design/borders)
+
+## Web Component Code
+
+```tsx
+Divider Separator Line Rule Border HR Web React import React from "react";
+import classnames from "classnames";
+import styles from "./Divider.module.css";
+import sizes from "./DividerSizes.module.css";
+import directions from "./DividerDirections.module.css";
+
+interface DividerProps {
+  /**
+   * The weight of the divider.
+   *
+   * @default "base"
+   */
+  readonly size?: keyof typeof sizes;
+
+  /**
+   * The direction of the divider
+   *
+   * @default "horizontal"
+   */
+  readonly direction?: keyof typeof directions;
+
+  /**
+   * A reference to the element in the rendered output
+   */
+  readonly testID?: string;
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    readonly container?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    readonly container?: React.CSSProperties;
+  };
+}
+
+export function Divider({
+  size = "base",
+  direction = "horizontal",
+  testID,
+  UNSAFE_className,
+  UNSAFE_style,
+}: DividerProps) {
+  const className = classnames(
+    styles.divider,
+    sizes[size],
+    directions[direction],
+    UNSAFE_className?.container,
+  );
+
+  return (
+    <div
+      className={className}
+      style={UNSAFE_style?.container}
+      data-testid={testID}
+      role="none presentation"
+    />
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop               | Type                               | Required | Default  | Description                                                                                      |
+| ------------------ | ---------------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------ | ------------ | ---------------------------- |
+| `size`             | `string                            | number   | symbol`  | ❌                                                                                               | `base`       | The weight of the divider.   |
+| `direction`        | `string                            | number   | symbol`  | ❌                                                                                               | `horizontal` | The direction of the divider |
+| `testID`           | `string`                           | ❌       | `_none_` | A reference to the element in the rendered output                                                |
+| `UNSAFE_className` | `{ readonly container?: string; }` | ❌       | `_none_` | **Use at your own risk:** Custom classNames for specific elements. This should only be used as a |
+
+**last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `UNSAFE_style` | `{ readonly container?: React.CSSProperties; }` | ❌ |
+`_none_` | **Use at your own risk:** Custom style for specific elements. This
+should only be used as a **last resort**. Using this may result in unexpected
+side effects. More information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+|
+
+### Mobile Props
+
+| Prop        | Type          | Required    | Default   | Description                                   |
+| ----------- | ------------- | ----------- | --------- | --------------------------------------------- | ---------------------------- | ------ | -------------------------- |
+| `size`      | `"base"       | "large"     | "larger"  | "largest"`                                    | ❌                           | `base` | The weight of the divider. |
+| `direction` | `"horizontal" | "vertical"` | ❌        | `horizontal`                                  | The direction of the divider |
+| `testID`    | `string`      | ❌          | `Divider` | Used to locate this view in end-to-end tests. |
+
+## Categories
+
+- Layouts & Structure
+
+## Web Test Code
+
+```typescript
+Divider Separator Line Rule Border HR Web React Test Testing Jest import React from "react";
+import { render } from "@testing-library/react";
+import { Divider } from ".";
+
+describe("Divider", () => {
+  it("should render", () => {
+    const { container } = render(<Divider />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("applies testID prop to div element", () => {
+    const { getByTestId } = render(<Divider testID="ATL-divider" />);
+    expect(getByTestId("ATL-divider")).toBeInTheDocument();
+  });
+
+  describe("when large", () => {
+    it("renders", () => {
+      const { container } = render(<Divider size="large" />);
+      expect(container).toMatchSnapshot();
+    });
+
+    describe("when also vertical", () => {
+      it("renders", () => {
+        const { container } = render(
+          <Divider direction="vertical" size="large" />,
+        );
+        expect(container).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe("when larger", () => {
+    it("renders", () => {
+      const { container } = render(<Divider size="larger" />);
+      expect(container).toMatchSnapshot();
+    });
+
+    describe("when also vertical", () => {
+      it("renders", () => {
+        const { container } = render(
+          <Divider direction="vertical" size="larger" />,
+        );
+        expect(container).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe("when largest", () => {
+    it("renders", () => {
+      const { container } = render(<Divider size="largest" />);
+      expect(container).toMatchSnapshot();
+    });
+
+    describe("when also vertical", () => {
+      it("renders", () => {
+        const { container } = render(
+          <Divider direction="vertical" size="largest" />,
+        );
+        expect(container).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe("UNSAFE props", () => {
+    it("should apply UNSAFE_className to the container", () => {
+      const { getByTestId } = render(
+        <Divider
+          UNSAFE_className={{ container: "custom-class" }}
+          testID="ATL-divider"
+        />,
+      );
+
+      expect(getByTestId("ATL-divider")).toHaveClass("custom-class");
+    });
+
+    it("should apply UNSAFE_style to the container", () => {
+      const { getByTestId } = render(
+        <Divider
+          UNSAFE_style={{ container: { color: "red" } }}
+          testID="ATL-divider"
+        />,
+      );
+      expect(getByTestId("ATL-divider")).toHaveStyle("color: red");
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Divider`
+
+---
+
+_Generated on 2025-08-21T17:35:16.360Z_

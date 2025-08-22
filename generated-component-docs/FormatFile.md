@@ -1,0 +1,550 @@
+# FormatFile
+
+# Format File
+
+FormatFile will take a file object and display it in a number of lifecycle
+states. It can be used to display a file that has been uploaded, or to display a
+file that is about to be uploaded, as indicated by the progress indicator.
+
+## Design & usage guidelines
+
+When contributing to, or consuming the FormatFile component, consider the
+following:
+
+- FormatFile components should take up the full width of the parent container (1
+  or 2 files per row)
+- The delete button will only be displayed if the callback function is passed in
+
+When using FormatFile for web, files can be displayed as either expanded or
+compact. A compact FormatFile is used to display a cropped version of a file or
+image, while expanded is used to display a file alongside its metadata.
+
+## Related components
+
+- For a thumbnail representation of a user, use [Avatar](/components/Avatar).
+
+## Web Component Code
+
+```tsx
+FormatFile Display Upload Thumbnail Image Web React import React, { useState } from "react";
+import styles from "./FormatFile.module.css";
+import type { FormatFileProps } from "./types";
+import { useFormatFile } from "./useFormatFile";
+import { useFormatFileStyles } from "./useFormatFileStyles";
+import { Thumbnail } from "../Thumbnail";
+import { Text } from "../Text";
+import { ProgressBar } from "../ProgressBar";
+import { Button } from "../Button";
+import { ConfirmationModal } from "../ConfirmationModal";
+import type { FileUpload } from "../InputFile";
+
+export function FormatFile({
+  file,
+  display = "expanded",
+  displaySize = "base",
+  onDelete,
+  onClick,
+}: FormatFileProps) {
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+
+  const { isComplete, fileSize } = useFormatFile({
+    file,
+    display,
+    displaySize,
+    onClick,
+    onDelete,
+  });
+  const {
+    wrapperClassNames,
+    detailsClassNames,
+    progressClassNames,
+    thumbnailContainerClassNames,
+    deleteButtonContainerClassNames,
+  } = useFormatFileStyles({
+    display,
+    displaySize,
+    isComplete,
+    onClick,
+    onDelete,
+  });
+
+  return (
+    <FormatFile.Wrapper className={wrapperClassNames}>
+      <FormatFile.Body
+        type="button"
+        className={detailsClassNames}
+        onClick={isComplete ? onClick : undefined}
+        tabIndex={0}
+        ariaBusy={!isComplete}
+        isComplete={isComplete}
+      >
+        <FormatFile.ThumbnailContainer className={thumbnailContainerClassNames}>
+          <Thumbnail
+            key={file.key}
+            compact={display === "compact"}
+            file={file}
+            size={displaySize}
+          />
+          <FormatFile.ProgressContainer
+            isHidden={isComplete}
+            className={progressClassNames}
+          >
+            <ProgressBar
+              size="small"
+              currentStep={file.progress * 100}
+              totalSteps={100}
+            />
+          </FormatFile.ProgressContainer>
+        </FormatFile.ThumbnailContainer>
+
+        <FormatFile.Expanded
+          isVisible={display === "expanded"}
+          file={file}
+          fileSize={fileSize}
+        />
+      </FormatFile.Body>
+      <FormatFile.DeleteButtonContainer
+        className={deleteButtonContainerClassNames}
+        isHidden={!isComplete || onDelete === undefined}
+      >
+        <FormatFile.DeleteButton
+          onDelete={() => {
+            setDeleteConfirmationOpen(true);
+          }}
+        >
+          <ConfirmationModal
+            title="Confirm Deletion"
+            message={`Are you sure you want to delete this file?`}
+            confirmLabel="Delete"
+            variation="destructive"
+            open={deleteConfirmationOpen}
+            onConfirm={() => onDelete?.()}
+            onRequestClose={() => setDeleteConfirmationOpen(false)}
+          />
+        </FormatFile.DeleteButton>
+      </FormatFile.DeleteButtonContainer>
+    </FormatFile.Wrapper>
+  );
+}
+
+FormatFile.DeleteButtonContainer = function FormatFileDeleteButtonContainer({
+  children,
+  className,
+  isHidden,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly isHidden?: boolean;
+}) {
+  if (isHidden) return null;
+
+  return <div className={className}>{children}</div>;
+};
+
+FormatFile.ProgressContainer = function FormatFileProgressContainer({
+  isHidden,
+  children,
+  className,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly isHidden?: boolean;
+}) {
+  if (isHidden) return null;
+
+  return <div className={className}>{children}</div>;
+};
+
+FormatFile.ThumbnailContainer = function FormatFileThumbnailContainer({
+  children,
+  className,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+}) {
+  return <div className={className}>{children}</div>;
+};
+
+FormatFile.Body = function FormatFileBody({
+  children,
+  className,
+  type,
+  onClick,
+  tabIndex,
+  ariaBusy,
+  isComplete,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly type?: "button" | "submit" | "reset";
+  readonly onClick?: React.MouseEventHandler<
+    HTMLButtonElement | HTMLDivElement
+  >;
+  readonly tabIndex?: number;
+  readonly ariaBusy?: boolean;
+  readonly isComplete: boolean;
+}) {
+  const FormatFileBodyTag = isComplete && onClick ? "button" : "div";
+
+  return (
+    <FormatFileBodyTag
+      type={type}
+      className={className}
+      onClick={onClick}
+      tabIndex={tabIndex}
+      aria-busy={ariaBusy}
+    >
+      {children}
+    </FormatFileBodyTag>
+  );
+};
+
+FormatFile.Expanded = function FormatFileExpanded({
+  file,
+  fileSize,
+  isVisible,
+}: {
+  readonly file: FileUpload;
+  readonly fileSize: string;
+  readonly isVisible: boolean;
+}) {
+  if (!isVisible) return null;
+
+  return (
+    <div className={styles.contentBlock}>
+      <Text size="base">{file.name}</Text>
+      <Text size="small">{fileSize}</Text>
+    </div>
+  );
+};
+
+FormatFile.Wrapper = function FormatFileWrapper({
+  children,
+  className,
+}: {
+  readonly children: React.ReactNode;
+  readonly className?: string;
+}) {
+  return <div className={className}>{children}</div>;
+};
+
+FormatFile.DeleteButton = function FormatFileDeleteButton({
+  onDelete,
+  children,
+}: {
+  readonly onDelete?: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
+  readonly children?: React.ReactNode;
+}) {
+  return (
+    <>
+      <Button
+        UNSAFE_className={{
+          container: styles.customDeleteButton,
+        }}
+        onClick={onDelete}
+        variation="destructive"
+        type="tertiary"
+        icon="trash"
+        ariaLabel="Delete File"
+        size={"small"}
+      />
+      {children}
+    </>
+  );
+};
+import getHumanReadableFileSize from "filesize";
+import type { FormatFileProps } from "./types";
+
+export const useFormatFile = ({ file }: FormatFileProps) => {
+  const isComplete = file.progress >= 1;
+  const fileSize = getHumanReadableFileSize(file.size);
+
+  return {
+    isComplete,
+    fileSize,
+  };
+};
+import classnames from "classnames";
+import styles from "./FormatFile.module.css";
+import type { FormatFileProps } from "./types";
+
+export const useFormatFileStyles = ({
+  display = "expanded",
+  displaySize = "base",
+  onClick,
+  onDelete,
+  isComplete,
+}: Pick<FormatFileProps, "display" | "onClick" | "onDelete" | "displaySize"> & {
+  isComplete: boolean;
+}) => {
+  const wrapperClassNames = classnames(styles[display], styles.formatFile, {
+    [styles[displaySize]]: display === "compact",
+  });
+
+  const detailsClassNames = classnames(styles.wrapper, {
+    [styles[displaySize]]: display === "compact",
+    [styles.hoverable]: isHoverable({ display, isComplete, onClick, onDelete }),
+    [styles.clickable]: onClick,
+    [styles.deleteable]: display === "compact",
+  });
+
+  const thumbnailContainerClassNames = classnames(
+    styles.thumbnail,
+    styles[displaySize],
+  );
+
+  return {
+    deleteButtonContainerClassNames: styles.deleteButton,
+    detailsClassNames,
+    progressClassNames: styles.progress,
+    thumbnailContainerClassNames,
+    wrapperClassNames,
+  };
+};
+
+function isHoverable({
+  display,
+  isComplete,
+  onClick,
+  onDelete,
+}: Pick<FormatFileProps, "display" | "onClick" | "onDelete"> & {
+  isComplete: boolean;
+}): boolean {
+  if (display === "compact") {
+    return Boolean(isComplete && (onClick || onDelete));
+  } else if (display === "expanded") {
+    return Boolean(isComplete && onClick);
+  }
+
+  return false;
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop          | Type                                  | Required                              | Default  | Description                                                                          |
+| ------------- | ------------------------------------- | ------------------------------------- | -------- | ------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| `file`        | `FileUpload`                          | ✅                                    | `_none_` | File upload details object. (See FileUpload type.)                                   |
+| `display`     | `"expanded"                           | "compact"`                            | ❌       | `expanded`                                                                           | To display as either a file row or thumbnail    |
+| `displaySize` | `"base"                               | "large"`                              | ❌       | `base`                                                                               | The base dimensions of the thumbnail            |
+| `onClick`     | `(event: MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>) => void` | ❌       | `_none_`                                                                             | Function to execute when format file is clicked |
+| `onDelete`    | `() => void`                          | ❌                                    | `_none_` | onDelete callback - this function will be called when the delete action is triggered |
+
+### Mobile Props
+
+| Prop                       | Type                                     | Required    | Default           | Description                                                   |
+| -------------------------- | ---------------------------------------- | ----------- | ----------------- | ------------------------------------------------------------- | --------------------------------------------------------- |
+| `file`                     | `File                                    | FileUpload` | ✅                | `_none_`                                                      | File upload details object. Can be a File or a FileUpload |
+| `accessibilityLabel`       | `string`                                 | ❌          | `_none_`          | Accessibility label                                           |
+| `accessibilityHint`        | `string`                                 | ❌          | `_none_`          | Accessibility hint                                            |
+| `onTap`                    | `(file: T) => void`                      | ❌          | `_none_`          | A function which handles the onTap event.                     |
+| `onRemove`                 | `() => void`                             | ❌          | `_none_`          | A function to be called on "Remove" Bottom Sheet Option press |
+| `onPreviewPress`           | `(formattedFile: FormattedFile) => void` | ❌          | `_none_`          | Handler for the "Preview" Bottom Sheet Option press           |
+| `bottomSheetOptionsSuffix` | `BottomSheetOptionsSuffix`               | ❌          | `_none_`          | A file type to show at Bottom Sheet options                   |
+| `styleInGrid`              | `boolean`                                | ❌          | `[object Object]` | Uses a grid layout when multi-file upload is supported        |
+| `testID`                   | `string`                                 | ❌          | `_none_`          | A reference to the element in the rendered output             |
+| `showFileTypeIndicator`    | `boolean`                                | ❌          | `true`            | Set false to hide the filetype icon                           |
+| `createThumbnail`          | `CreateThumbnail`                        | ❌          | `_none_`          | _No description_                                              |
+
+## Categories
+
+- Images & Icons
+
+## Web Test Code
+
+```typescript
+FormatFile Display Upload Thumbnail Image Web React Test Testing Jest import React from "react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
+import { FormatFile } from ".";
+import { GLIMMER_TEST_ID } from "../Glimmer";
+
+it("renders a FormatFile", () => {
+  const testFile = {
+    key: "123",
+    name: "Funky Corn",
+    type: "audio/ogg",
+    size: 1024,
+    progress: 1,
+    src: () => Promise.resolve("https://audio/somesound.ogg"),
+  };
+  const { container } = render(<FormatFile file={testFile} />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders an image when provided as src", async () => {
+  const url = "not_actually_a_url";
+  const testFile = {
+    key: "234",
+    name: "Onion",
+    type: "image/png",
+    size: 102432,
+    progress: 0.1,
+    src: () => Promise.resolve(url),
+  };
+
+  const { getByAltText } = render(<FormatFile file={testFile} />);
+
+  expect(getByAltText(testFile.name)).not.toHaveAttribute("src");
+  fireEvent.load(getByAltText(testFile.name));
+
+  await waitFor(() => {
+    expect(getByAltText(testFile.name)).toHaveAttribute("src", url);
+  });
+});
+
+it("renders a skeleton loader when the provided image has not fully loaded", async () => {
+  const url = "not_actually_a_url";
+  const testFile = {
+    key: "234",
+    name: "Onion",
+    type: "image/png",
+    size: 102432,
+    progress: 1,
+    src: () => Promise.resolve(url),
+  };
+
+  const { getByTestId, queryByTestId, getByAltText } = render(
+    <FormatFile file={testFile} />,
+  );
+  expect(getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
+  expect(getByAltText(testFile.name)).toHaveClass("hidden");
+
+  fireEvent.load(getByAltText(testFile.name));
+
+  await waitFor(() => {
+    expect(queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
+  });
+  expect(getByAltText(testFile.name)).not.toHaveClass("hidden");
+});
+
+it("should call the delete handler", async () => {
+  const testFile = {
+    key: "234",
+    name: "TPS Reports",
+    type: "application/pdf",
+    size: 1022,
+    progress: 1,
+    src: () => Promise.resolve("https://nature/interesting-article.png"),
+  };
+  const deleteHandler = jest.fn();
+  const { getByLabelText, getByText } = render(
+    <FormatFile onDelete={deleteHandler} file={testFile} />,
+  );
+
+  act(() => {
+    fireEvent.click(getByLabelText("Delete File"));
+  });
+
+  expect(
+    getByText("Are you sure you want to delete this file?"),
+  ).toBeInstanceOf(HTMLParagraphElement);
+
+  fireEvent.click(getByText("Delete"));
+
+  expect(deleteHandler).toHaveBeenCalled();
+});
+
+describe("when the format file is a thumbnail", () => {
+  describe("when the thumbnail is default sized", () => {
+    it("renders a FormatFile as a default sized thumbnail", async () => {
+      const testFile = {
+        key: "368",
+        name: "Pink Dolphin",
+        type: "image/png",
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        size: 1024,
+        progress: 1,
+      };
+
+      const { findByRole } = render(
+        <FormatFile display="compact" file={testFile} />,
+      );
+
+      expect(await findByRole("img")).toBeInTheDocument();
+
+      const thumbnailImage = await findByRole("img");
+
+      expect(thumbnailImage.parentElement?.className).toContain("base");
+    });
+  });
+
+  describe("when the thumbnail is large sized", () => {
+    it("renders a FormatFile as a larget sized thumbnail", async () => {
+      const testFile = {
+        key: "368",
+        name: "Pink Dolphin",
+        type: "image/png",
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        size: 1024,
+        progress: 1,
+      };
+      const { findByRole } = render(
+        <FormatFile display="compact" displaySize="large" file={testFile} />,
+      );
+
+      expect(await findByRole("img")).toBeInTheDocument();
+
+      const thumbnailImage = await findByRole("img");
+
+      expect(thumbnailImage.parentElement?.className).toContain("large");
+    });
+  });
+});
+
+describe("Image Load Error Callback", () => {
+  const errorCallback = jest.fn();
+  const testImage = {
+    key: "123",
+    name: "Funky Corn",
+    type: "image/jpeg",
+    size: 1024,
+    progress: 1,
+    src: () => Promise.resolve("https://example.com/funky-corn.jpeg"),
+    onImageLoadError: errorCallback,
+  };
+
+  afterEach(() => {
+    errorCallback.mockClear();
+  });
+
+  it("should call the error callback when the image fails to load", async () => {
+    render(<FormatFile file={testImage} />);
+
+    fireEvent.error(screen.getByAltText(testImage.name));
+
+    await waitFor(() => {
+      expect(errorCallback).toHaveBeenCalled();
+    });
+  });
+
+  it("should not call the error callback when the image loads successfully", async () => {
+    render(<FormatFile file={testImage} />);
+
+    fireEvent.load(screen.getByAltText(testImage.name));
+
+    await waitFor(() => {
+      expect(errorCallback).not.toHaveBeenCalled();
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/FormatFile`
+
+---
+
+_Generated on 2025-08-21T17:35:16.361Z_

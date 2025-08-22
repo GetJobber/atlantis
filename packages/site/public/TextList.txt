@@ -1,0 +1,43 @@
+# TextList
+
+# TextList
+
+The TextList is a component that displays a text of unordered list.
+
+## Design & usage guidelines
+
+Utilizing TextList is quite simple - it should typically appear following any
+relevant text or content. TextList manages the presentation of a list of text
+items, rendering them in a clear, organized bullet-point format. It aids in
+making the content easily digestible for the user.
+
+## Related components
+
+This component is uses the [Content](/components/Content) and
+[Text](/components/Text) components for displaying. This is also used for
+displaying the error list in [Banner](/components/Banner) component.
+
+## Props
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `items` | `string[]` | ❌ | `_none_` | Text to display. |
+| `emphasis` | `"strong"` | ❌ | `_none_` | Change the appearance of the text |
+| `level` | `TextLevel` | ❌ | `text` | Visual hierarchy of the text. |
+| `spacing` | `Spacing` | ❌ | `none` | The amount of spacing that content will give. |
+| `childSpacing` | `Spacing` | ❌ | `none` | The amount of spacing that will be applied between the list items. |
+
+
+## Categories
+
+- Lists & Tables
+
+## Component Path
+
+`/components/TextList`
+
+---
+
+_Generated on 2025-08-21T17:35:16.373Z_

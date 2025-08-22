@@ -1,0 +1,395 @@
+# RadioGroup
+
+# Radio Group
+
+RadioGroup will allow users to choose a single selection from one of a list of
+provided options.
+
+## Design & usage guidelines
+
+### Rendering RadioOption with children
+
+If the `RadioGroup` is being used to select something other then text, you can
+render the `RadioOptions` with `children`.
+
+## Accessibility
+
+**Note:** When using `children` without a `label` it is the responsibility of
+the child to supply the proper accessible labels. If you are using children that
+do not contain text, an `aria-label` should be provided.
+
+## Web Component Code
+
+```tsx
+RadioGroup Radio Button Select Web React import type { ReactElement } from "react";
+import React, { useId } from "react";
+import classnames from "classnames";
+import { InternalRadioOption } from "./RadioOption";
+import styles from "./RadioGroup.module.css";
+
+export interface RadioGroupProps {
+  readonly children: ReactElement | ReactElement[];
+
+  /**
+   * Defines the default value that will be pre-selected in the radio group.
+   */
+  readonly value: string | number;
+
+  /**
+   * Change handler for the RadioGroup.
+   *
+   * @param {string} newValue
+   */
+  onChange(newValue: string | number): void;
+
+  /**
+   * Defines the aria label that describes the radio group.
+   */
+  readonly ariaLabel: string;
+
+  /**
+   * The name of the radio group, that links the radio options back up
+   * to the group.
+   *
+   * @default useId()
+   */
+  readonly name?: string;
+
+  /**
+   * Layout direction for the options.
+   * @default "vertical"
+   */
+  readonly direction?: "vertical" | "horizontal";
+}
+
+export function RadioGroup({
+  children,
+  value,
+  ariaLabel,
+  onChange,
+  name = useId(),
+  direction = "vertical",
+}: RadioGroupProps) {
+  const className = classnames(styles.radioGroup, {
+    [styles.directionHorizontal]: direction === "horizontal",
+  });
+
+  return (
+    <div role="radiogroup" aria-label={ariaLabel} className={className}>
+      {React.Children.map(children, option => (
+        <InternalRadioOption
+          checked={value === option.props.value}
+          name={name}
+          onChange={handleChange}
+          {...option.props}
+        >
+          {option.props.children}
+        </InternalRadioOption>
+      ))}
+    </div>
+  );
+
+  function handleChange(newValue: string) {
+    if (newValue !== value) {
+      onChange(newValue);
+    }
+  }
+}
+import type { ReactNode } from "react";
+import React, { useId } from "react";
+import type { XOR } from "ts-xor";
+import styles from "./RadioGroup.module.css";
+import { Text } from "../Text";
+
+interface BaseRadioOptionProps {
+  /**
+   * The value of the radio button.
+   */
+  readonly value: string | number;
+
+  /**
+   * Disables the radio button.
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Further description of the label.
+   */
+  readonly description?: string;
+
+  /**
+   * The label to appear beside the radio button.
+   */
+  readonly label?: string;
+
+  /**
+   * Render a custom label or additional content below the `label`
+   * and `description`.
+   *
+   * Prefer using `label` and `description` over adding child elements if the
+   * content of either would be a string.
+   */
+  readonly children?: ReactNode;
+}
+
+interface WithRequiredChildren extends BaseRadioOptionProps {
+  readonly children: ReactNode;
+}
+
+interface WithRequiredLabel extends BaseRadioOptionProps {
+  readonly label: string;
+}
+
+type RadioOptionProps = XOR<WithRequiredChildren, WithRequiredLabel>;
+
+/**
+ * For rendering props only. To make updates to
+ * the real RadioOption, look at InternalRadioOption
+ */
+export function RadioOption({ children }: RadioOptionProps) {
+  return <>{children}</>;
+}
+
+interface InternalRadioOptionProps extends BaseRadioOptionProps {
+  readonly name: string;
+  readonly checked: boolean;
+  onChange(newValue: string | number): void;
+}
+
+export function InternalRadioOption({
+  value,
+  name,
+  label,
+  description,
+  disabled,
+  checked,
+  children,
+  onChange,
+}: InternalRadioOptionProps) {
+  const inputId = `${value.toString()}_${useId()}`;
+  const shouldRenderIndependentChildren = label && children;
+
+  return (
+    <div>
+      <input
+        onChange={handleChange}
+        type="radio"
+        name={name}
+        value={value}
+        disabled={disabled}
+        checked={checked}
+        id={inputId}
+        className={styles.input}
+        aria-describedby={description ? `${inputId}_description` : undefined}
+      />
+      <label className={styles.label} htmlFor={inputId}>
+        {label ? label : children}
+      </label>
+      {description && (
+        <div className={styles.description} id={`${inputId}_description`}>
+          <Text variation="subdued" size="small">
+            {description}
+          </Text>
+        </div>
+      )}
+      {shouldRenderIndependentChildren && (
+        <div className={styles.children} id={`${inputId}_children`}>
+          {children}
+        </div>
+      )}
+    </div>
+  );
+
+  function handleChange() {
+    onChange(value);
+  }
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop            | Type               | Required         | Default   | Description                                                       |
+| --------------- | ------------------ | ---------------- | --------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `value`         | `string            | number`          | ✅        | `_none_`                                                          | Defines the default value that will be pre-selected in the radio group. |
+| `onChange`      | `(newValue: string | number) => void` | ✅        | `_none_`                                                          | Change handler for the RadioGroup.                                      |
+| @param newValue |
+| `ariaLabel`     | `string`           | ✅               | `_none_`  | Defines the aria label that describes the radio group.            |
+| `name`          | `string`           | ❌               | `useId()` | The name of the radio group, that links the radio options back up |
+| to the group.   |
+| `direction`     | `"vertical"        | "horizontal"`    | ❌        | `vertical`                                                        | Layout direction for the options.                                       |
+
+## Categories
+
+- Forms & Inputs
+
+## Web Test Code
+
+```typescript
+RadioGroup Radio Button Select Web React Test Testing Jest import React, { useState } from "react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { RadioGroup, RadioOption } from ".";
+
+test("renders a RadioGroup", () => {
+  const { container } = render(<MockRadioGroup />);
+  expect(container).toMatchSnapshot();
+});
+
+test("it should call the handler with the new value", async () => {
+  const user = userEvent.setup();
+  const changeHandler = jest.fn();
+  render(<MockRadioGroup onChange={changeHandler} />);
+  await user.click(screen.getAllByLabelText("Two")[0]);
+  expect(changeHandler).toHaveBeenCalledWith("two");
+});
+
+test("it should not call the handler if the value does not change", async () => {
+  const user = userEvent.setup();
+  const changeHandler = jest.fn();
+  render(<MockRadioGroup onChange={changeHandler} />);
+  await user.click(screen.getAllByText("One")[0]);
+  expect(changeHandler).not.toHaveBeenCalled();
+});
+
+test("it should be able to disable options", () => {
+  const handleChange = jest.fn();
+  const { container } = render(
+    <RadioGroup
+      name="Foo"
+      value="foo"
+      onChange={handleChange}
+      ariaLabel="Test Label"
+    >
+      <RadioOption value="foo" label="foo"></RadioOption>
+      <RadioOption value="bear" label="bear" disabled={true}></RadioOption>
+    </RadioGroup>,
+  );
+
+  expect(container.querySelector(`[value="bear"]`)).toBeDisabled();
+});
+
+test("it should have unique ids on all radio options", async () => {
+  const user = userEvent.setup();
+  render(<MockRadioGroup />);
+  const radio1 = screen.getAllByRole("radio")[0] as HTMLInputElement;
+  const radio2 = screen.getAllByRole("radio")[1] as HTMLInputElement;
+  expect(radio1.checked).toBeTruthy();
+  expect(radio2.checked).toBeFalsy();
+  await user.click(radio2);
+  expect(radio1.checked).toBeFalsy();
+  expect(radio2.checked).toBeTruthy();
+});
+
+test("it should render an option from `label` prop", () => {
+  render(
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
+      <RadioOption value="foo" label="Radio" />
+    </RadioGroup>,
+  );
+
+  expect(screen.getByText("Radio")).toBeInstanceOf(HTMLLabelElement);
+});
+
+test("it should render an option from `children` prop", () => {
+  render(
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
+      <RadioOption value="foo">Radio</RadioOption>
+    </RadioGroup>,
+  );
+
+  expect(screen.getByText("Radio")).toBeInstanceOf(HTMLLabelElement);
+});
+
+test("it should render a description", () => {
+  render(
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
+      <RadioOption value="foo" description="A sound box" label="Radio" />
+    </RadioGroup>,
+  );
+
+  expect(screen.getByText("A sound box")).toBeInstanceOf(HTMLParagraphElement);
+});
+
+test("it should render a label, description, and children", () => {
+  render(
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
+      <RadioOption value="foo" description="Description" label="Label">
+        Children
+      </RadioOption>
+    </RadioGroup>,
+  );
+
+  expect(screen.getByText("Label")).toBeInstanceOf(HTMLLabelElement);
+  expect(screen.getByText("Description")).toBeInstanceOf(HTMLParagraphElement);
+  expect(screen.getByText("Children")).toBeInstanceOf(HTMLElement);
+});
+
+test("applies the horizontal direction classname when direction=horizontal", () => {
+  render(
+    <RadioGroup
+      value="foo"
+      onChange={jest.fn()}
+      ariaLabel="Test Label"
+      direction="horizontal"
+    >
+      <RadioOption value="foo" label="Option 1" />
+      <RadioOption value="bar" label="Option 2" />
+    </RadioGroup>,
+  );
+
+  const radioGroup = screen.getByRole("radiogroup");
+  expect(radioGroup).toHaveClass("directionHorizontal");
+});
+
+interface MockProps {
+  onChange?(val: string): void;
+}
+
+function MockRadioGroup({ onChange }: MockProps) {
+  const [value, setValue] = useState("one");
+  const [valueTwo, setValueTwo] = useState("one");
+
+  return (
+    <>
+      <RadioGroup
+        onChange={handleFirstChange}
+        value={value}
+        ariaLabel="Test Label 1"
+      >
+        <RadioOption value="one" label="One" />
+        <RadioOption value="two" label="Two" />
+      </RadioGroup>
+      <RadioGroup
+        onChange={handleSecondChange}
+        value={valueTwo}
+        ariaLabel="Test Label 2"
+      >
+        <RadioOption value="one" label="One" />
+        <RadioOption value="two" label="Two" />
+      </RadioGroup>
+    </>
+  );
+
+  function handleFirstChange(val: string) {
+    setValue(val);
+    onChange && onChange(val);
+  }
+
+  function handleSecondChange(val: string) {
+    setValueTwo(val);
+    onChange && onChange(val);
+  }
+}
+
+```
+
+## Component Path
+
+`/components/RadioGroup`
+
+---
+
+_Generated on 2025-08-21T17:35:16.370Z_

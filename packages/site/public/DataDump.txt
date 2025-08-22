@@ -1,0 +1,103 @@
+# DataDump
+
+# Data Dump
+
+The DataDump component is used when developing to nicely format data for
+debugging purposes.
+
+## Design & usage guidelines
+
+DataDump should not be used in a production environment to show information to
+users.
+
+## Web Component Code
+
+```tsx
+DataDump  Web React import React from "react";
+import { Card } from "../Card";
+import { Content } from "../Content";
+import { Emphasis } from "../Emphasis";
+
+interface DataDebuggerProps {
+  /**
+   * Label for the DataDump
+   *
+   * @default "Raw Data"
+   */
+  readonly label?: string;
+
+  /**
+   * Should the `DataDump` default to open?
+   *
+   * @default false
+   */
+  readonly defaultOpen?: boolean;
+
+  /**
+   * Data to display.
+   */
+  readonly data: unknown;
+}
+
+export function DataDump({
+  label = "Raw Data",
+  defaultOpen = false,
+  data,
+}: DataDebuggerProps) {
+  return (
+    <Card accent="yellow">
+      <Content>
+        <details open={defaultOpen}>
+          <summary>
+            <Emphasis variation="bold">{label}</Emphasis>
+          </summary>
+          <pre>{JSON.stringify(data, undefined, 2)}</pre>
+        </details>
+      </Content>
+    </Card>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | ❌ | `Raw Data` | Label for the DataDump |
+| `defaultOpen` | `boolean` | ❌ | `[object Object]` | Should the `DataDump` default to open? |
+| `data` | `unknown` | ✅ | `_none_` | Data to display. |
+
+
+## Categories
+
+- Utilities
+
+## Web Test Code
+
+```typescript
+DataDump  Web React Test Testing Jest import { render } from "@testing-library/react";
+import React from "react";
+import { DataDump } from ".";
+
+it("renders a DataDump", () => {
+  const { container } = render(<DataDump data={{ Foo: "bar" }} />);
+  expect(container).toMatchSnapshot();
+});
+
+it("dumps some data with a label", () => {
+  const { container } = render(<DataDump label="💩" data={{ Foo: "bar" }} />);
+  expect(container).toMatchSnapshot();
+});
+
+```
+
+## Component Path
+
+`/components/DataDump`
+
+---
+
+_Generated on 2025-08-21T17:35:16.358Z_

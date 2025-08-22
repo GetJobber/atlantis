@@ -1,0 +1,288 @@
+# AnimatedPresence
+
+# AnimatedPresence
+
+Just like in real life, nothing appears out of nowhere. Animate elements that
+get added or removed from the React tree with AnimatedPresence. If more than 1
+element gets added, there will be a delay between each new element.
+
+## Accessibility
+
+AnimatedPresence respects the
+[`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+setting. If the user has this enabled, the animations will be disabled and the
+elements will show/hide instantly.
+
+## Web Component Code
+
+```tsx
+AnimatedPresence Motion Animation Reveal Web React import React, { useState } from "react";
+import { render as renderComponent, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { AnimatedPresence } from "./AnimatedPresence";
+
+const visibleNowText = "Visible Now";
+const visibleLaterText = "Visible Later";
+
+export function render() {
+  return renderComponent(<ConditionalComponent />);
+}
+
+export async function toggle() {
+  await userEvent.click(screen.getByRole("button"));
+}
+
+export function alwaysVisibleElement() {
+  return screen.getByText(visibleNowText);
+}
+
+export function sometimesVisibleElement() {
+  return screen.queryByText(visibleLaterText);
+}
+
+function ConditionalComponent() {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <AnimatedPresence>
+      {visible && <div>{visibleLaterText}</div>}
+
+      <div>{visibleNowText}</div>
+
+      <button onClick={() => setVisible(!visible)} type="button">
+        Toggle
+      </button>
+    </AnimatedPresence>
+  );
+}
+import { tokens } from "@jobber/design";
+import type { Variants } from "framer-motion";
+
+export const TIMING_QUICK = toSeconds(tokens["timing-quick"]);
+export const TIMING_BASE = toSeconds(tokens["timing-base"]);
+
+const baseTransition: Variants = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+};
+
+export const fade: Variants = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+};
+
+export const popIn: Variants = {
+  visible: { scale: 1, ...baseTransition.visible },
+  hidden: { scale: 0.95, ...baseTransition.hidden },
+};
+
+export const fromTop: Variants = {
+  visible: { y: 0, ...baseTransition.visible },
+  hidden: { y: -tokens["space-base"], ...baseTransition.hidden },
+};
+
+export const fromBottom: Variants = {
+  visible: { y: 0, ...baseTransition.visible },
+  hidden: { y: tokens["space-base"], ...baseTransition.hidden },
+};
+
+export const fromLeft: Variants = {
+  visible: { x: 0, ...baseTransition.visible },
+  hidden: { x: -tokens["space-base"], ...baseTransition.hidden },
+};
+
+export const fromRight: Variants = {
+  visible: { x: 0, ...baseTransition.visible },
+  hidden: { x: tokens["space-base"], ...baseTransition.hidden },
+};
+
+export const fromLeftToRight: Variants = {
+  initial: { x: -tokens["space-base"], ...baseTransition.hidden },
+  visible: { x: 0, ...baseTransition.visible },
+  hidden: { x: tokens["space-base"], ...baseTransition.hidden },
+};
+
+export const fromRightToLeft: Variants = {
+  initial: { x: tokens["space-base"], ...baseTransition.hidden },
+  visible: { x: 0, ...baseTransition.visible },
+  hidden: { x: -tokens["space-base"], ...baseTransition.hidden },
+};
+
+function toSeconds(ms: number) {
+  return ms / 1000;
+}
+import type { PropsWithChildren } from "react";
+import React, { Children, useEffect } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  TIMING_BASE,
+  TIMING_QUICK,
+  fade,
+  fromBottom,
+  fromLeft,
+  fromLeftToRight,
+  fromRight,
+  fromRightToLeft,
+  fromTop,
+  popIn,
+} from "./AnimatedPresence.transitions";
+import { usePreviousValue } from "./hooks/usePreviousValue";
+
+const transitions = {
+  fromBottom,
+  fromTop,
+  fromLeft,
+  fromRight,
+  popIn,
+  fromLeftToRight,
+  fromRightToLeft,
+  fade,
+};
+
+export type AnimatedPresenceTransitions = keyof typeof transitions;
+
+interface AnimatedPresenceProps extends Required<PropsWithChildren> {
+  /**
+   * The type of transition you can use.
+   */
+  readonly transition?: AnimatedPresenceTransitions;
+
+  /**
+   * Whether or not to animate the children on mount. By default it's set to false.
+   */
+  readonly initial?: boolean;
+}
+
+export function AnimatedPresence(props: AnimatedPresenceProps) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return <>{props.children}</>;
+  }
+
+  return <InternalAnimatedPresence {...props} />;
+}
+
+function InternalAnimatedPresence({
+  transition = "fromTop",
+  initial = false,
+  children,
+}: AnimatedPresenceProps) {
+  const transitionVariation = transitions[transition];
+  const hasInitialTransition = "initial" in transitionVariation;
+  const childCount = Children.count(children);
+
+  // Set the initial value to 0 so it staggers the animation on mount when
+  // initial is true.
+  const [lastChildIndex, setLastChildIndex] = usePreviousValue(0);
+
+  // Whenever the children count changes, update the last index.
+  useEffect(() => {
+    setLastChildIndex(childCount - 1);
+  }, [childCount]);
+
+  return (
+    <AnimatePresence initial={initial} mode="popLayout">
+      {Children.map(
+        children,
+        (child, i) =>
+          child && (
+            <motion.div
+              layout
+              variants={transitionVariation}
+              initial={hasInitialTransition ? "initial" : "hidden"}
+              animate="visible"
+              exit="hidden"
+              transition={{
+                duration: TIMING_BASE,
+                delay: generateDelayTime(i),
+              }}
+            >
+              {child}
+            </motion.div>
+          ),
+      )}
+    </AnimatePresence>
+  );
+
+  function generateDelayTime(index: number): number {
+    // Don't add a delay if it's already rendered.
+    if (lastChildIndex > index) return 0;
+
+    // Stagger the animation starting after the previous last child index.
+    return (index - lastChildIndex) * TIMING_QUICK;
+  }
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop         | Type          | Required  | Default    | Description                                                                    |
+| ------------ | ------------- | --------- | ---------- | ------------------------------------------------------------------------------ | ------- | ----------------- | ----------------- | ------- | --- | -------- | ----------------------------------- |
+| `transition` | `"fromBottom" | "fromTop" | "fromLeft" | "fromRight"                                                                    | "popIn" | "fromLeftToRight" | "fromRightToLeft" | "fade"` | ❌  | `_none_` | The type of transition you can use. |
+| `initial`    | `boolean`     | ❌        | `_none_`   | Whether or not to animate the children on mount. By default it's set to false. |
+
+## Categories
+
+- Utilities
+
+## Web Test Code
+
+```typescript
+AnimatedPresence Motion Animation Reveal Web React Test Testing Jest import * as FramerMotion from "framer-motion";
+import * as PresencePOM from "./AnimatedPresence.pom";
+
+const reduceMotionSpy = jest
+  .spyOn(FramerMotion, "useReducedMotion")
+  .mockReturnValue(false);
+
+describe("AnimatedPresence", () => {
+  it("should render the visible elements", async () => {
+    PresencePOM.render();
+
+    expect(PresencePOM.alwaysVisibleElement()).toBeInTheDocument();
+    expect(PresencePOM.sometimesVisibleElement()).not.toBeInTheDocument();
+
+    await PresencePOM.toggle();
+
+    const el1 = PresencePOM.alwaysVisibleElement();
+    expect(el1).toBeInTheDocument();
+    expect(el1.parentElement).toHaveAttribute("style");
+
+    const el2 = PresencePOM.sometimesVisibleElement();
+    expect(el2).toBeInTheDocument();
+    expect(el2?.parentElement).toHaveAttribute("style");
+  });
+
+  it("should not animate the elements when reduced motion is enabled", async () => {
+    reduceMotionSpy.mockReturnValue(true);
+
+    PresencePOM.render();
+
+    expect(PresencePOM.alwaysVisibleElement()).toBeInTheDocument();
+    expect(PresencePOM.sometimesVisibleElement()).not.toBeInTheDocument();
+
+    await PresencePOM.toggle();
+
+    const el1 = PresencePOM.alwaysVisibleElement();
+    expect(el1).toBeInTheDocument();
+    expect(el1.parentElement).not.toHaveAttribute("style");
+
+    const el2 = PresencePOM.sometimesVisibleElement();
+    expect(el2).toBeInTheDocument();
+    expect(el2?.parentElement).not.toHaveAttribute("style");
+  });
+});
+
+```
+
+## Component Path
+
+`/components/AnimatedPresence`
+
+---
+
+_Generated on 2025-08-21T17:35:16.352Z_

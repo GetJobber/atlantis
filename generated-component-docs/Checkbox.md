@@ -1,0 +1,620 @@
+# Checkbox
+
+# Checkbox
+
+A checkbox lets a user select one or more items from a set of options.
+
+## Design & usage guidelines
+
+A checkbox is a familiar pattern for users who need to choose from a set of
+options, or opt in to a single choice. It allows a user to provide boolean
+input. It can also be in an indeterminate state when we don't know if the
+checkbox is considered checked or not.
+
+A single checkbox, a [Switch](/components/Switch), and a pair of
+[radio buttons](/components/RadioGroup) can seem similar in theory, as all can
+represent an either/or decision for the user. Use a switch when the user must
+make a decision to turn something on or off, and a single checkbox when a user
+is opting in to a choice. A pair of radio buttons can be used to help the user
+decide between two discrete options, such as “fixed price” and “per visit”
+invoicing options.
+
+Of note: when a single selection is to be made, a Switch should be used rather
+than a single Checkbox. Use a Checkbox only when there are multiple selection
+options to choose from. when the volume of Radio options is greater than 5 (or
+there are otherwise critical vertical space constraints) use Select. when the
+labels on a set of Radio options are consistently small (1–2 words), use Chip.
+
+## Related components
+
+- To let people turn a setting on or off instantly, use a
+  [Switch](/components/Switch).
+- To present a set of options where people can only make a single choice, use a
+  [RadioGroup](/components/RadioGroup).
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=15272%3A30151"
+/>
+
+## Web Component Code
+
+```tsx
+Checkbox Select Web React import type { ChangeEvent } from "react";
+import React, { forwardRef, useId } from "react";
+import classnames from "classnames";
+import styles from "./Checkbox.module.css";
+import type { CheckboxRebuiltProps } from "./Checkbox.types";
+import { Icon } from "../Icon";
+import { Text } from "../Text";
+
+export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
+  {
+    checked,
+    defaultChecked,
+    disabled,
+    label,
+    name,
+    value,
+    indeterminate = false,
+    description,
+    id,
+    onBlur,
+    onChange,
+    onFocus,
+    invalid,
+  }: CheckboxRebuiltProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const descriptionIdentifier = useId();
+  const wrapperClassName = classnames(
+    styles.wrapper,
+    disabled && styles.disabled,
+    invalid && styles.invalid,
+  );
+  const inputClassName = classnames(styles.input, {
+    [styles.indeterminate]: indeterminate,
+  });
+
+  const iconName = indeterminate ? "minus2" : "checkmark";
+  const labelContent = typeof label === "string" ? <Text>{label}</Text> : label;
+  const descriptionContent =
+    typeof description === "string" ? (
+      <Text size="small" variation="subdued">
+        {description}
+      </Text>
+    ) : (
+      description
+    );
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const newChecked = event.currentTarget.checked;
+    onChange?.(newChecked, event);
+  }
+
+  return (
+    <div className={styles.checkBoxParent}>
+      <label className={wrapperClassName}>
+        <span className={styles.checkHolder}>
+          <input
+            ref={ref}
+            type="checkbox"
+            id={id}
+            className={inputClassName}
+            name={name}
+            aria-describedby={description ? descriptionIdentifier : undefined}
+            checked={checked}
+            value={value}
+            defaultChecked={defaultChecked}
+            disabled={disabled}
+            onChange={handleChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
+          <span className={styles.checkBox}>
+            <Icon name={iconName} color="surface" />
+          </span>
+        </span>
+
+        {labelContent && <span className={styles.label}>{labelContent}</span>}
+      </label>
+      {description && (
+        <div id={descriptionIdentifier} className={styles.description}>
+          {descriptionContent}
+        </div>
+      )}
+    </div>
+  );
+});
+
+CheckboxRebuilt.displayName = "CheckboxRebuilt";
+import type { ChangeEvent } from "react";
+import React, { useEffect, useId, useState } from "react";
+import classnames from "classnames";
+import { Controller, useForm, useFormContext } from "react-hook-form";
+import styles from "./Checkbox.module.css";
+import type { CheckboxLegacyProps } from "./Checkbox.types";
+import { Icon } from "../Icon";
+import { Text } from "../Text";
+
+export function CheckboxLegacy({
+  checked,
+  defaultChecked,
+  disabled,
+  label,
+  name,
+  value,
+  indeterminate = false,
+  description,
+  children,
+  onBlur,
+  onChange,
+  onFocus,
+}: CheckboxLegacyProps) {
+  const { control, setValue, watch } =
+    useFormContext() != undefined
+      ? useFormContext()
+      : // If there isn't a Form Context being provided, get a form for this field.
+        useForm({ mode: "onTouched" });
+
+  const [identifier] = useState(useId());
+
+  /**
+   * Generate a name if one is not supplied, this is the name
+   * that will be used for react-hook-form and not neccessarily
+   * attached to the DOM
+   */
+  const [controlledName] = useState(
+    name ? name : `generatedName--${identifier}`,
+  );
+
+  useEffect(() => {
+    if (value != undefined) {
+      setValue(controlledName, value);
+    }
+  }, [value, watch(controlledName)]);
+
+  const wrapperClassName = classnames(
+    styles.wrapper,
+    disabled && styles.disabled,
+  );
+  const inputClassName = classnames(styles.input, {
+    [styles.indeterminate]: indeterminate,
+  });
+  const iconName = indeterminate ? "minus2" : "checkmark";
+  const labelText = label ? <Text>{label}</Text> : children;
+
+  return (
+    <Controller
+      control={control}
+      name={controlledName}
+      defaultValue={defaultChecked}
+      render={({
+        field: { onChange: onControllerChange, name: controllerName, ...rest },
+      }) => {
+        const fieldProps = {
+          ...rest,
+          id: identifier,
+          className: inputClassName,
+          name: name && controllerName,
+          onChange: handleChange,
+          disabled: disabled,
+        };
+
+        return (
+          <div className={styles.checkBoxParent}>
+            <label className={wrapperClassName}>
+              <span className={styles.checkHolder}>
+                <input
+                  {...fieldProps}
+                  type="checkbox"
+                  checked={checked}
+                  defaultChecked={defaultChecked}
+                  aria-label={label}
+                  onChange={handleChange}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                />
+                <span className={styles.checkBox}>
+                  <Icon name={iconName} color="surface" />
+                </span>
+              </span>
+
+              {labelText && <span className={styles.label}>{labelText}</span>}
+            </label>
+            {description && (
+              <div className={styles.description}>
+                <Text variation="subdued" size="small">
+                  {description}
+                </Text>
+              </div>
+            )}
+          </div>
+        );
+
+        function handleChange(event: ChangeEvent<HTMLInputElement>) {
+          const newChecked = event.currentTarget.checked;
+          onChange && onChange(newChecked);
+          onControllerChange(event);
+        }
+      }}
+    />
+  );
+}
+import React, { forwardRef } from "react";
+import { CheckboxLegacy } from "./Checkbox";
+import { CheckboxRebuilt } from "./Checkbox.rebuilt";
+import type {
+  CheckboxLegacyProps,
+  CheckboxRebuiltProps,
+} from "./Checkbox.types";
+
+type CheckboxShimProps = CheckboxLegacyProps | CheckboxRebuiltProps;
+
+function isNewCheckboxProps(
+  props: CheckboxShimProps,
+): props is CheckboxRebuiltProps {
+  return props.version === 2;
+}
+
+export const Checkbox = forwardRef(function CheckboxShim(
+  props: CheckboxShimProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  if (isNewCheckboxProps(props)) {
+    return <CheckboxRebuilt {...props} ref={ref} />;
+  }
+
+  return <CheckboxLegacy {...props} />;
+});
+
+Checkbox.displayName = "Checkbox";
+
+export type { CheckboxLegacyProps, CheckboxRebuiltProps };
+
+```
+
+## Props
+
+### Web Props
+
+| Prop             | Type                      | Required                     | Default  | Description                                                           |
+| ---------------- | ------------------------- | ---------------------------- | -------- | --------------------------------------------------------------------- | --------------------------------------------- |
+| `label`          | `string`                  | ❌                           | `_none_` | Label that shows up beside the checkbox.                              |
+| `children`       | `ReactElement<any, string | JSXElementConstructor<any>>` | ❌       | `_none_`                                                              | Component children, which shows up as a label |
+| `checked`        | `boolean`                 | ❌                           | `_none_` | Determines if the checkbox is checked or not.                         |
+| `defaultChecked` | `boolean`                 | ❌                           | `_none_` | Initial checked value of the checkbox. Only use this when you need to |
+
+pre-populate the checked attribute that is not controlled by the component's
+state. If a state is controlling it, use the `checked` prop instead. | |
+`disabled` | `boolean` | ❌ | `_none_` | Disables the checkbox. | |
+`indeterminate` | `boolean` | ❌ | `[object Object]` | When `true` the checkbox
+to appears in indeterminate. | | `name` | `string` | ❌ | `_none_` | Checkbox
+input name | | `value` | `string` | ❌ | `_none_` | Value of the checkbox. | |
+`description` | `ReactNode` | ❌ | `_none_` | Further description of the label |
+| `id` | `string` | ❌ | `_none_` | ID for the checkbox input | | `onChange` |
+`(newValue: boolean) => void` | ❌ | `_none_` | Called when the checkbox value
+changes | | `onFocus` | `(event: FocusEvent<HTMLInputElement, Element>) => void`
+| ❌ | `_none_` | Called when the checkbox is focused | | `onBlur` |
+`(event: FocusEvent<HTMLInputElement, Element>) => void` | ❌ | `_none_` |
+Called when the checkbox loses focus | | `invalid` | `boolean` | ❌ | `_none_` |
+Whether the checkbox is invalid | | `version` | `1` | ❌ | `_none_` | _No
+description_ |
+
+### Mobile Props
+
+| Prop                 | Type                        | Required                    | Default  | Description                                                                                    |
+| -------------------- | --------------------------- | --------------------------- | -------- | ---------------------------------------------------------------------------------------------- | ------------- |
+| `name`               | `string`                    | ❌                          | `_none_` | Name of the checkbox; this is important when using in a form component                         |
+| `label`              | `string`                    | ❌                          | `_none_` | Label to be displayed beside the checkbox                                                      |
+| `defaultChecked`     | `boolean`                   | ❌                          | `_none_` | Default value for when the checkbox is uncontrolled                                            |
+| `indeterminate`      | `boolean`                   | ❌                          | `_none_` | When true, the checkbox is shown as indeterminate                                              |
+| `disabled`           | `boolean`                   | ❌                          | `_none_` | Checkbox is disabled                                                                           |
+| `assistiveText`      | `string`                    | ❌                          | `_none_` | Assistive Text, shown under label                                                              |
+| `accessibilityLabel` | `string`                    | ❌                          | `_none_` | Accessibility Label for the checkbox. Defaults to label                                        |
+| `onChange`           | `((value: boolean) => void) | ((value: boolean) => void)` | ❌       | `_none_`                                                                                       | Press handler |
+| `checked`            | `boolean`                   | ❌                          | `_none_` | If the checkbox is checked. This should be set when this is intended as a controlled component |
+
+## Categories
+
+- Selections
+
+## Web Test Code
+
+```typescript
+Checkbox Select Web React Test Testing Jest import React from "react";
+import { fireEvent, render } from "@testing-library/react";
+import { Checkbox } from ".";
+import { Text } from "../Text";
+
+describe("Checkbox", () => {
+  it("renders a basic checkbox", () => {
+    const { getByRole } = render(
+      <Checkbox
+        version={2}
+        label="Send me spam?"
+        name="send_me_spam"
+        value="spam"
+      />,
+    );
+    const checkbox = getByRole("checkbox");
+    expect(checkbox).toBeInTheDocument();
+  });
+
+  it("renders a disabled checkbox", () => {
+    const { getByRole } = render(
+      <Checkbox version={2} label="Dont click me" disabled={true} />,
+    );
+    const checkbox = getByRole("checkbox");
+    expect(checkbox).toBeDisabled();
+  });
+
+  it("renders a description when provided string", () => {
+    const { getByText } = render(
+      <Checkbox version={2} label="Label" description="Additional info" />,
+    );
+    const description = getByText("Additional info");
+    expect(description).toBeInTheDocument();
+  });
+
+  it("renders a description when provided markup", () => {
+    const elementTestId = "i-am-a-description";
+    const { getByTestId } = render(
+      <Checkbox
+        version={2}
+        label="Label"
+        description={<div data-testid={elementTestId} />}
+      />,
+    );
+    expect(getByTestId(elementTestId)).toBeInTheDocument();
+  });
+
+  describe("Label rendering", () => {
+    it("renders with string label", () => {
+      const { getByText } = render(<Checkbox version={2} label="Click me" />);
+      expect(getByText("Click me")).toBeInTheDocument();
+    });
+
+    it("renders with markup as label", () => {
+      const { getByText } = render(
+        <Checkbox version={2} label={<Text>Custom label content</Text>} />,
+      );
+      expect(getByText("Custom label content")).toBeInTheDocument();
+    });
+  });
+
+  describe("Checkbox states", () => {
+    it("handles indeterminate state", () => {
+      const { getByTestId } = render(
+        <Checkbox version={2} label="Parent" indeterminate={true} />,
+      );
+      expect(getByTestId("minus2")).toBeInTheDocument();
+    });
+
+    it("shows checkmark when checked", () => {
+      const { getByTestId } = render(
+        <Checkbox version={2} label="Option" checked={true} />,
+      );
+      expect(getByTestId("checkmark")).toBeInTheDocument();
+    });
+
+    it("respects defaultChecked prop", () => {
+      const { getByRole } = render(
+        <Checkbox version={2} label="Default On" defaultChecked={true} />,
+      );
+      const checkbox = getByRole("checkbox");
+      expect(checkbox).toHaveProperty("defaultChecked", true);
+    });
+  });
+
+  describe("Event handling", () => {
+    it("calls onChange with true when unchecked checkbox is clicked", () => {
+      const handleChange = jest.fn();
+      const { getByRole } = render(
+        <Checkbox
+          version={2}
+          label="Click me"
+          checked={false}
+          onChange={handleChange}
+        />,
+      );
+
+      fireEvent.click(getByRole("checkbox"));
+      expect(handleChange).toHaveBeenCalledWith(true, expect.any(Object));
+      expect(handleChange).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onChange with false when checked checkbox is clicked", () => {
+      const handleChange = jest.fn();
+      const { getByRole } = render(
+        <Checkbox
+          version={2}
+          label="Click me"
+          checked={true}
+          onChange={handleChange}
+        />,
+      );
+
+      fireEvent.click(getByRole("checkbox"));
+      expect(handleChange).toHaveBeenCalledWith(false, expect.any(Object));
+      expect(handleChange).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onFocus when checkbox receives focus", () => {
+      const handleFocus = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Focus me" onFocus={handleFocus} />,
+      );
+
+      fireEvent.focus(getByRole("checkbox"));
+      expect(handleFocus).toHaveBeenCalled();
+    });
+
+    it("calls onBlur when checkbox loses focus", () => {
+      const handleBlur = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Blur me" onBlur={handleBlur} />,
+      );
+
+      fireEvent.blur(getByRole("checkbox"));
+      expect(handleBlur).toHaveBeenCalled();
+    });
+  });
+});
+import React from "react";
+import { fireEvent, render } from "@testing-library/react";
+import { Checkbox } from ".";
+import { Text } from "../Text";
+
+it("renders a Checkbox", () => {
+  const { getByRole } = render(
+    <Checkbox label="Send me spam?" name="send_me_span" value="spam" />,
+  );
+  const checkbox = getByRole("checkbox");
+  expect(checkbox).toBeInTheDocument();
+});
+
+it("renders a disabled Checkbox", () => {
+  const { getByRole } = render(
+    <Checkbox label="Dont click me" disabled={true} />,
+  );
+  const checkbox = getByRole("checkbox");
+  expect(checkbox).toBeDisabled();
+});
+
+it("renders each variation of checked, defaultChecked and indeterminate", () => {
+  const variations = [
+    { checked: true, indeterminate: true },
+    { checked: false, indeterminate: true },
+    { checked: true, indeterminate: false },
+    { checked: false, indeterminate: false },
+
+    { defaultChecked: true, indeterminate: true },
+    { defaultChecked: false, indeterminate: true },
+    { defaultChecked: true, indeterminate: false },
+    { defaultChecked: false, indeterminate: false },
+  ];
+
+  variations.forEach(variation => {
+    expect(render(<Checkbox label="Foo" {...variation} />)).toMatchSnapshot();
+  });
+});
+
+it("renders a description when set", () => {
+  const { getByText } = render(<Checkbox description="Checkers" />);
+  const description = getByText("Checkers");
+  expect(description).toBeInstanceOf(HTMLParagraphElement);
+});
+
+describe("With children components", () => {
+  it("renders a checkbox with children", () => {
+    const { getByText } = render(<Checkbox>{<Text>Content</Text>}</Checkbox>);
+    expect(getByText("Content")).toBeInTheDocument();
+  });
+
+  it("should still fire the onClick within the children", () => {
+    const handleLinkClick = jest.fn();
+    const { getByText } = render(
+      <Checkbox description="Checkers">
+        <Text>
+          I agree to the
+          <a onClick={handleLinkClick}>Terms of Service</a>
+        </Text>
+      </Checkbox>,
+    );
+    const TOSAnchorElement = getByText("Terms of Service");
+    expect(TOSAnchorElement).toBeInTheDocument();
+    fireEvent.click(TOSAnchorElement);
+    expect(handleLinkClick).toHaveBeenCalled();
+  });
+});
+
+describe("Clicking the checkbox it should call the handler", () => {
+  test("with a true value", () => {
+    const clickHandler = jest.fn();
+
+    const { getByLabelText } = render(
+      <Checkbox checked={false} onChange={clickHandler} label="foo" />,
+    );
+
+    fireEvent.click(getByLabelText("foo"));
+    expect(clickHandler).toHaveBeenCalledWith(true);
+  });
+
+  test("with a false value", () => {
+    const clickHandler = jest.fn();
+
+    const { getByLabelText } = render(
+      <Checkbox checked={true} onChange={clickHandler} label="foo" />,
+    );
+
+    fireEvent.click(getByLabelText("foo"));
+    expect(clickHandler).toHaveBeenCalledWith(false);
+  });
+});
+
+describe("Checkbox", () => {
+  describe("focus handling", () => {
+    it("calls onFocus when the checkbox receives focus", () => {
+      const onFocus = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" onFocus={onFocus} />,
+      );
+
+      const checkbox = getByRole("checkbox");
+      checkbox.focus();
+
+      expect(onFocus).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onBlur when the checkbox loses focus", () => {
+      const onBlur = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" onBlur={onBlur} />,
+      );
+
+      const checkbox = getByRole("checkbox");
+      checkbox.focus();
+      checkbox.blur();
+
+      expect(onBlur).toHaveBeenCalledTimes(1);
+    });
+
+    it("handles both focus and blur events", () => {
+      const onFocus = jest.fn();
+      const onBlur = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" onFocus={onFocus} onBlur={onBlur} />,
+      );
+
+      const checkbox = getByRole("checkbox");
+      checkbox.focus();
+      expect(onFocus).toHaveBeenCalledTimes(1);
+      expect(onBlur).not.toHaveBeenCalled();
+
+      checkbox.blur();
+      expect(onFocus).toHaveBeenCalledTimes(1);
+      expect(onBlur).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("ref", () => {
+    it("should be forwarded to the input element", () => {
+      const ref = React.createRef<HTMLInputElement>();
+      render(<Checkbox version={2} ref={ref} />);
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Checkbox`
+
+---
+
+_Generated on 2025-08-21T17:35:16.355Z_

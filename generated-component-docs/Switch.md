@@ -1,0 +1,346 @@
+# Switch
+
+# Switch
+
+A Switch toggles the state of a single setting to on or off.
+
+## Design & usage guidelines
+
+The Switch is a useful component for manipulating settings with binary
+(true/false, yes/no, on/off) conditions. For this reason its' label is limited
+to ON/OFF.
+
+### Disabled
+
+A disabled switch cannot be operated by the user. If presenting a disabled "On"
+switch to the user, provide a clear description for the user on how to enable
+the switch to avoid creating a sense that the user has lost control of the
+interface.
+
+<Canvas>
+  <Switch value={false} ariaLabel="Visible to clients" disabled={true} />
+</Canvas>
+
+### Related components
+
+A Switch, a [Checkbox](/components/Checkbox), and a pair of
+[RadioButton](/components/RadioGroup) can seem similar in theory, as all can
+represent an `either/or decision` for the user.
+
+Use a Switch when the user must make a decision to turn something on or off, and
+a single Checkbox when a user is opting in to a choice. A pair of RadioButtons
+can be used to help the user decide between two discrete options, such as "fixed
+price" and "per visit" invoicing options.
+
+## Web Component Code
+
+```tsx
+Switch Toggle Web React import React, { useState } from "react";
+import classnames from "classnames";
+import styles from "./Switch.module.css";
+import { Typography } from "../Typography";
+
+interface SwitchProps {
+  readonly value?: boolean;
+  /**
+   * Adds a name for the hidden input and an ID so a label can be used to
+   * describe the switch instead of an aria-label. This prevents screen readers
+   * from reading the label twice
+   */
+  readonly name?: string;
+  readonly ariaLabel?: string;
+  readonly disabled?: boolean;
+  onChange?(newValue: boolean): void;
+}
+
+export function Switch({
+  value: providedValue,
+  ariaLabel,
+  name,
+  disabled,
+  onChange,
+}: SwitchProps) {
+  const [statefulValue, setValue] = useState(false);
+  const value = providedValue != undefined ? providedValue : statefulValue;
+
+  const toggleSwitch = () => {
+    if (disabled) {
+      return;
+    }
+
+    const newValue = !value;
+    onChange && onChange(newValue);
+
+    if (providedValue == undefined) {
+      setValue(newValue);
+    }
+  };
+
+  const className = classnames(styles.track, styles.switch, {
+    [styles.isChecked]: value,
+    [styles.disabled]: disabled,
+  });
+
+  return (
+    <>
+      <button
+        id={name}
+        type="button"
+        role="switch"
+        aria-checked={value}
+        aria-label={ariaLabel}
+        className={className}
+        onClick={toggleSwitch}
+        disabled={disabled}
+      >
+        <span className={styles.toggle}>
+          <Label as="On" disabled={disabled} />
+          <span className={styles.pip} />
+          <Label as="Off" disabled={disabled} />
+        </span>
+      </button>
+      <input name={name} type="hidden" value={String(value)} />
+    </>
+  );
+}
+
+interface LabelProps {
+  readonly as: "On" | "Off";
+  readonly disabled?: boolean;
+}
+
+function Label({ as, disabled }: LabelProps) {
+  const getTextColor = () => {
+    if (disabled) {
+      return "grey";
+    } else if (as === "On") {
+      return "white";
+    }
+
+    return "greyBlue";
+  };
+
+  return (
+    <span className={styles.label}>
+      <Typography
+        element="span"
+        textColor={getTextColor()}
+        size="small"
+        fontWeight="bold"
+        textCase="uppercase"
+      >
+        {as}
+      </Typography>
+    </span>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop    | Type      | Required | Default  | Description                                                          |
+| ------- | --------- | -------- | -------- | -------------------------------------------------------------------- |
+| `value` | `boolean` | ❌       | `_none_` | _No description_                                                     |
+| `name`  | `string`  | ❌       | `_none_` | Adds a name for the hidden input and an ID so a label can be used to |
+
+describe the switch instead of an aria-label. This prevents screen readers from
+reading the label twice | | `ariaLabel` | `string` | ❌ | `_none_` | _No
+description_ | | `disabled` | `boolean` | ❌ | `_none_` | _No description_ | |
+`onChange` | `(newValue: boolean) => void` | ❌ | `_none_` | _No description_ |
+
+### Mobile Props
+
+| Prop                 | Type                     | Required | Default  | Description                                           |
+| -------------------- | ------------------------ | -------- | -------- | ----------------------------------------------------- |
+| `label`              | `string`                 | ❌       | `_none_` | Optional label to display in front of the switch      |
+| `description`        | `string`                 | ❌       | `_none_` | Optional descriptive text to display under the switch |
+| `value`              | `boolean`                | ❌       | `_none_` | Value of the switch                                   |
+| `defaultValue`       | `boolean`                | ❌       | `_none_` | Default value of the switch when uncontrolled         |
+| `onValueChange`      | `(val: boolean) => void` | ❌       | `_none_` | Callback to handle value changes                      |
+| `disabled`           | `boolean`                | ❌       | `_none_` | When true, the switch cannot be toggled               |
+| `accessibilityLabel` | `string`                 | ❌       | `_none_` | Accessibility label for this switch                   |
+| `name`               | `string`                 | ❌       | `_none_` | Name of the input.                                    |
+
+## Categories
+
+- Selections
+
+## Web Test Code
+
+```typescript
+Switch Toggle Web React Test Testing Jest import React from "react";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Switch } from ".";
+
+it("renders a Switch", () => {
+  const { container } = render(<Switch ariaLabel="Toggle me" />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <button
+        aria-checked="false"
+        aria-label="Toggle me"
+        class="track switch"
+        role="switch"
+        type="button"
+      >
+        <span
+          class="toggle"
+        >
+          <span
+            class="label"
+          >
+            <span
+              class="base bold small uppercase white"
+            >
+              On
+            </span>
+          </span>
+          <span
+            class="pip"
+          />
+          <span
+            class="label"
+          >
+            <span
+              class="base bold small uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value="false"
+      />
+    </div>
+  `);
+});
+
+it("renders a Switch that is turned ON", () => {
+  const { container } = render(<Switch ariaLabel="Toggle me" value={true} />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <button
+        aria-checked="true"
+        aria-label="Toggle me"
+        class="track switch isChecked"
+        role="switch"
+        type="button"
+      >
+        <span
+          class="toggle"
+        >
+          <span
+            class="label"
+          >
+            <span
+              class="base bold small uppercase white"
+            >
+              On
+            </span>
+          </span>
+          <span
+            class="pip"
+          />
+          <span
+            class="label"
+          >
+            <span
+              class="base bold small uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value="true"
+      />
+    </div>
+  `);
+});
+
+it("renders a disabled Switch", () => {
+  const { container } = render(
+    <Switch ariaLabel="Can't touch this" disabled={true} />,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <button
+        aria-checked="false"
+        aria-label="Can't touch this"
+        class="track switch disabled"
+        disabled=""
+        role="switch"
+        type="button"
+      >
+        <span
+          class="toggle"
+        >
+          <span
+            class="label"
+          >
+            <span
+              class="base bold small uppercase grey"
+            >
+              On
+            </span>
+          </span>
+          <span
+            class="pip"
+          />
+          <span
+            class="label"
+          >
+            <span
+              class="base bold small uppercase grey"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value="false"
+      />
+    </div>
+  `);
+});
+
+test("it should change the input value on click", async () => {
+  const { getByRole } = render(<Switch ariaLabel="Toggle me" />);
+  const element = getByRole("switch");
+
+  await userEvent.click(element);
+  expect(element).toHaveAttribute("aria-checked", "true");
+
+  await userEvent.click(element);
+  expect(element).toHaveAttribute("aria-checked", "false");
+});
+
+test("it should not change the input value on click", async () => {
+  const { getByRole } = render(
+    <Switch ariaLabel="Can't touch this" value={true} disabled={true} />,
+  );
+  const element = getByRole("switch");
+
+  await userEvent.click(element);
+  expect(element).toHaveAttribute("aria-checked", "true");
+});
+
+```
+
+## Component Path
+
+`/components/Switch`
+
+---
+
+_Generated on 2025-08-21T17:35:16.372Z_

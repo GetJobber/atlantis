@@ -1,0 +1,752 @@
+# DatePicker
+
+## Web Component Code
+
+```tsx
+DatePicker Calendar Date Picker Date Input Web React import type { ReactElement } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import classnames from "classnames";
+import ReactDatePicker from "react-datepicker";
+import type { XOR } from "ts-xor";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import styles from "./DatePicker.module.css";
+import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
+import type { DatePickerActivatorProps } from "./DatePickerActivator";
+import { DatePickerActivator } from "./DatePickerActivator";
+import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
+import type { DayOfWeek } from "../sharedHelpers/types";
+import { useAtlantisContext } from "../AtlantisContext";
+
+interface BaseDatePickerProps {
+  /**
+   * The maximum selectable date.
+   */
+  readonly maxDate?: Date;
+
+  /**
+   * The minimum selectable date.
+   */
+  readonly minDate?: Date;
+
+  /**
+   * The selected Date object
+   */
+  readonly selected?: Date;
+
+  /**
+   * Determines if the focus moves to the selected date (if any) or back to
+   * the activator
+   */
+  readonly smartAutofocus?: boolean;
+
+  /**
+   * Dates on the calendar to highlight
+   */
+  readonly highlightDates?: Date[];
+
+  /**
+   * Sets which day is considered the first day of the week.
+   * 0 = Sunday, 1 = Monday, etc.
+   *
+   * @default 0
+   */
+  readonly firstDayOfWeek?: DayOfWeek;
+
+  /**
+   * Change handler that will return the date selected.
+   */
+  onChange(val: Date): void;
+
+  /**
+   * Change handler when the selected month changes
+   */
+  onMonthChange?(val: Date): void;
+}
+
+interface DatePickerModalProps extends BaseDatePickerProps {
+  /**
+   * Use a custom activator to trigger the DatePicker
+   */
+  readonly activator?:
+    | ReactElement
+    | ((props: DatePickerActivatorProps) => ReactElement);
+
+  /**
+   * Stops the user from interaction
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Whether the datepicker should take up a whole block
+   */
+  readonly fullWidth?: boolean;
+
+  /**
+   * Whether or not you can select a date
+   */
+  readonly readonly?: boolean;
+}
+
+interface DatePickerInlineProps extends BaseDatePickerProps {
+  /**
+   * Determines if the DatePicker should be shown without needing to trigger the Activator.
+   */
+  readonly inline?: boolean;
+}
+
+type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
+
+/*eslint max-statements: ["error", 14]*/
+export function DatePicker({
+  onChange,
+  onMonthChange,
+  activator,
+  inline,
+  selected,
+  readonly = false,
+  disabled = false,
+  fullWidth = false,
+  smartAutofocus = true,
+  maxDate,
+  minDate,
+  highlightDates,
+  firstDayOfWeek,
+}: DatePickerProps) {
+  const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
+  const [open, setOpen] = useState(false);
+  const { dateFormat, firstDayOfWeek: contextFirstDayOfWeek } =
+    useAtlantisContext();
+  const effectiveFirstDayOfWeek = firstDayOfWeek ?? contextFirstDayOfWeek;
+  const wrapperClassName = classnames(styles.datePickerWrapper, {
+    // react-datepicker uses this class name to not close the date picker when
+    // the activator is clicked
+    // https://github.com/Hacker0x01/react-datepicker/blob/master/src/index.jsx#L905
+    //
+    // It uses react-onclickoutside package and declaring some elements to be
+    // ignored via said class name
+    // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
+    "react-datepicker-ignore-onclickoutside": !inline && open,
+    [styles.fullWidth]: fullWidth,
+  });
+  const datePickerClassNames = classnames(styles.datePicker, {
+    [styles.inline]: inline,
+  });
+  const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
+
+  if (smartAutofocus) {
+    useRefocusOnActivator(open);
+    useEffect(focusOnSelectedDate, [open]);
+  }
+
+  return (
+    <div className={wrapperClassName} ref={ref} data-elevation={"elevated"}>
+      <ReactDatePicker
+        ref={pickerRef}
+        calendarClassName={datePickerClassNames}
+        showPopperArrow={false}
+        selected={selected}
+        inline={inline}
+        disabled={disabled}
+        readOnly={readonly}
+        onChange={handleChange}
+        maxDate={maxDate}
+        preventOpenOnFocus={true}
+        minDate={minDate}
+        useWeekdaysShort={true}
+        customInput={
+          <DatePickerActivator
+            pickerRef={pickerRef}
+            activator={activator}
+            fullWidth={fullWidth}
+          />
+        }
+        renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
+        onCalendarOpen={handleCalendarOpen}
+        onCalendarClose={handleCalendarClose}
+        dateFormat={[
+          dateFormat,
+          "P",
+          "PP",
+          "PPP",
+          "MMM dd yyyy",
+          "MMMM dd yyyy",
+        ]}
+        highlightDates={highlightDates}
+        onMonthChange={onMonthChange}
+        calendarStartDay={effectiveFirstDayOfWeek}
+      />
+    </div>
+  );
+
+  /**
+   * The onChange callback on ReactDatePicker returns a Date and an Event, but
+   * the onChange in our interface only provides the Date. Simplifying the code
+   * by removing this function and passing it directly to the underlying
+   * component breaks tests both here and downstream (i.e. the pattern
+   * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
+   * fail).
+   */
+  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
+    onChange(value);
+  }
+
+  function handleCalendarOpen() {
+    setOpen(true);
+  }
+
+  function handleCalendarClose() {
+    setOpen(false);
+  }
+}
+
+function useEscapeKeyToCloseDatePicker(
+  open: boolean,
+  ref: React.RefObject<HTMLDivElement>,
+): { pickerRef: React.RefObject<ReactDatePicker> } {
+  const pickerRef = useRef<ReactDatePicker>(null);
+
+  const escFunction = (event: KeyboardEvent) => {
+    if (event.key === "Escape" && open) {
+      // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
+      // do not close parent elements that may also be listening for ESC presses such as Modals
+      pickerRef.current?.setOpen(false);
+      event.stopPropagation();
+    }
+  };
+  useEffect(() => {
+    ref.current?.addEventListener("keydown", escFunction);
+
+    return () => {
+      ref.current?.removeEventListener("keydown", escFunction);
+    };
+  }, [open, ref, pickerRef]);
+
+  return {
+    pickerRef,
+  };
+}
+import type { ChangeEvent, ReactElement, Ref, RefObject } from "react";
+import React, { cloneElement, forwardRef, isValidElement } from "react";
+import type { ReactDatePickerProps } from "react-datepicker";
+import type ReactDatePicker from "react-datepicker";
+import omit from "lodash/omit";
+import { Button } from "../Button";
+
+export interface DatePickerActivatorProps
+  extends Pick<
+    ReactDatePickerProps,
+    | "value"
+    | "id"
+    | "ariaDescribedBy"
+    | "ariaInvalid"
+    | "ariaLabelledBy"
+    | "ariaRequired"
+  > {
+  readonly activator?:
+    | ReactElement
+    | ((props: DatePickerActivatorProps) => ReactElement);
+  readonly fullWidth?: boolean;
+  onBlur?(): void;
+  onChange?(
+    event?: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ): void;
+  onClick?(): void;
+  onFocus?(): void;
+  onKeyDown?(): void;
+  readonly pickerRef: RefObject<ReactDatePicker>;
+}
+
+export const DatePickerActivator = forwardRef(InternalActivator);
+
+function InternalActivator(
+  props: DatePickerActivatorProps,
+  ref: Ref<HTMLElement>,
+) {
+  const { activator, fullWidth } = props;
+  const newActivatorProps = omit(props, ["activator", "fullWidth"]);
+
+  if (activator) {
+    if (isValidElement(activator)) {
+      const isAComponent = typeof activator.type === "function";
+
+      return cloneElement(activator, {
+        ...newActivatorProps,
+        ...(isAComponent && { fullWidth: fullWidth }),
+        // @ts-expect-error - Issue with react types not including `ref` in
+        // cloneElement. https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40888
+        ref,
+      });
+    } else if (typeof activator === "function") {
+      return activator(props);
+    } else {
+      return null;
+    }
+  } else {
+    return (
+      // @ts-expect-error - we need to desctructure the newActivatorProps with more care to XOR prop types.
+      <Button
+        variation="work"
+        type="tertiary"
+        icon="calendar"
+        ariaLabel="Open Datepicker"
+        fullWidth={fullWidth}
+        {...newActivatorProps}
+      />
+    );
+  }
+}
+import React from "react";
+import type { ReactDatePickerCustomHeaderProps } from "react-datepicker";
+import styles from "./DatePicker.module.css";
+import { Typography } from "../Typography";
+import { Button } from "../Button";
+
+export function DatePickerCustomHeader({
+  monthDate,
+  decreaseMonth,
+  increaseMonth,
+  prevMonthButtonDisabled,
+  nextMonthButtonDisabled,
+}: ReactDatePickerCustomHeaderProps) {
+  return (
+    <div className={styles.header}>
+      <Button
+        onClick={decreaseMonth}
+        disabled={prevMonthButtonDisabled}
+        icon="arrowLeft"
+        ariaLabel="Previous Month"
+        variation="work"
+        type="tertiary"
+      />
+
+      <div className={styles.month}>
+        <Typography element="span" fontFamily="display" size="large">
+          {monthDate.toLocaleString("en-US", {
+            month: "long",
+            year: "numeric",
+          })}
+        </Typography>
+      </div>
+
+      <Button
+        onClick={increaseMonth}
+        disabled={nextMonthButtonDisabled}
+        icon="arrowRight"
+        ariaLabel="Next Month"
+        variation="work"
+        type="tertiary"
+      />
+    </div>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `activator` | `ReactElement<any, string | JSXElementConstructor<any>> | ((props: DatePickerActivatorProps) => ReactElement<any, string | JSXElementConstructor<...>>)` | ❌ | `_none_` | Use a custom activator to trigger the DatePicker |
+| `disabled` | `boolean` | ❌ | `[object Object]` | Stops the user from interaction |
+| `fullWidth` | `boolean` | ❌ | `[object Object]` | Whether the datepicker should take up a whole block |
+| `readonly` | `boolean` | ❌ | `[object Object]` | Whether or not you can select a date |
+| `inline` | `boolean` | ❌ | `_none_` | Determines if the DatePicker should be shown without needing to trigger the Activator. |
+| `maxDate` | `Date` | ❌ | `_none_` | The maximum selectable date. |
+| `minDate` | `Date` | ❌ | `_none_` | The minimum selectable date. |
+| `selected` | `Date` | ❌ | `_none_` | The selected Date object |
+| `smartAutofocus` | `boolean` | ❌ | `true` | Determines if the focus moves to the selected date (if any) or back to
+the activator |
+| `highlightDates` | `Date[]` | ❌ | `_none_` | Dates on the calendar to highlight |
+| `firstDayOfWeek` | `DayOfWeek` | ❌ | `0` | Sets which day is considered the first day of the week.
+0 = Sunday, 1 = Monday, etc. |
+| `onChange` | `(val: Date) => void` | ✅ | `_none_` | Change handler that will return the date selected. |
+| `onMonthChange` | `(val: Date) => void` | ❌ | `_none_` | Change handler when the selected month changes |
+
+
+## Categories
+
+- Selections
+
+## Web Test Code
+
+```typescript
+DatePicker Calendar Date Picker Date Input Web React Test Testing Jest import React from "react";
+import { render, screen, within } from "@testing-library/react";
+import ReactDatePicker from "react-datepicker";
+import userEvent from "@testing-library/user-event";
+import { DatePicker } from "./DatePicker";
+import styles from "./DatePicker.module.css";
+import {
+  AtlantisContext,
+  atlantisContextDefaultValues,
+} from "../AtlantisContext";
+
+beforeEach(() => {
+  /**
+   * We need to mock our date because DatePicker sets an initial date
+   * to `new Date`, we could only predict the current date for a month.
+   *
+   * This will mock our system time to `April 7, 2021`.
+   */
+  jest.useFakeTimers();
+  jest.setSystemTime(new Date(2021, 3, 7));
+});
+
+it("renders only a button by default", () => {
+  render(<DatePicker selected={new Date()} onChange={jest.fn()} />);
+
+  /**
+   * Checking for null here, as if someone was to change
+   * the `inline` prop to true by default this would fail.
+   */
+  expect(screen.queryByText("15")).toBeNull();
+  expect(screen.getByLabelText("Open Datepicker")).toBeInTheDocument();
+});
+
+it("returns the dates from onChange", async () => {
+  const changeHandler = jest.fn();
+  render(<DatePicker selected={new Date()} onChange={changeHandler} />);
+
+  jest.useRealTimers();
+  await userEvent.click(screen.getByLabelText("Open Datepicker"));
+  await userEvent.click(screen.getByText("15"));
+
+  expect(changeHandler).toHaveBeenCalledWith(expect.any(Date));
+});
+
+it("should not call onChange handler if date is disabled", async () => {
+  const changeHandler = jest.fn();
+  render(
+    <DatePicker
+      minDate={new Date(2021, 3, 4)}
+      maxDate={new Date(2021, 3, 17)}
+      selected={new Date()}
+      onChange={changeHandler}
+    />,
+  );
+
+  jest.useRealTimers();
+  await userEvent.click(screen.getByLabelText("Open Datepicker"));
+  await userEvent.click(screen.getByText("2"));
+  await userEvent.click(screen.getByText("21"));
+
+  expect(changeHandler).not.toHaveBeenCalled();
+});
+
+it("allows for a custom activator to open the DatePicker", async () => {
+  render(
+    <DatePicker
+      selected={new Date()}
+      onChange={jest.fn()}
+      activator={<div>Activate me</div>}
+    />,
+  );
+  jest.useRealTimers();
+  await userEvent.click(screen.getByText("Activate me"));
+
+  expect(screen.getByText("15")).toBeInstanceOf(HTMLDivElement);
+});
+
+it("always appears when inline", () => {
+  render(<DatePicker selected={new Date()} onChange={jest.fn()} inline />);
+
+  expect(screen.getByText("15")).toBeInstanceOf(HTMLDivElement);
+});
+
+it("should call onMonthChange when the user switches month", async () => {
+  const monthChangeHandler = jest.fn();
+  render(
+    <DatePicker
+      selected={new Date()}
+      onChange={jest.fn()}
+      onMonthChange={monthChangeHandler}
+    />,
+  );
+
+  jest.useRealTimers();
+  await userEvent.click(screen.getByLabelText("Open Datepicker"));
+  await userEvent.click(screen.getByLabelText("Next Month"));
+
+  expect(monthChangeHandler).toHaveBeenCalledWith(expect.any(Date));
+});
+
+describe("react-datepicker-ignore-onclickoutside class behavior", () => {
+  const className = "react-datepicker-ignore-onclickoutside";
+
+  it("should add className when non-inline picker is opened", async () => {
+    const { container } = render(<DatePicker onChange={jest.fn()} />);
+    const target = container.firstChild;
+
+    expect(target).not.toHaveClass(className);
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+    expect(target).toHaveClass(className);
+  });
+
+  it("should never have className when inline", () => {
+    const { container } = render(<DatePicker onChange={jest.fn()} inline />);
+    const target = container.firstChild;
+
+    expect(target).not.toHaveClass(className);
+  });
+
+  it("should only apply className to active DatePicker", async () => {
+    const { container } = render(
+      <>
+        <DatePicker onChange={jest.fn()} />
+        <DatePicker onChange={jest.fn()} />
+      </>,
+    );
+    const [picker1, picker2] = container.querySelectorAll(
+      `.${styles.datePickerWrapper}`,
+    );
+
+    expect(picker1).not.toHaveClass(className);
+    expect(picker2).not.toHaveClass(className);
+
+    jest.useRealTimers();
+    await userEvent.click(
+      within(picker1 as HTMLElement).getByLabelText("Open Datepicker"),
+    );
+
+    expect(picker1).toHaveClass(className);
+    expect(picker2).not.toHaveClass(className);
+  });
+});
+
+describe("ESC key behavior", () => {
+  const handleEscape = jest.fn();
+  const handleKeyDown = (e: { key: string }) =>
+    e.key === "Escape" && handleEscape();
+  beforeEach(() => {
+    window.addEventListener("keydown", handleKeyDown);
+  });
+  afterEach(() => {
+    window.removeEventListener("keydown", handleKeyDown);
+  });
+  it("should not trigger parent ESC listener when closed with ESC key", async () => {
+    render(
+      <div onKeyDown={handleKeyDown}>
+        <DatePicker selected={new Date()} onChange={jest.fn()} />
+      </div>,
+    );
+    // Open the picker
+    const button = screen.getByRole("button", { name: /open datepicker/i });
+    jest.useRealTimers();
+    await userEvent.click(button);
+
+    // Close the picker with ESC
+    await userEvent.keyboard("{Escape}");
+
+    expect(
+      screen.queryByRole("button", { name: /next month/i }),
+    ).not.toBeInTheDocument();
+    expect(handleEscape).not.toHaveBeenCalled();
+  });
+});
+
+describe("Ensure ReactDatePicker CSS class names exists", () => {
+  it("should have the click outside class", async () => {
+    render(<ReactDatePicker onChange={jest.fn} />);
+    jest.useRealTimers();
+
+    const input = screen.getByRole("textbox");
+    const className = "react-datepicker-ignore-onclickoutside";
+
+    expect(input).not.toHaveClass(className);
+    await userEvent.tab();
+    expect(input).toHaveClass(className);
+  });
+
+  describe("Overwritten CSS class name", () => {
+    const classNames = [
+      ".react-datepicker",
+      ".react-datepicker__input-container",
+      ".react-datepicker-wrapper",
+      ".react-datepicker-popper",
+      ".react-datepicker__header",
+      ".react-datepicker__month",
+      ".react-datepicker__day",
+      ".react-datepicker__day--outside-month",
+      ".react-datepicker__day--selected",
+      ".react-datepicker__day-names",
+      ".react-datepicker__day-name",
+      ".react-datepicker__day--disabled",
+    ];
+
+    classNames.forEach(className => {
+      it(`should have ${className}`, async () => {
+        const { container } = render(
+          <ReactDatePicker
+            minDate={new Date(2021, 3, 4)}
+            maxDate={new Date(2021, 3, 27)}
+            selected={new Date()}
+            onChange={jest.fn}
+          />,
+        );
+        jest.useRealTimers();
+        await userEvent.tab();
+        expect(container.querySelector(className)).toBeTruthy();
+      });
+    });
+  });
+});
+
+describe("Week Start", () => {
+  it("should default to Sunday", async () => {
+    render(<DatePicker onChange={jest.fn()} />);
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+
+    const dayNames = Array.from(
+      document.querySelectorAll(".react-datepicker__day-name"),
+    ).map(el => el.textContent);
+
+    expect(dayNames[0]).toBe("Sun");
+  });
+
+  it("should respect the provided firstDayOfWeek value", async () => {
+    render(<DatePicker onChange={jest.fn()} firstDayOfWeek={1} />);
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+
+    const dayNames = Array.from(
+      document.querySelectorAll(".react-datepicker__day-name"),
+    ).map(el => el.textContent);
+
+    expect(dayNames[0]).toBe("Mon");
+  });
+
+  it("should respect the firstDayOfWeek when provided in AtlantisContext", async () => {
+    render(
+      <AtlantisContext.Provider
+        value={{ ...atlantisContextDefaultValues, firstDayOfWeek: 3 }}
+      >
+        <DatePicker onChange={jest.fn()} />
+      </AtlantisContext.Provider>,
+    );
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+
+    const dayNames = Array.from(
+      document.querySelectorAll(".react-datepicker__day-name"),
+    ).map(el => el.textContent);
+
+    expect(dayNames[0]).toBe("Wed");
+  });
+
+  it("should respect firstDayOfWeek in DatePicker over AtlantisContext", async () => {
+    render(
+      <AtlantisContext.Provider
+        value={{ ...atlantisContextDefaultValues, firstDayOfWeek: 4 }}
+      >
+        <DatePicker onChange={jest.fn()} firstDayOfWeek={1} />
+      </AtlantisContext.Provider>,
+    );
+
+    jest.useRealTimers();
+    await userEvent.click(screen.getByLabelText("Open Datepicker"));
+
+    const dayNames = Array.from(
+      document.querySelectorAll(".react-datepicker__day-name"),
+    ).map(el => el.textContent);
+
+    expect(dayNames[0]).toBe("Mon");
+  });
+});
+import React from "react";
+import { render } from "@testing-library/react";
+import { DatePickerActivator } from "./DatePickerActivator";
+import { Button } from "../Button";
+
+it("renders a button by default", () => {
+  const { getByRole, getByTestId } = render(<DatePickerActivator />);
+  expect(getByRole("button")).toBeInTheDocument();
+  expect(getByTestId("calendar")).toBeInTheDocument();
+});
+
+it("renders the activator with fullWidth if it's a valid element", () => {
+  const { getByText, getByRole } = render(
+    <DatePickerActivator
+      activator={<Button fullWidth={true} label="activate me" />}
+      fullWidth={true}
+    />,
+  );
+  expect(getByText("activate me")).toBeInTheDocument();
+  expect(getByRole("button")).toHaveClass("fullWidth");
+});
+
+it("renders the activator if it's a function returning an element", () => {
+  const { getByText } = render(
+    <DatePickerActivator activator={() => <div>activate me </div>} />,
+  );
+  expect(getByText("activate me")).toBeInTheDocument();
+});
+
+it("removes fullWidth and activator props if a basic html element is the activator", () => {
+  const { getByText } = render(
+    <DatePickerActivator activator={<div>activate me</div>} fullWidth={true} />,
+  );
+  expect(getByText("activate me")).toBeInTheDocument();
+  expect(getByText("activate me")).not.toHaveAttribute("fullWidth");
+});
+import React, { useEffect } from "react";
+import { render, waitFor } from "@testing-library/react";
+import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
+
+describe("useFocusOnSelectedDate hook", () => {
+  it("focuses when the selected class name exists in the dom", async () => {
+    const { getByTestId } = render(<TestComponent hasSelectedDay={true} />);
+    await waitFor(() => {
+      expect(getByTestId("this is it")).toHaveFocus();
+    });
+  });
+
+  it("doesn't focus when the selected class name doesn't exist in the dom", async () => {
+    render(<TestComponent hasSelectedDay={false} />);
+    await waitFor(() => {
+      expect(document.body).toHaveFocus();
+    });
+  });
+});
+
+interface TestComponentProps {
+  readonly hasSelectedDay?: boolean;
+}
+
+function TestComponent({ hasSelectedDay }: TestComponentProps) {
+  const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
+
+  useEffect(focusOnSelectedDate, []);
+
+  return (
+    <div ref={ref}>
+      {hasSelectedDay && (
+        <div
+          data-testid="this is it"
+          className="react-datepicker__day--selected"
+          tabIndex={0}
+        />
+      )}
+      <div />
+    </div>
+  );
+}
+
+```
+
+## Component Path
+
+`/components/DatePicker`
+
+---
+
+_Generated on 2025-08-21T17:35:16.374Z_

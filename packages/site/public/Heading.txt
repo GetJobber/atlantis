@@ -1,0 +1,378 @@
+# Heading
+
+# Heading
+
+Headings are used as the titles of each major section of a page in the
+interface. Reserved for short and important text, Headings create a visual
+hierarchy for the user.
+
+## Design & usage guidelines
+
+<Tabs>
+  <Tab label="Web">
+
+| Level                   | Use case                                                                                                                                                                                                                                |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<Heading level={1} />` | Should explain the main subject of the page. There should only be one `level={1}` Heading on a page                                                                                                                                     |
+| `<Heading level={2} />` | Used to categorize large groups of content. For example, there are two main categories when creating a new client: client details and property details. This heading can be skipped if there are no large groups that need breaking up. |
+| `<Heading level={3} />` | Used to group content and forms on a single topic.                                                                                                                                                                                      |
+| `<Heading level={4} />` | Used to group contents after a `level={3}` Heading or inside a card component.                                                                                                                                                          |
+| `<Heading level={5} />` | `level={5}` is used to group contents after a `level={4}` Heading.                                                                                                                                                                      |
+| `<Heading level={6} />` | Used to group contents after a `level={5}` Heading or to group small lists of content.                                                                                                                                                  |
+
+  </Tab>
+
+  <Tab label="Mobile">
+
+| Level                              | Use case                                                                                                                                                           |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `<Heading level={"title"} />`      | Should explain the main subject of the page. There should only be one `title` Heading on a page.                                                                   |
+| `<Heading level={"subtitle"} />`   | Used to categorize large groups of content.                                                                                                                        |
+| `<Heading level={"heading"} />`    | Used to group content and forms on a single topic. Like `title` and `subtitle`, `heading` uses [Jobber Pro](../?path=/docs/design-typography--docs#font-families). |
+| `<Heading level={"subHeading"} />` | Used to group small lists of content, `subHeading` uses the [Inter](../?path=/docs/design-typography--docs#base) font.                                             |
+
+  </Tab>
+</Tabs>
+
+## Content guidelines
+
+The only content that should be used in a Heading is text. Use sentence-case for
+headings. The exception is `Heading 6` in the web Headings, which is capitalized
+as a stylistic reference to the
+[eyebrow typographic pattern.](https://app.uxcel.com/lessons/basics-ii-588#eyebrow-headline-8095)
+
+| ✅ Do                       | ❌ Don't                    |
+| --------------------------- | --------------------------- |
+| Job #21 for Nathaniel Lewis | Job #21 For Nathaniel Lewis |
+| Save job and...             | Save Job And...             |
+| Push notification settings  | Push Notification Settings  |
+
+## Related components
+
+For introductory text after a page title, or paragraph text for body copy, use
+[Text](/components/Text).
+
+## Accessibility
+
+In the web, HTML heading levels (h1, h2, h3, etc) correspond with document
+structure for assistive technology. Designers should strive to use the right
+level of heading visually to create an appropriate hierarchy, but in cases where
+this is not desired you can still specify the correct semantic level of Heading
+using the `element` property.
+
+In mobile, assistive technology only picks up on whether or not a typographic
+element is a heading or not, so the `element` property is not exposed.
+
+## Platform considerations
+
+There are a few caveats around copying text on Android and iOS that you can read
+under the
+[Typography](../?path=/docs/components-text-and-typography-typography--docs#platform-considerations)
+documentation.
+
+## Web Component Code
+
+```tsx
+Heading Title Subtitle Header H1 H2 H3 H4 H5 H6 Web React import type { ReactNode } from "react";
+import React from "react";
+import type { TypographyOptions, TypographyProps } from "../Typography";
+import { Typography } from "../Typography";
+
+type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
+export interface HeadingProps {
+  /**
+   * @default 5
+   */
+  readonly level: HeadingLevel;
+  readonly children: ReactNode;
+  /**
+   * Allows overriding of the element rendered. Defaults to the heading specified with level.
+   */
+  readonly element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+
+  /**
+   * The maximum amount of lines the text can occupy before being truncated with "...".
+   * Uses predefined string values that correspond to a doubling scale for the amount of lines.
+   */
+  readonly maxLines?:
+    | "single"
+    | "small"
+    | "base"
+    | "large"
+    | "larger"
+    | "unlimited";
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: TypographyProps["UNSAFE_className"];
+
+  /**
+   * **Use at your own risk:** Custom styles for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: TypographyProps["UNSAFE_style"];
+}
+
+export type LevelMap = Record<HeadingLevel, TypographyOptions>;
+
+export function Heading({
+  level = 5,
+  children,
+  element,
+  maxLines = "unlimited",
+  UNSAFE_className,
+  UNSAFE_style,
+}: HeadingProps) {
+  const levelMap: LevelMap = {
+    1: {
+      element: "h1",
+      size: "jumbo",
+      fontWeight: "black",
+      textColor: "heading",
+    },
+    2: {
+      element: "h2",
+      size: "largest",
+      fontWeight: "bold",
+      textColor: "heading",
+    },
+    3: {
+      element: "h3",
+      size: "larger",
+      fontWeight: "bold",
+      textColor: "heading",
+    },
+    4: {
+      element: "h4",
+      size: "large",
+      fontWeight: "bold",
+      textColor: "heading",
+    },
+    5: {
+      element: "h5",
+      size: "base",
+      fontWeight: "bold",
+      textColor: "heading",
+    },
+    6: {
+      element: "h6",
+      size: "small",
+      textCase: "uppercase",
+      fontWeight: "bold",
+      textColor: "heading",
+    },
+  };
+
+  const maxLineToNumber = {
+    single: 1,
+    small: 2,
+    base: 4,
+    large: 8,
+    larger: 16,
+    unlimited: undefined,
+  };
+
+  return (
+    <Typography
+      {...levelMap[level]}
+      element={element || levelMap[level].element}
+      numberOfLines={maxLineToNumber[maxLines]}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_style={UNSAFE_style}
+    >
+      {children}
+    </Typography>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `level` | `HeadingLevel` | ❌ | `5` | _No description_ |
+| `element` | `"h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span"` | ❌ | `_none_` | Allows overriding of the element rendered. Defaults to the heading specified with level. |
+| `maxLines` | `"single" | "small" | "base" | "large" | "larger" | "unlimited"` | ❌ | `unlimited` | The maximum amount of lines the text can occupy before being truncated with "...".
+Uses predefined string values that correspond to a doubling scale for the amount of lines. |
+| `UNSAFE_className` | `{ textStyle?: string; }` | ❌ | `_none_` | **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+| `UNSAFE_style` | `{ textStyle?: CSSProperties; }` | ❌ | `_none_` | **Use at your own risk:** Custom styles for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `string` | ✅ | `_none_` | Text to display. |
+| `level` | `HeadingLevel` | ❌ | `_none_` | The type of heading, e.g., "Title" |
+| `variation` | `HeadingColor` | ❌ | `heading` | The text color of heading |
+| `reverseTheme` | `boolean` | ❌ | `[object Object]` | Uses the reverse variant of the text color for the heading |
+| `align` | `TextAlign` | ❌ | `_none_` | Alignment of heading |
+| `maxLines` | `TruncateLength` | ❌ | `unlimited` | The maximum amount of lines the text can occupy before being truncated with "...".
+Uses predefined string values that correspond to a doubling scale for the amount of lines. |
+| `allowFontScaling` | `boolean` | ❌ | `true` | Allow text to be resized based on user's device display scale |
+| `selectable` | `boolean` | ❌ | `true` | Lets the user select text, to use the native copy and paste functionality.
+WARNING: if true, this prevents ellipsis from being shown on Android. |
+
+
+## Categories
+
+- Text & Typography
+
+## Web Test Code
+
+```typescript
+Heading Title Subtitle Header H1 H2 H3 H4 H5 H6 Web React Test Testing Jest import { render, screen } from "@testing-library/react";
+import React from "react";
+import { Heading } from ".";
+
+it("renders a Heading 1", () => {
+  const { container } = render(<Heading level={1}>Dis be a Heading 1</Heading>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h1
+        class="base black jumbo heading"
+      >
+        Dis be a Heading 1
+      </h1>
+    </div>
+  `);
+});
+
+it("renders a Heading 2", () => {
+  const { container } = render(<Heading level={2}>Dis be a Heading 2</Heading>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h2
+        class="base bold largest heading"
+      >
+        Dis be a Heading 2
+      </h2>
+    </div>
+  `);
+});
+
+it("renders a Heading 3", () => {
+  const { container } = render(<Heading level={3}>Dis be a Heading 3</Heading>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h3
+        class="base bold larger heading"
+      >
+        Dis be a Heading 3
+      </h3>
+    </div>
+  `);
+});
+
+it("renders a Heading 4", () => {
+  const { container } = render(<Heading level={4}>Dis be a Heading 4</Heading>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h4
+        class="base bold large heading"
+      >
+        Dis be a Heading 4
+      </h4>
+    </div>
+  `);
+});
+
+it("renders a Heading 5", () => {
+  const { container } = render(<Heading level={5}>Dis be a Heading 5</Heading>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h5
+        class="base bold base heading"
+      >
+        Dis be a Heading 5
+      </h5>
+    </div>
+  `);
+});
+
+it("renders a non heading inline element", () => {
+  const { container } = render(
+    <Heading level={5} element="span">
+      Dis be a span
+    </Heading>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <span
+        class="base bold base heading"
+      >
+        Dis be a span
+      </span>
+    </div>
+  `);
+});
+
+it("renders with maxLines prop", () => {
+  const { container } = render(
+    <Heading level={2} maxLines="small">
+      This is a very long heading text that would likely be truncated when the
+      maxLines prop is set to small, which corresponds to 2 lines maximum
+    </Heading>,
+  );
+
+  const heading = container.querySelector("h2");
+  expect(heading).toHaveClass("textTruncate");
+
+  expect(heading).toHaveTextContent(
+    "This is a very long heading text that would likely be truncated when the maxLines prop is set to small, which corresponds to 2 lines maximum",
+  );
+
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h2
+        class="base bold largest heading textTruncate"
+      >
+        This is a very long heading text that would likely be truncated when the maxLines prop is set to small, which corresponds to 2 lines maximum
+      </h2>
+    </div>
+  `);
+});
+
+describe("UNSAFE_props", () => {
+  it("should apply the UNSAFE_className to the element", () => {
+    render(
+      <Heading level={1} UNSAFE_className={{ textStyle: "custom-class" }}>
+        Test with custom class name
+      </Heading>,
+    );
+    const element = screen.getByText("Test with custom class name");
+    expect(element).toHaveClass("custom-class");
+  });
+
+  it("should apply the UNSAFE_style to the element", () => {
+    render(
+      <Heading level={1} UNSAFE_style={{ textStyle: { color: "red" } }}>
+        Test with custom style
+      </Heading>,
+    );
+    const element = screen.getByText("Test with custom style");
+    expect(element).toHaveStyle({ color: "red" });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Heading`
+
+---
+
+_Generated on 2025-08-21T17:35:16.362Z_

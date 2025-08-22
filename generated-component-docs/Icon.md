@@ -1,0 +1,735 @@
+# Icon
+
+# Icon
+
+Icons are used to visually represent an idea or action. They can act as
+wayfinding tools to orient users in the product, and identify common
+interactions.
+
+<Banner type="notice" dismissible={false}>
+  Looking to add a new Icon to Atlantis? Read the [Adding an
+  icon](../guides/adding-an-icon) guide before you get started.
+</Banner>
+
+## Design & usage guidelines
+
+Icons should generally be paired with a label to help users understand the
+meaning. If you want to use an Icon without a label, test with users to ensure
+it's clear what the Icon represents.
+
+In cases where a label may not be feasible space-wise, use a Tooltip to provide
+contextual support.
+
+<Canvas>
+  <div
+    style={{ display: "flex", alignItems: "center", gap: "var(--space-large)" }}
+  >
+    <Tooltip message="Search">
+      <Icon name="search" />
+    </Tooltip>
+    <Tooltip message="Support">
+      <Icon name="help" />
+    </Tooltip>
+    <Tooltip message="Settings">
+      <Icon name="cog" />
+    </Tooltip>
+  </div>
+</Canvas>
+
+### Status
+
+Icons are commonly paired with status messages to help the user quickly
+understand the state of the application.
+
+<Canvas>
+  <Content spacing="larger">
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="alert" color="critical" />
+      <Content spacing="smallest">
+        <Text variation="error">Something has gone wrong</Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="warning" color="warning" />
+      <Content spacing="smallest">
+        <Text variation="warn">Something could go wrong</Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="info" color="informative" />
+      <Content spacing="smallest">
+        <Text variation="info">Something is happening</Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="checkmark" />
+      <Content spacing="smallest">
+        <Text variation="success">Something succeeded</Text>
+      </Content>
+    </div>
+  </Content>
+</Canvas>
+
+### Sizes
+
+<Canvas>
+  <Content spacing="larger">
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-large)",
+      }}
+    >
+      <Icon name="search" size="small" />
+      <Content spacing="smallest">
+        <Text>Small</Text>
+        <Text size="small" variation="subdued">
+          When space is severely constrained
+        </Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-base)",
+      }}
+    >
+      <Icon name="search" />
+      <Content spacing="smallest">
+        <Text>Base</Text>
+        <Text size="small" variation="subdued">
+          For most icon usage
+        </Text>
+      </Content>
+    </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Icon name="search" size="large" />
+      <Content spacing="smallest">
+        <Text>Large</Text>
+        <Text size="small" variation="subdued">
+          When the icon is prominently featured in the interface
+        </Text>
+      </Content>
+    </div>
+  </Content>
+</Canvas>
+
+## Related components
+
+- [Button](../components/Button)
+- [IconButton](../components/IconButton) (mobile-only)
+- [Banner](../components/Banner)
+
+## Accessibility
+
+- Icons are a visual supplement, so they should not be used as the only means of
+  conveying information
+  - Ensure icons are paired with a label if they are used as a standalone
+    element
+  - When used in an icon-only Button, provide an aria-label and use a Tooltip
+
+## Available icons
+
+### Arrows
+
+| Icon                           | `Name`           |
+| :----------------------------- | :--------------- |
+| <Icon name="arrowDown" />      | `arrowDown`      |
+| <Icon name="arrowLeft" />      | `arrowLeft`      |
+| <Icon name="arrowRight" />     | `arrowRight`     |
+| <Icon name="arrowUp" />        | `arrowUp`        |
+| <Icon name="longArrowDown" />  | `longArrowDown`  |
+| <Icon name="longArrowLeft" />  | `longArrowLeft`  |
+| <Icon name="longArrowRight" /> | `longArrowRight` |
+| <Icon name="longArrowUp" />    | `longArrowUp`    |
+
+### Calendar & scheduling
+
+| Icon                                  | `Name`                  |
+| :------------------------------------ | :---------------------- |
+| <Icon name="afterDate" />             | `afterDate`             |
+| <Icon name="availability" />          | `availability`          |
+| <Icon name="beforeDate" />            | `beforeDate`            |
+| <Icon name="calendar" />              | `calendar`              |
+| <Icon name="clearFilters" />          | `clearFilters`          |
+| <Icon name="event" />                 | `event`                 |
+| <Icon name="onlineBooking" />         | `onlineBooking`         |
+| <Icon name="orientationHorizontal" /> | `orientationHorizontal` |
+| <Icon name="orientationVertical" />   | `orientationVertical`   |
+| <Icon name="schedule" />              | `schedule`              |
+| <Icon name="task" />                  | `task`                  |
+| <Icon name="timeline" />              | `timeline`              |
+| <Icon name="today" />                 | `today`                 |
+| <Icon name="recurring" />             | `recurring`             |
+| <Icon name="sliderStart" />           | `sliderStart`           |
+| <Icon name="sliderCenter" />          | `sliderCenter`          |
+
+### Files
+
+| Icon                      | `Name`      |
+| :------------------------ | :---------- |
+| <Icon name="addNote" />   | `addNote`   |
+| <Icon name="archive" />   | `archive`   |
+| <Icon name="excel" />     | `excel`     |
+| <Icon name="file" />      | `file`      |
+| <Icon name="note" />      | `note`      |
+| <Icon name="pdf" />       | `pdf`       |
+| <Icon name="video" />     | `video`     |
+| <Icon name="word" />      | `word`      |
+| <Icon name="upload" />    | `upload`    |
+| <Icon name="image" />     | `image`     |
+| <Icon name="paperclip" /> | `paperclip` |
+
+### Forms
+
+| Icon                         | `Name`         |
+| :--------------------------- | :------------- |
+| <Icon name="checkbox" />     | `checkbox`     |
+| <Icon name="edit" />         | `edit`         |
+| <Icon name="editDisabled" /> | `editDisabled` |
+| <Icon name="radioButton" />  | `radioButton`  |
+| <Icon name="star" />         | `star`         |
+| <Icon name="starHalf" />     | `starHalf`     |
+| <Icon name="starFill" />     | `starFill`     |
+| <Icon name="textBox" />      | `textBox`      |
+| <Icon name="textField" />    | `textField`    |
+| <Icon name="toggle" />       | `toggle`       |
+| <Icon name="dropdown" />     | `dropdown`     |
+| <Icon name="trash" />        | `trash`        |
+
+### Status and support
+
+| Icon                    | `Name`    |
+| :---------------------- | :-------- |
+| <Icon name="alert" />   | `alert`   |
+| <Icon name="warning" /> | `warning` |
+| <Icon name="info" />    | `info`    |
+| <Icon name="help" />    | `help`    |
+| <Icon name="knot" />    | `knot`    |
+
+### Map
+
+| Icon                       | `Name`       |
+| :------------------------- | :----------- |
+| <Icon name="address" />    | `address`    |
+| <Icon name="moveMarker" /> | `moveMarker` |
+| <Icon name="property" />   | `property`   |
+| <Icon name="directions" /> | `directions` |
+| <Icon name="map" />        | `map`        |
+
+### Messaging
+
+| Icon                        | `Name`        |
+| :-------------------------- | :------------ |
+| <Icon name="chat" />        | `chat`        |
+| <Icon name="email" />       | `email`       |
+| <Icon name="markSent" />    | `markSent`    |
+| <Icon name="reminder" />    | `reminder`    |
+| <Icon name="sms" />         | `sms`         |
+| <Icon name="sms2" />        | `sms2`        |
+| <Icon name="sendMessage" /> | `sendMessage` |
+| <Icon name="compose" />     | `compose`     |
+| <Icon name="marketing" />   | `marketing`   |
+
+### User
+
+| Icon                           | `Name`           |
+| :----------------------------- | :--------------- |
+| <Icon name="clients" />        | `clients`        |
+| <Icon name="person" />         | `person`         |
+| <Icon name="company" />        | `company`        |
+| <Icon name="user" />           | `user`           |
+| <Icon name="userSwitch" />     | `userSwitch`     |
+| <Icon name="userUnassigned" /> | `userUnassigned` |
+| <Icon name="vcard" />          | `vcard`          |
+
+### Social media
+
+| Icon                       | `Name`       |
+| :------------------------- | :----------- |
+| <Icon name="angieslist" /> | `angieslist` |
+| <Icon name="facebook" />   | `facebook`   |
+| <Icon name="googlePlay" /> | `googlePlay` |
+| <Icon name="google" />     | `google`     |
+| <Icon name="instagram" />  | `instagram`  |
+| <Icon name="linkedIn" />   | `linkedIn`   |
+| <Icon name="twitter" />    | `twitter`    |
+| <Icon name="yelp" />       | `yelp`       |
+| <Icon name="youtube" />    | `youtube`    |
+| <Icon name="embed" />      | `embed`      |
+
+### Transaction
+
+| Icon                               | `Name`               |
+| :--------------------------------- | :------------------- |
+| <Icon name="bank" />               | `bank`               |
+| <Icon name="payment" />            | `payment`            |
+| <Icon name="percent" />            | `percent`            |
+| <Icon name="wallet" />             | `wallet`             |
+| <Icon name="money" />              | `money`              |
+| <Icon name="transfer" />           | `transfer`           |
+| <Icon name="jobberCardReader" />   | `jobberCardReader`   |
+| <Icon name="contactlessPayment" /> | `contactlessPayment` |
+| <Icon name="cheque" />             | `cheque`             |
+| <Icon name="cash" />               | `cash`               |
+
+### Work
+
+| Icon                         | `Name`         |
+| :--------------------------- | :------------- |
+| <Icon name="chemical" />     | `chemical`     |
+| <Icon name="clockIn" />      | `clockIn`      |
+| <Icon name="clockOut" />     | `clockOut`     |
+| <Icon name="expense" />      | `expense`      |
+| <Icon name="timer" />        | `timer`        |
+| <Icon name="work" />         | `work`         |
+| <Icon name="runningTimer" /> | `runningTimer` |
+
+### Request
+
+| Icon                    | `Name`    |
+| :---------------------- | :-------- |
+| <Icon name="request" /> | `request` |
+
+### Quote
+
+| Icon                  | `Name`  |
+| :-------------------- | :------ |
+| <Icon name="quote" /> | `quote` |
+
+### Job
+
+| Icon                       | `Name`       |
+| :------------------------- | :----------- |
+| <Icon name="job" />        | `job`        |
+| <Icon name="jobOnHold" />  | `jobOnHold`  |
+| <Icon name="moveVisits" /> | `moveVisits` |
+| <Icon name="visit" />      | `visit`      |
+
+### Invoice
+
+| Icon                         | `Name`         |
+| :--------------------------- | :------------- |
+| <Icon name="badInvoice" />   | `badInvoice`   |
+| <Icon name="invoice" />      | `invoice`      |
+| <Icon name="invoiceLater" /> | `invoiceLater` |
+| <Icon name="paidInvoice" />  | `paidInvoice`  |
+| <Icon name="sendInvoice" />  | `sendInvoice`  |
+
+### Fleet management
+
+| Icon                    | `Name`    |
+| :---------------------- | :-------- |
+| <Icon name="truck" />   | `truck`   |
+| <Icon name="speed" />   | `speed`   |
+| <Icon name="wheel" />   | `wheel`   |
+| <Icon name="battery" /> | `battery` |
+| <Icon name="fuel" />    | `fuel`    |
+| <Icon name="engine" />  | `engine`  |
+
+### System actions
+
+| Icon                           | `Name`           |
+| :----------------------------- | :--------------- |
+| <Icon name="add" />            | `add`            |
+| <Icon name="addTag" />         | `addTag`         |
+| <Icon name="automate" />       | `automate`       |
+| <Icon name="batch" />          | `batch`          |
+| <Icon name="condition" />      | `condition`      |
+| <Icon name="copy" />           | `copy`           |
+| <Icon name="customize" />      | `customize`      |
+| <Icon name="download" />       | `download`       |
+| <Icon name="drag" />           | `drag`           |
+| <Icon name="dragHorizontal" /> | `dragHorizontal` |
+| <Icon name="embed" />          | `embed`          |
+| <Icon name="export" />         | `export`         |
+| <Icon name="filter" />         | `filter`         |
+| <Icon name="future" />         | `future`         |
+| <Icon name="import" />         | `import`         |
+| <Icon name="redo" />           | `redo`           |
+| <Icon name="remove" />         | `remove`         |
+| <Icon name="search" />         | `search`         |
+| <Icon name="sort" />           | `sort`           |
+| <Icon name="sync" />           | `sync`           |
+| <Icon name="syncAlert" />      | `syncAlert`      |
+| <Icon name="tag" />            | `tag`            |
+| <Icon name="updateStatus" />   | `updateStatus`   |
+
+### Other
+
+| Icon                            | `Name`            |
+| :------------------------------ | :---------------- |
+| <Icon name="apps" />            | `apps`            |
+| <Icon name="camera" />          | `camera`          |
+| <Icon name="checkmark" />       | `checkmark`       |
+| <Icon name="checkmarkCircle" /> | `checkmarkCircle` |
+| <Icon name="circle" />          | `circle`          |
+| <Icon name="cog" />             | `cog`             |
+| <Icon name="dashboard" />       | `dashboard`       |
+| <Icon name="desktop" />         | `desktop`         |
+| <Icon name="eye" />             | `eye`             |
+| <Icon name="eyeCrossed" />      | `eyeCrossed`      |
+| <Icon name="gift" />            | `gift`            |
+| <Icon name="grid" />            | `grid`            |
+| <Icon name="happyFace" />       | `happyFace`       |
+| <Icon name="headset" />         | `headset`         |
+| <Icon name="home" />            | `home`            |
+| <Icon name="link" />            | `link`            |
+| <Icon name="loadingCheck" />    | `loadingCheck`    |
+| <Icon name="lock" />            | `lock`            |
+| <Icon name="logout" />          | `logout`          |
+| <Icon name="measurement" />     | `measurement`     |
+| <Icon name="menu" />            | `menu`            |
+| <Icon name="microphone" />      | `microphone`      |
+| <Icon name="microphoneMuted" /> | `microphoneMuted` |
+| <Icon name="mobile" />          | `mobile`          |
+| <Icon name="more" />            | `more`            |
+| <Icon name="number" />          | `number`          |
+| <Icon name="offline" />         | `offline`         |
+| <Icon name="phone" />           | `phone`           |
+| <Icon name="pinned" />          | `pinned`          |
+| <Icon name="presentation" />    | `presentation`    |
+| <Icon name="priceTag" />        | `priceTag`        |
+| <Icon name="quickbooks" />      | `quickbooks`      |
+| <Icon name="reports" />         | `reports`         |
+| <Icon name="signature" />       | `signature`       |
+| <Icon name="sneaker" />         | `sneaker`         |
+| <Icon name="sparkles" />        | `sparkles`        |
+| <Icon name="sprout" />          | `sprout`          |
+| <Icon name="starburst" />       | `starburst`       |
+| <Icon name="sun" />             | `sun`             |
+| <Icon name="tableColumns" />    | `tableColumns`    |
+| <Icon name="thumbsDown" />      | `thumbsDown`      |
+| <Icon name="thumbsUp" />        | `thumbsUp`        |
+| <Icon name="unPinned" />        | `unPinned`        |
+| <Icon name="xero" />            | `xero`            |
+
+### Legacy
+
+| Icon                   | `Name`   |
+| :--------------------- | :------- |
+| <Icon name="apple" />  | `apple`  |
+| <Icon name="cross" />  | `cross`  |
+| <Icon name="list" />   | `list`   |
+| <Icon name="minus" />  | `minus`  |
+| <Icon name="minus2" /> | `minus2` |
+| <Icon name="plus" />   | `plus`   |
+| <Icon name="plus2" />  | `plus2`  |
+
+## Web Component Code
+
+```tsx
+Icon Symbol Web React import type { CSSProperties } from "react";
+import React from "react";
+import type { IconColorNames, IconNames, IconSizes } from "@jobber/design";
+import { getIcon } from "@jobber/design";
+
+export type { IconColorNames, IconNames } from "@jobber/design";
+
+export interface IconProps {
+  /** The icon to show.  */
+  readonly name: IconNames;
+
+  /**
+   * Changes the size to small or large.
+   * @default base
+   */
+  readonly size?: IconSizes;
+
+  /**
+   * Determines the color of the icon. Some icons have a default system colour
+   * like quotes, jobs, and invoices. Others that doesn't have a system colour
+   * falls back to greyBlueDark.
+   */
+  readonly color?: IconColorNames;
+
+  /**
+   * Sets a custom color for the icon. Can be a rgb() or hex value.
+   */
+  readonly customColor?: string;
+
+  /**
+   * Used to locate this view in end-to-end tests
+   */
+  readonly testID?: string;
+
+  /**
+   * **Use at your own risk:** Custom classnames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    svg?: string;
+    path?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    svg?: CSSProperties;
+    path?: CSSProperties;
+  };
+}
+
+export function Icon({
+  name,
+  color,
+  customColor,
+  size = "base",
+  testID,
+  UNSAFE_className,
+  UNSAFE_style,
+}: IconProps) {
+  let icon;
+  const { svgStyle, pathStyle, paths, viewBox } = getIcon({
+    name,
+    color: getIconColor(name, color),
+    size,
+    platform: "web",
+  });
+
+  if (name === "truck") {
+    icon = getTruck(pathStyle, customColor);
+  } else {
+    icon = paths.map((path: string) => (
+      <path
+        key={path}
+        style={{ ...pathStyle, ...UNSAFE_style?.path }}
+        className={UNSAFE_className?.path}
+        d={path}
+        fill={customColor}
+      />
+    ));
+  }
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={viewBox}
+      style={{ ...svgStyle, ...UNSAFE_style?.svg }}
+      className={UNSAFE_className?.svg}
+      data-testid={testID || name}
+    >
+      {icon}
+    </svg>
+  );
+}
+
+function getIconColor(name: IconNames, color?: IconColorNames) {
+  if (name === "truck") {
+    return color || "green";
+  }
+
+  return color;
+}
+
+function getTruck(pathStyle: { fill: string }, customColor?: string) {
+  return (
+    <g transform="translate(233.000000, 0.000000)" style={{ ...pathStyle }}>
+      <path
+        d="M31.030303,124.121212 C31.030303,106.983796 44.9231903,93.0909091 62.0606061,93.0909091 L93.0909091,93.0909091 L93.0909091,279.272727 L62.0606061,279.272727 C44.9231903,279.272727 31.030303,265.37984 31.030303,248.242424 L31.030303,124.121212 Z M31.030303,744.727273 C31.030303,727.589236 44.9231903,713.69697 62.0606061,713.69697 L93.0909091,713.69697 L93.0909091,899.878788 L62.0606061,899.878788 C44.9231903,899.878788 31.030303,885.986521 31.030303,868.848485 L31.030303,744.727273 Z M62.0606061,961.939394 L496.484848,961.939394 L496.484848,992.969697 C496.484848,1010.10773 482.592582,1024 465.454545,1024 L93.0909091,1024 C75.9534933,1024 62.0606061,1010.10773 62.0606061,992.969697 L62.0606061,961.939394 Z M494.858861,713.715588 L463.834764,714.258618 L467.083636,900.412509 L498.107733,899.869479 C515.242667,899.571588 528.889794,885.437285 528.591903,868.302352 L526.425988,744.199758 C526.128097,727.064824 511.993794,713.417697 494.858861,713.715588 Z M496.484848,93.0909091 L465.454545,93.0909091 L465.454545,279.272727 L496.484848,279.272727 C513.622885,279.272727 527.515152,265.37984 527.515152,248.242424 L527.515152,124.121212 C527.515152,106.983796 513.622885,93.0909091 496.484848,93.0909091 Z"
+        id="Shape"
+        fill="#2B2B2B"
+      ></path>
+      <path
+        d="M124.121212,0 C89.8460703,0 62.0606061,27.7854642 62.0606061,62.0606061 L62.0606061,310.30303 L31.030303,310.30303 C13.8927321,310.30303 0,324.195297 0,341.333333 L62.0606061,341.333333 L62.0606061,992.969697 L496.484848,992.969697 L496.484848,341.333333 L558.545455,341.333333 C558.545455,324.195297 544.653188,310.30303 527.515152,310.30303 L496.484848,310.30303 L496.484848,62.0606061 C496.484848,27.7854642 468.700315,0 434.424242,0 L124.121212,0 Z"
+        id="Path"
+        fill={customColor}
+      ></path>
+      <path
+        d="M465.454545,589.575758 L93.0909091,589.575758 L93.0909091,713.69697 L124.121212,713.69697 C141.258628,713.69697 155.151515,727.589236 155.151515,744.727273 L155.151515,868.848485 C155.151515,885.986521 141.258628,899.878788 124.121212,899.878788 L93.0909091,899.878788 L93.0909091,961.939394 L465.454545,961.939394 L465.454545,899.878788 L434.424242,899.878788 C417.286206,899.878788 403.393939,885.986521 403.393939,868.848485 L403.393939,744.727273 C403.393939,727.589236 417.286206,713.69697 434.424242,713.69697 L465.454545,713.69697 L465.454545,589.575758 Z"
+        id="Path"
+        fillOpacity="0.35"
+        fill="#000000"
+      ></path>
+      <path
+        d="M93.0909091,62.0606061 C93.0909091,44.9231903 106.983796,31.030303 124.121212,31.030303 L434.424242,31.030303 C451.562279,31.030303 465.454545,44.9231903 465.454545,62.0606061 L465.454545,589.575758 L93.0909091,589.575758 L93.0909091,62.0606061 Z M93.0909091,713.69697 L124.121212,713.69697 C141.258628,713.69697 155.151515,727.589236 155.151515,744.727273 L155.151515,868.848485 C155.151515,885.986521 141.258628,899.878788 124.121212,899.878788 L93.0909091,899.878788 L93.0909091,713.69697 Z M434.424242,713.69697 C417.286206,713.69697 403.393939,727.589236 403.393939,744.727273 L403.393939,868.848485 C403.393939,885.986521 417.286206,899.878788 434.424242,899.878788 L465.454545,899.878788 L465.454545,713.69697 L434.424242,713.69697 Z"
+        id="Shape"
+        fill="#FFFFFF"
+        opacity="0.5"
+      ></path>
+      <path
+        d="M93.0909091,279.272727 C113.777881,268.929396 192.387879,248.242424 279.272727,248.242424 C366.157576,248.242424 444.766642,268.929396 465.454545,279.272727 L403.393939,372.363636 C393.051539,362.021236 341.333333,341.333333 279.272727,341.333333 C217.212121,341.333333 165.494846,362.021236 155.151515,372.363636 L93.0909091,279.272727 Z M155.151515,512 L155.151515,403.393939 L93.0909091,310.30303 L93.0909091,512 L155.151515,512 Z M403.393939,512 L403.393939,403.393939 L465.454545,310.30303 L465.454545,512 L403.393939,512 Z"
+        id="Shape"
+        fill="#2A2A2A"
+      ></path>
+    </g>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop    | Type        | Required  | Default  | Description       |
+| ------- | ----------- | --------- | -------- | ----------------- | ------ | ----------------------------------- | -------------- | ----------------- | ------ | ----------- | ------- | -------- | ----- | ------ | -------- | ------------- | --------------- | ----------------- | --- | -------- | ------------------------------------------------------------------------- |
+| `name`  | `IconNames` | ✅        | `_none_` | The icon to show. |
+| `size`  | `"small"    | "base"    | "large"` | ❌                | `base` | Changes the size to small or large. |
+| `color` | `"task"     | "warning" | "icon"   | "white"           | "grey" | "greyBlue"                          | "greyBlueDark" | "greyBlueLighter" | "blue" | "lightBlue" | "green" | "yellow" | "red" | "navy" | "orange" | "interactive" | ... 33 more ... | "brandHighlight"` | ❌  | `_none_` | Determines the color of the icon. Some icons have a default system colour |
+
+like quotes, jobs, and invoices. Others that doesn't have a system colour falls
+back to greyBlueDark. | | `customColor` | `string` | ❌ | `_none_` | Sets a
+custom color for the icon. Can be a rgb() or hex value. | | `testID` | `string`
+| ❌ | `_none_` | Used to locate this view in end-to-end tests | |
+`UNSAFE_className` | `{ svg?: string; path?: string; }` | ❌ | `_none_` | **Use
+at your own risk:** Custom classnames for specific elements. This should only be
+used as a **last resort**. Using this may result in unexpected side effects.
+More information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `UNSAFE_style` | `{ svg?: CSSProperties; path?: CSSProperties; }` | ❌ |
+`_none_` | **Use at your own risk:** Custom style for specific elements. This
+should only be used as a **last resort**. Using this may result in unexpected
+side effects. More information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+|
+
+### Mobile Props
+
+| Prop    | Type        | Required  | Default  | Description       |
+| ------- | ----------- | --------- | -------- | ----------------- | ------ | ----------------------------------- | -------------- | ----------------- | ------ | ----------- | ------- | -------- | ----- | ------ | -------- | ------------- | --------------- | ----------------- | --- | -------- | ------------------------------------------------------------------------------------------- |
+| `name`  | `IconNames` | ✅        | `_none_` | The icon to show. |
+| `size`  | `"small"    | "base"    | "large"` | ❌                | `base` | Changes the size to small or large. |
+| `color` | `"task"     | "warning" | "icon"   | "white"           | "grey" | "greyBlue"                          | "greyBlueDark" | "greyBlueLighter" | "blue" | "lightBlue" | "green" | "yellow" | "red" | "navy" | "orange" | "interactive" | ... 33 more ... | "brandHighlight"` | ❌  | `_none_` | Determines the color of the icon. If not specified, some icons have a default system colour |
+
+like quotes, jobs, and invoices. Others that don't have a system colour fall
+back to greyBlue. | | `customColor` | `string` | ❌ | `_none_` | Sets a custom
+color for the icon. Can be a rgb() or hex value. | | `testID` | `string` | ❌ |
+`_none_` | Used to locate this view in end-to-end tests |
+
+## Categories
+
+- Images & Icons
+
+## Web Test Code
+
+```typescript
+Icon Symbol Web React Test Testing Jest import { render, screen } from "@testing-library/react";
+import React from "react";
+import { Icon } from ".";
+
+it("renders dashboard icon", () => {
+  const { container } = render(<Icon name="dashboard" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders apple icon", () => {
+  const { container } = render(<Icon name="apple" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders large arrowDown icon", () => {
+  const { container } = render(<Icon name="arrowDown" size="large" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders thumbsDown icon", () => {
+  const { container } = render(<Icon name="thumbsDown" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders small more icon", () => {
+  const { container } = render(<Icon name="more" size="small" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders truck icon", () => {
+  const { container } = render(<Icon name="truck" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders star icon with custom color", () => {
+  const { container } = render(<Icon name="star" customColor="#f33323" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("applies testID prop to svg element", () => {
+  const { getByTestId } = render(<Icon name="star" testID="star-icon" />);
+  expect(getByTestId("star-icon")).toBeInTheDocument();
+});
+
+it("applies name prop as testID when testID prop is not provided", () => {
+  const { getByTestId } = render(<Icon name="star" />);
+  expect(getByTestId("star")).toBeInTheDocument();
+});
+
+describe("UNSAFE_ props", () => {
+  it("should apply the UNSAFE_className to the SVG element", () => {
+    render(<Icon name="gift" UNSAFE_className={{ svg: "custom-svg-class" }} />);
+    const svg = screen.getByTestId("gift");
+    expect(svg).toHaveClass("custom-svg-class");
+  });
+
+  it("should apply the UNSAFE_className to the path elements", () => {
+    render(
+      <Icon name="gift" UNSAFE_className={{ path: "custom-path-class" }} />,
+    );
+    const path = screen.getByTestId("gift").querySelector("path");
+    expect(path).toHaveClass("custom-path-class");
+  });
+
+  it("should apply the UNSAFE_style to the SVG element", () => {
+    render(
+      <Icon
+        name="gift"
+        UNSAFE_style={{ svg: { backgroundColor: "#0066CC" } }}
+      />,
+    );
+    const svg = screen.getByTestId("gift");
+    expect(svg).toHaveStyle("background-color: #0066CC");
+  });
+
+  it("should apply the UNSAFE_style to the path elements", () => {
+    const { container } = render(
+      <Icon name="gift" UNSAFE_style={{ path: { fill: "#0066CC" } }} />,
+    );
+    const path = container.querySelector("path");
+    expect(path).toHaveStyle("fill: #0066CC");
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Icon`
+
+---
+
+_Generated on 2025-08-21T17:35:16.362Z_

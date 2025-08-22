@@ -1,0 +1,596 @@
+# Page
+
+# Page
+
+Use Page to build the outermost "main content" container of a view. Page comes
+complete with the ability to add the page title, along with actions, subtitle,
+and a description as needed.
+
+## Design & usage guidelines
+
+Using Page is pretty straightforward - after any navigational elements, Page
+should contain the content the user will be engaging with. If there is any sort
+of footer, it should exist after Page.
+
+### Title
+
+The `title` prop supports both raw strings as well as any react node. This
+allows complete flexibility, but with that comes responsibility around best
+practices. A page should always start with an H1-level heading for
+accessibility.
+
+If you supply a string, the title will automatically be rendered as an H1
+heading.
+
+If you supply a custom element, you should include an H1-level heading within
+it. Internally we use our [`<Heading level={1}>`](/components/Heading) component
+when a string is supplied, so we recommend you use that if possible.
+
+### Widths
+
+#### Narrow
+
+Use a `narrow` Page when the content is optimized for a single column, such as a
+form design.
+
+#### Standard
+
+Use a `standard` Page for most "show" state layouts, as it allows for a mix of
+contents in a multi-column layout while keeping things constrained so the user
+does not have to track too far left-to-right as they interact.
+
+#### Fill
+
+A `fill` Page should be used when the content is optimized for wider views, such
+as responsive dashboards and data visualizations, data tables, calendars, or
+otherwise does not benefit from horizontal constraints.
+
+## Web Component Code
+
+```tsx
+Page Layout Container Web React import type { ReactNode } from "react";
+import React from "react";
+import classnames from "classnames";
+import type { XOR } from "ts-xor";
+import {
+  Breakpoints,
+  useResizeObserver,
+} from "@jobber/hooks/useResizeObserver";
+import styles from "./Page.module.css";
+import { Heading } from "../Heading";
+import { Text } from "../Text";
+import { Content } from "../Content";
+import { Markdown } from "../Markdown";
+import { Button, type ButtonProps } from "../Button";
+import { Menu, type SectionProps } from "../Menu";
+import { Emphasis } from "../Emphasis";
+
+export type ButtonActionProps = ButtonProps & {
+  ref?: React.RefObject<HTMLDivElement>;
+};
+
+interface PageFoundationProps {
+  readonly children: ReactNode | ReactNode[];
+
+  /**
+   * Title of the page.
+   *
+   * Supports any React node. If a string is provided, it will be rendered as an H1 heading.
+   * Otherwise it will be rendered as is.
+   *
+   * **Important**: If you're passing a custom element, it must include an H1-level heading within it.
+   * Ideally <Heading level={1}> should be used here.
+   */
+  readonly title: ReactNode;
+
+  /**
+   * TitleMetaData component to be displayed
+   * next to the title. Only compatible with string titles.
+   */
+  readonly titleMetaData?: ReactNode;
+
+  /**
+   * Subtitle of the page.
+   */
+  readonly subtitle?: string;
+
+  /**
+   * Determines the width of the page.
+   *
+   * Fill makes the width grow to 100%.
+   *
+   * Standard caps out at 1280px.
+   *
+   * Narrow caps out at 1024px.
+   *
+   * @default standard
+   */
+  readonly width?: "fill" | "standard" | "narrow";
+
+  /**
+   * Page title primary action button settings.
+   */
+  readonly primaryAction?: ButtonActionProps;
+
+  /**
+   * Page title secondary action button settings.
+   */
+  readonly secondaryAction?: ButtonActionProps;
+
+  /**
+   * Page title Action menu.
+   */
+  readonly moreActionsMenu?: SectionProps[];
+}
+
+interface PageWithIntroProps extends PageFoundationProps {
+  /**
+   * Content of the page. This supports basic markdown node types
+   * such as `_italic_`, `**bold**`, and `[link name](url)`.
+   */
+  readonly intro: string;
+
+  /**
+   * Causes any markdown links in the `intro` prop to open in a new
+   * tab, i.e. with `target="_blank"`.
+   *
+   * Can only be used if `intro` prop is also specified.
+   *
+   * Defaults to `false`.
+   */
+  readonly externalIntroLinks?: boolean;
+}
+
+export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
+
+export function Page({
+  title,
+  titleMetaData,
+  intro,
+  externalIntroLinks,
+  subtitle,
+  children,
+  width = "standard",
+  primaryAction,
+  secondaryAction,
+  moreActionsMenu = [],
+}: PageProps) {
+  const pageStyles = classnames(styles.page, styles[width]);
+  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
+    useResizeObserver<HTMLDivElement>();
+
+  const titleBarClasses = classnames(styles.titleBar, {
+    [styles.small]: titleBarWidth > Breakpoints.smaller,
+    [styles.medium]: titleBarWidth > Breakpoints.small,
+    [styles.large]: titleBarWidth > Breakpoints.base,
+  });
+
+  const showMenu = moreActionsMenu.length > 0;
+  const showActionGroup = showMenu || primaryAction || secondaryAction;
+
+  if (primaryAction != undefined) {
+    primaryAction = Object.assign({ fullWidth: true }, primaryAction);
+  }
+
+  if (secondaryAction != undefined) {
+    secondaryAction = Object.assign(
+      { type: "secondary", fullWidth: true },
+      secondaryAction,
+    );
+  }
+
+  if (secondaryAction != undefined) {
+    secondaryAction = Object.assign(
+      { type: "secondary", fullWidth: true },
+      secondaryAction,
+    );
+  }
+
+  return (
+    <div className={pageStyles}>
+      <Content>
+        <Content>
+          <div className={titleBarClasses} ref={titleBarRef}>
+            <div>
+              {typeof title === "string" && titleMetaData ? (
+                <div className={styles.titleRow}>
+                  <Heading level={1}>{title}</Heading>
+                  {titleMetaData}
+                </div>
+              ) : typeof title === "string" ? (
+                <Heading level={1}>{title}</Heading>
+              ) : (
+                title
+              )}
+              {subtitle && (
+                <div className={styles.subtitle}>
+                  <Text size="large" variation="subdued">
+                    <Emphasis variation="bold">
+                      <Markdown content={subtitle} basicUsage={true} />
+                    </Emphasis>
+                  </Text>
+                </div>
+              )}
+            </div>
+            {showActionGroup && (
+              <div className={styles.actionGroup}>
+                {primaryAction && (
+                  <div className={styles.primaryAction} ref={primaryAction.ref}>
+                    <Button {...getActionProps(primaryAction)} />
+                  </div>
+                )}
+                {secondaryAction && (
+                  <div
+                    className={styles.actionButton}
+                    ref={secondaryAction.ref}
+                  >
+                    <Button {...getActionProps(secondaryAction)} />
+                  </div>
+                )}
+                {showMenu && (
+                  <div className={styles.actionButton}>
+                    <Menu items={moreActionsMenu}></Menu>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          {intro && (
+            <Text size="large">
+              <Markdown
+                content={intro}
+                basicUsage={true}
+                externalLink={externalIntroLinks}
+              />
+            </Text>
+          )}
+        </Content>
+        <Content>{children}</Content>
+      </Content>
+    </div>
+  );
+}
+
+export const getActionProps = (actionProps: ButtonActionProps): ButtonProps => {
+  const buttonProps = { ...actionProps };
+  if (actionProps.ref) delete buttonProps.ref;
+
+  return buttonProps;
+};
+
+```
+
+## Props
+
+### Web Props
+
+| Prop                                                    | Type      | Required | Default  | Description                                                    |
+| ------------------------------------------------------- | --------- | -------- | -------- | -------------------------------------------------------------- |
+| `intro`                                                 | `string`  | ❌       | `_none_` | Content of the page. This supports basic markdown node types   |
+| such as `_italic_`, `**bold**`, and `[link name](url)`. |
+| `externalIntroLinks`                                    | `boolean` | ❌       | `_none_` | Causes any markdown links in the `intro` prop to open in a new |
+
+tab, i.e. with `target="_blank"`.
+
+Can only be used if `intro` prop is also specified.
+
+Defaults to `false`. | | `title` | `ReactNode` | ✅ | `_none_` | Title of the
+page.
+
+Supports any React node. If a string is provided, it will be rendered as an H1
+heading. Otherwise it will be rendered as is.
+
+**Important**: If you're passing a custom element, it must include an H1-level
+heading within it. Ideally <Heading level={1}> should be used here. | |
+`titleMetaData` | `ReactNode` | ❌ | `_none_` | TitleMetaData component to be
+displayed next to the title. Only compatible with string titles. | | `subtitle`
+| `string` | ❌ | `_none_` | Subtitle of the page. | | `width` |
+`"fill" | "standard" | "narrow"` | ❌ | `standard` | Determines the width of the
+page.
+
+Fill makes the width grow to 100%.
+
+Standard caps out at 1280px.
+
+Narrow caps out at 1024px. | | `primaryAction` | `ButtonActionProps` | ❌ |
+`_none_` | Page title primary action button settings. | | `secondaryAction` |
+`ButtonActionProps` | ❌ | `_none_` | Page title secondary action button
+settings. | | `moreActionsMenu` | `SectionProps[]` | ❌ | `[]` | Page title
+Action menu. |
+
+## Categories
+
+- Layouts & Structure
+
+## Web Test Code
+
+```typescript
+Page Layout Container Web React Test Testing Jest import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+import { Page } from ".";
+import { getActionProps } from "./Page";
+import type { SectionProps } from "../Menu";
+import { Heading } from "../Heading";
+
+jest.mock("@jobber/hooks", () => {
+  return {
+    ...(jest.requireActual("@jobber/hooks") as Record<string, unknown>),
+    useResizeObserver: () => [
+      { current: undefined },
+      { width: 1000, height: 100 },
+    ],
+
+    Breakpoints: {
+      base: 640,
+      small: 500,
+      smaller: 265,
+      large: 750,
+      larger: 1024,
+    },
+  };
+});
+
+it("renders a Page", () => {
+  const { container } = render(
+    <Page
+      title="Notifications"
+      intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
+    >
+      Sup
+    </Page>,
+  );
+
+  expect(container).toMatchSnapshot();
+});
+
+describe("When actions are provided", () => {
+  it("renders a Page with action buttons and a menu", () => {
+    const sampleActionMenu: SectionProps[] = [
+      {
+        header: "Send as...",
+        actions: [
+          {
+            label: "Text Message",
+            icon: "sms",
+            onClick: jest.fn(),
+          },
+          {
+            label: "Email",
+            icon: "email",
+            onClick: jest.fn(),
+          },
+        ],
+      },
+      {
+        actions: [
+          {
+            label: "Edit",
+            icon: "edit",
+            onClick: jest.fn(),
+          },
+        ],
+      },
+    ];
+
+    const { container } = render(
+      <Page
+        title="Notifications"
+        intro="Improve job completion rates."
+        primaryAction={{ label: "Send Food", onClick: jest.fn() }}
+        secondaryAction={{
+          label: "Send Drink",
+          onClick: jest.fn(),
+        }}
+        moreActionsMenu={sampleActionMenu}
+      >
+        Sup
+      </Page>,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("triggers the correct primary action on click", () => {
+    const handlePrimaryAction = jest.fn();
+    const handleSecondaryAction = jest.fn();
+
+    const { getByText } = render(
+      <Page
+        title="Always Watching"
+        intro="This be an intro."
+        primaryAction={{ label: "First Do", onClick: handlePrimaryAction }}
+        secondaryAction={{
+          label: "Second Do",
+          onClick: handleSecondaryAction,
+        }}
+      >
+        Sup
+      </Page>,
+    );
+
+    fireEvent.click(getByText("First Do"));
+    expect(handlePrimaryAction).toHaveBeenCalledTimes(1);
+
+    fireEvent.click(getByText("Second Do"));
+    expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders secondary action without primary action", () => {
+    const handleSecondaryAction = jest.fn();
+
+    const { getByText } = render(
+      <Page
+        title="Secondary Only"
+        secondaryAction={{
+          label: "Secondary Action",
+          onClick: handleSecondaryAction,
+        }}
+      >
+        Content
+      </Page>,
+    );
+
+    expect(getByText("Secondary Action")).toBeVisible();
+    fireEvent.click(getByText("Secondary Action"));
+    expect(handleSecondaryAction).toHaveBeenCalledTimes(1);
+  });
+
+  describe("getActionProps", () => {
+    it("given action props, it returns the correct props", () => {
+      const buttonActionProps = {
+        label: "Label",
+      };
+      const buttonActionWithRefProps = {
+        label: "Label",
+        ref: { current: null },
+      };
+
+      expect(getActionProps(buttonActionProps)).toEqual(buttonActionProps);
+      expect(getActionProps(buttonActionWithRefProps)).toEqual(
+        buttonActionProps,
+      );
+    });
+  });
+});
+
+describe("When moreActions are provided", () => {
+  it("renders a Page with a moreAction menu", () => {
+    const handleMenuAction = jest.fn();
+
+    const simpleActionMenu: SectionProps[] = [
+      {
+        actions: [
+          {
+            label: "Text Message",
+            onClick: handleMenuAction,
+          },
+        ],
+      },
+    ];
+    const { getByText } = render(
+      <Page
+        title="The Eye"
+        intro="Huh, guess so."
+        moreActionsMenu={simpleActionMenu}
+      >
+        Sup
+      </Page>,
+    );
+
+    // Open the Menu
+    fireEvent.click(getByText("More Actions"));
+
+    fireEvent.click(getByText("Text Message"));
+    expect(handleMenuAction).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("When intro is provided with links", () => {
+  it("opens intro links in same tab if externalIntrolinks is not provided", () => {
+    const { getByRole } = render(
+      <Page
+        title="The Weakest Link"
+        intro="Where does this link open? [click me, I dare you](https://example.com/)"
+      >
+        Sup
+      </Page>,
+    );
+
+    const renderedLink = getByRole("link");
+    expect(renderedLink.textContent).toBe("click me, I dare you");
+    expect(renderedLink.getAttribute("target")).toBeNull();
+  });
+
+  it("opens intro links in same tab if externalIntrolinks is false", () => {
+    const { getByRole } = render(
+      <Page
+        title="The Weakest Link"
+        intro="Where does this link open? [click me, I dare you](https://example.com/)"
+        externalIntroLinks={false}
+      >
+        Sup
+      </Page>,
+    );
+
+    const renderedLink = getByRole("link");
+    expect(renderedLink.textContent).toBe("click me, I dare you");
+    expect(renderedLink.getAttribute("target")).toBeNull();
+  });
+
+  it("opens intro links in a new tab if externalIntrolinks is true", () => {
+    const { getByRole } = render(
+      <Page
+        title="The Weakest Link"
+        intro="Where does this link open? [click me, I dare you](https://example.com/)"
+        externalIntroLinks={true}
+      >
+        Sup
+      </Page>,
+    );
+
+    const renderedLink = getByRole("link");
+    expect(renderedLink.textContent).toBe("click me, I dare you");
+    expect(renderedLink.getAttribute("target")).toBe("_blank");
+  });
+});
+
+describe("When titleMetaData is provided", () => {
+  it("should render the component", () => {
+    const titleMetaDataTestId = "titleMetaDataTestId";
+    const pageTitle = "The greatest page";
+
+    const { getByText, getByTestId } = render(
+      <Page
+        title={pageTitle}
+        titleMetaData={
+          <div data-testid={titleMetaDataTestId}>
+            <StatusLabel label={"Success"} status={"success"} />
+          </div>
+        }
+      >
+        Sup
+      </Page>,
+    );
+
+    expect(getByText(pageTitle)).toBeDefined();
+    expect(getByTestId(titleMetaDataTestId)).toBeDefined();
+  });
+});
+
+describe("when title is a React node", () => {
+  it("renders a Page using that node as the title", () => {
+    render(
+      <Page title={<Heading level={1}>Custom Heading Title</Heading>}>
+        Page content
+      </Page>,
+    );
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Custom Heading Title" }),
+    ).toBeVisible();
+  });
+
+  it("does not render titleMetaData", () => {
+    render(
+      <Page
+        title={<Heading level={1}>Custom Heading Title</Heading>}
+        titleMetaData={<StatusLabel label={"Success"} status={"success"} />}
+      >
+        Page content
+      </Page>,
+    );
+
+    expect(screen.queryByText("Success")).not.toBeInTheDocument();
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Page`
+
+---
+
+_Generated on 2025-08-21T17:35:16.370Z_

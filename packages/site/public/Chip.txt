@@ -1,0 +1,676 @@
+# Chip
+
+# Chip
+
+Chip is a flexible component that can be used for
+
+- inline single- or multi-selection of items
+- triggering filtering and selection components like
+  [Combobox](/components/Combobox)
+- presenting grouped items that can be added or removed
+
+<Canvas>
+  <Chip label="Gavin Messina">
+    <Chip.Prefix>
+      <Avatar
+        size="small"
+        imageUrl="https://images.unsplash.com/photo-1669475535925-a011d7c31d45?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      />
+    </Chip.Prefix>
+    <Chip.Suffix>
+      <Icon name="cross" size="small" />
+    </Chip.Suffix>
+  </Chip>
+</Canvas>
+
+## Design & usage guidelines
+
+See the
+[Comparison story](../?path=/story/components-selections-chip-web-comparisons--all)
+for a full overview of potential Chip variants.
+
+### Variations
+
+The base variation of Chip should be used in most cases. When a lighter-weight
+approach is desired, use the subtle variation.
+
+<Canvas>
+  <Flex template={["shrink", "shrink"]} direction="row" gap="small">
+    <Chip label="Base" />
+    <Chip label="Subtle" variation="subtle" />
+  </Flex>
+</Canvas>
+
+### Selection
+
+Chip allows users to make selections in scenarios where space is at a premium.
+It has three high-level usages: single-select, multi-select, and add/dismiss
+selection.
+
+#### Single-select
+
+If you need the user to make a selection of a single item from among several
+items, and those items all have short (1–2 word) labels, single-select Chips
+will allow the user to choose one of those items.
+
+This preserves vertical space while allowing the user to clearly identify which
+item they have selected.
+
+Unlike [Radio](/components/RadioGroup), the selected single-select Chip can be
+de-selected by the user, leaving all selections blank.
+
+<Canvas>
+  <Flex
+    template={["shrink", "shrink", "shrink", "shrink"]}
+    direction="row"
+    gap="small"
+  >
+    <Chip label="Option 1" variation="subtle" />
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 3" variation="subtle" />
+    <Chip label="Option 4" variation="subtle" />
+  </Flex>
+</Canvas>
+
+#### Multi-select
+
+If you need the user to make a selection of one _or more_ items from amongst
+several items, and those items all have short (1–2 word) labels, a multi-select
+Chips will allow the user to choose as many items from the group as they wish.
+
+This preserves vertical space while allowing the user to clearly identify which
+items they have selected. To signify to the user that multiple selections are
+possible, a checkmark icon is present to reinforce the conceptual similarity to
+a [Checkbox](/components/Checkbox).
+
+Similar to Checkbox, a selected multi-select Chip can be de-selected by the
+user, leaving all selections blank.
+
+<Canvas>
+  <Flex
+    template={["shrink", "shrink", "shrink", "shrink"]}
+    direction="row"
+    gap="small"
+  >
+    <Chip label="Option 1">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 3" variation="subtle" />
+    <Chip label="Option 4">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+  </Flex>
+</Canvas>
+
+#### Add/dismiss selection
+
+When the user will be selecting one or more items by inputting their own Chip
+options, use a dismissible Chip. Think of a case like team assignment, where the
+user can add multiple users represented as Chips, and click on the dismiss
+suffix of the Chip to remove a user.
+
+The dismissible Chip allows them to remove previous selections from the Chips.
+Use this option when the full list of possible selections is too great to
+reasonably display in one group of Chip. For example, "all of my phone contacts"
+would be far too many Chip options to present in one group, and would be
+overwhelming for the user to interpret.
+
+<Canvas>
+  <Flex
+    template={["shrink", "shrink", "shrink", "shrink", "shrink"]}
+    direction="row"
+    gap="small"
+  >
+    <Chip label="Add" variation="subtle">
+      <Chip.Suffix>
+        <Icon name="add" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 1">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 3">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 4">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+  </Flex>
+</Canvas>
+
+### Invalid
+
+If something goes awry with a selection or you otherwise need to convey to the
+user that something's gone wrong in relation to the Chip, you can use the
+invalid state.
+
+<Canvas>
+  <Chip label="Select team" invalid>
+    <Chip.Prefix>
+      <Icon name="alert" size="small" />
+    </Chip.Prefix>
+  </Chip>
+</Canvas>
+
+## Related components
+
+- [Chips](/components/Chips) is a convenience wrapper that offers the
+  single-select, multi-select, and add/dismiss functionality "out of the box"
+- [Combobox](/components/Combobox) is most commonly triggered by a Chip, but is
+  a separate component
+- [Select](/components/Select) is a simpler single-select "dropdown" that
+  presents as a form element and should be preferred in forms
+- [RadioGroup](/components/RadioGroup) should be used to allow the user to
+  select "one-of-many" items (single-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [Checkbox](/components/Checkbox) should be used to allow the user to select
+  "one-or-more-of-many" items (multi-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [InlineLabel](/components/InlineLabel) should be used when you just need a
+  rounded-rectangular element that displays metadata about an element
+
+## Content guidelines
+
+Chip headings and labels for single- or multi-select should be succinct -
+ideally 1–2 words. If any of the options in the group may have longer labels,
+consider Checkbox or Radio as necessary for your selection type.
+
+In cases where a Chip displays name of its selections, such as when used to
+trigger a Combobox or a date range selector, use the heading to identify the
+"category" and the label to identify the selected items.
+
+## Accessibility
+
+Chips should convey to the user whether it is a "checkbox" or "radio" element
+based on single or multi-select. The Chips in this group have the appropriate
+roles and keyboard operation to allow the user to interact as though they are
+dealing with a checkbox or radio button.
+
+If Chips is set for add/dismiss selections, the dismiss button should notify the
+user that they will "dismiss \{label name\}" upon press.
+
+## Responsiveness
+
+The Chips themselves will take up as much space as their container allows, and
+the Chips will flow left to right. Chips may re-flow into new rows, or scroll
+out of view in a single row, depending on your use case.
+
+Chip can truncate if its' container is limited in space, but does not inherently
+cap its own width and will default to "hug" its contents.
+
+## Web Component Code
+
+```tsx
+Chip Pill Badge Tag Select Web React import React, { forwardRef } from "react";
+import classnames from "classnames";
+import { useInView } from "@jobber/hooks/useInView";
+import styles from "./Chip.module.css";
+import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
+import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";
+import type { ChipProps } from "./Chip.types";
+import { useChildComponent } from "./hooks/useChildComponent";
+import { Typography } from "../Typography";
+import { Tooltip } from "../Tooltip";
+
+const ChipComponent = forwardRef<HTMLButtonElement | HTMLDivElement, ChipProps>(
+  (
+    {
+      ariaLabel,
+      disabled,
+      heading,
+      invalid,
+      label,
+      value,
+      testID,
+      onClick,
+      onKeyDown,
+      children,
+      role = "button",
+      tabIndex = 0,
+      variation = "base",
+    },
+    ref,
+  ) => {
+    const classes = classnames(styles.chip, {
+      [styles.invalid]: invalid,
+      [styles.base]: variation === "base",
+      [styles.subtle]: variation === "subtle",
+      [styles.disabled]: disabled,
+    });
+
+    const prefix = useChildComponent(children, d => d.type === ChipPrefix);
+    const suffix = useChildComponent(children, d => d.type === ChipSuffix);
+
+    const [labelRef, labelFullyVisible] = useInView<HTMLSpanElement>();
+    const [headingRef, headingFullyVisible] = useInView<HTMLSpanElement>();
+    const tooltipMessage = getTooltipMessage(
+      labelFullyVisible,
+      headingFullyVisible,
+      label,
+      heading,
+    );
+
+    const chipContent = (
+      <>
+        {prefix}
+        <div className={styles.chipContent}>
+          {heading && (
+            <>
+              <Typography size="base" fontWeight="medium">
+                {heading}
+                <span ref={headingRef} className={styles.chipLabelRef} />
+              </Typography>
+              {label && <span className={styles.chipBar} />}
+            </>
+          )}
+          <Typography size="base">
+            {label}
+            <span ref={labelRef} className={styles.chipLabelRef} />
+          </Typography>
+          {!labelFullyVisible && (
+            <div
+              className={styles.truncateGradient}
+              data-testid="ATL-Chip-Truncation-Gradient"
+            >
+              <span />
+            </div>
+          )}
+        </div>
+        {suffix}
+      </>
+    );
+
+    // Use createElement to properly handle the ref typing
+    return (
+      <Tooltip message={tooltipMessage} setTabIndex={false}>
+        {onClick
+          ? React.createElement(
+              "button",
+              {
+                className: classes,
+                onClick: (ev: React.MouseEvent<HTMLButtonElement>) =>
+                  onClick?.(value, ev),
+                tabIndex: disabled ? -1 : tabIndex,
+                onKeyDown,
+                "aria-label": ariaLabel,
+                disabled,
+                role,
+                "data-testid": testID,
+                type: "button",
+                ref,
+              },
+              chipContent,
+            )
+          : React.createElement(
+              "div",
+              {
+                className: classes,
+                tabIndex: disabled ? -1 : tabIndex,
+                onKeyDown,
+                "aria-label": ariaLabel,
+                role,
+                "data-testid": testID,
+                ref,
+              },
+              chipContent,
+            )}
+      </Tooltip>
+    );
+  },
+);
+
+function getTooltipMessage(
+  labelFullyVisible: boolean,
+  headingFullyVisible: boolean,
+  label: string,
+  heading?: string,
+): string {
+  let message = "";
+
+  if (heading && !headingFullyVisible) {
+    message = `${heading} | ${label}`;
+  } else if (!labelFullyVisible) {
+    message = label;
+  }
+
+  return message;
+}
+
+ChipComponent.displayName = "Chip";
+
+const ChipNamespace = Object.assign(ChipComponent, {
+  Prefix: ChipPrefix,
+  Suffix: ChipSuffix,
+});
+
+export { ChipNamespace as Chip };
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `ariaLabel` | `string` | ❌ | `_none_` | Accessible label, which can be different from the primary label. |
+| `testID` | `string` | ❌ | `_none_` | The testing id for the chip if necessary. |
+| `disabled` | `boolean` | ❌ | `_none_` | Disables both mouse and keyboard functionality, and updates the visual style of the Chip to appear disabled. |
+| `heading` | `string` | ❌ | `_none_` | Adds more prominent text to act as a heading. Will be displayed on the left with a | separator. |
+| `invalid` | `boolean` | ❌ | `_none_` | Changes Chip styling to inform the user of an issue. |
+| `label` | `string` | ✅ | `_none_` | The content of the chip. Will be displayed on the right if you include a heading. |
+| `role` | `string` | ❌ | `button` | The accessible role the Chip is fulfilling. Defaults to 'button' |
+| `tabIndex` | `number` | ❌ | `[object Object]` | Used for accessibility purpopses, specifically using the tab key as navigation. |
+| `value` | `string | number` | ❌ | `_none_` | Will be passed to onClick, when the user clicks on this Chip. |
+| `variation` | `ChipVariations` | ❌ | `base` | Button style variation. Does not affect functionality. |
+| `onClick` | `(value: string | number, ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void` | ❌ | `_none_` | Chip Click Callback. Sends an event and sometimes a value (SelectableChip). |
+| `onKeyDown` | `(ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void` | ❌ | `_none_` | Callback. Called when you keydown on Chip. Ships the event, so you can get the key pushed. |
+| `ref` | `LegacyRef<HTMLButtonElement | HTMLDivElement>` | ❌ | `_none_` | Allows getting a ref to the component instance.
+Once the component unmounts, React will set `ref.current` to `null`
+(or call the ref with `null` if you passed a callback ref).
+@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs} |
+| `key` | `Key` | ❌ | `_none_` | _No description_ |
+
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | ❌ | `_none_` | label of the chip. |
+| `isActive` | `boolean` | ✅ | `_none_` | chip's active status |
+| `isDismissible` | `boolean` | ❌ | `_none_` | Boolean for chip's ability to be dismissed |
+| `inactiveBackgroundColor` | `"surface" | "background"` | ❌ | `background` | Background color to be used for inactive chips |
+| `accessibilityLabel` | `string` | ❌ | `_none_` | Accessibility label for the component. It's also used for testing |
+| `accessibilityRole` | `AccessibilityRole` | ❌ | `radio` | Accessibility role for the component |
+| `onPress` | `() => void` | ❌ | `_none_` | Press handler |
+| `icon` | `IconNames` | ❌ | `_none_` | Optional Icon |
+| `accent` | `AccentType` | ❌ | `_none_` | Background color to be used for Active chips |
+
+
+## Categories
+
+- Selections
+
+## Web Test Code
+
+```typescript
+Chip Pill Badge Tag Select Web React Test Testing Jest import React from "react";
+import { fireEvent, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Chip } from "./Chip";
+import styles from "./Chip.module.css";
+import { Avatar } from "../Avatar";
+
+let mockIsInView = jest.fn(() => true);
+jest.mock("@jobber/hooks/useInView", () => ({
+  useInView: () => [{ current: null }, mockIsInView()],
+}));
+
+describe("Chip", () => {
+  it("renders without error", () => {
+    const onClick = jest.fn();
+    const { getByText } = render(<Chip label="Label" onClick={onClick} />);
+
+    expect(getByText("Label")).toBeInTheDocument();
+  });
+
+  it("calls onClick when clicked", () => {
+    const onClick = jest.fn();
+    const { getByText } = render(<Chip onClick={onClick} label="Test Chip" />);
+
+    fireEvent.click(getByText("Test Chip"));
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("calls onKeyDown when typed in", () => {
+    const onKeyDown = jest.fn();
+    const { getByText } = render(
+      <Chip onKeyDown={onKeyDown} label="Test Chip" />,
+    );
+    fireEvent.keyDown(getByText("Test Chip"), { key: "Enter" });
+    expect(onKeyDown).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not fire onClick when disabled", () => {
+    const label = "Test Disabled";
+    const clickHandler = jest.fn();
+    const { getByText } = render(
+      <Chip label={label} onClick={clickHandler} disabled />,
+    );
+
+    fireEvent.click(getByText(label));
+    expect(clickHandler).toHaveBeenCalledTimes(0);
+  });
+
+  it("should have a role of button when role not provided", () => {
+    const { getByRole } = render(<Chip label="Test Chip" />);
+    expect(getByRole("button")).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("should have a tabIndex of zero if one is not provided", () => {
+    const { getByRole } = render(<Chip label="Test Chip" />);
+
+    expect(getByRole("button")).toHaveAttribute("tabIndex", "0");
+    expect(getByRole("button")).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("should set aria-label if one is provided", () => {
+    const { getByRole } = render(
+      <Chip label="Test Chip" ariaLabel="Test Label" />,
+    );
+
+    expect(getByRole("button")).toHaveAttribute("aria-label", "Test Label");
+  });
+});
+
+describe("Chip Children", () => {
+  it("should only render one prefix if two are provided", () => {
+    const { container } = render(
+      <Chip label="Test Chip">
+        <Chip.Prefix>
+          <Avatar initials="" />
+        </Chip.Prefix>
+        <Chip.Prefix>
+          <Avatar initials="" />
+        </Chip.Prefix>
+      </Chip>,
+    );
+    const elements = container.querySelectorAll("." + styles.prefix);
+
+    expect(elements).toHaveLength(1);
+  });
+
+  it("should only render one suffix if two are provided", () => {
+    const { container } = render(
+      <Chip label="Test Chip">
+        <Chip.Suffix>
+          <Avatar initials="" />
+        </Chip.Suffix>
+        <Chip.Suffix>
+          <Avatar initials="" />
+        </Chip.Suffix>
+      </Chip>,
+    );
+    const elements = container.querySelectorAll("." + styles.suffix);
+
+    expect(elements).toHaveLength(1);
+  });
+});
+
+describe("Chip truncation", () => {
+  describe("with only a label too long to display", () => {
+    beforeEach(() => {
+      mockIsInView.mockReturnValueOnce(false);
+    });
+
+    it("should show a tooltip with the label's content", async () => {
+      const label =
+        "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+      const { getByRole } = render(<Chip label={label} />);
+      const button = getByRole("button");
+
+      await userEvent.hover(button);
+
+      expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
+        label,
+      );
+    });
+
+    it("should show a gradient to indicate truncation", () => {
+      const label =
+        "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+      const { getByTestId } = render(<Chip label={label} />);
+      const gradient = getByTestId("ATL-Chip-Truncation-Gradient");
+
+      expect(gradient).toBeInTheDocument();
+    });
+  });
+
+  describe("with only a label short enough to display", () => {
+    beforeEach(() => {
+      mockIsInView = jest.fn(() => true);
+    });
+
+    it("should not show a tooltip", async () => {
+      const label = "short";
+      const { getByRole } = render(<Chip label={label} />);
+      const button = getByRole("button");
+
+      await userEvent.hover(button);
+
+      expect(
+        document.querySelector("div[role='tooltip']"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not show a gradient", () => {
+      const label = "short";
+      const { queryByTestId } = render(<Chip label={label} />);
+      const gradient = queryByTestId("ATL-Chip-Truncation-Gradient");
+
+      expect(gradient).not.toBeInTheDocument();
+    });
+  });
+
+  describe("with a label and heading", () => {
+    describe("when only label is too long to display", () => {
+      beforeEach(() => {
+        mockIsInView.mockReturnValueOnce(false);
+      });
+
+      it("should show a tooltip with only the label content", async () => {
+        const heading = "heading";
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByRole } = render(<Chip label={label} heading={heading} />);
+        const button = getByRole("button");
+
+        await userEvent.hover(button);
+
+        expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
+          label,
+        );
+      });
+
+      it("should show a gradient to indicate truncation", () => {
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByTestId } = render(<Chip label={label} />);
+        const gradient = getByTestId("ATL-Chip-Truncation-Gradient");
+
+        expect(gradient).toBeInTheDocument();
+      });
+    });
+
+    describe("when heading is also too long to display", () => {
+      beforeEach(() => {
+        mockIsInView.mockReturnValue(false);
+      });
+
+      it("should show a tooltip with the label and heading content", async () => {
+        const heading = "heading";
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByRole } = render(<Chip label={label} heading={heading} />);
+        const button = getByRole("button");
+
+        await userEvent.hover(button);
+
+        expect(document.querySelector("div[role='tooltip']")).toHaveTextContent(
+          `${heading} | ${label}`,
+        );
+      });
+
+      it("should show a gradient to indicate truncation", () => {
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByTestId } = render(<Chip label={label} />);
+        const gradient = getByTestId("ATL-Chip-Truncation-Gradient");
+
+        expect(gradient).toBeInTheDocument();
+      });
+    });
+
+    describe("when both can fully display", () => {
+      beforeEach(() => {
+        mockIsInView.mockReturnValue(true);
+      });
+
+      it("should not show a tooltip on hover", async () => {
+        const heading = "heading";
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { getByRole } = render(<Chip label={label} heading={heading} />);
+        const button = getByRole("button");
+
+        await userEvent.hover(button);
+
+        expect(document.querySelector("div[role='tooltip']")).toBeNull();
+      });
+
+      it("shold now show a gradient to indicate truncation", () => {
+        const label =
+          "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like?";
+        const { queryByTestId } = render(<Chip label={label} />);
+        const gradient = queryByTestId("ATL-Chip-Truncation-Gradient");
+
+        expect(gradient).not.toBeInTheDocument();
+      });
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Chip`
+
+---
+
+_Generated on 2025-08-21T17:35:16.355Z_

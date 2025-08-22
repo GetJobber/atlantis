@@ -1,0 +1,388 @@
+# Tooltip
+
+# Tooltip
+
+A Tooltip provides in-context information that briefly explains the function of
+a UI element. It should be applied to a single wrapped element.
+
+## Design & usage guidelines
+
+When contributing to, or consuming the Tooltip component, consider the
+following:
+
+- A Tooltip can provide the user with additional context about an element of the
+  UI. For example, a Button with only an icon might benefit from a Tooltip to
+  help clarify the action the Button will perform
+- The information in a Tooltip should not be necessary for the user to
+  successfully complete a task. It should provide a "tip" to use the "tools" in
+  the UI
+- Tooltip should _not_ be used to introduce a new element to an interface, or
+  contain actions or other content. Use [Popover](/components/Popover) instead
+
+## Content guidelines
+
+The Tooltip component should contain only text. The text should be brief and
+concise, never exceeding 3 lines.
+
+## Related components
+
+To introduce a novel change to the interface, highlight new functionality, or
+offer a temporary, dismissible "attached" element to part of the UI, use
+[Popover](/components/Popover)
+
+## Web Component Code
+
+```tsx
+Tooltip Popup Hover Popover Info Web React import type { ReactElement, ReactNode } from "react";
+import React, { useState } from "react";
+import classnames from "classnames";
+import { FloatingPortal } from "@floating-ui/react";
+import { motion } from "framer-motion";
+import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import styles from "./Tooltip.module.css";
+import { useTooltipPositioning } from "./useTooltipPositioning";
+import type { Placement } from "./Tooltip.types";
+
+const variation = {
+  startOrStop: { opacity: 0 },
+  done: { opacity: 1 },
+};
+
+interface TooltipProps {
+  readonly children: ReactElement;
+  /**
+   * Tooltip text
+   */
+  readonly message: string;
+  /**
+   * Describes the preferred placement of the Popover.
+   * @default 'top'
+   */
+  readonly preferredPlacement?: Placement;
+
+  readonly setTabIndex?: boolean;
+}
+
+export function Tooltip({
+  message,
+  children,
+  preferredPlacement = "top",
+  setTabIndex = true,
+}: TooltipProps) {
+  const [show, setShow] = useState(false);
+
+  const {
+    placement,
+    shadowRef,
+    styles: floatingStyles,
+    setArrowRef,
+    setTooltipRef,
+  } = useTooltipPositioning({ preferredPlacement: preferredPlacement });
+
+  initializeListeners();
+
+  const toolTipClassNames = classnames(
+    styles.tooltipWrapper,
+    placement === "bottom" && styles.bottom,
+    placement === "top" && styles.top,
+    placement === "left" && styles.left,
+    placement === "right" && styles.right,
+  );
+
+  const arrowX = floatingStyles.arrow?.x;
+  const arrowY = floatingStyles.arrow?.y;
+  const arrowStyles: React.CSSProperties = {
+    position: "absolute",
+    left:
+      arrowX !== null && arrowX !== undefined
+        ? `${floatingStyles.arrow?.x}px`
+        : "",
+    top:
+      arrowY !== null && arrowY !== undefined
+        ? `${floatingStyles.arrow?.y}px`
+        : "",
+  };
+
+  return (
+    <>
+      <span className={styles.shadowActivator} ref={shadowRef} />
+      {children}
+      <TooltipPortal>
+        {show && Boolean(message) && (
+          <div
+            className={toolTipClassNames}
+            style={floatingStyles.float}
+            ref={setTooltipRef}
+            role="tooltip"
+            data-placement={placement}
+          >
+            <motion.div
+              className={styles.tooltip}
+              variants={variation}
+              initial="startOrStop"
+              animate="done"
+              exit="startOrStop"
+              transition={{
+                ease: "easeOut",
+                duration: 0.15,
+                delay: 0.3,
+              }}
+            >
+              <p className={styles.tooltipMessage}>{message}</p>
+              <div
+                ref={setArrowRef}
+                style={arrowStyles}
+                className={styles.arrow}
+              />
+            </motion.div>
+          </div>
+        )}
+      </TooltipPortal>
+    </>
+  );
+
+  function initializeListeners() {
+    const showTooltip = () => {
+      setShow(true);
+    };
+
+    const hideTooltip = () => {
+      setShow(false);
+    };
+
+    const injectAttributes = () => {
+      if (shadowRef?.current?.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        // Manually inject "aria-description" and "tabindex" to let the screen
+        // readers read the tooltip message.
+        // This is to avoid having to add those attribute as a prop on every
+        // component we have.
+        activator.setAttribute("aria-description", message);
+
+        if (setTabIndex) {
+          activator.setAttribute("tabindex", "0"); // enable focus
+        }
+      }
+    };
+
+    const addListeners = () => {
+      if (shadowRef?.current?.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        activator.addEventListener("mouseenter", showTooltip);
+        activator.addEventListener("mouseleave", hideTooltip);
+        activator.addEventListener("focus", showTooltip);
+        activator.addEventListener("blur", hideTooltip);
+      }
+    };
+
+    const removeListeners = () => {
+      if (shadowRef?.current?.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        activator.removeEventListener("mouseenter", showTooltip);
+        activator.removeEventListener("mouseleave", hideTooltip);
+        activator.removeEventListener("focus", showTooltip);
+        activator.removeEventListener("blur", hideTooltip);
+      }
+    };
+
+    useSafeLayoutEffect(() => {
+      injectAttributes();
+      addListeners();
+
+      return () => {
+        removeListeners();
+      };
+    }, []);
+  }
+}
+
+interface TooltipPortalProps {
+  readonly children: ReactNode;
+}
+
+function TooltipPortal({ children }: TooltipPortalProps) {
+  const mounted = useIsMounted();
+
+  if (!mounted?.current) {
+    return null;
+  }
+
+  return <FloatingPortal>{children}</FloatingPortal>;
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop                 | Type        | Required | Default  | Description                                       |
+| -------------------- | ----------- | -------- | -------- | ------------------------------------------------- |
+| `message`            | `string`    | ✅       | `_none_` | Tooltip text                                      |
+| `preferredPlacement` | `Placement` | ❌       | `top`    | Describes the preferred placement of the Popover. |
+| `setTabIndex`        | `boolean`   | ❌       | `true`   | _No description_                                  |
+
+## Categories
+
+- Overlays
+
+## Web Test Code
+
+```typescript
+Tooltip Popup Hover Popover Info Web React Test Testing Jest import React from "react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { Tooltip } from ".";
+
+it("shouldn't show the tooltip", async () => {
+  const message = "Imma not tip the tool";
+  const content = "Don't show my tooltip";
+
+  const { getByText, queryByText } = render(
+    <Tooltip message={message}>
+      <div>{content}</div>
+    </Tooltip>,
+  );
+
+  await waitFor(() => {
+    expect(queryByText(message)).not.toBeInTheDocument();
+  });
+  expect(getByText(content)).toBeInTheDocument();
+});
+
+it("should show up on hover", async () => {
+  const message = "Tipping the tool on hover";
+  const content = "Hover on me";
+  const contentID = "hover-on-me";
+
+  const { getByText, getByTestId } = render(
+    <Tooltip message={message}>
+      <div data-testid={contentID}>{content}</div>
+    </Tooltip>,
+  );
+
+  await userEvent.hover(getByTestId(contentID));
+  expect(getByText(message)).toBeInTheDocument();
+  expect(getByText(content)).toBeInTheDocument();
+});
+
+it("should show the tooltip up on focus", async () => {
+  const message = "Tipping the tool on focus";
+  const content = "Focus on me";
+  const contentID = "focus-on-me";
+
+  const { getByTestId, getByText } = render(
+    <Tooltip message={message}>
+      <div data-testid={contentID}>{content}</div>
+    </Tooltip>,
+  );
+
+  await userEvent.hover(getByTestId(contentID));
+  expect(getByText(message)).toBeInTheDocument();
+});
+
+it("should disappear on blur", async () => {
+  const message = "Untipping the tool on blur";
+  const content = "Blur on me";
+  const contentID = "blur-on-me";
+
+  const { getByTestId, queryByText } = render(
+    <Tooltip message={message}>
+      <div data-testid={contentID}>{content}</div>
+    </Tooltip>,
+  );
+
+  await userEvent.hover(getByTestId(contentID));
+  await userEvent.unhover(getByTestId(contentID));
+
+  await waitFor(() => {
+    expect(queryByText(message)).not.toBeInTheDocument();
+  });
+});
+
+it("should have aria-description and tabindex", () => {
+  const message = "Screen readers read me out loud!";
+  const content = "Browsers focus on me";
+  const contentID = "focus-on-me";
+
+  const { getByTestId } = render(
+    <Tooltip message={message}>
+      <div data-testid={contentID}>{content}</div>
+    </Tooltip>,
+  );
+
+  expect(getByTestId(contentID)).toHaveAttribute("aria-description", message);
+  expect(getByTestId(contentID)).toHaveAttribute("tabindex", "0");
+});
+
+describe("with a message of an empty string", () => {
+  it("should not show the tooltip up on hover", async () => {
+    const message = "";
+    const content = "Focus on me";
+    const contentID = "focus-on-me";
+
+    const { getByTestId } = render(
+      <Tooltip message={message}>
+        <div data-testid={contentID}>{content}</div>
+      </Tooltip>,
+    );
+
+    userEvent.hover(getByTestId(contentID));
+
+    const visibleTooltip = document.querySelector("div[role='tooltip']");
+    expect(visibleTooltip).toBeNull();
+  });
+
+  it("should not show the tooltip up on focus", async () => {
+    const message = "";
+    const content = "Focus on me";
+    const contentID = "focus-on-me";
+
+    const { getByTestId } = render(
+      <Tooltip message={message}>
+        <div data-testid={contentID}>{content}</div>
+      </Tooltip>,
+    );
+
+    fireEvent.focus(getByTestId(contentID));
+
+    const visibleTooltip = document.querySelector("div[role='tooltip']");
+    expect(visibleTooltip).toBeNull();
+  });
+});
+
+describe("with a preferred placement", () => {
+  it.each(["top", "bottom", "left", "right"] as const)(
+    "should show the tooltip on the %s",
+    async placement => {
+      const message = "Tipping the tool on the right";
+      const content = "Hover on me";
+      const contentID = "hover-on-me";
+
+      render(
+        <Tooltip message={message} preferredPlacement={placement}>
+          <div data-testid={contentID}>{content}</div>
+        </Tooltip>,
+      );
+
+      const tooltipContent = screen.getByTestId(contentID);
+      await userEvent.hover(tooltipContent);
+
+      const tooltip = screen.getByRole("tooltip");
+
+      expect(tooltip).toHaveAttribute("data-placement", placement);
+      expect(tooltip).toHaveClass(placement);
+    },
+  );
+});
+
+```
+
+## Component Path
+
+`/components/Tooltip`
+
+---
+
+_Generated on 2025-08-21T17:35:16.373Z_

@@ -1,0 +1,394 @@
+# Glimmer
+
+# Glimmer
+
+Glimmer is a foundational component that is used to build Skeleton (_coming
+soon_) or other components that invoke loading such as an image waiting to load
+on [FormatFile](/components/FormatFile).
+
+## Colors
+
+Glimmers adapts to the background you put it in. If you have a grey background,
+the `Glimmer` will automatically darken itself so it's still noticeable.
+
+<Canvas style={{ background: "var(--color-surface--background)" }}>
+  <Glimmer />
+</Canvas>
+
+If the Glimmer sits on a `reverse` background (dark in light mode, light in dark
+mode), you can toggle the `reverseTheme` prop to switch the colors so it's still
+noticeable.
+
+<Canvas style={{ background: "var(--color-surface--reverse)" }}>
+  <Box background="surface--reverse" padding="base">
+    <Glimmer reverseTheme />
+  </Box>
+</Canvas>
+
+## Semantic blocks
+
+A pre-made block can be used to indicate a certain component.
+
+export const semanticComponent = [Glimmer.Header, Glimmer.Text, Glimmer.Button];
+
+<Tabs>
+  <Tab label={"Glimmer.Header"}>
+    <Source code={"Glimmer.Header"} />
+    <Canvas withSource="none">
+      <Glimmer.Header />
+    </Canvas>
+    <ArgsTable of={Glimmer.Header} />
+  </Tab>
+  <Tab label={"Glimmer.Text"}>
+    <Source code={"Glimmer.Text"} />
+    <Canvas withSource="none">
+      <Glimmer.Text />
+    </Canvas>
+    <ArgsTable of={Glimmer.Text} />
+  </Tab>
+  <Tab label={"Glimmer.Button"}>
+    <Source code={"Glimmer.Button"} />
+    <Canvas withSource="none">
+      <Glimmer.Button />
+    </Canvas>
+    <ArgsTable of={Glimmer.Button} />
+  </Tab>
+</Tabs>
+
+## Web Component Code
+
+```tsx
+Glimmer Skeleton Shimmer Web React import React from "react";
+import classnames from "classnames";
+import styles from "./Glimmer.module.css";
+import sizes from "./style/Sizes.module.css";
+import shapes from "./style/Shape.module.css";
+import timings from "./style/Timing.module.css";
+/* eslint-enable import/no-internal-modules */
+import { Content } from "../Content";
+
+export type Sizes = keyof typeof sizes;
+export type Shapes = keyof typeof shapes;
+export type Timings = keyof typeof timings;
+
+interface GlimmerProps {
+  /**
+   * Sets the size of the glimmer.
+   *
+   * If you use `"auto"` with a `"rectangle"` shape, it will fill the
+   * size of the parents width and height. With how CSS works, if it can't
+   * determine the parents width and height, it'll default to `base`.
+   */
+  readonly size?: Sizes;
+
+  /**
+   * Sets the shape of the glimmer.
+   *
+   * If you need a specific width, use the `width` prop.
+   */
+  readonly shape?: Shapes;
+
+  /**
+   * Control how fast the shine moves from left to right. This is useful when
+   * the glimmer is used on smaller spaces.
+   */
+  readonly timing?: Timings;
+
+  /**
+   * Use on surfaces with dark backgrounds.
+   */
+  readonly reverseTheme?: boolean;
+
+  /**
+   * Adjust the width of the glimmer in px values.
+   */
+  readonly width?: number;
+}
+
+export const GLIMMER_TEST_ID = "ATL-Glimmer";
+export const GLIMMER_HEADER_TEST_ID = "ATL-GlimmerHeader";
+export const GLIMMER_TEXT_TEST_ID = "ATL-GlimmerText";
+export const GLIMMER_BUTTON_TEST_ID = "ATL-GlimmerButton";
+
+export function Glimmer({
+  size = "base",
+  shape = "rectangle",
+  timing = "base",
+  reverseTheme = false,
+  width,
+}: GlimmerProps) {
+  const className = classnames(
+    styles.glimmer,
+    sizes[size],
+    shapes[shape],
+    timings[timing],
+    { [styles.reverseTheme]: reverseTheme },
+  );
+
+  return (
+    <div
+      aria-busy="true"
+      role="status"
+      className={className}
+      data-testid={GLIMMER_TEST_ID}
+      style={{ width }}
+    />
+  );
+}
+
+export interface GlimmerHeaderProps
+  extends Omit<GlimmerProps, "shape" | "size"> {
+  /**
+   * Adjust the size of the `Glimmer.Header`.
+   *
+   * @default 3
+   */
+  readonly level?: 1 | 2 | 3 | 4 | 5;
+}
+
+Glimmer.Header = function GlimmerHeader({
+  level = 3,
+  ...props
+}: GlimmerHeaderProps) {
+  const headerSize: Record<number, GlimmerProps["size"]> = {
+    1: "largest",
+    2: "larger",
+    3: "large",
+    4: "base",
+    5: "small",
+  };
+
+  return (
+    <div className={styles.header} data-testid={GLIMMER_HEADER_TEST_ID}>
+      <Glimmer size={headerSize[level]} {...props} />
+    </div>
+  );
+};
+
+export interface GlimmerTextProps extends Omit<GlimmerProps, "shape" | "size"> {
+  /**
+   * Set how many lines shows up.
+   *
+   * @default 3
+   */
+  readonly lines?: 1 | 2 | 3;
+}
+
+Glimmer.Text = function GlimmerText({
+  width,
+  lines = 3,
+  ...props
+}: GlimmerTextProps) {
+  const children = [
+    <Glimmer key="1" size="small" shape="rectangleShort" {...props} />,
+    <Glimmer key="2" size="small" {...props} />,
+    <Glimmer key="3" size="small" shape="rectangleShorter" {...props} />,
+  ].slice(0, lines);
+
+  return (
+    <div style={{ width }} data-testid={GLIMMER_TEXT_TEST_ID}>
+      <Content spacing="small">{children}</Content>
+    </div>
+  );
+};
+
+export interface GlimmerButtonProps
+  extends Omit<GlimmerProps, "shape" | "size"> {
+  /**
+   * Allow `Glimmer.Button` to go full width.
+   *
+   * @default false
+   */
+  readonly fullWidth?: boolean;
+}
+
+Glimmer.Button = function GlimmerButton({
+  fullWidth = false,
+  ...props
+}: GlimmerButtonProps) {
+  const buttonClassNames = classnames(styles.button, {
+    [styles.buttonFill]: fullWidth,
+  });
+
+  return (
+    <div className={buttonClassNames} data-testid={GLIMMER_BUTTON_TEST_ID}>
+      <Glimmer {...props} size="auto" />
+    </div>
+  );
+};
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `size` | `string | number | symbol` | ❌ | `base` | Sets the size of the glimmer.
+
+If you use `"auto"` with a `"rectangle"` shape, it will fill the
+size of the parents width and height. With how CSS works, if it can't
+determine the parents width and height, it'll default to `base`. |
+| `shape` | `string | number | symbol` | ❌ | `rectangle` | Sets the shape of the glimmer.
+
+If you need a specific width, use the `width` prop. |
+| `timing` | `string | number | symbol` | ❌ | `base` | Control how fast the shine moves from left to right. This is useful when
+the glimmer is used on smaller spaces. |
+| `reverseTheme` | `boolean` | ❌ | `[object Object]` | Use on surfaces with dark backgrounds. |
+| `width` | `number` | ❌ | `_none_` | Adjust the width of the glimmer in px values. |
+
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `shape` | `"rectangle" | "square" | "circle"` | ❌ | `rectangle` | Sets the size of the glimmer. |
+| `size` | `"small" | "base" | "large" | "larger" | "largest"` | ❌ | `base` | Sets the shape of the glimmer.
+
+If you need a specific width, use the `width` prop. |
+| `timing` | `GlimmerTimings` | ❌ | `base` | Control how fast the shine moves from left to right. This is useful when
+the glimmer is used on smaller spaces. |
+| `width` | `number | `${number}%`` | ❌ | `_none_` | Adjust the width of the glimmer in px or % values. |
+
+
+## Categories
+
+- Status & Feedback
+
+## Web Test Code
+
+```typescript
+Glimmer Skeleton Shimmer Web React Test Testing Jest import React from "react";
+import { render, screen } from "@testing-library/react";
+import type { Shapes, Sizes, Timings } from "./Glimmer";
+import {
+  GLIMMER_BUTTON_TEST_ID,
+  GLIMMER_HEADER_TEST_ID,
+  GLIMMER_TEST_ID,
+  GLIMMER_TEXT_TEST_ID,
+  Glimmer,
+} from "./Glimmer";
+
+describe("Glimmer", () => {
+  it("should render with the defaults", () => {
+    render(<Glimmer />);
+    const element = screen.getByTestId(GLIMMER_TEST_ID);
+
+    expect(element).toHaveClass("glimmer");
+    expect(element).toHaveClass("rectangle");
+    expect(element).toHaveClass("base");
+    expect(element).not.toHaveClass("reverseTheme");
+    const baseClassNames = element.className
+      .split(" ")
+      .filter(c => c === "base");
+    expect(baseClassNames).toHaveLength(2);
+  });
+
+  it("should have an aria busy", () => {
+    render(<Glimmer />);
+    const element = screen.getByTestId(GLIMMER_TEST_ID);
+
+    expect(element).toHaveAttribute("aria-busy", "true");
+  });
+
+  it("should reverse the theme", () => {
+    render(<Glimmer reverseTheme={true} />);
+    expect(screen.getByTestId(GLIMMER_TEST_ID)).toHaveClass("reverseTheme");
+  });
+
+  it("should add a width when specified", () => {
+    render(<Glimmer width={300} />);
+    expect(screen.getByTestId(GLIMMER_TEST_ID)).toHaveStyle({ width: "300px" });
+  });
+
+  describe("Shape", () => {
+    it.each<[Shapes]>([
+      ["rectangle"],
+      ["rectangleShort"],
+      ["rectangleShorter"],
+      ["square"],
+      ["circle"],
+    ])("should render a %s", expectedShape => {
+      render(<Glimmer shape={expectedShape} />);
+      const element = screen.getByTestId(GLIMMER_TEST_ID);
+      expect(element).toHaveClass(expectedShape);
+    });
+  });
+
+  describe("Size", () => {
+    it.each<[Sizes]>([
+      ["small"],
+      ["base"],
+      ["large"],
+      ["larger"],
+      ["largest"],
+      ["auto"],
+    ])("should render as %s", expectedSize => {
+      render(<Glimmer timing="fast" size={expectedSize} />);
+      const element = screen.getByTestId(GLIMMER_TEST_ID);
+      expect(element).toHaveClass(expectedSize);
+    });
+  });
+
+  describe("Timing", () => {
+    it.each<[Timings]>([["base"], ["fast"]])(
+      "should render as %s",
+      expectedTimings => {
+        render(<Glimmer timing={expectedTimings} size={"auto"} />);
+        const element = screen.getByTestId(GLIMMER_TEST_ID);
+        expect(element).toHaveClass(expectedTimings);
+      },
+    );
+  });
+
+  describe("Header", () => {
+    beforeEach(() => {
+      render(<Glimmer.Header />);
+    });
+
+    it("should render a wrapping element", () => {
+      const element = screen.getByTestId(GLIMMER_HEADER_TEST_ID);
+      expect(element).toBeInTheDocument();
+      expect(element).toHaveClass("header");
+    });
+
+    it("should render a large glimmer by default", () => {
+      const element = screen.getByTestId(GLIMMER_TEST_ID);
+      expect(element).toHaveClass("large");
+    });
+  });
+
+  describe("Text", () => {
+    it("should render a wrapping element", () => {
+      render(<Glimmer.Text />);
+      expect(screen.getByTestId(GLIMMER_TEXT_TEST_ID)).toBeInTheDocument();
+    });
+
+    it("should add a width on the wrapping element", () => {
+      render(<Glimmer.Text width={500} />);
+      expect(screen.getByTestId(GLIMMER_TEXT_TEST_ID)).toHaveStyle({
+        width: "500px",
+      });
+    });
+  });
+
+  describe("Button", () => {
+    it("should render a wrapping element", () => {
+      render(<Glimmer.Button />);
+      const element = screen.getByTestId(GLIMMER_BUTTON_TEST_ID);
+      expect(element).toBeInTheDocument();
+      expect(element).toHaveClass("button");
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Glimmer`
+
+---
+
+_Generated on 2025-08-21T17:35:16.362Z_
