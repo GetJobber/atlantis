@@ -122,6 +122,7 @@ function AutocompleteRebuiltInternal<
     error: error ?? undefined,
     name: props.name,
     invalid,
+    autoComplete: "off",
     description,
     size: sizeProp ? sizeProp : undefined,
     prefix: props.prefix,
