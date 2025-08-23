@@ -63,17 +63,17 @@ Atlantis is organized as a monorepo with multiple specialized packages:
 - Platform-specific considerations (web vs mobile)
 
 **To access detailed component information:**
-1. For any component mentioned below, look for a corresponding `.txt` file (e.g., `Button.txt`, `Card.txt`, `InputText.txt`)
+1. For any component mentioned below, look for a corresponding `.txt` file with the `llm-` prefix (e.g., `llm-Button.txt`, `llm-Card.txt`, `llm-InputText.txt`)
 2. These files are located in the same public directory as this llm.txt file
 3. Read these files to answer specific questions about component APIs, props, usage patterns, and implementation details
 
 **Example component documentation files available:**
-- `ActionItem.txt` - Action item component with layout and interaction patterns
-- `Button.txt` - Primary action component with all button types and variations
-- `Card.txt` - Container component for grouping related content
-- `InputText.txt` - Text input component with validation and formatting
-- `DataTable.txt` - Complex data display component with sorting, filtering
-- `Form.txt` - Form management and validation patterns
+- `llm-ActionItem.txt` - Action item component with layout and interaction patterns
+- `llm-Button.txt` - Primary action component with all button types and variations
+- `llm-Card.txt` - Container component for grouping related content
+- `llm-InputText.txt` - Text input component with validation and formatting
+- `llm-DataTable.txt` - Complex data display component with sorting, filtering
+- `llm-Form.txt` - Form management and validation patterns
 - And 95+ more component documentation files
 
 ### Component Organization
@@ -85,35 +85,44 @@ Components are categorized into logical groups:
 **Actions:**
 - ActionLabel, Button, ButtonGroup, IconButton
 
-**Forms & Inputs:**
-- Form, FormField, InputText, InputNumber, InputEmail, InputPassword, InputDate, InputTime, InputFile, InputAvatar, InputGroup, InputValidation, Autocomplete, Checkbox, RadioGroup, Select, MultiSelect, Switch, Combobox
-
 **Status & Feedback:**
 - ActivityIndicator, Banner, EmptyState, Glimmer, InlineLabel, ProgressBar, Spinner, StatusIndicator, StatusLabel, Toast
 
-**Navigation:**
-- Menu, Tabs
+**Utilities:**
+- AnimatedPresence, AnimatedSwitcher, Countdown, DataDump, FormatDate, FormatEmail, FormatRelativeDateTime, FormatTime
 
-**Overlays:**
-- Modal, ConfirmationModal, Popover, SideDrawer, Tooltip, ContentOverlay
-
-**Lists & Tables:**
-- DataList, DataTable, DescriptionList, List, Table, TextList
+**Themes:**
+- AtlantisThemeContext
 
 **Text & Typography:**
 - AutoLink, Emphasis, Heading, Link, Markdown, Text, Typography
+
+**Forms & Inputs:**
+- Autocomplete, Form, InputAvatar, InputCurrency, InputDate, InputEmail, InputFile, InputGroup, InputNumber, InputPassword, InputPhoneNumber, InputPressable, InputSearch, InputText, InputTime, InputValidation, RadioGroup
 
 **Images & Icons:**
 - Avatar, FormatFile, Gallery, Icon, LightBox, ThumbnailList
 
 **Selections:**
-- BottomSheet, Chip, Chips, DatePicker, FeatureSwitch, SegmentedControl
+- BottomSheet, Checkbox, Chip, Chips, Combobox, DatePicker, FeatureSwitch, MultiSelect, SegmentedControl, Select, Switch
 
-**Utilities:**
-- AnimatedPresence, AnimatedSwitcher, Countdown, DataDump, FormatDate, FormatEmail, FormatRelativeDateTime, FormatTime
+**Private:**
+- ButtonDismiss, FormField, InputFieldWrapper
 
-**Theme:**
-- AtlantisThemeContext
+**Overlays:**
+- ConfirmationModal, ContentOverlay, Modal, Popover, SideDrawer, Tooltip
+
+**Lists & Tables:**
+- DataList, DataTable, DescriptionList, List, Table, TextList
+
+**Uncategorized:**
+- Datepicker
+
+**Navigation:**
+- Menu, Tabs
+
+**Deprecated:**
+- RecurringSelect
 
 ### Component Patterns
 
@@ -301,7 +310,7 @@ npm test
 ### How to Answer Specific Component Questions
 When users ask about specific components, always:
 
-1. **First check if a dedicated `.txt` file exists** for that component in this directory
+1. **First check if a dedicated `.txt` file exists** for that component in this directory with the `llm-` prefix
 2. **Read the entire component documentation file** to understand:
    - Props interface and TypeScript definitions
    - Usage examples and code patterns
@@ -319,11 +328,11 @@ When users ask about specific components, always:
    - Platform considerations (web vs mobile differences)
 
 ### Example Questions and Documentation Sources
-- "How do I use Button component?" → Read `Button.txt`
-- "What props does InputText accept?" → Read `InputText.txt` 
-- "How to implement a data table?" → Read `DataTable.txt`
-- "Form validation patterns?" → Read `Form.txt` and `FormField.txt`
-- "Modal vs Drawer - when to use?" → Read both `Modal.txt` and `Drawer.txt`
+- "How do I use Button component?" → Read `llm-Button.txt`
+- "What props does InputText accept?" → Read `llm-InputText.txt` 
+- "How to implement a data table?" → Read `llm-DataTable.txt`
+- "Form validation patterns?" → Read `llm-Form.txt` and `llm-FormField.txt`
+- "Modal vs Drawer - when to use?" → Read both `llm-Modal.txt` and `llm-Drawer.txt`
 
 **Always provide specific, accurate information from these documentation files rather than making assumptions about component APIs or usage patterns.**
 
