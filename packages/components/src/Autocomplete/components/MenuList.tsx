@@ -215,7 +215,7 @@ function handleOptionRendering<T extends OptionLike>({
           isActive && styles.optionActive,
           optionClassName,
         )}
-        aria-selected={isSelected ? true : undefined}
+        aria-selected={isSelected ? true : false}
         data-index={nextNavigableIndex + indexOffset}
         data-active={isActive ? true : undefined}
         {...getItemProps()}

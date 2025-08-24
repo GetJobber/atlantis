@@ -32,6 +32,7 @@ import {
   focusAutocomplete,
   getActiveAction,
   getActiveOption,
+  getSelectedOption,
   navigateDown,
   navigateUp,
   openAutocomplete,
@@ -794,6 +795,30 @@ describe("AutocompleteRebuilt", () => {
         const activeOption = getActiveOption();
         expect(activeOption).not.toBeNull();
         expect(activeOption?.textContent).toContain("Two");
+      });
+    });
+
+    it("keeps selected option while moving active highlight to another option", async () => {
+      render(<Wrapper initialValue={{ label: "Two" }} />);
+
+      await openAutocomplete();
+
+      const selected = getSelectedOption();
+      expect(selected).not.toBeNull();
+      expect(selected?.textContent).toContain("Two");
+
+      // Move active highlight to "Three"
+      await navigateDown(1);
+
+      // Active should be Three, selected remains Two
+      await waitFor(() => {
+        const active = getActiveOption();
+        expect(active).not.toBeNull();
+        expect(active?.textContent).toContain("Three");
+
+        const selectedAfterNav = getSelectedOption();
+        expect(selectedAfterNav).not.toBeNull();
+        expect(selectedAfterNav?.textContent).toContain("Two");
       });
     });
 

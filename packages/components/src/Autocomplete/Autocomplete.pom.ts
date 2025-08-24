@@ -80,6 +80,12 @@ export function getActiveAction() {
   ) as HTMLElement | null;
 }
 
+export function getSelectedOption() {
+  return document.querySelector(
+    '[role="option"][aria-selected="true"]',
+  ) as HTMLElement | null;
+}
+
 /**
  * Wait until the Autocomplete menu is visible (accounts for transitions)
  */

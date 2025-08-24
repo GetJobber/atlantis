@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type {
   UseFloatingReturn,
   UseInteractionsReturn,
@@ -52,9 +52,7 @@ export function useAutocompleteListNav({
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const listRef = useState<React.MutableRefObject<Array<HTMLElement | null>>>(
-    () => ({ current: [] }),
-  )[0];
+  const listRef = useRef<Array<HTMLElement | null>>([]);
 
   const { refs, floatingStyles, context } = useFloating({
     placement: "bottom",
