@@ -227,11 +227,21 @@ export interface CustomOptionsMenuProp<
 // Arbitrary extra keys are allowed by structural typing of consumer types
 export interface OptionLike {
   label: string;
+  /*
+   * "label" will be used as the key by default
+   * If labels are not unique, a unique key must be provided
+   */
+  key?: Key;
 }
 
 interface MenuActionBase {
   type: "action";
   label: string;
+  /*
+   * "label" will be used as the key by default
+   * If labels are not unique, a unique key must be provided
+   */
+  key?: Key;
   /*
    * Determines if the menu should close when the action is used.
    *
@@ -256,6 +266,11 @@ export type MenuSection<
 > = SectionExtra & {
   type: "section";
   label: string;
+  /*
+   * "label" will be used as the key by default
+   * If labels are not unique, a unique key must be provided
+   */
+  key?: Key;
   options: T[];
   // Rendered at the bottom of this section
   actionsBottom?: MenuAction<ActionExtra>[];
@@ -279,6 +294,11 @@ export type MenuPersistent<Extra extends object = Record<string, unknown>> =
     type: "persistent";
     position: PersistentPosition;
     label: string;
+    /*
+     * "label" will be used as the key by default
+     * If labels are not unique, a unique key must be provided
+     */
+    key?: Key;
     /**
      * If provided, the persistent item is interactive and participates in
      * arrow-key navigation. Activated with Enter.
@@ -366,35 +386,6 @@ interface AutocompleteRebuiltBaseProps<
    * Defaults to  option.label.
    */
   readonly getOptionLabel?: (option: Value) => string;
-
-  /**
-   * Used to determine the key for a given option. This can be useful when the
-   * labels of options are not unique (since labels are used as keys by default).
-   * Defaults to the option.label.
-   */
-  readonly getOptionKey?: (option: Value) => Key;
-
-  /**
-   * Used to determine the key for a given action. This can be useful when action labels
-   * are not unique (since labels are used as keys by default).
-   * Defaults to the action.label.
-   */
-  readonly getActionKey?: (action: MenuAction<ActionExtra>) => Key;
-
-  /**
-   * Used to determine the key for a given section. This can be useful when section labels
-   * are not unique (since labels are used as keys by default).
-   * Defaults to the section.label.
-   */
-  readonly getSectionKey?: (
-    section: MenuSection<Value, SectionExtra, ActionExtra>,
-  ) => Key;
-
-  /**
-   * Used to determine the key for a given persistent item (header/footer).
-   * Defaults to the persistent.label.
-   */
-  readonly getPersistentKey?: (item: MenuPersistent<ActionExtra>) => Key;
 
   /**
    * Debounce in milliseconds for input-driven filtering and search render.

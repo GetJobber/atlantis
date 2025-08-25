@@ -25,9 +25,7 @@ interface PersistentRegionProps<T extends OptionLike> {
     T,
     false
   >["customRenderPersistent"];
-  readonly getPersistentKey: (
-    item: MenuPersistent<Record<string, unknown>>,
-  ) => React.Key;
+  // keys derived via persistent.key/label
   readonly className?: string;
   readonly style?: React.CSSProperties;
   readonly onAction: (action: ActionConfig) => void;
@@ -41,7 +39,6 @@ export function PersistentRegion<T extends OptionLike>({
   getItemProps,
   listRef,
   customRenderPersistent,
-  getPersistentKey,
   className,
   style,
   onAction,
@@ -57,7 +54,7 @@ export function PersistentRegion<T extends OptionLike>({
       data-region={position}
       data-testid={`ATL-AutocompleteRebuilt-Persistent-${position}`}
     >
-      {items.map((persistent, index) => {
+      {items.map(persistent => {
         const result = handlePersistentRendering({
           persistent,
           position,
@@ -65,10 +62,8 @@ export function PersistentRegion<T extends OptionLike>({
           indexOffset,
           getItemProps,
           customRenderPersistent,
-          getPersistentKey,
           listRef,
           onAction,
-          index,
           navigableIndex,
         });
 
@@ -85,9 +80,6 @@ interface HandlePersistentRenderingProps<T extends OptionLike> {
     T,
     false
   >["customRenderPersistent"];
-  readonly getPersistentKey: (
-    item: MenuPersistent<Record<string, unknown>>,
-  ) => React.Key;
   readonly position: "header" | "footer";
   readonly activeIndex: number | null;
   readonly indexOffset: number;
@@ -97,7 +89,6 @@ interface HandlePersistentRenderingProps<T extends OptionLike> {
   readonly persistent: MenuPersistent<Record<string, unknown>>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly onAction: (action: ActionConfig) => void;
-  readonly index: number;
   readonly navigableIndex: number;
 }
 
@@ -108,10 +99,8 @@ function handlePersistentRendering<T extends OptionLike>({
   indexOffset,
   getItemProps,
   customRenderPersistent,
-  getPersistentKey,
   listRef,
   onAction,
-  index,
   navigableIndex,
 }: HandlePersistentRenderingProps<T>): {
   node: React.ReactNode;
@@ -124,8 +113,6 @@ function handlePersistentRendering<T extends OptionLike>({
       persistent,
       position,
       customRenderPersistent,
-      getPersistentKey,
-      index,
     });
 
     return { node, nextNavigableIndex: navigableIndex };
@@ -138,10 +125,8 @@ function handlePersistentRendering<T extends OptionLike>({
     indexOffset,
     getItemProps,
     customRenderPersistent,
-    getPersistentKey,
     listRef,
     onAction,
-    index,
     navigableIndex,
   });
 }
@@ -150,15 +135,9 @@ function handleTextPersistentRendering<T extends OptionLike>({
   persistent,
   position,
   customRenderPersistent,
-  getPersistentKey,
-  index,
 }: Pick<
   HandlePersistentRenderingProps<T>,
-  | "persistent"
-  | "position"
-  | "customRenderPersistent"
-  | "getPersistentKey"
-  | "index"
+  "persistent" | "position" | "customRenderPersistent"
 >): React.ReactNode {
   const content = customRenderPersistent ? (
     customRenderPersistent({ value: persistent, position })
@@ -168,7 +147,9 @@ function handleTextPersistentRendering<T extends OptionLike>({
 
   return (
     <div
-      key={`per-${String(getPersistentKey(persistent))}-${index}`}
+      key={`persistent-${position}-${String(
+        persistent.key ?? persistent.label,
+      )}`}
       role="presentation"
       tabIndex={-1}
       className={styles.textPersistent}
@@ -185,10 +166,8 @@ function handleActionPersistentRendering<T extends OptionLike>({
   indexOffset,
   getItemProps,
   customRenderPersistent,
-  getPersistentKey,
   listRef,
   onAction,
-  index,
   navigableIndex,
 }: HandlePersistentRenderingProps<T>): {
   node: React.ReactNode;
@@ -205,7 +184,9 @@ function handleActionPersistentRendering<T extends OptionLike>({
   return {
     node: (
       <div
-        key={`per-${String(getPersistentKey(persistent))}-${index}`}
+        key={`persistent-${position}-${String(
+          persistent.key ?? persistent.label,
+        )}`}
         data-index={indexOffset + nextNavigableIndex}
         id={`${position}-persistent-${indexOffset + nextNavigableIndex}`}
         data-active={isActive ? true : undefined}

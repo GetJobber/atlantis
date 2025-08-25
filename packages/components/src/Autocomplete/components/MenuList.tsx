@@ -37,13 +37,6 @@ interface MenuListProps<T extends OptionLike> {
     false
   >["customRenderAction"];
   readonly getOptionLabel: (option: T) => string;
-  readonly getOptionKey: (option: T) => React.Key;
-  readonly getActionKey: (
-    action: MenuAction<Record<string, unknown>>,
-  ) => React.Key;
-  readonly getSectionKey: (
-    section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>,
-  ) => React.Key;
   readonly onSelect: (option: T) => void;
   readonly onAction: (action: ActionConfig) => void;
   readonly isOptionSelected: (option: T) => boolean;
@@ -65,9 +58,6 @@ export function MenuList<T extends OptionLike>({
   customRenderSection,
   customRenderAction,
   getOptionLabel,
-  getOptionKey,
-  getActionKey,
-  getSectionKey,
   onSelect,
   onAction,
   isOptionSelected,
@@ -75,13 +65,11 @@ export function MenuList<T extends OptionLike>({
 }: MenuListProps<T>) {
   let navigableIndex = -1;
 
-  function renderItemNode(item: RenderItem<T>, index: number) {
+  function renderItemNode(item: RenderItem<T>) {
     if (item.kind === "section") {
       return handleSectionRendering<T>({
         section: item.section,
-        index,
         customRenderSection,
-        getSectionKey,
         sectionClassName: slotOverrides?.section?.className,
         sectionStyle: slotOverrides?.section?.style,
       });
@@ -98,7 +86,6 @@ export function MenuList<T extends OptionLike>({
         isOptionSelected,
         customRenderOption,
         getOptionLabel,
-        getOptionKey,
         onSelect,
         indexOffset,
         optionClassName: slotOverrides?.option?.className,
@@ -112,14 +99,12 @@ export function MenuList<T extends OptionLike>({
 
     const result = handleActionRendering<T>({
       action: item.action,
-      index,
       activeIndex,
       navigableIndex,
       getItemProps,
       listRef,
       listboxId,
       customRenderAction,
-      getActionKey,
       onAction,
       indexOffset,
       actionClassName: slotOverrides?.action?.className,
@@ -138,8 +123,6 @@ export function MenuList<T extends OptionLike>({
 function handleSectionRendering<T extends OptionLike>({
   customRenderSection,
   section,
-  index,
-  getSectionKey,
   sectionClassName,
   sectionStyle,
 }: {
@@ -148,10 +131,6 @@ function handleSectionRendering<T extends OptionLike>({
     T,
     false
   >["customRenderSection"];
-  readonly index: number;
-  readonly getSectionKey: (
-    section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>,
-  ) => React.Key;
   readonly sectionClassName?: string;
   readonly sectionStyle?: React.CSSProperties;
 }) {
@@ -163,7 +142,7 @@ function handleSectionRendering<T extends OptionLike>({
 
   return (
     <div
-      key={`sec-${getSectionKey(section)}-${index}`}
+      key={`section-${String(section.key ?? section.label)}`}
       role="presentation"
       tabIndex={-1}
       data-testid="ATL-AutocompleteRebuilt-Section"
@@ -198,7 +177,7 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
     false
   >["customRenderOption"];
   readonly getOptionLabel: (option: T) => string;
-  readonly getOptionKey: (option: T) => React.Key;
+  // no explicit key getter; derived from option.key/label where used
   readonly onSelect: (option: T) => void;
   readonly indexOffset?: number;
   readonly optionClassName?: string;
@@ -215,7 +194,6 @@ function handleOptionRendering<T extends OptionLike>({
   isOptionSelected,
   customRenderOption,
   getOptionLabel,
-  getOptionKey,
   onSelect,
   indexOffset = 0,
   optionClassName,
@@ -239,7 +217,7 @@ function handleOptionRendering<T extends OptionLike>({
   return {
     node: (
       <div
-        key={`opt-${getOptionKey(option)}`}
+        key={`option-${String(option.key ?? getOptionLabel(option))}`}
         {...getItemProps({
           ref(node: HTMLElement | null) {
             const idx = nextNavigableIndex + indexOffset;
@@ -286,7 +264,6 @@ function DefaultOptionContent({
 
 interface HandleActionRenderingProps<T extends OptionLike> {
   readonly action: MenuAction<Record<string, unknown>>;
-  readonly index: number;
   readonly activeIndex: number | null;
   readonly navigableIndex: number;
   readonly getItemProps: (
@@ -298,9 +275,6 @@ interface HandleActionRenderingProps<T extends OptionLike> {
     T,
     false
   >["customRenderAction"];
-  readonly getActionKey: (
-    action: MenuAction<Record<string, unknown>>,
-  ) => React.Key;
   readonly onAction: (action: ActionConfig) => void;
   readonly indexOffset?: number;
   readonly actionClassName?: string;
@@ -310,14 +284,12 @@ interface HandleActionRenderingProps<T extends OptionLike> {
 
 function handleActionRendering<T extends OptionLike>({
   action,
-  index,
   activeIndex,
   navigableIndex,
   getItemProps,
   listRef,
   listboxId,
   customRenderAction,
-  getActionKey,
   onAction,
   indexOffset = 0,
   actionClassName,
@@ -359,7 +331,9 @@ function handleActionRendering<T extends OptionLike>({
   return {
     node: (
       <div
-        key={`act-${getActionKey(action)}-${index}`}
+        key={`action-${String(
+          (origin ?? "menu") + "-" + (action.key ?? action.label),
+        )}`}
         {...itemProps}
         role="button"
         tabIndex={-1}

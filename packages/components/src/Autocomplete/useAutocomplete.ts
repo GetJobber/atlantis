@@ -7,7 +7,6 @@ import type {
   AutocompleteRebuiltProps,
   AutocompleteValue,
   MenuAction,
-  MenuPersistent,
   MenuSection,
   OptionLike,
 } from "./Autocomplete.types";
@@ -41,9 +40,6 @@ export function useAutocomplete<
     menu,
     emptyActions,
     getOptionLabel: getOptionLabelProp,
-    getOptionKey: getOptionKeyProp,
-    getActionKey: getActionKeyProp,
-    getSectionKey: getSectionKeyProp,
     isOptionEqualToValue,
     inputValue,
     onInputChange,
@@ -60,30 +56,12 @@ export function useAutocomplete<
     [getOptionLabelProp],
   );
 
-  const getOptionKey = useCallback(
-    (opt: Value) =>
-      getOptionKeyProp ? getOptionKeyProp(opt) : getOptionLabel(opt),
-    [getOptionKeyProp, getOptionLabel],
-  );
-
   const equals = useCallback(
     (a: Value, b: Value) =>
       isOptionEqualToValue
         ? isOptionEqualToValue(a, b)
         : getOptionLabel(a) === getOptionLabel(b),
     [isOptionEqualToValue, getOptionLabel],
-  );
-
-  const getActionKey = useCallback(
-    (action: MenuAction<ActionExtra>) =>
-      getActionKeyProp ? getActionKeyProp(action) : action.label,
-    [getActionKeyProp],
-  );
-
-  const getSectionKey = useCallback(
-    (section: MenuSection<Value, SectionExtra, ActionExtra>) =>
-      getSectionKeyProp ? getSectionKeyProp(section) : section.label,
-    [getSectionKeyProp],
   );
 
   const isOptionSelected = useCallback(
@@ -206,11 +184,7 @@ export function useAutocomplete<
     return (value as Value | undefined) != null;
   }, [multiple, value]);
 
-  const getPersistentKey = useCallback(
-    (p: MenuPersistent<ActionExtra>) =>
-      props.getPersistentKey ? props.getPersistentKey(p) : p.label,
-    [props.getPersistentKey],
-  );
+  // Keys are derived in renderers from `key ?? label`
 
   const headerInteractiveCount = useMemo(
     () => persistentsHeaders.filter(p => Boolean(p.onClick)),
@@ -645,10 +619,6 @@ export function useAutocomplete<
     headerInteractiveCount: headerInteractiveCount.length,
     middleNavigableCount: mainNavigableCount,
     getOptionLabel,
-    getOptionKey,
-    getActionKey,
-    getSectionKey,
-    getPersistentKey,
     isOptionSelected,
     // floating-ui
     refs,

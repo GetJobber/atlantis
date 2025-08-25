@@ -56,9 +56,7 @@ function AutocompleteRebuiltInternal<
     persistentsFooters,
     headerInteractiveCount,
     middleNavigableCount,
-    getPersistentKey,
     getOptionLabel,
-    getOptionKey,
     isOptionSelected,
     refs,
     floatingStyles,
@@ -209,7 +207,6 @@ function AutocompleteRebuiltInternal<
                 getItemProps={getItemProps}
                 listRef={listRef}
                 customRenderPersistent={props.customRenderPersistent}
-                getPersistentKey={getPersistentKey}
                 onAction={onAction}
                 className={classNames(
                   styles.persistentHeader,
@@ -239,9 +236,6 @@ function AutocompleteRebuiltInternal<
                         customRenderSection={props.customRenderSection}
                         customRenderAction={props.customRenderAction}
                         getOptionLabel={getOptionLabel}
-                        getOptionKey={getOptionKey}
-                        getActionKey={action => action.label}
-                        getSectionKey={section => section.label}
                         onSelect={onSelection}
                         onAction={onAction}
                         isOptionSelected={isOptionSelected}
@@ -275,7 +269,6 @@ function AutocompleteRebuiltInternal<
                 getItemProps={getItemProps}
                 listRef={listRef}
                 customRenderPersistent={props.customRenderPersistent}
-                getPersistentKey={getPersistentKey}
                 onAction={onAction}
                 className={classNames(
                   styles.persistentFooter,
