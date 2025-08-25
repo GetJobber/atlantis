@@ -180,7 +180,6 @@ export function useAutocomplete<
     [renderable],
   );
 
-  // Very similar to isOptionSelected...
   const hasSelection = useMemo(() => {
     if (multiple) {
       const current = (value as AutocompleteValue<Value, true>) ?? [];
@@ -444,6 +443,31 @@ export function useAutocomplete<
     return true;
   }
 
+  const tryRestoreInputToSelectedLabel = useCallback(() => {
+    if (props.allowFreeForm === true) return;
+
+    const selectedValue = multiple
+      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
+      : (value as Value | undefined);
+    if (!selectedValue) return;
+
+    const selectedLabel = getOptionLabel(selectedValue);
+
+    if (inputValue === selectedLabel) return;
+
+    suppressOpenOnInputChange.current = true;
+    lastInputWasUser.current = false;
+
+    onInputChange?.(selectedLabel);
+  }, [
+    props.allowFreeForm,
+    getOptionLabel,
+    inputValue,
+    onInputChange,
+    multiple,
+    value,
+  ]);
+
   const onInputFocus = useCallback(() => {
     setInputFocused(true);
     props.onFocus?.();
@@ -458,15 +482,21 @@ export function useAutocomplete<
       return;
     }
 
-    const allowFreeForm = props.allowFreeForm === true;
-
-    if (allowFreeForm) {
+    if (props.allowFreeForm === true) {
       const inputText = inputValue.trim();
       if (inputText.length > 0) commitFromInputText(inputText);
+    } else {
+      tryRestoreInputToSelectedLabel();
     }
 
     props.onBlur?.();
-  }, [readOnly, props.allowFreeForm, inputValue, props.onBlur]);
+  }, [
+    readOnly,
+    props.allowFreeForm,
+    inputValue,
+    props.onBlur,
+    tryRestoreInputToSelectedLabel,
+  ]);
 
   function getRegionByActiveIndex(index: number): {
     region: "header" | "middle" | "footer";

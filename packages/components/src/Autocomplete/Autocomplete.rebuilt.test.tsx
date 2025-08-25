@@ -853,6 +853,20 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOption).not.toBeNull();
       expect(activeOption?.textContent).toContain("Two");
     });
+
+    it("restores input to the selected label on blur after partial deletion when free-form is disabled", async () => {
+      const onChange = jest.fn();
+
+      render(<Wrapper initialValue={{ label: "Two" }} onChange={onChange} />);
+
+      await openAutocomplete();
+      // Delete one character -> "Tw"
+      await deleteInput(1);
+      await blurAutocomplete();
+
+      expect(screen.getByRole("combobox")).toHaveValue("Two");
+      expect(onChange).not.toHaveBeenCalled();
+    });
   });
 
   describe("readOnly", () => {
