@@ -1190,7 +1190,7 @@ describe("AutocompleteRebuilt", () => {
       // Menu is still open after deletion
       await deleteInput(3);
 
-      expect(screen.getByRole("textbox")).toHaveValue("");
+      expect(screen.getByRole("combobox")).toHaveValue("");
 
       const activeOption = getActiveOption();
       expect(activeOption).toBeNull();
@@ -1216,7 +1216,7 @@ describe("AutocompleteRebuilt", () => {
       // Menu is still open after deletion
       await deleteInput(1);
 
-      expect(screen.getByRole("textbox")).toHaveValue("");
+      expect(screen.getByRole("combobox")).toHaveValue("");
       const activeOptionAfterDelete = getActiveOption();
       expect(activeOptionAfterDelete).toBeNull();
 
@@ -1514,7 +1514,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
       await typeInInput("Just a Pineapple");
 
-      expect(screen.getByRole("textbox")).toBeVisible();
+      expect(screen.getByRole("combobox")).toBeVisible();
       expect(onChange).toHaveBeenCalledWith("Just a Pineapple");
     });
   });
@@ -1854,6 +1854,51 @@ describe("AutocompleteRebuilt", () => {
           "something",
         );
       });
+    });
+  });
+
+  describe("a11y", () => {
+    it("wires autocomplete ARIA correctly and toggles aria-expanded", async () => {
+      render(<Wrapper />);
+
+      const autocomplete = screen.getByRole("combobox");
+      expect(autocomplete).toHaveAttribute("aria-autocomplete", "list");
+      expect(autocomplete).toHaveAttribute("aria-expanded", "false");
+
+      await openAutocomplete();
+
+      const listbox = await screen.findByRole("listbox");
+      expect(autocomplete).toHaveAttribute("aria-expanded", "true");
+      expect(autocomplete).toHaveAttribute(
+        "aria-controls",
+        listbox.getAttribute("id") ?? "",
+      );
+    });
+
+    it("sets aria-activedescendant to the active option as user navigates", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await navigateDown(1);
+
+      const autocomplete = screen.getByRole("combobox");
+      const listbox = screen.getByRole("listbox");
+      const listboxId = listbox.getAttribute("id") ?? "";
+
+      expect(autocomplete).toHaveAttribute(
+        "aria-activedescendant",
+        `${listboxId}-item-0`,
+      );
+    });
+
+    it("marks the selected option with aria-selected=true", async () => {
+      render(<Wrapper initialValue={{ label: "Two" }} />);
+
+      await openAutocomplete();
+
+      // Option with label "Two" should be selected
+      const optionTwo = screen.getByRole("option", { name: "Two" });
+      expect(optionTwo).toHaveAttribute("aria-selected", "true");
     });
   });
 

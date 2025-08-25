@@ -23,6 +23,7 @@ interface MenuListProps<T extends OptionLike> {
     userProps?: Record<string, unknown>,
   ) => Record<string, unknown>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly listboxId: string;
   readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
@@ -50,6 +51,7 @@ export function MenuList<T extends OptionLike>({
   indexOffset = 0,
   getItemProps,
   listRef,
+  listboxId,
   renderOption,
   renderSection,
   renderAction,
@@ -83,6 +85,7 @@ export function MenuList<T extends OptionLike>({
         navigableIndex,
         getItemProps,
         listRef,
+        listboxId,
         isOptionSelected,
         renderOption,
         getOptionLabel,
@@ -105,6 +108,7 @@ export function MenuList<T extends OptionLike>({
       navigableIndex,
       getItemProps,
       listRef,
+      listboxId,
       renderAction,
       getActionKey,
       onAction,
@@ -175,6 +179,7 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
     userProps?: Record<string, unknown>,
   ) => Record<string, unknown>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly listboxId: string;
   readonly isOptionSelected: (option: T) => boolean;
   readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly getOptionLabel: (option: T) => string;
@@ -191,6 +196,7 @@ function handleOptionRendering<T extends OptionLike>({
   navigableIndex,
   getItemProps,
   listRef,
+  listboxId,
   isOptionSelected,
   renderOption,
   getOptionLabel,
@@ -235,6 +241,7 @@ function handleOptionRendering<T extends OptionLike>({
         role="option"
         tabIndex={-1}
         aria-selected={isSelected ? true : false}
+        id={`${listboxId}-item-${nextNavigableIndex + indexOffset}`}
         data-index={nextNavigableIndex + indexOffset}
         data-active={isActive ? true : undefined}
       >
@@ -271,6 +278,7 @@ interface HandleActionRenderingProps<T extends OptionLike> {
     userProps?: Record<string, unknown>,
   ) => Record<string, unknown>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly listboxId: string;
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
   readonly getActionKey: (
     action: MenuAction<Record<string, unknown>>,
@@ -289,6 +297,7 @@ function handleActionRendering<T extends OptionLike>({
   navigableIndex,
   getItemProps,
   listRef,
+  listboxId,
   renderAction,
   getActionKey,
   onAction,
@@ -337,6 +346,7 @@ function handleActionRendering<T extends OptionLike>({
         role="button"
         tabIndex={-1}
         data-testid="ATL-AutocompleteRebuilt-Action"
+        id={`${listboxId}-item-${computedIndex}`}
         data-index={computedIndex}
         data-origin={origin}
         data-active={isActive ? true : undefined}

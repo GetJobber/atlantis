@@ -71,6 +71,7 @@ function AutocompleteRebuiltInternal<
     getFloatingProps,
     getItemProps,
     activeIndex,
+    open,
     listRef,
     onSelection,
     onAction,
@@ -80,6 +81,7 @@ function AutocompleteRebuiltInternal<
     onInputKeyDown,
     setReferenceElement,
   } = useAutocomplete<Value, Multiple>(props);
+  const listboxId = React.useId();
 
   // Provides mount/unmount-aware transition styles for the floating element
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
@@ -121,6 +123,14 @@ function AutocompleteRebuiltInternal<
     suffix: props.suffix,
     clearable: clearable ? "while-editing" : undefined,
     ...(props.readOnly ? {} : composedReferenceProps),
+    role: "combobox",
+    "aria-autocomplete": "list",
+    "aria-expanded": open ? true : false,
+    "aria-controls": listboxId,
+    "aria-activedescendant":
+      open && activeIndex != null
+        ? `${listboxId}-item-${activeIndex}`
+        : undefined,
   };
 
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
@@ -180,6 +190,7 @@ function AutocompleteRebuiltInternal<
                 ref(node: HTMLElement | null) {
                   if (node) refs.setFloating(node);
                 },
+                id: listboxId,
                 role: "listbox",
                 className: menuClassName,
                 style: {
@@ -198,6 +209,7 @@ function AutocompleteRebuiltInternal<
                 position="header"
                 activeIndex={activeIndex}
                 indexOffset={0}
+                listboxId={listboxId}
                 getItemProps={getItemProps}
                 listRef={listRef}
                 renderPersistent={props.renderPersistent}
@@ -224,6 +236,7 @@ function AutocompleteRebuiltInternal<
                         items={renderable}
                         activeIndex={activeIndexForMiddle}
                         indexOffset={headerInteractiveCount}
+                        listboxId={listboxId}
                         getItemProps={getItemProps}
                         listRef={listRef}
                         renderOption={renderOption}
@@ -262,6 +275,7 @@ function AutocompleteRebuiltInternal<
                 position={"footer"}
                 activeIndex={activeIndex}
                 indexOffset={headerInteractiveCount + middleNavigableCount}
+                listboxId={listboxId}
                 getItemProps={getItemProps}
                 listRef={listRef}
                 renderPersistent={props.renderPersistent}

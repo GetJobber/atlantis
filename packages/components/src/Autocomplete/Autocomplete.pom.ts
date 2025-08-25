@@ -12,7 +12,7 @@ export async function openAutocomplete(
   method?: "arrowDown" | "arrowUp" | "type",
   text?: string,
 ) {
-  const input = screen.getByRole("textbox");
+  const input = screen.getByRole("combobox");
   await user.click(input);
 
   if (method === "arrowDown") {
@@ -41,7 +41,7 @@ export async function selectWithClick(value: string) {
 }
 
 export async function focusAutocomplete() {
-  await user.click(screen.getByRole("textbox"));
+  await user.click(screen.getByRole("combobox"));
 }
 
 export async function closeAutocomplete() {
@@ -49,7 +49,7 @@ export async function closeAutocomplete() {
 }
 
 export async function typeInInput(text: string) {
-  await user.type(screen.getByRole("textbox"), text);
+  await user.type(screen.getByRole("combobox"), text);
 }
 
 export async function deleteInput(times: number) {
@@ -57,7 +57,7 @@ export async function deleteInput(times: number) {
 }
 
 export async function clearInput() {
-  await user.clear(screen.getByRole("textbox"));
+  await user.clear(screen.getByRole("combobox"));
 }
 
 export async function blurAutocomplete() {

@@ -16,6 +16,7 @@ interface PersistentRegionProps<T extends OptionLike> {
   readonly position: "header" | "footer";
   readonly activeIndex: number | null;
   readonly indexOffset: number;
+  readonly listboxId?: string;
   readonly getItemProps: (
     args?: Record<string, unknown>,
   ) => Record<string, unknown>;
@@ -202,6 +203,7 @@ function handleActionPersistentRendering<T extends OptionLike>({
       <div
         key={`per-${String(getPersistentKey(persistent))}-${index}`}
         data-index={indexOffset + nextNavigableIndex}
+        id={`${position}-persistent-${indexOffset + nextNavigableIndex}`}
         data-active={isActive ? true : undefined}
         {...getItemProps({
           ref(persistNode: HTMLElement | null) {
