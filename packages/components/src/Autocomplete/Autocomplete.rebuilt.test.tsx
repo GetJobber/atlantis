@@ -614,8 +614,7 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
       await navigateDown(1);
 
-      // Interactive persistent is also role="option"
-      const activePersistent = getActiveOption();
+      const activePersistent = getActiveAction();
 
       expect(activePersistent).not.toBeNull();
       expect(activePersistent).toHaveTextContent("Interactive Header");
@@ -642,7 +641,7 @@ describe("AutocompleteRebuilt", () => {
       // Two options, one persistent
       await navigateDown(4);
 
-      const activePersistent = getActiveOption();
+      const activePersistent = getActiveAction();
       expect(activePersistent).toBeVisible();
       expect(activePersistent).toHaveTextContent("Interactive Header");
     });

@@ -165,6 +165,7 @@ function handleTextPersistentRendering<T extends OptionLike>({
     <div
       key={`per-${String(getPersistentKey(persistent))}-${index}`}
       role="presentation"
+      tabIndex={-1}
       className={styles.textPersistent}
     >
       {content}
@@ -200,26 +201,22 @@ function handleActionPersistentRendering<T extends OptionLike>({
     node: (
       <div
         key={`per-${String(getPersistentKey(persistent))}-${index}`}
-        role="option"
-        tabIndex={-1}
-        className={classNames(styles.action, isActive && styles.actionActive)}
         data-index={indexOffset + nextNavigableIndex}
         data-active={isActive ? true : undefined}
         {...getItemProps({
           ref(persistNode: HTMLElement | null) {
-            const idx = Number(persistNode?.getAttribute("data-index"));
-
-            if (!Number.isNaN(idx)) {
-              listRef.current[idx] = persistNode;
-            }
+            const idx = indexOffset + nextNavigableIndex;
+            if (persistNode) listRef.current[idx] = persistNode;
           },
+          onClick: () =>
+            onAction({
+              run: persistent.onClick as () => void,
+              closeOnRun: persistent.shouldClose,
+            }),
+          className: classNames(styles.action, isActive && styles.actionActive),
         })}
-        onClick={() =>
-          onAction({
-            run: persistent.onClick as () => void,
-            closeOnRun: persistent.shouldClose,
-          })
-        }
+        role="button"
+        tabIndex={-1}
       >
         {content}
       </div>

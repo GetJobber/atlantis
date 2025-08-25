@@ -176,16 +176,21 @@ function AutocompleteRebuiltInternal<
             returnFocus={false}
           >
             <div
-              ref={refs.setFloating}
-              role="listbox"
-              className={menuClassName}
-              style={{
-                ...floatingStyles,
-                ...transitionStyles,
-                ...props.UNSAFE_styles?.menu,
-                ...(menuWidth ? { width: menuWidth, maxWidth: menuWidth } : {}),
-              }}
-              {...getFloatingProps()}
+              {...getFloatingProps({
+                ref(node: HTMLElement | null) {
+                  if (node) refs.setFloating(node);
+                },
+                role: "listbox",
+                className: menuClassName,
+                style: {
+                  ...floatingStyles,
+                  ...transitionStyles,
+                  ...props.UNSAFE_styles?.menu,
+                  ...(menuWidth
+                    ? { width: menuWidth, maxWidth: menuWidth }
+                    : {}),
+                },
+              })}
             >
               {/* Header persistents */}
               <PersistentRegion<Value>
@@ -219,19 +224,8 @@ function AutocompleteRebuiltInternal<
                         items={renderable}
                         activeIndex={activeIndexForMiddle}
                         indexOffset={headerInteractiveCount}
-                        getItemProps={() =>
-                          getItemProps({
-                            ref(node: HTMLElement | null) {
-                              const idx = Number(
-                                node?.getAttribute("data-index"),
-                              );
-
-                              if (!Number.isNaN(idx)) {
-                                listRef.current[idx] = node;
-                              }
-                            },
-                          })
-                        }
+                        getItemProps={getItemProps}
+                        listRef={listRef}
                         renderOption={renderOption}
                         renderSection={renderSection}
                         renderAction={renderAction}

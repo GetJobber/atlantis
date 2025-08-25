@@ -19,7 +19,10 @@ interface MenuListProps<T extends OptionLike> {
   readonly items: Array<RenderItem<T>>;
   readonly activeIndex: number | null;
   readonly indexOffset?: number;
-  readonly getItemProps: () => Record<string, unknown>;
+  readonly getItemProps: (
+    userProps?: Record<string, unknown>,
+  ) => Record<string, unknown>;
+  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
@@ -46,6 +49,7 @@ export function MenuList<T extends OptionLike>({
   activeIndex,
   indexOffset = 0,
   getItemProps,
+  listRef,
   renderOption,
   renderSection,
   renderAction,
@@ -78,6 +82,7 @@ export function MenuList<T extends OptionLike>({
         activeIndex,
         navigableIndex,
         getItemProps,
+        listRef,
         isOptionSelected,
         renderOption,
         getOptionLabel,
@@ -99,6 +104,7 @@ export function MenuList<T extends OptionLike>({
       activeIndex,
       navigableIndex,
       getItemProps,
+      listRef,
       renderAction,
       getActionKey,
       onAction,
@@ -143,6 +149,7 @@ function handleSectionRendering<T extends OptionLike>({
     <div
       key={`sec-${getSectionKey(section)}-${index}`}
       role="presentation"
+      tabIndex={-1}
       data-testid="ATL-AutocompleteRebuilt-Section"
       className={classNames(styles.section, styles.stickyTop, sectionClassName)}
       style={sectionStyle}
@@ -164,7 +171,10 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   readonly option: T;
   readonly activeIndex: number | null;
   readonly navigableIndex: number;
-  readonly getItemProps: () => Record<string, unknown>;
+  readonly getItemProps: (
+    userProps?: Record<string, unknown>,
+  ) => Record<string, unknown>;
+  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly isOptionSelected: (option: T) => boolean;
   readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
   readonly getOptionLabel: (option: T) => string;
@@ -180,6 +190,7 @@ function handleOptionRendering<T extends OptionLike>({
   activeIndex,
   navigableIndex,
   getItemProps,
+  listRef,
   isOptionSelected,
   renderOption,
   getOptionLabel,
@@ -208,19 +219,24 @@ function handleOptionRendering<T extends OptionLike>({
     node: (
       <div
         key={`opt-${getOptionKey(option)}`}
+        {...getItemProps({
+          ref(node: HTMLElement | null) {
+            const idx = nextNavigableIndex + indexOffset;
+            if (node) listRef.current[idx] = node;
+          },
+          onClick: () => onSelect(option),
+          className: classNames(
+            styles.option,
+            isActive && styles.optionActive,
+            optionClassName,
+          ),
+          style: optionStyle,
+        })}
         role="option"
         tabIndex={-1}
-        className={classNames(
-          styles.option,
-          isActive && styles.optionActive,
-          optionClassName,
-        )}
         aria-selected={isSelected ? true : false}
         data-index={nextNavigableIndex + indexOffset}
         data-active={isActive ? true : undefined}
-        {...getItemProps()}
-        onClick={() => onSelect(option)}
-        style={optionStyle}
       >
         {optionContent}
       </div>
@@ -251,7 +267,10 @@ interface HandleActionRenderingProps<T extends OptionLike> {
   readonly index: number;
   readonly activeIndex: number | null;
   readonly navigableIndex: number;
-  readonly getItemProps: () => Record<string, unknown>;
+  readonly getItemProps: (
+    userProps?: Record<string, unknown>,
+  ) => Record<string, unknown>;
+  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
   readonly getActionKey: (
     action: MenuAction<Record<string, unknown>>,
@@ -269,6 +288,7 @@ function handleActionRendering<T extends OptionLike>({
   activeIndex,
   navigableIndex,
   getItemProps,
+  listRef,
   renderAction,
   getActionKey,
   onAction,
@@ -288,29 +308,38 @@ function handleActionRendering<T extends OptionLike>({
     <DefaultActionContent textContent={action.label} />
   );
 
+  const computedIndex = nextNavigableIndex + indexOffset;
+  const itemProps = getItemProps({
+    ref(node: HTMLElement | null) {
+      if (node) {
+        listRef.current[computedIndex] = node;
+      }
+    },
+    onClick: () => {
+      onAction({
+        run: action.onClick,
+        closeOnRun: action.shouldClose,
+      });
+    },
+    className: classNames(
+      styles.action,
+      isActive && styles.actionActive,
+      actionClassName,
+    ),
+    style: actionStyle,
+  });
+
   return {
     node: (
       <div
         key={`act-${getActionKey(action)}-${index}`}
-        tabIndex={-1}
+        {...itemProps}
         role="button"
+        tabIndex={-1}
         data-testid="ATL-AutocompleteRebuilt-Action"
-        className={classNames(
-          styles.action,
-          isActive && styles.actionActive,
-          actionClassName,
-        )}
-        data-index={nextNavigableIndex + indexOffset}
+        data-index={computedIndex}
         data-origin={origin}
         data-active={isActive ? true : undefined}
-        {...getItemProps()}
-        onClick={() => {
-          onAction({
-            run: action.onClick,
-            closeOnRun: action.shouldClose,
-          });
-        }}
-        style={actionStyle}
       >
         {actionContent}
       </div>
