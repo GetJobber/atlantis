@@ -1,0 +1,75 @@
+# BottomSheet
+
+# BottomSheet
+
+BottomSheet uses an overlay to focus attention to the user on the options
+available after triggering a button. This helps isolate the decision-making that
+a user has to make at each step of their interaction. BottomSheet is used to
+bring up a modal from the bottom that will contain whatever children are passed
+to it. Its height will be defined by the component that is passed to it.
+
+## Design & usage guidelines
+
+For the most part, a BottomSheet will be used in cases where the user is
+choosing from a menu offering additional functionality related to onscreen
+items.
+
+In certain scenarios, you may need to add a title or an explicit option to
+cancel the BottomSheet.
+
+### Cancel
+
+A **cancel action** should only be used in cases where:
+
+- an action will _actually_ be cancelled; if the only thing tapping "cancel"
+  will do is close the BottomSheet, don't use cancel
+- it is not inherently obvious that tapping out of the BottomSheet will _not_
+  complete the desired preceding action initiated
+
+### Heading
+
+Add a **heading** to the BottomSheet in cases where the user has initiated a
+preceding action which could result in a state change. In this case, the title
+should repeat the preceding action label.
+
+## Content guidelines
+
+BottomSheetOption follows the same content guidelines as the web
+[Menu.](../?path=/docs/components-navigation-menu--docs#content-guidelines)
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=19494%3A110480"
+/>
+
+## Props
+
+### Mobile Props
+
+| Prop         | Type                  | Required | Default  | Description                                                    |
+| ------------ | --------------------- | -------- | -------- | -------------------------------------------------------------- |
+| `showCancel` | `boolean`             | ❌       | `_none_` | Display a cancel button in the bottom sheet footer.            |
+| `loading`    | `boolean`             | ❌       | `_none_` | Hide or show the cancel button when loading state is provided. |
+| `heading`    | `string`              | ❌       | `_none_` | An optional heading to display in the bottom sheet header.     |
+| `onOpen`     | `() => void`          | ❌       | `_none_` | Callback that is called when the overlay is opened.            |
+| `onClose`    | `() => void`          | ❌       | `_none_` | Callback that is called when the overlay is closed.            |
+| `ref`        | `LegacyRef<IHandles>` | ❌       | `_none_` | Allows getting a ref to the component instance.                |
+
+Once the component unmounts, React will set `ref.current` to `null` (or call the
+ref with `null` if you passed a callback ref). @see {@link
+https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React
+Docs} | | `key` | `Key` | ❌ | `_none_` | _No description_ |
+
+## Categories
+
+- Selections
+
+## Component Path
+
+`/components/BottomSheet`
+
+---
+
+_Generated on 2025-08-21T17:35:16.354Z_

@@ -1,0 +1,93 @@
+# ResponsiveSwitcher
+
+## Web Component Code
+
+```tsx
+ResponsiveSwitcher Layout Container Stack Wrapper Web React import React from "react";
+import classNames from "classnames";
+import styles from "./ResponsiveSwitcher.module.css";
+import type { ResponsiveSwitcherProps } from "./types";
+import {
+  getMappedAtlantisSpaceToken,
+  spaceTokens,
+} from "../sharedHelpers/getMappedAtlantisSpaceToken";
+
+export function ResponsiveSwitcher({
+  children,
+  threshold,
+  gap = spaceTokens.base,
+  limit = 2,
+  as: Tag = "div",
+  dataAttributes,
+  ariaAttributes,
+  role,
+  id,
+  UNSAFE_className,
+  UNSAFE_style,
+}: ResponsiveSwitcherProps) {
+  return (
+    <Tag
+      role={role}
+      id={id}
+      {...dataAttributes}
+      {...ariaAttributes}
+      className={classNames(
+        styles.responsiveSwitcher,
+        styles[`limit-${limit}` as keyof typeof styles],
+        UNSAFE_className?.container,
+      )}
+      style={
+        {
+          "--public-responsive-switcher-threshold": threshold,
+          "--public-responsive-switcher-space":
+            getMappedAtlantisSpaceToken(gap),
+          "--public-responsive-switcher-limit": limit,
+          ...UNSAFE_style?.container,
+        } as React.CSSProperties
+      }
+    >
+      {children}
+    </Tag>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop               | Type                      | Required | Default            | Description                                                                                                 |
+| ------------------ | ------------------------- | -------- | ------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `threshold`        | `string`                  | ✅       | `_none_`           | The minimum width of the top-level children. If this can't be met, the children will break to row.          |
+| `gap`              | `GapSpacing`              | ❌       | `spaceTokens.base` | The amount of space between the children. Semantic tokens are available.                                    |
+| `as`               | `CommonAllowedElements`   | ❌       | `_none_`           | The HTML tag to render the container as. Defaults to `div`.                                                 |
+| `limit`            | `number`                  | ❌       | `2`                | Useful for dynamic content. If the number of children is greater than this, the children will break to row. |
+| `UNSAFE_className` | `{ container?: string; }` | ❌       | `_none_`           | **Use at your own risk:** Custom class names for specific elements. This should only be used as a           |
+
+**last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `UNSAFE_style` | `{ container?: CSSProperties; }` | ❌ | `_none_` | **Use at
+your own risk:** Custom style for specific elements. This should only be used as
+a **last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `dataAttributes` | `{ [key: `data-${string}`]: string; }` | ❌ | `_none_` |
+Standard HTML data attributes. Accepts anything in a {{"data-key":"value"}}
+format. | | `ariaAttributes` | `AriaAttributes` | ❌ | `_none_` | Standard HTML
+aria attributes. Accepts all standard HTML aria attributes. | | `role` |
+`AriaRole` | ❌ | `_none_` | Standard HTML role attribute. | | `id` | `string` |
+❌ | `_none_` | Standard HTML id attribute. |
+
+## Categories
+
+- Layouts & Structure
+
+## Component Path
+
+`/components/ResponsiveSwitcher`
+
+---
+
+_Generated on 2025-08-21T17:35:16.371Z_
