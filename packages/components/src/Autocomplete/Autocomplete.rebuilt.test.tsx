@@ -11,7 +11,7 @@ jest.mock("@jobber/design", () => {
   };
 });
 
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
@@ -751,8 +751,10 @@ describe("AutocompleteRebuilt", () => {
       // Immediately after typing, filtering has not yet applied
       expect(screen.getByText("One")).toBeVisible();
 
-      // Wait longer than the debounce interval
-      await new Promise(res => setTimeout(res, 60));
+      // Wait longer than the debounce interval inside act to flush updates
+      await act(async () => {
+        await new Promise(res => setTimeout(res, 60));
+      });
 
       await waitFor(() => {
         expect(screen.queryByText("One")).not.toBeInTheDocument();
