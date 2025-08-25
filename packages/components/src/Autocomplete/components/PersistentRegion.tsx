@@ -212,7 +212,9 @@ function handleActionPersistentRendering<T extends OptionLike>({
           },
           onClick: () =>
             onAction({
-              run: persistent.onClick as () => void,
+              run: () => {
+                persistent.onClick?.();
+              },
               closeOnRun: persistent.shouldClose,
             }),
           className: classNames(styles.action, isActive && styles.actionActive),

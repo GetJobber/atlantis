@@ -1,8 +1,6 @@
 import type React from "react";
 import type {
   ActionConfig,
-  ActionOrigin,
-  MenuAction,
   MenuItem,
   MenuOptions,
   MenuPersistent,
@@ -65,15 +63,20 @@ export function buildItemsForGroup<
   }
 
   if (filtered.length > 0) {
-    result.push(...filtered.map(o => ({ kind: "option" as const, value: o })));
+    result.push(
+      ...filtered.map<RenderItem<Value, S, A>>(o => ({
+        kind: "option",
+        value: o,
+      })),
+    );
   }
 
   if (actions.length > 0) {
     result.push(
-      ...actions.map(action => ({
-        kind: "action" as const,
-        action: action as MenuAction<A>,
-        origin: "menu" as ActionOrigin,
+      ...actions.map<RenderItem<Value, S, A>>(action => ({
+        kind: "action",
+        action,
+        origin: "menu",
       })),
     );
   }

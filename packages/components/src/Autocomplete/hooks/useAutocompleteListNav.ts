@@ -138,7 +138,6 @@ export function useAutocompleteListNav({
     listRef,
     open,
     setOpen,
-    setReferenceElement: (el: HTMLElement | null) =>
-      refs.setReference(el as unknown as Element | null),
+    setReferenceElement: (el: HTMLElement | null) => refs.setReference(el),
   };
 }

@@ -144,16 +144,18 @@ export function useAutocomplete<
 
     if (!hasAnyOptions) {
       if (emptyActions) {
-        const derived =
+        const derived: MenuAction<ActionExtra>[] =
           typeof emptyActions === "function"
             ? emptyActions({ inputValue })
             : emptyActions;
 
-        return derived.map(act => ({
-          kind: "action" as const,
-          action: act as MenuAction<ActionExtra>,
-          origin: "empty" as ActionOrigin,
-        }));
+        return derived.map<RenderItem<Value, SectionExtra, ActionExtra>>(
+          act => ({
+            kind: "action",
+            action: act,
+            origin: "empty",
+          }),
+        );
       }
 
       // No options and no emptyActions: render empty state
