@@ -1,5 +1,6 @@
 import type React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useDebounce } from "@jobber/hooks";
 import type {
   ActionConfig,
   ActionOrigin,
@@ -51,6 +52,7 @@ export function useAutocomplete<
     multiple,
     openOnFocus = true,
     readOnly = false,
+    debounce: debounceMs = 300,
   } = props;
 
   const getOptionLabel = useCallback(
@@ -118,17 +120,29 @@ export function useAutocomplete<
 
   const lastInputWasUser = useRef(false);
 
+  const [debouncedInputValue, setDebouncedInputValue] = useState(inputValue);
+  const debouncedSetter = useDebounce(setDebouncedInputValue, debounceMs);
+
+  useEffect(() => {
+    if (debounceMs === 0) {
+      setDebouncedInputValue(inputValue);
+
+      return;
+    }
+    debouncedSetter(inputValue);
+  }, [inputValue, debounceMs, debouncedSetter]);
+
   const renderable = useMemo(() => {
     const transform = (opts: Value[]): Value[] => {
       if (exactLabelMatch && !lastInputWasUser.current) return opts;
       if (props.filterOptions === false) return opts;
 
       if (typeof props.filterOptions === "function") {
-        return props.filterOptions(opts, inputValue);
+        return props.filterOptions(opts, debouncedInputValue);
       }
 
       // Default to case-insensitive includes
-      const term = inputValue.toLowerCase();
+      const term = debouncedInputValue.toLowerCase();
 
       return opts.filter(opt =>
         getOptionLabel(opt).toLowerCase().includes(term),
@@ -166,7 +180,7 @@ export function useAutocomplete<
   }, [
     sections,
     props.filterOptions,
-    inputValue,
+    debouncedInputValue,
     exactLabelMatch,
     getOptionLabel,
     emptyActions,

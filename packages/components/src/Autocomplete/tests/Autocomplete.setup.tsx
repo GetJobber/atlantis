@@ -64,6 +64,7 @@ export function Wrapper<T extends OptionLike>({
   readOnly,
   UNSAFE_className,
   UNSAFE_styles,
+  debounce = 0,
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -93,6 +94,7 @@ export function Wrapper<T extends OptionLike>({
   >["UNSAFE_className"];
   readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, false>["UNSAFE_styles"];
   readonly readOnly?: boolean;
+  readonly debounce?: number;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -114,6 +116,7 @@ export function Wrapper<T extends OptionLike>({
       openOnFocus={openOnFocus}
       filterOptions={filterOptions}
       emptyActions={emptyActions}
+      debounce={debounce}
       renderOption={renderOption}
       renderAction={renderAction}
       renderSection={renderSection}
@@ -138,6 +141,7 @@ export function FreeFormWrapper({
   menu,
   openOnFocus,
   inputEqualsOption,
+  debounce = 0,
 }: {
   readonly initialValue?: OptionLike;
   readonly initialInputValue?: string;
@@ -146,6 +150,7 @@ export function FreeFormWrapper({
   readonly menu?: MenuItem<OptionLike>[];
   readonly openOnFocus?: boolean;
   readonly inputEqualsOption?: (input: string, option: OptionLike) => boolean;
+  readonly debounce?: number;
 }) {
   const [value, setValue] = React.useState<OptionLike | undefined>(
     initialValue,
@@ -168,6 +173,7 @@ export function FreeFormWrapper({
       allowFreeForm
       createFreeFormValue={(input: string) => ({ label: input })}
       inputEqualsOption={inputEqualsOption}
+      debounce={debounce}
     />
   );
 }

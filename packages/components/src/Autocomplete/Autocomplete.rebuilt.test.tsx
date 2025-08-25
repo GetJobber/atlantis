@@ -739,6 +739,26 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
+  describe("debounce", () => {
+    it("delays filtering until the debounce interval elapses", async () => {
+      render(<Wrapper debounce={50} />);
+
+      await openAutocomplete();
+      await typeInInput("T");
+
+      // Immediately after typing, filtering has not yet applied
+      expect(screen.getByText("One")).toBeVisible();
+
+      // Wait longer than the debounce interval
+      await new Promise(res => setTimeout(res, 60));
+
+      await waitFor(() => {
+        expect(screen.queryByText("One")).not.toBeInTheDocument();
+        expect(screen.getByText("Two")).toBeVisible();
+      });
+    });
+  });
+
   describe("with a selection", () => {
     it("highlights the selected option on open", async () => {
       render(<Wrapper initialValue={{ label: "Two" }} />);

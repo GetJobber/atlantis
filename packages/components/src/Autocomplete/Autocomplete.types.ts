@@ -141,13 +141,6 @@ export interface AutocompleteLegacyProps<
     | Promise<Array<GenericGetOptionsValue | GenericOption>>;
 
   /**
-   * Debounce in milliseconds for getOptions
-   *
-   * @default 300
-   */
-  readonly debounce?: number;
-
-  /**
    * Validations to run on the input.
    */
   readonly validations?: FormFieldProps["validations"];
@@ -402,6 +395,14 @@ interface AutocompleteRebuiltBaseProps<
    * Defaults to the persistent.label.
    */
   readonly getPersistentKey?: (item: MenuPersistent<ActionExtra>) => Key;
+
+  /**
+   * Debounce in milliseconds for input-driven filtering and search render.
+   * Set to 0 to disable debouncing.
+   *
+   * @default 300
+   */
+  readonly debounce?: number;
 
   /*
    * Render prop to customize the rendering of an option.
