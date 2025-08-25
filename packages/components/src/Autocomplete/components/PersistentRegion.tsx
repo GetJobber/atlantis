@@ -21,10 +21,10 @@ interface PersistentRegionProps<T extends OptionLike> {
     args?: Record<string, unknown>,
   ) => Record<string, unknown>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
-  readonly renderPersistent?: AutocompleteRebuiltProps<
+  readonly customRenderPersistent?: AutocompleteRebuiltProps<
     T,
     false
-  >["renderPersistent"];
+  >["customRenderPersistent"];
   readonly getPersistentKey: (
     item: MenuPersistent<Record<string, unknown>>,
   ) => React.Key;
@@ -40,7 +40,7 @@ export function PersistentRegion<T extends OptionLike>({
   indexOffset,
   getItemProps,
   listRef,
-  renderPersistent,
+  customRenderPersistent,
   getPersistentKey,
   className,
   style,
@@ -64,7 +64,7 @@ export function PersistentRegion<T extends OptionLike>({
           activeIndex,
           indexOffset,
           getItemProps,
-          renderPersistent,
+          customRenderPersistent,
           getPersistentKey,
           listRef,
           onAction,
@@ -81,10 +81,10 @@ export function PersistentRegion<T extends OptionLike>({
 }
 
 interface HandlePersistentRenderingProps<T extends OptionLike> {
-  readonly renderPersistent?: AutocompleteRebuiltProps<
+  readonly customRenderPersistent?: AutocompleteRebuiltProps<
     T,
     false
-  >["renderPersistent"];
+  >["customRenderPersistent"];
   readonly getPersistentKey: (
     item: MenuPersistent<Record<string, unknown>>,
   ) => React.Key;
@@ -107,7 +107,7 @@ function handlePersistentRendering<T extends OptionLike>({
   activeIndex,
   indexOffset,
   getItemProps,
-  renderPersistent,
+  customRenderPersistent,
   getPersistentKey,
   listRef,
   onAction,
@@ -123,7 +123,7 @@ function handlePersistentRendering<T extends OptionLike>({
     const node = handleTextPersistentRendering({
       persistent,
       position,
-      renderPersistent,
+      customRenderPersistent,
       getPersistentKey,
       index,
     });
@@ -137,7 +137,7 @@ function handlePersistentRendering<T extends OptionLike>({
     activeIndex,
     indexOffset,
     getItemProps,
-    renderPersistent,
+    customRenderPersistent,
     getPersistentKey,
     listRef,
     onAction,
@@ -149,15 +149,19 @@ function handlePersistentRendering<T extends OptionLike>({
 function handleTextPersistentRendering<T extends OptionLike>({
   persistent,
   position,
-  renderPersistent,
+  customRenderPersistent,
   getPersistentKey,
   index,
 }: Pick<
   HandlePersistentRenderingProps<T>,
-  "persistent" | "position" | "renderPersistent" | "getPersistentKey" | "index"
+  | "persistent"
+  | "position"
+  | "customRenderPersistent"
+  | "getPersistentKey"
+  | "index"
 >): React.ReactNode {
-  const content = renderPersistent ? (
-    renderPersistent({ value: persistent, position })
+  const content = customRenderPersistent ? (
+    customRenderPersistent({ value: persistent, position })
   ) : (
     <DefaultTextPersistentContent persistent={persistent} />
   );
@@ -180,7 +184,7 @@ function handleActionPersistentRendering<T extends OptionLike>({
   activeIndex,
   indexOffset,
   getItemProps,
-  renderPersistent,
+  customRenderPersistent,
   getPersistentKey,
   listRef,
   onAction,
@@ -192,8 +196,8 @@ function handleActionPersistentRendering<T extends OptionLike>({
 } {
   const nextNavigableIndex = navigableIndex + 1;
   const isActive = activeIndex === indexOffset + nextNavigableIndex;
-  const content = renderPersistent ? (
-    renderPersistent({ value: persistent, position, isActive })
+  const content = customRenderPersistent ? (
+    customRenderPersistent({ value: persistent, position, isActive })
   ) : (
     <DefaultActionContent textContent={persistent.label} />
   );

@@ -404,54 +404,54 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly debounce?: number;
 
-  /*
+  /**
    * Render prop to customize the rendering of an option.
    * @param args.value - The option value including all extra keys from the menu item
    * @param args.isActive - Whether the option is currently highlighted/active
    * @param args.isSelected - Whether the option is currently selected
    */
-  readonly renderOption?: (args: {
+  readonly customRenderOption?: (args: {
     value: Value;
     isActive: boolean;
     isSelected: boolean;
   }) => React.ReactNode;
-  /*
+  /**
    * Render prop to customize the rendering of a section.
    * @param args.section - The section value including all extra keys from the menu item
    */
-  readonly renderSection?: (
+  readonly customRenderSection?: (
     section: MenuSection<Value, SectionExtra, ActionExtra>,
   ) => React.ReactNode;
-  /*
+  /**
    * Render prop to customize the rendering of an action.
    * @param args.value - The action value including all extra keys from the menu item
    * @param args.isActive - Whether the action is currently highlighted/active
    * @param args.origin - The origin of the action ("menu" or "empty")
    */
-  readonly renderAction?: (args: {
+  readonly customRenderAction?: (args: {
     value: MenuAction<ActionExtra>;
     isActive: boolean;
     origin?: ActionOrigin;
   }) => React.ReactNode;
 
-  /*
+  /**
    * Render prop to customize the rendering of a persistent item.
    * Persistent items are always visible at the top (header) or bottom (footer)
    * of the menu. Non-interactive persistents are not part of navigation.
    */
-  readonly renderPersistent?: (args: {
+  readonly customRenderPersistent?: (args: {
     value: MenuPersistent<ActionExtra>;
     position: "header" | "footer";
     isActive?: boolean;
   }) => React.ReactNode;
 
-  /*
+  /**
    * Render prop to customize the rendering of the input.
    * @param props.inputRef - The ref to the input element
    * @param props.inputProps - The props to pass to the input element
    * Note that you must pass the inputRef to the input
    */
-  readonly renderInput?: (props: {
+  readonly customRenderInput?: (props: {
     inputRef: Ref<HTMLInputElement | HTMLTextAreaElement>;
     inputProps: InputTextRebuiltProps;
   }) => React.ReactNode;
@@ -557,8 +557,10 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly onClose?: () => void;
 
-  // TODO: for multi select - not used yet
-  readonly renderSelectedItems?: (props: {
+  /**
+   * Custom renderer for selected items (multi-select).
+   */
+  readonly customRenderSelectedItems?: (props: {
     items: Value[];
     onRemove: (item: Value) => void;
   }) => React.ReactNode;
@@ -569,11 +571,10 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly loading?: boolean;
 
-  /*
-   * Custom content to render when `loading` is true.
-   * If omitted, a default loading UI (Glimmers) is shown.
+  /**
+   * Custom render prop for content to render when `loading` is true.
    */
-  readonly renderLoading?: React.ReactNode;
+  readonly customRenderLoading?: React.ReactNode;
 
   /*
    * Custom equality for option to value mapping.

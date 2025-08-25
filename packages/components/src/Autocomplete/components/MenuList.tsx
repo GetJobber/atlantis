@@ -24,9 +24,18 @@ interface MenuListProps<T extends OptionLike> {
   ) => Record<string, unknown>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly listboxId: string;
-  readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
-  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
-  readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
+  readonly customRenderOption?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderOption"];
+  readonly customRenderSection?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderSection"];
+  readonly customRenderAction?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderAction"];
   readonly getOptionLabel: (option: T) => string;
   readonly getOptionKey: (option: T) => React.Key;
   readonly getActionKey: (
@@ -52,9 +61,9 @@ export function MenuList<T extends OptionLike>({
   getItemProps,
   listRef,
   listboxId,
-  renderOption,
-  renderSection,
-  renderAction,
+  customRenderOption,
+  customRenderSection,
+  customRenderAction,
   getOptionLabel,
   getOptionKey,
   getActionKey,
@@ -71,7 +80,7 @@ export function MenuList<T extends OptionLike>({
       return handleSectionRendering<T>({
         section: item.section,
         index,
-        renderSection,
+        customRenderSection,
         getSectionKey,
         sectionClassName: slotOverrides?.section?.className,
         sectionStyle: slotOverrides?.section?.style,
@@ -87,7 +96,7 @@ export function MenuList<T extends OptionLike>({
         listRef,
         listboxId,
         isOptionSelected,
-        renderOption,
+        customRenderOption,
         getOptionLabel,
         getOptionKey,
         onSelect,
@@ -109,7 +118,7 @@ export function MenuList<T extends OptionLike>({
       getItemProps,
       listRef,
       listboxId,
-      renderAction,
+      customRenderAction,
       getActionKey,
       onAction,
       indexOffset,
@@ -127,7 +136,7 @@ export function MenuList<T extends OptionLike>({
 }
 
 function handleSectionRendering<T extends OptionLike>({
-  renderSection,
+  customRenderSection,
   section,
   index,
   getSectionKey,
@@ -135,7 +144,10 @@ function handleSectionRendering<T extends OptionLike>({
   sectionStyle,
 }: {
   readonly section: MenuSection<T>;
-  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
+  readonly customRenderSection?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderSection"];
   readonly index: number;
   readonly getSectionKey: (
     section: MenuSection<T, Record<string, unknown>, Record<string, unknown>>,
@@ -143,8 +155,8 @@ function handleSectionRendering<T extends OptionLike>({
   readonly sectionClassName?: string;
   readonly sectionStyle?: React.CSSProperties;
 }) {
-  const headerContent = renderSection ? (
-    renderSection(section)
+  const headerContent = customRenderSection ? (
+    customRenderSection(section)
   ) : (
     <DefaultSectionContent section={section} />
   );
@@ -181,7 +193,10 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly listboxId: string;
   readonly isOptionSelected: (option: T) => boolean;
-  readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
+  readonly customRenderOption?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderOption"];
   readonly getOptionLabel: (option: T) => string;
   readonly getOptionKey: (option: T) => React.Key;
   readonly onSelect: (option: T) => void;
@@ -198,7 +213,7 @@ function handleOptionRendering<T extends OptionLike>({
   listRef,
   listboxId,
   isOptionSelected,
-  renderOption,
+  customRenderOption,
   getOptionLabel,
   getOptionKey,
   onSelect,
@@ -212,8 +227,8 @@ function handleOptionRendering<T extends OptionLike>({
   const nextNavigableIndex = navigableIndex + 1;
   const isActive = activeIndex === nextNavigableIndex;
   const isSelected = isOptionSelected(option);
-  const optionContent = renderOption ? (
-    renderOption({ value: option, isActive, isSelected })
+  const optionContent = customRenderOption ? (
+    customRenderOption({ value: option, isActive, isSelected })
   ) : (
     <DefaultOptionContent
       isSelected={isSelected}
@@ -279,7 +294,10 @@ interface HandleActionRenderingProps<T extends OptionLike> {
   ) => Record<string, unknown>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly listboxId: string;
-  readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
+  readonly customRenderAction?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderAction"];
   readonly getActionKey: (
     action: MenuAction<Record<string, unknown>>,
   ) => React.Key;
@@ -298,7 +316,7 @@ function handleActionRendering<T extends OptionLike>({
   getItemProps,
   listRef,
   listboxId,
-  renderAction,
+  customRenderAction,
   getActionKey,
   onAction,
   indexOffset = 0,
@@ -311,8 +329,8 @@ function handleActionRendering<T extends OptionLike>({
 } {
   const nextNavigableIndex = navigableIndex + 1;
   const isActive = activeIndex === nextNavigableIndex;
-  const actionContent = renderAction ? (
-    renderAction({ value: action, isActive, origin })
+  const actionContent = customRenderAction ? (
+    customRenderAction({ value: action, isActive, origin })
   ) : (
     <DefaultActionContent textContent={action.label} />
   );

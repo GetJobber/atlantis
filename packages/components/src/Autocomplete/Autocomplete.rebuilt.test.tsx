@@ -76,7 +76,7 @@ describe("AutocompleteRebuilt", () => {
       render(
         <Wrapper
           loading
-          renderLoading={<div data-testid={CUSTOM_ID}>Loading…</div>}
+          customRenderLoading={<div data-testid={CUSTOM_ID}>Loading…</div>}
         />,
       );
 
@@ -89,7 +89,9 @@ describe("AutocompleteRebuilt", () => {
     it("does not render custom loading content when loading is false", async () => {
       const CUSTOM_ID = "custom-loading";
       render(
-        <Wrapper renderLoading={<div data-testid={CUSTOM_ID}>Loading…</div>} />,
+        <Wrapper
+          customRenderLoading={<div data-testid={CUSTOM_ID}>Loading…</div>}
+        />,
       );
 
       await openAutocomplete();
@@ -1475,7 +1477,13 @@ describe("AutocompleteRebuilt", () => {
           emptyActions={[
             { type: "action", label: "Browse templates", onClick: jest.fn() },
           ]}
-          renderAction={({ value, origin }) => {
+          customRenderAction={({
+            value,
+            origin,
+          }: {
+            value: OptionLike;
+            origin?: "menu" | "empty";
+          }) => {
             if (origin === "empty") {
               return <strong data-testid="empty-action">{value.label}</strong>;
             }
@@ -1522,12 +1530,12 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("renderInput", () => {
-    it("renders a custom layout for renderInput when provided", async () => {
+  describe("customRenderInput", () => {
+    it("renders a custom layout for customRenderInput when provided", async () => {
       const onChange = jest.fn();
       render(
         <Wrapper
-          renderInput={({ inputRef, inputProps }) => {
+          customRenderInput={({ inputRef, inputProps }) => {
             return (
               <InputText
                 ref={inputRef}
@@ -1553,8 +1561,8 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("renderSection", () => {
-    it("renders a custom layout for renderSection when provided", async () => {
+  describe("customRenderSection", () => {
+    it("renders a custom layout for customRenderSection when provided", async () => {
       const renderSection = (
         section: MenuSection<OptionLike & { special?: boolean }>,
       ) => {
@@ -1579,7 +1587,7 @@ describe("AutocompleteRebuilt", () => {
 
       render(
         <Wrapper<OptionLike & { special?: boolean }>
-          renderSection={renderSection}
+          customRenderSection={renderSection}
           menu={sectionedMenu}
         />,
       );
@@ -1594,8 +1602,8 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("renderOption", () => {
-    it("renders a custom layout for renderOption when provided", async () => {
+  describe("customRenderOption", () => {
+    it("renders a custom layout for customRenderOption when provided", async () => {
       const customRenderOption = ({
         value,
       }: {
@@ -1623,7 +1631,7 @@ describe("AutocompleteRebuilt", () => {
               ],
             },
           ])}
-          renderOption={customRenderOption}
+          customRenderOption={customRenderOption}
         />,
       );
 
@@ -1635,10 +1643,10 @@ describe("AutocompleteRebuilt", () => {
       });
     });
 
-    it("passes isActive correctly to renderOption for the highlighted option", async () => {
+    it("passes isActive correctly to customRenderOption for the highlighted option", async () => {
       render(
         <Wrapper
-          renderOption={({ value, isActive }) => {
+          customRenderOption={({ value, isActive }) => {
             return (
               <div
                 data-testid={`custom-option-${
@@ -1660,11 +1668,11 @@ describe("AutocompleteRebuilt", () => {
       });
     });
 
-    it("passes isSelected correctly to renderOption for the selected option", async () => {
+    it("passes isSelected correctly to customRenderOption for the selected option", async () => {
       render(
         <Wrapper
           initialValue={{ label: "Two" }}
-          renderOption={({ value, isSelected }) => {
+          customRenderOption={({ value, isSelected }) => {
             return (
               <div
                 data-testid={`custom-option-${
@@ -1689,8 +1697,8 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("renderAction", () => {
-    it("renders a custom layout for renderAction when provided", async () => {
+  describe("customRenderAction", () => {
+    it("renders a custom layout for customRenderAction when provided", async () => {
       const renderAction = ({
         value,
       }: {
@@ -1723,7 +1731,7 @@ describe("AutocompleteRebuilt", () => {
               ],
             },
           ]}
-          renderAction={renderAction}
+          customRenderAction={renderAction}
         />,
       );
 
@@ -1734,10 +1742,10 @@ describe("AutocompleteRebuilt", () => {
       });
     });
 
-    it("passes isActive to renderAction for the highlighted action", async () => {
+    it("passes isActive to customRenderAction for the highlighted action", async () => {
       render(
         <Wrapper
-          renderAction={({ value, isActive }) => {
+          customRenderAction={({ value, isActive }) => {
             return (
               <div
                 data-testid={`custom-action-${
@@ -1766,8 +1774,8 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("renderPersistent", () => {
-    it("renders a custom layout for renderPersistent when provided", async () => {
+  describe("customRenderPersistent", () => {
+    it("renders a custom layout for customRenderPersistent when provided", async () => {
       render(
         <Wrapper
           menu={[
@@ -1778,7 +1786,7 @@ describe("AutocompleteRebuilt", () => {
               onClick: jest.fn(),
             },
           ]}
-          renderPersistent={({ value }) => (
+          customRenderPersistent={({ value }) => (
             <div data-testid="custom-persistent">{value.label}</div>
           )}
         />,
@@ -1790,7 +1798,7 @@ describe("AutocompleteRebuilt", () => {
         expect(screen.getByTestId("custom-persistent")).toBeVisible();
       });
     });
-    it("passes isActive to renderPersistent when used with an interactive persistent", async () => {
+    it("passes isActive to customRenderPersistent when used with an interactive persistent", async () => {
       render(
         <Wrapper
           menu={[
@@ -1807,7 +1815,7 @@ describe("AutocompleteRebuilt", () => {
               onClick: jest.fn(),
             },
           ]}
-          renderPersistent={({ value, isActive }) => (
+          customRenderPersistent={({ value, isActive }) => (
             <div
               data-testid={`custom-persistent-${
                 isActive ? "active" : "inactive"
@@ -1828,7 +1836,7 @@ describe("AutocompleteRebuilt", () => {
         expect(screen.getByTestId("custom-persistent-inactive")).toBeVisible();
       });
     });
-    it("passes position to renderPersistent when provided", async () => {
+    it("passes position to customRenderPersistent when provided", async () => {
       render(
         <Wrapper
           menu={[
@@ -1839,7 +1847,7 @@ describe("AutocompleteRebuilt", () => {
               onClick: jest.fn(),
             },
           ]}
-          renderPersistent={({ value, position }) => (
+          customRenderPersistent={({ value, position }) => (
             <div data-testid={`custom-persistent-${position}`}>
               {value.label}
             </div>
@@ -1853,7 +1861,7 @@ describe("AutocompleteRebuilt", () => {
         expect(screen.getByTestId("custom-persistent-header")).toBeVisible();
       });
     });
-    it("accepts and passes custom values to renderPersistent when provided", async () => {
+    it("accepts and passes custom values to customRenderPersistent when provided", async () => {
       const menu = defineMenu<
         OptionLike,
         Record<string, never>,
@@ -1871,8 +1879,8 @@ describe("AutocompleteRebuilt", () => {
       render(
         <Wrapper<OptionLike>
           // TODO: fix test types to not need this
-          menu={menu as unknown as MenuItem<OptionLike>[]}
-          renderPersistent={({ value }) => (
+          menu={menu as MenuItem<OptionLike>[]}
+          customRenderPersistent={({ value }) => (
             <div data-testid="custom-persistent">
               {(value as unknown as { arbitrary: string }).arbitrary}
             </div>

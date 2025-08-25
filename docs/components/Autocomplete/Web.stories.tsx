@@ -441,7 +441,7 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
             ],
           },
         ]}
-        renderOption={({ value, isActive, isSelected }) => {
+        customRenderOption={({ value, isActive, isSelected }) => {
           return (
             <div style={{ display: "flex", flexDirection: "row" }}>
               <div style={{ display: "flex", flexDirection: "column" }}>

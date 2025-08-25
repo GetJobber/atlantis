@@ -52,13 +52,13 @@ export function Wrapper<T extends OptionLike>({
   openOnFocus,
   filterOptions,
   emptyActions,
-  renderOption,
-  renderAction,
-  renderSection,
-  renderInput,
-  renderPersistent,
+  customRenderOption,
+  customRenderAction,
+  customRenderSection,
+  customRenderInput,
+  customRenderPersistent,
   loading,
-  renderLoading,
+  customRenderLoading,
   emptyStateMessage,
   ref,
   readOnly,
@@ -76,16 +76,28 @@ export function Wrapper<T extends OptionLike>({
   readonly openOnFocus?: boolean;
   readonly filterOptions?: false | ((opts: T[], input: string) => T[]);
   readonly emptyActions?: AutocompleteRebuiltProps<T, false>["emptyActions"];
-  readonly renderOption?: AutocompleteRebuiltProps<T, false>["renderOption"];
-  readonly renderAction?: AutocompleteRebuiltProps<T, false>["renderAction"];
-  readonly renderInput?: AutocompleteRebuiltProps<T, false>["renderInput"];
-  readonly renderPersistent?: AutocompleteRebuiltProps<
+  readonly customRenderOption?: AutocompleteRebuiltProps<
     T,
     false
-  >["renderPersistent"];
-  readonly renderSection?: AutocompleteRebuiltProps<T, false>["renderSection"];
+  >["customRenderOption"];
+  readonly customRenderAction?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderAction"];
+  readonly customRenderInput?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderInput"];
+  readonly customRenderPersistent?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderPersistent"];
+  readonly customRenderSection?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderSection"];
   readonly loading?: boolean;
-  readonly renderLoading?: React.ReactNode;
+  readonly customRenderLoading?: React.ReactNode;
   readonly emptyStateMessage?: React.ReactNode;
   readonly ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
   readonly UNSAFE_className?: AutocompleteRebuiltProps<
@@ -117,18 +129,18 @@ export function Wrapper<T extends OptionLike>({
       filterOptions={filterOptions}
       emptyActions={emptyActions}
       debounce={debounce}
-      renderOption={renderOption}
-      renderAction={renderAction}
-      renderSection={renderSection}
-      renderInput={renderInput}
+      customRenderOption={customRenderOption}
+      customRenderAction={customRenderAction}
+      customRenderSection={customRenderSection}
+      customRenderInput={customRenderInput}
       loading={loading}
-      renderLoading={renderLoading}
+      customRenderLoading={customRenderLoading}
       emptyStateMessage={emptyStateMessage}
       ref={ref}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_styles={UNSAFE_styles}
       readOnly={readOnly}
-      renderPersistent={renderPersistent}
+      customRenderPersistent={customRenderPersistent}
     />
   );
 }

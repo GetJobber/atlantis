@@ -38,9 +38,6 @@ function AutocompleteRebuiltInternal<
   forwardedRef: Ref<HTMLInputElement | HTMLTextAreaElement>,
 ) {
   const {
-    renderOption,
-    renderAction,
-    renderSection,
     inputValue,
     placeholder,
     disabled,
@@ -50,7 +47,6 @@ function AutocompleteRebuiltInternal<
     size: sizeProp,
     clearable,
     loading = false,
-    renderInput,
   } = props;
 
   const {
@@ -171,8 +167,8 @@ function AutocompleteRebuiltInternal<
 
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
-      {renderInput ? (
-        renderInput({ inputRef: mergedInputRef, inputProps })
+      {props.customRenderInput ? (
+        props.customRenderInput({ inputRef: mergedInputRef, inputProps })
       ) : (
         <InputText ref={mergedInputRef} {...inputProps} />
       )}
@@ -212,7 +208,7 @@ function AutocompleteRebuiltInternal<
                 listboxId={listboxId}
                 getItemProps={getItemProps}
                 listRef={listRef}
-                renderPersistent={props.renderPersistent}
+                customRenderPersistent={props.customRenderPersistent}
                 getPersistentKey={getPersistentKey}
                 onAction={onAction}
                 className={classNames(
@@ -225,7 +221,7 @@ function AutocompleteRebuiltInternal<
               {/* Scrollable middle region */}
               <div className={styles.scrollRegion}>
                 {loading ? (
-                  props.renderLoading ?? <LoadingContent />
+                  props.customRenderLoading ?? <LoadingContent />
                 ) : (
                   <>
                     {showEmptyStateMessage && (
@@ -239,9 +235,9 @@ function AutocompleteRebuiltInternal<
                         listboxId={listboxId}
                         getItemProps={getItemProps}
                         listRef={listRef}
-                        renderOption={renderOption}
-                        renderSection={renderSection}
-                        renderAction={renderAction}
+                        customRenderOption={props.customRenderOption}
+                        customRenderSection={props.customRenderSection}
+                        customRenderAction={props.customRenderAction}
                         getOptionLabel={getOptionLabel}
                         getOptionKey={getOptionKey}
                         getActionKey={action => action.label}
@@ -278,7 +274,7 @@ function AutocompleteRebuiltInternal<
                 listboxId={listboxId}
                 getItemProps={getItemProps}
                 listRef={listRef}
-                renderPersistent={props.renderPersistent}
+                customRenderPersistent={props.customRenderPersistent}
                 getPersistentKey={getPersistentKey}
                 onAction={onAction}
                 className={classNames(
