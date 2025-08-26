@@ -2,38 +2,41 @@
 alwaysApply: false
 ---
 
+Move Storybook MDX files from `docs` to the new docs site, and leave a minimal stub in the original location that links to the new page.
 
+## What to move
 
+- Source: `docs/components/<Component>/<Component>.stories.mdx`
+- Destination: `packages/site/src/content/<Component>/<Component>.stories.mdx`
 
-We need to copy/move files from `docs` to `packages/site/src/content`
+Example (Button):
 
-## Example
+- Before: `docs/components/Button/Button.stories.mdx`
+- After: `packages/site/src/content/Button/Button.stories.mdx`
 
-We recently copied Button docs to this new location.
+## How to update the original file (stub)
 
-Before: `docs/components/Button/Button.stories.mdx`
+After copying to the destination, replace the original file's contents with a lightweight stub:
 
-After: `packages/site/src/content/Button/Button.stories.mdx`
+1. Keep only this import: `import { Meta } from "@storybook/addon-docs";`
+2. Use `<Meta ... />` without the `component` prop. Preserve the existing title path string, only remove the `component` prop.
+3. Keep the existing H1 heading (e.g., `# Button`). Do not change the text.
+4. Remove all other content from the file.
+5. Add one line below the H1 that links to the new docs page on the site.
 
-
-
-## Modify the original file
-
-After copying the file to its new location, the original file was updated in a few ways:
-
-1. Remove all imports except `import { Meta } from "@storybook/addon-docs";`
-2. Update the `<Meta>` component to remove the "component" prop
-3. Keep the H1 heading
-4. Remove all content from the file
-5. Add a single line below the H1 which points to the new docs location. See the complete example below.
+### Stub template (replace Button with the component name as needed)
 
 ```mdx
 import { Meta } from "@storybook/addon-docs";
 
-<Meta title="Components/Actions/Button" component={Button} />
 <Meta title="Components/Actions/Button" />
 
 # Button
 
-{<a href="https://atlantis.getjobber.com/components/Button">Button docs</a>} have moved to the new site.
+[Button docs](/components/button) have moved to the new site.
 ```
+
+Notes:
+
+- Keep the `title` value consistent with the original file; only remove the `component` prop.
+- Update the URL path (`/components/Button`) to the correct component slug when not "Button".
