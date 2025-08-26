@@ -144,6 +144,6 @@ export const Autocomplete = AutocompleteForwarded as {
 
 export type {
   AutocompleteLegacyProps,
-  AutocompleteRebuiltProps as AutocompleteProposedProps,
+  AutocompleteRebuiltProps,
   AutocompleteShimProps,
 };
