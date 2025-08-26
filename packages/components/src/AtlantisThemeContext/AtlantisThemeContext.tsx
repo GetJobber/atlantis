@@ -154,7 +154,7 @@ function AtlantisThemeContextTokenOverride({
 }: {
   readonly overrideTokens: typeof tokens;
   readonly children: React.ReactNode;
-  readonly as: CommonAllowedElements;
+  readonly as?: CommonAllowedElements;
 }) {
   const { tokens: currentTokens } = useAtlantisTheme();
   const style = useMemo(() => {
