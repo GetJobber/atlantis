@@ -1,0 +1,39 @@
+---
+alwaysApply: false
+---
+
+
+
+
+We need to copy/move files from `docs` to `packages/site/src/content`
+
+## Example
+
+We recently copied Button docs to this new location.
+
+Before: `docs/components/Button/Button.stories.mdx`
+
+After: `packages/site/src/content/Button/Button.stories.mdx`
+
+
+
+## Modify the original file
+
+After copying the file to its new location, the original file was updated in a few ways:
+
+1. Remove all imports except `import { Meta } from "@storybook/addon-docs";`
+2. Update the `<Meta>` component to remove the "component" prop
+3. Keep the H1 heading
+4. Remove all content from the file
+5. Add a single line below the H1 which points to the new docs location. See the complete example below.
+
+```mdx
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Actions/Button" component={Button} />
+<Meta title="Components/Actions/Button" />
+
+# Button
+
+{<a href="https://atlantis.getjobber.com/components/Button">Button docs</a>} have moved to the new site.
+```
