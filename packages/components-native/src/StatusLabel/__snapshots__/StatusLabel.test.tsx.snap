@@ -5,9 +5,17 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
   style={
     [
       {
+        "alignItems": "center",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
       },
       false,
     ]
@@ -52,23 +60,11 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
       End Aligned
     </Text>
   </View>
-  <View
-    style={
-      {
-        "width": 8,
-      }
-    }
-  />
+  <View />
   <View
     style={
       [
-        {
-          "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
-        },
+        undefined,
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
         },
@@ -84,9 +80,17 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
   style={
     [
       {
+        "alignItems": "center",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
       },
       false,
     ]
@@ -131,23 +135,11 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
       Start Aligned
     </Text>
   </View>
-  <View
-    style={
-      {
-        "width": 8,
-      }
-    }
-  />
+  <View />
   <View
     style={
       [
-        {
-          "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
-        },
+        undefined,
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
         },
@@ -163,9 +155,17 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
   style={
     [
       {
+        "alignItems": "center",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
       },
       false,
     ]
@@ -210,23 +210,11 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
       Critical
     </Text>
   </View>
-  <View
-    style={
-      {
-        "width": 8,
-      }
-    }
-  />
+  <View />
   <View
     style={
       [
-        {
-          "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
-        },
+        undefined,
         {
           "backgroundColor": "hsl(6, 64%, 51%)",
         },
@@ -242,9 +230,17 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
   style={
     [
       {
+        "alignItems": "center",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
       },
       false,
     ]
@@ -289,23 +285,11 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
       Inactive
     </Text>
   </View>
-  <View
-    style={
-      {
-        "width": 8,
-      }
-    }
-  />
+  <View />
   <View
     style={
       [
-        {
-          "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
-        },
+        undefined,
         {
           "backgroundColor": "hsl(198, 25%, 33%)",
         },
@@ -321,9 +305,17 @@ exports[`StatusLabel status when status prop set to "informative" should match s
   style={
     [
       {
+        "alignItems": "center",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
       },
       false,
     ]
@@ -368,23 +360,11 @@ exports[`StatusLabel status when status prop set to "informative" should match s
       Informative
     </Text>
   </View>
-  <View
-    style={
-      {
-        "width": 8,
-      }
-    }
-  />
+  <View />
   <View
     style={
       [
-        {
-          "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
-        },
+        undefined,
         {
           "backgroundColor": "hsl(207, 79%, 57%)",
         },
@@ -400,9 +380,17 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
   style={
     [
       {
+        "alignItems": "center",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
       },
       false,
     ]
@@ -447,23 +435,11 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
       Warning
     </Text>
   </View>
-  <View
-    style={
-      {
-        "width": 8,
-      }
-    }
-  />
+  <View />
   <View
     style={
       [
-        {
-          "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
-        },
+        undefined,
         {
           "backgroundColor": "hsl(51, 64%, 49%)",
         },
@@ -479,9 +455,17 @@ exports[`StatusLabel status when status prop set to default ("success") should m
   style={
     [
       {
+        "alignItems": "center",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 4,
       },
       false,
     ]
@@ -526,23 +510,11 @@ exports[`StatusLabel status when status prop set to default ("success") should m
       Success
     </Text>
   </View>
-  <View
-    style={
-      {
-        "width": 8,
-      }
-    }
-  />
+  <View />
   <View
     style={
       [
-        {
-          "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
-        },
+        undefined,
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
         },

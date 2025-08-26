@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusIndicator status when status prop set to "critical" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "hsl(107, 58%, 33%)",
+        "borderRadius": 100,
+        "height": 8,
+        "width": 8,
+      },
+      {
+        "backgroundColor": "hsl(6, 64%, 51%)",
+      },
+    ]
+  }
+  testID="criticalIndicator"
+/>
+`;
+
+exports[`StatusIndicator status when status prop set to "inactive" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "hsl(107, 58%, 33%)",
+        "borderRadius": 100,
+        "height": 8,
+        "width": 8,
+      },
+      {
+        "backgroundColor": "hsl(198, 25%, 33%)",
+      },
+    ]
+  }
+  testID="inactiveIndicator"
+/>
+`;
+
+exports[`StatusIndicator status when status prop set to "informative" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "hsl(107, 58%, 33%)",
+        "borderRadius": 100,
+        "height": 8,
+        "width": 8,
+      },
+      {
+        "backgroundColor": "hsl(207, 79%, 57%)",
+      },
+    ]
+  }
+  testID="informativeIndicator"
+/>
+`;
+
+exports[`StatusIndicator status when status prop set to "warning" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "hsl(107, 58%, 33%)",
+        "borderRadius": 100,
+        "height": 8,
+        "width": 8,
+      },
+      {
+        "backgroundColor": "hsl(51, 64%, 49%)",
+      },
+    ]
+  }
+  testID="warningIndicator"
+/>
+`;
+
+exports[`StatusIndicator status when status prop set to default ("success") should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "hsl(107, 58%, 33%)",
+        "borderRadius": 100,
+        "height": 8,
+        "width": 8,
+      },
+      {
+        "backgroundColor": "hsl(107, 58%, 33%)",
+      },
+    ]
+  }
+  testID="successIndicator"
+/>
+`;
