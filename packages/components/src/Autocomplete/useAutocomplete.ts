@@ -1,6 +1,6 @@
 import type React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useDebounce } from "@jobber/hooks";
+import { useCallbackRef, useDebounce } from "@jobber/hooks";
 import type {
   ActionConfig,
   ActionOrigin,
@@ -51,17 +51,34 @@ export function useAutocomplete<
     debounce: debounceMs = 300,
   } = props;
 
+  // TODO: Clean up the types in these refs by enhancing the type system in useCallbackRef
+  const getOptionLabelPropRef = useCallbackRef((opt: unknown) =>
+    (getOptionLabelProp as ((o: Value) => string) | undefined)?.(opt as Value),
+  );
+
   const getOptionLabel = useCallback(
-    (opt: Value) => (getOptionLabelProp ? getOptionLabelProp(opt) : opt.label),
-    [getOptionLabelProp],
+    (opt: Value): string => {
+      const maybe = getOptionLabelPropRef(opt) as string | undefined;
+
+      return maybe ?? opt.label;
+    },
+    [getOptionLabelPropRef],
+  );
+
+  const isOptionEqualToValueRef = useCallbackRef((a: unknown, b: unknown) =>
+    (isOptionEqualToValue as ((x: Value, y: Value) => boolean) | undefined)?.(
+      a as Value,
+      b as Value,
+    ),
   );
 
   const equals = useCallback(
-    (a: Value, b: Value) =>
-      isOptionEqualToValue
-        ? isOptionEqualToValue(a, b)
-        : getOptionLabel(a) === getOptionLabel(b),
-    [isOptionEqualToValue, getOptionLabel],
+    (a: Value, b: Value): boolean => {
+      const custom = isOptionEqualToValueRef(a, b) as boolean | undefined;
+
+      return custom != null ? custom : getOptionLabel(a) === getOptionLabel(b);
+    },
+    [isOptionEqualToValueRef, getOptionLabel],
   );
 
   const isOptionSelected = useCallback(
@@ -82,19 +99,34 @@ export function useAutocomplete<
     () => flattenMenu<Value, SectionExtra, ActionExtra>(menu),
     [menu],
   );
+
   const sections = flatInitial.sections;
   const optionItems = flatInitial.optionItems;
   const persistentsHeaders = flatInitial.persistentsHeaders;
   const persistentsFooters = flatInitial.persistentsFooters;
+
+  // Stable wrappers for function props
+  const inputEqualsOptionRef = useCallbackRef((text: unknown, o: unknown) => {
+    const fn = props.inputEqualsOption as
+      | ((t: string, v: Value) => boolean)
+      | undefined;
+
+    return fn ? fn(text as string, o as Value) : undefined;
+  });
+
+  const inputEquals = useCallback(
+    (text: string, o: Value): boolean => {
+      const custom = inputEqualsOptionRef(text, o) as boolean | undefined;
+
+      return custom != null ? custom : getOptionLabel(o) === text;
+    },
+    [inputEqualsOptionRef, getOptionLabel],
+  );
+
   // inputValue changes very often, is this worth memoizing?
   const exactLabelMatch = useMemo(() => {
-    const inputEqualsOption = props.inputEqualsOption;
-    const equalsInput = inputEqualsOption
-      ? (o: Value) => inputEqualsOption(inputValue, o)
-      : (o: Value) => getOptionLabel(o) === inputValue;
-
-    return optionItems.some(equalsInput);
-  }, [optionItems, getOptionLabel, inputValue, props.inputEqualsOption]);
+    return optionItems.some(o => inputEquals(inputValue, o));
+  }, [optionItems, inputEquals, inputValue]);
 
   const lastInputWasUser = useRef(false);
 
@@ -110,21 +142,36 @@ export function useAutocomplete<
     debouncedSetter(inputValue);
   }, [inputValue, debounceMs, debouncedSetter]);
 
+  const filterOptionsRef = useCallbackRef((opts: unknown, term: unknown) => {
+    const fn =
+      (typeof props.filterOptions === "function"
+        ? (props.filterOptions as (opts: Value[], term: string) => Value[])
+        : undefined) || undefined;
+
+    return fn ? fn(opts as Value[], term as string) : undefined;
+  });
+
+  const applyFilter = useCallback(
+    (opts: Value[], term: string): Value[] => {
+      if (props.filterOptions === false) return opts;
+
+      const override = filterOptionsRef(opts, term) as Value[] | undefined;
+      if (override) return override;
+
+      const lowered = term.toLowerCase();
+
+      return opts.filter(opt =>
+        getOptionLabel(opt).toLowerCase().includes(lowered),
+      );
+    },
+    [props.filterOptions, filterOptionsRef, getOptionLabel],
+  );
+
   const renderable = useMemo(() => {
     const filter = (opts: Value[]): Value[] => {
       if (exactLabelMatch && !lastInputWasUser.current) return opts;
-      if (props.filterOptions === false) return opts;
 
-      if (typeof props.filterOptions === "function") {
-        return props.filterOptions(opts, debouncedInputValue);
-      }
-
-      // Default to case-insensitive includes
-      const term = debouncedInputValue.toLowerCase();
-
-      return opts.filter(opt =>
-        getOptionLabel(opt).toLowerCase().includes(term),
-      );
+      return applyFilter(opts, debouncedInputValue);
     };
 
     const items = buildRenderableList<Value, SectionExtra, ActionExtra>(
@@ -157,21 +204,17 @@ export function useAutocomplete<
     return items;
   }, [
     sections,
-    props.filterOptions,
+    applyFilter,
     debouncedInputValue,
     exactLabelMatch,
-    getOptionLabel,
     emptyActions,
+    inputValue,
   ]);
 
   // This is only options
-  const optionCount = useMemo(
-    () =>
-      renderable.reduce(
-        (count, item) => count + (item.kind === "option" ? 1 : 0),
-        0,
-      ),
-    [renderable],
+  const optionCount = renderable.reduce(
+    (count, item) => count + (item.kind === "option" ? 1 : 0),
+    0,
   );
 
   const hasSelection = useMemo(() => {
@@ -184,26 +227,22 @@ export function useAutocomplete<
     return (value as Value | undefined) != null;
   }, [multiple, value]);
 
-  // Keys are derived in renderers from `key ?? label`
-
-  const headerInteractiveCount = useMemo(
-    () => persistentsHeaders.filter(p => Boolean(p.onClick)),
-    [persistentsHeaders],
+  const headerInteractivePersistents = persistentsHeaders.filter(p =>
+    Boolean(p.onClick),
   );
-  const footerInteractiveCount = useMemo(
-    () => persistentsFooters.filter(p => Boolean(p.onClick)),
-    [persistentsFooters],
+  const footerInteractivePersistents = persistentsFooters.filter(p =>
+    Boolean(p.onClick),
   );
 
-  const mainNavigableCount = useMemo(
-    () => renderable.reduce((c, i) => c + (i.kind === "section" ? 0 : 1), 0),
-    [renderable],
+  const mainNavigableCount = renderable.reduce(
+    (c, i) => c + (i.kind === "section" ? 0 : 1),
+    0,
   );
 
   const totalNavigableCount =
-    headerInteractiveCount.length +
+    headerInteractivePersistents.length +
     mainNavigableCount +
-    footerInteractiveCount.length;
+    footerInteractivePersistents.length;
 
   // Compute the currently selected index in the global navigable list (header -> middle -> footer)
   const selectedIndex: number | null = useMemo(() => {
@@ -221,8 +260,14 @@ export function useAutocomplete<
 
     if (middleIndex == null) return null;
 
-    return headerInteractiveCount.length + middleIndex;
-  }, [multiple, value, renderable, equals, headerInteractiveCount.length]);
+    return headerInteractivePersistents.length + middleIndex;
+  }, [
+    multiple,
+    value,
+    renderable,
+    equals,
+    headerInteractivePersistents.length,
+  ]);
 
   const {
     refs,
@@ -407,12 +452,7 @@ export function useAutocomplete<
   function commitFromInputText(inputText: string): boolean {
     if (inputText.length === 0) return false;
 
-    const inputEqualsOption = props.inputEqualsOption;
-    const match = optionItems.find(o =>
-      inputEqualsOption
-        ? inputEqualsOption(inputText, o)
-        : getOptionLabel(o) === inputText,
-    );
+    const match = optionItems.find(o => inputEquals(inputText, o));
 
     if (match) {
       onSelection(match);
@@ -492,7 +532,7 @@ export function useAutocomplete<
     region: "header" | "middle" | "footer";
     regionIndex: number;
   } {
-    const headerCount = headerInteractiveCount.length;
+    const headerCount = headerInteractivePersistents.length;
     const mainCount = mainNavigableCount;
 
     if (index < headerCount) return { region: "header", regionIndex: index };
@@ -511,7 +551,7 @@ export function useAutocomplete<
 
   function computeInitialIndexForArrowUp(): number | null {
     // If there are interactive footers, prefer the very last navigable item
-    if (footerInteractiveCount.length > 0) {
+    if (footerInteractivePersistents.length > 0) {
       return totalNavigableCount > 0 ? totalNavigableCount - 1 : null;
     }
 
@@ -526,7 +566,7 @@ export function useAutocomplete<
     }
 
     if (lastOptionIdx >= 0) {
-      return headerInteractiveCount.length + lastOptionIdx;
+      return headerInteractivePersistents.length + lastOptionIdx;
     }
 
     return totalNavigableCount > 0 ? totalNavigableCount - 1 : null;
@@ -570,8 +610,8 @@ export function useAutocomplete<
 
     const persistent =
       region === "header"
-        ? headerInteractiveCount[regionIndex]
-        : footerInteractiveCount[regionIndex];
+        ? headerInteractivePersistents[regionIndex]
+        : footerInteractivePersistents[regionIndex];
 
     if (persistent?.onClick) {
       onAction({
@@ -616,7 +656,7 @@ export function useAutocomplete<
     optionCount,
     persistentsHeaders,
     persistentsFooters,
-    headerInteractiveCount: headerInteractiveCount.length,
+    headerInteractiveCount: headerInteractivePersistents.length,
     middleNavigableCount: mainNavigableCount,
     getOptionLabel,
     isOptionSelected,
