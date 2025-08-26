@@ -33,10 +33,10 @@ import { Meta } from "@storybook/addon-docs";
 
 # Button
 
-[Button docs](/components/button) have moved to the new site.
+[Button docs](https://atlantis.getjobber.com/components/Button) have moved to the new site.
 ```
 
 Notes:
 
 - Keep the `title` value consistent with the original file; only remove the `component` prop.
-- Update the URL path (`/components/Button`) to the correct component slug when not "Button".
+- Update the URL path (`https://atlantis.getjobber.com/components/Button`) to the correct component slug when not "Button".
