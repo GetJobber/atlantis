@@ -1,74 +1,7 @@
-import { Combobox } from "@jobber/components/Combobox";
 import { Meta } from "@storybook/addon-docs";
 
-<Meta
-  title="Components/Selections/Combobox"
-  component={Combobox}
-  parameters={{ alpha: true }}
-/>
+<Meta title="Components/Selections/Combobox" />
 
 # Combobox
 
-The Combobox is designed to provide a versatile and accessible interface for
-selecting one or more options from a list. Combobox can be used for a variety of
-scenarios, such as selecting items from a predefined list, filtering and
-searching through data.
-
-## Design & usage guidelines
-
-The Combobox component's primary function is to facilitate option selection and
-searching within a list of items.
-
-It should be used in scenarios where users need to choose from a set of options,
-with the added benefit of filtering.
-
-The Combobox also has the flexibility to allow for custom actions, such as
-adding a new item to the list of options or managing a selection.
-
-## Content guidelines
-
-Combobox is designed to handle lists of selectable options, so the component is
-text based.
-
-You may customize the activator and action `label`. Refer to the
-[Product Vocabulary](/content/product-vocabulary) for consistency in consistency
-in terminology and naming conventions when setting these values.
-
-You may also set an optional `subjectNoun` for the Combobox content. This will
-be used in the
-[empty state](../?path=/story/components-selections-combobox-web--empty-state)
-of the Combobox, as well as the noun within the search placeholder.
-
-You may include a prefix element to any ComboBox.Option by setting its `prefix`
-prop. This could be a [StatusIndicator](/components/StatusIndicator) or
-[Icon](/components/Icon) to provide additional context to the option.
-
-### Empty states
-
-In cases where the list of options is empty, the Combobox content will display a
-message indicating the absence of options. The default will read, _"No options
-yet"_ or _"You don't have any [subjectNoun] yet"_ if you've set the
-`subjectNoun` prop.
-
-If options are available, but the search query does not match any of them, the
-Combobox Content will display a message indicating that no options match the
-search query.
-
-## Accessibility
-
-| Shortcut Keys   | Action                                                                                          |
-| --------------- | ----------------------------------------------------------------------------------------------- |
-| Space or Return | Open/close the Combobox                                                                         |
-| Escape          | Close the Combobox and return focus to the activator                                            |
-| Tab             | When closed: Move to activator<br/>When open: Move from search input to clear button to actions |
-| Up/Down Arrow   | Navigate through options list                                                                   |
-| Space or Return | Select focused option                                                                           |
-
-### Assistive technology
-
-- The activator element is given a `role="combobox"` to inform the user of the
-  type of content they'll be interacting with
-- Once the user opens the Combobox, the search input is focused and announced
-- The title and "selected/unselected" status of each item is announced as the
-  user navigates the options
-- The actions (if present) are announced and operable as buttons
+[Combobox docs](https://atlantis.getjobber.com/components/Combobox) have moved to the new site.
