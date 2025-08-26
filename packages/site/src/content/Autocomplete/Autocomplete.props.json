@@ -60,21 +60,6 @@
           "name": "(newInputText: string) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
         }
       },
-      "debounce": {
-        "defaultValue": {
-          "value": "300"
-        },
-        "description": "Debounce in milliseconds for getOptions",
-        "name": "debounce",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteLegacyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "validations": {
         "defaultValue": null,
         "description": "Validations to run on the input.",
@@ -114,6 +99,21 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "debounce": {
+        "defaultValue": {
+          "value": "300"
+        },
+        "description": "Debounce in milliseconds for getOptions",
+        "name": "debounce",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
         }
       },
       "onChange": {
