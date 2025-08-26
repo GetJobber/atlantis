@@ -92,7 +92,13 @@ function InternalDynamicThemeProvider({
         tokens: mergedTokens,
       }}
     >
-      {children}
+      {overrideTokens ? (
+        <AtlantisThemeContextTokenOverride overrideTokens={overrideTokens}>
+          {children}
+        </AtlantisThemeContextTokenOverride>
+      ) : (
+        children
+      )}
     </AtlantisThemeContext.Provider>
   );
 }
@@ -138,4 +144,29 @@ function InternalStaticThemeProvider({
 
 export function useAtlantisTheme() {
   return useContext(AtlantisThemeContext);
+}
+
+function AtlantisThemeContextTokenOverride({
+  overrideTokens,
+  children,
+}: {
+  readonly overrideTokens: typeof tokens;
+  readonly children: React.ReactNode;
+}) {
+  const { tokens: currentTokens } = useAtlantisTheme();
+  const style = useMemo(() => {
+    return Object.entries(overrideTokens).reduce<Record<string, string>>(
+      (cssVariables, [tokenName]) => {
+        const tokenValue = String(
+          currentTokens[tokenName as keyof typeof currentTokens],
+        );
+        cssVariables[`--${tokenName}`] = tokenValue;
+
+        return cssVariables;
+      },
+      {},
+    );
+  }, [currentTokens, overrideTokens]);
+
+  return <div style={style}>{children}</div>;
 }
