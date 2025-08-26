@@ -287,12 +287,9 @@ export interface MenuOptions<
   actions?: MenuAction<ActionExtra>[];
 }
 
-export type PersistentPosition = "header" | "footer";
-
-export type MenuPersistent<Extra extends object = Record<string, unknown>> =
+export type MenuHeader<Extra extends object = Record<string, unknown>> =
   Extra & {
-    type: "persistent";
-    position: PersistentPosition;
+    type: "header";
     label: string;
     /*
      * "label" will be used as the key by default
@@ -300,12 +297,33 @@ export type MenuPersistent<Extra extends object = Record<string, unknown>> =
      */
     key?: Key;
     /**
-     * If provided, the persistent item is interactive and participates in
+     * If provided, the header item is interactive and participates in
      * arrow-key navigation. Activated with Enter.
      */
     onClick?: () => void;
     /**
-     * Determines if the menu should close when the persistent is activated.
+     * Determines if the menu should close when the header is activated.
+     * @default true
+     */
+    shouldClose?: boolean;
+  };
+
+export type MenuFooter<Extra extends object = Record<string, unknown>> =
+  Extra & {
+    type: "footer";
+    label: string;
+    /*
+     * "label" will be used as the key by default
+     * If labels are not unique, a unique key must be provided
+     */
+    key?: Key;
+    /**
+     * If provided, the footer item is interactive and participates in
+     * arrow-key navigation. Activated with Enter.
+     */
+    onClick?: () => void;
+    /**
+     * Determines if the menu should close when the footer is activated.
      * @default true
      */
     shouldClose?: boolean;
@@ -318,7 +336,8 @@ export type MenuItem<
 > =
   | MenuSection<T, SectionExtra, ActionExtra>
   | MenuOptions<T, ActionExtra>
-  | MenuPersistent<ActionExtra>;
+  | MenuHeader<ActionExtra>
+  | MenuFooter<ActionExtra>;
 
 export type AutocompleteValue<
   Value extends OptionLike,
@@ -426,13 +445,17 @@ interface AutocompleteRebuiltBaseProps<
   }) => React.ReactNode;
 
   /**
-   * Render prop to customize the rendering of a persistent item.
-   * Persistent items are always visible at the top (header) or bottom (footer)
-   * of the menu. Non-interactive persistents are not part of navigation.
+   * Render prop to customize the rendering of header items.
    */
-  readonly customRenderPersistent?: (args: {
-    value: MenuPersistent<ActionExtra>;
-    position: "header" | "footer";
+  readonly customRenderHeader?: (args: {
+    value: MenuHeader<ActionExtra>;
+    isActive?: boolean;
+  }) => React.ReactNode;
+  /**
+   * Render prop to customize the rendering of footer items.
+   */
+  readonly customRenderFooter?: (args: {
+    value: MenuFooter<ActionExtra>;
     isActive?: boolean;
   }) => React.ReactNode;
 

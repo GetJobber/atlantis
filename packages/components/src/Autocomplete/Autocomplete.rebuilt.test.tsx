@@ -434,7 +434,7 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("Persistents", () => {
+  describe("Header & Footer", () => {
     it("renders a default, uninteractive persistent header when provided", async () => {
       render(
         <Wrapper
@@ -444,9 +444,8 @@ describe("AutocompleteRebuilt", () => {
               options: [{ label: "One" }, { label: "Two" }],
             },
             {
-              type: "persistent",
+              type: "header",
               label: "Persistent Text Header",
-              position: "header",
             },
           ]}
         />,
@@ -457,7 +456,7 @@ describe("AutocompleteRebuilt", () => {
         expect(screen.getByText("Persistent Text Header")).toBeVisible();
       });
     });
-    it("renders a default, uninteractive persistent footer async when provided", async () => {
+    it("renders a default, uninteractive persistent footer when provided", async () => {
       render(
         <Wrapper
           menu={[
@@ -466,9 +465,8 @@ describe("AutocompleteRebuilt", () => {
               options: [{ label: "One" }, { label: "Two" }],
             },
             {
-              type: "persistent",
+              type: "footer",
               label: "Persistent Text Footer",
-              position: "footer",
             },
           ]}
         />,
@@ -487,9 +485,8 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper
           menu={[
             {
-              type: "persistent",
+              type: "header",
               label: "Interactive Header",
-              position: "header",
               onClick,
             },
           ]}
@@ -514,9 +511,8 @@ describe("AutocompleteRebuilt", () => {
               options: [{ label: "One" }, { label: "Two" }],
             },
             {
-              type: "persistent",
+              type: "footer",
               label: "Interactive Footer",
-              position: "footer",
               onClick,
             },
           ]}
@@ -537,9 +533,8 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper
           menu={[
             {
-              type: "persistent",
+              type: "footer",
               label: "Interactive Footer",
-              position: "footer",
               onClick,
               shouldClose: false,
             },
@@ -561,9 +556,8 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper
           menu={[
             {
-              type: "persistent",
+              type: "footer",
               label: "Interactive Footer",
-              position: "footer",
               onClick,
               shouldClose: false,
             },
@@ -585,9 +579,8 @@ describe("AutocompleteRebuilt", () => {
           menu={[
             { type: "options", options: [{ label: "One" }, { label: "Two" }] },
             {
-              type: "persistent",
+              type: "header",
               label: "Persistent Text Header",
-              position: "header",
             },
           ]}
         />,
@@ -604,9 +597,8 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper
           menu={[
             {
-              type: "persistent",
+              type: "header",
               label: "Interactive Header",
-              position: "header",
               onClick: jest.fn(),
             },
           ]}
@@ -630,9 +622,8 @@ describe("AutocompleteRebuilt", () => {
               options: [{ label: "One" }, { label: "Two" }],
             },
             {
-              type: "persistent",
+              type: "header",
               label: "Interactive Header",
-              position: "header",
               onClick: jest.fn(),
             },
           ]}
@@ -1776,20 +1767,19 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("customRenderPersistent", () => {
-    it("renders a custom layout for customRenderPersistent when provided", async () => {
+  describe("customRenderHeader/customRenderFooter", () => {
+    it("renders a custom layout for customRenderHeader when provided", async () => {
       render(
         <Wrapper
           menu={[
             {
-              type: "persistent",
+              type: "header",
               label: "Interactive Header",
-              position: "header",
               onClick: jest.fn(),
             },
           ]}
-          customRenderPersistent={({ value }) => (
-            <div data-testid="custom-persistent">{value.label}</div>
+          customRenderHeader={({ value }) => (
+            <div data-testid="custom-header">{value.label}</div>
           )}
         />,
       );
@@ -1797,31 +1787,34 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
 
       await waitFor(() => {
-        expect(screen.getByTestId("custom-persistent")).toBeVisible();
+        expect(screen.getByTestId("custom-header")).toBeVisible();
       });
     });
-    it("passes isActive to customRenderPersistent when used with an interactive persistent", async () => {
+    it("passes isActive to customRenderHeader/customRenderFooter when interactive", async () => {
       render(
         <Wrapper
           menu={[
             {
-              type: "persistent",
+              type: "header",
               label: "Interactive Header",
-              position: "header",
               onClick: jest.fn(),
             },
             {
-              type: "persistent",
+              type: "footer",
               label: "Interactive Footer",
-              position: "footer",
               onClick: jest.fn(),
             },
           ]}
-          customRenderPersistent={({ value, isActive }) => (
+          customRenderHeader={({ value, isActive }) => (
             <div
-              data-testid={`custom-persistent-${
-                isActive ? "active" : "inactive"
-              }`}
+              data-testid={`custom-header-${isActive ? "active" : "inactive"}`}
+            >
+              {value.label}
+            </div>
+          )}
+          customRenderFooter={({ value, isActive }) => (
+            <div
+              data-testid={`custom-footer-${isActive ? "active" : "inactive"}`}
             >
               {value.label}
             </div>
@@ -1834,25 +1827,22 @@ describe("AutocompleteRebuilt", () => {
       await navigateDown(1);
 
       await waitFor(() => {
-        expect(screen.getByTestId("custom-persistent-active")).toBeVisible();
-        expect(screen.getByTestId("custom-persistent-inactive")).toBeVisible();
+        expect(screen.getByTestId("custom-header-active")).toBeVisible();
+        expect(screen.getByTestId("custom-footer-inactive")).toBeVisible();
       });
     });
-    it("passes position to customRenderPersistent when provided", async () => {
+    it("renders footer via customRenderFooter when provided", async () => {
       render(
         <Wrapper
           menu={[
             {
-              type: "persistent",
+              type: "header",
               label: "Interactive Header",
-              position: "header",
               onClick: jest.fn(),
             },
           ]}
-          customRenderPersistent={({ value, position }) => (
-            <div data-testid={`custom-persistent-${position}`}>
-              {value.label}
-            </div>
+          customRenderHeader={({ value }) => (
+            <div data-testid={`custom-header`}>{value.label}</div>
           )}
         />,
       );
@@ -1860,19 +1850,18 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
 
       await waitFor(() => {
-        expect(screen.getByTestId("custom-persistent-header")).toBeVisible();
+        expect(screen.getByTestId("custom-header")).toBeVisible();
       });
     });
-    it("accepts and passes custom values to customRenderPersistent when provided", async () => {
+    it("accepts and passes custom values to customRenderHeader when provided", async () => {
       const menu = defineMenu<
         OptionLike,
         Record<string, never>,
         { arbitrary: string }
       >([
         {
-          type: "persistent",
+          type: "header",
           label: "Interactive Header",
-          position: "header",
           arbitrary: "something",
           onClick: jest.fn(),
         },
@@ -1882,8 +1871,8 @@ describe("AutocompleteRebuilt", () => {
         <Wrapper<OptionLike>
           // TODO: fix test types to not need this
           menu={menu as MenuItem<OptionLike>[]}
-          customRenderPersistent={({ value }) => (
-            <div data-testid="custom-persistent">
+          customRenderHeader={({ value }) => (
+            <div data-testid="custom-header">
               {(value as unknown as { arbitrary: string }).arbitrary}
             </div>
           )}
@@ -1893,8 +1882,8 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
 
       await waitFor(() => {
-        expect(screen.getByTestId("custom-persistent")).toBeVisible();
-        expect(screen.getByTestId("custom-persistent")).toHaveTextContent(
+        expect(screen.getByTestId("custom-header")).toBeVisible();
+        expect(screen.getByTestId("custom-header")).toHaveTextContent(
           "something",
         );
       });
@@ -2026,14 +2015,12 @@ describe("AutocompleteRebuilt", () => {
           }}
           menu={[
             {
-              type: "persistent",
+              type: "header",
               label: "Interactive Header",
-              position: "header",
             },
             {
-              type: "persistent",
+              type: "footer",
               label: "Interactive Footer",
-              position: "footer",
             },
           ]}
         />,

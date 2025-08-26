@@ -4,14 +4,15 @@ import { DefaultActionContent } from "./MenuList";
 import type {
   ActionConfig,
   AutocompleteRebuiltProps,
-  MenuPersistent,
+  MenuFooter,
+  MenuHeader,
   OptionLike,
 } from "../Autocomplete.types";
 import styles from "../AutocompleteRebuilt.module.css";
 
 interface PersistentRegionProps<T extends OptionLike> {
   readonly items: Array<
-    MenuPersistent<Record<string, unknown>> & { position: "header" | "footer" }
+    MenuHeader<Record<string, unknown>> | MenuFooter<Record<string, unknown>>
   >;
   readonly position: "header" | "footer";
   readonly activeIndex: number | null;
@@ -21,10 +22,14 @@ interface PersistentRegionProps<T extends OptionLike> {
     args?: Record<string, unknown>,
   ) => Record<string, unknown>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
-  readonly customRenderPersistent?: AutocompleteRebuiltProps<
+  readonly customRenderHeader?: AutocompleteRebuiltProps<
     T,
     false
-  >["customRenderPersistent"];
+  >["customRenderHeader"];
+  readonly customRenderFooter?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderFooter"];
   // keys derived via persistent.key/label
   readonly className?: string;
   readonly style?: React.CSSProperties;
@@ -38,7 +43,8 @@ export function PersistentRegion<T extends OptionLike>({
   indexOffset,
   getItemProps,
   listRef,
-  customRenderPersistent,
+  customRenderHeader,
+  customRenderFooter,
   className,
   style,
   onAction,
@@ -61,7 +67,8 @@ export function PersistentRegion<T extends OptionLike>({
           activeIndex,
           indexOffset,
           getItemProps,
-          customRenderPersistent,
+          customRenderHeader,
+          customRenderFooter,
           listRef,
           onAction,
           navigableIndex,
@@ -76,17 +83,23 @@ export function PersistentRegion<T extends OptionLike>({
 }
 
 interface HandlePersistentRenderingProps<T extends OptionLike> {
-  readonly customRenderPersistent?: AutocompleteRebuiltProps<
+  readonly customRenderHeader?: AutocompleteRebuiltProps<
     T,
     false
-  >["customRenderPersistent"];
+  >["customRenderHeader"];
+  readonly customRenderFooter?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderFooter"];
   readonly position: "header" | "footer";
   readonly activeIndex: number | null;
   readonly indexOffset: number;
   readonly getItemProps: (
     args?: Record<string, unknown>,
   ) => Record<string, unknown>;
-  readonly persistent: MenuPersistent<Record<string, unknown>>;
+  readonly persistent:
+    | MenuHeader<Record<string, unknown>>
+    | MenuFooter<Record<string, unknown>>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly onAction: (action: ActionConfig) => void;
   readonly navigableIndex: number;
@@ -98,7 +111,8 @@ function handlePersistentRendering<T extends OptionLike>({
   activeIndex,
   indexOffset,
   getItemProps,
-  customRenderPersistent,
+  customRenderHeader,
+  customRenderFooter,
   listRef,
   onAction,
   navigableIndex,
@@ -112,7 +126,8 @@ function handlePersistentRendering<T extends OptionLike>({
     const node = handleTextPersistentRendering({
       persistent,
       position,
-      customRenderPersistent,
+      customRenderHeader,
+      customRenderFooter,
     });
 
     return { node, nextNavigableIndex: navigableIndex };
@@ -124,7 +139,8 @@ function handlePersistentRendering<T extends OptionLike>({
     activeIndex,
     indexOffset,
     getItemProps,
-    customRenderPersistent,
+    customRenderHeader,
+    customRenderFooter,
     listRef,
     onAction,
     navigableIndex,
@@ -134,16 +150,21 @@ function handlePersistentRendering<T extends OptionLike>({
 function handleTextPersistentRendering<T extends OptionLike>({
   persistent,
   position,
-  customRenderPersistent,
+  customRenderHeader,
+  customRenderFooter,
 }: Pick<
   HandlePersistentRenderingProps<T>,
-  "persistent" | "position" | "customRenderPersistent"
+  "persistent" | "position" | "customRenderHeader" | "customRenderFooter"
 >): React.ReactNode {
-  const content = customRenderPersistent ? (
-    customRenderPersistent({ value: persistent, position })
-  ) : (
-    <DefaultTextPersistentContent persistent={persistent} />
-  );
+  let content: React.ReactNode;
+
+  if (position === "header" && customRenderHeader) {
+    content = customRenderHeader({ value: persistent as MenuHeader });
+  } else if (position === "footer" && customRenderFooter) {
+    content = customRenderFooter({ value: persistent as MenuFooter });
+  } else {
+    content = <DefaultTextPersistentContent persistent={persistent} />;
+  }
 
   return (
     <div
@@ -165,7 +186,8 @@ function handleActionPersistentRendering<T extends OptionLike>({
   activeIndex,
   indexOffset,
   getItemProps,
-  customRenderPersistent,
+  customRenderHeader,
+  customRenderFooter,
   listRef,
   onAction,
   navigableIndex,
@@ -175,11 +197,21 @@ function handleActionPersistentRendering<T extends OptionLike>({
 } {
   const nextNavigableIndex = navigableIndex + 1;
   const isActive = activeIndex === indexOffset + nextNavigableIndex;
-  const content = customRenderPersistent ? (
-    customRenderPersistent({ value: persistent, position, isActive })
-  ) : (
-    <DefaultActionContent textContent={persistent.label} />
-  );
+  let content: React.ReactNode;
+
+  if (position === "header" && customRenderHeader) {
+    content = customRenderHeader({
+      value: persistent as MenuHeader,
+      isActive,
+    });
+  } else if (position === "footer" && customRenderFooter) {
+    content = customRenderFooter({
+      value: persistent as MenuFooter,
+      isActive,
+    });
+  } else {
+    content = <DefaultActionContent textContent={persistent.label} />;
+  }
 
   return {
     node: (
@@ -217,7 +249,9 @@ function handleActionPersistentRendering<T extends OptionLike>({
 function DefaultTextPersistentContent({
   persistent,
 }: {
-  readonly persistent: MenuPersistent<Record<string, unknown>>;
+  readonly persistent:
+    | MenuHeader<Record<string, unknown>>
+    | MenuFooter<Record<string, unknown>>;
 }) {
   return <div className={styles.textPersistent}>{persistent.label}</div>;
 }

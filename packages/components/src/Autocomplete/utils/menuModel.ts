@@ -1,9 +1,10 @@
 import type React from "react";
 import type {
   ActionConfig,
+  MenuFooter,
+  MenuHeader,
   MenuItem,
   MenuOptions,
-  MenuPersistent,
   MenuSection,
   OptionLike,
 } from "../Autocomplete.types";
@@ -16,15 +17,18 @@ export function flattenMenu<
 >(menu: MenuItem<Value, S, A>[]) {
   const optionItems: Value[] = [];
   const sections: Array<MenuSection<Value, S, A> | MenuOptions<Value, A>> = [];
-  const persistentsHeaders: MenuPersistent<A>[] = [];
-  const persistentsFooters: MenuPersistent<A>[] = [];
+  const persistentsHeaders: MenuHeader<A>[] = [];
+  const persistentsFooters: MenuFooter<A>[] = [];
 
   menu.forEach(item => {
-    if (item.type === "persistent") {
-      (item.position === "header"
-        ? persistentsHeaders
-        : persistentsFooters
-      ).push(item);
+    if (item.type === "header") {
+      persistentsHeaders.push(item);
+
+      return;
+    }
+
+    if (item.type === "footer") {
+      persistentsFooters.push(item);
 
       return;
     }

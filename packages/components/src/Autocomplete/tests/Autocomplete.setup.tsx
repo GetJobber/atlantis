@@ -56,7 +56,8 @@ export function Wrapper<T extends OptionLike>({
   customRenderAction,
   customRenderSection,
   customRenderInput,
-  customRenderPersistent,
+  customRenderHeader,
+  customRenderFooter,
   loading,
   customRenderLoading,
   emptyStateMessage,
@@ -88,10 +89,14 @@ export function Wrapper<T extends OptionLike>({
     T,
     false
   >["customRenderInput"];
-  readonly customRenderPersistent?: AutocompleteRebuiltProps<
+  readonly customRenderHeader?: AutocompleteRebuiltProps<
     T,
     false
-  >["customRenderPersistent"];
+  >["customRenderHeader"];
+  readonly customRenderFooter?: AutocompleteRebuiltProps<
+    T,
+    false
+  >["customRenderFooter"];
   readonly customRenderSection?: AutocompleteRebuiltProps<
     T,
     false
@@ -140,7 +145,8 @@ export function Wrapper<T extends OptionLike>({
       UNSAFE_className={UNSAFE_className}
       UNSAFE_styles={UNSAFE_styles}
       readOnly={readOnly}
-      customRenderPersistent={customRenderPersistent}
+      customRenderHeader={customRenderHeader}
+      customRenderFooter={customRenderFooter}
     />
   );
 }

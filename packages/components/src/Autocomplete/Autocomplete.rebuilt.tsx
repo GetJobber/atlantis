@@ -206,7 +206,8 @@ function AutocompleteRebuiltInternal<
                 listboxId={listboxId}
                 getItemProps={getItemProps}
                 listRef={listRef}
-                customRenderPersistent={props.customRenderPersistent}
+                customRenderHeader={props.customRenderHeader}
+                customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
                 className={classNames(
                   styles.persistentHeader,
@@ -268,7 +269,8 @@ function AutocompleteRebuiltInternal<
                 listboxId={listboxId}
                 getItemProps={getItemProps}
                 listRef={listRef}
-                customRenderPersistent={props.customRenderPersistent}
+                customRenderHeader={props.customRenderHeader}
+                customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
                 className={classNames(
                   styles.persistentFooter,

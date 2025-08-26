@@ -556,28 +556,24 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
           },
 
           {
-            type: "persistent",
+            type: "header",
             label:
               "This is some content that will remain at all times regardless of options, and empty states.",
-            position: "header",
             shouldClose: false,
-            special: true,
           },
           {
-            type: "persistent",
+            type: "footer",
             label: "'Sticky' Footer Action",
             onClick: () => {
               alert("Sticky Footer Action");
             },
-            position: "footer",
           },
           {
-            type: "persistent",
+            type: "footer",
             label: "Another Footer Action",
             onClick: () => {
               alert("Sticky Footer Action");
             },
-            position: "footer",
           },
         ]}
       />
