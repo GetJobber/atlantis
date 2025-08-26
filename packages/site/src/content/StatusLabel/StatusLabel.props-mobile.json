@@ -38,7 +38,7 @@
         "defaultValue": {
           "value": "success"
         },
-        "description": "Status color of the square beside text",
+        "description": "Sets the status colors for the container, label and StatusIndicator",
         "name": "status",
         "parent": {
           "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
