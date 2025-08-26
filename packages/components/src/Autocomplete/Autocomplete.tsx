@@ -5,7 +5,7 @@ import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
 import {
   type AnyOption,
-  type AutocompleteProps as AutocompleteLegacyProps,
+  type AutocompleteLegacyProps,
   type Option,
 } from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
