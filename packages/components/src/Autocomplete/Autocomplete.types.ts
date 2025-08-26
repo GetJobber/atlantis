@@ -227,7 +227,7 @@ export interface CustomOptionsMenuProp<
 // Arbitrary extra keys are allowed by structural typing of consumer types
 export interface OptionLike {
   label: string;
-  /*
+  /**
    * "label" will be used as the key by default
    * If labels are not unique, a unique key must be provided
    */
@@ -237,12 +237,12 @@ export interface OptionLike {
 interface MenuActionBase {
   type: "action";
   label: string;
-  /*
+  /**
    * "label" will be used as the key by default
    * If labels are not unique, a unique key must be provided
    */
   key?: Key;
-  /*
+  /**
    * Determines if the menu should close when the action is used.
    *
    * @default true
@@ -266,7 +266,7 @@ export type MenuSection<
 > = SectionExtra & {
   type: "section";
   label: string;
-  /*
+  /**
    * "label" will be used as the key by default
    * If labels are not unique, a unique key must be provided
    */
@@ -291,7 +291,7 @@ export type MenuHeader<Extra extends object = Record<string, unknown>> =
   Extra & {
     type: "header";
     label: string;
-    /*
+    /**
      * "label" will be used as the key by default
      * If labels are not unique, a unique key must be provided
      */
@@ -312,7 +312,7 @@ export type MenuFooter<Extra extends object = Record<string, unknown>> =
   Extra & {
     type: "footer";
     label: string;
-    /*
+    /**
      * "label" will be used as the key by default
      * If labels are not unique, a unique key must be provided
      */
@@ -353,25 +353,25 @@ interface AutocompleteRebuiltBaseProps<
   version: 2;
 
   readonly multiple?: Multiple;
-  /*
+  /**
    * The currently selected value of the Autocomplete.
    * Single-select: undefined indicates no selection
    */
   readonly value: AutocompleteValue<Value, Multiple>;
-  /*
+  /**
    * The current input value of the Autocomplete.
    */
   readonly inputValue: string;
-  /*
+  /**
    * Callback invoked when the input value changes.
    */
   readonly onInputChange: (value: string) => void;
 
-  /*
+  /**
    * Callback invoked when the input is blurred.
    */
   readonly onBlur?: () => void;
-  /*
+  /**
    * Callback invoked when the input is focused.
    */
   readonly onFocus?: () => void;
@@ -382,7 +382,7 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly inputEqualsOption?: (input: string, option: Value) => boolean;
 
-  /*
+  /**
    * Data structure for the menu.
    * Observes a data hierarchy to determine elements, order, and grouping.
    * Accepts Sections, Options as top level objects in the array.
@@ -400,7 +400,7 @@ interface AutocompleteRebuiltBaseProps<
     | ((options: Value[], inputValue: string) => Value[])
     | false;
 
-  /*
+  /**
    * Used to determine the label for a given option, useful for custom data for options.
    * Defaults to  option.label.
    */
@@ -500,7 +500,7 @@ interface AutocompleteRebuiltBaseProps<
     footer?: CSSProperties;
   };
 
-  /*
+  /**
    * Render a custom empty state when the menu is empty.
    * NOTE: Do not put interactive elements in the empty state, it will break accessibility.
    * If you require interactive elements in the empty state, use the `emptyActions` prop.
@@ -510,7 +510,7 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly emptyStateMessage?: React.ReactNode;
 
-  /*
+  /**
    * Actions to display when there are no options to render after filtering.
    * Can be a static list or a function that derives actions from the current input value.
    * When provided and options are empty, these are rendered as navigable actions. Compatible with or without `emptyStateMessage`.
@@ -519,49 +519,49 @@ interface AutocompleteRebuiltBaseProps<
     | MenuAction<ActionExtra>[]
     | ((args: { inputValue: string }) => MenuAction<ActionExtra>[]);
 
-  /*
+  /**
    * Whether the menu should open when the input gains focus.
    *
    * @default true
    */
   readonly openOnFocus?: boolean;
 
-  /*
+  /**
    * The placeholder text for the input.
    */
   readonly placeholder?: string;
-  /*
+  /**
    * Whether the input is disabled.
    */
   readonly disabled?: boolean;
-  /*
+  /**
    * Error message to display below the input
    * When present, invalid appearance applied to the input
    */
   readonly error?: string;
-  /*
+  /**
    * Whether the input is invalid. Receives invalid appearance.
    */
   readonly invalid?: boolean;
-  /*
+  /**
    * Whether the input is read-only.
    * @default false
    */
   readonly readOnly?: boolean;
-  /*
+  /**
    * Description to display below the input
    */
   readonly description?: string;
-  /*
+  /**
    * Name of the input for form submission
    */
   readonly name?: string;
-  /*
+  /**
    * Size of the input
    */
   readonly size?: InputTextRebuiltProps["size"];
 
-  /*
+  /**
    * Whether the input is clearable.
    * TODO: implement (issue with width)
    */
@@ -570,12 +570,12 @@ interface AutocompleteRebuiltBaseProps<
   readonly suffix?: InputTextRebuiltProps["suffix"];
   readonly prefix?: InputTextRebuiltProps["prefix"];
 
-  /*
+  /**
    * Callback invoked when the menu opens.
 
    */
   readonly onOpen?: () => void;
-  /*
+  /**
    * Callback invoked when the menu closes.
 
    */
@@ -589,7 +589,7 @@ interface AutocompleteRebuiltBaseProps<
     onRemove: (item: Value) => void;
   }) => React.ReactNode;
 
-  /*
+  /**
    * Whether the menu is loading.
    * Displays glimmers in the menu
    */
@@ -600,7 +600,7 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly customRenderLoading?: React.ReactNode;
 
-  /*
+  /**
    * Custom equality for option to value mapping.
    * TODO: decide if we wanna keep this
    */
@@ -608,21 +608,21 @@ interface AutocompleteRebuiltBaseProps<
 }
 
 interface FreeFormOff<Value extends OptionLike, Multiple extends boolean> {
-  /*
+  /**
    * Whether the autocomplete allows free-form input.
    * When true, the input value is not restricted to the options in the menu. Input can be used to create a new value.
    * When false, the input value must match an option in the menu.
    * Input value will be cleared if no selection is made and focus is lost.
    */
   readonly allowFreeForm?: false;
-  /*
+  /**
    * Callback invoked when the selection value changes.
    */
   readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
 }
 
 interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
-  /*
+  /**
    * Whether the autocomplete allows free-form input.
    * When true, the input value is not restricted to the options * in the menu. Input can be used to create a new value.
    * When false, the input value must match an option in the menu.
@@ -638,7 +638,7 @@ interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
    * @param input - The input value
    */
   readonly createFreeFormValue: (input: string) => Value;
-  /*
+  /**
    * Callback invoked when the selection value changes.
    * This is called when we consider a selection "committed"
    * - The user presses enter
