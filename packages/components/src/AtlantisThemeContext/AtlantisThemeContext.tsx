@@ -11,6 +11,7 @@ import merge from "lodash/merge";
 import type {
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,
+  OverrideTokens,
   Theme,
   ThemeChangeDetails,
 } from "./types";
@@ -55,7 +56,7 @@ function InternalDynamicThemeProvider({
   overrideTokens,
 }: {
   readonly children: React.ReactNode;
-  readonly overrideTokens?: typeof tokens;
+  readonly overrideTokens?: OverrideTokens;
 }) {
   const initialTheme: Theme =
     (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
@@ -113,7 +114,7 @@ function InternalStaticThemeProvider({
     AtlantisThemeContextProviderProps,
     "dangerouslyOverrideTheme" | "children"
   > & {
-    readonly overrideTokens: typeof tokens | undefined;
+    readonly overrideTokens: OverrideTokens | undefined;
   }
 >) {
   const currentTokens = useMemo(() => {
@@ -152,7 +153,7 @@ function AtlantisThemeContextTokenOverride({
   children,
   as: Tag = "div",
 }: {
-  readonly overrideTokens: typeof tokens;
+  readonly overrideTokens: OverrideTokens;
   readonly children: React.ReactNode;
   readonly as?: CommonAllowedElements;
 }) {

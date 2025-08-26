@@ -29,8 +29,10 @@ export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
    * Override the design tokens with custom tokens. These tokens will be used instead of the naturally loaded tokens.
    * If provided, these tokens will be used for both light and dark themes.
    */
-  readonly overrideTokens?: typeof tokens;
+  readonly overrideTokens?: OverrideTokens;
 }
+
+export type OverrideTokens = typeof tokens | Record<string, string>;
 
 export type Theme = "light" | "dark";
 
