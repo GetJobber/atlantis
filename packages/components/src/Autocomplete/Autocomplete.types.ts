@@ -272,8 +272,8 @@ export type MenuSection<
    */
   key?: Key;
   options: T[];
-  // Rendered at the bottom of this section
-  actionsBottom?: MenuAction<ActionExtra>[];
+  // Section-specific actions
+  actions?: MenuAction<ActionExtra>[];
 };
 
 export interface MenuOptions<
@@ -283,8 +283,8 @@ export interface MenuOptions<
   type: "options";
   // For flat lists without sections
   options: T[];
-  // Rendered at the bottom of the entire flat list
-  actionsBottom?: MenuAction<ActionExtra>[];
+  // Actions for the flat list
+  actions?: MenuAction<ActionExtra>[];
 }
 
 export type PersistentPosition = "header" | "footer";
@@ -635,8 +635,8 @@ export const menuOptions = <
   ActionExtra extends object = Record<string, unknown>,
 >(
   options: T[],
-  actionsBottom?: MenuAction<ActionExtra>[],
-): MenuOptions<T, ActionExtra> => ({ type: "options", options, actionsBottom });
+  actions?: MenuAction<ActionExtra>[],
+): MenuOptions<T, ActionExtra> => ({ type: "options", options, actions });
 
 export const menuSection = <
   T extends OptionLike,
@@ -645,13 +645,13 @@ export const menuSection = <
 >(
   label: string,
   options: T[],
-  actionsBottom?: MenuAction<ActionExtra>[],
+  actions?: MenuAction<ActionExtra>[],
   extra?: SectionExtra,
 ): MenuSection<T, SectionExtra, ActionExtra> => ({
   type: "section",
   label,
   options,
-  actionsBottom,
+  actions,
   ...(extra || ({} as SectionExtra)),
 });
 

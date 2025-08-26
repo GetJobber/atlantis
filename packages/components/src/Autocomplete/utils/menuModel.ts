@@ -50,7 +50,7 @@ export function buildItemsForGroup<
   const filtered = optionsTransform
     ? optionsTransform(group.options)
     : group.options;
-  const actions = group.actionsBottom ?? [];
+  const actions = group.actions ?? [];
   const result: Array<RenderItem<Value, S, A>> = [];
   const sectionHasContent =
     isSection && (filtered.length > 0 || actions.length > 0);

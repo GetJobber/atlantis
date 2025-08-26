@@ -394,7 +394,7 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
             type: "section",
             label: "Services",
             options: simpleOptions,
-            actionsBottom: [
+            actions: [
               {
                 type: "action",
                 label: "Add Service",
@@ -430,7 +430,7 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
           {
             type: "options",
             options: serviceOptions,
-            actionsBottom: [
+            actions: [
               {
                 type: "action",
                 label: "Add Service",
@@ -544,7 +544,7 @@ const V2Template: ComponentStory<typeof Autocomplete> = () => {
             type: "section",
             label: "Services",
             options: simpleOptions,
-            actionsBottom: [
+            actions: [
               {
                 type: "action",
                 label: "Add Service",

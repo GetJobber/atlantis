@@ -384,7 +384,7 @@ describe("AutocompleteRebuilt", () => {
             {
               type: "options",
               options: [{ label: "One" }],
-              actionsBottom: [
+              actions: [
                 {
                   type: "action",
                   label: "Create Action",
@@ -413,7 +413,7 @@ describe("AutocompleteRebuilt", () => {
             {
               type: "options",
               options: [{ label: "Howdy" }],
-              actionsBottom: [
+              actions: [
                 {
                   type: "action",
                   label: "Stay Open",
@@ -1723,7 +1723,7 @@ describe("AutocompleteRebuilt", () => {
             {
               type: "options",
               options: [{ label: "One" }],
-              actionsBottom: [
+              actions: [
                 {
                   type: "action",
                   label: "Create new",
