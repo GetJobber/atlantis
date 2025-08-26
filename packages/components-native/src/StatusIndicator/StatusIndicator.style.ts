@@ -1,13 +1,14 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../utils/design";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
-const statusIndicatorDiameter = tokens["space-small"];
+export const useStyles = buildThemedStyles(tokens => {
+  const statusIndicatorDiameter = 8;
 
-export const styles = StyleSheet.create({
-  statusIndicator: {
-    borderRadius: tokens["radius-circle"],
-    backgroundColor: tokens["color-success"],
-    width: statusIndicatorDiameter,
-    height: statusIndicatorDiameter,
-  },
+  return {
+    statusIndicator: {
+      borderRadius: tokens["radius-circle"],
+      backgroundColor: tokens["color-success"],
+      width: statusIndicatorDiameter,
+      height: statusIndicatorDiameter,
+    },
+  };
 });
