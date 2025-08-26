@@ -1,0 +1,20 @@
+---
+alwaysApply: false
+---
+
+Write a bash script that copies Storybook MDX files from `docs` to the new docs site.
+
+## What to copy
+
+- Source: `docs/components/<Component>/<Component>.stories.mdx`
+- Destination: `packages/site/src/content/<Component>/<Component>.stories.mdx`
+
+Example (Button):
+
+- Before: `docs/components/Button/Button.stories.mdx`
+- After: `packages/site/src/content/Button/Button.stories.mdx`
+
+
+## Important
+
+You are only writing a bash script `./batch-copy.sh` which uses commands available on macOS to batch copy all of those files to their new locations.
