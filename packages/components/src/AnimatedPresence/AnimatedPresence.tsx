@@ -1,4 +1,5 @@
-import React, { Children, PropsWithChildren, useEffect } from "react";
+import type { PropsWithChildren } from "react";
+import React, { Children, useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   TIMING_BASE,

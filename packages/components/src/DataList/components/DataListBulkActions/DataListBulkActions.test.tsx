@@ -1,5 +1,5 @@
-/* eslint-disable max-statements */
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
@@ -10,7 +10,8 @@ import { DataListBulkActions } from ".";
 import { BULK_ACTIONS_CONTAINER_TEST_ID } from "./DataListBulkActions.const";
 import { DataListAction } from "../DataListAction";
 import { DataListHeaderCheckbox } from "../DataListHeader/DataListHeaderCheckbox";
-import { BREAKPOINT_SIZES, Breakpoints } from "../../DataList.const";
+import type { Breakpoints } from "../../DataList.const";
+import { BREAKPOINT_SIZES } from "../../DataList.const";
 
 const handleEditClick = jest.fn();
 const mockBulkActionsComponent = jest.fn().mockReturnValue(

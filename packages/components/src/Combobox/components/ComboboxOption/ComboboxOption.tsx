@@ -4,19 +4,21 @@ import { Icon } from "@jobber/components/Icon";
 import { Flex } from "@jobber/components/Flex";
 import styles from "./ComboboxOption.module.css";
 import { ComboboxContext } from "../../ComboboxProvider";
-
-export interface ComboboxOptionProps {
-  readonly id: string | number;
-  readonly label: string;
-  readonly prefix?: React.ReactNode;
-}
+import { type ComboboxOptionProps } from "../../Combobox.types";
 
 export function ComboboxOption(props: ComboboxOptionProps) {
+  const { customRender, onClick, ...contentProps } = props;
   const { selected, selectionHandler } = useContext(ComboboxContext);
 
   const isSelected = selected.some(
     selection => selection.id.toString() === props.id.toString(),
   );
+
+  const handleClick = () => {
+    const { id, label } = props;
+    selectionHandler?.({ id, label });
+    onClick?.({ id, label });
+  };
 
   return (
     <li
@@ -25,12 +27,28 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       data-selected={isSelected}
       role="option"
       aria-selected={isSelected}
-      onClick={() =>
-        selectionHandler &&
-        selectionHandler({ id: props.id, label: props.label })
-      }
+      onClick={handleClick}
       className={classnames(styles.option)}
     >
+      {customRender ? (
+        customRender({
+          ...contentProps,
+          isSelected,
+        })
+      ) : (
+        <InternalDefaultContent {...contentProps} isSelected={isSelected} />
+      )}
+    </li>
+  );
+}
+
+type InternalDefaultContentProps = Omit<ComboboxOptionProps, "customRender"> & {
+  readonly isSelected: boolean;
+};
+
+function InternalDefaultContent(props: InternalDefaultContentProps) {
+  return (
+    <>
       <Flex template={props.prefix ? ["shrink", "grow"] : ["grow"]}>
         {props.prefix}
 
@@ -38,8 +56,10 @@ export function ComboboxOption(props: ComboboxOptionProps) {
       </Flex>
 
       <div>
-        {isSelected && <Icon name="checkmark" color="interactiveSubtle" />}
+        {props.isSelected && (
+          <Icon name="checkmark" color="interactiveSubtle" />
+        )}
       </div>
-    </li>
+    </>
   );
 }

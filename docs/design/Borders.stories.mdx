@@ -17,48 +17,53 @@ styling to ensure consistent border thickness throughout Jobber.
 
 Border style should be `solid` unless a specific use case calls for some other
 format, such as indicating a dropzone on the
-[`InputFile` component](../?path=/docs/components-forms-and-inputs-inputfile--docs).
+[`InputFile` component](/components/InputFile).
 
-export function Example({ of: size }) {
-  const style = {
+export function BaseStyle({ of: size }) {
+  return {
     width: "100%",
     height: "var(--space-minuscule)",
     borderBottomStyle: "solid",
     borderBottomWidth: `var(--border-${size})`,
     borderBottomColor: "var(--color-grey--lighter)",
   };
-  return <div style={style} />;
 }
 
-| Width               | Visual                    |
-| :------------------ | :------------------------ |
-| `--border-base`     | <Example of="base" />     |
-| `--border-thick`    | <Example of="thick" />    |
-| `--border-thicker`  | <Example of="thicker" />  |
-| `--border-thickest` | <Example of="thickest" /> |
+export function Example({ of: size }) {
+  return <div style={BaseStyle({ of: size })} />;
+}
+
+export function BorderSize({ of: size }) {
+  return getComputedStyle(document.documentElement).getPropertyValue(
+    `--border-${size}`
+  );
+}
+
+| Width               | Visual                    | Value                        |
+| :------------------ | :------------------------ | :--------------------------- |
+| `--border-base`     | <Example of="base" />     | <BorderSize of="base" />     |
+| `--border-thick`    | <Example of="thick" />    | <BorderSize of="thick" />    |
+| `--border-thicker`  | <Example of="thicker" />  | <BorderSize of="thicker" />  |
+| `--border-thickest` | <Example of="thickest" /> | <BorderSize of="thickest" /> |
 
 The `base` border width should be used for most use cases (see
-[`Card`](../?path=/docs/components-layouts-and-structure-card--docs) and
-[`List` items](../?path=/docs/components-lists-and-tables-list--docs) for
-in-context examples). You may want to consider thicker borders when the border
-conveys a closing of already-divided sections, such as a
-[`Table` footer](../?path=/docs/components-lists-and-tables-table--docs).
+[`Card`](/components/Card) and [`List` items](/components/List) for in-context
+examples). You may want to consider thicker borders when the border conveys a
+closing of already-divided sections, such as a
+[`Table` footer](/components/Table).
 
 ### Border Colors
 
 Borders should use `--color-border)` for most use cases.
 [`List` sections](../?path=/docs/components-lists-and-tables-list--docs#sectioned-list-items),
-[`Table` headers](../?path=/docs/components-lists-and-tables-table--docs) and
-other scenarios where other bordered content is being further subsectioned
-should use `--color-border--section)`.
+[`Table` headers](/components/Table) and other scenarios where other bordered
+content is being further subsectioned should use `--color-border--section)`.
 
 For accessibility reasons, ensure that color usage is not the only way to
 [convey meaning](https://webaim.org/articles/contrast/#sc141) in an interface.
 
 ## Dividers
 
-The
-[`Divider` component](../?path=/docs/components-layouts-and-structure-divider--docs)
-will help you segment sections of content without writing additional styling.
-This component will render a horizontal rule that takes up the full available
-width.
+The [`Divider` component](/components/Divider) will help you segment sections of
+content without writing additional styling. This component will render a
+horizontal rule that takes up the full available width.

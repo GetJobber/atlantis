@@ -1,0 +1,132 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "",
+    "displayName": "Page",
+    "methods": [],
+    "props": {
+      "intro": {
+        "defaultValue": null,
+        "description": "Content of the page. This supports basic markdown node types\nsuch as `_italic_`, `**bold**`, and `[link name](url)`.",
+        "name": "intro",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageWithIntroProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "externalIntroLinks": {
+        "defaultValue": null,
+        "description": "Causes any markdown links in the `intro` prop to open in a new\ntab, i.e. with `target=\"_blank\"`.\n\nCan only be used if `intro` prop is also specified.\n\nDefaults to `false`.",
+        "name": "externalIntroLinks",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageWithIntroProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title of the page.\n\nSupports any React node. If a string is provided, it will be rendered as an H1 heading.\nOtherwise it will be rendered as is.\n\n**Important**: If you're passing a custom element, it must include an H1-level heading within it.\nIdeally <Heading level={1}> should be used here.",
+        "name": "title",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "titleMetaData": {
+        "defaultValue": null,
+        "description": "TitleMetaData component to be displayed\nnext to the title. Only compatible with string titles.",
+        "name": "titleMetaData",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "subtitle": {
+        "defaultValue": null,
+        "description": "Subtitle of the page.",
+        "name": "subtitle",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "width": {
+        "defaultValue": {
+          "value": "standard"
+        },
+        "description": "Determines the width of the page.\n\nFill makes the width grow to 100%.\n\nStandard caps out at 1280px.\n\nNarrow caps out at 1024px.",
+        "name": "width",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"fill\" | \"standard\" | \"narrow\""
+        }
+      },
+      "primaryAction": {
+        "defaultValue": null,
+        "description": "Page title primary action button settings.",
+        "name": "primaryAction",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonActionProps"
+        }
+      },
+      "secondaryAction": {
+        "defaultValue": null,
+        "description": "Page title secondary action button settings.",
+        "name": "secondaryAction",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonActionProps"
+        }
+      },
+      "moreActionsMenu": {
+        "defaultValue": {
+          "value": "[]"
+        },
+        "description": "Page title Action menu.",
+        "name": "moreActionsMenu",
+        "parent": {
+          "fileName": "../components/src/Page/Page.tsx",
+          "name": "PageFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "SectionProps[]"
+        }
+      }
+    }
+  }
+]

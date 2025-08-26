@@ -9,3 +9,5 @@ node_modules
 storybook-static
 .rollup.cache
 jobber-*.tgz
+.npmrc
+styles.css.backup

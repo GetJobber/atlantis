@@ -1,18 +1,12 @@
 import React from "react";
-import {
-  Pressable,
-  // eslint-disable-next-line no-restricted-imports
-  Text as RNText,
-  StyleProp,
-  TextStyle,
-  View,
-} from "react-native";
-import { IconNames } from "@jobber/design";
-import { tokens } from "../../../utils/design";
+import type { StyleProp, TextStyle } from "react-native";
+import { Pressable, Text as RNText, View } from "react-native";
+import type { IconNames } from "@jobber/design";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
-import { typographyStyles } from "../../../Typography";
-import { styles } from "../../InputFieldWrapper.style";
+import { useTypographyStyles } from "../../../Typography";
+import { useAtlantisTheme } from "../../../AtlantisThemeContext";
+import { useStyles } from "../../InputFieldWrapper.style";
 
 export interface SuffixLabelProps {
   readonly focused: boolean;
@@ -36,6 +30,9 @@ export function SuffixLabel({
   hasLeftMargin = true,
   styleOverride,
 }: SuffixLabelProps): JSX.Element {
+  const styles = useStyles();
+  const typographyStyles = useTypographyStyles();
+
   return (
     <View
       testID={suffixLabelTestId}
@@ -88,6 +85,9 @@ export function SuffixIcon({
   hasLeftMargin = false,
   onPress,
 }: SuffixIconProps): JSX.Element {
+  const styles = useStyles();
+  const { tokens } = useAtlantisTheme();
+
   return (
     <View
       testID={suffixIconTestId}

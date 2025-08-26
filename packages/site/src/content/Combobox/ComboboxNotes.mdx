@@ -1,0 +1,173 @@
+## Configuration
+
+Combobox is composed of three main parts: Activator, Content, and Action.
+
+### Activator
+
+The activator is the user-facing interface to open and close the Combobox and
+initiate option selection.
+
+#### Default activator
+
+To use the default activator simply omit any kind of `Combobox.Activator`
+subcomponent in your instance.
+
+Examples of using a default activator can be found in the
+[single-select](../?path=/story/components-selections-combobox-web--single-select)
+and
+[multi-select](../?path=/story/components-selections-combobox-web--multi-select)
+stories. The label of the default activator can be customized by adding the
+optional `label` prop to Combobox, to better reflect the type of data being
+selected. Otherwise, the default activator label will read "Select".
+
+The optional `label` prop on Combobox is only effective when using the default
+activator.
+
+#### Custom activator
+
+The custom activator should be used in any instance where the default activator
+is not suitable.
+
+**Child React Component:** To use a customized `Chip` or `Button` your custom
+activator should be a child of `<Combobox.Activator />`. An example of using a
+custom activator can be found in the
+[custom activator](../?path=/story/components-selections-combobox-web--custom-activator)
+story.
+
+**Child Render Function:** If neither a Chip nor a Button is sufficient for your
+needs, you may instead provide a function as the child to `Combobox.Activator`.
+
+As arguments, the function will receive a method to open the Combobox (closing
+is handled internally), and accessibility attributes required for a Combobox.
+**You must implement these yourself**. See the
+[render function example](../?path=/story/components-selections-combobox-web--custom-activator)
+for reference.
+
+The render function must return a single, valid JSX Element (it can of course
+have children, it simply must have a single wrapping tag). Ensure that tabindex,
+focus, and keyboard interactivity are considered and handled appropriately if a
+non traditionally interactive element such as a div is used.
+
+### Content
+
+The content of the Combobox is responsible for displaying the list of selectable
+options, handling user interactions, and managing search functionality.
+
+`<Combobox.Option />` represents an individual option within the list. Each
+option has `id`, `label`, and `prefix` props which are used to identify and
+display the option.
+
+#### Custom content
+
+You can use the `prefix` option to render content on the left side of the
+provided `label`. An example of this behaviour can be found in the
+[Prefix Options](../?path=/story/components-selections-combobox-web--prefix-options)
+story.
+
+If you need more advanced control of the children inside each option, you can
+use the `customRender` prop to supply your own content. Check out the
+[Custom Render Options](../?path=/story/components-selections-combobox-web--custom-render-options)
+story for an example.
+
+### Action
+
+Actions are an optional way to allow users to perform custom tasks such as
+adding a new item to the list of options.
+
+By default, when an action is clicked, the Combobox will close. If you want the
+Combobox to remain open after an action is clicked, you can use the
+`keepOpenOnClick` prop. An example of this behaviour can be found in the
+[Keep Open on Click](../?path=/story/components-selections-combobox-web--keep-open-on-action-click)
+story.
+
+### Selection behavior
+
+#### Single-select
+
+Single-select is Combobox's default selection mode. When a selection is made,
+the Combobox will close.
+
+#### Multi-select
+
+Add the `multiSelect` prop to allow multiple options to be selected and/or
+un-selected. In multi-select mode, the Combobox will only close when a user
+takes an explicit action to close it such as clicking outside the Combobox or
+pressing the ESC key.
+
+With multiSelect activated, a header appears beneath the search input, providing
+information about the number of selected items. Additionally, a button allows
+users to either select or deselect all options in the list.
+
+In the case of selecting all options in a filtered state, only the currently
+visible filtered options will be selected. When deselecting all options, every
+item will be deselected, irrespective of the filter state.
+
+### Selection callback
+
+As selections are made, the data will be returned via an argument to the
+function provided to the `onSelect` prop.
+
+Please note that regardless of if it is a single-select or a multi-select, the
+`onSelect` will be called immediately as options are selected (or un-selected in
+the case of multi-select). Multi-select will receive an array of all selections,
+not only the most recent.
+
+### onClose
+
+If it is desirable to wait until the Combobox has been closed, likely indicating
+that all selections have been made, it is recommended to use the optional
+`onClose` callback which will fire when the Combobox is closed by any means.
+This callback provides no arguments.
+
+While the selections will still be updated in real time, this callback will
+allow you to call any potentially expensive operations only once the Combobox
+has been closed. As such, it will only have a difference in timing for
+multi-select since a single-select selection will immediately close the
+Combobox.
+
+### Selection display
+
+When using the default activator, the selections will be displayed inside the
+activator. The data will still be returned via callback.
+
+When using a custom activator, the selections will only be returned as data
+keeping the choice of how to display the data flexible.
+
+### Custom onSearch
+
+The `onSearch` prop allows you to hook into the Combobox's search input and
+receive what the user has typed. This callback is debounced by 300ms by default
+but can be configured with the `onSearchDebounce` prop.
+
+When using this callback, we no longer filter the options as a user types.
+Everything is left up to the `onSearch` callback and accompanying code to
+implement.
+
+An example use case here would be using the search term to fire off a request to
+fetch the appropriate data for that term. It is recommended to use the `loading`
+prop while fetching & filtering the new data. The loading state will display a
+static amount of `Glimmer` components. Then updating `loading` once the new data
+has been fetched and the `Combobox.Option`s have been replaced with the new
+ones.
+
+Note that the component does not cache the initial options when using
+`onSearch`. If new data was fetched and replaced the initial options on search
+then a user clears the search, either with the clear button or deleting the
+term, the initial options would need to be restored manually.
+
+## Testing
+
+When using Jest to test Combobox implementations, you will need to include this
+mock in your test setup:
+
+```js
+const scrollIntoViewMock = jest.fn();
+window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+```
+
+## Developer notes
+
+- The Combobox confines tabbing to within itself while it's open using
+  [useFocusTrap](/hooks/useFocusTrap)
+- Pressing `esc` will close the Combobox and return focus to the activator using
+  [useRefocusOnActivator](/hooks/useRefocusOnActivator)

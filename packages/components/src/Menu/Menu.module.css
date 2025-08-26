@@ -6,26 +6,22 @@
   position: relative;
 }
 
-.popperContainer {
+.floatingContainer {
   z-index: var(--elevation-modal);
-}
-
-.shadowRef {
-  display: none;
 }
 
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);
   z-index: var(--elevation-modal);
-  max-height: 72vh;
   box-shadow: var(--shadow-base);
+  box-sizing: border-box;
   padding: var(--menu-space);
   padding-bottom: calc(env(safe-area-inset-bottom) + var(--menu-space));
   border-radius: var(--radius-base) var(--radius-base) 0 0;
-  -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
   background-color: var(--color-surface);
+  -webkit-overflow-scrolling: touch;
 
   @media (--small-screens-and-below) {
     position: fixed;
@@ -65,25 +61,30 @@
 
 .action {
   display: flex;
-  gap: var(--menu-space);
   width: 100%;
   padding: var(--menu-space);
   border: none;
   border-radius: var(--radius-base);
+  outline: transparent;
   text-align: start;
   background-color: transparent;
   cursor: pointer;
+  gap: var(--menu-space);
   align-items: center;
+  transition:
+    background-color var(--timing-base) ease-out,
+    box-shadow var(--timing-base) ease-out;
 }
 
 .action:hover,
-.action:focus {
+.action:focus-visible {
   background-color: var(--color-surface--hover);
 }
 
 .action:focus-visible {
-  outline-color: var(--color-focus);
+  box-shadow: var(--shadow-focus);
 }
+
 .action span {
   /* match appearance of Button labels */
   -webkit-font-smoothing: antialiased;

@@ -1,13 +1,15 @@
 import React from "react";
+import type { StyleProp, ViewStyle } from "react-native";
 import { TouchableHighlight, View } from "react-native";
-import { IconColorNames, IconNames } from "@jobber/design";
-import { XOR } from "ts-xor";
-import { styles } from "./Button.style";
+import type { IconColorNames, IconNames } from "@jobber/design";
+import type { XOR } from "ts-xor";
+import { useStyles } from "./Button.style";
 import { InternalButtonLoading } from "./components/InternalButtonLoading";
-import { ButtonSize, ButtonType, ButtonVariation } from "./types";
-import { ActionLabel, ActionLabelVariation } from "../ActionLabel";
+import type { ButtonSize, ButtonType, ButtonVariation } from "./types";
+import type { ActionLabelVariation } from "../ActionLabel";
+import { ActionLabel } from "../ActionLabel";
 import { Icon } from "../Icon";
-import { tokens } from "../utils/design";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 interface CommonButtonProps {
   /**
@@ -77,6 +79,20 @@ interface CommonButtonProps {
    * Used to locate this view in end-to-end tests.
    */
   readonly testID?: string;
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: ButtonUnsafeStyle;
+}
+
+export interface ButtonUnsafeStyle {
+  container?: StyleProp<ViewStyle>;
+  contentContainer?: StyleProp<ViewStyle>;
+  iconContainer?: StyleProp<ViewStyle>;
+  actionLabelContainer?: StyleProp<ViewStyle>;
 }
 
 interface LabelButton extends CommonButtonProps {
@@ -107,7 +123,11 @@ export function Button({
   accessibilityHint,
   icon,
   testID,
+  UNSAFE_style,
 }: ButtonProps): JSX.Element {
+  const { tokens } = useAtlantisTheme();
+  const styles = useStyles();
+
   const buttonStyle = [
     styles.button,
     styles[size],
@@ -141,11 +161,20 @@ export function Button({
         fullHeight && styles.fullHeight,
       ]}
     >
-      <View style={buttonStyle}>
+      <View style={[buttonStyle, UNSAFE_style?.container]}>
         {loading && <InternalButtonLoading variation={variation} type={type} />}
-        <View style={getContentStyles(label, icon)}>
+        <View
+          style={[
+            getContentStyles(label, icon, styles),
+            UNSAFE_style?.contentContainer,
+          ]}
+          testID="contentContainer"
+        >
           {icon && (
-            <View style={styles.iconStyle}>
+            <View
+              style={[styles.iconStyle, UNSAFE_style?.iconContainer]}
+              testID="iconContainer"
+            >
               <Icon
                 name={icon}
                 color={getIconColorVariation(variation, type, disabled)}
@@ -153,7 +182,10 @@ export function Button({
             </View>
           )}
           {label && (
-            <View style={styles.labelStyle}>
+            <View
+              style={[styles.labelStyle, UNSAFE_style?.actionLabelContainer]}
+              testID="actionLabelContainer"
+            >
               <ActionLabel
                 variation={getActionLabelVariation(variation, type)}
                 disabled={disabled}
@@ -217,6 +249,7 @@ function getIconColorVariation(
 function getContentStyles(
   label: string | undefined,
   icon: IconNames | undefined,
+  styles: ReturnType<typeof useStyles>,
 ) {
   if (label && !icon) {
     return undefined;

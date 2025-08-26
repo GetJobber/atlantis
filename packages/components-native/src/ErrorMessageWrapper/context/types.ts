@@ -1,5 +1,5 @@
-import { RefObject } from "react";
-import { NativeMethods, View } from "react-native";
+import type { RefObject } from "react";
+import type { NativeMethods, View } from "react-native";
 
 interface Methods {
   /**

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { XOR } from "ts-xor";
-import { BaseSwitch, BaseSwitchProps } from "./components/BaseSwitch";
-import { styles } from "./Switch.styles";
+import type { XOR } from "ts-xor";
+import type { BaseSwitchProps } from "./components/BaseSwitch";
+import { BaseSwitch } from "./components/BaseSwitch";
+import { useStyles } from "./Switch.styles";
 import { Text } from "../Text";
 
 interface WithLabelProps extends BaseSwitchProps {
@@ -26,6 +27,7 @@ export function Switch(props: SwitchProps): JSX.Element {
   };
 
   const [labelWidth, setLabelWidth] = useState<number | undefined>();
+  const styles = useStyles();
 
   return (
     <View style={styles.container}>

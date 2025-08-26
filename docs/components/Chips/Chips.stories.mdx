@@ -8,7 +8,7 @@ import { Tab, Tabs } from "@jobber/components/Tabs";
 Chips are a flexible component that can be used for the selection of items from
 a group while preserving vertical space in the interface.
 
-## Usage guidelines
+## Design & usage guidelines
 
 The Chip will allow users to make selections in scenarios where vertical space
 is at a premium. It has three high-level usages: single-select, multi-select,
@@ -26,9 +26,8 @@ will allow the user to choose one of those items.
 This preserves vertical space while allowing the user to clearly identify which
 item they have selected.
 
-Unlike [Radio](../?path=/docs/components-forms-and-inputs-radiogroup--docs), the
-selected single-select Chip can be de-selected by the user, leaving all
-selections blank.
+Unlike [Radio](/components/RadioGroup), the selected single-select Chip can be
+de-selected by the user, leaving all selections blank.
 
 ### Multi-select
 
@@ -39,7 +38,7 @@ Chips will allow the user to choose as many items from the group as they wish.
 This preserves vertical space while allowing the user to clearly identify which
 items they have selected. To signify to the user that multiple selections are
 possible, a checkmark icon is present to reinforce the conceptual similarity to
-a [Checkbox](../?path=/docs/components-selections-checkbox--docs).
+a [Checkbox](/components/Checkbox).
 
 Similar to Checkbox, a selected multi-select Chip can be de-selected by the
 user, leaving all selections blank.
@@ -83,18 +82,16 @@ In cases where the Chip is on an area whose background is
 
 ## Related components
 
-- [Chip](../?path=/docs/components-selections-chip--docs) is the building block
-  that Chips is built on top of, and has more flexibility to be used in
-  isolation.
-- [RadioGroup](../?path=/docs/components-forms-and-inputs-radiogroup--docs)
-  should be used to allow the user to select "one-of-many" items (single-select)
-  and the labels for the items are longer than 1 or 2 words.
-- [Checkbox](../?path=/docs/components-selections-checkbox--docs) should be used
-  to allow the user to select "one-or-more-of-many" items (multi-select) and the
-  labels for the items are longer than 1 or 2 words.
-- [InlineLabel](../?path=/docs/components-status-and-feedback-inlinelabel--docs)
-  should be used when you just need a rectangular element that displays the
-  status of another element.
+- [Chip](/components/Chip) is the building block that Chips is built on top of,
+  and has more flexibility to be used in isolation.
+- [RadioGroup](/components/RadioGroup) should be used to allow the user to
+  select "one-of-many" items (single-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [Checkbox](/components/Checkbox) should be used to allow the user to select
+  "one-or-more-of-many" items (multi-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [InlineLabel](/components/InlineLabel) should be used when you just need a
+  rectangular element that displays the status of another element.
 
 ## Content guidelines
 
@@ -136,40 +133,3 @@ assistive technology.
 The Chips themselves will take up as much space as their container allows, and
 the Chips will flow left to right. Chips may re-flow into new rows, or scroll
 out of view in a single row, depending on your use case.
-
-## Notes
-
-To override the appearance of the selected Chip(s) you may use
-[Base Chip Color Overrides](../?path=/docs/components-selections-chip--docs#base-chip-color-overrides)
-since the selected Chip is a Base Chip.
-
-### Chips composition with standalone Chip
-
-Standalone Chip's `role`, `<Chip.Prefix>`, `<Chip.Suffix>` `heading` and
-`variation` will not work specifically when used within a `Chips`.
-
-If you wish to use a prefix, please use `Chip` from `Chips/Chip`.
-
-#### ✅ Do
-
-```
-import { Chip, Chips } from "@jobber/components/Chips";
-...
-
-<Chips>
-  <Chip prefix="thumbsUp"/>
-</Chips>
-```
-
-#### ❌ Don't
-
-```
-import { Chip, Chips } from "@jobber/components";
-
-...
-<Chips>
-  <Chip>
-    <Chip.Prefix>...</Chip.Prefix>
-  </Chip>
-</Chips>
-```

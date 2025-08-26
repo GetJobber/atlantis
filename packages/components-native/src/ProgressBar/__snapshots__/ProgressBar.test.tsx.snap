@@ -8,13 +8,17 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
 >
   <View
     style={
-      {
-        "flexDirection": "row",
-        "height": 20,
-        "marginBottom": 8,
-        "marginTop": 8,
-        "position": "relative",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 8,
+          "marginTop": 8,
+          "position": "relative",
+        },
+        {
+          "height": 16,
+        },
+      ]
     }
   >
     <View
@@ -30,7 +34,7 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
             "width": "100%",
           },
           {
-            "backgroundColor": "hsl(53, 21%, 93%)",
+            "backgroundColor": "hsl(51, 17%, 85%)",
             "width": "100%",
           },
         ]
@@ -86,13 +90,17 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
 >
   <View
     style={
-      {
-        "flexDirection": "row",
-        "height": 20,
-        "marginBottom": 8,
-        "marginTop": 8,
-        "position": "relative",
-      }
+      [
+        {
+          "flexDirection": "row",
+          "marginBottom": 8,
+          "marginTop": 8,
+          "position": "relative",
+        },
+        {
+          "height": 16,
+        },
+      ]
     }
   >
     <View
@@ -108,7 +116,7 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
             "width": "100%",
           },
           {
-            "backgroundColor": "hsl(53, 21%, 93%)",
+            "backgroundColor": "hsl(51, 17%, 85%)",
             "width": "100%",
           },
         ]

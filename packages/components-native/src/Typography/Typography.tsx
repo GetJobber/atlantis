@@ -1,22 +1,18 @@
 import React from "react";
-import {
+import type {
   AccessibilityProps,
-  I18nManager,
   StyleProp,
-  StyleSheet,
-  // eslint-disable-next-line no-restricted-imports
-  Text,
   TextProps,
   TextStyle,
   ViewStyle,
 } from "react-native";
+import { I18nManager, StyleSheet, Text } from "react-native";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
-import { typographyStyles as styles } from "./Typography.style";
-import { tokens } from "../utils/design";
+import { useTypographyStyles } from "./Typography.style";
 import { capitalize } from "../utils/intl";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
-export interface TypographyProps<T extends FontFamily>
-  extends Pick<TextProps, "selectable"> {
+export interface TypographyProps<T extends FontFamily> {
   /**
    * Text capitalization
    */
@@ -33,6 +29,13 @@ export interface TypographyProps<T extends FontFamily>
   readonly align?: TextAlign;
 
   /**
+   * Lets the user select text, to use the native copy and paste functionality.
+   * WARNING: if true, this prevents ellipsis from being shown on Android.
+   * @default true
+   */
+  readonly selectable?: boolean;
+
+  /**
    * Font size
    */
   readonly size?: TextSize;
@@ -45,6 +48,7 @@ export interface TypographyProps<T extends FontFamily>
   /**
    * The maximum amount of lines the text can occupy before being truncated with "...".
    * Uses predefined string values that correspond to a doubling scale for the amount of lines.
+   * WARNING: if `selectable` is true, Android will not show an ellipsis.
    */
   readonly maxLines?: TruncateLength;
 
@@ -119,6 +123,16 @@ export interface TypographyProps<T extends FontFamily>
    * Have text styled with strike through
    */
   readonly strikeThrough?: boolean;
+
+  readonly UNSAFE_style?: TypographyUnsafeStyle;
+
+  /**
+   * Callback behaves differently on iOS and Android.
+   * On iOS, it is called when the text is laid out.
+   * On Android, it is called before the text is laid out.
+   * @see https://reactnative.dev/docs/text#ontextlayout
+   */
+  readonly onTextLayout?: OnTextLayoutEvent;
 }
 
 const maxNumberOfLines = {
@@ -129,6 +143,10 @@ const maxNumberOfLines = {
   extraLarge: 16,
   unlimited: undefined,
 };
+
+export interface TypographyUnsafeStyle {
+  textStyle?: StyleProp<TextStyle>;
+}
 
 export const Typography = React.memo(InternalTypography);
 
@@ -147,21 +165,24 @@ function InternalTypography<T extends FontFamily = "base">({
   maxFontScaleSize,
   adjustsFontSizeToFit = false,
   lineHeight,
-  letterSpacing,
+  letterSpacing = "base",
   reverseTheme = false,
   hideFromScreenReader = false,
   accessibilityRole = "text",
   strikeThrough = false,
   underline,
+  UNSAFE_style,
   selectable = true,
+  onTextLayout,
 }: TypographyProps<T>): JSX.Element {
-  const sizeAndHeight = getSizeAndHeightStyle(size, lineHeight);
+  const styles = useTypographyStyles();
+  const sizeAndHeight = getSizeAndHeightStyle(size, styles, lineHeight);
   const style: StyleProp<ViewStyle>[] = [
-    getFontStyle(fontFamily, fontStyle, fontWeight),
-    getColorStyle(color, reverseTheme),
-    getAlignStyle(align),
+    getFontStyle(fontFamily, fontStyle, fontWeight, styles),
+    getColorStyle(styles, color, reverseTheme),
+    getAlignStyle(styles, align),
     sizeAndHeight,
-    getLetterSpacingStyle(letterSpacing),
+    getLetterSpacingStyle(letterSpacing, styles),
   ];
 
   if (strikeThrough) {
@@ -177,6 +198,10 @@ function InternalTypography<T extends FontFamily = "base">({
     style.push(underlineTextStyle, styles.underline);
   }
 
+  if (UNSAFE_style?.textStyle) {
+    style.push(UNSAFE_style.textStyle);
+  }
+
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
 
   const text = getTransformedText(children, transform);
@@ -188,27 +213,36 @@ function InternalTypography<T extends FontFamily = "base">({
       }
     : { accessibilityRole };
 
-  return (
-    <TypographyGestureDetector>
-      <Text
-        {...{
-          allowFontScaling,
-          adjustsFontSizeToFit,
-          style,
-          numberOfLines: numberOfLinesForNativeText,
-        }}
-        {...accessibilityProps}
-        maxFontSizeMultiplier={getScaleMultiplier(
-          maxFontScaleSize,
-          sizeAndHeight.fontSize,
-        )}
-        selectable={selectable}
-        selectionColor={tokens["color-brand--highlight"]}
-      >
-        {text}
-      </Text>
-    </TypographyGestureDetector>
+  const { tokens } = useAtlantisTheme();
+
+  const textComponent = (
+    <Text
+      {...{
+        allowFontScaling,
+        adjustsFontSizeToFit,
+        style,
+        numberOfLines: numberOfLinesForNativeText,
+      }}
+      {...accessibilityProps}
+      maxFontSizeMultiplier={getScaleMultiplier(
+        maxFontScaleSize,
+        sizeAndHeight.fontSize,
+      )}
+      selectable={selectable}
+      selectionColor={tokens["color-brand--highlight"]}
+      onTextLayout={onTextLayout}
+    >
+      {text}
+    </Text>
   );
+
+  // If text is not selectable, there's no need for TypographyGestureDetector
+  // since it only prevents accidental highlighting of selectable text
+  if (!selectable) {
+    return textComponent;
+  }
+
+  return <TypographyGestureDetector>{textComponent}</TypographyGestureDetector>;
 }
 
 function getScaleMultiplier(maxFontScaleSize = 0, size = 1) {
@@ -221,6 +255,7 @@ function getFontStyle(
   fontFamily: FontFamily = "base",
   fontStyle: FontStyle = "regular",
   fontWeight: FontWeight = "regular",
+  styles: ReturnType<typeof useTypographyStyles>,
 ) {
   const defaultBaseFontStyling = styles.baseRegularRegular;
   const defaultDisplayFontStyling = styles.displayRegularBold;
@@ -251,7 +286,11 @@ function getTransformedText(text?: string, transform?: TextTransform) {
   }
 }
 
-function getColorStyle(color?: TextColor, reverseTheme?: boolean) {
+function getColorStyle(
+  styles: ReturnType<typeof useTypographyStyles>,
+  color?: TextColor,
+  reverseTheme?: boolean,
+) {
   if (color === "default" || !color) {
     return styles.greyBlue;
   }
@@ -261,6 +300,7 @@ function getColorStyle(color?: TextColor, reverseTheme?: boolean) {
 }
 
 function getAlignStyle(
+  styles: ReturnType<typeof useTypographyStyles>,
   alignStyle: TextAlign = I18nManager.isRTL ? "end" : "start",
 ) {
   return styles[`${alignStyle}Align`];
@@ -268,6 +308,7 @@ function getAlignStyle(
 
 function getSizeAndHeightStyle(
   textSize: TextSize,
+  styles: ReturnType<typeof useTypographyStyles>,
   lineHeightOverwrite?: LineHeight,
 ) {
   const fontSize = styles[`${textSize}Size`];
@@ -281,7 +322,10 @@ function getSizeAndHeightStyle(
   return fontSize;
 }
 
-function getLetterSpacingStyle(letterSpacing: LetterSpacing = "base") {
+function getLetterSpacingStyle(
+  letterSpacing: LetterSpacing,
+  styles: ReturnType<typeof useTypographyStyles>,
+) {
   return styles[`${letterSpacing}LetterSpacing`];
 }
 
@@ -454,3 +498,5 @@ export type TruncateLength =
   | "large"
   | "extraLarge"
   | "unlimited";
+
+export type OnTextLayoutEvent = Exclude<TextProps["onTextLayout"], undefined>;

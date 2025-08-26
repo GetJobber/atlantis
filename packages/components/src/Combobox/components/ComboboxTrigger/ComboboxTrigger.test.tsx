@@ -3,34 +3,22 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { ComboboxTrigger } from "./ComboboxTrigger";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
-import { ComboboxOption } from "../../Combobox.types";
+import type { ComboboxOption } from "../../Combobox.types";
 
-const handleClose = jest.fn();
-const setOpen = jest.fn();
+const handleOpen = jest.fn();
 
 afterEach(() => {
-  handleClose.mockClear();
-  setOpen.mockClear();
+  handleOpen.mockClear();
 });
 
 describe("ComboboxTrigger", () => {
   describe("when open is false", () => {
-    it("calls setOpen", async () => {
+    it("calls handleOpen", async () => {
       renderTrigger();
       const trigger = screen.getByRole("combobox");
 
       await userEvent.click(trigger);
-      expect(setOpen).toHaveBeenCalled();
-    });
-  });
-
-  describe("when open is true", () => {
-    it("calls onClose", async () => {
-      renderTrigger(true);
-      const trigger = screen.getByRole("combobox");
-
-      await userEvent.click(trigger);
-      expect(handleClose).toHaveBeenCalled();
+      expect(handleOpen).toHaveBeenCalled();
     });
   });
 
@@ -126,8 +114,8 @@ function renderTrigger(
 ) {
   return render(
     <ComboboxContextProvider
-      setOpen={setOpen}
-      handleClose={handleClose}
+      handleOpen={handleOpen}
+      handleClose={jest.fn()}
       selected={[]}
       open={open}
       shouldScroll={{ current: false }}

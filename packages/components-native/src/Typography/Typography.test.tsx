@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { I18nManager } from "react-native";
 import { Typography } from "./Typography";
 
@@ -225,6 +225,20 @@ it("renders text that is inaccessible", () => {
   );
 });
 
+it("applies custom UNSAFE_style to text", () => {
+  const customStyle = { color: "red", fontSize: 20 };
+  const typography = render(
+    <Typography UNSAFE_style={{ textStyle: customStyle }}>
+      Test Text
+    </Typography>,
+  );
+  const textElement = typography.getByText("Test Text");
+
+  expect(textElement.props.style).toEqual(
+    expect.arrayContaining([expect.objectContaining(customStyle)]),
+  );
+});
+
 describe("underline", () => {
   it.each(["solid", "double", "dotted", "dashed"] as const)(
     "renders text with %s underline",
@@ -236,4 +250,62 @@ describe("underline", () => {
       expect(typography.toJSON()).toMatchSnapshot();
     },
   );
+});
+
+describe("onTextLayout", () => {
+  it("calls onTextLayout callback when text layout event occurs", () => {
+    const onTextLayoutMock = jest.fn();
+    const { getByRole } = render(
+      <Typography onTextLayout={onTextLayoutMock}>Test Text</Typography>,
+    );
+
+    const textElement = getByRole("text");
+    const mockEvent = {
+      nativeEvent: {
+        lines: [
+          {
+            text: "Test Text",
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 20,
+            ascender: 15,
+            descender: -5,
+            capHeight: 14,
+            xHeight: 10,
+          },
+        ],
+      },
+    };
+    fireEvent(textElement, "onTextLayout", mockEvent);
+    expect(onTextLayoutMock).toHaveBeenCalledTimes(1);
+    expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
+  });
+});
+
+describe("TypographyGestureDetector", () => {
+  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
+    const { getByRole } = render(<Typography>Test Text</Typography>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("wraps text with TypographyGestureDetector (collapsable=false) when selectable=true", () => {
+    const { getByRole } = render(
+      <Typography selectable={true}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("does not wrap text with TypographyGestureDetector when selectable=false", () => {
+    const { getByRole } = render(
+      <Typography selectable={false}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBeUndefined();
+  });
 });

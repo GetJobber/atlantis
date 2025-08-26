@@ -1,7 +1,9 @@
+import type { CSSProperties } from "react";
 import React from "react";
-import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
+import type { IconColorNames, IconNames, IconSizes } from "@jobber/design";
+import { getIcon } from "@jobber/design";
 
-export { IconColorNames, IconNames } from "@jobber/design";
+export type { IconColorNames, IconNames } from "@jobber/design";
 
 export interface IconProps {
   /** The icon to show.  */
@@ -29,6 +31,26 @@ export interface IconProps {
    * Used to locate this view in end-to-end tests
    */
   readonly testID?: string;
+
+  /**
+   * **Use at your own risk:** Custom classnames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    svg?: string;
+    path?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    svg?: CSSProperties;
+    path?: CSSProperties;
+  };
 }
 
 export function Icon({
@@ -37,6 +59,8 @@ export function Icon({
   customColor,
   size = "base",
   testID,
+  UNSAFE_className,
+  UNSAFE_style,
 }: IconProps) {
   let icon;
   const { svgStyle, pathStyle, paths, viewBox } = getIcon({
@@ -50,7 +74,13 @@ export function Icon({
     icon = getTruck(pathStyle, customColor);
   } else {
     icon = paths.map((path: string) => (
-      <path key={path} style={{ ...pathStyle }} d={path} fill={customColor} />
+      <path
+        key={path}
+        style={{ ...pathStyle, ...UNSAFE_style?.path }}
+        className={UNSAFE_className?.path}
+        d={path}
+        fill={customColor}
+      />
     ));
   }
 
@@ -58,7 +88,8 @@ export function Icon({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
-      style={svgStyle}
+      style={{ ...svgStyle, ...UNSAFE_style?.svg }}
+      className={UNSAFE_className?.svg}
       data-testid={testID || name}
     >
       {icon}

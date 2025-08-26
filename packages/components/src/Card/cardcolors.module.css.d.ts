@@ -3,6 +3,7 @@ declare const styles: {
   readonly "quoteColor": string;
   readonly "jobColor": string;
   readonly "invoiceColor": string;
+  readonly "clientColor": string;
   readonly "blue": string;
   readonly "blueLight": string;
   readonly "blueLighter": string;

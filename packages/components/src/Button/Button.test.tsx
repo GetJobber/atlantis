@@ -1,12 +1,9 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
-import {
-  Route,
-  RouteChildrenProps,
-  BrowserRouter as Router,
-  Switch,
-} from "react-router-dom";
-import { Button } from ".";
+import { fireEvent, render, screen } from "@testing-library/react";
+import type { RouteChildrenProps } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { Button } from "./Button";
 
 it("renders a Button", () => {
   const { container } = render(<Button label="Submit" />);
@@ -239,5 +236,253 @@ describe("Button role", () => {
   it("should apply provided role when present", () => {
     const { getByRole } = render(<Button label="hello" role="combobox" />);
     expect(getByRole("combobox")).toBeInstanceOf(HTMLButtonElement);
+  });
+});
+
+describe("Button with children", () => {
+  it("renders custom children", () => {
+    const { getByText } = render(
+      <Button type="primary">
+        <Button.Label>Custom Button Content</Button.Label>
+      </Button>,
+    );
+
+    expect(getByText("Custom Button Content")).toBeInTheDocument();
+  });
+
+  it("applies button styles to the wrapper when using children", () => {
+    render(
+      <Button type="primary" variation="destructive">
+        <Button.Label>Custom Content</Button.Label>
+      </Button>,
+    );
+    const button = screen.getByRole("button");
+
+    // The button should have the destructive class
+    expect(button).toHaveClass("destructive");
+  });
+
+  it("supports children with other button props", async () => {
+    const handleClick = jest.fn();
+    render(
+      <Button onClick={handleClick}>
+        <Button.Label>Click Me</Button.Label>
+      </Button>,
+    );
+
+    await userEvent.click(screen.getByText("Click Me"));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("allows both rendering of label and icon", () => {
+    render(
+      <Button type="primary">
+        <Button.Label>Click Me</Button.Label>
+        <Button.Icon name="add" />
+      </Button>,
+    );
+
+    expect(screen.getByText("Click Me")).toBeInTheDocument();
+    expect(screen.getByTestId("add")).toBeInTheDocument();
+  });
+});
+
+describe("UNSAFE_ props", () => {
+  describe("Non-composable Button", () => {
+    describe("UNSAFE_className", () => {
+      it("applies to container", () => {
+        render(
+          <Button
+            label="Custom Container ClassName"
+            UNSAFE_className={{
+              container: "custom-container",
+            }}
+          />,
+        );
+
+        expect(screen.getByRole("button")).toHaveClass("custom-container");
+      });
+
+      it("applies to label", () => {
+        render(
+          <Button
+            label="Custom Label ClassName"
+            UNSAFE_className={{
+              buttonLabel: { textStyle: "custom-label" },
+            }}
+          />,
+        );
+
+        expect(screen.getByText("Custom Label ClassName")).toHaveClass(
+          "custom-label",
+        );
+      });
+
+      it("applies to icon", () => {
+        render(
+          <Button
+            label="Custom Icon ClassName"
+            icon="add"
+            UNSAFE_className={{
+              buttonIcon: {
+                svg: "custom-icon-svg",
+                path: "custom-icon-path",
+              },
+            }}
+          />,
+        );
+
+        expect(screen.getByTestId("add")).toHaveClass("custom-icon-svg");
+        expect(screen.getByTestId("add").querySelector("path")).toHaveClass(
+          "custom-icon-path",
+        );
+      });
+    });
+
+    describe("UNSAFE_style", () => {
+      it("applies to container", () => {
+        render(
+          <Button
+            label="Custom Container Style"
+            UNSAFE_style={{
+              container: {
+                backgroundColor: "var(--color-yellow)",
+              },
+            }}
+          />,
+        );
+        expect(screen.getByRole("button")).toHaveStyle({
+          backgroundColor: "var(--color-yellow)",
+        });
+      });
+
+      it("applies to label", () => {
+        render(
+          <Button
+            label="Custom Label Style"
+            UNSAFE_style={{
+              buttonLabel: {
+                textStyle: {
+                  color: "var(--color-blue)",
+                },
+              },
+            }}
+          />,
+        );
+        expect(screen.getByText("Custom Label Style")).toHaveStyle({
+          color: "var(--color-blue)",
+        });
+      });
+
+      it("applies to icon", () => {
+        render(
+          <Button
+            label="Custom Icon Style"
+            icon="add"
+            UNSAFE_style={{
+              buttonIcon: {
+                svg: {
+                  width: "var(--space-large)",
+                },
+                path: {
+                  fill: "var(--color-green)",
+                },
+              },
+            }}
+          />,
+        );
+
+        expect(screen.getByTestId("add")).toHaveStyle({
+          width: "var(--space-large)",
+        });
+        expect(screen.getByTestId("add").querySelector("path")).toHaveStyle({
+          fill: "var(--color-green)",
+        });
+      });
+    });
+  });
+
+  describe("Composable Button", () => {
+    describe("UNSAFE_className", () => {
+      it("applies to Button.Icon", () => {
+        render(
+          <Button>
+            <Button.Icon
+              name="add"
+              UNSAFE_className={{
+                svg: "custom-icon-svg",
+                path: "custom-icon-path",
+              }}
+            />
+          </Button>,
+        );
+
+        expect(screen.getByTestId("add")).toHaveClass("custom-icon-svg");
+        expect(screen.getByTestId("add").querySelector("path")).toHaveClass(
+          "custom-icon-path",
+        );
+      });
+
+      it("applies to Button.Label", () => {
+        render(
+          <Button>
+            <Button.Label UNSAFE_className={{ textStyle: "custom-label" }}>
+              Custom Composable Label ClassName
+            </Button.Label>
+          </Button>,
+        );
+
+        expect(
+          screen.getByText("Custom Composable Label ClassName"),
+        ).toHaveClass("custom-label");
+      });
+    });
+
+    describe("UNSAFE_style", () => {
+      it("applies to Button.Icon", () => {
+        render(
+          <Button>
+            <Button.Icon
+              name="add"
+              UNSAFE_style={{
+                svg: {
+                  width: "var(--space-large)",
+                },
+                path: {
+                  fill: "var(--color-green)",
+                },
+              }}
+            />
+          </Button>,
+        );
+
+        expect(screen.getByTestId("add")).toHaveStyle({
+          width: "var(--space-large)",
+        });
+        expect(screen.getByTestId("add").querySelector("path")).toHaveStyle({
+          fill: "var(--color-green)",
+        });
+      });
+
+      it("applies to Button.Label", () => {
+        render(
+          <Button>
+            <Button.Label
+              UNSAFE_style={{
+                textStyle: {
+                  color: "var(--color-blue)",
+                },
+              }}
+            >
+              Custom Composable Label Style
+            </Button.Label>
+          </Button>,
+        );
+
+        expect(screen.getByText("Custom Composable Label Style")).toHaveStyle({
+          color: "var(--color-blue)",
+        });
+      });
+    });
   });
 });

@@ -1,50 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`it should display headers when headers are passed in 1`] = `
-<div>
-  <div
-    class="autocomplete"
-  >
-    <div
-      class="container"
-    >
-      <div
-        class="wrapper text"
-        data-testid="Form-Field-Wrapper"
-      >
-        <div
-          class="horizontalWrapper"
-        >
-          <div
-            class="inputWrapper"
-          >
-            <label
-              class="label"
-              for=":r3:"
-            >
-              placeholder_name
-            </label>
-            <div
-              class="childrenWrapper"
-              tabindex="-1"
-            >
-              <input
-                autocomplete="off"
-                class="input"
-                id=":r3:"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders an Autocomplete 1`] = `
+exports[`Autocomplete renders an Autocomplete 1`] = `
 <div>
   <div
     class="autocomplete"
@@ -76,6 +32,50 @@ exports[`renders an Autocomplete 1`] = `
                 autocomplete="off"
                 class="input"
                 id=":r0:"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Autocomplete should display headers when headers are passed in 1`] = `
+<div>
+  <div
+    class="autocomplete"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="wrapper text"
+        data-testid="Form-Field-Wrapper"
+      >
+        <div
+          class="horizontalWrapper"
+        >
+          <div
+            class="inputWrapper"
+          >
+            <label
+              class="label"
+              for=":r5:"
+            >
+              placeholder_name
+            </label>
+            <div
+              class="childrenWrapper"
+              tabindex="-1"
+            >
+              <input
+                autocomplete="off"
+                class="input"
+                id=":r5:"
                 type="text"
                 value=""
               />

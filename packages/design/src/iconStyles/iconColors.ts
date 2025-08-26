@@ -1,5 +1,8 @@
 export const iconColors = {
   tokens: {
+    icon: {
+      value: "{color.icon}",
+    },
     white: {
       value: "{color.white}",
     },
@@ -143,6 +146,9 @@ export const iconColors = {
     },
     brandHighlight: {
       value: "{color.brand-.highlight}",
+    },
+    task: {
+      value: "{color.task}",
     },
   },
 };

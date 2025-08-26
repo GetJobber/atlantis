@@ -1,0 +1,82 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Content/Content.tsx",
+    "description": "",
+    "displayName": "Content",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "The child or children that will be given spacing.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components-native/src/Content/Content.tsx",
+          "name": "ContentProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "spacing": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The amount of spacing that content will give.",
+        "name": "spacing",
+        "parent": {
+          "fileName": "../components-native/src/Content/Content.tsx",
+          "name": "ContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Spacing"
+        }
+      },
+      "childSpacing": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The amount of spacing that will be applied between children.",
+        "name": "childSpacing",
+        "parent": {
+          "fileName": "../components-native/src/Content/Content.tsx",
+          "name": "ContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Spacing"
+        }
+      },
+      "direction": {
+        "defaultValue": {
+          "value": "vertical"
+        },
+        "description": "",
+        "name": "direction",
+        "parent": {
+          "fileName": "../components-native/src/Content/Content.tsx",
+          "name": "ContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"horizontal\" | \"vertical\""
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components-native/src/Content/Content.tsx",
+          "name": "ContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ContentUnsafeStyle"
+        }
+      }
+    }
+  }
+]

@@ -45,7 +45,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
           class="rightAction"
         >
           <button
-            class="button base work primary"
+            class="button base work primary buttonChildren"
             type="button"
           >
             <span
@@ -55,7 +55,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
             </span>
           </button>
           <button
-            class="button base subtle primary"
+            class="button base subtle primary buttonChildren"
             type="button"
           >
             <span

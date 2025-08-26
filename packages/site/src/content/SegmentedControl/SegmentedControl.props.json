@@ -1,0 +1,115 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/SegmentedControl/SegmentedControl.tsx",
+    "description": "",
+    "displayName": "SegmentedControl",
+    "methods": [],
+    "props": {
+      "selectedValue": {
+        "defaultValue": null,
+        "description": "The currently selected option. Use this prop with `onSelectValue` for\na controlled component.",
+        "name": "selectedValue",
+        "parent": {
+          "fileName": "../components/src/SegmentedControl/SegmentedControl.tsx",
+          "name": "SegmentedControlProps"
+        },
+        "required": false,
+        "type": {
+          "name": "T"
+        }
+      },
+      "onSelectValue": {
+        "defaultValue": null,
+        "description": "A callback function that is called whenever the selected option changes.\nUse this prop with `selectedValue` for a controlled component.",
+        "name": "onSelectValue",
+        "parent": {
+          "fileName": "../components/src/SegmentedControl/SegmentedControl.tsx",
+          "name": "SegmentedControlProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(value: T) => void"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "The default option to be selected initially.\nSet this prop when the component is uncontrolled.",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "../components/src/SegmentedControl/SegmentedControl.tsx",
+          "name": "SegmentedControlProps"
+        },
+        "required": false,
+        "type": {
+          "name": "T"
+        }
+      },
+      "name": {
+        "defaultValue": {
+          "value": "useId()"
+        },
+        "description": "A unique name for the SegmentedControl, that links the group of\noptions together. Can be a string or, if not set, will default to a generated\nid.",
+        "name": "name",
+        "parent": {
+          "fileName": "../components/src/SegmentedControl/SegmentedControl.tsx",
+          "name": "SegmentedControlProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Adjusts the size of the SegmentedControl. The default size is \"base\".",
+        "name": "size",
+        "parent": {
+          "fileName": "../components/src/SegmentedControl/SegmentedControl.tsx",
+          "name": "SegmentedControlProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/SegmentedControl/SegmentedControl.tsx",
+    "description": "",
+    "displayName": "SegmentedControl.Option",
+    "methods": [],
+    "props": {
+      "value": {
+        "defaultValue": null,
+        "description": "The unique value associated with this option. This value is used to determine\nwhich option is selected and is passed to the onSelectValue callback.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/SegmentedControl/SegmentedControlOption.tsx",
+          "name": "SegmentedControlOptionProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string | number"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "An aria-label that describes the option.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/SegmentedControl/SegmentedControlOption.tsx",
+          "name": "SegmentedControlOptionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

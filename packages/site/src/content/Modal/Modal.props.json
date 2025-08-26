@@ -1,0 +1,134 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Modal/Modal.tsx",
+    "description": "",
+    "displayName": "ModalLegacy",
+    "methods": [],
+    "props": {
+      "title": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "open": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "open",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "dismissible": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "",
+        "name": "dismissible",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "primaryAction": {
+        "defaultValue": null,
+        "description": "",
+        "name": "primaryAction",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+        }
+      },
+      "secondaryAction": {
+        "defaultValue": null,
+        "description": "",
+        "name": "secondaryAction",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+        }
+      },
+      "tertiaryAction": {
+        "defaultValue": null,
+        "description": "",
+        "name": "tertiaryAction",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+        }
+      },
+      "onRequestClose": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onRequestClose",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
+        }
+      }
+    }
+  }
+]

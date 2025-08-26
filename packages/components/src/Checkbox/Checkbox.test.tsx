@@ -89,3 +89,57 @@ describe("Clicking the checkbox it should call the handler", () => {
     expect(clickHandler).toHaveBeenCalledWith(false);
   });
 });
+
+describe("Checkbox", () => {
+  describe("focus handling", () => {
+    it("calls onFocus when the checkbox receives focus", () => {
+      const onFocus = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" onFocus={onFocus} />,
+      );
+
+      const checkbox = getByRole("checkbox");
+      checkbox.focus();
+
+      expect(onFocus).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onBlur when the checkbox loses focus", () => {
+      const onBlur = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" onBlur={onBlur} />,
+      );
+
+      const checkbox = getByRole("checkbox");
+      checkbox.focus();
+      checkbox.blur();
+
+      expect(onBlur).toHaveBeenCalledTimes(1);
+    });
+
+    it("handles both focus and blur events", () => {
+      const onFocus = jest.fn();
+      const onBlur = jest.fn();
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" onFocus={onFocus} onBlur={onBlur} />,
+      );
+
+      const checkbox = getByRole("checkbox");
+      checkbox.focus();
+      expect(onFocus).toHaveBeenCalledTimes(1);
+      expect(onBlur).not.toHaveBeenCalled();
+
+      checkbox.blur();
+      expect(onFocus).toHaveBeenCalledTimes(1);
+      expect(onBlur).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("ref", () => {
+    it("should be forwarded to the input element", () => {
+      const ref = React.createRef<HTMLInputElement>();
+      render(<Checkbox version={2} ref={ref} />);
+      expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+  });
+});

@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { styles } from "./SelectDefaultPicker.style";
-import { SelectInternalPickerProps } from "../../types";
+import type { SelectInternalPickerProps } from "../../types";
 import { SelectPressable } from "../SelectPressable";
-import { tokens } from "../../../utils/design";
+import { useAtlantisTheme } from "../../../AtlantisThemeContext";
 
 type SelectDefaultPickerProps = SelectInternalPickerProps;
 
@@ -15,6 +15,7 @@ export function SelectDefaultPicker({
 }: SelectDefaultPickerProps): JSX.Element {
   const selectedItem = options.find(option => option.isActive);
   const pickerRef = useRef<Picker<string>>(null);
+  const { tokens } = useAtlantisTheme();
 
   return (
     <SelectPressable onPress={pickerRef.current?.focus}>

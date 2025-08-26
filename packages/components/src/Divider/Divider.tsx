@@ -1,6 +1,8 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./Divider.module.css";
+import sizes from "./DividerSizes.module.css";
+import directions from "./DividerDirections.module.css";
 
 interface DividerProps {
   /**
@@ -8,26 +10,59 @@ interface DividerProps {
    *
    * @default "base"
    */
-  readonly size?: "base" | "large" | "larger" | "largest";
+  readonly size?: keyof typeof sizes;
+
   /**
    * The direction of the divider
    *
    * @default "horizontal"
    */
-  readonly direction?: "horizontal" | "vertical";
+  readonly direction?: keyof typeof directions;
+
+  /**
+   * A reference to the element in the rendered output
+   */
+  readonly testID?: string;
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    readonly container?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    readonly container?: React.CSSProperties;
+  };
 }
 
 export function Divider({
   size = "base",
   direction = "horizontal",
+  testID,
+  UNSAFE_className,
+  UNSAFE_style,
 }: DividerProps) {
-  const className = classnames(styles.divider, {
-    [styles.large]: size === "large",
-    [styles.larger]: size === "larger",
-    [styles.largest]: size === "largest",
-    [styles.horizontal]: direction == "horizontal",
-    [styles.vertical]: direction == "vertical",
-  });
+  const className = classnames(
+    styles.divider,
+    sizes[size],
+    directions[direction],
+    UNSAFE_className?.container,
+  );
 
-  return <div className={className} role="none presentation" />;
+  return (
+    <div
+      className={className}
+      style={UNSAFE_style?.container}
+      data-testid={testID}
+      role="none presentation"
+    />
+  );
 }

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { InputAccessoriesContextProps } from "./types";
+import type { InputAccessoriesContextProps } from "./types";
 
 const inputAccessoriesContextDefaultValues: InputAccessoriesContextProps = {
   elements: {},

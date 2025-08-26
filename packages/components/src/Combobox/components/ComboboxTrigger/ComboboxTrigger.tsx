@@ -2,13 +2,14 @@ import React from "react";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxTriggerProps } from "../../Combobox.types";
+import type { ComboboxTriggerProps } from "../../Combobox.types";
 
 export function ComboboxTrigger({
   label = "Select",
   selected,
+  activatorRef,
 }: ComboboxTriggerProps) {
-  const { handleClose, open, setOpen } = React.useContext(ComboboxContext);
+  const { handleOpen } = React.useContext(ComboboxContext);
 
   const hasSelection = selected.length;
   const selectedLabel = selected.map(option => option.label).join(", ");
@@ -19,14 +20,9 @@ export function ComboboxTrigger({
       label={hasSelection ? selectedLabel : ""}
       ariaLabel={label}
       heading={label}
-      onClick={() => {
-        if (open) {
-          handleClose();
-        } else {
-          setOpen(true);
-        }
-      }}
+      onClick={handleOpen}
       role="combobox"
+      ref={activatorRef}
     >
       {!hasSelection && (
         <Chip.Suffix>

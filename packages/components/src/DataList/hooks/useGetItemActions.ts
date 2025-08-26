@@ -1,11 +1,15 @@
-import { Children, ReactElement, isValidElement, useMemo } from "react";
+import type { ReactElement } from "react";
+import { Children, isValidElement, useMemo } from "react";
 import { useDataListContext } from "../context/DataListContext";
-import { DataListActionProps, DataListObject } from "../DataList.types";
+import type { DataListActionProps, DataListObject } from "../DataList.types";
 
 export function useGetItemActions<T extends DataListObject>(item: T) {
   const { itemActionComponent } = useDataListContext<T>();
   const itemActions = itemActionComponent?.props.children || [];
   const actionsArray = Children.toArray(itemActions);
+
+  const disableContextMenu =
+    itemActionComponent?.props.disableContextMenu ?? false;
 
   const actions = useMemo(() => {
     return actionsArray.filter(action => {
@@ -20,5 +24,6 @@ export function useGetItemActions<T extends DataListObject>(item: T) {
   return {
     actions: actions as ReactElement<DataListActionProps<T>>[],
     hasActions: Boolean(actions.length),
+    disableContextMenu,
   };
 }

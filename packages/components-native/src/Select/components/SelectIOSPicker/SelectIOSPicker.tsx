@@ -1,5 +1,6 @@
-import { HostComponent, requireNativeComponent } from "react-native";
-import {
+import type { HostComponent } from "react-native";
+import { requireNativeComponent } from "react-native";
+import type {
   SelectInternalPickerProps,
   SelectOnOptionPressEvent,
 } from "../../types";

@@ -1,21 +1,16 @@
 import React from "react";
-import {
-  // eslint-disable-next-line no-restricted-imports
-  Text as RNText,
-  StyleProp,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
-import { FieldError } from "react-hook-form";
-import { IconNames } from "@jobber/design";
-import { styles } from "./InputFieldWrapper.style";
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { Text as RNText, View } from "react-native";
+import type { FieldError } from "react-hook-form";
+import type { IconNames } from "@jobber/design";
+import { useStyles } from "./InputFieldWrapper.style";
 import { PrefixIcon, PrefixLabel } from "./components/Prefix/Prefix";
 import { SuffixIcon, SuffixLabel } from "./components/Suffix/Suffix";
 import { ClearAction } from "./components/ClearAction";
 import { Glimmer } from "../Glimmer/Glimmer";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
-import { TextVariation, typographyStyles } from "../Typography";
+import type { TextVariation } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 import { Text } from "../Text";
 import { ActivityIndicator } from "../ActivityIndicator";
 
@@ -146,6 +141,7 @@ export function InputFieldWrapper({
 
   const showLoadingSpinner = loading && loadingType === "spinner";
   const showLoadingGlimmer = loading && loadingType === "glimmer";
+  const styles = useStyles();
 
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
@@ -343,6 +339,8 @@ function Placeholder({
   readonly labelVariation: TextVariation;
   readonly hasMiniLabel: boolean;
 }) {
+  const typographyStyles = useTypographyStyles();
+
   return (
     <>
       {!styleOverride ? (

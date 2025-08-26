@@ -1,0 +1,24 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/DescriptionList/DescriptionList.tsx",
+    "description": "",
+    "displayName": "DescriptionList",
+    "methods": [],
+    "props": {
+      "data": {
+        "defaultValue": null,
+        "description": "A tuple where the first item is the string to display as the term\nand the second value is the string to display as the definition",
+        "name": "data",
+        "parent": {
+          "fileName": "../components/src/DescriptionList/DescriptionList.tsx",
+          "name": "DescriptionListProps"
+        },
+        "required": true,
+        "type": {
+          "name": "[string, ReactNode][]"
+        }
+      }
+    }
+  }
+]

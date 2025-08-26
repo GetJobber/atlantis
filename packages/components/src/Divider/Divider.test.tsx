@@ -8,6 +8,11 @@ describe("Divider", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("applies testID prop to div element", () => {
+    const { getByTestId } = render(<Divider testID="ATL-divider" />);
+    expect(getByTestId("ATL-divider")).toBeInTheDocument();
+  });
+
   describe("when large", () => {
     it("renders", () => {
       const { container } = render(<Divider size="large" />);
@@ -53,6 +58,29 @@ describe("Divider", () => {
         );
         expect(container).toMatchSnapshot();
       });
+    });
+  });
+
+  describe("UNSAFE props", () => {
+    it("should apply UNSAFE_className to the container", () => {
+      const { getByTestId } = render(
+        <Divider
+          UNSAFE_className={{ container: "custom-class" }}
+          testID="ATL-divider"
+        />,
+      );
+
+      expect(getByTestId("ATL-divider")).toHaveClass("custom-class");
+    });
+
+    it("should apply UNSAFE_style to the container", () => {
+      const { getByTestId } = render(
+        <Divider
+          UNSAFE_style={{ container: { color: "red" } }}
+          testID="ATL-divider"
+        />,
+      );
+      expect(getByTestId("ATL-divider")).toHaveStyle("color: red");
     });
   });
 });

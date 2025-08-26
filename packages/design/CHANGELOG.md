@@ -3,6 +3,345 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.84.0...@jobber/design@0.85.0) (2025-08-20)
+
+
+### Features
+
+* **design:** JOB-132716 Add new checkmarkCircle icon  ([#2680](https://github.com/GetJobber/atlantis/issues/2680)) ([3e65455](https://github.com/GetJobber/atlantis/commit/3e6545579c9754de2532495c5529b4217a3af42a))
+
+
+
+
+
+# [0.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.83.0...@jobber/design@0.84.0) (2025-08-11)
+
+
+### Features
+
+* **design:** Add request form builder icons ([#2663](https://github.com/GetJobber/atlantis/issues/2663)) ([111d544](https://github.com/GetJobber/atlantis/commit/111d544b98cd8c4bf34bcfdb757a54787fd3df54))
+
+
+
+
+
+# [0.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.82.0...@jobber/design@0.83.0) (2025-07-29)
+
+
+### Features
+
+* **design:** Add map icon ([#2635](https://github.com/GetJobber/atlantis/issues/2635)) ([e32b292](https://github.com/GetJobber/atlantis/commit/e32b29283dc6303ce04ddb7e02050d696efbb8ba))
+
+
+
+
+
+# [0.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.81.0...@jobber/design@0.82.0) (2025-07-16)
+
+
+### Features
+
+* **design:** Adding a new circle icon ([#2616](https://github.com/GetJobber/atlantis/issues/2616)) ([a6f71d3](https://github.com/GetJobber/atlantis/commit/a6f71d3cca81675f940d6c0c6eec2695aa9b06ee))
+
+
+
+
+
+# [0.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.2...@jobber/design@0.81.0) (2025-07-09)
+
+
+### Features
+
+* **design:** Adds four new icons to our existing icon component [JOB-128112] ([#2613](https://github.com/GetJobber/atlantis/issues/2613)) ([6213997](https://github.com/GetJobber/atlantis/commit/62139979b99b19fa47f85507040a0bf6f28201da))
+
+
+
+
+
+## [0.80.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.1...@jobber/design@0.80.2) (2025-06-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.80.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.0...@jobber/design@0.80.1) (2025-05-27)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.79.0...@jobber/design@0.80.0) (2025-05-15)
+
+
+### Features
+
+* **components:** Support iconColor on Menu actions ([#2555](https://github.com/GetJobber/atlantis/issues/2555)) ([806775a](https://github.com/GetJobber/atlantis/commit/806775a925e35e2f8d0e088bb8335edd828f063f))
+
+
+
+
+
+# [0.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.78.0...@jobber/design@0.79.0) (2025-05-08)
+
+
+### Features
+
+* **design:** JOB-122715 Add editDisabled icon ([#2546](https://github.com/GetJobber/atlantis/issues/2546)) ([dfa8787](https://github.com/GetJobber/atlantis/commit/dfa8787f2c8f45b35cae6a8d48179f248c67f514))
+
+
+
+
+
+# [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.77.0...@jobber/design@0.78.0) (2025-05-06)
+
+
+### Features
+
+* **design:** Add surface and onSurface colors for color-client ([#2539](https://github.com/GetJobber/atlantis/issues/2539)) ([4c9f741](https://github.com/GetJobber/atlantis/commit/4c9f7415e31add63da9428c084bc23855e4615fa))
+
+
+
+
+
+# [0.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.1...@jobber/design@0.77.0) (2025-05-05)
+
+
+### Features
+
+* **design:** JOB-122715 Add mobile and desktop icons ([#2535](https://github.com/GetJobber/atlantis/issues/2535)) ([5de8e5e](https://github.com/GetJobber/atlantis/commit/5de8e5ea99a08eb88cd0f9a49f08de985ca4a358))
+
+
+
+
+
+## [0.76.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.76.0...@jobber/design@0.76.1) (2025-04-29)
+
+
+### Bug Fixes
+
+* **design:** Updating priceTag icon to meet jobber design standards ([#2526](https://github.com/GetJobber/atlantis/issues/2526)) ([4c7717d](https://github.com/GetJobber/atlantis/commit/4c7717d0215bc216e077bbb9224049192222ba56))
+
+
+
+
+
+# [0.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.75.1...@jobber/design@0.76.0) (2025-04-25)
+
+
+### Features
+
+* **design:** Adding a new price tag icon ([#2522](https://github.com/GetJobber/atlantis/issues/2522)) ([b2f269f](https://github.com/GetJobber/atlantis/commit/b2f269fca1f3be72310551e813472936b74cc2ce))
+
+
+
+
+
+## [0.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.75.0...@jobber/design@0.75.1) (2025-04-24)
+
+
+### Bug Fixes
+
+* **design:** Fix elevation tokens to ensure they respect theme overrides ([#2509](https://github.com/GetJobber/atlantis/issues/2509)) ([2f2c400](https://github.com/GetJobber/atlantis/commit/2f2c400c9ff844d276871506afe71559f6a5f15f))
+
+
+
+
+
+# [0.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.74.0...@jobber/design@0.75.0) (2025-04-08)
+
+
+### Features
+
+* **design:** add slim spacing token and add to docs ([#2465](https://github.com/GetJobber/atlantis/issues/2465)) ([91396c8](https://github.com/GetJobber/atlantis/commit/91396c8c0326a8b89087e62067eeba390e1ef80c))
+
+
+
+
+
+# [0.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.73.0...@jobber/design@0.74.0) (2025-04-08)
+
+
+### Features
+
+* **design:** Update lightness value of `base-blue--600` to improve accessibility ([#2438](https://github.com/GetJobber/atlantis/issues/2438)) ([bb6ca7f](https://github.com/GetJobber/atlantis/commit/bb6ca7fafed17bd2c048dd05ba56388284a2a831))
+
+
+
+
+
+# [0.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.72.1...@jobber/design@0.73.0) (2025-03-26)
+
+
+### Features
+
+* **components:** Add New Schedule Day View Icons ([#2444](https://github.com/GetJobber/atlantis/issues/2444)) ([9212331](https://github.com/GetJobber/atlantis/commit/9212331f2fd185d1508f2dc0fb1d8f5bf4321bb7))
+
+
+
+
+
+## [0.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.72.0...@jobber/design@0.72.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* **design:** move warning icon up by 1px ([#2418](https://github.com/GetJobber/atlantis/issues/2418)) ([5cf06ad](https://github.com/GetJobber/atlantis/commit/5cf06ad235f73110334359087bbe3b98e8259f40))
+
+
+
+
+
+# [0.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.2...@jobber/design@0.72.0) (2025-03-12)
+
+
+### Features
+
+* **components:** Add sprout icon ([#2420](https://github.com/GetJobber/atlantis/issues/2420)) ([34ae744](https://github.com/GetJobber/atlantis/commit/34ae744245011dad66b7820b5e65280dc8db371a))
+
+
+
+
+
+## [0.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.1...@jobber/design@0.71.2) (2025-03-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.71.0...@jobber/design@0.71.1) (2025-02-28)
+
+
+### Bug Fixes
+
+* **design:** update headset icon to fix fill rule issue ([#2402](https://github.com/GetJobber/atlantis/issues/2402)) ([6c4aa1b](https://github.com/GetJobber/atlantis/commit/6c4aa1b70142389b63fa5393ba8f2d952ff7a447))
+
+
+
+
+
+# [0.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.70.1...@jobber/design@0.71.0) (2025-02-24)
+
+
+### Features
+
+* **design:** Add battery, speed, wheel icons, replace fuel Fleet management icons ([#2394](https://github.com/GetJobber/atlantis/issues/2394)) ([7b5a8c9](https://github.com/GetJobber/atlantis/commit/7b5a8c92b471325abac324a61ce6a2e05ca05d87))
+
+
+
+
+
+## [0.70.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.70.0...@jobber/design@0.70.1) (2025-02-03)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.69.0...@jobber/design@0.70.0) (2025-02-03)
+
+
+### Features
+
+* **design:** Add new airspace logo ([#2355](https://github.com/GetJobber/atlantis/issues/2355)) ([827c5c8](https://github.com/GetJobber/atlantis/commit/827c5c8399b3aba1a03295921c1ded6b49eb124c))
+
+
+
+
+
+# [0.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.68.1...@jobber/design@0.69.0) (2025-01-31)
+
+
+### Features
+
+* **design:** Add additional status icons for warning and info ([#2348](https://github.com/GetJobber/atlantis/issues/2348)) ([d371b07](https://github.com/GetJobber/atlantis/commit/d371b070592116e241252da38e975274aea2ed0e))
+
+
+
+
+
+## [0.68.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.68.0...@jobber/design@0.68.1) (2025-01-15)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.7...@jobber/design@0.68.0) (2024-12-11)
+
+
+### Features
+
+* **design:** add microphone icon ([#2225](https://github.com/GetJobber/atlantis/issues/2225)) ([1fedf7d](https://github.com/GetJobber/atlantis/commit/1fedf7dbd30fe34bc6150ed0f3f0ae03074b0539))
+
+
+
+
+
+## [0.67.7](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.6...@jobber/design@0.67.7) (2024-12-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.67.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.5...@jobber/design@0.67.6) (2024-11-28)
+
+
+### Bug Fixes
+
+* **design:** Remove autoprefixer comment for webpack v5 ([#2132](https://github.com/GetJobber/atlantis/issues/2132)) ([eaf1dd0](https://github.com/GetJobber/atlantis/commit/eaf1dd0053868e812b09f4bf3a82f4cc71c8f3a3))
+
+
+
+
+
+## [0.67.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.4...@jobber/design@0.67.5) (2024-11-12)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.67.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.3...@jobber/design@0.67.4) (2024-11-07)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.67.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.2...@jobber/design@0.67.3) (2024-11-07)
+
+
+### Bug Fixes
+
+* **design:** Updated CSS selectors for dark scrollbar colour [JOB-108461] ([#2106](https://github.com/GetJobber/atlantis/issues/2106)) ([1ed7167](https://github.com/GetJobber/atlantis/commit/1ed71670988c79c0c8fdd9103818db77158bff23))
+
+
+
+
+
+## [0.67.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.1...@jobber/design@0.67.2) (2024-11-04)
+
+
+### Bug Fixes
+
+* **design:** Updating the task icon to use task-color [JOB-98804] ([#2097](https://github.com/GetJobber/atlantis/issues/2097)) ([b371c3d](https://github.com/GetJobber/atlantis/commit/b371c3daad21afe090e402ca0053f499505309e7))
+
+
+
+
+
 ## [0.67.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.67.0...@jobber/design@0.67.1) (2024-10-16)
 
 **Note:** Version bump only for package @jobber/design

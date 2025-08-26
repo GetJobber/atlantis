@@ -1,11 +1,10 @@
 /* eslint-disable max-statements */
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import uniq from "lodash/uniq";
 import { Meta, StoryFn, StoryObj } from "@storybook/react";
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
-import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
+  DataListEmptyStateProps,
   DataListItemType,
   DataListSelectedType,
   DataListSorting,
@@ -17,8 +16,10 @@ import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
-import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
+import { Combobox, type ComboboxOption } from "@jobber/components/Combobox";
+import { Flex } from "@jobber/components/Flex";
+import { useDebounce } from "@jobber/hooks/useDebounce";
+import { isNormalClick } from "@jobber/components";
 
 const meta: Meta = {
   title: "Components/Lists and Tables/DataList/Web",
@@ -51,45 +52,149 @@ const meta: Meta = {
 
 export default meta;
 
+const mockedData = [
+  {
+    id: "1",
+    label: "Peregrine Falcon",
+    species: "Falcon",
+    home: "Worldwide",
+    eyeColor: "Yellow",
+    tags: ["Fast", "Predator", "Bird of Prey"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-01-01"),
+  },
+  {
+    id: "2",
+    label: "Bald Eagle",
+    species: "Eagle",
+    home: "North America",
+    eyeColor: "Yellow",
+    tags: ["National Bird", "Predator", "Bird of Prey"],
+    homePopulation: "70,000",
+    lastActivity: new Date("2023-02-01"),
+  },
+  {
+    id: "3",
+    label: "Golden Eagle",
+    species: "Eagle",
+    home: "Northern Hemisphere",
+    eyeColor: "Brown",
+    tags: ["Powerful", "Predator", "Bird of Prey"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-03-01"),
+  },
+  {
+    id: "4",
+    label: "Snowy Owl",
+    species: "Owl",
+    home: "Arctic",
+    eyeColor: "Yellow",
+    tags: ["Nocturnal", "Predator", "Bird of Prey"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-04-01"),
+  },
+  {
+    id: "5",
+    label: "Scarlet Macaw",
+    species: "Parrot",
+    home: "Central and South America",
+    eyeColor: "Yellow",
+    tags: ["Colorful", "Intelligent", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-05-01"),
+  },
+  {
+    id: "6",
+    label: "Kingfisher",
+    species: "Kingfisher",
+    home: "Worldwide",
+    eyeColor: "Brown",
+    tags: ["Diving", "Fisher", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-06-01"),
+  },
+  {
+    id: "7",
+    label: "Peacock",
+    species: "Peafowl",
+    home: "India",
+    eyeColor: "Brown",
+    tags: ["Colorful", "Display", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-07-01"),
+  },
+  {
+    id: "8",
+    label: "Albatross",
+    species: "Albatross",
+    home: "Southern Ocean",
+    eyeColor: "Brown",
+    tags: ["Large", "Seabird", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-08-01"),
+  },
+  {
+    id: "9",
+    label: "Puffin",
+    species: "Puffin",
+    home: "North Atlantic",
+    eyeColor: "Orange",
+    tags: ["Diving", "Seabird", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-09-01"),
+  },
+  {
+    id: "10",
+    label: "Flamingo",
+    species: "Flamingo",
+    home: "Worldwide",
+    eyeColor: "Yellow",
+    tags: ["Wading", "Colorful", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-10-01"),
+  },
+  {
+    id: "11",
+    label: "Toucan",
+    species: "Toucan",
+    home: "Central and South America",
+    eyeColor: "Brown",
+    tags: ["Colorful", "Large Beak", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-11-01"),
+  },
+  {
+    id: "12",
+    label: "Penguin",
+    species: "Penguin",
+    home: "Antarctica",
+    eyeColor: "Brown",
+    tags: ["Flightless", "Swimmer", "Bird"],
+    homePopulation: "Unknown",
+    lastActivity: new Date("2023-12-01"),
+  },
+];
+
 const DataListStory = (args: {
   data?: unknown;
   title: string;
   headerVisibility?: { xs: boolean; md: boolean };
   loadingState?: "initial" | "filtering" | "loadingMore" | "none";
+  itemActions?: () => React.ReactElement;
 }) => {
-  const { data, nextPage, loadingNextPage, loadingInitialContent } =
-    useCollectionQuery<ListQueryType>({
-      query: LIST_QUERY,
-      queryOptions: {
-        fetchPolicy: "network-only",
-        nextFetchPolicy: "cache-first",
-        client: apolloClient,
-      },
-
-      getCollectionByPath(items) {
-        return items?.allPeople;
-      },
-    });
-
-  const items = data?.allPeople.edges || [];
-  const totalCount = data?.allPeople.totalCount || null;
-  const mappedData = items.map(({ node }) => ({
+  const items = mockedData;
+  const totalCount = mockedData.length;
+  const mappedData = items.map(node => ({
     id: node.id,
-    label: node.name,
-    species: node.species?.name,
-    home: node.homeworld.name,
+    label: node.label,
+    species: node.species,
+    home: node.home,
     eyeColor: (
       <InlineLabel color={getColor(node.eyeColor)}>{node.eyeColor}</InlineLabel>
     ),
-    tags: uniq([
-      node.birthYear,
-      ...(node.hairColor?.split(", ") || []),
-      ...(node.skinColor?.split(", ") || []),
-      ...node.homeworld.climates,
-      ...node.homeworld.terrains,
-    ]),
-    homePopulation: node.homeworld.population?.toLocaleString(),
-    lastActivity: new Date(node.created),
+    tags: uniq(node.tags),
+    homePopulation: node.homePopulation,
+    lastActivity: node.lastActivity,
   }));
 
   const [selected, setSelected] = useState<DataListSelectedType<string>>();
@@ -108,7 +213,6 @@ const DataListStory = (args: {
         eyeColor: "Eye color",
         lastActivity: "Last activity",
       }}
-      onLoadMore={nextPage}
       selected={selected}
       onSelect={setSelected}
       onSelectAll={setSelected}
@@ -217,40 +321,44 @@ const DataListStory = (args: {
 
       <DataList.Search
         onSearch={search => console.log(search)}
-        placeholder="Search characters..."
+        placeholder="Search birds..."
       />
 
-      <DataList.ItemActions onClick={handleActionClick}>
-        <DataList.ItemAction
-          visible={item => item.species !== "Droid"}
-          icon="edit"
-          label="Edit"
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="sendMessage"
-          label={item => `Message ${item.label}`}
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Create new..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Add attribute..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="trash"
-          label="Delete"
-          destructive={true}
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Go to Jobber.com"
-          actionUrl="https://www.jobber.com"
-        />
-      </DataList.ItemActions>
+      {args.itemActions ? (
+        args.itemActions()
+      ) : (
+        <DataList.ItemActions onClick={handleActionClick}>
+          <DataList.ItemAction
+            visible={item => item.species !== "Droid"}
+            icon="edit"
+            label="Edit"
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="sendMessage"
+            label={item => `Message ${item.label}`}
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Create new..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Add attribute..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="trash"
+            label="Delete"
+            destructive={true}
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Go to Jobber.com"
+            actionUrl="https://www.jobber.com"
+          />
+        </DataList.ItemActions>
+      )}
 
       <DataList.BatchActions>
         <DataList.BatchAction
@@ -344,12 +452,9 @@ const DataListStory = (args: {
 
       <DataList.EmptyState
         type="empty"
-        message="Character list is looking empty"
+        message="Bird list is looking empty"
         action={
-          <Button
-            label="New character"
-            onClick={() => alert("Create a new character")}
-          />
+          <Button label="New bird" onClick={() => alert("Create a new bird")} />
         }
       />
 
@@ -392,9 +497,6 @@ const DataListStory = (args: {
   }
 
   function getLoadingState() {
-    if (loadingInitialContent) return "initial";
-    if (loadingNextPage) return "loadingMore";
-
     return args.loadingState;
   }
 };
@@ -402,7 +504,7 @@ const DataListStory = (args: {
 export const Basic: StoryObj<typeof DataList> = {
   render: () => (
     <DataListStory
-      title="All characters"
+      title="All birds"
       headerVisibility={{ xs: false, md: true }}
     />
   ),
@@ -435,8 +537,15 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
     selectedFiltersInitialState,
   );
 
+  const [searchValue, setSearchValue] = useState("");
+
+  const debouncedRequest = useDebounce((search: string) => {
+    console.log("debounced search request", search);
+  }, 300);
+
   function removeAllFilters() {
     setSelectedFilters(selectedFiltersInitialState);
+    setSearchValue("");
   }
 
   function handleRemoveIndividualFilterGroup(type: keyof SelectedFilters) {
@@ -456,84 +565,18 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
     });
   }
 
-  const LIST_QUERY1 = useMemo(
-    () => gql`
-      query ListQuery($cursor: String) {
-        allPeople(first: 10, after: $cursor) {
-          edges {
-            node {
-              created
-              id
-              name
-              eyeColor
-              hairColor
-              skinColor
-              birthYear
-              homeworld {
-                name
-                climates
-                id
-                population
-                terrains
-              }
-              species {
-                name
-                id
-              }
-            }
-            cursor
-          }
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          totalCount
-        }
-      }
-    `,
-    [],
-  );
+  const items = mockedData;
+  const totalCount = mockedData.length;
 
-  const apolloClient1 = useMemo(
-    () =>
-      new ApolloClient({
-        uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
-        cache: new InMemoryCache(),
-      }),
-    [],
-  );
-
-  const { data } = useCollectionQuery<ListQueryType>({
-    query: LIST_QUERY1,
-    queryOptions: {
-      fetchPolicy: "network-only",
-      nextFetchPolicy: "cache-first",
-      client: apolloClient1,
-    },
-
-    getCollectionByPath(items) {
-      return items?.allPeople;
-    },
-  });
-
-  const items = data?.allPeople.edges || [];
-  const totalCount = data?.allPeople.totalCount || null;
-
-  const mappedData = items.map(({ node }) => ({
+  const mappedData = items.map(node => ({
     id: node.id,
-    label: node.name,
-    species: node.species?.name,
-    home: node.homeworld.name,
+    label: node.label,
+    species: node.species,
+    home: node.home,
     eyeColor: node.eyeColor,
-    tags: uniq([
-      node.birthYear,
-      ...(node.hairColor?.split(", ") || []),
-      ...(node.skinColor?.split(", ") || []),
-      ...node.homeworld.climates,
-      ...node.homeworld.terrains,
-    ]),
-    homePopulation: node.homeworld.population?.toLocaleString(),
-    lastActivity: new Date(node.created),
+    tags: uniq(node.tags),
+    homePopulation: node.homePopulation,
+    lastActivity: node.lastActivity,
   }));
 
   const homeFilters = [...new Set(mappedData.map(({ home }) => home))];
@@ -620,10 +663,13 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
       </DataList.Filters>
 
       <DataList.Search
-        onSearch={search => console.log(search)}
+        value={searchValue}
+        onSearch={search => {
+          setSearchValue(search);
+          debouncedRequest(search);
+        }}
         placeholder="Search data..."
       />
-
       <DataList.Layout size="md">
         {item => (
           <Grid alignItems="center">
@@ -652,7 +698,6 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
           </Grid>
         )}
       </DataList.Layout>
-
       <DataList.Layout size="xs">
         {item => (
           <Content spacing="small">
@@ -690,13 +735,14 @@ export const ClearAllFilters: StoryFn<typeof DataList> = args => {
 };
 
 ClearAllFilters.args = {
-  title: "All characters",
+  title: "All birds",
   headerVisibility: { xs: false, md: true },
   headers: {
     label: "Name",
     home: "Home world",
     tags: "Attributes",
     eyeColor: "Eye color",
+    lastActivity: "Last activity",
   },
 };
 ClearAllFilters.parameters = {
@@ -705,8 +751,6 @@ ClearAllFilters.parameters = {
       hidden: false,
       extraImports: {
         lodash: ["uniq"],
-        "@apollo/client": ["gql", "ApolloClient", "InMemoryCache"],
-        "@jobber/hooks/useCollectionQuery": ["useCollectionQuery"],
       },
     },
   },
@@ -716,8 +760,139 @@ export const EmptyState: StoryObj<typeof DataList> = {
   render: () => (
     <DataListStory
       data={[]}
-      title="All characters"
+      title="All birds"
       headerVisibility={{ xs: false, md: true }}
     />
   ),
+};
+
+export const CustomItemNavigation: StoryObj<typeof DataList> = {
+  render: () => (
+    <DataListStory
+      title="All birds"
+      headerVisibility={{ xs: false, md: true }}
+      itemActions={() => (
+        <DataList.ItemActions
+          onClick={(item, evt) => {
+            // Check for normal clicks to ensure we don't block command-click from opening the link in a new tab
+            if (evt && isNormalClick(evt)) {
+              evt.preventDefault();
+              alert("✅ Intercepted a normal left click for custom navigation");
+            }
+          }}
+          url="/?path=/story/components-lists-and-tables-datalist-web--custom-item-navigation"
+        />
+      )}
+    />
+  ),
+};
+
+export const CustomRenderEmptyState: StoryFn<typeof DataList> = args => {
+  return (
+    <DataList {...args} totalCount={args.data?.length}>
+      <DataList.Layout size="md">
+        {item => (
+          <Grid alignItems="center">
+            <Grid.Cell size={{ xs: 5 }}>
+              <Grid alignItems="center">
+                <Grid.Cell size={{ xs: 6 }}>
+                  {item.label}
+                  {item.species}
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
+              </Grid>
+            </Grid.Cell>
+            <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
+            <Grid.Cell size={{ xs: 1 }}>{item.eyeColor}</Grid.Cell>
+            <Grid.Cell size={{ xs: 2 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  textAlign: "right",
+                }}
+              >
+                {item.lastActivity}
+              </div>
+            </Grid.Cell>
+          </Grid>
+        )}
+      </DataList.Layout>
+      <DataList.Layout size="xs">
+        {item => (
+          <Content spacing="small">
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: item.species
+                  ? "max-content auto max-content"
+                  : "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.label}
+              {item.species}
+              {item.eyeColor}
+            </div>
+            {item.tags}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.lastActivity}
+              <DataList.LayoutActions />
+            </div>
+          </Content>
+        )}
+      </DataList.Layout>
+      <DataList.EmptyState
+        type="empty"
+        message="Bird list is looking empty"
+        customRender={({
+          message,
+        }: Omit<DataListEmptyStateProps, "customRender">) => (
+          <div>
+            <h3>{message}</h3>
+            <Flex template={["grow", "shrink"]} direction="column">
+              <Button
+                label="Create a new bird"
+                onClick={() => alert("Create")}
+              />
+              <Button
+                label="Clear filters"
+                type="secondary"
+                onClick={() => alert("Clear filters")}
+              />
+            </Flex>
+          </div>
+        )}
+      />
+    </DataList>
+  );
+};
+
+CustomRenderEmptyState.args = {
+  title: "All birds",
+  headerVisibility: { xs: false, md: true },
+  headers: {
+    label: "Name",
+    home: "Home world",
+    tags: "Attributes",
+    eyeColor: "Eye color",
+    lastActivity: "Last activity",
+  },
+  data: [],
+};
+
+CustomRenderEmptyState.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+    },
+  },
 };

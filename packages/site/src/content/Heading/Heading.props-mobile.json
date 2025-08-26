@@ -1,0 +1,125 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Heading/Heading.tsx",
+    "description": "",
+    "displayName": "Heading",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "Text to display.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "level": {
+        "defaultValue": null,
+        "description": "The type of heading, e.g., \"Title\"",
+        "name": "level",
+        "parent": {
+          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "HeadingLevel"
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "heading"
+        },
+        "description": "The text color of heading",
+        "name": "variation",
+        "parent": {
+          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "HeadingColor"
+        }
+      },
+      "reverseTheme": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Uses the reverse variant of the text color for the heading",
+        "name": "reverseTheme",
+        "parent": {
+          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "Alignment of heading",
+        "name": "align",
+        "parent": {
+          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextAlign"
+        }
+      },
+      "maxLines": {
+        "defaultValue": {
+          "value": "unlimited"
+        },
+        "description": "The maximum amount of lines the text can occupy before being truncated with \"...\".\nUses predefined string values that correspond to a doubling scale for the amount of lines.",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TruncateLength"
+        }
+      },
+      "allowFontScaling": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "Allow text to be resized based on user's device display scale",
+        "name": "allowFontScaling",
+        "parent": {
+          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "selectable": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Lets the user select text, to use the native copy and paste functionality.\nWARNING: if true, this prevents ellipsis from being shown on Android.",
+        "name": "selectable",
+        "parent": {
+          "fileName": "packages/components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

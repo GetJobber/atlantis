@@ -1,23 +1,18 @@
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  KeyboardEvent,
-  useEffect,
-  useId,
-  useImperativeHandle,
-} from "react";
-import { useController, useForm, useFormContext } from "react-hook-form";
-import { FormFieldProps } from "./FormFieldTypes";
-import styles from "./FormField.module.css";
+import React, { useId } from "react";
+import type { FormFieldProps } from "./FormFieldTypes";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
-import { mergeRefs } from "../utils/mergeRefs";
+import { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";
+import { useAtlantisFormField } from "./hooks/useAtlantisFormField";
+import { useAtlantisFormFieldName } from "./hooks/useAtlantisFormFieldName";
+import { useAtlantisReactHookForm } from "./hooks/useAtlantisReactHookForm";
 
 export function FormField(props: FormFieldProps) {
   // Warning: do not move useId into FormFieldInternal. This must be here to avoid
   // a problem where useId isn't stable across multiple StrictMode renders.
   // https://github.com/facebook/react/issues/27103
-  const id = useId();
+  const generatedId = useId();
+  const id = props.id || generatedId;
 
   return <FormFieldInternal {...props} id={id} />;
 }
@@ -26,7 +21,6 @@ type FormFieldInternalProps = FormFieldProps & {
   readonly id: string;
 };
 
-// eslint-disable-next-line max-statements
 function FormFieldInternal(props: FormFieldInternalProps) {
   const {
     actionsRef,
@@ -43,6 +37,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     maxLength,
     min,
     name: nameProp,
+    pattern,
     readonly,
     rows,
     loading,
@@ -58,76 +53,74 @@ function FormFieldInternal(props: FormFieldInternalProps) {
     clearable = "never",
     autofocus,
   } = props;
-  const formContext = useFormContext();
-  // If there isn't a Form Context being provided, get a form for this field.
-  const { control, setValue, watch } =
-    formContext ?? useForm({ mode: "onTouched" });
 
-  const descriptionIdentifier = `descriptionUUID--${id}`;
-  /**
-   * Generate a name if one is not supplied, this is the name
-   * that will be used for react-hook-form and not neccessarily
-   * attached to the DOM
-   */
-  const name = nameProp ? nameProp : `generatedName--${id}`;
-
-  useEffect(() => {
-    if (value != undefined) {
-      setValue(name, value);
-    }
-  }, [value, watch(name)]);
-
-  useImperativeHandle(actionsRef, () => ({
-    setValue: newValue => {
-      setValue(name, newValue, { shouldValidate: true });
-    },
-  }));
+  const { name } = useAtlantisFormFieldName({ id, nameProp });
 
   const {
-    field: {
-      onChange: onControllerChange,
-      onBlur: onControllerBlur,
-      ref: fieldRef,
-      ...rest
-    },
-    fieldState: { error },
-  } = useController({
+    errorMessage,
+    inputRefs,
+    useControllerField,
+    setValue,
+    onControllerBlur,
+    onControllerChange,
+  } = useAtlantisReactHookForm({
+    actionsRef,
     name,
-    control,
-    rules: validations,
-    defaultValue: value ?? defaultValue ?? "",
+    defaultValue,
+    value,
+    validations,
+    inputRef,
+  });
+  const {
+    handleValidation,
+    handleBlur,
+    handleChange,
+    handleClear,
+    handleFocus,
+    handleKeyDown,
+  } = useAtlantisFormFieldActions({
+    inputRef,
+    onChange,
+    onEnter,
+    readonly,
+    type,
+    onFocus,
+    setValue,
+    onBlur,
+    onValidation,
+    onControllerBlur,
+    onControllerChange,
+    name,
   });
 
-  const errorMessage = error?.message || "";
-  useEffect(() => handleValidation(errorMessage), [errorMessage]);
-
-  const fieldProps = {
-    ...rest,
-    id,
-    className: styles.input,
-    name: (validations || nameProp) && name,
-    disabled: disabled,
-    readOnly: readonly,
-    inputMode: keyboard,
-    onChange: handleChange,
-    onBlur: handleBlur,
-    onFocus: handleFocus,
-    autoFocus: autofocus,
-    ...(description &&
-      !inline && { "aria-describedby": descriptionIdentifier }),
-  };
-
-  const textFieldProps = {
-    ...fieldProps,
-    autoFocus: autofocus,
-    onKeyDown: handleKeyDown,
-  };
-  const inputRefs = mergeRefs([inputRef, fieldRef]);
+  const { textFieldProps, fieldProps, descriptionIdentifier } =
+    useAtlantisFormField({
+      id,
+      useControllerField,
+      name,
+      nameProp,
+      description,
+      validations: !!validations,
+      disabled,
+      readonly,
+      keyboard,
+      autofocus,
+      value,
+      type,
+      pattern,
+      handleChange,
+      handleBlur,
+      handleFocus,
+      inline,
+      errorMessage,
+      handleValidation,
+      handleKeyDown,
+    });
 
   return (
     <FormFieldWrapper
       {...props}
-      value={rest.value}
+      value={useControllerField.value}
       error={errorMessage}
       identifier={id}
       descriptionIdentifier={descriptionIdentifier}
@@ -167,62 +160,6 @@ function FormFieldInternal(props: FormFieldInternalProps) {
           </>
         );
     }
-  }
-
-  function handleClear() {
-    handleBlur();
-    setValue(name, "", { shouldValidate: true });
-    onChange && onChange("");
-    inputRef?.current?.focus();
-  }
-
-  function handleChange(
-    event: ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) {
-    let newValue: string | number;
-    newValue = event.currentTarget.value;
-
-    if (type === "number" && newValue.length > 0) {
-      newValue = parseFloat(newValue);
-    }
-
-    onChange && onChange(newValue, event);
-    onControllerChange(event);
-  }
-
-  function handleKeyDown(
-    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) {
-    if (!onEnter) return;
-    if (event.key !== "Enter") return;
-    if (event.shiftKey || event.ctrlKey) return;
-    event.preventDefault();
-    onEnter && onEnter(event);
-  }
-
-  function handleFocus(
-    event: FocusEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) {
-    const target = event.currentTarget;
-
-    if ((target as HTMLInputElement).select) {
-      setTimeout(() => readonly && (target as HTMLInputElement).select());
-    }
-
-    onFocus && onFocus();
-  }
-
-  function handleBlur() {
-    onBlur && onBlur();
-    onControllerBlur();
-  }
-
-  function handleValidation(message: string) {
-    onValidation && onValidation(message);
   }
 }
 

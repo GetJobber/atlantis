@@ -1,0 +1,139 @@
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+SideDrawer has one element that can be targeted with classes or styles: the
+container.
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future SideDrawer updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the SideDrawer. This can be
+useful for applying styles via CSS Modules.
+
+```tsx
+// SideDrawer.tsx
+  UNSAFE_className={{
+    container: styles.customSideDrawerBackground,
+  }}
+
+// SideDrawer.module.css
+.customSideDrawerBackground {
+  background-color: var(--color-surface--background);
+}
+```
+
+You can also use the `UNSAFE_className` prop to apply custom classes to the
+container element within the SideDrawer.
+
+```tsx
+  UNSAFE_className={{ container: "custom-container-class" }}
+```
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the SideDrawer.
+
+```tsx
+  UNSAFE_style={{
+    container: { backgroundColor: "var(--color-surface--background)" },
+  }}
+```
+
+## Configuration
+
+We're using a compound component pattern to separate the different parts of the
+component. This allows us to have a more flexible component.
+
+### Main wrapper
+
+The SideDrawer component is the main component that holds everything.
+
+### Title
+
+The `SideDrawer.Title` component is used to show the title of the SideDrawer.
+You can pass a:
+
+- `string` to use the default styling of the title.
+- `ReactElement` to customize the title. Keep in mind that you have to handle
+  the styling of the title.
+
+```tsx
+<SideDrawer>
+  <SideDrawer.Title>My Title</SideDrawer.Title>
+</SideDrawer>
+```
+
+Or
+
+```tsx
+<SideDrawer>
+  <SideDrawer.Title>
+    <Heading level={2} element="h3">
+      My Title
+    </Heading>
+  </SideDrawer.Title>
+</SideDrawer>
+```
+
+### Actions
+
+The `SideDrawer.Actions` component is used to render the actions next to the
+close button. This accepts any component but it is meant to only be for
+components that invoke an action.
+
+```tsx
+<SideDrawer>
+  <SideDrawer.Actions>
+    <Button icon="add" ariaLabel="Add" />
+  </SideDrawer.Actions>
+</SideDrawer>
+```
+
+### Toolbar
+
+The `SideDrawer.Toolbar` component is used to render the toolbar below the title
+and have it be sticky. This is great for tools like search and filters that
+stick to the top with the title. If your toolbar scrolls with the page, you can
+just implement it as a direct child of the `SideDrawer`.
+
+```tsx
+<SideDrawer>
+  <SideDrawer.Toolbar>
+    <InputText placeholder="Search" />
+  </SideDrawer.Toolbar>
+</SideDrawer>
+```
+
+### Footer
+
+The `SideDrawer.Footer` component is used to render a fixed bar at the bottom of
+the SideDrawer. This is great for elements such as buttons that should always be
+visible to the user.
+
+```tsx
+<SideDrawer>
+  <SideDrawer.Footer>
+    <Button label="Save" fullWidth={true} />
+  </SideDrawer.Footer>
+</SideDrawer>
+```
+
+### Back Button
+
+SideDrawer also comes with a back button that you can use and add to the UI
+before the title. Use this when the user can navigate back to the previous
+SideSheet content.
+
+```tsx
+<SideDrawer>
+  <SideDrawer.BackButton onClick={handleClick} />
+  <SideDrawer.Title>My Title</SideDrawer.Title>
+</SideDrawer>
+```

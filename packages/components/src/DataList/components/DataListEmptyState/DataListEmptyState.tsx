@@ -1,9 +1,11 @@
-import React, { ReactElement, cloneElement, useContext } from "react";
+import type { ReactElement } from "react";
+import React, { cloneElement, useContext } from "react";
 import styles from "./DataListEmptyState.module.css";
 import { DataListContext } from "../../context/DataListContext";
-import { DataListEmptyStateProps } from "../../DataList.types";
+import type { DataListEmptyStateProps } from "../../DataList.types";
 import { Text } from "../../../Text";
-import { Button, ButtonProps } from "../../../Button";
+import type { ButtonProps } from "../../../Button";
+import { Button } from "../../../Button";
 import {
   EMPTY_FILTER_RESULTS_MESSAGE,
   EMPTY_RESULTS_MESSAGE,
@@ -18,16 +20,22 @@ export function DataListEmptyState(_: DataListEmptyStateProps) {
 export function InternalDataListEmptyState() {
   const { emptyStateComponents: components, filtered } =
     useContext(DataListContext);
-  const { message, action } = getMessages();
+  const { customRender, ...contentProps } = getEmptyStateContent();
 
   return (
     <div className={styles.emptyStateWrapper}>
-      <Text align="center">{message}</Text>
-      {renderButton(action)}
+      {customRender ? (
+        customRender({ ...contentProps })
+      ) : (
+        <>
+          <Text align="center">{contentProps.message}</Text>
+          {renderButton(contentProps.action)}
+        </>
+      )}
     </div>
   );
 
-  function getMessages() {
+  function getEmptyStateContent() {
     const { defaultEmptyState, filteredEmptyState } =
       getEmptyStates(components);
 
@@ -36,12 +44,14 @@ export function InternalDataListEmptyState() {
         message:
           filteredEmptyState?.props.message || EMPTY_FILTER_RESULTS_MESSAGE,
         action: filteredEmptyState?.props.action,
+        customRender: filteredEmptyState?.props.customRender,
       };
     }
 
     return {
       message: defaultEmptyState?.props.message || EMPTY_RESULTS_MESSAGE,
       action: defaultEmptyState?.props.action,
+      customRender: defaultEmptyState?.props.customRender,
     };
   }
 }

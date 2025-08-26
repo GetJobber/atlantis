@@ -1,0 +1,136 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/ActionItem/ActionItem.tsx",
+    "description": "",
+    "displayName": "ActionItem",
+    "methods": [],
+    "props": {
+      "title": {
+        "defaultValue": null,
+        "description": "Title of the Action Item",
+        "name": "title",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "Name of the icon to display before content",
+        "name": "icon",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "iconColor": {
+        "defaultValue": null,
+        "description": "Colour of the icon displayed before content",
+        "name": "iconColor",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | \"interactive\" | ... 33 more ... | \"brandHighlight\""
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Content to display.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "actionIcon": {
+        "defaultValue": {
+          "value": "edit"
+        },
+        "description": "Action icon to display",
+        "name": "actionIcon",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ActionIconNames"
+        }
+      },
+      "actionIconColour": {
+        "defaultValue": {
+          "value": "interactive"
+        },
+        "description": "Colour of the action icon",
+        "name": "actionIconColour",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ActionIconColour"
+        }
+      },
+      "actionIconAlignment": {
+        "defaultValue": {
+          "value": "center"
+        },
+        "description": "Alignment of action icon",
+        "name": "actionIconAlignment",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"flex-start\" | \"flex-end\" | \"center\""
+        }
+      },
+      "onPress": {
+        "defaultValue": null,
+        "description": "Press handler",
+        "name": "onPress",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "testID": {
+        "defaultValue": {
+          "value": "actionItem"
+        },
+        "description": "",
+        "name": "testID",
+        "parent": {
+          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

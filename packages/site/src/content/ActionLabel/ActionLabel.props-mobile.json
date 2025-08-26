@@ -1,0 +1,84 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/ActionLabel/ActionLabel.tsx",
+    "description": "",
+    "displayName": "ActionLabel",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "Text to display",
+        "name": "children",
+        "parent": {
+          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "name": "ActionLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Set the display text to disabled color",
+        "name": "disabled",
+        "parent": {
+          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "name": "ActionLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "interactive"
+        },
+        "description": "The text color",
+        "name": "variation",
+        "parent": {
+          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "name": "ActionLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ActionLabelVariation"
+        }
+      },
+      "type": {
+        "defaultValue": {
+          "value": "default"
+        },
+        "description": "Changes the appearance to match the style of where it's getting used",
+        "name": "type",
+        "parent": {
+          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "name": "ActionLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ActionLabelType"
+        }
+      },
+      "align": {
+        "defaultValue": {
+          "value": "center"
+        },
+        "description": "Alignment of action label",
+        "name": "align",
+        "parent": {
+          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "name": "ActionLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextAlign"
+        }
+      }
+    }
+  }
+]

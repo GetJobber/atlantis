@@ -1,0 +1,24 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatEmail/FormatEmail.tsx",
+    "description": "",
+    "displayName": "FormatEmail",
+    "methods": [],
+    "props": {
+      "email": {
+        "defaultValue": null,
+        "description": "Email address to format",
+        "name": "email",
+        "parent": {
+          "fileName": "../components/src/FormatEmail/FormatEmail.tsx",
+          "name": "FormatEmailProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

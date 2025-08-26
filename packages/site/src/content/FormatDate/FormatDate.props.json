@@ -1,0 +1,39 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatDate/FormatDate.tsx",
+    "description": "",
+    "displayName": "FormatDate",
+    "methods": [],
+    "props": {
+      "date": {
+        "defaultValue": null,
+        "description": "Date to be formatted.\n\nA `string` should be an ISO 8601 format date string.",
+        "name": "date",
+        "parent": {
+          "fileName": "../components/src/FormatDate/FormatDate.tsx",
+          "name": "FormatDateProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string | Date"
+        }
+      },
+      "showYear": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "Boolean to show year or not.",
+        "name": "showYear",
+        "parent": {
+          "fileName": "../components/src/FormatDate/FormatDate.tsx",
+          "name": "FormatDateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

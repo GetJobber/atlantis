@@ -1,36 +1,69 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
+import { Heading } from "@jobber/components/Heading";
+import { Text } from "@jobber/components/Text";
+import { Box } from "@jobber/components/Box";
 import { InlineLabel } from "@jobber/components/InlineLabel";
 
 <Meta title="Components/Status and Feedback/InlineLabel" />
 
 # Inline Label
 
-Inline labels are typically used to indicate state/status on objects within the
-application.
+InlineLabel is a generic badging element that can be used to distinguish a
+labeling element from other typographic content.
 
 ## Design & usage guidelines
 
 Inline labels can be used fairly broadly, but the application of
-[color](../?path=/docs/design-colors--docs) should be handled with intent. Use
-of colour along with a descriptive label can help the user understand the
-meaning of an item's status.
+[color](/design/colors) should be handled with intent. Use of color along with a
+descriptive label can help the user understand the meaning of an item.
 
-| Color                                                                                                             | Meaning     |
-| :---------------------------------------------------------------------------------------------------------------- | :---------- |
-| <InlineLabel color="red">Past due</InlineLabel> <InlineLabel color="red">Changes requested</InlineLabel>          | Critical    |
-| <InlineLabel color="yellow">Unscheduled</InlineLabel> <InlineLabel color="yellow">Awaiting response</InlineLabel> | Warning     |
-| <InlineLabel color="green">Approved</InlineLabel> <InlineLabel color="green">Paid</InlineLabel>                   | Success     |
-| <InlineLabel color="greyBlue">Draft</InlineLabel> <InlineLabel color="greyBlue">Archived</InlineLabel>            | Inactive    |
-| <InlineLabel color="lightBlue">Sent</InlineLabel> <InlineLabel color="lightBlue">Converted</InlineLabel>          | Informative |
+### Counts
 
-### Related components
+<Canvas>
+  <Box direction="row" alignItems="baseline" gap="small">
+    <Text>Unread</Text>
+    <InlineLabel color="red">+99</InlineLabel>
+  </Box>
+</Canvas>
 
-For simpler mapping of statuses to their semantic colours, use
-[StatusLabel.](../?path=/docs/components-status-and-feedback-statuslabel--docs)
+### Trends
 
-## Sizes
+<Canvas>
+  <InlineLabel color="red">↓ 15</InlineLabel>
+  <InlineLabel color="green">↑ 25</InlineLabel>
+</Canvas>
 
-### Large
+### Tags
+
+<Canvas>
+  <Box direction="row" alignItems="center" gap="smaller">
+    <InlineLabel>Preferred customer</InlineLabel>
+    <InlineLabel>Northeast</InlineLabel>
+    <InlineLabel>Residential</InlineLabel>
+    <InlineLabel>Electrical</InlineLabel>
+    <InlineLabel>10OFF promo</InlineLabel>
+  </Box>
+</Canvas>
+
+### Labels that need to be distinguished from other typographic element
+
+<Canvas>
+  <Box direction="row" alignItems="center" gap="small">
+    <Heading level={2}>New feature</Heading>
+    <InlineLabel size="large">Beta</InlineLabel>
+  </Box>
+</Canvas>
+
+## Related components
+
+[StatusLabel](/components/StatusLabel) should be used when you're conveying the
+"status" of something.
+
+## Variants
+
+### Sizes
+
+#### Large
 
 <Canvas>
   <InlineLabel size="large" color="blue">
@@ -38,7 +71,7 @@ For simpler mapping of statuses to their semantic colours, use
   </InlineLabel>
 </Canvas>
 
-### Larger
+#### Larger
 
 <Canvas>
   <InlineLabel size="larger" color="green">
@@ -46,7 +79,7 @@ For simpler mapping of statuses to their semantic colours, use
   </InlineLabel>
 </Canvas>
 
-## Colors
+### Colors
 
 | Inline Label                                               | Color         |
 | :--------------------------------------------------------- | :------------ |

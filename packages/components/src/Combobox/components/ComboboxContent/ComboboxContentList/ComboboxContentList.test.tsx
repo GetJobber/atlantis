@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { ComboboxContextProvider } from "@jobber/components/Combobox/ComboboxProvider";
-import { ComboboxOption } from "@jobber/components/Combobox/Combobox.types";
+import type { ComboboxOption } from "@jobber/components/Combobox/Combobox.types";
 import { ComboboxContentList } from "./ComboboxContentList";
 
 describe("ComboboxContentList", () => {
@@ -53,7 +53,7 @@ function renderComboboxContentList(
 ) {
   return render(
     <ComboboxContextProvider
-      setOpen={jest.fn()}
+      handleOpen={jest.fn()}
       handleClose={jest.fn()}
       selectionHandler={jest.fn()}
       shouldScroll={{ current: false }}

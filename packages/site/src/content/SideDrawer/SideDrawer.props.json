@@ -1,0 +1,160 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/SideDrawer/SideDrawer.tsx",
+    "description": "",
+    "displayName": "SideDrawer",
+    "methods": [],
+    "props": {
+      "open": {
+        "defaultValue": null,
+        "description": "Whether or not the drawer is open.",
+        "name": "open",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onRequestClose": {
+        "defaultValue": null,
+        "description": "Callback function to close the drawer.",
+        "name": "onRequestClose",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": true,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Change the appearance of the drawer.",
+        "name": "variation",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"base\" | \"subtle\""
+        }
+      },
+      "scrollDirection": {
+        "defaultValue": null,
+        "description": "Change the scrolling direction of the drawer. Useful for chat-like interfaces.",
+        "name": "scrollDirection",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"normal\" | \"reverse\""
+        }
+      },
+      "inline": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Changes whether the SideDrawer is positioned to the side of the viewport or inline with the content.",
+        "name": "inline",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/SideDrawer/SideDrawer.tsx",
+          "name": "SideDrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; }"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/SideDrawer/SideDrawer.tsx",
+    "description": "",
+    "displayName": "SideDrawer.Title",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/SideDrawer/SideDrawer.tsx",
+    "description": "",
+    "displayName": "SideDrawer.Toolbar",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/SideDrawer/SideDrawer.tsx",
+    "description": "",
+    "displayName": "SideDrawer.Actions",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/SideDrawer/SideDrawer.tsx",
+    "description": "",
+    "displayName": "SideDrawer.BackButton",
+    "methods": [],
+    "props": {
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/SideDrawer/SideDrawer.tsx",
+    "description": "",
+    "displayName": "SideDrawer.Footer",
+    "methods": [],
+    "props": {}
+  }
+]

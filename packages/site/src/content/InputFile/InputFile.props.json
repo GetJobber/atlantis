@@ -1,0 +1,705 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile",
+    "methods": [],
+    "props": {
+      "variation": {
+        "defaultValue": {
+          "value": "dropzone"
+        },
+        "description": "Display variation.",
+        "name": "variation",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"dropzone\" | \"button\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Size of the InputFile",
+        "name": "size",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\""
+        }
+      },
+      "buttonLabel": {
+        "defaultValue": {
+          "value": "Automatic"
+        },
+        "description": "Label for the InputFile's button.",
+        "name": "buttonLabel",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "allowedTypes": {
+        "defaultValue": {
+          "value": "all"
+        },
+        "description": "Allowed File types.\n@param  \"images\" - only accepts all types of image\n@param  \"basicImages\" - only accepts png, jpg and jpeg\n@param  \"string[]\" - accept a specific list of MIME types",
+        "name": "allowedTypes",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"all\" | \"images\" | \"basicImages\" | string[]"
+        }
+      },
+      "allowMultiple": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Allow for multiple files to be selected for upload.",
+        "name": "allowMultiple",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "hintText": {
+        "defaultValue": null,
+        "description": "Override the default hint text with a custom value.",
+        "name": "hintText",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Further description of the input.",
+        "name": "description",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "maxFilesValidation": {
+        "defaultValue": null,
+        "description": "An object which helps control and validate the number of files being uploaded\nvia the dropzone.\n`maxFilesValidation={{ maxFiles: 3, numberOfCurrentFiles: files.length }}`",
+        "name": "maxFilesValidation",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly maxFiles: number; readonly numberOfCurrentFiles: number; }"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Children will be rendered instead of the default content",
+        "name": "children",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "React.ReactNode"
+        }
+      },
+      "getUploadParams": {
+        "defaultValue": null,
+        "description": "A callback that receives a file object and returns a `UploadParams` needed\nto upload the file.\n\nMore info is available at:\nhttps://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams",
+        "name": "getUploadParams",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(file: File) => UploadParams | Promise<UploadParams>"
+        }
+      },
+      "onUploadStart": {
+        "defaultValue": null,
+        "description": "Upload event handler. Triggered on upload start.",
+        "name": "onUploadStart",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(file: FileUpload) => void"
+        }
+      },
+      "onUploadProgress": {
+        "defaultValue": null,
+        "description": "Upload event handler. Triggered as upload progresses.",
+        "name": "onUploadProgress",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(file: FileUpload) => void"
+        }
+      },
+      "onUploadComplete": {
+        "defaultValue": null,
+        "description": "Upload event handler. Triggered on upload completion.",
+        "name": "onUploadComplete",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(file: FileUpload) => void"
+        }
+      },
+      "onUploadError": {
+        "defaultValue": null,
+        "description": "Upload event handler. Triggered on upload error.",
+        "name": "onUploadError",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(error: Error) => void"
+        }
+      },
+      "validator": {
+        "defaultValue": null,
+        "description": "Pass a custom validator function that will be called when a file is dropped.",
+        "name": "validator",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "<T extends File>(file: T) => FileError | FileError[]"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.Button",
+    "methods": [],
+    "props": {
+      "external": {
+        "defaultValue": null,
+        "description": "",
+        "name": "external",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "BaseActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonVariation"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonType"
+        }
+      },
+      "ariaControls": {
+        "defaultValue": null,
+        "description": "Used for screen readers. Will override label on screen\nreader if present.",
+        "name": "ariaControls",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaHaspopup": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaHaspopup",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaExpanded": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaExpanded",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "fullWidth": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "fullWidth",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonSize"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onMouseDown",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; buttonLabel?: { textStyle?: string; }; buttonIcon?: { svg?: string; path?: string; }; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Used to override the default button role.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "BasicButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "iconOnRight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "iconOnRight",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.Description",
+    "methods": [],
+    "props": {
+      "element": {
+        "defaultValue": {
+          "value": "\"p\""
+        },
+        "description": "The HTML element to render the text as.",
+        "name": "element",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextElement"
+        }
+      },
+      "maxLines": {
+        "defaultValue": null,
+        "description": "",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\" | \"single\" | \"larger\" | \"unlimited\""
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "subdued"
+        },
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"disabled\" | \"info\" | \"default\" | \"subdued\" | \"success\" | \"error\" | \"warn\""
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "small"
+        },
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: CSSProperties; }"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.DropzoneWrapper",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/InputFile/InputFile.tsx",
+    "description": "",
+    "displayName": "InputFile.HintText",
+    "methods": [],
+    "props": {
+      "element": {
+        "defaultValue": {
+          "value": "\"p\""
+        },
+        "description": "The HTML element to render the text as.",
+        "name": "element",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextElement"
+        }
+      },
+      "maxLines": {
+        "defaultValue": null,
+        "description": "",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\" | \"single\" | \"larger\" | \"unlimited\""
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"disabled\" | \"info\" | \"default\" | \"subdued\" | \"success\" | \"error\" | \"warn\""
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "small"
+        },
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: CSSProperties; }"
+        }
+      }
+    }
+  }
+]

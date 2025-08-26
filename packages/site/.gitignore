@@ -1,0 +1,13 @@
+public/editorBundle.js
+public/editorMobileBundle.js
+public/axios.js
+public/foundation.css
+public/dark.mode.css
+public/styles.css
+node_modules/
+node_modules.e2e/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+core

@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
 import { View } from "react-native";
 import { PrimaryAction, SecondaryAction } from "./ButtonGroupAction";
-import { styles } from "./ButtonGroup.style";
+import { useStyles } from "./ButtonGroup.style";
 import { SecondaryActionSheet } from "./components/SecondaryActionSheet";
 import { getActions, usePreventTapWhenOffline } from "./utils";
-import { ButtonGroupActionElement } from "./types";
+import type { ButtonGroupActionElement } from "./types";
 import { Button } from "../Button";
-import { BottomSheetRef } from "../BottomSheet/BottomSheet";
+import type { BottomSheetRef } from "../BottomSheet/BottomSheet";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface ButtonGroupProps {
@@ -50,6 +50,7 @@ export function ButtonGroup({
   const { handlePress } = usePreventTapWhenOffline();
   const secondaryActionsRef = useRef<BottomSheetRef>();
   const { primaryActions, secondaryActions } = getActions(children);
+  const styles = useStyles();
 
   return (
     <View style={styles.buttonGroup}>

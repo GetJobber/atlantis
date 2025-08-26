@@ -1,20 +1,16 @@
 import React from "react";
-import { FormField, FormFieldProps } from "../FormField";
+import omit from "lodash/omit";
+import type { SelectLegacyProps } from "./Select.types";
+import type { FormFieldProps } from "../FormField";
+import { FormField } from "../FormField";
 
-/**
- * The following is the same as:
- *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
- * Unfortunately Docz doesn't currently support Omit so it has been reduced to
- * its component parts.
- */
-type SelectProps = Pick<
-  FormFieldProps,
-  Exclude<
-    keyof FormFieldProps,
-    "type" | "rows" | "keyboard" | "actionsRef" | "clearable"
-  >
->;
+export function Select(props: SelectLegacyProps) {
+  const formFieldProps: FormFieldProps = omit(
+    {
+      ...props,
+    },
+    ["version"],
+  );
 
-export function Select(props: SelectProps) {
-  return <FormField type="select" {...props} />;
+  return <FormField type="select" {...formFieldProps} />;
 }

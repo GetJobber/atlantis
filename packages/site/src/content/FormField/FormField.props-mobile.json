@@ -1,0 +1,63 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/FormField/FormField.tsx",
+    "description": "",
+    "displayName": "FormField",
+    "methods": [],
+    "props": {
+      "name": {
+        "defaultValue": null,
+        "description": "Name of the field.",
+        "name": "name",
+        "parent": {
+          "fileName": "../components-native/src/FormField/FormField.tsx",
+          "name": "FormFieldProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "The initial value of the form field.",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "../components-native/src/FormField/FormField.tsx",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "T"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Children to render.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components-native/src/FormField/FormField.tsx",
+          "name": "FormFieldProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(field: ControllerRenderProps<FieldValues, string>, error?: FieldError) => React.ReactNode"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "Rules for returning an error when validations are violated.\nWARNING: This component needs to be nested inside a FormProvider\n  for validations to work.",
+        "name": "validations",
+        "parent": {
+          "fileName": "../components-native/src/FormField/FormField.tsx",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>"
+        }
+      }
+    }
+  }
+]

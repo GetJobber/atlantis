@@ -1,14 +1,14 @@
-import {
+import type {
   FieldValues,
   UseFormHandleSubmit,
   UseFormReturn,
-  useForm,
 } from "react-hook-form";
-import { MutableRefObject, RefObject } from "react";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useForm } from "react-hook-form";
+import type { MutableRefObject, RefObject } from "react";
+import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAtlantisContext } from "../../AtlantisContext";
 import { useAtlantisFormContext } from "../context/AtlantisFormContext";
-import { InternalFormProps } from "../types";
+import type { InternalFormProps } from "../types";
 
 type UseInternalFormProps<T extends FieldValues, SubmitResponseType> = Pick<
   InternalFormProps<T, SubmitResponseType>,

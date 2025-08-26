@@ -1,0 +1,104 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/List/List.tsx",
+    "description": "",
+    "displayName": "List",
+    "methods": [],
+    "props": {
+      "items": {
+        "defaultValue": null,
+        "description": "Array of the list items.",
+        "name": "items",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": true,
+        "type": {
+          "name": "T[]"
+        }
+      },
+      "customRenderItem": {
+        "defaultValue": null,
+        "description": "A function that will be called for each item instead of the default\nrendering\n@argument item - The item to render",
+        "name": "customRenderItem",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(item: T) => React.ReactNode"
+        }
+      },
+      "customItemStyles": {
+        "defaultValue": null,
+        "description": "Set to true for more control over the item styles. Only modifies styles\nwhen used with customRenderItem.",
+        "name": "customItemStyles",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "customRenderSection": {
+        "defaultValue": null,
+        "description": "A function that will be called for each section heading instead of the default\nrendering\n@argument sectionName - The name of the section to render",
+        "name": "customRenderSection",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(sectionName: string) => React.ReactNode"
+        }
+      },
+      "customSectionStyles": {
+        "defaultValue": null,
+        "description": "Set to true for more control over the section heading styles. Only modifies styles\nwhen used with customRenderItem.",
+        "name": "customSectionStyles",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "labelledBy": {
+        "defaultValue": null,
+        "description": "An ID of an element that provides the labelling for this list.",
+        "name": "labelledBy",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "defaultSectionHeader": {
+        "defaultValue": {
+          "value": "Other"
+        },
+        "description": "A default section header value for items that do not have a section.",
+        "name": "defaultSectionHeader",
+        "parent": {
+          "fileName": "../components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

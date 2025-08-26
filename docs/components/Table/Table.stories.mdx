@@ -1,8 +1,14 @@
 import { Meta } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
 
 <Meta title="Components/Lists and Tables/Table" />
 
 # Table
+
+<Banner type="notice" dismissible={false}>
+  Consider using the atomic [DataTable](/components/DataTable) components before
+  reaching for the Table component.
+</Banner>
 
 Tables are used to organize and display tabular data to users.
 
@@ -24,24 +30,6 @@ distinctions in dollar amounts, inventory counts, and other key business data.
 
 To list more complex collections of information (such as multi-line content like
 a detailed property address), you may want to consider the
-[List](../?path=/docs/components-lists-and-tables-list--docs) component. If you
-have a small list of information with a 1:1 label-to-data relationship (for
-example, the issued and due dates on an invoice), consider using
-[DescriptionList](../?path=/docs/components-lists-and-tables-descriptionlist--docs).
-
-## Cell types
-
-### Cell
-
-A `Cell` can contain text, or other elements. It can also be used to make
-specialized reusable cell types such as `CellNumeric` and `CellCurrency`.
-
-### CellNumeric
-
-A `CellNumeric` is used to display numeric values to users in tables. It is
-preferred to simply `Cell` as it ensures characters are visually aligned
-vertically.
-
-### CellCurrency
-
-A `CellCurrency` is used to format and display monetary values.
+[List](/components/List) component. If you have a small list of information with
+a 1:1 label-to-data relationship (for example, the issued and due dates on an
+invoice), consider using [DescriptionList](/components/DescriptionList).

@@ -1,0 +1,65 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Toast/Toast.tsx",
+    "description": "",
+    "displayName": "Toast",
+    "methods": [],
+    "props": {
+      "variation": {
+        "defaultValue": {
+          "value": "success"
+        },
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "../components/src/Toast/Toast.tsx",
+          "name": "BaseToastProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"info\" | \"success\" | \"error\""
+        }
+      },
+      "message": {
+        "defaultValue": null,
+        "description": "",
+        "name": "message",
+        "parent": {
+          "fileName": "../components/src/Toast/Toast.tsx",
+          "name": "BaseToastProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "action": {
+        "defaultValue": null,
+        "description": "**Deprecated**: action will be removed in the next major version\n@deprecated",
+        "name": "action",
+        "parent": {
+          "fileName": "../components/src/Toast/Toast.tsx",
+          "name": "ActionToastProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "actionLabel": {
+        "defaultValue": null,
+        "description": "**Deprecated**: actionLabel will be removed in the next major version\n@deprecated",
+        "name": "actionLabel",
+        "parent": {
+          "fileName": "../components/src/Toast/Toast.tsx",
+          "name": "ActionToastProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

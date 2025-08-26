@@ -1,13 +1,21 @@
 import { render } from "@testing-library/react";
-import React, { ReactPortal } from "react";
+import type { ReactPortal } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
+import {
+  BREAKPOINT_SIZES,
+  mockViewportWidth,
+} from "@jobber/hooks/useBreakpoints";
 import { LightBox } from ".";
+
+const { setViewportWidth } = mockViewportWidth();
 
 describe("Images", () => {
   beforeAll(() => {
     ReactDOM.createPortal = jest.fn(element => {
       return element as ReactPortal;
     });
+    setViewportWidth(BREAKPOINT_SIZES.lg);
   });
 
   afterEach(() => {

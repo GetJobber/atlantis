@@ -1,0 +1,24 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/FormatRelativeDateTime/FormatRelativeDateTime.tsx",
+    "description": "",
+    "displayName": "FormatRelativeDateTime",
+    "methods": [],
+    "props": {
+      "date": {
+        "defaultValue": null,
+        "description": "Date to be displayed.\n\nA `string` should be an ISO 8601 format date string.",
+        "name": "date",
+        "parent": {
+          "fileName": "../components/src/FormatRelativeDateTime/FormatRelativeDateTime.tsx",
+          "name": "FormatRelativeDateTimeProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string | Date"
+        }
+      }
+    }
+  }
+]

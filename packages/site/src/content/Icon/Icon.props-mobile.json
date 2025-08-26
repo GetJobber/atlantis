@@ -1,0 +1,78 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Icon/Icon.tsx",
+    "description": "",
+    "displayName": "Icon",
+    "methods": [],
+    "props": {
+      "name": {
+        "defaultValue": null,
+        "description": "The icon to show.",
+        "name": "name",
+        "parent": {
+          "fileName": "../components-native/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": true,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Changes the size to small or large.",
+        "name": "size",
+        "parent": {
+          "fileName": "../components-native/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      },
+      "color": {
+        "defaultValue": null,
+        "description": "Determines the color of the icon. If not specified, some icons have a default system colour\nlike quotes, jobs, and invoices.\nOthers that don't have a system colour fall back to greyBlue.",
+        "name": "color",
+        "parent": {
+          "fileName": "../components-native/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | \"interactive\" | ... 33 more ... | \"brandHighlight\""
+        }
+      },
+      "customColor": {
+        "defaultValue": null,
+        "description": "Sets a custom color for the icon. Can be a rgb() or hex value.",
+        "name": "customColor",
+        "parent": {
+          "fileName": "../components-native/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "testID": {
+        "defaultValue": null,
+        "description": "Used to locate this view in end-to-end tests",
+        "name": "testID",
+        "parent": {
+          "fileName": "../components-native/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

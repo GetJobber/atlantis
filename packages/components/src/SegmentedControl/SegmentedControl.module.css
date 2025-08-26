@@ -1,0 +1,75 @@
+.container {
+  --segmentedControl--size: 40px;
+
+  display: grid;
+  grid-template-columns: repeat(var(--segmentedControl--option-count), 1fr);
+  align-items: center;
+  position: relative;
+  min-height: var(--segmentedControl--size);
+  box-sizing: border-box;
+  border: var(--border-base) solid var(--color-border--interactive);
+  border-radius: var(--radius-base);
+  background-color: var(--color-interactive--background);
+}
+
+.small {
+  --segmentedControl--size: 32px;
+}
+
+.large {
+  --segmentedControl--size: 48px;
+}
+
+.container input[type="radio"] {
+  position: absolute;
+  left: -999vw;
+  cursor: pointer;
+}
+
+.container label {
+  display: flex;
+  z-index: 1;
+  padding: 0 var(--space-slim);
+  overflow: hidden;
+  font-size: var(--typography--fontSize-base);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.container span {
+  position: absolute;
+  left: 0;
+  width: calc(100% / var(--segmentedControl--option-count));
+  height: 100%;
+  border-radius: var(--radius-base);
+  outline: var(--border-base) solid var(--color-border--interactive);
+  background-color: var(--color-surface);
+  transition: var(--timing-base) left ease;
+}
+
+.container input[type="radio"]:focus-visible ~ span {
+  box-shadow: var(--shadow-focus);
+}
+
+.container input[type="radio"]:nth-of-type(1):checked ~ span {
+  left: 0;
+}
+
+.container input[type="radio"]:nth-of-type(2):checked ~ span {
+  left: calc(100% / var(--segmentedControl--option-count));
+}
+
+.container input[type="radio"]:nth-of-type(3):checked ~ span {
+  left: calc(100% / var(--segmentedControl--option-count) * 2);
+}
+
+.container input[type="radio"]:nth-of-type(4):checked ~ span {
+  left: calc(100% / var(--segmentedControl--option-count) * 3);
+}
+
+.container input[type="radio"]:nth-of-type(5):checked ~ span {
+  left: calc(100% / var(--segmentedControl--option-count) * 4);
+}

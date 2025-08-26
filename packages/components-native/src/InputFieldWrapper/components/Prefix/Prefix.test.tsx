@@ -1,23 +1,33 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
-import { TextStyle } from "react-native";
-import { ReactTestInstance } from "react-test-renderer";
+import { render, renderHook } from "@testing-library/react-native";
+import type { TextStyle } from "react-native";
+import type { ReactTestInstance } from "react-test-renderer";
+import type { PrefixIconProps, PrefixLabelProps } from "./Prefix";
 import {
   PrefixIcon,
-  PrefixIconProps,
   PrefixLabel,
-  PrefixLabelProps,
   prefixIconTestId,
   prefixLabelTestId,
 } from "./Prefix";
-import { typographyStyles } from "../../../Typography";
-import { styles } from "../../InputFieldWrapper.style";
+import { useTypographyStyles } from "../../../Typography";
+import { useStyles } from "../../InputFieldWrapper.style";
 import { tokens } from "../../../utils/design";
 import * as IconComponent from "../../../Icon/Icon";
 
 const iconSpy = jest.spyOn(IconComponent, "Icon");
 
 const mockLabel = "$";
+
+let styles: ReturnType<typeof useStyles>;
+let typographyStyles: ReturnType<typeof useTypographyStyles>;
+
+beforeAll(() => {
+  const stylesHook = renderHook(() => useStyles());
+  const typographyStylesHook = renderHook(() => useTypographyStyles());
+
+  styles = stylesHook.result.current;
+  typographyStyles = typographyStylesHook.result.current;
+});
 
 function setupLabel({
   disabled = false,

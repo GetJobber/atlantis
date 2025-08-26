@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, useContext } from "react";
+import type { DayOfWeek } from "../sharedHelpers/types";
 
 export interface AtlantisContextProps {
   /**
@@ -35,6 +35,14 @@ export interface AtlantisContextProps {
    * @default "en"
    */
   readonly locale: string;
+
+  /**
+   * Sets which day is considered the first day of the week in a calendar.
+   * 0 = Sunday, 1 = Monday, etc.
+   *
+   * @default 0
+   */
+  readonly firstDayOfWeek: DayOfWeek;
 }
 
 export const atlantisContextDefaultValues: AtlantisContextProps = {
@@ -45,6 +53,7 @@ export const atlantisContextDefaultValues: AtlantisContextProps = {
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: "$",
   locale: "en",
+  firstDayOfWeek: 0,
 };
 
 export const AtlantisContext = createContext(atlantisContextDefaultValues);

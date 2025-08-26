@@ -1,6 +1,5 @@
+import type { ReactNode, Ref } from "react";
 import React, {
-  ReactNode,
-  Ref,
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -146,7 +145,6 @@ export interface SimpleConfirmationModalProps
 
 export interface ComplexConfirmationModalProps
   extends BaseConfirmationModalProps {
-  readonly ref: Ref<ConfirmationModalRef>;
   readonly open?: undefined;
 }
 

@@ -1,5 +1,5 @@
-import { IconNames } from "../Icon";
-import { FileUpload } from "../InputFile";
+import type { IconNames } from "../Icon";
+import type { FileUpload } from "../InputFile";
 
 export type Sizes = "small" | "base" | "large" | "extraLarge";
 
@@ -18,7 +18,7 @@ export interface GalleryProps {
   /**
    * The files for the Gallery to display
    */
-  files: File[];
+  files: GalleryFile[];
 
   /**
    * The max number of thumbnails before no more thumbnails are displayed
@@ -30,10 +30,10 @@ export interface GalleryProps {
    * onDelete callback - this function will be called when the delete action is
    * triggered on a Gallery image
    */
-  onDelete?(file: File): void;
+  onDelete?(file: GalleryFile): void;
 }
 
-export interface File
+export interface GalleryFile
   extends Pick<FileUpload, "key" | "name" | "type" | "size" | "progress"> {
   /**
    * The thumbnail url of the file.
@@ -43,5 +43,5 @@ export interface File
   /**
    * The data url of the file.
    */
-  readonly src: string;
+  readonly src: string | (() => Promise<string>);
 }

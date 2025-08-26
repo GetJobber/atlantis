@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.12.2...@jobber/generators@0.12.3) (2025-02-11)
+
+**Note:** Version bump only for package @jobber/generators
+
+
+
+
+
+## [0.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.11.1...@jobber/generators@0.12.2) (2025-01-23)
+
+
+### Bug Fixes
+
+* **hooks:** Force bump packages to avoid lerna problem ([#2335](https://github.com/GetJobber/atlantis/issues/2335)) ([f4e55f8](https://github.com/GetJobber/atlantis/commit/f4e55f806a65d12a8ddf2fbda248d9a32405af2d))
+
+
+
+
+
+# [0.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.3...@jobber/generators@0.11.0) (2024-10-29)
+
+
+### Features
+
+* **docx:** The new Documentation Site. ([#2067](https://github.com/GetJobber/atlantis/issues/2067)) ([00d32fd](https://github.com/GetJobber/atlantis/commit/00d32fd68469acb430296dc5cc13e272ad4a8f4a)), closes [#2079](https://github.com/GetJobber/atlantis/issues/2079)
+
+
+
+
+
 ## [0.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.10.2...@jobber/generators@0.10.3) (2024-10-16)
 
 **Note:** Version bump only for package @jobber/generators

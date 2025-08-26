@@ -1,0 +1,123 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/ProgressBar/ProgressBar.tsx",
+    "description": "",
+    "displayName": "ProgressBar",
+    "methods": [],
+    "props": {
+      "total": {
+        "defaultValue": null,
+        "description": "The total number of items to be completed",
+        "name": "total",
+        "parent": {
+          "fileName": "packages/components-native/src/ProgressBar/types.ts",
+          "name": "ProgressBarProps"
+        },
+        "required": true,
+        "type": {
+          "name": "number"
+        }
+      },
+      "current": {
+        "defaultValue": null,
+        "description": "The number of items that are currently completed",
+        "name": "current",
+        "parent": {
+          "fileName": "packages/components-native/src/ProgressBar/types.ts",
+          "name": "ProgressBarProps"
+        },
+        "required": true,
+        "type": {
+          "name": "number"
+        }
+      },
+      "inProgress": {
+        "defaultValue": {
+          "value": 0
+        },
+        "description": "The number of items in progress (not completed, but to be less than the total);\nnot applicable with stepped variation",
+        "name": "inProgress",
+        "parent": {
+          "fileName": "packages/components-native/src/ProgressBar/types.ts",
+          "name": "ProgressBarProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "If the progress bar is loading, the progress indicators aren't rendered on the screen",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components-native/src/ProgressBar/types.ts",
+          "name": "ProgressBarProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "reverseTheme": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "If the amountFormatted and totalAmountFormatted text needs to appear more visibile because of the\nbackground, for example",
+        "name": "reverseTheme",
+        "parent": {
+          "fileName": "packages/components-native/src/ProgressBar/types.ts",
+          "name": "ProgressBarProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "header": {
+        "defaultValue": null,
+        "description": "Component to render above the progress bar.",
+        "name": "header",
+        "parent": {
+          "fileName": "packages/components-native/src/ProgressBar/types.ts",
+          "name": "ProgressBarProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "progress"
+        },
+        "description": "Set the variation of the progress bar",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components-native/src/ProgressBar/types.ts",
+          "name": "ProgressBarProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"progress\" | \"stepped\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Set the size of the progress bar",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components-native/src/ProgressBar/types.ts",
+          "name": "ProgressBarProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"smaller\" | \"small\" | \"base\""
+        }
+      }
+    }
+  }
+]

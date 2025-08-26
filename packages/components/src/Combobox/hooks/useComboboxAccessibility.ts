@@ -1,10 +1,21 @@
 import { useContext, useEffect, useRef } from "react";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import type { UseInteractionsReturn } from "@floating-ui/react";
+import {
+  autoUpdate,
+  flip,
+  offset,
+  useDismiss,
+  useFloating,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  useInteractions,
+} from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { usePopper } from "react-popper";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { ComboboxOption } from "../Combobox.types";
+import { type ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
+
+const COMBOBOX_OFFSET = 8;
 
 // eslint-disable-next-line max-statements
 export function useComboboxAccessibility(
@@ -14,32 +25,43 @@ export function useComboboxAccessibility(
   open: boolean,
   wrapperRef: React.RefObject<HTMLDivElement>,
 ): {
-  popperRef: React.RefObject<HTMLDivElement>;
-  popperStyles: { [key: string]: React.CSSProperties };
-  attributes: { [key: string]: { [key: string]: string } | undefined };
+  floatingRef: React.RefObject<HTMLDivElement>;
+  floatingStyles: React.CSSProperties;
+  floatingProps: ReturnType<UseInteractionsReturn["getFloatingProps"]>;
+  nodeId?: string;
+  parentNodeId: string | null;
 } {
   const { handleClose } = useContext(ComboboxContext);
   const hasOptionsVisible = open && filteredOptions.length > 0;
   const focusedIndex = useRef<number | null>(null);
+  const parentNodeId = useFloatingParentNodeId();
+  const nodeId = useFloatingNodeId();
 
   useRefocusOnActivator(open);
 
-  const popperRef = useFocusTrap<HTMLDivElement>(open);
-  const {
-    styles: popperStyles,
-    attributes,
-    update,
-  } = usePopper(wrapperRef.current, popperRef.current, {
-    modifiers: [
-      {
-        name: "flip",
-        options: {
-          fallbackPlacements: ["top-start"],
-        },
-      },
+  const floatingRef = useFocusTrap<HTMLDivElement>(open);
+
+  const { floatingStyles, update, context } = useFloating({
+    nodeId,
+    elements: {
+      reference: wrapperRef.current,
+      floating: floatingRef.current,
+    },
+    open,
+    onOpenChange: openState => {
+      if (!openState) handleClose();
+    },
+    middleware: [
+      offset(COMBOBOX_OFFSET),
+      flip({ fallbackPlacements: ["top-start", "bottom-end", "top-end"] }),
     ],
     placement: "bottom-start",
+    whileElementsMounted: autoUpdate,
   });
+
+  const dismiss = useDismiss(context);
+
+  const { getFloatingProps } = useInteractions([dismiss]);
 
   useEffect(() => {
     focusedIndex.current = null;
@@ -47,23 +69,17 @@ export function useComboboxAccessibility(
     if (open) {
       update?.();
     }
-  }, [open, filteredOptions.length]);
+  }, [open, filteredOptions.length, update]);
 
   useEffect(() => {
     if (open) {
-      popperRef.current?.addEventListener("keydown", handleContentKeydown);
+      floatingRef.current?.addEventListener("keydown", handleContentKeydown);
     }
 
     return () => {
-      popperRef.current?.removeEventListener("keydown", handleContentKeydown);
+      floatingRef.current?.removeEventListener("keydown", handleContentKeydown);
     };
   }, [open, optionsListRef, filteredOptions]);
-
-  useOnKeyDown(() => {
-    if (open) {
-      handleClose();
-    }
-  }, "Escape");
 
   function handleContentKeydown(event: KeyboardEvent) {
     if (!hasOptionsVisible) return;
@@ -113,8 +129,10 @@ export function useComboboxAccessibility(
   }
 
   return {
-    popperRef,
-    popperStyles,
-    attributes,
+    floatingRef,
+    floatingStyles,
+    floatingProps: getFloatingProps(),
+    nodeId,
+    parentNodeId,
   };
 }

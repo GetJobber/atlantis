@@ -2,23 +2,24 @@ import React from "react";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxActivatorProps } from "../../Combobox.types";
+import type { ComboboxActivatorProps } from "../../Combobox.types";
+import { useComboboxActivatorAccessibility } from "../../hooks/useComboboxActivatorAccessibility";
 
 export function ComboboxActivator(props: ComboboxActivatorProps) {
-  const { handleClose, open, setOpen } = React.useContext(ComboboxContext);
+  const { handleOpen } = React.useContext(ComboboxContext);
+  const accessibilityAttributes = useComboboxActivatorAccessibility();
 
-  if (props.children.type === Button || props.children.type === Chip) {
+  if (
+    typeof props.children !== "function" &&
+    (props.children.type === Button || props.children.type === Chip)
+  ) {
     return React.cloneElement(props.children, {
-      role: "combobox",
-      onClick: () => {
-        if (open) {
-          handleClose();
-        } else {
-          setOpen(true);
-        }
-      },
+      role: accessibilityAttributes.role,
+      onClick: handleOpen,
     });
+  } else if (typeof props.children === "function") {
+    return props.children({ ...accessibilityAttributes, open: handleOpen });
   }
 
-  return props.children;
+  return null;
 }

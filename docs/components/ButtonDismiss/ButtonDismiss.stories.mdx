@@ -5,13 +5,23 @@ import { Meta } from "@storybook/addon-docs";
 <Meta title="Components/Private/ButtonDismiss" />
 
 This private component is used as a dismissal button for public components, such
-as the modal component for example.
+as Modal and Popover.
 
 ## Design & usage guidelines
 
-When contributing to, or consuming the ButtonDismiss component, consider the
-following:
+Use ButtonDismiss when you need a dismiss or close action that matches the
+design patterns of Atlantis.
 
-- When using the ButtonDismiss component always consider it is used as a dismiss
-  action.
-- The ButtonDismiss component should never be used inside another component.
+## Related components
+
+ButtonDismiss is built with [Button](/components/Button).
+
+## Accessibility
+
+ButtonDismiss is an icon-only button, so you must provide an aria-label that
+describes its' function to assistive technology.
+
+| **✅ Do**       | **❌ Don't**     |
+| --------------- | ---------------- |
+| "Close modal"   | "X button"       |
+| "Close popover" | "text-btn-cross" |

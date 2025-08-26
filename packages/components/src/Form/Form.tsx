@@ -1,10 +1,5 @@
-import React, {
-  ReactNode,
-  Ref,
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-} from "react";
+import type { ReactNode, Ref } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 export interface FormRef {

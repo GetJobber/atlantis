@@ -1,0 +1,186 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Typography/Typography.tsx",
+    "description": "",
+    "displayName": "Typography",
+    "methods": [],
+    "props": {
+      "id": {
+        "defaultValue": null,
+        "description": "",
+        "name": "id",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "element": {
+        "defaultValue": {
+          "value": "\"p\""
+        },
+        "description": "",
+        "name": "element",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"b\" | \"em\" | \"dd\" | \"dt\" | \"strong\" | \"span\""
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "fontWeight": {
+        "defaultValue": {
+          "value": "regular"
+        },
+        "description": "Aside from changing the font weights, this also changes the font family.\nSource sans for `regular` and `bold`.\nPoppins for `extraBold` and `black`.",
+        "name": "fontWeight",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "textCase": {
+        "defaultValue": null,
+        "description": "",
+        "name": "textCase",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "textColor": {
+        "defaultValue": null,
+        "description": "",
+        "name": "textColor",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "emphasisType": {
+        "defaultValue": null,
+        "description": "",
+        "name": "emphasisType",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "align": {
+        "defaultValue": {
+          "value": "\"start\""
+        },
+        "description": "Sets the alignment to start, center, or end.\nIn LTR scripts this equates to left, center, or right.",
+        "name": "align",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "fontFamily": {
+        "defaultValue": null,
+        "description": "",
+        "name": "fontFamily",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "numberOfLines": {
+        "defaultValue": null,
+        "description": "",
+        "name": "numberOfLines",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "underline": {
+        "defaultValue": null,
+        "description": "The style (and optionally a color) of underline the text is decorated with.\nAll semantic color tokens (other than the base values) defined in tokens.web\nare valid values. If omitted, no underline is applied.\n@example \"solid\" for a non-dashed underline of the same color as `textColor`\n@example \"double color-invoice\" for a double underline in the specified color",
+        "name": "underline",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 642 more ... | \"dashed color-client--onSurface\""
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: CSSProperties; }"
+        }
+      }
+    }
+  }
+]

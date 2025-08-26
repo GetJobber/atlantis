@@ -1,9 +1,5 @@
-import { Canvas, Meta, Story } from "@storybook/addon-docs";
-import { Form } from "@jobber/components/Form";
-import { InputText } from "@jobber/components/InputText";
-import { Content } from "@jobber/components/Content";
-import { Button } from "@jobber/components/Button";
-import * as hooks from "@atlantis/packages/hooks/src";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { UseFormState } from "./UseFormState";
 
 <Meta title="Hooks/useFormState" />
 
@@ -14,57 +10,12 @@ import * as hooks from "@atlantis/packages/hooks/src";
 default values.
 
 `useFormState` should **only** only by used when using a
-[`<Form />`](../?path=/docs/components-forms-and-inputs-form--docs) component.
+[`<Form />`](/components/Form) component.
 
 ```tsx
 import { useFormState } from "@jobber/hooks/useFormState";
 ```
 
 <Canvas>
-  <Story name="useFormState">
-    {() => {
-      const [formState, setFormState] = hooks.useFormState();
-      return (
-        <>
-          <Form
-            onSubmit={() => alert("submitted")}
-            onStateChange={setFormState}
-          >
-            <Content>
-              <InputText
-                placeholder="First Name"
-                name="firstName"
-                validations={{
-                  required: {
-                    value: true,
-                    message: "Tell us your name",
-                  },
-                  minLength: {
-                    value: 3,
-                    message: "Your name is too short.",
-                  },
-                }}
-              />
-              <InputText
-                placeholder="Last Name"
-                name="lastName"
-                validations={{
-                  required: {
-                    value: true,
-                    message: "Tell us your last name.",
-                  },
-                }}
-              />
-              <Button
-                label="Submit Form"
-                submit={true}
-                disabled={!formState.isDirty || !formState.isValid}
-              />
-            </Content>
-          </Form>
-          <pre>{JSON.stringify(formState, null, 2)}</pre>
-        </>
-      );
-    }}
-  </Story>
+  <UseFormState />
 </Canvas>

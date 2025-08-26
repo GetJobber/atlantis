@@ -2,10 +2,11 @@ import React, { Fragment, useReducer } from "react";
 import { View } from "react-native";
 import isEmpty from "lodash/isEmpty";
 import reduce from "lodash/reduce";
-import { XOR } from "ts-xor";
-import { styles } from "./CheckboxGroup.style";
-import { Checkbox, CheckboxProps } from "./Checkbox";
-import { CheckboxElement, CheckboxGroupState } from "./types";
+import type { XOR } from "ts-xor";
+import { useStyles } from "./CheckboxGroup.style";
+import type { CheckboxProps } from "./Checkbox";
+import { Checkbox } from "./Checkbox";
+import type { CheckboxElement, CheckboxGroupState } from "./types";
 import {
   checkboxGroupReducer,
   initCheckboxGroupState,
@@ -110,6 +111,8 @@ function CheckboxGroupInternal({
     onChange?.(data);
   };
   const indeterminate = checkIndeterminateStatus(actualCheckedValues);
+
+  const styles = useStyles();
 
   function cloneChildCheckbox(
     checkbox: React.ReactElement<CheckboxProps>,

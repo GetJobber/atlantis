@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, View } from "react-native";
-import { styles } from "./ProgressBar.style";
+import { useStyles } from "./ProgressBar.style";
 import { StatusCode } from "../../types";
 
 interface ProgressBarProps {
@@ -40,6 +40,8 @@ export const ProgressBar = ({
       }
     });
   }, [progress, barWidth, onComplete, status]);
+
+  const styles = useStyles();
 
   return (
     <View testID="format-file-progress-bar" style={styles.container}>

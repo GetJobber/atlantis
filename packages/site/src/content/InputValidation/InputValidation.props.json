@@ -1,0 +1,39 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/InputValidation/InputValidation.tsx",
+    "description": "",
+    "displayName": "InputValidation",
+    "methods": [],
+    "props": {
+      "message": {
+        "defaultValue": null,
+        "description": "Validation message to be displayed",
+        "name": "message",
+        "parent": {
+          "fileName": "../components/src/InputValidation/InputValidation.tsx",
+          "name": "InputValidationProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "visible": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "",
+        "name": "visible",
+        "parent": {
+          "fileName": "../components/src/InputValidation/InputValidation.tsx",
+          "name": "InputValidationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

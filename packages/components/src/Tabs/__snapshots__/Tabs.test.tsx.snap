@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tabs renders Tabs 1`] = `
+exports[`Tabs Component Rendering displays the label when it is a ReactNode 1`] = `
 <div>
   <div
     class="tabs"
@@ -17,8 +17,55 @@ exports[`Tabs renders Tabs 1`] = `
         >
           <button
             class="tab selected"
-            id="Eggs"
             role="tab"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="inlineLabel base red"
+            >
+              <span
+                class="base regular small"
+              >
+                Bacon
+              </span>
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <section
+      aria-label="[object Object]"
+      class="tabContent"
+      role="tabpanel"
+    >
+      <p>
+        Eggs
+      </p>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`Tabs Component Rendering renders Tabs 1`] = `
+<div>
+  <div
+    class="tabs"
+  >
+    <div
+      class="overflow"
+    >
+      <ul
+        class="tabRow"
+        role="tablist"
+      >
+        <li
+          role="presentation"
+        >
+          <button
+            class="tab selected"
+            role="tab"
+            tabindex="0"
             type="button"
           >
             <span
@@ -33,8 +80,8 @@ exports[`Tabs renders Tabs 1`] = `
         >
           <button
             class="tab"
-            id="Cheese"
             role="tab"
+            tabindex="-1"
             type="button"
           >
             <span

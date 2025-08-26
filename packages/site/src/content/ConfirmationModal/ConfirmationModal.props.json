@@ -1,0 +1,188 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+    "description": "",
+    "displayName": "ConfirmationModal",
+    "methods": [],
+    "props": {
+      "open": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Controls if the modal is open or not.",
+        "name": "open",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "SimpleConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "confirmLabel": {
+        "defaultValue": {
+          "value": "Confirm"
+        },
+        "description": "Label for the confirm button.",
+        "name": "confirmLabel",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "SimpleConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title for the modal.",
+        "name": "title",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "message": {
+        "defaultValue": null,
+        "description": "Text or rich text content for the body of the modal.\nNot displayed if **children** prop is passed.",
+        "name": "message",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "cancelLabel": {
+        "defaultValue": {
+          "value": "Cancel"
+        },
+        "description": "Label for the cancel button.",
+        "name": "cancelLabel",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "work"
+        },
+        "description": "Type (Work or destructive) for confirm button.",
+        "name": "variation",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"work\" | \"destructive\""
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Size of the modal (small, large),",
+        "name": "size",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Child component. Not displayed if **message** prop is passed.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "onConfirm": {
+        "defaultValue": null,
+        "description": "Callback for when the confirm button is pressed.",
+        "name": "onConfirm",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "onCancel": {
+        "defaultValue": null,
+        "description": "Callback for when the cancel button is pressed.",
+        "name": "onCancel",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "onRequestClose": {
+        "defaultValue": null,
+        "description": "Callback for whenever a user's action should close the modal.",
+        "name": "onRequestClose",
+        "parent": {
+          "fileName": "../components/src/ConfirmationModal/ConfirmationModal.tsx",
+          "name": "BaseConfirmationModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<ConfirmationModalRef>"
+        }
+      },
+      "key": {
+        "defaultValue": null,
+        "description": "",
+        "name": "key",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Key"
+        }
+      }
+    }
+  }
+]

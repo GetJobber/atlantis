@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./StatusLabel.module.css";
-import { StatusIndicatorType } from "../StatusIndicator/StatusIndicator.type";
+import type { StatusIndicatorType } from "../StatusIndicator/StatusIndicator.type";
 import { Typography } from "../Typography";
 import { StatusIndicator } from "../StatusIndicator/StatusIndicator";
 

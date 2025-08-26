@@ -1,36 +1,38 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../utils/design";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
-const checkboxDimensions = tokens["space-large"] + tokens["space-smaller"];
+export const useStyles = buildThemedStyles(tokens => {
+  const checkboxDimensions = tokens["space-large"] + tokens["space-smaller"];
 
-export const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-  },
+  return {
+    container: {
+      width: "100%",
+    },
 
-  checkBoxContainer: {
-    width: "100%",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: tokens["space-small"],
-  },
+    checkBoxContainer: {
+      width: "100%",
+      justifyContent: "space-between",
+      flexDirection: "row",
+      alignItems: "flex-start",
+      paddingVertical: tokens["space-small"],
+    },
 
-  label: {
-    flex: 1,
-  },
+    label: {
+      flex: 1,
+      gap: tokens["space-smaller"],
+    },
 
-  checkbox: {
-    borderRadius: tokens["radius-base"],
-    borderWidth: tokens["border-thick"],
-    justifyContent: "flex-end",
-    width: checkboxDimensions,
-    height: checkboxDimensions,
-    marginLeft: tokens["space-smaller"],
-    borderColor: tokens["color-interactive"],
-  },
+    checkbox: {
+      borderRadius: tokens["radius-base"],
+      borderWidth: tokens["border-thick"],
+      justifyContent: "flex-end",
+      width: checkboxDimensions,
+      height: checkboxDimensions,
+      marginLeft: tokens["space-smaller"],
+      borderColor: tokens["color-interactive"],
+    },
 
-  disabledCheckbox: {
-    borderColor: tokens["color-disabled"],
-  },
+    disabledCheckbox: {
+      borderColor: tokens["color-disabled"],
+    },
+  };
 });

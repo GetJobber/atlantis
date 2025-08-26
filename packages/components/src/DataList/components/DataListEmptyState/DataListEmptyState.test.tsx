@@ -11,6 +11,8 @@ import {
   EMPTY_STATE_ACTION_BUTTON_ONLY_ERROR,
 } from "../../DataList.const";
 import { Button } from "../../../Button";
+import { Flex } from "../../../Flex";
+import type { DataListEmptyStateProps } from "../../DataList.types";
 
 describe("DataListEmptyState", () => {
   it("should not render anything", () => {
@@ -93,5 +95,63 @@ describe("InternalDataListEmptyState", () => {
       );
 
     expect(component).toThrow(EMPTY_STATE_ACTION_BUTTON_ONLY_ERROR);
+  });
+
+  it("should render customRender when passed and not message or action", () => {
+    const emptyMessage = "empty state message";
+    render(
+      <DataListContext.Provider
+        value={{
+          ...defaultValues,
+          emptyStateComponents: [
+            <DataListEmptyState
+              key="1"
+              type="empty"
+              message={emptyMessage}
+              action={
+                <Button label="Click" onClick={() => alert("action button")} />
+              }
+              customRender={({
+                message,
+              }: Omit<DataListEmptyStateProps, "customRender">) => (
+                <div>
+                  <h3>{message}</h3>
+                  <Flex template={["grow", "shrink"]} direction="column">
+                    <Button
+                      label="Create a new character"
+                      onClick={() => alert("Create")}
+                    />
+                    <Button
+                      label="Clear filters"
+                      type="secondary"
+                      onClick={() => alert("Clear filters")}
+                    />
+                  </Flex>
+                </div>
+              )}
+            />,
+          ],
+        }}
+      >
+        <InternalDataListEmptyState />
+      </DataListContext.Provider>,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: emptyMessage }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Create a new character" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Clear filters" }),
+    ).toBeInTheDocument();
+
+    expect(
+      screen.queryByRole("button", { name: "Click" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("p", { name: emptyMessage }),
+    ).not.toBeInTheDocument();
   });
 });

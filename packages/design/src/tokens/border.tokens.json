@@ -3,16 +3,16 @@
     "$type": "dimension",
     "$description": "Border tokens. These are used to define the border width of elements. Feel free to use these directly.",
     "base": {
-      "$value": "{space.minuscule}"
+      "$value": "1px"
     },
     "thick": {
-      "$value": "{space.smallest}"
+      "$value": "2px"
     },
     "thicker": {
-      "$value": "{space.smaller}"
+      "$value": "4px"
     },
     "thickest": {
-      "$value": "{space.small}"
+      "$value": "8px"
     }
   }
 }

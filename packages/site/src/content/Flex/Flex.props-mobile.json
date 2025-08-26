@@ -1,0 +1,56 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Flex/Flex.tsx",
+    "description": "",
+    "displayName": "Flex",
+    "methods": [],
+    "props": {
+      "template": {
+        "defaultValue": {
+          "value": "[]"
+        },
+        "description": "Determine how the children gets laid out on the flex grid. If there are more\nChildren than elements in the template, it will render multiple rows.\n\n**Supported keys**\n- `\"grow\"` - Grows to the space available. If all children are set to\n  grow, then they'll have equal width.\n- `\"shrink\"` - Shrinks to the smallest size possible. Normally the size of\n  the child.\n\nBy default, this will set every children to grow in equal widths.",
+        "name": "template",
+        "parent": {
+          "fileName": "packages/components-native/src/Flex/types.ts",
+          "name": "FlexProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ColumnKeys[]"
+        }
+      },
+      "align": {
+        "defaultValue": {
+          "value": "center"
+        },
+        "description": "It works the same way as `alignItems` style with flex.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components-native/src/Flex/types.ts",
+          "name": "FlexProps"
+        },
+        "required": false,
+        "type": {
+          "name": "FlexAlignType"
+        }
+      },
+      "gap": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The spacing between the children.",
+        "name": "gap",
+        "parent": {
+          "fileName": "packages/components-native/src/Flex/types.ts",
+          "name": "FlexProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"none\" | \"smallest\" | \"smaller\" | \"small\" | \"base\" | \"large\""
+        }
+      }
+    }
+  }
+]

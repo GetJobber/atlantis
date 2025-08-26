@@ -1,8 +1,9 @@
-import { ChangeEvent, ReactNode, RefObject } from "react";
-import { RegisterOptions } from "react-hook-form";
-import { XOR } from "ts-xor";
-import { Clearable } from "@jobber/hooks/src/useShowClear";
-import { IconNames } from "../Icon";
+import type { ChangeEvent, ReactNode, RefObject } from "react";
+import type React from "react";
+import type { RegisterOptions } from "react-hook-form";
+import type { XOR } from "ts-xor";
+import type { Clearable } from "@jobber/hooks";
+import type { IconNames } from "../Icon";
 
 export type FormFieldTypes =
   | "text"
@@ -13,6 +14,15 @@ export type FormFieldTypes =
   | "select"
   | "tel"
   | "email";
+
+export type KeyBoardTypes =
+  | "text"
+  | "none"
+  | "tel"
+  | "url"
+  | "email"
+  | "numeric"
+  | "decimal";
 
 export type AutocompleteTypes =
   | "one-time-code"
@@ -45,6 +55,11 @@ export interface Suffix extends BaseSuffix {
  */
 export interface CommonFormFieldProps {
   /**
+   * A unique identifier for the input.
+   */
+  readonly id?: string;
+
+  /**
    * Determines the alignment of the text inside the input.
    */
   readonly align?: "center" | "right";
@@ -52,12 +67,21 @@ export interface CommonFormFieldProps {
   /**
    * Further description of the input, can be used for a hint.
    */
-  readonly description?: string;
+  readonly description?: ReactNode;
 
   /**
    * Disable the input
    */
   readonly disabled?: boolean;
+
+  /**
+   * Controls the visibility of the mini label that appears inside the input
+   * when a value is entered. By default, the placeholder text moves up to
+   * become a mini label. Set to false to disable this behavior.
+   *
+   * @default true
+   */
+  readonly showMiniLabel?: boolean;
 
   /**
    * Highlights the field red to indicate an error.
@@ -101,7 +125,10 @@ export interface CommonFormFieldProps {
   onValidation?(message: string): void;
 
   /**
-   * Hint text that goes above the value once the form is filled out.
+   * Text that appears inside the input when empty and floats above the value
+   * as a mini label once the user enters a value.
+   * When showMiniLabel is false, this text only serves as a standard placeholder and
+   * disappears when the user types.
    */
   readonly placeholder?: string;
 
@@ -123,6 +150,14 @@ export interface CommonFormFieldProps {
    * set it to `always`.
    */
   readonly clearable?: Clearable;
+
+  /**
+   * Experimental:
+   * Determine which version of the FormField to use.
+   * Right now this isn't used but it will be used in the future
+   * to allow us to release new versions of our form inputs without breaking existing functionality.
+   */
+  version?: 1;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
@@ -205,12 +240,12 @@ export interface FormFieldProps extends CommonFormFieldProps {
   /**
    * Focus callback.
    */
-  onFocus?(): void;
+  onFocus?(event?: React.FocusEvent): void;
 
   /**
    * Blur callback.
    */
-  onBlur?(): void;
+  onBlur?(event?: React.FocusEvent): void;
 
   onKeyUp?(event: React.KeyboardEvent<HTMLInputElement>): void;
 
@@ -244,4 +279,11 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * Determines the visibility of the toolbar.
    */
   readonly toolbarVisibility?: "always" | "while-editing";
+
+  /**
+   * Pattern is currently only used for the InputPhone type
+   * it is used to determine the format of the phone number
+   * and the number of digits to expect.
+   */
+  readonly pattern?: string;
 }

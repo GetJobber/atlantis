@@ -1,0 +1,26 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Toast/Toast.tsx",
+    "description": "",
+    "displayName": "JobberToast",
+    "methods": [],
+    "props": {
+      "bottomOffset": {
+        "defaultValue": {
+          "value": "40"
+        },
+        "description": "Offset from the bottom of the screen in px.\nHas effect only when the position is \"bottom\".",
+        "name": "bottomOffset",
+        "parent": {
+          "fileName": "../components-native/src/Toast/Toast.tsx",
+          "name": "JobberToastProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  }
+]

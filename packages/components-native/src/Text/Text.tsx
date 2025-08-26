@@ -1,18 +1,20 @@
 import React from "react";
-import {
+import type {
   BaseWeight,
   LineHeight,
+  OnTextLayoutEvent,
   TextAccessibilityRole,
   TextAlign,
   TextSize,
   TextVariation,
   TruncateLength,
-  Typography,
   TypographyProps,
 } from "../Typography";
+import { Typography } from "../Typography";
 import { tokens } from "../utils/design";
+import type { TypographyUnsafeStyle } from "../Typography/Typography";
 
-interface TextProps
+export interface TextProps
   extends Pick<TypographyProps<"base">, "maxFontScaleSize" | "selectable"> {
   /**
    * Visual hierarchy of the text
@@ -85,6 +87,18 @@ interface TextProps
    * of the TextInput
    */
   readonly hideFromScreenReader?: boolean;
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: TypographyUnsafeStyle;
+
+  /**
+   * Callback that is called when the text is laid out.
+   */
+  readonly onTextLayout?: OnTextLayoutEvent;
 }
 
 export type TextLevel = "text" | "textSupporting";
@@ -125,20 +139,24 @@ export function Text({
   italic = false,
   hideFromScreenReader = false,
   maxFontScaleSize,
+  UNSAFE_style,
   underline,
   selectable,
+  onTextLayout,
 }: TextProps): JSX.Element {
   const accessibilityRole: TextAccessibilityRole = "text";
 
   return (
     <Typography
       color={variation}
+      UNSAFE_style={UNSAFE_style}
       fontFamily="base"
       fontStyle={italic ? "italic" : "regular"}
       fontWeight={getFontWeight({ level, emphasis })}
       maxFontScaleSize={maxFontScaleSize || TEXT_MAX_SCALED_FONT_SIZES[level]}
       selectable={selectable}
       underline={underline}
+      onTextLayout={onTextLayout}
       {...{
         ...levelStyles[level],
         allowFontScaling,

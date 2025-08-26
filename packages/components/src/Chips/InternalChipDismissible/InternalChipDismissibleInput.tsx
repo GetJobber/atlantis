@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import debounce from "lodash/debounce";
 import classNames from "classnames";
+import { FloatingPortal } from "@floating-ui/react";
 import styles from "./InternalChipDismissible.module.css";
-import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
+import type { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import {
   useInView,
   useInternalChipDismissibleInput,
@@ -19,6 +19,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     attachTo,
     isLoadingMore = false,
     onLoadMore,
+    options,
   } = props;
 
   const {
@@ -29,45 +30,81 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     menuId,
     menuOpen,
     searchValue,
+    showInput,
     generateDescendantId,
     handleBlur,
-    handleOpenMenu,
+    handleFocus,
     handleSearchChange,
     handleCancelBlur,
     handleEnableBlur,
     handleSetActiveOnMouseOver,
     handleKeyDown,
     handleSelectOption,
+    handleShowInput,
     handleDebouncedSearch,
   } = useInternalChipDismissibleInput(props);
 
-  const menuRef = useScrollToActive(activeIndex);
+  const scrollableRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
 
-  const {
-    styles: popperStyles,
-    attributes,
-    update,
-    setPositionedElementRef,
-  } = useRepositionMenu(attachTo);
-
+  const { styles: floatingStyles, setFloatingRef } =
+    useRepositionMenu(attachTo);
   useEffect(() => {
-    if (menuOpen && update) update();
-  }, [allOptions]);
-
-  useEffect(() => {
-    handleDebouncedSearch();
+    handleDebouncedSearch(searchValue, options);
 
     return handleDebouncedSearch.cancel;
-  }, [searchValue]);
+  }, [searchValue, options]);
 
   useEffect(() => {
     isInView && onLoadMore && onLoadMore(searchValue);
   }, [isInView]);
 
-  if (!menuOpen) {
-    return React.cloneElement(activator, { onClick: handleOpenMenu });
+  if (!showInput) {
+    return React.cloneElement(activator, { onClick: handleShowInput });
   }
+
+  const shouldShowMenu = menuOpen && (hasAvailableOptions || isLoadingMore);
+
+  const menuContent = (
+    <div
+      ref={node => {
+        setFloatingRef(node);
+        scrollableRef.current = node;
+      }}
+      role="listbox"
+      id={menuId}
+      className={styles.menu}
+      style={floatingStyles.float}
+      data-testid="chip-menu"
+    >
+      {allOptions.map((option, i) => (
+        <button
+          key={option.value}
+          role="option"
+          type="button"
+          id={generateDescendantId(i)}
+          className={classNames(styles.menuListOption, {
+            [styles.activeOption]: activeIndex === i,
+          })}
+          onClick={() => handleSelectOption(option)}
+          onMouseEnter={handleSetActiveOnMouseOver(i)}
+          onMouseDown={handleCancelBlur}
+          onMouseUp={handleEnableBlur}
+        >
+          <span aria-hidden>{option.prefix}</span>
+          <Text>{option.label}</Text>
+        </button>
+      ))}
+
+      <div ref={visibleChildRef} />
+
+      {isLoadingMore && (
+        <div className={styles.loadingIndicator}>
+          <Spinner size="small" inline />
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <>
@@ -79,59 +116,17 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
         aria-label="Press up and down arrow to cycle through the options or type to narrow down the results"
         aria-autocomplete="list"
         aria-owns={menuId}
-        aria-expanded={hasAvailableOptions}
+        aria-expanded={shouldShowMenu}
         aria-activedescendant={generateDescendantId(activeIndex)}
         value={searchValue}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown}
-        onBlur={debounce(handleBlur, 200)}
-        onFocus={handleOpenMenu}
+        onBlur={() => setTimeout(handleBlur, 200)}
+        onFocus={handleFocus}
         autoFocus={true}
       />
 
-      {(hasAvailableOptions || isLoadingMore) && (
-        <div
-          ref={setPositionedElementRef}
-          className={styles.menu}
-          style={popperStyles.popper}
-          {...attributes.popper}
-        >
-          <div
-            ref={menuRef}
-            role="listbox"
-            id={menuId}
-            className={styles.menuList}
-            data-testid="chip-menu"
-          >
-            {allOptions.map((option, i) => (
-              <button
-                key={option.value}
-                role="option"
-                type="button"
-                id={generateDescendantId(i)}
-                className={classNames(styles.menuListOption, {
-                  [styles.activeOption]: activeIndex === i,
-                })}
-                onClick={() => handleSelectOption(option)}
-                onMouseEnter={handleSetActiveOnMouseOver(i)}
-                onMouseDown={handleCancelBlur}
-                onMouseUp={handleEnableBlur}
-              >
-                <span aria-hidden>{option.prefix}</span>
-                <Text>{option.label}</Text>
-              </button>
-            ))}
-
-            <div ref={visibleChildRef} />
-
-            {isLoadingMore && (
-              <div className={styles.loadingIndicator}>
-                <Spinner size="small" inline />
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {shouldShowMenu && <FloatingPortal>{menuContent}</FloatingPortal>}
     </>
   );
 }

@@ -1,0 +1,273 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Glimmer/Glimmer.tsx",
+    "description": "",
+    "displayName": "Glimmer",
+    "methods": [],
+    "props": {
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Sets the size of the glimmer.\n\nIf you use `\"auto\"` with a `\"rectangle\"` shape, it will fill the\nsize of the parents width and height. With how CSS works, if it can't\ndetermine the parents width and height, it'll default to `base`.",
+        "name": "size",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "shape": {
+        "defaultValue": {
+          "value": "rectangle"
+        },
+        "description": "Sets the shape of the glimmer.\n\nIf you need a specific width, use the `width` prop.",
+        "name": "shape",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "timing": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Control how fast the shine moves from left to right. This is useful when\nthe glimmer is used on smaller spaces.",
+        "name": "timing",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "reverseTheme": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Use on surfaces with dark backgrounds.",
+        "name": "reverseTheme",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "width": {
+        "defaultValue": null,
+        "description": "Adjust the width of the glimmer in px values.",
+        "name": "width",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Glimmer/Glimmer.tsx",
+    "description": "",
+    "displayName": "Glimmer.Header",
+    "methods": [],
+    "props": {
+      "level": {
+        "defaultValue": {
+          "value": "3"
+        },
+        "description": "Adjust the size of the `Glimmer.Header`.",
+        "name": "level",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1 | 2 | 3 | 4 | 5"
+        }
+      },
+      "timing": {
+        "defaultValue": null,
+        "description": "Control how fast the shine moves from left to right. This is useful when\nthe glimmer is used on smaller spaces.",
+        "name": "timing",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "reverseTheme": {
+        "defaultValue": null,
+        "description": "Use on surfaces with dark backgrounds.",
+        "name": "reverseTheme",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "width": {
+        "defaultValue": null,
+        "description": "Adjust the width of the glimmer in px values.",
+        "name": "width",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Glimmer/Glimmer.tsx",
+    "description": "",
+    "displayName": "Glimmer.Text",
+    "methods": [],
+    "props": {
+      "lines": {
+        "defaultValue": {
+          "value": "3"
+        },
+        "description": "Set how many lines shows up.",
+        "name": "lines",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1 | 2 | 3"
+        }
+      },
+      "timing": {
+        "defaultValue": null,
+        "description": "Control how fast the shine moves from left to right. This is useful when\nthe glimmer is used on smaller spaces.",
+        "name": "timing",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "reverseTheme": {
+        "defaultValue": null,
+        "description": "Use on surfaces with dark backgrounds.",
+        "name": "reverseTheme",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "width": {
+        "defaultValue": null,
+        "description": "Adjust the width of the glimmer in px values.",
+        "name": "width",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Glimmer/Glimmer.tsx",
+    "description": "",
+    "displayName": "Glimmer.Button",
+    "methods": [],
+    "props": {
+      "fullWidth": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Allow `Glimmer.Button` to go full width.",
+        "name": "fullWidth",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "timing": {
+        "defaultValue": null,
+        "description": "Control how fast the shine moves from left to right. This is useful when\nthe glimmer is used on smaller spaces.",
+        "name": "timing",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "reverseTheme": {
+        "defaultValue": null,
+        "description": "Use on surfaces with dark backgrounds.",
+        "name": "reverseTheme",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "width": {
+        "defaultValue": null,
+        "description": "Adjust the width of the glimmer in px values.",
+        "name": "width",
+        "parent": {
+          "fileName": "../components/src/Glimmer/Glimmer.tsx",
+          "name": "GlimmerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  }
+]

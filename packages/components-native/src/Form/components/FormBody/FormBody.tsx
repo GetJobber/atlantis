@@ -1,8 +1,9 @@
 import React, { useMemo } from "react";
 import { View } from "react-native";
-import { styles } from "./FormBody.style";
+import { useStyles } from "./FormBody.style";
 import { useScreenInformation } from "../../hooks/useScreenInformation";
-import { FormActionBar, FormActionBarProps } from "../FormActionBar";
+import type { FormActionBarProps } from "../FormActionBar";
+import { FormActionBar } from "../FormActionBar";
 import { tokens } from "../../../utils/design";
 
 interface FormBodyProps extends FormActionBarProps {
@@ -26,6 +27,7 @@ export function FormBody({
 }: FormBodyProps): JSX.Element {
   const paddingBottom = useBottomPadding();
   const fullViewPadding = useMemo(() => ({ paddingBottom }), [paddingBottom]);
+  const styles = useStyles();
 
   return (
     <>

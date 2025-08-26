@@ -2,13 +2,12 @@
 import React, { useRef, useState } from "react";
 import classnames from "classnames";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import styles from "./DataListHeaderTile.module.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { DataListSortingOptions } from "./components/DataListSortingOptions";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
-import {
+import type {
   DataListHeader,
   DataListObject,
   SortableOptions,
@@ -17,15 +16,12 @@ import {
 interface DataListHeaderTileProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
   readonly headerKey: string;
-  readonly visible: boolean;
 }
 
 export function DataListHeaderTile<T extends DataListObject>({
   headers,
   headerKey,
-  visible = false,
 }: DataListHeaderTileProps<T>) {
-  useRefocusOnActivator(visible);
   const { sorting } = useDataListContext();
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
@@ -45,6 +41,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       })}
       onClick={handleOnClick}
       ref={dataListHeaderTileRef}
+      type={isSortable ? "button" : undefined}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {isSortable && sortableItem?.options && isDropDownOpen && (
@@ -60,6 +57,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       {isSortable && (
         <DataListSortingArrows
           order={sortingState?.key === headerKey ? sortingState.order : "none"}
+          headerKey={headerKey}
         />
       )}
     </Tag>

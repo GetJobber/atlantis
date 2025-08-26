@@ -1,5 +1,5 @@
-import { LayoutRectangle } from "react-native";
-import { styles } from "./Menu.style";
+import type { LayoutRectangle } from "react-native";
+import type { useStyles } from "./Menu.style";
 
 interface ScreenInfo {
   windowHeight: number;
@@ -10,6 +10,7 @@ interface ScreenInfo {
 export function findViewpoint(
   screenInfo: ScreenInfo,
   activatorLayout: LayoutRectangle,
+  styles: ReturnType<typeof useStyles>,
 ): { [key: string]: number | undefined } {
   const { windowHeight, windowWidth, headerHeight } = screenInfo;
   const pos: { [key: string]: number | undefined } = {};

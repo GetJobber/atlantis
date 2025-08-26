@@ -1,0 +1,54 @@
+[
+  {
+    "tags": {
+      "deprecated": "RecurringSelect will be removed in the next major version"
+    },
+    "filePath": "../components/src/RecurringSelect/RecurringSelect.tsx",
+    "description": "",
+    "displayName": "RecurringSelect",
+    "methods": [],
+    "props": {
+      "disabled": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "",
+        "name": "disabled",
+        "parent": {
+          "fileName": "../components/src/RecurringSelect/RecurringSelect.tsx",
+          "name": "RecurringSelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "",
+        "name": "value",
+        "parent": {
+          "fileName": "../components/src/RecurringSelect/RecurringSelect.tsx",
+          "name": "RecurringSelectProps"
+        },
+        "required": true,
+        "type": {
+          "name": "RecurrenceRule"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onChange",
+        "parent": {
+          "fileName": "../components/src/RecurringSelect/RecurringSelect.tsx",
+          "name": "RecurringSelectProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(value: RecurrenceRule) => void"
+        }
+      }
+    }
+  }
+]

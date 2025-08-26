@@ -1,10 +1,10 @@
-import { ReactElement, ReactNode } from "react";
-import { IconNames } from "@jobber/design";
-import { XOR } from "ts-xor";
-import { Breakpoints } from "./DataList.const";
-import { ButtonProps } from "../Button";
+import type { ReactElement, ReactNode } from "react";
+import type { IconNames } from "@jobber/design";
+import type { XOR } from "ts-xor";
+import { type Breakpoints } from "./DataList.const";
+import { type ButtonProps } from "../Button";
 
-export { Breakpoints } from "./DataList.const";
+export { type Breakpoints } from "./DataList.const";
 
 export type DataListItemType<T extends DataListObject[]> = Record<
   keyof T[number],
@@ -109,7 +109,7 @@ export interface DataListProps<T extends DataListObject> {
   /**
    * Total number of items in the DataList.
    *
-   * This renders an "N result" text with the DataList
+   * This renders an "N results" text with the DataList
    * that helps users know how many items they have
    * in the list
    */
@@ -212,6 +212,15 @@ export interface DataListSearchProps {
    */
   readonly initialValue?: string;
 
+  /**
+   * The controlled value of the search input.
+   *
+   * Supply this field if you want to take control over the search input's
+   * value. You'll need to use `onSearch` to handle updating your state with
+   * the latest value.
+   */
+  readonly value?: string;
+
   readonly onSearch: (value: string) => void;
 }
 
@@ -241,6 +250,16 @@ export interface DataListEmptyStateProps {
    * to the DataList component.
    */
   readonly type?: "filtered" | "empty";
+
+  /**
+   * Custom render function for the empty state.
+   *
+   * If provided, this function will be used to render the empty state instead
+   * of the default rendering logic.
+   */
+  readonly customRender?: (
+    emptyState: Omit<DataListEmptyStateProps, "customRender">,
+  ) => ReactNode;
 }
 
 export interface DataListContextProps<T extends DataListObject>
@@ -291,7 +310,13 @@ interface BaseDataListItemActionsProps<T extends DataListObject> {
   /**
    * Callback when an item is clicked.
    */
-  readonly onClick?: (item: T) => void;
+  readonly onClick?: (item: T, event?: React.MouseEvent<HTMLElement>) => void;
+
+  /**
+   * Disable the custom context menu. This allows the browser's native context menu to be shown.
+   * @default false
+   */
+  readonly disableContextMenu?: boolean;
 }
 
 export interface DataListBulkActionsProps {
@@ -355,6 +380,11 @@ export interface DataListActionProps<T extends DataListObject> {
    * The URL to navigate to when the action is clicked.
    */
   readonly actionUrl?: string;
+
+  /**
+   * Determine if the action is always visible. It is not recommended to set this to true on more then one action.
+   */
+  readonly alwaysVisible?: boolean;
 }
 
 export interface DataListActionsProps<T extends DataListObject> {

@@ -4,13 +4,10 @@
 }
 
 .options {
-  display: none;
-  position: absolute;
+  visibility: hidden;
   z-index: calc(var(--elevation-menu) + var(--elevation-modal));
-  width: 100%;
-  /* Unfortunately this is how we define our line item picker height in jobber online.
-  This is a concession to maintain visual parity. */
-  max-height: 300px;
+  width: 0;
+  height: 0;
   box-shadow: var(--shadow-base);
   box-sizing: border-box;
   margin: 0;
@@ -18,21 +15,26 @@
   border: var(--border-base) solid var(--color-color-border);
   border-radius: var(--radius-base);
   overflow: auto;
-  scroll-behavior: smooth;
   background-color: var(--color-surface);
+  scroll-behavior: smooth;
+  opacity: 0;
 }
 
-.options h5 {
+.options .heading {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .options.visible {
-  display: block;
+  visibility: visible;
+  width: 100%;
+  height: auto;
+  opacity: 1;
 }
 
 .options.visible:empty {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .option {
@@ -49,7 +51,6 @@
   list-style: none;
   background-color: transparent;
   cursor: pointer;
-  transition: all var(--timing-base);
 }
 
 .option:hover,
@@ -69,7 +70,7 @@
 }
 
 .options .heading:not(:first-child) {
-  padding-top: var(--space-small);
+  padding-top: var(--space-base);
 }
 
 .option .icon {

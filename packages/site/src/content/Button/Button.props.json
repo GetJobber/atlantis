@@ -1,0 +1,336 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Button/Button.tsx",
+    "description": "",
+    "displayName": "Button",
+    "methods": [],
+    "props": {
+      "external": {
+        "defaultValue": null,
+        "description": "",
+        "name": "external",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "submit": {
+        "defaultValue": null,
+        "description": "Allows the button to submit a form",
+        "name": "submit",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonType"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "BaseActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonVariation"
+        }
+      },
+      "ariaControls": {
+        "defaultValue": null,
+        "description": "Used for screen readers. Will override label on screen\nreader if present.",
+        "name": "ariaControls",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaHaspopup": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaHaspopup",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaExpanded": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaExpanded",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "fullWidth": {
+        "defaultValue": null,
+        "description": "",
+        "name": "fullWidth",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonSize"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onMouseDown",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; buttonLabel?: { textStyle?: string; }; buttonIcon?: { svg?: string; path?: string; }; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\n**Note:** If you are applying fill override to buttonIcon.path, you will need to add !important due\nto Button's children element css inheritance.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Used to override the default button role.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "BasicButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "to": {
+        "defaultValue": null,
+        "description": "**Deprecated**: to will be removed in the next major version\n@deprecated",
+        "name": "to",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonLinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "LocationDescriptor<unknown> | ((location: Location<unknown>) => LocationDescriptor<unknown>)"
+        }
+      },
+      "url": {
+        "defaultValue": null,
+        "description": "Used to create an 'href' on an anchor tag.",
+        "name": "url",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonAnchorProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "iconOnRight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "iconOnRight",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

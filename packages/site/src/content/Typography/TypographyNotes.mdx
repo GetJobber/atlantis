@@ -1,0 +1,94 @@
+import { Tabs, Tab } from "@jobber/components/Tabs";
+
+## Component customization
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Typography updates may lead to unintended
+breakages.
+
+#### UNSAFE\_ props (web)
+
+<Tabs>
+  <Tab label="UNSAFE_className">
+    Use `UNSAFE_className` to apply custom classes to the Typography component. This
+    can be useful for applying styles via CSS Modules.
+
+    ```tsx
+    // YourComponent.tsx
+    <Typography
+      UNSAFE_className={{
+        textStyle: styles.customText,
+      }}
+    >
+      Text with UNSAFE className
+    </Typography>
+
+    // YourComponent.module.css
+    .customText {
+      color: var(--color-purple);
+    }
+    ```
+
+  </Tab>
+
+  <Tab label="UNSAFE_style">
+    Use `UNSAFE_style` to apply inline custom styles to the Typography component.
+
+    ```tsx
+    <Typography
+      UNSAFE_style={{
+        textStyle: {
+          color: "var(--color-purple)",
+        },
+      }}
+    >
+      Text with UNSAFE style
+    </Typography>
+    ```
+
+  </Tab>
+</Tabs>
+
+#### UNSAFE\_ props (mobile)
+
+Use `UNSAFE_style` to apply custom styles to the Typography component.
+
+```tsx
+<Typography
+  UNSAFE_style={{
+    textStyle: { color: tokens["color-purple--light"] },
+  }}
+>
+  Text with UNSAFE style
+</Typography>
+```
+
+## Platform considerations
+
+React Native has a lot of limitations around Android and iOS when it comes to
+copying text on a device.
+
+#### Android
+
+- ✅ Highlight specific text
+- ✅ Have an option to copy and other smart actions like opening a map when it's
+  an address
+- ❌ It can't highlight the text on anything that is tappable. For example
+  - Button
+  - List
+  - Long press to copy phone, address, etc
+  - In short, anything text you can tap and it does an action like open a modal
+    cannot be highlighted
+
+#### iOS
+
+- ❌ Highlight specific text
+  - ✅ It can only copy all of the block of text
+- ➖ Only have an option to "copy"
+- ✅ Unlike Android, It can copy the text on anything that is tappable
+  - The long press would show a copy action and cancel the press action on it

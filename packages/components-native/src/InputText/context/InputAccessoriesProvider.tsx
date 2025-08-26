@@ -1,16 +1,16 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   InputAccessoryView,
   Keyboard,
   Platform,
-  // eslint-disable-next-line no-restricted-imports
   Button as RNButton,
   View,
   useColorScheme,
 } from "react-native";
 import { v4 } from "react-native-uuid";
 import { InputAccessoriesContext } from "./InputAccessoriesContext";
-import { styles } from "./InputAccessoriesProvider.style";
+import { useStyles } from "./InputAccessoriesProvider.style";
 
 export function InputAccessoriesProvider({
   children,
@@ -30,6 +30,8 @@ export function InputAccessoriesProvider({
   } = useInputAccessoriesProviderState();
 
   const colorScheme = useColorScheme();
+
+  const styles = useStyles();
 
   return (
     <InputAccessoriesContext.Provider

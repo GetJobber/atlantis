@@ -1,8 +1,9 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../../../utils/design";
+import { buildThemedStyles } from "../../../AtlantisThemeContext";
 
-export const styles = StyleSheet.create({
-  pressed: {
-    opacity: tokens["opacity-pressed"],
-  },
+export const useStyles = buildThemedStyles(tokens => {
+  return {
+    pressed: {
+      opacity: tokens["opacity-pressed"],
+    },
+  };
 });

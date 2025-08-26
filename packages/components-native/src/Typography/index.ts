@@ -17,6 +17,8 @@ export type {
   TextVariation,
   TypographyProps,
   TruncateLength,
+  OnTextLayoutEvent,
 } from "./Typography";
+export { getTypographyStyles, useTypographyStyles } from "./Typography.style";
 export { typographyStyles } from "./Typography.style";
 export { TypographyGestureDetector } from "./TypographyGestureDetector";

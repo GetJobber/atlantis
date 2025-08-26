@@ -1,9 +1,9 @@
 import React from "react";
 import { View } from "react-native";
-import { styles } from "./StatusLabel.style";
+import { useStyles } from "./StatusLabel.style";
+import { Typography } from "../Typography";
 import { StatusIndicator } from "../StatusIndicator";
 import { tokens } from "../utils/design";
-import { Typography } from "../Typography";
 
 export type StatusType =
   | "success"
@@ -39,6 +39,8 @@ export function StatusLabel({
   alignment = "end",
   status = "success",
 }: StatusLabelProps): JSX.Element {
+  const styles = useStyles();
+
   return (
     <View
       style={[

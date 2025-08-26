@@ -1,0 +1,13 @@
+## Developer notes
+
+We discussed the possibility of sharing arrow key navigation logic between the
+SegmentedControl and Combobox components due to their similarities. However, the
+SegmentedControl does not have specific arrow key logic because arrow key
+navigation is implicitly set through the SegmentedControl radio button
+structure. The options are a type of `radio` and part of a group (`name`
+attribute) which inherently supports keyboard navigation.
+
+There is another instance where similar logic is used within the
+`useInternalChipDismissible` hook. In the future, we will want to consider
+refactoring this logic into a shared hook or utility function to reduce
+duplication and improve maintainability.

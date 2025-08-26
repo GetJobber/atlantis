@@ -1,6 +1,7 @@
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 import { Pressable, View } from "react-native";
-import { styles } from "./InternalCardHeader.style";
+import { useStyles } from "./InternalCardHeader.style";
 
 interface InternalCardHeaderProps {
   readonly children: ReactNode[] | ReactNode;
@@ -15,6 +16,8 @@ export function InternalCardHeader({
   testID,
   collapsable,
 }: InternalCardHeaderProps): JSX.Element {
+  const styles = useStyles();
+
   const conditionalChildStyling = collapsable ? undefined : styles.noChildren;
 
   if (onPress) {

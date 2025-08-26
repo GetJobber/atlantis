@@ -459,7 +459,7 @@ exports[`renders text with subdued variation 1`] = `
         "fontFamily": "inter-regular",
       },
       {
-        "color": "hsl(197, 15%, 45%)",
+        "color": "hsl(197, 15%, 43%)",
       },
       {
         "textAlign": "left",
@@ -574,10 +574,10 @@ exports[`renders text with underline styling 1`] = `
         "letterSpacing": 0,
       },
       {
-        "textDecorationStyle": "dashed",
+        "textDecorationStyle": "dotted",
       },
       {
-        "textDecorationColor": "hsl(197, 15%, 45%)",
+        "textDecorationColor": "hsl(197, 15%, 43%)",
         "textDecorationLine": "underline",
       },
     ]

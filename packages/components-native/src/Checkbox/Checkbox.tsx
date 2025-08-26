@@ -1,11 +1,12 @@
 import React from "react";
-import { ColorValue, Pressable, View } from "react-native";
-import { XOR } from "ts-xor";
-import { tokens } from "@jobber/design";
-import { styles } from "./Checkbox.style";
+import type { ColorValue } from "react-native";
+import { Pressable, View } from "react-native";
+import type { XOR } from "ts-xor";
+import { useStyles } from "./Checkbox.style";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
 import { FormField } from "../FormField";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 interface CommonCheckboxProps {
   /**
@@ -125,6 +126,8 @@ function CheckboxInternal({
     indeterminate,
   );
 
+  const styles = useStyles();
+
   return (
     <Pressable
       accessibilityRole="checkbox"
@@ -150,6 +153,15 @@ function CheckboxInternal({
             <Text variation={textVariation} align="start">
               {label}
             </Text>
+            {assistiveText && (
+              <Text
+                level="textSupporting"
+                align="start"
+                variation={textVariation}
+              >
+                {assistiveText}
+              </Text>
+            )}
           </View>
         )}
         <View
@@ -166,11 +178,6 @@ function CheckboxInternal({
           )}
         </View>
       </View>
-      {assistiveText && (
-        <Text level="textSupporting" align="start" variation={textVariation}>
-          {assistiveText}
-        </Text>
-      )}
     </Pressable>
   );
 }
@@ -180,6 +187,8 @@ function getBackgroundColor(
   disabled: boolean,
   indeterminate: boolean,
 ): ColorValue {
+  const { tokens } = useAtlantisTheme();
+
   if (checked || indeterminate) {
     if (disabled) {
       return tokens["color-disabled"];

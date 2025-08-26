@@ -1,7 +1,7 @@
-import { KeyboardEvent, MouseEvent, ReactElement } from "react";
-import { ChipButtonProps } from "./InternalChipButton";
-import { AvatarProps } from "../Avatar";
-import { IconProps } from "../Icon";
+import type { KeyboardEvent, MouseEvent, ReactElement } from "react";
+import { type ChipButtonProps } from "./InternalChipButton";
+import { type AvatarProps } from "../Avatar";
+import { type IconProps } from "../Icon";
 
 export interface InternalChipProps {
   /**

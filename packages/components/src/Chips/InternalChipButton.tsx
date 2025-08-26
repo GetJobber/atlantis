@@ -1,10 +1,6 @@
-import React, {
-  KeyboardEvent,
-  MouseEvent,
-  MutableRefObject,
-  useRef,
-} from "react";
-import { IconNames } from "@jobber/design";
+import type { KeyboardEvent, MouseEvent, MutableRefObject } from "react";
+import React, { useRef } from "react";
+import type { IconNames } from "@jobber/design";
 import styles from "./InternalChip.module.css";
 import { Icon } from "../Icon";
 
@@ -35,7 +31,7 @@ export function InternalChipButton({
       onClick={handleClick}
       role="button"
       aria-label={`Remove ${label}`}
-      aria-hidden={true}
+      aria-hidden={disabled}
       aria-disabled={disabled}
       data-testid="remove-chip-button"
     >

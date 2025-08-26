@@ -42,6 +42,54 @@ const BasicTemplate: ComponentStory<typeof RadioGroup> = args => {
   );
 };
 
+const HorizontalTemplate: ComponentStory<typeof RadioGroup> = args => {
+  const [company, setCompany] = useState("apple");
+
+  return (
+    <Content spacing="large">
+      <div>
+        <RadioGroup
+          {...args}
+          onChange={(value: string) => setCompany(value)}
+          value={company}
+          ariaLabel="Companies"
+          direction="horizontal"
+        >
+          <RadioOption value="apple" label="Apple" />
+          <RadioOption value="amazon" label="Amazon" />
+          <RadioOption value="google" label="Google" />
+        </RadioGroup>
+      </div>
+
+      <div>
+        <RadioGroup
+          {...args}
+          onChange={(value: string) => setCompany(value)}
+          value={company}
+          ariaLabel="Companies"
+          direction="horizontal"
+        >
+          <RadioOption
+            value="apple"
+            label="Apple"
+            description="A delicious fruit that fends off doctors"
+          />
+          <RadioOption
+            value="amazon"
+            label="Amazon"
+            description="The worlds largest rainforest"
+          />
+          <RadioOption
+            value="google"
+            label="Google"
+            description="A search engine"
+          />
+        </RadioGroup>
+      </div>
+    </Content>
+  );
+};
+
 const DisabledTemplate: ComponentStory<typeof RadioGroup> = args => {
   const [company, setCompany] = useState("apple");
   const [checked, setChecked] = useState(true);
@@ -153,6 +201,8 @@ const CustomRadioOptionContentTemplate: ComponentStory<
 };
 
 export const Basic = BasicTemplate.bind({});
+
+export const Horizontal = HorizontalTemplate.bind({});
 
 export const Description = DescriptionTemplate.bind({});
 

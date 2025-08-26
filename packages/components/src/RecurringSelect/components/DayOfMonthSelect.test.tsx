@@ -1,7 +1,8 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { DayOfMonthSelect } from "./DayOfMonthSelect";
-import { DayOfMonth } from "../types";
+/* eslint-disable import/no-deprecated */
+import type { DayOfMonth } from "../types";
 
 let onChange: jest.Mock;
 

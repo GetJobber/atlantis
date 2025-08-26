@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "./Gallery.module.css";
-import { File, GalleryProps } from "./GalleryTypes";
+import type { GalleryFile, GalleryProps } from "./GalleryTypes";
 import { LightBox } from "../LightBox";
 import { FormatFile } from "../FormatFile";
 import { Button } from "../Button";
 import { isSafari } from "../utils/getClientBrowser";
 
 export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
-  const { images, filesToImageIndex } = generateImagesArray(files);
+  const [images, setImages] = useState<{ title: string; url: string }[]>([]);
+  const [filesToImageIndex, setFilesToImageIndex] = useState<
+    (number | undefined)[]
+  >([]);
+
+  React.useEffect(() => {
+    generateImagesArray(files).then(result => {
+      setImages(result.images);
+      setFilesToImageIndex(result.filesToImageIndex);
+    });
+  }, [files]);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -25,7 +35,8 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
               key={file.key}
               file={{
                 ...file,
-                src: () => Promise.resolve(file.thumbnailSrc || file.src),
+                src: () =>
+                  Promise.resolve(file.thumbnailSrc || getFileSrc(file)),
               }}
               display="compact"
               displaySize={size}
@@ -65,14 +76,14 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
     </>
   );
 
-  function handleThumbnailClicked(index: number) {
+  async function handleThumbnailClicked(index: number) {
     if (
       files[index].type.startsWith("image/") &&
       isSupportedImageType(files[index])
     ) {
       handleLightboxOpen(index);
     } else {
-      window.open(files[index].src, "_blank");
+      window.open(await getFileSrc(files[index]), "_blank");
     }
   }
 
@@ -90,7 +101,11 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
   }
 }
 
-function isSupportedImageType(file: File) {
+async function getFileSrc(file: GalleryFile) {
+  return typeof file.src === "string" ? file.src : file.src();
+}
+
+function isSupportedImageType(file: GalleryFile) {
   const userAgent =
     typeof document === "undefined" ? "" : window.navigator.userAgent;
   const nonHeicImage = !file.type.startsWith("image/heic");
@@ -99,14 +114,14 @@ function isSupportedImageType(file: File) {
   return (nonHeicImage || isSafari(userAgent)) && nonSVGImage;
 }
 
-function generateImagesArray(files: File[]) {
+async function generateImagesArray(files: GalleryFile[]) {
   const images = [];
   const filesToImageIndex = [];
   let imageIndex = 0;
 
   for (let i = 0; i < files.length; i++) {
     if (files[i].type.startsWith("image/") && isSupportedImageType(files[i])) {
-      images.push({ title: files[i].name, url: files[i].src });
+      images.push({ title: files[i].name, url: await getFileSrc(files[i]) });
       filesToImageIndex.push(imageIndex);
       imageIndex++;
     } else {

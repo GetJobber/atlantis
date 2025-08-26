@@ -1,0 +1,76 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Grid/Grid.tsx",
+    "description": "",
+    "displayName": "Grid",
+    "methods": [],
+    "props": {
+      "gap": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "Add spacing between elements. Can be a boolean for default spacing,\nor a semantic token for custom spacing.\n@deprecated The boolean type for the 'gap' prop is deprecated and will be removed in a future version.\nPlease use a GapSpacing token (e.g., 'small', 'base', 'large') for fixed spacing.\nUsing 'true' applies default responsive spacing. Using 'false' results in no gap.",
+        "name": "gap",
+        "parent": {
+          "fileName": "../components/src/Grid/Grid.tsx",
+          "name": "GridProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean | GapSpacing"
+        }
+      },
+      "alignItems": {
+        "defaultValue": {
+          "value": "start"
+        },
+        "description": "Adjust the alignment of columns. We only support a few select properties\nfrom `align-items` due to the nature of the other properties acting the\nsame. Read more about [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) property values.",
+        "name": "alignItems",
+        "parent": {
+          "fileName": "../components/src/Grid/Grid.tsx",
+          "name": "GridProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | symbol"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "`Grid.Cell` children",
+        "name": "children",
+        "parent": {
+          "fileName": "../components/src/Grid/Grid.tsx",
+          "name": "GridProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Grid/Grid.tsx",
+    "description": "",
+    "displayName": "Grid.Cell",
+    "methods": [],
+    "props": {
+      "size": {
+        "defaultValue": null,
+        "description": "Set how many columns wide the cell is in the grid",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Grid/GridCell/GridCell.tsx",
+          "name": "GridCellProps"
+        },
+        "required": true,
+        "type": {
+          "name": "{ xs?: ColumnSizes; sm?: ColumnSizes; md?: ColumnSizes; lg?: ColumnSizes; xl?: ColumnSizes; }"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,278 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/ButtonGroup/ButtonGroup.tsx",
+    "description": "",
+    "displayName": "ButtonGroup",
+    "methods": [],
+    "props": {
+      "showCancelInBottomSheet": {
+        "defaultValue": null,
+        "description": "Display a cancel button in the secondary bottom sheet footer.",
+        "name": "showCancelInBottomSheet",
+        "parent": {
+          "fileName": "../components-native/src/ButtonGroup/ButtonGroup.tsx",
+          "name": "ButtonGroupProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "bottomSheetHeading": {
+        "defaultValue": null,
+        "description": "An optional heading to display in the secondary bottom sheet header.",
+        "name": "bottomSheetHeading",
+        "parent": {
+          "fileName": "../components-native/src/ButtonGroup/ButtonGroup.tsx",
+          "name": "ButtonGroupProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onOpenBottomSheet": {
+        "defaultValue": null,
+        "description": "Callback that is called when the secondary actions bottom sheet is opened.",
+        "name": "onOpenBottomSheet",
+        "parent": {
+          "fileName": "../components-native/src/ButtonGroup/ButtonGroup.tsx",
+          "name": "ButtonGroupProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "onCloseBottomSheet": {
+        "defaultValue": null,
+        "description": "Callback that is called when the secondary actions bottom sheet is closed.",
+        "name": "onCloseBottomSheet",
+        "parent": {
+          "fileName": "../components-native/src/ButtonGroup/ButtonGroup.tsx",
+          "name": "ButtonGroupProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "allowTapWhenOffline": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Allows you to Tap the button while offline",
+        "name": "allowTapWhenOffline",
+        "parent": {
+          "fileName": "../components-native/src/ButtonGroup/ButtonGroup.tsx",
+          "name": "ButtonGroupProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components-native/src/ButtonGroup/ButtonGroup.tsx",
+    "description": "",
+    "displayName": "ButtonGroup.PrimaryAction",
+    "methods": [],
+    "props": {
+      "buttonType": {
+        "defaultValue": null,
+        "description": "Sets the action button style (default: \"primary\")",
+        "name": "buttonType",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupPrimaryActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonType"
+        }
+      },
+      "buttonVariation": {
+        "defaultValue": null,
+        "description": "Themes the action button to the type of action it performs (default: \"work\")",
+        "name": "buttonVariation",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupPrimaryActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonVariation"
+        }
+      },
+      "customButton": {
+        "defaultValue": null,
+        "description": "Optional custom button that can be rendered in place of the primary action button",
+        "name": "customButton",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupPrimaryActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Element"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupPrimaryActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "Text to be displayed on the action button",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "Icon to be displayed on the action button",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "iconColor": {
+        "defaultValue": null,
+        "description": "Determines the color of the icon. If not specified, some icons have a default system colour which will be used\nOthers that don't have a system colour fall back to greyBlue.\nOnly applies the iconColor to ButtonGroup.PrimaryAction when it is rendered under the \"more\" menu.",
+        "name": "iconColor",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"destructive\" | \"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | ... 34 more ... | \"brandHighlight\""
+        }
+      },
+      "onPress": {
+        "defaultValue": null,
+        "description": "Press handler for the action button",
+        "name": "onPress",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": true,
+        "type": {
+          "name": "() => void"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components-native/src/ButtonGroup/ButtonGroup.tsx",
+    "description": "",
+    "displayName": "ButtonGroup.SecondaryAction",
+    "methods": [],
+    "props": {
+      "destructive": {
+        "defaultValue": null,
+        "description": "Indicates whether the secondary action is destructive in nature.",
+        "name": "destructive",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupSecondaryActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "Text to be displayed on the action button",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "Icon to be displayed on the action button",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "iconColor": {
+        "defaultValue": null,
+        "description": "Determines the color of the icon. If not specified, some icons have a default system colour which will be used\nOthers that don't have a system colour fall back to greyBlue.\nOnly applies the iconColor to ButtonGroup.PrimaryAction when it is rendered under the \"more\" menu.",
+        "name": "iconColor",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"destructive\" | \"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | ... 34 more ... | \"brandHighlight\""
+        }
+      },
+      "onPress": {
+        "defaultValue": null,
+        "description": "Press handler for the action button",
+        "name": "onPress",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": true,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components-native/src/ButtonGroup/ButtonGroupAction.tsx",
+          "name": "ButtonGroupActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

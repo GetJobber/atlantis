@@ -1,16 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { CivilDate } from "@std-proposal/temporal";
 import { FormatDate, strFormatDate } from "./FormatDate";
 
 describe("Different date values", () => {
   const dates = {
-    CivilDate: new CivilDate(2020, 2, 26),
     ISO8601DateString: "2019-03-30T00:45",
     Date: new Date("2020-03-30T00:45"),
   };
 
-  const mockDateResult = [`Feb 26, 2020`, `Mar 30, 2019`, `Mar 30, 2020`];
+  const mockDateResult = [`Mar 30, 2019`, `Mar 30, 2020`];
 
   Object.entries(dates).forEach(([inputType, value], index) => {
     it(`renders a formatted date from ${inputType}`, async () => {

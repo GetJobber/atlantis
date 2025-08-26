@@ -1,0 +1,12 @@
+:global(.sb-show-main.sb-main-padded),
+:global(.sb-show-main.sb-main-fullscreen) {
+  padding: 0;
+}
+
+.storyWrapper {
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: var(--space-base);
+  flex-direction: column;
+}

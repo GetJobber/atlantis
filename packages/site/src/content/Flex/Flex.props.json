@@ -1,0 +1,69 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Flex/Flex.tsx",
+    "description": "",
+    "displayName": "Flex",
+    "methods": [],
+    "props": {
+      "template": {
+        "defaultValue": null,
+        "description": "Determine how the children gets laid out\n\n**Supported keys**\n- `\"grow\"` - Grows to the space available. If all children are set to\n  grow, then they'll have equal width.\n- `\"shrink\"` - Shrinks to the smallest size possible. Normally the size of\n  the child.",
+        "name": "template",
+        "parent": {
+          "fileName": "../components/src/Flex/Flex.tsx",
+          "name": "FlexProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ColumnKeys[]"
+        }
+      },
+      "align": {
+        "defaultValue": {
+          "value": "center"
+        },
+        "description": "Adjusts the alignment of the Flex children.",
+        "name": "align",
+        "parent": {
+          "fileName": "../components/src/Flex/Flex.tsx",
+          "name": "FlexProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"end\" | \"center\""
+        }
+      },
+      "gap": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The spacing between the children.",
+        "name": "gap",
+        "parent": {
+          "fileName": "../components/src/Flex/Flex.tsx",
+          "name": "FlexProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"none\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"base\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
+        }
+      },
+      "direction": {
+        "defaultValue": {
+          "value": "row"
+        },
+        "description": "The direction of the content.",
+        "name": "direction",
+        "parent": {
+          "fileName": "../components/src/Flex/Flex.tsx",
+          "name": "FlexProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Direction"
+        }
+      }
+    }
+  }
+]

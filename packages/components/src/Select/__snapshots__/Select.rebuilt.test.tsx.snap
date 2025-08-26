@@ -1,0 +1,357 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectRebuilt renders a SelectRebuilt with many options 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper select"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <select
+              class="input"
+              id=":r2:"
+              name="generatedName--:r2:"
+            >
+              <option>
+                Foo
+              </option>
+              <option>
+                Bar
+              </option>
+              <option>
+                Baz
+              </option>
+              <option>
+                Quux
+              </option>
+            </select>
+            <span
+              class="postfix selectPostfix"
+            >
+              <svg
+                data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SelectRebuilt renders a SelectRebuilt with no options 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper select"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <select
+              class="input"
+              id=":r0:"
+              name="generatedName--:r0:"
+            />
+            <span
+              class="postfix selectPostfix"
+            >
+              <svg
+                data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SelectRebuilt renders a SelectRebuilt with one option 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper select"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <select
+              class="input"
+              id=":r1:"
+              name="generatedName--:r1:"
+            >
+              <option>
+                Foo
+              </option>
+            </select>
+            <span
+              class="postfix selectPostfix"
+            >
+              <svg
+                data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SelectRebuilt renders correctly as large 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper large select"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <select
+              class="input"
+              id=":r4:"
+              name="generatedName--:r4:"
+            >
+              <option>
+                Foo
+              </option>
+            </select>
+            <span
+              class="postfix selectPostfix"
+            >
+              <svg
+                data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SelectRebuilt renders correctly as small 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper small select"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <select
+              class="input"
+              id=":r3:"
+              name="generatedName--:r3:"
+            >
+              <option>
+                Foo
+              </option>
+            </select>
+            <span
+              class="postfix selectPostfix"
+            >
+              <svg
+                data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SelectRebuilt renders correctly when disabled 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper select disabled"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <select
+              class="input"
+              disabled=""
+              id=":r5:"
+              name="generatedName--:r5:"
+            >
+              <option>
+                Foo
+              </option>
+            </select>
+            <span
+              class="postfix selectPostfix"
+            >
+              <svg
+                data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SelectRebuilt renders correctly when invalid 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper select invalid"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <select
+              class="input"
+              id=":r6:"
+              name="generatedName--:r6:"
+            >
+              <option>
+                Foo
+              </option>
+            </select>
+            <span
+              class="postfix selectPostfix"
+            >
+              <svg
+                data-testid="arrowDown"
+                style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

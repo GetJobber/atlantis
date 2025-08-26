@@ -1,55 +1,10 @@
 import omit from "lodash/omit";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  CommonFormFieldProps,
-  FieldActionsRef,
-  FormField,
-  FormFieldProps,
-  Suffix,
-} from "../FormField";
+import isValid from "date-fns/isValid";
+import type { InputDateProps } from "./InputDate.types";
+import type { FieldActionsRef, Suffix } from "../FormField";
+import { FormField } from "../FormField";
 import { DatePicker } from "../DatePicker";
-
-interface InputDateProps
-  extends Omit<CommonFormFieldProps, "clearable">,
-    Pick<
-      FormFieldProps,
-      | "readonly"
-      | "disabled"
-      | "onEnter"
-      | "onFocus"
-      | "inputRef"
-      | "validations"
-      | "placeholder"
-      | "onChange"
-      | "onBlur"
-    > {
-  /**
-   * A Date object value
-   * (e.g., `new Date("11/11/2011")`)
-   * */
-  readonly value?: Date;
-  onChange(newValue: Date): void;
-  /**
-   * The maximum selectable date.
-   */
-  readonly maxDate?: Date;
-
-  /**
-   * The minimum selectable date.
-   */
-  readonly minDate?: Date;
-
-  /**
-   * Whether to show the calendar icon
-   * @default true
-   */
-  readonly showIcon?: boolean;
-
-  /**
-   * Text to display instead of a date value
-   */
-  readonly emptyValueLabel?: string;
-}
 
 export function InputDate(inputProps: InputDateProps) {
   const formFieldActionsRef = useRef<FieldActionsRef>(null);
@@ -65,7 +20,7 @@ export function InputDate(inputProps: InputDateProps) {
       maxDate={inputProps.maxDate}
       smartAutofocus={false}
       activator={activatorProps => {
-        const { onChange, onClick, value } = activatorProps;
+        const { onChange, onClick, value, pickerRef } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
         const [isFocused, setIsFocused] = useState(false);
         const suffix =
@@ -73,7 +28,7 @@ export function InputDate(inputProps: InputDateProps) {
             ? ({
                 icon: "calendar",
                 ariaLabel: "Show calendar",
-                onClick: onClick && onClick,
+                onClick: !inputProps.disabled && onClick && onClick,
               } as Suffix)
             : undefined;
 
@@ -101,6 +56,28 @@ export function InputDate(inputProps: InputDateProps) {
                 inputProps.onBlur && inputProps.onBlur();
                 activatorProps.onBlur && activatorProps.onBlur();
                 setIsFocused(false);
+
+                /**
+                 * This is an experimental workaround to solve a specific UX problem we have under certain conditions.
+                 * When you click to focus InputDate, ReactDatePicker becomes visible. If you delete the current date and blur
+                 * the input field by clicking away, ReactDatePicker will automatically set the date to whatever date was
+                 * currently selected.
+                 *
+                 * The above works great and is the expected user experience. ReactDatePicker fills in the empty value for us.
+                 *
+                 * However, there's a specific scenario where ReactDatePicker isn't visible: when you tab into the input date.
+                 * When you tab into it, clear the value, and tab away to blur, ReactDatePicker doesn't automatically fill in
+                 * the empty value because it wasn't visible/active.
+                 *
+                 * To solve this, we need to handle the blur event here and check if the value is empty or invalid. If it is,
+                 * we have to call onChange with the original input value which informs ReactDatePicker that is the current value.
+                 */
+                if (inputProps.restoreLastValueOnBlur) {
+                  if ((!value || !isValid(value)) && inputProps.value) {
+                    // @ts-expect-error -- ReactDatePicker types don't include setSelected
+                    pickerRef.current?.setSelected(inputProps.value);
+                  }
+                }
               }}
               onFocus={() => {
                 inputProps.onFocus && inputProps.onFocus();

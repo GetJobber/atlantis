@@ -53,7 +53,7 @@ export const webIconStyles: Record<string, React.CSSProperties> = {
     fill: "{color.request}",
   },
   task: {
-    fill: "{color.navy}",
+    fill: "{color.task}",
   },
   userUnassigned: {
     fill: "{color.destructive}",

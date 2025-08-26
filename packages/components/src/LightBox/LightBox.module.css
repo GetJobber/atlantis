@@ -7,7 +7,7 @@
   @media print {
     overflow: hidden;
 
-    body {
+    & body {
       position: absolute;
       height: 100%;
       overflow: hidden;
@@ -15,71 +15,212 @@
   }
 }
 
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.6;
+  filter: saturate(67%);
+}
+
 .next,
 .prev {
-  display: flex;
   position: absolute;
-  top: 50%;
+  top: 40%;
   z-index: var(--elevation-base);
-  transform: translateY(-50%);
 }
 
 .next {
-  right: var(--space-base);
+  right: var(--space-large);
+  @media (--medium-screens-and-up) {
+    right: var(--space-larger);
+  }
 }
 
 .prev {
-  left: var(--space-base);
+  left: var(--space-large);
+  @media (--medium-screens-and-up) {
+    left: var(--space-larger);
+  }
+}
+
+.buttonHidden {
+  opacity: 0;
+  transition: opacity var(--timing-base) ease-in;
+
+  &:hover,
+  &:focus-within {
+    opacity: 1;
+  }
+}
+
+.buttonVisible {
+  opacity: 1;
+  transition: opacity var(--timing-base) ease-in;
 }
 
 .lightboxWrapper {
   display: flex;
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: var(--elevation-modal);
-  width: 100%;
-  height: 100%;
-  justify-content: space-between;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: var(--color-base-grey--400);
+  justify-content: center;
   flex-direction: column;
 }
 
 .toolbar {
-  display: flex;
+  display: grid;
   z-index: var(--elevation-base);
-  padding: var(--space-small) var(--space-base);
-  color: var(--color-text--secondary);
+  margin-bottom: var(--space-largest);
+  padding: var(--space-base) var(--space-base) 0;
   font-size: var(--typography--fontSize-large);
-  background-color: var(--color-surface--background);
-  justify-content: space-between;
-}
-
-.title {
-  display: inline-flex;
   align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-.imagesWrapper {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  flex: 1 1 0;
-  min-height: 0;
+.closeButton {
+  grid-column: 3;
+  justify-self: end;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: var(--color-overlay);
+.slideNumber {
+  grid-column: 2;
+  justify-self: center;
 }
 
 .image {
   position: absolute;
-  top: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}
+
+.imageArea {
+  position: relative;
+  height: 100%;
   max-width: 100%;
-  max-height: 100%;
-  margin: auto;
+  margin: 0 var(--space-base) var(--space-large);
+  @media (--medium-screens-and-up) {
+    margin: 0 /* nav button width + inner padding + outer margin */
+      calc(var(--space-largest) + var(--space-base) + var(--space-large))
+      var(--space-large);
+  }
+}
+
+.captionWrapper {
+  display: flex;
+  z-index: var(--elevation-base);
+  max-width: 600px;
+  max-height: 90px;
+  margin: 0 auto var(--space-larger);
+  padding: 0 var(--space-base);
+  overflow-y: auto;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: var(--space-small);
+}
+
+.title {
+  text-align: center;
+}
+
+.blurOverlay {
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(30px);
+  background-color: rgba(3, 43, 58, 0.25);
+}
+
+.thumbnailBar {
+  --lightbox--box-sizing: content-box;
+  display: flex;
+  position: relative;
+  z-index: var(--elevation-base);
+  width: 100%;
+  min-height: 92px;
+  box-sizing: var(--lightbox--box-sizing);
+  margin-bottom: var(--space-small);
+  padding-bottom: var(--space-small);
+  overflow-x: scroll;
+  justify-content: safe center;
+  align-items: center;
+  gap: var(--space-small);
+  flex-shrink: 0;
+
+  @supports (scrollbar-color: #000 #000) {
+    scrollbar-width: thin; /* Safari version 18.3: Bug causes this rule to undermine other scrollbar styling  */
+    scrollbar-color: var(--color-interactive--subtle) transparent;
+  }
+
+  @supports not (scrollbar-color: #000 #000) {
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: var(--radius-small);
+      background: var(--color-interactive--subtle);
+    }
+  }
+}
+
+.thumbnailBar * {
+  box-sizing: var(--lightbox--box-sizing);
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-small);
+  opacity: var(--opacity-overlay);
+  object-fit: cover;
+}
+
+.thumbnail {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-small);
+  background-color: var(--color-surface);
+  transition:
+    border var(--timing-base) ease-in,
+    border-radius var(--timing-quick) ease-in,
+    transform var(--timing-quick) ease-in-out;
+  flex-shrink: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.thumbnail.selected {
+  margin: 0 var(--space-smaller);
+  padding: var(--space-smallest);
+  border: var(--border-thick) solid var(--color-surface);
+  border-radius: var(--radius-base);
+  background-color: transparent;
+  transform: scale(1.125);
+
+  .thumbnailImage {
+    opacity: 1;
+    transition: opacity var(--timing-base) linear;
+  }
+}
+
+.thumbnail:first-child,
+.thumbnail.selected:first-child {
+  margin-left: var(--space-base);
+}
+
+.thumbnail:last-child,
+.thumbnail.selected:last-child {
+  margin-right: var(--space-base);
 }

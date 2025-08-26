@@ -1,20 +1,32 @@
 import React from "react";
-import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
-// eslint-disable-next-line no-restricted-imports
-import { Text, ViewStyle } from "react-native";
-import {
-  InputFieldWrapper,
-  InputFieldWrapperProps,
-  commonInputStyles,
-} from ".";
-import { styles } from "./InputFieldWrapper.style";
+import type { RenderAPI } from "@testing-library/react-native";
+import { fireEvent, render, renderHook } from "@testing-library/react-native";
+import type { ViewStyle } from "react-native";
+import { Text } from "react-native";
+import type { InputFieldWrapperProps } from ".";
+import { InputFieldWrapper, useCommonInputStyles } from ".";
+import { useStyles } from "./InputFieldWrapper.style";
 import {
   INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID,
   INPUT_FIELD_WRAPPER_SPINNER_TEST_ID,
 } from "./InputFieldWrapper";
-import { typographyStyles } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 
 const mockLabel = { label: "$" };
+
+let styles: ReturnType<typeof useStyles>;
+let commonInputStyles: ReturnType<typeof useCommonInputStyles>;
+let typographyStyles: ReturnType<typeof useTypographyStyles>;
+
+beforeAll(() => {
+  const stylesHook = renderHook(() => useStyles());
+  const commonInputStylesHook = renderHook(() => useCommonInputStyles());
+  const typographyStylesHook = renderHook(() => useTypographyStyles());
+
+  styles = stylesHook.result.current;
+  commonInputStyles = commonInputStylesHook.result.current;
+  typographyStyles = typographyStylesHook.result.current;
+});
 
 type InputFieldWrapperTestProps = Omit<InputFieldWrapperProps, "children">;
 
@@ -160,7 +172,7 @@ describe("InputFieldWrapper", () => {
       const styleOverride = {
         container: {
           backgroundColor: "purple",
-          width: "50%",
+          width: "50%" as const,
         },
       };
       const { getByTestId } = renderInputFieldWrapper({

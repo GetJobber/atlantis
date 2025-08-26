@@ -1,6 +1,5 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
 describe.skip("Less than an hour ago", () => {
@@ -125,31 +124,10 @@ describe("Over a year ago", () => {
 function getMockDates(date: Date) {
   return {
     Date: date,
-    CivilDate: getCivilTime(date),
     ISO8601DateString: getISOString(date),
   };
 }
 
 function getISOString(date: Date) {
   return date.toISOString();
-}
-
-function getCivilTime(date: Date) {
-  const testYear = date.getFullYear();
-  const testMonth = date.getMonth() + 1;
-  const testDay = date.getDate();
-  const testHour = date.getHours();
-  const testMinute = date.getMinutes();
-  const testSecond = 35; // Want to make sure we don't have flakiness around 0 and 59
-
-  const civilTestDate = new CivilDateTime(
-    testYear,
-    testMonth,
-    testDay,
-    testHour,
-    testMinute,
-    testSecond,
-  );
-
-  return civilTestDate;
 }

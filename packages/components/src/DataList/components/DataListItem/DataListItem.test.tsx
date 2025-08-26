@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import {
   fireEvent,
   render,
@@ -105,13 +106,28 @@ describe("DataListItem", () => {
       renderComponent();
 
       const listItemEl = screen.getByText(listItem);
-      await userEvent.hover(listItemEl);
-      fireEvent.contextMenu(listItemEl);
+      await userEvent.pointer({ keys: "[MouseRight>]", target: listItemEl });
 
       expect(screen.queryByRole("menu")).not.toBeInTheDocument();
       expect(
         screen.queryByRole("button", { name: "More actions" }),
       ).not.toBeInTheDocument();
+    });
+
+    it("should not show our custom context menu when the disableContextMenu prop is true", async () => {
+      mockItemActionComponent.mockReturnValueOnce(
+        <DataListItemActions onClick={handleItemClick} disableContextMenu>
+          <DataListAction label="Edit" />
+          <DataListAction label="Email" />
+        </DataListItemActions>,
+      );
+
+      renderComponent();
+
+      const listItemEl = screen.getByText(listItem);
+      await userEvent.pointer({ keys: "[MouseRight>]", target: listItemEl });
+
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
   });
 

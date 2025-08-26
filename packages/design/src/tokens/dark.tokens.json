@@ -19,108 +19,146 @@
             }
         },
         "interactive": {
-            "$value": "hsl(86, 60%, 50%)"
+            "$value": "hsl(86, 60%, 50%)",
+            "$description": "The default color used for interactive elements."
         },
         "interactive-": {
             "hover": {
-                "$value": "hsl(86, 60%, 60%)"
+                "$value": "hsl(86, 60%, 60%)",
+                "$description": "Hover state for interactive."
             },
             "subtle": {
-                "$value": "{color.base.blue-.200}"
+                "$value": "{color.base.blue-.200}",
+                "$description": "Use for actions that do not demand prominence, such as closing a modal or a navigation icon that is present on every view."
             },
             "subtle-": {
                 "hover": {
-                    "$value": "{color.base.blue-.100}"
+                    "$value": "{color.base.blue-.100}",
+                    "$description": "Hover state for interactive--subtle."
+                }
+            },
+            "background": {
+                "$value": "{color.base.blue-.700}",
+                "$description": "Use for the background of interactive elements to ensure separation from the surface they appear on."
+            },
+            "background-": {
+                "hover": {
+                    "$value": "{color.base.blue-.600}",
+                    "$description": "Hover state for interactive--background."
                 }
             }
         },
         "destructive": {
-            "$value": "{color.base.red-.500}"
+            "$value": "{color.base.red-.500}",
+            "$description": "Use to signify that an interaction will destroy something in the users' account or workflow."
         },
         "destructive-": {
             "hover": {
-                "$value": "{color.base.red-.400}"
+                "$value": "{color.base.red-.400}",
+                "$description": "Hover state for destructive."
             }
         },
         "disabled": {
-            "$value": "{color.base.grey-.500}"
+            "$value": "{color.base.grey-.500}",
+            "$description": "Use to signify that an interactive element is disabled."
         },
         "disabled-": {
             "secondary": {
-                "$value": "{color.base.grey-.700}"
+                "$value": "{color.base.grey-.700}",
+                "$description": "Use when a disabled element needs more than one shade."
             }
         },
         "critical": {
-            "$value": "{color.base.red-.500}"
+            "$value": "{color.base.red-.500}",
+            "$description": "Action required; user must see this status to be unblocked."
         },
         "critical-": {
             "surface": {
-                "$value": "{color.base.red-.900}"
+                "$value": "{color.base.red-.900}",
+                "$description": "Use for the surface of an element that has critial status."
             },
             "onSurface": {
-                "$value": "{color.base.red-.300}"
+                "$value": "{color.base.red-.300}",
+                "$description": "Use for text or iconography that sits overtop a critical background."
             }
         },
         "warning": {
-            "$value": "{color.base.yellow-.400}"
+            "$value": "{color.base.yellow-.400}",
+            "$description": "Action may be required as a consequence of current state."
         },
         "warning-": {
             "surface": {
-                "$value": "{color.base.yellow-.700}"
+                "$value": "{color.base.yellow-.700}",
+                "$description": "Use for the surface of an element that has warning status."
             },
             "onSurface": {
-                "$value": "{color.base.yellow-.200}"
+                "$value": "{color.base.yellow-.200}",
+                "$description": "Use for text or iconography that sits overtop a warning background."
             }
         },
         "success": {
-            "$value": "{color.base.green-.500}"
+            "$value": "{color.base.green-.500}",
+            "$description": "No action required; an action has completed successfully."
         },
         "success-": {
             "surface": {
-                "$value": "{color.base.green-.800}"
+                "$value": "{color.base.green-.800}",
+                "$description": "Use for the surface of an element that has success status."
             },
             "onSurface": {
-                "$value": "{color.base.green-.300}"
+                "$value": "{color.base.green-.300}",
+                "$description": "Use for text or iconography that sits overtop a success background."
             }
         },
         "informative": {
-            "$value": "{color.base.lightBlue-.600}"
+            "$value": "{color.base.lightBlue-.600}",
+            "$description": "No action required; but helpful to know about."
         },
         "informative-": {
             "surface": {
-                "$value": "{color.base.lightBlue-.800}"
+                "$value": "{color.base.lightBlue-.800}",
+                "$description": "Use for the surface of an element that has informative status."
             },
             "onSurface": {
-                "$value": "{color.base.lightBlue-.300}"
+                "$value": "{color.base.lightBlue-.300}",
+                "$description": "Use for text or iconography that sits overtop an informative background."
             }
         },
         "inactive": {
-            "$value": "{color.base.blue-.500}"
+            "$value": "{color.base.blue-.500}",
+            "$description": "No action required; not part of an active workflow."
         },
         "inactive-": {
             "surface": {
-                "$value": "{color.base.blue-.700}"
+                "$value": "{color.base.blue-.700}",
+                "$description": "Use for the surface of an element that has inactive status."
             },
             "onSurface": {
-                "$value": "{color.base.blue-.200}"
+                "$value": "{color.base.blue-.200}",
+                "$description": "Use for text or iconography that sits overtop an inactive background."
             }
         },
         "heading": {
-            "$value": "{color.base.blue-.100}"
+            "$value": "{color.base.blue-.100}",
+            "$description": "Headings have high contrast against the application surface to cement their hierarchy."
         },
         "text": {
-            "$value": "{color.base.blue-.200}"
+            "$value": "{color.base.blue-.200}",
+            "$description": "A slightly softer color is used for body text for greater readability."
         },
         "text-": {
             "secondary": {
-                "$value": "{color.base.blue-.400}"
+                "$value": "{color.base.blue-.400}",
+                "$description": "Text that is relevant but less important can be lower-contrast to suggest its' reduced importance."
             },
             "reverse": {
-                "$value": "{color.base.blue-.700}"
+                "$value": "{color.base.blue-.700}",
+                "$description": "Use for typographic content against reversed (inverted theme) surfaces."
             },
             "reverse-": {
                 "secondary": {
-                    "$value": "{color.base.blue-.900}"
+                    "$value": "{color.base.blue-.900}",
+                    "$description": "Secondary text color for use against reversed (inverted theme) surfaces."
                 }
             }
         },
@@ -128,139 +166,186 @@
             "$value": "{color.base.blue-.200}"
         },
         "surface": {
-            "$value": "{color.base.blue-.900}"
+            "$value": "{color.base.blue-.900}",
+            "$description": "The primary color of the application surface (background). If interactive, surfaces have a hover and active color."
         },
         "surface-": {
             "hover": {
-                "$value": "{color.base.blue-.800}"
+                "$value": "{color.base.blue-.800}",
+                "$description": "Hover state for surface."
             },
             "active": {
-                "$value": "{color.base.blue-.700}"
+                "$value": "{color.base.blue-.700}",
+                "$description": "Active state for surface."
             },
             "background": {
-                "$value": "{color.base.blue-.1000}"
+                "$value": "{color.base.blue-.1000}",
+                "$description": "A slightly darker surface gives a receded appearance relative to main surfaces."
             },
             "background-": {
                 "hover": {
-                    "$value": "{color.base.blue-.800}"
+                    "$value": "{color.base.blue-.800}",
+                    "$description": "Hover state for surface--background."
                 },
                 "subtle": {
-                    "$value": "{color.base.blue-.800}"
+                    "$value": "{color.base.blue-.800}",
+                    "$description": "Use when a subtler distinction than the standard surface--background is needed."
                 }
             },
             "reverse": {
-                "$value": "{color.base.taupe-.200}"
+                "$value": "{color.base.taupe-.200}",
+                "$description": "Use a reverse surface to invert the theme when a strong contrast is needed with the rest of the application."
             }
         },
         "border": {
-            "$value": "{color.base.blue-.700}"
+            "$value": "{color.base.blue-.700}",
+            "$description": "Most of our borders should use this color for subtle definition."
         },
         "border-": {
             "interactive": {
-                "$value": "{color.base.blue-.500}"
+                "$value": "{color.base.blue-.500}",
+                "$description": "Use for the borders of interactive elements to give greater visual significance and ensure the element meets WCAG contrast standards."
             },
             "section": {
-                "$value": "{color.base.blue-.400}"
+                "$value": "{color.base.blue-.400}",
+                "$description": "Use where other bordered content is being further sectioned, such as table headers or list sections."
             }
         },
         "overlay": {
-            "$value": "rgba({color.black-.rgb}, 0.6)"
+            "$value": "rgba({color.black-.rgb}, 0.6)",
+            "$description": "Use to mask an area of the interface to promote focus to a foreground action, such as a Modal's appearance."
         },
         "overlay-": {
             "dimmed": {
-                "$value": "rgba({color.black-.rgb}, 0.4)"
+                "$value": "rgba({color.black-.rgb}, 0.4)",
+                "$description": "A dimmed version of Surface, this masks an area of the interface to indicate inactivity (i.e. waiting for updates)."
             }
         },
         "request": {
-            "$value": "{color.base.orange-.500}"
+            "$value": "{color.base.orange-.500}",
+            "$description": "Requests are orange."
         },
         "quote": {
-            "$value": "{color.base.pink-.500}"
+            "$value": "{color.base.pink-.500}",
+            "$description": "Quotes are pink."
         },
         "job": {
-            "$value": "{color.base.green-.500}"
+            "$value": "{color.base.green-.500}",
+            "$description": "Jobs are green because of their core association to Jobber, which has historically used some shade of green for branding."
         },
         "visit": {
-            "$value": "{color.job}"
+            "$value": "{color.job}",
+            "$description": "Visits inherit the green from jobs."
         },
         "task": {
-            "$value": "{color.base.blue-.500}"
+            "$value": "{color.base.blue-.500}",
+            "$description": "Tasks use a deeper shade of blue than invoices and the two rarely share interfaces as tasks are generally isolated to scheduling."
         },
         "event": {
-            "$value": "{color.base.yellow-.400}"
+            "$value": "{color.base.yellow-.400}",
+            "$description": "Events use yellow."
         },
         "invoice": {
-            "$value": "{color.base.lightBlue-.500}"
+            "$value": "{color.base.lightBlue-.500}",
+            "$description": "Invoices are blue as this is a common color associated with banking and finance."
         },
         "payments": {
-            "$value": "{color.invoice}"
+            "$value": "{color.invoice}",
+            "$description": "Payments inherit the blue of invoicing."
         },
         "request-": {
             "surface": {
-                "$value": "{color.base.orange-.800}"
+                "$value": "{color.base.orange-.800}",
+                "$description": "Use for the surface of an element that has request status."
             },
             "onSurface": {
-                "$value": "{color.base.orange-.300}"
+                "$value": "{color.base.orange-.300}",
+                "$description": "Use for text or iconography that sits overtop a request background."
             }
         },
         "quote-": {
             "surface": {
-                "$value": "{color.base.pink-.800}"
+                "$value": "{color.base.pink-.800}",
+                "$description": "Use for the surface of an element that has quote status."
             },
             "onSurface": {
-                "$value": "{color.base.pink-.300}"
+                "$value": "{color.base.pink-.300}",
+                "$description": "Use for text or iconography that sits overtop a quote background."
             }
         },
         "job-": {
             "surface": {
-                "$value": "{color.base.green-.800}"
+                "$value": "{color.base.green-.800}",
+                "$description": "Use for the surface of an element that has job status."
             },
             "onSurface": {
-                "$value": "{color.base.green-.200}"
+                "$value": "{color.base.green-.200}",
+                "$description": "Use for text or iconography that sits overtop a job background."
             }
         },
         "visit-": {
             "surface": {
-                "$value": "{color.job-.surface}"
+                "$value": "{color.job-.surface}",
+                "$description": "Use for the surface of an element that has visit status."
             },
             "onSurface": {
-                "$value": "{color.job-.onSurface}"
+                "$value": "{color.job-.onSurface}",
+                "$description": "Use for text or iconography that sits overtop a visit background."
             }
         },
         "task-": {
             "surface": {
-                "$value": "{color.base.blue-.700}"
+                "$value": "{color.base.blue-.700}",
+                "$description": "Use for the surface of an element that has task status."
             },
             "onSurface": {
-                "$value": "{color.base.blue-.300}"
+                "$value": "{color.base.blue-.300}",
+                "$description": "Use for text or iconography that sits overtop a task background."
             }
         },
         "event-": {
             "surface": {
-                "$value": "{color.base.yellow-.700}"
+                "$value": "{color.base.yellow-.700}",
+                "$description": "Use for the surface of an element that has event status."
             },
             "onSurface": {
-                "$value": "{color.base.yellow-.200}"
+                "$value": "{color.base.yellow-.200}",
+                "$description": "Use for text or iconography that sits overtop an event background."
             }
         },
         "invoice-": {
             "surface": {
-                "$value": "{color.base.lightBlue-.800}"
+                "$value": "{color.base.lightBlue-.800}",
+                "$description": "Use for the surface of an element that has invoice status."
             },
             "onSurface": {
-                "$value": "{color.base.lightBlue-.300}"
+                "$value": "{color.base.lightBlue-.300}",
+                "$description": "Use for text or iconography that sits overtop an invoice background."
             }
         },
         "payments-": {
             "surface": {
-                "$value": "{color.invoice-.surface}"
+                "$value": "{color.invoice-.surface}",
+                "$description": "Use for the surface of an element that has payments status."
             },
             "onSurface": {
-                "$value": "{color.invoice-.surface}"
+                "$value": "{color.invoice-.onSurface}",
+                "$description": "Use for text or iconography that sits overtop a payments background."
             }
         },
         "client": {
-            "$value": "{color.base.blue-.200}"
+            "$value": "{color.base.blue-.200}",
+            "$description": "Clients use a neutral value as they sit at the core of the workflow."
+        },
+        "client-": {
+            "surface": {
+                "$value": "{color.base.blue-.800}",
+                "$description": "Use for the surface of an element that has client status."
+            },
+            "onSurface": {
+                "$value": "{color.base.blue-.300}",
+                "$description": "Use for text or iconography that sits overtop a client background."
+            }
         }
     },
     "shadow": {

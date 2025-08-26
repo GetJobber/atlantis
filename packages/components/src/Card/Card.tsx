@@ -1,14 +1,23 @@
+import type { ReactElement } from "react";
 import React from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
 import styles from "./Card.module.css";
 import colors from "./cardcolors.module.css";
 import elevations from "./CardElevations.module.css";
 import { CardClickable } from "./CardClickable";
 import { CardHeader } from "./CardHeader";
-import { CardProps } from "./types";
+import type {
+  CardBodyProps,
+  CardHeaderProps,
+  CardProps,
+  HeaderActionProps,
+} from "./types";
 
-interface LinkCardProps extends CardProps {
+/**
+ * Props for a card that acts as a link.
+ * When url is provided, the card becomes clickable and navigates to the specified URL.
+ */
+type LinkCardProps = CardProps & {
   /**
    * URL that the card would navigate to once clicked.
    */
@@ -18,24 +27,130 @@ interface LinkCardProps extends CardProps {
    * Makes the URL open in new tab on click.
    */
   external?: boolean;
-}
+  onClick?: never;
+};
 
-interface ClickableCardProps extends CardProps {
+/**
+ * Props for a card that has a click handler.
+ * When onClick is provided, the card becomes clickable and triggers the handler on click.
+ */
+type ClickableCardProps = CardProps & {
+  /**
+   * Event handler that gets called when the card is clicked.
+   */
   onClick(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
+  url?: never;
+  readonly external?: never;
+};
+
+/**
+ * Props for a regular card without any click behavior.
+ */
+type RegularCardProps = CardProps & {
+  url?: never;
+  onClick?: never;
+  readonly external?: never;
+};
+
+type CardPropOptions = LinkCardProps | ClickableCardProps | RegularCardProps;
+
+/**
+ * Header component for the Card.
+ * Used in the compound component pattern to provide a consistent header layout.
+ *
+ * @example
+ * ```tsx
+ * <Card>
+ *   <Card.Header>
+ *     <Text>Header Content</Text>
+ *   </Card.Header>
+ *   <Card.Body>
+ *     <p>Card content</p>
+ *   </Card.Body>
+ * </Card>
+ * ```
+ */
+function CardHeaderCompoundComponent({ children }: CardHeaderProps) {
+  return <>{children}</>;
 }
 
-type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
+/**
+ * Body component for the Card.
+ * Used in the compound component pattern to provide a consistent content layout.
+ *
+ * @example
+ * ```tsx
+ * <Card>
+ *   <Card.Header>
+ *     <Text>Header Content</Text>
+ *   </Card.Header>
+ *   <Card.Body>
+ *     <p>Card content</p>
+ *   </Card.Body>
+ * </Card>
+ * ```
+ */
+function CardBodyCompoundComponent({ children }: CardBodyProps) {
+  return <>{children}</>;
+}
 
-export function Card({
-  accent,
-  header,
-  children,
-  onClick,
-  title,
-  url,
-  external = false,
-  elevation = "none",
-}: CardPropOptions) {
+function renderCardContent(
+  children: React.ReactNode,
+  title?: string,
+  header?: string | HeaderActionProps | ReactElement,
+) {
+  return (
+    <>
+      <CardHeader title={title} header={header} />
+      {children}
+    </>
+  );
+}
+
+function renderCardWrapper(
+  className: string,
+  content: React.ReactNode,
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>,
+  ) => void,
+  url?: string,
+  external?: boolean,
+) {
+  if (onClick) {
+    return (
+      <CardClickable className={className} onClick={onClick}>
+        {content}
+      </CardClickable>
+    );
+  }
+
+  if (url) {
+    return (
+      <a
+        className={className}
+        href={url}
+        {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
+}
+
+export function Card(props: CardPropOptions) {
+  const {
+    accent,
+    header,
+    children,
+    title,
+    elevation = "none",
+    onClick,
+    url,
+    external,
+  } = props;
+
   const className = classnames(
     styles.card,
     accent && styles.accent,
@@ -44,30 +159,19 @@ export function Card({
     elevation !== "none" && elevations[`${elevation}Elevation`],
   );
 
-  const cardContent = (
-    <>
-      <CardHeader title={title} header={header} />
-      {children}
-    </>
+  const isUsingCompoundPattern = React.Children.toArray(children).some(
+    child =>
+      React.isValidElement(child) &&
+      (child.type === CardHeaderCompoundComponent ||
+        child.type === CardBodyCompoundComponent),
   );
 
-  if (onClick) {
-    return (
-      <CardClickable className={className} onClick={onClick}>
-        {cardContent}
-      </CardClickable>
-    );
-  } else if (url) {
-    return (
-      <a
-        className={className}
-        href={url}
-        {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-      >
-        {cardContent}
-      </a>
-    );
-  } else {
-    return <div className={className}>{cardContent}</div>;
-  }
+  const content = isUsingCompoundPattern
+    ? children
+    : renderCardContent(children, title, header);
+
+  return renderCardWrapper(className, content, onClick, url, external);
 }
+
+Card.Header = CardHeaderCompoundComponent;
+Card.Body = CardBodyCompoundComponent;

@@ -3,6 +3,108 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.0...@jobber/hooks@2.17.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **hooks:** Ignore invalid values coming from use-resize-observer  ([#2642](https://github.com/GetJobber/atlantis/issues/2642)) ([de804a5](https://github.com/GetJobber/atlantis/commit/de804a5a47d0a0b53dcd434f93ffb9e802efa294))
+
+
+
+
+
+# [2.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.16.0...@jobber/hooks@2.17.0) (2025-08-01)
+
+
+### Features
+
+* **hooks:** Add useDebounce Hook to Hooks ([#2561](https://github.com/GetJobber/atlantis/issues/2561)) ([a3e4009](https://github.com/GetJobber/atlantis/commit/a3e4009d861021e472e26726694fe53ea9fb1d30))
+
+
+
+
+
+# [2.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.15.0...@jobber/hooks@2.16.0) (2025-05-28)
+
+
+### Features
+
+* **hooks:** Adding useStepper hook [JOB-124608] ([#2567](https://github.com/GetJobber/atlantis/issues/2567)) ([843c863](https://github.com/GetJobber/atlantis/commit/843c863dabd2056a76a438d72c15258d0d3714e0))
+
+
+
+
+
+# [2.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.14.0...@jobber/hooks@2.15.0) (2025-04-22)
+
+
+### Features
+
+* **hooks:** BREAKING CHANGE: Remove useAssert ([#2495](https://github.com/GetJobber/atlantis/issues/2495)) ([3f9325a](https://github.com/GetJobber/atlantis/commit/3f9325ab2a671e1a2ee0a662551b0879322f00c6))
+
+
+
+
+
+# [2.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.13.1...@jobber/hooks@2.14.0) (2025-04-21)
+
+
+### Features
+
+* **components:** InputTime without RHF ([#2477](https://github.com/GetJobber/atlantis/issues/2477)) ([f58a91f](https://github.com/GetJobber/atlantis/commit/f58a91f7bee6b53ae80254531417fb4837b69afd))
+
+
+
+
+
+## [2.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.13.0...@jobber/hooks@2.13.1) (2025-04-08)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.12.4...@jobber/hooks@2.13.0) (2025-03-13)
+
+
+### Features
+
+* **components:** Add support for composable buttons ([#2412](https://github.com/GetJobber/atlantis/issues/2412)) ([eff2bbd](https://github.com/GetJobber/atlantis/commit/eff2bbd008639469ab68124858db2dba4fce3b58))
+
+
+
+
+
+## [2.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.12.3...@jobber/hooks@2.12.4) (2025-02-20)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.12.1...@jobber/hooks@2.12.3) (2025-02-04)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.11.2...@jobber/hooks@2.12.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* **docx:** use a correct link for star wars graphQL API (useCollectionQuery hook) ([#2326](https://github.com/GetJobber/atlantis/issues/2326)) ([59d80e8](https://github.com/GetJobber/atlantis/commit/59d80e85749eced481b07f702071ff34f8734bbc))
+* **hooks:** Force bump packages to avoid lerna problem ([#2335](https://github.com/GetJobber/atlantis/issues/2335)) ([f4e55f8](https://github.com/GetJobber/atlantis/commit/f4e55f806a65d12a8ddf2fbda248d9a32405af2d))
+
+
+
+
+
 ## [2.11.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.11.0...@jobber/hooks@2.11.1) (2024-10-01)
 
 **Note:** Version bump only for package @jobber/hooks

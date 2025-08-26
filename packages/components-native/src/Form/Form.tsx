@@ -1,24 +1,20 @@
 import React, { useState } from "react";
-import { FieldValues, FormProvider } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import {
-  Keyboard,
-  LayoutChangeEvent,
-  Platform,
-  View,
-  findNodeHandle,
-} from "react-native";
-import { styles } from "./Form.style";
+import type { LayoutChangeEvent } from "react-native";
+import { Keyboard, Platform, View, findNodeHandle } from "react-native";
+import { useStyles } from "./Form.style";
 import { FormErrorBanner } from "./components/FormErrorBanner";
 import { KEYBOARD_SAVE_BUTTON_DISTANCE } from "./constants";
 import { FormMessageBanner } from "./components/FormMessageBanner";
-import {
+import type {
   FormErrors,
   FormProps,
-  FormSubmitErrorType,
   FormValues,
   InternalFormProps,
 } from "./types";
+import { FormSubmitErrorType } from "./types";
 import { FormMask } from "./components/FormMask";
 import { useInternalForm } from "./hooks/useInternalForm";
 import { useFormViewRefs } from "./hooks/useFormViewRefs";
@@ -135,6 +131,8 @@ function InternalForm<T extends FieldValues, S>({
   const onLayout = (event: LayoutChangeEvent) => {
     setMessageBannerHeight(event.nativeEvent.layout.height);
   };
+
+  const styles = useStyles();
 
   return (
     <FormProvider {...formMethods}>

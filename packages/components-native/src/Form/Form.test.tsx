@@ -2,8 +2,10 @@ import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert, Keyboard } from "react-native";
 import { Host } from "react-native-portalize";
-import { Form, FormBannerMessage, FormBannerMessageType } from ".";
-import { FormBannerErrors, FormSubmitErrorType } from "./types";
+import type { FormBannerMessage } from ".";
+import { Form, FormBannerMessageType } from ".";
+import type { FormBannerErrors } from "./types";
+import { FormSubmitErrorType } from "./types";
 import { atlantisContextDefaultValues } from "../AtlantisContext";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 import { Text } from "../Text";
@@ -545,7 +547,7 @@ describe("Form", () => {
   });
 
   describe("Safe Area", () => {
-    it("does render a safe area when there's a saveButtonOffset is provided", () => {
+    it("does render a safe area when there's NO saveButtonOffset provided", () => {
       const { getByTestId } = render(<FormTest onSubmit={onSubmitMock} />);
 
       expect(getByTestId("ATL-FormSafeArea")).toBeDefined();

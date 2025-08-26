@@ -1,9 +1,105 @@
-import { Meta } from "@storybook/addon-docs";
+import { Meta, Canvas } from "@storybook/addon-docs";
+import { Card } from "@jobber/components/Card";
+import { List } from "@jobber/components/List";
 
 <Meta title="Components/Lists and Tables/List" />
 
 # List
 
-Displays a collection of objects that are either the same type or related to one
-another, like billing or activity feed. The main purpose of a list is to help
-the user find an object that leads to its full representation.
+The `List` component renders a collection of items in a structured way. It
+supports both [flat lists](#basic-flat-list) and
+[sectioned lists](#sectioned-list), and allows for
+[custom rendering](#custom-rendering-advanced-usage) of list items via a render
+function.
+
+## Design & usage Guidelines
+
+The `List` component is a great solution if you are looking to display a
+collection of objects that are either the same type or related to one another,
+like billing or activity feed. The main purpose of a list is to help the user
+find an object that leads to its full representation.
+
+The majority of list implementations can be achieved without needing to
+customize rendering. If your items conform to the `ListItemProps` interface, the
+component will render them automatically with the default behavior. A prop of
+type `ListItemProps` must be used when using default rendering.
+
+#### Basic Flat List
+
+<Canvas>
+  <Card>
+    <List
+      items={[
+        {
+          id: 1,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          onClick: () => alert("First list item clicked"),
+        },
+        {
+          id: 2,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          onClick: () => alert("Second list item clicked"),
+        },
+      ]}
+    />
+  </Card>
+</Canvas>
+
+#### Sectioned List
+
+If a section field is present in any item, the list will group the items by
+their section and display them under section headers. If even one section key
+exists in any of items then it will be expected that every object within that
+collection will have a section defined.
+
+If a section is missing, "Other" will be used by default, and any items with a
+section of "Other" will be grouped with that first occurrence that has no
+section. To provide your header value for items missing a section, use the
+`defaultSectionHeader` prop.
+
+<Canvas>
+  <Card>
+    <List
+      items={[
+        {
+          id: 1,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          section: "Section 1",
+          onClick: () => alert("First list item clicked"),
+        },
+        {
+          id: 2,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          section: "Section 1",
+          onClick: () => alert("Second list item clicked"),
+        },
+        {
+          id: 3,
+          content: "Content",
+          icon: "work",
+          iconColor: "interactive",
+          title: "Title",
+          value: "Value",
+          section: "Section 2",
+          onClick: () => alert("Second list item clicked"),
+        },
+      ]}
+    />
+  </Card>
+</Canvas>

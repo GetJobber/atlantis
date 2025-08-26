@@ -1,5 +1,5 @@
+import type { Ref } from "react";
 import React, {
-  Ref,
   forwardRef,
   useCallback,
   useImperativeHandle,
@@ -9,10 +9,9 @@ import React, {
 } from "react";
 import { Modalize } from "react-native-modalize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import {
   AccessibilityInfo,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
   Platform,
   View,
   findNodeHandle,
@@ -20,18 +19,18 @@ import {
 } from "react-native";
 import { Portal } from "react-native-portalize";
 import { useKeyboardVisibility } from "./hooks/useKeyboardVisibility";
-import { styles } from "./ContentOverlay.style";
+import { useStyles } from "./ContentOverlay.style";
 import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
-import {
+import type {
   ContentOverlayProps,
   ContentOverlayRef,
   ModalBackgroundColor,
 } from "./types";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
-import { tokens } from "../utils/design";
 import { Heading } from "../Heading";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export const ContentOverlay = forwardRef(ContentOverlayPortal);
 const ContentOverlayModal = forwardRef(ContentOverlayInternal);
@@ -61,6 +60,7 @@ function ContentOverlayInternal(
   isDraggable = onBeforeExit ? false : isDraggable;
   const isCloseableOnOverlayTap = onBeforeExit ? false : true;
   const { t } = useAtlantisI18n();
+  const { tokens } = useAtlantisTheme();
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const [position, setPosition] = useState<"top" | "initial">("initial");
@@ -125,6 +125,8 @@ function ContentOverlayInternal(
     childrenHeight,
     windowHeight,
   ]);
+
+  const styles = useStyles();
 
   const modalStyle = [
     styles.modal,

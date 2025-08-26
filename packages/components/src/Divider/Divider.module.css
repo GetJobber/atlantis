@@ -1,33 +1,6 @@
 .divider {
-  --divider-width: var(--border-base);
   --divider-color: var(--color-border);
   margin: 0;
   padding: 0;
   border: none;
-}
-
-.large {
-  --divider-width: var(--border-thick);
-  opacity: 0.875;
-}
-
-.larger {
-  --divider-width: var(--border-thicker);
-  opacity: 0.625;
-}
-
-.largest {
-  --divider-width: var(--border-thickest);
-  opacity: 0.375;
-}
-
-.horizontal {
-  height: var(--space-minuscule);
-  border-bottom: var(--divider-width) solid var(--divider-color);
-}
-
-.vertical {
-  width: var(--space-minuscule);
-  height: auto;
-  border-right: var(--divider-width) solid var(--divider-color);
 }

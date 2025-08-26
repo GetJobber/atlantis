@@ -1,12 +1,14 @@
-import React, { Children, ReactElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import React, { Children, isValidElement } from "react";
 import isEmpty from "lodash/isEmpty";
-import {
+import type {
   DataListHeader,
   DataListItemType,
   DataListItemTypeFromHeader,
   DataListObject,
 } from "./DataList.types";
-import { BREAKPOINTS, Breakpoints } from "./DataList.const";
+import type { Breakpoints } from "./DataList.const";
+import { BREAKPOINTS } from "./DataList.const";
 import { DataListTags } from "./components/DataListTags";
 import { DataListHeaderTile } from "./components/DataListHeaderTile/DataListHeaderTile";
 import { FormatDate } from "../FormatDate";
@@ -87,7 +89,7 @@ export function generateHeaderElements<T extends DataListObject>(
   const headerElements = Object.keys(headers).reduce(
     (acc, key) => ({
       ...acc,
-      [key]: <DataListHeaderTile headers={headers} headerKey={key} visible />,
+      [key]: <DataListHeaderTile headers={headers} headerKey={key} />,
     }),
     {} as DataListItemTypeFromHeader<T, typeof headers>,
   );
@@ -109,8 +111,14 @@ export function getExposedActions(
 
   return firstNChildren.reduce((result: typeof childrenArray, child, i) => {
     const hasIcon = Boolean(child.props.icon);
+    const isAlwaysVisible = child.props.alwaysVisible; // If true, the child action will always be visible and not nested in the dropdown.
 
-    if (!hasIcon) return result; // If the child does not have an icon, continue.
+    if (
+      isAlwaysVisible === false ||
+      (isAlwaysVisible === undefined && !hasIcon)
+    ) {
+      return result;
+    }
 
     const isLastChildAdded = result.length === i;
 

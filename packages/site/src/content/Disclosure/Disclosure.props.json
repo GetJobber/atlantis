@@ -1,0 +1,108 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Disclosure/Disclosure.tsx",
+    "description": "",
+    "displayName": "Disclosure",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "Child content that is manged by this component.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode | ReactNode[]"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title for the disclosure pane.\nIf ReactElement[] is provided, it must be wrapped in a container element (not a Fragment).",
+        "name": "title",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string | ReactElement<any, string | JSXElementConstructor<any>> | ReactElement<any, string | JSXElementConstructor<any>>[]"
+        }
+      },
+      "defaultOpen": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "This sets the default open state of the disclosure.\nBy default the disclosure is closed.\nFor use when the component is being used as an Uncontrolled Component.",
+        "name": "defaultOpen",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onToggle": {
+        "defaultValue": null,
+        "description": "Callback that is called when the disclosure is toggled.",
+        "name": "onToggle",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(newOpened: boolean) => void"
+        }
+      },
+      "open": {
+        "defaultValue": null,
+        "description": "Used to make the disclosure a Controlled Component.",
+        "name": "open",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": {
+          "value": "{}"
+        },
+        "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; summary?: string; summaryWrap?: string; title?: { textStyle?: string; }; icon?: { svg?: string; path?: string; }; arrowIconWrapper?: string; content?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": {
+          "value": "{}"
+        },
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; summary?: CSSProperties; summaryWrap?: CSSProperties; title?: { textStyle?: CSSProperties; }; icon?: { ...; }; arrowIconWrapper?: CSSProperties; content?: CSSProperties; }"
+        }
+      }
+    }
+  }
+]

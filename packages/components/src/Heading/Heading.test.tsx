@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { Heading } from ".";
 
@@ -82,4 +82,52 @@ it("renders a non heading inline element", () => {
       </span>
     </div>
   `);
+});
+
+it("renders with maxLines prop", () => {
+  const { container } = render(
+    <Heading level={2} maxLines="small">
+      This is a very long heading text that would likely be truncated when the
+      maxLines prop is set to small, which corresponds to 2 lines maximum
+    </Heading>,
+  );
+
+  const heading = container.querySelector("h2");
+  expect(heading).toHaveClass("textTruncate");
+
+  expect(heading).toHaveTextContent(
+    "This is a very long heading text that would likely be truncated when the maxLines prop is set to small, which corresponds to 2 lines maximum",
+  );
+
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h2
+        class="base bold largest heading textTruncate"
+      >
+        This is a very long heading text that would likely be truncated when the maxLines prop is set to small, which corresponds to 2 lines maximum
+      </h2>
+    </div>
+  `);
+});
+
+describe("UNSAFE_props", () => {
+  it("should apply the UNSAFE_className to the element", () => {
+    render(
+      <Heading level={1} UNSAFE_className={{ textStyle: "custom-class" }}>
+        Test with custom class name
+      </Heading>,
+    );
+    const element = screen.getByText("Test with custom class name");
+    expect(element).toHaveClass("custom-class");
+  });
+
+  it("should apply the UNSAFE_style to the element", () => {
+    render(
+      <Heading level={1} UNSAFE_style={{ textStyle: { color: "red" } }}>
+        Test with custom style
+      </Heading>,
+    );
+    const element = screen.getByText("Test with custom style");
+    expect(element).toHaveStyle({ color: "red" });
+  });
 });

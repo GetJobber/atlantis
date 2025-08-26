@@ -1,12 +1,11 @@
 import React, { createRef } from "react";
-import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
+import type { RenderAPI } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { act } from "react-test-renderer";
-import {
-  BottomSheetOptionsSuffix,
-  FormatFileBottomSheet,
-} from "./FormatFileBottomSheet";
-import { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
+import type { BottomSheetOptionsSuffix } from "./FormatFileBottomSheet";
+import { FormatFileBottomSheet } from "./FormatFileBottomSheet";
+import type { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
 
 let Platform: { OS: "ios" | "android" };
 const onRemove = jest.fn();

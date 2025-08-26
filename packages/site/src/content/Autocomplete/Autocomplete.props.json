@@ -1,0 +1,288 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Autocomplete/Autocomplete.tsx",
+    "description": "",
+    "displayName": "Autocomplete",
+    "methods": [],
+    "props": {
+      "inputRef": {
+        "defaultValue": null,
+        "description": "@deprecated Use `ref` instead.",
+        "name": "inputRef",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
+        }
+      },
+      "initialOptions": {
+        "defaultValue": null,
+        "description": "",
+        "name": "initialOptions",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": false,
+        "type": {
+          "name": "GenericOption[]"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Set Autocomplete value.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": true,
+        "type": {
+          "name": "Option"
+        }
+      },
+      "allowFreeForm": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Allow the autocomplete to use values not from the drop down menu.",
+        "name": "allowFreeForm",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "debounce": {
+        "defaultValue": {
+          "value": "300"
+        },
+        "description": "Debounce in milliseconds for getOptions",
+        "name": "debounce",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Simplified onChange handler that only provides the new value.\n@param newValue",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(newValue?: GenericOptionValue) => void"
+        }
+      },
+      "getOptions": {
+        "defaultValue": null,
+        "description": "Called as the user types in the input. The autocomplete will display what\nis returned from this method to the user as available options.\n@param newInputText",
+        "name": "getOptions",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(newInputText: string) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Hint text that goes above the value once the form is filled out.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "customRenderMenu": {
+        "defaultValue": null,
+        "description": "Override the content rendered in the menu.",
+        "name": "customRenderMenu",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(props: CustomOptionsMenuProp<GenericOption | GenericGetOptionsValue, GenericOptionValue>) => ReactElement<...>"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Further description of the input, can be used for a hint.",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "Name of the input.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Blur callback.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event?: React.FocusEvent) => void"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Focus callback.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event?: React.FocusEvent) => void"
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Adds a prefix label and icon to the field",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Affix"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Adjusts the interface to either have small or large spacing.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Adds a suffix label and icon with an optional action to the field",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "Show an error message above the field. This also\nhighlights the the field red if an error message shows up.",
+        "name": "validations",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RegisterOptions"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<InputTextRef>"
+        }
+      },
+      "key": {
+        "defaultValue": null,
+        "description": "",
+        "name": "key",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Key"
+        }
+      }
+    }
+  }
+]

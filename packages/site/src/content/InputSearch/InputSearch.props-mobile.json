@@ -1,0 +1,156 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/InputSearch/InputSearch.tsx",
+    "description": "",
+    "displayName": "InputSearch",
+    "methods": [],
+    "props": {
+      "onChange": {
+        "defaultValue": null,
+        "description": "A callback function that handles the update of the new value of the property value.",
+        "name": "onChange",
+        "parent": {
+          "fileName": "../components-native/src/InputSearch/InputSearch.tsx",
+          "name": "InputSearchProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(newValue: string) => void"
+        }
+      },
+      "onDebouncedChange": {
+        "defaultValue": null,
+        "description": "A callback function that handles the API call to search the value. This is where the\nwait value is applied to the debounce function to give a delay in each input and API request.",
+        "name": "onDebouncedChange",
+        "parent": {
+          "fileName": "../components-native/src/InputSearch/InputSearch.tsx",
+          "name": "InputSearchProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(searchValue: string) => void"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Set the component to a given value",
+        "name": "value",
+        "parent": {
+          "fileName": "../components-native/src/InputSearch/InputSearch.tsx",
+          "name": "InputSearchProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "wait": {
+        "defaultValue": {
+          "value": "300"
+        },
+        "description": "A numeric value to represents the milliseconds in delaying the function to populate\nthe data source when the 'value' changed.",
+        "name": "wait",
+        "parent": {
+          "fileName": "../components-native/src/InputSearch/InputSearch.tsx",
+          "name": "InputSearchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "accessibilityHint": {
+        "defaultValue": null,
+        "description": "An accessibility hint helps users understand what will happen when they perform an action on the\naccessibility element when that result is not clear from the accessibility label",
+        "name": "accessibilityHint",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "accessibilityLabel": {
+        "defaultValue": null,
+        "description": "VoiceOver will read this string when a user selects the associated element",
+        "name": "accessibilityLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "autoFocus": {
+        "defaultValue": null,
+        "description": "Automatically focus the input after it is rendered",
+        "name": "autoFocus",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Hint text that goes above the value once the field is filled out",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Symbol to display before the text input",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ icon?: IconNames; label?: string; }"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<InputTextRef>"
+        }
+      },
+      "key": {
+        "defaultValue": null,
+        "description": "",
+        "name": "key",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Key"
+        }
+      }
+    }
+  }
+]

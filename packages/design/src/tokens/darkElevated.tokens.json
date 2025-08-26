@@ -1,49 +1,61 @@
 {
     "color": {
         "destructive": {
-            "$value": "{color.base.red-.400}"
+            "$value": "{color.base.red-.400}",
+            "$description": "Use to signify that an interaction will destroy something in the users’ account or workflow."
         },
         "destructive-": {
             "hover": {
-                "$value": "{color.base.red-.300}"
+                "$value": "{color.base.red-.300}",
+                "$description": "Hover state for destructive."
             }
         },
         "surface": {
-            "$value": "{color.base.blue-.800}"
+            "$value": "{color.base.blue-.800}",
+            "$description": "Most elements in Jobber have a white surface; if clickable, they have a light hover and active color."
         },
         "surface-": {
             "hover": {
-                "$value": "{color.base.blue-.700}"
+                "$value": "{color.base.blue-.700}",
+                "$description": "Hover state for surface."
             },
             "active": {
-                "$value": "{color.base.blue-.600}"
+                "$value": "{color.base.blue-.600}",
+                "$description": "Active state for surface."
             },
             "background": {
-                "$value": "{color.base.blue-.900}"
+                "$value": "{color.base.blue-.900}",
+                "$description": "A slightly darker surface gives a receded appearance relative to main surfaces."
             },
             "background-": {
                 "hover": {
-                    "$value": "{color.base.blue-.800}"
+                    "$value": "{color.base.blue-.800}",
+                    "$description": "Hover state for surface--background."
                 },
                 "subtle": {
-                    "$value": "{color.base.blue-.700}"
+                    "$value": "{color.base.blue-.700}",
+                    "$description": "Use when a subtler distinction than the standard surface--background is needed."
                 }
             }
         },
         "border": {
-            "$value": "{color.base.blue-.700}"
+            "$value": "{color.base.blue-.700}",
+            "$description": "Most of our borders should use this color for subtle definition."
         },
         "border-": {
             "section": {
-                "$value": "{color.base.blue-.300}"
+                "$value": "{color.base.blue-.300}",
+                "$description": "Use where other bordered content is being further sectioned, such as table headers or list sections."
             }
         },
         "text": {
-            "$value": "{color.base.blue-.100}"
+            "$value": "{color.base.blue-.100}",
+            "$description": "A slightly softer color is used for body text for greater readability."
         },
         "text-": {
             "secondary": {
-                "$value": "{color.base.blue-.300}"
+                "$value": "{color.base.blue-.300}",
+                "$description": "Text that is relevant but less important can be lower-contrast to suggest its’ reduced importance."
             }
         }
     }

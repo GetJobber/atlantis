@@ -1,11 +1,12 @@
 import React from "react";
 import { View } from "react-native";
-import { ProgressBarProps } from "./types";
-import { styles } from "./ProgressBar.style";
+import type { ProgressBarProps } from "./types";
+import { useStyles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
 import { ProgressBarStepped } from "./ProgressBarStepped";
-import { tokens } from "../utils/design";
+import { sizeStyles } from "./ProgressBar.size.style";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export function ProgressBar({
   loading,
@@ -15,8 +16,11 @@ export function ProgressBar({
   reverseTheme = false,
   header,
   variation = "progress",
+  size = "base",
 }: ProgressBarProps): JSX.Element {
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
+  const { tokens } = useAtlantisTheme();
 
   return (
     <View
@@ -29,17 +33,19 @@ export function ProgressBar({
         <ProgressBarStepped
           total={total}
           current={current}
-          color={reverseTheme ? undefined : tokens["color-surface--background"]}
+          color={
+            reverseTheme ? undefined : tokens["color-interactive--background"]
+          }
           loading={loading}
           inProgress={inProgress}
         />
       ) : (
-        <View style={styles.progressBarContainer}>
+        <View style={[styles.progressBarContainer, sizeStyles[size]]}>
           <ProgressBarInner
             width={100}
             animationDuration={0}
             color={
-              reverseTheme ? undefined : tokens["color-surface--background"]
+              reverseTheme ? undefined : tokens["color-interactive--background"]
             }
           />
           {!loading && (

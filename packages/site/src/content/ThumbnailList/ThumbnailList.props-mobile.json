@@ -1,0 +1,65 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/ThumbnailList/ThumbnailList.tsx",
+    "description": "",
+    "displayName": "ThumbnailList",
+    "methods": [],
+    "props": {
+      "files": {
+        "defaultValue": null,
+        "description": "",
+        "name": "files",
+        "parent": {
+          "fileName": "packages/components-native/src/ThumbnailList/types.ts",
+          "name": "ThumbnailListProps"
+        },
+        "required": true,
+        "type": {
+          "name": "File[]"
+        }
+      },
+      "rowCount": {
+        "defaultValue": {
+          "value": "RowCount.TwoRows"
+        },
+        "description": "",
+        "name": "rowCount",
+        "parent": {
+          "fileName": "packages/components-native/src/ThumbnailList/types.ts",
+          "name": "ThumbnailListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RowCount"
+        }
+      },
+      "handleOpenFile": {
+        "defaultValue": null,
+        "description": "",
+        "name": "handleOpenFile",
+        "parent": {
+          "fileName": "packages/components-native/src/ThumbnailList/types.ts",
+          "name": "ThumbnailListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "({ file, index, imageList, }: { file: File; index: number; imageList: File[]; }) => void"
+        }
+      },
+      "createThumbnail": {
+        "defaultValue": null,
+        "description": "",
+        "name": "createThumbnail",
+        "parent": {
+          "fileName": "packages/components-native/src/ThumbnailList/types.ts",
+          "name": "ThumbnailListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CreateThumbnail"
+        }
+      }
+    }
+  }
+]

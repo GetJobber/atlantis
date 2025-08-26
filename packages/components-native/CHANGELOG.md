@@ -3,6 +3,260 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.84.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.84.2...@jobber/components-native@0.84.3) (2025-08-21)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.84.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.84.1...@jobber/components-native@0.84.2) (2025-08-18)
+
+
+### Bug Fixes
+
+* **components-native:** Use type import specifier in packages/components-native ([#2677](https://github.com/GetJobber/atlantis/issues/2677)) ([2bcf019](https://github.com/GetJobber/atlantis/commit/2bcf0194707d9ed1e80126cb9511a72ebd3c239d))
+
+
+
+
+
+## [0.84.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.84.0...@jobber/components-native@0.84.1) (2025-08-12)
+
+
+### Bug Fixes
+
+* **components-native:** Fix Select presses not always responding on Android [JOB-131539] ([#2657](https://github.com/GetJobber/atlantis/issues/2657)) ([063aee5](https://github.com/GetJobber/atlantis/commit/063aee5efc19a2654ce3db7e4c1fdb855b738c3b))
+
+
+
+
+
+# [0.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.83.0...@jobber/components-native@0.84.0) (2025-08-01)
+
+
+### Features
+
+* **components-native:** Add onTextLayout to Typography and Text ([#2637](https://github.com/GetJobber/atlantis/issues/2637)) ([0ac4ad6](https://github.com/GetJobber/atlantis/commit/0ac4ad6eb347c399110a99d3e6388031ba9d05fb))
+
+
+
+
+
+# [0.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.82.0...@jobber/components-native@0.83.0) (2025-08-01)
+
+
+### Features
+
+* **hooks:** Add useDebounce Hook to Hooks ([#2561](https://github.com/GetJobber/atlantis/issues/2561)) ([a3e4009](https://github.com/GetJobber/atlantis/commit/a3e4009d861021e472e26726694fe53ea9fb1d30))
+
+
+
+
+
+# [0.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.2...@jobber/components-native@0.82.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* **components-native:** Do not render Select's label element when no label is provided [JOB-125934] ([#2601](https://github.com/GetJobber/atlantis/issues/2601)) ([1b732d5](https://github.com/GetJobber/atlantis/commit/1b732d5bb843b10a8637a21bca60e4462ed10e60))
+
+
+### Features
+
+* **components-native:** Bump react-native-safe-area-context Version ([#2608](https://github.com/GetJobber/atlantis/issues/2608)) ([12130e0](https://github.com/GetJobber/atlantis/commit/12130e05feb3ad270ed744eb4598c853a818589f))
+
+
+
+
+
+## [0.81.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.1...@jobber/components-native@0.81.2) (2025-06-30)
+
+
+### Bug Fixes
+
+* **components-native:** fix placement of assistive text on Checkbox [JOB-125934] ([#2600](https://github.com/GetJobber/atlantis/issues/2600)) ([cc1c768](https://github.com/GetJobber/atlantis/commit/cc1c76831dae9138d159a69c793718e04877effb))
+
+
+
+
+
+## [0.81.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.81.0...@jobber/components-native@0.81.1) (2025-05-16)
+
+
+### Bug Fixes
+
+* **components-native:** Fix bleeding corners for FormatFile ([#2559](https://github.com/GetJobber/atlantis/issues/2559)) ([8779248](https://github.com/GetJobber/atlantis/commit/87792488bbf0efc110d1adf914b61bdaa1fff619))
+
+
+
+
+
+# [0.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.80.2...@jobber/components-native@0.81.0) (2025-05-12)
+
+
+### Features
+
+* **components-native:** BREAKING CHANGE: Upgrade React Native Version ([#2528](https://github.com/GetJobber/atlantis/issues/2528)) ([ca67b7e](https://github.com/GetJobber/atlantis/commit/ca67b7efa686f03017a9af86189a62de993c72a4)), closes [#2540](https://github.com/GetJobber/atlantis/issues/2540)
+
+
+
+
+
+## [0.80.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.80.1...@jobber/components-native@0.80.2) (2025-05-07)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.80.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.80.0...@jobber/components-native@0.80.1) (2025-04-30)
+
+
+### Bug Fixes
+
+* **components-native:** Adjusting Type mismatch in ThumbnailList ([#2523](https://github.com/GetJobber/atlantis/issues/2523)) ([d340a9e](https://github.com/GetJobber/atlantis/commit/d340a9eb3c2fbd7ff2d26934491ed59dfc3e2cbb))
+
+
+
+
+
+# [0.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.79.0...@jobber/components-native@0.80.0) (2025-04-28)
+
+
+### Features
+
+* **components-native:** Add UNSAFE_style to Content ([#2520](https://github.com/GetJobber/atlantis/issues/2520)) ([00408b2](https://github.com/GetJobber/atlantis/commit/00408b2d9a534d74cffbaf2a34d01bf887f154e7))
+
+
+
+
+
+# [0.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.78.0...@jobber/components-native@0.79.0) (2025-04-08)
+
+
+### Features
+
+* **design:** Update lightness value of `base-blue--600` to improve accessibility ([#2438](https://github.com/GetJobber/atlantis/issues/2438)) ([bb6ca7f](https://github.com/GetJobber/atlantis/commit/bb6ca7fafed17bd2c048dd05ba56388284a2a831))
+
+
+
+
+
+# [0.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.77.1...@jobber/components-native@0.78.0) (2025-02-28)
+
+
+### Features
+
+* **components-native:** Allow for stylesheets to be dynamically updated [JOB-116234] ([#2389](https://github.com/GetJobber/atlantis/issues/2389)) ([73ef013](https://github.com/GetJobber/atlantis/commit/73ef0134493b8e8f83c3498da181bbe79ac45bfd))
+
+
+
+
+
+## [0.77.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.77.0...@jobber/components-native@0.77.1) (2025-02-24)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.76.0...@jobber/components-native@0.77.0) (2025-02-24)
+
+
+### Features
+
+* **components-native:** AtlantisThemeContext for mobile ([#2387](https://github.com/GetJobber/atlantis/issues/2387)) ([1c3085f](https://github.com/GetJobber/atlantis/commit/1c3085ff2fda058fc0e2f6438194638ba1352c27))
+
+
+
+
+
+# [0.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.5...@jobber/components-native@0.76.0) (2025-02-12)
+
+
+### Features
+
+* **components-native:** Adding Unsafe style to mobile Text and Button [JOB-112128] ([#2350](https://github.com/GetJobber/atlantis/issues/2350)) ([65f6b92](https://github.com/GetJobber/atlantis/commit/65f6b922f171825da2f1fdb886872967f294567e))
+
+
+
+
+
+## [0.75.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.3...@jobber/components-native@0.75.5) (2025-02-04)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.75.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.2...@jobber/components-native@0.75.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* **components-native:** Add missing onPress prop type to InputPressable suffix (it's already accepted) ([#2349](https://github.com/GetJobber/atlantis/issues/2349)) ([606971b](https://github.com/GetJobber/atlantis/commit/606971b50c05be8f33214bef94c49f6fccd410a9))
+
+
+
+
+
+## [0.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.1...@jobber/components-native@0.75.2) (2024-11-29)
+
+
+### Bug Fixes
+
+* **components:** Fix SegmentedControl.Base component name in meta.json ([#2174](https://github.com/GetJobber/atlantis/issues/2174)) ([997dc3b](https://github.com/GetJobber/atlantis/commit/997dc3b2c696b192bf9ea3ead921df3452a5dfff))
+
+
+
+
+
+## [0.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.75.0...@jobber/components-native@0.75.1) (2024-11-19)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.74.0...@jobber/components-native@0.75.0) (2024-11-15)
+
+
+### Features
+
+* **components-native:** Updated Divider component - added 'vertical' mode and 'testID' prop [JOB-97734] ([#2110](https://github.com/GetJobber/atlantis/issues/2110)) ([a9a9416](https://github.com/GetJobber/atlantis/commit/a9a9416a53587209e6a0a4bd8f7e41f97d65d182))
+
+
+
+
+
+# [0.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.4...@jobber/components-native@0.74.0) (2024-11-05)
+
+
+### Features
+
+* **components-native:** Add size variation for progress bar ([#2096](https://github.com/GetJobber/atlantis/issues/2096)) ([1e36491](https://github.com/GetJobber/atlantis/commit/1e364912003bcbf18fe80cac5ac6a0c9277b4313))
+
+
+
+
+
+## [0.73.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.2...@jobber/components-native@0.73.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* **components-native:** Assistive text alignment on `Select` ([#2068](https://github.com/GetJobber/atlantis/issues/2068)) ([538e4b2](https://github.com/GetJobber/atlantis/commit/538e4b29f5481a81eb76a03f9a66bd8df407ea0d))
+
+
+
+
+
 ## [0.73.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.73.1...@jobber/components-native@0.73.2) (2024-10-18)
 
 

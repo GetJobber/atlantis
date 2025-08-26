@@ -1,0 +1,52 @@
+## Controlled & Uncontrolled
+
+### Controlled
+
+Use a
+[controlled](..../?path=/story/components-selections-segmentedcontrol-web--controlled)
+SegmentedControl when the selected option needs to sync with other application
+state or when side effects should occur upon selection changes.
+
+For a controlled SegmentedControl, set the `selectedValue` prop and use
+`onSelectValue` as a callback that updates the external state.
+
+```tsx
+const [selectedOption, setSelectedOption] = useState("day");
+
+<SegmentedControl
+  selectedValue={selectedOption}
+  onSelectValue={setSelectedOption}
+>
+  <SegmentedControl.Option value="day">Day</SegmentedControl.Option>
+  <SegmentedControl.Option value="week">Week</SegmentedControl.Option>
+  <SegmentedControl.Option value="month">Month</SegmentedControl.Option>
+</SegmentedControl>;
+```
+
+### Uncontrolled
+
+An
+[uncontrolled](..../?path=/story/components-selections-segmentedcontrol-web--uncontrolled)
+SegmentedControl manages its selected state internally, which is useful for
+simpler use cases where the selected option does not need to sync with other
+parts of your application’s state.
+
+Use the `defaultValue` prop to set the initially selected option.
+
+```tsx
+<SegmentedControl defaultValue="day">
+ <SegmentedControl.Option value="day">Day</SegmentedControl.Option>
+ <SegmentedControl.Option value="week">Week</SegmentedControl.Option>
+ <SegmentedControl.Option value="month">Month</SegmentedControl.Option>
+</SegmentedControl.Option>
+```
+
+## Developer notes
+
+SegmentedControl does not have any specific arrow key logic. That is because
+arrow key navigation is implicitly set through the SegmentedControl radio button
+structure. The options are a type of `radio` and part of a group (`name`
+attribute) which inherently supports keyboard navigation.
+
+Because the component uses a `role="radiogroup"` and `name` attribute, the
+browser handles this behaviour automatically.

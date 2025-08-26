@@ -1,7 +1,7 @@
-import { ReactElement, ReactNode } from "react";
-import colors from "./cardcolors.module.css";
-import { ButtonProps } from "../Button";
-import { MenuProps } from "../Menu";
+import type { ReactElement, ReactNode } from "react";
+import type colors from "./cardcolors.module.css";
+import { type ButtonProps } from "../Button";
+import { type MenuProps } from "../Menu";
 
 export type ActionProps = ReactElement<
   Omit<ButtonProps, "size" | "fullWidth"> | MenuProps
@@ -30,7 +30,6 @@ export interface CardProps {
   /**
    * @deprecated
    * Use header instead.
-   *
    */
   readonly title?: string;
 
@@ -39,4 +38,17 @@ export interface CardProps {
    */
   readonly header?: string | HeaderActionProps | ReactElement;
   readonly elevation?: elevationProp;
+}
+
+export interface CardHeaderProps {
+  readonly children: ReactNode;
+}
+
+export interface CardBodyProps {
+  readonly children: ReactNode;
+}
+
+export interface CardCompositionProps {
+  Header: React.FC<CardHeaderProps>;
+  Body: React.FC<CardBodyProps>;
 }

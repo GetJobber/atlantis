@@ -1,0 +1,65 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Gallery/Gallery.tsx",
+    "description": "",
+    "displayName": "Gallery",
+    "methods": [],
+    "props": {
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The size of the files and their spacing in the gallery",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Gallery/GalleryTypes.ts",
+          "name": "GalleryProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"base\" | \"large\""
+        }
+      },
+      "files": {
+        "defaultValue": null,
+        "description": "The files for the Gallery to display",
+        "name": "files",
+        "parent": {
+          "fileName": "packages/components/src/Gallery/GalleryTypes.ts",
+          "name": "GalleryProps"
+        },
+        "required": true,
+        "type": {
+          "name": "GalleryFile[]"
+        }
+      },
+      "max": {
+        "defaultValue": null,
+        "description": "The max number of thumbnails before no more thumbnails are displayed\nunless the user clicks an action to display the rest",
+        "name": "max",
+        "parent": {
+          "fileName": "packages/components/src/Gallery/GalleryTypes.ts",
+          "name": "GalleryProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "onDelete": {
+        "defaultValue": null,
+        "description": "onDelete callback - this function will be called when the delete action is\ntriggered on a Gallery image",
+        "name": "onDelete",
+        "parent": {
+          "fileName": "packages/components/src/Gallery/GalleryTypes.ts",
+          "name": "GalleryProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(file: GalleryFile) => void"
+        }
+      }
+    }
+  }
+]

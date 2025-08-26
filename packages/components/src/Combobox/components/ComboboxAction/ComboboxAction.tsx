@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "./ComboboxAction.module.css";
 import { Typography } from "../../../Typography";
-import { ComboboxActionProps } from "../../Combobox.types";
+import type { ComboboxActionProps } from "../../Combobox.types";
 import { ComboboxContext } from "../../ComboboxProvider";
 
 export function ComboboxAction(props: ComboboxActionProps) {
@@ -38,7 +38,7 @@ export function ComboboxAction(props: ComboboxActionProps) {
         <Typography
           element="span"
           size="base"
-          textColor="green"
+          textColor="interactive"
           fontWeight="semiBold"
         >
           {computedLabel}

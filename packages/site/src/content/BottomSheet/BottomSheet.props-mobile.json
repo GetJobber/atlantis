@@ -1,0 +1,102 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/BottomSheet/BottomSheet.tsx",
+    "description": "",
+    "displayName": "BottomSheet",
+    "methods": [],
+    "props": {
+      "showCancel": {
+        "defaultValue": null,
+        "description": "Display a cancel button in the bottom sheet footer.",
+        "name": "showCancel",
+        "parent": {
+          "fileName": "../components-native/src/BottomSheet/BottomSheet.tsx",
+          "name": "BottomSheetProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "Hide or show the cancel button when loading state is provided.",
+        "name": "loading",
+        "parent": {
+          "fileName": "../components-native/src/BottomSheet/BottomSheet.tsx",
+          "name": "BottomSheetProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "heading": {
+        "defaultValue": null,
+        "description": "An optional heading to display in the bottom sheet header.",
+        "name": "heading",
+        "parent": {
+          "fileName": "../components-native/src/BottomSheet/BottomSheet.tsx",
+          "name": "BottomSheetProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onOpen": {
+        "defaultValue": null,
+        "description": "Callback that is called when the overlay is opened.",
+        "name": "onOpen",
+        "parent": {
+          "fileName": "../components-native/src/BottomSheet/BottomSheet.tsx",
+          "name": "BottomSheetProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "onClose": {
+        "defaultValue": null,
+        "description": "Callback that is called when the overlay is closed.",
+        "name": "onClose",
+        "parent": {
+          "fileName": "../components-native/src/BottomSheet/BottomSheet.tsx",
+          "name": "BottomSheetProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<IHandles>"
+        }
+      },
+      "key": {
+        "defaultValue": null,
+        "description": "",
+        "name": "key",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Key"
+        }
+      }
+    }
+  }
+]

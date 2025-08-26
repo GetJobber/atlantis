@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
+import type { LayoutRectangle } from "react-native";
 import {
   Keyboard,
-  LayoutRectangle,
   Platform,
   Pressable,
   View,
@@ -9,16 +9,16 @@ import {
 } from "react-native";
 import { Portal } from "react-native-portalize";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
-import { styles } from "./Menu.style";
+import { useStyles } from "./Menu.style";
 import { findViewpoint } from "./utils";
-import { MenuProps } from "./types";
+import type { MenuProps } from "./types";
 import { MenuOption } from "./components/MenuOption";
 import { Overlay } from "./components/Overlay";
-import { tokens } from "../utils/design";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { useAtlantisContext } from "../AtlantisContext";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
@@ -28,12 +28,15 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
   const screenInfo = useScreenInformation();
 
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
 
   const findMenuLayout = useCallback(() => {
     if (activatorLayout.current) {
-      setMenuPosition(findViewpoint(screenInfo, activatorLayout.current));
+      setMenuPosition(
+        findViewpoint(screenInfo, activatorLayout.current, styles),
+      );
     }
-  }, [screenInfo, activatorLayout]);
+  }, [screenInfo, activatorLayout, styles]);
 
   const openMenu = () => {
     menuButtonRef.current?.measureInWindow(
@@ -62,6 +65,8 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
       openMenu();
     }
   };
+
+  const { tokens } = useAtlantisTheme();
 
   return (
     <>

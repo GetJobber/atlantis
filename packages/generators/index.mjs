@@ -1,10 +1,10 @@
 /* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-default-export */
 
 import { PathPrompt } from "inquirer-path";
 
 export default (plop, config) => {
+  // Merge the config with the default values
   const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",
@@ -54,6 +54,12 @@ export default (plop, config) => {
     actions: answers => {
       Object.assign(answers, { mdx: "mdx", tsx: "tsx" });
       const actions = [];
+      const buildSiteContentIndex = () => ({
+        type: "addMany",
+        destination: `packages/site/src/content/{{name}}/`,
+        base: "templates/site",
+        templateFiles: "templates/site/**/*",
+      });
 
       if (answers.type === "web") {
         actions.push(
@@ -69,6 +75,8 @@ export default (plop, config) => {
             base: "templates/docs",
             templateFiles: `templates/docs/!(Mobile)*`,
           },
+          buildSiteContentIndex(),
+          webReminder,
         );
       } else if (answers.type === "native") {
         actions.push(
@@ -84,6 +92,7 @@ export default (plop, config) => {
             base: "templates/docs",
             templateFiles: `templates/docs/!(Web)*`,
           },
+          buildSiteContentIndex(),
           mobileReminder,
         );
       } else {
@@ -106,6 +115,8 @@ export default (plop, config) => {
             base: "templates/docs",
             templateFiles: `templates/docs/${templateGlob}`,
           },
+          buildSiteContentIndex(),
+          webReminder,
           mobileReminder,
         );
       }
@@ -117,4 +128,8 @@ export default (plop, config) => {
 
 function mobileReminder() {
   return "🎉 Mobile Component created!. Remember to add the new component's export to packages/components-native/src/index.ts";
+}
+
+function webReminder() {
+  return "🎉 Web Component created!. Remember to add the new component's export to packages/components/src/index.tsx";
 }

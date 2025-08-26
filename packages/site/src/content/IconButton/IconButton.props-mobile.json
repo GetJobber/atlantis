@@ -1,0 +1,102 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/IconButton/IconButton.tsx",
+    "description": "",
+    "displayName": "IconButton",
+    "methods": [],
+    "props": {
+      "onPress": {
+        "defaultValue": null,
+        "description": "Press handler",
+        "name": "onPress",
+        "parent": {
+          "fileName": "../components-native/src/IconButton/IconButton.tsx",
+          "name": "IconButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The icon to show.",
+        "name": "name",
+        "parent": {
+          "fileName": "../components-native/src/IconButton/IconButton.tsx",
+          "name": "IconButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "accessibilityLabel": {
+        "defaultValue": null,
+        "description": "Accessibilty label for the component. It's also used for testing",
+        "name": "accessibilityLabel",
+        "parent": {
+          "fileName": "../components-native/src/IconButton/IconButton.tsx",
+          "name": "IconButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "color": {
+        "defaultValue": null,
+        "description": "Determines the color of the icon. If not specified, some icons have a default system colour\nlike quotes, jobs, and invoices.\nOthers that don't have a system colour fall back to greyBlue.",
+        "name": "color",
+        "parent": {
+          "fileName": "../components-native/src/IconButton/IconButton.tsx",
+          "name": "IconButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | \"interactive\" | ... 33 more ... | \"brandHighlight\""
+        }
+      },
+      "customColor": {
+        "defaultValue": null,
+        "description": "Sets a custom color for the icon. Can be a rgb() or hex value.",
+        "name": "customColor",
+        "parent": {
+          "fileName": "../components-native/src/IconButton/IconButton.tsx",
+          "name": "IconButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "badge": {
+        "defaultValue": null,
+        "description": "a component that would render over the icon\ne.g. the number of notifications over the activity feed icon",
+        "name": "badge",
+        "parent": {
+          "fileName": "../components-native/src/IconButton/IconButton.tsx",
+          "name": "IconButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "React.ReactNode"
+        }
+      },
+      "testID": {
+        "defaultValue": null,
+        "description": "Used to locate this button in tests",
+        "name": "testID",
+        "parent": {
+          "fileName": "../components-native/src/IconButton/IconButton.tsx",
+          "name": "IconButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  }
+]

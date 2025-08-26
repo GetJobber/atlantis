@@ -1,0 +1,2 @@
+packages/site/src/content/**/*.props.json linguist-generated=true
+packages/site/src/content/**/*.props-mobile.json linguist-generated=true

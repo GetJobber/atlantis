@@ -1,15 +1,17 @@
 import React, { useId, useState } from "react";
-import type { KeyboardEvent, PropsWithChildren } from "react";
+import type { CSSProperties, KeyboardEvent, PropsWithChildren } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, Variants, motion } from "framer-motion";
-import { tokens } from "@jobber/design";
+import type { Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { tokens } from "@jobber/design";
 import { SideDrawerActions } from "./SideDrawerActions";
-import { RegisteredComponents, SideDrawerContext } from "./SideDrawerContext";
+import type { RegisteredComponents } from "./SideDrawerContext";
+import { SideDrawerContext } from "./SideDrawerContext";
 import { SideDrawerTitle } from "./SideDrawerTitle";
 import { SideDrawerToolbar } from "./SideDrawerToolbar";
 import styles from "./SideDrawer.module.css";
@@ -38,20 +40,44 @@ interface SideDrawerProps extends PropsWithChildren {
    * Change the scrolling direction of the drawer. Useful for chat-like interfaces.
    */
   readonly scrollDirection?: "normal" | "reverse";
+
+  /**
+   * Changes whether the SideDrawer is positioned to the side of the viewport or inline with the content.
+   * @default false
+   */
+  readonly inline?: boolean;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+  };
 }
 
 const variants: Variants = {
-  hidden: { x: "100%" },
+  initial: { x: "100%" },
   visible: { x: 0, transitionEnd: { x: 0 } },
+  hidden: { x: "100%" },
+};
+const inlineVariants: Variants = {
+  initial: { x: "25%", opacity: 0 },
+  visible: { x: 0, opacity: 1, transitionEnd: { x: 0 } },
+  hidden: { x: "25%", opacity: 0 },
 };
 
-export function SideDrawer({
-  children,
-  onRequestClose,
-  open,
-  variation = "base",
-  scrollDirection,
-}: SideDrawerProps) {
+const useSideDrawerState = (open: boolean) => {
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
   const [components, setComponents] = useState<RegisteredComponents>({
     backButton: false,
@@ -63,19 +89,58 @@ export function SideDrawer({
   const [headerShadowRef, noHeaderShadow] = useInView<HTMLDivElement>();
   const [footerShadowRef, noFooterShadow] = useInView<HTMLDivElement>();
 
+  return {
+    ref,
+    setRef,
+    components,
+    setComponents,
+    slots: { toolbar, title, actions, backButton, footer },
+    sideDrawerRef,
+    headerShadowRef,
+    noHeaderShadow,
+    footerShadowRef,
+    noFooterShadow,
+  };
+};
+
+export function SideDrawer({
+  children,
+  onRequestClose,
+  open,
+  variation = "base",
+  scrollDirection,
+  inline = false,
+  UNSAFE_className,
+  UNSAFE_style,
+}: SideDrawerProps) {
+  const {
+    ref,
+    setRef,
+    components,
+    setComponents,
+    slots,
+    sideDrawerRef,
+    headerShadowRef,
+    noHeaderShadow,
+    footerShadowRef,
+    noFooterShadow,
+  } = useSideDrawerState(open);
+
+  useRefocusOnActivator(open);
+
   const container = globalThis.document?.body || null;
   const isMounted = useIsMounted();
 
   if (!isMounted.current && !container) return null;
 
-  return createPortal(
+  const SideDrawerRender = (
     <SideDrawerContext.Provider
       value={{
-        actionPortal: ref?.querySelector(actions.selector),
-        titlePortal: ref?.querySelector(title.selector),
-        toolbarPortal: ref?.querySelector(toolbar.selector),
-        backPortal: ref?.querySelector(backButton.selector),
-        footerPortal: ref?.querySelector(footer.selector),
+        actionPortal: ref?.querySelector(slots.actions.selector),
+        titlePortal: ref?.querySelector(slots.title.selector),
+        toolbarPortal: ref?.querySelector(slots.toolbar.selector),
+        backPortal: ref?.querySelector(slots.backButton.selector),
+        footerPortal: ref?.querySelector(slots.footer.selector),
         components,
         registerComponent: key =>
           setComponents(prev => ({ ...prev, [key]: true })),
@@ -83,7 +148,7 @@ export function SideDrawer({
           setComponents(prev => ({ ...prev, [key]: false })),
       }}
     >
-      {open && (
+      {open && !inline && (
         <button
           className={styles.overlay}
           aria-label="Close"
@@ -95,18 +160,24 @@ export function SideDrawer({
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            className={classNames(styles.drawer, {
-              [styles.reverseScroll]: scrollDirection === "reverse",
-            })}
+            className={classNames(
+              styles.drawer,
+              {
+                [styles.reverseScroll]: scrollDirection === "reverse",
+                [styles.inline]: inline,
+              },
+              UNSAFE_className?.container,
+            )}
             ref={setRef}
             data-elevation={"elevated"}
-            variants={variants}
-            initial="hidden"
+            variants={inline ? inlineVariants : variants}
+            initial="initial"
             animate="visible"
             exit="hidden"
             transition={{
               duration: tokens["timing-base"] / 1000,
             }}
+            style={UNSAFE_style?.container}
           >
             <div
               ref={sideDrawerRef}
@@ -129,16 +200,19 @@ export function SideDrawer({
                       className={classNames(styles.backButton, {
                         [styles.backButtonVisible]: components.backButton,
                       })}
-                      {...backButton.attr}
+                      {...slots.backButton.attr}
                     />
                     <div
                       className={classNames(styles.heading)}
-                      {...title.attr}
+                      {...slots.title.attr}
                     />
                   </Flex>
 
                   <div className={styles.headerActions}>
-                    <div className={styles.hideWhenEmpty} {...actions.attr} />
+                    <div
+                      className={styles.hideWhenEmpty}
+                      {...slots.actions.attr}
+                    />
                     <Button
                       ariaLabel="Close"
                       icon="cross"
@@ -149,7 +223,7 @@ export function SideDrawer({
                   </div>
                 </Flex>
 
-                <div className={styles.hideWhenEmpty} {...toolbar.attr} />
+                <div className={styles.hideWhenEmpty} {...slots.toolbar.attr} />
               </div>
 
               <div className={styles.content}>
@@ -171,15 +245,20 @@ export function SideDrawer({
                   [styles.hasShadow]:
                     footerShadowRef.current && !noFooterShadow,
                 })}
-                {...footer.attr}
+                {...slots.footer.attr}
               />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </SideDrawerContext.Provider>,
-    container,
+    </SideDrawerContext.Provider>
   );
+
+  if (inline) {
+    return SideDrawerRender;
+  }
+
+  return createPortal(SideDrawerRender, container);
 
   function handleKeyUp(event: KeyboardEvent<HTMLDivElement>): void {
     if (event.key === "Escape") {

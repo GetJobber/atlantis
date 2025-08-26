@@ -77,7 +77,8 @@ function findComponentNamesDeep(objectOrFunction: any, name?: string) {
     if (isContext(v)) {
       allNames.push(`${k}.Provider`, `${k}.Consumer`);
     } else if (isForwardedRef(k, v) || isMemoizedComponent(k, v)) {
-      allNames.push(k);
+      const thisName = name ? `${name}.${k}` : k;
+      allNames.push(thisName);
     } else if (isComponent(k, v)) {
       const thisName = name ? `${name}.${k}` : k;
       allNames.push(thisName);

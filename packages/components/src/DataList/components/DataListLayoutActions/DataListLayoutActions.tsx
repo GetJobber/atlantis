@@ -1,9 +1,5 @@
-import React, {
-  Children,
-  PropsWithChildren,
-  ReactElement,
-  useEffect,
-} from "react";
+import type { PropsWithChildren, ReactElement } from "react";
+import React, { Children, useEffect } from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActionsOverflow";

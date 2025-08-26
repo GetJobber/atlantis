@@ -1,0 +1,63 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu",
+    "methods": [],
+    "props": {
+      "activator": {
+        "defaultValue": null,
+        "description": "Custom menu activator. If this is not provided a default [… More] will be used.",
+        "name": "activator",
+        "parent": {
+          "fileName": "../components/src/Menu/Menu.tsx",
+          "name": "MenuProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+        }
+      },
+      "items": {
+        "defaultValue": null,
+        "description": "Collection of action items.",
+        "name": "items",
+        "parent": {
+          "fileName": "../components/src/Menu/Menu.tsx",
+          "name": "MenuProps"
+        },
+        "required": true,
+        "type": {
+          "name": "SectionProps[]"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "../components/src/Menu/Menu.tsx",
+          "name": "MenuProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ menu?: string; header?: string; action?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components/src/Menu/Menu.tsx",
+          "name": "MenuProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ menu?: CSSProperties; header?: CSSProperties; action?: CSSProperties; }"
+        }
+      }
+    }
+  }
+]

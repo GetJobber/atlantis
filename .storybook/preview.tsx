@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
+import { AtlantisThemeContextProvider, updateTheme } from "@jobber/components/AtlantisThemeContext";
 import { tokens } from "@jobber/design/foundation";
 import { Header } from "./components/Header";
 import { InlineCode } from "./components/InlineCode";
@@ -75,4 +76,13 @@ export const decorators = [
       <StoryDetails Story={Story} context={context} />
     </div>
   ,
+  (Story) => {
+    // @ts-ignore this is injected so that ToggleTheme.tsx can update the iframe theme
+    window.updateTheme = updateTheme;
+    return (
+      <AtlantisThemeContextProvider>
+        <Story />
+      </AtlantisThemeContextProvider>
+    );
+  }
 ];

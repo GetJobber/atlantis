@@ -1,7 +1,8 @@
-import React, { Children, ReactElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import React, { Children, isValidElement } from "react";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Button } from "@jobber/components/Button";
-import {
+import type {
   DataListActionProps,
   DataListActionsProps,
   DataListObject,
@@ -26,8 +27,12 @@ export function DataListActions<T extends DataListObject>({
   return (
     <>
       {exposedActions.map(({ props }) => {
-        if (props.visible && !props.visible(activeItem)) return null;
-        if (!props.icon) return null;
+        const isVisible = props.visible ? props.visible(activeItem) : true;
+        const hasIconOrAlwaysVisible = props.icon || props.alwaysVisible;
+
+        if (!isVisible || !hasIconOrAlwaysVisible) {
+          return null;
+        }
 
         function getActionLabel() {
           if (typeof props.label === "string") {
@@ -40,6 +45,23 @@ export function DataListActions<T extends DataListObject>({
         }
 
         const actionLabel = getActionLabel();
+
+        // If the action is always visible, we don't want a tooltip.
+        if (props.alwaysVisible) {
+          return (
+            <Button
+              ariaLabel={actionLabel}
+              key={props.label}
+              icon={props.icon}
+              label={actionLabel}
+              onClick={() => {
+                props.onClick?.(activeItem);
+              }}
+              type="secondary"
+              variation="subtle"
+            />
+          );
+        }
 
         return (
           <Tooltip key={actionLabel} message={actionLabel}>

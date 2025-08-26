@@ -3,95 +3,130 @@
     "$type": "color",
     "$description": "Semantic color tokens, only to be used in the workflow section?",
     "request": {
-      "$value": "{color.base.orange-.600}"
+      "$value": "{color.base.orange-.600}",
+      "$description": "Requests are orange."
     },
     "request-": {
       "surface": {
-        "$value": "{color.base.orange-.200}"
+        "$value": "{color.base.orange-.200}",
+        "$description": "Use for the surface of an element that has request status."
       },
       "onSurface": {
-        "$value": "{color.base.orange-.800}"
+        "$value": "{color.base.orange-.800}",
+        "$description": "Use for text or iconography that sits overtop a request background."
       }
     },
     "quote": {
-      "$value": "{color.base.pink-.700}"
+      "$value": "{color.base.pink-.700}",
+      "$description": "Quotes are pink."
     },
     "quote-": {
       "surface": {
-        "$value": "{color.base.pink-.200}"
+        "$value": "{color.base.pink-.200}",
+        "$description": "Use for the surface of an element that has quote status."
       },
       "onSurface": {
-        "$value": "{color.base.pink-.800}"
+        "$value": "{color.base.pink-.800}",
+        "$description": "Use for text or iconography that sits overtop a quote background."
       }
     },
     "job": {
-      "$value": "{color.base.green-.600}"
+      "$value": "{color.base.green-.600}",
+      "$description": "Jobs are green because of their core association to Jobber, which has historically used some shade of green for branding."
     },
     "job-": {
       "surface": {
-        "$value": "{color.base.green-.200}"
+        "$value": "{color.base.green-.200}",
+        "$description": "Use for the surface of an element that has job status."
       },
       "onSurface": {
-        "$value": "{color.base.green-.700}"
+        "$value": "{color.base.green-.700}",
+        "$description": "Use for text or iconography that sits overtop a job background."
       }
     },
     "task": {
-      "$value": "{color.base.lightBlue-.800}"
+      "$value": "{color.base.lightBlue-.800}",
+      "$description": "Tasks use a deeper shade of blue than invoices and the two rarely share interfaces as tasks are generally isolated to scheduling."
     },
     "task-": {
       "surface": {
-        "$value": "{color.base.blue-.200}"
+        "$value": "{color.base.blue-.200}",
+        "$description": "Use for the surface of an element that has task status."
       },
       "onSurface": {
-        "$value": "{color.base.blue-.800}"
+        "$value": "{color.base.blue-.800}",
+        "$description": "Use for text or iconography that sits overtop a task background."
       }
     },
     "invoice": {
-      "$value": "{color.base.lightBlue-.700}"
+      "$value": "{color.base.lightBlue-.700}",
+      "$description": "Invoices are blue as this is a common color associated with banking and finance."
     },
     "invoice-": {
       "surface": {
-        "$value": "{color.base.lightBlue-.200}"
+        "$value": "{color.base.lightBlue-.200}",
+        "$description": "Use for the surface of an element that has invoice status."
       },
       "onSurface": {
-        "$value": "{color.base.lightBlue-.800}"
+        "$value": "{color.base.lightBlue-.800}",
+        "$description": "Use for text or iconography that sits overtop an invoice background."
       }
     },
     "visit": {
-      "$value": "{color.job}"
+      "$value": "{color.job}",
+      "$description": "Visits inherit the green from jobs."
     },
     "visit-": {
       "surface": {
-        "$value": "{color.job-.surface}"
+        "$value": "{color.job-.surface}",
+        "$description": "Use for the surface of an element that has visit status."
       },
       "onSurface": {
-        "$value": "{color.job-.onSurface}"
+        "$value": "{color.job-.onSurface}",
+        "$description": "Use for text or iconography that sits overtop a visit background."
       }
     },
     "event": {
-      "$value": "{color.base.yellow-.400}"
+      "$value": "{color.base.yellow-.400}",
+      "$description": "Events use yellow."
     },
     "event-": {
       "surface": {
-        "$value": "{color.base.yellow-.200}"
+        "$value": "{color.base.yellow-.200}",
+        "$description": "Use for the surface of an element that has event status."
       },
       "onSurface": {
-        "$value": "{color.base.yellow-.700}"
+        "$value": "{color.base.yellow-.700}",
+        "$description": "Use for text or iconography that sits overtop an event background."
       }
     },
     "payments": {
-      "$value": "{color.invoice}"
+      "$value": "{color.invoice}",
+      "$description": "Payments inherit the blue of invoicing."
     },
     "payments-": {
       "surface": {
-        "$value": "{color.invoice-.surface}"
+        "$value": "{color.invoice-.surface}",
+        "$description": "Use for the surface of an element that has payment status."
       },
       "onSurface": {
-        "$value": "{color.invoice-.surface}"
+        "$value": "{color.invoice-.onSurface}",
+        "$description": "Use for text or iconography that sits overtop a payment background."
       }
     },
     "client": {
-      "$value": "{color.base.taupe-.700}"
+      "$value": "{color.base.taupe-.700}",
+      "$description": "Clients use a neutral value as they sit at the core of the workflow."
+    },
+    "client-": {
+      "surface": {
+        "$value": "{color.base.taupe-.200}",
+        "$description": "Use for the surface of an element that has client status."
+      },
+      "onSurface": {
+        "$value": "{color.base.taupe-.800}",
+        "$description": "Use for text or iconography that sits overtop a client background."
+      }
     }
   }
 }

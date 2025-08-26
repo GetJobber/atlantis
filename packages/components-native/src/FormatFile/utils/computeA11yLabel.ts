@@ -1,4 +1,4 @@
-import { useAtlantisI18nValue } from "../../hooks/useAtlantisI18n";
+import type { useAtlantisI18nValue } from "../../hooks/useAtlantisI18n";
 
 interface params {
   readonly accessibilityLabel?: string;

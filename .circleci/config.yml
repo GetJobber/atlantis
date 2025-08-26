@@ -9,7 +9,7 @@ orbs:
 references:
   container_config: &container_config
     docker:
-      - image: cimg/node:18.15.0
+      - image: cimg/node:22.11.0
     working_directory: ~/atlantis
 
   restore_repo: &restore_repo
@@ -40,6 +40,21 @@ references:
       name: Install Dependencies
       command: npm ci
 
+  check_git_status: &check_git_status
+    run:
+      name: Check for uncommitted files
+      command: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "Found uncommitted changes which is unexpected. This likely means you forgot to commit generated files."
+          echo "Here's the diff:"
+          git status
+          echo "If the diff includes *.props.json files, run 'npm run generate' inside packages/site, review and commit the changes."
+          exit 1
+        else
+          echo "No uncommitted changes."
+          git status
+        fi
+
   github_authenticity: &github_authenticity
     run:
       name: Establishing GitHub Authenticity
@@ -51,6 +66,11 @@ references:
       command: |
         echo 'export PULL_REQUEST_NUMBER=$(basename "${CIRCLE_PULL_REQUEST}")' >> $BASH_ENV
         echo 'export BASE_PATH=${PULL_REQUEST_NUMBER:-${CIRCLE_BRANCH}}' >> $BASH_ENV
+
+  playwright_config: &playwright_config
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.52.0-noble
+    working_directory: ~/atlantis
 
 jobs:
   checkout_code:
@@ -85,6 +105,8 @@ jobs:
             set -e
             if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
               echo "Skipping run on release commit."
+            elif git log --max-count=1 --pretty=%s | grep -q "chore(release): Manual release"; then
+              echo "Skipping run on manual release commit."
             else
               npm run preventManualRelease
             fi
@@ -93,7 +115,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
+      - run: npm run lint:js -- --quiet --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -130,14 +152,23 @@ jobs:
       - store_artifacts:
           path: coverage
 
-  build_docs:
+  build_storybook:
     resource_class: medium+
     <<: *container_config
     steps:
       - *attach_workspace
       - *generate_base_path
       - run:
-          command: npm run build
+          command: npm run storybook:build
+      - *check_git_status
+
+  build_new_docs:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - run:
+          command: cd packages/site && npm run generate && npm run build
+      - *check_git_status
 
   release:
     <<: *container_config
@@ -156,6 +187,41 @@ jobs:
               npm run ci:release
             fi
 
+  e2e_tests:
+    <<: *playwright_config
+    resource_class: medium
+    steps:
+      - *attach_workspace
+      - run:
+          name: Start dev server for e2e tests
+          command: cd packages/site && npm run dev
+          background: true
+      - run:
+          name: Wait for dev server to be ready
+          command: |
+            timeout=60
+            counter=0
+            until $(curl --output /dev/null --silent --head --fail http://localhost:5173); do
+              if [ $counter -gt $timeout ]; then
+                echo "ERROR: Timed out waiting for server to start"
+                exit 1
+              fi
+              echo "Waiting for server to be ready..."
+              sleep 1
+              counter=$((counter+1))
+            done
+      - run:
+          name: Run Playwright tests
+          command: cd packages/site && npm run test:visual:ci
+          env:
+            CI: 'true'
+      - store_test_results:
+          path: packages/site/playwright-report
+      - store_artifacts:
+          path: packages/site/playwright-report
+      - store_artifacts:
+          path: packages/site/test-results
+
 workflows:
   version: 2
 
@@ -170,16 +236,22 @@ workflows:
             - install_dependencies
       - lint_javascript:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - lint_css:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - test:
           requires:
-            - check_for_manual_release
-      - build_docs:
+            - install_dependencies
+      - build_storybook:
           requires:
-            - check_for_manual_release
+            - install_dependencies
+      - build_new_docs:
+          requires:
+            - install_dependencies
+      - e2e_tests:
+          requires:
+            - install_dependencies
       - release:
           filters:
             branches:
@@ -188,4 +260,6 @@ workflows:
             - lint_javascript
             - lint_css
             - test
-            - build_docs
+            - build_storybook
+            - build_new_docs
+            - e2e_tests

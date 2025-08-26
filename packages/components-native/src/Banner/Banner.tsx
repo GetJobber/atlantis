@@ -1,8 +1,9 @@
-import React, { PropsWithChildren, ReactElement } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
+import React from "react";
 import { Pressable, Text as RNText, View } from "react-native";
-import { IconNames } from "@jobber/design";
-import { BannerProps, BannerTypes } from "./types";
-import { styles } from "./Banner.style";
+import type { IconNames } from "@jobber/design";
+import type { BannerProps, BannerTypes } from "./types";
+import { useStyles } from "./Banner.style";
 import { BannerIcon } from "./components/BannerIcon/BannerIcon";
 import { Content } from "../Content";
 import { Text } from "../Text";
@@ -24,6 +25,8 @@ export function Banner({
     Boolean(React.Children.count(children) === 1 && !text && !details) ||
     Boolean(text && !details && !children);
 
+  const styles = useStyles();
+
   return (
     <Pressable
       style={[styles.container]}
@@ -35,7 +38,7 @@ export function Banner({
           {bannerIcon && <BannerIcon icon={bannerIcon} type={type} />}
           <View style={styles.contentContainer}>
             <View style={styles.childrenContainer}>
-              <WrappingElement shouldFlow={shouldFlow}>
+              <WrappingElement shouldFlow={shouldFlow} styles={styles}>
                 <BannerChildren>{children}</BannerChildren>
 
                 {text && <Text level="text">{text}</Text>}
@@ -70,8 +73,10 @@ function BannerChildren({ children }: PropsWithChildren): JSX.Element {
 function WrappingElement({
   shouldFlow,
   children,
+  styles,
 }: PropsWithChildren<{
   readonly shouldFlow: boolean;
+  readonly styles: ReturnType<typeof useStyles>;
 }>): ReactElement {
   if (shouldFlow) {
     return <RNText testID="ATL-Banner-RNText">{children}</RNText>;

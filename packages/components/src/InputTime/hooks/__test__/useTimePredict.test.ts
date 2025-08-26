@@ -1,5 +1,4 @@
 import { act, renderHook } from "@testing-library/react";
-import { htmlTimeToCivilTime } from "../../civilTimeConversions";
 import { useTimePredict } from "../useTimePredict";
 
 beforeEach(() => {
@@ -9,10 +8,13 @@ beforeEach(() => {
 describe("useTimePredict", () => {
   it("shouldn't predict time when the value is not empty", async () => {
     const handleChange = jest.fn();
+    const noonDate = new Date();
+    noonDate.setHours(12, 0, 0, 0);
+
     const { result } = renderHook(useTimePredict, {
       initialProps: {
         handleChange,
-        value: htmlTimeToCivilTime("12:00"),
+        value: noonDate,
       },
     });
 

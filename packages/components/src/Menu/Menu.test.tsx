@@ -139,6 +139,173 @@ describe("Menu", () => {
     await userEvent.click(getByRole("button"));
     expect(clickHandler).toHaveBeenCalledTimes(1);
   });
+
+  describe("icon colors", () => {
+    it("should default to --color-icon", async () => {
+      render(
+        <Menu
+          activator={<Button label="Menu" />}
+          items={[
+            {
+              actions: [
+                {
+                  label: "Down",
+                  icon: "arrowDown",
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const iconSvg = screen.getByTestId("arrowDown");
+      expect(iconSvg.style.fill).toBe("var(--color-icon)");
+    });
+
+    it("should respect special icon colors", async () => {
+      render(
+        <Menu
+          activator={<Button label="Menu" />}
+          items={[
+            {
+              actions: [
+                {
+                  label: "New job",
+                  icon: "job",
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const iconSvg = screen.getByTestId("job");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-job)");
+    });
+
+    it("should allow overriding icon colors", async () => {
+      render(
+        <Menu
+          activator={<Button label="Menu" />}
+          items={[
+            {
+              actions: [
+                {
+                  label: "New job",
+                  icon: "job",
+                  iconColor: "icon",
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const iconSvg = screen.getByTestId("job");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-icon)");
+    });
+
+    it("should use destructive icon color when action is marked as destructive", async () => {
+      render(
+        <Menu
+          activator={<Button label="Menu" />}
+          items={[
+            {
+              header: "Danger Zone",
+              actions: [
+                {
+                  label: "Delete Item",
+                  icon: "trash",
+                  destructive: true,
+                },
+              ],
+            },
+          ]}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const iconSvg = screen.getByTestId("trash");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-destructive)");
+    });
+  });
+
+  describe("UNSAFE props", () => {
+    it("should apply UNSAFE_className and UNSAFE_style to menu when opened", async () => {
+      render(
+        <Menu
+          items={[
+            {
+              actions: [{ label: "Test" }],
+            },
+          ]}
+          UNSAFE_className={{ menu: "custom-menu-class" }}
+          UNSAFE_style={{ menu: { color: "blue" } }}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const menu = screen.getByRole("menu");
+      expect(menu).toHaveClass("custom-menu-class");
+      expect(menu).toHaveStyle("color: blue");
+    });
+  });
+
+  it("should apply UNSAFE_className and UNSAFE_style to section header", async () => {
+    render(
+      <Menu
+        items={[
+          {
+            header: "Test",
+            actions: [{ label: "Test" }],
+          },
+        ]}
+        UNSAFE_className={{ header: "custom-header-class" }}
+        UNSAFE_style={{ header: { color: "red" } }}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole("button"));
+
+    // The header element we're applying the style to is hidden for accessibility reasons and has no reliable identifier
+    const header = screen.getByRole("heading", { hidden: true }).parentElement;
+
+    expect(header).toHaveClass("custom-header-class");
+    expect(header).toHaveStyle("color: red");
+  });
+  it("should apply UNSAFE_className and UNSAFE_style to all actions", async () => {
+    render(
+      <Menu
+        items={[
+          {
+            actions: [{ label: "Test" }],
+          },
+        ]}
+        UNSAFE_className={{ action: "custom-action-class" }}
+        UNSAFE_style={{ action: { color: "green" } }}
+      />,
+    );
+
+    await userEvent.click(screen.getByRole("button"));
+
+    const actions = screen.getAllByRole("menuitem");
+
+    actions.forEach(action => {
+      expect(action).toHaveClass("custom-action-class");
+      expect(action).toHaveStyle("color: green");
+    });
+  });
 });
 
 it("should focus first action item from the menu when activated", async () => {

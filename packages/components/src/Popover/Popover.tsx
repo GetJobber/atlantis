@@ -1,37 +1,14 @@
-import React, { useState } from "react";
-import { usePopper } from "react-popper";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import classes from "./Popover.module.css";
+import React from "react";
+import classnames from "classnames";
+import type { Side } from "@floating-ui/utils";
+import type {
+  PopoverArrowProps,
+  PopoverDismissButtonProps,
+  PopoverProps,
+} from "./Popover.types";
+import { PopoverProvider, usePopoverContext } from "./PopoverContext";
+import { usePopoverStyles } from "./usePopoverStyles";
 import { ButtonDismiss } from "../ButtonDismiss";
-
-export interface PopoverProps {
-  /**
-   * Element the Popover will attach to and point at. A `useRef` must be attached to an html element
-   * and passed as an attachTo prop in order for the Popover to function properly
-   */
-  readonly attachTo: Element | React.RefObject<Element | null>;
-
-  /**
-   * Popover content.
-   */
-  readonly children: React.ReactNode;
-
-  /**
-   * Control Popover visibility.
-   */
-  readonly open: boolean;
-
-  /**
-   * Callback executed when the user wants to close/dismiss the Popover
-   */
-  readonly onRequestClose?: () => void;
-
-  /**
-   * Describes the preferred placement of the Popover.
-   * @default 'auto'
-   */
-  readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
-}
 
 export function Popover({
   onRequestClose,
@@ -39,69 +16,97 @@ export function Popover({
   attachTo,
   open,
   preferredPlacement = "auto",
+  UNSAFE_className,
+  UNSAFE_style,
 }: PopoverProps) {
-  const [popperElement, setPopperElement] = useState<HTMLElement | null>();
-  const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
-  const { styles: popperStyles, attributes } = usePopper(
-    isHTMLElement(attachTo) ? attachTo : attachTo.current,
-    popperElement,
-    {
-      modifiers: buildModifiers(arrowElement),
-      placement: preferredPlacement,
-    },
+  return (
+    <Popover.Provider
+      attachTo={attachTo}
+      open={open}
+      preferredPlacement={preferredPlacement}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_style={UNSAFE_style}
+    >
+      <Popover.DismissButton
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+        onClick={onRequestClose}
+      />
+      {children}
+      <Popover.Arrow
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+      />
+    </Popover.Provider>
   );
-  useRefocusOnActivator(open);
+}
+
+Popover.Provider = PopoverProvider;
+
+Popover.Arrow = function PopoverArrow({
+  UNSAFE_className,
+  UNSAFE_style,
+}: PopoverArrowProps) {
+  const { setArrowElement, floatingStyles, placement } = usePopoverContext();
+  const popoverStyles = usePopoverStyles();
+  const classes = classnames(popoverStyles.arrow, UNSAFE_className?.arrow);
+
+  // the arrow will get positioned opposite to the placement side
+  const staticSideMap: Record<Side, Side> = {
+    top: "bottom",
+    right: "left",
+    bottom: "top",
+    left: "right",
+  } as const;
+
+  const staticSide = staticSideMap[placement as Side];
+
+  const arrowX = floatingStyles.arrow?.x;
+  const arrowY = floatingStyles.arrow?.y;
+
+  const arrowStyles: React.CSSProperties = {
+    position: "absolute",
+    // only left or top will be defined at a time
+    left: arrowX !== null && arrowX !== undefined ? `${arrowX}px` : "",
+    top: arrowY !== null && arrowY !== undefined ? `${arrowY}px` : "",
+    right: "",
+    bottom: "",
+    [staticSide]: "var(--popover--position--offset)",
+    width: "var(--base-unit)",
+    height: "var(--base-unit)",
+  };
 
   return (
-    <>
-      {open && (
-        <div
-          role="dialog"
-          data-elevation={"elevated"}
-          ref={setPopperElement}
-          style={popperStyles.popper}
-          className={classes.popover}
-          {...attributes.popper}
-        >
-          <div className={classes.dismissButton}>
-            <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
-          </div>
-          {children}
-          <div
-            ref={setArrowElement}
-            className={classes.arrow}
-            style={popperStyles.arrow}
-          />
-        </div>
-      )}
-    </>
+    <div
+      ref={setArrowElement}
+      className={classes}
+      style={{ ...arrowStyles, ...UNSAFE_style?.arrow }}
+      data-testid="ATL-Popover-Arrow"
+    />
   );
-}
+};
 
-function buildModifiers(arrowElement: HTMLElement | undefined | null) {
-  const modifiers = [
-    {
-      name: "arrow",
-      options: { element: arrowElement, padding: 10 },
-    },
-    {
-      name: "offset",
-      options: {
-        offset: [0, 10],
-      },
-    },
-    {
-      name: "flip",
-      options: {
-        fallbackPlacements: ["auto"],
-      },
-    },
-  ];
+Popover.DismissButton = function PopoverDismissButton(
+  props: PopoverDismissButtonProps,
+) {
+  const { UNSAFE_className, UNSAFE_style, children, ...dismissButtonProps } =
+    props;
 
-  return modifiers;
-}
+  const popoverStyles = usePopoverStyles();
+  const classes = classnames(
+    popoverStyles.dismissButton,
+    UNSAFE_className?.dismissButtonContainer,
+  );
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isHTMLElement(el: any): el is Element {
-  return globalThis?.document && el instanceof Element;
-}
+  return (
+    <div
+      className={classes}
+      style={UNSAFE_style?.dismissButtonContainer ?? {}}
+      data-testid="ATL-Popover-Dismiss-Button-Container"
+    >
+      {children ?? (
+        <ButtonDismiss ariaLabel="Close dialog" {...dismissButtonProps} />
+      )}
+    </div>
+  );
+};

@@ -1,10 +1,11 @@
 import React from "react";
 import { View } from "react-native";
-import { IconNames } from "@jobber/design";
-import { styles } from "./FileView.style";
+import type { IconNames } from "@jobber/design";
+import { useStyles } from "./FileView.style";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
-import { FormattedFile, StatusCode } from "../../types";
+import type { FormattedFile } from "../../types";
+import { StatusCode } from "../../types";
 import { computeA11yLabel } from "../../utils";
 import { ProgressBar } from "../ProgressBar";
 import { ErrorIcon } from "../ErrorIcon";
@@ -28,6 +29,8 @@ export function FileView({
   onUploadComplete,
 }: FileViewProps): JSX.Element {
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
+
   const a11yLabel = computeA11yLabel({
     accessibilityLabel,
     showOverlay,

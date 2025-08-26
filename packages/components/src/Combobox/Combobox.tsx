@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ComboboxProps } from "./Combobox.types";
+import type { ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
@@ -17,9 +17,7 @@ export function Combobox(props: ComboboxProps): JSX.Element {
   const options = useMemo(
     () =>
       optionElements?.map(option => ({
-        id: option.props.id,
-        label: option.props.label,
-        prefix: option.props.prefix,
+        ...option.props,
       })) || [],
     [optionElements],
   );
@@ -32,9 +30,9 @@ export function Combobox(props: ComboboxProps): JSX.Element {
     searchValue,
     setSearchValue,
     open,
-    setOpen,
     handleClose,
     handleSelection,
+    handleOpen,
     internalFilteredOptions,
     handleSearchChange,
   } = useCombobox(
@@ -52,21 +50,28 @@ export function Combobox(props: ComboboxProps): JSX.Element {
       selected={selectedOptions}
       selectionHandler={handleSelection}
       open={open}
-      setOpen={setOpen}
+      handleOpen={handleOpen}
       handleClose={handleClose}
       shouldScroll={shouldScroll}
       searchValue={searchValue}
+      label={props.label}
+      onClear={props.onClear}
+      onSelectAll={props.onSelectAll}
     >
       <div ref={wrapperRef} className={styles.wrapper}>
         {open && (
           <div
             className={styles.overlay}
-            onClick={() => handleClose()}
+            onClick={handleClose}
             data-testid="ATL-Combobox-Overlay"
           />
         )}
         {triggerElement || (
-          <ComboboxTrigger label={props.label} selected={props.selected} />
+          <ComboboxTrigger
+            label={props.label}
+            selected={props.selected}
+            activatorRef={props.defaultActivatorRef}
+          />
         )}
         <ComboboxContent
           multiselect={props.multiSelect}
@@ -79,7 +84,6 @@ export function Combobox(props: ComboboxProps): JSX.Element {
           setSearchValue={setSearchValue}
           wrapperRef={wrapperRef}
           open={open}
-          setOpen={setOpen}
           options={props.onSearch ? options : internalFilteredOptions}
           loading={props.loading}
           handleSearchChange={handleSearchChange}

@@ -1,28 +1,29 @@
-import { StyleSheet } from "react-native";
-import { tokens } from "../utils/design";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
-export const spaceStyles = StyleSheet.create({
-  noneSpace: {
-    padding: 0,
-  },
+export const useSpaceAroundStyles = buildThemedStyles(tokens => {
+  return {
+    noneSpace: {
+      padding: 0,
+    },
 
-  smallestSpace: {
-    padding: tokens["space-smallest"],
-  },
+    smallestSpace: {
+      padding: tokens["space-smallest"],
+    },
 
-  smallerSpace: {
-    padding: tokens["space-smaller"],
-  },
+    smallerSpace: {
+      padding: tokens["space-smaller"],
+    },
 
-  smallSpace: {
-    padding: tokens["space-small"],
-  },
+    smallSpace: {
+      padding: tokens["space-small"],
+    },
 
-  baseSpace: {
-    padding: tokens["space-base"],
-  },
+    baseSpace: {
+      padding: tokens["space-base"],
+    },
 
-  largeSpace: {
-    padding: tokens["space-large"],
-  },
+    largeSpace: {
+      padding: tokens["space-large"],
+    },
+  };
 });

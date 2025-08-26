@@ -1,16 +1,18 @@
 import React from "react";
-import Toast, {
+import type {
   ToastConfig,
   ToastConfigParams,
   ToastPosition,
 } from "react-native-toast-message";
+import Toast from "react-native-toast-message";
 import { AccessibilityInfo, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "./Toast.styles";
-import { tokens } from "../utils/design";
+import { useStyles } from "./Toast.styles";
 import { Text } from "../Text";
 import { IconButton } from "../IconButton";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import { useAtlantisTheme } from "../AtlantisThemeContext";
+import { tokens as staticTokens } from "../utils/design";
 
 const MAX_TOAST_MESSAGE_LENGTH = 60;
 const ANNOUNCEMENT_DELAY = 100;
@@ -18,7 +20,9 @@ const ANNOUNCEMENT_DELAY = 100;
 function DefaultToast({ text1 }: ToastConfigParams<string>): JSX.Element {
   const { bottom } = useSafeAreaInsets();
   const { t } = useAtlantisI18n();
+  const styles = useStyles();
   const toastContainerStyles = [styles.container, { paddingBottom: bottom }];
+  const { tokens } = useAtlantisTheme();
 
   return (
     <View style={toastContainerStyles}>
@@ -113,12 +117,13 @@ export function showToast({
 }
 
 function getBottomTabsOffset(bottomTabsVisible: boolean) {
-  const navBarHeight = tokens["space-largest"] + tokens["space-small"];
-  const navBarBorderTopWidth = tokens["space-minuscule"];
+  const navBarHeight =
+    staticTokens["space-largest"] + staticTokens["space-small"];
+  const navBarBorderTopWidth = staticTokens["space-minuscule"];
 
   if (bottomTabsVisible) {
-    return navBarHeight + navBarBorderTopWidth + tokens["space-base"];
+    return navBarHeight + navBarBorderTopWidth + staticTokens["space-base"];
   }
 
-  return tokens["space-base"];
+  return staticTokens["space-base"];
 }

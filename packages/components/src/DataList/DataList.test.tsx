@@ -1,20 +1,22 @@
 /* eslint-disable max-statements */
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
 import userEvent from "@testing-library/user-event";
 import { Banner } from "@jobber/components/Banner";
 import { DataList } from "./DataList";
+import type { Breakpoints } from "./DataList.const";
 import {
   BREAKPOINT_SIZES,
-  Breakpoints,
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
   DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
   DATA_LIST_STICKY_HEADER_TEST_ID,
+  DATA_LIST_TITLE_CONTAINER_TEST_ID,
   DATA_LOAD_MORE_TEST_ID,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import {
+import type {
   DataListItemType,
   DataListProps,
   DataListSortable,
@@ -26,6 +28,10 @@ import {
 } from "./components/DataListLoadingState";
 import { MAX_DATA_COUNT } from "./components/DataListLoadMore";
 import { SORTING_ICON_TEST_ID } from "./components/DataListHeaderTile/DataListSortingArrows";
+import {
+  DATA_LIST_HEADER_BATCH_SELECT_TEST_ID,
+  DATA_LIST_HEADER_CHECKBOX_TEST_ID,
+} from "./components/DataListHeader/DataListHeaderCheckbox";
 import { GLIMMER_TEST_ID } from "../Glimmer";
 import { Button } from "../Button";
 
@@ -52,6 +58,32 @@ describe("DataList", () => {
   describe("Title and results counter", () => {
     const mockData = [{ id: 1, label: "Luke Skywalker" }];
     const mockHeader = { label: "Name" };
+
+    it("should render the title if defined", () => {
+      render(
+        <DataList
+          title="Mock title"
+          totalCount={10}
+          data={mockData}
+          headers={mockHeader}
+        >
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText("Mock title")).toBeInTheDocument();
+    });
+
+    it("should not render the title container if title or totalCount is undefined", () => {
+      render(
+        <DataList data={mockData} headers={mockHeader}>
+          <></>
+        </DataList>,
+      );
+
+      expect(
+        screen.queryByTestId(DATA_LIST_TITLE_CONTAINER_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
 
     it("should render the total count", () => {
       render(
@@ -91,6 +123,18 @@ describe("DataList", () => {
       );
       const results = screen.getByTestId(DATALIST_TOTALCOUNT_TEST_ID);
       expect(within(results).getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
+    });
+
+    it("should not render the total count if the totalCount is undefined", () => {
+      render(
+        <DataList data={mockData} headers={mockHeader} title={mockTitle}>
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText(mockTitle)).toBeInTheDocument();
+      expect(
+        screen.queryByTestId(DATALIST_TOTALCOUNT_TEST_ID),
+      ).not.toBeInTheDocument();
     });
   });
 
@@ -401,7 +445,16 @@ describe("DataList", () => {
 
     it("should render the sorting arrows when sorting is specified", () => {
       renderLayout(undefined, {
-        sortable: [{ key: "name" }],
+        sortable: [
+          {
+            key: "name",
+            sortType: "toggle",
+            options: [
+              { id: "nameAsc", label: "Ascending", order: "asc" },
+              { id: "nameDesc", label: "Descending", order: "desc" },
+            ],
+          },
+        ],
         onSort: jest.fn(),
         state: undefined,
       });
@@ -681,6 +734,197 @@ describe("DataList", () => {
       );
 
       expect(screen.getByText(bannerText)).toBeInTheDocument();
+    });
+  });
+
+  describe("Header Checkbox", () => {
+    const checkboxMockData = [
+      { id: 1, name: "John", email: "john@doe.com" },
+      { id: 2, name: "Jane", email: "jane@doe.com" },
+    ];
+    const checkboxMockHeaders = {
+      name: "Name",
+      email: "Email",
+    };
+
+    it("should render checkbox for layout but not be visible when onSelectAll is absent", () => {
+      const mockOnSelect = jest.fn();
+      render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          selected={[]}
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      const checkboxContainer = screen.getByTestId(
+        DATA_LIST_HEADER_CHECKBOX_TEST_ID,
+      );
+      const headerCheckbox = within(checkboxContainer).getByRole("checkbox", {
+        hidden: true,
+      });
+      expect(headerCheckbox).toBeInTheDocument();
+      expect(headerCheckbox).not.toBeVisible();
+    });
+
+    it("should not show checkbox or select-all UI when item is selected and onSelectAll is absent", () => {
+      const mockOnSelect = jest.fn();
+      render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          selected={[checkboxMockData[0].id]}
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      expect(screen.getByText(checkboxMockHeaders.name)).toBeInTheDocument();
+
+      expect(
+        screen.queryByTestId(DATA_LIST_HEADER_BATCH_SELECT_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not show headers or checkbox on small screens when onSelectAll is absent", () => {
+      // Override the media query mock to simulate small screens
+      // The headerVisibility prop defaulting to visible might override our media query
+      Object.defineProperty(window, "matchMedia", {
+        writable: true,
+        value: jest.fn().mockImplementation((query: string) => ({
+          matches: query.includes("(min-width: 0px)"), // Only match xs breakpoint
+          media: query,
+          onchange: null,
+          addListener: jest.fn(),
+          removeListener: jest.fn(),
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn(),
+          dispatchEvent: jest.fn(),
+        })),
+      });
+
+      const mockOnSelect = jest.fn();
+      render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          selected={[checkboxMockData[0].id]}
+          headerVisibility={{ xs: false }}
+        >
+          <DataList.Layout size="xs">
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      expect(
+        screen.queryByText(checkboxMockHeaders.name),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should show select-all UI when items are selected and onSelectAll is provided", async () => {
+      const mockOnSelect = jest.fn();
+      const mockOnSelectAll = jest.fn();
+
+      const { rerender } = render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          onSelectAll={mockOnSelectAll}
+          selected={[]}
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+      const checkboxContainer = screen.getByTestId(
+        DATA_LIST_HEADER_CHECKBOX_TEST_ID,
+      );
+      const headerCheckbox = within(checkboxContainer).getByRole("checkbox");
+      expect(headerCheckbox).toBeInTheDocument();
+      expect(headerCheckbox).toBeVisible();
+
+      // Rerender with a selected item
+      rerender(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          onSelectAll={mockOnSelectAll}
+          selected={[checkboxMockData[0].id]}
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      const batchSelectUI = await screen.findByTestId(
+        DATA_LIST_HEADER_BATCH_SELECT_TEST_ID,
+      );
+      expect(batchSelectUI).toBeInTheDocument();
+    });
+
+    it("should show select-all UI on small screens when item is selected and onSelectAll is present", async () => {
+      // Override media query to ensure small screen
+      Object.defineProperty(window, "matchMedia", {
+        writable: true,
+        value: jest.fn().mockImplementation((query: string) => ({
+          matches: query.includes("(min-width: 0px)"), // Only match xs breakpoint
+          media: query,
+          onchange: null,
+          addListener: jest.fn(),
+          removeListener: jest.fn(),
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn(),
+          dispatchEvent: jest.fn(),
+        })),
+      });
+
+      const mockOnSelect = jest.fn();
+      const mockOnSelectAll = jest.fn();
+
+      render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          onSelectAll={mockOnSelectAll}
+          selected={[checkboxMockData[0].id]}
+          headerVisibility={{ xs: false }}
+        >
+          <DataList.Layout size="xs">
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div data-testid={`item-${item.id}`}>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      expect(
+        screen.queryByText(checkboxMockHeaders.name),
+      ).not.toBeInTheDocument();
     });
   });
 });

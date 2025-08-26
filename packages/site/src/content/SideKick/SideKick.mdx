@@ -1,0 +1,88 @@
+import { Canvas } from "@storybook/addon-docs";
+import { SideKick, Card, Box, Text, ContentBlock } from "@jobber/components";
+
+# SideKick
+
+The SideKick component provides a complementary panel that appears alongside the
+main content area, offering additional context or functionality without
+disrupting the primary workflow. It's default responsive and will wrap content
+when either of the provided widths are exceeded.
+
+## Design & usage guidelines
+
+Use SideKick when you need to:
+
+- Display supplementary information related to the main content
+- Provide quick access to contextual actions or tools
+- Show preview content while maintaining focus on the primary task
+- Present form fields or options that are optional or secondary to the main
+  workflow
+
+### When to use
+
+- When users need quick access to related information without leaving their
+  current context
+- For displaying preview content that enhances the primary workflow
+- When additional options or tools should be readily available but not prominent
+- To show supplementary form fields that aren't required for the primary task
+
+### When not to use
+
+- For critical primary actions or required form fields
+- When the additional content is essential to complete the main task
+- If the supplementary content needs to block interaction with the main content
+- For temporary or dismissible notifications (use [Toast](/components/Toast)
+  instead)
+- For error messages or warnings (use [Banner](/components/Banner) instead)
+
+## Implementation
+
+The SideKick component creates a flexible horizontal layout with a main content
+area and a side panel. The layout automatically adjusts based on available space
+and wraps content when needed.
+
+### Basic usage
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <SideKick sideWidth="80px" contentMinWidth="60%">
+      <Card>
+        <Box padding="base">
+          <Text>Main content goes here</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box padding="base">
+          <Text>Side panel content goes here</Text>
+        </Box>
+      </Card>
+    </SideKick>
+  </ContentBlock>
+</Canvas>
+
+### With custom widths
+
+<Canvas>
+  <ContentBlock maxWidth="100%">
+    <SideKick contentMinWidth="50%" sideWidth="40%">
+      <Card>
+        <Box padding="base">
+          <Text>Main content (50% width or wrap)</Text>
+        </Box>
+      </Card>
+      <Card>
+        <Box padding="base">
+          <Text> Side width (40% of remaining space)</Text>
+        </Box>
+      </Card>
+    </SideKick>
+  </ContentBlock>
+</Canvas>
+
+## Related components
+
+- For equal width responsive panels use
+  [ResponsiveSwitcher](/components/ResponsiveSwitcher)
+- For vertical spacing use [Stack](/components/Stack)
+- For horizontal justified content (including centering and text) use
+  [ContentBlock](/components/ContentBlock)

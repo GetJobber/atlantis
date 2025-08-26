@@ -81,7 +81,7 @@ describe("DataListSort", () => {
     });
 
     it("should close the popover when the button is clicked again", async () => {
-      await userEvent.click(screen.getByRole("combobox"));
+      await userEvent.click(screen.getByTestId("ATL-Combobox-Overlay"));
       expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
     });
   });

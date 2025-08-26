@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react-native";
-import { ProgressBar, ProgressBarProps } from ".";
-import { styles } from "./ProgressBar.style";
+import type { ProgressBarProps } from ".";
+import { ProgressBar } from ".";
 
 const defaultSetupProps = {
   total: 0,
@@ -45,36 +45,23 @@ describe("with stepped variation", () => {
   beforeEach(() => {
     render(
       <ProgressBar
-        total={3}
+        total={4}
         current={2}
         inProgress={1}
         variation={"stepped"}
       />,
     );
   });
-  it("renders the correct number of steps", () => {
-    const stepElements = screen.getAllByTestId("progress-step");
-    expect(stepElements).toHaveLength(3);
-  });
   it("renders the correct number of completed steps", () => {
-    const stepElements = screen.getAllByTestId("progress-step");
-    const completedSteps = stepElements.filter(step =>
-      step.props.style.includes(styles.completedStep),
-    );
+    const completedSteps = screen.getAllByTestId("progress-step-completed");
     expect(completedSteps).toHaveLength(2);
   });
   it("renders the correct number of incomplete steps", () => {
-    const stepElements = screen.getAllByTestId("progress-step");
-    const incompleteSteps = stepElements.filter(
-      step => !step.props.style.includes(styles.completedStep),
-    );
-    expect(incompleteSteps).toHaveLength(1);
+    const inCompleteSteps = screen.getAllByTestId("progress-step-incomplete");
+    expect(inCompleteSteps).toHaveLength(1);
   });
   it("renders the correct number of inProgress steps", () => {
-    const stepElements = screen.getAllByTestId("progress-step");
-    const inProgressSteps = stepElements.filter(step =>
-      step.props.style.includes(styles.inProgressStep),
-    );
-    expect(inProgressSteps).toHaveLength(1);
+    const stepElements = screen.getAllByTestId("progress-step-in-progress");
+    expect(stepElements).toHaveLength(1);
   });
 });

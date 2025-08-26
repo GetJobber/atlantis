@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ImageBackground, View } from "react-native";
-import { styles } from "./MediaView.style";
-import { FormattedFile, StatusCode } from "../../types";
+import { useStyles } from "./MediaView.style";
+import type { FormattedFile } from "../../types";
+import { StatusCode } from "../../types";
 import { computeA11yLabel } from "../../utils";
 import { ActivityIndicator } from "../../../ActivityIndicator";
 import { Icon } from "../../../Icon";
@@ -42,6 +43,8 @@ export function MediaView({
   const hasError = showError || error;
   const uri = thumbnail || file.thumbnailUrl || file.source;
 
+  const styles = useStyles();
+
   return (
     <View accessible={true} accessibilityLabel={a11yLabel}>
       <ImageBackground
@@ -61,6 +64,7 @@ export function MediaView({
           hasError={hasError}
           file={file}
           onUploadComplete={onUploadComplete}
+          styles={styles}
         />
       </ImageBackground>
     </View>
@@ -73,6 +77,7 @@ interface OverlayProps {
   readonly hasError: boolean;
   readonly file: FormattedFile;
   readonly onUploadComplete: () => void;
+  readonly styles: ReturnType<typeof useStyles>;
 }
 
 function Overlay({
@@ -81,10 +86,11 @@ function Overlay({
   hasError,
   file,
   onUploadComplete,
+  styles,
 }: OverlayProps) {
   if (isLoading) return <ActivityIndicator />;
 
-  if (hasError) return <ErrorOverlay />;
+  if (hasError) return <ErrorOverlay styles={styles} />;
 
   if (showOverlay) {
     return (
@@ -92,6 +98,7 @@ function Overlay({
         status={file.status}
         progress={file.progress}
         onUploadComplete={onUploadComplete}
+        styles={styles}
       />
     );
   }
@@ -107,12 +114,14 @@ interface ProgressOverlayProps {
   readonly status: StatusCode;
   readonly progress: number;
   readonly onUploadComplete: () => void;
+  readonly styles: ReturnType<typeof useStyles>;
 }
 
 function ProgressOverlay({
   status,
   progress,
   onUploadComplete,
+  styles,
 }: ProgressOverlayProps) {
   const freezeProgressBar = status !== StatusCode.Completed && progress >= 0.9;
 
@@ -130,7 +139,11 @@ function ProgressOverlay({
   );
 }
 
-function ErrorOverlay() {
+function ErrorOverlay({
+  styles,
+}: {
+  readonly styles: ReturnType<typeof useStyles>;
+}) {
   return (
     <View
       style={[styles.imageBackground, styles.overlayError]}

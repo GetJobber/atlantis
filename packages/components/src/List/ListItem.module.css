@@ -1,18 +1,29 @@
 .action {
-  display: flex;
   width: 100%;
-  box-sizing: border-box;
-  padding: var(--space-small);
+  padding: 0;
   border: none;
   text-align: left;
-  text-decoration: none;
   background-color: transparent;
-  transition: background-color var(--timing-base);
   appearance: none;
-  align-items: flex-start;
 }
 
 .action > * {
+  transition: background-color var(--timing-base);
+}
+
+.customItem > * {
+  padding: var(--space-base);
+}
+
+.defaultContent {
+  display: flex;
+  box-sizing: border-box;
+  flex: 1;
+  align-items: flex-start;
+  padding: var(--space-small);
+}
+
+.defaultContent > * {
   padding: var(--space-small);
 }
 
@@ -23,6 +34,14 @@
 .hoverable:hover,
 .hoverable:focus {
   outline: none;
+}
+
+.isActive > * {
+  background-color: var(--color-surface--background);
+}
+
+.hoverable:hover > *,
+.hoverable:focus > * {
   background-color: var(--color-surface--hover);
 }
 
@@ -33,27 +52,19 @@
   height: var(--space-large);
   box-sizing: content-box;
 }
-
 .info {
   flex: 1 1 auto;
   min-width: 0;
   align-self: center;
 }
-
 .amount {
   flex: 0 0 auto;
   text-align: right;
 }
 
-/* States */
-
-.isActive {
-  background-color: var(--color-surface--background);
-}
-
-.isActive:hover,
-.isActive:focus {
-  background-color: var(--color-surface--background--hover);
+.isActive:hover > *,
+.isActive:focus > * {
+  background-color: var(--color-interactive--background--hover);
 }
 
 /* TODO: Move truncate in typography */

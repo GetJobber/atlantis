@@ -1,15 +1,19 @@
-import { Platform, StyleSheet, TextStyle } from "react-native";
+import type { TextStyle } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { webFonts } from "./webFonts";
-import { tokens } from "../utils/design";
+import { tokens as staticTokens } from "../utils/design";
+import type { AtlantisThemeContextValue } from "../AtlantisThemeContext";
+import { buildThemedStyles } from "../AtlantisThemeContext";
 
-const extravagantLineHeight = tokens["typography--lineHeight-extravagant"];
-const jumboLineHeight = tokens["typography--lineHeight-jumbo"];
-const largestLineHeight = tokens["typography--lineHeight-largest"];
-const largerLineHeight = tokens["typography--lineHeight-larger"];
-const largeLineHeight = tokens["typography--lineHeight-large"];
-const baseLineHeight = tokens["typography--lineHeight-base"];
-const tightLineHeight = tokens["typography--lineHeight-tight"];
-const minusculeLineHeight = tokens["typography--lineHeight-minuscule"];
+const extravagantLineHeight =
+  staticTokens["typography--lineHeight-extravagant"];
+const jumboLineHeight = staticTokens["typography--lineHeight-jumbo"];
+const largestLineHeight = staticTokens["typography--lineHeight-largest"];
+const largerLineHeight = staticTokens["typography--lineHeight-larger"];
+const largeLineHeight = staticTokens["typography--lineHeight-large"];
+const baseLineHeight = staticTokens["typography--lineHeight-base"];
+const tightLineHeight = staticTokens["typography--lineHeight-tight"];
+const minusculeLineHeight = staticTokens["typography--lineHeight-minuscule"];
 
 const deviceFonts = {
   baseRegularRegular: {
@@ -77,9 +81,11 @@ const fonts = Platform.select({
 });
 
 /**
- * Reusable typography tokens to ensure consistency for any client facing texts.
+ * Reusable typography styles to ensure consistency for any client facing texts.
  */
-export const typographyTokens: { [index: string]: TextStyle } = {
+export const getTypographyStyles = (
+  tokens: AtlantisThemeContextValue["tokens"] | typeof staticTokens,
+): { [index: string]: TextStyle } => ({
   // This follows a pattern of
   // { fontFamily }{ fontStyle }{ fontWeight }
   ...fonts,
@@ -610,17 +616,13 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   strikeThrough: {
     textDecorationLine: "line-through",
   },
-};
+});
 
 /**
- * `StyleSheet` for Typography.tsx.
- *
- * If you find yourself needing to use what's inside this object on files other
- * than `<Typography />`, please import from `@jobber/components-native` instead.
- *
- * ```
- * import { typographyStyles } from "@jobber/components-native"
- * ```
+ * @deprecated Use useTypographyStyles instead
  */
-export const typographyStyles: { [index: string]: TextStyle } =
-  StyleSheet.create(typographyTokens);
+export const typographyStyles: Record<string, TextStyle> = StyleSheet.create(
+  getTypographyStyles(staticTokens),
+);
+
+export const useTypographyStyles = buildThemedStyles(getTypographyStyles);

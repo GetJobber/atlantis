@@ -25,12 +25,9 @@ have a `value` and `onChange` prop.
 ### Inputs
 
 Form can accept various inputs and selection elements such as (but not limited
-to) [InputText](../?path=/docs/components-forms-and-inputs-inputtext--docs),
-[ Select](../?path=/docs/components-selections-select--docs),
-[ Switch](../?path=/docs/components-selections-switch--docs),
-[ Checkbox](../?path=/docs/components-selections-checkbox--docs), and
-[ Chips](../?path=/docs/components-selections-chips--docs). They should be
-placed [Cards](../?path=/docs/components-layouts-and-structure-card--docs) to
+to) [InputText](/components/InputText), [Select](/components/Select),
+[Switch](/components/Switch), [Checkbox](/components/Checkbox), and
+[Chips](/components/Chips). They should be placed [Cards](/components/Card) to
 indicate grouping when relevant, and groups of Cards can be spaced appropriately
 using ContentSection.
 
@@ -44,54 +41,9 @@ saving the single input they are editing, but the entire object.
 ### Form errors
 
 All error messaging should follow our
-[Product Vocabulary.](../?path=/docs/content-product-vocabulary--docs)
+[Product Vocabulary.](/content/product-vocabulary)
 
-## Platform considerations
-
-#### iOS
-
-On iOS, the save button will be fixed to the bottom of the viewport until the
-keyboard is opened.
-
-Once the keyboard is open, the save button will be inline beneath the Form's
-inputs, unless the Form is so short that it does not scroll. In this case, the
-save button will remain fixed above the keyboard.
-
-This prevents the user from accidentally submitting the Form before they have
-completed entering all the relevant information for their work, especially since
-many data points in Jobber cannot be edited once saved.
-
-#### Android
-
-On Android, the save button will always be inline with the contents of the Form.
-
-#### Server-side errors
-
-Server-side error messages will be displayed in a banner at the top the Form
-upon a failed submission attempt. These are errors where something has gone
-wrong with the data either on the way to, or on the way back from, our servers.
-If the user can address the errors, inform them how to do so in the banner.
-Otherwise, a generic message informing the user that something went wrong is an
-appropriate fallback.
-
-Note: When a server-side error happens, inside the `onSubmit` function, an error
-must be thrown. Throwing an error inside the `onSubmit` function will ensure
-that your `onSubmitError` function is called instead of your `onSubmitSuccess`.
-
-#### Client-side errors
-
-Client-side errors are issues that we can catch and inform the user of before
-they attempt to submit the Form, such as a required field left blank or an
-incorrect email address format.
-
-Error messages for individual inputs should appear inline on each impacted
-input. Form will automatically scroll to the first invalid (has an error)
-element and display the error message.
-
-When an error occurs, either server-side or client-side, Form will announce the
-message to screen-readers and set focus to the impacted portion of the Form.
-
-## Accessibility (Mobile)
+## Accessibility (mobile)
 
 The individual inputs are responsible for accessibility concerns such as the
 labels, types, values, and error messages of each input.

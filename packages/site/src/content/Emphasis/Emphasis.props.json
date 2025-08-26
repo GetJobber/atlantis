@@ -1,0 +1,24 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Emphasis/Emphasis.tsx",
+    "description": "",
+    "displayName": "Emphasis",
+    "methods": [],
+    "props": {
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "../components/src/Emphasis/Emphasis.tsx",
+          "name": "EmphasisProps"
+        },
+        "required": true,
+        "type": {
+          "name": "\"bold\" | \"italic\" | \"highlight\""
+        }
+      }
+    }
+  }
+]

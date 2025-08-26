@@ -1,0 +1,54 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Tooltip/Tooltip.tsx",
+    "description": "",
+    "displayName": "Tooltip",
+    "methods": [],
+    "props": {
+      "message": {
+        "defaultValue": null,
+        "description": "Tooltip text",
+        "name": "message",
+        "parent": {
+          "fileName": "../components/src/Tooltip/Tooltip.tsx",
+          "name": "TooltipProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "preferredPlacement": {
+        "defaultValue": {
+          "value": "top"
+        },
+        "description": "Describes the preferred placement of the Popover.",
+        "name": "preferredPlacement",
+        "parent": {
+          "fileName": "../components/src/Tooltip/Tooltip.tsx",
+          "name": "TooltipProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Placement"
+        }
+      },
+      "setTabIndex": {
+        "defaultValue": {
+          "value": true
+        },
+        "description": "",
+        "name": "setTabIndex",
+        "parent": {
+          "fileName": "../components/src/Tooltip/Tooltip.tsx",
+          "name": "TooltipProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  }
+]

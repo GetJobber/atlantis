@@ -8,47 +8,6 @@ Just like in real life, nothing appears out of nowhere. Animate elements that
 get added or removed from the React tree with AnimatedPresence. If more than 1
 element gets added, there will be a delay between each new element.
 
-## Usage
-
-### Conditional rendering
-
-Hide and show elements with a transition to add emphasis on the change. This is
-useful for UX which has a different part of the UI hidden until the user takes
-an action to show them.
-
-```tsx
-<AnimatedPresence>{show && <div>Item</div>}</AnimatedPresence>
-```
-
-See the
-[Basic](../?path=/story/components-utilities-animatedpresence-web--basic)
-example for a live demo.
-
-### List rendering
-
-Animate items in a list as they are added or removed.
-
-```tsx
-<AnimatedPresence>
-  {items.map(item => (
-    <div key={item.id}>{item.name}</div>
-  ))}
-</AnimatedPresence>
-```
-
-See the [List](../?path=/story/components-utilities-animatedpresence-web--list)
-example for a live demo.
-
-### Animate on mount
-
-Set the `initial` prop to `true` to animate the element whenever it initially
-renders on the screen. See this in action on the
-[List](../?path=/story/components-utilities-animatedpresence-web--list) example.
-
-```tsx
-<AnimatedPresence initial={true}>...</AnimatedPresence>
-```
-
 ## Accessibility
 
 AnimatedPresence respects the

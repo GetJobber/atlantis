@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./MonthlyDayOfWeekSelect.module.css";
 import { WeeklySelect } from "./WeeklySelect";
 import { Text } from "../../Text";
-import { WeekDay } from "../types";
+/* eslint-disable import/no-deprecated */
+import type { WeekDay } from "../types";
 
 interface MonthlyDayOfWeekSelectProps {
   readonly disabled: boolean;

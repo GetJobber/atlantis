@@ -1,0 +1,206 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/InputPressable/InputPressable.tsx",
+    "description": "",
+    "displayName": "InputPressable",
+    "methods": [],
+    "props": {
+      "value": {
+        "defaultValue": null,
+        "description": "Current value of the component",
+        "name": "value",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Placeholder item shown until a selection is made",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Disables input selection",
+        "name": "disabled",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "focused": {
+        "defaultValue": null,
+        "description": "Indicates if the input is focused",
+        "name": "focused",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "Indicates if there is an validation error",
+        "name": "error",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "FieldError"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Indicates the current selection is invalid",
+        "name": "invalid",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | boolean"
+        }
+      },
+      "onPress": {
+        "defaultValue": null,
+        "description": "Callback that is called when the text input is focused\n@param event",
+        "name": "onPress",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "accessibilityLabel": {
+        "defaultValue": null,
+        "description": "VoiceOver will read this string when a user selects the element",
+        "name": "accessibilityLabel",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "accessibilityHint": {
+        "defaultValue": null,
+        "description": "Helps users understand what will happen when they perform an action",
+        "name": "accessibilityHint",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Symbol to display before the text input",
+        "name": "prefix",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ icon?: IconNames; label?: string; }"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Symbol to display after the text input",
+        "name": "suffix",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ icon: IconNames; label?: string; onPress: () => void; } | { onPress?: never; icon?: IconNames; label?: string; }"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Add a clear action on the input that clears the value.\n\nSince the input value isn't editable (i.e. `InputDateTime`) you can\nset it to `always`. If you set it to `always` you must also provide an\nonClear to clear the input's value",
+        "name": "clearable",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
+        }
+      },
+      "onClear": {
+        "defaultValue": null,
+        "description": "Callback called when the user clicks the ClearAction button. Should clear\nthe value passed. To disallow clearing set the clearable prop to never",
+        "name": "onClear",
+        "parent": {
+          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<Text>"
+        }
+      },
+      "key": {
+        "defaultValue": null,
+        "description": "",
+        "name": "key",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Key"
+        }
+      }
+    }
+  }
+]

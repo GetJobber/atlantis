@@ -4,13 +4,11 @@ import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { InputText } from "@jobber/components/InputText";
-import { getGIF, loadingGIF } from "./getGIF";
+import { GifGift, getGIF, loadingGIF } from "./getGIF";
 
 <Meta title="Guides/Getting started with React" />
 
-# Getting Started with React
-
-## Things to know.
+# Getting started with React
 
 ## What is React
 
@@ -18,7 +16,7 @@ At its core React is simply a JavaScript view library layer. It provides us with
 a way to define and render view components. It also aids with tracking and
 re-rendering changes to data that the components are representing.
 
-## What is a Component
+## What is a component
 
 Much as a function in programing allows you to encapsulate, test and reuse logic
 a React Component allows you to encapsulate, test and reuse pieces of your UI.
@@ -64,7 +62,7 @@ There are a few things going on in the example above. Lets break them down:
 | `{ text, yell }: MessageProps` | There are two parts to this. Starting on the right `MessageProps` indicates that this funciton takes a parameter of type `MessageProps`. On the left the `{ text, yell }` unpacks the parameter into local variables.                                   |
 | `return <p>{text}</p>`         | Every React component will return an [element](https://reactjs.org/docs/rendering-elements.html) or [fragment](https://reactjs.org/docs/fragments.html). (Note the [fragment short hand syntax](https://reactjs.org/docs/fragments.html#short-syntax).) |
 
-## It's Components All the Way Down
+## It's components all the way down
 
 In React everything is a component. A typical page will consist of one top level
 component representing the main view. Then within that page you will break down
@@ -79,7 +77,7 @@ smaller components. Brad Frost covers this break down very well with
 When you are writing a front end using React each of the levels he talks about
 are represented by components functions.
 
-## Composing Components
+## Composing components
 
 As mentioned above a lot of the power of React comes from being able to build
 components out of other components. Lets take a look at an example on how to do
@@ -89,25 +87,7 @@ For this example we are going to build a card that allows you to enter a topic
 and then search for a related gif.
 
 <Canvas>
-  <Story name="Composing Components">
-    {() => {
-      const [topic, setTopic] = useState();
-      const [url, setURL] = useState();
-      return (
-        <Card title="Gif Gift">
-          <Content>
-            <InputText value={topic} onChange={setTopic} placeholder="Topic" />
-            <Button label="Search" fullWidth={true} onClick={gifSearch} />
-            <center>{url && <img src={url} />}</center>
-          </Content>
-        </Card>
-      );
-      async function gifSearch() {
-        setURL(loadingGIF);
-        setURL(await getGIF(topic));
-      }
-    }}
-  </Story>
+  <GifGift />
 </Canvas>
 
 > **Note:**
@@ -117,7 +97,7 @@ and then search for a related gif.
 > `function getGIF(topic: string): Promise<string>;` that will return a promise
 > resolving to a url.
 
-### Breaking it Down
+### Breaking it down
 
 ```tsx
 const [topic, setTopic] = useState();
@@ -143,10 +123,10 @@ The next section is the return value which will return the TSX defining our
 component. In here you can see that our `GifGift` component is composed of the
 following other react components:
 
-- [Card](../?path=/docs/components-layouts-and-structure-card--docs)
-- [Content](../?path=/docs/components-layouts-and-structure-content--docs)
-- [Button](../?path=/docs/components-actions-button--docs)
-- [InputText](../?path=/docs/components-forms-and-inputs-inputtext--docs)
+- [Card](/components/Card)
+- [Content](/components/Content)
+- [Button](/components/Button)
+- [InputText](/components/InputText)
 
 If you look at the docs for the above components you can see how the different
 props they expose allow us to customize their behaviour given the needs of our
@@ -183,3 +163,39 @@ The final part of our example defines the custom actions needed to power our
 component. In this case the action when the user clicks on the **Search**
 button. Here we call the `setURL` setter to show the `loadingGIF`. Then, we call
 `setURL` awaiting the async response of `getGIF`.
+
+## Types of components in Atlantis and their ability for customization
+
+#### 1. Primitive components:
+
+Examples: [Icon](/components/Icon), [Avatar](/components/Avatar)
+
+These components do not accept children and have minimal customization.
+
+#### 2. Simple components:
+
+Examples: [Button](/components/Button), [Link](/components/Link)
+
+These allow basic customization through props or limited children, like
+`ReactNode` or specific child types.
+
+#### 3. Compound components:
+
+Examples: [Chip](/components/Chip), [DataList](/components/DataList)
+
+These are part of larger compositions and may validate their children types to
+maintain internal consistency.
+
+#### 4. Strict complex components:
+
+Example: [Autocomplete](/components/Autocomplete)
+
+These have multiple UI pieces they are built out of but strict APIs and limited
+customization.
+
+#### 5. Customizable complex components:
+
+Example: [Combobox](/components/Combobox)
+
+These also have multiple UI pieces they are built out of but offer options for
+customization.

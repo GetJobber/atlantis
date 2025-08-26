@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.73.2",
+  "version": "0.84.3",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -33,7 +33,9 @@
     "bootstrap": "npm run build",
     "prepack": "npm run build",
     "compile": "tsc -b",
-    "build:clean": "rm -rf ./dist"
+    "build:clean": "rm -rf ./dist",
+    "storybook": "storybook dev -p 6008 --disable-telemetry",
+    "build-storybook": "storybook build --disable-telemetry"
   },
   "dependencies": {
     "@react-native-clipboard/clipboard": "^1.11.2",
@@ -46,12 +48,14 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modalize": "^2.0.13",
     "react-native-portalize": "^1.0.7",
-    "react-native-safe-area-context": "^4.5.2",
     "react-native-toast-message": "^2.1.6",
     "react-native-uuid": "^1.4.9",
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^9.1.2",
+    "@storybook/react": "^9.1.2",
+    "@storybook/react-native-web-vite": "^9.1.2",
     "@testing-library/jest-native": "^5.4.2",
     "@testing-library/react-native": "^12.0.1",
     "@types/lodash.chunk": "^4.2.7",
@@ -60,23 +64,25 @@
     "@types/react": "^18.0.28",
     "@types/react-native-uuid": "^1.4.0",
     "metro-react-native-babel-preset": "^0.76.0",
-    "react-test-renderer": "^18.2.0"
+    "react-test-renderer": "^18.2.0",
+    "storybook": "^9.1.2"
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",
+    "@jobber/design": "*",
     "@react-native-community/datetimepicker": ">=6.7.0",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "react": "^18.2.0",
     "react-intl": "^6.4.2",
-    "react-native": ">=0.69.2",
+    "react-native": ">=0.76.0",
     "react-native-gesture-handler": ">=2.10.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modal-datetime-picker": " >=13.0.0",
     "react-native-modalize": "^2.0.13",
     "react-native-portalize": "^1.0.7",
     "react-native-reanimated": "^3.0.0",
-    "react-native-safe-area-context": "^4.5.2",
+    "react-native-safe-area-context": "^5.4.0",
     "react-native-svg": ">=12.0.0"
   }
 }

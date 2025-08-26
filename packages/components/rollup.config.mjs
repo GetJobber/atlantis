@@ -13,11 +13,22 @@ import presetenv from "postcss-preset-env";
 import multiInput from "rollup-plugin-multi-input";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 import alias from "@rollup/plugin-alias";
-
+// comments for manual release
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+/**
+ * When PREBUILD_CSS is supplied, only build the main index.ts file.
+ * This ensures postcss maintains consistent ordering of styles across builds.
+ *
+ * Using multiInput (input with globs) produces inconsistent ordering within styles.css
+ * because files are loaded in a non-deterministic order, and postcss bundles them in
+ * that order.
+ */
+const PREBUILD_CSS = process.env.PREBUILD_CSS === "true";
+
 export default {
-  input: `src/**/index.{ts,tsx}`,
+  input: PREBUILD_CSS ? "src/index.ts" : `src/**/index.{ts,tsx}`,
   plugins: [
     nodePolyfills(),
     alias({
@@ -56,9 +67,7 @@ export default {
         }),
       ],
     }),
-    commonjs({
-      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
-    }),
+    commonjs(),
     copy({
       targets: [
         { src: "src/Card/cardcolors.css.d.ts", dest: "dist/Card" },
@@ -130,12 +139,14 @@ export default {
     {
       dir: "dist",
       entryFileNames: "[name].cjs",
+      chunkFileNames: "[name]-[format].js",
       exports: "named",
       format: "cjs",
     },
     {
       dir: "dist",
       entryFileNames: "[name].mjs",
+      chunkFileNames: "[name]-[format].js",
       format: "esm",
     },
   ],
@@ -144,7 +155,6 @@ export default {
     "react-hook-form",
     "react-router-dom",
     "react-dom",
-    "react-popper",
     "react-dom/client",
     "axios",
     "lodash",
@@ -152,13 +162,11 @@ export default {
     "color",
     "framer-motion",
     "classnames",
-    "@std-proposal/temporal",
     "@apollo/client",
     "@jobber/design",
     "@jobber/design/foundation",
     "@jobber/formatters",
     "@jobber/hooks",
-    "zxcvbn",
     "@tanstack/react-table",
   ],
 };

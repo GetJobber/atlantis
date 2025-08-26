@@ -5,33 +5,32 @@ exports[`Menu renders 1`] = `
   <div
     class="wrapper"
   >
-    <span
-      class="shadowRef"
-    />
-    <button
-      aria-controls=":r1:"
-      aria-expanded="false"
-      aria-haspopup="true"
-      class="button base hasIconAndLabel work secondary fullWidth"
-      id=":r0:"
-      type="button"
-    >
-      <svg
-        data-testid="more"
-        style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+    <div>
+      <button
+        aria-controls=":r1:"
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="button base work secondary fullWidth buttonChildren"
+        id=":r0:"
+        type="button"
       >
-        <path
-          d="M4 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm6 0a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm8-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
-        />
-      </svg>
-      <span
-        class="base semiBold base base"
-      >
-        More Actions
-      </span>
-    </button>
+        <svg
+          data-testid="more"
+          style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm6 0a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm8-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+          />
+        </svg>
+        <span
+          class="base semiBold base base"
+        >
+          More Actions
+        </span>
+      </button>
+    </div>
   </div>
 </div>
 `;
@@ -41,23 +40,22 @@ exports[`Menu with custom activator renders 1`] = `
   <div
     class="wrapper"
   >
-    <span
-      class="shadowRef"
-    />
-    <button
-      aria-controls=":rc:"
-      aria-expanded="false"
-      aria-haspopup="true"
-      class="button base work primary"
-      id=":rb:"
-      type="button"
-    >
-      <span
-        class="base semiBold base base"
+    <div>
+      <button
+        aria-controls=":rk:"
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="button base work primary buttonChildren"
+        id=":rj:"
+        type="button"
       >
-        Menu
-      </span>
-    </button>
+        <span
+          class="base semiBold base base"
+        >
+          Menu
+        </span>
+      </button>
+    </div>
   </div>
 </div>
 `;

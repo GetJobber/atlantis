@@ -1,24 +1,17 @@
-import React, {
-  Dispatch,
-  MutableRefObject,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
-import debounce from "lodash/debounce";
+import type { Dispatch, MutableRefObject } from "react";
+import type React from "react";
+import { useRef, useState } from "react";
 import noop from "lodash/noop";
-import {
-  UseMakeComboboxHandlersReturn,
-  useMakeComboboxHandlers,
-} from "./useMakeComboboxHandlers";
-import { ComboboxOption } from "../Combobox.types";
+import { useDebounce } from "@jobber/hooks/useDebounce";
+import type { UseMakeComboboxHandlersReturn } from "./useMakeComboboxHandlers";
+import { useMakeComboboxHandlers } from "./useMakeComboboxHandlers";
+import { type ComboboxOption } from "../Combobox.types";
 
 type UseComboboxReturn = {
   wrapperRef: React.RefObject<HTMLDivElement>;
   searchValue: string;
   setSearchValue: Dispatch<React.SetStateAction<string>>;
   open: boolean;
-  setOpen: Dispatch<React.SetStateAction<boolean>>;
   selectedOptions: ComboboxOption[];
   selectedStateSetter: (selection: ComboboxOption[]) => void;
   shouldScroll: MutableRefObject<boolean>;
@@ -40,13 +33,14 @@ export function useCombobox(
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const searchCallback = useCallback(
-    debounce((value: string) => onSearch?.(value), debounceTime),
-    [onSearch, debounceTime],
+  const searchCallback = useDebounce(
+    (value: string) => onSearch?.(value),
+    debounceTime,
   );
 
-  const { handleClose, handleSelection } = useMakeComboboxHandlers(
+  const { handleClose, handleSelection, handleOpen } = useMakeComboboxHandlers(
     setOpen,
+    open,
     setSearchValue,
     selected,
     shouldScroll,
@@ -65,12 +59,12 @@ export function useCombobox(
     searchValue,
     setSearchValue,
     open,
-    setOpen,
     selectedOptions: selected,
     selectedStateSetter: onSelect,
     shouldScroll,
     handleClose,
     handleSelection,
+    handleOpen,
     internalFilteredOptions,
     handleSearchChange: onSearch ? searchCallback : noop,
   };

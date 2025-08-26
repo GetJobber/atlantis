@@ -1,6 +1,31 @@
-import React, { ReactElement, cloneElement, useState } from "react";
+import type { ReactElement } from "react";
+import React, { cloneElement } from "react";
 import styles from "./InputMask.module.css";
-import { FormFieldProps } from "../FormField";
+import { useInputMask } from "./useInputMask";
+import type { FormFieldProps } from "../FormField";
+
+interface MaskElementProps {
+  readonly isMasking: boolean;
+  readonly formattedValue: string;
+  readonly placeholderMask: string;
+}
+
+export function MaskElement({
+  isMasking,
+  formattedValue,
+  placeholderMask,
+}: MaskElementProps) {
+  if (!isMasking) {
+    return null;
+  }
+
+  return (
+    <div className={styles.mask} aria-hidden="true">
+      <span className={styles.hiddenValue}>{formattedValue}</span>
+      <span>{placeholderMask}</span>
+    </div>
+  );
+}
 
 export interface InputMaskProps {
   /**
@@ -48,72 +73,25 @@ export function InputMask({
   strict = true,
 }: InputMaskProps) {
   const { value: inputValue, onChange } = children.props;
-  const [isMasking, setIsMasking] = useState(!inputValue);
-  const stringifiedValue = String(inputValue || "");
-  const placeholderValue = pattern
-    .replace(new RegExp(`\\${delimiter}`, "g"), "_")
-    .slice(stringifiedValue.length);
+  const { placeholderMask, isMasking, formattedValue, maskedOnChange } =
+    useInputMask({
+      value: String(inputValue || ""),
+      pattern,
+      delimiter,
+      strict,
+      onChange: onChange,
+    });
 
   const inputMask = (
-    <div className={styles.mask} aria-hidden="true">
-      <span className={styles.hiddenValue}>{stringifiedValue}</span>
-      <span>{placeholderValue}</span>
-    </div>
+    <MaskElement
+      isMasking={isMasking}
+      formattedValue={formattedValue}
+      placeholderMask={placeholderMask}
+    />
   );
 
   return cloneElement(children, {
-    onChange: handleChange,
+    onChange: maskedOnChange,
     children: isMasking && inputMask,
   });
-
-  function handleChange(value: string): void {
-    onChange?.(formatValue(value));
-  }
-
-  function formatValue(value: string): string {
-    const { cleanValueChars, patternChars, specialChars, isOverCharLimit } =
-      getMaskingInfo(value);
-
-    if (!strict && isOverCharLimit) {
-      setIsMasking(false);
-
-      return cleanValueChars.join("");
-    } else {
-      setIsMasking(true);
-
-      return patternChars.reduce(
-        getMaskedValue(cleanValueChars, specialChars),
-        "",
-      );
-    }
-  }
-
-  function getMaskingInfo(value: string) {
-    const patternChars = pattern.split("");
-    const specialChars = patternChars.filter(char => char !== delimiter);
-
-    const cleanValueChars = value
-      .split("")
-      .filter(char => !specialChars.includes(char))
-      // Since this is only used in InputPhoneNumber, we can restrict it to
-      // just numbers for now.
-      .map(Number)
-      .filter(num => !isNaN(num));
-
-    const isOverCharLimit =
-      cleanValueChars.length > patternChars.length - specialChars.length;
-
-    return { cleanValueChars, patternChars, specialChars, isOverCharLimit };
-  }
-}
-
-function getMaskedValue(cleanVal: number[], specialChars: string[]) {
-  return (result: string, nextCharacter: string) => {
-    if (!cleanVal.length) return result;
-    if (specialChars.includes(nextCharacter)) return result + nextCharacter;
-
-    const nextValue = cleanVal.shift();
-
-    return result + nextValue;
-  };
 }
