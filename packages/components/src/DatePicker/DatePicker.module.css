@@ -98,8 +98,10 @@
   flex: 1;
 }
 
+.datePicker :global(.react-datepicker__day--keyboard-selected),
 .datePicker :global(.react-datepicker__day):hover,
 .datePicker :global(.react-datepicker__day):focus {
+  border-radius: var(--radius-base);
   background: var(--color-surface--hover);
 }
 
