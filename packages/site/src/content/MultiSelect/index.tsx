@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/MultiSelect/MultiSelect.stories.mdx";
+import Content from "./MultiSelect.stories.mdx";
 import Props from "./MultiSelect.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

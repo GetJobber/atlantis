@@ -1,4 +1,4 @@
-import DataDumpContent from "@atlantis/docs/components/DataDump/DataDump.stories.mdx";
+import DataDumpContent from "./DataDump.stories.mdx";
 import Props from "./DataDump.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

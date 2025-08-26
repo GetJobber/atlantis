@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Menu/Menu.stories.mdx";
+import Content from "./Menu.stories.mdx";
 import Props from "./Menu.props.json";
 import MobileProps from "./Menu.props-mobile.json";
 import Notes from "./MenuNotes.mdx";

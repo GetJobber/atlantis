@@ -1,4 +1,4 @@
-import CheckboxContent from "@atlantis/docs/components/Checkbox/Checkbox.stories.mdx";
+import CheckboxContent from "./Checkbox.stories.mdx";
 import Props from "./Checkbox.props.json";
 import MobileProps from "./Checkbox.props-mobile.json";
 import Notes from "./CheckboxNotes.mdx";

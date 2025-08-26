@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Page/Page.stories.mdx";
+import Content from "./Page.stories.mdx";
 import Props from "./Page.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

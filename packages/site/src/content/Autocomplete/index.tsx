@@ -1,4 +1,4 @@
-import AutocompleteContent from "@atlantis/docs/components/Autocomplete/Autocomplete.stories.mdx";
+import AutocompleteContent from "./Autocomplete.stories.mdx";
 import Props from "./Autocomplete.props.json";
 import Notes from "./AutocompleteNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -18,15 +18,15 @@ const [value, setValue] = useState();
         { value: 3, label: "Space wars and treks" },
       ]
     }
-  
-  return <Autocomplete 
-      getOptions={getOptions} 
-      initialOptions={[]} 
-      placeholder="Autocomplete" 
-      value={value}  
-      onChange={setValue} 
+
+  return <Autocomplete
+      getOptions={getOptions}
+      initialOptions={[]}
+      placeholder="Autocomplete"
+      value={value}
+      onChange={setValue}
     />;
-  
+
 `,
   },
   title: "Autocomplete",
