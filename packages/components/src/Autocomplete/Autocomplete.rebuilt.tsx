@@ -211,9 +211,9 @@ function AutocompleteRebuiltInternal<
                 onAction={onAction}
                 className={classNames(
                   styles.persistentHeader,
-                  props.UNSAFE_className?.persistentHeader,
+                  props.UNSAFE_className?.header,
                 )}
-                style={props.UNSAFE_styles?.persistentHeader}
+                style={props.UNSAFE_styles?.header}
               />
 
               {/* Scrollable middle region */}
@@ -274,9 +274,9 @@ function AutocompleteRebuiltInternal<
                 onAction={onAction}
                 className={classNames(
                   styles.persistentFooter,
-                  props.UNSAFE_className?.persistentFooter,
+                  props.UNSAFE_className?.footer,
                 )}
-                style={props.UNSAFE_styles?.persistentFooter}
+                style={props.UNSAFE_styles?.footer}
               />
             </div>
           </FloatingFocusManager>

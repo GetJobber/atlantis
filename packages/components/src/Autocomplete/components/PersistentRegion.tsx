@@ -58,7 +58,7 @@ export function PersistentRegion<T extends OptionLike>({
       className={className}
       style={style}
       data-region={position}
-      data-testid={`ATL-AutocompleteRebuilt-Persistent-${position}`}
+      data-testid={`ATL-AutocompleteRebuilt-${position}`}
     >
       {items.map(persistent => {
         const result = handlePersistentRendering({

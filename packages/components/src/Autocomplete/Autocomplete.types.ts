@@ -470,24 +470,34 @@ interface AutocompleteRebuiltBaseProps<
     inputProps: InputTextRebuiltProps;
   }) => React.ReactNode;
 
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
   readonly UNSAFE_className?: {
     menu?: string;
     option?: string;
     section?: string;
     action?: string;
     input?: string;
-    persistentHeader?: string;
-    persistentFooter?: string;
+    header?: string;
+    footer?: string;
   };
 
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
   readonly UNSAFE_styles?: {
     menu?: CSSProperties;
     option?: CSSProperties;
     section?: CSSProperties;
     action?: CSSProperties;
     input?: CSSProperties;
-    persistentHeader?: CSSProperties;
-    persistentFooter?: CSSProperties;
+    header?: CSSProperties;
+    footer?: CSSProperties;
   };
 
   /*
@@ -616,7 +626,7 @@ interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
    * Whether the autocomplete allows free-form input.
    * When true, the input value is not restricted to the options * in the menu. Input can be used to create a new value.
    * When false, the input value must match an option in the menu.
-   * Input value will be cleared if no selection is made and   /*
+   * Input value will be cleared if no selection is made and
    * Whether the autocomplete allows free-form input.
    * When true, the input value is not restricted to the options in the menu. Input can be used to create a new value.
    * When false, the input value must match an option in the menu.

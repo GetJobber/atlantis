@@ -2010,8 +2010,8 @@ describe("AutocompleteRebuilt", () => {
       render(
         <Wrapper
           UNSAFE_className={{
-            persistentHeader: "custom-persistent-header",
-            persistentFooter: "custom-persistent-footer",
+            header: "custom-header",
+            footer: "custom-footer",
           }}
           menu={[
             {
@@ -2028,12 +2028,12 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
 
-      expect(
-        screen.getByTestId("ATL-AutocompleteRebuilt-Persistent-header"),
-      ).toHaveClass("custom-persistent-header");
-      expect(
-        screen.getByTestId("ATL-AutocompleteRebuilt-Persistent-footer"),
-      ).toHaveClass("custom-persistent-footer");
+      expect(screen.getByTestId("ATL-AutocompleteRebuilt-header")).toHaveClass(
+        "custom-header",
+      );
+      expect(screen.getByTestId("ATL-AutocompleteRebuilt-footer")).toHaveClass(
+        "custom-footer",
+      );
     });
   });
 
