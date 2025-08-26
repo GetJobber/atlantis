@@ -111,7 +111,7 @@ export function useAutocomplete<
   }, [inputValue, debounceMs, debouncedSetter]);
 
   const renderable = useMemo(() => {
-    const transform = (opts: Value[]): Value[] => {
+    const filter = (opts: Value[]): Value[] => {
       if (exactLabelMatch && !lastInputWasUser.current) return opts;
       if (props.filterOptions === false) return opts;
 
@@ -129,7 +129,7 @@ export function useAutocomplete<
 
     const items = buildRenderableList<Value, SectionExtra, ActionExtra>(
       sections,
-      transform,
+      filter,
     );
 
     const hasAnyOptions = items.some(i => i.kind === "option");

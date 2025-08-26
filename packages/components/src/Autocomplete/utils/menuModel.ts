@@ -44,12 +44,10 @@ export function buildItemsForGroup<
   A extends object,
 >(
   group: MenuSection<Value, S, A> | MenuOptions<Value, A>,
-  optionsTransform?: (opts: Value[]) => Value[],
+  optionsFilter?: (opts: Value[]) => Value[],
 ): Array<RenderItem<Value, S, A>> {
   const isSection = group.type === "section";
-  const filtered = optionsTransform
-    ? optionsTransform(group.options)
-    : group.options;
+  const filtered = optionsFilter ? optionsFilter(group.options) : group.options;
   const actions = group.actions ?? [];
   const result: Array<RenderItem<Value, S, A>> = [];
   const sectionHasContent =
@@ -90,12 +88,12 @@ export function buildRenderableList<
   A extends object,
 >(
   sections: Array<MenuSection<Value, S, A> | MenuOptions<Value, A>>,
-  optionsTransform?: (opts: Value[]) => Value[],
+  optionsFilter?: (opts: Value[]) => Value[],
 ) {
   const items: Array<RenderItem<Value, S, A>> = [];
 
   for (const group of sections) {
-    items.push(...buildItemsForGroup<Value, S, A>(group, optionsTransform));
+    items.push(...buildItemsForGroup<Value, S, A>(group, optionsFilter));
   }
 
   return items;
