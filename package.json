@@ -18,7 +18,7 @@
   "scripts": {
     "bootstrap": "npm run bootstrap --workspaces --if-present",
     "build": "npm run build:all && npm run generate:sitemap",
-    "build:all": "npm run storybook:build && npm run site:build && npm run merge:dist",
+    "build:all": "npm run storybook:buildAll && npm run site:build && npm run merge:dist",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
     "ci:release": "lerna publish --yes --no-private",
     "clean": "rm -rf node_modules **/dist packages/**/.rollup.cache storybook-static",
@@ -30,7 +30,7 @@
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx,.mjs,.cjs . --report-unused-disable-directives",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
-    "merge:dist": "mv storybook-static packages/site/dist/storybook && mv packages/site/dist storybook-static",
+    "merge:dist": "mv storybook-static packages/site/dist/storybook && mv packages/components/storybook-static packages/site/dist/storybook/web && mv packages/components-native/storybook-static packages/site/dist/storybook/mobile && mv packages/site/dist storybook-static",
     "pack": "npm run bootstrap && npm pack -w",
     "postinstall": "npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
@@ -44,6 +44,7 @@
     "start": "npm run storybook",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6005 --disable-telemetry",
     "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build --disable-telemetry",
+    "storybook:buildAll": "npm run storybook:build && npm run --prefix packages/components storybook:build && npm run --prefix packages/components-native storybook:build",
     "test": "jest"
   },
   "repository": {
