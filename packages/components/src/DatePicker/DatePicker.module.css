@@ -105,6 +105,7 @@
 
 .datePicker :global(.react-datepicker__day--outside-month):hover,
 .datePicker :global(.react-datepicker__day--outside-month):focus {
+  border-radius: 0;
   background: var(--color-interactive--background--hover);
 }
 
