@@ -3,6 +3,7 @@ import type {
   AnyOption,
   AutocompleteLegacyProps,
   AutocompleteRebuiltProps,
+  ExtraProps,
   Option,
   OptionLike,
 } from "./Autocomplete.types";
@@ -49,20 +50,15 @@ export { isOptionSelected, isOptionGroup } from "./Autocomplete.utils";
 
 type AutocompleteShimProps =
   | AutocompleteLegacyProps
-  | AutocompleteRebuiltProps<
-      OptionLike,
-      boolean,
-      Record<string, unknown>,
-      Record<string, unknown>
-    >;
+  | AutocompleteRebuiltProps<OptionLike, boolean, ExtraProps, ExtraProps>;
 
 function isNewAutocompleteProps(
   props: AutocompleteShimProps,
 ): props is AutocompleteRebuiltProps<
   OptionLike,
   boolean,
-  Record<string, unknown>,
-  Record<string, unknown>
+  ExtraProps,
+  ExtraProps
 > {
   return (props as { version?: number }).version === 2;
 }
@@ -89,8 +85,8 @@ AutocompleteForwarded.displayName = "Autocomplete";
 export const Autocomplete = AutocompleteForwarded as {
   <
     T extends OptionLike = OptionLike,
-    S extends object = Record<string, unknown>,
-    A extends object = Record<string, unknown>,
+    S extends object = ExtraProps,
+    A extends object = ExtraProps,
   >(
     props: AutocompleteRebuiltProps<T, false, S, A> & {
       version: 2;
@@ -102,8 +98,8 @@ export const Autocomplete = AutocompleteForwarded as {
   ): ReturnType<typeof AutocompleteShim>;
   <
     T extends OptionLike = OptionLike,
-    S extends object = Record<string, unknown>,
-    A extends object = Record<string, unknown>,
+    S extends object = ExtraProps,
+    A extends object = ExtraProps,
   >(
     props: AutocompleteRebuiltProps<T, true, S, A> & {
       version: 2;
