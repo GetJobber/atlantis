@@ -2,6 +2,9 @@ import type { CSSProperties, Key, Ref, RefObject } from "react";
 import type { FormFieldProps } from "../FormField";
 import type { InputTextRebuiltProps, InputTextRef } from "../InputText";
 
+// Extra props shape used across action/section/header/footer generics
+export type ExtraProps = Record<string, unknown>;
+
 type OptionValue = string | number;
 
 export interface BaseOption {
@@ -251,8 +254,8 @@ interface MenuActionBase {
   onClick: () => void;
 }
 
-export type MenuAction<Extra extends object = Record<string, unknown>> =
-  MenuActionBase & Extra;
+export type MenuAction<Extra extends object = ExtraProps> = MenuActionBase &
+  Extra;
 
 export interface ActionConfig {
   run: () => void;
@@ -261,8 +264,8 @@ export interface ActionConfig {
 
 export type MenuSection<
   T extends OptionLike,
-  SectionExtra extends object = Record<string, unknown>,
-  ActionExtra extends object = Record<string, unknown>,
+  SectionExtra extends object = ExtraProps,
+  ActionExtra extends object = ExtraProps,
 > = SectionExtra & {
   type: "section";
   label: string;
@@ -278,7 +281,7 @@ export type MenuSection<
 
 export interface MenuOptions<
   T extends OptionLike,
-  ActionExtra extends object = Record<string, unknown>,
+  ActionExtra extends object = ExtraProps,
 > {
   type: "options";
   // For flat lists without sections
@@ -287,52 +290,50 @@ export interface MenuOptions<
   actions?: MenuAction<ActionExtra>[];
 }
 
-export type MenuHeader<Extra extends object = Record<string, unknown>> =
-  Extra & {
-    type: "header";
-    label: string;
-    /**
-     * "label" will be used as the key by default
-     * If labels are not unique, a unique key must be provided
-     */
-    key?: Key;
-    /**
-     * If provided, the header item is interactive and participates in
-     * arrow-key navigation. Activated with Enter.
-     */
-    onClick?: () => void;
-    /**
-     * Determines if the menu should close when the header is activated.
-     * @default true
-     */
-    shouldClose?: boolean;
-  };
+export type MenuHeader<Extra extends object = ExtraProps> = Extra & {
+  type: "header";
+  label: string;
+  /**
+   * "label" will be used as the key by default
+   * If labels are not unique, a unique key must be provided
+   */
+  key?: Key;
+  /**
+   * If provided, the header item is interactive and participates in
+   * arrow-key navigation. Activated with Enter.
+   */
+  onClick?: () => void;
+  /**
+   * Determines if the menu should close when the header is activated.
+   * @default true
+   */
+  shouldClose?: boolean;
+};
 
-export type MenuFooter<Extra extends object = Record<string, unknown>> =
-  Extra & {
-    type: "footer";
-    label: string;
-    /**
-     * "label" will be used as the key by default
-     * If labels are not unique, a unique key must be provided
-     */
-    key?: Key;
-    /**
-     * If provided, the footer item is interactive and participates in
-     * arrow-key navigation. Activated with Enter.
-     */
-    onClick?: () => void;
-    /**
-     * Determines if the menu should close when the footer is activated.
-     * @default true
-     */
-    shouldClose?: boolean;
-  };
+export type MenuFooter<Extra extends object = ExtraProps> = Extra & {
+  type: "footer";
+  label: string;
+  /**
+   * "label" will be used as the key by default
+   * If labels are not unique, a unique key must be provided
+   */
+  key?: Key;
+  /**
+   * If provided, the footer item is interactive and participates in
+   * arrow-key navigation. Activated with Enter.
+   */
+  onClick?: () => void;
+  /**
+   * Determines if the menu should close when the footer is activated.
+   * @default true
+   */
+  shouldClose?: boolean;
+};
 
 export type MenuItem<
   T extends OptionLike,
-  SectionExtra extends object = Record<string, unknown>,
-  ActionExtra extends object = Record<string, unknown>,
+  SectionExtra extends object = ExtraProps,
+  ActionExtra extends object = ExtraProps,
 > =
   | MenuSection<T, SectionExtra, ActionExtra>
   | MenuOptions<T, ActionExtra>
@@ -572,12 +573,12 @@ interface AutocompleteRebuiltBaseProps<
 
   /**
    * Callback invoked when the menu opens.
-
+   *
    */
   readonly onOpen?: () => void;
   /**
    * Callback invoked when the menu closes.
-
+   *
    */
   readonly onClose?: () => void;
 
@@ -657,15 +658,15 @@ export type ActionOrigin = "menu" | "empty";
 export type AutocompleteRebuiltProps<
   Value extends OptionLike = OptionLike,
   Multiple extends boolean = false,
-  SectionExtra extends object = Record<string, unknown>,
-  ActionExtra extends object = Record<string, unknown>,
+  SectionExtra extends object = ExtraProps,
+  ActionExtra extends object = ExtraProps,
 > = AutocompleteRebuiltBaseProps<Value, Multiple, SectionExtra, ActionExtra> &
   (FreeFormOn<Value, Multiple> | FreeFormOff<Value, Multiple>);
 
 // Convenience builder helpers (optional usage)
 export const menuOptions = <
   T extends OptionLike,
-  ActionExtra extends object = Record<string, unknown>,
+  ActionExtra extends object = ExtraProps,
 >(
   options: T[],
   actions?: MenuAction<ActionExtra>[],
@@ -673,8 +674,8 @@ export const menuOptions = <
 
 export const menuSection = <
   T extends OptionLike,
-  SectionExtra extends object = Record<string, unknown>,
-  ActionExtra extends object = Record<string, unknown>,
+  SectionExtra extends object = ExtraProps,
+  ActionExtra extends object = ExtraProps,
 >(
   label: string,
   options: T[],
@@ -691,8 +692,8 @@ export const menuSection = <
 // Helper to improve inference from inline menu literals
 export function defineMenu<
   T extends OptionLike,
-  S extends object = Record<string, unknown>,
-  A extends object = Record<string, unknown>,
+  S extends object = ExtraProps,
+  A extends object = ExtraProps,
 >(menu: MenuItem<T, S, A>[]): MenuItem<T, S, A>[] {
   return menu;
 }
