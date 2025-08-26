@@ -16,6 +16,7 @@ import type {
 } from "./types";
 import { THEME_CHANGE_EVENT } from "./types";
 import styles from "./AtlantisThemeContext.module.css";
+import type { CommonAllowedElements } from "../sharedHelpers/types";
 
 export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
   theme: "light",
@@ -149,9 +150,11 @@ export function useAtlantisTheme() {
 function AtlantisThemeContextTokenOverride({
   overrideTokens,
   children,
+  as: Tag = "div",
 }: {
   readonly overrideTokens: typeof tokens;
   readonly children: React.ReactNode;
+  readonly as: CommonAllowedElements;
 }) {
   const { tokens: currentTokens } = useAtlantisTheme();
   const style = useMemo(() => {
@@ -168,5 +171,5 @@ function AtlantisThemeContextTokenOverride({
     );
   }, [currentTokens, overrideTokens]);
 
-  return <div style={style}>{children}</div>;
+  return <Tag style={style}>{children}</Tag>;
 }
