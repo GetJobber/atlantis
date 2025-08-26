@@ -9,7 +9,7 @@ export type StatusType =
   | "critical"
   | "inactive"
   | "informative";
-interface StatusIndicatorProps {
+export interface StatusIndicatorProps {
   readonly status: StatusType;
 }
 

@@ -17,6 +17,7 @@ export const useStyles = buildThemedStyles(tokens => {
     },
     statusLabelText: {
       flexShrink: 1,
+      marginBottom: -1,
     },
     labelTextStartAligned: {
       flexDirection: "row-reverse",

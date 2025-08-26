@@ -38,7 +38,16 @@ export * from "./InputTime";
 export * from "./Menu";
 export * from "./ProgressBar";
 export * from "./Select";
-export * from "./StatusLabel";
+export { StatusLabel } from "./StatusLabel";
+export type {
+  StatusType as StatusLabelStatusType,
+  StatusLabelType,
+} from "./StatusLabel";
+export { StatusIndicator } from "./StatusIndicator";
+export type {
+  StatusType as StatusIndicatorStatusType,
+  StatusIndicatorProps,
+} from "./StatusIndicator";
 export * from "./Switch";
 export * from "./Text";
 export * from "./TextList";
