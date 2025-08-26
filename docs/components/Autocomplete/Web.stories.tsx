@@ -47,6 +47,25 @@ export default {
   },
 } as ComponentMeta<typeof Autocomplete>;
 
+// Seed v1 Controls so SB shows legacy props in the panel
+const v1ControlsArgs = {
+  version: 1 as const,
+  // FormField props
+  clearable: "never" as const,
+  description: "",
+  invalid: false,
+  name: "",
+  // Affix examples
+  prefix: { label: "" },
+  size: undefined,
+  suffix: {},
+  // v1 Autocomplete props
+  allowFreeForm: true,
+  debounce: 300,
+  validations: {},
+  customRenderMenu: () => <></>,
+};
+
 interface ServiceOption extends OptionLike {
   description: string;
   details: string;
@@ -586,24 +605,28 @@ Version2.args = {};
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
+  ...v1ControlsArgs,
   initialOptions: defaultOptions,
   placeholder: "Search for something",
 };
 
 export const WithDetails = WithDetailsTemplate.bind({});
 WithDetails.args = {
+  ...v1ControlsArgs,
   initialOptions: withDetailsOptions,
   placeholder: "Search for something with details",
 };
 
 export const SectionHeading = SectionHeadingTemplate.bind({});
 SectionHeading.args = {
+  ...v1ControlsArgs,
   initialOptions: SectionHeadingOptions,
   placeholder: "Search for something under a section heading",
 };
 
 export const SetAValue = SetAValueTemplate.bind({});
 SetAValue.args = {
+  ...v1ControlsArgs,
   initialOptions: defaultOptions,
   placeholder: "Search for something",
 };
