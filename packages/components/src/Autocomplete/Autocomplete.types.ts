@@ -353,6 +353,11 @@ interface AutocompleteRebuiltBaseProps<
 > {
   version: 2;
 
+  /**
+   * Whether the autocomplete allows multiple selections.
+   * WARNING: This is currently incomplete and will not display selections, only data is returned.
+   * Do not use this prop unless you are sure you know what you are doing.
+   */
   readonly multiple?: Multiple;
   /**
    * The currently selected value of the Autocomplete.
@@ -581,14 +586,6 @@ interface AutocompleteRebuiltBaseProps<
    *
    */
   readonly onClose?: () => void;
-
-  /**
-   * Custom renderer for selected items (multi-select).
-   */
-  readonly customRenderSelectedItems?: (props: {
-    items: Value[];
-    onRemove: (item: Value) => void;
-  }) => React.ReactNode;
 
   /**
    * Whether the menu is loading.

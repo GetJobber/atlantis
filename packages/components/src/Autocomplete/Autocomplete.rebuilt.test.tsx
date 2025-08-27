@@ -2117,4 +2117,76 @@ describe("AutocompleteRebuilt", () => {
       ).toBe(true);
     });
   });
+
+  describe("Multiple", () => {
+    it("calls onChange once with added selection array", async () => {
+      const onChange = jest.fn();
+      const onInputChange = jest.fn();
+
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "One" },
+          { label: "Two" },
+          { label: "Three" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue=""
+          onInputChange={onInputChange}
+          value={[]}
+          onChange={onChange}
+          placeholder=""
+        />,
+      );
+
+      await openAutocomplete();
+      await navigateDown(1);
+      await selectWithKeyboard();
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith([{ label: "One" }]);
+    });
+
+    it("calls onChange once with removed selection array when toggling off", async () => {
+      const onChange = jest.fn();
+      const onInputChange = jest.fn();
+
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "One" },
+          { label: "Two" },
+          { label: "Three" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue=""
+          onInputChange={onInputChange}
+          value={[{ label: "One" }]}
+          onChange={onChange}
+          placeholder=""
+        />,
+      );
+
+      await openAutocomplete();
+      await waitFor(() => {
+        const active = getActiveOption();
+        expect(active).not.toBeNull();
+        expect(active?.textContent).toContain("One");
+      });
+      await selectWithKeyboard();
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith([]);
+    });
+  });
 });

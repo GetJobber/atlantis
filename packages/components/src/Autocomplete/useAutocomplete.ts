@@ -302,21 +302,23 @@ export function useAutocomplete<
 
   const [inputFocused, setInputFocused] = useState(false);
 
-  // Handles activeIndex reset and change propagation when input is empty
+  // Handles activeIndex reset and, in single-select mode only, clearing selection when input is empty
   useEffect(() => {
     const hasText = inputValue.trim().length > 0;
 
     if (hasText) return;
 
-    // If we started with a selection, we treat clearing it as a commit signal
+    // Always reset highlight when input is empty
+    setActiveIndex(null);
+
+    // In multiple mode, clearing the input should NOT clear the selection
+    if (multiple) return;
+
+    // For single-select, treat clearing input as clearing the selection
     if (hasSelection) {
       onChange?.(undefined as AutocompleteValue<Value, Multiple>);
-      setActiveIndex(null);
-    } else {
-      // this happens before render, can we optimize this?
-      setActiveIndex(null);
     }
-  }, [inputValue, hasSelection, setActiveIndex, onChange, open]);
+  }, [inputValue, multiple, hasSelection, setActiveIndex, onChange, open]);
 
   function selectOption(option: Value) {
     if (multiple) {
