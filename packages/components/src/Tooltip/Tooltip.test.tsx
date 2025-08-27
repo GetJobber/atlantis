@@ -2,17 +2,7 @@ import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
-
-function setLargeViewport() {
-  Object.defineProperty(document.documentElement, "clientWidth", {
-    value: 2000,
-    configurable: true,
-  });
-  Object.defineProperty(document.documentElement, "clientHeight", {
-    value: 2000,
-    configurable: true,
-  });
-}
+import { mockLargeViewport } from "../utils/mockLargeViewport";
 
 it("shouldn't show the tooltip", async () => {
   const message = "Imma not tip the tool";
@@ -132,9 +122,16 @@ describe("with a message of an empty string", () => {
 });
 
 describe("with a preferred placement", () => {
+  let viewportMock: ReturnType<typeof mockLargeViewport>;
+
   beforeEach(() => {
-    setLargeViewport();
+    viewportMock = mockLargeViewport();
   });
+
+  afterEach(() => {
+    viewportMock.restore();
+  });
+
   it.each(["top", "bottom", "left", "right"] as const)(
     "should show the tooltip on the %s",
     async placement => {
