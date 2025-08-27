@@ -4,7 +4,6 @@ import {
   Content,
   Icon,
   Link,
-  Stack,
   Typography,
 } from "@jobber/components";
 import { AnchorLinks } from "./AnchorLinks";
