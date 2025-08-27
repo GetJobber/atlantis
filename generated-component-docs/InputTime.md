@@ -1,0 +1,613 @@
+# InputTime
+
+# Input Time
+
+The InputTime component is a text input that allows the user to enter a time
+value.
+
+## Design & usage guidelines
+
+This component obeys the system locale settings to determine 24 or 12 hour time.
+
+### States
+
+A
+[disabled](../?path=/story/components-forms-and-inputs-inputtime-web--disabled)
+state will be visually muted and the input will not be editable. This is similar
+to the
+[read-only](../?path=/story/components-forms-and-inputs-inputtime-web--read-only)
+state, but the input is not muted.
+
+An [invalid](../?path=/story/components-forms-and-inputs-inputtime-web--invalid)
+state will indicate that the input is not valid. This can be used when the input
+is required and the user has not entered a value.
+
+## Web Component Code
+
+```tsx
+InputTime Time Input Time Picker Web React import type { ChangeEvent } from "react";
+import React, { useId, useRef } from "react";
+import { useTimePredict } from "./hooks/useTimePredict";
+import type { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.types";
+import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
+import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
+
+export function InputTimeRebuilt({
+  value,
+  onChange,
+  ...params
+}: InputTimeRebuiltProps) {
+  const ref =
+    (params.inputRef as React.RefObject<HTMLInputElement>) ??
+    useRef<HTMLInputElement>(null);
+  const { setTypedTime } = useTimePredict({
+    value,
+    handleChange,
+  });
+
+  const { inputStyle } = useFormFieldWrapperStyles(params);
+
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const id = getId(params);
+
+  return (
+    <FormFieldWrapper
+      disabled={params.disabled}
+      size={params.size}
+      align={params.align}
+      inline={params.inline}
+      name={params.name}
+      error={params.error || ""}
+      identifier={id}
+      descriptionIdentifier={`descriptionUUID--${id}`}
+      invalid={Boolean(params.invalid)}
+      description={params.description}
+      clearable={params.clearable ?? "never"}
+      onClear={handleClear}
+      type="time"
+      readonly={params.readonly}
+      placeholder={params.placeholder}
+      value={dateToTimeString(value)}
+      wrapperRef={wrapperRef}
+    >
+      <input
+        ref={ref}
+        type="time"
+        name={params.name}
+        className={inputStyle}
+        onBlur={handleBlur}
+        id={id}
+        disabled={params.disabled}
+        readOnly={params.readonly}
+        onChange={handleChangeEvent}
+        onFocus={handleFocus}
+        data-testid="ATL-InputTime-input"
+        onKeyUp={e => {
+          if (params.disabled || params.readonly) return;
+
+          !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
+        }}
+        value={dateToTimeString(value)}
+      />
+    </FormFieldWrapper>
+  );
+
+  function handleChangeEvent(event: ChangeEvent<HTMLInputElement>) {
+    handleChange(event.target.value);
+  }
+
+  function handleChange(newValue: string) {
+    onChange?.(timeStringToDate(newValue, value));
+  }
+
+  function handleBlur(event?: React.FocusEvent<HTMLInputElement>) {
+    params.onBlur?.(event);
+
+    if (ref.current) {
+      if (!ref.current.checkValidity()) {
+        ref.current.value = "";
+      }
+    }
+  }
+
+  function handleClear() {
+    handleBlur();
+    onChange?.(undefined);
+    ref.current?.focus();
+  }
+
+  function handleFocus(event?: React.FocusEvent<HTMLInputElement>) {
+    params.onFocus?.(event);
+  }
+
+  function getId(props: InputTimeProps) {
+    const generatedId = useId();
+
+    return props.id || generatedId;
+  }
+}
+import React, { useRef } from "react";
+import omit from "lodash/omit";
+import { useTimePredict } from "./hooks/useTimePredict";
+import type { InputTimeProps } from "./InputTime.types";
+import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
+import type { FormFieldProps } from "../FormField";
+import { FormField } from "../FormField";
+
+export function InputTime({
+  defaultValue,
+  value,
+  onChange,
+  ...params
+}: InputTimeProps) {
+  const ref = useRef<HTMLInputElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const { setTypedTime } = useTimePredict({ value, handleChange });
+
+  const fieldProps: FormFieldProps = omit(
+    {
+      onChange: handleChange,
+      ...(defaultValue && { defaultValue: dateToTimeString(defaultValue) }),
+      ...(!defaultValue && { value: dateToTimeString(value) }),
+      ...params,
+    },
+    ["version"],
+  );
+
+  return (
+    <FormField
+      inputRef={ref}
+      type="time"
+      {...fieldProps}
+      onBlur={handleBlur}
+      onKeyUp={e => {
+        fieldProps.onKeyUp?.(e);
+        !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
+      }}
+      wrapperRef={wrapperRef}
+    />
+  );
+
+  function handleChange(newValue: string) {
+    onChange?.(timeStringToDate(newValue, value));
+  }
+
+  function handleBlur() {
+    params.onBlur?.();
+
+    // Time inputs doesn't clear the typed value when it's invalid. This should
+    // force it to reset the input value when the typed value is invalid.
+    if (ref.current) {
+      if (!ref.current.checkValidity()) {
+        ref.current.value = "";
+      }
+    }
+  }
+}
+import React from "react";
+import type {
+  InputTimeLegacyProps,
+  InputTimeRebuiltProps,
+} from "./InputTime.types";
+import { InputTimeRebuilt } from "./InputTime.rebuilt";
+import { InputTime as InputTimeLegacy } from "./InputTime";
+
+export type InputTimeShimProps = InputTimeLegacyProps | InputTimeRebuiltProps;
+
+function isNewInputTimeProps(
+  props: InputTimeShimProps,
+): props is InputTimeRebuiltProps {
+  return props.version === 2;
+}
+
+export function InputTime(props: InputTimeShimProps) {
+  if (isNewInputTimeProps(props)) {
+    return <InputTimeRebuilt {...props} />;
+  } else {
+    return <InputTimeLegacy {...props} />;
+  }
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop           | Type   | Required | Default  | Description                                                               |
+| -------------- | ------ | -------- | -------- | ------------------------------------------------------------------------- |
+| `defaultValue` | `Date` | ❌       | `_none_` | Intial value of the input. Only use this when you need to prepopulate the |
+
+field with a data that is not controlled by the components state. If a state is
+controlling the value, use the `value` prop instead. | | `value` | `Date` | ❌ |
+`_none_` | Set the component to the given value. | | `onChange` |
+`(newValue?: Date) => void` | ❌ | `_none_` | Function called when user changes
+input value. | | `id` | `string` | ❌ | `_none_` | A unique identifier for the
+input. | | `align` | `"center" | "right"` | ❌ | `_none_` | Determines the
+alignment of the text inside the input. | | `description` | `ReactNode` | ❌ |
+`_none_` | Further description of the input, can be used for a hint. | |
+`disabled` | `boolean` | ❌ | `_none_` | Disable the input | | `invalid` |
+`boolean` | ❌ | `_none_` | Highlights the field red to indicate an error. | |
+`inline` | `boolean` | ❌ | `_none_` | Adjusts the form field to go inline with
+a content. This also silences the given `validations` prop. You'd have to used
+the `onValidate` prop to capture the message and render it somewhere else using
+the `InputValidation` component. | | `loading` | `boolean` | ❌ | `_none_` |
+Show a spinner to indicate loading | | `name` | `string` | ❌ | `_none_` | Name
+of the input. | | `onValidation` | `(message: string) => void` | ❌ | `_none_` |
+Callback to get the the status and message when validating a field @param
+message | | `placeholder` | `string` | ❌ | `_none_` | Text that appears inside
+the input when empty and floats above the value as a mini label once the user
+enters a value. When showMiniLabel is false, this text only serves as a standard
+placeholder and disappears when the user types. | | `size` | `"small" | "large"`
+| ❌ | `_none_` | Adjusts the interface to either have small or large spacing. |
+| `clearable` | `Clearable` | ❌ | `_none_` | Add a clear action on the input
+that clears the value.
+
+You should always use `while-editing` if you want the input to be clearable. if
+the input value isn't editable (i.e. `InputTime`) you can set it to `always`. |
+| `maxLength` | `number` | ❌ | `_none_` | Maximum character length for an
+input. This also changes the width to roughly the same size as the max length.
+This is to communicate that the user that on certain cases, they can only type a
+limited amount of characters. | | `readonly` | `boolean` | ❌ | `_none_` |
+Prevents users from editing the value. | | `autocomplete` |
+`boolean | AutocompleteTypes` | ❌ | `_none_` | Determines if browser form
+autocomplete is enabled. Note that "one-time-code" is experimental and should
+not be used without consultation. "address-line1" and "address-line2" are used
+for billing address information. | | `max` | `number` | ❌ | `_none_` |
+Specifies the maximum numerical or date value that a user can type | | `min` |
+`number` | ❌ | `_none_` | Simplified onChange handler that only provides the
+new value. @param newValue Specifies the minimum numerical or date value that a
+user can type | | `onEnter` | `(event: React.KeyboardEvent) => void` | ❌ |
+`_none_` | A callback to handle "Enter" keypress. This will only run if Enter is
+the only key. Will not run if Shift or Control are being held. | | `onFocus` |
+`(event?: React.FocusEvent) => void` | ❌ | `_none_` | Focus callback. | |
+`onBlur` | `(event?: React.FocusEvent) => void` | ❌ | `_none_` | Blur callback.
+| | `inputRef` |
+`RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>` | ❌ |
+`_none_` | _No description_ | | `validations` | `RegisterOptions` | ❌ |
+`_none_` | Show an error message above the field. This also highlights the the
+field red if an error message shows up. |
+
+### Mobile Props
+
+| Prop   | Type     | Required | Default  | Description                                                             |
+| ------ | -------- | -------- | -------- | ----------------------------------------------------------------------- |
+| `name` | `string` | ❌       | `_none_` | Adding a `name` would make this component "Form controlled" and must be |
+
+nested within a `<Form />` component.
+
+Cannot be declared if `value` prop is used. | | `validations` |
+`Omit<Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>, "disabled" | ... 2 more ... | "setValueAs">`
+| ❌ | `_none_` | Shows an error message below the field and highlights it red
+when the value is invalid. Only applies when nested within a `<Form />`
+component. | | `value` | `string | Date` | ❌ | `_none_` | The value shown on
+the field. This gets automatically formatted to the account's time format. | |
+`onChange` | `((value?: Date) => void) | ((value?: Date) => void)` | ❌ |
+`_none_` | The callback that fires whenever a time gets selected. | |
+`clearable` | `"never" | "always"` | ❌ | `_none_` | Defaulted to "always" so
+user can clear the time whenever there's a value. | | `emptyValueLabel` |
+`string` | ❌ | `undefined` | Add a custom value to display when no time is
+selected | | `type` | `"granular" | "scheduling"` | ❌ | `scheduling` | Adjusts
+the UX of the time picker based on where you'd use it.
+
+- `"granular"` - allows the user to pick a very specific time
+- `"scheduling"` - only allows user to select between 5 minutes interval. If
+  your design is catered towards "scheduling", you should use this type. | |
+  `showIcon` | `boolean` | ❌ | `_none_` | Hide or show the timer icon. | |
+  `invalid` | `string | boolean` | ❌ | `_none_` | Highlights the field red and
+  shows message below (if string) to indicate an error | | `disabled` |
+  `boolean` | ❌ | `_none_` | Disable the input | | `placeholder` | `string` |
+  ❌ | `_none_` | Hint text that goes above the value once the field is filled
+  out |
+
+## Categories
+
+- Forms & Inputs
+
+## Web Test Code
+
+```typescript
+InputTime Time Input Time Picker Web React Test Testing Jest import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { InputTime } from ".";
+import * as TimePredictHook from "./hooks/useTimePredict";
+
+const mockSetTypedTime = jest.fn();
+jest.mock("./hooks/useTimePredict", () => ({
+  useTimePredict: jest.fn(() => ({ setTypedTime: mockSetTypedTime })),
+}));
+
+const createDate = (hours: number, minutes: number): Date => {
+  const date = new Date(0);
+  date.setHours(hours, minutes, 0, 0);
+
+  return date;
+};
+
+describe("InputTimeRebuilt", () => {
+  it("should set the value when given 'value'", () => {
+    const valueDate = createDate(12, 30);
+    render(<InputTime version={2} value={valueDate} onChange={jest.fn()} />);
+    expect(screen.getByDisplayValue("12:30")).toBeInTheDocument();
+  });
+
+  it("should call the onChange function when the component is modified", () => {
+    const startDate = createDate(2, 35);
+    const newValue = "05:32";
+    const newDate = createDate(5, 32);
+    const changeHandler = jest.fn();
+
+    render(
+      <InputTime version={2} value={startDate} onChange={changeHandler} />,
+    );
+
+    fireEvent.change(screen.getByTestId("ATL-InputTime-input"), {
+      target: { value: newValue },
+    });
+
+    expect(changeHandler).toHaveBeenCalledTimes(1);
+    const calledDate: Date | undefined = changeHandler.mock.calls[0][0];
+
+    expect(calledDate).toBeInstanceOf(Date);
+    expect(calledDate?.getHours()).toBe(newDate.getHours());
+    expect(calledDate?.getMinutes()).toBe(newDate.getMinutes());
+  });
+
+  it("should call onFocus when the input is focused", async () => {
+    const focusHandler = jest.fn();
+    render(
+      <InputTime
+        version={2}
+        onFocus={focusHandler}
+        value={createDate(10, 0)}
+      />,
+    );
+    await userEvent.click(screen.getByDisplayValue("10:00"));
+    expect(focusHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call onBlur when the input loses focus", async () => {
+    const blurHandler = jest.fn();
+    render(<InputTime version={2} onBlur={blurHandler} />);
+    const input = screen.getByTestId("ATL-InputTime-input");
+    await userEvent.click(input);
+    await userEvent.tab();
+    expect(blurHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call onChange with undefined, call onBlur, and focus input when cleared", async () => {
+    const startDate = createDate(10, 15);
+    const changeHandler = jest.fn();
+    const blurHandler = jest.fn();
+    const inputRef = React.createRef<HTMLInputElement>();
+
+    render(
+      <InputTime
+        version={2}
+        value={startDate}
+        onChange={changeHandler}
+        onBlur={blurHandler}
+        clearable="always"
+        inputRef={inputRef}
+      />,
+    );
+
+    const clearButton = screen.getByTestId("ATL-FormField-clearButton");
+
+    await userEvent.click(clearButton);
+
+    expect(changeHandler).toHaveBeenCalledWith(undefined);
+    expect(blurHandler).toHaveBeenCalledTimes(1);
+
+    expect(document.activeElement).toBe(inputRef.current);
+  });
+
+  it("should display the error message when error prop is provided", () => {
+    const errorMessage = "Please enter a valid time";
+    render(<InputTime version={2} error={errorMessage} />);
+
+    expect(screen.getByText(errorMessage)).toBeInTheDocument();
+  });
+
+  describe("useTimePredict integration", () => {
+    const initialValue = createDate(10, 0);
+
+    beforeEach(() => {
+      mockSetTypedTime.mockClear();
+      (TimePredictHook.useTimePredict as jest.Mock).mockClear();
+    });
+
+    // This is asserting imperfect behavior that is preexisting
+    // ideally it would only be called once
+    it("calls useTimePredict hook on initial render", () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+
+      expect(TimePredictHook.useTimePredict).toHaveBeenCalledTimes(2);
+      expect(TimePredictHook.useTimePredict).toHaveBeenCalledWith({
+        value: initialValue,
+        handleChange: expect.any(Function),
+      });
+    });
+
+    it("calls setTypedTime for single numeric key press", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
+      await userEvent.type(input, "1");
+
+      expect(mockSetTypedTime).toHaveBeenCalledTimes(1);
+      expect(mockSetTypedTime).toHaveBeenCalledWith(expect.any(Function));
+    });
+
+    it("calls setTypedTime for multiple numeric key presses", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
+      await userEvent.type(input, "23");
+
+      expect(mockSetTypedTime).toHaveBeenCalledTimes(2);
+      expect(mockSetTypedTime).toHaveBeenNthCalledWith(1, expect.any(Function));
+      expect(mockSetTypedTime).toHaveBeenNthCalledWith(2, expect.any(Function));
+    });
+
+    it("does not call setTypedTime for non-numeric key press", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
+      await userEvent.type(input, "a");
+
+      expect(mockSetTypedTime).not.toHaveBeenCalled();
+    });
+
+    it("calls setTypedTime correctly for mixed key presses", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          name="Hook Test"
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
+      await userEvent.type(input, "1a2");
+
+      expect(mockSetTypedTime).toHaveBeenCalledTimes(2);
+      expect(mockSetTypedTime).toHaveBeenNthCalledWith(1, expect.any(Function));
+      expect(mockSetTypedTime).toHaveBeenNthCalledWith(2, expect.any(Function));
+    });
+
+    it("should not call setTypedTime if the input is disabled", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          disabled
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
+      await userEvent.type(input, "1");
+
+      expect(mockSetTypedTime).not.toHaveBeenCalled();
+    });
+
+    it("should not call setTypedTime if the input is readonly", async () => {
+      const handleChange = jest.fn();
+
+      render(
+        <InputTime
+          version={2}
+          value={initialValue}
+          onChange={handleChange}
+          readonly
+        />,
+      );
+      const input = screen.getByTestId("ATL-InputTime-input");
+
+      await userEvent.type(input, "1");
+
+      expect(mockSetTypedTime).not.toHaveBeenCalled();
+    });
+  });
+});
+import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { InputTime } from ".";
+
+describe("InputTime", () => {
+  it("renders an initial time when given 'defaultValue'", () => {
+    const defaultDate = new Date();
+    defaultDate.setHours(11, 23, 0, 0);
+    render(<InputTime defaultValue={defaultDate} />);
+    expect(screen.getByDisplayValue("11:23")).toBeInTheDocument();
+  });
+
+  it("renders correctly in a readonly state", () => {
+    const defaultDate = new Date();
+    defaultDate.setHours(10, 25, 0, 0);
+
+    render(<InputTime defaultValue={defaultDate} readonly={true} />);
+    expect(screen.getByDisplayValue("10:25")).toHaveAttribute("readonly");
+  });
+
+  it("should set the value when given 'value'", () => {
+    const defaultDate = new Date();
+    defaultDate.setHours(12, 30, 0, 0);
+
+    render(<InputTime value={defaultDate} />);
+    expect(screen.getByDisplayValue("12:30")).toBeInTheDocument();
+  });
+
+  it("should call the onChange function when the component is modified", () => {
+    const startDate = new Date();
+    startDate.setHours(2, 35, 0, 0);
+
+    const newValue = "05:32";
+    // The event value get converted to a Date inside the component.
+    const newDate = new Date();
+    newDate.setHours(5, 32, 0, 0);
+
+    const changeHandler = jest.fn();
+
+    render(<InputTime value={startDate} onChange={changeHandler} />);
+
+    fireEvent.change(screen.getByDisplayValue("02:35"), {
+      target: { value: newValue },
+    });
+
+    expect(changeHandler).toHaveBeenCalledWith(newDate);
+  });
+});
+
+```
+
+## Component Path
+
+`/components/InputTime`
+
+---
+
+_Generated on 2025-08-21T17:35:16.367Z_

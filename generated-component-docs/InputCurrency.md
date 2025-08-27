@@ -1,0 +1,105 @@
+# InputCurrency
+
+# Input Currency
+
+InputCurrency is a component that displays a currency input field with a
+currency symbol.
+
+## Design & usage guidelines
+
+InputCurrency defaults to displaying a minimum of two decimal places and a
+maximum of five decimal places. If a user continues to try and enter numbers
+beyond the `maxDecimalPlaces` default or set number, the component will
+automatically round the value to the nearest two decimal places.
+
+By setting `showCurrencySymbol` to true, the users currency prefix will be
+displayed to them.
+
+## Props
+
+### Mobile Props
+
+| Prop                                                                             | Type                                                              | Required                                            | Default                             | Description                                                                                      |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ---------------- | ---------------------------------- | ---------------------------------------------------------------------------------------- | -------- | -------- | ------------ | --------------- | ------ | --- | -------- | --------------------------------------------------------------------- |
+| `showCurrencySymbol`                                                             | `boolean`                                                         | ❌                                                  | `_none_`                            | Whether to display the user's currency symbol or not                                             |
+| Default value is true                                                            |
+| `decimalPlaces`                                                                  | `number`                                                          | ❌                                                  | `_none_`                            | The minimum decimal places for the currency number                                               |
+| Default value is 2                                                               |
+| `maxDecimalPlaces`                                                               | `number`                                                          | ❌                                                  | `_none_`                            | The maximum decimal places for the currency number                                               |
+| Default value is 5                                                               |
+| `maxLength`                                                                      | `number`                                                          | ❌                                                  | `_none_`                            | The maximum length of the input                                                                  |
+| Default value is 10                                                              |
+| `onChange`                                                                       | `(newValue?: string                                               | number) => void`                                    | ❌                                  | `_none_`                                                                                         | _No description_                                                                  |
+| `value`                                                                          | `number`                                                          | ❌                                                  | `_none_`                            | _No description_                                                                                 |
+| `defaultValue`                                                                   | `number`                                                          | ❌                                                  | `_none_`                            | _No description_                                                                                 |
+| `keyboard`                                                                       | `"decimal-pad"                                                    | "numbers-and-punctuation"`                          | ❌                                  | `_none_`                                                                                         | _No description_                                                                  |
+| `toolbar`                                                                        | `React.ReactNode`                                                 | ❌                                                  | `_none_`                            | Add a toolbar below the input field for actions like rewriting the text.                         |
+| `toolbarVisibility`                                                              | `"always"                                                         | "while-editing"`                                    | ❌                                  | `_none_`                                                                                         | Change the behaviour of when the toolbar becomes visible.                         |
+| `loading`                                                                        | `boolean`                                                         | ❌                                                  | `_none_`                            | Show loading indicator.                                                                          |
+| `loadingType`                                                                    | `"spinner"                                                        | "glimmer"`                                          | ❌                                  | `_none_`                                                                                         | Change the type of loading indicator to spinner or glimmer.                       |
+| `invalid`                                                                        | `string                                                           | boolean`                                            | ❌                                  | `_none_`                                                                                         | Highlights the field red and shows message below (if string) to indicate an error |
+| `disabled`                                                                       | `boolean`                                                         | ❌                                                  | `_none_`                            | Disable the input                                                                                |
+| `readonly`                                                                       | `boolean`                                                         | ❌                                                  | `_none_`                            | Makes the input read-only                                                                        |
+| `name`                                                                           | `string`                                                          | ❌                                                  | `_none_`                            | Name of the input.                                                                               |
+| `placeholder`                                                                    | `string`                                                          | ❌                                                  | `_none_`                            | Hint text that goes above the value once the field is filled out                                 |
+| `assistiveText`                                                                  | `string`                                                          | ❌                                                  | `_none_`                            | Text that helps the user understand the input                                                    |
+| `autoFocus`                                                                      | `boolean`                                                         | ❌                                                  | `_none_`                            | Automatically focus the input after it is rendered                                               |
+| `validations`                                                                    | `Partial<{ required: string                                       | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string                                                           | string[]; }>`                                                                     | ❌               | `_none_`                           | Shows an error message below the field and highlight the field red when value is invalid |
+| `onSubmitEditing`                                                                | `(event?: SyntheticEvent<Element, Event>) => void`                | ❌                                                  | `_none_`                            | Callback that is called when the text input's submit button is pressed                           |
+| @param event                                                                     |
+| `onFocus`                                                                        | `(event?: NativeSyntheticEvent<TextInputFocusEventData>) => void` | ❌                                                  | `_none_`                            | Callback that is called when the text input is focused                                           |
+| @param event                                                                     |
+| `onBlur`                                                                         | `() => void`                                                      | ❌                                                  | `_none_`                            | Callback that is called when the text input is blurred                                           |
+| `accessibilityLabel`                                                             | `string`                                                          | ❌                                                  | `_none_`                            | VoiceOver will read this string when a user selects the associated element                       |
+| `accessibilityHint`                                                              | `string`                                                          | ❌                                                  | `_none_`                            | An accessibility hint helps users understand what will happen when they perform an action on the |
+| accessibility element when that result is not clear from the accessibility label |
+| `autoCorrect`                                                                    | `boolean`                                                         | ❌                                                  | `_none_`                            | Turn off autocorrect                                                                             |
+| `autoCapitalize`                                                                 | `"characters"                                                     | "words"                                             | "sentences"                         | "none"`                                                                                          | ❌                                                                                | `_none_`         | Determines where to autocapitalize |
+| `autoComplete`                                                                   | `"name"                                                           | "additional-name"                                   | "address-line1"                     | "address-line2"                                                                                  | "birthdate-day"                                                                   | "birthdate-full" | "birthdate-month"                  | "birthdate-year"                                                                         | "cc-csc" | "cc-exp" | "cc-exp-day" | ... 45 more ... | "off"` | ❌  | `_none_` | Determines which content to suggest on auto complete, e.g.`username`. |
+
+Default is `off` which disables auto complete
+
+_Android Only_ | | `textContentType` |
+`"name" | "none" | "nickname" | "password" | "username" | "URL" | "addressCity" | "addressCityAndState" | "addressState" | "countryName" | "creditCardNumber" | "creditCardExpiration" | ... 28 more ... | "birthdateYear"`
+| ❌ | `_none_` | Determines which content to suggest on auto complete,
+e.g.`username`. Default is `none` which disables auto complete
+
+_iOS Only_ | | `multiline` | `boolean` | ❌ | `_none_` | Determines if inputText
+will span multiple lines. Default is `false`
+
+https://reactnative.dev/docs/textinput#multiline | | `prefix` |
+`{ icon?: IconNames; label?: string; }` | ❌ | `_none_` | Symbol to display
+before the text input | | `suffix` |
+`{ icon?: IconNames; label?: string; onPress?: () => void; }` | ❌ | `_none_` |
+Symbol to display after the text input | | `transform` |
+`{ input?: (v: any) => string; output?: (v: string) => any; }` | ❌ | `_none_` |
+transform object is used to transform the internal TextInput value It's useful
+for components like InputNumber where we want to transform the internal value to
+a number. "input" is a function that transform the value to the string format
+that should be shown to the user "output" is a function that transform the
+string representation of the value to the value that is sent to onChange and the
+form | | `clearable` | `Clearable` | ❌ | `_none_` | Add a clear action on the
+input that clears the value.
+
+You should always use `while-editing` if you want the input to be clearable. if
+the input value isn't editable (i.e. `InputDateTime`) you can set it to
+`always`. | | `testID` | `string` | ❌ | `_none_` | Used to locate this view in
+end-to-end tests | | `secureTextEntry` | `boolean` | ❌ | `_none_` | Use secure
+text entry | | `spellCheck` | `boolean` | ❌ | `_none_` | Determines whether
+spell check is used. Turn it off to hide empty autoCorrect suggestions when
+autoCorrect is off.
+
+_iOS Only_ | | `styleOverride` | `InputTextStyleOverride` | ❌ | `_none_` |
+Custom styling to override default style of the input text |
+
+## Categories
+
+- Forms & Inputs
+
+## Component Path
+
+`/components/InputCurrency`
+
+---
+
+_Generated on 2025-08-21T17:35:16.364Z_

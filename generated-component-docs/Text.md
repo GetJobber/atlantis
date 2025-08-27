@@ -1,0 +1,550 @@
+# Text
+
+# Text
+
+Text is used to add an additional visual meaning on your content
+
+## Design & usage guidelines
+
+The default styling of a text is used as the body text for almost everything.
+
+<Canvas>
+  <Text>Ask the information you need upfront from clients and new leads</Text>
+</Canvas>
+
+### Subdued
+
+De-emphasize a piece of text that is less important to the user.
+
+<Canvas>
+  <Text variation="subdued">Job note linked to related invoice</Text>
+</Canvas>
+
+### Feedback message
+
+The variation also includes text that conveys feedback messages.
+
+<Canvas>
+  <Content>
+    <Text variation="success">Invoice sent</Text>
+    <Text variation="error">Name is required</Text>
+    <Text variation="warn">Your message is over 160 characters</Text>
+    <Text variation="info">
+      Drag to rearrange the order that the fields show up in Jobber
+    </Text>
+  </Content>
+</Canvas>
+
+### Disabled
+
+Use when the text is part of a disabled section of the interface.
+
+Do not use `disabled` text to explain why an element is disabled. That text
+should be default text with full intended contrast so that the user can clearly
+identify why an element is disabled.
+
+<Canvas>
+  <Content>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+        marginBottom: "var(--space-small)",
+      }}
+    >
+      <Checkbox disabled checked={false} />
+      <Text variation="disabled">A checkbox option</Text>
+    </div>
+    <Text>
+      You must enable your other settings before you can select this option.
+    </Text>
+  </Content>
+</Canvas>
+
+## Alignment
+
+Use left-aligned text for the the vast majority of use cases, particularly when
+setting paragraphs. You may need to right-align text in cases where a label or
+other small typographic element helps maintain vertical alignment on the right
+side of a layout.
+
+Centered text should be used sparingly, and largely in standalone cases like
+empty states where the content is vertically and horizontally centered.
+
+For text alignment, we use `start` and `end` instead of `left` and `right`. This
+allows us to support
+[bi-directionality](https://material.io/design/usability/bidirectionality.html#mirroring-layout)
+when needed.
+
+<Canvas isColumn>
+  <Text align="start">
+    Start aligns text to the left in Latin and other LTR scripts
+  </Text>
+  <Text align="center">Center is always in... the center</Text>
+  <Text align="end">
+    End aligns text to the right in Latin and other LTR scripts
+  </Text>
+</Canvas>
+
+## maxLines
+
+Used to truncate large text with `...` based on line wrapping, such that the
+total number of lines does not exceed the preset. This is an optional prop. If
+left undefined all the contents are shown.
+
+<Canvas>
+  <Content>
+    <Text maxLines="single">
+      This will show 1 line. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros pretium, rutrum
+      purus sit amet, finibus ante. Donec pretium condimentum scelerisque.
+    </Text>
+    <Text maxLines="small">
+      This will show 2 lines. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros pretium, rutrum
+      purus sit amet, finibus ante. Donec pretium condimentum scelerisque. Duis
+      eu ligula nec metus suscipit feugiat.Etiam sapien sapien, mattis eu
+      tincidunt quis, pretium sed metus. Maecenas quis dolor lacinia libero
+      rhoncus fringilla. Cras mi ante, euismod nec tortor in, tempus mollis
+      nulla.
+    </Text>
+    <Text maxLines="base">
+      This will show 4 lines. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros pretium, rutrum
+      purus sit amet, finibus ante. Donec pretium condimentum scelerisque. Duis
+      eu ligula nec metus suscipit feugiat.Etiam sapien sapien, mattis eu
+      tincidunt quis, pretium sed metus. Maecenas quis dolor lacinia libero
+      rhoncus fringilla. Cras mi ante, euismod nec tortor in, tempus mollis
+      nulla.
+    </Text>
+    <Text maxLines="large">
+      This will show 8 lines. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros pretium, rutrum
+      purus sit amet, finibus ante. Donec pretium condimentum scelerisque. Duis
+      eu ligula nec metus suscipit feugiat.Etiam sapien sapien, mattis eu
+      tincidunt quis, pretium sed metus. Maecenas quis dolor lacinia libero
+      rhoncus fringilla. Cras mi ante, euismod nec tortor in, tempus mollis
+      nulla. Etiam eu lacus nibh. Donec tristique lacus magna, vulputate
+      tristique lacus blandit vitae. Aenean vitae commodo metus. Fusce eu risus
+      quis orci pharetra consequat nec nec libero.
+    </Text>
+    <Text maxLines="larger">
+      This will show 16 lines. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros
+      pretium, rutrum purus sit amet, finibus ante. Donec pretium condimentum
+      scelerisque. Duis eu ligula nec metus suscipit feugiat.Etiam sapien
+      sapien, mattis eu tincidunt quis, pretium sed metus. Maecenas quis dolor
+      lacinia libero rhoncus fringilla. Cras mi ante, euismod nec tortor in,
+      tempus mollis nulla. Etiam eu lacus nibh. Donec tristique lacus magna,
+      vulputate tristique lacus blandit vitae. Aenean vitae commodo metus. Fusce
+      eu risus quis orci pharetra consequat nec nec libero. Lorem ipsum dolor
+      sit amet, consectetur adipiscing elit. Vestibulum nec pulvinar nunc.
+      Suspendisse nec eros pretium, rutrum purus sit amet, finibus ante. Donec
+      pretium condimentum scelerisque. Duis eu ligula nec metus suscipit
+      feugiat.Etiam sapien sapien, mattis eu tincidunt quis, pretium sed metus.
+      Maecenas quis dolor lacinia libero rhoncus fringilla. Cras mi ante,
+      euismod nec tortor in, tempus mollis nulla. Etiam eu lacus nibh. Donec
+      tristique lacus magna, vulputate tristique lacus blandit vitae. Aenean
+      vitae commodo metus. Fusce eu risus quis orci pharetra consequat nec nec
+      libero.
+    </Text>
+  </Content>
+</Canvas>
+
+## Platform Considerations (Web)
+
+### Sizes
+
+Text can be used with different sizes.
+
+#### Base
+
+Base is the default size and is optimized for the widest range of uses,
+including:
+
+- Long paragraphs of text content
+- Descriptions of subsequent UI elements
+- Labels on UI elements such as checkboxes and radio buttons
+- Freeform user-generated content
+
+<Canvas>
+  <Text size="base">
+    Stay organized when creating estimates, work orders, and billing documents.
+  </Text>
+</Canvas>
+
+#### Large
+
+Typically large is to be used as an introductory paragraph that gives important
+information about a page, and requires greater prominence.
+
+<Canvas>
+  <Text size="large">
+    Attract new customers by asking happy clients for a Facebook recommendation.
+  </Text>
+</Canvas>
+
+#### Small
+
+The small size is intended to be used as helper content on things like
+checkboxes, radio buttons, inputs or any other UI elements that need help
+provided.
+
+<Canvas>
+  <Text size="small">What is this, a font for 🐜s?</Text>
+</Canvas>
+
+## Web Component Code
+
+```tsx
+Text Paragraph Body Copy Typography Web React import type { PropsWithChildren } from "react";
+import React from "react";
+import type { TypographyOptions, TypographyProps } from "../Typography";
+import { Typography } from "../Typography";
+
+type TextElement = Extract<
+  TypographyProps["element"],
+  "p" | "b" | "em" | "dd" | "dt" | "strong" | "span"
+>;
+
+export interface TextProps {
+  /**
+   * The HTML element to render the text as.
+   * @default "p"
+   */
+  readonly element?: TextElement;
+
+  readonly maxLines?:
+    | "single"
+    | "small"
+    | "base"
+    | "large"
+    | "larger"
+    | "unlimited";
+
+  readonly variation?:
+    | "default"
+    | "subdued"
+    | "success"
+    | "error"
+    | "warn"
+    | "info"
+    | "disabled";
+
+  readonly align?: "start" | "center" | "end";
+
+  readonly size?: "small" | "base" | "large";
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: TypographyProps["UNSAFE_className"];
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: TypographyProps["UNSAFE_style"];
+}
+
+type TextColor = Extract<TypographyOptions, "textColor">;
+
+export function Text({
+  variation = "default",
+  size = "base",
+  align = "start",
+  element = "p",
+  children,
+  maxLines = "unlimited",
+  UNSAFE_className,
+  UNSAFE_style,
+}: PropsWithChildren<TextProps>) {
+  const textColors = {
+    default: "text",
+    subdued: "textSecondary",
+    success: "success",
+    error: "critical",
+    warn: "warning",
+    info: "informative",
+    disabled: "disabled",
+  };
+
+  const maxLineToNumber = {
+    single: 1,
+    small: 2,
+    base: 4,
+    large: 8,
+    larger: 16,
+    unlimited: undefined,
+  };
+
+  return (
+    <Typography
+      element={element}
+      textColor={textColors[variation] as TextColor}
+      size={size}
+      numberOfLines={maxLineToNumber[maxLines]}
+      align={align}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_style={UNSAFE_style}
+    >
+      {children}
+    </Typography>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop               | Type                      | Required  | Default   | Description                                                                                      |
+| ------------------ | ------------------------- | --------- | --------- | ------------------------------------------------------------------------------------------------ | -------- | ---------------- | ----------- | ----------- | ---------------- | ---------------- |
+| `element`          | `TextElement`             | ❌        | `p`       | The HTML element to render the text as.                                                          |
+| `maxLines`         | `"single"                 | "small"   | "base"    | "large"                                                                                          | "larger" | "unlimited"`     | ❌          | `unlimited` | _No description_ |
+| `variation`        | `"default"                | "subdued" | "success" | "error"                                                                                          | "warn"   | "info"           | "disabled"` | ❌          | `default`        | _No description_ |
+| `align`            | `"start"                  | "center"  | "end"`    | ❌                                                                                               | `start`  | _No description_ |
+| `size`             | `"small"                  | "base"    | "large"`  | ❌                                                                                               | `base`   | _No description_ |
+| `UNSAFE_className` | `{ textStyle?: string; }` | ❌        | `_none_`  | **Use at your own risk:** Custom classNames for specific elements. This should only be used as a |
+
+**last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `UNSAFE_style` | `{ textStyle?: CSSProperties; }` | ❌ | `_none_` | **Use at
+your own risk:** Custom style for specific elements. This should only be used as
+a **last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+|
+
+### Mobile Props
+
+| Prop                                                                                       | Type             | Required  | Default           | Description                                                                        |
+| ------------------------------------------------------------------------------------------ | ---------------- | --------- | ----------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `level`                                                                                    | `TextLevel`      | ❌        | `text`            | Visual hierarchy of the text                                                       |
+| `variation`                                                                                | `TextVariation`  | ❌        | `base`            | Color variation of text                                                            |
+| `emphasis`                                                                                 | `"strong"`       | ❌        | `_none_`          | Change the appearance of the text                                                  |
+| `allowFontScaling`                                                                         | `boolean`        | ❌        | `true`            | Allow text to be resized based on user's device display scale                      |
+| `adjustsFontSizeToFit`                                                                     | `boolean`        | ❌        | `[object Object]` | Determines whether text should be scaled down to fit based on maxLines prop        |
+| `maxLines`                                                                                 | `TruncateLength` | ❌        | `unlimited`       | The maximum amount of lines the text can occupy before being truncated with "...". |
+| Uses predefined string values that correspond to a doubling scale for the amount of lines. |
+| `align`                                                                                    | `TextAlign`      | ❌        | `_none_`          | Alignment of text                                                                  |
+| `children`                                                                                 | `string`         | ❌        | `_none_`          | Text to display                                                                    |
+| `reverseTheme`                                                                             | `boolean`        | ❌        | `[object Object]` | Reverse theme for better display on dark background                                |
+| `strikeThrough`                                                                            | `boolean`        | ❌        | `[object Object]` | Have text styled with strike through                                               |
+| `italic`                                                                                   | `boolean`        | ❌        | `[object Object]` | Use italic font style                                                              |
+| `underline`                                                                                | `"solid"         | "dotted"` | ❌                | `_none_`                                                                           | Underline style to use for the text. The non-solid style is only supported |
+
+on iOS, as per React Native's Text component's limitations.
+https://reactnative.dev/docs/text-style-props#textdecorationstyle-ios | |
+`hideFromScreenReader` | `boolean` | ❌ | `[object Object]` | This will make the
+text inaccessible to the screen reader. This should be avoided unless there is a
+good reason. For example this is used in InputText to make it so the label isn't
+selectable because it is already read from the accessibilityLabel of the
+TextInput | | `UNSAFE_style` | `TypographyUnsafeStyle` | ❌ | `_none_` | **Use
+at your own risk:** Custom style for specific elements. This should only be used
+as a **last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `onTextLayout` |
+`(event: NativeSyntheticEvent<TextLayoutEventData>) => void` | ❌ | `_none_` |
+Callback that is called when the text is laid out. | | `maxFontScaleSize` |
+`number` | ❌ | `_none_` | Set the maximum font the text can go to size when the
+user scales their device font size | | `selectable` | `boolean` | ❌ | `true` |
+Lets the user select text, to use the native copy and paste functionality.
+WARNING: if true, this prevents ellipsis from being shown on Android. |
+
+## Categories
+
+- Text & Typography
+
+## Web Test Code
+
+```typescript
+Text Paragraph Body Copy Typography Web React Test Testing Jest import { render, screen } from "@testing-library/react";
+import React from "react";
+import { Text } from ".";
+
+it("renders a paragraph", () => {
+  const { container } = render(
+    <Text>
+      Ask the information you need upfront from clients and new leads
+    </Text>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular base text"
+      >
+        Ask the information you need upfront from clients and new leads
+      </p>
+    </div>
+  `);
+});
+
+it("renders a subdued text", () => {
+  const { container } = render(
+    <Text variation="subdued">Job note linked to related invoice</Text>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular base textSecondary"
+      >
+        Job note linked to related invoice
+      </p>
+    </div>
+  `);
+});
+
+it("renders a success text", () => {
+  const { container } = render(<Text variation="success">Invoice sent</Text>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular base success"
+      >
+        Invoice sent
+      </p>
+    </div>
+  `);
+});
+
+it("renders a error text", () => {
+  const { container } = render(<Text variation="error">Name is required</Text>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular base critical"
+      >
+        Name is required
+      </p>
+    </div>
+  `);
+});
+
+it("renders a warning text", () => {
+  const { container } = render(
+    <Text variation="warn">Your message is over 160 characters</Text>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular base warning"
+      >
+        Your message is over 160 characters
+      </p>
+    </div>
+  `);
+});
+
+it("renders a info text", () => {
+  const { container } = render(
+    <Text variation="info">
+      Drag to rearrange the order that fields show up in Jobber
+    </Text>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular base informative"
+      >
+        Drag to rearrange the order that fields show up in Jobber
+      </p>
+    </div>
+  `);
+});
+
+it("renders a large text", () => {
+  const { container } = render(
+    <Text size="large">
+      Attract new customers by asking happy clients for a Facebook
+      recommendation
+    </Text>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular large text"
+      >
+        Attract new customers by asking happy clients for a Facebook recommendation
+      </p>
+    </div>
+  `);
+});
+
+it("renders a small text", () => {
+  const { container } = render(<Text size="small">Teeny tiny text</Text>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular small text"
+      >
+        Teeny tiny text
+      </p>
+    </div>
+  `);
+});
+
+it("renders a end-aligned text", () => {
+  const { container } = render(<Text align="end">End align me</Text>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular base text end"
+      >
+        End align me
+      </p>
+    </div>
+  `);
+});
+
+it("renders a center-aligned text", () => {
+  const { container } = render(<Text align="center">Center align me</Text>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular base text center"
+      >
+        Center align me
+      </p>
+    </div>
+  `);
+});
+
+describe("UNSAFE props", () => {
+  it("should apply the UNSAFE_className to the element", () => {
+    render(
+      <Text UNSAFE_className={{ textStyle: "custom-class" }}>
+        Text with custom class
+      </Text>,
+    );
+    const element = screen.getByText("Text with custom class");
+    expect(element).toHaveClass("custom-class");
+  });
+
+  it("should apply the UNSAFE_style to the element", () => {
+    render(
+      <Text UNSAFE_style={{ textStyle: { color: "red" } }}>
+        Text with custom style
+      </Text>,
+    );
+    const element = screen.getByText("Text with custom style");
+    expect(element).toHaveStyle({ color: "red" });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Text`
+
+---
+
+_Generated on 2025-08-21T17:35:16.373Z_
