@@ -1,6 +1,4 @@
 declare const styles: {
-  readonly "react-datepicker__month--selecting-range": string;
-  readonly "react-datepicker__year--selecting-range": string;
   readonly "datePickerWrapper": string;
   readonly "fullWidth": string;
   readonly "datePicker": string;
