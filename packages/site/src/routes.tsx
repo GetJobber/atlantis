@@ -301,6 +301,11 @@ export const routes: Array<AtlantisRoute> = [
     component: ChangelogPage,
     children: [
       {
+        path: "/changelog/breaking-changes",
+        handle: "Breaking Changes",
+        exact: true,
+      },
+      {
         path: "/changelog/components",
         handle: "Components",
         exact: true,
