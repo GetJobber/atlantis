@@ -1,4 +1,4 @@
-import InlineLabelContent from "@atlantis/docs/components/InlineLabel/InlineLabel.stories.mdx";
+import InlineLabelContent from "./InlineLabel.stories.mdx";
 import Props from "./InlineLabel.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

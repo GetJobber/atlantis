@@ -1,4 +1,4 @@
-import AnimatedSwitcherContent from "@atlantis/docs/components/AnimatedSwitcher/AnimatedSwitcher.stories.mdx";
+import AnimatedSwitcherContent from "./AnimatedSwitcher.stories.mdx";
 import MobileProps from "./AnimatedSwitcher.props.json";
 import Notes from "./AnimatedSwitcherNotes.mdx";
 import { ContentExport } from "../../types/content";

@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/BottomSheet/BottomSheet.stories.mdx";
+import Content from "./BottomSheet.stories.mdx";
 import MobileProps from "./BottomSheet.props-mobile.json";
 import Notes from "./BottomSheetNotes.mdx";
 import { ContentExport } from "../../types/content";

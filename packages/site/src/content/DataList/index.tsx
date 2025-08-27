@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/DataList/DataList.stories.mdx";
+import Content from "./DataList.stories.mdx";
 import Props from "./DataList.props.json";
 import Notes from "./DataListNotes.mdx";
 import { ContentExport } from "../../types/content";

@@ -1,4 +1,4 @@
-import FormatRelativeDateTimeContent from "@atlantis/docs/components/FormatRelativeDateTime/FormatRelativeDateTime.stories.mdx";
+import FormatRelativeDateTimeContent from "./FormatRelativeDateTime.stories.mdx";
 import Props from "./FormatRelativeDateTime.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

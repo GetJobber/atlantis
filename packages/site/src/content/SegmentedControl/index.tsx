@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/SegmentedControl/SegmentedControl.stories.mdx";
+import Content from "./SegmentedControl.stories.mdx";
 import Props from "./SegmentedControl.props.json";
 import Notes from "./SegmentedControlNotes.mdx";
 import { ContentExport } from "../../types/content";

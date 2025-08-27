@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Drawer/Drawer.stories.mdx";
+import Content from "./Drawer.stories.mdx";
 import Props from "./Drawer.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
