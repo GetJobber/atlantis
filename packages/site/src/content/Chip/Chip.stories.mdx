@@ -1,0 +1,229 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Chip } from "@jobber/components/Chip";
+import { Avatar } from "@jobber/components/Avatar";
+import { Icon } from "@jobber/components/Icon";
+import { Flex } from "@jobber/components/Flex";
+
+<Meta title="Components/Selections/Chip" />
+
+# Chip
+
+Chip is a flexible component that can be used for
+
+- inline single- or multi-selection of items
+- triggering filtering and selection components like
+  [Combobox](/components/Combobox)
+- presenting grouped items that can be added or removed
+
+<Canvas>
+  <Chip label="Gavin Messina">
+    <Chip.Prefix>
+      <Avatar
+        size="small"
+        imageUrl="https://images.unsplash.com/photo-1669475535925-a011d7c31d45?q=80&w=1886&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      />
+    </Chip.Prefix>
+    <Chip.Suffix>
+      <Icon name="cross" size="small" />
+    </Chip.Suffix>
+  </Chip>
+</Canvas>
+
+## Design & usage guidelines
+
+See the
+[Comparison story](../?path=/story/components-selections-chip-web-comparisons--all)
+for a full overview of potential Chip variants.
+
+### Variations
+
+The base variation of Chip should be used in most cases. When a lighter-weight
+approach is desired, use the subtle variation.
+
+<Canvas>
+  <Flex template={["shrink", "shrink"]} direction="row" gap="small">
+    <Chip label="Base" />
+    <Chip label="Subtle" variation="subtle" />
+  </Flex>
+</Canvas>
+
+### Selection
+
+Chip allows users to make selections in scenarios where space is at a premium.
+It has three high-level usages: single-select, multi-select, and add/dismiss
+selection.
+
+#### Single-select
+
+If you need the user to make a selection of a single item from among several
+items, and those items all have short (1–2 word) labels, single-select Chips
+will allow the user to choose one of those items.
+
+This preserves vertical space while allowing the user to clearly identify which
+item they have selected.
+
+Unlike [Radio](/components/RadioGroup), the selected single-select Chip can be
+de-selected by the user, leaving all selections blank.
+
+<Canvas>
+  <Flex
+    template={["shrink", "shrink", "shrink", "shrink"]}
+    direction="row"
+    gap="small"
+  >
+    <Chip label="Option 1" variation="subtle" />
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 3" variation="subtle" />
+    <Chip label="Option 4" variation="subtle" />
+  </Flex>
+</Canvas>
+
+#### Multi-select
+
+If you need the user to make a selection of one _or more_ items from amongst
+several items, and those items all have short (1–2 word) labels, a multi-select
+Chips will allow the user to choose as many items from the group as they wish.
+
+This preserves vertical space while allowing the user to clearly identify which
+items they have selected. To signify to the user that multiple selections are
+possible, a checkmark icon is present to reinforce the conceptual similarity to
+a [Checkbox](/components/Checkbox).
+
+Similar to Checkbox, a selected multi-select Chip can be de-selected by the
+user, leaving all selections blank.
+
+<Canvas>
+  <Flex
+    template={["shrink", "shrink", "shrink", "shrink"]}
+    direction="row"
+    gap="small"
+  >
+    <Chip label="Option 1">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 3" variation="subtle" />
+    <Chip label="Option 4">
+      <Chip.Suffix>
+        <Icon name="checkmark" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+  </Flex>
+</Canvas>
+
+#### Add/dismiss selection
+
+When the user will be selecting one or more items by inputting their own Chip
+options, use a dismissible Chip. Think of a case like team assignment, where the
+user can add multiple users represented as Chips, and click on the dismiss
+suffix of the Chip to remove a user.
+
+The dismissible Chip allows them to remove previous selections from the Chips.
+Use this option when the full list of possible selections is too great to
+reasonably display in one group of Chip. For example, "all of my phone contacts"
+would be far too many Chip options to present in one group, and would be
+overwhelming for the user to interpret.
+
+<Canvas>
+  <Flex
+    template={["shrink", "shrink", "shrink", "shrink", "shrink"]}
+    direction="row"
+    gap="small"
+  >
+    <Chip label="Add" variation="subtle">
+      <Chip.Suffix>
+        <Icon name="add" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 1">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 2">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 3">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+    <Chip label="Option 4">
+      <Chip.Suffix>
+        <Icon name="cross" size="small" color="interactiveSubtle" />
+      </Chip.Suffix>
+    </Chip>
+  </Flex>
+</Canvas>
+
+### Invalid
+
+If something goes awry with a selection or you otherwise need to convey to the
+user that something's gone wrong in relation to the Chip, you can use the
+invalid state.
+
+<Canvas>
+  <Chip label="Select team" invalid>
+    <Chip.Prefix>
+      <Icon name="alert" size="small" />
+    </Chip.Prefix>
+  </Chip>
+</Canvas>
+
+## Related components
+
+- [Chips](/components/Chips) is a convenience wrapper that offers the
+  single-select, multi-select, and add/dismiss functionality "out of the box"
+- [Combobox](/components/Combobox) is most commonly triggered by a Chip, but is
+  a separate component
+- [Select](/components/Select) is a simpler single-select "dropdown" that
+  presents as a form element and should be preferred in forms
+- [RadioGroup](/components/RadioGroup) should be used to allow the user to
+  select "one-of-many" items (single-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [Checkbox](/components/Checkbox) should be used to allow the user to select
+  "one-or-more-of-many" items (multi-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [InlineLabel](/components/InlineLabel) should be used when you just need a
+  rounded-rectangular element that displays metadata about an element
+
+## Content guidelines
+
+Chip headings and labels for single- or multi-select should be succinct -
+ideally 1–2 words. If any of the options in the group may have longer labels,
+consider Checkbox or Radio as necessary for your selection type.
+
+In cases where a Chip displays name of its selections, such as when used to
+trigger a Combobox or a date range selector, use the heading to identify the
+"category" and the label to identify the selected items.
+
+## Accessibility
+
+Chips should convey to the user whether it is a "checkbox" or "radio" element
+based on single or multi-select. The Chips in this group have the appropriate
+roles and keyboard operation to allow the user to interact as though they are
+dealing with a checkbox or radio button.
+
+If Chips is set for add/dismiss selections, the dismiss button should notify the
+user that they will "dismiss \{label name\}" upon press.
+
+## Responsiveness
+
+The Chips themselves will take up as much space as their container allows, and
+the Chips will flow left to right. Chips may re-flow into new rows, or scroll
+out of view in a single row, depending on your use case.
+
+Chip can truncate if its' container is limited in space, but does not inherently
+cap its own width and will default to "hug" its contents.

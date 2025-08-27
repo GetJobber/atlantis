@@ -1,4 +1,4 @@
-import StatusLabelContent from "@atlantis/docs/components/StatusLabel/StatusLabel.stories.mdx";
+import StatusLabelContent from "./StatusLabel.stories.mdx";
 import Props from "./StatusLabel.props.json";
 import MobileProps from "./StatusLabel.props-mobile.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

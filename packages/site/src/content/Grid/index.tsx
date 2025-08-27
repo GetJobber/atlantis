@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Grid/Grid.stories.mdx";
+import Content from "./Grid.stories.mdx";
 import Props from "./Grid.props.json";
 import Notes from "./GridNotes.mdx";
 import { ContentExport } from "../../types/content";

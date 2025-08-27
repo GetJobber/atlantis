@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/RecurringSelect/RecurringSelect.stories.mdx";
+import Content from "./RecurringSelect.stories.mdx";
 import Props from "./RecurringSelect.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

@@ -1,4 +1,4 @@
-import AnimatedPresenceContent from "@atlantis/docs/components/AnimatedPresence/AnimatedPresence.stories.mdx";
+import AnimatedPresenceContent from "./AnimatedPresence.stories.mdx";
 import Props from "./AnimatedPresence.props.json";
 import Notes from "./AnimatedPresenceNotes.mdx";
 import { ContentExport } from "../../types/content";

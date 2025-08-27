@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Divider/Divider.stories.mdx";
+import Content from "./Divider.stories.mdx";
 import Props from "./Divider.props.json";
 import MobileProps from "./Divider.props-mobile.json";
 import Notes from "./DividerNotes.mdx";
