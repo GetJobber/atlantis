@@ -567,12 +567,6 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly size?: InputTextRebuiltProps["size"];
 
-  /**
-   * Whether the input is clearable.
-   * TODO: implement (issue with width)
-   */
-  readonly clearable?: boolean;
-
   readonly suffix?: InputTextRebuiltProps["suffix"];
   readonly prefix?: InputTextRebuiltProps["prefix"];
 

@@ -45,7 +45,6 @@ function AutocompleteRebuiltInternal<
     invalid,
     description,
     size: sizeProp,
-    clearable,
     loading = false,
   } = props;
 
@@ -115,7 +114,6 @@ function AutocompleteRebuiltInternal<
     size: sizeProp ? sizeProp : undefined,
     prefix: props.prefix,
     suffix: props.suffix,
-    clearable: clearable ? "while-editing" : undefined,
     ...(props.readOnly ? {} : composedReferenceProps),
     role: "combobox",
     "aria-autocomplete": "list",
