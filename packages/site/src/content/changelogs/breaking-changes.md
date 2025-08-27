@@ -1,10 +1,3 @@
-import { Meta } from "@storybook/addon-docs";
-
-<Meta
-  title="Changelog/Upcoming Breaking Changes"
-  parameters={{ previewTabs: { canvas: { hidden: true } } }}
-/>
-
 # Upcoming Breaking Changes
 
 ## `@jobber/components@4.91.0`
