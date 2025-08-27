@@ -283,7 +283,6 @@ export function useAutocomplete<
     setOpen,
     setReferenceElement,
   } = useAutocompleteListNav({
-    openOnFocus: openOnFocus && !readOnly,
     navigableCount: totalNavigableCount,
     shouldResetActiveIndexOnClose: () => !hasSelection,
     selectedIndex,
@@ -292,7 +291,6 @@ export function useAutocomplete<
         const hasText = inputValue.trim().length > 0;
 
         if (hasText && !hasSelection) {
-          suppressOpenOnInputChange.current = true;
           lastInputWasUser.current = false;
 
           onInputChange?.("");
@@ -302,36 +300,7 @@ export function useAutocomplete<
     },
   });
 
-  const suppressOpenOnInputChange = useRef(false);
   const [inputFocused, setInputFocused] = useState(false);
-
-  // Open/close behavior driven by input value changes
-  useEffect(() => {
-    if (suppressOpenOnInputChange.current) {
-      suppressOpenOnInputChange.current = false;
-
-      return;
-    }
-
-    if (readOnly) return;
-
-    const hasText = inputValue.trim().length > 0;
-    // When there is text but free-form is disabled, the user must select from options
-    const mustSelectFromOptions = hasText && !props.allowFreeForm;
-
-    if (lastInputWasUser.current) {
-      const keepOpenOnEmpty = openOnFocus && inputFocused;
-
-      setOpen(mustSelectFromOptions || keepOpenOnEmpty);
-    }
-  }, [
-    inputValue,
-    readOnly,
-    openOnFocus,
-    inputFocused,
-    setOpen,
-    props.allowFreeForm,
-  ]);
 
   // Handles activeIndex reset and change propagation when input is empty
   useEffect(() => {
@@ -361,7 +330,6 @@ export function useAutocomplete<
     } else {
       onChange(option as AutocompleteValue<Value, Multiple>);
 
-      suppressOpenOnInputChange.current = true;
       lastInputWasUser.current = false;
 
       onInputChange?.(getOptionLabel(option));
@@ -383,6 +351,7 @@ export function useAutocomplete<
 
   // Keep the selected item highlighted when deleting characters from the input
   const prevInputLengthRef = useRef(inputValue.length);
+
   useEffect(() => {
     const previousLength = prevInputLengthRef.current;
     prevInputLengthRef.current = inputValue.length;
@@ -494,7 +463,6 @@ export function useAutocomplete<
 
     if (inputValue === selectedLabel) return;
 
-    suppressOpenOnInputChange.current = true;
     lastInputWasUser.current = false;
 
     onInputChange?.(selectedLabel);
@@ -509,8 +477,9 @@ export function useAutocomplete<
 
   const onInputFocus = useCallback(() => {
     setInputFocused(true);
+    if (!readOnly && openOnFocus) setOpen(true);
     props.onFocus?.();
-  }, [props.onFocus]);
+  }, [props.onFocus, readOnly, openOnFocus, setOpen]);
 
   const onInputBlur = useCallback(() => {
     setInputFocused(false);
@@ -528,6 +497,8 @@ export function useAutocomplete<
       tryRestoreInputToSelectedLabel();
     }
 
+    lastInputWasUser.current = false;
+
     props.onBlur?.();
   }, [
     readOnly,
@@ -535,6 +506,7 @@ export function useAutocomplete<
     inputValue,
     props.onBlur,
     tryRestoreInputToSelectedLabel,
+    setOpen,
   ]);
 
   function getRegionByActiveIndex(index: number): {
@@ -654,9 +626,28 @@ export function useAutocomplete<
         setActiveIndex(null);
       }
 
+      // Important: update open state before propagating the change so that downstream effects
+      // don’t see an intermediate state where inputValue changed but open was stale
+      if (!readOnly) {
+        const hasText = val.trim().length > 0;
+        const mustSelectFromOptions = hasText && !props.allowFreeForm;
+        const keepOpenOnEmpty = openOnFocus && inputFocused;
+
+        setOpen(mustSelectFromOptions || keepOpenOnEmpty);
+      }
+
       onInputChange?.(val);
     },
-    [onInputChange, inputValue, setActiveIndex],
+    [
+      onInputChange,
+      inputValue,
+      setActiveIndex,
+      readOnly,
+      props.allowFreeForm,
+      openOnFocus,
+      inputFocused,
+      setOpen,
+    ],
   );
 
   return {

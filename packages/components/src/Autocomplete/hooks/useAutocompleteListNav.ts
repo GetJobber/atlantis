@@ -10,7 +10,6 @@ import {
   size,
   useDismiss,
   useFloating,
-  useFocus,
   useInteractions,
   useListNavigation,
 } from "@floating-ui/react";
@@ -36,7 +35,6 @@ export interface UseAutocompleteListNavReturn {
 }
 
 export interface UseAutocompleteListNavProps {
-  openOnFocus: boolean;
   navigableCount: number;
   shouldResetActiveIndexOnClose?: () => boolean;
   onMenuClose?: (reason?: string) => void;
@@ -44,7 +42,6 @@ export interface UseAutocompleteListNavProps {
 }
 
 export function useAutocompleteListNav({
-  openOnFocus,
   navigableCount,
   shouldResetActiveIndexOnClose,
   onMenuClose,
@@ -107,12 +104,8 @@ export function useAutocompleteListNav({
     outsidePressEvent: "click",
   });
 
-  const focus = useFocus(context, {
-    enabled: openOnFocus,
-  });
-
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
-    [listNav, dismiss, focus],
+    [listNav, dismiss],
   );
 
   useEffect(() => {
