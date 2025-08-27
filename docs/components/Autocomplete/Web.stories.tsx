@@ -17,7 +17,6 @@ import type {
   AnyOption,
   CustomOptionsMenuProp,
   Option,
-  OptionLike,
 } from "@jobber/components/Autocomplete";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
@@ -30,10 +29,12 @@ import { Heading } from "@jobber/components/Heading";
 import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
 import { StatusIndicatorType } from "@jobber/components/StatusIndicator";
 import { Modal } from "@jobber/components/Modal";
+import { AutocompleteV1Docgen } from "./V1.docgen";
 
+// ----- V1 Meta (docgen from v1 props) -----
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
-  component: Autocomplete,
+  component: AutocompleteV1Docgen,
   parameters: {
     viewMode: "story",
     previewTabs: {
@@ -45,125 +46,12 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Autocomplete>;
+} as ComponentMeta<typeof AutocompleteV1Docgen>;
 
-// Seed v1 Controls so SB shows legacy props in the panel
+// Seed v1 Controls minimally so SB recognizes legacy surface without overriding defaults
 const v1ControlsArgs = {
   version: 1 as const,
-  // FormField props
-  clearable: "never" as const,
-  description: "",
-  invalid: false,
-  name: "",
-  // Affix examples
-  prefix: { label: "" },
-  size: undefined,
-  suffix: {},
-  // v1 Autocomplete props
-  allowFreeForm: true,
-  debounce: 300,
-  validations: {},
-  customRenderMenu: () => <></>,
 };
-
-interface ServiceOption extends OptionLike {
-  description: string;
-  details: string;
-  price: number;
-  id: React.Key;
-}
-
-const simpleOptions: OptionLike[] = [
-  {
-    label: "Drain Cleaning",
-  },
-  {
-    label: "Pipe Replacement",
-  },
-  {
-    label: "Sewer Line Repair",
-  },
-  {
-    label: "Seasonal Refreshment",
-  },
-  {
-    label: "Window Cleaning",
-  },
-  {
-    label: "Roof Inspection",
-  },
-  {
-    label: "Flooring Installation",
-  },
-  {
-    label: "Baseboard Installation",
-  },
-  {
-    label: "HVAC Repair",
-  },
-  {
-    label: "HVAC Installation",
-  },
-];
-
-const simpleOptionsSecondSection: OptionLike[] = [
-  {
-    label: "Grout Cleaning",
-  },
-  {
-    label: "Tile Cleaning",
-  },
-  {
-    label: "Lock Repair",
-  },
-  {
-    label: "Window Repair",
-  },
-  {
-    label: "Door Repair",
-  },
-];
-const simpleOptionsThirdSection: OptionLike[] = [
-  {
-    label: "Yard Work",
-  },
-  {
-    label: "Lawn Care",
-  },
-  {
-    label: "Tree Removal",
-  },
-  {
-    label: "Snow Removal",
-  },
-  {
-    label: "Gutter Cleaning",
-  },
-];
-
-const serviceOptions: ServiceOption[] = [
-  {
-    label: "Drain Cleaning",
-    description: "Clear drains of accumulated debris and build up",
-    details: "Recommended every 3 months",
-    price: 100,
-    id: "dc1",
-  },
-  {
-    label: "Pipe Replacement",
-    description: "Replace old poly-b pipes with new PVC",
-    details: "Recommended every 10 years",
-    price: 10_000,
-    id: "pr1",
-  },
-  {
-    label: "Sewer Line Repair",
-    description: "Repair damaged sewer lines",
-    details: "Recommended every 10 years",
-    price: 2000,
-    id: "slr1",
-  },
-];
 
 const defaultOptions = [
   { value: 1, label: "Nostromo" },
@@ -171,10 +59,7 @@ const defaultOptions = [
   { value: 3, label: "Serenity" },
   { value: 4, label: "Sleeper Service" },
   { value: 5, label: "Enterprise" },
-  {
-    value: 6,
-    label: "Enterprise-D",
-  },
+  { value: 6, label: "Enterprise-D" },
 ];
 
 // Each template calls args.initialOptions so that the options
@@ -341,267 +226,6 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
     return valueOptions.filter(option => option.label.match(filterRegex));
   }
 };
-
-const V2Template: ComponentStory<typeof Autocomplete> = () => {
-  const [defaultValue, setDefaultValue] = useState<OptionLike | undefined>();
-  const [inputValue, setInputValue] = useState("");
-
-  const [customOptionValue, setCustomOptionValue] = useState<
-    ServiceOption | undefined
-  >();
-  const [customOptionInputValue, setCustomOptionInputValue] = useState("");
-
-  const [defaultSectionedValue, setDefaultSectionedValue] = useState<
-    OptionLike | undefined
-  >();
-  const [sectionedInputValue, setSectionedInputValue] = useState("");
-
-  const [sectionActionDefaultValue, setSectionActionDefaultValue] = useState<
-    OptionLike | undefined
-  >();
-  const [sectionActionInputValue, setSectionActionInputValue] = useState("");
-
-  const [emptyExampleValue, setEmptyExampleValue] = useState<
-    OptionLike | undefined
-  >();
-  const [emptyInputValue, setEmptyInputValue] = useState("");
-  const [persistentExampleValue, setPersistentExampleValue] = useState<
-    OptionLike | undefined
-  >();
-  const [persistentInputValue, setPersistentInputValue] = useState("");
-
-  return (
-    <Content>
-      <Heading level={4}>Flat, default layout</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Search for a service"
-        value={defaultValue}
-        onChange={setDefaultValue}
-        inputValue={inputValue}
-        onInputChange={setInputValue}
-        menu={[{ type: "options", options: simpleOptions }]}
-      />
-
-      <Heading level={4}>Sectioned, default layout</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Search for a service"
-        value={defaultSectionedValue}
-        onChange={setDefaultSectionedValue}
-        inputValue={sectionedInputValue}
-        onInputChange={setSectionedInputValue}
-        menu={[
-          {
-            type: "section",
-            label: "Services",
-            options: simpleOptions,
-          },
-        ]}
-      />
-
-      <Heading level={4}>Sectioned, default layout with action</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Search for a service"
-        value={sectionActionDefaultValue}
-        onChange={setSectionActionDefaultValue}
-        inputValue={sectionActionInputValue}
-        onInputChange={setSectionActionInputValue}
-        menu={[
-          {
-            type: "section",
-            label: "Services",
-            options: simpleOptions,
-            actions: [
-              {
-                type: "action",
-                label: "Add Service",
-                onClick: () => {
-                  alert("Add Service");
-                },
-              },
-            ],
-          },
-          {
-            type: "section",
-            label: "Additional Services",
-            options: simpleOptionsSecondSection,
-          },
-          {
-            type: "section",
-            label: "Outdoor Services",
-            options: simpleOptionsThirdSection,
-          },
-        ]}
-      />
-
-      <Heading level={4}>Flat, custom option layout</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Search for a service"
-        value={customOptionValue}
-        onChange={setCustomOptionValue}
-        inputValue={customOptionInputValue}
-        emptyStateMessage="No services found"
-        onInputChange={setCustomOptionInputValue}
-        menu={[
-          {
-            type: "options",
-            options: serviceOptions,
-            actions: [
-              {
-                type: "action",
-                label: "Add Service",
-                onClick: () => {
-                  alert("Add Service");
-                },
-              },
-            ],
-          },
-        ]}
-        customRenderOption={({ value, isActive, isSelected }) => {
-          return (
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <Text variation={isActive ? "info" : "default"}>
-                  {value.label}
-                </Text>
-                <Text variation={isActive ? "info" : "default"}>
-                  {value.description}
-                </Text>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  padding: "0 var(--space-small)",
-                }}
-              >
-                {isSelected && <Icon name="checkmark" />}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  marginLeft: "auto",
-                }}
-              >
-                <Text>{value.details}</Text>
-                <Text align="end">
-                  {value.price.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
-                </Text>
-              </div>
-            </div>
-          );
-        }}
-      />
-
-      <Heading level={4}>Loading</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Search for a service"
-        value={undefined}
-        onChange={() => {
-          // Noop
-        }}
-        inputValue={"Loading..."}
-        onInputChange={() => {
-          // Noop
-        }}
-        loading
-        menu={[]}
-      />
-
-      <Heading level={4}>Interactive Empty Actions</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Search for a service"
-        value={emptyExampleValue}
-        onChange={setEmptyExampleValue}
-        inputValue={emptyInputValue}
-        onInputChange={setEmptyInputValue}
-        emptyActions={[
-          {
-            type: "action",
-            label: "Add Service",
-            onClick: () => {
-              alert("Add Service");
-            },
-          },
-        ]}
-        menu={[
-          {
-            type: "options",
-            options: simpleOptions,
-          },
-        ]}
-      />
-      <Heading level={4}>Persistent Actions (Header/Footer)</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Search for a service"
-        value={persistentExampleValue}
-        onChange={setPersistentExampleValue}
-        inputValue={persistentInputValue}
-        onInputChange={setPersistentInputValue}
-        emptyActions={[
-          {
-            type: "action",
-            label: "Add Service",
-            onClick: () => {
-              alert("Add Service");
-            },
-          },
-        ]}
-        menu={[
-          {
-            type: "section",
-            label: "Services",
-            options: simpleOptions,
-            actions: [
-              {
-                type: "action",
-                label: "Add Service",
-                onClick: () => {
-                  alert("Add Service");
-                },
-              },
-            ],
-          },
-
-          {
-            type: "header",
-            label:
-              "This is some content that will remain at all times regardless of options, and empty states.",
-            shouldClose: false,
-          },
-          {
-            type: "footer",
-            label: "'Sticky' Footer Action",
-            onClick: () => {
-              alert("Sticky Footer Action");
-            },
-          },
-          {
-            type: "footer",
-            label: "Another Footer Action",
-            onClick: () => {
-              alert("Sticky Footer Action");
-            },
-          },
-        ]}
-      />
-    </Content>
-  );
-};
-
-export const Version2 = V2Template.bind({});
-Version2.args = {};
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
