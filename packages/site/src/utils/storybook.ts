@@ -21,7 +21,7 @@ export function handleStorybookRedirect() {
   const redirectToNewSite = localStorage.getItem("nolikeynewsite");
   const storybookPath = urlParams.get("path");
 
-  if (storybookPath) {
+  if (storybookPath && !skipRedirect()) {
     window.location.href = getRedirectPath(storybookPath);
   } else if (window.location.pathname === "/" && redirectToNewSite) {
     // NOTE: by default we redirect to storybook for now.
@@ -49,4 +49,12 @@ function getRedirectPath(storybookPath: string) {
   }
 
   return `${prefix}/${newSearch}`;
+}
+
+function skipRedirect() {
+  // Don't redirect storybook v9 paths.
+  return (
+    window.location.pathname.includes("storybook/web") ||
+    window.location.pathname.includes("storybook/mobile")
+  );
 }
