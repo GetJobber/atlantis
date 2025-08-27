@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ \"base-unit\": string; \"border-base\": number; \"border-thick\": number; \"border-thicker\": number; \"border-thickest\": number; \"color-base-grey--100\": string; \"color-base-grey--200\": string; \"color-base-grey--300\": string; ... 337 more ...; \"typography--fontSize-smaller\": number; }"
+          "name": "OverrideTokens"
         }
       }
     }
