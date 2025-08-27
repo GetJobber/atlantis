@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.85.2...@jobber/components@6.86.0) (2025-08-27)
+
+
+### Features
+
+* **components:** Autocomplete v2 ([#2626](https://github.com/GetJobber/atlantis/issues/2626)) ([2bfa058](https://github.com/GetJobber/atlantis/commit/2bfa05890b8c03b75823510545bae48cb8c5d24d))
+
+
+
+
+
 ## [6.85.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.85.1...@jobber/components@6.85.2) (2025-08-21)
 
 **Note:** Version bump only for package @jobber/components
