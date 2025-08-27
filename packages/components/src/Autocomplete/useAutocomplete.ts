@@ -305,7 +305,7 @@ export function useAutocomplete<
   const suppressOpenOnInputChange = useRef(false);
   const [inputFocused, setInputFocused] = useState(false);
 
-  // Open/close behavior driven by input changes
+  // Open/close behavior driven by input value changes
   useEffect(() => {
     if (suppressOpenOnInputChange.current) {
       suppressOpenOnInputChange.current = false;
@@ -316,13 +316,22 @@ export function useAutocomplete<
     if (readOnly) return;
 
     const hasText = inputValue.trim().length > 0;
+    // When there is text but free-form is disabled, the user must select from options
+    const mustSelectFromOptions = hasText && !props.allowFreeForm;
 
     if (lastInputWasUser.current) {
       const keepOpenOnEmpty = openOnFocus && inputFocused;
 
-      setOpen(hasText || keepOpenOnEmpty);
+      setOpen(mustSelectFromOptions || keepOpenOnEmpty);
     }
-  }, [inputValue, readOnly, openOnFocus, inputFocused, setOpen]);
+  }, [
+    inputValue,
+    readOnly,
+    openOnFocus,
+    inputFocused,
+    setOpen,
+    props.allowFreeForm,
+  ]);
 
   // Handles activeIndex reset and change propagation when input is empty
   useEffect(() => {
@@ -464,11 +473,11 @@ export function useAutocomplete<
 
     if (props.allowFreeForm !== true) return false;
 
-    const created = props.createFreeFormValue?.(inputText);
+    const freeFormCreated = props.createFreeFormValue?.(inputText);
 
-    if (!created) return false;
+    if (!freeFormCreated) return false;
 
-    props.onChange(created as AutocompleteValue<Value, Multiple>);
+    props.onChange(freeFormCreated as AutocompleteValue<Value, Multiple>);
 
     return true;
   }

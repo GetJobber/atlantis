@@ -1012,6 +1012,40 @@ describe("AutocompleteRebuilt", () => {
         label: "Custom",
       });
     });
+
+    it("closes the menu when committing free-form with Tab", async () => {
+      render(<FreeFormWrapper />);
+      await openAutocomplete();
+      await typeInInput("not-in-options");
+
+      await blurAutocomplete();
+
+      await expectMenuClosed();
+    });
+
+    // Regression test for an issue where the menu would reopen after blur/commit
+    it("does not reopen immediately after Tab blur (short delay)", async () => {
+      render(
+        <>
+          <FreeFormWrapper openOnFocus={false} />
+          <button type="button" data-testid="after">
+            after
+          </button>
+        </>,
+      );
+
+      await openAutocomplete();
+      await typeInInput("non-matching-freeform-value");
+      await blurAutocomplete();
+
+      // Ensure focus moved off the input
+      expect(screen.getByTestId("after")).toHaveFocus();
+
+      // Use a short timeout to ensure the menu is not reopened
+      await expect(
+        screen.findByRole("listbox", undefined, { timeout: 5 }),
+      ).rejects.toThrow();
+    });
   });
 
   // eslint-disable-next-line max-statements
