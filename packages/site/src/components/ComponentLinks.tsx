@@ -1,4 +1,12 @@
-import { Box, Content, Icon, Link, Typography } from "@jobber/components";
+import {
+  Box,
+  Cluster,
+  Content,
+  Icon,
+  Link,
+  Stack,
+  Typography,
+} from "@jobber/components";
 import { AnchorLinks } from "./AnchorLinks";
 import { ContentExportLinks } from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
@@ -93,17 +101,15 @@ export const ComponentLinks = ({
         >
           Links
         </Typography>
-        <Content spacing="smaller">
-          <Box direction="row" gap="smaller" alignItems="center">
-            <Icon size="small" color="interactive" name="link" />
-            {links?.map((link, index) => (
-              <div key={index} data-storybook-link>
-                <Link key={index} url={link.url} external>
-                  {link.label}
-                </Link>
-              </div>
-            ))}
-          </Box>
+        <Content spacing="small">
+          {links?.map((link, index) => (
+            <Cluster key={link.url} gap="small">
+              <Icon size="small" color="interactive" name="link" />
+              <Link key={index} url={link.url} external>
+                {link.label}
+              </Link>
+            </Cluster>
+          ))}
         </Content>
       </Content>
     </Content>

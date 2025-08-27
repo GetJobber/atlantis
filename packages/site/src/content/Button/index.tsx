@@ -16,8 +16,20 @@ export default {
   title: "Button",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl("?path=/docs/components-actions-button--docs"),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-actions-button--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-actions-button--basic",
+        "mobile",
+      ),
     },
   ],
   notes: () => <Notes />,
