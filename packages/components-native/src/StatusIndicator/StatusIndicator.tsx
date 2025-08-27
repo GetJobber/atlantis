@@ -3,14 +3,14 @@ import { View } from "react-native";
 import { useStyles } from "./StatusIndicator.style";
 import { tokens } from "../utils/design";
 
-export type StatusType =
+export type StatusIndicatorType =
   | "success"
   | "warning"
   | "critical"
   | "inactive"
   | "informative";
 export interface StatusIndicatorProps {
-  readonly status: StatusType;
+  readonly status: StatusIndicatorType;
 }
 
 export function StatusIndicator({ status }: StatusIndicatorProps) {
