@@ -64,7 +64,7 @@ export const VisualTestAutocompletePage = () => {
             <Text size="large">Basic Autocomplete</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Autocomplete<Option>
+                <Autocomplete
                   placeholder="Select a fruit"
                   value={basicValue}
                   onChange={(newValue?: Option) => setBasicValue(newValue)}
@@ -80,7 +80,7 @@ export const VisualTestAutocompletePage = () => {
             <Text size="large">Autocomplete with Details</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Autocomplete<Option>
+                <Autocomplete
                   placeholder="Select a contact"
                   value={detailsValue}
                   onChange={(newValue?: Option) => setDetailsValue(newValue)}
@@ -100,7 +100,7 @@ export const VisualTestAutocompletePage = () => {
             <Text size="large">Autocomplete with Validation</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Autocomplete<Option>
+                <Autocomplete
                   placeholder="Required field"
                   value={validationValue}
                   onChange={(newValue?: Option) => setValidationValue(newValue)}
@@ -118,7 +118,7 @@ export const VisualTestAutocompletePage = () => {
             <Text size="large">Autocomplete with Async Options</Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Autocomplete<Option>
+                <Autocomplete
                   placeholder="Type to search"
                   value={customValue}
                   onChange={(newValue?: Option) => setCustomValue(newValue)}
