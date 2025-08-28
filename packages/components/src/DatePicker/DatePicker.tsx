@@ -169,6 +169,7 @@ export function DatePicker({
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
         calendarStartDay={effectiveFirstDayOfWeek}
+        popperPlacement="bottom-start"
       />
     </div>
   );
@@ -181,8 +182,8 @@ export function DatePicker({
    * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
    * fail).
    */
-  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
-    onChange(value);
+  function handleChange(value: Date | null) {
+    if (value) onChange(value);
   }
 
   function handleCalendarOpen() {
