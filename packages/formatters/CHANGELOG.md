@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/formatters@0.4.1...@jobber/formatters@0.4.2) (2025-08-28)
+
+
+### Bug Fixes
+
+* **hooks:** Revert ESM Update (Also Formatters) ([#2698](https://github.com/GetJobber/atlantis/issues/2698)) ([c95fe8e](https://github.com/GetJobber/atlantis/commit/c95fe8e8cf977381da7caf123256477b74859141)), closes [#2653](https://github.com/GetJobber/atlantis/issues/2653)
+
+
+
+
+
 ## [0.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/formatters@0.4.0...@jobber/formatters@0.4.1) (2025-08-27)
 
 

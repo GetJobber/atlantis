@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.86.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.86.2...@jobber/components@6.86.3) (2025-08-28)
+
+
+### Bug Fixes
+
+* **components:** Import Hooks Correctly for Autocompletev2 ([#2699](https://github.com/GetJobber/atlantis/issues/2699)) ([6e3d6b5](https://github.com/GetJobber/atlantis/commit/6e3d6b54e6d13c1cfefcf274598dbdb2797f656c))
+
+
+
+
+
 ## [6.86.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.86.1...@jobber/components@6.86.2) (2025-08-28)
 
 
