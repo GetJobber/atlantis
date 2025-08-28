@@ -2,7 +2,6 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "bundler",
     "jsx": "react",
     "declaration": true,
     "rootDir": "src",
