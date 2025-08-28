@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.86.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.86.1...@jobber/components@6.86.2) (2025-08-28)
+
+
+### Bug Fixes
+
+* **components:** make InlineLabels without associated semantic colors look good in dark mode ([#2697](https://github.com/GetJobber/atlantis/issues/2697)) ([7370614](https://github.com/GetJobber/atlantis/commit/7370614e600d715c2e7370b184cdf40776535f32))
+
+
+
+
+
 ## [6.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.86.0...@jobber/components@6.86.1) (2025-08-27)
 
 **Note:** Version bump only for package @jobber/components
