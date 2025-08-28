@@ -24,7 +24,15 @@ export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
    * This is dangerous because the children in this provider will not be able to change the theme.
    */
   readonly dangerouslyOverrideTheme?: Theme;
+
+  /**
+   * Override the design tokens with custom tokens. These tokens will be used instead of the naturally loaded tokens.
+   * If provided, these tokens will be used for both light and dark themes.
+   */
+  readonly overrideTokens?: OverrideTokens;
 }
+
+export type OverrideTokens = typeof tokens | Record<string, string>;
 
 export type Theme = "light" | "dark";
 
