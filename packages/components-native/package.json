@@ -35,7 +35,7 @@
     "compile": "tsc -b",
     "build:clean": "rm -rf ./dist",
     "storybook": "storybook dev -p 6008 --disable-telemetry",
-    "build-storybook": "storybook build --disable-telemetry"
+    "storybook:build": "storybook build --disable-telemetry"
   },
   "dependencies": {
     "@react-native-clipboard/clipboard": "^1.11.2",

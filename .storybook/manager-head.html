@@ -1,2 +1,39 @@
 <link rel="preconnect" href="https://cdn.jobber.com" />
 <link href="https://cdn.jobber.com/fonts/fonts.css" rel="stylesheet" />
+
+<script>
+// NOTE: keep this map in sync as you migrate stories to Storybook v9.
+const migratedStories = [
+  "components-actions-button-web",
+  "components-actions-button-mobile",
+];
+
+function isMigratedStory(path) {
+  return migratedStories.some(story => path.includes(story));
+}
+
+function handleMigratedStoryRedirect() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const storybookPath = urlParams.get("path");
+    if (!storybookPath) return;
+    if (!isMigratedStory(storybookPath)) return;
+
+    let newSearch = window.location.search;
+    let prefix;
+
+    if (storybookPath.includes("-web")) {
+        newSearch = newSearch.replace("-web", "");
+        prefix = "/storybook/web";
+        window.location.href = `${prefix}/${newSearch}`;
+    } else if (storybookPath.includes("-mobile")) {
+        newSearch = newSearch.replace("-mobile", "");
+        prefix = "/storybook/mobile";
+        window.location.href = `${prefix}/${newSearch}`;
+    }
+}
+
+// When running locally, don't check for redirects.
+if (!window.location.host.includes("localhost")) {
+    handleMigratedStoryRedirect();
+}
+</script>

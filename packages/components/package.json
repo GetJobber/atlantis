@@ -462,7 +462,7 @@
     "prepack": "npm run entryPoints:build",
     "postpack": "npm run entryPoints:clean",
     "storybook": "storybook dev -p 6007 --disable-telemetry",
-    "build-storybook": "storybook build --disable-telemetry"
+    "storybook:build": "storybook build --disable-telemetry"
   },
   "files": [
     "*.js",
