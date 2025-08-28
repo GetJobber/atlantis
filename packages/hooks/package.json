@@ -10,6 +10,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js"
     },
+    "./dist": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
     "./useBool": {
       "types": "./dist/useBool/index.d.ts",
       "import": "./dist/useBool/index.js",
