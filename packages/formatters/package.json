@@ -2,15 +2,8 @@
   "name": "@jobber/formatters",
   "version": "0.4.1",
   "license": "MIT",
-  "type": "module",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
-    }
-  },
   "scripts": {
     "build": "tsc --project . --skipLibCheck",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
