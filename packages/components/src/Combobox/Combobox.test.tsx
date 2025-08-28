@@ -157,7 +157,9 @@ describe("Combobox", () => {
 
   it("should fire the onSelect when clicking an option", async () => {
     await userEvent.click(screen.getByRole("combobox"));
-    await userEvent.click(screen.getByText("Bilbo Baggins"));
+    await userEvent.click(
+      screen.getByRole("option", { name: "Bilbo Baggins" }),
+    );
 
     expect(handleSelect).toHaveBeenCalledTimes(1);
     expect(handleSelect).toHaveBeenCalledWith([
@@ -245,7 +247,9 @@ describe("Combobox Multiselect", () => {
     await userEvent.click(screen.getByRole("combobox"));
     expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
 
-    await userEvent.click(screen.getByText("Bilbo Baggins"));
+    await userEvent.click(
+      screen.getByRole("option", { name: "Bilbo Baggins" }),
+    );
     expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
   });
 
@@ -315,7 +319,9 @@ describe("Combobox Multiselect", () => {
 
     await userEvent.click(screen.getByRole("combobox"));
     await userEvent.type(searchInput, "Bilbo");
-    await userEvent.click(screen.getByText("Bilbo Baggins"));
+    await userEvent.click(
+      screen.getByRole("option", { name: "Bilbo Baggins" }),
+    );
 
     expect(searchInput).toHaveValue("Bilbo");
   });
@@ -590,6 +596,65 @@ describe("Infinite scroll", () => {
       observer.enterNode(loadMoreTrigger);
     });
     expect(mockLoadMore).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("Combobox DefaultContent via customRender", () => {
+  it("should render DefaultContent and behave like the default option in single-select", async () => {
+    render(
+      <Combobox label={activatorLabel} selected={[]} onSelect={handleSelect}>
+        <Combobox.Option
+          id="1"
+          label="Bilbo Baggins"
+          customRender={({ DefaultContent }) => <DefaultContent />}
+        />
+        <Combobox.Option id="2" label="Frodo Baggins" />
+      </Combobox>,
+    );
+
+    await userEvent.click(screen.getByRole("combobox"));
+    // Default content shows the label as usual
+    expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+
+    await userEvent.click(
+      screen.getByRole("option", { name: "Bilbo Baggins" }),
+    );
+    // Behaves like default: calls onSelect and closes menu in single-select
+    expect(handleSelect).toHaveBeenCalledWith([
+      { id: "1", label: "Bilbo Baggins" },
+    ]);
+    expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
+  });
+
+  it("should render DefaultContent and show selected state (checkmark) in multi-select", async () => {
+    render(
+      <Combobox
+        label={activatorLabel}
+        multiSelect
+        selected={[{ id: "1", label: "Bilbo Baggins" }]}
+        onSelect={handleSelect}
+      >
+        <Combobox.Option
+          id="1"
+          label="Bilbo Baggins"
+          customRender={({ DefaultContent }) => <DefaultContent />}
+        />
+        <Combobox.Option id="2" label="Frodo Baggins" />
+      </Combobox>,
+    );
+
+    await userEvent.click(screen.getByRole("combobox"));
+    // Default content reflects selection state
+    expect(
+      screen.getByRole("option", { name: "Bilbo Baggins" }),
+    ).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByTestId("checkmark")).toBeInTheDocument();
+
+    await userEvent.click(
+      screen.getByRole("option", { name: "Bilbo Baggins" }),
+    );
+    // Multiselect: menu remains open
+    expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
   });
 });
 

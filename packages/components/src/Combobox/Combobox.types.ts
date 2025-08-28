@@ -145,6 +145,7 @@ export interface ComboboxOptionProps {
   readonly customRender?: (
     option: Omit<ComboboxOptionProps, "customRender"> & {
       isSelected: boolean;
+      DefaultContent: () => ReactElement;
     },
   ) => React.ReactNode;
 

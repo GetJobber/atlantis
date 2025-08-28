@@ -70,3 +70,8 @@ export const customRender: ComboboxOptionProps["customRender"] = ({
     </div>
   );
 };
+
+export const customRenderDefaultContent: ComboboxOptionProps["customRender"] =
+  ({ DefaultContent }) => {
+    return <DefaultContent />;
+  };
