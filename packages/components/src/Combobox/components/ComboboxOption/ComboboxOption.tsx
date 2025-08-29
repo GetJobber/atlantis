@@ -34,6 +34,9 @@ export function ComboboxOption(props: ComboboxOptionProps) {
         customRender({
           ...contentProps,
           isSelected,
+          DefaultContent: () => (
+            <InternalDefaultContent {...contentProps} isSelected={isSelected} />
+          ),
         })
       ) : (
         <InternalDefaultContent {...contentProps} isSelected={isSelected} />
