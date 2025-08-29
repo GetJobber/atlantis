@@ -55,45 +55,85 @@ export const VisualTestMenuPage = () => {
   ];
 
   return (
-    <Box padding="large">
-      <Stack gap="extravagant">
-        <Heading level={3}>Menu Examples</Heading>
+    <div>
+      <Box padding="large">
+        <Stack gap="extravagant">
+          <Heading level={3}>Menu Examples</Heading>
 
-        <Stack gap="large">
-          {/* Basic Menu */}
-          <section>
-            <Text size="large">Basic Menu</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Menu items={basicItems} />
-              </Grid.Cell>
-            </Grid>
-          </section>
+          <Stack gap="large">
+            {/* Basic Menu */}
+            <section>
+              <Text size="large">Basic Menu</Text>
+              <Grid>
+                <Grid.Cell size={{ xs: 12, md: 6 }}>
+                  <Menu items={basicItems} />
+                </Grid.Cell>
+              </Grid>
+            </section>
 
-          {/* Menu with Custom Activator */}
-          <section>
-            <Text size="large">Menu with Custom Activator</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Menu
-                  items={basicItems}
-                  activator={<Button label="Open Menu" icon="menu" />}
-                />
-              </Grid.Cell>
-            </Grid>
-          </section>
+            {/* Menu with Custom Activator */}
+            <section>
+              <Text size="large">Menu with Custom Activator</Text>
+              <Grid>
+                <Grid.Cell size={{ xs: 12, md: 6 }}>
+                  <Menu
+                    items={basicItems}
+                    activator={<Button label="Open Menu" icon="menu" />}
+                  />
+                </Grid.Cell>
+              </Grid>
+            </section>
 
-          {/* Menu with Icons and Sections */}
-          <section>
-            <Text size="large">Menu with Icons and Sections</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <Menu items={complexItems} />
-              </Grid.Cell>
-            </Grid>
-          </section>
+            {/* Menu with Icons and Sections */}
+            <section>
+              <Text size="large">Menu with Icons and Sections</Text>
+              <Grid>
+                <Grid.Cell size={{ xs: 12, md: 6 }}>
+                  <Menu items={complexItems} />
+                </Grid.Cell>
+              </Grid>
+            </section>
+          </Stack>
         </Stack>
-      </Stack>
-    </Box>
+      </Box>
+
+      {/* Menu at Viewport Edges (flush, outside padded Box) */}
+      <section>
+        <Text size="large">Menu at Viewport Edges (flush)</Text>
+        <div
+          style={{
+            position: "relative",
+            height: 480,
+            border: "1px dashed var(--color-border)",
+            borderRadius: "var(--radius-base)",
+          }}
+        >
+          <div style={{ position: "absolute", top: 0, left: 0 }}>
+            <Menu
+              items={basicItems}
+              activator={<Button label="Top Left Menu" />}
+            />
+          </div>
+          <div style={{ position: "absolute", top: 0, right: 0 }}>
+            <Menu
+              items={basicItems}
+              activator={<Button label="Top Right Menu" />}
+            />
+          </div>
+          <div style={{ position: "absolute", bottom: 0, left: 0 }}>
+            <Menu
+              items={basicItems}
+              activator={<Button label="Bottom Left Menu" />}
+            />
+          </div>
+          <div style={{ position: "absolute", bottom: 0, right: 0 }}>
+            <Menu
+              items={basicItems}
+              activator={<Button label="Bottom Right Menu" />}
+            />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
