@@ -171,7 +171,8 @@
   "dependencies": {
     "@storybook/blocks": "^7.6.20",
     "@storybook/components": "^7.6.20",
-    "jest-environment-jsdom": "^29.5.0"
+    "jest-environment-jsdom": "^29.5.0",
+    "libphonenumber-js": "^1.12.15"
   },
   "engines": {
     "node": "22",
