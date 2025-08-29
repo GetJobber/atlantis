@@ -10,35 +10,43 @@ import {
 import { useState } from "react";
 
 export const VisualTestDatePickerPage = () => {
-  // Basic DatePicker
+  // Basic DatePicker - use timezone-independent date creation
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    new Date("2025-06-03"),
+    new Date(2025, 5, 3), // Month is 0-indexed: 5 = June
   );
 
   // Inline DatePicker
   const [inlineDate, setInlineDate] = useState<Date | undefined>(
-    new Date("2025-06-03"),
+    new Date(2025, 5, 3), // Month is 0-indexed: 5 = June
   );
 
   // DatePicker with min/max dates
   const [restrictedDate, setRestrictedDate] = useState<Date | undefined>(
     undefined,
   );
-  const minDate = new Date("2025-06-03");
-  const maxDate = new Date("2025-09-03");
+  const minDate = new Date(2025, 5, 3); // June 3, 2025
+  const maxDate = new Date(2025, 8, 3); // September 3, 2025
 
   // DatePicker with highlighted dates
   const [highlightedDate, setHighlightedDate] = useState<Date | undefined>(
     undefined,
   );
   const highlightDates = [
-    new Date("2025-06-03"),
-    new Date("2025-06-07"),
-    new Date("2025-06-14"),
+    new Date(2025, 5, 3), // June 3, 2025
+    new Date(2025, 5, 7), // June 7, 2025
+    new Date(2025, 5, 14), // June 14, 2025
   ];
 
   // Disabled DatePicker
   const [disabledDate, setDisabledDate] = useState<Date | undefined>(undefined);
+
+  // Test-specific DatePickers
+  const [interactionTestDate, setInteractionTestDate] = useState<
+    Date | undefined
+  >(new Date(2025, 5, 15)); // June 15, 2025
+  const [positionTestDate, setPositionTestDate] = useState<Date | undefined>(
+    new Date(2025, 5, 15), // June 15, 2025
+  );
 
   return (
     <Box padding="large">
@@ -171,6 +179,55 @@ export const VisualTestDatePickerPage = () => {
                   selected={new Date()}
                   onChange={date => console.log(date)}
                   readonly={true}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Interaction Test DatePicker */}
+          <section>
+            <Text size="large">Interaction Test</Text>
+            <Text size="small">
+              For testing keyboard navigation, hover effects, and focus
+            </Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <DatePicker
+                  data-testid="interaction-test-datepicker"
+                  selected={interactionTestDate}
+                  onChange={date => setInteractionTestDate(date)}
+                  activator={
+                    <Button
+                      data-testid="interaction-test-activator"
+                      label="Interaction Test"
+                      type="secondary"
+                    />
+                  }
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Position Test DatePicker */}
+          <section>
+            <Text size="large">Position Test - Bottom Constraint</Text>
+            <Text size="small">
+              For testing positioning when insufficient space below
+            </Text>
+            <div style={{ height: "60vh" }} />
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <DatePicker
+                  data-testid="position-test-datepicker"
+                  selected={positionTestDate}
+                  onChange={date => setPositionTestDate(date)}
+                  activator={
+                    <Button
+                      data-testid="position-test-activator"
+                      label="Position Test"
+                      type="secondary"
+                    />
+                  }
                 />
               </Grid.Cell>
             </Grid>
