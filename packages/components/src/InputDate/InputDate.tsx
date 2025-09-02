@@ -74,6 +74,7 @@ export function InputDate(inputProps: InputDateProps) {
                  */
                 if (inputProps.restoreLastValueOnBlur) {
                   if ((!value || !isValid(value)) && inputProps.value) {
+                    // @ts-expect-error -- ReactDatePicker types don't include setSelected
                     pickerRef.current?.setSelected(inputProps.value);
                   }
                 }
