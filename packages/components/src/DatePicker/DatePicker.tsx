@@ -149,11 +149,7 @@ export function DatePicker({
         minDate={minDate}
         useWeekdaysShort={true}
         customInput={
-          <DatePickerActivator
-            pickerRef={pickerRef}
-            activator={activator}
-            fullWidth={fullWidth}
-          />
+          <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
