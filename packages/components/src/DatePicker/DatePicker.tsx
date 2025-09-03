@@ -149,11 +149,7 @@ export function DatePicker({
         minDate={minDate}
         useWeekdaysShort={true}
         customInput={
-          <DatePickerActivator
-            pickerRef={pickerRef}
-            activator={activator}
-            fullWidth={fullWidth}
-          />
+          <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
@@ -183,7 +179,8 @@ export function DatePicker({
    * fail).
    */
   function handleChange(value: Date | null) {
-    if (value) onChange(value);
+    // TODO: Ticket created to update all DatePicker and InputDate usages to accept Date | null
+    onChange(value as Date);
   }
 
   function handleCalendarOpen() {
