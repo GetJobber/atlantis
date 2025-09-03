@@ -183,7 +183,8 @@ export function DatePicker({
    * fail).
    */
   function handleChange(value: Date | null) {
-    if (value) onChange(value);
+    // TODO: Ticket created to update all DatePicker and InputDate usages to accept Date | null
+    onChange(value as Date);
   }
 
   function handleCalendarOpen() {
