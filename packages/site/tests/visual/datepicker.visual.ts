@@ -109,4 +109,78 @@ test.describe("DatePicker Visual Tests", () => {
       fullPage: true,
     });
   });
+
+  // eslint-disable-next-line max-statements
+  test("date range restrictions", async ({ page }) => {
+    const restrictionsActivator = page
+      .locator("section")
+      .filter({ hasText: "Date Range Restrictions" })
+      .getByRole("button", { name: "Open Datepicker" });
+
+    await restrictionsActivator.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(300);
+
+    await restrictionsActivator.click();
+    await page.waitForSelector(".react-datepicker-popper");
+    await page.waitForTimeout(300);
+
+    await expect(page).toHaveScreenshot("date-restrictions-initial.png", {
+      fullPage: true,
+    });
+
+    const popup = page.locator(".react-datepicker-popper");
+    const previousMonthButton = popup.getByRole("button", {
+      name: "Previous Month",
+    });
+
+    await previousMonthButton.click();
+    await page.waitForTimeout(200);
+    await previousMonthButton.click();
+    await page.waitForTimeout(200);
+    await previousMonthButton.click();
+    await page.waitForTimeout(200);
+
+    await expect(page).toHaveScreenshot(
+      "date-restrictions-disabled-dates.png",
+      {
+        fullPage: true,
+      },
+    );
+  });
+
+  test("highlighted dates", async ({ page }) => {
+    const highlightedActivator = page
+      .locator("section")
+      .filter({ hasText: "Highlighted Dates" })
+      .getByRole("button", { name: "Open Datepicker" });
+
+    await highlightedActivator.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(300);
+
+    await highlightedActivator.click();
+    await page.waitForSelector(".react-datepicker-popper");
+    await page.waitForTimeout(300);
+
+    await expect(page).toHaveScreenshot("highlighted-dates.png", {
+      fullPage: true,
+    });
+  });
+
+  test("full width datepicker", async ({ page }) => {
+    const fullWidthActivator = page
+      .locator("section")
+      .filter({ hasText: "Full Width DatePicker" })
+      .getByRole("button", { name: /Full Width Datepicker|6\/3\/2025/ });
+
+    await fullWidthActivator.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(300);
+
+    await fullWidthActivator.click();
+    await page.waitForSelector(".react-datepicker-popper");
+    await page.waitForTimeout(300);
+
+    await expect(page).toHaveScreenshot("full-width-datepicker.png", {
+      fullPage: true,
+    });
+  });
 });

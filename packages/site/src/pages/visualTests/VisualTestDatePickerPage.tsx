@@ -22,7 +22,7 @@ export const VisualTestDatePickerPage = () => {
 
   // DatePicker with min/max dates
   const [restrictedDate, setRestrictedDate] = useState<Date | undefined>(
-    undefined,
+    new Date(2025, 5, 3),
   );
   const minDate = new Date(2025, 5, 3); // June 3, 2025
   const maxDate = new Date(2025, 8, 3); // September 3, 2025
@@ -165,6 +165,16 @@ export const VisualTestDatePickerPage = () => {
                   selected={selectedDate}
                   onChange={date => setSelectedDate(date)}
                   fullWidth={true}
+                  activator={
+                    <Button
+                      label={
+                        selectedDate
+                          ? selectedDate.toLocaleDateString()
+                          : "Full Width Datepicker"
+                      }
+                      type="primary"
+                    />
+                  }
                 />
               </Grid.Cell>
             </Grid>
