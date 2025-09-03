@@ -10,42 +10,39 @@ import {
 import { useState } from "react";
 
 export const VisualTestDatePickerPage = () => {
-  // Basic DatePicker - use timezone-independent date creation
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    new Date(2025, 5, 3), // Month is 0-indexed: 5 = June
+    new Date(2025, 5, 3),
   );
 
   // Inline DatePicker
   const [inlineDate, setInlineDate] = useState<Date | undefined>(
-    new Date(2025, 5, 3), // Month is 0-indexed: 5 = June
+    new Date(2025, 5, 3),
   );
 
   const [restrictedDate, setRestrictedDate] = useState<Date | undefined>(
-    new Date(2025, 8, 3), // Month is 0-indexed: 5 = June
+    new Date(2025, 8, 3),
   );
 
-  const minDate = new Date(2025, 5, 3); // June 3, 2025
-  const maxDate = new Date(2025, 8, 3); // September 3, 2025
+  const minDate = new Date(2025, 5, 3);
+  const maxDate = new Date(2025, 8, 3);
 
   // DatePicker with highlighted dates
   const [highlightedDate, setHighlightedDate] = useState<Date | undefined>(
     undefined,
   );
   const highlightDates = [
-    new Date(2025, 5, 3), // June 3, 2025
-    new Date(2025, 5, 7), // June 7, 2025
-    new Date(2025, 5, 14), // June 14, 2025
+    new Date(2025, 5, 3),
+    new Date(2025, 5, 7),
+    new Date(2025, 5, 14),
   ];
 
-  // Disabled DatePicker
   const [disabledDate, setDisabledDate] = useState<Date | undefined>(undefined);
 
-  // Test-specific DatePickers
   const [interactionTestDate, setInteractionTestDate] = useState<
     Date | undefined
-  >(new Date(2025, 5, 15)); // June 15, 2025
+  >(new Date(2025, 5, 15));
   const [positionTestDate, setPositionTestDate] = useState<Date | undefined>(
-    new Date(2025, 5, 15), // June 15, 2025
+    new Date(2025, 5, 15),
   );
 
   return (
