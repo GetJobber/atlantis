@@ -237,34 +237,32 @@ export const ComponentView = () => {
                   <AtlantisPreviewViewer />
                 </CodePreviewWindow>
               </Box>
-              {hasVersions && (
-                <Box margin={{ bottom: "base" }}>
-                  <Select
-                    placeholder="Version"
-                    value={String(activeVersionIndex)}
-                    onChange={val => {
-                      const idx = Number(val);
-
-                      if (!Number.isNaN(idx)) {
-                        setActiveVersionIndex(idx);
-                        // Reset content tabs on version change to keep UX predictable
-                        setTab(0);
-                        updateStyles();
-                      }
-                    }}
-                  >
-                    {(PageMeta.versions ?? []).map((v, idx) => (
-                      <Option key={idx} value={String(idx)}>
-                        {v.label}
-                      </Option>
-                    ))}
-                  </Select>
-                </Box>
-              )}
               <span style={{ "--public-tab--inset": 0 } as React.CSSProperties}>
                 <Tabs onTabChange={handleTabChange} activeTab={tab}>
                   {activeTabs.map((activeTab, index) => (
                     <Tab key={index} label={activeTab.label}>
+                      {hasVersions && (
+                        <Box margin={{ bottom: "base" }}>
+                          <Select
+                            placeholder="Version"
+                            value={String(activeVersionIndex)}
+                            onChange={val => {
+                              const idx = Number(val);
+
+                              if (!Number.isNaN(idx)) {
+                                setActiveVersionIndex(idx);
+                                updateStyles();
+                              }
+                            }}
+                          >
+                            {(PageMeta.versions ?? []).map((v, idx) => (
+                              <Option key={idx} value={String(idx)}>
+                                {v.label}
+                              </Option>
+                            ))}
+                          </Select>
+                        </Box>
+                      )}
                       {activeTab.children}
                     </Tab>
                   ))}
