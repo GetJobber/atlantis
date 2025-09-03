@@ -20,6 +20,10 @@ export const VisualTestDatePickerPage = () => {
     new Date(2025, 5, 3), // Month is 0-indexed: 5 = June
   );
 
+  const [restrictedDate, setRestrictedDate] = useState<Date | undefined>(
+    new Date(2025, 8, 3), // Month is 0-indexed: 5 = June
+  );
+
   const minDate = new Date(2025, 5, 3); // June 3, 2025
   const maxDate = new Date(2025, 8, 3); // September 3, 2025
 
@@ -111,7 +115,7 @@ export const VisualTestDatePickerPage = () => {
                     months prior
                   </Text>
                   <DatePicker
-                    selected={maxDate}
+                    selected={restrictedDate}
                     onChange={date => setRestrictedDate(date)}
                     minDate={minDate}
                     maxDate={maxDate}
