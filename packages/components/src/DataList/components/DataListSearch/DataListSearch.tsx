@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
-import { useDebounce } from "@jobber/hooks/useDebounce";
+import { useDebounce } from "@jobber/hooks";
 import styles from "./DataListSearch.module.css";
 import type { InputTextRef } from "../../../InputText";
 import { InputText } from "../../../InputText";
