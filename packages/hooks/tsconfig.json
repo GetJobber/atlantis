@@ -5,7 +5,12 @@
     "jsx": "react",
     "declaration": true,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@jobber/formatters/*": [
+        "../formatters/src/*"
+      ]
+    }
   },
   "include": [
     "src",
