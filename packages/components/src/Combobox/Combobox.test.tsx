@@ -601,16 +601,7 @@ describe("Infinite scroll", () => {
 
 describe("Combobox defaultContent element via customRender", () => {
   it("should render defaultContent and behave like the default option in single-select", async () => {
-    render(
-      <Combobox label={activatorLabel} selected={[]} onSelect={handleSelect}>
-        <Combobox.Option
-          id="1"
-          label="Bilbo Baggins"
-          customRender={({ defaultContent }) => defaultContent}
-        />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-      </Combobox>,
-    );
+    renderComboboxWithDefaultContent({ multiSelect: false, selected: [] });
 
     await userEvent.click(screen.getByRole("combobox"));
     // Default content shows the label as usual
@@ -627,21 +618,10 @@ describe("Combobox defaultContent element via customRender", () => {
   });
 
   it("should render defaultContent and show selected state (checkmark) in multi-select", async () => {
-    render(
-      <Combobox
-        label={activatorLabel}
-        multiSelect
-        selected={[{ id: "1", label: "Bilbo Baggins" }]}
-        onSelect={handleSelect}
-      >
-        <Combobox.Option
-          id="1"
-          label="Bilbo Baggins"
-          customRender={({ defaultContent }) => defaultContent}
-        />
-        <Combobox.Option id="2" label="Frodo Baggins" />
-      </Combobox>,
-    );
+    renderComboboxWithDefaultContent({
+      multiSelect: true,
+      selected: [{ id: "1", label: "Bilbo Baggins" }],
+    });
 
     await userEvent.click(screen.getByRole("combobox"));
     // Default content reflects selection state
@@ -710,6 +690,34 @@ function renderCustomOnSearchCombobox(
       {options.map(option => (
         <Combobox.Option id={option.id} label={option.label} key={option.id} />
       ))}
+    </Combobox>,
+  );
+}
+
+interface RenderDefaultContentOptions {
+  readonly multiSelect?: boolean;
+  readonly selected?: ComboboxOption[];
+}
+
+function renderComboboxWithDefaultContent(
+  options?: RenderDefaultContentOptions,
+) {
+  const multiSelect = options?.multiSelect ?? false;
+  const selected = options?.selected ?? [];
+
+  return render(
+    <Combobox
+      label={activatorLabel}
+      multiSelect={multiSelect}
+      selected={selected}
+      onSelect={handleSelect}
+    >
+      <Combobox.Option
+        id="1"
+        label="Bilbo Baggins"
+        customRender={({ defaultContent }) => defaultContent}
+      />
+      <Combobox.Option id="2" label="Frodo Baggins" />
     </Combobox>,
   );
 }
