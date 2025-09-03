@@ -12,8 +12,8 @@
     }
   },
   "scripts": {
-    "build": "tsc --project . --skipLibCheck",
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "build": "rollup -c rollup.config.mjs",
+    "clean": "rm -rf dist tsconfig.*tsbuildinfo",
     "bootstrap": "npm run clean; npm run build"
   },
   "files": [
