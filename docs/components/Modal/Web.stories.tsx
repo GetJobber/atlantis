@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Modal } from "@jobber/components/Modal";
 import { Content } from "@jobber/components/Content";
 import type { ModalProps } from "@jobber/components/Modal";
@@ -606,38 +606,102 @@ WithTabsAndDirtyGuard.args = {
   size: "large",
 };
 
-interface RHFTabValues {
-  tabs: Array<{ name: string; description: string }>;
+// Removed old RHF baseline implementation in favor of TabForm pattern
+
+interface TabFormRef {
+  save(): void;
+  discard(): void;
 }
+
+interface TabFormProps {
+  readonly initial: { name: string; description: string };
+  onDirtyChange(dirty: boolean): void;
+}
+
+const TabForm = React.forwardRef<TabFormRef, TabFormProps>(
+  function TabFormInternal({ initial, onDirtyChange }, ref) {
+    const methods = useForm<{ name: string; description: string }>({
+      defaultValues: initial,
+      shouldUnregister: false,
+      mode: "onTouched",
+    });
+
+    const {
+      control,
+      getValues,
+      reset,
+      formState: { isDirty },
+    } = methods;
+
+    React.useEffect(() => {
+      onDirtyChange(isDirty);
+    }, [isDirty]);
+
+    React.useImperativeHandle(ref, () => ({
+      save: () => {
+        const values = getValues();
+        reset(values, { keepValues: true });
+      },
+      discard: () => {
+        reset();
+      },
+    }));
+
+    return (
+      <>
+        <Controller
+          control={control}
+          name={"name"}
+          render={({ field: { value, onChange } }) => (
+            <InputText
+              value={value ?? ""}
+              onChange={onChange}
+              placeholder="Name"
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name={"description"}
+          render={({ field: { value, onChange } }) => (
+            <InputText
+              value={value ?? ""}
+              onChange={onChange}
+              placeholder="Description"
+            />
+          )}
+        />
+        <Button
+          submit={true}
+          disabled={!isDirty}
+          onMouseDown={() => {
+            // Use mouse down so type narrowing for submit button is respected
+            // and we can still run custom save logic prior to submit default
+            (ref as React.RefObject<TabFormRef>)?.current?.save();
+          }}
+        >
+          {isDirty ? "Save changes" : "Saved"}
+        </Button>
+      </>
+    );
+  },
+);
 
 function RHFTabsDirtyModal(args: ModalProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [dirtyTabs, setDirtyTabs] = useState<[boolean, boolean, boolean]>([
+    false,
+    false,
+    false,
+  ]);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [pendingTab, setPendingTab] = useState<number | null>(null);
   const [closeAfterConfirm, setCloseAfterConfirm] = useState(false);
 
-  const [baseline, setBaseline] = useState<RHFTabValues>({
-    tabs: [
-      { name: "", description: "" },
-      { name: "", description: "" },
-      { name: "", description: "" },
-    ],
-  });
-
-  const methods = useForm<RHFTabValues>({
-    mode: "onTouched",
-    defaultValues: baseline,
-    shouldUnregister: false,
-  });
-
-  const {
-    control,
-    reset,
-    setValue,
-    getValues,
-    formState: { dirtyFields },
-  } = methods;
+  const ref0 = useRef<TabFormRef>(null);
+  const ref1 = useRef<TabFormRef>(null);
+  const ref2 = useRef<TabFormRef>(null);
 
   return (
     <>
@@ -645,7 +709,7 @@ function RHFTabsDirtyModal(args: ModalProps) {
         {...args}
         open={modalOpen}
         onRequestClose={() => {
-          if (isCurrentTabDirty()) {
+          if (dirtyTabs[activeTab]) {
             setCloseAfterConfirm(true);
             setConfirmOpen(true);
 
@@ -655,60 +719,78 @@ function RHFTabsDirtyModal(args: ModalProps) {
         }}
       >
         <Content>
-          <FormProvider {...methods}>
-            <Tabs
-              activeTab={activeTab}
-              onTabChange={(nextTabIndex: number) => {
-                if (nextTabIndex === activeTab) return;
+          <Tabs
+            activeTab={activeTab}
+            onTabChange={(nextTabIndex: number) => {
+              if (nextTabIndex === activeTab) return;
 
-                if (isCurrentTabDirty()) {
-                  setPendingTab(nextTabIndex);
-                  setConfirmOpen(true);
+              if (dirtyTabs[activeTab]) {
+                setPendingTab(nextTabIndex);
+                setConfirmOpen(true);
 
-                  return;
-                }
+                return;
+              }
+              setActiveTab(nextTabIndex);
+            }}
+          >
+            <Tab label="General">
+              <Content>
+                <TabForm
+                  ref={ref0}
+                  initial={{ name: "", description: "" }}
+                  onDirtyChange={dirty => {
+                    setDirtyTabs(prev => {
+                      if (prev[0] === dirty) return prev;
 
-                setActiveTab(nextTabIndex);
-              }}
-            >
-              <Tab label="General">
-                <Content>
-                  {renderTabFields(0)}
-                  <Button
-                    submit={true}
-                    disabled={!isTabDirty(0)}
-                    onMouseDown={saveActiveTab(0)}
-                  >
-                    {isTabDirty(0) ? "Save changes" : "Saved"}
-                  </Button>
-                </Content>
-              </Tab>
-              <Tab label="Details">
-                <Content>
-                  {renderTabFields(1)}
-                  <Button
-                    submit={true}
-                    disabled={!isTabDirty(1)}
-                    onMouseDown={saveActiveTab(1)}
-                  >
-                    {isTabDirty(1) ? "Save changes" : "Saved"}
-                  </Button>
-                </Content>
-              </Tab>
-              <Tab label="Advanced">
-                <Content>
-                  {renderTabFields(2)}
-                  <Button
-                    submit={true}
-                    disabled={!isTabDirty(2)}
-                    onMouseDown={saveActiveTab(2)}
-                  >
-                    {isTabDirty(2) ? "Save changes" : "Saved"}
-                  </Button>
-                </Content>
-              </Tab>
-            </Tabs>
-          </FormProvider>
+                      return [dirty, prev[1], prev[2]] as [
+                        boolean,
+                        boolean,
+                        boolean,
+                      ];
+                    });
+                  }}
+                />
+              </Content>
+            </Tab>
+            <Tab label="Details">
+              <Content>
+                <TabForm
+                  ref={ref1}
+                  initial={{ name: "", description: "" }}
+                  onDirtyChange={dirty => {
+                    setDirtyTabs(prev => {
+                      if (prev[1] === dirty) return prev;
+
+                      return [prev[0], dirty, prev[2]] as [
+                        boolean,
+                        boolean,
+                        boolean,
+                      ];
+                    });
+                  }}
+                />
+              </Content>
+            </Tab>
+            <Tab label="Advanced">
+              <Content>
+                <TabForm
+                  ref={ref2}
+                  initial={{ name: "", description: "" }}
+                  onDirtyChange={dirty => {
+                    setDirtyTabs(prev => {
+                      if (prev[2] === dirty) return prev;
+
+                      return [prev[0], prev[1], dirty] as [
+                        boolean,
+                        boolean,
+                        boolean,
+                      ];
+                    });
+                  }}
+                />
+              </Content>
+            </Tab>
+          </Tabs>
         </Content>
       </Modal>
 
@@ -722,20 +804,20 @@ function RHFTabsDirtyModal(args: ModalProps) {
         cancelLabel="Cancel"
         variation="destructive"
         onConfirm={() => {
-          // revert current tab's values back to baseline and clear dirty
-          const i = activeTab;
-          setValue(`tabs.${i}.name` as const, baseline.tabs[i].name, {
-            shouldDirty: false,
-          });
-          setValue(
-            `tabs.${i}.description` as const,
-            baseline.tabs[i].description,
-            {
-              shouldDirty: false,
-            },
-          );
+          const currentRef = [ref0, ref1, ref2][activeTab]?.current;
+          currentRef?.discard();
 
-          reset(baseline, { keepValues: true });
+          // Clear parent's dirty flag synchronously for the active tab
+          setDirtyTabs(prev => {
+            const next = [prev[0], prev[1], prev[2]] as [
+              boolean,
+              boolean,
+              boolean,
+            ];
+            next[activeTab] = false;
+
+            return next;
+          });
 
           if (pendingTab !== null) {
             setActiveTab(pendingTab);
@@ -746,7 +828,6 @@ function RHFTabsDirtyModal(args: ModalProps) {
             setModalOpen(false);
             setCloseAfterConfirm(false);
           }
-
           setConfirmOpen(false);
         }}
         onCancel={() => {
@@ -757,62 +838,6 @@ function RHFTabsDirtyModal(args: ModalProps) {
       />
     </>
   );
-
-  function renderTabFields(index: number) {
-    return (
-      <>
-        <Controller
-          control={control}
-          name={`tabs.${index}.name` as const}
-          render={({ field: { value, onChange } }) => (
-            <InputText
-              value={value ?? ""}
-              onChange={onChange}
-              placeholder="Name"
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name={`tabs.${index}.description` as const}
-          render={({ field: { value, onChange } }) => (
-            <InputText
-              value={value ?? ""}
-              onChange={onChange}
-              placeholder="Description"
-            />
-          )}
-        />
-      </>
-    );
-  }
-
-  function isTabDirty(index: number) {
-    const df = (
-      dirtyFields as unknown as {
-        tabs?: Array<{ name?: boolean; description?: boolean }>;
-      }
-    )?.tabs?.[index];
-
-    return Boolean(df?.name || df?.description);
-  }
-
-  function isCurrentTabDirty() {
-    return isTabDirty(activeTab);
-  }
-
-  function saveActiveTab(index: number) {
-    return () => {
-      const current = getValues();
-      const nextBaseline: RHFTabValues = {
-        tabs: [...baseline.tabs],
-      };
-      nextBaseline.tabs[index] = { ...current.tabs[index] };
-
-      setBaseline(nextBaseline);
-      reset(nextBaseline, { keepValues: true });
-    };
-  }
 }
 
 const RHFTabsDirtyModalTemplate: ComponentStory<typeof Modal> = args => (
