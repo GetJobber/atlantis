@@ -927,9 +927,7 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
               key={o.id}
               id={`${o.id}`}
               label={o.label}
-              customRender={({ DefaultContent }) => {
-                return <DefaultContent />;
-              }}
+              customRender={({ defaultContent }) => <>{defaultContent}</>}
             />
           );
         })}

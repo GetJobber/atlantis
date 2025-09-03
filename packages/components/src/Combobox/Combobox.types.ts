@@ -143,9 +143,10 @@ export interface ComboboxOptionProps {
    * The function receives the option's props, and a boolean indicating if the option is selected.
    */
   readonly customRender?: (
-    option: Omit<ComboboxOptionProps, "customRender"> & {
+    option: Pick<ComboboxOptionProps, "id" | "label" | "prefix"> & {
       isSelected: boolean;
-      DefaultContent: () => ReactElement;
+      /** Render the default option content. */
+      defaultContent: ReactElement;
     },
   ) => React.ReactNode;
 

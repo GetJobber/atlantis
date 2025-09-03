@@ -599,14 +599,14 @@ describe("Infinite scroll", () => {
   });
 });
 
-describe("Combobox DefaultContent via customRender", () => {
-  it("should render DefaultContent and behave like the default option in single-select", async () => {
+describe("Combobox defaultContent element via customRender", () => {
+  it("should render defaultContent and behave like the default option in single-select", async () => {
     render(
       <Combobox label={activatorLabel} selected={[]} onSelect={handleSelect}>
         <Combobox.Option
           id="1"
           label="Bilbo Baggins"
-          customRender={({ DefaultContent }) => <DefaultContent />}
+          customRender={({ defaultContent }) => defaultContent}
         />
         <Combobox.Option id="2" label="Frodo Baggins" />
       </Combobox>,
@@ -626,7 +626,7 @@ describe("Combobox DefaultContent via customRender", () => {
     expect(screen.getByTestId(MENU_TEST_ID)).toHaveClass("hidden");
   });
 
-  it("should render DefaultContent and show selected state (checkmark) in multi-select", async () => {
+  it("should render defaultContent and show selected state (checkmark) in multi-select", async () => {
     render(
       <Combobox
         label={activatorLabel}
@@ -637,7 +637,7 @@ describe("Combobox DefaultContent via customRender", () => {
         <Combobox.Option
           id="1"
           label="Bilbo Baggins"
-          customRender={({ DefaultContent }) => <DefaultContent />}
+          customRender={({ defaultContent }) => defaultContent}
         />
         <Combobox.Option id="2" label="Frodo Baggins" />
       </Combobox>,
