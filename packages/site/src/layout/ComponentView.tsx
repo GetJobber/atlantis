@@ -40,7 +40,20 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
   // Versioning support
-  const [activeVersionIndex, setActiveVersionIndex] = useState(0);
+  const [activeVersionIndex, setActiveVersionIndex] = useState(() => {
+    try {
+      const param = new URLSearchParams(window.location.search).get("version");
+      const requested = param != null ? parseInt(param, 10) : 0;
+      const max = (PageMeta?.versions?.length || 1) - 1;
+      const clamped = Number.isFinite(requested)
+        ? Math.max(0, Math.min(requested, max))
+        : 0;
+
+      return clamped;
+    } catch {
+      return 0;
+    }
+  });
   const hasVersions =
     Array.isArray(PageMeta?.versions) && PageMeta.versions.length > 0;
 
@@ -62,6 +75,23 @@ export const ComponentView = () => {
       ...(version?.notes ? { notes: version.notes } : {}),
     };
   }, [PageMeta, hasVersions, activeVersionIndex]);
+
+  const updateActiveVersionIndex = (idx: number) => {
+    setActiveVersionIndex(idx);
+    const params = new URLSearchParams(window.location.search);
+
+    if (idx === 0) {
+      params.delete("version");
+    } else {
+      params.set("version", String(idx));
+    }
+    const query = params.toString();
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${query ? `?${query}` : ""}`,
+    );
+  };
 
   const { stateValues } = usePropsAsDataList(ActiveMeta, type);
   const { enableMinimal, minimal, disableMinimal, isMinimal } =
@@ -250,7 +280,7 @@ export const ComponentView = () => {
                               const idx = Number(val);
 
                               if (!Number.isNaN(idx)) {
-                                setActiveVersionIndex(idx);
+                                updateActiveVersionIndex(idx);
                                 updateStyles();
                               }
                             }}
