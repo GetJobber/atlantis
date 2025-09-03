@@ -1,4 +1,13 @@
-import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
+import {
+  Banner,
+  Box,
+  Content,
+  Option,
+  Page,
+  Select,
+  Tab,
+  Tabs,
+} from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
@@ -30,11 +39,35 @@ export const ComponentView = () => {
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
-  const { stateValues } = usePropsAsDataList(PageMeta, type);
+  // Versioning support
+  const [activeVersionIndex, setActiveVersionIndex] = useState(0);
+  const hasVersions =
+    Array.isArray(PageMeta?.versions) && PageMeta.versions.length > 0;
+
+  const ActiveMeta = useMemo(() => {
+    if (!hasVersions) return PageMeta;
+    const version = PageMeta?.versions?.[activeVersionIndex];
+
+    return {
+      ...PageMeta,
+      ...(version?.title ? { title: version.title } : {}),
+      ...(version?.description ? { description: version.description } : {}),
+      ...(version?.content ? { content: version.content } : {}),
+      ...(version?.props ? { props: version.props } : {}),
+      ...(version?.mobileProps ? { mobileProps: version.mobileProps } : {}),
+      ...(version?.component
+        ? { component: { ...PageMeta?.component, ...version.component } }
+        : {}),
+      ...(version?.links ? { links: version.links } : {}),
+      ...(version?.notes ? { notes: version.notes } : {}),
+    };
+  }, [PageMeta, hasVersions, activeVersionIndex]);
+
+  const { stateValues } = usePropsAsDataList(ActiveMeta, type);
   const { enableMinimal, minimal, disableMinimal, isMinimal } =
     useAtlantisSite();
 
-  usePageTitle({ title: PageMeta?.title });
+  usePageTitle({ title: ActiveMeta?.title });
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
@@ -46,12 +79,12 @@ export const ComponentView = () => {
     };
   }, []);
 
-  const ComponentContent = PageMeta?.content;
+  const ComponentContent = ActiveMeta?.content;
 
   const code =
-    type === "web" && PageMeta?.component?.element
-      ? PageMeta?.component?.element
-      : PageMeta?.component?.mobileElement;
+    type === "web" && ActiveMeta?.component?.element
+      ? ActiveMeta?.component?.element
+      : ActiveMeta?.component?.mobileElement;
 
   useEffect(() => {
     if (iframe?.current || iframeMobile?.current) {
@@ -62,16 +95,16 @@ export const ComponentView = () => {
   useEffect(() => {
     if (
       type === "web" &&
-      !PageMeta?.component?.element &&
-      PageMeta?.component?.mobileElement
+      !ActiveMeta?.component?.element &&
+      ActiveMeta?.component?.mobileElement
     ) {
       updateType("mobile");
     }
 
-    if (type === "mobile" && !PageMeta?.component?.mobileElement) {
+    if (type === "mobile" && !ActiveMeta?.component?.mobileElement) {
       updateType("web");
     }
-  }, [type, PageMeta]);
+  }, [type, ActiveMeta]);
 
   const handleTabChange = (tabIn: number) => {
     if (tabIn == 1) {
@@ -121,9 +154,9 @@ export const ComponentView = () => {
     },
     {
       label: "Implement",
-      children: PageMeta?.notes ? (
+      children: ActiveMeta?.notes ? (
         <Content spacing="large">
-          <PageMeta.notes />
+          <ActiveMeta.notes />
         </Content>
       ) : null,
     },
@@ -131,31 +164,31 @@ export const ComponentView = () => {
 
   const activeTabs = useMemo(() => {
     return tabs.filter((_, index) => {
-      if (!PageMeta?.component.element && index === 1) {
+      if (!ActiveMeta?.component.element && index === 1) {
         return false;
       }
 
-      if (!PageMeta?.component.mobileElement && index === 2) {
+      if (!ActiveMeta?.component.mobileElement && index === 2) {
         return false;
       }
 
-      if (!PageMeta?.notes && index === 3) {
+      if (!ActiveMeta?.notes && index === 3) {
         return false;
       }
 
       return true;
     });
-  }, [tabs]);
+  }, [tabs, ActiveMeta]);
 
   const goToProps = (typeIn: string) => {
-    if (typeIn === "web" && PageMeta?.component?.element) {
+    if (typeIn === "web" && ActiveMeta?.component?.element) {
       handleTabChange(1);
-    } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
+    } else if (typeIn === "mobile" && !ActiveMeta?.component?.element) {
       handleTabChange(1);
     } else if (
       typeIn === "mobile" &&
-      PageMeta?.component?.element &&
-      PageMeta?.component?.mobileElement
+      ActiveMeta?.component?.element &&
+      ActiveMeta?.component?.mobileElement
     ) {
       handleTabChange(2);
     } else {
@@ -169,14 +202,14 @@ export const ComponentView = () => {
   };
 
   const goToUsage = (typeIn: string) => {
-    if (typeIn === "web" && PageMeta?.component?.element) {
+    if (typeIn === "web" && ActiveMeta?.component?.element) {
       handleTabChange(1);
-    } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
+    } else if (typeIn === "mobile" && !ActiveMeta?.component?.element) {
       handleTabChange(1);
     } else if (
       typeIn === "mobile" &&
-      PageMeta?.component?.element &&
-      PageMeta?.component?.mobileElement
+      ActiveMeta?.component?.element &&
+      ActiveMeta?.component?.mobileElement
     ) {
       handleTabChange(2);
     } else {
@@ -196,7 +229,7 @@ export const ComponentView = () => {
   return PageMeta ? (
     <BaseView>
       <BaseView.Main>
-        <Page width="narrow" title={PageMeta.title}>
+        <Page width="narrow" title={ActiveMeta?.title}>
           <Box>
             <Content spacing="large">
               <Box direction="column" gap="small" alignItems="flex-end">
@@ -204,6 +237,30 @@ export const ComponentView = () => {
                   <AtlantisPreviewViewer />
                 </CodePreviewWindow>
               </Box>
+              {hasVersions && (
+                <Box margin={{ bottom: "base" }}>
+                  <Select
+                    placeholder="Version"
+                    value={String(activeVersionIndex)}
+                    onChange={val => {
+                      const idx = Number(val);
+
+                      if (!Number.isNaN(idx)) {
+                        setActiveVersionIndex(idx);
+                        // Reset content tabs on version change to keep UX predictable
+                        setTab(0);
+                        updateStyles();
+                      }
+                    }}
+                  >
+                    {(PageMeta.versions ?? []).map((v, idx) => (
+                      <Option key={idx} value={String(idx)}>
+                        {v.label}
+                      </Option>
+                    ))}
+                  </Select>
+                </Box>
+              )}
               <span style={{ "--public-tab--inset": 0 } as React.CSSProperties}>
                 <Tabs onTabChange={handleTabChange} activeTab={tab}>
                   {activeTabs.map((activeTab, index) => (
@@ -220,9 +277,9 @@ export const ComponentView = () => {
       <BaseView.Siderail visible={!isMinimal}>
         <ComponentLinks
           key={`component-${name}`}
-          links={PageMeta?.links}
-          mobileEnabled={!!PageMeta?.component?.mobileElement}
-          webEnabled={!!PageMeta?.component?.element}
+          links={ActiveMeta?.links}
+          mobileEnabled={!!ActiveMeta?.component?.mobileElement}
+          webEnabled={!!ActiveMeta?.component?.element}
           goToDesign={goToDesign}
           goToProps={goToProps}
           goToUsage={goToUsage}
