@@ -3,5 +3,6 @@
   "exclude": [
     "**/*.test.ts",
     "**/*.test.tsx",
+    "**/test-utilities",
   ]
 }

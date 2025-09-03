@@ -5,7 +5,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import multiInput from "rollup-plugin-multi-input";
 
 export default {
-  input: `src/**/index.{ts,tsx}`,
+  input: ["src/**/index.{ts,tsx}", "!src/**/test-utilities/*.{ts,tsx}"],
   output: {
     dir: "dist",
     format: "esm",
