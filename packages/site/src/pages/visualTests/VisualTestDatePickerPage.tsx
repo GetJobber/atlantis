@@ -20,10 +20,6 @@ export const VisualTestDatePickerPage = () => {
     new Date(2025, 5, 3), // Month is 0-indexed: 5 = June
   );
 
-  // DatePicker with min/max dates
-  const [restrictedDate, setRestrictedDate] = useState<Date | undefined>(
-    new Date(2025, 5, 3),
-  );
   const minDate = new Date(2025, 5, 3); // June 3, 2025
   const maxDate = new Date(2025, 8, 3); // September 3, 2025
 
@@ -111,11 +107,11 @@ export const VisualTestDatePickerPage = () => {
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Stack>
                   <Text>
-                    Only allows selecting dates between today and 3 months from
-                    now
+                    Only allows selecting dates between selected date and 3
+                    months prior
                   </Text>
                   <DatePicker
-                    selected={restrictedDate}
+                    selected={maxDate}
                     onChange={date => setRestrictedDate(date)}
                     minDate={minDate}
                     maxDate={maxDate}
@@ -175,20 +171,6 @@ export const VisualTestDatePickerPage = () => {
                       type="primary"
                     />
                   }
-                />
-              </Grid.Cell>
-            </Grid>
-          </section>
-
-          {/* Read-only DatePicker */}
-          <section>
-            <Text size="large">Read-only DatePicker</Text>
-            <Grid>
-              <Grid.Cell size={{ xs: 12, md: 6 }}>
-                <DatePicker
-                  selected={new Date()}
-                  onChange={date => console.log(date)}
-                  readonly={true}
                 />
               </Grid.Cell>
             </Grid>
