@@ -306,7 +306,7 @@
         },
         "required": false,
         "type": {
-          "name": "(option: Omit<ComboboxOptionProps, \"customRender\"> & { isSelected: boolean; DefaultContent: () => ReactElement<any, string | JSXElementConstructor<any>>; }) => ReactNode"
+          "name": "(option: Pick<ComboboxOptionProps, \"id\" | \"label\" | \"prefix\"> & { isSelected: boolean; defaultContent: ReactElement<any, string | JSXElementConstructor<any>>; }) => ReactNode"
         }
       },
       "onClick": {
