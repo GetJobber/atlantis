@@ -12,10 +12,18 @@ export const useAtlantisPreviewViewer = () => {
 
   const updateType = (value: "web" | "mobile") => {
     setType(value);
+    const params = new URLSearchParams(window.location.search);
+
+    if (value === "mobile") {
+      params.set("mobile", "1");
+    } else {
+      params.delete("mobile");
+    }
+    const query = params.toString();
     window.history.replaceState(
       null,
       "",
-      `${window.location.pathname}?${value === "mobile" ? "mobile" : ""}`,
+      `${window.location.pathname}${query ? `?${query}` : ""}`,
     );
   };
 

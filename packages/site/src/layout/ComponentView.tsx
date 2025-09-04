@@ -1,13 +1,4 @@
-import {
-  Banner,
-  Box,
-  Content,
-  Option,
-  Page,
-  Select,
-  Tab,
-  Tabs,
-} from "@jobber/components";
+import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
@@ -24,6 +15,8 @@ import usePageTitle from "../hooks/usePageTitle";
 import { useAtlantisPreview } from "../preview/AtlantisPreviewProvider";
 import { AtlantisPreviewEditor } from "../preview/AtlantisPreviewEditor";
 import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
+import { VersionSelect } from "../components/VersionSelect";
+import { usePageVersion } from "../hooks/usePageVersion";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
@@ -40,20 +33,8 @@ export const ComponentView = () => {
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
   // Versioning support
-  const [activeVersionIndex, setActiveVersionIndex] = useState(() => {
-    try {
-      const param = new URLSearchParams(window.location.search).get("version");
-      const requested = param != null ? parseInt(param, 10) : 0;
-      const max = (PageMeta?.versions?.length || 1) - 1;
-      const clamped = Number.isFinite(requested)
-        ? Math.max(0, Math.min(requested, max))
-        : 0;
-
-      return clamped;
-    } catch {
-      return 0;
-    }
-  });
+  const { index: activeVersionIndex, setIndex: updateActiveVersionIndex } =
+    usePageVersion(PageMeta?.versions?.length || 1);
   const hasVersions =
     Array.isArray(PageMeta?.versions) && PageMeta.versions.length > 0;
 
@@ -75,23 +56,6 @@ export const ComponentView = () => {
       ...(version?.notes ? { notes: version.notes } : {}),
     };
   }, [PageMeta, hasVersions, activeVersionIndex]);
-
-  const updateActiveVersionIndex = (idx: number) => {
-    setActiveVersionIndex(idx);
-    const params = new URLSearchParams(window.location.search);
-
-    if (idx === 0) {
-      params.delete("version");
-    } else {
-      params.set("version", String(idx));
-    }
-    const query = params.toString();
-    window.history.replaceState(
-      null,
-      "",
-      `${window.location.pathname}${query ? `?${query}` : ""}`,
-    );
-  };
 
   const { stateValues } = usePropsAsDataList(ActiveMeta, type);
   const { enableMinimal, minimal, disableMinimal, isMinimal } =
@@ -150,6 +114,16 @@ export const ComponentView = () => {
       label: "Design",
       children: (
         <Content spacing="large">
+          {hasVersions && (
+            <VersionSelect
+              labels={(PageMeta.versions ?? []).map(v => v.label)}
+              valueIndex={activeVersionIndex}
+              onChange={idx => {
+                updateActiveVersionIndex(idx);
+                updateStyles();
+              }}
+            />
+          )}
           <ComponentContent />
         </Content>
       ),
@@ -158,6 +132,16 @@ export const ComponentView = () => {
       label: "Web",
       children: (
         <>
+          {hasVersions && (
+            <VersionSelect
+              labels={(PageMeta.versions ?? []).map(v => v.label)}
+              valueIndex={activeVersionIndex}
+              onChange={idx => {
+                updateActiveVersionIndex(idx);
+                updateStyles();
+              }}
+            />
+          )}
           <Box margin={{ bottom: "base" }}>
             <AtlantisPreviewEditor />
           </Box>
@@ -186,6 +170,16 @@ export const ComponentView = () => {
       label: "Implement",
       children: ActiveMeta?.notes ? (
         <Content spacing="large">
+          {hasVersions && (
+            <VersionSelect
+              labels={(PageMeta.versions ?? []).map(v => v.label)}
+              valueIndex={activeVersionIndex}
+              onChange={idx => {
+                updateActiveVersionIndex(idx);
+                updateStyles();
+              }}
+            />
+          )}
           <ActiveMeta.notes />
         </Content>
       ) : null,
@@ -272,26 +266,14 @@ export const ComponentView = () => {
                   {activeTabs.map((activeTab, index) => (
                     <Tab key={index} label={activeTab.label}>
                       {hasVersions && (
-                        <Box margin={{ bottom: "base" }}>
-                          <Select
-                            placeholder="Version"
-                            value={String(activeVersionIndex)}
-                            onChange={val => {
-                              const idx = Number(val);
-
-                              if (!Number.isNaN(idx)) {
-                                updateActiveVersionIndex(idx);
-                                updateStyles();
-                              }
-                            }}
-                          >
-                            {(PageMeta.versions ?? []).map((v, idx) => (
-                              <Option key={idx} value={String(idx)}>
-                                {v.label}
-                              </Option>
-                            ))}
-                          </Select>
-                        </Box>
+                        <VersionSelect
+                          labels={(PageMeta.versions ?? []).map(v => v.label)}
+                          valueIndex={activeVersionIndex}
+                          onChange={idx => {
+                            updateActiveVersionIndex(idx);
+                            updateStyles();
+                          }}
+                        />
                       )}
                       {activeTab.children}
                     </Tab>
