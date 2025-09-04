@@ -1,0 +1,10 @@
+### Implementation notes (v2)
+
+- **Free-form**: With allowFreeForm, Enter on a closed menu or Blur can commit
+  inputValue via createFreeFormValue.
+- **Enter**: When the menu is open and an item is active, Enter selects it.
+  Otherwise, it only commits in free-form mode.
+- **Sections & actions**: Sections render only when they have visible options
+  after filtering. Actions can keep the menu open with shouldClose=false.
+- **Highlighting**: Opening highlights the selected option; typing clears
+  highlight; deleting with a selection can re-highlight it.

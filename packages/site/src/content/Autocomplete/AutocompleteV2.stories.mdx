@@ -1,0 +1,19 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Forms and Inputs/Autocomplete/Web (v2) – Design" />
+
+### Autocomplete v2 (Rebuilt) — essentials
+
+- **Mental model**: inputValue + onInputChange control the text; value +
+  onChange control the committed selection(s).
+- **Menu model**: Build with menuOptions or menuSection. Supports actions and
+  persistent header/footer items.
+- **allowFreeForm**: When true, Enter/Blur can commit the text not in the list
+  via createFreeFormValue.
+- **Commit signals**: Enter on active item, click, or blur (rules differ with
+  free-form). Typing only updates inputValue.
+- **Filtering**: filterOptions (fn | false). Debounce with debounce (ms, default
+  300; 0 disables).
+- **Custom render**: customRenderOption/Section/Action/Header/Footer.
+- **A11y**: role "combobox" with aria-\*; listbox/options wired via
+  aria-activedescendant.

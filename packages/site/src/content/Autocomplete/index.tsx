@@ -1,4 +1,6 @@
 import AutocompleteContent from "./Autocomplete.stories.mdx";
+import AutocompleteV2Content from "./AutocompleteV2.stories.mdx";
+import AutocompleteV2Notes from "./AutocompleteV2Notes.mdx";
 import Props from "./Autocomplete.props.json";
 import Notes from "./AutocompleteNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -45,74 +47,7 @@ const [value, setValue] = useState();
     },
     {
       label: "Web v2 (Rebuilt)",
-      // Design tab content (concise v2 overview)
-      content: () => (
-        <div>
-          <h3>Autocomplete v2 (Rebuilt) — essentials</h3>
-          <ul>
-            <li>
-              <p>
-                <strong>Mental model</strong>
-              </p>
-              <p>
-                inputValue + onInputChange control the text; value + onChange
-                control the committed selection(s).
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Menu model</strong>
-              </p>
-              <p>
-                Build with menuOptions or menuSection. Supports actions and
-                persistent header/footer items.
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>allowFreeForm</strong>
-              </p>
-              <p>
-                When true, Enter/Blur can commit the text not in the list via
-                createFreeFormValue.
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Commit signals</strong>
-              </p>
-              <p>
-                Enter on active item, click, or blur (rules differ with
-                free-form). Typing only updates inputValue.
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Filtering</strong>
-              </p>
-              <p>
-                filterOptions (fn | false). Debounce with debounce (ms, default
-                300; 0 disables).
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Custom render</strong>
-              </p>
-              <p>customRenderOption/Section/Action/Header/Footer.</p>
-            </li>
-            <li>
-              <p>
-                <strong>A11y</strong>
-              </p>
-              <p>
-                role &quot;combobox&quot; with aria-*; listbox/options wired via
-                aria-activedescendant.
-              </p>
-            </li>
-          </ul>
-        </div>
-      ),
+      content: () => <AutocompleteV2Content />,
       // Minimal v2 preview example using version={2}
       component: {
         element: `
@@ -138,53 +73,209 @@ function App() {
 }
         `,
       },
-      // Override props so Web tab reflects v2 (empty for now)
-      props: [],
-      // Implement tab content (focused notes)
-      notes: () => (
-        <div>
-          <h3>Implementation notes (v2)</h3>
-          <ul>
-            <li>
-              <p>
-                <strong>Free-form</strong>
-              </p>
-              <p>
-                With allowFreeForm, Enter on a closed menu or Blur can commit
-                inputValue via createFreeFormValue.
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Enter</strong>
-              </p>
-              <p>
-                When the menu is open and an item is active, Enter selects it.
-                Otherwise, it only commits in free-form mode.
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Sections & actions</strong>
-              </p>
-              <p>
-                Sections render only when they have visible options after
-                filtering. Actions can keep the menu open with
-                shouldClose=false.
-              </p>
-            </li>
-            <li>
-              <p>
-                <strong>Highlighting</strong>
-              </p>
-              <p>
-                Opening highlights the selected option; typing clears highlight;
-                deleting with a selection can re-highlight it.
-              </p>
-            </li>
-          </ul>
-        </div>
-      ),
+      // v2 props (concise subset for site table; full reference lives in Storybook)
+      props: [
+        {
+          description: "",
+          displayName: "AutocompleteRebuilt",
+          filePath:
+            "packages/components/src/Autocomplete/Autocomplete.rebuilt.tsx",
+          methods: [],
+
+          props: {
+            version: {
+              name: "version",
+              required: true,
+              description: "Use version 2.",
+              defaultValue: null,
+              type: { name: "2" },
+            },
+
+            menu: {
+              name: "menu",
+              required: true,
+              description: "Data model for sections/options/actions.",
+              defaultValue: null,
+              type: { name: "MenuItem[]" },
+            },
+
+            value: {
+              name: "value",
+              required: false,
+              description: "Current selection (single or array when multiple).",
+              defaultValue: null,
+              type: { name: "OptionLike | OptionLike[] | undefined" },
+            },
+
+            onChange: {
+              name: "onChange",
+              required: true,
+              description: "Called when a selection is committed.",
+              defaultValue: null,
+              type: { name: "(value) => void" },
+            },
+
+            inputValue: {
+              name: "inputValue",
+              required: true,
+              description: "Controlled input text.",
+              defaultValue: null,
+              type: { name: "string" },
+            },
+
+            onInputChange: {
+              name: "onInputChange",
+              required: true,
+              description: "Called when the input text changes.",
+              defaultValue: null,
+              type: { name: "(text: string) => void" },
+            },
+
+            multiple: {
+              name: "multiple",
+              required: false,
+              description: "Enable multiple selections (experimental UI).",
+              defaultValue: null,
+              type: { name: "boolean" },
+            },
+
+            allowFreeForm: {
+              name: "allowFreeForm",
+              required: false,
+              description: "Allow committing text not present in options.",
+              defaultValue: null,
+              type: { name: "boolean" },
+            },
+
+            createFreeFormValue: {
+              name: "createFreeFormValue",
+              required: false,
+              description: "Factory to convert free-form text to a value.",
+              defaultValue: null,
+              type: { name: "(text: string) => OptionLike" },
+            },
+
+            filterOptions: {
+              name: "filterOptions",
+              required: false,
+              description: "Custom filter function or false to opt-out.",
+              defaultValue: null,
+              type: { name: "((opts, input) => opts) | false" },
+            },
+
+            debounce: {
+              name: "debounce",
+              required: false,
+              description: "Debounce for filtering (ms). Default 300.",
+              defaultValue: null,
+              type: { name: "number" },
+            },
+
+            getOptionLabel: {
+              name: "getOptionLabel",
+              required: false,
+              description: "Map option to label for filtering and display.",
+              defaultValue: null,
+              type: { name: "(option) => string" },
+            },
+
+            inputEqualsOption: {
+              name: "inputEqualsOption",
+              required: false,
+              description: "Custom equality between input text and option.",
+              defaultValue: null,
+              type: { name: "(text, option) => boolean" },
+            },
+
+            customRenderOption: {
+              name: "customRenderOption",
+              required: false,
+              description: "Render function for an option row.",
+              defaultValue: null,
+              type: { name: "(args) => ReactNode" },
+            },
+
+            customRenderSection: {
+              name: "customRenderSection",
+              required: false,
+              description: "Render function for a section header.",
+              defaultValue: null,
+              type: { name: "(section) => ReactNode" },
+            },
+
+            customRenderAction: {
+              name: "customRenderAction",
+              required: false,
+              description: "Render function for an action row.",
+              defaultValue: null,
+              type: { name: "(args) => ReactNode" },
+            },
+
+            customRenderHeader: {
+              name: "customRenderHeader",
+              required: false,
+              description: "Render function for persistent header.",
+              defaultValue: null,
+              type: { name: "(args) => ReactNode" },
+            },
+
+            customRenderFooter: {
+              name: "customRenderFooter",
+              required: false,
+              description: "Render function for persistent footer.",
+              defaultValue: null,
+              type: { name: "(args) => ReactNode" },
+            },
+
+            emptyStateMessage: {
+              name: "emptyStateMessage",
+              required: false,
+              description:
+                "Message/node when no options remain after filtering.",
+              defaultValue: null,
+              type: { name: "ReactNode | false" },
+            },
+
+            emptyActions: {
+              name: "emptyActions",
+              required: false,
+              description:
+                "Actions to show when list is empty (array or function).",
+              defaultValue: null,
+              type: { name: "Action[] | (({ inputValue }) => Action[])" },
+            },
+
+            openOnFocus: {
+              name: "openOnFocus",
+              required: false,
+              description: "Open menu on input focus (default true).",
+              defaultValue: null,
+              type: { name: "boolean" },
+            },
+
+            readOnly: {
+              name: "readOnly",
+              required: false,
+              description:
+                "When true, disable interactions (still fires focus/blur).",
+              defaultValue: null,
+              type: { name: "boolean" },
+            },
+
+            loading: {
+              name: "loading",
+              required: false,
+              description: "Show loading state in the menu.",
+              defaultValue: null,
+              type: { name: "boolean" },
+            },
+          },
+
+          tags: {},
+        },
+      ],
+      // Implement tab content
+      notes: () => <AutocompleteV2Notes />,
       // Point to Storybook v2 docs page if available
       links: [
         {
