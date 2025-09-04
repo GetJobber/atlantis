@@ -56,23 +56,23 @@ export const VisualTestAutocompleteV2Page = () => {
   );
 
   const flatOnlyMenu: MenuItemsV2 = useMemo(
-    () => [{ type: "options" as const, options: flatOptions }],
+    () => [{ type: "options", options: flatOptions }],
     [flatOptions],
   );
 
   const flatWithActionsMenu: MenuItemsV2 = useMemo(
     () => [
       {
-        type: "options" as const,
+        type: "options",
         options: flatOptions,
         actions: [
           {
-            type: "action" as const,
+            type: "action",
             label: "Create new",
             onClick: () => console.log("Create new clicked"),
           },
           {
-            type: "action" as const,
+            type: "action",
             label: "Browse templates",
             onClick: () => console.log("Browse templates clicked"),
           },
@@ -84,9 +84,9 @@ export const VisualTestAutocompleteV2Page = () => {
 
   const flatWithFooterMenu: MenuItemsV2 = useMemo(
     () => [
-      { type: "options" as const, options: flatOptions },
+      { type: "options", options: flatOptions },
       {
-        type: "footer" as const,
+        type: "footer",
         label: "Interactive Footer",
         onClick: () => console.log("Footer clicked"),
       },
@@ -96,8 +96,8 @@ export const VisualTestAutocompleteV2Page = () => {
 
   const sectionedOnlyMenu: MenuItemsV2 = useMemo(
     () => [
-      { type: "section" as const, label: "Indoor", options: flatOptions },
-      { type: "section" as const, label: "Outdoor", options: flatOptions },
+      { type: "section", label: "Indoor", options: flatOptions },
+      { type: "section", label: "Outdoor", options: flatOptions },
     ],
     [flatOptions],
   );
@@ -105,24 +105,24 @@ export const VisualTestAutocompleteV2Page = () => {
   const sectionedWithActionsMenu: MenuItemsV2 = useMemo(
     () => [
       {
-        type: "section" as const,
+        type: "section",
         label: "Indoor",
         options: flatOptions,
         actions: [
           {
-            type: "action" as const,
+            type: "action",
             label: "Create new",
             onClick: () => console.log("Create new clicked"),
           },
         ],
       },
       {
-        type: "section" as const,
+        type: "section",
         label: "Outdoor",
         options: flatOptions,
         actions: [
           {
-            type: "action" as const,
+            type: "action",
             label: "Browse templates",
             onClick: () => console.log("Browse templates clicked"),
           },
@@ -134,26 +134,26 @@ export const VisualTestAutocompleteV2Page = () => {
 
   const sectionedWithHeaderFooterMenu: MenuItemsV2 = useMemo(
     () => [
-      { type: "header" as const, label: "Persistent Text Header" },
+      { type: "header", label: "Persistent Text Header" },
       {
-        type: "section" as const,
+        type: "section",
         label: "Indoor",
         options: flatOptions,
         actions: [
           {
-            type: "action" as const,
+            type: "action",
             label: "Create new",
             onClick: () => console.log("Create new clicked"),
           },
         ],
       },
       {
-        type: "section" as const,
+        type: "section",
         label: "Outdoor",
         options: flatOptions,
       },
       {
-        type: "footer" as const,
+        type: "footer",
         label: "Interactive Footer",
         onClick: () => console.log("Footer clicked"),
       },
@@ -162,16 +162,16 @@ export const VisualTestAutocompleteV2Page = () => {
   );
 
   const emptySimpleMenu: MenuItemsV2 = useMemo(
-    () => [{ type: "options" as const, options: [] as OptionV2[] }],
+    () => [{ type: "options", options: [] }],
     [],
   );
 
   const emptyWithHeaderFooterMenu: MenuItemsV2 = useMemo(
     () => [
-      { type: "header" as const, label: "No results header" },
-      { type: "options" as const, options: [] as OptionV2[] },
+      { type: "header", label: "No results header" },
+      { type: "options", options: [] },
       {
-        type: "footer" as const,
+        type: "footer",
         label: "Add new item",
         onClick: () => console.log("Add new item clicked"),
       },
