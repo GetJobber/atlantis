@@ -605,11 +605,11 @@ describe("Combobox defaultContent element via customRender", () => {
 
     await userEvent.click(screen.getByRole("combobox"));
     // Default content shows the label as usual
-    expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
+    const option = screen.getByRole("option", { name: "Bilbo Baggins" });
 
-    await userEvent.click(
-      screen.getByRole("option", { name: "Bilbo Baggins" }),
-    );
+    expect(option).toBeInTheDocument();
+
+    await userEvent.click(option);
     // Behaves like default: calls onSelect and closes menu in single-select
     expect(handleSelect).toHaveBeenCalledWith([
       { id: "1", label: "Bilbo Baggins" },
@@ -625,14 +625,12 @@ describe("Combobox defaultContent element via customRender", () => {
 
     await userEvent.click(screen.getByRole("combobox"));
     // Default content reflects selection state
-    expect(
-      screen.getByRole("option", { name: "Bilbo Baggins" }),
-    ).toHaveAttribute("aria-selected", "true");
+    const option = screen.getByRole("option", { name: "Bilbo Baggins" });
+    expect(option).toHaveAttribute("aria-selected", "true");
+
     expect(screen.getByTestId("checkmark")).toBeInTheDocument();
 
-    await userEvent.click(
-      screen.getByRole("option", { name: "Bilbo Baggins" }),
-    );
+    await userEvent.click(option);
     // Multiselect: menu remains open
     expect(screen.getByTestId(MENU_TEST_ID)).not.toHaveClass("hidden");
   });

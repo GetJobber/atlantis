@@ -200,7 +200,7 @@ describe("ComboboxOption", () => {
       });
     });
 
-    it("provides DefaultContent and renders it identically to default", () => {
+    it("provides defaultContent and renders it identically to default", () => {
       const option: ComboboxOptionProps = {
         id: "1",
         label: "Michael",
@@ -218,7 +218,7 @@ describe("ComboboxOption", () => {
       expect(POM.queryCheckmark()).not.toBeInTheDocument();
     });
 
-    it("DefaultContent reflects selection state (shows checkmark when selected)", () => {
+    it("defaultContent reflects selection state (shows checkmark when selected)", () => {
       const option: ComboboxOptionProps = {
         id: "1",
         label: "Michael",
