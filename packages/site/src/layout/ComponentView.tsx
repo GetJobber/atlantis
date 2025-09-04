@@ -132,16 +132,6 @@ export const ComponentView = () => {
       label: "Web",
       children: (
         <>
-          {hasVersions && (
-            <VersionSelect
-              labels={(PageMeta.versions ?? []).map(v => v.label)}
-              valueIndex={activeVersionIndex}
-              onChange={idx => {
-                updateActiveVersionIndex(idx);
-                updateStyles();
-              }}
-            />
-          )}
           <Box margin={{ bottom: "base" }}>
             <AtlantisPreviewEditor />
           </Box>
@@ -170,16 +160,6 @@ export const ComponentView = () => {
       label: "Implement",
       children: ActiveMeta?.notes ? (
         <Content spacing="large">
-          {hasVersions && (
-            <VersionSelect
-              labels={(PageMeta.versions ?? []).map(v => v.label)}
-              valueIndex={activeVersionIndex}
-              onChange={idx => {
-                updateActiveVersionIndex(idx);
-                updateStyles();
-              }}
-            />
-          )}
           <ActiveMeta.notes />
         </Content>
       ) : null,
