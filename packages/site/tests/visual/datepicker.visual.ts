@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import { expect, test } from "@playwright/test";
 
 test.describe("DatePicker Visual Tests", () => {
@@ -22,7 +23,6 @@ test.describe("DatePicker Visual Tests", () => {
     });
   });
 
-  // eslint-disable-next-line max-statements
   test("enter to open datepicker and arrow keys to focus", async ({ page }) => {
     const interactionActivator = page
       .locator("section")
@@ -56,7 +56,6 @@ test.describe("DatePicker Visual Tests", () => {
     });
   });
 
-  // eslint-disable-next-line max-statements
   test("hover over days", async ({ page }) => {
     const hoverActivator = page
       .locator("section")
