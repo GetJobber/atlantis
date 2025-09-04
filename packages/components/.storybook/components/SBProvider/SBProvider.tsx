@@ -1,6 +1,11 @@
-import React, { useEffect, type PropsWithChildren } from "react";
-import { IntlProvider, IntlConfig } from "react-intl";
-import { AtlantisThemeContextProvider, updateTheme, type Theme } from "@jobber/components/AtlantisThemeContext";
+import React, { type PropsWithChildren, useEffect } from "react";
+import type { IntlConfig } from "react-intl";
+import { IntlProvider } from "react-intl";
+import {
+  AtlantisThemeContextProvider,
+  type Theme,
+  updateTheme,
+} from "@jobber/components/AtlantisThemeContext";
 // @ts-expect-error Storybook needs a custom tsconfig to understand that vite can load *.module.css files.
 import styles from "./SBProvider.module.css";
 
@@ -8,7 +13,7 @@ export function SBProvider({
   children,
   theme = "light",
 }: PropsWithChildren<{
-  theme: Theme
+  readonly theme: Theme;
 }>): JSX.Element {
   /*
   For now, client's locale is hard coded to "en-US".

@@ -109,5 +109,12 @@ module.exports = {
         ],
       },
     },
+    {
+      files: ["**/.storybook/**/*.ts", "**/.storybook/**/*.tsx"],
+      rules: {
+        "import/no-default-export": "off",
+        "monorepo-cop/no-relative-import-outside-package": "off",
+      },
+    },
   ],
 };

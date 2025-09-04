@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/LightBox/LightBox.stories.mdx";
+import Content from "./LightBox.stories.mdx";
 import Props from "./LightBox.props.json";
 import Notes from "./LightBoxNotes.mdx";
 import { ContentExport } from "../../types/content";

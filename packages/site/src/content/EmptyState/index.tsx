@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/EmptyState/EmptyState.stories.mdx";
+import Content from "./EmptyState.stories.mdx";
 import MobileProps from "./EmptyState.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

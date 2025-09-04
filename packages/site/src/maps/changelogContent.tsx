@@ -1,3 +1,4 @@
+import BreakingChanges from "../content/changelogs/breaking-changes.md";
 import ComponentsChangelog from "../../../components/CHANGELOG.md";
 import ComponentsNativeChangelog from "../../../components-native/CHANGELOG.md";
 import DesignChangelog from "../../../design/CHANGELOG.md";
@@ -10,6 +11,11 @@ import StylelintConfigChangelog from "../../../stylelint-config/CHANGELOG.md";
 import { ContentMapItems } from "../types/maps";
 
 export const changelogContentMap: ContentMapItems = {
+  "breaking-changes": {
+    intro: "Upcoming Breaking Changes",
+    title: "Upcoming Breaking Changes",
+    content: () => <BreakingChanges />,
+  },
   components: {
     intro: "Components",
     title: "Components",

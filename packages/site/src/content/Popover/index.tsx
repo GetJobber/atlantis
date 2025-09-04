@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Popover/Popover.stories.mdx";
+import Content from "./Popover.stories.mdx";
 import Props from "./Popover.props.json";
 import Notes from "./PopoverNotes.mdx";
 import { ContentExport } from "../../types/content";

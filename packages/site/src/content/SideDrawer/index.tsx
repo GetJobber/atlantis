@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/SideDrawer/SideDrawer.stories.mdx";
+import Content from "./SideDrawer.stories.mdx";
 import Props from "./SideDrawer.props.json";
 import Notes from "./SideDrawerNotes.mdx";
 import { ContentExport } from "../../types/content";

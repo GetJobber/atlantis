@@ -149,11 +149,7 @@ export function DatePicker({
         minDate={minDate}
         useWeekdaysShort={true}
         customInput={
-          <DatePickerActivator
-            pickerRef={pickerRef}
-            activator={activator}
-            fullWidth={fullWidth}
-          />
+          <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
@@ -169,6 +165,7 @@ export function DatePicker({
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
         calendarStartDay={effectiveFirstDayOfWeek}
+        popperPlacement="bottom-start"
       />
     </div>
   );
@@ -181,8 +178,9 @@ export function DatePicker({
    * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
    * fail).
    */
-  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
-    onChange(value);
+  function handleChange(value: Date | null) {
+    // TODO: Ticket created to update all DatePicker and InputDate usages to accept Date | null
+    onChange(value as Date);
   }
 
   function handleCalendarOpen() {

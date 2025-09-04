@@ -1,4 +1,4 @@
-import InputEmailContent from "@atlantis/docs/components/InputEmail/InputEmail.stories.mdx";
+import InputEmailContent from "./InputEmail.stories.mdx";
 import Props from "./InputEmail.props.json";
 import MobileProps from "./InputEmail.props-mobile.json";
 import { ContentExport } from "../../types/content";

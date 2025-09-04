@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/InputCurrency/InputCurrency.stories.mdx";
+import Content from "./InputCurrency.stories.mdx";
 import MobileProps from "./InputCurrency.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

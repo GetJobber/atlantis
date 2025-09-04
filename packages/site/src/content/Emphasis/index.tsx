@@ -1,4 +1,4 @@
-import EmphasisContent from "@atlantis/docs/components/Emphasis/Emphasis.stories.mdx";
+import EmphasisContent from "./Emphasis.stories.mdx";
 import Props from "./Emphasis.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

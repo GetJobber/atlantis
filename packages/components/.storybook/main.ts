@@ -1,10 +1,10 @@
-import type { StorybookConfig } from "@storybook/react-vite";
 import path from "path";
+import type { StorybookConfig } from "@storybook/react-vite";
 
 export default {
   framework: {
     name: "@storybook/react-vite",
-    options: {}
+    options: {},
   },
   stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: ["@storybook/addon-a11y"],
@@ -14,6 +14,7 @@ export default {
   },
   async viteFinal(config) {
     const { mergeConfig } = await import("vite");
+
     return mergeConfig(config, {
       resolve: {
         alias: {

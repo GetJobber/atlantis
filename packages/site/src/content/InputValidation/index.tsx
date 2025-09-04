@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/InputValidation/InputValidation.stories.mdx";
+import Content from "./InputValidation.stories.mdx";
 import Props from "./InputValidation.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

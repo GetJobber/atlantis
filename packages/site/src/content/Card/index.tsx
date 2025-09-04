@@ -1,4 +1,4 @@
-import CardContent from "@atlantis/docs/components/Card/Card.stories.mdx";
+import CardContent from "./Card.stories.mdx";
 import Props from "./Card.props.json";
 import MobileProps from "./Card.props-mobile.json";
 import Notes from "./CardNotes.mdx";
