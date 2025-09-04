@@ -7,13 +7,5 @@
     "**/*.pom.ts",
     "**/*.pom.tsx",
     "entryPoints.ts"
-  ],
-  "references": [
-    {
-      "path": "../formatters"
-    },
-    {
-      "path": "../hooks"
-    }
   ]
 }
