@@ -8,5 +8,9 @@ window.ReactDOM = ReactDOM;
 window.updateTheme = updateTheme;
 
 export * from "@jobber/components";
+// Force the Autocomplete export to use the package subpath which contains the runtime shim
+// that switches between v1 and v2 based on the `version` prop. The root export currently
+// points at the legacy-only build.
+export { Autocomplete } from "@jobber/components/Autocomplete";
 
 export { React, ReactDOM, useEffect, useRef, useState, useFormState };

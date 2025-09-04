@@ -116,6 +116,8 @@ html,body,#root {
           script.textContent = code;
           const root = document.getElementById('root');
           if (root) {
+            // Remove any previously injected module scripts to avoid piling up identical modules
+            Array.from(root.querySelectorAll('script[type="module"]')).forEach(s => s.remove());
             root.appendChild(script); // Inject new script
           }
         } else if (type === 'updateTheme') {
@@ -136,7 +138,6 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               AnimatedPresence,
               AnimatedSwitcher,
               AtlantisThemeContextProvider,
-              Autocomplete,
               Avatar,
               Banner,
               Box,
@@ -239,6 +240,8 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               ReactDOM,
               React
             } from '@jobber/components';
+            // Import Autocomplete explicitly from its subpath to ensure the v2 shim is used when version={2}
+            import { Autocomplete } from '@jobber/components/Autocomplete';
                 ${transpiledCode}
 
             function RootWrapper() {

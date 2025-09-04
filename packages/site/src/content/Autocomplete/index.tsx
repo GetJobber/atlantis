@@ -55,7 +55,6 @@ const menu = [
   { type: 'options', options: [{ label: 'One' }, { label: 'Two' }, { label: 'Three' }] }
 ];
 
-function App() {
   const [value, setValue] = useState();
   const [inputValue, setInputValue] = useState("");
 
@@ -70,7 +69,6 @@ function App() {
       placeholder="Search"
     />
   );
-}
         `,
       },
       // v2 props (concise subset for site table; full reference lives in Storybook)
