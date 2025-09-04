@@ -9,7 +9,7 @@ async function centerInViewport(page: Page, locator: Locator) {
     const r = element.getBoundingClientRect();
     const targetY = r.top + r.height / 2;
     const delta = targetY - window.innerHeight / 2;
-    window.scrollBy({ top: delta });
+    window.scrollBy({ top: Math.round(delta) });
   }, handle);
   await page.waitForTimeout(50);
 }
