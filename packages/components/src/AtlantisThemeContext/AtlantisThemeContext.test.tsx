@@ -17,11 +17,13 @@ describe("ThemeContext", () => {
   function TestWrapper({
     children,
     dangerouslyOverrideTheme,
+    overrideTokens,
   }: AtlantisThemeContextProviderProps) {
     return (
       <div data-testid="test-wrapper">
         <AtlantisThemeContextProvider
           dangerouslyOverrideTheme={dangerouslyOverrideTheme}
+          overrideTokens={overrideTokens}
         >
           <InlineLabel color="red">Past due</InlineLabel>
           {children}
@@ -45,6 +47,68 @@ describe("ThemeContext", () => {
 
       expect(results.result.current.theme).toBe("dark");
       expect(results.result.current.tokens).toEqual(expectedDarkTokens);
+    });
+  });
+
+  describe("when overrideTokens are provided", () => {
+    it("applies overridden tokens and CSS variables in dynamic provider", () => {
+      const tokenName = "color-text" as const;
+      const overrideValue = "hsl(198, 35%, 30%)";
+      const overrideTokens = { [tokenName]: overrideValue } as Record<
+        string,
+        string
+      >;
+
+      const results = renderHook(useAtlantisTheme, {
+        wrapper: (props: AtlantisThemeContextProviderProps) => (
+          <TestWrapper {...props} overrideTokens={overrideTokens} />
+        ),
+      });
+
+      expect(results.result.current.tokens[tokenName]).toBe(overrideValue);
+
+      const wrapper = screen.getByTestId("test-wrapper");
+      const overrideWrapper = wrapper.firstElementChild as HTMLElement | null;
+      expect(overrideWrapper?.tagName).toBe("SPAN");
+      expect(overrideWrapper?.style.display).toBe("contents");
+      expect(
+        (overrideWrapper as HTMLElement).style.getPropertyValue(
+          `--${tokenName}`,
+        ),
+      ).toBe(String(overrideValue));
+    });
+
+    it("applies overridden tokens and CSS variables in static provider", () => {
+      const tokenName = "color-text" as const;
+      const overrideValue = "hsl(198, 35%, 30%)";
+      const overrideTokens = { [tokenName]: overrideValue } as Record<
+        string,
+        string
+      >;
+
+      const results = renderHook(useAtlantisTheme, {
+        wrapper: (props: AtlantisThemeContextProviderProps) => (
+          <TestWrapper
+            {...props}
+            dangerouslyOverrideTheme="dark"
+            overrideTokens={overrideTokens}
+          />
+        ),
+      });
+
+      expect(results.result.current.tokens[tokenName]).toBe(overrideValue);
+
+      const wrapper = screen.getByTestId("test-wrapper");
+      // static provider renders a div first, with the override wrapper as a child
+      const staticWrapper = wrapper.firstElementChild as HTMLElement | null;
+      const overrideWrapper = staticWrapper?.firstElementChild as
+        | HTMLElement
+        | undefined;
+      expect(overrideWrapper?.tagName).toBe("SPAN");
+      expect(overrideWrapper?.style.display).toBe("contents");
+      expect(overrideWrapper?.style.getPropertyValue(`--${tokenName}`)).toBe(
+        String(overrideValue),
+      );
     });
   });
 

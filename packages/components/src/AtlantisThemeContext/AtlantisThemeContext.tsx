@@ -17,7 +17,6 @@ import type {
 } from "./types";
 import { THEME_CHANGE_EVENT } from "./types";
 import styles from "./AtlantisThemeContext.module.css";
-import type { CommonAllowedElements } from "../sharedHelpers/types";
 
 export const atlantisThemeContextDefaultValues: AtlantisThemeContextValue = {
   theme: "light",
@@ -138,7 +137,13 @@ function InternalStaticThemeProvider({
         data-theme={dangerouslyOverrideTheme}
         className={styles.staticThemeProviderWrapper}
       >
-        {children}
+        {overrideTokens ? (
+          <AtlantisThemeContextTokenOverride overrideTokens={overrideTokens}>
+            {children}
+          </AtlantisThemeContextTokenOverride>
+        ) : (
+          children
+        )}
       </div>
     </AtlantisThemeContext.Provider>
   );
@@ -151,14 +156,12 @@ export function useAtlantisTheme() {
 function AtlantisThemeContextTokenOverride({
   overrideTokens,
   children,
-  as: Tag = "div",
 }: {
   readonly overrideTokens: OverrideTokens;
   readonly children: React.ReactNode;
-  readonly as?: CommonAllowedElements;
 }) {
   const { tokens: currentTokens } = useAtlantisTheme();
-  const style = useMemo(() => {
+  const cssVariableStyles = useMemo(() => {
     return Object.entries(overrideTokens).reduce<Record<string, string>>(
       (cssVariables, [tokenName]) => {
         const tokenValue = String(
@@ -172,5 +175,9 @@ function AtlantisThemeContextTokenOverride({
     );
   }, [currentTokens, overrideTokens]);
 
-  return <Tag style={style}>{children}</Tag>;
+  const style = useMemo<React.CSSProperties>(() => {
+    return { display: "contents", ...cssVariableStyles };
+  }, [cssVariableStyles]);
+
+  return <span style={style}>{children}</span>;
 }
