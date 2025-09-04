@@ -109,7 +109,6 @@ test.describe("DatePicker Visual Tests", () => {
     });
   });
 
-  // eslint-disable-next-line max-statements
   test("date range restrictions", async ({ page }) => {
     const restrictionsActivator = page
       .locator("section")
