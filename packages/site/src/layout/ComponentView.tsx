@@ -114,16 +114,6 @@ export const ComponentView = () => {
       label: "Design",
       children: (
         <Content spacing="large">
-          {hasVersions && (
-            <VersionSelect
-              labels={(PageMeta.versions ?? []).map(v => v.label)}
-              valueIndex={activeVersionIndex}
-              onChange={idx => {
-                updateActiveVersionIndex(idx);
-                updateStyles();
-              }}
-            />
-          )}
           <ComponentContent />
         </Content>
       ),
