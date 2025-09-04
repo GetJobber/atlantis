@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.3...@jobber/hooks@2.17.4) (2025-09-02)
+
+
+### Bug Fixes
+
+* **hooks:** Prevent mockViewportWidth from accessing window until necessary ([#2707](https://github.com/GetJobber/atlantis/issues/2707)) ([c987e77](https://github.com/GetJobber/atlantis/commit/c987e77bfd390e31df837dfe8ff337aa4af75989))
+
+
+
+
+
 ## [2.17.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.2...@jobber/hooks@2.17.3) (2025-08-28)
 
 
