@@ -1,23 +1,8 @@
-import { type Locator, type Page, expect, test } from "@playwright/test";
+import { type Page, expect, test } from "@playwright/test";
 
-// Center a locator in the viewport to ensure ample space below
-async function centerInViewport(page: Page, locator: Locator) {
-  const handle = await locator.elementHandle();
-  if (!handle) return;
-  await locator.scrollIntoViewIfNeeded();
-  await page.evaluate(element => {
-    const r = element.getBoundingClientRect();
-    const targetY = r.top + r.height / 2;
-    const delta = targetY - window.innerHeight / 2;
-    window.scrollBy({ top: delta });
-  }, handle);
-  await page.waitForTimeout(50);
-}
-
-// Helper to focus the first combobox and open menu deterministically
+// Helper to focus the first combobox and open menu
 async function openFirstAutocomplete(page: Page) {
   const first = page.getByRole("combobox").first();
-  await centerInViewport(page, first);
   await first.click();
   await page.waitForTimeout(200);
 }
@@ -56,7 +41,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
     }) => {
       // Second combobox on page
       const second = page.getByRole("combobox").nth(1);
-      await centerInViewport(page, second);
       await second.click();
       await page.waitForTimeout(200);
       // 4 options, then actions → move to first action
@@ -71,7 +55,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       page,
     }) => {
       const third = page.getByRole("combobox").nth(2);
-      await centerInViewport(page, third);
       await third.click();
       await page.waitForTimeout(200);
       // 4 options then footer action
@@ -89,7 +72,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
     }) => {
       // Next row, first in section
       const fourth = page.getByRole("combobox").nth(3);
-      await centerInViewport(page, fourth);
       await fourth.click();
       await page.waitForTimeout(200);
       await moveDown(page, 1);
@@ -102,7 +84,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       page,
     }) => {
       const fifth = page.getByRole("combobox").nth(4);
-      await centerInViewport(page, fifth);
       await fifth.click();
       await page.waitForTimeout(200);
       // move to first section action (after options)
@@ -117,7 +98,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       page,
     }) => {
       const sixth = page.getByRole("combobox").nth(5);
-      await centerInViewport(page, sixth);
       await sixth.click();
       await page.waitForTimeout(200);
       // header(1) + indoor options(4) + section action(1) + outdoor options(4) + footer(1)
@@ -132,7 +112,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
   test.describe("states", () => {
     test("loading state", async ({ page }) => {
       const seventh = page.getByRole("combobox").nth(6);
-      await centerInViewport(page, seventh);
       await seventh.click();
       await page.waitForTimeout(400);
       await expect(page).toHaveScreenshot("8-loading-open.png", {
@@ -142,7 +121,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
 
     test("empty: simple (no header/footer)", async ({ page }) => {
       const eighth = page.getByRole("combobox").nth(7);
-      await centerInViewport(page, eighth);
       await eighth.click();
       await page.waitForTimeout(200);
       await expect(page).toHaveScreenshot("9-empty-simple-open.png", {
@@ -152,7 +130,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
 
     test("empty: header + interactive footer", async ({ page }) => {
       const ninth = page.getByRole("combobox").nth(8);
-      await centerInViewport(page, ninth);
       await ninth.click();
       await page.waitForTimeout(200);
       await moveDown(page, 2); // move highlight to footer action
@@ -165,7 +142,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
 
   test("with selection: open shows selection highlighted", async ({ page }) => {
     const tenth = page.getByRole("combobox").nth(9);
-    await centerInViewport(page, tenth);
     await tenth.click();
     await page.waitForTimeout(200);
     await expect(page).toHaveScreenshot("11-selection-open-highlight.png", {
@@ -178,7 +154,6 @@ test.describe("Autocomplete v2 Visual Tests", () => {
   }) => {
     // The constrained example is the last combobox
     const last = page.getByRole("combobox").last();
-    await centerInViewport(page, last);
     await last.click();
     await page.waitForTimeout(300);
     await expect(page).toHaveScreenshot("12-constrained-open.png", {
