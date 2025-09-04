@@ -3,14 +3,8 @@
   "version": "0.4.2",
   "license": "MIT",
   "type": "module",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
-    }
-  },
   "scripts": {
     "build": "rollup -c rollup.config.mjs",
     "clean": "rm -rf dist tsconfig.*tsbuildinfo",

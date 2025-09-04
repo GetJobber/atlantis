@@ -7,103 +7,83 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./dist": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
     },
     "./useBool": {
       "types": "./dist/useBool/index.d.ts",
-      "import": "./dist/useBool/index.js",
-      "require": "./dist/useBool/index.js"
+      "import": "./dist/useBool/index.js"
     },
     "./useBreakpoints": {
       "types": "./dist/useBreakpoints/index.d.ts",
-      "import": "./dist/useBreakpoints/index.js",
-      "require": "./dist/useBreakpoints/index.js"
+      "import": "./dist/useBreakpoints/index.js"
     },
     "./useCallbackRef": {
       "types": "./dist/useCallbackRef/index.d.ts",
-      "import": "./dist/useCallbackRef/index.js",
-      "require": "./dist/useCallbackRef/index.js"
+      "import": "./dist/useCallbackRef/index.js"
     },
     "./useCollectionQuery": {
       "types": "./dist/useCollectionQuery/index.d.ts",
-      "import": "./dist/useCollectionQuery/index.js",
-      "require": "./dist/useCollectionQuery/index.js"
+      "import": "./dist/useCollectionQuery/index.js"
     },
     "./useDebounce": {
       "types": "./dist/useDebounce/index.d.ts",
-      "import": "./dist/useDebounce/index.js",
-      "require": "./dist/useDebounce/index.js"
+      "import": "./dist/useDebounce/index.js"
     },
     "./useFocusTrap": {
       "types": "./dist/useFocusTrap/index.d.ts",
-      "import": "./dist/useFocusTrap/index.js",
-      "require": "./dist/useFocusTrap/index.js"
+      "import": "./dist/useFocusTrap/index.js"
     },
     "./useFormState": {
       "types": "./dist/useFormState/index.d.ts",
-      "import": "./dist/useFormState/index.js",
-      "require": "./dist/useFormState/index.js"
+      "import": "./dist/useFormState/index.js"
     },
     "./useInView": {
       "types": "./dist/useInView/index.d.ts",
-      "import": "./dist/useInView/index.js",
-      "require": "./dist/useInView/index.js"
+      "import": "./dist/useInView/index.js"
     },
     "./useIsMounted": {
       "types": "./dist/useIsMounted/index.d.ts",
-      "import": "./dist/useIsMounted/index.js",
-      "require": "./dist/useIsMounted/index.js"
+      "import": "./dist/useIsMounted/index.js"
     },
     "./useLiveAnnounce": {
       "types": "./dist/useLiveAnnounce/index.d.ts",
-      "import": "./dist/useLiveAnnounce/index.js",
-      "require": "./dist/useLiveAnnounce/index.js"
+      "import": "./dist/useLiveAnnounce/index.js"
     },
     "./useOnKeyDown": {
       "types": "./dist/useOnKeyDown/index.d.ts",
-      "import": "./dist/useOnKeyDown/index.js",
-      "require": "./dist/useOnKeyDown/index.js"
+      "import": "./dist/useOnKeyDown/index.js"
     },
     "./useOnMount": {
       "types": "./dist/useOnMount/index.d.ts",
-      "import": "./dist/useOnMount/index.js",
-      "require": "./dist/useOnMount/index.js"
+      "import": "./dist/useOnMount/index.js"
     },
     "./useRefocusOnActivator": {
       "types": "./dist/useRefocusOnActivator/index.d.ts",
-      "import": "./dist/useRefocusOnActivator/index.js",
-      "require": "./dist/useRefocusOnActivator/index.js"
+      "import": "./dist/useRefocusOnActivator/index.js"
     },
     "./useResizeObserver": {
       "types": "./dist/useResizeObserver/index.d.ts",
-      "import": "./dist/useResizeObserver/index.js",
-      "require": "./dist/useResizeObserver/index.js"
+      "import": "./dist/useResizeObserver/index.js"
     },
     "./useSafeLayoutEffect": {
       "types": "./dist/useSafeLayoutEffect/index.d.ts",
-      "import": "./dist/useSafeLayoutEffect/index.js",
-      "require": "./dist/useSafeLayoutEffect/index.js"
+      "import": "./dist/useSafeLayoutEffect/index.js"
     },
     "./useShowClear": {
       "types": "./dist/useShowClear/index.d.ts",
-      "import": "./dist/useShowClear/index.js",
-      "require": "./dist/useShowClear/index.js"
+      "import": "./dist/useShowClear/index.js"
     },
     "./useStepper": {
       "types": "./dist/useStepper/index.d.ts",
-      "import": "./dist/useStepper/index.js",
-      "require": "./dist/useStepper/index.js"
+      "import": "./dist/useStepper/index.js"
     },
     "./useWindowDimensions": {
       "types": "./dist/useWindowDimensions/index.d.ts",
-      "import": "./dist/useWindowDimensions/index.js",
-      "require": "./dist/useWindowDimensions/index.js"
+      "import": "./dist/useWindowDimensions/index.js"
     }
   },
   "scripts": {
