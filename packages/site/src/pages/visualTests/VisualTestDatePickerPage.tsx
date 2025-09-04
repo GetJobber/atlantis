@@ -10,35 +10,40 @@ import {
 import { useState } from "react";
 
 export const VisualTestDatePickerPage = () => {
-  // Basic DatePicker
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    new Date("2025-06-03"),
+    new Date(2025, 5, 3),
   );
 
   // Inline DatePicker
   const [inlineDate, setInlineDate] = useState<Date | undefined>(
-    new Date("2025-06-03"),
+    new Date(2025, 5, 3),
   );
 
-  // DatePicker with min/max dates
   const [restrictedDate, setRestrictedDate] = useState<Date | undefined>(
-    undefined,
+    new Date(2025, 8, 3),
   );
-  const minDate = new Date("2025-06-03");
-  const maxDate = new Date("2025-09-03");
+
+  const minDate = new Date(2025, 5, 3);
+  const maxDate = new Date(2025, 8, 3);
 
   // DatePicker with highlighted dates
   const [highlightedDate, setHighlightedDate] = useState<Date | undefined>(
     undefined,
   );
   const highlightDates = [
-    new Date("2025-06-03"),
-    new Date("2025-06-07"),
-    new Date("2025-06-14"),
+    new Date(2025, 5, 3),
+    new Date(2025, 5, 7),
+    new Date(2025, 5, 14),
   ];
 
-  // Disabled DatePicker
   const [disabledDate, setDisabledDate] = useState<Date | undefined>(undefined);
+
+  const [interactionTestDate, setInteractionTestDate] = useState<
+    Date | undefined
+  >(new Date(2025, 5, 15));
+  const [positionTestDate, setPositionTestDate] = useState<Date | undefined>(
+    new Date(2025, 5, 15),
+  );
 
   return (
     <Box padding="large">
@@ -103,8 +108,8 @@ export const VisualTestDatePickerPage = () => {
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <Stack>
                   <Text>
-                    Only allows selecting dates between today and 3 months from
-                    now
+                    Only allows selecting dates between selected date and 3
+                    months prior
                   </Text>
                   <DatePicker
                     selected={restrictedDate}
@@ -157,20 +162,65 @@ export const VisualTestDatePickerPage = () => {
                   selected={selectedDate}
                   onChange={date => setSelectedDate(date)}
                   fullWidth={true}
+                  activator={
+                    <Button
+                      label={
+                        selectedDate
+                          ? selectedDate.toLocaleDateString()
+                          : "Full Width Datepicker"
+                      }
+                      type="primary"
+                    />
+                  }
                 />
               </Grid.Cell>
             </Grid>
           </section>
 
-          {/* Read-only DatePicker */}
+          {/* Interaction Test DatePicker */}
           <section>
-            <Text size="large">Read-only DatePicker</Text>
+            <Text size="large">Interaction Test</Text>
+            <Text size="small">
+              For testing keyboard navigation, hover effects, and focus
+            </Text>
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <DatePicker
-                  selected={new Date()}
-                  onChange={date => console.log(date)}
-                  readonly={true}
+                  data-testid="interaction-test-datepicker"
+                  selected={interactionTestDate}
+                  onChange={date => setInteractionTestDate(date)}
+                  activator={
+                    <Button
+                      data-testid="interaction-test-activator"
+                      label="Interaction Test"
+                      type="secondary"
+                    />
+                  }
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Position Test DatePicker */}
+          <section>
+            <Text size="large">Position Test - Bottom Constraint</Text>
+            <Text size="small">
+              For testing positioning when insufficient space below
+            </Text>
+            <div style={{ height: "60vh" }} />
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <DatePicker
+                  data-testid="position-test-datepicker"
+                  selected={positionTestDate}
+                  onChange={date => setPositionTestDate(date)}
+                  activator={
+                    <Button
+                      data-testid="position-test-activator"
+                      label="Position Test"
+                      type="secondary"
+                    />
+                  }
                 />
               </Grid.Cell>
             </Grid>
