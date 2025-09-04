@@ -1,0 +1,23 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Autocomplete/Autocomplete.rebuilt.tsx",
+    "description": "",
+    "displayName": "Autocomplete",
+    "methods": [],
+    "props": {
+      "version": {
+        "defaultValue": {
+          "value": "2"
+        },
+        "description": "Version of the component to use.",
+        "name": "version",
+        "required": false,
+        "type": {
+          "name": "2"
+        }
+      }
+    }
+  }
+]
+
