@@ -7,6 +7,9 @@ import { Content } from "@jobber/components/Content";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Icon } from "@jobber/components/Icon";
+import { InputText } from "@jobber/components/InputText";
+import { Modal } from "@jobber/components/Modal";
+import { Button } from "@jobber/components/Button";
 import { AutocompleteV2Docgen } from "./V2.docgen";
 
 export default {
@@ -167,11 +170,25 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
             type: "section" as const,
             label: "Outdoor",
             options: simpleOptionsSecondSection,
+            actions: [
+              {
+                type: "action" as const,
+                label: "Add Outdoor Service",
+                onClick: () => alert("Add Outdoor Service"),
+              },
+            ],
           },
           {
             type: "section" as const,
             label: "Extras",
             options: simpleOptionsThirdSection,
+            actions: [
+              {
+                type: "action" as const,
+                label: "Add Extras Service",
+                onClick: () => alert("Add Extras Service"),
+              },
+            ],
           },
         ]}
       />
@@ -184,28 +201,42 @@ const TemplateEmptyStateAndActions: ComponentStory<
 > = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("zzz");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [serviceValue, setServiceValue] = useState("");
 
   return (
-    <Content>
-      <Heading level={4}>Empty state with actions</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Try a term with no matches"
-        value={value}
-        onChange={setValue}
-        inputValue={inputValue}
-        onInputChange={setInputValue}
-        emptyStateMessage="No services found"
-        emptyActions={[
-          {
-            type: "action",
-            label: "Create service",
-            onClick: () => alert("Create"),
-          },
-        ]}
-        menu={[{ type: "options", options: [] }]}
-      />
-    </Content>
+    <>
+      <Content>
+        <Heading level={4}>Empty state with empty action</Heading>
+        <Autocomplete
+          version={2}
+          placeholder="Try a term with no matches"
+          value={value}
+          onChange={setValue}
+          inputValue={inputValue}
+          onInputChange={setInputValue}
+          emptyStateMessage="No services found"
+          emptyActions={[
+            {
+              type: "action",
+              label: "Create service",
+              onClick: () => setModalOpen(true),
+            },
+          ]}
+          menu={[{ type: "options", options: [] }]}
+        />
+      </Content>
+      <Modal open={modalOpen} onRequestClose={() => setModalOpen(false)}>
+        <Content>
+          <Heading level={4}>Create service</Heading>
+          <InputText
+            value={serviceValue}
+            onChange={(val: string) => setServiceValue(val)}
+          />
+          <Button label="Create" onClick={() => setModalOpen(false)} />
+        </Content>
+      </Modal>
+    </>
   );
 };
 
