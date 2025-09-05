@@ -1,3 +1,7 @@
 .staticThemeProviderWrapper {
   display: contents;
 }
+
+.overrideTokensWrapper {
+  display: contents;
+}

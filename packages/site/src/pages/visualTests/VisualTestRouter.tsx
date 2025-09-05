@@ -52,6 +52,7 @@ import { VisualTestTypographyPage } from "./VisualTestTypographyPage";
 import { VisualTestTabsPage } from "./VisualTestTabsPage";
 import { VisualTestToastPage } from "./VisualTestToastPage";
 import { VisualTestBannerPage } from "./VisualTestBannerPage";
+import { VisualTestThemePage } from "./VisualTestThemePage";
 
 export const VisualTestRouter = () => {
   return (
@@ -320,6 +321,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/typography"
         exact={true}
         component={VisualTestTypographyPage}
+      />
+      <Route
+        path="/visual-tests/theme"
+        exact={true}
+        component={VisualTestThemePage}
       />
     </Switch>
   );
