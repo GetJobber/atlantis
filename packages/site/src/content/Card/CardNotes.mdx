@@ -102,3 +102,117 @@ Example with styling:
   </Card.Body>
 </Card>
 ```
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+Card has two elements that can be targeted with classes or styles. These are the
+container and the header.
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Card updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the Card. This can be useful
+for applying styles via CSS Modules.
+
+```tsx
+// YourComponent.tsx
+<Card
+  header="Custom Styled Card"
+  UNSAFE_className={{
+    container: styles.customCardContainer,
+    header: styles.customCardHeader,
+  }}
+>
+  <p>Card content with custom styling</p>
+</Card>
+
+// YourComponent.module.css
+.customCardContainer {
+  border: 2px solid var(--color-blue);
+  border-radius: var(--radius-large);
+}
+
+.customCardHeader {
+  background-color: var(--color-surface--background);
+  border-bottom: 1px solid var(--color-border);
+}
+```
+
+If you're using Card with its composable subcomponents, you'll need to pass
+`UNSAFE_className` to the individual subcomponents accordingly:
+
+```tsx
+<Card
+  UNSAFE_className={{
+    container: styles.customCardContainer,
+  }}
+>
+  <Card.Header
+    UNSAFE_className={{
+      header: styles.customCardHeader,
+    }}
+  >
+    <Text>Custom Header</Text>
+  </Card.Header>
+  <Card.Body>
+    <p>Card content with custom styling</p>
+  </Card.Body>
+</Card>
+```
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the Card.
+
+```tsx
+<Card
+  header="Inline Styled Card"
+  UNSAFE_style={{
+    container: {
+      backgroundColor: "var(--color-surface--hover)",
+      transform: "rotate(1deg)",
+    },
+    header: {
+      backgroundColor: "var(--color-blue)",
+      color: "white",
+    },
+  }}
+>
+  <p>Card content with inline styling</p>
+</Card>
+```
+
+If you're using Card with its composable subcomponents, you'll need to pass
+`UNSAFE_style` to the individual subcomponents accordingly:
+
+```tsx
+<Card
+  UNSAFE_style={{
+    container: {
+      backgroundColor: "var(--color-surface--hover)",
+      borderLeft: "4px solid var(--color-green)",
+    },
+  }}
+>
+  <Card.Header
+    UNSAFE_style={{
+      header: {
+        backgroundColor: "var(--color-green)",
+        color: "white",
+        padding: "var(--space-large)",
+      },
+    }}
+  >
+    <Text>Custom Styled Header</Text>
+  </Card.Header>
+  <Card.Body>
+    <p>Card content with custom container styling</p>
+  </Card.Body>
+</Card>
+```
