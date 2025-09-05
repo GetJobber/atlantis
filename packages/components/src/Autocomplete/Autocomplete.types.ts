@@ -594,7 +594,6 @@ interface AutocompleteRebuiltBaseProps<
 
   /**
    * Custom equality for option to value mapping.
-   * TODO: decide if we wanna keep this
    */
   readonly isOptionEqualToValue?: (option: Value, value: Value) => boolean;
 }

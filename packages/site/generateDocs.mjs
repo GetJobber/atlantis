@@ -142,3 +142,11 @@ const buildMobileComponentDocs = name => {
 ListOfGeneratedWebComponents.forEach(buildComponentDocs);
 
 ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
+
+// Custom generation for components that don't follow the standard
+// <Component>/<Component>.tsx convention.
+// Autocomplete v2 (rebuilt) lives alongside v1 but uses a different filename.
+parseAndWriteDocs(
+  `${baseComponentDir}/Autocomplete/Autocomplete.rebuilt.tsx`,
+  `${baseOutputDir}/AutocompleteV2/AutocompleteV2.props.json`,
+);
