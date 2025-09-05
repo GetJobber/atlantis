@@ -1,17 +1,288 @@
-### Implement
+### V1 to v2
 
-Usage for the rebuilt `Autocomplete`:
+V1 has a single mechanism to update the options. Only `initialOptions` are
+directly controlled, then `getOptions` is used to populate the options based on
+the input term. This is managed with internal state that creates barriers as to
+what can be done with the experience.
 
-```tsx
-<Autocomplete
-  version={2}
-  placeholder="Search"
-  value={value}
-  onChange={setValue}
-  inputValue={inputValue}
-  onInputChange={setInputValue}
-  menu={[{ type: "options", options: [{ label: "One" }] }]}
-/>
+V2 is entirely controlled, having both sets of `inputValue`, `onInputChange`,
+`value` and `onChange`.
+
+Fitering is now built in to Autocomplete v2. It has a default filter of
+comparing the input value to the case insensitive "label" value. If using custom
+data, where we might want to search a different field, or even multiple fields,
+providing filterOptions allows customization of the filter logic. For cases with
+async data it is recommended to opt out of filtering entirely, and manage that
+yourself with the results you return and pass as options. This can be done with
+`filterOptions={false}`.
+
+V2 has been decoupled from React Hook Form, and has no built in validation. To
+validate, you must create your own logic and use either `error` or `invalid` to
+set the visually invalid state on the input. `onBlur`, `value`, `onChange`,
+`inputValue`, `onInputChange` provide all the necessary callbacks to determine
+the state of the Autocomplete. These callbacks will integrate with a schema like
+Zod, and an external instance of RHF.
+
+Filtering is now built in, and not necessary to implement yourself. You are able
+to opt out or customize it if desired, see more about this in the filtering
+section.
+
+While sections still exist, the additional pre defined "details" and
+"description" variations are not directly available by default. They can be
+re-created with custom data, custom layouts, and modified option/section styles.
+
+All options will by default continue to be visible after making a selection
+whereas v1 would limit your options to the selected option if a selection is
+present.
+
+### Structure, `menu` and `type`s
+
+The `menu` prop accepts 2 different possible "top level" types: "options" and
+"section". For a "flat" set of options, simply provide "options" where the
+minimum required data is `label: string`. For a sectioned set of options,
+provide "section" which also has a minimum `label: string` in addition to an
+`options` key.
+
+Each section will be rendered in the order provided, the same is true of the
+options.
+
+While it is possible to combine both flat options and sectioned options, it is
+generally not recommended. The inconsistency of having sections for only some
+options can lead to a confusing user experience.
+
+Options can be selected with the enter key if it active/highlighted, or with a
+mouse click. Space will do nothing becase focus is intentionally kept in the
+input for further refinements to the search term.
+
+<details>
+ <summary>V1 Section vs V2</summary>
+
+```
+ const SectionHeadingOptions = [
+   {
+     label: "Ships",
+     options: [
+       { value: 1, label: "Sulaco" },
+       { value: 2, label: "Nostromo" },
+       { value: 3, label: "Serenity" },
+       { value: 4, label: "Sleeper Service" },
+       { value: 5, label: "Enterprise" },
+       { value: 6, label: "Enterprise-D" },
+     ],
+   },
+   {
+     label: "Planets",
+     options: [
+       { value: 7, label: "Endor" },
+       { value: 8, label: "Vulcan" },
+       { value: 9, label: "Bespin" },
+       { value: 10, label: "Tatooine" },
+     ],
+   },
+ ];
+
+ const [value, setValue] = useState<Option | undefined>();
+
+ return (
+   <Autocomplete
+     initialOptions={SectionHeadingOptions}
+     placeholder="Search for something under a section heading"
+     value={value}
+     onChange={newValue => setValue(newValue)}
+     getOptions={getOptions}
+   />
+ );
+
+ function getOptions(text: string) {
+   if (text === "") {
+     return headingOptions;
+   }
+   const filterRegex = new RegExp(text, "i");
+
+   return headingOptions.map(section => ({
+     ...section,
+     options: section.options.filter(option =>
+       option.label.match(filterRegex),
+     ),
+   }));
+ }
+
+ // VERSION 2 BELOW
+
+ const sectionMenu = [
+   {
+     type: "section",
+     label: "Ships",
+     options: [
+       { label: "Sulaco" },
+       { label: "Nostromo" },
+       { label: "Serenity" },
+       { label: "Sleeper Service" },
+       { label: "Enterprise" },
+       { label: "Enterprise-D" },
+     ]
+   },
+   {
+     type: "section",
+     label: "Planets",
+     options: [
+       { label: "Endor" },
+       { label: "Vulcan" },
+       { label: "Bespin" },
+       { label: "Tatooine" },
+     ],
+   },
+ ];
+
+ const [value, setValue] = useState(undefined);
+ const [inputValue, setInputValue] = useState("");
+
+ return(
+   <Autocomplete
+     version={2}
+     menu={sectionMenu}
+     value={value}
+     onChange={setValue}
+     inputValue={inputValue}
+     onInputChange={setInputValue}
+     placeholder="Search for something under a section heading"
+   />
+ );
 ```
 
-Additional guidance and migration notes from v1 to v2 will be added here.
+</details>
+
+### Additional Elements
+
+#### Actions
+
+Ontop of the basics, there are also "actions" that can be used either on the
+"options" or "section" type. These will always be rendered at the bottom of
+their respective grouping whether that is a section or flat top level options.
+
+Actions have the same interaction mechanisms. They require a `type: "action"`,
+`label` and an `onClick`.
+
+Actions have an additional optional key of `shouldClose` that is `true` by
+default. This causes the open menu to close when an option is interacted with.
+It can be set to true on each individual option to customize each action's
+desired behavior.
+
+#### Header/Footer
+
+These elements can be either text-only, or interactive like actions. They
+implement the same API as actions with `shouldClose`, `onClick`, and `label`. In
+the absence of an `onClick` it will be a non interactive Header/Footer,
+providing `onClick` is the signal for it to be interactive.
+
+These elements do not respond to scrolling, they are always at the top or bottom
+and will continue to be displayed even if no options exist after filtering and
+the empty state is visible.
+
+### Highlighting/Active Index
+
+All interactive items can be navigated with arrow keys. Sections, and other
+elements like non interactive Headers and Footers will be skipped by arrow key
+navigation.
+
+We reset the active index during the majority of interactions with respect to
+typing.
+
+### Custom Data & Rendering
+
+While `options`, `section`s, `action`s, `footer`s, and `header`s all have a
+minimum of `label` they can all be enhanced with additional key/values of your
+choosing. These value will be accessible in their respective `customRender`
+methods.
+
+Each `customRender` will have slightly different arguments, with interactive
+elements receiving `isActive` and `option`s receiving `isSelected`. See the prop
+types for more details. Any custom data will be passed to these render functions
+allowing you to use the data as needed to create a customized layout.
+
+In addition to the aforementioned elements, there are also `customRender`
+methods for the input itself, and the loading state.
+
+UNSAFE styles and classnames exist to override the styles of all the main
+elements.
+
+With simple data, "label" is used for most operations and logic, if with custom
+data the "label" is no longer the data to use there are methods such as
+`getOptionLabel`, `inputEqualsOption` and `isOptionEqualToValue` to customize
+the logic to use something other than "label".
+
+### Empty State
+
+There is a default empty state of "No options" that can be modified with the
+`emptyStateMessage` prop, which can also accept more complex markup than a
+string if desired.
+
+Additionally, if one or more actions that only appear when no options are found
+is desired, the `emptyActions` prop can be used. The actions implement the same
+API as other Actions and interactive Header/Footers.
+
+### Async
+
+Taking full control of the options and fetching new/different options from an
+API query is possible.
+
+Since the `menu` controls what options are displayed, when implementing an async
+instance it is advisable to opt out of the internal filtering, and reduce the
+`debounce` value to 0 so that filtering is effectively managed outside the
+component and only the options relevant to the search term are passed to `menu`.
+
+### Navigation
+
+For keyboard users, navigation is done entirely through arrow keys. Tabbing will
+move focus onto the next focusable element that is not the Autocomplete.
+
+When providing custom content, it is imperative to avoid providing any elements
+that would require keyboard focus to activate. For example providing 2 buttons
+within a single row, or even a single button would be impossible to access with
+keyboard. If you require an interactive element, please use an Action,
+interactive Header, or interactive Footer.
+
+### Allow FreeForm
+
+This is `false` by default, and allows a user to provide a value that is not an
+option in the list.
+
+⚠️ Caution: Using free form with custom data introduces complexity due to the
+fact that the input can of course only be a string, so if your custom data has
+additional fields like `details` for example, we have no way to know what might
+make sense.
+
+To help wih this, we require a `createFreeFormValue` method when using
+`allowFreeForm`. This method will be used with the `onChange` to change the
+shape of the returned value into the same shape as the incoming custom data,
+where you must provide the value for these additional fields.
+
+`allowFreeForm` with simple items having only "label" is the easiest way to
+leverage this prop.
+
+### "Commit Signals"
+
+Autocomplete has some nuance as far as `onChange` and when we consider the
+Autocomplete's selection to have changed. It is important to note that this is
+not always the same as the input value.
+
+For example consider an option of "Fall" in the options, and an input value of
+"all" - with `allowFreeForm` at this point we cannot know if "all" is being used
+as a search term to narrow the results to "Fall" or if "all" is a new, free form
+value.
+
+Since we cannot know during use, we wait until blur to inform `onChange` that
+"all" was selected. This is an implicit commit signal. We have other implicit
+signals like having a selection and then deleting it. We also have explicit
+commit signals from clicking an option, or using the Enter key to make a
+selection.
+
+Conversely when free form is disabled and the input is blurred, if the input
+value does not match an option we will consider this as meaning that no valid
+selection was made and will clear the input.
+
+Typing an option value exactly also works, but will only be evaluated on blur.
+
+### Multiple
+
+This is not yet implemented fully. Avoid using for now.
