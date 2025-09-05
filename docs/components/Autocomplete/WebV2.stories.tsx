@@ -355,27 +355,6 @@ const TemplateFreeForm: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateDebounce0: ComponentStory<typeof Autocomplete> = () => {
-  const [value, setValue] = useState<OptionLike | undefined>();
-  const [inputValue, setInputValue] = useState("");
-
-  return (
-    <Content>
-      <Heading level={4}>Debounce disabled</Heading>
-      <Autocomplete
-        version={2}
-        placeholder="Search"
-        value={value}
-        onChange={setValue}
-        inputValue={inputValue}
-        onInputChange={setInputValue}
-        debounce={0}
-        menu={[{ type: "options", options: simpleOptions }]}
-      />
-    </Content>
-  );
-};
-
 // Helpers for async story
 const withKeys = (opts: OptionLike[], prefix: string): OptionLike[] =>
   opts.map((o, i) => ({ ...o, key: o.key ?? `${prefix}-${o.label}-${i}` }));
@@ -522,5 +501,4 @@ export const Loading = TemplateLoading.bind({});
 export const CustomRenderOption = TemplateCustomRenderOption.bind({});
 export const HeaderFooter = TemplateHeaderFooter.bind({});
 export const FreeForm = TemplateFreeForm.bind({});
-export const DebounceDisabled = TemplateDebounce0.bind({});
 export const AsyncUserManaged = TemplateAsyncUserManaged.bind({});
