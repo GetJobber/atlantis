@@ -1,0 +1,177 @@
+# InputGroup
+
+# Input Group
+
+InputGroup is used to show a visual relationship between two or more related
+input fields. If a number of form fields make up a group of content (e.g. an
+address, or first and last name becoming a full name, start and end times of an
+event) they are great candidates for an InputGroup.
+
+## Design & usage guidelines
+
+The default layout is for fields to flow in a vertical direction, one above the
+next. Use the `flowDirection` prop to specify when you want fields to flow in a
+horizontal direction.
+
+[Nested](../?path=/story/components-forms-and-inputs-inputgroup-web--nested)
+InputGroup components need to be of `flowDirection="horizontal"` to avoid layout
+issues caused by nesting. Any non-horizontal nested groups will log an error to
+the console and not be rendered.
+
+If one of the InputGroup fields has a preset value from a larger list of
+options, it is possible to use [Autocomplete](/components/Autocomplete) within
+InputGroup.
+
+## Web Component Code
+
+```tsx
+InputGroup Fieldset Web React import type { ReactElement } from "react";
+import React from "react";
+import classnames from "classnames";
+import styles from "./InputGroup.module.css";
+
+interface InputGroupProps {
+  readonly children: ReactElement | ReactElement[];
+  /**
+   * Determine the direction the fields are laid out in.
+   * @default "vertical"
+   */
+  readonly flowDirection?: "horizontal" | "vertical";
+}
+
+export function InputGroup({
+  children,
+  flowDirection = "vertical",
+}: InputGroupProps) {
+  if (isInvalidGroupNesting(children)) return <></>;
+
+  const className = classnames(styles.inputGroup, styles[flowDirection]);
+
+  return <div className={className}>{children}</div>;
+}
+
+function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
+  return (React.Children.toArray(childs) as ReactElement[]).some(child => {
+    if (
+      child.type === InputGroup &&
+      child.props.flowDirection != "horizontal"
+    ) {
+      console.error(
+        `ERROR: InputGroup not rendered: nesting 'flowDirection="vertical"' columns not supported.`,
+        `https://atlantis.getjobber.com/?path=/story/components-forms-and-inputs-inputgroup-web--nested`,
+      );
+
+      return true;
+    }
+
+    return false;
+  });
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `flowDirection` | `"horizontal" | "vertical"` | ❌ | `vertical` | Determine the direction the fields are laid out in. |
+
+
+## Categories
+
+- Forms & Inputs
+
+## Web Test Code
+
+```typescript
+InputGroup Fieldset Web React Test Testing Jest import React from "react";
+import { render } from "@testing-library/react";
+import { InputGroup } from ".";
+
+it("renders a vertical InputGroup", () => {
+  const { container } = render(
+    <InputGroup>
+      <div>Test content</div>
+    </InputGroup>,
+  );
+
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="inputGroup vertical"
+      >
+        <div>
+          Test content
+        </div>
+      </div>
+    </div>
+  `);
+});
+
+it("renders a horizontal InputGroup", () => {
+  const { container } = render(
+    <InputGroup flowDirection="horizontal">
+      <div>Test content</div>
+    </InputGroup>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="inputGroup horizontal"
+      >
+        <div>
+          Test content
+        </div>
+      </div>
+    </div>
+  `);
+});
+
+it("renders a valid nested InputGroup", () => {
+  const { container } = render(
+    <InputGroup>
+      <InputGroup flowDirection="horizontal">
+        <div>Test content</div>
+      </InputGroup>
+    </InputGroup>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="inputGroup vertical"
+      >
+        <div
+          class="inputGroup horizontal"
+        >
+          <div>
+            Test content
+          </div>
+        </div>
+      </div>
+    </div>
+  `);
+});
+
+it("renders a null fragment for an invalidly nested InputGroup", () => {
+  const { container } = render(
+    <InputGroup flowDirection="horizontal">
+      <InputGroup>
+        <div>Test content</div>
+      </InputGroup>
+    </InputGroup>,
+  );
+
+  expect(container).toMatchInlineSnapshot(`<div />`);
+});
+
+```
+
+## Component Path
+
+`/components/InputGroup`
+
+---
+
+_Generated on 2025-08-21T17:35:16.365Z_

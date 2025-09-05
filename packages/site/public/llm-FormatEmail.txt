@@ -1,0 +1,69 @@
+# FormatEmail
+
+# Format Email
+
+A component to ensure that an email address is displayed in the expected format.
+There is no styling applied, this simply just returns a semantically formatted
+email address.
+
+## Web Component Code
+
+```tsx
+FormatEmail  Web React import React from "react";
+import classnames from "classnames";
+import styles from "./FormatEmail.module.css";
+
+interface FormatEmailProps {
+  /**
+   * Email address to format
+   */
+  readonly email: string;
+}
+
+export function FormatEmail({ email }: FormatEmailProps) {
+  const className = classnames(styles.email);
+
+  return <address className={className}>{email}</address>;
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `email` | `string` | ✅ | `_none_` | Email address to format |
+
+
+## Categories
+
+- Utilities
+
+## Web Test Code
+
+```typescript
+FormatEmail  Web React Test Testing Jest import React from "react";
+import { render } from "@testing-library/react";
+import { FormatEmail } from ".";
+
+it("renders a FormatEmail", () => {
+  const { container } = render(<FormatEmail email="email@address.me" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a FormatEmail in an address tag", () => {
+  const { container } = render(<FormatEmail email="email@address.me" />);
+  expect(container.querySelector("address")).toBeDefined();
+});
+
+```
+
+## Component Path
+
+`/components/FormatEmail`
+
+---
+
+_Generated on 2025-08-21T17:35:16.361Z_
