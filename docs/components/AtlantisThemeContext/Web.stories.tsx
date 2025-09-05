@@ -141,14 +141,8 @@ export const ForceThemeForProvider = ForceThemeTemplate.bind({});
 ForceThemeForProvider.args = {};
 
 function OverrideTokensComponent({ message }: { readonly message: string }) {
-  const { theme, tokens } = useAtlantisTheme();
-
-  // NOTE: tokens are strictly typed and don't understand custom token keys.
-  // For now, just do something like this. We can make this easier with a followup.
-  const customBrandColor =
-    "custom-brand-color" in tokens
-      ? (tokens["custom-brand-color"] as string)
-      : undefined;
+  const { theme, tokens, overrideTokens } = useAtlantisTheme();
+  const customBrandColor = overrideTokens?.["custom-brand-color"];
 
   return (
     <Box background="surface" padding="base">
@@ -157,10 +151,8 @@ function OverrideTokensComponent({ message }: { readonly message: string }) {
         <Text size="small">Current theme: {theme}</Text>
         <Text size="small">Original color-text: {tokens["color-text"]}</Text>
         <Text size="small">Original space-base: {tokens["space-base"]}</Text>
-        <div style={{ backgroundColor: customBrandColor }}>
-          <Text size="small">
-            Custom token example: {customBrandColor || "Not set"}
-          </Text>
+        <div style={{ backgroundColor: "var(--custom-brand-color)" }}>
+          <Text size="small">Custom token example: {customBrandColor}</Text>
         </div>
         <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
           <InlineLabel color="red">Notice the custom styling</InlineLabel>

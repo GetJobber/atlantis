@@ -56,7 +56,7 @@ function InternalDynamicThemeProvider({
   overrideTokens,
 }: {
   readonly children: React.ReactNode;
-  readonly overrideTokens?: OverrideTokens;
+  readonly overrideTokens: OverrideTokens | undefined;
 }) {
   const initialTheme: Theme =
     (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
@@ -83,9 +83,13 @@ function InternalDynamicThemeProvider({
       );
     };
   }, [handleThemeChangeEvent]);
-  const mergedTokens = useMemo(() => {
-    return merge({}, currentTokens, overrideTokens);
-  }, [overrideTokens, currentTokens]);
+  const finalTokens = useMemo(() => {
+    if (overrideTokens) {
+      return merge({}, currentTokens, overrideTokens);
+    }
+
+    return currentTokens;
+  }, [currentTokens, overrideTokens]);
 
   const cssVariableOverrides = overrideTokens
     ? getCssVariableOverrides(overrideTokens)
@@ -95,7 +99,8 @@ function InternalDynamicThemeProvider({
     <AtlantisThemeContext.Provider
       value={{
         theme: internalTheme,
-        tokens: mergedTokens,
+        tokens: finalTokens,
+        overrideTokens,
       }}
     >
       {cssVariableOverrides ? (
@@ -127,13 +132,13 @@ function InternalStaticThemeProvider({
   const currentTokens =
     dangerouslyOverrideTheme === "dark" ? actualDarkTokens : tokens;
 
-  const mergedTokens = useMemo(() => {
+  const finalTokens = useMemo(() => {
     if (overrideTokens) {
       return merge({}, currentTokens, overrideTokens);
     }
 
     return currentTokens;
-  }, [dangerouslyOverrideTheme, currentTokens, overrideTokens]);
+  }, [currentTokens, overrideTokens]);
 
   const cssVariableOverrides = overrideTokens
     ? getCssVariableOverrides(overrideTokens)
@@ -143,7 +148,8 @@ function InternalStaticThemeProvider({
     <AtlantisThemeContext.Provider
       value={{
         theme: dangerouslyOverrideTheme,
-        tokens: mergedTokens,
+        tokens: finalTokens,
+        overrideTokens,
       }}
     >
       <div

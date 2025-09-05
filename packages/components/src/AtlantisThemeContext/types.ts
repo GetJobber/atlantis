@@ -11,6 +11,11 @@ export interface AtlantisThemeContextValue {
    * The design tokens for the current theme.
    */
   readonly tokens: typeof tokens;
+
+  /**
+   * Any overridden tokens supplied by the user.
+   */
+  readonly overrideTokens?: OverrideTokens;
 }
 
 export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
@@ -26,7 +31,8 @@ export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
   readonly dangerouslyOverrideTheme?: Theme;
 
   /**
-   * Override the design tokens with custom tokens. These tokens will be used instead of the naturally loaded tokens.
+   * Overrides existing design tokens with custom values. Can also supply custom tokens which will be accessible
+   * via useAtlantisTheme() context and css variables.
    * If provided, these tokens will be used for both light and dark themes.
    */
   readonly overrideTokens?: OverrideTokens;
