@@ -69,7 +69,6 @@ describe("ThemeContext", () => {
 
       const wrapper = screen.getByTestId("test-wrapper");
       const overrideWrapper = wrapper.firstElementChild as HTMLElement | null;
-      expect(overrideWrapper?.tagName).toBe("SPAN");
       expect(overrideWrapper?.style.display).toBe("contents");
       expect(
         (overrideWrapper as HTMLElement).style.getPropertyValue(
@@ -99,13 +98,7 @@ describe("ThemeContext", () => {
       expect(results.result.current.tokens[tokenName]).toBe(overrideValue);
 
       const wrapper = screen.getByTestId("test-wrapper");
-      // static provider renders a div first, with the override wrapper as a child
-      const staticWrapper = wrapper.firstElementChild as HTMLElement | null;
-      const overrideWrapper = staticWrapper?.firstElementChild as
-        | HTMLElement
-        | undefined;
-      expect(overrideWrapper?.tagName).toBe("SPAN");
-      expect(overrideWrapper?.style.display).toBe("contents");
+      const overrideWrapper = wrapper.firstElementChild as HTMLElement | null;
       expect(overrideWrapper?.style.getPropertyValue(`--${tokenName}`)).toBe(
         String(overrideValue),
       );

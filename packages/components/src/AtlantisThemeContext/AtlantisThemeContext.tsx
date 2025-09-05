@@ -1,4 +1,5 @@
 import { darkTokens, tokens } from "@jobber/design";
+import type { CSSProperties } from "react";
 import React, {
   createContext,
   useCallback,
@@ -86,6 +87,10 @@ function InternalDynamicThemeProvider({
     return merge({}, currentTokens, overrideTokens);
   }, [overrideTokens, currentTokens]);
 
+  const cssVariableOverrides = overrideTokens
+    ? getCssVariableOverrides(overrideTokens)
+    : undefined;
+
   return (
     <AtlantisThemeContext.Provider
       value={{
@@ -93,10 +98,10 @@ function InternalDynamicThemeProvider({
         tokens: mergedTokens,
       }}
     >
-      {overrideTokens ? (
-        <AtlantisThemeContextTokenOverride overrideTokens={overrideTokens}>
+      {cssVariableOverrides ? (
+        <div style={{ display: "contents", ...cssVariableOverrides }}>
           {children}
-        </AtlantisThemeContextTokenOverride>
+        </div>
       ) : (
         children
       )}
@@ -116,34 +121,34 @@ function InternalStaticThemeProvider({
     readonly overrideTokens: OverrideTokens | undefined;
   }
 >) {
-  const currentTokens = useMemo(() => {
-    const t = dangerouslyOverrideTheme === "dark" ? actualDarkTokens : tokens;
+  const currentTokens =
+    dangerouslyOverrideTheme === "dark" ? actualDarkTokens : tokens;
 
+  const mergedTokens = useMemo(() => {
     if (overrideTokens) {
-      return merge({}, t, overrideTokens);
+      return merge({}, currentTokens, overrideTokens);
     }
 
-    return t;
-  }, [dangerouslyOverrideTheme, overrideTokens]);
+    return currentTokens;
+  }, [dangerouslyOverrideTheme, currentTokens, overrideTokens]);
+
+  const cssVariableOverrides = overrideTokens
+    ? getCssVariableOverrides(overrideTokens)
+    : undefined;
 
   return (
     <AtlantisThemeContext.Provider
       value={{
         theme: dangerouslyOverrideTheme,
-        tokens: currentTokens,
+        tokens: mergedTokens,
       }}
     >
       <div
         data-theme={dangerouslyOverrideTheme}
         className={styles.staticThemeProviderWrapper}
+        style={cssVariableOverrides}
       >
-        {overrideTokens ? (
-          <AtlantisThemeContextTokenOverride overrideTokens={overrideTokens}>
-            {children}
-          </AtlantisThemeContextTokenOverride>
-        ) : (
-          children
-        )}
+        {children}
       </div>
     </AtlantisThemeContext.Provider>
   );
@@ -153,31 +158,19 @@ export function useAtlantisTheme() {
   return useContext(AtlantisThemeContext);
 }
 
-function AtlantisThemeContextTokenOverride({
-  overrideTokens,
-  children,
-}: {
-  readonly overrideTokens: OverrideTokens;
-  readonly children: React.ReactNode;
-}) {
-  const { tokens: currentTokens } = useAtlantisTheme();
-  const cssVariableStyles = useMemo(() => {
-    return Object.entries(overrideTokens).reduce<Record<string, string>>(
-      (cssVariables, [tokenName]) => {
-        const tokenValue = String(
-          currentTokens[tokenName as keyof typeof currentTokens],
-        );
-        cssVariables[`--${tokenName}`] = tokenValue;
+function getCssVariableOverrides(
+  overrideTokens: OverrideTokens,
+): CSSProperties {
+  const cssVariables = Object.entries(overrideTokens).reduce<CSSProperties>(
+    (variables, [tokenName, tokenValue]) => {
+      // @ts-expect-error - css variables are valid keys for style objects. @types/react may be outdated.
+      variables[`--${tokenName}`] = tokenValue;
 
-        return cssVariables;
-      },
-      {},
-    );
-  }, [currentTokens, overrideTokens]);
+      return variables;
+    },
+    {},
+  );
 
-  const style = useMemo<React.CSSProperties>(() => {
-    return { display: "contents", ...cssVariableStyles };
-  }, [cssVariableStyles]);
 
-  return <span style={style}>{children}</span>;
+  return cssVariables;
 }
