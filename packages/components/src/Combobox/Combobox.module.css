@@ -9,10 +9,6 @@
 }
 
 .wrapper {
-  display: inline-block;
-  max-width: 100%;
-}
-
-.wrapper > [role="combobox"] {
+  display: inline-flex;
   max-width: 100%;
 }
