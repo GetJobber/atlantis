@@ -67,3 +67,48 @@ describe("when not focused", () => {
     expect(clickHandler).toHaveBeenCalledTimes(0);
   });
 });
+
+describe("UNSAFE_ props", () => {
+  describe("UNSAFE_className", () => {
+    it("applies to clickable card container", () => {
+      const clickHandler = jest.fn();
+      const { getByTestId } = render(
+        <CardClickable
+          className="base-class"
+          onClick={clickHandler}
+          UNSAFE_className="custom-clickable-class"
+        >
+          <p>Clickable content</p>
+        </CardClickable>,
+      );
+
+      const clickableElement = getByTestId("clickable-card");
+      expect(clickableElement).toHaveClass("base-class");
+      expect(clickableElement).toHaveClass("custom-clickable-class");
+    });
+  });
+
+  describe("UNSAFE_style", () => {
+    it("applies to clickable card container", () => {
+      const clickHandler = jest.fn();
+      const { getByTestId } = render(
+        <CardClickable
+          className="base-class"
+          onClick={clickHandler}
+          UNSAFE_style={{
+            backgroundColor: "var(--color-green)",
+            border: "2px solid red",
+          }}
+        >
+          <p>Clickable content</p>
+        </CardClickable>,
+      );
+
+      const clickableElement = getByTestId("clickable-card");
+      expect(clickableElement).toHaveStyle({
+        backgroundColor: "var(--color-green)",
+        border: "2px solid red",
+      });
+    });
+  });
+});

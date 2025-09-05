@@ -70,8 +70,19 @@ type CardPropOptions = LinkCardProps | ClickableCardProps | RegularCardProps;
  * </Card>
  * ```
  */
-function CardHeaderCompoundComponent({ children }: CardHeaderProps) {
-  return <>{children}</>;
+function CardHeaderCompoundComponent({
+  children,
+  UNSAFE_className = {},
+  UNSAFE_style = {},
+}: CardHeaderProps) {
+  return (
+    <div
+      className={classnames(styles.header, UNSAFE_className.header)}
+      style={UNSAFE_style.header}
+    >
+      {children}
+    </div>
+  );
 }
 
 /**
@@ -98,10 +109,17 @@ function renderCardContent(
   children: React.ReactNode,
   title?: string,
   header?: string | HeaderActionProps | ReactElement,
+  UNSAFE_className?: { header?: string },
+  UNSAFE_style?: { header?: React.CSSProperties },
 ) {
   return (
     <>
-      <CardHeader title={title} header={header} />
+      <CardHeader
+        title={title}
+        header={header}
+        UNSAFE_className={{ header: UNSAFE_className?.header }}
+        UNSAFE_style={{ header: UNSAFE_style?.header }}
+      />
       {children}
     </>
   );
@@ -115,20 +133,30 @@ function renderCardWrapper(
   ) => void,
   url?: string,
   external?: boolean,
+  UNSAFE_className?: string,
+  UNSAFE_style?: React.CSSProperties,
 ) {
   if (onClick) {
     return (
-      <CardClickable className={className} onClick={onClick}>
+      <CardClickable
+        className={className}
+        onClick={onClick}
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
+      >
         {content}
       </CardClickable>
     );
   }
 
+  const combinedClassName = classnames(className, UNSAFE_className);
+
   if (url) {
     return (
       <a
-        className={className}
+        className={combinedClassName}
         href={url}
+        style={UNSAFE_style}
         {...(external && { target: "_blank", rel: "noopener noreferrer" })}
       >
         {content}
@@ -136,7 +164,11 @@ function renderCardWrapper(
     );
   }
 
-  return <div className={className}>{content}</div>;
+  return (
+    <div className={combinedClassName} style={UNSAFE_style}>
+      {content}
+    </div>
+  );
 }
 
 export function Card(props: CardPropOptions) {
@@ -149,6 +181,8 @@ export function Card(props: CardPropOptions) {
     onClick,
     url,
     external,
+    UNSAFE_className = {},
+    UNSAFE_style = {},
   } = props;
 
   const className = classnames(
@@ -168,9 +202,23 @@ export function Card(props: CardPropOptions) {
 
   const content = isUsingCompoundPattern
     ? children
-    : renderCardContent(children, title, header);
+    : renderCardContent(
+        children,
+        title,
+        header,
+        UNSAFE_className,
+        UNSAFE_style,
+      );
 
-  return renderCardWrapper(className, content, onClick, url, external);
+  return renderCardWrapper(
+    className,
+    content,
+    onClick,
+    url,
+    external,
+    UNSAFE_className.container,
+    UNSAFE_style.container,
+  );
 }
 
 Card.Header = CardHeaderCompoundComponent;

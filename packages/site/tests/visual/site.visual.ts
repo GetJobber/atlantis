@@ -18,6 +18,14 @@ test.describe("Atlantis Visual Tests", () => {
       });
     });
 
+    test("card components", async ({ page }) => {
+      await page.goto("/visual-tests/card");
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("visual-test-card-page.png", {
+        fullPage: true,
+      });
+    });
+
     test("grid components", async ({ page }) => {
       await page.goto("/visual-tests/grid");
       await page.waitForTimeout(500);
