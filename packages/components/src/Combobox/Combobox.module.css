@@ -10,4 +10,9 @@
 
 .wrapper {
   display: inline-block;
+  max-width: 100%;
+}
+
+.wrapper > [role="combobox"] {
+  max-width: 100%;
 }
