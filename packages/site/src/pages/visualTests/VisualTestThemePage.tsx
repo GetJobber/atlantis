@@ -33,10 +33,24 @@ export const VisualTestThemePage = () => {
           <section>
             <Text size="large">Forced Dark Section</Text>
             <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-              <Stack gap="base">
-                <Text>Forced dark body text</Text>
-                <InlineLabel color="red">Past due</InlineLabel>
-              </Stack>
+              <Box background="surface">
+                <Stack gap="base">
+                  <Text>Forced dark body text</Text>
+                  <InlineLabel color="red">Past due</InlineLabel>
+                </Stack>
+              </Box>
+            </AtlantisThemeContextProvider>
+          </section>
+
+          <section>
+            <Text size="large">Forced Light Section</Text>
+            <AtlantisThemeContextProvider dangerouslyOverrideTheme="light">
+              <Box background="surface">
+                <Stack gap="base">
+                  <Text>Forced light body text</Text>
+                  <InlineLabel color="red">Past due</InlineLabel>
+                </Stack>
+              </Box>
             </AtlantisThemeContextProvider>
           </section>
 
@@ -56,10 +70,27 @@ export const VisualTestThemePage = () => {
               dangerouslyOverrideTheme="dark"
               overrideTokens={overrideTokens}
             >
-              <Stack gap="base">
-                <Text>Overridden text inside forced dark</Text>
-                <InlineLabel color="red">Past due</InlineLabel>
-              </Stack>
+              <Box background="surface">
+                <Stack gap="base">
+                  <Text>Overridden text inside forced dark</Text>
+                  <InlineLabel color="red">Past due</InlineLabel>
+                </Stack>
+              </Box>
+            </AtlantisThemeContextProvider>
+          </section>
+
+          <section>
+            <Text size="large">Overrides (Forced Light)</Text>
+            <AtlantisThemeContextProvider
+              dangerouslyOverrideTheme="light"
+              overrideTokens={overrideTokens}
+            >
+              <Box background="surface">
+                <Stack gap="base">
+                  <Text>Overridden text inside forced light</Text>
+                  <InlineLabel color="red">Past due</InlineLabel>
+                </Stack>
+              </Box>
             </AtlantisThemeContextProvider>
           </section>
         </Stack>
