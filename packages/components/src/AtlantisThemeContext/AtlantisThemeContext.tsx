@@ -99,7 +99,10 @@ function InternalDynamicThemeProvider({
       }}
     >
       {cssVariableOverrides ? (
-        <div style={{ display: "contents", ...cssVariableOverrides }}>
+        <div
+          className={styles.overrideTokensWrapper}
+          style={cssVariableOverrides}
+        >
           {children}
         </div>
       ) : (
@@ -170,7 +173,6 @@ function getCssVariableOverrides(
     },
     {},
   );
-
 
   return cssVariables;
 }

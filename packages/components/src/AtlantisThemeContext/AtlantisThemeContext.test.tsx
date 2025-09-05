@@ -69,7 +69,6 @@ describe("ThemeContext", () => {
 
       const wrapper = screen.getByTestId("test-wrapper");
       const overrideWrapper = wrapper.firstElementChild as HTMLElement | null;
-      expect(overrideWrapper?.style.display).toBe("contents");
       expect(
         (overrideWrapper as HTMLElement).style.getPropertyValue(
           `--${tokenName}`,
