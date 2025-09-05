@@ -10,6 +10,7 @@ import { Icon } from "@jobber/components/Icon";
 import { InputText } from "@jobber/components/InputText";
 import { Modal } from "@jobber/components/Modal";
 import { Button } from "@jobber/components/Button";
+import { Emphasis } from "@jobber/components/Emphasis";
 import { AutocompleteV2Docgen } from "./V2.docgen";
 
 export default {
@@ -259,7 +260,7 @@ const TemplateLoading: ComponentStory<typeof Autocomplete> = () => (
 );
 
 const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
-  const [value, setValue] = useState<OptionLike | undefined>();
+  const [value, setValue] = useState<ServiceOption | undefined>();
   const [inputValue, setInputValue] = useState("");
 
   return (
@@ -272,11 +273,29 @@ const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
+        UNSAFE_styles={{
+          option: {
+            borderBottom: "1px solid var(--color-border)",
+          },
+        }}
         menu={[{ type: "options", options: serviceOptions }]}
-        customRenderOption={({ value: v, isActive, isSelected }) => (
-          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        customRenderOption={({ value: v, isSelected }) => (
+          <div
+            style={{
+              display: "flex",
+              gap: 8,
+              alignItems: "center",
+            }}
+          >
             {isSelected && <Icon name="checkmark" />}
-            <Text variation={isActive ? "info" : "default"}>{v.label}</Text>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <Text variation={"default"}>{v.label}</Text>
+              <Text variation="subdued">{v.details}</Text>
+              <Emphasis variation="bold">${v.price}</Emphasis>
+            </div>
+            <div style={{ marginLeft: "auto" }}>
+              <Text variation="subdued">{v.description}</Text>
+            </div>
           </div>
         )}
       />
