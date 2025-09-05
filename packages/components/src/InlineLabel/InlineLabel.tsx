@@ -25,7 +25,7 @@ interface InlineLabelProps {
    * The size of the label
    * @default base
    */
-  readonly size?: "base" | "large" | "larger";
+  readonly size?: "small" | "base" | "large" | "larger";
   /**
    * The color of the label
    * @default "greyBlue"
@@ -46,6 +46,7 @@ export function InlineLabel({
   const className = classnames(styles.inlineLabel, styles[size], styles[color]);
 
   const sizeMapper: SizeMapProps = {
+    small: "small",
     base: "small",
     large: "large",
     larger: "large",

@@ -2,6 +2,11 @@
   display: inline-flex;
 }
 
+.small {
+  padding: calc(var(--space-small)) calc(var(--space-slim));
+  border-radius: var(--radius-large);
+}
+
 .base {
   padding: calc(var(--space-smaller) * 1.5) calc(var(--space-small) * 1.25);
   border-radius: var(--radius-large);
