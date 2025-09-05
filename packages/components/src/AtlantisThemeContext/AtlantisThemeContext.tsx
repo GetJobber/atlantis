@@ -62,7 +62,10 @@ function InternalDynamicThemeProvider({
     (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
 
   const [internalTheme, setInternalTheme] = useState<Theme>(initialTheme);
-  const currentTokens = internalTheme === "dark" ? actualDarkTokens : tokens;
+  const { finalTokens, cssVariableOverrides } = useTokens(
+    internalTheme,
+    overrideTokens,
+  );
 
   const handleThemeChangeEvent = useCallback((event: Event) => {
     const newTheme = (event as CustomEvent<ThemeChangeDetails>).detail.theme;
@@ -83,17 +86,6 @@ function InternalDynamicThemeProvider({
       );
     };
   }, [handleThemeChangeEvent]);
-  const finalTokens = useMemo(() => {
-    if (overrideTokens) {
-      return merge({}, currentTokens, overrideTokens);
-    }
-
-    return currentTokens;
-  }, [currentTokens, overrideTokens]);
-
-  const cssVariableOverrides = overrideTokens
-    ? getCssVariableOverrides(overrideTokens)
-    : undefined;
 
   return (
     <AtlantisThemeContext.Provider
@@ -129,20 +121,10 @@ function InternalStaticThemeProvider({
     readonly overrideTokens: OverrideTokens | undefined;
   }
 >) {
-  const currentTokens =
-    dangerouslyOverrideTheme === "dark" ? actualDarkTokens : tokens;
-
-  const finalTokens = useMemo(() => {
-    if (overrideTokens) {
-      return merge({}, currentTokens, overrideTokens);
-    }
-
-    return currentTokens;
-  }, [currentTokens, overrideTokens]);
-
-  const cssVariableOverrides = overrideTokens
-    ? getCssVariableOverrides(overrideTokens)
-    : undefined;
+  const { finalTokens, cssVariableOverrides } = useTokens(
+    dangerouslyOverrideTheme,
+    overrideTokens,
+  );
 
   return (
     <AtlantisThemeContext.Provider
@@ -181,4 +163,25 @@ function getCssVariableOverrides(
   );
 
   return cssVariables;
+}
+
+function useTokens(theme: Theme, overrideTokens: OverrideTokens | undefined) {
+  const currentTokens = theme === "dark" ? actualDarkTokens : tokens;
+
+  const finalTokens = useMemo(() => {
+    if (overrideTokens) {
+      return merge({}, currentTokens, overrideTokens);
+    }
+
+    return currentTokens;
+  }, [currentTokens, overrideTokens]);
+
+  const cssVariableOverrides = overrideTokens
+    ? getCssVariableOverrides(overrideTokens)
+    : undefined;
+
+  return {
+    finalTokens,
+    cssVariableOverrides,
+  };
 }
