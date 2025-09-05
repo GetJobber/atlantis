@@ -34,6 +34,8 @@ export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
    * Overrides existing design tokens with custom values. Can also supply custom tokens which will be accessible
    * via useAtlantisTheme() context and css variables.
    * If provided, these tokens will be used for both light and dark themes.
+   *
+   * **Important**: you should provide a constant or at least a memoized value for performance reasons.
    */
   readonly overrideTokens?: OverrideTokens;
 }
