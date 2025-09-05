@@ -11,7 +11,7 @@ import { ToggleThemeButton } from "../../components/ToggleThemeButton";
 export const VisualTestThemePage = () => {
   const overrideTokens = {
     "color-text": "hsl(0, 100%, 50%)",
-  } as Record<string, string>;
+  };
 
   return (
     <div>
