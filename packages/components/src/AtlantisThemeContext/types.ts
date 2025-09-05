@@ -32,7 +32,11 @@ export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
   readonly overrideTokens?: OverrideTokens;
 }
 
-export type OverrideTokens = typeof tokens | Record<string, string>;
+export type OverrideTokens = {
+  [K in keyof typeof tokens]?: (typeof tokens)[K];
+} & {
+  [customKey: string]: string | number;
+};
 
 export type Theme = "light" | "dark";
 
