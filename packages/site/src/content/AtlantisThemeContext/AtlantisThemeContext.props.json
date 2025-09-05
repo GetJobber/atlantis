@@ -34,7 +34,7 @@
       },
       "overrideTokens": {
         "defaultValue": null,
-        "description": "Override the design tokens with custom tokens. These tokens will be used instead of the naturally loaded tokens.\nIf provided, these tokens will be used for both light and dark themes.",
+        "description": "Overrides existing design tokens with custom values. Can also supply custom tokens which will be accessible\nvia useAtlantisTheme() context and css variables.\nIf provided, these tokens will be used for both light and dark themes.\n\n**Important**: you should provide a constant or at least a memoized value for performance reasons.",
         "name": "overrideTokens",
         "parent": {
           "fileName": "packages/components/src/AtlantisThemeContext/types.ts",
