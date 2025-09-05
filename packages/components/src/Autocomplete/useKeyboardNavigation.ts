@@ -1,4 +1,4 @@
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useOnKeyDown } from "@jobber/hooks";
 import { useCallback, useEffect, useState } from "react";
 import { type AnyOption, type Option } from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";

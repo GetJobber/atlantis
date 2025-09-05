@@ -1,7 +1,7 @@
 /* eslint-disable max-statements */
 import React, { useRef, useState } from "react";
 import classnames from "classnames";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { useFocusTrap } from "@jobber/hooks";
 import styles from "./DataListHeaderTile.module.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { DataListSortingOptions } from "./components/DataListSortingOptions";

@@ -1,9 +1,6 @@
 import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import {
-  BREAKPOINT_SIZES,
-  mockViewportWidth,
-} from "@jobber/hooks/useBreakpoints";
+import { BREAKPOINT_SIZES, mockViewportWidth } from "@jobber/hooks";
 import * as browserUtilities from "@jobber/components/utils/getClientBrowser";
 import { Gallery } from ".";
 import type { File } from "./GalleryTypes";

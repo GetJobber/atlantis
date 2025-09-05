@@ -1,7 +1,6 @@
 import type React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
-import { useDebounce } from "@jobber/hooks/useDebounce";
+import { useCallbackRef, useDebounce } from "@jobber/hooks";
 import type {
   ActionConfig,
   ActionOrigin,

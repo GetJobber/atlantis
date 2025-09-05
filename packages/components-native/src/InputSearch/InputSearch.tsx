@@ -1,7 +1,7 @@
 import type { Ref } from "react";
 import React, { forwardRef, useEffect } from "react";
 import { View } from "react-native";
-import { useDebounce } from "@jobber/hooks/useDebounce";
+import { useDebounce } from "@jobber/hooks";
 import { styles } from "./InputSearch.style";
 import type { InputTextProps, InputTextRef } from "../InputText";
 import { InputText } from "../InputText";

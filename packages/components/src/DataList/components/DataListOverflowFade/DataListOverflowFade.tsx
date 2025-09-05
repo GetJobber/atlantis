@@ -1,5 +1,5 @@
 import React from "react";
-import { useInView } from "@jobber/hooks/useInView";
+import { useInView } from "@jobber/hooks";
 import classNames from "classnames";
 import { CONTAINER_TEST_ID } from "./DataListOverflowFade.const";
 import styles from "./DataListOverflowFade.module.css";

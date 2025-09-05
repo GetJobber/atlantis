@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useInView } from "@jobber/hooks/useInView";
+import { useInView } from "@jobber/hooks";
 import styles from "./ComboboxLoadMore.module.css";
 
 interface ComboboxLoadMoreProps {

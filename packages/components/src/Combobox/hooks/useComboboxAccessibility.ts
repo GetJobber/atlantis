@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useFocusTrap, useRefocusOnActivator } from "@jobber/hooks";
 import type { UseInteractionsReturn } from "@floating-ui/react";
 import {
   autoUpdate,
@@ -11,7 +11,6 @@ import {
   useFloatingParentNodeId,
   useInteractions,
 } from "@floating-ui/react";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { type ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
