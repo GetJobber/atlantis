@@ -35,7 +35,7 @@ interface InlineLabelProps {
 }
 
 interface SizeMapProps {
-  [key: string]: "small" | "base" | "large";
+  [key: string]: "smaller" | "small" | "base" | "large";
 }
 
 export function InlineLabel({
@@ -46,7 +46,7 @@ export function InlineLabel({
   const className = classnames(styles.inlineLabel, styles[size], styles[color]);
 
   const sizeMapper: SizeMapProps = {
-    small: "small",
+    small: "smaller",
     base: "small",
     large: "large",
     larger: "large",

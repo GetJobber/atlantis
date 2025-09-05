@@ -3,7 +3,7 @@
 }
 
 .small {
-  padding: calc(var(--space-small)) calc(var(--space-slim));
+  padding: calc(var(--space-smallest)) calc(var(--space-small));
   border-radius: var(--radius-large);
 }
 
