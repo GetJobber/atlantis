@@ -330,6 +330,8 @@ const TemplateFreeForm: ComponentStory<typeof Autocomplete> = () => {
         createFreeFormValue={label => ({ label })}
         menu={[{ type: "options", options: simpleOptions }]}
       />
+      <Text>Try typing an option not in the list, and blurring the input</Text>
+      <Heading level={5}>Selected value: {value?.label}</Heading>
     </Content>
   );
 };
