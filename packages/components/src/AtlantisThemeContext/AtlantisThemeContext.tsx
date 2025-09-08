@@ -31,12 +31,12 @@ const AtlantisThemeContext = createContext(atlantisThemeContextDefaultValues);
 export function AtlantisThemeContextProvider({
   children,
   dangerouslyOverrideTheme,
-  overrideTokens,
+  dangerouslyOverrideTokens,
 }: AtlantisThemeContextProviderProps) {
   if (dangerouslyOverrideTheme) {
     return (
       <InternalStaticThemeProvider
-        overrideTokens={overrideTokens}
+        dangerouslyOverrideTokens={dangerouslyOverrideTokens}
         dangerouslyOverrideTheme={dangerouslyOverrideTheme}
       >
         {children}
@@ -45,7 +45,9 @@ export function AtlantisThemeContextProvider({
   }
 
   return (
-    <InternalDynamicThemeProvider overrideTokens={overrideTokens}>
+    <InternalDynamicThemeProvider
+      dangerouslyOverrideTokens={dangerouslyOverrideTokens}
+    >
       {children}
     </InternalDynamicThemeProvider>
   );
@@ -53,10 +55,10 @@ export function AtlantisThemeContextProvider({
 
 function InternalDynamicThemeProvider({
   children,
-  overrideTokens,
+  dangerouslyOverrideTokens,
 }: {
   readonly children: React.ReactNode;
-  readonly overrideTokens: OverrideTokens | undefined;
+  readonly dangerouslyOverrideTokens: OverrideTokens | undefined;
 }) {
   const initialTheme: Theme =
     (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
@@ -64,7 +66,7 @@ function InternalDynamicThemeProvider({
   const [internalTheme, setInternalTheme] = useState<Theme>(initialTheme);
   const { finalTokens, cssVariableOverrides } = useTokens(
     internalTheme,
-    overrideTokens,
+    dangerouslyOverrideTokens,
   );
 
   const handleThemeChangeEvent = useCallback((event: Event) => {
@@ -92,7 +94,7 @@ function InternalDynamicThemeProvider({
       value={{
         theme: internalTheme,
         tokens: finalTokens,
-        overrideTokens,
+        overrideTokens: dangerouslyOverrideTokens,
       }}
     >
       {cssVariableOverrides ? (
@@ -112,18 +114,18 @@ function InternalDynamicThemeProvider({
 function InternalStaticThemeProvider({
   dangerouslyOverrideTheme,
   children,
-  overrideTokens,
+  dangerouslyOverrideTokens,
 }: Required<
   Pick<
     AtlantisThemeContextProviderProps,
     "dangerouslyOverrideTheme" | "children"
   > & {
-    readonly overrideTokens: OverrideTokens | undefined;
+    readonly dangerouslyOverrideTokens: OverrideTokens | undefined;
   }
 >) {
   const { finalTokens, cssVariableOverrides } = useTokens(
     dangerouslyOverrideTheme,
-    overrideTokens,
+    dangerouslyOverrideTokens,
   );
 
   return (
@@ -131,7 +133,7 @@ function InternalStaticThemeProvider({
       value={{
         theme: dangerouslyOverrideTheme,
         tokens: finalTokens,
-        overrideTokens,
+        overrideTokens: dangerouslyOverrideTokens,
       }}
     >
       <div

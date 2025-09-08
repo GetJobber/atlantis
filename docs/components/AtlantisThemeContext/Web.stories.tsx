@@ -191,12 +191,15 @@ const OverrideTokensTemplate: ComponentStory<
 
   return (
     <>
-      <AtlantisThemeContextProvider {...args} overrideTokens={customTokens}>
+      <AtlantisThemeContextProvider
+        {...args}
+        dangerouslyOverrideTokens={customTokens}
+      >
         <OverrideTokensComponent message="Provider with overridden tokens" />
       </AtlantisThemeContextProvider>
       <AtlantisThemeContextProvider
         dangerouslyOverrideTheme="dark"
-        overrideTokens={customTokens}
+        dangerouslyOverrideTokens={customTokens}
       >
         <OverrideTokensComponent message="Provider with overridden tokens - forced dark" />
       </AtlantisThemeContextProvider>

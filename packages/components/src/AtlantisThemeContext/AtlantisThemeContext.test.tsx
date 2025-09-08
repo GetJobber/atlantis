@@ -17,13 +17,13 @@ describe("ThemeContext", () => {
   function TestWrapper({
     children,
     dangerouslyOverrideTheme,
-    overrideTokens,
+    dangerouslyOverrideTokens,
   }: AtlantisThemeContextProviderProps) {
     return (
       <div data-testid="test-wrapper">
         <AtlantisThemeContextProvider
           dangerouslyOverrideTheme={dangerouslyOverrideTheme}
-          overrideTokens={overrideTokens}
+          dangerouslyOverrideTokens={dangerouslyOverrideTokens}
         >
           <InlineLabel color="red">Past due</InlineLabel>
           {children}
@@ -50,7 +50,7 @@ describe("ThemeContext", () => {
     });
   });
 
-  describe("when overrideTokens are provided", () => {
+  describe("when dangerouslyOverrideTokens are provided", () => {
     it("applies overridden tokens and CSS variables in dynamic provider", () => {
       const tokenName = "color-text" as const;
       const overrideValue = "hsl(198, 35%, 30%)";
@@ -61,7 +61,7 @@ describe("ThemeContext", () => {
 
       const results = renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
-          <TestWrapper {...props} overrideTokens={overrideTokens} />
+          <TestWrapper {...props} dangerouslyOverrideTokens={overrideTokens} />
         ),
       });
 
@@ -89,7 +89,7 @@ describe("ThemeContext", () => {
           <TestWrapper
             {...props}
             dangerouslyOverrideTheme="dark"
-            overrideTokens={overrideTokens}
+            dangerouslyOverrideTokens={overrideTokens}
           />
         ),
       });

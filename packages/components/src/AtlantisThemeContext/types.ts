@@ -37,7 +37,7 @@ export interface AtlantisThemeContextProviderProps extends PropsWithChildren {
    *
    * **Important**: you should provide a constant or at least a memoized value for performance reasons.
    */
-  readonly overrideTokens?: OverrideTokens;
+  readonly dangerouslyOverrideTokens?: OverrideTokens;
 }
 
 export type OverrideTokens = {

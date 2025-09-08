@@ -56,7 +56,9 @@ export const VisualTestThemePage = () => {
 
           <section>
             <Text size="large">Overrides (Dynamic)</Text>
-            <AtlantisThemeContextProvider overrideTokens={overrideTokens}>
+            <AtlantisThemeContextProvider
+              dangerouslyOverrideTokens={overrideTokens}
+            >
               <Stack gap="base">
                 <Text>Overridden body text color</Text>
                 <InlineLabel color="red">Past due</InlineLabel>
@@ -68,7 +70,7 @@ export const VisualTestThemePage = () => {
             <Text size="large">Overrides (Forced Dark)</Text>
             <AtlantisThemeContextProvider
               dangerouslyOverrideTheme="dark"
-              overrideTokens={overrideTokens}
+              dangerouslyOverrideTokens={overrideTokens}
             >
               <Box background="surface">
                 <Stack gap="base">
@@ -83,7 +85,7 @@ export const VisualTestThemePage = () => {
             <Text size="large">Overrides (Forced Light)</Text>
             <AtlantisThemeContextProvider
               dangerouslyOverrideTheme="light"
-              overrideTokens={overrideTokens}
+              dangerouslyOverrideTokens={overrideTokens}
             >
               <Box background="surface">
                 <Stack gap="base">
