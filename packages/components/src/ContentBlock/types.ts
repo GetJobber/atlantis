@@ -15,6 +15,8 @@ export interface ContentBlockProps extends CommonAtlantisProps {
 
   /**
    * The maximum width of the centered content.
+   *
+   * @default "sm"
    */
   readonly maxWidth?:
     | keyof typeof AtlantisBreakpoints

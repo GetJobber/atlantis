@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { Breakpoints } from "@jobber/hooks/useResizeObserver";
 import styles from "./ContentBlock.module.css";
 import type { ContentBlockProps } from "./types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
@@ -8,7 +7,7 @@ import { getMappedBreakpointWidth } from "../sharedHelpers/getMappedBreakpointWi
 
 export function ContentBlock({
   children,
-  maxWidth = Breakpoints.smaller,
+  maxWidth = "sm",
   andText,
   gutters,
   justify = "left",
