@@ -277,6 +277,13 @@ actively chose to remove the selection.
 If free form is not allowed, blurring will clear the input unless the content
 exactly matches an option.
 
+### Keys
+
+By default, each element's `label` is used as its React key. If Any two items
+have the same label, or label can otherwise not be guaranteed to be unique -
+then you must provide a `key` on the object. This key on the objects is
+reserved, and used exclusively for this purpose.
+
 ### Multiple
 
 This is not yet implemented fully. Avoid using.
