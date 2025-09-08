@@ -15,25 +15,35 @@ async function moveDown(page: Page, n = 1) {
   }
 }
 
+const screenshotOptions = {
+  animations: "disabled" as const,
+  caret: "hide" as const,
+  fullPage: true,
+};
+
 test.describe("Autocomplete v2 Visual Tests", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/visual-tests/autocomplete-v2");
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 1280, height: 1000 });
     await page.waitForTimeout(500);
   });
 
   test("initial page", async ({ page }) => {
-    await expect(page).toHaveScreenshot("1-initial-autocomplete-v2.png", {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      "1-initial-autocomplete-v2.png",
+      screenshotOptions,
+    );
   });
 
   test.describe("flat lists", () => {
     test("flat: options only - open and highlight second", async ({ page }) => {
       await openFirstAutocomplete(page);
       await moveDown(page, 2);
-      await expect(page).toHaveScreenshot("2-flat-options-open-highlight.png", {
-        fullPage: true,
-      });
+      await expect(page).toHaveScreenshot(
+        "2-flat-options-open-highlight.png",
+        screenshotOptions,
+      );
     });
 
     test("flat: options + actions - open and highlight first action", async ({
@@ -47,7 +57,7 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       await moveDown(page, 5);
       await expect(page).toHaveScreenshot(
         "3-flat-options-actions-open-highlight.png",
-        { fullPage: true },
+        screenshotOptions,
       );
     });
 
@@ -61,7 +71,7 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       await moveDown(page, 5);
       await expect(page).toHaveScreenshot(
         "4-flat-options-footer-open-highlight.png",
-        { fullPage: true },
+        screenshotOptions,
       );
     });
   });
@@ -75,9 +85,10 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       await fourth.click();
       await page.waitForTimeout(200);
       await moveDown(page, 1);
-      await expect(page).toHaveScreenshot("5-sectioned-options-only-open.png", {
-        fullPage: true,
-      });
+      await expect(page).toHaveScreenshot(
+        "5-sectioned-options-only-open.png",
+        screenshotOptions,
+      );
     });
 
     test("sectioned: options + actions - open and highlight section action", async ({
@@ -90,7 +101,7 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       await moveDown(page, 5);
       await expect(page).toHaveScreenshot(
         "6-sectioned-actions-open-highlight.png",
-        { fullPage: true },
+        screenshotOptions,
       );
     });
 
@@ -104,7 +115,7 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       await moveDown(page, 11);
       await expect(page).toHaveScreenshot(
         "7-sectioned-header-footer-open-highlight.png",
-        { fullPage: true },
+        screenshotOptions,
       );
     });
   });
@@ -113,19 +124,22 @@ test.describe("Autocomplete v2 Visual Tests", () => {
     test("loading state", async ({ page }) => {
       const seventh = page.getByRole("combobox").nth(6);
       await seventh.click();
-      await page.waitForTimeout(400);
-      await expect(page).toHaveScreenshot("8-loading-open.png", {
-        fullPage: true,
-      });
+      await expect(page.getByRole("listbox")).toBeVisible();
+      await expect(page.getByTestId("ATL-Glimmer").first()).toBeVisible();
+      await expect(page).toHaveScreenshot(
+        "8-loading-open.png",
+        screenshotOptions,
+      );
     });
 
     test("empty: simple (no header/footer)", async ({ page }) => {
       const eighth = page.getByRole("combobox").nth(7);
       await eighth.click();
-      await page.waitForTimeout(200);
-      await expect(page).toHaveScreenshot("9-empty-simple-open.png", {
-        fullPage: true,
-      });
+      await expect(page.getByRole("listbox")).toBeVisible();
+      await expect(page).toHaveScreenshot(
+        "9-empty-simple-open.png",
+        screenshotOptions,
+      );
     });
 
     test("empty: header + interactive footer", async ({ page }) => {
@@ -135,7 +149,7 @@ test.describe("Autocomplete v2 Visual Tests", () => {
       await moveDown(page, 2); // move highlight to footer action
       await expect(page).toHaveScreenshot(
         "10-empty-header-footer-open-highlight.png",
-        { fullPage: true },
+        screenshotOptions,
       );
     });
   });
@@ -144,9 +158,10 @@ test.describe("Autocomplete v2 Visual Tests", () => {
     const tenth = page.getByRole("combobox").nth(9);
     await tenth.click();
     await page.waitForTimeout(200);
-    await expect(page).toHaveScreenshot("11-selection-open-highlight.png", {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      "11-selection-open-highlight.png",
+      screenshotOptions,
+    );
   });
 
   test("constrained space: open near bottom and verify layout", async ({
@@ -156,8 +171,9 @@ test.describe("Autocomplete v2 Visual Tests", () => {
     const last = page.getByRole("combobox").last();
     await last.click();
     await page.waitForTimeout(300);
-    await expect(page).toHaveScreenshot("12-constrained-open.png", {
-      fullPage: true,
-    });
+    await expect(page).toHaveScreenshot(
+      "12-constrained-open.png",
+      screenshotOptions,
+    );
   });
 });
