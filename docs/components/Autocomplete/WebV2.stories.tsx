@@ -1,16 +1,24 @@
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useDebounce } from "@jobber/hooks";
-import { Autocomplete } from "@jobber/components/Autocomplete";
-import type { OptionLike } from "@jobber/components/Autocomplete";
+import {
+  Autocomplete,
+  type MenuAction,
+  type MenuFooter,
+  type MenuHeader,
+  type OptionLike,
+  defineMenu,
+} from "@jobber/components/Autocomplete";
 import { Content } from "@jobber/components/Content";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
-import { Icon } from "@jobber/components/Icon";
+import { Icon, type IconNames } from "@jobber/components/Icon";
 import { InputText } from "@jobber/components/InputText";
 import { Modal } from "@jobber/components/Modal";
 import { Button } from "@jobber/components/Button";
 import { Emphasis } from "@jobber/components/Emphasis";
+import { Flex } from "@jobber/components/Flex";
+import { Typography } from "@jobber/components/Typography";
 import { AutocompleteV2Docgen } from "./V2.docgen";
 
 export default {
@@ -86,19 +94,19 @@ const flatOptions: OptionLike[] = [
   { label: "Window Cleaning" },
 ];
 
-const sectionedMenu = [
-  { type: "section" as const, label: "Indoor", options: simpleOptions },
+const sectionedMenu = defineMenu<OptionLike>([
+  { type: "section", label: "Indoor", options: simpleOptions },
   {
-    type: "section" as const,
+    type: "section",
     label: "Outdoor",
     options: simpleOptionsSecondSection,
   },
   {
-    type: "section" as const,
+    type: "section",
     label: "Extras",
     options: simpleOptionsThirdSection,
   },
-];
+]);
 
 const TemplateFlat: ComponentStory<typeof Autocomplete> = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
@@ -154,44 +162,44 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
-        menu={[
+        menu={defineMenu<OptionLike>([
           {
-            type: "section" as const,
+            type: "section",
             label: "Services",
             options: simpleOptions,
             actions: [
               {
-                type: "action" as const,
+                type: "action",
                 label: "Add Service",
                 onClick: () => alert("Add Service"),
               },
             ],
           },
           {
-            type: "section" as const,
+            type: "section",
             label: "Outdoor",
             options: simpleOptionsSecondSection,
             actions: [
               {
-                type: "action" as const,
+                type: "action",
                 label: "Add Outdoor Service",
                 onClick: () => alert("Add Outdoor Service"),
               },
             ],
           },
           {
-            type: "section" as const,
+            type: "section",
             label: "Extras",
             options: simpleOptionsThirdSection,
             actions: [
               {
-                type: "action" as const,
+                type: "action",
                 label: "Add Extras Service",
                 onClick: () => alert("Add Extras Service"),
               },
             ],
           },
-        ]}
+        ])}
       />
     </Content>
   );
@@ -201,7 +209,7 @@ const TemplateEmptyStateAndActions: ComponentStory<
   typeof Autocomplete
 > = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
-  const [inputValue, setInputValue] = useState("zzz");
+  const [inputValue, setInputValue] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [serviceValue, setServiceValue] = useState("");
 
@@ -224,7 +232,7 @@ const TemplateEmptyStateAndActions: ComponentStory<
               onClick: () => setModalOpen(true),
             },
           ]}
-          menu={[{ type: "options", options: [] }]}
+          menu={[{ type: "options", options: simpleOptions }]}
         />
       </Content>
       <Modal open={modalOpen} onRequestClose={() => setModalOpen(false)}>
@@ -240,24 +248,6 @@ const TemplateEmptyStateAndActions: ComponentStory<
     </>
   );
 };
-
-const noop = () => undefined;
-
-const TemplateLoading: ComponentStory<typeof Autocomplete> = () => (
-  <Content>
-    <Heading level={4}>Loading</Heading>
-    <Autocomplete
-      version={2}
-      placeholder="Loading..."
-      value={undefined}
-      onChange={noop}
-      inputValue={"Loading..."}
-      onInputChange={noop}
-      loading
-      menu={[]}
-    />
-  </Content>
-);
 
 const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
   const [value, setValue] = useState<ServiceOption | undefined>();
@@ -278,7 +268,9 @@ const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
             borderBottom: "1px solid var(--color-border)",
           },
         }}
-        menu={[{ type: "options", options: serviceOptions }]}
+        menu={defineMenu<ServiceOption>([
+          { type: "options", options: serviceOptions },
+        ])}
         customRenderOption={({ value: v, isSelected }) => (
           <div
             style={{
@@ -317,7 +309,7 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
-        menu={[
+        menu={defineMenu<OptionLike>([
           { type: "header", label: "Pinned header", shouldClose: false },
           { type: "options", options: simpleOptions },
           {
@@ -325,7 +317,7 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
             label: "Pinned footer",
             onClick: () => alert("Footer"),
           },
-        ]}
+        ])}
       />
     </Content>
   );
@@ -347,7 +339,9 @@ const TemplateFreeForm: ComponentStory<typeof Autocomplete> = () => {
         onInputChange={setInputValue}
         allowFreeForm
         createFreeFormValue={label => ({ label })}
-        menu={[{ type: "options", options: simpleOptions }]}
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
       />
       <Text>Try typing an option not in the list, and blurring the input</Text>
       <Heading level={5}>Selected value: {value?.label}</Heading>
@@ -487,7 +481,229 @@ const TemplateAsyncUserManaged: ComponentStory<typeof Autocomplete> = () => {
         loading={loading}
         emptyStateMessage="No services found"
         isOptionEqualToValue={(option, selected) => option.key === selected.key}
-        menu={[{ type: "options", options }]}
+        menu={defineMenu<OptionLike>([{ type: "options", options }])}
+      />
+    </Content>
+  );
+};
+
+interface CustomOption extends OptionLike {
+  description: string;
+}
+
+interface ActionExtraProps {
+  icon?: IconNames;
+}
+
+const customOptions: CustomOption[] = [
+  {
+    label: "Drain Cleaning",
+    description: "Clear drains of accumulated debris and build up",
+  },
+  {
+    label: "Pipe Replacement",
+    description: "Replace old poly-b pipes with new PVC",
+  },
+  { label: "Sewer Line Repair", description: "Repair damaged sewer lines" },
+  {
+    label: "Window Cleaning",
+    description: "Clean windows of accumulated debris and build up",
+  },
+  {
+    label: "Roof Inspection",
+    description: "Inspect roofs for damage and wear",
+  },
+];
+
+const customOptions2: CustomOption[] = [
+  {
+    label: "Lawn Mowing",
+    description: "Mow the lawn",
+  },
+  {
+    label: "Gutter Repair",
+    description: "Repair damaged gutters",
+  },
+  { label: "Pressure Washing", description: "Pressure wash the house" },
+  {
+    label: "Fence Painting",
+    description: "Paint the fence",
+  },
+  {
+    label: "Garage Cleanup",
+    description: "Clean the garage",
+  },
+];
+
+const customActions: MenuAction<ActionExtraProps>[] = [
+  {
+    type: "action",
+    label: "Add Service",
+    icon: "plus",
+    onClick: () => alert("Add"),
+  },
+];
+
+const customActions2: MenuAction<ActionExtraProps>[] = [
+  {
+    type: "action",
+    label: "Add Other",
+    icon: "plus",
+    onClick: () => alert("Add"),
+  },
+];
+
+const customHeader: MenuHeader<ActionExtraProps> = {
+  type: "header",
+  label: "The prices of each service is in CAD",
+};
+
+const emptyActions: MenuAction<ActionExtraProps>[] = [
+  {
+    type: "action",
+    label: "Favorite",
+    icon: "star",
+    onClick: () => alert("Add"),
+  },
+];
+
+const customFooter: MenuFooter<ActionExtraProps> = {
+  type: "footer",
+  label: "Adjust prices",
+  icon: "edit",
+  onClick: () => alert("Footer"),
+};
+
+interface SectionExtraProps {
+  icon: IconNames;
+}
+
+const sectionedMenuCustomized = defineMenu<
+  CustomOption,
+  SectionExtraProps,
+  ActionExtraProps
+>([
+  {
+    type: "section",
+    label: "Indoor",
+    icon: "home",
+    options: customOptions,
+    actions: customActions,
+  },
+  {
+    type: "section",
+    label: "Off-site",
+    icon: "fuel",
+    options: customOptions2,
+    actions: customActions2,
+  },
+  customHeader,
+  customFooter,
+]);
+
+const TemplateEverythingCustomized: ComponentStory<
+  typeof Autocomplete
+> = () => {
+  const [value, setValue] = useState<CustomOption | undefined>();
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <Content>
+      <Heading level={4}>Everything customized</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        menu={sectionedMenuCustomized}
+        emptyActions={emptyActions}
+        filterOptions={(options, searchTerm) => {
+          return options.filter(option => {
+            // Search both label and description
+            return (
+              option.label.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              option.description
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            );
+          });
+        }}
+        customRenderAction={({ origin, value: actionValue }) => {
+          if (origin === "empty") {
+            return (
+              <Flex template={["shrink", "grow"]}>
+                {actionValue.icon ? <Icon name={actionValue.icon} /> : null}
+                <Typography textColor="interactive">
+                  {actionValue.label}
+                </Typography>
+              </Flex>
+            );
+          }
+
+          const iconName = actionValue.icon;
+
+          return (
+            <Flex template={["shrink", "grow"]}>
+              {iconName ? <Icon name={iconName} /> : null}
+              <Typography textColor="interactive">
+                {actionValue.label}
+              </Typography>
+            </Flex>
+          );
+        }}
+        customRenderHeader={({ value: headerValue }) => {
+          return <Emphasis variation="italic">{headerValue.label}</Emphasis>;
+        }}
+        customRenderFooter={({ value: footerValue }) => {
+          return (
+            <Flex template={["shrink", "grow"]}>
+              {footerValue.icon ? <Icon name={footerValue.icon} /> : null}
+              <Typography textColor="interactive">
+                {footerValue.label}
+              </Typography>
+            </Flex>
+          );
+        }}
+        customRenderSection={sectionValue => {
+          return (
+            <Flex template={["shrink", "grow"]}>
+              <Icon name={sectionValue.icon} />
+              <Typography fontWeight="bold">{sectionValue.label}</Typography>
+            </Flex>
+          );
+        }}
+        customRenderOption={({ value: optionValue, isSelected }) => {
+          return (
+            <Flex template={["grow", "shrink"]}>
+              {isSelected ? (
+                <Emphasis variation="bold">{optionValue.label}</Emphasis>
+              ) : (
+                <Text>{optionValue.label}</Text>
+              )}
+              {isSelected ? (
+                <Emphasis variation="bold">{optionValue.description}</Emphasis>
+              ) : (
+                <Text>{optionValue.description}</Text>
+              )}
+            </Flex>
+          );
+        }}
+        customRenderInput={({ inputRef, inputProps }) => {
+          return (
+            <InputText
+              ref={inputRef}
+              {...inputProps}
+              size="small"
+              suffix={{
+                icon: "search",
+                ariaLabel: "Search",
+                onClick: () => alert("Search"),
+              }}
+            />
+          );
+        }}
       />
     </Content>
   );
@@ -497,8 +713,8 @@ export const Flat = TemplateFlat.bind({});
 export const Sectioned = TemplateSectioned.bind({});
 export const WithActions = TemplateWithActions.bind({});
 export const EmptyStateAndActions = TemplateEmptyStateAndActions.bind({});
-export const Loading = TemplateLoading.bind({});
 export const CustomRenderOption = TemplateCustomRenderOption.bind({});
 export const HeaderFooter = TemplateHeaderFooter.bind({});
 export const FreeForm = TemplateFreeForm.bind({});
 export const AsyncUserManaged = TemplateAsyncUserManaged.bind({});
+export const EverythingCustomized = TemplateEverythingCustomized.bind({});
