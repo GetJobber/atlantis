@@ -260,29 +260,23 @@ where you must provide the value for these additional fields.
 `allowFreeForm` with simple items having only "label" is the easiest way to
 leverage this prop.
 
-### "Commit Signals"
+### "onChange"
 
 Autocomplete has some nuance as far as `onChange` and when we consider the
-Autocomplete's selection to have changed. It is important to note that this is
-not always the same as the input value.
+Autocomplete's selection to have changed.
 
-For example consider an option of "Fall" in the options, and an input value of
-"all" - with `allowFreeForm` at this point we cannot know if "all" is being used
-as a search term to narrow the results to "Fall" or if "all" is a new, free form
-value.
+Since we can't know if the input value is only being used to refine results to
+an option to select, or if it will be used as a free form value itself - we must
+wait until blur to definitively say a non-explicit selection has been made.
 
-Since we cannot know during use, we wait until blur to inform `onChange` that
-"all" was selected. This is an implicit commit signal. We have other implicit
-signals like having a selection and then deleting it. We also have explicit
-commit signals from clicking an option, or using the Enter key to make a
-selection.
+There are of course some explicit commit signals such as selecting an option
+with a click, or Enter press with an item highlighted. Another is if there is an
+existing selection, clearing it is considered an `onChange` because the user
+actively chose to remove the selection.
 
-Conversely when free form is disabled and the input is blurred, if the input
-value does not match an option we will consider this as meaning that no valid
-selection was made and will clear the input.
-
-Typing an option value exactly also works, but will only be evaluated on blur.
+If free form is not allowed, blurring will clear the input unless the content
+exactly matches an option.
 
 ### Multiple
 
-This is not yet implemented fully. Avoid using for now.
+This is not yet implemented fully. Avoid using.

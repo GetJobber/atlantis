@@ -18,10 +18,9 @@ that the user can select. These options should be presented in a way that makes
 it easy for the user to find the value they are looking for. There are a few
 ways to achieve this.
 
-[Section headings](../?path=/story/components-forms-and-inputs-autocomplete-web--section-heading)
-can be added to an Autocomplete to break up the options into groups. This can be
-useful if there are a lot of options or if the options are related to different
-things.
+Section headings can be added to an Autocomplete to break up the options into
+groups. This can be useful if there are a lot of options or if the options are
+related to different things.
 
 Headers and Footers can be used to present persistent information or actions
 that should always be available regardless of results, or scroll location in the
@@ -32,17 +31,23 @@ focus of the Autocomplete.
 Empty actions can be used to present a user with relevant actions to take when
 no options exist.
 
+### FreeForm
+
 The "free form" allows for using a text value that does not already exist in the
 list of options. This works best when the content of an option is simply a word.
 When the content is more complex, we have to consider what to populate the
 additional fields with.
 
-An alternate approach when the data is complex is to leverage the empty actions,
+An alternate approach with complex data, is to leverage the empty actions,
 actions, or header/footer actions to launch a creation flow to populate the
 fields.
 
+### Stay Open Behavior
+
 Actions can be individually configured to keep the menu open when used if
 desired.
+
+### Interactive Content
 
 Content in options, actions, headers, footers, and sections can all be
 customized, however it is imperative to avoid putting additional interactive
@@ -51,8 +56,12 @@ elements inside any of these. Because focus remains in the input, and we
 is impossible to Tab to any nested interactive elements such as a button inside
 of a row. Instead, use the provided action interfaces.
 
+### Content Complexity
+
 When providing complex content in each option, it is recommended to separate the
 options with a border bottom to improve readability of the options.
+
+### Content Consistency
 
 Items of the same type should appear consistently ie. if an Autocomplete has
 options, sections and actions avoid making the apperance of some options
