@@ -216,25 +216,21 @@ export function VisualTestCardPage() {
 
             <Grid.Cell size={{ xs: 12, md: 6 }}>
               <Card accent="green" elevation="high">
-                <Card.Header>
-                  <Box padding="base">
+                <Content>
+                  <Card.Header>
                     <Flex template={["grow", "shrink"]} align="center">
                       <Heading level={4}>Success Story</Heading>
                       <Icon name="checkmark" color="green" />
                     </Flex>
-                  </Box>
-                </Card.Header>
-                <Card.Body>
-                  <Content>
+                  </Card.Header>
+                  <Card.Body>
                     <Text>
                       Your changes have been saved successfully! All your
                       settings are now active.
                     </Text>
-                    <Box margin={{ top: "base" }}>
-                      <Button label="Continue" type="primary" />
-                    </Box>
-                  </Content>
-                </Card.Body>
+                    <Button label="Continue" type="primary" />
+                  </Card.Body>
+                </Content>
               </Card>
             </Grid.Cell>
           </Grid>
