@@ -181,6 +181,36 @@ function ThemedComponent() {
 }
 ```
 
+### Overriding theme tokens (Web Only)
+
+If you need to override theme tokens, you can do so by supplying the
+`dangerouslyOverrideTokens` prop to the `AtlantisThemeContextProvider`. You can
+also supply custom tokens which are exposed as CSS variables to any elements
+under this `AtlantisThemeContextProvider`. All overridden tokens are also
+accessible via the `overrideTokens` object from the `useAtlantisTheme` hook.
+
+This capability allows you to create custom theme providers.
+
+```tsx
+import {
+  AtlantisThemeContextProvider,
+  updateTheme,
+  useAtlantisTheme,
+} from "@jobber/components/AtlantisThemeContext";
+
+function App() {
+  return (
+    <AtlantisThemeContextProvider
+      dangerouslyOverrideTokens={{
+        "color-text": "fuchsia",
+      }}
+    >
+      <Text>This text will be fuchsia!</Text>
+    </AtlantisThemeContextProvider>
+  );
+}
+```
+
 ### Creating themed styles with buildThemedStyles (Mobile Only)
 
 The `buildThemedStyles` utility is available to help create themed StyleSheets
