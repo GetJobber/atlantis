@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.87.0...@jobber/components@6.88.0) (2025-09-08)
+
+
+### Features
+
+* **components:** Allowing Theme Overrides ([#2685](https://github.com/GetJobber/atlantis/issues/2685)) ([4502478](https://github.com/GetJobber/atlantis/commit/45024780c22dcc1b07d87dd0c48b963977b47138))
+
+
+
+
+
 # [6.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.86.5...@jobber/components@6.87.0) (2025-09-04)
 
 
