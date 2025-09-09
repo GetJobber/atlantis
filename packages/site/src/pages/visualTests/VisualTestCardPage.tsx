@@ -165,12 +165,12 @@ export function VisualTestCardPage() {
             <Grid.Cell size={{ xs: 12, md: 6 }}>
               <Card
                 header={
-                  <Box padding="base">
+                  <Content>
                     <Flex template={["grow", "shrink"]} align="center">
                       <Heading level={3}>Custom Header</Heading>
                       <Button type="secondary" icon="cross" ariaLabel="Close" />
                     </Flex>
-                  </Box>
+                  </Content>
                 }
                 elevation="base"
               >
@@ -191,14 +191,16 @@ export function VisualTestCardPage() {
             <Grid.Cell size={{ xs: 12, md: 6 }}>
               <Card elevation="base">
                 <Card.Header>
-                  <Flex template={["grow", "shrink"]} align="center">
-                    <Heading level={4}>Profile Settings</Heading>
-                    <Button
-                      type="tertiary"
-                      icon="more"
-                      ariaLabel="More options"
-                    />
-                  </Flex>
+                  <Content>
+                    <Flex template={["grow", "shrink"]} align="center">
+                      <Heading level={4}>Profile Settings</Heading>
+                      <Button
+                        type="tertiary"
+                        icon="more"
+                        ariaLabel="More options"
+                      />
+                    </Flex>
+                  </Content>
                 </Card.Header>
                 <Card.Body>
                   <Content>
@@ -215,10 +217,12 @@ export function VisualTestCardPage() {
             <Grid.Cell size={{ xs: 12, md: 6 }}>
               <Card accent="green" elevation="high">
                 <Card.Header>
-                  <Flex template={["grow", "shrink"]} align="center">
-                    <Heading level={4}>Success Story</Heading>
-                    <Icon name="checkmark" color="green" />
-                  </Flex>
+                  <Content>
+                    <Flex template={["grow", "shrink"]} align="center">
+                      <Heading level={4}>Success Story</Heading>
+                      <Icon name="checkmark" color="green" />
+                    </Flex>
+                  </Content>
                 </Card.Header>
                 <Card.Body>
                   <Content>
@@ -226,7 +230,9 @@ export function VisualTestCardPage() {
                       Your changes have been saved successfully! All your
                       settings are now active.
                     </Text>
-                    <Button label="Continue" type="primary" />
+                    <Box margin={{ top: "base" }}>
+                      <Button label="Continue" type="primary" />
+                    </Box>
                   </Content>
                 </Card.Body>
               </Card>
