@@ -119,3 +119,8 @@
 .rightAction > *:nth-child(2) {
   order: 1; /* 1 */
 }
+
+div[role="dialog"]:focus,
+div[role="dialog"]:focus-visible {
+  outline: transparent;
+}
