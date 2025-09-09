@@ -10,6 +10,7 @@ module.exports = {
     "\\.css$": "identity-obj-proxy",
     "react-markdown":
       "<rootDir>/node_modules/react-markdown/react-markdown.min.js",
+    "^@jobber/hooks$": "<rootDir>/packages/hooks/dist/index.js",
     "^@jobber/hooks/(.*)$": "<rootDir>/packages/hooks/dist/$1",
     "^@jobber/components/(.*)$": "<rootDir>/packages/components/src/$1",
   },
