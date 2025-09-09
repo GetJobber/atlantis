@@ -370,25 +370,6 @@ describe("UNSAFE_ props", () => {
         expect(cardElement.tagName).toBe("DIV");
         expect(cardElement).toHaveClass("custom-compound-container");
       });
-      it("applies to Card.Header", () => {
-        const { container } = render(
-          <Card>
-            <Card.Header
-              UNSAFE_className={{
-                header: "custom-compound-header",
-              }}
-            >
-              <Text>Compound Header</Text>
-            </Card.Header>
-            <Card.Body>
-              <p>Compound content</p>
-            </Card.Body>
-          </Card>,
-        );
-
-        const headerElement = container.querySelector(".header");
-        expect(headerElement).toHaveClass("custom-compound-header");
-      });
 
       it("applies to link compound card container", () => {
         const { getByRole } = render(
@@ -436,30 +417,6 @@ describe("UNSAFE_ props", () => {
         expect(cardElement.tagName).toBe("DIV");
         expect(cardElement).toHaveStyle({
           backgroundColor: "var(--color-yellow)",
-        });
-      });
-
-      it("applies to Card.Header", () => {
-        const { container } = render(
-          <Card>
-            <Card.Header
-              UNSAFE_style={{
-                header: {
-                  backgroundColor: "var(--color-blue)",
-                },
-              }}
-            >
-              <Text>Compound Header</Text>
-            </Card.Header>
-            <Card.Body>
-              <p>Compound content</p>
-            </Card.Body>
-          </Card>,
-        );
-
-        const headerElement = container.querySelector(".header");
-        expect(headerElement).toHaveStyle({
-          backgroundColor: "var(--color-blue)",
         });
       });
 

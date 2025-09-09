@@ -70,19 +70,8 @@ type CardPropOptions = LinkCardProps | ClickableCardProps | RegularCardProps;
  * </Card>
  * ```
  */
-function CardHeaderCompoundComponent({
-  children,
-  UNSAFE_className = {},
-  UNSAFE_style = {},
-}: CardHeaderProps) {
-  return (
-    <div
-      className={classnames(styles.header, UNSAFE_className.header)}
-      style={UNSAFE_style.header}
-    >
-      {children}
-    </div>
-  );
+function CardHeaderCompoundComponent({ children }: CardHeaderProps) {
+  return <>{children}</>;
 }
 
 /**
@@ -136,10 +125,12 @@ function renderCardWrapper(
   UNSAFE_className?: string,
   UNSAFE_style?: React.CSSProperties,
 ) {
+  const combinedClassName = classnames(className, UNSAFE_className);
+
   if (onClick) {
     return (
       <CardClickable
-        className={className}
+        className={combinedClassName}
         onClick={onClick}
         UNSAFE_className={UNSAFE_className}
         UNSAFE_style={UNSAFE_style}
@@ -148,8 +139,6 @@ function renderCardWrapper(
       </CardClickable>
     );
   }
-
-  const combinedClassName = classnames(className, UNSAFE_className);
 
   if (url) {
     return (

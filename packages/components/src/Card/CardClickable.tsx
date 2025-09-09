@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import React, { useRef } from "react";
-import classnames from "classnames";
 
 interface ClickableCardProps {
   onClick(event: React.MouseEvent<HTMLElement>): void;
@@ -21,17 +20,15 @@ export function CardClickable({
   className,
   onClick,
   children,
-  UNSAFE_className,
   UNSAFE_style = {},
 }: ClickableCardProps) {
   const cardRef = useRef() as React.MutableRefObject<HTMLDivElement>;
-  const combinedClassName = classnames(className, UNSAFE_className);
 
   return (
     <div
       ref={cardRef}
       data-testid="clickable-card"
-      className={combinedClassName}
+      className={className}
       style={UNSAFE_style}
       onClick={onClick}
       onKeyUp={handleKeyup}
