@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import React, { useCallback, useEffect } from "react";
 import classNames from "classnames";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { useIsMounted } from "@jobber/hooks";
 import { FloatingPortal } from "@floating-ui/react";
 import styles from "../Autocomplete.module.css";
 import type { UseRepositionMenu } from "../useRepositionMenu";

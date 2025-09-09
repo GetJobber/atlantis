@@ -1,6 +1,6 @@
 import type { Ref, RefAttributes } from "react";
 import React, { forwardRef, useEffect, useMemo, useRef, useState } from "react";
-import { useDebounce } from "@jobber/hooks/useDebounce";
+import { useDebounce } from "@jobber/hooks";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
 import {

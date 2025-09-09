@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import * as jobberHooks from "@jobber/hooks/useResizeObserver";
+import * as jobberHooks from "@jobber/hooks";
 import { Disclosure } from ".";
 import { Icon } from "../Icon";
 
