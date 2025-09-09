@@ -8,9 +8,12 @@
     "declarationDir": "./dist/types",
     "resolveJsonModule": true,
     "paths": {
+      "@jobber/hooks": [
+        "../hooks/src/index.ts"
+      ],
       "@jobber/hooks/*": [
-        "../../packages/hooks/src/*"
-      ]
+        "../hooks/src/*"
+      ],
     },
     "types": [
       "react-native",
@@ -32,5 +35,8 @@
     "**/*.stories.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
-  ]
+  ],
+  "references": [
+    { "path": "../hooks" }
+  ],
 }

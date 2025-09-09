@@ -4,6 +4,7 @@
     "module": "ESNext",
     "jsx": "react",
     "declaration": true,
+    "skipLibCheck": true,
     "rootDir": "src",
     "outDir": "dist",
     "paths": {

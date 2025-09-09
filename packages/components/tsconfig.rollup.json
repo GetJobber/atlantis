@@ -1,5 +1,12 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@jobber/components/*": [
+        "./src/*"
+      ]
+    }
+  },
   "exclude": [
     "**/*.stories.tsx",
     "**/*.test.ts",
