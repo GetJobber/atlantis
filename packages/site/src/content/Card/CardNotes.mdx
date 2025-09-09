@@ -144,28 +144,6 @@ for applying styles via CSS Modules.
 }
 ```
 
-If you're using Card with its composable subcomponents, you'll need to pass
-`UNSAFE_className` to the individual subcomponents accordingly:
-
-```tsx
-<Card
-  UNSAFE_className={{
-    container: styles.customCardContainer,
-  }}
->
-  <Card.Header
-    UNSAFE_className={{
-      header: styles.customCardHeader,
-    }}
-  >
-    <Text>Custom Header</Text>
-  </Card.Header>
-  <Card.Body>
-    <p>Card content with custom styling</p>
-  </Card.Body>
-</Card>
-```
-
 #### UNSAFE_style
 
 Use `UNSAFE_style` to apply inline custom styles to the Card.
@@ -188,31 +166,23 @@ Use `UNSAFE_style` to apply inline custom styles to the Card.
 </Card>
 ```
 
-If you're using Card with its composable subcomponents, you'll need to pass
-`UNSAFE_style` to the individual subcomponents accordingly:
+### Compound Component Card
 
-```tsx
-<Card
-  UNSAFE_style={{
-    container: {
-      backgroundColor: "var(--color-surface--hover)",
-      borderLeft: "4px solid var(--color-green)",
-    },
-  }}
->
-  <Card.Header
-    UNSAFE_style={{
-      header: {
-        backgroundColor: "var(--color-green)",
-        color: "white",
-        padding: "var(--space-large)",
-      },
-    }}
-  >
-    <Text>Custom Styled Header</Text>
-  </Card.Header>
-  <Card.Body>
-    <p>Card content with custom container styling</p>
-  </Card.Body>
+If you're using Card with its composable subcomponents, note that currently
+these subcomponents are simply fragments. As such, you are free to provide any
+desired markup and have no need for either UNSAFE.
+
+```
+<Card>
+ <Card.Header>
+  <div className="custom" style={{padding: "var(--space-base)}}>
+   <Heading level={3}>My Custom Header</Heading>
+  </div>
+ </Card.Header>
+ <Card.Body>
+  <div style={{ background: "#29d", padding: "var(--space-base)"}}>
+   <Text>Card content</Text>
+  </div>
+ </Card.Body>
 </Card>
 ```
