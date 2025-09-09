@@ -9,5 +9,6 @@
 }
 
 .wrapper {
-  display: inline-block;
+  display: inline-flex;
+  max-width: 100%;
 }
