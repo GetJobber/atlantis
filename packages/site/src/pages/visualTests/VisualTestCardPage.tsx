@@ -216,21 +216,21 @@ export function VisualTestCardPage() {
 
             <Grid.Cell size={{ xs: 12, md: 6 }}>
               <Card accent="green" elevation="high">
-                <Content>
-                  <Card.Header>
-                    <Flex template={["grow", "shrink"]} align="center">
-                      <Heading level={4}>Success Story</Heading>
-                      <Icon name="checkmark" color="green" />
-                    </Flex>
-                  </Card.Header>
-                  <Card.Body>
+                <Card.Header>
+                  <Flex template={["grow", "shrink"]} align="center">
+                    <Heading level={4}>Success Story</Heading>
+                    <Icon name="checkmark" color="green" />
+                  </Flex>
+                </Card.Header>
+                <Card.Body>
+                  <Content>
                     <Text>
                       Your changes have been saved successfully! All your
                       settings are now active.
                     </Text>
                     <Button label="Continue" type="primary" />
-                  </Card.Body>
-                </Content>
+                  </Content>
+                </Card.Body>
               </Card>
             </Grid.Cell>
           </Grid>

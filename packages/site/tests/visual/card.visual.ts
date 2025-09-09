@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 
+test.use({ viewport: { width: 1280, height: 1000 } });
 test.describe("Card Visual Tests", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/visual-tests/card");
