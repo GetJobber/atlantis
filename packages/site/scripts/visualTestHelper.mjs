@@ -4,17 +4,24 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 
 // Usage:
-// node scripts/visualPair.mjs <mode:test|update> <component>
+// node scripts/visualTestHelper.mjs <mode:test|update> <component>
 // Examples:
-//   npm run visual:test:pair -- card
-//   npm run visual:update:pair -- card
+//   npm run visual:test:single -- card
+//   npm run visual:update:single -- card
+
+// To avoid building, run with --no-build
+// Example:
+//   npm run visual:test:single -- card --no-build
+//   npm run visual:update:single -- card --no-build
 
 const args = process.argv.slice(2);
 const [modeArg, componentArg] = args;
-const skipBuild = args.includes("--skip-build") || args.includes("--no-build");
+const skipBuild = args.includes("--no-build");
 
 if (!modeArg || !["test", "update"].includes(modeArg)) {
-  console.error("Usage: node scripts/visualPair.mjs <test|update> <component>");
+  console.error(
+    "Usage: node scripts/visualTestHelper.mjs <test|update> <component>",
+  );
   process.exit(1);
 }
 
@@ -22,7 +29,7 @@ const component = componentArg;
 
 if (!component) {
   console.error(
-    "Missing <component>. Example: npm run visual:test:pair -- card",
+    "Missing <component>. Example: npm run visual:test:single -- card",
   );
   process.exit(1);
 }
