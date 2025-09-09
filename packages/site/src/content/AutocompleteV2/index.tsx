@@ -36,7 +36,7 @@ return (
     {
       label: "Storybook",
       url: getStorybookUrl(
-        "?path=/docs/components-forms-and-inputs-autocomplete-web-v2--docs",
+        "?path=/story/components-forms-and-inputs-autocomplete-web-v2--flat",
       ),
     },
   ],
