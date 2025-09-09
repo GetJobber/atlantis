@@ -54,7 +54,7 @@ function runAtRoot(cmd) {
   execSync(cmd, { stdio: "inherit", cwd: repoRoot });
 }
 
-// Pre-build components to ensure dist is fresh (can be skipped with --skip-build)
+// Pre-build components to ensure dist is fresh (can be skipped with --no-build)
 if (!skipBuild) {
   runAtRoot("npm run -w @jobber/components build");
 }
