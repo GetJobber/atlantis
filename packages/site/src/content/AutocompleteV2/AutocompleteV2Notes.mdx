@@ -1,3 +1,5 @@
+import { Banner } from "@jobber/components/Banner";
+
 ## Configuration
 
 ### V1 to V2
@@ -249,18 +251,21 @@ interactive Header, or interactive Footer.
 This is `false` by default, and allows a user to provide a value that is not an
 option in the list.
 
-⚠️ Caution: Using free form with custom data introduces complexity due to the
-fact that the input can of course only be a string, so if your custom data has
-additional fields like `details` for example, we have no way to know what might
-make sense.
+<Banner type="warning" dismissible={false}>
+  Using free form with custom data introduces complexity due to the fact that
+  the input's value can only be a string, so if your custom data has additional
+  fields like `details` for example, we have no way to populate that field.
+</Banner>
 
 To help wih this, we require a `createFreeFormValue` method when using
-`allowFreeForm`. This method will be used with the `onChange` to change the
-shape of the returned value into the same shape as the incoming custom data,
-where you must provide the value for these additional fields.
+`allowFreeForm`. This method is applied to the outgoing value before it is
+passed to `onChange` to change the shape of the returned value into the same
+shape as the incoming custom data, where you must provide the value for these
+additional fields.
 
 `allowFreeForm` with simple items having only "label" is the easiest way to
-leverage this prop.
+leverage this prop. More complex creation flows may be better suited for complex
+data.
 
 ### "onChange"
 
