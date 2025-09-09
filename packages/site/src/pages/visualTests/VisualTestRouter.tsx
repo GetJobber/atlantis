@@ -1,5 +1,6 @@
 import { Route, Switch } from "react-router";
 import { VisualTestAutocompletePage } from "./VisualTestAutocompletePage";
+import { VisualTestAutocompleteV2Page } from "./VisualTestAutocompleteV2Page";
 import { VisualTestChipPage } from "./VisualTestChipPage";
 import { VisualTestChipsPage } from "./VisualTestChipsPage";
 import { VisualTestComboboxPage } from "./VisualTestComboboxPage";
@@ -81,6 +82,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/autocomplete"
         exact={true}
         component={VisualTestAutocompletePage}
+      />
+      <Route
+        path="/visual-tests/autocomplete-v2"
+        exact={true}
+        component={VisualTestAutocompleteV2Page}
       />
       <Route
         path="/visual-tests/banner"
