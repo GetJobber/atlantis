@@ -9,7 +9,9 @@ import path from "node:path";
 //   npm run visual:test:pair -- card
 //   npm run visual:update:pair -- card
 
-const [modeArg, componentArg] = process.argv.slice(2);
+const args = process.argv.slice(2);
+const [modeArg, componentArg] = args;
+const skipBuild = args.includes("--skip-build") || args.includes("--no-build");
 
 if (!modeArg || !["test", "update"].includes(modeArg)) {
   console.error("Usage: node scripts/visualPair.mjs <test|update> <component>");
@@ -27,6 +29,7 @@ if (!component) {
 
 const siteDir = path.resolve(process.cwd());
 const specPath = path.join(siteDir, "tests/visual", `${component}.visual.ts`);
+const repoRoot = path.resolve(siteDir, "../..");
 
 if (!existsSync(specPath)) {
   console.error(`Spec not found: ${path.relative(siteDir, specPath)}`);
@@ -38,6 +41,15 @@ const updateFlag = isUpdate ? " --update-snapshots" : "";
 
 function run(cmd) {
   execSync(cmd, { stdio: "inherit", cwd: siteDir });
+}
+
+function runAtRoot(cmd) {
+  execSync(cmd, { stdio: "inherit", cwd: repoRoot });
+}
+
+// Pre-build components to ensure dist is fresh (can be skipped with --skip-build)
+if (!skipBuild) {
+  runAtRoot("npm run -w @jobber/components build");
 }
 
 // 1) Component spec (Chromium inside container per wrapper default)
