@@ -191,16 +191,14 @@ export function VisualTestCardPage() {
             <Grid.Cell size={{ xs: 12, md: 6 }}>
               <Card elevation="base">
                 <Card.Header>
-                  <Box padding="base">
-                    <Flex template={["grow", "shrink"]} align="center">
-                      <Heading level={4}>Profile Settings</Heading>
-                      <Button
-                        type="tertiary"
-                        icon="more"
-                        ariaLabel="More options"
-                      />
-                    </Flex>
-                  </Box>
+                  <Flex template={["grow", "shrink"]} align="center">
+                    <Heading level={4}>Profile Settings</Heading>
+                    <Button
+                      type="tertiary"
+                      icon="more"
+                      ariaLabel="More options"
+                    />
+                  </Flex>
                 </Card.Header>
                 <Card.Body>
                   <Content>
