@@ -199,6 +199,41 @@ describe("ComboboxOption", () => {
         label: "Michael",
       });
     });
+
+    it("provides defaultContent and renders it identically to default", () => {
+      const option: ComboboxOptionProps = {
+        id: "1",
+        label: "Michael",
+        customRender: POM.customRenderDefaultContent,
+      };
+
+      POM.renderOption({
+        ...option,
+        selected: [],
+      });
+
+      // default content renders the label
+      expect(POM.getOption("Michael")).toBeInTheDocument();
+      // not selected, so no checkmark
+      expect(POM.queryCheckmark()).not.toBeInTheDocument();
+    });
+
+    it("defaultContent reflects selection state (shows checkmark when selected)", () => {
+      const option: ComboboxOptionProps = {
+        id: "1",
+        label: "Michael",
+        customRender: POM.customRenderDefaultContent,
+      };
+
+      POM.renderOption({
+        ...option,
+        selected: [option],
+      });
+
+      // default content renders the label and checkmark when selected
+      expect(POM.getOption("Michael")).toBeInTheDocument();
+      expect(POM.getCheckmark()).toBeInTheDocument();
+    });
   });
 
   describe("onClick callback", () => {

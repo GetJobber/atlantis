@@ -536,6 +536,9 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
   const [selectedLineItems, setSelectedLineItems] = useState<ComboboxOption[]>(
     [],
   );
+  const [selectedLineItems2, setSelectedLineItems2] = useState<
+    ComboboxOption[]
+  >([]);
 
   const teamMemberOptions = [
     {
@@ -900,6 +903,33 @@ const ComboboxCustomRenderOptions: ComponentStory<typeof Combobox> = args => {
                   </Flex>
                 );
               }}
+            />
+          );
+        })}
+
+        <Combobox.Action
+          label="+ Add new line item"
+          onClick={() => {
+            alert("Added a new line item ✅");
+          }}
+        />
+      </Combobox>
+      <Combobox
+        label="Add line item with default content"
+        subjectNoun="line items"
+        {...args}
+        onSelect={setSelectedLineItems2}
+        selected={selectedLineItems2}
+      >
+        {lineItemOptions.map(o => {
+          return (
+            <Combobox.Option
+              key={o.id}
+              id={`${o.id}`}
+              label={o.label}
+              customRender={({ defaultContent }) => (
+                <span style={{ display: "contents" }}>{defaultContent}</span>
+              )}
             />
           );
         })}
