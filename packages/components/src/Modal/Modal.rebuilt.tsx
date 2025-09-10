@@ -128,12 +128,12 @@ export function ModalContent({ children }: ModalContainerProps) {
                 >
                   <div
                     ref={floatingRefs?.setFloating}
-                    role="dialog"
-                    tabIndex={0}
-                    aria-modal="true"
-                    aria-labelledby={modalLabelledBy}
-                    aria-label={accessibleName}
-                    {...getFloatingProps()}
+                    {...getFloatingProps({
+                      tabIndex: 0,
+                      "aria-modal": true,
+                      "aria-labelledby": modalLabelledBy,
+                      "aria-label": accessibleName,
+                    })}
                   >
                     <ModalOverlay />
                     <motion.div
