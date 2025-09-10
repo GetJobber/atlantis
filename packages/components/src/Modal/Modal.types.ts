@@ -148,4 +148,8 @@ export interface ModalLegacyProps {
   readonly tertiaryAction?: ButtonProps;
   onRequestClose?(): void;
   readonly version?: 1;
+  /**
+   * Accessible name override applied to the modal via aria-label. When provided, it takes precedence over using the title.
+   */
+  readonly accessibleName?: string;
 }

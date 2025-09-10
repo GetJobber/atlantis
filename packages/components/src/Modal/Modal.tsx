@@ -23,11 +23,13 @@ export function ModalLegacy({
   secondaryAction,
   tertiaryAction,
   onRequestClose,
+  accessibleName,
 }: ModalLegacyProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
   useOnKeyDown(handleRequestClose, "Escape");
+  const headerId = "ATL-Modal-Header";
 
   const template = (
     <AnimatePresence>
@@ -37,6 +39,9 @@ export function ModalLegacy({
           role="dialog"
           className={styles.container}
           tabIndex={0}
+          aria-modal="true"
+          aria-labelledby={title != undefined ? headerId : undefined}
+          aria-label={title != undefined ? undefined : accessibleName}
         >
           <motion.div
             key={styles.overlay}
@@ -60,6 +65,7 @@ export function ModalLegacy({
           >
             {title != undefined && (
               <Header
+                id={headerId}
                 title={title}
                 dismissible={dismissible}
                 onRequestClose={onRequestClose}
@@ -90,14 +96,15 @@ export function ModalLegacy({
 }
 
 interface HeaderProps {
+  readonly id?: string;
   readonly title: string;
   readonly dismissible?: boolean;
   onRequestClose?(): void;
 }
 
-function Header({ title, dismissible, onRequestClose }: HeaderProps) {
+function Header({ id, title, dismissible, onRequestClose }: HeaderProps) {
   return (
-    <div className={styles.header} data-testid="modal-header">
+    <div className={styles.header} data-testid="modal-header" id={id}>
       <Heading level={2}>{title}</Heading>
 
       {dismissible && (
