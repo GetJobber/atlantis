@@ -389,6 +389,7 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
           if (iframeDocument) {
             selectedFrame.current.style.height =
               iframeDocument.body.scrollHeight + 60 + "px";
+            selectedFrame.current.style.resize = "vertical";
           }
           updateIframeCode(selectedFrame.current, transpiledCode);
         }
