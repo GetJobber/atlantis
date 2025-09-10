@@ -129,7 +129,6 @@ export function ModalContent({ children }: ModalContainerProps) {
                   <div
                     ref={floatingRefs?.setFloating}
                     {...getFloatingProps({
-                      tabIndex: 0,
                       "aria-modal": true,
                       "aria-labelledby": modalLabelledBy,
                       "aria-label": accessibleName,
