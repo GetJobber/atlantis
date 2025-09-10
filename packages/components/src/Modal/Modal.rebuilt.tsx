@@ -123,12 +123,10 @@ export function ModalContent({ children }: ModalContainerProps) {
                 <FloatingFocusManager
                   context={floatingContext}
                   returnFocus={activatorRef?.current ? activatorRef : true}
-                  initialFocus={floatingRefs?.floating}
                 >
                   <div
                     ref={floatingRefs?.setFloating}
                     role="dialog"
-                    tabIndex={0}
                     aria-labelledby={modalLabelledBy}
                     {...getFloatingProps()}
                   >
