@@ -22,11 +22,12 @@ that the user can select. These options should be presented in a way that makes
 it easy for the user to find the value they are looking for. There are a few
 ways to achieve this.
 
+
+### Sectioned
+
 Section headings can be added to an Autocomplete to break up the options into
 groups. This can be useful if there are a lot of options or if the options are
 related to different things.
-
-### Sectioned
 
 export const AutocompleteV2SectionedExample = () => {
   const [value, setValue] = useState();
@@ -63,7 +64,8 @@ export const AutocompleteV2SectionedExample = () => {
     },
   ];
 
-return ( <Autocomplete
+  return (
+    <Autocomplete
       version={2}
       placeholder="Search"
       value={value}
@@ -71,11 +73,15 @@ return ( <Autocomplete
       inputValue={inputValue}
       onInputChange={setInputValue}
       menu={menu}
-    /> ); };
+    />
+  );
+};
 
 <Canvas>
   <AutocompleteV2SectionedExample />
 </Canvas>
+
+### Header and Footers
 
 Headers and Footers can be used to present persistent information or actions
 that should always be available regardless of results, or scroll location in the
@@ -83,26 +89,118 @@ list of options. While there is no limit to how many can be present, it is
 advisable to use them sparringly to prevent the options from being the primary
 focus of the Autocomplete.
 
+
 export const AutocompleteV2HeaderFooterExample = () => {
   const [value, setValue] = useState();
   const [inputValue, setInputValue] = useState("");
 
-return ( <Content> <Heading level={5}>Header/Footer</Heading> <Autocomplete
-version={2} placeholder="Search" value={value} onChange={setValue}
-inputValue={inputValue} onInputChange={setInputValue} menu={[ { type: "header",
-label: "Pinned header", shouldClose: false }, { type: "options", options: [ {
-label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line
-Repair" }, { label: "Window Cleaning" }, { label: "Roof Inspection" }, { label:
-"Lawn Mowing" }, { label: "Hedge Trimming" }, ], }, { type: "footer", label:
-"Interactive footer", onClick: () => { alert("Clicked") } }, ]} /> </Content> );
+  return (
+    <Content>
+      <Heading level={5}>Header/Footer</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        menu={[
+          { type: "header", label: "Pinned header", shouldClose: false },
+          {
+            type: "options",
+            options: [
+              { label: "Drain Cleaning" },
+              { label: "Pipe Replacement" },
+              { label: "Sewer Line Repair" },
+              { label: "Window Cleaning" },
+              { label: "Roof Inspection" },
+              { label: "Lawn Mowing" },
+              { label: "Hedge Trimming" },
+            ],
+          },
+          { type: "footer", label: "Interactive footer", onClick: () => { alert("Clicked") } },
+        ]}
+      />
+    </Content>
+  );
 };
 
 <Canvas>
   <AutocompleteV2HeaderFooterExample />
 </Canvas>
 
+### Actions
+
+Actions may be placed either on the "flat" list of options or in individual sections. They are accessible by keyboard using arrow keys and Enter to select the highlighted action.
+
+
+export const AutocompleteV2ActionsExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const [open, setOpen] = useState(false);
+  const [newService, setNewService] = useState("");
+
+  return (
+    <Content>
+      <Heading level={5}>Actions</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Options and actions"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        emptyStateMessage="No services found"
+        menu={[
+          {
+            type: "section",
+            label: "Indoor",
+            options: [
+              { label: "Drain Cleaning" },
+              { label: "Pipe Replacement" },
+              { label: "Sewer Line Repair" },
+              { label: "Window Cleaning" },
+            ],
+            actions: [
+              {
+                type: "action",
+                label: "New Indoor",
+                onClick: () => { alert("Adding indoor service") }
+              }
+            ],
+          },
+          {
+            type: "section",
+            label: "Outdoor",
+            options: [
+              { label: "Window Cleaning" },
+              { label: "Roof Inspection" },
+              { label: "Lawn Mowing" },
+              { label: "Hedge Trimming" },
+            ],
+            actions: [
+              {
+                type: "action",
+                label: "New Outdoor",
+                onClick: () => { alert("Adding outdoor service") }
+              }
+            ],
+          },  
+        ]}
+      />
+    </Content>
+  );
+};
+
+<Canvas>
+  <AutocompleteV2ActionsExample />
+</Canvas>
+
+### Empty Actions
+
 Empty actions can be used to present a user with relevant actions to take when
-no options exist.
+no options exist. They will not be visible otherwise.
+
 
 export const AutocompleteV2EmptyActionsExample = () => {
   const [value, setValue] = useState();
@@ -110,19 +208,98 @@ export const AutocompleteV2EmptyActionsExample = () => {
   const [open, setOpen] = useState(false);
   const [newService, setNewService] = useState("");
 
-return ( <Content> <Heading level={5}>Empty actions</Heading> <Autocomplete
-version={2} placeholder="Try a term with no matches" value={value}
-onChange={setValue} inputValue={inputValue} onInputChange={setInputValue}
-emptyStateMessage="No services found" emptyActions={[ { type: "action", label:
-"Create service", onClick: () => setOpen(true), }, ]} menu={[ { type: "options",
-options: [ { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label:
-"Sewer Line Repair" }, ], }, ]} /> {open ? ( <Content> <Heading level={5}>Create
-service</Heading> <input value={newService} onChange={e =>
-setNewService(e.target.value)} /> <Button label="Create" onClick={() =>
-setOpen(false)} /> </Content> ) : null} </Content> ); };
+  return (
+    <Content>
+      <Heading level={5}>Empty actions</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Try a term with no matches"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        emptyStateMessage="No services found"
+        emptyActions={[
+          {
+            type: "action",
+            label: "Create service",
+            onClick: () => setOpen(true),
+          },
+        ]}
+        menu={[
+          {
+            type: "options",
+            options: [
+              { label: "Drain Cleaning" },
+              { label: "Pipe Replacement" },
+              { label: "Sewer Line Repair" },
+            ],
+          },
+        ]}
+      />
+      {open ? (
+        <Content>
+          <Heading level={5}>Create service</Heading>
+          <input
+            value={newService}
+            onChange={e => setNewService(e.target.value)}
+          />
+          <Button label="Create" onClick={() => setOpen(false)} />
+        </Content>
+      ) : null}
+    </Content>
+  );
+};
 
 <Canvas>
   <AutocompleteV2EmptyActionsExample />
+</Canvas>
+
+### Stay Open Behavior
+
+All interactive elements (actions, headers, footers, empty actions) can be individually configured to keep the menu open when used if
+desired.
+
+
+export const AutocompleteV2StayOpenExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <Content>
+      <Heading level={5}>Stay Open Action</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search"
+        value={value}
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        menu={[
+          {
+            type: "options",
+            options: [
+              { label: "Drain Cleaning" },
+              { label: "Pipe Replacement" },
+              { label: "Sewer Line Repair" },
+            ],
+            actions: [
+              {
+                type: "action",
+                label: "Add Service (stays open)",
+                shouldClose: false,
+                onClick: () => alert("Add Service"),
+              },
+            ],
+          },
+        ]}
+      />
+    </Content>
+  );
+};
+
+<Canvas>
+  <AutocompleteV2StayOpenExample />
 </Canvas>
 
 ### FreeForm
@@ -146,34 +323,26 @@ export const AutocompleteV2FreeFormExample = () => {
     { label: "Window Cleaning" },
   ];
 
-return ( <> <p>Your selection is: {value?.label ?? "" }</p> <Autocomplete
-version={2} placeholder="Type anything" value={value} onChange={setValue}
-inputValue={inputValue} onInputChange={setInputValue} allowFreeForm
-createFreeFormValue={label => ({ label })} menu={[{ type: "options", options }]}
-/> </> ); };
+  return (
+    <>
+    <p>Your selection is: {value?.label ?? "" }</p>
+    <Autocomplete
+      version={2}
+      placeholder="Type anything"
+      value={value}
+      onChange={setValue}
+      inputValue={inputValue}
+      onInputChange={setInputValue}
+      allowFreeForm
+      createFreeFormValue={label => ({ label })}
+      menu={[{ type: "options", options }]}
+    />
+    </>
+  );
+};
 
 <Canvas>
   <AutocompleteV2FreeFormExample />
-</Canvas>
-### Stay Open Behavior
-
-Actions can be individually configured to keep the menu open when used if
-desired.
-
-export const AutocompleteV2StayOpenExample = () => {
-  const [value, setValue] = useState();
-  const [inputValue, setInputValue] = useState("");
-
-return ( <Content> <Heading level={5}>Stay Open Action</Heading> <Autocomplete
-version={2} placeholder="Search" value={value} onChange={setValue}
-inputValue={inputValue} onInputChange={setInputValue} menu={[ { type: "options",
-options: [ { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label:
-"Sewer Line Repair" }, ], actions: [ { type: "action", label: "Add Service
-(stays open)", shouldClose: false, onClick: () => alert("Add Service"), }, ], },
-]} /> </Content> ); };
-
-<Canvas>
-  <AutocompleteV2StayOpenExample />
 </Canvas>
 
 ### Interactive Content
