@@ -51,7 +51,6 @@ export function ModalProvider({
     open,
     activatorRef: refProp,
     onRequestClose,
-    dismissible,
   });
 
   const content = (
