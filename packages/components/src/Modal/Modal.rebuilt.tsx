@@ -109,6 +109,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     size,
     floatingNodeId,
     modalLabelledBy,
+    accessibleName,
     getFloatingProps,
   } = useModalContext();
   const { modal, overlay } = useModalStyles(size);
@@ -129,7 +130,9 @@ export function ModalContent({ children }: ModalContainerProps) {
                     ref={floatingRefs?.setFloating}
                     role="dialog"
                     tabIndex={0}
+                    aria-modal="true"
                     aria-labelledby={modalLabelledBy}
+                    aria-label={accessibleName}
                     {...getFloatingProps()}
                   >
                     <ModalOverlay />

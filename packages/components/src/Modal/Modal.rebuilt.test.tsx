@@ -86,6 +86,32 @@ describe("Composable Modal", () => {
     expect(await screen.findByRole("dialog")).toBeInTheDocument();
   });
 
+  it("names the dialog from title via aria-labelledby when accessibleName is not provided", async () => {
+    render(
+      <Modal.Provider open={true}>
+        <Modal.Content>
+          <Modal.Header title="Billing Settings" />
+        </Modal.Content>
+      </Modal.Provider>,
+    );
+
+    expect(
+      await screen.findByRole("dialog", { name: "Billing Settings" }),
+    ).toBeInTheDocument();
+  });
+
+  it("uses accessibleName via aria-label only when no title/header is provided", async () => {
+    render(
+      <Modal.Provider open={true} accessibleName="Add Customer">
+        <Modal.Content>{/* no Modal.Header on purpose */}</Modal.Content>
+      </Modal.Provider>,
+    );
+
+    expect(
+      await screen.findByRole("dialog", { name: "Add Customer" }),
+    ).toBeInTheDocument();
+  });
+
   it("calls onRequestClose when pressing the escape key", async () => {
     const handleRequestClose = jest.fn();
     render(

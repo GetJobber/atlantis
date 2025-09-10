@@ -30,6 +30,15 @@ export interface ModalProviderProps {
    */
   readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
   readonly dismissible?: boolean;
+  /**
+   * Id to provide aria-labelledby to the modal. If you are using Modal.Header with children or another header you will need to provide this as the id of the header.
+   * @default "ATL-Modal-Header"
+   */
+  readonly modalLabelledBy?: string;
+  /**
+   * Accessible name override applied to the modal via aria-label. When provided, it takes precedence over aria-labelledby.
+   */
+  readonly accessibleName?: string;
 }
 
 export type ModalContentProps = PropsWithChildren;
@@ -76,6 +85,11 @@ export interface ModalContextType {
    * @default "ATL-Modal-Header"
    */
   readonly modalLabelledBy?: string;
+
+  /**
+   * Accessible name override applied to the modal via aria-label. When provided, it takes precedence over aria-labelledby.
+   */
+  readonly accessibleName?: string;
 
   /**
    * Floating-ui props to position the modal.
