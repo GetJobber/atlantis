@@ -13,12 +13,14 @@ interface UseModalProps {
   open: boolean;
   activatorRef?: React.RefObject<HTMLElement | null> | null;
   onRequestClose: () => void;
+  dismissible?: boolean;
 }
 
 export function useModal({
   open,
   activatorRef: refProp,
   onRequestClose,
+  dismissible = true,
 }: UseModalProps) {
   const nodeId = useFloatingNodeId();
   const defaultActivatorRef = useRef<HTMLElement | null>(null);
@@ -37,8 +39,9 @@ export function useModal({
 
   const click = useClick(floatingContext);
   const dismiss = useDismiss(floatingContext, {
+    outsidePress: dismissible,
     outsidePressEvent: "click",
-    escapeKey: true,
+    escapeKey: dismissible,
     bubbles: false,
   });
   const role = useRole(floatingContext);
