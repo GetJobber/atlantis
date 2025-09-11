@@ -1,5 +1,4 @@
 import {
-  useClick,
   useDismiss,
   useFloating,
   useFloatingNodeId,
@@ -35,7 +34,6 @@ export function useModal({
     open: open,
   });
 
-  const click = useClick(floatingContext);
   const dismiss = useDismiss(floatingContext, {
     outsidePressEvent: "click",
     escapeKey: true,
@@ -43,7 +41,7 @@ export function useModal({
   });
   const role = useRole(floatingContext);
 
-  const { getFloatingProps } = useInteractions([click, dismiss, role]);
+  const { getFloatingProps } = useInteractions([dismiss, role]);
   const parentId = useFloatingParentNodeId();
 
   return {
