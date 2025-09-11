@@ -1,5 +1,11 @@
-import type { CSSProperties, MouseEvent, ReactElement, RefObject } from "react";
-import React, { useId, useRef, useState } from "react";
+import type {
+  CSSProperties,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+  RefObject,
+} from "react";
+import React, { useContext, useId, useRef, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
@@ -17,12 +23,25 @@ import {
 } from "@floating-ui/react";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import {
+  Button as AriaButton,
+  Header as AriaHeader,
+  Menu as AriaMenu,
+  MenuItem as AriaMenuItem,
+  MenuSection as AriaMenuSection,
+  MenuTrigger as AriaMenuTrigger,
+  Popover as AriaPopover,
+} from "react-aria-components";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 import { calculateMaxHeight } from "../utils/maxHeight";
+import { ButtonProvider } from "../Button/ButtonProvider";
+import { useButtonStyles } from "../Button/useButtonStyles";
+// eslint-disable-next-line import/no-deprecated
+import { ButtonContent } from "../Button/ButtonInternals";
 
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
@@ -49,7 +68,12 @@ export interface MenuProps {
   /**
    * Collection of action items.
    */
-  readonly items: SectionProps[];
+  readonly items?: SectionProps[];
+
+  /**
+   * Composable children-based API. When provided, this takes precedence over `items`.
+   */
+  readonly children?: ReactNode;
 
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
@@ -90,9 +114,62 @@ export interface SectionProps {
 export function Menu({
   activator,
   items,
+  children,
   UNSAFE_className,
   UNSAFE_style,
 }: MenuProps) {
+  // React Aria-only path for composable API
+  if (children) {
+    const triggerLabel =
+      activator?.props?.ariaLabel || activator?.props?.label || "More Actions";
+
+    return (
+      <div
+        className={classnames(
+          styles.wrapper,
+          activator?.props?.fullWidth && styles.fullWidth,
+        )}
+      >
+        <AriaMenuTrigger>
+          <ButtonProvider size={activator?.props?.size}>
+            <AriaButton
+              aria-label={triggerLabel}
+              className={
+                useButtonStyles({
+                  size: activator?.props?.size,
+                  disabled: activator?.props?.disabled,
+                  fullWidth: activator?.props?.fullWidth,
+                  variation: activator?.props?.variation,
+                  type: activator?.props?.type,
+                }).combined
+              }
+            >
+              {activator?.props ? (
+                <ButtonContent {...activator.props} />
+              ) : (
+                <ButtonContent label="More Actions" icon="more" />
+              )}
+            </AriaButton>
+          </ButtonProvider>
+          <AriaPopover>
+            <AnimatePresence>
+              <motion.div
+                className={classnames(styles.menu, UNSAFE_className?.menu)}
+                variants={variation}
+                initial="startOrStop"
+                animate="done"
+                exit="startOrStop"
+                transition={{ type: "tween", duration: 0.25 }}
+                style={UNSAFE_style?.menu}
+              >
+                <AriaMenu autoFocus="first">{children}</AriaMenu>
+              </motion.div>
+            </AnimatePresence>
+          </AriaPopover>
+        </AriaMenuTrigger>
+      </div>
+    );
+  }
   const [visible, setVisible] = useState(false);
   const [referenceElement, setReferenceElement] =
     useState<HTMLDivElement | null>(null);
@@ -110,7 +187,7 @@ export function Menu({
 
   // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);
-  const menuRef = useFocusTrap<HTMLDivElement>(visible);
+  const menuRef = children ? undefined : useFocusTrap<HTMLDivElement>(visible);
 
   const { refs, floatingStyles, context } = useFloating({
     open: visible,
@@ -204,47 +281,53 @@ export function Menu({
                 {...positionAttributes}
                 {...formFieldFocusAttribute}
               >
-                {items.length > 0 && (
+                {(children || (items && items.length > 0)) && (
                   <motion.div
                     className={classnames(styles.menu, UNSAFE_className?.menu)}
-                    role="menu"
+                    {...(!children && { role: "menu" })}
                     data-elevation={"elevated"}
                     aria-labelledby={buttonID}
                     id={menuID}
-                    onClick={hide}
+                    onClick={!children ? hide : undefined}
                     variants={variation}
                     initial="startOrStop"
                     animate="done"
                     exit="startOrStop"
                     custom={context?.placement}
-                    ref={menuRef}
+                    ref={!children ? menuRef : undefined}
                     transition={{
                       type: "tween",
                       duration: 0.25,
                     }}
                     style={UNSAFE_style?.menu}
                   >
-                    {items.map((item, key: number) => (
-                      <div key={key} className={styles.section}>
-                        {item.header && (
-                          <SectionHeader
-                            text={item.header}
-                            UNSAFE_style={UNSAFE_style?.header}
-                            UNSAFE_className={UNSAFE_className?.header}
-                          />
-                        )}
+                    {children ? (
+                      <MenuVisibilityContext.Provider value={{ close: hide }}>
+                        <AriaMenu autoFocus="first">{children}</AriaMenu>
+                      </MenuVisibilityContext.Provider>
+                    ) : (
+                      items?.map((item, key: number) => (
+                        <div key={key} className={styles.section}>
+                          {item.header && (
+                            <SectionHeader
+                              text={item.header}
+                              UNSAFE_style={UNSAFE_style?.header}
+                              UNSAFE_className={UNSAFE_className?.header}
+                            />
+                          )}
 
-                        {item.actions.map(action => (
-                          <Action
-                            UNSAFE_style={UNSAFE_style?.action}
-                            UNSAFE_className={UNSAFE_className?.action}
-                            sectionLabel={item.header}
-                            key={action.label}
-                            {...action}
-                          />
-                        ))}
-                      </div>
-                    ))}
+                          {item.actions.map(action => (
+                            <Action
+                              UNSAFE_style={UNSAFE_style?.action}
+                              UNSAFE_className={UNSAFE_className?.action}
+                              sectionLabel={item.header}
+                              key={action.label}
+                              {...action}
+                            />
+                          ))}
+                        </div>
+                      ))
+                    )}
                   </motion.div>
                 )}
               </div>
@@ -396,3 +479,63 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
 
   return <FloatingPortal>{children}</FloatingPortal>;
 }
+
+// Composable API
+
+interface MenuVisibilityContextValue {
+  close: () => void;
+}
+
+const MenuVisibilityContext = React.createContext<MenuVisibilityContextValue>({
+  close: () => undefined,
+});
+
+interface MenuSectionComposableProps {
+  readonly children: ReactNode;
+}
+
+function MenuSectionComposable({ children }: MenuSectionComposableProps) {
+  return (
+    <AriaMenuSection className={styles.section}>{children}</AriaMenuSection>
+  );
+}
+
+interface MenuHeaderComposableProps {
+  readonly children: ReactNode;
+}
+
+function MenuHeaderComposable({ children }: MenuHeaderComposableProps) {
+  return <AriaHeader className={styles.sectionHeader}>{children}</AriaHeader>;
+}
+
+interface MenuItemComposableProps {
+  readonly onClick?: () => void;
+  readonly children: ReactNode;
+}
+
+function MenuItemComposable({ onClick, children }: MenuItemComposableProps) {
+  const { close } = useContext(MenuVisibilityContext);
+
+  return (
+    <AriaMenuItem
+      className={styles.action}
+      onAction={() => {
+        onClick?.();
+        close();
+      }}
+    >
+      {children}
+    </AriaMenuItem>
+  );
+}
+
+// Assign static subcomponents to Menu export
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+Menu.Section = MenuSectionComposable;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+Menu.Header = MenuHeaderComposable;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+Menu.Item = MenuItemComposable;

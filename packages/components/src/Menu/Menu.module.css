@@ -85,6 +85,12 @@
   box-shadow: var(--shadow-focus);
 }
 
+/* react-aria MenuItem focused state */
+.action[data-focused] {
+  box-shadow: var(--shadow-focus);
+  background-color: var(--color-surface--hover);
+}
+
 .action span {
   /* match appearance of Button labels */
   -webkit-font-smoothing: antialiased;
