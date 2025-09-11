@@ -128,7 +128,6 @@ export function ModalContent({ children }: ModalContainerProps) {
                   initialFocus={0}
                 >
                   <motion.div
-                    className={modal}
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.9, opacity: 0 }}
@@ -141,6 +140,7 @@ export function ModalContent({ children }: ModalContainerProps) {
                       ref={floatingRefs?.setFloating}
                       {...getFloatingProps({
                         role: "dialog",
+                        className: modal,
                         "aria-labelledby": modalLabelledBy,
                       })}
                     >
