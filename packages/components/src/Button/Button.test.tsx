@@ -287,6 +287,31 @@ describe("Button with children", () => {
   });
 });
 
+describe("Button refs", () => {
+  it("forwards ref to native button", () => {
+    const ref = React.createRef<HTMLButtonElement>();
+    render(<Button ref={ref} label="Ref Btn" />);
+    expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+  });
+
+  it("forwards ref to anchor when url provided", () => {
+    const ref = React.createRef<HTMLAnchorElement>();
+    render(<Button ref={ref} label="Ref Link" url="/path" />);
+    expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+  });
+
+  it("forwards ref to react-router Link when 'to' provided", () => {
+    const ref = React.createRef<HTMLAnchorElement>();
+    render(
+      <Router>
+        <Button ref={ref} label="Ref Router Link" to="/router" />
+      </Router>,
+    );
+    // react-router Link renders an anchor
+    expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+  });
+});
+
 describe("UNSAFE_ props", () => {
   describe("Non-composable Button", () => {
     describe("UNSAFE_className", () => {
