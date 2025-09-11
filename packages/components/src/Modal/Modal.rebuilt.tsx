@@ -125,7 +125,7 @@ export function ModalContent({ children }: ModalContainerProps) {
                 <FloatingFocusManager
                   context={floatingContext}
                   returnFocus={activatorRef?.current ? activatorRef : true}
-                  initialFocus={0}
+                  order={["floating", "content"]}
                 >
                   <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
