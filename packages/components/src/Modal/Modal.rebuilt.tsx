@@ -85,11 +85,11 @@ export function ModalActivator({ children }: PropsWithChildren) {
  */
 
 export function ModalOverlay({ children }: PropsWithChildren) {
-  const { overlay } = useModalStyles();
-  const { overlayBackground } = useModalStyles();
+  const { overlay, overlayBackground } = useModalStyles();
+  const { onRequestClose } = useModalContext();
 
   return (
-    <FloatingOverlay lockScroll className={overlay}>
+    <FloatingOverlay lockScroll className={overlay} data-atlantis-modal-branch>
       <motion.div
         aria-hidden="true"
         className={overlayBackground}
@@ -97,6 +97,10 @@ export function ModalOverlay({ children }: PropsWithChildren) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
+        onClick={e => {
+          e.stopPropagation();
+          onRequestClose?.();
+        }}
       />
       {children}
     </FloatingOverlay>

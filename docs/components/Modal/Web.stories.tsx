@@ -287,7 +287,6 @@ const NestedExamplesTemplate: ComponentStory<typeof Modal> = args => {
           open={outerModalOpen}
           onRequestClose={() => {
             setOuterModalOpen(false);
-            setInnerModalOpen(false);
           }}
         >
           <Modal.Content>
