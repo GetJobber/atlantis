@@ -35,8 +35,5 @@
     "**/*.stories.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
-  ],
-  "references": [
-    { "path": "../hooks" }
-  ],
+  ]
 }

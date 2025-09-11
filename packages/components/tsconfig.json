@@ -23,13 +23,5 @@
   },
   "include": [
     "src"
-  ],
-  "references": [
-    {
-      "path": "../formatters"
-    },
-    {
-      "path": "../hooks"
-    }
   ]
 }
