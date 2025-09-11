@@ -147,7 +147,6 @@ describe("Composable Modal", () => {
     expect(handleRequestClose).toHaveBeenCalledTimes(1);
   });
 
-  // eslint-disable-next-line max-statements
   it("nested: clicking inner backdrop closes only inner modal", async () => {
     const outerCloseSpy = jest.fn();
     const innerCloseSpy = jest.fn();
