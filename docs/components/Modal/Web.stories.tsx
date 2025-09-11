@@ -272,6 +272,7 @@ const NestedExamplesTemplate: ComponentStory<typeof Modal> = args => {
     <>
       <style>
         {`
+    :focus,
     :focus-visible {
       outline: 2px solid var(--color-focus)!important;
     }
