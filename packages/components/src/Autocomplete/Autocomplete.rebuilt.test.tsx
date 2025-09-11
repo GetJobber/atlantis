@@ -337,6 +337,35 @@ describe("AutocompleteRebuilt", () => {
       expect(secondAction?.textContent).toContain("First Section Action");
     });
 
+    it("does not render section header or actions when section has no filtered options", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>(
+              "Indoor",
+              [{ label: "Drain Cleaning" }],
+              [{ type: "action", label: "Add Service", onClick: jest.fn() }],
+            ),
+            menuSection<OptionLike>(
+              "Off-site",
+              [{ label: "Tree Removal" }],
+              [{ type: "action", label: "Add Other", onClick: jest.fn() }],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      await typeInInput("Drain");
+
+      await expectMenuShown();
+      // Indoor has a matching option, so header is visible
+      expect(screen.queryByText("Indoor")).toBeVisible();
+      // Off-site has no matching options; header and its actions should not render
+      expect(screen.queryByText("Off-site")).not.toBeInTheDocument();
+      expect(screen.queryByText("Add Other")).not.toBeInTheDocument();
+    });
+
     it("does not render empty sections", async () => {
       render(
         <Wrapper
@@ -372,6 +401,35 @@ describe("AutocompleteRebuilt", () => {
 
       await expectMenuShown();
       expect(screen.queryByText("O Letter Section")).not.toBeInTheDocument();
+    });
+
+    it("only renders sections that have options", async () => {
+      render(
+        <Wrapper
+          menu={[
+            menuSection<OptionLike>(
+              "Section One Header Label",
+              [{ label: "Section 1 Option" }],
+              [],
+            ),
+            menuSection<OptionLike>(
+              "Section Two Header Label",
+              [{ label: "Section 2 Option" }],
+              [],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      await typeInInput("Section 1");
+
+      await expectMenuShown();
+      expect(screen.queryByText("Section One Header Label")).toBeVisible();
+      expect(
+        screen.queryByText("Section Two Header Label"),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText("Section 2 Option")).not.toBeInTheDocument();
     });
   });
 

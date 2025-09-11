@@ -54,10 +54,9 @@ export function buildItemsForGroup<
   const filtered = optionsFilter ? optionsFilter(group.options) : group.options;
   const actions = group.actions ?? [];
   const result: Array<RenderItem<Value, S, A>> = [];
-  const sectionHasContent =
-    isSection && (filtered.length > 0 || actions.length > 0);
 
-  if (sectionHasContent) {
+  // Only render a section header when that section has at least one option after filtering
+  if (isSection && filtered.length > 0) {
     result.push({
       kind: "section",
       section: group,
@@ -73,7 +72,8 @@ export function buildItemsForGroup<
     );
   }
 
-  if (actions.length > 0) {
+  // Only render actions for a group when that group has at least one option after filtering
+  if (actions.length > 0 && filtered.length > 0) {
     result.push(
       ...actions.map<RenderItem<Value, S, A>>(action => ({
         kind: "action",
