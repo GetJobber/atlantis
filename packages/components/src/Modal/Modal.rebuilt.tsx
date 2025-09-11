@@ -109,6 +109,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     size,
     floatingNodeId,
     modalLabelledBy,
+    onRequestClose,
     accessibleName,
     getFloatingProps,
   } = useModalContext();
@@ -120,35 +121,31 @@ export function ModalContent({ children }: ModalContainerProps) {
         <FloatingNode id={floatingNodeId}>
           <FloatingPortal>
             <AtlantisPortalContent>
-              <FloatingOverlay className={overlay}>
+              <FloatingOverlay className={overlay} onClick={onRequestClose}>
                 <FloatingFocusManager
                   context={floatingContext}
                   returnFocus={activatorRef?.current ? activatorRef : true}
                   initialFocus={floatingRefs?.floating}
                 >
-                  <div
+                  <motion.div
                     ref={floatingRefs?.setFloating}
+                    data-floating-ui-focusable
+                    className={modal}
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                    }}
                     {...getFloatingProps({
                       "aria-modal": true,
                       "aria-labelledby": modalLabelledBy,
                       "aria-label": accessibleName,
                     })}
                   >
-                    <ModalOverlay />
-                    <motion.div
-                      data-floating-ui-focusable
-                      className={modal}
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      {children}
-                    </motion.div>
-                  </div>
+                    {children}
+                  </motion.div>
                 </FloatingFocusManager>
               </FloatingOverlay>
             </AtlantisPortalContent>
