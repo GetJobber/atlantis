@@ -7,7 +7,6 @@ import {
   FloatingOverlay,
   FloatingPortal,
 } from "@floating-ui/react";
-import classNames from "classnames";
 import { useModalContext } from "./ModalContext.rebuilt";
 import type {
   HeaderProps,
@@ -85,26 +84,22 @@ export function ModalActivator({ children }: PropsWithChildren) {
  * Background overlay for the modal. Used in the ModalContent.
  */
 
-export function ModalOverlay({
-  children,
-  styleClasses,
-}: PropsWithChildren<{ readonly styleClasses: string }>) {
-  const { onRequestClose } = useModalContext();
+export function ModalOverlay({ children }: PropsWithChildren) {
+  const { overlay } = useModalStyles();
   const { overlayBackground } = useModalStyles();
 
   return (
-    <motion.div
-      onClick={onRequestClose}
-      className={overlayBackground}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 0.8 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-    >
-      <FloatingOverlay lockScroll className={styleClasses}>
-        {children}
-      </FloatingOverlay>
-    </motion.div>
+    <FloatingOverlay lockScroll className={overlay}>
+      <motion.div
+        aria-hidden="true"
+        className={overlayBackground}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+      />
+      {children}
+    </FloatingOverlay>
   );
 }
 
@@ -119,7 +114,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     modalLabelledBy,
     getFloatingProps,
   } = useModalContext();
-  const { modal, overlay, overlayBackground } = useModalStyles(size);
+  const { modal } = useModalStyles(size);
 
   return (
     <AnimatePresence>
@@ -127,9 +122,7 @@ export function ModalContent({ children }: ModalContainerProps) {
         <FloatingNode id={floatingNodeId}>
           <FloatingPortal>
             <AtlantisPortalContent>
-              <ModalOverlay
-                styleClasses={classNames(overlay, overlayBackground)}
-              >
+              <ModalOverlay>
                 <FloatingFocusManager
                   context={floatingContext}
                   returnFocus={activatorRef?.current ? activatorRef : true}

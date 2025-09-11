@@ -17,12 +17,24 @@
 
 .overlay {
   display: grid;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: var(--elevation-modal);
   place-items: center;
 }
 
 .overlayBackground {
-  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  outline: none;
+  background-color: var(--color-overlay);
+  will-change: opacity;
 }
 
 .modal {
