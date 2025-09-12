@@ -7,6 +7,7 @@ import { Text } from "@jobber/components/Text";
 import { InputText } from "@jobber/components/InputText";
 import {
   Autocomplete,
+  Banner,
   Box,
   Combobox,
   Heading,
@@ -263,13 +264,19 @@ export const ModalWithProviderExample = ModalWithProviderExampleTemplate.bind(
   {},
 );
 
-const NestedExamplesTemplate: ComponentStory<typeof Modal> = args => {
+const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
   const [outerModalOpen, setOuterModalOpen] = useState(false);
   const [innerModalOpen, setInnerModalOpen] = useState(false);
-  console.log(args);
 
   return (
     <Content>
+      <Banner type="warning" dismissible={false}>
+        <Banner.Content>
+          Nesting Modals beyond two levels is strongly discouraged. It often
+          leads to a poor user experience. This example is demonstrating how to
+          do it, not necessarily recommending it.
+        </Banner.Content>
+      </Banner>
       <Button
         label="Open Outer Modal"
         onClick={() => setOuterModalOpen(true)}
@@ -282,7 +289,7 @@ const NestedExamplesTemplate: ComponentStory<typeof Modal> = args => {
         }}
       >
         <Modal.Content>
-          <Modal.Header title="Outer Modal" />
+          <Modal.Header title={args.title} />
           <Content>
             <Text>
               This is the outer modal. You can interact with components here and
@@ -330,7 +337,7 @@ const NestedExamplesTemplate: ComponentStory<typeof Modal> = args => {
     </Content>
   );
 };
-export const NestedExamples = NestedExamplesTemplate.bind({});
-NestedExamples.args = {
-  title: "We've updated Jobber",
+export const NestedExample = NestedExampleTemplate.bind({});
+NestedExample.args = {
+  title: "Outer Modal",
 };
