@@ -1,7 +1,7 @@
-:focus,
+/* :focus,
 :focus-visible {
   outline: transparent;
-}
+} */
 
 :global(a) {
   color: var(--color-interactive);

@@ -269,75 +269,65 @@ const NestedExamplesTemplate: ComponentStory<typeof Modal> = args => {
   console.log(args);
 
   return (
-    <>
-      <style>
-        {`
-    :focus,
-    :focus-visible {
-      outline: 2px solid var(--color-focus)!important;
-    }
-    `}
-      </style>
-      <Content>
-        <Button
-          label="Open Outer Modal"
-          onClick={() => setOuterModalOpen(true)}
-        />
+    <Content>
+      <Button
+        label="Open Outer Modal"
+        onClick={() => setOuterModalOpen(true)}
+      />
+
+      <Modal.Provider
+        open={outerModalOpen}
+        onRequestClose={() => {
+          setOuterModalOpen(false);
+        }}
+      >
+        <Modal.Content>
+          <Modal.Header title="Outer Modal" />
+          <Content>
+            <Text>
+              This is the outer modal. You can interact with components here and
+              open another modal inside it.
+            </Text>
+
+            <Button
+              label="Open Inner Modal"
+              onClick={() => setInnerModalOpen(true)}
+              type="secondary"
+              fullWidth
+            />
+          </Content>
+        </Modal.Content>
 
         <Modal.Provider
-          open={outerModalOpen}
-          onRequestClose={() => {
-            setOuterModalOpen(false);
-          }}
+          open={innerModalOpen}
+          onRequestClose={() => setInnerModalOpen(false)}
         >
           <Modal.Content>
-            <Modal.Header title="Outer Modal" />
+            <Modal.Header title="Inner Modal" />
             <Content>
+              <Text>This is the inner modal!</Text>
               <Text>
-                This is the outer modal. You can interact with components here
-                and open another modal inside it.
+                You can close this modal independently, or close both modals
+                together.
               </Text>
-
-              <Button
-                label="Open Inner Modal"
-                onClick={() => setInnerModalOpen(true)}
-                type="secondary"
-                fullWidth
-              />
             </Content>
+            <Modal.Actions
+              primary={{
+                label: "Close Inner Modal",
+                onClick: () => setInnerModalOpen(false),
+              }}
+              secondary={{
+                label: "Close Both Modals",
+                onClick: () => {
+                  setInnerModalOpen(false);
+                  setOuterModalOpen(false);
+                },
+              }}
+            />
           </Modal.Content>
-
-          <Modal.Provider
-            open={innerModalOpen}
-            onRequestClose={() => setInnerModalOpen(false)}
-          >
-            <Modal.Content>
-              <Modal.Header title="Inner Modal" />
-              <Content>
-                <Text>This is the inner modal!</Text>
-                <Text>
-                  You can close this modal independently, or close both modals
-                  together.
-                </Text>
-              </Content>
-              <Modal.Actions
-                primary={{
-                  label: "Close Inner Modal",
-                  onClick: () => setInnerModalOpen(false),
-                }}
-                secondary={{
-                  label: "Close Both Modals",
-                  onClick: () => {
-                    setInnerModalOpen(false);
-                    setOuterModalOpen(false);
-                  },
-                }}
-              />
-            </Modal.Content>
-          </Modal.Provider>
         </Modal.Provider>
-      </Content>
-    </>
+      </Modal.Provider>
+    </Content>
   );
 };
 export const NestedExamples = NestedExamplesTemplate.bind({});
