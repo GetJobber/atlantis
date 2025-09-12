@@ -30,6 +30,14 @@ export {
   type GroupOption,
   type OptionCollection,
   type Option,
+  type MenuItem,
+  type MenuSection,
+  type MenuOptions,
+  type MenuHeader,
+  type MenuFooter,
+  type MenuAction,
+  type ExtraProps,
+  defineMenu,
 } from "./Autocomplete.types";
 
 export {

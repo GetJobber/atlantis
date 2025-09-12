@@ -226,3 +226,224 @@ it("renders a card with compound components and elevation", () => {
   expect(getByText("Elevated Header")).toBeInTheDocument();
   expect(getByText("This is an elevated card.")).toBeInTheDocument();
 });
+
+describe("UNSAFE_ props", () => {
+  describe("Non-composable Card", () => {
+    describe("UNSAFE_className", () => {
+      it("applies to container", () => {
+        const { container } = render(
+          <Card
+            header="Test Header"
+            UNSAFE_className={{
+              container: "custom-container",
+            }}
+          >
+            <p>Card content</p>
+          </Card>,
+        );
+
+        // Regular cards render as div elements
+        const cardElement = container.firstChild as HTMLDivElement;
+        expect(cardElement.tagName).toBe("DIV");
+        expect(cardElement).toHaveClass("custom-container");
+      });
+      it("applies to header", () => {
+        const { container } = render(
+          <Card
+            header="Test Header"
+            UNSAFE_className={{
+              header: "custom-header",
+            }}
+          >
+            <p>Card content</p>
+          </Card>,
+        );
+
+        const headerElement = container.querySelector(".header");
+        expect(headerElement).toHaveClass("custom-header");
+      });
+
+      it("applies to link card container", () => {
+        const { getByRole } = render(
+          <Card
+            header="Link Header"
+            url="https://example.com"
+            UNSAFE_className={{
+              container: "custom-link-container",
+            }}
+          >
+            <p>Link card content</p>
+          </Card>,
+        );
+
+        const linkElement = getByRole("link");
+        expect(linkElement).toHaveClass("custom-link-container");
+      });
+    });
+
+    describe("UNSAFE_style", () => {
+      it("applies to container", () => {
+        const { container } = render(
+          <Card
+            header="Test Header"
+            UNSAFE_style={{
+              container: {
+                backgroundColor: "var(--color-yellow)",
+              },
+            }}
+          >
+            <p>Card content</p>
+          </Card>,
+        );
+
+        // Regular cards render as div elements
+        const cardElement = container.firstChild as HTMLDivElement;
+        expect(cardElement.tagName).toBe("DIV");
+        expect(cardElement).toHaveStyle({
+          backgroundColor: "var(--color-yellow)",
+        });
+      });
+
+      it("applies to header", () => {
+        const { container } = render(
+          <Card
+            header="Test Header"
+            UNSAFE_style={{
+              header: {
+                backgroundColor: "var(--color-blue)",
+              },
+            }}
+          >
+            <p>Card content</p>
+          </Card>,
+        );
+
+        const headerElement = container.querySelector(".header");
+        expect(headerElement).toHaveStyle({
+          backgroundColor: "var(--color-blue)",
+        });
+      });
+
+      it("applies to link card container", () => {
+        const { getByRole } = render(
+          <Card
+            header="Link Header"
+            url="https://example.com"
+            UNSAFE_style={{
+              container: {
+                backgroundColor: "var(--color-purple)",
+              },
+            }}
+          >
+            <p>Link card content</p>
+          </Card>,
+        );
+
+        const linkElement = getByRole("link");
+        expect(linkElement).toHaveStyle({
+          backgroundColor: "var(--color-purple)",
+        });
+      });
+    });
+  });
+
+  describe("Composable Card", () => {
+    describe("UNSAFE_className", () => {
+      it("applies to Card container", () => {
+        const { container } = render(
+          <Card
+            UNSAFE_className={{
+              container: "custom-compound-container",
+            }}
+          >
+            <Card.Header>
+              <Text>Compound Header</Text>
+            </Card.Header>
+            <Card.Body>
+              <p>Compound content</p>
+            </Card.Body>
+          </Card>,
+        );
+
+        // Regular compound cards render as div elements
+        const cardElement = container.firstChild as HTMLDivElement;
+        expect(cardElement.tagName).toBe("DIV");
+        expect(cardElement).toHaveClass("custom-compound-container");
+      });
+
+      it("applies to link compound card container", () => {
+        const { getByRole } = render(
+          <Card
+            url="https://example.com"
+            UNSAFE_className={{
+              container: "custom-link-compound-container",
+            }}
+          >
+            <Card.Header>
+              <Text>Link Compound Header</Text>
+            </Card.Header>
+            <Card.Body>
+              <p>Link compound content</p>
+            </Card.Body>
+          </Card>,
+        );
+
+        const linkElement = getByRole("link");
+        expect(linkElement).toHaveClass("custom-link-compound-container");
+      });
+    });
+
+    describe("UNSAFE_style", () => {
+      it("applies to Card container", () => {
+        const { container } = render(
+          <Card
+            UNSAFE_style={{
+              container: {
+                backgroundColor: "var(--color-yellow)",
+              },
+            }}
+          >
+            <Card.Header>
+              <Text>Compound Header</Text>
+            </Card.Header>
+            <Card.Body>
+              <p>Compound content</p>
+            </Card.Body>
+          </Card>,
+        );
+
+        // Regular compound cards render as div elements
+        const cardElement = container.firstChild as HTMLDivElement;
+        expect(cardElement.tagName).toBe("DIV");
+        expect(cardElement).toHaveStyle({
+          backgroundColor: "var(--color-yellow)",
+        });
+      });
+
+      it("applies to link compound card container", () => {
+        const { getByRole } = render(
+          <Card
+            url="https://example.com"
+            UNSAFE_style={{
+              container: {
+                backgroundColor: "var(--color-purple)",
+              },
+            }}
+          >
+            <Card.Header>
+              <Text>Link Compound Header</Text>
+            </Card.Header>
+            <Card.Body>
+              <p>Link compound content</p>
+            </Card.Body>
+          </Card>,
+        );
+
+        const linkElement = getByRole("link");
+        expect(linkElement).toHaveStyle({
+          backgroundColor: "var(--color-purple)",
+        });
+      });
+    });
+  });
+});
