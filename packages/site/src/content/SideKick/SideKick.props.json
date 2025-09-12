@@ -72,7 +72,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\""
+          "name": "\"sm\" | \"md\" | \"lg\" | \"xl\""
         }
       },
       "collapsed": {

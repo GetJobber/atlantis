@@ -23,7 +23,7 @@
       },
       "maxWidth": {
         "defaultValue": {
-          "value": "Breakpoints.smaller"
+          "value": "sm"
         },
         "description": "The maximum width of the centered content.",
         "name": "maxWidth",
@@ -33,7 +33,7 @@
         },
         "required": false,
         "type": {
-          "name": "number | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | (string & {})"
+          "name": "number | \"sm\" | \"md\" | \"lg\" | \"xl\" | (string & {})"
         }
       },
       "andText": {
