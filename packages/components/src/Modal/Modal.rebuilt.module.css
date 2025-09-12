@@ -46,6 +46,11 @@
   outline-color: var(--color-focus);
 }
 
+.modal:-moz-focusring {
+  box-shadow: var(--shadow-focus);
+  outline: 1px solid var(--color-focus);
+}
+
 /* Adjust `Content` and `Tab` components public padding to match the modal */
 
 .modal > * {
