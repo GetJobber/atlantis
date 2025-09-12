@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // Exclude "@jobber/hooks" from paths to avoid building hooks from src
+    "paths": {},
+  }
+}

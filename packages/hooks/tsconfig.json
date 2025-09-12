@@ -1,11 +1,17 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ESNext",
     "jsx": "react",
     "declaration": true,
+    "skipLibCheck": true,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@jobber/formatters/*": [
+        "../formatters/src/*"
+      ]
+    }
   },
   "include": [
     "src",

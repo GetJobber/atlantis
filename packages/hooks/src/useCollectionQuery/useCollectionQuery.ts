@@ -1,9 +1,9 @@
-import {
+import * as apolloClient from "@apollo/client";
+import type {
   ApolloError,
   DocumentNode,
   QueryHookOptions,
   SubscribeToMoreOptions,
-  useQuery,
 } from "@apollo/client";
 import cloneDeep from "lodash/cloneDeep";
 import { useCallback, useEffect, useState } from "react";
@@ -11,6 +11,8 @@ import { config } from "@jobber/formatters";
 import { Node, uniqueNodes } from "./uniqueNodes";
 import { Edge, createEdge, uniqueEdges } from "./uniqueEdges";
 import { useIsMounted } from "../useIsMounted";
+
+const { useQuery } = apolloClient;
 
 interface UseCollectionQueryArguments<TQuery, TSubscription> {
   /**

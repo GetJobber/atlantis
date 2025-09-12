@@ -1,10 +1,14 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ESNext",
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src"],
-  "files": ["src/index.ts"]
+  "include": [
+    "src"
+  ],
+  "files": [
+    "src/index.ts"
+  ]
 }
