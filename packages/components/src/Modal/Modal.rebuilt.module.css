@@ -41,14 +41,17 @@
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  outline: none;
   background-color: var(--color-surface);
   flex: 0 0 auto;
-  outline-color: var(--color-focus);
+}
+.modal:focus-visible {
+  box-shadow: var(--shadow-focus);
 }
 
+/* Cant combine with the above because it's Mozilla only and breaks the others when in a single rule */
 .modal:-moz-focusring {
   box-shadow: var(--shadow-focus);
-  outline: 1px solid var(--color-focus);
 }
 
 /* Adjust `Content` and `Tab` components public padding to match the modal */
