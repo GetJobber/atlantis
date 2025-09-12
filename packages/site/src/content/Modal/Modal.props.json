@@ -129,10 +129,10 @@
           "name": "1"
         }
       },
-      "accessibleName": {
+      "ariaLabel": {
         "defaultValue": null,
-        "description": "Accessible name override applied to the modal via aria-label. When provided, it takes precedence over using the title.",
-        "name": "accessibleName",
+        "description": "Accessible name override applied to the modal via aria-label. When provided, it takes\nprecedence over using the title.",
+        "name": "ariaLabel",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
           "name": "ModalLegacyProps"
