@@ -93,7 +93,7 @@ export function ModalOverlay({ children }: PropsWithChildren) {
         aria-hidden="true"
         className={overlayBackground}
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: 0.8 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
       />
