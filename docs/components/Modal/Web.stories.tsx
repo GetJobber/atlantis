@@ -10,6 +10,7 @@ import {
   Banner,
   Box,
   Combobox,
+  Flex,
   Heading,
   Icon,
   InputDate,
@@ -312,7 +313,12 @@ const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
           <Modal.Content>
             <Modal.Header title="Inner Modal" />
             <Content>
-              <Text>This is the inner modal!</Text>
+              <Flex template={["shrink", "shrink"]}>
+                <Text>This is the inner modal!</Text>
+                <Tooltip message="Exercise caution when nesting modals beyond this level.">
+                  <Icon name="info" color="yellow" />
+                </Tooltip>
+              </Flex>
               <Text>
                 You can close this modal independently, or close both modals
                 together.
