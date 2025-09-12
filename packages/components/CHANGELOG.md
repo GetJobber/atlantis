@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.90.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.1...@jobber/components@6.90.2) (2025-09-11)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.90.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.0...@jobber/components@6.90.1) (2025-09-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.89.0...@jobber/components@6.90.0) (2025-09-10)
+
+
+### Features
+
+* **components:** Add UNSAFE props to Card ([#2714](https://github.com/GetJobber/atlantis/issues/2714)) ([51d841c](https://github.com/GetJobber/atlantis/commit/51d841c3962d8f3895df740199277361f829dc25))
+
+
+
+
+
 # [6.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.88.0...@jobber/components@6.89.0) (2025-09-08)
 
 
