@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import classnames from "classnames";
-import { useInView } from "@jobber/hooks/useInView";
+import { useInView } from "@jobber/hooks";
 import styles from "./Chip.module.css";
 import { ChipPrefix } from "./components/ChipPrefix/Chip.Prefix";
 import { ChipSuffix } from "./components/ChipSuffix/Chip.Suffix";

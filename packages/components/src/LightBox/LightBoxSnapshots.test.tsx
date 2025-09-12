@@ -2,10 +2,7 @@ import { render } from "@testing-library/react";
 import type { ReactPortal } from "react";
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-  BREAKPOINT_SIZES,
-  mockViewportWidth,
-} from "@jobber/hooks/useBreakpoints";
+import { BREAKPOINT_SIZES, mockViewportWidth } from "@jobber/hooks";
 import { LightBox } from ".";
 
 const { setViewportWidth } = mockViewportWidth();

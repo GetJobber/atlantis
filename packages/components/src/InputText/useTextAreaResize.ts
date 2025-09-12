@@ -1,5 +1,5 @@
 import type { RefObject } from "react";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useSafeLayoutEffect } from "@jobber/hooks";
 import type { RowRange } from "./InputText.types";
 
 /**
