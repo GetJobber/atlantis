@@ -49,11 +49,6 @@
   box-shadow: var(--shadow-focus);
 }
 
-/* Cant combine with the above because it's Mozilla only and breaks the others when in a single rule */
-.modal:-moz-focusring {
-  box-shadow: var(--shadow-focus);
-}
-
 /* Adjust `Content` and `Tab` components public padding to match the modal */
 
 .modal > * {
