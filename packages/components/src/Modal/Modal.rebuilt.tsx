@@ -14,6 +14,7 @@ import type {
   ModalContentProps as ModalContainerProps,
 } from "./Modal.types";
 import { useModalStyles } from "./useModalStyles";
+import { MODAL_HEADER_ID } from "./constants";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
@@ -28,7 +29,7 @@ export function ModalHeader({ title, children }: HeaderProps) {
   }
 
   return (
-    <div className={header} data-testid="ATL-Modal-Header" id={modalLabelledBy}>
+    <div className={header} data-testid={MODAL_HEADER_ID} id={modalLabelledBy}>
       <Heading level={2}>{title}</Heading>
 
       {dismissible && (
@@ -109,7 +110,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     size,
     floatingNodeId,
     modalLabelledBy,
-    accessibleName,
+    ariaLabel,
     getFloatingProps,
   } = useModalContext();
   const { modal, overlay } = useModalStyles(size);
@@ -131,7 +132,7 @@ export function ModalContent({ children }: ModalContainerProps) {
                     {...getFloatingProps({
                       "aria-modal": true,
                       "aria-labelledby": modalLabelledBy,
-                      "aria-label": accessibleName,
+                      "aria-label": ariaLabel,
                     })}
                   >
                     <ModalOverlay />

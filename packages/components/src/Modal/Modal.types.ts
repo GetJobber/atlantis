@@ -36,9 +36,10 @@ export interface ModalProviderProps {
    */
   readonly modalLabelledBy?: string;
   /**
-   * Accessible name override applied to the modal via aria-label. When provided, it takes precedence over aria-labelledby.
+   * Accessible name override applied to the modal via aria-label. When provided, it takes
+   * precedence over aria-labelledby/title.
    */
-  readonly accessibleName?: string;
+  readonly ariaLabel?: string;
 }
 
 export type ModalContentProps = PropsWithChildren;
@@ -87,9 +88,10 @@ export interface ModalContextType {
   readonly modalLabelledBy?: string;
 
   /**
-   * Accessible name override applied to the modal via aria-label. When provided, it takes precedence over aria-labelledby.
+   * Accessible name override applied to the modal via aria-label. When provided, it takes
+   * precedence over aria-labelledby/title.
    */
-  readonly accessibleName?: string;
+  readonly ariaLabel?: string;
 
   /**
    * Floating-ui props to position the modal.
@@ -149,7 +151,8 @@ export interface ModalLegacyProps {
   onRequestClose?(): void;
   readonly version?: 1;
   /**
-   * Accessible name override applied to the modal via aria-label. When provided, it takes precedence over using the title.
+   * Accessible name override applied to the modal via aria-label. When provided, it takes
+   * precedence over using the title.
    */
-  readonly accessibleName?: string;
+  readonly ariaLabel?: string;
 }

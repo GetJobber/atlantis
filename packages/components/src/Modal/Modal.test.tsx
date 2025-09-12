@@ -2,6 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Modal } from ".";
 import styles from "./Modal.module.css";
+import { MODAL_HEADER_ID } from "./constants";
 
 it('modal contains aria role of "dialog"', async () => {
   render(<Modal open>Content</Modal>);
@@ -28,7 +29,7 @@ it("modal shows the children and a close button", () => {
 
 it("modal without a title doesn't show the header", () => {
   const { queryByTestId } = render(<Modal open={true}>Content</Modal>);
-  expect(queryByTestId("modal-header")).toBeNull();
+  expect(queryByTestId(MODAL_HEADER_ID)).toBeNull();
 });
 
 it("modal doesn't show up", () => {
@@ -118,7 +119,7 @@ it("modal shows with primary learning button", () => {
   expect(learningButton).toHaveTextContent("I Would Like to Know More");
 });
 
-it("names the dialog from title via aria-labelledby when accessibleName is not provided", async () => {
+it("names the dialog from title via aria-labelledby when ariaLabel is not provided", async () => {
   render(
     <Modal open title="Legacy Modal">
       Content
@@ -130,9 +131,9 @@ it("names the dialog from title via aria-labelledby when accessibleName is not p
   ).toBeInTheDocument();
 });
 
-it("uses accessibleName via aria-label only when no title is provided", async () => {
+it("uses ariaLabel via aria-label only when no title is provided", async () => {
   render(
-    <Modal open accessibleName="Payment Details">
+    <Modal open ariaLabel="Payment Details">
       Content
     </Modal>,
   );

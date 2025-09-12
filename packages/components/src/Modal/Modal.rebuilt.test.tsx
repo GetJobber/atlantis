@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Modal } from ".";
+import { MODAL_HEADER_ID } from "./constants";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
@@ -22,7 +23,7 @@ describe("Composable Modal", () => {
         </Modal.Content>
       </Modal.Provider>,
     );
-    const header = screen.getByTestId("ATL-Modal-Header");
+    const header = screen.getByTestId(MODAL_HEADER_ID);
     expect(header).toBeDefined();
     expect(header).toHaveTextContent("Modal Title");
     expect(screen.getByText("This is some extra content")).toBeInTheDocument();
@@ -86,7 +87,7 @@ describe("Composable Modal", () => {
     expect(await screen.findByRole("dialog")).toBeInTheDocument();
   });
 
-  it("names the dialog from title via aria-labelledby when accessibleName is not provided", async () => {
+  it("names the dialog from title via aria-labelledby when ariaLabel is not provided", async () => {
     render(
       <Modal.Provider open={true}>
         <Modal.Content>
@@ -100,9 +101,9 @@ describe("Composable Modal", () => {
     ).toBeInTheDocument();
   });
 
-  it("uses accessibleName via aria-label only when no title/header is provided", async () => {
+  it("uses ariaLabel via aria-label only when no title/header is provided", async () => {
     render(
-      <Modal.Provider open={true} accessibleName="Add Customer">
+      <Modal.Provider open={true} ariaLabel="Add Customer">
         <Modal.Content>{/* no Modal.Header on purpose */}</Modal.Content>
       </Modal.Provider>,
     );

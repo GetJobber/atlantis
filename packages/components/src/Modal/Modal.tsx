@@ -8,6 +8,7 @@ import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./Modal.module.css";
 import sizes from "./ModalSizes.module.css";
 import type { ModalLegacyProps } from "./Modal.types";
+import { MODAL_HEADER_ID } from "./constants";
 import { Heading } from "../Heading";
 import type { ButtonProps } from "../Button";
 import { Button } from "../Button";
@@ -23,13 +24,12 @@ export function ModalLegacy({
   secondaryAction,
   tertiaryAction,
   onRequestClose,
-  accessibleName,
+  ariaLabel,
 }: ModalLegacyProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
   useOnKeyDown(handleRequestClose, "Escape");
-  const headerId = "ATL-Modal-Header";
 
   const template = (
     <AnimatePresence>
@@ -40,8 +40,8 @@ export function ModalLegacy({
           className={styles.container}
           tabIndex={0}
           aria-modal="true"
-          aria-labelledby={title != undefined ? headerId : undefined}
-          aria-label={title != undefined ? undefined : accessibleName}
+          aria-labelledby={title !== undefined ? MODAL_HEADER_ID : undefined}
+          aria-label={ariaLabel ?? title}
         >
           <motion.div
             key={styles.overlay}
@@ -65,7 +65,7 @@ export function ModalLegacy({
           >
             {title != undefined && (
               <Header
-                id={headerId}
+                id={MODAL_HEADER_ID}
                 title={title}
                 dismissible={dismissible}
                 onRequestClose={onRequestClose}
