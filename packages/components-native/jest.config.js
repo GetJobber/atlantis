@@ -11,7 +11,7 @@ module.exports = {
     "./src/__mocks__/__mocks.ts",
   ],
   moduleNameMapper: {
-    "^@jobber/hooks$": "<rootDir>/../hooks/dist/index.cjs",
+    "^@jobber/hooks$": "<rootDir>/../hooks/dist/index.js",
     "^@jobber/hooks/(.*)$": "<rootDir>/../hooks/dist/$1",
   },
   testPathIgnorePatterns: ["/node_modules/"],
