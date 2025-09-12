@@ -42,8 +42,8 @@ When using the composable API, the name is derived from `Modal.Header` when a
   </Modal.Content>
  </Modal.Provider>
 
-// No title → fallback to accessibleName (aria-label)
-<Modal.Provider open accessibleName="Add Customer">
+// No title → fallback to ariaLabel
+<Modal.Provider open ariaLabel="Add Customer">
   <Modal.Content>{/* custom content without heading */}</Modal.Content>
 </Modal.Provider>
 
@@ -67,8 +67,8 @@ label the dialog via `aria-label`.
 // Title provided → named by aria-labelledby
 <Modal open title="Legacy Modal Title">...</Modal>
 
-// No title → fallback to accessibleName (aria-label)
-<Modal open accessibleName="Payment Details">...</Modal>
+// No title → fallback to ariaLabel
+<Modal open ariaLabel="Payment Details">...</Modal>
 ```
 
 ### Testing tip
