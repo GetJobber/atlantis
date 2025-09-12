@@ -5,7 +5,7 @@ export function DataTableBody(
   props: PropsWithChildren<React.HTMLAttributes<HTMLTableSectionElement>>,
 ) {
   return (
-    <tbody className={classNames(props.className)} {...props}>
+    <tbody {...props} className={classNames(props.className)}>
       {props.children}
     </tbody>
   );
