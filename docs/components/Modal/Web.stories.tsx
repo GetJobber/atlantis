@@ -304,41 +304,40 @@ const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
               fullWidth
             />
           </Content>
+          <Modal.Provider
+            open={innerModalOpen}
+            onRequestClose={() => setInnerModalOpen(false)}
+          >
+            <Modal.Content>
+              <Modal.Header title="Inner Modal" />
+              <Content>
+                <Flex template={["shrink", "shrink"]}>
+                  <Text>This is the inner modal!</Text>
+                  <Tooltip message="Exercise caution when nesting modals beyond this level.">
+                    <Icon name="info" color="yellow" />
+                  </Tooltip>
+                </Flex>
+                <Text>
+                  You can close this modal independently, or close both modals
+                  together.
+                </Text>
+              </Content>
+              <Modal.Actions
+                primary={{
+                  label: "Close Inner Modal",
+                  onClick: () => setInnerModalOpen(false),
+                }}
+                secondary={{
+                  label: "Close Both Modals",
+                  onClick: () => {
+                    setInnerModalOpen(false);
+                    setOuterModalOpen(false);
+                  },
+                }}
+              />
+            </Modal.Content>
+          </Modal.Provider>
         </Modal.Content>
-
-        <Modal.Provider
-          open={innerModalOpen}
-          onRequestClose={() => setInnerModalOpen(false)}
-        >
-          <Modal.Content>
-            <Modal.Header title="Inner Modal" />
-            <Content>
-              <Flex template={["shrink", "shrink"]}>
-                <Text>This is the inner modal!</Text>
-                <Tooltip message="Exercise caution when nesting modals beyond this level.">
-                  <Icon name="info" color="yellow" />
-                </Tooltip>
-              </Flex>
-              <Text>
-                You can close this modal independently, or close both modals
-                together.
-              </Text>
-            </Content>
-            <Modal.Actions
-              primary={{
-                label: "Close Inner Modal",
-                onClick: () => setInnerModalOpen(false),
-              }}
-              secondary={{
-                label: "Close Both Modals",
-                onClick: () => {
-                  setInnerModalOpen(false);
-                  setOuterModalOpen(false);
-                },
-              }}
-            />
-          </Modal.Content>
-        </Modal.Provider>
       </Modal.Provider>
     </Content>
   );

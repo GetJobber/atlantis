@@ -38,17 +38,6 @@ export function useModal({
     outsidePressEvent: "pointerdown",
     escapeKey: true,
     bubbles: false,
-    // Ignore clicks that originate from a descendant modal branch
-    outsidePress: event => {
-      const target = event.target as Element | null;
-      const branch = target?.closest("[data-atlantis-modal-branch]");
-      const myFloating = floatingRefs.floating?.current as Node | null;
-      // If there is no branch marker, allow dismissal.
-      if (!branch || !myFloating) return true;
-
-      // Only allow if the branch contains our floating (i.e., it's our own branch)
-      return branch.contains(myFloating);
-    },
   });
   const role = useRole(floatingContext);
 

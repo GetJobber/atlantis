@@ -86,9 +86,14 @@ export function ModalActivator({ children }: PropsWithChildren) {
 
 export function ModalOverlay({ children }: PropsWithChildren) {
   const { overlay, overlayBackground } = useModalStyles();
+  const { floatingNodeId } = useModalContext();
 
   return (
-    <FloatingOverlay lockScroll className={overlay} data-atlantis-modal-branch>
+    <FloatingOverlay
+      lockScroll
+      className={overlay}
+      data-modal-node-id={floatingNodeId}
+    >
       <motion.div
         aria-hidden="true"
         className={overlayBackground}
@@ -96,6 +101,7 @@ export function ModalOverlay({ children }: PropsWithChildren) {
         animate={{ opacity: 0.8 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
+        data-modal-node-id={floatingNodeId}
       />
       {children}
     </FloatingOverlay>
@@ -138,6 +144,7 @@ export function ModalContent({ children }: ModalContainerProps) {
                   >
                     <div
                       ref={floatingRefs?.setFloating}
+                      data-modal-node-id={floatingNodeId}
                       {...getFloatingProps({
                         role: "dialog",
                         className: modal,

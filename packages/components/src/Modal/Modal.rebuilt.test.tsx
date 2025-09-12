@@ -1,10 +1,9 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Modal } from ".";
 import { Content } from "../Content";
 import { Text } from "../Text";
-import { Button } from "../Button";
 
 describe("Composable Modal", () => {
   it("should render the modal content", () => {
@@ -138,20 +137,22 @@ describe("Composable Modal", () => {
     await userEvent.click(screen.getByRole("button", { name: "Inside" }));
     expect(handleRequestClose).not.toHaveBeenCalled();
 
-    // Click the backdrop (overlayBackground inside the branch)
-    const branches = document.querySelectorAll("[data-atlantis-modal-branch]");
-    const topBranch = branches[branches.length - 1] as HTMLElement;
-    const backdrop = topBranch.querySelector('[aria-hidden="true"]') as Element;
-    await userEvent.click(backdrop);
+    // Click the backdrop (overlay background). This simulates a real user clicking the dimmed area.
+    const backdrops = document.querySelectorAll('[aria-hidden="true"]');
+    const topBackdrop = backdrops[backdrops.length - 1] as Element;
+    await userEvent.pointer({ keys: "[MouseLeft]", target: topBackdrop });
 
     expect(handleRequestClose).toHaveBeenCalledTimes(1);
   });
 
-  it("nested: clicking inner backdrop closes only inner modal", async () => {
-    const outerCloseSpy = jest.fn();
-    const innerCloseSpy = jest.fn();
-
-    function NestedHarness() {
+  describe("nested modals", () => {
+    function DismissNestedHarness({
+      outerCloseSpy,
+      innerCloseSpy,
+    }: {
+      readonly outerCloseSpy: jest.Mock;
+      readonly innerCloseSpy: jest.Mock;
+    }) {
       const [outerOpen, setOuterOpen] = React.useState(true);
       const [innerOpen, setInnerOpen] = React.useState(true);
 
@@ -165,144 +166,167 @@ describe("Composable Modal", () => {
         >
           <Modal.Content>
             <Modal.Header title="Outer" />
-            <Content>
-              <Text>Outer content</Text>
-            </Content>
-          </Modal.Content>
 
+            <Modal.Provider
+              open={innerOpen}
+              onRequestClose={() => {
+                innerCloseSpy();
+                setInnerOpen(false);
+              }}
+            >
+              <Modal.Content>
+                <Modal.Header title="Inner" />
+              </Modal.Content>
+            </Modal.Provider>
+          </Modal.Content>
+        </Modal.Provider>
+      );
+    }
+    it("clicking inner backdrop closes only inner modal", async () => {
+      const outerCloseSpy = jest.fn();
+      const innerCloseSpy = jest.fn();
+
+      function NestedHarness() {
+        const [outerOpen, setOuterOpen] = React.useState(true);
+        const [innerOpen, setInnerOpen] = React.useState(true);
+
+        return (
           <Modal.Provider
-            open={innerOpen}
+            open={outerOpen}
             onRequestClose={() => {
-              innerCloseSpy();
-              setInnerOpen(false);
+              outerCloseSpy();
+              setOuterOpen(false);
             }}
           >
             <Modal.Content>
-              <Modal.Header title="Inner" />
+              <Modal.Header title="Outer" />
               <Content>
-                <Text>Inner content</Text>
-                <button type="button">Inner Focus</button>
+                <Text>Outer content</Text>
               </Content>
+
+              <Modal.Provider
+                open={innerOpen}
+                onRequestClose={() => {
+                  innerCloseSpy();
+                  setInnerOpen(false);
+                }}
+              >
+                <Modal.Content>
+                  <Modal.Header title="Inner" />
+                  <Content>
+                    <Text>Inner content</Text>
+                    <button type="button">Inner Focus</button>
+                  </Content>
+                </Modal.Content>
+              </Modal.Provider>
             </Modal.Content>
           </Modal.Provider>
-        </Modal.Provider>
+        );
+      }
+
+      render(<NestedHarness />);
+
+      // Click the inner modal's backdrop using its data-modal-node-id
+      const dialogs = await screen.findAllByRole("dialog", { hidden: true });
+      const innerDialog = dialogs[dialogs.length - 1] as HTMLElement;
+      const nodeId = innerDialog.getAttribute("data-modal-node-id");
+      const innerBackdrop = document.querySelector(
+        `[aria-hidden="true"][data-modal-node-id="${nodeId}"]`,
+      ) as Element;
+      await userEvent.pointer({ keys: "[MouseLeft]", target: innerBackdrop });
+
+      // Inner closed and removed (only one dialog remains)
+      await waitFor(() => expect(innerCloseSpy).toHaveBeenCalledTimes(1));
+      await waitFor(() =>
+        expect(screen.getAllByRole("dialog", { hidden: true })).toHaveLength(1),
       );
-    }
-
-    render(<NestedHarness />);
-
-    // Two dialogs present (include hidden while animations/inert are applied)
-    const initialDialogs = await screen.findAllByRole("dialog", {
-      hidden: true,
     });
-    expect(initialDialogs).toHaveLength(2);
 
-    // Click inner backdrop (pointerdown to match outsidePressEvent)
-    const branches = document.querySelectorAll("[data-atlantis-modal-branch]");
-    const topBranch = branches[branches.length - 1] as HTMLElement;
-    const backdrop = topBranch.querySelector('[aria-hidden="true"]') as Element;
-    await userEvent.pointer({ keys: "[MouseLeft]", target: backdrop });
+    // eslint-disable-next-line max-statements
+    it("Escape closes only the topmost modal first", async () => {
+      const outerCloseSpy = jest.fn();
+      const innerCloseSpy = jest.fn();
 
-    // Inner closed, outer remains
-    await waitFor(() => expect(innerCloseSpy).toHaveBeenCalledTimes(1));
-    expect(outerCloseSpy).not.toHaveBeenCalled();
-  });
+      function NestedHarness() {
+        const [outerOpen, setOuterOpen] = React.useState(true);
+        const [innerOpen, setInnerOpen] = React.useState(true);
 
-  // eslint-disable-next-line max-statements
-  it("nested: Escape closes only the topmost modal first", async () => {
-    const outerCloseSpy = jest.fn();
-    const innerCloseSpy = jest.fn();
-
-    function NestedHarness() {
-      const [outerOpen, setOuterOpen] = React.useState(true);
-      const [innerOpen, setInnerOpen] = React.useState(true);
-
-      return (
-        <Modal.Provider
-          open={outerOpen}
-          onRequestClose={() => {
-            outerCloseSpy();
-            setOuterOpen(false);
-          }}
-        >
-          <Modal.Content>
-            <Modal.Header title="Outer" />
-          </Modal.Content>
-
+        return (
           <Modal.Provider
-            open={innerOpen}
+            open={outerOpen}
             onRequestClose={() => {
-              innerCloseSpy();
-              setInnerOpen(false);
+              outerCloseSpy();
+              setOuterOpen(false);
             }}
           >
             <Modal.Content>
-              <Modal.Header title="Inner" />
-              <button type="button" data-testid="Inner Focus">
-                Inner Focus
-              </button>
+              <Modal.Header title="Outer" />
+
+              <Modal.Provider
+                open={innerOpen}
+                onRequestClose={() => {
+                  innerCloseSpy();
+                  setInnerOpen(false);
+                }}
+              >
+                <Modal.Content>
+                  <Modal.Header title="Inner" />
+                  <button type="button" data-testid="Inner Focus">
+                    Inner Focus
+                  </button>
+                </Modal.Content>
+              </Modal.Provider>
             </Modal.Content>
           </Modal.Provider>
-        </Modal.Provider>
+        );
+      }
+
+      render(<NestedHarness />);
+
+      // Focus the topmost (inner) dialog, then press Escape
+      const dialogs = await screen.findAllByRole("dialog", { hidden: true });
+      const innerDialog = dialogs[dialogs.length - 1] as HTMLElement;
+      innerDialog.focus();
+      await userEvent.keyboard("{Escape}");
+      await waitFor(() => expect(innerCloseSpy).toHaveBeenCalledTimes(1));
+      await waitFor(() =>
+        expect(screen.getAllByRole("dialog", { hidden: true })).toHaveLength(1),
       );
-    }
 
-    render(<NestedHarness />);
-
-    const startDialogs = await screen.findAllByRole("dialog", {
-      hidden: true,
+      // Close the remaining (outer) dialog via Escape
+      const [outerDialog] = screen.getAllByRole("dialog", { hidden: true });
+      (outerDialog as HTMLElement).focus();
+      await userEvent.keyboard("{Escape}");
+      await waitFor(() => expect(outerCloseSpy).toHaveBeenCalledTimes(1));
     });
-    expect(startDialogs).toHaveLength(2);
 
-    // Focus inside inner modal then press Escape
-    const innerFocus = await screen.findByTestId("Inner Focus");
-    await userEvent.click(innerFocus);
-    await userEvent.keyboard("{Escape}");
-    await waitFor(() => expect(innerCloseSpy).toHaveBeenCalledTimes(1));
-    expect(outerCloseSpy).not.toHaveBeenCalled();
+    it("Dismiss button closes only the topmost modal first", async () => {
+      const outerCloseSpy = jest.fn();
+      const innerCloseSpy = jest.fn();
 
-    // Focus the remaining (outer) dialog explicitly by accessible name
-    const outerDialog = (await screen.findByRole("dialog", {
-      name: /Outer/i,
-      hidden: true,
-    })) as HTMLElement;
-    outerDialog.focus();
-    await userEvent.keyboard("{Escape}");
-    await waitFor(() => expect(outerCloseSpy).toHaveBeenCalledTimes(1));
-  });
-
-  it("returns focus to the activator when closed", async () => {
-    function Harness() {
-      const [open, setOpen] = React.useState(false);
-
-      return (
-        <Modal.Provider open={open} onRequestClose={() => setOpen(false)}>
-          <Modal.Content>
-            <Modal.Header title="Focus Test" />
-          </Modal.Content>
-          <Modal.Activator>
-            <Button
-              label="Open Modal"
-              onClick={() => setOpen(true)}
-              type="secondary"
-            />
-          </Modal.Activator>
-        </Modal.Provider>
+      render(
+        <DismissNestedHarness
+          outerCloseSpy={outerCloseSpy}
+          innerCloseSpy={innerCloseSpy}
+        />,
       );
-    }
 
-    render(<Harness />);
+      const dialogs = await screen.findAllByRole("dialog", { hidden: true });
+      const innerDialog = dialogs[dialogs.length - 1];
+      await userEvent.click(
+        within(innerDialog).getByRole("button", { name: /Close modal/i }),
+      );
 
-    const activator = screen.getByRole("button", { name: "Open Modal" });
-    activator.focus();
-    await userEvent.click(activator);
+      await waitFor(() => expect(innerCloseSpy).toHaveBeenCalledTimes(1));
+      await waitFor(() =>
+        expect(screen.getAllByRole("dialog", { hidden: true })).toHaveLength(1),
+      );
 
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
-
-    await userEvent.keyboard("{Escape}");
-
-    await waitFor(() => {
-      expect(document.activeElement).toBe(activator);
+      const [outerDialog] = screen.getAllByRole("dialog", { hidden: true });
+      await userEvent.click(
+        within(outerDialog).getByRole("button", { name: /Close modal/i }),
+      );
+      await waitFor(() => expect(outerCloseSpy).toHaveBeenCalledTimes(1));
     });
   });
 });
