@@ -4,6 +4,7 @@ import { InputGroup } from "@jobber/components/InputGroup";
 import { InputTime } from "@jobber/components/InputTime";
 import { InputText } from "@jobber/components/InputText";
 import { InputDate } from "@jobber/components/InputDate";
+import { Button } from "@jobber/components/Button";
 
 export default {
   title: "Components/Forms and Inputs/InputGroup/Web",
@@ -55,19 +56,23 @@ const DateRangeTemplate: ComponentStory<typeof InputGroup> = args => {
   const [endDate, setEndDate] = useState(new Date("2024-12-31"));
 
   return (
-    <InputGroup {...args}>
-      <InputDate
-        value={startDate}
-        onChange={setStartDate}
-        placeholder="Start Date"
-      />
-      <InputDate
-        value={endDate}
-        onChange={setEndDate}
-        placeholder="End Date"
-        minDate={startDate}
-      />
-    </InputGroup>
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <Button label="Button" />
+
+      <InputGroup {...args}>
+        <InputDate
+          value={startDate}
+          onChange={setStartDate}
+          placeholder="Start Date"
+        />
+        <InputDate
+          value={endDate}
+          onChange={setEndDate}
+          placeholder="End Date"
+          minDate={startDate}
+        />
+      </InputGroup>
+    </div>
   );
 };
 
