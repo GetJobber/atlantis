@@ -6,11 +6,21 @@ import multiInput from "rollup-plugin-multi-input";
 
 export default {
   input: ["src/**/index.{ts,tsx}", "!src/**/test-utilities/*.{ts,tsx}"],
-  output: {
-    dir: "dist",
-    format: "esm",
-    entryFileNames: "[name].js",
-  },
+  output: [
+    {
+      dir: "dist",
+      entryFileNames: "[name].cjs",
+      chunkFileNames: "[name]-[format].js",
+      exports: "named",
+      format: "cjs",
+    },
+    {
+      dir: "dist",
+      entryFileNames: "[name].mjs",
+      chunkFileNames: "[name]-[format].js",
+      format: "esm",
+    },
+  ],
   plugins: [
     multiInput.default(),
     nodeResolve(),
