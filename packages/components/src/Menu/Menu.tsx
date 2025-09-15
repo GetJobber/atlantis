@@ -5,7 +5,7 @@ import type {
   ReactNode,
   RefObject,
 } from "react";
-import React, { useId, useRef, useState } from "react";
+import React, { useContext, useId, useRef, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
@@ -31,7 +31,9 @@ import {
   MenuTrigger as AriaMenuTrigger,
   Popover as AriaPopover,
   Pressable as AriaPressable,
+  RootMenuTriggerStateContext,
 } from "react-aria-components";
+import { Overlay } from "react-aria";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -42,6 +44,7 @@ import { calculateMaxHeight } from "../utils/maxHeight";
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
 const MENU_MAX_HEIGHT_PERCENTAGE = 72;
+const REACT_ARIA_MOBILE_BREAKPOINT = 700;
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -106,6 +109,17 @@ export interface SectionProps {
   actions: ActionProps[];
 }
 
+export function useIsMobileDevice(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  // Unfortunately there's no way to tell RAC to use a different breakpoint
+  // so we're using the same one as the one they use
+  // To properly reference their value we need to also pull in react-spectrum
+  return window.screen.width <= REACT_ARIA_MOBILE_BREAKPOINT;
+}
+
 // eslint-disable-next-line max-statements
 export function Menu({
   activator,
@@ -116,37 +130,7 @@ export function Menu({
 }: MenuProps) {
   // React Aria-only path for composable API
   if (children) {
-    // Use positional arguments to determine the trigger and content
-    // Avoids parsing/iterating over the children
-    const [trigger, menu] = React.Children.toArray(children);
-
-    return (
-      <div
-        className={classnames(
-          styles.wrapper,
-          activator?.props?.fullWidth && styles.fullWidth,
-        )}
-      >
-        <AriaMenuTrigger>
-          {trigger}
-          <AriaPopover>
-            <AnimatePresence>
-              <motion.div
-                className={classnames(styles.menu, UNSAFE_className?.menu)}
-                variants={variation}
-                initial="startOrStop"
-                animate="done"
-                exit="startOrStop"
-                transition={{ type: "tween", duration: 0.25 }}
-                style={UNSAFE_style?.menu}
-              >
-                {menu}
-              </motion.div>
-            </AnimatePresence>
-          </AriaPopover>
-        </AriaMenuTrigger>
-      </div>
-    );
+    return <MenuComposable>{children}</MenuComposable>;
   }
 
   const [visible, setVisible] = useState(false);
@@ -341,6 +325,73 @@ export function Menu({
     // menu will trigger the parent's click handler.
     event.stopPropagation();
   }
+}
+
+interface MenuComposableProps {
+  readonly children: ReactNode;
+  readonly UNSAFE_className?: {
+    menu?: string;
+  };
+  readonly UNSAFE_style?: {
+    menu?: CSSProperties;
+  };
+}
+
+function MenuComposable({
+  children,
+  UNSAFE_className,
+  UNSAFE_style,
+}: MenuComposableProps) {
+  // Use positional arguments to determine the trigger and content
+  // Avoids parsing/iterating over the children
+  const [trigger, menu] = React.Children.toArray(children);
+
+  return (
+    <div className={styles.wrapper}>
+      <AriaMenuTrigger>
+        {trigger}
+        <MenuMobileUnderlay />
+        <AriaPopover>
+          <AnimatePresence>
+            <motion.div
+              className={classnames(styles.menu, UNSAFE_className?.menu)}
+              variants={variation}
+              initial="startOrStop"
+              animate="done"
+              exit="startOrStop"
+              transition={{ type: "tween", duration: 0.25 }}
+              style={UNSAFE_style?.menu}
+            >
+              {menu}
+            </motion.div>
+          </AnimatePresence>
+        </AriaPopover>
+      </AriaMenuTrigger>
+    </div>
+  );
+}
+
+function MenuMobileUnderlay() {
+  const state = useContext(RootMenuTriggerStateContext);
+  const isOpen = state?.isOpen;
+  const isMobile = useIsMobileDevice();
+
+  return (
+    <AnimatePresence>
+      {isMobile && isOpen && (
+        <Overlay>
+          <motion.div
+            className={styles.overlay}
+            variants={variation}
+            initial="overlayStartStop"
+            animate="done"
+            exit="overlayStartStop"
+            transition={{ type: "tween", duration: 0.15 }}
+          />
+        </Overlay>
+      )}
+    </AnimatePresence>
+  );
 }
 
 interface SectionHeaderProps {
