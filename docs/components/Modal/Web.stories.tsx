@@ -7,8 +7,10 @@ import { Text } from "@jobber/components/Text";
 import { InputText } from "@jobber/components/InputText";
 import {
   Autocomplete,
+  Banner,
   Box,
   Combobox,
+  Flex,
   Heading,
   Icon,
   InputDate,
@@ -262,3 +264,85 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
 export const ModalWithProviderExample = ModalWithProviderExampleTemplate.bind(
   {},
 );
+
+const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
+  const [outerModalOpen, setOuterModalOpen] = useState(false);
+  const [innerModalOpen, setInnerModalOpen] = useState(false);
+
+  return (
+    <Content>
+      <Banner type="warning" dismissible={false}>
+        <Banner.Content>
+          Nesting Modals beyond two levels is strongly discouraged. It often
+          leads to a poor user experience. This example is demonstrating how to
+          do it, not necessarily recommending it.
+        </Banner.Content>
+      </Banner>
+      <Button
+        label="Open Outer Modal"
+        onClick={() => setOuterModalOpen(true)}
+      />
+
+      <Modal.Provider
+        open={outerModalOpen}
+        onRequestClose={() => {
+          setOuterModalOpen(false);
+        }}
+      >
+        <Modal.Content>
+          <Modal.Header title={args.title} />
+          <Content>
+            <Text>
+              This is the outer modal. You can interact with components here and
+              open another modal inside it.
+            </Text>
+
+            <Button
+              label="Open Inner Modal"
+              onClick={() => setInnerModalOpen(true)}
+              type="secondary"
+              fullWidth
+            />
+          </Content>
+          <Modal.Provider
+            open={innerModalOpen}
+            onRequestClose={() => setInnerModalOpen(false)}
+          >
+            <Modal.Content>
+              <Modal.Header title="Inner Modal" />
+              <Content>
+                <Flex template={["shrink", "shrink"]}>
+                  <Text>This is the inner modal!</Text>
+                  <Tooltip message="Exercise caution when nesting modals beyond this level.">
+                    <Icon name="info" color="yellow" />
+                  </Tooltip>
+                </Flex>
+                <Text>
+                  You can close this modal independently, or close both modals
+                  together.
+                </Text>
+              </Content>
+              <Modal.Actions
+                primary={{
+                  label: "Close Inner Modal",
+                  onClick: () => setInnerModalOpen(false),
+                }}
+                secondary={{
+                  label: "Close Both Modals",
+                  onClick: () => {
+                    setInnerModalOpen(false);
+                    setOuterModalOpen(false);
+                  },
+                }}
+              />
+            </Modal.Content>
+          </Modal.Provider>
+        </Modal.Content>
+      </Modal.Provider>
+    </Content>
+  );
+};
+export const NestedExample = NestedExampleTemplate.bind({});
+NestedExample.args = {
+  title: "Outer Modal",
+};
