@@ -530,12 +530,20 @@ Menu.Item = MenuItemComposable;
 Menu.Trigger = MenuTriggerComposable;
 Menu.Content = MenuContentComposable;
 
-interface MenuTriggerComposableProps extends React.PropsWithChildren {}
+interface MenuTriggerComposableProps extends React.PropsWithChildren {
+  /**
+   * Accessible name for the trigger. If trigger content is not plain text, this must be provided.
+   */
+  readonly ariaLabel?: string;
+}
 
-function MenuTriggerComposable({ children }: MenuTriggerComposableProps) {
+function MenuTriggerComposable({
+  ariaLabel,
+  children,
+}: MenuTriggerComposableProps) {
   return (
-    <AriaPressable>
-      <div style={{ display: "inline-flex" }} role="button">
+    <AriaPressable aria-label={ariaLabel}>
+      <div role="button" style={{ display: "inline-flex" }}>
         {children}
       </div>
     </AriaPressable>
