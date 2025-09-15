@@ -5,7 +5,7 @@ import type {
   ReactNode,
   RefObject,
 } from "react";
-import React, { useContext, useId, useRef, useState } from "react";
+import React, { useId, useRef, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
@@ -24,13 +24,13 @@ import {
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import {
-  Button as AriaButton,
   Header as AriaHeader,
   Menu as AriaMenu,
   MenuItem as AriaMenuItem,
   MenuSection as AriaMenuSection,
   MenuTrigger as AriaMenuTrigger,
   Popover as AriaPopover,
+  Pressable as AriaPressable,
 } from "react-aria-components";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
@@ -38,10 +38,6 @@ import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 import { calculateMaxHeight } from "../utils/maxHeight";
-import { ButtonProvider } from "../Button/ButtonProvider";
-import { useButtonStyles } from "../Button/useButtonStyles";
-// eslint-disable-next-line import/no-deprecated
-import { ButtonContent } from "../Button/ButtonInternals";
 
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
@@ -120,8 +116,9 @@ export function Menu({
 }: MenuProps) {
   // React Aria-only path for composable API
   if (children) {
-    const triggerLabel =
-      activator?.props?.ariaLabel || activator?.props?.label || "More Actions";
+    // Use positional arguments to determine the trigger and content
+    // Avoids parsing/iterating over the children
+    const [trigger, menu] = React.Children.toArray(children);
 
     return (
       <div
@@ -131,26 +128,7 @@ export function Menu({
         )}
       >
         <AriaMenuTrigger>
-          <ButtonProvider size={activator?.props?.size}>
-            <AriaButton
-              aria-label={triggerLabel}
-              className={
-                useButtonStyles({
-                  size: activator?.props?.size,
-                  disabled: activator?.props?.disabled,
-                  fullWidth: activator?.props?.fullWidth,
-                  variation: activator?.props?.variation,
-                  type: activator?.props?.type,
-                }).combined
-              }
-            >
-              {activator?.props ? (
-                <ButtonContent {...activator.props} />
-              ) : (
-                <ButtonContent label="More Actions" icon="more" />
-              )}
-            </AriaButton>
-          </ButtonProvider>
+          {trigger}
           <AriaPopover>
             <AnimatePresence>
               <motion.div
@@ -162,7 +140,7 @@ export function Menu({
                 transition={{ type: "tween", duration: 0.25 }}
                 style={UNSAFE_style?.menu}
               >
-                <AriaMenu autoFocus="first">{children}</AriaMenu>
+                {menu}
               </motion.div>
             </AnimatePresence>
           </AriaPopover>
@@ -170,6 +148,7 @@ export function Menu({
       </div>
     );
   }
+
   const [visible, setVisible] = useState(false);
   const [referenceElement, setReferenceElement] =
     useState<HTMLDivElement | null>(null);
@@ -198,7 +177,13 @@ export function Menu({
       offset(MENU_OFFSET),
       flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
       size({
-        apply({ availableHeight, elements }) {
+        apply({
+          availableHeight,
+          elements,
+        }: {
+          availableHeight: number;
+          elements: { floating: HTMLElement };
+        }) {
           // The inner element is the scrollable menu that requires the max height
           const menuElement = elements.floating.querySelector(
             '[role="menu"]',
@@ -505,7 +490,12 @@ interface MenuHeaderComposableProps {
 }
 
 function MenuHeaderComposable({ children }: MenuHeaderComposableProps) {
-  return <AriaHeader className={styles.sectionHeader}>{children}</AriaHeader>;
+  return (
+    <>
+      <AriaHeader className={styles.sectionHeader}>{children}</AriaHeader>
+      {/* <AriaSeparator /> */}
+    </>
+  );
 }
 
 interface MenuItemComposableProps {
@@ -514,14 +504,11 @@ interface MenuItemComposableProps {
 }
 
 function MenuItemComposable({ onClick, children }: MenuItemComposableProps) {
-  const { close } = useContext(MenuVisibilityContext);
-
   return (
     <AriaMenuItem
       className={styles.action}
       onAction={() => {
         onClick?.();
-        close();
       }}
     >
       {children}
@@ -529,13 +516,28 @@ function MenuItemComposable({ onClick, children }: MenuItemComposableProps) {
   );
 }
 
-// Assign static subcomponents to Menu export
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+interface MenuContentComposableProps {
+  readonly children: ReactNode;
+}
+
+function MenuContentComposable({ children }: MenuContentComposableProps) {
+  return <AriaMenu autoFocus="first">{children}</AriaMenu>;
+}
+
 Menu.Section = MenuSectionComposable;
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 Menu.Header = MenuHeaderComposable;
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 Menu.Item = MenuItemComposable;
+Menu.Trigger = MenuTriggerComposable;
+Menu.Content = MenuContentComposable;
+
+interface MenuTriggerComposableProps extends React.PropsWithChildren {}
+
+function MenuTriggerComposable({ children }: MenuTriggerComposableProps) {
+  return (
+    <AriaPressable>
+      <div style={{ display: "inline-flex" }} role="button">
+        {children}
+      </div>
+    </AriaPressable>
+  );
+}
