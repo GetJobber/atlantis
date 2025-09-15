@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { type ButtonProps, type HTMLButtonType } from "./Button.types";
@@ -7,23 +7,17 @@ import { useButtonStyles } from "./useButtonStyles";
 import { ButtonContent, ButtonIcon, ButtonLabel } from "./ButtonInternals";
 import { ButtonProvider } from "./ButtonProvider";
 
-const ButtonInner = forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
-  ButtonProps
->(function Button(props, ref) {
+function Button(props: ButtonProps) {
   const { size } = props;
 
   return (
     <ButtonProvider size={size}>
-      <ButtonWrapper {...props} ref={ref} />
+      <ButtonWrapper {...props} />
     </ButtonProvider>
   );
-});
+}
 
-const ButtonWrapper = forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
-  ButtonProps
->(function ButtonWrapper(props, ref) {
+function ButtonWrapper(props: ButtonProps) {
   const {
     ariaControls,
     ariaHaspopup,
@@ -51,100 +45,43 @@ const ButtonWrapper = forwardRef<
 
   const buttonClassNames = classnames(combined, UNSAFE_className.container);
 
-  const commonProps = {
+  const tagProps = {
     className: buttonClassNames,
+    disabled,
     id,
     style: UNSAFE_style.container,
+    ...(submit && { name, value }),
+    ...(!disabled && { href: url }),
+    ...(!disabled && { onClick: onClick }),
+    ...(!disabled && { onMouseDown: onMouseDown }),
+    ...(external && {
+      target: "_blank",
+      rel: "noopener noreferrer",
+    }),
+    ...(url === undefined && to === undefined && { type: buttonType }),
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
     "aria-label": ariaLabel,
     role: role,
-  } as const;
+  };
 
   const buttonInternals = children || <ButtonContent {...props} />;
 
-  // Link (react-router-dom) variant
   if (to) {
     return (
-      <Link
-        to={to}
-        onClick={
-          disabled
-            ? undefined
-            : (onClick as React.MouseEventHandler<HTMLAnchorElement>)
-        }
-        onMouseDown={
-          disabled
-            ? undefined
-            : (onMouseDown as React.MouseEventHandler<HTMLAnchorElement>)
-        }
-        className={buttonClassNames}
-        style={UNSAFE_style.container}
-        aria-controls={ariaControls}
-        aria-haspopup={ariaHaspopup}
-        aria-expanded={ariaExpanded}
-        aria-label={ariaLabel}
-        role={role}
-        ref={ref as React.Ref<HTMLAnchorElement>}
-      >
+      <Link {...tagProps} to={to}>
         {buttonInternals}
       </Link>
     );
   }
 
-  // Anchor vs Button
-  if (url) {
-    return (
-      <a
-        href={disabled ? undefined : url}
-        target={external ? "_blank" : undefined}
-        rel={external ? "noopener noreferrer" : undefined}
-        onClick={
-          disabled
-            ? undefined
-            : (onClick as React.MouseEventHandler<HTMLAnchorElement>)
-        }
-        onMouseDown={
-          disabled
-            ? undefined
-            : (onMouseDown as React.MouseEventHandler<HTMLAnchorElement>)
-        }
-        {...commonProps}
-        ref={ref as React.Ref<HTMLAnchorElement>}
-      >
-        {buttonInternals}
-      </a>
-    );
-  }
+  const Tag = url ? "a" : "button";
 
-  return (
-    <button
-      type={submit ? "submit" : buttonType}
-      disabled={disabled}
-      name={submit ? name : undefined}
-      value={submit ? value : undefined}
-      onClick={
-        disabled
-          ? undefined
-          : (onClick as React.MouseEventHandler<HTMLButtonElement>)
-      }
-      onMouseDown={
-        disabled
-          ? undefined
-          : (onMouseDown as React.MouseEventHandler<HTMLButtonElement>)
-      }
-      {...commonProps}
-      ref={ref as React.Ref<HTMLButtonElement>}
-    >
-      {buttonInternals}
-    </button>
-  );
-});
+  return <Tag {...tagProps}>{buttonInternals}</Tag>;
+}
 
-export const Button = Object.assign(ButtonInner, {
-  Label: ButtonLabel,
-  Icon: ButtonIcon,
-});
-
+Button.Label = ButtonLabel;
+Button.Icon = ButtonIcon;
 export type { ButtonProps };
+export { Button };
