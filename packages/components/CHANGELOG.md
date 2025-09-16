@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.90.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.3...@jobber/components@6.90.4) (2025-09-15)
+
+
+### Bug Fixes
+
+* **components:** Reorganize Composed Modal to Solve Focus Management ([#2728](https://github.com/GetJobber/atlantis/issues/2728)) ([618f803](https://github.com/GetJobber/atlantis/commit/618f8031dafd9c084f628a1022520b494ed9dd69))
+
+
+
+
+
+## [6.90.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.2...@jobber/components@6.90.3) (2025-09-12)
+
+
+### Bug Fixes
+
+* **components:** Defaults first in DataTable atoms ([#2727](https://github.com/GetJobber/atlantis/issues/2727)) ([2ef854d](https://github.com/GetJobber/atlantis/commit/2ef854d6484ed3f295eb781f246a2682dd4e284e))
+
+
+
+
+
 ## [6.90.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.1...@jobber/components@6.90.2) (2025-09-11)
 
 **Note:** Version bump only for package @jobber/components
