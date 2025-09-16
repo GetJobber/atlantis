@@ -7,8 +7,8 @@ export function DataTableTable(
 ) {
   return (
     <table
-      className={classNames(styles.tableElement, props.className)}
       {...props}
+      className={classNames(styles.tableElement, props.className)}
     >
       {props.children}
     </table>
