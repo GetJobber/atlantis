@@ -1,6 +1,6 @@
 import React, { type PropsWithChildren, useState } from "react";
 import classnames from "classnames";
-import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
+import { useResizeObserver } from "@jobber/hooks";
 import type {
   BannerActionProps,
   BannerContentProps,

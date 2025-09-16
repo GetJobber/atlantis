@@ -1,7 +1,7 @@
 import type { ChangeEvent, KeyboardEvent } from "react";
 import React, { useEffect, useId, useRef, useState } from "react";
 import debounce from "lodash/debounce";
-import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
+import { useLiveAnnounce } from "@jobber/hooks";
 import type {
   ChipDismissibleInputOptionProps,
   ChipDismissibleInputProps,

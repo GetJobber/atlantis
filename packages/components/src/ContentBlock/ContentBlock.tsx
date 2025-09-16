@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { Breakpoints } from "@jobber/hooks/useResizeObserver";
+import { Breakpoints } from "@jobber/hooks";
 import styles from "./ContentBlock.module.css";
 import type { ContentBlockProps } from "./types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
