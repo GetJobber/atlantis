@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.91.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.0...@jobber/components@6.91.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* **components:** Export OverrideTokens type ([#2733](https://github.com/GetJobber/atlantis/issues/2733)) ([d045de1](https://github.com/GetJobber/atlantis/commit/d045de169ef0a18c580cf7194c316ead0c9fb477))
+
+
+
+
+
 # [6.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.4...@jobber/components@6.91.0) (2025-09-16)
 
 
