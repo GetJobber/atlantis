@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.4...@jobber/components@6.91.0) (2025-09-16)
+
+
+### Features
+
+* **hooks:** Update hooks and formatters to build with rollup ([#2722](https://github.com/GetJobber/atlantis/issues/2722)) ([aa8a44c](https://github.com/GetJobber/atlantis/commit/aa8a44ce120c8f2d3e2f6a95bf3adda5d4867faf)), closes [#2700](https://github.com/GetJobber/atlantis/issues/2700) [#2698](https://github.com/GetJobber/atlantis/issues/2698)
+
+
+
+
+
 ## [6.90.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.3...@jobber/components@6.90.4) (2025-09-15)
 
 
