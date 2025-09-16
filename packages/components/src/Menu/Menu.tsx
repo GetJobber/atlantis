@@ -346,11 +346,7 @@ interface MenuComposableProps {
   };
 }
 
-function MenuComposable({
-  children,
-  UNSAFE_className,
-  UNSAFE_style,
-}: MenuComposableProps) {
+function MenuComposable({ children }: MenuComposableProps) {
   // Use positional arguments to determine the trigger and content
   // Avoids parsing/iterating over the children
   const [trigger, menu] = React.Children.toArray(children);
@@ -379,27 +375,29 @@ function MenuComposable({
             const placementString = placement ? String(placement) : "bottom";
 
             return (
-              <motion.div
-                className={classnames(styles.menu, UNSAFE_className?.menu)}
-                variants={composableVariants}
-                initial="hidden"
-                animate={animation}
-                custom={placementString}
-                transition={{
-                  type: "tween",
-                  duration: animation === "hidden" ? 0.2 : 0.25,
-                }}
-                onAnimationComplete={state => {
-                  if (state === "hidden") {
-                    setAnimation(current =>
-                      current === "hidden" ? "unmounted" : current,
-                    );
-                  }
-                }}
-                style={UNSAFE_style?.menu}
-              >
-                {menu}
-              </motion.div>
+              <AnimatePresence>
+                <motion.div
+                  key="menu-content"
+                  variants={composableVariants}
+                  initial="hidden"
+                  animate={animation}
+                  exit="hidden"
+                  custom={placementString}
+                  transition={{
+                    type: "tween",
+                    duration: animation === "hidden" ? 0.2 : 0.25,
+                  }}
+                  onAnimationComplete={state => {
+                    if (state === "hidden") {
+                      setAnimation(current =>
+                        current === "hidden" ? "unmounted" : current,
+                      );
+                    }
+                  }}
+                >
+                  {menu}
+                </motion.div>
+              </AnimatePresence>
             );
           }}
         </AriaPopover>
@@ -604,7 +602,11 @@ interface MenuContentComposableProps {
 }
 
 function MenuContentComposable({ children }: MenuContentComposableProps) {
-  return <AriaMenu autoFocus="first">{children}</AriaMenu>;
+  return (
+    <AriaMenu className={styles.menu} autoFocus="first">
+      {children}
+    </AriaMenu>
+  );
 }
 
 Menu.Section = MenuSectionComposable;
