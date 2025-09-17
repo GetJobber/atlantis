@@ -23,14 +23,35 @@ upgrade packages without breaking consumers.
   install these explicitly because they’re bundled. Examples: implementation
   utilities we don’t expect apps to share as singletons.
 
-- `peerDependencies`: Packages the consuming app must provide (React, router,
-  motion, etc.). We don’t bundle these. This avoids duplicate singletons and
-  lets apps control versions. If it’s a peer, it should also be in
-  `devDependencies` so we can build/test.
+  Examples:
+
+  - `@floating-ui/react` (positioning util bundled into popovers/menus)
+  - Small helpers that don’t require a singleton and are safe to duplicate
+    (e.g., one-off utility libs we import and bundle)
+
+- `peerDependencies`: Packages the consuming app must provide. We don’t bundle
+  these. This avoids duplicate singletons and lets apps control versions. If
+  it’s a peer, it should also be in `devDependencies` so we can build/test.
+
+  Examples (all listed in Rollup `external`):
+
+  - `react`, `react-dom`, `react-router-dom`, `react-hook-form`
+  - `framer-motion` (animations)
+  - `@tanstack/react-table` (table engine)
+  - `@apollo/client` (GraphQL client)
+  - `@jobber/design`, `@jobber/formatters`, `@jobber/hooks`
 
 - `devDependencies`: Tools and libraries needed only to develop/build/test this
   package in-repo (Storybook, TypeScript, plus peers we need at build time). Not
   shipped to consumers.
+
+  Examples:
+
+  - Tooling: `typescript`, `@rollup/plugin-*`, `rollup`, `storybook`,
+    `typed-css-modules`, `postcss-*`
+  - Peers we externalize (to compile/test locally): `react`, `react-dom`,
+    `react-router-dom`, `react-hook-form`, `framer-motion`,
+    `@tanstack/react-table`, `@apollo/client`
 
 ## Rollup `external` is the source of truth
 
@@ -143,9 +164,20 @@ This avoids npm “normalizing” other ranges and keeps the change localized.
   `devDependencies: ^11.11.12`; present in Rollup `external`.
 - `@floating-ui/react`: bundled implementation detail → present in
   `dependencies`; not in `external`.
+- `storybook`, `@rollup/plugin-typescript`, `typescript`: dev-only tooling →
+  present in `devDependencies` only.
 
 ## Why this matters
 
 Following this policy prevents duplicate singletons, keeps bundle size down,
 reduces version conflicts in consuming apps, and makes upgrades predictable
 (especially in a monorepo with a single lockfile).
+
+## Further reading
+
+- npm docs: Managing dependencies — `dependencies`, `devDependencies`,
+  `peerDependencies`
+  (`https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies`)
+- npm v7+ peer dependency resolution notes
+  (`https://github.com/npm/rfcs/blob/latest/implemented/0025-install-peer-deps.md`)
+- Rollup: Externals (`https://rollupjs.org/configuration-options/#external`)
