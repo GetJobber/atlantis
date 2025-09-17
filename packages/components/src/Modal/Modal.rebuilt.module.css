@@ -18,6 +18,7 @@
 .overlay {
   display: grid;
   place-items: center;
+  z-index: var(--elevation-modal);
 }
 
 .overlayBackground {
