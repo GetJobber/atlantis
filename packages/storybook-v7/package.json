@@ -1,0 +1,27 @@
+{
+  "name": "storybook-v7",
+  "private": true,
+  "version": "0.0.0",
+  "devDependencies": {
+    "@storybook/blocks": "^7.6.20",
+    "@storybook/components": "^7.6.20",
+    "@codesandbox/sandpack-react": "^1.20.9",
+    "@storybook/addon-actions": "^7.6.20",
+    "@storybook/addon-designs": "7.0.9",
+    "@storybook/addon-docs": "^7.6.20",
+    "@storybook/addon-essentials": "^7.6.20",
+    "@storybook/addon-interactions": "^7.6.20",
+    "@storybook/addon-links": "^7.6.20",
+    "@storybook/addon-mdx-gfm": "^7.6.20",
+    "@storybook/addon-react-native-web": "^0.0.21",
+    "@storybook/addons": "^7.6.20",
+    "@storybook/manager-api": "^7.6.20",
+    "@storybook/react": "^7.6.20",
+    "@storybook/react-native": "^7.6.20",
+    "@storybook/react-webpack5": "^7.6.20",
+    "@storybook/source-loader": "^7.6.20",
+    "@storybook/testing-library": "0.2.2",
+    "@storybook/theming": "^7.6.20",
+    "storybook": "^7.6.20"
+  }
+}
