@@ -8,8 +8,6 @@ module.exports = {
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "\\.css$": "identity-obj-proxy",
-    "react-markdown":
-      "<rootDir>/node_modules/react-markdown/react-markdown.min.js",
     "^@jobber/components/(.*)$": "<rootDir>/packages/components/src/$1",
   },
   // Automatically clear mock calls and instances between every test

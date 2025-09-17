@@ -63,7 +63,6 @@ export function Markdown({
     <Tag>
       <ReactMarkdown
         {...props}
-        linkTarget={externalLink ? "_blank" : undefined}
         components={{
           p: renderParagraph,
           strong: renderStrong,
