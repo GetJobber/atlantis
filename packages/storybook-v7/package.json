@@ -1,8 +1,13 @@
 {
-  "name": "storybook-v7",
+  "name": "@jobber/storybook-v7",
   "private": true,
   "version": "0.0.0",
+  "scripts": {
+    "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6005 --disable-telemetry",
+    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build --disable-telemetry"
+  },
   "devDependencies": {
+    "@csstools/postcss-global-data": "^1.0.3",
     "@storybook/blocks": "^7.6.20",
     "@storybook/components": "^7.6.20",
     "@codesandbox/sandpack-react": "^1.20.9",
@@ -22,6 +27,15 @@
     "@storybook/source-loader": "^7.6.20",
     "@storybook/testing-library": "0.2.2",
     "@storybook/theming": "^7.6.20",
-    "storybook": "^7.6.20"
+    "css-loader": "^3.4.2",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^4.2.0",
+    "postcss-preset-env": "^8.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.20",
+    "ts-dedent": "^2.2.0",
+    "typed-css-modules": "^0.7.0",
+    "typed-css-modules-loader": "0.0.18"
   }
 }
