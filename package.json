@@ -13,6 +13,7 @@
     "packages/eslint-config",
     "packages/generators",
     "packages/stylelint-config",
+    "packages/storybook-v7",
     "packages/site"
   ],
   "scripts": {
