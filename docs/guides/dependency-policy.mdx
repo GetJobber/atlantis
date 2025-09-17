@@ -1,0 +1,151 @@
+## Dependency strategy for @jobber/components (monorepo + Rollup)
+
+This document explains how we use dependencies, devDependencies,
+peerDependencies, and Rollup `external` in our monorepo, and how to safely
+upgrade packages without breaking consumers.
+
+### TL;DR
+
+- **If we bundle it** (it’s not in Rollup `external`): put it in `dependencies`.
+- **If we externalize it** (it is in Rollup `external`): put it in
+  `peerDependencies` and also in `devDependencies` for local build/test. Do not
+  put it in `dependencies`.
+- **Never duplicate the same package in both `dependencies` and
+  `peerDependencies`.**
+- **Keep the same semver range in `peerDependencies` and `devDependencies`** to
+  avoid npm “normalizing” unrelated ranges.
+
+---
+
+## What each field means (for a published library)
+
+- `dependencies`: Code we ship inside our built `dist`. Consumers do not need to
+  install these explicitly because they’re bundled. Examples: implementation
+  utilities we don’t expect apps to share as singletons.
+
+- `peerDependencies`: Packages the consuming app must provide (React, router,
+  motion, etc.). We don’t bundle these. This avoids duplicate singletons and
+  lets apps control versions. If it’s a peer, it should also be in
+  `devDependencies` so we can build/test.
+
+- `devDependencies`: Tools and libraries needed only to develop/build/test this
+  package in-repo (Storybook, TypeScript, plus peers we need at build time). Not
+  shipped to consumers.
+
+## Rollup `external` is the source of truth
+
+Rollup’s `external` tells the bundler to leave imports as-is (do not bundle).
+Anything listed there must be provided by the consuming app. Therefore:
+
+- **Everything in `external` → peerDependency + devDependency**
+- **Everything not in `external` → dependency (if we import it) and NOT a peer**
+
+Example mapping from our config:
+
+- Externalized (peer + dev): `react`, `react-dom`, `react-router-dom`,
+  `react-hook-form`, `framer-motion`, `@tanstack/react-table`, `axios`,
+  `lodash`, `filesize`, `color`, `classnames`, `@apollo/client`,
+  `@jobber/design`, `@jobber/formatters`, `@jobber/hooks`.
+- Bundled (dependency): e.g., `@floating-ui/react` (implementation detail we do
+  not require the app to provide).
+
+Note: moving a package from “bundled” to “externalized” (or vice versa) is a
+breaking change for consumers. Version accordingly.
+
+### When to add something to `external` (criteria)
+
+Add a package to `external` if most of the following are true:
+
+- It behaves like a singleton/framework in the app (React, router, motion,
+  analytics providers, design/runtime packages).
+- Having multiple copies could cause bugs, duplicated global state, or heavy
+  duplication in bundles.
+- Consumers reasonably expect to control the version (e.g., they already use it
+  directly).
+- We don’t want to ship it inside `@jobber/components` (either due to size or
+  version control concerns).
+
+Keep a package bundled (do not add to `external`) if most of the following are
+true:
+
+- It’s an internal implementation detail that consumers do not need to install
+  or be aware of.
+- Multiple copies in an app are harmless (pure utility, no global
+  state/singleton expectations).
+- Forcing consumers to install it would add friction without benefit.
+
+Decision checklist:
+
+- If added to `external`, also add to `peerDependencies` and `devDependencies`
+  with matching ranges.
+- If removed from `external`, move it to `dependencies` and remove the peer
+  entry.
+- Treat changes in `external` status as breaking changes for semantic
+  versioning.
+
+## Monorepo/workspaces implications
+
+We use npm workspaces with a single lockfile. npm v7+ enforces peer dependencies
+across the workspace. Duplicating a package in both `dependencies` and
+`peerDependencies` across packages makes resolution harder and can cause npm to
+preserve stale lock entries instead of producing a minimal update.
+
+Guidance:
+
+- Do not duplicate packages across `dependencies` and `peerDependencies` in the
+  same package.
+- Keep `peerDependencies` ranges aligned with `devDependencies` ranges for the
+  same package.
+- Prefer minimum compatible ranges (e.g., `^11.11.12`) that match the APIs we
+  actually use.
+
+## Safe upgrade workflow (peer + dev only)
+
+When upgrading an externalized package (e.g., `framer-motion`) without churning
+unrelated ranges:
+
+1. Edit `packages/components/package.json` by hand:
+
+   - `peerDependencies.framer-motion`: `^11.11.12`
+   - `devDependencies.framer-motion`: `^11.11.12`
+
+2. Force re-resolution for just this workspace (surgical):
+
+   - Delete the specific lockfile node: `packages/components/node_modules/<pkg>`
+     from `package-lock.json`.
+   - Reinstall only the workspace:
+     `npm i -w packages/components --ignore-scripts`.
+
+3. Verify: `npm ls <pkg> -w packages/components` resolves within the requested
+   range.
+
+This avoids npm “normalizing” other ranges and keeps the change localized.
+
+## Do / Don’t checklist
+
+- **Do**: externalize singletons/framework libs; declare them as peer + dev.
+- **Do**: keep the same range in `peerDependencies` and `devDependencies` for a
+  given package.
+- **Do**: verify Rollup `external` matches what you’ve declared as peers.
+- **Do**: treat moving a package between “bundled” and “externalized” as a
+  breaking change.
+
+- **Don’t**: list the same package in both `dependencies` and
+  `peerDependencies`.
+- **Don’t**: rely on root workspace overrides to manage library versions; fix
+  the package’s own `package.json` instead.
+- **Don’t**: broaden ranges unintentionally; prefer explicit minimums that
+  reflect required APIs.
+
+## Examples
+
+- `framer-motion`: externalized → `peerDependencies: ^11.11.12` and
+  `devDependencies: ^11.11.12`; present in Rollup `external`.
+- `@floating-ui/react`: bundled implementation detail → present in
+  `dependencies`; not in `external`.
+
+## Why this matters
+
+Following this policy prevents duplicate singletons, keeps bundle size down,
+reduces version conflicts in consuming apps, and makes upgrades predictable
+(especially in a monorepo with a single lockfile).
