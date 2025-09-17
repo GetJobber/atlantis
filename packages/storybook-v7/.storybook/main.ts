@@ -4,8 +4,8 @@ import type { StorybookConfig } from '@storybook/react-webpack5';
 
 const config: StorybookConfig = {
   stories: [
-    "../docs/**/*.stories.mdx",
-    "../docs/**/*.stories.@(js|jsx|ts|tsx)",
+    "../../../docs/**/*.stories.mdx",
+    "../../../docs/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",
@@ -111,7 +111,7 @@ const config: StorybookConfig = {
                 require("@csstools/postcss-global-data")({
                   files: [
                     require.resolve(
-                      path.join(__dirname, "../packages/design/dist/foundation.css"),
+                      path.join(__dirname, "../../design/dist/foundation.css"),
                     ),
                   ],
                 }),
@@ -132,18 +132,32 @@ const config: StorybookConfig = {
     // Alias @jobber so it works on MDX files
     config.resolve.alias = {
       ...config.resolve?.alias,
+      "@storybook/addon-docs": path.resolve(
+        __dirname,
+        "../node_modules/@storybook/addon-docs",
+      ),
+      "@storybook/addon-designs": path.resolve(
+        __dirname,
+        "../node_modules/@storybook/addon-designs",
+      ),
+      "@storybook/blocks": path.resolve(
+        __dirname,
+        "../node_modules/@storybook/blocks",
+      ),
       "@jobber/components": path.resolve(
         __dirname,
-        "../packages/components/src",
+        "../../components/src",
       ),
       "@jobber/components-native": path.resolve(
         __dirname,
-        "../packages/components-native/src",
+        "../../components-native/src",
       ),
-      "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
-      "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),
+      "@jobber/docx": path.resolve(__dirname, "../../docx/src"),
+      "@jobber/hooks": path.resolve(__dirname, "../../hooks/src"),
       mdxUtils: path.resolve(__dirname, "components"),
-      "@atlantis": path.resolve(__dirname, "../"),
+      react: path.resolve(__dirname, "../node_modules/react"),
+      "react-dom": path.resolve(__dirname, "../node_modules/react-dom"),
+      "@atlantis": path.resolve(__dirname, "../../../"),
       'react-native-web/dist/exports/findNodeHandle': path.resolve(__dirname, "__mocks__/react-native-web-findNodeHandle.ts"),
     };
 
