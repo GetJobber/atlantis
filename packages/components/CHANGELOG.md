@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.91.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.1...@jobber/components@6.91.2) (2025-09-17)
+
+
+### Bug Fixes
+
+* **components:** Give Modal Rebuilt Proper Elevation ([#2734](https://github.com/GetJobber/atlantis/issues/2734)) ([b2a9103](https://github.com/GetJobber/atlantis/commit/b2a9103b22a09e059499394448477d8686f986eb))
+
+
+
+
+
 ## [6.91.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.0...@jobber/components@6.91.1) (2025-09-16)
 
 
