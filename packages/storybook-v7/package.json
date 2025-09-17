@@ -2,6 +2,10 @@
   "name": "@jobber/storybook-v7",
   "private": true,
   "version": "0.0.0",
+  "scripts": {
+    "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6005 --disable-telemetry",
+    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build --disable-telemetry"
+  },
   "devDependencies": {
     "@csstools/postcss-global-data": "^1.0.3",
     "@storybook/blocks": "^7.6.20",

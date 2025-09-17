@@ -30,7 +30,7 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx,.mjs,.cjs . --report-unused-disable-directives",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
     "pack": "npm run bootstrap && npm pack -w",
-    "postinstall": "npm run bootstrap",
+    "postinstall": "cd packages/storybook-v7 && npm install && cd - && npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
     "preventManualRelease": "node scripts/preventManualRelease.js",
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
@@ -39,8 +39,7 @@
     "release-the-kraken": "npm ci && lerna publish",
     "release:unpublished-package": "npm ci && lerna publish from-package",
     "start": "npm run storybook",
-    "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6005 --disable-telemetry",
-    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build --disable-telemetry",
+    "storybook": "cd packages/storybook-v7 && npm run storybook",
     "test": "jest"
   },
   "repository": {
