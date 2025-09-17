@@ -18,6 +18,7 @@
 .overlay {
   display: grid;
   place-items: center;
+  z-index: var(--elevation-modal);
 }
 
 .overlayBackground {
@@ -26,7 +27,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: var(--elevation-modal);
   outline: none;
   background-color: var(--color-overlay);
   will-change: opacity;
