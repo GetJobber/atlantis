@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Typography/Typography.stories.mdx";
+import Content from "./Typography.stories.mdx";
 import Props from "./Typography.props.json";
 import MobileProps from "./Typography.props-mobile.json";
 import Notes from "./TypographyNotes.mdx";

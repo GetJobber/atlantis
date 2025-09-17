@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/InputPhoneNumber/InputPhoneNumber.stories.mdx";
+import Content from "./InputPhoneNumber.stories.mdx";
 import Props from "./InputPhoneNumber.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

@@ -2,7 +2,7 @@ import type { Dispatch, MutableRefObject } from "react";
 import type React from "react";
 import { useRef, useState } from "react";
 import noop from "lodash/noop";
-import { useDebounce } from "@jobber/hooks/useDebounce";
+import { useDebounce } from "@jobber/hooks";
 import type { UseMakeComboboxHandlersReturn } from "./useMakeComboboxHandlers";
 import { useMakeComboboxHandlers } from "./useMakeComboboxHandlers";
 import { type ComboboxOption } from "../Combobox.types";

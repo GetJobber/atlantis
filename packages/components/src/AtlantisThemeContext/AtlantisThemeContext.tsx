@@ -1,16 +1,18 @@
 import { darkTokens, tokens } from "@jobber/design";
-import type { PropsWithChildren } from "react";
+import type { CSSProperties } from "react";
 import React, {
   createContext,
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import merge from "lodash/merge";
 import type {
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,
+  OverrideTokens,
   Theme,
   ThemeChangeDetails,
 } from "./types";
@@ -29,10 +31,12 @@ const AtlantisThemeContext = createContext(atlantisThemeContextDefaultValues);
 export function AtlantisThemeContextProvider({
   children,
   dangerouslyOverrideTheme,
+  dangerouslyOverrideTokens,
 }: AtlantisThemeContextProviderProps) {
   if (dangerouslyOverrideTheme) {
     return (
       <InternalStaticThemeProvider
+        dangerouslyOverrideTokens={dangerouslyOverrideTokens}
         dangerouslyOverrideTheme={dangerouslyOverrideTheme}
       >
         {children}
@@ -41,16 +45,29 @@ export function AtlantisThemeContextProvider({
   }
 
   return (
-    <InternalDynamicThemeProvider>{children}</InternalDynamicThemeProvider>
+    <InternalDynamicThemeProvider
+      dangerouslyOverrideTokens={dangerouslyOverrideTokens}
+    >
+      {children}
+    </InternalDynamicThemeProvider>
   );
 }
 
-function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
+function InternalDynamicThemeProvider({
+  children,
+  dangerouslyOverrideTokens,
+}: {
+  readonly children: React.ReactNode;
+  readonly dangerouslyOverrideTokens: OverrideTokens | undefined;
+}) {
   const initialTheme: Theme =
     (globalThis.document.documentElement.dataset.theme as Theme) ?? "light";
 
   const [internalTheme, setInternalTheme] = useState<Theme>(initialTheme);
-  const currentTokens = internalTheme === "dark" ? actualDarkTokens : tokens;
+  const { finalTokens, cssVariableOverrides } = useTokens(
+    internalTheme,
+    dangerouslyOverrideTokens,
+  );
 
   const handleThemeChangeEvent = useCallback((event: Event) => {
     const newTheme = (event as CustomEvent<ThemeChangeDetails>).detail.theme;
@@ -76,10 +93,20 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
     <AtlantisThemeContext.Provider
       value={{
         theme: internalTheme,
-        tokens: currentTokens,
+        tokens: finalTokens,
+        overrideTokens: dangerouslyOverrideTokens,
       }}
     >
-      {children}
+      {cssVariableOverrides ? (
+        <div
+          className={styles.overrideTokensWrapper}
+          style={cssVariableOverrides}
+        >
+          {children}
+        </div>
+      ) : (
+        children
+      )}
     </AtlantisThemeContext.Provider>
   );
 }
@@ -87,25 +114,32 @@ function InternalDynamicThemeProvider({ children }: PropsWithChildren) {
 function InternalStaticThemeProvider({
   dangerouslyOverrideTheme,
   children,
+  dangerouslyOverrideTokens,
 }: Required<
   Pick<
     AtlantisThemeContextProviderProps,
     "dangerouslyOverrideTheme" | "children"
-  >
+  > & {
+    readonly dangerouslyOverrideTokens: OverrideTokens | undefined;
+  }
 >) {
-  const currentTokens =
-    dangerouslyOverrideTheme === "dark" ? actualDarkTokens : tokens;
+  const { finalTokens, cssVariableOverrides } = useTokens(
+    dangerouslyOverrideTheme,
+    dangerouslyOverrideTokens,
+  );
 
   return (
     <AtlantisThemeContext.Provider
       value={{
         theme: dangerouslyOverrideTheme,
-        tokens: currentTokens,
+        tokens: finalTokens,
+        overrideTokens: dangerouslyOverrideTokens,
       }}
     >
       <div
         data-theme={dangerouslyOverrideTheme}
         className={styles.staticThemeProviderWrapper}
+        style={cssVariableOverrides}
       >
         {children}
       </div>
@@ -115,4 +149,41 @@ function InternalStaticThemeProvider({
 
 export function useAtlantisTheme() {
   return useContext(AtlantisThemeContext);
+}
+
+function getCssVariableOverrides(
+  overrideTokens: OverrideTokens,
+): CSSProperties {
+  const cssVariables = Object.entries(overrideTokens).reduce<CSSProperties>(
+    (variables, [tokenName, tokenValue]) => {
+      // @ts-expect-error - css variables are valid keys for style objects. @types/react may be outdated.
+      variables[`--${tokenName}`] = tokenValue;
+
+      return variables;
+    },
+    {},
+  );
+
+  return cssVariables;
+}
+
+function useTokens(theme: Theme, overrideTokens: OverrideTokens | undefined) {
+  const currentTokens = theme === "dark" ? actualDarkTokens : tokens;
+
+  const finalTokens = useMemo(() => {
+    if (overrideTokens) {
+      return merge({}, currentTokens, overrideTokens);
+    }
+
+    return currentTokens;
+  }, [currentTokens, overrideTokens]);
+
+  const cssVariableOverrides = overrideTokens
+    ? getCssVariableOverrides(overrideTokens)
+    : undefined;
+
+  return {
+    finalTokens,
+    cssVariableOverrides,
+  };
 }

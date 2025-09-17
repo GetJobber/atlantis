@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.84.3",
+  "version": "0.85.0",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -32,10 +32,10 @@
     "build": "npm run build:clean && npm run compile",
     "bootstrap": "npm run build",
     "prepack": "npm run build",
-    "compile": "tsc -b",
+    "compile": "tsc -p tsconfig.build.json",
     "build:clean": "rm -rf ./dist",
     "storybook": "storybook dev -p 6008 --disable-telemetry",
-    "build-storybook": "storybook build --disable-telemetry"
+    "storybook:build": "storybook build --disable-telemetry"
   },
   "dependencies": {
     "@react-native-clipboard/clipboard": "^1.11.2",
@@ -63,6 +63,8 @@
     "@types/lodash.identity": "^3.0.7",
     "@types/react": "^18.0.28",
     "@types/react-native-uuid": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
     "metro-react-native-babel-preset": "^0.76.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

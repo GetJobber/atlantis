@@ -6,7 +6,7 @@ export function DataTableContainer(
   props: PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>,
 ) {
   return (
-    <div className={classNames(styles.container, props.className)} {...props}>
+    <div {...props} className={classNames(styles.container, props.className)}>
       {props.children}
     </div>
   );

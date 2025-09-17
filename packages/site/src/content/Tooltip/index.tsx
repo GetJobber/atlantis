@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Tooltip/Tooltip.stories.mdx";
+import Content from "./Tooltip.stories.mdx";
 import Props from "./Tooltip.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

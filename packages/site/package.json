@@ -14,7 +14,9 @@
     "test:visual:ci": "playwright test --config=playwright.config.ts tests/visual/",
     "test:visual:reload": "cd .. && npm run bootstrap && cd - && npm run test:visual",
     "test:visual": "../../scripts/e2e.sh playwright test --config=playwright.config.ts --project=chromium tests/visual/",
-    "test:visual:update": "../../scripts/e2e.sh playwright test --config=playwright.config.ts  tests/visual/ --update-snapshots"
+    "test:visual:update": "../../scripts/e2e.sh playwright test --config=playwright.config.ts  tests/visual/ --update-snapshots",
+    "visual:update:single": "node scripts/visualTestHelper.mjs update",
+    "visual:test:single": "node scripts/visualTestHelper.mjs test"
   },
   "dependencies": {
     "@babel/standalone": "^7.26.2",

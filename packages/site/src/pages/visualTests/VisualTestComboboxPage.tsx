@@ -22,60 +22,66 @@ interface TeamMember extends ComboboxOption {
   status: "online" | "offline" | "away";
 }
 
+// Static data used only for visual scenarios
+const basicOptions: ComboboxOption[] = [
+  { id: "1", label: "Option 1" },
+  { id: "2", label: "Option 2" },
+  { id: "3", label: "Option 3" },
+  { id: "4", label: "Option 4" },
+];
+
+const multiOptions: ComboboxOption[] = [
+  { id: "plumbing", label: "Plumbing" },
+  { id: "electrical", label: "Electrical" },
+  { id: "hvac", label: "HVAC" },
+  { id: "landscaping", label: "Landscaping" },
+  { id: "cleaning", label: "Cleaning" },
+];
+
+const teamMembers: TeamMember[] = [
+  {
+    id: "1",
+    label: "Alice Johnson",
+    email: "alice@example.com",
+    status: "online",
+  },
+  { id: "2", label: "Bob Smith", email: "bob@example.com", status: "away" },
+  {
+    id: "3",
+    label: "Charlie Brown",
+    email: "charlie@example.com",
+    status: "offline",
+  },
+  {
+    id: "4",
+    label: "David Wilson",
+    email: "david@example.com",
+    status: "online",
+  },
+];
+
+const lotrMembers: ComboboxOption[] = [
+  { id: "1", label: "Bilbo Baggins" },
+  { id: "2", label: "Frodo Baggins" },
+  { id: "3", label: "Pippin Took" },
+  { id: "4", label: "Merry Brandybuck" },
+  { id: "5", label: "Sam Gamgee" },
+  { id: "6", label: "Aragorn" },
+  { id: "7", label: "Legolas" },
+  { id: "8", label: "Gimli" },
+];
+
 export const VisualTestComboboxPage = () => {
-  // Basic single select
   const [basicSelected, setBasicSelected] = useState<ComboboxOption[]>([]);
-
-  // Multi select
   const [multiSelected, setMultiSelected] = useState<ComboboxOption[]>([]);
-
-  // Custom activator
   const [customSelected, setCustomSelected] = useState<ComboboxOption[]>([]);
-
-  // With prefix and custom render
   const [teamSelected, setTeamSelected] = useState<TeamMember[]>([]);
-
-  // With search and loading
   const [searchSelected, setSearchSelected] = useState<ComboboxOption[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchOptions, setSearchOptions] = useState<ComboboxOption[]>([]);
 
-  const basicOptions: ComboboxOption[] = [
-    { id: "1", label: "Option 1" },
-    { id: "2", label: "Option 2" },
-    { id: "3", label: "Option 3" },
-    { id: "4", label: "Option 4" },
-  ];
-
-  const multiOptions: ComboboxOption[] = [
-    { id: "plumbing", label: "Plumbing" },
-    { id: "electrical", label: "Electrical" },
-    { id: "hvac", label: "HVAC" },
-    { id: "landscaping", label: "Landscaping" },
-    { id: "cleaning", label: "Cleaning" },
-  ];
-
-  const teamMembers: TeamMember[] = [
-    {
-      id: "1",
-      label: "Alice Johnson",
-      email: "alice@example.com",
-      status: "online",
-    },
-    { id: "2", label: "Bob Smith", email: "bob@example.com", status: "away" },
-    {
-      id: "3",
-      label: "Charlie Brown",
-      email: "charlie@example.com",
-      status: "offline",
-    },
-    {
-      id: "4",
-      label: "David Wilson",
-      email: "david@example.com",
-      status: "online",
-    },
-  ];
+  const [constrainedSelected, setConstrainedSelected] =
+    useState<ComboboxOption[]>(lotrMembers);
 
   const handleSearch = async (searchValue: string) => {
     setIsLoading(true);
@@ -257,6 +263,34 @@ export const VisualTestComboboxPage = () => {
                     />
                   ))}
                 </Combobox>
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* Constrained Width Multi Select (Visual) */}
+          <section>
+            <Text size="large">Constrained Width Multi Select</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <div style={{ width: 300 }}>
+                  <Combobox
+                    label="Teammates"
+                    selected={constrainedSelected}
+                    onSelect={options =>
+                      setConstrainedSelected(options as ComboboxOption[])
+                    }
+                    multiSelect={true}
+                    subjectNoun="teammates"
+                  >
+                    {lotrMembers.map(option => (
+                      <Combobox.Option
+                        key={option.id}
+                        id={option.id}
+                        label={option.label}
+                      />
+                    ))}
+                  </Combobox>
+                </div>
               </Grid.Cell>
             </Grid>
           </section>

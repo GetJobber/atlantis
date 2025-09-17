@@ -8,9 +8,9 @@ export const DataTableRow = forwardRef<
 >((props, ref) => {
   return (
     <tr
+      {...props}
       className={classNames(styles.row, props.className)}
       ref={ref}
-      {...props}
     >
       {props.children}
     </tr>

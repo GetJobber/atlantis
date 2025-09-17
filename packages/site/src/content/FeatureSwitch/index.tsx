@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/FeatureSwitch/FeatureSwitch.stories.mdx";
+import Content from "./FeatureSwitch.stories.mdx";
 import Props from "./FeatureSwitch.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

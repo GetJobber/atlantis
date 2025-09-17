@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import * as jobberHooks from "@jobber/hooks/useResizeObserver";
+import * as jobberHooks from "@jobber/hooks";
 import { Disclosure } from ".";
 import { Icon } from "../Icon";
 
-jest.mock("@jobber/hooks/useResizeObserver", () => {
+jest.mock("@jobber/hooks", () => {
   return {
     __esModule: true, // Allows use to spy on useResizeObserver
-    ...(jest.requireActual("@jobber/hooks/useResizeObserver") as object),
+    ...(jest.requireActual("@jobber/hooks") as object),
   };
 });
 

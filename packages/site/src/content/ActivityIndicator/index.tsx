@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/ActivityIndicator/ActivityIndicator.stories.mdx";
+import Content from "./ActivityIndicator.stories.mdx";
 import MobileProps from "./ActivityIndicator.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

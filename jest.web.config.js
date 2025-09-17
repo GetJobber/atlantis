@@ -10,7 +10,6 @@ module.exports = {
     "\\.css$": "identity-obj-proxy",
     "react-markdown":
       "<rootDir>/node_modules/react-markdown/react-markdown.min.js",
-    "^@jobber/hooks/(.*)$": "<rootDir>/packages/hooks/dist/$1",
     "^@jobber/components/(.*)$": "<rootDir>/packages/components/src/$1",
   },
   // Automatically clear mock calls and instances between every test
@@ -23,6 +22,7 @@ module.exports = {
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   testPathIgnorePatterns: [
     "/node_modules/",
+    "/node_modules.e2e/",
     "/packages/generators/templates/",
     "/packages/components-native/",
   ],
