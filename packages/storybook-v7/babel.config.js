@@ -11,5 +11,6 @@ module.exports = {
       { deprecatedAssertSyntax: true },
     ],
     "babel-plugin-transform-import-meta",
+    "react-native-reanimated/plugin",
   ],
 };
