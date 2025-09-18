@@ -5,7 +5,13 @@ import type {
   ReactNode,
   RefObject,
 } from "react";
-import React, { useId, useRef, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
@@ -326,49 +332,59 @@ interface MenuComposableProps {
 
 const MotionPopover = motion.create(AriaPopover);
 
+type AnimationState = "unmounted" | "hidden" | "visible";
+const MenuAnimationContext = createContext<AnimationState>("unmounted");
+
+function useMenuAnimation() {
+  return useContext(MenuAnimationContext);
+}
+
 function MenuComposable({ children }: MenuComposableProps) {
   // Use positional arguments to determine the trigger and content
   // Avoids parsing/iterating over the children
   const [trigger, menu] = React.Children.toArray(children);
 
-  type AnimationState = "unmounted" | "hidden" | "visible";
   const [animation, setAnimation] = useState<AnimationState>("unmounted");
+  const isMobile = useIsMobileDevice();
 
   return (
     <div className={styles.wrapper}>
-      <AriaMenuTrigger
-        onOpenChange={isOpen => {
-          setAnimation(isOpen ? "visible" : "hidden");
-        }}
-      >
-        {trigger}
-        {/* placement comes from the renderProp, but it needs to get used on the element itself */}
-        {/* somewhat of an impossible problem */}
-        {/* the only solution is to have the animation NOT be on this element */}
-        {/* furthermore, we must ignore the "null" placement case that happens on first render */}
-        <MotionPopover
-          isExiting={animation === "hidden"}
-          key="menu-content"
-          variants={{
-            hidden: { opacity: 0, y: -10 },
-            visible: { y: 0, opacity: 1 },
-          }}
-          initial="hidden"
-          animate={animation}
-          transition={{
-            type: "tween",
-            duration: MENU_ANIMATION_DURATION,
-          }}
-          onAnimationComplete={animationState => {
-            setAnimation(a =>
-              animationState === "hidden" && a === "hidden" ? "unmounted" : a,
-            );
+      <MenuAnimationContext.Provider value={animation}>
+        <AriaMenuTrigger
+          onOpenChange={isOpen => {
+            setAnimation(isOpen ? "visible" : "hidden");
           }}
         >
-          {menu}
-        </MotionPopover>
-        <MenuMobileUnderlay animation={animation} />
-      </AriaMenuTrigger>
+          {trigger}
+          {/* Animate the wrapper only with opacity on mobile so transforms don't affect fixed children */}
+          <MotionPopover
+            isExiting={animation === "hidden"}
+            key="menu-content"
+            variants={
+              isMobile
+                ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+                : {
+                    hidden: { opacity: 0, y: -10 },
+                    visible: { y: 0, opacity: 1 },
+                  }
+            }
+            initial="hidden"
+            animate={animation}
+            transition={{
+              type: "tween",
+              duration: MENU_ANIMATION_DURATION,
+            }}
+            onAnimationComplete={animationState => {
+              setAnimation(a =>
+                animationState === "hidden" && a === "hidden" ? "unmounted" : a,
+              );
+            }}
+          >
+            {menu}
+          </MotionPopover>
+          <MenuMobileUnderlay animation={animation} />
+        </AriaMenuTrigger>
+      </MenuAnimationContext.Provider>
     </div>
   );
 }
@@ -567,7 +583,29 @@ interface MenuContentComposableProps {
   readonly children: ReactNode;
 }
 
+const MotionMenu = motion.create(AriaMenu);
+
 function MenuContentComposable({ children }: MenuContentComposableProps) {
+  const animation = useMenuAnimation();
+  const isMobile = useIsMobileDevice();
+
+  if (isMobile) {
+    return (
+      <MotionMenu
+        className={styles.menu}
+        variants={{
+          hidden: { opacity: 0, y: 150 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        initial="hidden"
+        animate={animation}
+        transition={{ type: "tween", duration: MENU_ANIMATION_DURATION }}
+      >
+        {children}
+      </MotionMenu>
+    );
+  }
+
   return <AriaMenu className={styles.menu}>{children}</AriaMenu>;
 }
 
