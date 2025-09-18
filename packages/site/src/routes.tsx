@@ -260,8 +260,8 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
-        path: "/guides/dependency-guide",
-        handle: "Dependency guide",
+        path: "/guides/managing-dependencies",
+        handle: "Managing dependencies",
         exact: true,
       },
     ],

@@ -64,8 +64,8 @@ export const guidesList = [
     sections: ["Building"],
   },
   {
-    title: "Dependency guide",
-    to: "/guides/dependency-guide",
+    title: "Managing dependencies",
+    to: "/guides/managing-dependencies",
     sections: ["Contributing"],
   },
 ];
