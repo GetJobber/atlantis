@@ -30,7 +30,7 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx,.mjs,.cjs . --report-unused-disable-directives",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
     "pack": "npm run bootstrap && npm pack -w",
-    "postinstall": "cd packages/storybook-v7 && npm install && cd - && npm run bootstrap",
+    "postinstall": "(cd packages/storybook-v7 && npm install) && npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
     "preventManualRelease": "node scripts/preventManualRelease.js",
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
