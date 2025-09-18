@@ -86,7 +86,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 </urlset>`;
 
 // Ensure storybook-static directory exists
-const outputDir = path.join(__dirname, "storybook-static");
+const outputDir = path.join(__dirname, "packages/storybook-v7/storybook-static");
 
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
