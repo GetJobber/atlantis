@@ -54,3 +54,35 @@
   --public-field--top-right-radius: 0;
   --public-field--bottom-right-radius: 0;
 }
+
+/* Vertical group containing horizontal rows: control top/bottom rounding */
+/* First row: round only the outer top corners */
+.vertical > .horizontal:first-child > :first-child {
+  --public-field--top-left-radius: var(--radius-base);
+}
+
+.vertical > .horizontal:first-child > :last-child {
+  --public-field--top-right-radius: var(--radius-base);
+}
+
+/* Last row: round only the outer bottom corners */
+.vertical > .horizontal:last-child > :first-child {
+  --public-field--bottom-left-radius: var(--radius-base);
+}
+
+.vertical > .horizontal:last-child > :last-child {
+  --public-field--bottom-right-radius: var(--radius-base);
+}
+
+/* Middle rows: flatten top/bottom on both row edges */
+.vertical > .horizontal:not(:first-child) > :first-child,
+.vertical > .horizontal:not(:first-child) > :last-child {
+  --public-field--top-left-radius: 0;
+  --public-field--top-right-radius: 0;
+}
+
+.vertical > .horizontal:not(:last-child) > :first-child,
+.vertical > .horizontal:not(:last-child) > :last-child {
+  --public-field--bottom-left-radius: 0;
+  --public-field--bottom-right-radius: 0;
+}

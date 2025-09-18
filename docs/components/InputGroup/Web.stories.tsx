@@ -90,3 +90,31 @@ export const DateRange = DateRangeTemplate.bind({});
 DateRange.args = {
   flowDirection: "horizontal",
 };
+
+const VerticalWithHorizontalRowsTemplate: ComponentStory<
+  typeof InputGroup
+> = args => {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <InputGroup {...args}>
+        <InputText placeholder="Street 1" />
+        <InputText placeholder="Street 2" />
+        <InputGroup flowDirection="horizontal">
+          <InputText placeholder="City" />
+          <InputText placeholder="Province" />
+        </InputGroup>
+        <InputGroup flowDirection="horizontal">
+          <InputText placeholder="Postal Code" />
+          <InputText placeholder="Country" />
+          <InputText placeholder="Planet" />
+        </InputGroup>
+      </InputGroup>
+    </div>
+  );
+};
+
+export const VerticalWithHorizontalRows =
+  VerticalWithHorizontalRowsTemplate.bind({});
+VerticalWithHorizontalRows.args = {
+  flowDirection: "vertical",
+};
