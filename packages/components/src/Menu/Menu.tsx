@@ -365,7 +365,7 @@ function MenuComposable({ children }: MenuComposableProps) {
           initial="hidden"
           animate={animation}
           transition={{
-            ease: "easeOut",
+            type: "tween",
             duration: MENU_ANIMATION_DURATION,
           }}
           onAnimationComplete={animationState => {
@@ -409,7 +409,7 @@ function MenuMobileUnderlay({
       }}
       initial="hidden"
       transition={{
-        ease: "easeOut",
+        type: "tween",
         // weird behavior around the Tray. if its animation finished first, this one will
         // get frozen at whatever state it was in when the Tray animation finished
         // the Menu animation is broken on mobile anyway so maybe not a big deal
