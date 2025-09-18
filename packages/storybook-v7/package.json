@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "bootstrap": "npm ci",
     "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && storybook dev -p 6005 --disable-telemetry",
     "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && storybook build --disable-telemetry"
   },
