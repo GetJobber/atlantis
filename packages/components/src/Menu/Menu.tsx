@@ -32,7 +32,6 @@ import {
   Popover as AriaPopover,
   Pressable as AriaPressable,
 } from "react-aria-components";
-import { Overlay } from "react-aria";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -44,6 +43,7 @@ const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
 const MENU_MAX_HEIGHT_PERCENTAGE = 72;
 const REACT_ARIA_MOBILE_BREAKPOINT = 700;
+const MENU_ANIMATION_DURATION = 0.3;
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -56,24 +56,6 @@ const variation = {
     return { opacity: 0, y };
   },
   done: { opacity: 1, y: 0 },
-};
-
-// Composable-only animation variants (uses RAC breakpoint for tray)
-const composableVariants = {
-  hidden: (placement: string | undefined) => {
-    let y = 10;
-    if (placement?.includes("bottom")) y *= -1;
-
-    if (
-      typeof window !== "undefined" &&
-      window.innerWidth <= REACT_ARIA_MOBILE_BREAKPOINT
-    ) {
-      y = 150;
-    }
-
-    return { opacity: 0, y };
-  },
-  visible: { opacity: 1, y: 0 },
 };
 
 // Note: For composable path we animate only the inner content and use RAC's isExiting to keep it mounted.
@@ -346,6 +328,8 @@ interface MenuComposableProps {
   };
 }
 
+const MotionPopover = motion.create(AriaPopover);
+
 function MenuComposable({ children }: MenuComposableProps) {
   // Use positional arguments to determine the trigger and content
   // Avoids parsing/iterating over the children
@@ -353,54 +337,49 @@ function MenuComposable({ children }: MenuComposableProps) {
 
   type AnimationState = "unmounted" | "hidden" | "visible";
   const [animation, setAnimation] = useState<AnimationState>("unmounted");
+  const [overlayAnimation, setOverlayAnimation] =
+    useState<AnimationState>("unmounted");
 
   return (
     <div className={styles.wrapper}>
       <AriaMenuTrigger
-        onOpenChange={isOpen => setAnimation(isOpen ? "visible" : "hidden")}
+        onOpenChange={isOpen => {
+          setAnimation(isOpen ? "visible" : "hidden");
+          setOverlayAnimation(isOpen ? "visible" : "hidden");
+        }}
       >
         {trigger}
-        <MenuMobileUnderlay
-          animation={animation}
-          onAnimationComplete={state => {
-            if (state === "hidden") {
-              setAnimation(current =>
-                current === "hidden" ? "unmounted" : current,
-              );
-            }
+        {/* placement comes from the renderProp, but it needs to get used on the element itself */}
+        {/* somewhat of an impossible problem */}
+        {/* the only solution is to have the animation NOT be on this element */}
+        {/* furthermore, we must ignore the "null" placement case that happens on first render */}
+        {/* or we accept that the Menu animation is in reverse when Menu is above */}
+        {/* minor, but annoying we can't build the experience we want */}
+        <MotionPopover
+          isExiting={animation === "hidden"}
+          key="menu-content"
+          variants={{
+            hidden: { opacity: 0, y: -20 },
+            visible: { y: 0, opacity: 1 },
           }}
-        />
-        <AriaPopover isExiting={animation === "hidden"}>
-          {({ placement }: { readonly placement: string | null }) => {
-            const placementString = placement ? String(placement) : "bottom";
-
-            return (
-              <AnimatePresence>
-                <motion.div
-                  key="menu-content"
-                  variants={composableVariants}
-                  initial="hidden"
-                  animate={animation}
-                  exit="hidden"
-                  custom={placementString}
-                  transition={{
-                    type: "tween",
-                    duration: animation === "hidden" ? 0.2 : 0.25,
-                  }}
-                  onAnimationComplete={state => {
-                    if (state === "hidden") {
-                      setAnimation(current =>
-                        current === "hidden" ? "unmounted" : current,
-                      );
-                    }
-                  }}
-                >
-                  {menu}
-                </motion.div>
-              </AnimatePresence>
+          initial="hidden"
+          animate={animation}
+          transition={{
+            ease: "easeOut",
+            duration: MENU_ANIMATION_DURATION,
+          }}
+          onAnimationComplete={animationState => {
+            setAnimation(a =>
+              animationState === "hidden" && a === "hidden" ? "unmounted" : a,
             );
           }}
-        </AriaPopover>
+        >
+          {menu}
+        </MotionPopover>
+        <MenuMobileUnderlay
+          animation={animation}
+          onAnimationComplete={() => {}}
+        />
       </AriaMenuTrigger>
     </div>
   );
@@ -422,15 +401,24 @@ function MenuMobileUnderlay({
   if (!isMobile || animation === "unmounted") return null;
 
   return (
-    <Overlay isExiting={animation === "hidden"}>
-      <motion.div
-        className={styles.overlay}
-        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-        initial="hidden"
-        animate={animation}
-        onAnimationComplete={onAnimationComplete}
-      />
-    </Overlay>
+    <motion.div
+      key="menu-mobile-underlay"
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      }}
+      initial="hidden"
+      transition={{
+        ease: "easeOut",
+        // weird behavior around the Tray. if its animation finished first, this one will
+        // get frozen at whatever state it was in when the Tray animation finished
+        // the Menu animation is broken on mobile anyway so maybe not a big deal
+        duration: MENU_ANIMATION_DURATION,
+      }}
+      className={styles.overlay}
+      animate={animation}
+      onAnimationComplete={onAnimationComplete}
+    />
   );
 }
 
@@ -602,11 +590,7 @@ interface MenuContentComposableProps {
 }
 
 function MenuContentComposable({ children }: MenuContentComposableProps) {
-  return (
-    <AriaMenu className={styles.menu} autoFocus="first">
-      {children}
-    </AriaMenu>
-  );
+  return <AriaMenu className={styles.menu}>{children}</AriaMenu>;
 }
 
 Menu.Section = MenuSectionComposable;

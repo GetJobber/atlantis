@@ -15,7 +15,12 @@ export default {
   },
 } as ComponentMeta<typeof Menu>;
 
-const BasicTemplate: ComponentStory<typeof Menu> = args => <Menu {...args} />;
+const BasicTemplate: ComponentStory<typeof Menu> = args => (
+  <>
+    <div style={{ height: "300px" }} />
+    <Menu {...args} />
+  </>
+);
 
 export const Horizontal = BasicTemplate.bind({});
 Horizontal.args = {
@@ -164,11 +169,13 @@ export const Composable = () => {
             </Button>
           </Menu.Trigger>
           <Menu.Content>
-            <Menu.Item>
-              <Button onClick={() => alert("Home")}>
-                <Button.Label>Home</Button.Label>
-                <Button.Icon name="home" />
-              </Button>
+            <Menu.Item onClick={() => alert("Apple")}>
+              <Icon name="apple" />
+              <Text>Apple</Text>
+            </Menu.Item>
+            <Menu.Item onClick={() => alert("Battery")}>
+              <Icon name="battery" />
+              <Text>Battery</Text>
             </Menu.Item>
           </Menu.Content>
         </Menu>
@@ -185,11 +192,9 @@ export const Composable = () => {
           </Menu.Trigger>
           <Menu.Content>
             {items.map(item => (
-              <Menu.Item key={item.label}>
-                <Button onClick={item.onClick}>
-                  <Button.Label>{item.label}</Button.Label>
-                  <Button.Icon name={item.icon} />
-                </Button>
+              <Menu.Item key={item.label} onClick={item.onClick}>
+                <Icon name={item.icon} />
+                <Text>{item.label}</Text>
               </Menu.Item>
             ))}
           </Menu.Content>
