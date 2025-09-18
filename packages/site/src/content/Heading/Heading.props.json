@@ -8,7 +8,7 @@
     "props": {
       "id": {
         "defaultValue": null,
-        "description": "",
+        "description": "Adds a unique identifier to the heading.\nUseful when the heading needs to be referenced by another element.\nNot intended for styling.",
         "name": "id",
         "parent": {
           "fileName": "../components/src/Heading/Heading.tsx",
