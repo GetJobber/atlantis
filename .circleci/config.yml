@@ -38,7 +38,10 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: npm ci
+      command: |
+        npm ci
+        cd packages/storybook-v7
+        npm ci
 
   check_git_status: &check_git_status
     run:
@@ -161,7 +164,6 @@ jobs:
       - run:
           command: |
             cd packages/storybook-v7
-            npm ci
             npm run storybook:build
       - *check_git_status
 
