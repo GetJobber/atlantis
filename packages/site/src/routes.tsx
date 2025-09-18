@@ -259,6 +259,11 @@ export const routes: Array<AtlantisRoute> = [
         handle: "Scaffolding",
         exact: true,
       },
+      {
+        path: "/guides/dependency-guide",
+        handle: "Dependency guide",
+        exact: true,
+      },
     ],
   },
   {

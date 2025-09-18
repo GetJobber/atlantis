@@ -8,6 +8,7 @@ import PullRequestTitleGeneratorComponent from "@atlantis/docs/guides/pull-reque
 import Figma101Component from "@atlantis/docs/guides/figma-101.mdx";
 import AtlantisOverviewComponent from "@atlantis/docs/guides/atlantis-overview.mdx";
 import ContributingComponent from "@atlantis/docs/guides/contributing.mdx";
+import DependencyGuideComponent from "@atlantis/docs/guides/dependency-guide.mdx";
 import PageLayoutsComponent from "../guides/page-layouts.stories.mdx";
 import ScaffoldingComponent from "../guides/scaffolding.stories.mdx";
 import { ContentMapItems } from "../types/maps";
@@ -73,5 +74,10 @@ export const guidesContentMap: ContentMapItems = {
     title: "Scaffolding",
     content: () => <ScaffoldingComponent />,
     noMaxWidth: true,
+  },
+  "dependency-guide": {
+    intro: "Dependency guide",
+    title: "Dependency guide",
+    content: () => <DependencyGuideComponent />,
   },
 };

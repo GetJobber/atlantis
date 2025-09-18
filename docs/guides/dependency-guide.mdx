@@ -1,8 +1,12 @@
-## Dependency strategy for @jobber/components (monorepo + Rollup)
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Guides/Dependency Guide" />
+
+# Dependency strategy for `components` (monorepo + Rollup)
 
 This document explains how we use dependencies, devDependencies,
 peerDependencies, and Rollup `external` in our monorepo, and how to safely
-upgrade packages without breaking consumers.
+upgrade packages without breaking anything for consumers.
 
 ### TL;DR
 
@@ -12,8 +16,13 @@ upgrade packages without breaking consumers.
   put it in `dependencies`.
 - **Never duplicate the same package in both `dependencies` and
   `peerDependencies`.**
-- **Keep the same semver range in `peerDependencies` and `devDependencies`** to
-  avoid npm “normalizing” unrelated ranges.
+- **Most often we want to keep the semver range in `peerDependencies` and
+  `devDependencies` aligned** to avoid npm “normalizing” unrelated ranges\*.
+
+  \*There is some nuance to this. For example, `devDependencies` for React 19
+  should be `^19.1.1`, but the peerDep range might be `^18 | ^19 or >= 18`
+  because we are compatible with, or otherwise do not explicitly rely on
+  anything from one of these versions.
 
 ---
 
@@ -48,7 +57,7 @@ upgrade packages without breaking consumers.
   Examples:
 
   - Tooling: `typescript`, `@rollup/plugin-*`, `rollup`, `storybook`,
-    `typed-css-modules`, `postcss-*`
+    `typed-css-modules`, `postcss-*`, `@types/*`
   - Peers we externalize (to compile/test locally): `react`, `react-dom`,
     `react-router-dom`, `react-hook-form`, `framer-motion`,
     `@tanstack/react-table`, `@apollo/client`
@@ -59,7 +68,11 @@ Rollup’s `external` tells the bundler to leave imports as-is (do not bundle).
 Anything listed there must be provided by the consuming app. Therefore:
 
 - **Everything in `external` → peerDependency + devDependency**
-- **Everything not in `external` → dependency (if we import it) and NOT a peer**
+- **Everything not in `external` → NOT a peer; it should be either:**
+  - `dependencies` if it is part of our runtime/public code and gets bundled
+    into `dist`.
+  - `devDependencies` if it’s used only for build/test/Storybook or
+    type-checking and not shipped in `dist`.
 
 Example mapping from our config:
 
@@ -99,8 +112,8 @@ Decision checklist:
 
 - If added to `external`, also add to `peerDependencies` and `devDependencies`
   with matching ranges.
-- If removed from `external`, move it to `dependencies` and remove the peer
-  entry.
+- If removed from `external`, move it to `dependencies` (if used at runtime) or
+  `devDependencies` (if build/test-only) and remove the peer entry.
 - Treat changes in `external` status as breaking changes for semantic
   versioning.
 
@@ -166,6 +179,54 @@ This avoids npm “normalizing” other ranges and keeps the change localized.
   `dependencies`; not in `external`.
 - `storybook`, `@rollup/plugin-typescript`, `typescript`: dev-only tooling →
   present in `devDependencies` only.
+
+## Type packages and emitted declarations (d.ts)
+
+When our public API references types from other packages, those references are
+preserved in the emitted `.d.ts` files as `import("pkg").Type`. This has
+implications for where those packages live in `package.json`:
+
+- If a type shows up in emitted `.d.ts`, the module must be resolvable by
+  consumers’ TypeScript.
+  - For framework libs (React, router, etc.) this is covered by listing them in
+    `peerDependencies` (and consumers installing them).
+  - For type-only helper libraries (e.g., `ts-xor`), either:
+    - keep them in `dependencies` so consumers get them transitively, or
+    - inline the utility type into our codebase so we don’t leak the external.
+
+Practical examples in this repo:
+
+- `ts-xor` is referenced in exported types:
+
+  - `packages/components/src/Button/Button.types.ts` →
+    `export type ButtonProps = XOR<...>`
+  - `packages/components/src/Popover/Popover.types.ts` →
+    `export type PopoverDismissButtonProps = XOR<...>`
+  - `packages/components/src/InputText/InputText.types.ts` →
+    `export type InputTextLegacyProps = XOR<...>`
+  - `packages/components/src/FormField/FormFieldTypes.ts` →
+    `suffix?: XOR<Affix, Suffix>`
+  - `packages/components/src/Toast/Toast.tsx` →
+    `export type ToastProps = XOR<...>` Because these appear in the emitted
+    `.d.ts`, `ts-xor` must remain resolvable (keep as a `dependency`, or inline
+    an `XOR` type to remove the external).
+
+- Router types leak into declarations:
+  - `packages/components/src/Button/Button.types.ts` →
+    `readonly to?: LinkProps["to"]` becomes
+    `import("react-router-dom").LinkProps["to"]` in `.d.ts`.
+  - Ensure `react-router-dom` peer range matches the type shape we support
+    (e.g., `^5` or `>=5 <7`). Keep `@types/react-router-dom` as a devDependency
+    when targeting v5; do not import from `@types/...` directly.
+
+Type pitfalls to avoid:
+
+- Don’t import from `@types/<pkg>` in public types; always import from the
+  runtime package name so consumers resolve naturally.
+- Use `import type` for public type references to avoid accidental runtime
+  imports.
+- Avoid re-exporting large third-party types unless necessary; consider defining
+  a minimal structural type to decouple from third-party version churn.
 
 ## Why this matters
 
