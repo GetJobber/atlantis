@@ -6,6 +6,7 @@ import { Typography } from "../Typography";
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface HeadingProps {
+  readonly id?: string;
   /**
    * @default 5
    */
@@ -46,6 +47,7 @@ export interface HeadingProps {
 export type LevelMap = Record<HeadingLevel, TypographyOptions>;
 
 export function Heading({
+  id,
   level = 5,
   children,
   element,
@@ -104,6 +106,7 @@ export function Heading({
 
   return (
     <Typography
+      id={id}
       {...levelMap[level]}
       element={element || levelMap[level].element}
       numberOfLines={maxLineToNumber[maxLines]}
