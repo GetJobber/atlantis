@@ -210,11 +210,7 @@ export const VisualTestChipPage = () => {
                       <Icon name="alert" size="small" />
                     </Chip.Prefix>
                   </Chip>
-                  <Chip
-                    label="Disabled with Heading"
-                    heading="Error"
-                    disabled
-                  />
+                  <Chip label="Disabled with Heading" disabled />
                 </Flex>
               </Grid.Cell>
             </Grid>
