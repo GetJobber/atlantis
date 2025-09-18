@@ -6,6 +6,19 @@
     "displayName": "Heading",
     "methods": [],
     "props": {
+      "id": {
+        "defaultValue": null,
+        "description": "",
+        "name": "id",
+        "parent": {
+          "fileName": "../components/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "level": {
         "defaultValue": {
           "value": 5
