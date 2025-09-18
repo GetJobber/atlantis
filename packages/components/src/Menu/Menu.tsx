@@ -333,10 +333,22 @@ interface MenuComposableProps {
 const MotionPopover = motion.create(AriaPopover);
 
 type AnimationState = "unmounted" | "hidden" | "visible";
-const MenuAnimationContext = createContext<AnimationState>("unmounted");
+interface MenuAnimationContextValue {
+  state: AnimationState;
+  setState: React.Dispatch<React.SetStateAction<AnimationState>>;
+}
+const MenuAnimationContext = createContext<MenuAnimationContextValue | null>(
+  null,
+);
 
-function useMenuAnimation() {
-  return useContext(MenuAnimationContext);
+function useMenuAnimation(): MenuAnimationContextValue {
+  const ctx = useContext(MenuAnimationContext);
+
+  if (!ctx) {
+    throw new Error("MenuAnimationContext used outside provider");
+  }
+
+  return ctx;
 }
 
 function MenuComposable({ children }: MenuComposableProps) {
@@ -345,41 +357,20 @@ function MenuComposable({ children }: MenuComposableProps) {
   const [trigger, menu] = React.Children.toArray(children);
 
   const [animation, setAnimation] = useState<AnimationState>("unmounted");
-  const isMobile = useIsMobileDevice();
 
   return (
     <div className={styles.wrapper}>
-      <MenuAnimationContext.Provider value={animation}>
+      <MenuAnimationContext.Provider
+        value={{ state: animation, setState: setAnimation }}
+      >
         <AriaMenuTrigger
           onOpenChange={isOpen => {
             setAnimation(isOpen ? "visible" : "hidden");
           }}
         >
           {trigger}
-          {/* Animate the wrapper only with opacity on mobile so transforms don't affect fixed children */}
-          <MotionPopover
-            isExiting={animation === "hidden"}
-            key="menu-content"
-            variants={
-              isMobile
-                ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
-                : {
-                    hidden: { opacity: 0, y: -10 },
-                    visible: { y: 0, opacity: 1 },
-                  }
-            }
-            initial="hidden"
-            animate={animation}
-            transition={{
-              type: "tween",
-              duration: MENU_ANIMATION_DURATION,
-            }}
-            onAnimationComplete={animationState => {
-              setAnimation(a =>
-                animationState === "hidden" && a === "hidden" ? "unmounted" : a,
-              );
-            }}
-          >
+          {/* Keep Popover mounted while exiting, but do not animate it. */}
+          <MotionPopover isExiting={animation === "hidden"} key="menu-content">
             {menu}
           </MotionPopover>
           <MenuMobileUnderlay animation={animation} />
@@ -586,27 +577,29 @@ interface MenuContentComposableProps {
 const MotionMenu = motion.create(AriaMenu);
 
 function MenuContentComposable({ children }: MenuContentComposableProps) {
-  const animation = useMenuAnimation();
+  const { state: animation, setState } = useMenuAnimation();
   const isMobile = useIsMobileDevice();
 
-  if (isMobile) {
-    return (
-      <MotionMenu
-        className={styles.menu}
-        variants={{
-          hidden: { opacity: 0, y: 150 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        initial="hidden"
-        animate={animation}
-        transition={{ type: "tween", duration: MENU_ANIMATION_DURATION }}
-      >
-        {children}
-      </MotionMenu>
-    );
-  }
+  const variants = isMobile
+    ? { hidden: { opacity: 0, y: 150 }, visible: { opacity: 1, y: 0 } }
+    : { hidden: { opacity: 0, y: -10 }, visible: { opacity: 1, y: 0 } };
 
-  return <AriaMenu className={styles.menu}>{children}</AriaMenu>;
+  return (
+    <MotionMenu
+      className={styles.menu}
+      variants={variants}
+      initial="hidden"
+      animate={animation}
+      transition={{ type: "tween", duration: MENU_ANIMATION_DURATION }}
+      onAnimationComplete={animationState => {
+        setState(prev =>
+          animationState === "hidden" && prev === "hidden" ? "unmounted" : prev,
+        );
+      }}
+    >
+      {children}
+    </MotionMenu>
+  );
 }
 
 Menu.Section = MenuSectionComposable;
