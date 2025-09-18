@@ -6,6 +6,11 @@ import { Typography } from "../Typography";
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface HeadingProps {
+  /**
+   * Adds a unique identifier to the heading.
+   * Useful when the heading needs to be referenced by another element.
+   * Not intended for styling.
+   */
   readonly id?: string;
   /**
    * @default 5
