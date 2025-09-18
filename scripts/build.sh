@@ -9,8 +9,13 @@ set -e # Exit on error
 # /storybook/web    -> storybook v9 web (components)
 # /storybook/mobile -> storybook v9 mobile (components-native)
 
-# Build storybook v7 and v9 instances
-npm run --prefix packages/storybook-v7 storybook:build
+# Install storybook v7 dependencies and build it
+cd packages/storybook-v7
+npm ci
+npm run storybook:build
+cd -
+
+# Build storybook v9 instances
 npm run --prefix packages/components storybook:build
 npm run --prefix packages/components-native storybook:build
 

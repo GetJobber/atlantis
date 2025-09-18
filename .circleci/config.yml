@@ -159,7 +159,10 @@ jobs:
       - *attach_workspace
       - *generate_base_path
       - run:
-          command: npm run --prefix packages/storybook-v7 storybook:build
+          command: |
+            cd packages/storybook-v7
+            npm ci
+            npm run storybook:build
       - *check_git_status
 
   build_storybook_web:
