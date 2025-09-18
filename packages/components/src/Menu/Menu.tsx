@@ -359,7 +359,7 @@ function MenuComposable({ children }: MenuComposableProps) {
           isExiting={animation === "hidden"}
           key="menu-content"
           variants={{
-            hidden: { opacity: 0, y: -20 },
+            hidden: { opacity: 0, y: -10 },
             visible: { y: 0, opacity: 1 },
           }}
           initial="hidden"
