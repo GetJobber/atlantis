@@ -3,7 +3,10 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 describe("sitemap-generator", () => {
-  const STORYBOOK_STATIC_DIR = path.join(__dirname, "packages/storybook-v7/storybook-static");
+  const STORYBOOK_STATIC_DIR = path.join(
+    __dirname,
+    "packages/storybook-v7/storybook-static",
+  );
   const SITEMAP_PATH = path.join(STORYBOOK_STATIC_DIR, "sitemap.xml");
 
   beforeAll(() => {
