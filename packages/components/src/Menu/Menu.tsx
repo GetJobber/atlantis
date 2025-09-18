@@ -42,7 +42,6 @@ import { calculateMaxHeight } from "../utils/maxHeight";
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
 const MENU_MAX_HEIGHT_PERCENTAGE = 72;
-const REACT_ARIA_MOBILE_BREAKPOINT = 700;
 const MENU_ANIMATION_DURATION = 0.3;
 
 const variation = {
@@ -115,10 +114,7 @@ export function useIsMobileDevice(): boolean {
     return false;
   }
 
-  // Unfortunately there's no way to tell RAC to use a different breakpoint
-  // so we're using the same one as the one they use
-  // To properly reference their value we need to also pull in react-spectrum
-  return window.screen.width <= REACT_ARIA_MOBILE_BREAKPOINT;
+  return window.screen.width <= SMALL_SCREEN_BREAKPOINT;
 }
 
 // eslint-disable-next-line max-statements
@@ -337,15 +333,12 @@ function MenuComposable({ children }: MenuComposableProps) {
 
   type AnimationState = "unmounted" | "hidden" | "visible";
   const [animation, setAnimation] = useState<AnimationState>("unmounted");
-  const [overlayAnimation, setOverlayAnimation] =
-    useState<AnimationState>("unmounted");
 
   return (
     <div className={styles.wrapper}>
       <AriaMenuTrigger
         onOpenChange={isOpen => {
           setAnimation(isOpen ? "visible" : "hidden");
-          setOverlayAnimation(isOpen ? "visible" : "hidden");
         }}
       >
         {trigger}
@@ -353,8 +346,6 @@ function MenuComposable({ children }: MenuComposableProps) {
         {/* somewhat of an impossible problem */}
         {/* the only solution is to have the animation NOT be on this element */}
         {/* furthermore, we must ignore the "null" placement case that happens on first render */}
-        {/* or we accept that the Menu animation is in reverse when Menu is above */}
-        {/* minor, but annoying we can't build the experience we want */}
         <MotionPopover
           isExiting={animation === "hidden"}
           key="menu-content"
@@ -376,10 +367,7 @@ function MenuComposable({ children }: MenuComposableProps) {
         >
           {menu}
         </MotionPopover>
-        <MenuMobileUnderlay
-          animation={animation}
-          onAnimationComplete={() => {}}
-        />
+        <MenuMobileUnderlay animation={animation} />
       </AriaMenuTrigger>
     </div>
   );
@@ -387,15 +375,9 @@ function MenuComposable({ children }: MenuComposableProps) {
 
 interface MenuMobileUnderlayProps {
   readonly animation: "unmounted" | "hidden" | "visible";
-  readonly onAnimationComplete: (
-    state: "unmounted" | "hidden" | "visible",
-  ) => void;
 }
 
-function MenuMobileUnderlay({
-  animation,
-  onAnimationComplete,
-}: MenuMobileUnderlayProps) {
+function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
   const isMobile = useIsMobileDevice();
 
   if (!isMobile || animation === "unmounted") return null;
@@ -410,14 +392,10 @@ function MenuMobileUnderlay({
       initial="hidden"
       transition={{
         type: "tween",
-        // weird behavior around the Tray. if its animation finished first, this one will
-        // get frozen at whatever state it was in when the Tray animation finished
-        // the Menu animation is broken on mobile anyway so maybe not a big deal
         duration: MENU_ANIMATION_DURATION,
       }}
       className={styles.overlay}
       animate={animation}
-      onAnimationComplete={onAnimationComplete}
     />
   );
 }

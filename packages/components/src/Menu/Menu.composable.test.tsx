@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Menu } from ".";
+import * as POM from "./Menu.pom";
 import { Button } from "../Button";
 import { Text } from "../Text";
 
@@ -43,39 +44,31 @@ describe("Menu (composable API)", () => {
     );
   }
 
-  async function openByClick() {
-    await userEvent.click(screen.getByLabelText("Menu"));
-    await waitFor(() => expect(screen.getByRole("menu")).toBeInTheDocument());
-  }
-
   it("opens via mouse click and renders items", async () => {
     render(<TestSectionMenu />);
-    await openByClick();
+    await POM.openWithClick("Menu");
     expect(screen.getByRole("menuitem")).toBeInTheDocument();
   });
 
   it("opens via Enter and focuses first item", async () => {
     render(<TestSectionMenu />);
-    const trigger = screen.getByLabelText("Menu");
-    trigger.focus();
-    await userEvent.keyboard("{Enter}");
-    await waitFor(() => expect(screen.getByRole("menu")).toBeInTheDocument());
+    await POM.openWithKeyboard("Menu", "Enter");
     expect(screen.getAllByRole("menuitem")[0]).toHaveFocus();
   });
 
   it("opens via Space and focuses first item", async () => {
     render(<TestSectionMenu />);
-    const trigger = screen.getByLabelText("Menu");
-    trigger.focus();
-    await userEvent.keyboard(" ");
-    await waitFor(() => expect(screen.getByRole("menu")).toBeInTheDocument());
+    await POM.openWithKeyboard("Menu", "Space");
     expect(screen.getAllByRole("menuitem")[0]).toHaveFocus();
   });
 
   it("activates first item with Enter and closes", async () => {
     const onItem = jest.fn();
     render(<TestSectionMenu onItem={onItem} />);
-    await openByClick();
+    await POM.openWithKeyboard("Menu", "Enter");
+    await waitFor(() =>
+      expect(screen.getAllByRole("menuitem")[0]).toHaveFocus(),
+    );
     await userEvent.keyboard("{Enter}");
     expect(onItem).toHaveBeenCalledTimes(1);
     await waitFor(() =>
@@ -86,7 +79,10 @@ describe("Menu (composable API)", () => {
   it("activates first item with Space and closes", async () => {
     const onItem = jest.fn();
     render(<TestSectionMenu onItem={onItem} />);
-    await openByClick();
+    await POM.openWithKeyboard("Menu", "Space");
+    await waitFor(() =>
+      expect(screen.getAllByRole("menuitem")[0]).toHaveFocus(),
+    );
     await userEvent.keyboard(" ");
     expect(onItem).toHaveBeenCalledTimes(1);
     await waitFor(() =>
@@ -97,8 +93,8 @@ describe("Menu (composable API)", () => {
   describe("string trigger content", () => {
     it("opens via click using provided ariaLabel", async () => {
       render(<TestStringTriggerMenu />);
-      await userEvent.click(screen.getByLabelText("Simple"));
-      await waitFor(() => expect(screen.getByRole("menu")).toBeInTheDocument());
+      await POM.openWithClick("Simple");
+      expect(screen.getByRole("menu")).toBeInTheDocument();
     });
   });
 });
