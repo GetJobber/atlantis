@@ -20,7 +20,7 @@
     "build": "./scripts/build.sh",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
     "ci:release": "lerna publish --yes --no-private",
-    "clean": "rm -rf node_modules **/dist packages/**/.rollup.cache storybook-static",
+    "clean": "rm -rf node_modules **/dist packages/**/.rollup.cache packages/**/storybook-static",
     "generate": "plop -- --path='./packages/components/src/'",
     "generate:sitemap": "node sitemap-generator.js",
     "lint": "npm run lint:js && npm run lint:css",
