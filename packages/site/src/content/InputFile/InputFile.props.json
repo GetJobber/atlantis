@@ -36,6 +36,19 @@
           "name": "\"small\" | \"base\""
         }
       },
+      "name": {
+        "defaultValue": null,
+        "description": "Sets the `name` attribute on the underlying `<input>` element.",
+        "name": "name",
+        "parent": {
+          "fileName": "../components/src/InputFile/InputFile.tsx",
+          "name": "InputFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "buttonLabel": {
         "defaultValue": {
           "value": "Automatic"
