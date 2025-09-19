@@ -63,6 +63,7 @@
     "@types/lodash.debounce": "^4.0.7",
     "@types/lodash.identity": "^3.0.7",
     "@types/react": "^18.0.28",
+    "@types/react-test-renderer": "^19.0.0",
     "@types/react-native-uuid": "^1.4.0",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
