@@ -40,3 +40,18 @@ breakages.
     ```
   </Tab>
 </Tabs>
+
+### Using the id prop
+
+#### Do:
+
+- ✅ Navigation anchors: Link directly to a specific section of the page (e.g.
+  /docs#getting-started).
+- ✅ Accessible regions: Provide an `id` so page regions (like `<section>`,
+  `<fieldset>`, or form groups) can reference the heading via `aria-labelledby`,
+  ensuring clear announcements without duplication.
+
+#### Don't:
+
+- ❌ CSS styling: Use design system props or `UNSAFE_className`/`UNSAFE_style`
+  instead.

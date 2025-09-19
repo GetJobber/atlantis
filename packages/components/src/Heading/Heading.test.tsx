@@ -110,6 +110,17 @@ it("renders with maxLines prop", () => {
   `);
 });
 
+it("renders with id prop", () => {
+  const { container } = render(
+    <Heading level={1} id="test-heading">
+      Heading with ID
+    </Heading>,
+  );
+
+  const heading = container.querySelector("h1");
+  expect(heading).toHaveAttribute("id", "test-heading");
+});
+
 describe("UNSAFE_props", () => {
   it("should apply the UNSAFE_className to the element", () => {
     render(
