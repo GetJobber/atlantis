@@ -194,6 +194,27 @@ export const VisualTestChipPage = () => {
               </Grid.Cell>
             </Grid>
           </section>
+
+          {/* Disabled State */}
+          <section>
+            <Text size="large">Disabled State</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Flex
+                  direction="row"
+                  gap="small"
+                  template={["shrink", "shrink"]}
+                >
+                  <Chip label="Disabled Chip" disabled>
+                    <Chip.Prefix>
+                      <Icon name="alert" size="small" />
+                    </Chip.Prefix>
+                  </Chip>
+                  <Chip label="Disabled with Heading" disabled />
+                </Flex>
+              </Grid.Cell>
+            </Grid>
+          </section>
         </Stack>
       </Stack>
     </Box>

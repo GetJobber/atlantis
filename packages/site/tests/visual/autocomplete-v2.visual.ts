@@ -155,7 +155,7 @@ test.describe("Autocomplete v2 Visual Tests", () => {
   });
 
   test("with selection: open shows selection highlighted", async ({ page }) => {
-    const tenth = page.getByRole("combobox").nth(9);
+    const tenth = page.getByRole("combobox").nth(10);
     await tenth.click();
     await page.waitForTimeout(200);
     await expect(page).toHaveScreenshot(
