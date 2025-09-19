@@ -63,8 +63,6 @@ const variation = {
   done: { opacity: 1, y: 0 },
 };
 
-// Note: For composable path we animate only the inner content and use RAC's isExiting to keep it mounted.
-
 export interface MenuProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
@@ -131,7 +129,7 @@ export function Menu({
   UNSAFE_className,
   UNSAFE_style,
 }: MenuProps) {
-  // React Aria-only path for composable API
+  // Separate React Aria-only path for composable API
   if (children) {
     return <MenuComposable>{children}</MenuComposable>;
   }
@@ -330,8 +328,6 @@ interface MenuComposableProps {
   };
 }
 
-const MotionPopover = motion.create(AriaPopover);
-
 type AnimationState = "unmounted" | "hidden" | "visible";
 interface MenuAnimationContextValue {
   state: AnimationState;
@@ -370,9 +366,17 @@ function MenuComposable({ children }: MenuComposableProps) {
         >
           {trigger}
           {/* Keep Popover mounted while exiting, but do not animate it. */}
-          <MotionPopover isExiting={animation === "hidden"} key="menu-content">
-            {menu}
-          </MotionPopover>
+          <AriaPopover isExiting={animation === "hidden"}>
+            {({ placement }) => {
+              if (React.isValidElement(menu)) {
+                return React.cloneElement(menu, {
+                  placement,
+                });
+              }
+
+              return menu;
+            }}
+          </AriaPopover>
           <MenuMobileUnderlay animation={animation} />
         </AriaMenuTrigger>
       </MenuAnimationContext.Provider>
@@ -553,7 +557,14 @@ function MenuHeaderComposable({ children }: MenuHeaderComposableProps) {
 }
 
 interface MenuItemComposableProps {
+  /*
+   * Callback when an item gets clicked, or activated with Space or Enter
+   */
   readonly onClick?: () => void;
+
+  /**
+   * Menu item content
+   */
   readonly children: ReactNode;
 }
 
@@ -572,24 +583,34 @@ function MenuItemComposable({ onClick, children }: MenuItemComposableProps) {
 
 interface MenuContentComposableProps {
   readonly children: ReactNode;
+  readonly placement?: string | null;
 }
 
 const MotionMenu = motion.create(AriaMenu);
 
-function MenuContentComposable({ children }: MenuContentComposableProps) {
+function MenuContentComposable({
+  children,
+  placement,
+}: MenuContentComposableProps) {
   const { state: animation, setState } = useMenuAnimation();
   const isMobile = useIsMobileDevice();
 
+  const yTranslation = placement?.includes("bottom") ? -10 : 10;
   const variants = isMobile
     ? { hidden: { opacity: 0, y: 150 }, visible: { opacity: 1, y: 0 } }
-    : { hidden: { opacity: 0, y: -10 }, visible: { opacity: 1, y: 0 } };
+    : {
+        hidden: { opacity: 0, y: yTranslation },
+        visible: { opacity: 1, y: 0 },
+      };
 
   return (
     <MotionMenu
+      key={`menu-content-${placement ?? "pending"}`}
       className={styles.menu}
       variants={variants}
       initial="hidden"
-      animate={animation}
+      // placement is null on first render cycle, so we need to wait for it to be defined
+      animate={placement ? animation : false}
       transition={{ type: "tween", duration: MENU_ANIMATION_DURATION }}
       onAnimationComplete={animationState => {
         setState(prev =>
