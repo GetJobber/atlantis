@@ -26,7 +26,6 @@
     "@storybook/react-native": "^7.6.20",
     "@storybook/react-webpack5": "^7.6.20",
     "@storybook/source-loader": "^7.6.20",
-    "@storybook/testing-library": "0.2.2",
     "@storybook/theming": "^7.6.20",
     "autoprefixer": "^9.8.4",
     "babel-loader": "8.3.0",
