@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.92.0...@jobber/components@6.93.0) (2025-09-19)
+
+
+### Features
+
+* **components:** Add name to InputFile ([#2741](https://github.com/GetJobber/atlantis/issues/2741)) ([3410257](https://github.com/GetJobber/atlantis/commit/341025708ddc94209cf5153d0a8b074d76c1c767))
+
+
+
+
+
 # [6.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.2...@jobber/components@6.92.0) (2025-09-19)
 
 
