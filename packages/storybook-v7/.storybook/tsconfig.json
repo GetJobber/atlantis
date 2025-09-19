@@ -1,7 +1,7 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "../",
+    "baseUrl": "../../../",
     "paths": {
       "@jobber/components/*": [
         "./packages/components/src/*"
@@ -12,10 +12,5 @@
     "components",
     "packages/**/*",
     "./theme.ts"
-  ],
-  "references": [
-    {
-      "path": "../packages/formatters"
-    }
   ]
 }

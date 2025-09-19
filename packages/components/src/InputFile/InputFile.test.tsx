@@ -528,4 +528,13 @@ describe("Content", () => {
       expect(handleUploadStart).toHaveBeenCalled();
     });
   });
+
+  it("passes the name prop to the underlying input element", () => {
+    const { container } = render(
+      <InputFile getUploadParams={fetchUploadParams} name="file-upload" />,
+    );
+
+    const input = container.querySelector("input[type=file]");
+    expect(input).toHaveAttribute("name", "file-upload");
+  });
 });

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.92.0...@jobber/components@6.93.0) (2025-09-19)
+
+
+### Features
+
+* **components:** Add name to InputFile ([#2741](https://github.com/GetJobber/atlantis/issues/2741)) ([3410257](https://github.com/GetJobber/atlantis/commit/341025708ddc94209cf5153d0a8b074d76c1c767))
+
+
+
+
+
+# [6.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.2...@jobber/components@6.92.0) (2025-09-19)
+
+
+### Features
+
+* **components:** Surface id prop to Heading ([#2740](https://github.com/GetJobber/atlantis/issues/2740)) ([953ceb3](https://github.com/GetJobber/atlantis/commit/953ceb37458b2412c9ee7b6f4e9d723aa9d3ddcf))
+
+
+
+
+
 ## [6.91.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.1...@jobber/components@6.91.2) (2025-09-17)
 
 

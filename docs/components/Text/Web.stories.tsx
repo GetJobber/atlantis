@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 
