@@ -1,0 +1,244 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Guides/Managing Dependencies" />
+
+# Dependency strategy for `components` (monorepo + Rollup)
+
+This document explains how we use dependencies, devDependencies,
+peerDependencies, and Rollup `external` in our monorepo, and how to safely
+upgrade packages without breaking anything for consumers.
+
+### TL;DR
+
+- **If we bundle it** (it’s not in Rollup `external`): put it in `dependencies`.
+- **If we externalize it** (it is in Rollup `external`): put it in
+  `peerDependencies` and also in `devDependencies` for local build/test. Do not
+  put it in `dependencies`.
+- **Never duplicate the same package in both `dependencies` and
+  `peerDependencies`.**
+- **Most often we want to keep the semver range in `peerDependencies` and
+  `devDependencies` aligned** to avoid npm “normalizing” unrelated ranges\*.
+
+  \*There is some nuance to this. For example, `devDependencies` for React 19
+  should be `^19.1.1`, but the peerDep range might be `^18 | ^19 or >= 18`
+  because we are compatible with, or otherwise do not explicitly rely on
+  anything from one of these versions.
+
+---
+
+## What each field means (for a published library)
+
+- `dependencies`: Code we ship inside our built `dist`. Consumers do not need to
+  install these explicitly because they’re bundled. Examples: implementation
+  utilities we don’t expect apps to share as singletons.
+
+  Examples:
+
+  - `@floating-ui/react` (positioning util bundled into popovers/menus)
+  - Small helpers that don’t require a singleton and are safe to duplicate
+    (e.g., one-off utility libs we import and bundle)
+
+- `peerDependencies`: Packages the consuming app must provide. We don’t bundle
+  these. This avoids duplicate singletons and lets apps control versions. If
+  it’s a peer, it should also be in `devDependencies` so we can build/test.
+
+  Examples (all listed in Rollup `external`):
+
+  - `react`, `react-dom`, `react-router-dom`, `react-hook-form`
+  - `framer-motion` (animations)
+  - `@tanstack/react-table` (table engine)
+  - `@apollo/client` (GraphQL client)
+  - `@jobber/design`, `@jobber/formatters`, `@jobber/hooks`
+
+- `devDependencies`: Tools and libraries needed only to develop/build/test this
+  package in-repo (Storybook, TypeScript, plus peers we need at build time). Not
+  shipped to consumers.
+
+  Examples:
+
+  - Tooling: `typescript`, `@rollup/plugin-*`, `rollup`, `storybook`,
+    `typed-css-modules`, `postcss-*`, `@types/*`
+  - Peers we externalize (to compile/test locally): `react`, `react-dom`,
+    `react-router-dom`, `react-hook-form`, `framer-motion`,
+    `@tanstack/react-table`, `@apollo/client`
+
+## Rollup `external` is the source of truth
+
+Rollup’s `external` tells the bundler to leave imports as-is (do not bundle).
+Anything listed there must be provided by the consuming app. Therefore:
+
+- **Everything in `external` → peerDependency + devDependency**
+- **Everything not in `external` → NOT a peer; it should be either:**
+  - `dependencies` if it is part of our runtime/public code and gets bundled
+    into `dist`.
+  - `devDependencies` if it’s used only for build/test/Storybook or
+    type-checking and not shipped in `dist`.
+
+Example mapping from our config:
+
+- Externalized (peer + dev): `react`, `react-dom`, `react-router-dom`,
+  `react-hook-form`, `framer-motion`, `@tanstack/react-table`, `axios`,
+  `lodash`, `filesize`, `color`, `classnames`, `@apollo/client`,
+  `@jobber/design`, `@jobber/formatters`, `@jobber/hooks`.
+- Bundled (dependency): e.g., `@floating-ui/react` (implementation detail we do
+  not require the app to provide).
+
+Note: moving a package from “bundled” to “externalized” (or vice versa) is a
+breaking change for consumers. Version accordingly.
+
+### When to add something to `external` (criteria)
+
+Add a package to `external` if most of the following are true:
+
+- It behaves like a singleton/framework in the app (React, router, motion,
+  analytics providers, design/runtime packages).
+- Having multiple copies could cause bugs, duplicated global state, or heavy
+  duplication in bundles.
+- Consumers reasonably expect to control the version (e.g., they already use it
+  directly).
+- We don’t want to ship it inside `@jobber/components` (either due to size or
+  version control concerns).
+
+Keep a package bundled (do not add to `external`) if most of the following are
+true:
+
+- It’s an internal implementation detail that consumers do not need to install
+  or be aware of.
+- Multiple copies in an app are harmless (pure utility, no global
+  state/singleton expectations).
+- Forcing consumers to install it would add friction without benefit.
+
+Decision checklist:
+
+- If added to `external`, also add to `peerDependencies` and `devDependencies`
+  with matching ranges.
+- If removed from `external`, move it to `dependencies` (if used at runtime) or
+  `devDependencies` (if build/test-only) and remove the peer entry.
+- Treat changes in `external` status as breaking changes for semantic
+  versioning.
+
+## Monorepo/workspaces implications
+
+We use npm workspaces with a single lockfile. npm v7+ enforces peer dependencies
+across the workspace. Duplicating a package in both `dependencies` and
+`peerDependencies` across packages makes resolution harder and can cause npm to
+preserve stale lock entries instead of producing a minimal update.
+
+Guidance:
+
+- Do not duplicate packages across `dependencies` and `peerDependencies` in the
+  same package.
+- Keep `peerDependencies` ranges aligned with `devDependencies` ranges for the
+  same package.
+- Prefer minimum compatible ranges (e.g., `^11.11.12`) that match the APIs we
+  actually use.
+
+## Safe upgrade workflow (peer + dev only)
+
+When upgrading an externalized package (e.g., `framer-motion`) without churning
+unrelated ranges:
+
+1. Edit `packages/components/package.json` by hand:
+
+   - `peerDependencies.framer-motion`: `^11.11.12`
+   - `devDependencies.framer-motion`: `^11.11.12`
+
+2. Force re-resolution for just this workspace (surgical):
+
+   - Delete the specific lockfile node: `packages/components/node_modules/<pkg>`
+     from `package-lock.json`.
+   - Reinstall only the workspace:
+     `npm i -w packages/components --ignore-scripts`.
+
+3. Verify: `npm ls <pkg> -w packages/components` resolves within the requested
+   range.
+
+This avoids npm “normalizing” other ranges and keeps the change localized.
+
+## Do / Don’t checklist
+
+- **Do**: externalize singletons/framework libs; declare them as peer + dev.
+- **Do**: keep the same range in `peerDependencies` and `devDependencies` for a
+  given package.
+- **Do**: verify Rollup `external` matches what you’ve declared as peers.
+- **Do**: treat moving a package between “bundled” and “externalized” as a
+  breaking change.
+
+- **Don’t**: list the same package in both `dependencies` and
+  `peerDependencies`.
+- **Don’t**: rely on root workspace overrides to manage library versions; fix
+  the package’s own `package.json` instead.
+- **Don’t**: broaden ranges unintentionally; prefer explicit minimums that
+  reflect required APIs.
+
+## Examples
+
+- `framer-motion`: externalized → `peerDependencies: ^11.11.12` and
+  `devDependencies: ^11.11.12`; present in Rollup `external`.
+- `@floating-ui/react`: bundled implementation detail → present in
+  `dependencies`; not in `external`.
+- `storybook`, `@rollup/plugin-typescript`, `typescript`: dev-only tooling →
+  present in `devDependencies` only.
+
+## Type packages and emitted declarations (d.ts)
+
+When our public API references types from other packages, those references are
+preserved in the emitted `.d.ts` files as `import("pkg").Type`. This has
+implications for where those packages live in `package.json`:
+
+- If a type shows up in emitted `.d.ts`, the module must be resolvable by
+  consumers’ TypeScript.
+  - For framework libs (React, router, etc.) this is covered by listing them in
+    `peerDependencies` (and consumers installing them).
+  - For type-only helper libraries (e.g., `ts-xor`), either:
+    - keep them in `dependencies` so consumers get them transitively, or
+    - inline the utility type into our codebase so we don’t leak the external.
+
+Practical examples in this repo:
+
+- `ts-xor` is referenced in exported types:
+
+  - `packages/components/src/Button/Button.types.ts` →
+    `export type ButtonProps = XOR<...>`
+  - `packages/components/src/Popover/Popover.types.ts` →
+    `export type PopoverDismissButtonProps = XOR<...>`
+  - `packages/components/src/InputText/InputText.types.ts` →
+    `export type InputTextLegacyProps = XOR<...>`
+  - `packages/components/src/FormField/FormFieldTypes.ts` →
+    `suffix?: XOR<Affix, Suffix>`
+  - `packages/components/src/Toast/Toast.tsx` →
+    `export type ToastProps = XOR<...>` Because these appear in the emitted
+    `.d.ts`, `ts-xor` must remain resolvable (keep as a `dependency`, or inline
+    an `XOR` type to remove the external).
+
+- Router types leak into declarations:
+  - `packages/components/src/Button/Button.types.ts` →
+    `readonly to?: LinkProps["to"]` becomes
+    `import("react-router-dom").LinkProps["to"]` in `.d.ts`.
+  - Ensure `react-router-dom` peer range matches the type shape we support
+    (e.g., `^5` or `>=5 <7`). Keep `@types/react-router-dom` as a devDependency
+    when targeting v5; do not import from `@types/...` directly.
+
+Type pitfalls to avoid:
+
+- Don’t import from `@types/<pkg>` in public types; always import from the
+  runtime package name so consumers resolve naturally.
+- Use `import type` for public type references to avoid accidental runtime
+  imports.
+- Avoid re-exporting large third-party types unless necessary; consider defining
+  a minimal structural type to decouple from third-party version churn.
+
+## Why this matters
+
+Following this policy prevents duplicate singletons, keeps bundle size down,
+reduces version conflicts in consuming apps, and makes upgrades predictable
+(especially in a monorepo with a single lockfile).
+
+## Further reading
+
+- npm docs: Managing dependencies — `dependencies`, `devDependencies`,
+  `peerDependencies`
+  (`https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies`)
+- npm v7+ peer dependency resolution notes
+  (`https://github.com/npm/rfcs/blob/latest/implemented/0025-install-peer-deps.md`)
+- Rollup: Externals (`https://rollupjs.org/configuration-options/#external`)
