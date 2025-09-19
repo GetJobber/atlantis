@@ -118,7 +118,9 @@ describe("DataListItems", () => {
 
       await userEvent.unhover(listItem);
 
-      expect(screen.getByRole("menu")).toBeInTheDocument();
+      const menu = await screen.findByRole("menu");
+
+      expect(menu).toBeInTheDocument();
     });
 
     it("should close the menu when pressing Escape", async () => {
@@ -129,7 +131,7 @@ describe("DataListItems", () => {
 
       expect(screen.getByRole("menu")).toBeInTheDocument();
 
-      fireEvent.keyDown(document, { key: "Escape" });
+      await userEvent.keyboard("{Escape}");
 
       await waitFor(() =>
         expect(screen.queryByRole("menu")).not.toBeInTheDocument(),
