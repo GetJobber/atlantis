@@ -102,7 +102,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-ga4": "^2.1.0",
-    "react-intl": "^6.4.2",
+    "react-intl": "^7.1.11",
     "react-router-dom": "^5.3.4",
     "stylelint": "^16.2.1",
     "stylelint-junit-formatter": "^0.2.1",
