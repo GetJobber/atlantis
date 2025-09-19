@@ -1,6 +1,6 @@
 import type { DetailedHTMLProps, HTMLAttributes } from "react";
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { defaultUrlTransform } from "react-markdown";
 import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";
 import { Heading } from "../Heading";
@@ -63,6 +63,11 @@ export function Markdown({
     <Tag>
       <ReactMarkdown
         {...props}
+        urlTransform={url => {
+          if (url.startsWith("tel:") || url.startsWith("sms:")) return url;
+
+          return defaultUrlTransform(url);
+        }}
         components={{
           p: renderParagraph,
           strong: renderStrong,
