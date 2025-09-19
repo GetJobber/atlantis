@@ -369,9 +369,12 @@ function MenuComposable({ children }: MenuComposableProps) {
           <AriaPopover isExiting={animation === "hidden"}>
             {({ placement }) => {
               if (React.isValidElement(menu)) {
-                return React.cloneElement(menu, {
-                  placement,
-                });
+                return React.cloneElement(
+                  menu as ReactElement<MenuContentComposableProps>,
+                  {
+                    placement,
+                  },
+                );
               }
 
               return menu;
