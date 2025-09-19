@@ -6,6 +6,19 @@
     "displayName": "Heading",
     "methods": [],
     "props": {
+      "id": {
+        "defaultValue": null,
+        "description": "Adds a unique identifier to the heading.\nUseful when the heading needs to be referenced by another element.\nNot intended for styling.",
+        "name": "id",
+        "parent": {
+          "fileName": "../components/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "level": {
         "defaultValue": {
           "value": 5
