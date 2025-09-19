@@ -483,7 +483,7 @@
     "classnames": "^2.3.2",
     "color": "^3.1.2",
     "filesize": "^6.1.0",
-    "framer-motion": "^11.0.3",
+    "framer-motion": "^11.11.12",
     "lodash": "^4.17.21",
     "react-aria-components": "^1.7.1",
     "react-countdown": "^2.3.2",

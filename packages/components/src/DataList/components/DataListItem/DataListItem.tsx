@@ -81,6 +81,7 @@ export function DataListItem<T extends DataListObject>({
   }
 
   function handleHideMenu() {
+    if (isContextMenuVisible) return;
     setShowMenu(false);
   }
 
