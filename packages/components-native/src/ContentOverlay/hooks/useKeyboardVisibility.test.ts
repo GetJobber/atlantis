@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 import type { KeyboardEvent } from "react-native";
 import { DeviceEventEmitter } from "react-native";
 import { useKeyboardVisibility } from "./useKeyboardVisibility";

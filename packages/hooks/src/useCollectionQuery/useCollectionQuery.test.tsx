@@ -1,6 +1,5 @@
 import { DocumentNode } from "@apollo/client";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import { useCollectionQuery } from "./useCollectionQuery";
 import {
   LIST_QUERY,
