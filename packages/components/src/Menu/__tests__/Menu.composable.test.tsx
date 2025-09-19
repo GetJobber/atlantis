@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Menu } from ".";
-import * as POM from "./Menu.pom";
-import { Button } from "../Button";
-import { Text } from "../Text";
+import * as POM from "../Menu.pom";
+import { Menu } from "..";
+import { Button } from "../../Button";
+import { Text } from "../../Text";
 
 describe("Menu (composable API)", () => {
   function TestSectionMenu(props: { readonly onItem?: () => void }) {

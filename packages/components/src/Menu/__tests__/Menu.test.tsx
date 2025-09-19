@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Menu } from ".";
-import { Button } from "../Button";
+import { Menu } from "..";
+import { Button } from "../../Button";
 
 describe("Menu", () => {
   it("renders", () => {

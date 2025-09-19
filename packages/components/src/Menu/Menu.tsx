@@ -1,10 +1,4 @@
-import type {
-  CSSProperties,
-  MouseEvent,
-  ReactElement,
-  ReactNode,
-  RefObject,
-} from "react";
+import type { MouseEvent, ReactElement, RefObject } from "react";
 import React, {
   createContext,
   useContext,
@@ -16,7 +10,6 @@ import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
-import type { IconColorNames, IconNames } from "@jobber/design";
 import {
   FloatingPortal,
   autoUpdate,
@@ -39,6 +32,18 @@ import {
   Pressable as AriaPressable,
 } from "react-aria-components";
 import styles from "./Menu.module.css";
+import type {
+  ActionProps,
+  MenuComposableProps,
+  MenuContentComposableProps,
+  MenuHeaderComposableProps,
+  MenuItemComposableProps,
+  MenuMobileUnderlayProps,
+  MenuProps,
+  MenuSectionComposableProps,
+  MenuTriggerComposableProps,
+  SectionHeaderProps,
+} from "./Menu.types";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
@@ -62,56 +67,6 @@ const variation = {
   },
   done: { opacity: 1, y: 0 },
 };
-
-export interface MenuProps {
-  /**
-   * Custom menu activator. If this is not provided a default [… More] will be used.
-   */
-  readonly activator?: ReactElement;
-  /**
-   * Collection of action items.
-   */
-  readonly items?: SectionProps[];
-
-  /**
-   * Composable children-based API. When provided, this takes precedence over `items`.
-   */
-  readonly children?: ReactNode;
-
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_className?: {
-    menu?: string;
-    header?: string;
-    action?: string;
-  };
-
-  /**
-   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_style?: {
-    menu?: CSSProperties;
-    header?: CSSProperties;
-    action?: CSSProperties;
-  };
-}
-
-export interface SectionProps {
-  /**
-   * Defines the section header to further explain the group of actions.
-   */
-  header?: string;
-
-  /**
-   * List of actions.
-   */
-  actions: ActionProps[];
-}
 
 export function useIsMobileDevice(): boolean {
   if (typeof window === "undefined") {
@@ -318,16 +273,6 @@ export function Menu({
   }
 }
 
-interface MenuComposableProps {
-  readonly children: ReactNode;
-  readonly UNSAFE_className?: {
-    menu?: string;
-  };
-  readonly UNSAFE_style?: {
-    menu?: CSSProperties;
-  };
-}
-
 type AnimationState = "unmounted" | "hidden" | "visible";
 interface MenuAnimationContextValue {
   state: AnimationState;
@@ -387,10 +332,6 @@ function MenuComposable({ children }: MenuComposableProps) {
   );
 }
 
-interface MenuMobileUnderlayProps {
-  readonly animation: "unmounted" | "hidden" | "visible";
-}
-
 function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
   const isMobile = useIsMobileDevice();
 
@@ -412,12 +353,6 @@ function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
       animate={animation}
     />
   );
-}
-
-interface SectionHeaderProps {
-  readonly text: string;
-  readonly UNSAFE_style?: CSSProperties;
-  readonly UNSAFE_className?: string;
 }
 
 function SectionHeader({
@@ -442,48 +377,6 @@ function SectionHeader({
       </Typography>
     </div>
   );
-}
-
-export interface ActionProps {
-  /**
-   * Action label
-   */
-  readonly label: string;
-
-  /**
-   * Parent Section Label
-   */
-  readonly sectionLabel?: string;
-
-  /**
-   * Visual cue for the action label
-   */
-  readonly icon?: IconNames;
-
-  /**
-   * Color for the icon. Defaults to "icon".
-   */
-  readonly iconColor?: IconColorNames;
-
-  /**
-   * Visual style for the action button
-   */
-  readonly destructive?: boolean;
-
-  /**
-   * Inline style overrides for the action button
-   */
-  readonly UNSAFE_style?: CSSProperties;
-
-  /**
-   * Style class overrides for the action button
-   */
-  readonly UNSAFE_className?: string;
-
-  /**
-   * Callback when an action gets clicked
-   */
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 function Action({
@@ -536,18 +429,10 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
   return <FloatingPortal>{children}</FloatingPortal>;
 }
 
-interface MenuSectionComposableProps {
-  readonly children: ReactNode;
-}
-
 function MenuSectionComposable({ children }: MenuSectionComposableProps) {
   return (
     <AriaMenuSection className={styles.section}>{children}</AriaMenuSection>
   );
-}
-
-interface MenuHeaderComposableProps {
-  readonly children: ReactNode;
 }
 
 function MenuHeaderComposable({ children }: MenuHeaderComposableProps) {
@@ -557,18 +442,6 @@ function MenuHeaderComposable({ children }: MenuHeaderComposableProps) {
       {/* <AriaSeparator /> */}
     </>
   );
-}
-
-interface MenuItemComposableProps {
-  /*
-   * Callback when an item gets clicked, or activated with Space or Enter
-   */
-  readonly onClick?: () => void;
-
-  /**
-   * Menu item content
-   */
-  readonly children: ReactNode;
 }
 
 function MenuItemComposable({ onClick, children }: MenuItemComposableProps) {
@@ -582,11 +455,6 @@ function MenuItemComposable({ onClick, children }: MenuItemComposableProps) {
       {children}
     </AriaMenuItem>
   );
-}
-
-interface MenuContentComposableProps {
-  readonly children: ReactNode;
-  readonly placement?: string | null;
 }
 
 const MotionMenu = motion.create(AriaMenu);
@@ -631,13 +499,6 @@ Menu.Header = MenuHeaderComposable;
 Menu.Item = MenuItemComposable;
 Menu.Trigger = MenuTriggerComposable;
 Menu.Content = MenuContentComposable;
-
-interface MenuTriggerComposableProps extends React.PropsWithChildren {
-  /**
-   * Accessible name for the trigger. If trigger content is not plain text, this must be provided.
-   */
-  readonly ariaLabel?: string;
-}
 
 function MenuTriggerComposable({
   ariaLabel,
