@@ -1,6 +1,6 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { FormProvider, useForm } from "react-hook-form";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { FormField, InputText, Text } from "@jobber/components-native";
 
 export default {

@@ -4,8 +4,8 @@ import type { StorybookConfig } from '@storybook/react-webpack5';
 
 const config: StorybookConfig = {
   stories: [
-    "../docs/**/*.stories.mdx",
-    "../docs/**/*.stories.@(js|jsx|ts|tsx)",
+    "../../../docs/**/*.stories.mdx",
+    "../../../docs/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",
@@ -111,7 +111,7 @@ const config: StorybookConfig = {
                 require("@csstools/postcss-global-data")({
                   files: [
                     require.resolve(
-                      path.join(__dirname, "../packages/design/dist/foundation.css"),
+                      path.join(__dirname, "../../design/dist/foundation.css"),
                     ),
                   ],
                 }),
@@ -132,19 +132,35 @@ const config: StorybookConfig = {
     // Alias @jobber so it works on MDX files
     config.resolve.alias = {
       ...config.resolve?.alias,
+      "@storybook": path.resolve(
+        __dirname,
+        "../node_modules/@storybook",
+      ),
       "@jobber/components": path.resolve(
         __dirname,
-        "../packages/components/src",
+        "../../components/src",
       ),
       "@jobber/components-native": path.resolve(
         __dirname,
-        "../packages/components-native/src",
+        "../../components-native/src",
       ),
-      "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
-      "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),
+      "@jobber/docx": path.resolve(__dirname, "../../docx/src"),
+      "@jobber/hooks": path.resolve(__dirname, "../../hooks/src"),
       mdxUtils: path.resolve(__dirname, "components"),
-      "@atlantis": path.resolve(__dirname, "../"),
+      react: path.resolve(__dirname, "../node_modules/react"),
+      "react-dom": path.resolve(__dirname, "../node_modules/react-dom"),
+      "react-native-gesture-handler": path.resolve(__dirname, "../node_modules/react-native-gesture-handler"),
+      "react-native-safe-area-context": path.resolve(__dirname, "../node_modules/react-native-safe-area-context"),
+      "react-native-reanimated": path.resolve(__dirname, "../node_modules/react-native-reanimated"),
+      "react-native-keyboard-aware-scroll-view": path.resolve(__dirname, "../node_modules/react-native-keyboard-aware-scroll-view"),
+      "react-native-portalize": path.resolve(__dirname, "../node_modules/react-native-portalize"),
+      "react-native-modal-datetime-picker": path.resolve(__dirname, "../node_modules/react-native-modal-datetime-picker"),
+      "react-native-modalize": path.resolve(__dirname, "../node_modules/react-native-modalize"),
+      "react-native-svg": path.resolve(__dirname, "../node_modules/react-native-svg"),
+      "@atlantis": path.resolve(__dirname, "../../../"),
       'react-native-web/dist/exports/findNodeHandle': path.resolve(__dirname, "__mocks__/react-native-web-findNodeHandle.ts"),
+      'react-native-web/dist': path.resolve(__dirname, "../node_modules/react-native-web/dist"),
+      'react-native-web': path.resolve(__dirname, "__mocks__/react-native-web.ts"),
     };
 
     // Return the altered config
