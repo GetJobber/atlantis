@@ -1,6 +1,5 @@
 import type { IconColorNames, IconNames } from "@jobber/design";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
-import type { XOR } from "ts-xor";
 
 export interface MenuLegacyProps extends MenuBaseProps {
   /**
@@ -50,7 +49,17 @@ export interface MenuComposableProps extends MenuBaseProps {
   readonly onOpenChange?: (isOpen: boolean) => void;
 }
 
-export type MenuProps = XOR<MenuLegacyProps, MenuComposableProps>;
+/**
+ * Backwards-compatible props for the items-based Menu API.
+ * Existing imports of `MenuProps` will continue to refer to the legacy shape.
+ */
+export type MenuProps = MenuLegacyProps;
+
+/**
+ * Full set of props supported by the `Menu` component implementation (legacy | composable).
+ * Prefer using `ComponentProps<typeof Menu>` if you need the full union.
+ */
+export type MenuAllProps = MenuLegacyProps | MenuComposableProps;
 
 export interface SectionProps {
   /**
