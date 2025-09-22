@@ -214,9 +214,7 @@ describe("Menu (composable API)", () => {
       await POM.openWithClick("Menu");
 
       const heading = screen.getByRole("heading", { level: 4 });
-      const sectionContainer = heading.closest(
-        ".unsafe-section",
-      ) as HTMLElement;
+      const sectionContainer = heading.closest(".unsafe-section");
       expect(sectionContainer).toBeInTheDocument();
       expect(sectionContainer).toHaveClass("unsafe-section");
       expect(sectionContainer).toHaveStyle("padding: 13px");
@@ -227,7 +225,7 @@ describe("Menu (composable API)", () => {
       await POM.openWithClick("Menu");
 
       const heading = screen.getByRole("heading", { level: 4 });
-      const headerContainer = heading.closest(".unsafe-header") as HTMLElement;
+      const headerContainer = heading.closest(".unsafe-header");
       expect(headerContainer).toBeInTheDocument();
       expect(headerContainer).toHaveClass("unsafe-header");
       expect(headerContainer).toHaveStyle("color: rgb(10, 20, 30)");
