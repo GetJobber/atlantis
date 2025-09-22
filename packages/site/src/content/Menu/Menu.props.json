@@ -11,7 +11,7 @@
         "description": "Custom menu activator. If this is not provided a default [… More] will be used.",
         "name": "activator",
         "parent": {
-          "fileName": "../components/src/Menu/Menu.tsx",
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
           "name": "MenuProps"
         },
         "required": false,
@@ -24,12 +24,25 @@
         "description": "Collection of action items.",
         "name": "items",
         "parent": {
-          "fileName": "../components/src/Menu/Menu.tsx",
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
           "name": "MenuProps"
         },
-        "required": true,
+        "required": false,
         "type": {
           "name": "SectionProps[]"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Composable children-based API. When provided, this takes precedence over `items`.",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
         }
       },
       "UNSAFE_className": {
@@ -37,7 +50,7 @@
         "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
-          "fileName": "../components/src/Menu/Menu.tsx",
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
           "name": "MenuProps"
         },
         "required": false,
@@ -50,12 +63,107 @@
         "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_style",
         "parent": {
-          "fileName": "../components/src/Menu/Menu.tsx",
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
           "name": "MenuProps"
         },
         "required": false,
         "type": {
           "name": "{ menu?: CSSProperties; header?: CSSProperties; action?: CSSProperties; }"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Section",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Header",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Item",
+    "methods": [],
+    "props": {
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuItemComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Menu item content",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuItemComposableProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Trigger",
+    "methods": [],
+    "props": {
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Accessible name for the trigger. If trigger content is not plain text, this must be provided.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuTriggerComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Content",
+    "methods": [],
+    "props": {
+      "placement": {
+        "defaultValue": null,
+        "description": "",
+        "name": "placement",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuContentComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }
