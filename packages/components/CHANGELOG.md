@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.93.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.93.0...@jobber/components@6.93.1) (2025-09-22)
+
+
+### Bug Fixes
+
+* **components:** ComboboxAction visibility logic to properly handle false values ([#2732](https://github.com/GetJobber/atlantis/issues/2732)) ([ef4ea73](https://github.com/GetJobber/atlantis/commit/ef4ea73f434e6116105acdc58f08e370ec102791))
+
+
+
+
+
 # [6.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.92.0...@jobber/components@6.93.0) (2025-09-19)
 
 
