@@ -8,6 +8,7 @@ export {
   type AtlantisThemeContextProviderProps,
   type AtlantisThemeContextValue,
   type Theme,
+  type OverrideTokens,
   type ThemeChangeDetails,
 } from "./types";
 export { updateTheme } from "./updateTheme";

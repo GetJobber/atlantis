@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.93.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.93.0...@jobber/components@6.93.1) (2025-09-22)
+
+
+### Bug Fixes
+
+* **components:** ComboboxAction visibility logic to properly handle false values ([#2732](https://github.com/GetJobber/atlantis/issues/2732)) ([ef4ea73](https://github.com/GetJobber/atlantis/commit/ef4ea73f434e6116105acdc58f08e370ec102791))
+
+
+
+
+
+# [6.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.92.0...@jobber/components@6.93.0) (2025-09-19)
+
+
+### Features
+
+* **components:** Add name to InputFile ([#2741](https://github.com/GetJobber/atlantis/issues/2741)) ([3410257](https://github.com/GetJobber/atlantis/commit/341025708ddc94209cf5153d0a8b074d76c1c767))
+
+
+
+
+
+# [6.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.2...@jobber/components@6.92.0) (2025-09-19)
+
+
+### Features
+
+* **components:** Surface id prop to Heading ([#2740](https://github.com/GetJobber/atlantis/issues/2740)) ([953ceb3](https://github.com/GetJobber/atlantis/commit/953ceb37458b2412c9ee7b6f4e9d723aa9d3ddcf))
+
+
+
+
+
+## [6.91.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.1...@jobber/components@6.91.2) (2025-09-17)
+
+
+### Bug Fixes
+
+* **components:** Give Modal Rebuilt Proper Elevation ([#2734](https://github.com/GetJobber/atlantis/issues/2734)) ([b2a9103](https://github.com/GetJobber/atlantis/commit/b2a9103b22a09e059499394448477d8686f986eb))
+
+
+
+
+
+## [6.91.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.91.0...@jobber/components@6.91.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* **components:** Export OverrideTokens type ([#2733](https://github.com/GetJobber/atlantis/issues/2733)) ([d045de1](https://github.com/GetJobber/atlantis/commit/d045de169ef0a18c580cf7194c316ead0c9fb477))
+
+
+
+
+
+# [6.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.4...@jobber/components@6.91.0) (2025-09-16)
+
+
+### Features
+
+* **hooks:** Update hooks and formatters to build with rollup ([#2722](https://github.com/GetJobber/atlantis/issues/2722)) ([aa8a44c](https://github.com/GetJobber/atlantis/commit/aa8a44ce120c8f2d3e2f6a95bf3adda5d4867faf)), closes [#2700](https://github.com/GetJobber/atlantis/issues/2700) [#2698](https://github.com/GetJobber/atlantis/issues/2698)
+
+
+
+
+
+## [6.90.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.3...@jobber/components@6.90.4) (2025-09-15)
+
+
+### Bug Fixes
+
+* **components:** Reorganize Composed Modal to Solve Focus Management ([#2728](https://github.com/GetJobber/atlantis/issues/2728)) ([618f803](https://github.com/GetJobber/atlantis/commit/618f8031dafd9c084f628a1022520b494ed9dd69))
+
+
+
+
+
+## [6.90.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.2...@jobber/components@6.90.3) (2025-09-12)
+
+
+### Bug Fixes
+
+* **components:** Defaults first in DataTable atoms ([#2727](https://github.com/GetJobber/atlantis/issues/2727)) ([2ef854d](https://github.com/GetJobber/atlantis/commit/2ef854d6484ed3f295eb781f246a2682dd4e284e))
+
+
+
+
+
 ## [6.90.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.90.1...@jobber/components@6.90.2) (2025-09-11)
 
 **Note:** Version bump only for package @jobber/components

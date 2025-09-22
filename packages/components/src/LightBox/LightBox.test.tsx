@@ -1,9 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import {
-  BREAKPOINT_SIZES,
-  mockViewportWidth,
-} from "@jobber/hooks/useBreakpoints";
+import { BREAKPOINT_SIZES, mockViewportWidth } from "@jobber/hooks";
 import { LightBox } from ".";
 
 const { setViewportWidth } = mockViewportWidth();

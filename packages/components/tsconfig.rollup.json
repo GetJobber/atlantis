@@ -1,5 +1,12 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@jobber/components/*": [
+        "./src/*"
+      ]
+    }
+  },
   "exclude": [
     "**/*.stories.tsx",
     "**/*.test.ts",
@@ -7,13 +14,5 @@
     "**/*.pom.ts",
     "**/*.pom.tsx",
     "entryPoints.ts"
-  ],
-  "references": [
-    {
-      "path": "../formatters"
-    },
-    {
-      "path": "../hooks"
-    }
   ]
 }

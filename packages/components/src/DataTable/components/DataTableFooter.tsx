@@ -18,7 +18,7 @@ export function DataTableFooter({
   ...props
 }: DataTableFooterProps) {
   return (
-    <tfoot className={classNames(styles.footer, className)} {...props}>
+    <tfoot {...props} className={classNames(styles.footer, className)}>
       <tr>
         <td colSpan={colSpan}>{children}</td>
       </tr>
