@@ -1,11 +1,13 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Menu } from "@jobber/components/Menu";
+import { Menu, SectionProps } from "@jobber/components/Menu";
 import { Button } from "@jobber/components/Button";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Icon, IconNames } from "@jobber/components/Icon";
 import { Chip } from "@jobber/components/Chip";
+import { Grid } from "@jobber/components/Grid";
+import { Typography } from "@jobber/components/Typography";
 
 export default {
   title: "Components/Navigation/Menu/Web",
@@ -16,9 +18,7 @@ export default {
   },
 } as ComponentMeta<typeof Menu>;
 
-const BasicTemplate: ComponentStory<typeof Menu> = args => (
-  <Menu onOpenChange={() => alert("Open")} {...args} />
-);
+const BasicTemplate: ComponentStory<typeof Menu> = args => <Menu {...args} />;
 
 export const Horizontal = BasicTemplate.bind({});
 Horizontal.args = {
@@ -107,14 +107,47 @@ CustomActivator.args = {
 export const Composable = () => {
   const items: { label: string; icon: IconNames; onClick: () => void }[] = [
     {
-      label: "Home",
-      icon: "home",
-      onClick: () => alert("Home"),
+      label: "Text Message",
+      icon: "sms",
+      onClick: () => alert("📱"),
     },
     {
-      label: "Admin",
-      icon: "lock",
-      onClick: () => alert("Admin"),
+      label: "Email",
+      icon: "email",
+      onClick: () => alert("📨"),
+    },
+  ];
+
+  const legacyItems: SectionProps[] = [
+    {
+      actions: [
+        {
+          label: "Edit",
+          icon: "edit",
+          onClick: () => {
+            alert("✏️");
+          },
+        },
+      ],
+    },
+    {
+      header: "Send as...",
+      actions: [
+        {
+          label: "Text message",
+          icon: "sms",
+          onClick: () => {
+            alert("📱");
+          },
+        },
+        {
+          label: "Email",
+          icon: "email",
+          onClick: () => {
+            alert("📨");
+          },
+        },
+      ],
     },
   ];
 
@@ -192,6 +225,61 @@ export const Composable = () => {
             ))}
           </Menu.Content>
         </Menu>
+      </section>
+
+      <section>
+        <h1>Composable Implementing Default</h1>
+        <Grid>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Menu>
+              <Menu.Trigger>
+                <Button>
+                  <Button.Label>Composable</Button.Label>
+                  <Button.Icon name="sparkles" />
+                </Button>
+              </Menu.Trigger>
+              <Menu.Content>
+                <Menu.Section>
+                  <Menu.Item onClick={() => alert("✏️")}>
+                    <Icon name="edit" />
+                    <Text>Edit</Text>
+                  </Menu.Item>
+                </Menu.Section>
+                <Menu.Separator />
+                <Menu.Section>
+                  <Menu.Header>
+                    <Typography
+                      element="h6"
+                      size="base"
+                      textColor="textSecondary"
+                      fontWeight="regular"
+                      textCase="none"
+                    >
+                      Send as...
+                    </Typography>
+                  </Menu.Header>
+                  {items.map(item => (
+                    <Menu.Item key={item.label} onClick={item.onClick}>
+                      <Icon name={item.icon} />
+                      <Text>{item.label}</Text>
+                    </Menu.Item>
+                  ))}
+                </Menu.Section>
+              </Menu.Content>
+            </Menu>
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 6 }}>
+            <Menu
+              items={legacyItems}
+              activator={
+                <Button>
+                  <Button.Label>Single Tag</Button.Label>
+                  <Button.Icon name="sparkles" />
+                </Button>
+              }
+            />
+          </Grid.Cell>
+        </Grid>
       </section>
     </div>
   );
