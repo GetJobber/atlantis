@@ -144,7 +144,7 @@ export interface MenuHeaderComposableProps extends UnsafeProps {
 
 export interface MenuItemComposableProps extends UnsafeProps {
   /*
-   * Callback when an item gets clicked, or activated with Space or Enter
+   * Callback when an item is activated with Space, Enter, click or press.
    */
   readonly onClick?: () => void;
 
@@ -152,6 +152,22 @@ export interface MenuItemComposableProps extends UnsafeProps {
    * Menu item content
    */
   readonly children: ReactNode;
+
+  /**
+   * String representation of the item's content.
+   * Must be provided if the item's content is not plain text.
+   */
+  readonly textValue?: string;
+
+  /**
+   * Href for the item.
+   */
+  readonly href?: string;
+
+  /**
+   * Target window for the link.
+   */
+  readonly target?: string;
 }
 
 export interface MenuContentComposableProps extends UnsafeProps {

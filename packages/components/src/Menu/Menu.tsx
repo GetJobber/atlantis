@@ -517,11 +517,17 @@ function MenuItemComposable({
   children,
   UNSAFE_style,
   UNSAFE_className,
+  textValue,
+  href,
+  target,
 }: MenuItemComposableProps) {
   return (
     <AriaMenuItem
       className={classnames(styles.action, UNSAFE_className)}
       style={UNSAFE_style}
+      textValue={textValue}
+      href={href}
+      target={target}
       onAction={() => {
         onClick?.();
       }}
