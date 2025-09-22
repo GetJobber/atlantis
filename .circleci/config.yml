@@ -38,10 +38,7 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: |
-        npm ci
-        cd packages/storybook-v7
-        npm ci
+      command: npm ci
 
   check_git_status: &check_git_status
     run:
