@@ -5,6 +5,7 @@ import { Button } from "@jobber/components/Button";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Icon, IconNames } from "@jobber/components/Icon";
+import { Chip } from "@jobber/components/Chip";
 
 export default {
   title: "Components/Navigation/Menu/Web",
@@ -16,10 +17,7 @@ export default {
 } as ComponentMeta<typeof Menu>;
 
 const BasicTemplate: ComponentStory<typeof Menu> = args => (
-  <>
-    <div style={{ height: "300px" }} />
-    <Menu {...args} />
-  </>
+  <Menu onOpenChange={() => alert("Open")} {...args} />
 );
 
 export const Horizontal = BasicTemplate.bind({});
@@ -130,9 +128,6 @@ export const Composable = () => {
               <Button.Label>Press me</Button.Label>
               <Button.Icon name="sparkles" />
             </Button>
-            {/* <InlineLabel color="blue">Press me</InlineLabel> */}
-            {/* <button type="button">Press me</button> */}
-            {/* <span role="button">Press me</span> */}
           </Menu.Trigger>
           <Menu.Content>
             <Menu.Section>
@@ -185,10 +180,7 @@ export const Composable = () => {
         <h1>Composable with iteration</h1>
         <Menu>
           <Menu.Trigger>
-            <Button>
-              <Button.Label>Press me</Button.Label>
-              <Button.Icon name="sparkles" />
-            </Button>
+            <Chip label="Press me" />
           </Menu.Trigger>
           <Menu.Content>
             {items.map(item => (
