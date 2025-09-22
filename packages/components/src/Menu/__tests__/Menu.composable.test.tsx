@@ -102,6 +102,14 @@ describe("Menu (composable API)", () => {
     );
   });
 
+  it("activates an item when clicked", async () => {
+    const onItem = jest.fn();
+    render(<TestSectionMenu onItem={onItem} />);
+    await POM.openWithClick("Menu");
+    await userEvent.click(screen.getAllByRole("menuitem")[0]);
+    expect(onItem).toHaveBeenCalledTimes(1);
+  });
+
   it("activates first item with Space and closes", async () => {
     const onItem = jest.fn();
     render(<TestSectionMenu onItem={onItem} />);
