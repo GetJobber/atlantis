@@ -44,6 +44,7 @@ import type {
   MenuLegacyProps,
   MenuMobileUnderlayProps,
   MenuSectionComposableProps,
+  MenuSeparatorComposableProps,
   MenuTriggerComposableProps,
   SectionHeaderProps,
 } from "./Menu.types";
@@ -315,85 +316,6 @@ export function MenuLegacy({
   }
 }
 
-type AnimationState = "unmounted" | "hidden" | "visible";
-interface MenuAnimationContextValue {
-  state: AnimationState;
-  setState: React.Dispatch<React.SetStateAction<AnimationState>>;
-}
-const MenuAnimationContext = createContext<MenuAnimationContextValue | null>(
-  null,
-);
-
-function useMenuAnimation(): MenuAnimationContextValue {
-  const ctx = useContext(MenuAnimationContext);
-
-  if (!ctx) {
-    throw new Error("MenuAnimationContext used outside provider");
-  }
-
-  return ctx;
-}
-
-function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
-  // Use positional arguments to determine the trigger and content
-  // Avoids parsing/iterating over the children
-  const [trigger, menu] = React.Children.toArray(children);
-
-  const [animation, setAnimation] = useState<AnimationState>("unmounted");
-
-  return (
-    <div className={styles.wrapper}>
-      <MenuAnimationContext.Provider
-        value={{ state: animation, setState: setAnimation }}
-      >
-        <AriaMenuTrigger
-          onOpenChange={isOpen => {
-            setAnimation(isOpen ? "visible" : "hidden");
-            onOpenChange?.(isOpen);
-          }}
-        >
-          {trigger}
-          {/* Keep Popover mounted while exiting, but do not animate it. */}
-          <AriaPopover isExiting={animation === "hidden"}>
-            {({ placement }) => {
-              if (React.isValidElement(menu)) {
-                return React.cloneElement(
-                  menu as ReactElement<MenuContentComposableProps>,
-                  {
-                    placement,
-                  },
-                );
-              }
-
-              return menu;
-            }}
-          </AriaPopover>
-          <MenuMobileUnderlay animation={animation} />
-        </AriaMenuTrigger>
-      </MenuAnimationContext.Provider>
-    </div>
-  );
-}
-
-function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
-  const isMobile = useIsMobileDevice();
-
-  if (!isMobile || animation === "unmounted") return null;
-
-  return (
-    <motion.div
-      key="menu-mobile-underlay"
-      variants={composeOverlayVariation}
-      initial="hidden"
-      transition={{
-        ...OVERLAY_ANIMATION_CONFIG,
-      }}
-      className={styles.overlay}
-      animate={animation}
-    />
-  );
-}
-
 function SectionHeader({
   text,
   UNSAFE_style,
@@ -468,29 +390,136 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
   return <FloatingPortal>{children}</FloatingPortal>;
 }
 
-function MenuSectionComposable({ children }: MenuSectionComposableProps) {
+type AnimationState = "unmounted" | "hidden" | "visible";
+interface MenuAnimationContextValue {
+  state: AnimationState;
+  setState: React.Dispatch<React.SetStateAction<AnimationState>>;
+}
+const MenuAnimationContext = createContext<MenuAnimationContextValue | null>(
+  null,
+);
+
+function useMenuAnimation(): MenuAnimationContextValue {
+  const ctx = useContext(MenuAnimationContext);
+
+  if (!ctx) {
+    throw new Error("MenuAnimationContext used outside provider");
+  }
+
+  return ctx;
+}
+
+function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
+  // Use positional arguments to determine the trigger and content
+  // Avoids parsing/iterating over the children
+  const [trigger, menu] = React.Children.toArray(children);
+
+  const [animation, setAnimation] = useState<AnimationState>("unmounted");
+
   return (
-    <AriaMenuSection className={styles.section}>{children}</AriaMenuSection>
+    <MenuAnimationContext.Provider
+      value={{ state: animation, setState: setAnimation }}
+    >
+      <AriaMenuTrigger
+        onOpenChange={isOpen => {
+          setAnimation(isOpen ? "visible" : "hidden");
+          onOpenChange?.(isOpen);
+        }}
+      >
+        {trigger}
+        {/* Keep Popover mounted while exiting, but do not animate it. */}
+        <AriaPopover isExiting={animation === "hidden"}>
+          {({ placement }) => {
+            if (React.isValidElement(menu)) {
+              return React.cloneElement(
+                menu as ReactElement<MenuContentComposableProps>,
+                {
+                  placement,
+                },
+              );
+            }
+
+            return menu;
+          }}
+        </AriaPopover>
+        <MenuMobileUnderlay animation={animation} />
+      </AriaMenuTrigger>
+    </MenuAnimationContext.Provider>
   );
 }
 
-function MenuHeaderComposable({ children }: MenuHeaderComposableProps) {
-  return <AriaHeader className={styles.sectionHeader}>{children}</AriaHeader>;
+function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
+  const isMobile = useIsMobileDevice();
+
+  if (!isMobile || animation === "unmounted") return null;
+
+  return (
+    <motion.div
+      key="menu-mobile-underlay"
+      variants={composeOverlayVariation}
+      initial="hidden"
+      transition={{
+        ...OVERLAY_ANIMATION_CONFIG,
+      }}
+      className={styles.overlay}
+      animate={animation}
+    />
+  );
 }
 
-function MenuSeparatorComposable() {
+function MenuSectionComposable({
+  children,
+  UNSAFE_style,
+  UNSAFE_className,
+}: MenuSectionComposableProps) {
+  return (
+    <AriaMenuSection
+      className={classnames(styles.section, UNSAFE_className)}
+      style={UNSAFE_style}
+    >
+      {children}
+    </AriaMenuSection>
+  );
+}
+
+function MenuHeaderComposable({
+  children,
+  UNSAFE_style,
+  UNSAFE_className,
+}: MenuHeaderComposableProps) {
+  return (
+    <AriaHeader
+      className={classnames(styles.sectionHeader, UNSAFE_className)}
+      style={UNSAFE_style}
+    >
+      {children}
+    </AriaHeader>
+  );
+}
+
+function MenuSeparatorComposable({
+  UNSAFE_style,
+  UNSAFE_className,
+}: MenuSeparatorComposableProps) {
   return (
     <AriaSeparator
-      className={styles.separator}
+      className={classnames(styles.separator, UNSAFE_className)}
+      style={UNSAFE_style}
       data-testid="ATL-Menu-Separator"
     />
   );
 }
 
-function MenuItemComposable({ onClick, children }: MenuItemComposableProps) {
+function MenuItemComposable({
+  onClick,
+  children,
+  UNSAFE_style,
+  UNSAFE_className,
+}: MenuItemComposableProps) {
   return (
     <AriaMenuItem
-      className={styles.action}
+      className={classnames(styles.action, UNSAFE_className)}
+      style={UNSAFE_style}
       onAction={() => {
         onClick?.();
       }}
@@ -505,6 +534,8 @@ const MotionMenu = motion.create(AriaMenu);
 function MenuContentComposable({
   children,
   placement,
+  UNSAFE_style,
+  UNSAFE_className,
 }: MenuContentComposableProps) {
   const { state: animation, setState } = useMenuAnimation();
   const isMobile = useIsMobileDevice();
@@ -520,7 +551,8 @@ function MenuContentComposable({
   return (
     <MotionMenu
       key={`menu-content-${placement ?? "pending"}`}
-      className={styles.menu}
+      className={classnames(styles.menu, UNSAFE_className)}
+      style={UNSAFE_style}
       variants={variants}
       initial="hidden"
       // placement is null on first render cycle, so we need to wait for it to be defined
@@ -537,13 +569,6 @@ function MenuContentComposable({
   );
 }
 
-Menu.Section = MenuSectionComposable;
-Menu.Header = MenuHeaderComposable;
-Menu.Item = MenuItemComposable;
-Menu.Trigger = MenuTriggerComposable;
-Menu.Content = MenuContentComposable;
-Menu.Separator = MenuSeparatorComposable;
-
 function MenuTriggerComposable({
   ariaLabel,
   children,
@@ -556,3 +581,10 @@ function MenuTriggerComposable({
     </AriaPressable>
   );
 }
+
+Menu.Section = MenuSectionComposable;
+Menu.Header = MenuHeaderComposable;
+Menu.Item = MenuItemComposable;
+Menu.Trigger = MenuTriggerComposable;
+Menu.Content = MenuContentComposable;
+Menu.Separator = MenuSeparatorComposable;

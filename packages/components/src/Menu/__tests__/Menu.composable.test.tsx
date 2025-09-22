@@ -70,6 +70,42 @@ function TestChipTriggerMenu(props: { readonly onOpenChange?: () => void }) {
     </Menu>
   );
 }
+
+function TestUnsafePropsMenu() {
+  return (
+    <Menu>
+      <Menu.Trigger ariaLabel="Menu">
+        <Button label="Menu" />
+      </Menu.Trigger>
+      <Menu.Content
+        UNSAFE_className="unsafe-menu"
+        UNSAFE_style={{ border: "1px solid red" }}
+      >
+        <Menu.Section
+          UNSAFE_className="unsafe-section"
+          UNSAFE_style={{ padding: "13px" }}
+        >
+          <Menu.Header
+            UNSAFE_className="unsafe-header"
+            UNSAFE_style={{ color: "rgb(10, 20, 30)" }}
+          >
+            <Heading level={4}>Section Header</Heading>
+          </Menu.Header>
+          <Menu.Item
+            UNSAFE_className="unsafe-item"
+            UNSAFE_style={{ margin: "11px" }}
+          >
+            <Text>Open</Text>
+          </Menu.Item>
+        </Menu.Section>
+        <Menu.Separator
+          UNSAFE_className="unsafe-sep"
+          UNSAFE_style={{ height: "7px" }}
+        />
+      </Menu.Content>
+    </Menu>
+  );
+}
 describe("Menu (composable API)", () => {
   it("opens via mouse click and renders items", async () => {
     render(<TestSectionMenu />);
@@ -160,6 +196,59 @@ describe("Menu (composable API)", () => {
         await POM.openWithClick("Menu");
         expect(onOpenChange).toHaveBeenCalledWith(true);
       });
+    });
+  });
+
+  describe("UNSAFE_className and UNSAFE_style", () => {
+    it("applies UNSAFE props on Menu.Content", async () => {
+      render(<TestUnsafePropsMenu />);
+      await POM.openWithClick("Menu");
+
+      const menu = screen.getByRole("menu");
+      expect(menu).toHaveClass("unsafe-menu");
+      expect(menu).toHaveStyle("border: 1px solid red");
+    });
+
+    it("applies UNSAFE props on Menu.Section", async () => {
+      render(<TestUnsafePropsMenu />);
+      await POM.openWithClick("Menu");
+
+      const heading = screen.getByRole("heading", { level: 4 });
+      const sectionContainer = heading.closest(
+        ".unsafe-section",
+      ) as HTMLElement;
+      expect(sectionContainer).toBeInTheDocument();
+      expect(sectionContainer).toHaveClass("unsafe-section");
+      expect(sectionContainer).toHaveStyle("padding: 13px");
+    });
+
+    it("applies UNSAFE props on Menu.Header", async () => {
+      render(<TestUnsafePropsMenu />);
+      await POM.openWithClick("Menu");
+
+      const heading = screen.getByRole("heading", { level: 4 });
+      const headerContainer = heading.closest(".unsafe-header") as HTMLElement;
+      expect(headerContainer).toBeInTheDocument();
+      expect(headerContainer).toHaveClass("unsafe-header");
+      expect(headerContainer).toHaveStyle("color: rgb(10, 20, 30)");
+    });
+
+    it("applies UNSAFE props on Menu.Item", async () => {
+      render(<TestUnsafePropsMenu />);
+      await POM.openWithClick("Menu");
+
+      const item = screen.getAllByRole("menuitem")[0];
+      expect(item).toHaveClass("unsafe-item");
+      expect(item).toHaveStyle("margin: 11px");
+    });
+
+    it("applies UNSAFE props on Menu.Separator", async () => {
+      render(<TestUnsafePropsMenu />);
+      await POM.openWithClick("Menu");
+
+      const separator = screen.getByTestId("ATL-Menu-Separator");
+      expect(separator).toHaveClass("unsafe-sep");
+      expect(separator).toHaveStyle("height: 7px");
     });
   });
 });

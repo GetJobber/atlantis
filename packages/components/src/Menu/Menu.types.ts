@@ -121,15 +121,20 @@ export interface ActionProps {
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-export interface MenuSectionComposableProps {
+interface UnsafeProps {
+  readonly UNSAFE_style?: CSSProperties;
+  readonly UNSAFE_className?: string;
+}
+
+export interface MenuSectionComposableProps extends UnsafeProps {
   readonly children: ReactNode;
 }
 
-export interface MenuHeaderComposableProps {
+export interface MenuHeaderComposableProps extends UnsafeProps {
   readonly children: ReactNode;
 }
 
-export interface MenuItemComposableProps {
+export interface MenuItemComposableProps extends UnsafeProps {
   /*
    * Callback when an item gets clicked, or activated with Space or Enter
    */
@@ -141,7 +146,7 @@ export interface MenuItemComposableProps {
   readonly children: ReactNode;
 }
 
-export interface MenuContentComposableProps {
+export interface MenuContentComposableProps extends UnsafeProps {
   readonly children: ReactNode;
   readonly placement?: string | null;
 }
@@ -159,6 +164,8 @@ export interface MenuTriggerComposableProps {
    */
   readonly children: ReactNode;
 }
+
+export interface MenuSeparatorComposableProps extends UnsafeProps {}
 
 export interface MenuMobileUnderlayProps {
   readonly animation: "unmounted" | "hidden" | "visible";
