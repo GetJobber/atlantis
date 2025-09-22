@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.94.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.93.1...@jobber/components@6.94.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* **components:** InputGroup horizontal outer borders should remain rounded ([#2729](https://github.com/GetJobber/atlantis/issues/2729)) ([6864df8](https://github.com/GetJobber/atlantis/commit/6864df841a9bf26d4d74226b4381b0e2b5771938))
+
+
+### Features
+
+* **components:** Upgrade RAC to 1.11.0 ([#2742](https://github.com/GetJobber/atlantis/issues/2742)) ([5e7acb7](https://github.com/GetJobber/atlantis/commit/5e7acb78cccdf46e353c694654c721052eae1f03))
+
+
+
+
+
 ## [6.93.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.93.0...@jobber/components@6.93.1) (2025-09-22)
 
 
