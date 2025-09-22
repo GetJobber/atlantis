@@ -56,7 +56,23 @@ import { calculateMaxHeight } from "../utils/maxHeight";
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
 const MENU_MAX_HEIGHT_PERCENTAGE = 72;
-const MENU_ANIMATION_DURATION = 0.3;
+const MENU_ANIMATION_DURATION = 0.25;
+const OVERLAY_ANIMATION_DURATION = 0.15;
+
+const MENU_ANIMATION_CONFIG = {
+  duration: MENU_ANIMATION_DURATION,
+  type: "tween",
+};
+
+const OVERLAY_ANIMATION_CONFIG = {
+  duration: OVERLAY_ANIMATION_DURATION,
+  type: "tween",
+};
+
+const composeOverlayVariation = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -213,8 +229,7 @@ export function MenuLegacy({
                 animate="done"
                 exit="overlayStartStop"
                 transition={{
-                  type: "tween",
-                  duration: 0.15,
+                  ...OVERLAY_ANIMATION_CONFIG,
                 }}
               />
               <div
@@ -239,8 +254,7 @@ export function MenuLegacy({
                     custom={context?.placement}
                     ref={menuRef}
                     transition={{
-                      type: "tween",
-                      duration: 0.25,
+                      ...MENU_ANIMATION_CONFIG,
                     }}
                     style={UNSAFE_style?.menu}
                   >
@@ -369,14 +383,10 @@ function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
   return (
     <motion.div
       key="menu-mobile-underlay"
-      variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1 },
-      }}
+      variants={composeOverlayVariation}
       initial="hidden"
       transition={{
-        type: "tween",
-        duration: MENU_ANIMATION_DURATION,
+        ...OVERLAY_ANIMATION_CONFIG,
       }}
       className={styles.overlay}
       animate={animation}
@@ -515,7 +525,7 @@ function MenuContentComposable({
       initial="hidden"
       // placement is null on first render cycle, so we need to wait for it to be defined
       animate={placement ? animation : false}
-      transition={{ type: "tween", duration: MENU_ANIMATION_DURATION }}
+      transition={{ ...MENU_ANIMATION_CONFIG }}
       onAnimationComplete={animationState => {
         setState(prev =>
           animationState === "hidden" && prev === "hidden" ? "unmounted" : prev,
