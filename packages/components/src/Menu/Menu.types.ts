@@ -127,7 +127,15 @@ interface UnsafeProps {
 }
 
 export interface MenuSectionComposableProps extends UnsafeProps {
+  /**
+   * Section content
+   * If no Menu.Header is provided, ariaLabel must be provided to identify the section to assistive technologies
+   */
   readonly children: ReactNode;
+  /**
+   * Accessible label for the section
+   */
+  readonly ariaLabel?: string;
 }
 
 export interface MenuHeaderComposableProps extends UnsafeProps {
@@ -153,7 +161,7 @@ export interface MenuContentComposableProps extends UnsafeProps {
 
 export interface MenuTriggerComposableProps {
   /**
-   * Accessible name for the trigger. If trigger content is not plain text, this must be provided.
+   * Accessible name for the trigger.
    */
   readonly ariaLabel?: string;
   /**
@@ -167,6 +175,7 @@ export interface MenuTriggerComposableProps {
 
 export interface MenuSeparatorComposableProps extends UnsafeProps {}
 
+export type AnimationState = "unmounted" | "hidden" | "visible";
 export interface MenuMobileUnderlayProps {
-  readonly animation: "unmounted" | "hidden" | "visible";
+  readonly animation: AnimationState;
 }

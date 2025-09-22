@@ -37,6 +37,7 @@ import {
 import styles from "./Menu.module.css";
 import type {
   ActionProps,
+  AnimationState,
   MenuComposableProps,
   MenuContentComposableProps,
   MenuHeaderComposableProps,
@@ -390,7 +391,6 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
   return <FloatingPortal>{children}</FloatingPortal>;
 }
 
-type AnimationState = "unmounted" | "hidden" | "visible";
 interface MenuAnimationContextValue {
   state: AnimationState;
   setState: React.Dispatch<React.SetStateAction<AnimationState>>;
@@ -471,9 +471,11 @@ function MenuSectionComposable({
   children,
   UNSAFE_style,
   UNSAFE_className,
+  ariaLabel,
 }: MenuSectionComposableProps) {
   return (
     <AriaMenuSection
+      aria-label={ariaLabel}
       className={classnames(styles.section, UNSAFE_className)}
       style={UNSAFE_style}
     >
