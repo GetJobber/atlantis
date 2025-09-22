@@ -32,6 +32,7 @@ import {
   MenuTrigger as AriaMenuTrigger,
   Popover as AriaPopover,
   Pressable as AriaPressable,
+  Separator as AriaSeparator,
 } from "react-aria-components";
 import styles from "./Menu.module.css";
 import type {
@@ -244,7 +245,13 @@ export function MenuLegacy({
                     style={UNSAFE_style?.menu}
                   >
                     {items?.map((item, key: number) => (
-                      <div key={key} className={styles.section}>
+                      <div
+                        key={key}
+                        className={classnames(
+                          styles.section,
+                          styles.sectionBorder,
+                        )}
+                      >
                         {item.header && (
                           <SectionHeader
                             text={item.header}
@@ -458,11 +465,15 @@ function MenuSectionComposable({ children }: MenuSectionComposableProps) {
 }
 
 function MenuHeaderComposable({ children }: MenuHeaderComposableProps) {
+  return <AriaHeader className={styles.sectionHeader}>{children}</AriaHeader>;
+}
+
+function MenuSeparatorComposable() {
   return (
-    <>
-      <AriaHeader className={styles.sectionHeader}>{children}</AriaHeader>
-      {/* <AriaSeparator /> */}
-    </>
+    <AriaSeparator
+      className={styles.separator}
+      data-testid="ATL-Menu-Separator"
+    />
   );
 }
 
@@ -521,6 +532,7 @@ Menu.Header = MenuHeaderComposable;
 Menu.Item = MenuItemComposable;
 Menu.Trigger = MenuTriggerComposable;
 Menu.Content = MenuContentComposable;
+Menu.Separator = MenuSeparatorComposable;
 
 function MenuTriggerComposable({
   ariaLabel,

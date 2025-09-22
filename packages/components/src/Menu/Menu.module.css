@@ -40,9 +40,17 @@
   }
 }
 
+.sectionBorder,
+.separator {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.sectionBorder:last-of-type {
+  border-bottom: none;
+}
+
 .section {
   padding: var(--menu-space) 0;
-  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .section:first-of-type {
@@ -51,7 +59,6 @@
 
 .section:last-of-type {
   padding-bottom: 0;
-  border-bottom: none;
 }
 
 .sectionHeader {

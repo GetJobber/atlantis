@@ -144,6 +144,7 @@
     "Menu.Header",
     "Menu.Item",
     "Menu.Section",
+    "Menu.Separator",
     "Menu.Trigger",
     "Modal",
     "Modal.Actions",

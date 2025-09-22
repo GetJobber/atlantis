@@ -25,6 +25,7 @@ function TestSectionMenu(props: {
             <span>Open</span>
           </Menu.Item>
         </Menu.Section>
+        <Menu.Separator />
         <Menu.Section>
           <Menu.Item>
             <Text>Two</Text>
@@ -113,6 +114,12 @@ describe("Menu (composable API)", () => {
     await waitFor(() =>
       expect(screen.queryByRole("menu")).not.toBeInTheDocument(),
     );
+  });
+
+  it("renders a separator", async () => {
+    render(<TestSectionMenu />);
+    await POM.openWithClick("Menu");
+    expect(screen.getByTestId("ATL-Menu-Separator")).toBeInTheDocument();
   });
 
   describe("Trigger content without visible text", () => {

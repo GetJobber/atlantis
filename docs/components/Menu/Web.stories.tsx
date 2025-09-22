@@ -143,6 +143,7 @@ export const Composable = () => {
                 <Text>Admin</Text>
               </Menu.Item>
             </Menu.Section>
+            <Menu.Separator />
             <Menu.Section>
               <Menu.Header>
                 <Heading level={4}>Other</Heading>
