@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Chip } from "@jobber/components/Chip";
+import { Heading } from "@jobber/components/Heading";
 import * as POM from "../Menu.pom";
 import { Menu } from "..";
 import { Button } from "../../Button";
@@ -19,7 +20,7 @@ function TestSectionMenu(props: {
       <Menu.Content>
         <Menu.Section>
           <Menu.Header>
-            <span>Nav</span>
+            <Heading level={4}>Section Header</Heading>
           </Menu.Header>
           <Menu.Item onClick={props.onItem}>
             <span>Open</span>
@@ -128,6 +129,13 @@ describe("Menu (composable API)", () => {
     render(<TestSectionMenu />);
     await POM.openWithClick("Menu");
     expect(screen.getByTestId("ATL-Menu-Separator")).toBeInTheDocument();
+  });
+
+  it("renders a header", async () => {
+    render(<TestSectionMenu />);
+    await POM.openWithClick("Menu");
+    expect(screen.getByRole("heading", { level: 4 })).toBeInTheDocument();
+    expect(screen.getByRole("heading")).toHaveTextContent("Section Header");
   });
 
   describe("Trigger content without visible text", () => {
