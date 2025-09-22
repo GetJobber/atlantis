@@ -25,4 +25,4 @@ docker run --rm -it \
     -v $(pwd)/packages/site/node_modules.e2e:/atlantis/packages/site/node_modules \
     -w /atlantis/packages/site \
     mcr.microsoft.com/playwright:v1.52.0-noble \
-    bash -c "npm install --ignore-scripts && npm run bundle && npm run copyFiles && (npx vite --force &) && sleep 3 && npx $PLAYWRIGHT_COMMAND"
+    bash -c "npm install --ignore-scripts && (cd ../storybook-v7 && npm install) && npm run bundle && npm run copyFiles && (npx vite --force &) && sleep 3 && npx $PLAYWRIGHT_COMMAND"
