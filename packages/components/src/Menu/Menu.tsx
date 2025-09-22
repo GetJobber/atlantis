@@ -108,7 +108,7 @@ export function Menu({
 
   // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);
-  const menuRef = children ? undefined : useFocusTrap<HTMLDivElement>(visible);
+  const menuRef = useFocusTrap<HTMLDivElement>(visible);
 
   const { refs, floatingStyles, context } = useFloating({
     open: visible,
@@ -119,13 +119,7 @@ export function Menu({
       offset(MENU_OFFSET),
       flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
       size({
-        apply({
-          availableHeight,
-          elements,
-        }: {
-          availableHeight: number;
-          elements: { floating: HTMLElement };
-        }) {
+        apply({ availableHeight, elements }) {
           // The inner element is the scrollable menu that requires the max height
           const menuElement = elements.floating.querySelector(
             '[role="menu"]',
@@ -196,6 +190,10 @@ export function Menu({
                 initial="overlayStartStop"
                 animate="done"
                 exit="overlayStartStop"
+                transition={{
+                  type: "tween",
+                  duration: 0.15,
+                }}
               />
               <div
                 ref={refs.setFloating}
