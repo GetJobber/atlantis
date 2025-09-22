@@ -40,8 +40,8 @@ import type {
   MenuContentComposableProps,
   MenuHeaderComposableProps,
   MenuItemComposableProps,
+  MenuLegacyProps,
   MenuMobileUnderlayProps,
-  MenuProps,
   MenuSectionComposableProps,
   MenuTriggerComposableProps,
   SectionHeaderProps,
@@ -78,19 +78,38 @@ export function useIsMobileDevice(): boolean {
   return window.screen.width <= SMALL_SCREEN_BREAKPOINT;
 }
 
-// eslint-disable-next-line max-statements
-export function Menu({
-  activator,
-  items,
-  children,
-  UNSAFE_className,
-  UNSAFE_style,
-}: MenuProps) {
-  // Separate React Aria-only path for composable API
-  if (children) {
-    return <MenuComposable>{children}</MenuComposable>;
+function isLegacy(
+  props: MenuLegacyProps | MenuComposableProps,
+): props is MenuLegacyProps {
+  return "items" in props;
+}
+
+// Overload declarations (no bodies)
+export function Menu(props: MenuLegacyProps): ReactElement;
+export function Menu(props: MenuComposableProps): ReactElement;
+
+// Single implementation
+export function Menu(
+  props: MenuLegacyProps | MenuComposableProps,
+): ReactElement {
+  if (isLegacy(props)) {
+    return <MenuLegacy {...props} />;
   }
 
+  return (
+    <MenuComposable onOpenChange={props.onOpenChange}>
+      {props.children}
+    </MenuComposable>
+  );
+}
+
+// eslint-disable-next-line max-statements
+export function MenuLegacy({
+  activator,
+  items,
+  UNSAFE_className,
+  UNSAFE_style,
+}: MenuLegacyProps) {
   const [visible, setVisible] = useState(false);
   const [referenceElement, setReferenceElement] =
     useState<HTMLDivElement | null>(null);
@@ -112,7 +131,9 @@ export function Menu({
 
   const { refs, floatingStyles, context } = useFloating({
     open: visible,
-    onOpenChange: setVisible,
+    onOpenChange: (isOpen: boolean) => {
+      setVisible(isOpen);
+    },
     placement: "bottom-start",
     strategy: "fixed",
     middleware: [
@@ -202,7 +223,7 @@ export function Menu({
                 {...positionAttributes}
                 {...formFieldFocusAttribute}
               >
-                {items && items.length > 0 && (
+                {items.length > 0 && (
                   <motion.div
                     className={classnames(styles.menu, UNSAFE_className?.menu)}
                     role="menu"
@@ -292,7 +313,7 @@ function useMenuAnimation(): MenuAnimationContextValue {
   return ctx;
 }
 
-function MenuComposable({ children }: MenuComposableProps) {
+function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
   // Use positional arguments to determine the trigger and content
   // Avoids parsing/iterating over the children
   const [trigger, menu] = React.Children.toArray(children);
@@ -307,6 +328,7 @@ function MenuComposable({ children }: MenuComposableProps) {
         <AriaMenuTrigger
           onOpenChange={isOpen => {
             setAnimation(isOpen ? "visible" : "hidden");
+            onOpenChange?.(isOpen);
           }}
         >
           {trigger}

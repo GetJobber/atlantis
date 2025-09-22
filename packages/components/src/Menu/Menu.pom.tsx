@@ -6,6 +6,11 @@ export async function openWithClick(ariaLabel: string): Promise<void> {
   await waitFor(() => expect(screen.getByRole("menu")).toBeInTheDocument());
 }
 
+export async function openWithIconClick(ariaLabel: string): Promise<void> {
+  await userEvent.click(screen.getByTestId(ariaLabel));
+  await waitFor(() => expect(screen.getByRole("menu")).toBeInTheDocument());
+}
+
 export async function openWithKeyboard(
   ariaLabel: string,
   key: "Enter" | "Space" = "Enter",

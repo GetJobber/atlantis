@@ -1,7 +1,8 @@
 import type { IconColorNames, IconNames } from "@jobber/design";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
+import type { XOR } from "ts-xor";
 
-export interface MenuProps {
+export interface MenuLegacyProps extends MenuBaseProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
    */
@@ -9,13 +10,10 @@ export interface MenuProps {
   /**
    * Collection of action items.
    */
-  readonly items?: SectionProps[];
+  readonly items: SectionProps[];
+}
 
-  /**
-   * Composable children-based API. When provided, this takes precedence over `items`.
-   */
-  readonly children?: ReactNode;
-
+interface MenuBaseProps {
   /**
    * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
@@ -38,6 +36,21 @@ export interface MenuProps {
     action?: CSSProperties;
   };
 }
+
+export interface MenuComposableProps extends MenuBaseProps {
+  /**
+   * Composable children-based API.
+   * The first child must be the Menu.Trigger
+   * The second child must be the Menu.Content
+   */
+  readonly children: ReactNode;
+  /**
+   * Callback when the menu is opened or closed
+   */
+  readonly onOpenChange?: (isOpen: boolean) => void;
+}
+
+export type MenuProps = XOR<MenuLegacyProps, MenuComposableProps>;
 
 export interface SectionProps {
   /**
@@ -99,16 +112,6 @@ export interface ActionProps {
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-export interface MenuComposableProps {
-  readonly children: ReactNode;
-  readonly UNSAFE_className?: {
-    menu?: string;
-  };
-  readonly UNSAFE_style?: {
-    menu?: CSSProperties;
-  };
-}
-
 export interface MenuSectionComposableProps {
   readonly children: ReactNode;
 }
@@ -134,11 +137,18 @@ export interface MenuContentComposableProps {
   readonly placement?: string | null;
 }
 
-export interface MenuTriggerComposableProps extends React.PropsWithChildren {
+export interface MenuTriggerComposableProps {
   /**
    * Accessible name for the trigger. If trigger content is not plain text, this must be provided.
    */
   readonly ariaLabel?: string;
+  /**
+   * Trigger content.
+   * This MUST be an interactive element, such as Button. Note that any onClick is ignored.
+   * If you want to access the open event, use the onOpenChange on the Menu component.
+   * If it does not have an interactive role, or a focus style it will have issues.
+   */
+  readonly children: ReactNode;
 }
 
 export interface MenuMobileUnderlayProps {
