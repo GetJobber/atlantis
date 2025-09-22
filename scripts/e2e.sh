@@ -23,6 +23,7 @@ echo "Running e2e tests inside a docker container..."
 docker run --rm -it \
     -v $(pwd):/atlantis \
     -v $(pwd)/packages/site/node_modules.e2e:/atlantis/packages/site/node_modules \
+    -v $(pwd)/packages/storybook-v7/node_modules.e2e:/atlantis/packages/storybook-v7/node_modules \
     -w /atlantis/packages/site \
     mcr.microsoft.com/playwright:v1.52.0-noble \
     bash -c "npm install --ignore-scripts && (cd ../storybook-v7 && npm install) && npm run bundle && npm run copyFiles && (npx vite --force &) && sleep 3 && npx $PLAYWRIGHT_COMMAND"
