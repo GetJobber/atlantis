@@ -19,6 +19,7 @@
   padding: var(--menu-space);
   padding-bottom: calc(env(safe-area-inset-bottom) + var(--menu-space));
   border-radius: var(--radius-base) var(--radius-base) 0 0;
+  outline: none;
   overflow-y: scroll;
   background-color: var(--color-surface);
   -webkit-overflow-scrolling: touch;
@@ -84,12 +85,6 @@
 
 .action:focus-visible {
   box-shadow: var(--shadow-focus);
-}
-
-/* react-aria MenuItem focused state */
-.action[data-focused] {
-  box-shadow: var(--shadow-focus);
-  background-color: var(--color-surface--hover);
 }
 
 .action span {
