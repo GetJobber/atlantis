@@ -1,5 +1,11 @@
-import type { CSSProperties, MouseEvent, ReactElement, RefObject } from "react";
-import React, { useId, useRef, useState } from "react";
+import type { MouseEvent, ReactElement, RefObject } from "react";
+import React, {
+  createContext,
+  useContext,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -8,7 +14,6 @@ import {
   useRefocusOnActivator,
   useWindowDimensions,
 } from "@jobber/hooks";
-import type { IconColorNames, IconNames } from "@jobber/design";
 import {
   FloatingPortal,
   autoUpdate,
@@ -19,7 +24,28 @@ import {
   useFloating,
   useInteractions,
 } from "@floating-ui/react";
+import {
+  Header as AriaHeader,
+  Menu as AriaMenu,
+  MenuItem as AriaMenuItem,
+  MenuSection as AriaMenuSection,
+  MenuTrigger as AriaMenuTrigger,
+  Popover as AriaPopover,
+  Pressable as AriaPressable,
+} from "react-aria-components";
 import styles from "./Menu.module.css";
+import type {
+  ActionProps,
+  MenuComposableProps,
+  MenuContentComposableProps,
+  MenuHeaderComposableProps,
+  MenuItemComposableProps,
+  MenuMobileUnderlayProps,
+  MenuProps,
+  MenuSectionComposableProps,
+  MenuTriggerComposableProps,
+  SectionHeaderProps,
+} from "./Menu.types";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
@@ -29,6 +55,7 @@ import { calculateMaxHeight } from "../utils/maxHeight";
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
 const MENU_MAX_HEIGHT_PERCENTAGE = 72;
+const MENU_ANIMATION_DURATION = 0.3;
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -43,58 +70,27 @@ const variation = {
   done: { opacity: 1, y: 0 },
 };
 
-export interface MenuProps {
-  /**
-   * Custom menu activator. If this is not provided a default [… More] will be used.
-   */
-  readonly activator?: ReactElement;
-  /**
-   * Collection of action items.
-   */
-  readonly items: SectionProps[];
+export function useIsMobileDevice(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
 
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_className?: {
-    menu?: string;
-    header?: string;
-    action?: string;
-  };
-
-  /**
-   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_style?: {
-    menu?: CSSProperties;
-    header?: CSSProperties;
-    action?: CSSProperties;
-  };
-}
-
-export interface SectionProps {
-  /**
-   * Defines the section header to further explain the group of actions.
-   */
-  header?: string;
-
-  /**
-   * List of actions.
-   */
-  actions: ActionProps[];
+  return window.screen.width <= SMALL_SCREEN_BREAKPOINT;
 }
 
 // eslint-disable-next-line max-statements
 export function Menu({
   activator,
   items,
+  children,
   UNSAFE_className,
   UNSAFE_style,
 }: MenuProps) {
+  // Separate React Aria-only path for composable API
+  if (children) {
+    return <MenuComposable>{children}</MenuComposable>;
+  }
+
   const [visible, setVisible] = useState(false);
   const [referenceElement, setReferenceElement] =
     useState<HTMLDivElement | null>(null);
@@ -112,7 +108,7 @@ export function Menu({
 
   // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);
-  const menuRef = useFocusTrap<HTMLDivElement>(visible);
+  const menuRef = children ? undefined : useFocusTrap<HTMLDivElement>(visible);
 
   const { refs, floatingStyles, context } = useFloating({
     open: visible,
@@ -123,7 +119,13 @@ export function Menu({
       offset(MENU_OFFSET),
       flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
       size({
-        apply({ availableHeight, elements }) {
+        apply({
+          availableHeight,
+          elements,
+        }: {
+          availableHeight: number;
+          elements: { floating: HTMLElement };
+        }) {
           // The inner element is the scrollable menu that requires the max height
           const menuElement = elements.floating.querySelector(
             '[role="menu"]',
@@ -194,10 +196,6 @@ export function Menu({
                 initial="overlayStartStop"
                 animate="done"
                 exit="overlayStartStop"
-                transition={{
-                  type: "tween",
-                  duration: 0.15,
-                }}
               />
               <div
                 ref={refs.setFloating}
@@ -206,7 +204,7 @@ export function Menu({
                 {...positionAttributes}
                 {...formFieldFocusAttribute}
               >
-                {items.length > 0 && (
+                {items && items.length > 0 && (
                   <motion.div
                     className={classnames(styles.menu, UNSAFE_className?.menu)}
                     role="menu"
@@ -226,7 +224,7 @@ export function Menu({
                     }}
                     style={UNSAFE_style?.menu}
                   >
-                    {items.map((item, key: number) => (
+                    {items?.map((item, key: number) => (
                       <div key={key} className={styles.section}>
                         {item.header && (
                           <SectionHeader
@@ -277,10 +275,86 @@ export function Menu({
   }
 }
 
-interface SectionHeaderProps {
-  readonly text: string;
-  readonly UNSAFE_style?: CSSProperties;
-  readonly UNSAFE_className?: string;
+type AnimationState = "unmounted" | "hidden" | "visible";
+interface MenuAnimationContextValue {
+  state: AnimationState;
+  setState: React.Dispatch<React.SetStateAction<AnimationState>>;
+}
+const MenuAnimationContext = createContext<MenuAnimationContextValue | null>(
+  null,
+);
+
+function useMenuAnimation(): MenuAnimationContextValue {
+  const ctx = useContext(MenuAnimationContext);
+
+  if (!ctx) {
+    throw new Error("MenuAnimationContext used outside provider");
+  }
+
+  return ctx;
+}
+
+function MenuComposable({ children }: MenuComposableProps) {
+  // Use positional arguments to determine the trigger and content
+  // Avoids parsing/iterating over the children
+  const [trigger, menu] = React.Children.toArray(children);
+
+  const [animation, setAnimation] = useState<AnimationState>("unmounted");
+
+  return (
+    <div className={styles.wrapper}>
+      <MenuAnimationContext.Provider
+        value={{ state: animation, setState: setAnimation }}
+      >
+        <AriaMenuTrigger
+          onOpenChange={isOpen => {
+            setAnimation(isOpen ? "visible" : "hidden");
+          }}
+        >
+          {trigger}
+          {/* Keep Popover mounted while exiting, but do not animate it. */}
+          <AriaPopover isExiting={animation === "hidden"}>
+            {({ placement }) => {
+              if (React.isValidElement(menu)) {
+                return React.cloneElement(
+                  menu as ReactElement<MenuContentComposableProps>,
+                  {
+                    placement,
+                  },
+                );
+              }
+
+              return menu;
+            }}
+          </AriaPopover>
+          <MenuMobileUnderlay animation={animation} />
+        </AriaMenuTrigger>
+      </MenuAnimationContext.Provider>
+    </div>
+  );
+}
+
+function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
+  const isMobile = useIsMobileDevice();
+
+  if (!isMobile || animation === "unmounted") return null;
+
+  return (
+    <motion.div
+      key="menu-mobile-underlay"
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      }}
+      initial="hidden"
+      transition={{
+        type: "tween",
+        duration: MENU_ANIMATION_DURATION,
+      }}
+      className={styles.overlay}
+      animate={animation}
+    />
+  );
 }
 
 function SectionHeader({
@@ -305,48 +379,6 @@ function SectionHeader({
       </Typography>
     </div>
   );
-}
-
-export interface ActionProps {
-  /**
-   * Action label
-   */
-  readonly label: string;
-
-  /**
-   * Parent Section Label
-   */
-  readonly sectionLabel?: string;
-
-  /**
-   * Visual cue for the action label
-   */
-  readonly icon?: IconNames;
-
-  /**
-   * Color for the icon. Defaults to "icon".
-   */
-  readonly iconColor?: IconColorNames;
-
-  /**
-   * Visual style for the action button
-   */
-  readonly destructive?: boolean;
-
-  /**
-   * Inline style overrides for the action button
-   */
-  readonly UNSAFE_style?: CSSProperties;
-
-  /**
-   * Style class overrides for the action button
-   */
-  readonly UNSAFE_className?: string;
-
-  /**
-   * Callback when an action gets clicked
-   */
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 function Action({
@@ -397,4 +429,88 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
   }
 
   return <FloatingPortal>{children}</FloatingPortal>;
+}
+
+function MenuSectionComposable({ children }: MenuSectionComposableProps) {
+  return (
+    <AriaMenuSection className={styles.section}>{children}</AriaMenuSection>
+  );
+}
+
+function MenuHeaderComposable({ children }: MenuHeaderComposableProps) {
+  return (
+    <>
+      <AriaHeader className={styles.sectionHeader}>{children}</AriaHeader>
+      {/* <AriaSeparator /> */}
+    </>
+  );
+}
+
+function MenuItemComposable({ onClick, children }: MenuItemComposableProps) {
+  return (
+    <AriaMenuItem
+      className={styles.action}
+      onAction={() => {
+        onClick?.();
+      }}
+    >
+      {children}
+    </AriaMenuItem>
+  );
+}
+
+const MotionMenu = motion.create(AriaMenu);
+
+function MenuContentComposable({
+  children,
+  placement,
+}: MenuContentComposableProps) {
+  const { state: animation, setState } = useMenuAnimation();
+  const isMobile = useIsMobileDevice();
+
+  const yTranslation = placement?.includes("bottom") ? -10 : 10;
+  const variants = isMobile
+    ? { hidden: { opacity: 0, y: 150 }, visible: { opacity: 1, y: 0 } }
+    : {
+        hidden: { opacity: 0, y: yTranslation },
+        visible: { opacity: 1, y: 0 },
+      };
+
+  return (
+    <MotionMenu
+      key={`menu-content-${placement ?? "pending"}`}
+      className={styles.menu}
+      variants={variants}
+      initial="hidden"
+      // placement is null on first render cycle, so we need to wait for it to be defined
+      animate={placement ? animation : false}
+      transition={{ type: "tween", duration: MENU_ANIMATION_DURATION }}
+      onAnimationComplete={animationState => {
+        setState(prev =>
+          animationState === "hidden" && prev === "hidden" ? "unmounted" : prev,
+        );
+      }}
+    >
+      {children}
+    </MotionMenu>
+  );
+}
+
+Menu.Section = MenuSectionComposable;
+Menu.Header = MenuHeaderComposable;
+Menu.Item = MenuItemComposable;
+Menu.Trigger = MenuTriggerComposable;
+Menu.Content = MenuContentComposable;
+
+function MenuTriggerComposable({
+  ariaLabel,
+  children,
+}: MenuTriggerComposableProps) {
+  return (
+    <AriaPressable aria-label={ariaLabel}>
+      <div role="button" style={{ display: "inline-flex" }}>
+        {children}
+      </div>
+    </AriaPressable>
+  );
 }
