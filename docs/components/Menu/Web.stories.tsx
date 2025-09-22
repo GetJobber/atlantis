@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Menu, SectionProps } from "@jobber/components/Menu";
 import { Button } from "@jobber/components/Button";
@@ -8,6 +8,7 @@ import { Icon, IconNames } from "@jobber/components/Icon";
 import { Chip } from "@jobber/components/Chip";
 import { Grid } from "@jobber/components/Grid";
 import { Typography } from "@jobber/components/Typography";
+import { Emphasis } from "@jobber/components/Emphasis";
 
 export default {
   title: "Components/Navigation/Menu/Web",
@@ -159,7 +160,6 @@ export const Composable = () => {
           <Menu.Trigger>
             <Button>
               <Button.Label>Press me</Button.Label>
-              <Button.Icon name="sparkles" />
             </Button>
           </Menu.Trigger>
           <Menu.Content>
@@ -179,10 +179,10 @@ export const Composable = () => {
             <Menu.Separator />
             <Menu.Section>
               <Menu.Header>
-                <Heading level={4}>Other</Heading>
+                <Heading level={4}>Misc</Heading>
               </Menu.Header>
               <Menu.Item onClick={() => alert("Something")}>
-                <Text>Something</Text>
+                <Emphasis variation="highlight">Toggle Theme</Emphasis>
               </Menu.Item>
             </Menu.Section>
           </Menu.Content>
@@ -194,17 +194,16 @@ export const Composable = () => {
           <Menu.Trigger>
             <Button>
               <Button.Label>Press me</Button.Label>
-              <Button.Icon name="sparkles" />
             </Button>
           </Menu.Trigger>
           <Menu.Content>
-            <Menu.Item onClick={() => alert("Apple")}>
-              <Icon name="apple" />
-              <Text>Apple</Text>
+            <Menu.Item onClick={() => alert("�")}>
+              <Icon name="email" />
+              <Text>Email</Text>
             </Menu.Item>
-            <Menu.Item onClick={() => alert("Battery")}>
-              <Icon name="battery" />
-              <Text>Battery</Text>
+            <Menu.Item onClick={() => alert("🔋")}>
+              <Icon name="sms" />
+              <Text>Text Message</Text>
             </Menu.Item>
           </Menu.Content>
         </Menu>
@@ -235,7 +234,6 @@ export const Composable = () => {
               <Menu.Trigger>
                 <Button>
                   <Button.Label>Composable</Button.Label>
-                  <Button.Icon name="sparkles" />
                 </Button>
               </Menu.Trigger>
               <Menu.Content>
@@ -274,13 +272,48 @@ export const Composable = () => {
               activator={
                 <Button>
                   <Button.Label>Single Tag</Button.Label>
-                  <Button.Icon name="sparkles" />
                 </Button>
               }
             />
           </Grid.Cell>
         </Grid>
       </section>
+      <section>
+        <h1>Composable with Conditional Items</h1>
+        <Menu>
+          <Menu.Trigger>
+            <Button>
+              <Button.Label>Second Item Rendered After 2 Seconds</Button.Label>
+            </Button>
+          </Menu.Trigger>
+          <Menu.Content>
+            <Menu.Item onClick={() => alert("Timesheets")}>
+              <Icon name="timer" />
+              <Text>Timesheets</Text>
+            </Menu.Item>
+            <PseudoAuth>
+              <Menu.Item onClick={() => alert("Admin")}>
+                <Icon name="lock" />
+                <Text>Admin</Text>
+              </Menu.Item>
+            </PseudoAuth>
+          </Menu.Content>
+        </Menu>
+      </section>
     </div>
   );
 };
+
+function PseudoAuth({ children }: { readonly children: React.ReactNode }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setVisible(true);
+    }, 2000);
+  }, []);
+
+  if (!visible) return null;
+
+  return <>{children}</>;
+}
