@@ -12,7 +12,7 @@
         "name": "activator",
         "parent": {
           "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuProps"
+          "name": "MenuLegacyProps"
         },
         "required": false,
         "type": {
@@ -25,24 +25,11 @@
         "name": "items",
         "parent": {
           "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuProps"
+          "name": "MenuLegacyProps"
         },
-        "required": false,
+        "required": true,
         "type": {
           "name": "SectionProps[]"
-        }
-      },
-      "children": {
-        "defaultValue": null,
-        "description": "Composable children-based API. When provided, this takes precedence over `items`.",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
         }
       },
       "UNSAFE_className": {
@@ -51,7 +38,7 @@
         "name": "UNSAFE_className",
         "parent": {
           "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuProps"
+          "name": "MenuBaseProps"
         },
         "required": false,
         "type": {
@@ -64,7 +51,7 @@
         "name": "UNSAFE_style",
         "parent": {
           "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuProps"
+          "name": "MenuBaseProps"
         },
         "required": false,
         "type": {
@@ -143,6 +130,19 @@
         "type": {
           "name": "string"
         }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Trigger content.\nThis MUST be an interactive element, such as Button. Note that any onClick is ignored.\nIf you want to access the open event, use the onOpenChange on the Menu component.\nIf it does not have an interactive role, or a focus style it will have issues.",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuTriggerComposableProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
       }
     }
   },
@@ -164,6 +164,67 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "MenuLegacy",
+    "methods": [],
+    "props": {
+      "activator": {
+        "defaultValue": null,
+        "description": "Custom menu activator. If this is not provided a default [… More] will be used.",
+        "name": "activator",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+        }
+      },
+      "items": {
+        "defaultValue": null,
+        "description": "Collection of action items.",
+        "name": "items",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuLegacyProps"
+        },
+        "required": true,
+        "type": {
+          "name": "SectionProps[]"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ menu?: string; header?: string; action?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ menu?: CSSProperties; header?: CSSProperties; action?: CSSProperties; }"
         }
       }
     }
