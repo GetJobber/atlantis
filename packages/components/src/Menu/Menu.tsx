@@ -506,7 +506,7 @@ function MenuTriggerComposable({
 }: MenuTriggerComposableProps) {
   return (
     <AriaPressable aria-label={ariaLabel}>
-      <div role="button" style={{ display: "inline-flex" }}>
+      <div role="button" className={styles.triggerWrapper}>
         {children}
       </div>
     </AriaPressable>

@@ -101,6 +101,11 @@
   color: var(--color-destructive);
 }
 
+.triggerWrapper {
+  display: inline-flex;
+  outline: none;
+}
+
 .overlay {
   position: fixed;
   top: 0;
