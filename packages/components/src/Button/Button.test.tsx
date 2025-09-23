@@ -486,3 +486,25 @@ describe("UNSAFE_ props", () => {
     });
   });
 });
+
+describe("aria-busy attribute", () => {
+  it("does not render aria-busy when loading is undefined", () => {
+    render(<Button label="Hello" />);
+    expect(screen.getByRole("button")).not.toHaveAttribute("aria-busy");
+  });
+
+  it("renders aria-busy='true' when loading is true", () => {
+    render(<Button label="Loading" loading={true} />);
+    expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "true");
+  });
+
+  it("renders aria-busy='false' when loading is false", () => {
+    render(<Button label="Not Loading" loading={false} />);
+    expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "false");
+  });
+
+  it("applies aria-busy on anchor when url is provided", () => {
+    render(<Button label="Go" url="https://example.com" loading={true} />);
+    expect(screen.getByRole("link")).toHaveAttribute("aria-busy", "true");
+  });
+});

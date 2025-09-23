@@ -11,7 +11,6 @@ set -e # Exit on error
 
 # Install storybook v7 dependencies and build it
 cd packages/storybook-v7
-npm ci
 npm run storybook:build
 cd -
 

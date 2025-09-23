@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.96.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.95.0...@jobber/components@6.96.0) (2025-09-23)
+
+
+### Features
+
+* **components:** Adding aria-busy to Button when in a loading state. ([#2592](https://github.com/GetJobber/atlantis/issues/2592)) ([b2a5fe7](https://github.com/GetJobber/atlantis/commit/b2a5fe7254666f8a227e392982816be2b088db5e))
+
+
+
+
+
+# [6.95.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.94.1...@jobber/components@6.95.0) (2025-09-23)
+
+
+### Features
+
+* **components:** Upgrade react-markdown to 10.1.0 ([#2739](https://github.com/GetJobber/atlantis/issues/2739)) ([715acc6](https://github.com/GetJobber/atlantis/commit/715acc6144829f299a498343f1dbd118c4f40737))
+
+
+
+
+
+## [6.94.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.94.0...@jobber/components@6.94.1) (2025-09-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [6.94.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.93.1...@jobber/components@6.94.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* **components:** InputGroup horizontal outer borders should remain rounded ([#2729](https://github.com/GetJobber/atlantis/issues/2729)) ([6864df8](https://github.com/GetJobber/atlantis/commit/6864df841a9bf26d4d74226b4381b0e2b5771938))
+
+
+### Features
+
+* **components:** Upgrade RAC to 1.11.0 ([#2742](https://github.com/GetJobber/atlantis/issues/2742)) ([5e7acb7](https://github.com/GetJobber/atlantis/commit/5e7acb78cccdf46e353c694654c721052eae1f03))
+
+
+
+
+
+## [6.93.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.93.0...@jobber/components@6.93.1) (2025-09-22)
+
+
+### Bug Fixes
+
+* **components:** ComboboxAction visibility logic to properly handle false values ([#2732](https://github.com/GetJobber/atlantis/issues/2732)) ([ef4ea73](https://github.com/GetJobber/atlantis/commit/ef4ea73f434e6116105acdc58f08e370ec102791))
+
+
+
+
+
 # [6.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.92.0...@jobber/components@6.93.0) (2025-09-19)
 
 

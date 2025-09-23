@@ -137,11 +137,11 @@ export default {
   ],
   external: [
     "react",
+    "react/jsx-runtime",
     "react-hook-form",
     "react-router-dom",
     "react-dom",
     "react-dom/client",
-    "react/jsx-runtime",
     "axios",
     "lodash",
     "filesize",
