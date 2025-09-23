@@ -49,27 +49,20 @@ import type {
   MenuTriggerComposableProps,
   SectionHeaderProps,
 } from "./Menu.types";
+import {
+  MENU_ANIMATION_CONFIG,
+  MENU_MAX_HEIGHT_PERCENTAGE,
+  MENU_OFFSET,
+  OVERLAY_ANIMATION_CONFIG,
+  SMALL_SCREEN_BREAKPOINT,
+  Y_TRANSLATION_DESKTOP,
+  Y_TRANSLATION_MOBILE,
+} from "./constants";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 import { calculateMaxHeight } from "../utils/maxHeight";
-
-const SMALL_SCREEN_BREAKPOINT = 490;
-const MENU_OFFSET = 6;
-const MENU_MAX_HEIGHT_PERCENTAGE = 72;
-const MENU_ANIMATION_DURATION = 0.25;
-const OVERLAY_ANIMATION_DURATION = 0.15;
-
-const MENU_ANIMATION_CONFIG = {
-  duration: MENU_ANIMATION_DURATION,
-  type: "tween",
-};
-
-const OVERLAY_ANIMATION_CONFIG = {
-  duration: OVERLAY_ANIMATION_DURATION,
-  type: "tween",
-};
 
 const composeOverlayVariation = {
   hidden: { opacity: 0 },
@@ -79,10 +72,10 @@ const composeOverlayVariation = {
 const variation = {
   overlayStartStop: { opacity: 0 },
   startOrStop: (placement: string | undefined) => {
-    let y = 10;
+    let y = Y_TRANSLATION_DESKTOP;
 
     if (placement?.includes("bottom")) y *= -1;
-    if (window.innerWidth < SMALL_SCREEN_BREAKPOINT) y = 150;
+    if (window.innerWidth < SMALL_SCREEN_BREAKPOINT) y = Y_TRANSLATION_MOBILE;
 
     return { opacity: 0, y };
   },
@@ -532,11 +525,17 @@ function MenuContentComposable({
       {/* Keep Popover mounted while exiting, but do not animate it. */}
       <AriaPopover isExiting={animation === "hidden"} placement="bottom start">
         {({ placement }) => {
-          const yTranslation = placement?.includes("bottom") ? -10 : 10;
+          const directionModifier = placement?.includes("bottom") ? -1 : 1;
           const variants = isMobile
-            ? { hidden: { opacity: 0, y: 150 }, visible: { opacity: 1, y: 0 } }
+            ? {
+                hidden: { opacity: 0, y: Y_TRANSLATION_MOBILE },
+                visible: { opacity: 1, y: 0 },
+              }
             : {
-                hidden: { opacity: 0, y: yTranslation },
+                hidden: {
+                  opacity: 0,
+                  y: Y_TRANSLATION_DESKTOP * directionModifier,
+                },
                 visible: { opacity: 1, y: 0 },
               };
 
