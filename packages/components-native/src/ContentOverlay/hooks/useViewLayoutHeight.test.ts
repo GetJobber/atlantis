@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react-native";
 import type { LayoutChangeEvent } from "react-native";
 import { useViewLayoutHeight } from "./useViewLayoutHeight";
 
