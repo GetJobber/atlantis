@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Text/Text.stories.mdx";
+import Content from "./Text.stories.mdx";
 import Props from "./Text.props.json";
 import MobileProps from "./Text.props-mobile.json";
 import Notes from "./TextNotes.mdx";

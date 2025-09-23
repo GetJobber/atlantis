@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
-import { ButtonProps, HTMLButtonType } from "./Button.types";
+import { type ButtonProps, type HTMLButtonType } from "./Button.types";
 import { useButtonStyles } from "./useButtonStyles";
 // eslint-disable-next-line import/no-deprecated
 import { ButtonContent, ButtonIcon, ButtonLabel } from "./ButtonInternals";
@@ -85,4 +85,5 @@ function ButtonWrapper(props: ButtonProps) {
 
 Button.Label = ButtonLabel;
 Button.Icon = ButtonIcon;
-export { Button, ButtonProps };
+export type { ButtonProps };
+export { Button };

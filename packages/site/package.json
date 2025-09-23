@@ -4,7 +4,7 @@
   "version": "0.60.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run bundle && npm run copyFiles && vite",
+    "dev": "npm run bundle && npm run copyFiles && vite --force",
     "bundle": "rollup -c editorBundle.rollup.config.js && rollup -c editorMobileBundle.rollup.config.js",
     "copyFiles": "cp ../design/dist/foundation.css ./public/foundation.css && cp ../components/dist/styles.css ./public/styles.css && cp ../design/dist/dark.mode.css ./public/dark.mode.css && cp ./node_modules/axios/dist/esm/axios.js ./public",
     "build": "npm run bundle && npm run copyFiles && tsc -b && vite build",
@@ -14,18 +14,24 @@
     "test:visual:ci": "playwright test --config=playwright.config.ts tests/visual/",
     "test:visual:reload": "cd .. && npm run bootstrap && cd - && npm run test:visual",
     "test:visual": "../../scripts/e2e.sh playwright test --config=playwright.config.ts --project=chromium tests/visual/",
-    "test:visual:update": "../../scripts/e2e.sh playwright test --config=playwright.config.ts  tests/visual/ --update-snapshots"
+    "test:visual:update": "../../scripts/e2e.sh playwright test --config=playwright.config.ts  tests/visual/ --update-snapshots",
+    "visual:update:single": "node scripts/visualTestHelper.mjs update",
+    "visual:test:single": "node scripts/visualTestHelper.mjs test"
   },
   "dependencies": {
     "@babel/standalone": "^7.26.2",
+    "@codemirror/lang-javascript": "^6.1.9",
+    "@codemirror/language": "^6.8.0",
+    "@codemirror/state": "^6.2.1",
+    "@codemirror/view": "^6.14.1",
     "@jobber/components": "file:../components",
     "@jobber/hooks": "file:../hooks",
-    "axios": "^1.7.8",
+    "axios": "^1.11.0",
     "prismjs": "^1.29.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-element-to-jsx-string": "^15.0.0",
-    "react-markdown": "^9.0.1",
+    "react-markdown": "^10.1.0",
     "react-native-svg-web": "^1.0.9",
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4"

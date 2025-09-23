@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"start\" | \"end\" | \"center\""
+          "name": "\"start\" | \"end\" | \"center\" | \"stretch\""
         }
       },
       "gap": {

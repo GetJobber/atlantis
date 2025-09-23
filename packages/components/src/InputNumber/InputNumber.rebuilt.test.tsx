@@ -1,13 +1,20 @@
 import React from "react";
 import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { InputNumber, InputNumberRef } from ".";
+import type { InputNumberRef } from ".";
+import { InputNumber } from ".";
 
 it("renders an input type number", () => {
   const { getByLabelText } = render(
-    <InputNumber version={2} value={123} placeholder="My number" />,
+    <InputNumber
+      version={2}
+      value={123}
+      placeholder="My number"
+      minValue={0}
+      maxValue={200}
+    />,
   );
-  expect(getByLabelText("My number")).toBeInTheDocument();
+  expect(getByLabelText("My number")).toBeVisible();
 });
 
 test("it should call the handler with a number value", async () => {
@@ -29,6 +36,7 @@ test("it should call the handler with a number value", async () => {
   await userEvent.tab();
   expect(changeHandler).toHaveBeenCalledWith(newValue, undefined);
 });
+
 test("it should handle focus", () => {
   const inputRef = React.createRef<InputNumberRef>();
   const placeholder = "Number";
@@ -54,4 +62,44 @@ test("it should handle blur", () => {
     inputRef?.current?.blur();
   });
   expect(blurHandler).toHaveBeenCalledTimes(1);
+});
+
+test("it should clamp value to maxValue when value exceeds maxValue", () => {
+  const { getByRole } = render(
+    <InputNumber version={2} value={25} maxValue={20} placeholder="Number" />,
+  );
+
+  const input = getByRole("textbox", { name: "Number" });
+  expect(input).toBeVisible();
+  expect(input).toHaveValue("20");
+});
+
+test("it should clamp value to minValue when value is below minValue", () => {
+  const { getByRole } = render(
+    <InputNumber version={2} value={5} minValue={10} placeholder="Number" />,
+  );
+
+  const input = getByRole("textbox", { name: "Number" });
+  expect(input).toBeVisible();
+  expect(input).toHaveValue("10");
+});
+
+test("it should render element description directly without wrapping in paragraph", () => {
+  const customDescription = (
+    <div data-testid="custom-description">Custom element description</div>
+  );
+
+  const { getByTestId } = render(
+    <InputNumber
+      version={2}
+      placeholder="Number"
+      description={customDescription}
+    />,
+  );
+
+  const descriptionElement = getByTestId("custom-description");
+  expect(descriptionElement).toBeVisible();
+  expect(descriptionElement.parentElement).not.toBeInstanceOf(
+    HTMLParagraphElement,
+  );
 });

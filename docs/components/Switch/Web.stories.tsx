@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useState } from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Switch } from "@jobber/components/Switch";
 import { Button } from "@jobber/components/Button";
 

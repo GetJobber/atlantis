@@ -1,17 +1,31 @@
-import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
+import type { ColumnDef, Row } from "@tanstack/react-table";
+import { useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { LegacyRef, ReactNode } from "react";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/useResizeObserver";
+import type { LegacyRef, ReactNode } from "react";
+import React from "react";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.module.css";
 import { Pagination } from "./Pagination";
-import { PaginationType, SortingType } from "./types";
+import type { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
+import {
+  DataTableActions,
+  DataTableBody,
+  DataTableCell,
+  DataTableContainer,
+  DataTableFooter,
+  DataTableHeader,
+  DataTableHeaderCell,
+  DataTablePagination,
+  DataTablePaginationButton,
+  DataTableRow,
+  DataTableRowActions,
+  DataTableSortableHeader,
+  DataTableTable,
+} from "./components";
 
 export interface DataTableProps<T> {
   /**
@@ -149,3 +163,17 @@ export function DataTable<T extends object>({
     </div>
   );
 }
+
+DataTable.Table = DataTableTable;
+DataTable.Header = DataTableHeader;
+DataTable.HeaderCell = DataTableHeaderCell;
+DataTable.Row = DataTableRow;
+DataTable.Cell = DataTableCell;
+DataTable.RowActions = DataTableRowActions;
+DataTable.Actions = DataTableActions;
+DataTable.Body = DataTableBody;
+DataTable.Container = DataTableContainer;
+DataTable.SortableHeader = DataTableSortableHeader;
+DataTable.Footer = DataTableFooter;
+DataTable.Pagination = DataTablePagination;
+DataTable.PaginationButton = DataTablePaginationButton;

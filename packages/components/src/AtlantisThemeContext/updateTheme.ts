@@ -1,4 +1,5 @@
-import { THEME_CHANGE_EVENT, Theme, ThemeChangeDetails } from "./types";
+import type { Theme, ThemeChangeDetails } from "./types";
+import { THEME_CHANGE_EVENT } from "./types";
 
 /**
  * Toggle the theme of the application. If subscribed, the tokens will be updated accordingly.

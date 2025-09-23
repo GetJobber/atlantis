@@ -1,9 +1,10 @@
 import React from "react";
-import { ActionProps, CardProps, HeaderActionProps } from "./types";
+import classnames from "classnames";
+import type { ActionProps, CardProps, HeaderActionProps } from "./types";
 import styles from "./Card.module.css";
 import { Heading } from "../Heading";
-import { Button, ButtonProps } from "../Button";
-import { Menu, MenuProps } from "../Menu";
+import { Button, type ButtonProps } from "../Button";
+import { Menu, type MenuProps } from "../Menu";
 
 /**
  * Intended to be used in the Card component.
@@ -12,7 +13,9 @@ import { Menu, MenuProps } from "../Menu";
 export function CardHeader({
   title,
   header,
-}: Pick<CardProps, "title" | "header">) {
+  UNSAFE_className = {},
+  UNSAFE_style = {},
+}: Pick<CardProps, "title" | "header" | "UNSAFE_className" | "UNSAFE_style">) {
   const heading = title || header;
 
   if (React.isValidElement(heading)) return <>{heading}</>;
@@ -24,7 +27,10 @@ export function CardHeader({
         : (heading as HeaderActionProps).title;
 
     return (
-      <div className={styles.header}>
+      <div
+        className={classnames(styles.header, UNSAFE_className.header)}
+        style={UNSAFE_style.header}
+      >
         {titleString && <Heading level={2}>{titleString}</Heading>}
         {typeof heading === "object" &&
           renderHeaderAction((heading as HeaderActionProps)?.action)}

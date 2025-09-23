@@ -2,6 +2,7 @@ import UseBoolDocs from "@atlantis/docs/hooks/useBool.stories.mdx";
 import UseBreakpointsDocs from "@atlantis/docs/hooks/useBreakpoints.stories.mdx";
 import UseCallbackRefDocs from "@atlantis/docs/hooks/useCallbackRef.stories.mdx";
 import UseCollectionQueryDocs from "@atlantis/docs/hooks/useCollectionQuery.stories.mdx";
+import UseDebounceDocs from "@atlantis/docs/hooks/useDebounce.stories.mdx";
 import UseFocusTrapDocs from "@atlantis/docs/hooks/useFocusTrap.stories.mdx";
 import UseFormStateDocs from "@atlantis/docs/hooks/useFormState.stories.mdx";
 import UseInViewDocs from "@atlantis/docs/hooks/useInView.stories.mdx";
@@ -11,6 +12,7 @@ import UseOnKeyDownDocs from "@atlantis/docs/hooks/useOnKeyDown.stories.mdx";
 import UseOnMountDocs from "@atlantis/docs/hooks/useOnMount.stories.mdx";
 import UseRefocusOnActivatorDocs from "@atlantis/docs/hooks/useRefocusOnActivator.stories.mdx";
 import UseResizeObserverDocs from "@atlantis/docs/hooks/useResizeObserver.stories.mdx";
+import UseStepperDocs from "@atlantis/docs/hooks/useStepper.stories.mdx";
 import UseWindowDimensionsDocs from "@atlantis/docs/hooks/useWindowDimensions.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
@@ -34,6 +36,11 @@ export const hooksContentMap: ContentMapItems = {
     intro: "useCollectionQuery",
     title: "useCollectionQuery",
     content: () => <UseCollectionQueryDocs />,
+  },
+  useDebounce: {
+    intro: "useDebounce",
+    title: "useDebounce",
+    content: () => <UseDebounceDocs />,
   },
   useFocusTrap: {
     intro: "useFocusTrap",
@@ -79,6 +86,11 @@ export const hooksContentMap: ContentMapItems = {
     intro: "useResizeObserver",
     title: "useResizeObserver",
     content: () => <UseResizeObserverDocs />,
+  },
+  useStepper: {
+    intro: "useStepper",
+    title: "useStepper",
+    content: () => <UseStepperDocs />,
   },
   useWindowDimensions: {
     intro: "useWindowDimensions",

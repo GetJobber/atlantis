@@ -54,6 +54,13 @@ export const componentList = [
     additionalMatches: ["Search", "Typeahead", "Suggest"],
   },
   {
+    title: "Autocomplete (v2)",
+    to: "/components/Autocomplete (v2)",
+    imageURL: "/Autocomplete.png",
+    sections: ["Forms & Inputs"],
+    additionalMatches: ["Search", "Typeahead", "Suggest", "Rebuilt"],
+  },
+  {
     title: "AutoLink",
     to: "/components/AutoLink",
     imageURL: "/AutoLink.png",
@@ -619,7 +626,7 @@ export const componentList = [
     title: "RecurringSelect",
     to: "/components/RecurringSelect",
     imageURL: "/RecurringSelect.png",
-    sections: ["Selections"],
+    sections: ["Deprecated"],
     additionalMatches: ["Calendar", "Date Picker", "Schedule"],
   },
   {

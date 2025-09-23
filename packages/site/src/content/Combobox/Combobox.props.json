@@ -60,6 +60,32 @@
           "name": "(selection: ComboboxOptionProps[]) => void"
         }
       },
+      "onSelectAll": {
+        "defaultValue": null,
+        "description": "Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.\nThis is only available when `multiSelect` is `true`.",
+        "name": "onSelectAll",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(selection: ComboboxOptionProps[]) => void"
+        }
+      },
+      "onClear": {
+        "defaultValue": null,
+        "description": "Callback function invoked upon the clearing of all options.\nThis is only available when `multiSelect` is `true`.",
+        "name": "onClear",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
       "onClose": {
         "defaultValue": null,
         "description": "Callback function invoked upon the Combobox menu closing.",
@@ -280,7 +306,20 @@
         },
         "required": false,
         "type": {
-          "name": "(option: Omit<ComboboxOptionProps, \"customRender\"> & { isSelected: boolean; }) => ReactNode"
+          "name": "(option: Pick<ComboboxOptionProps, \"id\" | \"label\" | \"prefix\"> & { isSelected: boolean; defaultContent: ReactElement<any, string | JSXElementConstructor<any>>; }) => ReactNode"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Callback function invoked when the option is clicked.",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxOptionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(option: ComboboxOptionProps) => void"
         }
       }
     }

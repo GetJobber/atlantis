@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+/* eslint-disable import/no-deprecated */
 import {
   DurationPeriod,
   RecurrenceRule,
@@ -7,7 +8,7 @@ import {
 } from "@jobber/components/RecurringSelect";
 
 export default {
-  title: "Components/Selections/RecurringSelect/Web",
+  title: "Components/Deprecated/RecurringSelect/Web",
   component: RecurringSelect,
   parameters: {
     viewMode: "story",

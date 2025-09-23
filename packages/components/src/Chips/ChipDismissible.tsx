@@ -1,5 +1,6 @@
-import React, { MouseEvent } from "react";
-import { InternalChipProps } from "./ChipTypes";
+import type { MouseEvent } from "react";
+import React from "react";
+import type { InternalChipProps } from "./ChipTypes";
 import { InternalChip } from "./InternalChip";
 import { InternalChipButton } from "./InternalChipButton";
 

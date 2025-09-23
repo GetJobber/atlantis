@@ -83,6 +83,15 @@
   z-index: var(--elevation-base);
 }
 
+.compact .customDeleteButton {
+  border-radius: var(--radius-small);
+}
+
+.compact.base .customDeleteButton {
+  max-width: 24px;
+  min-height: 24px;
+}
+
 .expanded .thumbnail {
   border-right: none;
   border-bottom-left-radius: var(--radius-base);
@@ -137,9 +146,15 @@
   position: absolute;
   top: var(--space-smaller);
   right: var(--space-smaller);
+  box-shadow: var(--shadow-base);
 }
 
-@media (--medium-screens-and-up) {
+.compact.large .deleteButton {
+  top: var(--space-small);
+  right: var(--space-small);
+}
+
+@media (any-pointer: fine) {
   .deleteable ~ .deleteButton {
     visibility: hidden;
   }

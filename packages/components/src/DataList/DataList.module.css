@@ -21,8 +21,9 @@
   display: flex;
   position: relative;
   z-index: var(--elevation-base);
-  margin-bottom: var(--space-small);
+  padding-bottom: var(--space-small);
   align-items: center;
+  background-color: var(--color-surface);
 }
 
 .headerFilters {
@@ -154,14 +155,9 @@
 
 .selectAllCheckbox {
   display: flex;
-  visibility: hidden;
 
   /* To compensate the Checkbox's label margin that we are using for screen-readers */
   margin-right: calc(var(--space-base) * -1);
-}
-
-.selectAllCheckbox.visible {
-  visibility: visible;
 }
 
 .listItem .selectable > :first-child {

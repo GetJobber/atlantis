@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/ActionItem/ActionItem.stories.mdx";
+import Content from "./ActionItem.stories.mdx";
 import MobileProps from "./ActionItem.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

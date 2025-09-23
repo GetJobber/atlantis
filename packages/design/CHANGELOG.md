@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.87.0...@jobber/design@0.88.0) (2025-09-19)
+
+
+### Features
+
+* **design:** Update color-disabled token ([#2735](https://github.com/GetJobber/atlantis/issues/2735)) ([d8105cf](https://github.com/GetJobber/atlantis/commit/d8105cf6aa3c83cdb9c50670eb8a8bd2e03c4fca))
+
+
+
+
+
+# [0.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.86.0...@jobber/design@0.87.0) (2025-09-08)
+
+
+### Features
+
+* **components:** Allowing Theme Overrides ([#2685](https://github.com/GetJobber/atlantis/issues/2685)) ([4502478](https://github.com/GetJobber/atlantis/commit/45024780c22dcc1b07d87dd0c48b963977b47138))
+
+
+
+
+
+# [0.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.85.0...@jobber/design@0.86.0) (2025-09-05)
+
+
+### Features
+
+* **design:** Adds four new icons to our existing icon component [JOB-134949] ([#2719](https://github.com/GetJobber/atlantis/issues/2719)) ([32b4a9b](https://github.com/GetJobber/atlantis/commit/32b4a9bd875533e3e3e73faa19247f63b2f2ad7b))
+
+
+
+
+
+# [0.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.84.0...@jobber/design@0.85.0) (2025-08-20)
+
+
+### Features
+
+* **design:** JOB-132716 Add new checkmarkCircle icon  ([#2680](https://github.com/GetJobber/atlantis/issues/2680)) ([3e65455](https://github.com/GetJobber/atlantis/commit/3e6545579c9754de2532495c5529b4217a3af42a))
+
+
+
+
+
+# [0.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.83.0...@jobber/design@0.84.0) (2025-08-11)
+
+
+### Features
+
+* **design:** Add request form builder icons ([#2663](https://github.com/GetJobber/atlantis/issues/2663)) ([111d544](https://github.com/GetJobber/atlantis/commit/111d544b98cd8c4bf34bcfdb757a54787fd3df54))
+
+
+
+
+
+# [0.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.82.0...@jobber/design@0.83.0) (2025-07-29)
+
+
+### Features
+
+* **design:** Add map icon ([#2635](https://github.com/GetJobber/atlantis/issues/2635)) ([e32b292](https://github.com/GetJobber/atlantis/commit/e32b29283dc6303ce04ddb7e02050d696efbb8ba))
+
+
+
+
+
+# [0.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.81.0...@jobber/design@0.82.0) (2025-07-16)
+
+
+### Features
+
+* **design:** Adding a new circle icon ([#2616](https://github.com/GetJobber/atlantis/issues/2616)) ([a6f71d3](https://github.com/GetJobber/atlantis/commit/a6f71d3cca81675f940d6c0c6eec2695aa9b06ee))
+
+
+
+
+
+# [0.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.2...@jobber/design@0.81.0) (2025-07-09)
+
+
+### Features
+
+* **design:** Adds four new icons to our existing icon component [JOB-128112] ([#2613](https://github.com/GetJobber/atlantis/issues/2613)) ([6213997](https://github.com/GetJobber/atlantis/commit/62139979b99b19fa47f85507040a0bf6f28201da))
+
+
+
+
+
+## [0.80.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.1...@jobber/design@0.80.2) (2025-06-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 ## [0.80.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.80.0...@jobber/design@0.80.1) (2025-05-27)
 
 **Note:** Version bump only for package @jobber/design

@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { ComboboxContent } from "./ComboboxContent";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
-import { ComboboxOption } from "../../Combobox.types";
+import type { ComboboxOption } from "../../Combobox.types";
 
 const handleOpen = jest.fn();
 const setSelected = jest.fn();

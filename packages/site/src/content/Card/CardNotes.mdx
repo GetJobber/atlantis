@@ -102,3 +102,87 @@ Example with styling:
   </Card.Body>
 </Card>
 ```
+
+### UNSAFE\_ props (advanced usage)
+
+General information for using `UNSAFE_` props can be found
+[here](/guides/customizing-components).
+
+Card has two elements that can be targeted with classes or styles. These are the
+container and the header.
+
+**Note**: Use of `UNSAFE_` props is **at your own risk** and should be
+considered a **last resort**. Future Card updates may lead to unintended
+breakages.
+
+#### UNSAFE_className
+
+Use `UNSAFE_className` to apply custom classes to the Card. This can be useful
+for applying styles via CSS Modules.
+
+```tsx
+// YourComponent.tsx
+<Card
+  header="Custom Styled Card"
+  UNSAFE_className={{
+    container: styles.customCardContainer,
+    header: styles.customCardHeader,
+  }}
+>
+  <p>Card content with custom styling</p>
+</Card>
+
+// YourComponent.module.css
+.customCardContainer {
+  border: 2px solid var(--color-blue);
+  border-radius: var(--radius-large);
+}
+
+.customCardHeader {
+  background-color: var(--color-surface--background);
+  border-bottom: 1px solid var(--color-border);
+}
+```
+
+#### UNSAFE_style
+
+Use `UNSAFE_style` to apply inline custom styles to the Card.
+
+```tsx
+<Card
+  header="Inline Styled Card"
+  UNSAFE_style={{
+    container: {
+      backgroundColor: "var(--color-surface--hover)",
+      transform: "rotate(1deg)",
+    },
+    header: {
+      backgroundColor: "var(--color-blue)",
+      color: "white",
+    },
+  }}
+>
+  <p>Card content with inline styling</p>
+</Card>
+```
+
+### Compound Component Card
+
+If you're using Card with its composable subcomponents, note that currently
+these subcomponents are simply fragments. As such, you are free to provide any
+desired markup and have no need for either UNSAFE.
+
+```
+<Card>
+ <Card.Header>
+  <div className="custom" style={{padding: "var(--space-base)}}>
+   <Heading level={3}>My Custom Header</Heading>
+  </div>
+ </Card.Header>
+ <Card.Body>
+  <div style={{ background: "#29d", padding: "var(--space-base)"}}>
+   <Text>Card content</Text>
+  </div>
+ </Card.Body>
+</Card>
+```

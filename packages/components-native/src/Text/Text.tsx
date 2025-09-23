@@ -1,17 +1,18 @@
 import React from "react";
-import {
+import type {
   BaseWeight,
   LineHeight,
+  OnTextLayoutEvent,
   TextAccessibilityRole,
   TextAlign,
   TextSize,
   TextVariation,
   TruncateLength,
-  Typography,
   TypographyProps,
 } from "../Typography";
+import { Typography } from "../Typography";
 import { tokens } from "../utils/design";
-import { TypographyUnsafeStyle } from "../Typography/Typography";
+import type { TypographyUnsafeStyle } from "../Typography/Typography";
 
 export interface TextProps
   extends Pick<TypographyProps<"base">, "maxFontScaleSize" | "selectable"> {
@@ -93,6 +94,11 @@ export interface TextProps
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
   readonly UNSAFE_style?: TypographyUnsafeStyle;
+
+  /**
+   * Callback that is called when the text is laid out.
+   */
+  readonly onTextLayout?: OnTextLayoutEvent;
 }
 
 export type TextLevel = "text" | "textSupporting";
@@ -136,6 +142,7 @@ export function Text({
   UNSAFE_style,
   underline,
   selectable,
+  onTextLayout,
 }: TextProps): JSX.Element {
   const accessibilityRole: TextAccessibilityRole = "text";
 
@@ -149,6 +156,7 @@ export function Text({
       maxFontScaleSize={maxFontScaleSize || TEXT_MAX_SCALED_FONT_SIZES[level]}
       selectable={selectable}
       underline={underline}
+      onTextLayout={onTextLayout}
       {...{
         ...levelStyles[level],
         allowFontScaling,

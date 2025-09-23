@@ -2,10 +2,7 @@ import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
-
-// We automatically mock popper (__mocks__/@popperjs/core.js), but in this test suite
-// we are verifying certain behaviours that require popper to be active.
-jest.unmock("@popperjs/core");
+import { mockLargeViewport } from "../utils/mockLargeViewport";
 
 it("shouldn't show the tooltip", async () => {
   const message = "Imma not tip the tool";
@@ -125,6 +122,16 @@ describe("with a message of an empty string", () => {
 });
 
 describe("with a preferred placement", () => {
+  let viewportMock: ReturnType<typeof mockLargeViewport>;
+
+  beforeEach(() => {
+    viewportMock = mockLargeViewport();
+  });
+
+  afterEach(() => {
+    viewportMock.restore();
+  });
+
   it.each(["top", "bottom", "left", "right"] as const)(
     "should show the tooltip on the %s",
     async placement => {
@@ -143,7 +150,7 @@ describe("with a preferred placement", () => {
 
       const tooltip = screen.getByRole("tooltip");
 
-      expect(tooltip).toHaveAttribute("data-popper-placement", placement);
+      expect(tooltip).toHaveAttribute("data-placement", placement);
       expect(tooltip).toHaveClass(placement);
     },
   );

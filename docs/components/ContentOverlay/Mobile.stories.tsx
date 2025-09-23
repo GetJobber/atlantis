@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { View } from "react-native";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   Button,
   Content,

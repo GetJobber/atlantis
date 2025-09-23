@@ -1,5 +1,5 @@
-import { IconNames } from "../Icon";
-import { FileUpload } from "../InputFile";
+import type { IconNames } from "../Icon";
+import type { FileUpload } from "../InputFile";
 
 export type Sizes = "small" | "base" | "large" | "extraLarge";
 

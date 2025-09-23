@@ -1,4 +1,4 @@
-import { tokens } from "@jobber/design";
+import type { tokens } from "@jobber/design";
 
 type Color = {
   // Omit non-color properties from the token map

@@ -1,29 +1,34 @@
-import React, {
-  MouseEvent,
-  ReactElement,
-  RefObject,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import type { CSSProperties, MouseEvent, ReactElement, RefObject } from "react";
+import React, { useId, useRef, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
-import { IconColorNames, IconNames } from "@jobber/design";
-import { usePopper } from "react-popper";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import ReactDOM from "react-dom";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import {
+  useFocusTrap,
+  useIsMounted,
+  useRefocusOnActivator,
+  useWindowDimensions,
+} from "@jobber/hooks";
+import type { IconColorNames, IconNames } from "@jobber/design";
+import {
+  FloatingPortal,
+  autoUpdate,
+  flip,
+  offset,
+  size,
+  useDismiss,
+  useFloating,
+  useInteractions,
+} from "@floating-ui/react";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
+import { calculateMaxHeight } from "../utils/maxHeight";
 
 const SMALL_SCREEN_BREAKPOINT = 490;
 const MENU_OFFSET = 6;
+const MENU_MAX_HEIGHT_PERCENTAGE = 72;
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -47,6 +52,28 @@ export interface MenuProps {
    * Collection of action items.
    */
   readonly items: SectionProps[];
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    menu?: string;
+    header?: string;
+    action?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    menu?: CSSProperties;
+    header?: CSSProperties;
+    action?: CSSProperties;
+  };
 }
 
 export interface SectionProps {
@@ -62,9 +89,15 @@ export interface SectionProps {
 }
 
 // eslint-disable-next-line max-statements
-export function Menu({ activator, items }: MenuProps) {
+export function Menu({
+  activator,
+  items,
+  UNSAFE_className,
+  UNSAFE_style,
+}: MenuProps) {
   const [visible, setVisible] = useState(false);
-  const popperRef = useRef<HTMLDivElement>(null);
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLDivElement | null>(null);
 
   const { width } = useWindowDimensions();
 
@@ -77,40 +110,54 @@ export function Menu({ activator, items }: MenuProps) {
     [styles.fullWidth]: fullWidth,
   });
 
-  useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
-
   // useRefocusOnActivator must come before useFocusTrap for them both to work
   useRefocusOnActivator(visible);
   const menuRef = useFocusTrap<HTMLDivElement>(visible);
 
-  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
-  const {
-    styles: popperStyles,
-    attributes,
-    state,
-  } = usePopper(popperRef.current, popperElement, {
+  const { refs, floatingStyles, context } = useFloating({
+    open: visible,
+    onOpenChange: setVisible,
     placement: "bottom-start",
     strategy: "fixed",
-    modifiers: [
-      {
-        name: "flip",
-        options: {
-          flipVariations: true,
+    middleware: [
+      offset(MENU_OFFSET),
+      flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
+      size({
+        apply({ availableHeight, elements }) {
+          // The inner element is the scrollable menu that requires the max height
+          const menuElement = elements.floating.querySelector(
+            '[role="menu"]',
+          ) as HTMLElement;
+
+          if (menuElement) {
+            const viewportHeight = window.innerHeight;
+            const maxHeightVh =
+              (viewportHeight * MENU_MAX_HEIGHT_PERCENTAGE) / 100;
+
+            const maxHeight = calculateMaxHeight(availableHeight, {
+              maxHeight: maxHeightVh,
+            });
+
+            Object.assign(menuElement.style, {
+              maxHeight: `${maxHeight}px`,
+            });
+          }
         },
-      },
-      {
-        name: "offset",
-        options: {
-          offset: [0, MENU_OFFSET],
-        },
-      },
+      }),
     ],
+    elements: {
+      reference: referenceElement,
+    },
+    whileElementsMounted: autoUpdate,
   });
+
+  const dismiss = useDismiss(context);
+  const { getFloatingProps } = useInteractions([dismiss]);
+
   const positionAttributes =
     width >= SMALL_SCREEN_BREAKPOINT
       ? {
-          ...attributes.popper,
-          style: popperStyles.popper,
+          style: floatingStyles,
         }
       : {};
 
@@ -127,7 +174,7 @@ export function Menu({ activator, items }: MenuProps) {
 
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
-      <div ref={popperRef}>
+      <div ref={setReferenceElement}>
         {React.cloneElement(activator, {
           onClick: toggle(activator.props.onClick),
           id: buttonID,
@@ -153,14 +200,15 @@ export function Menu({ activator, items }: MenuProps) {
                 }}
               />
               <div
-                ref={setPopperElement}
-                className={styles.popperContainer}
+                ref={refs.setFloating}
+                className={styles.floatingContainer}
+                {...getFloatingProps()}
                 {...positionAttributes}
                 {...formFieldFocusAttribute}
               >
                 {items.length > 0 && (
                   <motion.div
-                    className={styles.menu}
+                    className={classnames(styles.menu, UNSAFE_className?.menu)}
                     role="menu"
                     data-elevation={"elevated"}
                     aria-labelledby={buttonID}
@@ -170,19 +218,28 @@ export function Menu({ activator, items }: MenuProps) {
                     initial="startOrStop"
                     animate="done"
                     exit="startOrStop"
-                    custom={state?.placement}
+                    custom={context?.placement}
                     ref={menuRef}
                     transition={{
                       type: "tween",
                       duration: 0.25,
                     }}
+                    style={UNSAFE_style?.menu}
                   >
                     {items.map((item, key: number) => (
                       <div key={key} className={styles.section}>
-                        {item.header && <SectionHeader text={item.header} />}
+                        {item.header && (
+                          <SectionHeader
+                            text={item.header}
+                            UNSAFE_style={UNSAFE_style?.header}
+                            UNSAFE_className={UNSAFE_className?.header}
+                          />
+                        )}
 
                         {item.actions.map(action => (
                           <Action
+                            UNSAFE_style={UNSAFE_style?.action}
+                            UNSAFE_className={UNSAFE_className?.action}
                             sectionLabel={item.header}
                             key={action.label}
                             {...action}
@@ -211,15 +268,6 @@ export function Menu({ activator, items }: MenuProps) {
     setVisible(false);
   }
 
-  function handleKeyboardShortcut(event: KeyboardEvent) {
-    const { key } = event;
-    if (!visible) return;
-
-    event.preventDefault();
-    event.stopPropagation();
-    key === "Escape" && hide();
-  }
-
   function handleParentClick(event: MouseEvent<HTMLDivElement>) {
     // Since the menu is being rendered within the same parent as the activator,
     // we need to stop the click event from bubbling up. If the Menu component
@@ -231,11 +279,21 @@ export function Menu({ activator, items }: MenuProps) {
 
 interface SectionHeaderProps {
   readonly text: string;
+  readonly UNSAFE_style?: CSSProperties;
+  readonly UNSAFE_className?: string;
 }
 
-function SectionHeader({ text }: SectionHeaderProps) {
+function SectionHeader({
+  text,
+  UNSAFE_style,
+  UNSAFE_className,
+}: SectionHeaderProps) {
   return (
-    <div className={styles.sectionHeader} aria-hidden={true}>
+    <div
+      className={classnames(styles.sectionHeader, UNSAFE_className)}
+      aria-hidden={true}
+      style={UNSAFE_style}
+    >
       <Typography
         element="h6"
         size="base"
@@ -276,6 +334,16 @@ export interface ActionProps {
   readonly destructive?: boolean;
 
   /**
+   * Inline style overrides for the action button
+   */
+  readonly UNSAFE_style?: CSSProperties;
+
+  /**
+   * Style class overrides for the action button
+   */
+  readonly UNSAFE_className?: string;
+
+  /**
    * Callback when an action gets clicked
    */
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
@@ -287,6 +355,8 @@ function Action({
   icon,
   iconColor,
   destructive,
+  UNSAFE_style,
+  UNSAFE_className,
   onClick,
 }: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
@@ -298,10 +368,11 @@ function Action({
     <button
       role="menuitem"
       type="button"
-      className={buttonClasses}
+      className={classnames(buttonClasses, UNSAFE_className)}
       key={label}
       onClick={onClick}
       ref={actionButtonRef}
+      style={UNSAFE_style}
     >
       {icon && (
         <div>
@@ -325,5 +396,5 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
     return null;
   }
 
-  return ReactDOM.createPortal(children, document.body);
+  return <FloatingPortal>{children}</FloatingPortal>;
 }

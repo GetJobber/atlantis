@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/ButtonGroup/ButtonGroup.stories.mdx";
+import Content from "./ButtonGroup.stories.mdx";
 import Props from "./ButtonGroup.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

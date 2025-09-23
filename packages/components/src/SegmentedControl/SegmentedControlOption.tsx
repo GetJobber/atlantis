@@ -1,4 +1,5 @@
-import React, { PropsWithChildren, useId, useMemo } from "react";
+import type { PropsWithChildren } from "react";
+import React, { useId, useMemo } from "react";
 import { useSegmentedControl } from "./SegmentedControlProvider";
 
 interface SegmentedControlOptionProps<TValue extends string | number>

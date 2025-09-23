@@ -2,19 +2,21 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
-  AnyOption,
   Autocomplete,
   BaseMenuGroupOption,
   BaseMenuOption,
-  CustomOptionsMenuProp,
   KeyboardAction,
   MenuOption,
-  Option,
   getRequestedIndexChange,
   isOptionGroup,
   isOptionSelected,
   useCustomKeyboardNavigation,
   useKeyboardNavigation,
+} from "@jobber/components/Autocomplete";
+import type {
+  AnyOption,
+  CustomOptionsMenuProp,
+  Option,
 } from "@jobber/components/Autocomplete";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
@@ -27,10 +29,12 @@ import { Heading } from "@jobber/components/Heading";
 import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
 import { StatusIndicatorType } from "@jobber/components/StatusIndicator";
 import { Modal } from "@jobber/components/Modal";
+import { AutocompleteV1Docgen } from "./V1.docgen";
 
+// ----- V1 Meta (docgen from v1 props) -----
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
-  component: Autocomplete,
+  component: AutocompleteV1Docgen,
   parameters: {
     viewMode: "story",
     previewTabs: {
@@ -42,7 +46,12 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Autocomplete>;
+} as ComponentMeta<typeof AutocompleteV1Docgen>;
+
+// Seed v1 Controls minimally so SB recognizes legacy surface without overriding defaults
+const v1ControlsArgs = {
+  version: 1 as const,
+};
 
 const defaultOptions = [
   { value: 1, label: "Nostromo" },
@@ -50,17 +59,14 @@ const defaultOptions = [
   { value: 3, label: "Serenity" },
   { value: 4, label: "Sleeper Service" },
   { value: 5, label: "Enterprise" },
-  {
-    value: 6,
-    label: "Enterprise-D",
-  },
+  { value: 6, label: "Enterprise-D" },
 ];
 
 // Each template calls args.initialOptions so that the options
 // are not undefined in the code preview
 
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const basicOptions = args.initialOptions;
+  const basicOptions = args.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -109,7 +115,7 @@ const withDetailsOptions = [
 ];
 
 const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const detailsOptions = args.initialOptions;
+  const detailsOptions = args.initialOptions ?? withDetailsOptions;
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -155,7 +161,8 @@ const SectionHeadingOptions = [
 ];
 
 const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const headingOptions = args.initialOptions;
+  const headingOptionsAll = args.initialOptions ?? SectionHeadingOptions;
+  const headingOptions = headingOptionsAll.filter(isOptionGroup);
   const [value, setValue] = useState<Option | undefined>();
 
   return (
@@ -183,7 +190,7 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
 };
 
 const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const valueOptions = args.initialOptions;
+  const valueOptions = args.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
 
   return (
@@ -222,24 +229,28 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
+  ...v1ControlsArgs,
   initialOptions: defaultOptions,
   placeholder: "Search for something",
 };
 
 export const WithDetails = WithDetailsTemplate.bind({});
 WithDetails.args = {
+  ...v1ControlsArgs,
   initialOptions: withDetailsOptions,
   placeholder: "Search for something with details",
 };
 
 export const SectionHeading = SectionHeadingTemplate.bind({});
 SectionHeading.args = {
+  ...v1ControlsArgs,
   initialOptions: SectionHeadingOptions,
   placeholder: "Search for something under a section heading",
 };
 
 export const SetAValue = SetAValueTemplate.bind({});
 SetAValue.args = {
+  ...v1ControlsArgs,
   initialOptions: defaultOptions,
   placeholder: "Search for something",
 };

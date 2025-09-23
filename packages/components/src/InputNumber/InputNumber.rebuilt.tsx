@@ -10,7 +10,7 @@ import {
 } from "react-aria-components";
 import classnames from "classnames";
 import styles from "./InputNumber.rebuilt.module.css";
-import { InputNumberRebuiltProps } from "./InputNumber.rebuilt.types";
+import type { InputNumberRebuiltProps } from "./InputNumber.rebuilt.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
@@ -68,8 +68,12 @@ export const InputNumberRebuilt = forwardRef(
       readonly,
       showMiniLabel = true,
       size,
+      minValue,
+      maxValue,
       ...ariaNumberFieldProps
     } = props;
+
+    const stringDescription = typeof description === "string";
 
     return (
       <AriaNumberField
@@ -79,6 +83,8 @@ export const InputNumberRebuilt = forwardRef(
         isDisabled={disabled}
         isInvalid={invalid}
         isReadOnly={readonly}
+        minValue={minValue}
+        maxValue={maxValue}
         onBlur={e => props.onBlur?.(e as FocusEvent<HTMLInputElement>)}
         onFocus={e => props.onFocus?.(e as FocusEvent<HTMLInputElement>)}
         onChange={handleChange}
@@ -115,9 +121,13 @@ export const InputNumberRebuilt = forwardRef(
             elementType="div"
             slot="description"
           >
-            <Text size="small" variation="subdued">
-              {description}
-            </Text>
+            {stringDescription ? (
+              <Text size="small" variation="subdued">
+                {description}
+              </Text>
+            ) : (
+              description
+            )}
           </AriaText>
         )}
         {error && (

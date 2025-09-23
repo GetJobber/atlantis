@@ -1,16 +1,15 @@
 import React, { forwardRef } from "react";
-import omit from "lodash/omit";
 import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
-import { InputDateRebuiltProps } from "./InputDate.types";
-import { Suffix } from "../FormField";
+import type { InputDateRebuiltProps } from "./InputDate.types";
+import type { Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
-import { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
+import type { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
 import { InputText } from "../InputText";
 
-export const InputDateRebuilt = forwardRef(function InputDateInternal(
-  props: InputDateRebuiltProps,
-  inputRefs: React.Ref<HTMLInputElement>,
-) {
+export const InputDateRebuilt = forwardRef<
+  HTMLInputElement,
+  InputDateRebuiltProps
+>((props, forwardedRef) => {
   const { onChange } = props;
 
   return (
@@ -31,18 +30,17 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
 
   function InputDateActivator(activatorProps: DatePickerActivatorProps) {
     const { onClick, value } = activatorProps;
-    const newActivatorProps = omit(activatorProps, ["activator", "fullWidth"]);
 
     const { handleChange, handleFocus, handleBlur, isFocused } =
       useInputDateActivatorActions({
-        onChange: newActivatorProps.onChange,
+        onChange: activatorProps.onChange,
         onFocus: event => {
           props.onFocus?.(event);
-          newActivatorProps.onFocus?.();
+          activatorProps.onFocus?.();
         },
         onBlur: event => {
           props.onBlur?.(event);
-          newActivatorProps.onBlur?.();
+          activatorProps.onBlur?.();
         },
       });
 
@@ -61,13 +59,26 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
       // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
       <div onClick={onClick}>
         <InputText
-          {...newActivatorProps}
-          {...props}
+          aria-describedby={activatorProps.ariaDescribedBy}
+          aria-invalid={activatorProps.ariaInvalid === "true" ? true : false}
+          aria-labelledby={activatorProps.ariaLabelledBy}
+          aria-required={activatorProps.ariaRequired === "true" ? true : false}
+          id={activatorProps.id}
+          disabled={props.disabled}
+          error={props.error}
+          readOnly={props.readOnly}
+          placeholder={props.placeholder}
+          size={props.size}
+          inline={props.inline}
+          align={props.align}
+          description={props.description}
+          invalid={props.invalid}
+          name={props.name}
           version={2}
           value={
             showEmptyValueLabel ? props.emptyValueLabel || "" : value || ""
           }
-          ref={inputRefs}
+          ref={forwardedRef}
           suffix={suffix}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -83,3 +94,5 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
     );
   }
 });
+
+InputDateRebuilt.displayName = "InputDateRebuilt";

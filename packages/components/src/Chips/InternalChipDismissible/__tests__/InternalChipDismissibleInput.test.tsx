@@ -2,7 +2,7 @@ import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
-import { ChipProps } from "../../Chip";
+import type { ChipProps } from "../../Chip";
 
 let mockCurrentIsInView = false;
 
@@ -21,9 +21,7 @@ const handleCustomOptionSelect = jest.fn();
 const handleSearch = jest.fn();
 const handleLoadMore = jest.fn();
 
-const attachToRef: React.MutableRefObject<HTMLDivElement | null> = {
-  current: null,
-};
+let attachToRef: HTMLDivElement | null = null;
 
 const optionsArray = ["Amazing", "Fabulous", "Magical"];
 const options: ChipProps[] = optionsArray.map(opt => ({
@@ -53,7 +51,7 @@ beforeAll(() => {
   const dummyElement = document.createElement("div");
   dummyElement.setAttribute("id", "dummy-attach-to");
   document.body.appendChild(dummyElement);
-  attachToRef.current = dummyElement;
+  attachToRef = dummyElement;
 });
 
 afterAll(() => {
@@ -62,7 +60,7 @@ afterAll(() => {
   if (dummyElement) {
     document.body.removeChild(dummyElement);
   }
-  attachToRef.current = null;
+  attachToRef = null;
 });
 
 beforeEach(() => {

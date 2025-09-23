@@ -161,3 +161,11 @@ export const requireNativeComponent = () => false;
 export const ReanimatedScrollView = props => {
   return props.children;
 };
+
+export function InputAccessoryView(props) {
+  return props.children;
+}
+
+export function findNodeHandle() {
+  return null;
+}

@@ -1,9 +1,10 @@
-import { Row, Table, flexRender } from "@tanstack/react-table";
+import type { Row, Table } from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
 import React from "react";
 import { SortDirection, SortIcon } from "./SortIcon";
 import styles from "./DataTable.module.css";
-import { SortingType } from "./types";
+import type { SortingType } from "./types";
 
 interface HeaderProps<T> {
   readonly table: Table<T>;

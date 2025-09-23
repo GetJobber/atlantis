@@ -1,5 +1,7 @@
 import { Route, Switch } from "react-router";
 import { VisualTestAutocompletePage } from "./VisualTestAutocompletePage";
+import { VisualTestCardPage } from "./VisualTestCardPage";
+import { VisualTestAutocompleteV2Page } from "./VisualTestAutocompleteV2Page";
 import { VisualTestChipPage } from "./VisualTestChipPage";
 import { VisualTestChipsPage } from "./VisualTestChipsPage";
 import { VisualTestComboboxPage } from "./VisualTestComboboxPage";
@@ -41,6 +43,7 @@ import { VisualTestProgressBarPage } from "./VisualTestProgressBarPage";
 import { VisualTestRadioGroupPage } from "./VisualTestRadioGroupPage";
 import { VisualTestSegmentedControlPage } from "./VisualTestSegmentedControlPage";
 import { VisualTestSelectPage } from "./VisualTestSelectPage";
+import { VisualTestSelectV2Page } from "./VisualTestSelectV2Page";
 import { VisualTestSideDrawerPage } from "./VisualTestSideDrawerPage";
 import { VisualTestSpinnerPage } from "./VisualTestSpinnerPage";
 import { VisualTestSwitchPage } from "./VisualTestSwitchPage";
@@ -50,6 +53,8 @@ import { VisualTestTooltipPage } from "./VisualTestTooltipPage";
 import { VisualTestTypographyPage } from "./VisualTestTypographyPage";
 import { VisualTestTabsPage } from "./VisualTestTabsPage";
 import { VisualTestToastPage } from "./VisualTestToastPage";
+import { VisualTestBannerPage } from "./VisualTestBannerPage";
+import { VisualTestThemePage } from "./VisualTestThemePage";
 
 export const VisualTestRouter = () => {
   return (
@@ -78,6 +83,21 @@ export const VisualTestRouter = () => {
         path="/visual-tests/autocomplete"
         exact={true}
         component={VisualTestAutocompletePage}
+      />
+      <Route
+        path="/visual-tests/autocomplete-v2"
+        exact={true}
+        component={VisualTestAutocompleteV2Page}
+      />
+      <Route
+        path="/visual-tests/banner"
+        exact={true}
+        component={VisualTestBannerPage}
+      />
+      <Route
+        path="/visual-tests/card"
+        exact={true}
+        component={VisualTestCardPage}
       />
       <Route
         path="/visual-tests/chip"
@@ -265,6 +285,11 @@ export const VisualTestRouter = () => {
         component={VisualTestSelectPage}
       />
       <Route
+        path="/visual-tests/select-v2"
+        exact={true}
+        component={VisualTestSelectV2Page}
+      />
+      <Route
         path="/visual-tests/side-drawer"
         exact={true}
         component={VisualTestSideDrawerPage}
@@ -308,6 +333,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/typography"
         exact={true}
         component={VisualTestTypographyPage}
+      />
+      <Route
+        path="/visual-tests/theme"
+        exact={true}
+        component={VisualTestThemePage}
       />
     </Switch>
   );

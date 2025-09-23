@@ -1,9 +1,10 @@
 import React from "react";
-import Toast, {
+import type {
   ToastConfig,
   ToastConfigParams,
   ToastPosition,
 } from "react-native-toast-message";
+import Toast from "react-native-toast-message";
 import { AccessibilityInfo, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useStyles } from "./Toast.styles";

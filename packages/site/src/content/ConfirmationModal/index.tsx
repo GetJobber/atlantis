@@ -1,4 +1,4 @@
-import ConfirmationModalContent from "@atlantis/docs/components/ConfirmationModal/ConfirmationModal.stories.mdx";
+import ConfirmationModalContent from "./ConfirmationModal.stories.mdx";
 import Props from "./ConfirmationModal.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

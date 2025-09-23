@@ -1,19 +1,13 @@
-import React, {
-  ChangeEvent,
-  KeyboardEvent,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import type { ChangeEvent, KeyboardEvent } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import debounce from "lodash/debounce";
-import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
-import {
+import { useLiveAnnounce } from "@jobber/hooks";
+import type {
   ChipDismissibleInputOptionProps,
   ChipDismissibleInputProps,
 } from "../InternalChipDismissibleTypes";
 import { Icon } from "../../../Icon";
-import { ChipProps } from "../../Chip";
+import type { ChipProps } from "../../Chip";
 
 const SEARCH_DEBOUNCE_TIME = 300;
 

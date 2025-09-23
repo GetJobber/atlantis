@@ -59,6 +59,21 @@
         "type": {
           "name": "string"
         }
+      },
+      "direction": {
+        "defaultValue": {
+          "value": "vertical"
+        },
+        "description": "Layout direction for the options.",
+        "name": "direction",
+        "parent": {
+          "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
+          "name": "RadioGroupProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"vertical\" | \"horizontal\""
+        }
       }
     }
   }

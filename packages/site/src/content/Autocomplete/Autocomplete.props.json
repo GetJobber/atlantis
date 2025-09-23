@@ -6,13 +6,28 @@
     "displayName": "Autocomplete",
     "methods": [],
     "props": {
+      "version": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "Version of the component to use.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
+        }
+      },
       "inputRef": {
         "defaultValue": null,
         "description": "@deprecated Use `ref` instead.",
         "name": "inputRef",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
+          "name": "AutocompleteLegacyProps"
         },
         "required": false,
         "type": {
@@ -21,15 +36,41 @@
       },
       "initialOptions": {
         "defaultValue": null,
-        "description": "",
+        "description": "Initial options to display in the autocomplete.",
         "name": "initialOptions",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
+          "name": "AutocompleteLegacyProps"
         },
         "required": false,
         "type": {
           "name": "GenericOption[]"
+        }
+      },
+      "getOptions": {
+        "defaultValue": null,
+        "description": "Called as the user types in the input. The autocomplete will display what\nis returned from this method to the user as available options.\n@param newInputText",
+        "name": "getOptions",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteLegacyProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(newInputText: string) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "Validations to run on the input.",
+        "name": "validations",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RegisterOptions"
         }
       },
       "value": {
@@ -38,7 +79,7 @@
         "name": "value",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
+          "name": "AutocompleteBaseProps"
         },
         "required": true,
         "type": {
@@ -53,7 +94,7 @@
         "name": "allowFreeForm",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
+          "name": "AutocompleteBaseProps"
         },
         "required": false,
         "type": {
@@ -68,7 +109,7 @@
         "name": "debounce",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
+          "name": "AutocompleteBaseProps"
         },
         "required": false,
         "type": {
@@ -81,24 +122,11 @@
         "name": "onChange",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
+          "name": "AutocompleteBaseProps"
         },
         "required": true,
         "type": {
           "name": "(newValue?: GenericOptionValue) => void"
-        }
-      },
-      "getOptions": {
-        "defaultValue": null,
-        "description": "Called as the user types in the input. The autocomplete will display what\nis returned from this method to the user as available options.\n@param newInputText",
-        "name": "getOptions",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
-        },
-        "required": true,
-        "type": {
-          "name": "(newInputText: string) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
         }
       },
       "placeholder": {
@@ -107,7 +135,7 @@
         "name": "placeholder",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
+          "name": "AutocompleteBaseProps"
         },
         "required": true,
         "type": {
@@ -120,7 +148,7 @@
         "name": "customRenderMenu",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteProps"
+          "name": "AutocompleteBaseProps"
         },
         "required": false,
         "type": {
@@ -150,7 +178,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "ReactNode"
         }
       },
       "invalid": {
@@ -242,19 +270,6 @@
         "required": false,
         "type": {
           "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
-        }
-      },
-      "validations": {
-        "defaultValue": null,
-        "description": "Show an error message above the field. This also\nhighlights the the field red if an error message shows up.",
-        "name": "validations",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RegisterOptions"
         }
       },
       "ref": {

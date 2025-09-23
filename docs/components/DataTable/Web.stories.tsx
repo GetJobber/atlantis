@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import sortBy from "lodash/sortBy";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { DataTable } from "@jobber/components/DataTable";
 import { Menu } from "@jobber/components/Menu";
 import { Button } from "@jobber/components/Button";

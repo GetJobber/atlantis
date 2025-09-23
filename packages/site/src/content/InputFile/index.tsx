@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/InputFile/InputFile.stories.mdx";
+import Content from "./InputFile.stories.mdx";
 import Props from "./InputFile.props.json";
 import Notes from "./InputFileNotes.mdx";
 import { ContentExport } from "../../types/content";

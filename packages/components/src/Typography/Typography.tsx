@@ -1,4 +1,5 @@
-import React, { CSSProperties, ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import React from "react";
 import classnames from "classnames";
 import styles from "./css/Typography.module.css";
 import fontSizes from "./css/FontSizes.module.css";
@@ -10,7 +11,7 @@ import truncate from "./css/Truncate.module.css";
 import alignment from "./css/TextAlignment.module.css";
 import fontFamilies from "./css/FontFamilies.module.css";
 import underlineStyles from "./css/Underline.module.css";
-import { UnderlineStyle, UnderlineStyleWithColor } from "./types";
+import type { UnderlineStyle, UnderlineStyleWithColor } from "./types";
 
 export interface TypographyProps {
   readonly id?: string;

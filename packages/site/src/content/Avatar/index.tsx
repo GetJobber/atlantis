@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Avatar/Avatar.stories.mdx";
+import Content from "./Avatar.stories.mdx";
 import Props from "./Avatar.props.json";
 import Notes from "./AvatarNotes.mdx";
 import { ContentExport } from "../../types/content";

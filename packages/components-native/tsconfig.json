@@ -8,9 +8,12 @@
     "declarationDir": "./dist/types",
     "resolveJsonModule": true,
     "paths": {
+      "@jobber/hooks": [
+        "../hooks/src/index.ts"
+      ],
       "@jobber/hooks/*": [
-        "../../packages/hooks/src/*"
-      ]
+        "../hooks/src/*"
+      ],
     },
     "types": [
       "react-native",
@@ -28,12 +31,9 @@
   "exclude": [
     "node_modules",
     "dist/**/*",
+    "tsconfig.eslint.json",
+    "**/*.stories.tsx",
     "**/*.test.ts",
     "**/*.test.tsx",
-  ],
-  "references": [
-    {
-      "path": "../hooks"
-    }
   ]
 }

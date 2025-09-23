@@ -1,6 +1,6 @@
 declare const styles: {
   readonly "wrapper": string;
-  readonly "popperContainer": string;
+  readonly "floatingContainer": string;
   readonly "menu": string;
   readonly "section": string;
   readonly "sectionHeader": string;

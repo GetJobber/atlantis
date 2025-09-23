@@ -2,8 +2,9 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./Thumbnail.module.css";
 import { InternalThumbnailImage } from "./ThumbnailImage";
-import { Icon, IconNames } from "../Icon";
-import { FileUpload } from "../InputFile";
+import type { IconNames } from "../Icon";
+import { Icon } from "../Icon";
+import type { FileUpload } from "../InputFile";
 import { Typography } from "../Typography";
 import { isSafari } from "../utils/getClientBrowser";
 

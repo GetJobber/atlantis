@@ -1,5 +1,6 @@
-import React from "react";
-import { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type { ReactNode } from "react";
+import type React from "react";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
 export type InputNumberVersion = 1 | 2 | undefined;
 
@@ -13,12 +14,14 @@ export interface InputNumberRebuiltProps
   readonly autocomplete?: boolean;
   readonly autoFocus?: boolean;
   readonly defaultValue?: number;
-  readonly description?: string;
+  readonly description?: ReactNode;
   readonly error?: string;
   readonly formatOptions?: Intl.NumberFormatOptions;
   readonly identifier?: string;
   readonly inline?: boolean;
   readonly invalid?: boolean;
+  readonly maxValue?: number;
+  readonly minValue?: number;
   readonly onChange?: (
     newValue: number,
     event?: React.ChangeEvent<HTMLInputElement>,

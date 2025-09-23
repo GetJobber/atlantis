@@ -1,4 +1,4 @@
-import FormatTimeContent from "@atlantis/docs/components/FormatTime/FormatTime.stories.mdx";
+import FormatTimeContent from "./FormatTime.stories.mdx";
 import Props from "./FormatTime.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

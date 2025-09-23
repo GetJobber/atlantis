@@ -5,6 +5,23 @@ const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
   ["@jobber/components-native", "./packages/components-native/src"],
   ["@jobber/hooks", "./packages/hooks/src"],
+  ["@storybook/react", "./packages/storybook-v7/node_modules/@storybook/react"],
+  [
+    "@storybook/addon-docs",
+    "./packages/storybook-v7/node_modules/@storybook/addon-docs",
+  ],
+  [
+    "@storybook/blocks",
+    "./packages/storybook-v7/node_modules/@storybook/blocks",
+  ],
+  [
+    "@storybook/components",
+    "./packages/storybook-v7/node_modules/@storybook/components",
+  ],
+  [
+    "@storybook/react-native",
+    "./packages/storybook-v7/node_modules/@storybook/react-native",
+  ],
 ];
 
 module.exports = {
@@ -107,6 +124,13 @@ module.exports = {
             ],
           },
         ],
+      },
+    },
+    {
+      files: ["**/.storybook/**/*.ts", "**/.storybook/**/*.tsx"],
+      rules: {
+        "import/no-default-export": "off",
+        "monorepo-cop/no-relative-import-outside-package": "off",
       },
     },
   ],

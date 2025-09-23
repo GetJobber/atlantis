@@ -20,6 +20,11 @@ export const hooksList = [
     sections: ["React Utilities"],
   },
   {
+    title: "useDebounce",
+    to: "/hooks/useDebounce",
+    sections: ["React Utilities"],
+  },
+  {
     title: "useFocusTrap",
     to: "/hooks/useFocusTrap",
     sections: ["Accessibility"],
@@ -63,6 +68,11 @@ export const hooksList = [
     title: "useResizeObserver",
     to: "/hooks/useResizeObserver",
     sections: ["Window & Layout"],
+  },
+  {
+    title: "useStepper",
+    to: "/hooks/useStepper",
+    sections: ["React Utilities"],
   },
   {
     title: "useWindowDimensions",

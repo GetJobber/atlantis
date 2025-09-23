@@ -1,14 +1,12 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import type { Shapes, Sizes, Timings } from "./Glimmer";
 import {
   GLIMMER_BUTTON_TEST_ID,
   GLIMMER_HEADER_TEST_ID,
   GLIMMER_TEST_ID,
   GLIMMER_TEXT_TEST_ID,
   Glimmer,
-  Shapes,
-  Sizes,
-  Timings,
 } from "./Glimmer";
 
 describe("Glimmer", () => {

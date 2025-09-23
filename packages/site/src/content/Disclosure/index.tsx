@@ -1,4 +1,4 @@
-import DisclosureContent from "@atlantis/docs/components/Disclosure/Disclosure.stories.mdx";
+import DisclosureContent from "./Disclosure.stories.mdx";
 import Props from "./Disclosure.props.json";
 import MobileProps from "./Disclosure.props-mobile.json";
 import Notes from "./DisclosureNotes.mdx";

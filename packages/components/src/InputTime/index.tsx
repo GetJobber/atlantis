@@ -1,5 +1,8 @@
 import React from "react";
-import { InputTimeLegacyProps, InputTimeRebuiltProps } from "./InputTime.types";
+import type {
+  InputTimeLegacyProps,
+  InputTimeRebuiltProps,
+} from "./InputTime.types";
 import { InputTimeRebuilt } from "./InputTime.rebuilt";
 import { InputTime as InputTimeLegacy } from "./InputTime";
 

@@ -265,7 +265,17 @@ describe("Post Requests", () => {
       const { container } = render(
         <InputFile
           getUploadParams={fetchUploadParams}
-          allowedTypes={["JPEG", "PNG", "HEIC", "PDF", "DOCX"]}
+          allowedTypes={[
+            "JPEG",
+            "PNG",
+            "HEIC",
+            "PDF",
+            "DOCX",
+            "CSV",
+            "WEBP",
+            "GIF",
+            "AVIF",
+          ]}
         />,
       );
 
@@ -279,6 +289,10 @@ describe("Post Requests", () => {
         "image/heic",
         "application/pdf",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "text/csv",
+        "image/webp",
+        "image/gif",
+        "image/avif",
       ].join(",");
 
       expect(input.accept).toBe(expectedMimeTypes);
@@ -513,5 +527,14 @@ describe("Content", () => {
     await waitFor(() => {
       expect(handleUploadStart).toHaveBeenCalled();
     });
+  });
+
+  it("passes the name prop to the underlying input element", () => {
+    const { container } = render(
+      <InputFile getUploadParams={fetchUploadParams} name="file-upload" />,
+    );
+
+    const input = container.querySelector("input[type=file]");
+    expect(input).toHaveAttribute("name", "file-upload");
   });
 });

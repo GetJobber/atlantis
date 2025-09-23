@@ -1,12 +1,10 @@
 import { v1 } from "react-native-uuid";
-import {
+import type {
   FieldError,
   RegisterOptions,
   UseControllerReturn,
-  useController,
-  useForm,
-  useFormContext,
 } from "react-hook-form";
+import { useController, useForm, useFormContext } from "react-hook-form";
 import { useState } from "react";
 
 interface UseFormControllerProps<T> {

@@ -1,11 +1,12 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import { View } from "react-native";
-import { RegisterOptions } from "react-hook-form";
+import type { RegisterOptions } from "react-hook-form";
 import { useStyles } from "./Select.style";
 import { SelectInternalPicker } from "./components/SelectInternalPicker";
 import { InputFieldWrapper } from "../InputFieldWrapper";
 import { Icon } from "../Icon";
-import { TextVariation } from "../Typography";
+import type { TextVariation } from "../Typography";
 import { Text } from "../Text";
 import { useFormController } from "../hooks";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
@@ -153,19 +154,22 @@ export function Select({
           <View
             style={[styles.container, (invalid || !!error) && styles.invalid]}
           >
-            <Text
-              level="textSupporting"
-              variation={textVariation}
-              hideFromScreenReader={true}
-            >
-              {label}
-            </Text>
-
+            {label && (
+              <Text
+                level="textSupporting"
+                variation={textVariation}
+                hideFromScreenReader={true}
+                selectable={false}
+              >
+                {label}
+              </Text>
+            )}
             <View style={styles.input}>
               <View style={styles.value}>
                 <Text
                   variation={disabled ? "disabled" : "base"}
                   hideFromScreenReader={true}
+                  selectable={false}
                 >
                   {getValue()}
                 </Text>

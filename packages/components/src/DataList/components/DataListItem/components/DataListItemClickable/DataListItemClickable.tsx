@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { DataListItemClickableInternal } from "./DataListItemClickableInternal";
 

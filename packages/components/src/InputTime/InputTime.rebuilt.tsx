@@ -1,6 +1,7 @@
-import React, { ChangeEvent, useId, useRef } from "react";
+import type { ChangeEvent } from "react";
+import React, { useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
-import { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.types";
+import type { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.types";
 import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 
@@ -19,6 +20,7 @@ export function InputTimeRebuilt({
 
   const { inputStyle } = useFormFieldWrapperStyles(params);
 
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
   const id = getId(params);
 
   return (
@@ -39,6 +41,7 @@ export function InputTimeRebuilt({
       readonly={params.readonly}
       placeholder={params.placeholder}
       value={dateToTimeString(value)}
+      wrapperRef={wrapperRef}
     >
       <input
         ref={ref}
@@ -46,6 +49,7 @@ export function InputTimeRebuilt({
         name={params.name}
         className={inputStyle}
         onBlur={handleBlur}
+        id={id}
         disabled={params.disabled}
         readOnly={params.readonly}
         onChange={handleChangeEvent}
@@ -66,7 +70,7 @@ export function InputTimeRebuilt({
   }
 
   function handleChange(newValue: string) {
-    onChange?.(timeStringToDate(newValue));
+    onChange?.(timeStringToDate(newValue, value));
   }
 
   function handleBlur(event?: React.FocusEvent<HTMLInputElement>) {

@@ -6,7 +6,13 @@ packages/design/src/assets/**
 packages/design/src/icons/iconStyles.*
 packages/design/icons
 packages/generators/templates
+packages/site/playwright-report
+packages/site/public
+packages/site/test-results
 storybook-static
 
 *.css.d.ts
 *.md
+
+!packages/components/.storybook
+!packages/components-native/.storybook

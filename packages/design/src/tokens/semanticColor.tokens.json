@@ -43,7 +43,7 @@
       }
     },
     "disabled": {
-      "$value": "{color.base.grey-.400}",
+      "$value": "{color.base.grey-.500}",
       "$description": "Use to signify that an interactive element is disabled."
     },
     "disabled-": {

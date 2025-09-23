@@ -1,11 +1,6 @@
 import classNames from "classnames";
-import React, {
-  PropsWithChildren,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import type { PropsWithChildren } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./DataListStickyHeader.module.css";
 import { DATA_LIST_STICKY_HEADER_TEST_ID } from "../../DataList.const";
 

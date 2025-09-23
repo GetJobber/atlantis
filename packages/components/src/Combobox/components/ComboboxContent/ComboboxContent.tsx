@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useMemo } from "react";
 import classnames from "classnames";
 import { FloatingNode, FloatingPortal, FloatingTree } from "@floating-ui/react";
-import ReactDOM from "react-dom";
 import styles from "./ComboboxContent.module.css";
 import { ComboboxContentSearch } from "./ComboboxContentSearch";
 import { ComboboxContentList } from "./ComboboxContentList";
 import { ComboboxContentHeader } from "./ComboboxContentHeader";
 import { useComboboxContent } from "../../hooks/useComboboxContent";
 import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
-import { ComboboxContentProps } from "../../Combobox.types";
+import type { ComboboxContentProps } from "../../Combobox.types";
 import { COMBOBOX_MENU_ID } from "../../constants";
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const optionsExist = props.options.length > 0;
-  const { optionsListRef } = useComboboxContent(props.open, props.selected);
+  const { onClear, onSelectAll, optionsListRef } = useComboboxContent(
+    props.open,
+    props.selected,
+  );
 
-  const { popperRef, popperStyles, floatingProps, nodeId, parentNodeId } =
+  const { floatingRef, floatingStyles, floatingProps, nodeId, parentNodeId } =
     useComboboxAccessibility(
       props.handleSelection,
       props.options,
@@ -24,9 +26,18 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       props.wrapperRef,
     );
 
+  // options that are passed back to consumers via onSelectAll callback
+  // should only contain id and label
+  const optionsData = useMemo(() => {
+    return props.options.map(option => ({
+      id: option.id,
+      label: option.label,
+    }));
+  }, [props.options]);
+
   const content = (
     <div
-      ref={popperRef}
+      ref={floatingRef}
       id={COMBOBOX_MENU_ID}
       data-testid={COMBOBOX_MENU_ID}
       data-elevation={"elevated"}
@@ -34,7 +45,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       className={classnames(styles.content, {
         [styles.hidden]: !props.open,
       })}
-      style={popperStyles}
+      style={floatingStyles}
       {...floatingProps}
     >
       <ComboboxContentSearch
@@ -52,9 +63,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           selectedCount={props.selected.length}
           onClearAll={() => {
             props.selectedStateSetter([]);
+            onClear?.();
           }}
           onSelectAll={() => {
             props.selectedStateSetter(props.options);
+            onSelectAll?.(optionsData);
           }}
         />
       )}
@@ -95,7 +108,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     );
   }
 
-  return globalThis?.document
-    ? ReactDOM.createPortal(content, document.body)
-    : content;
+  return globalThis?.document ? (
+    <FloatingPortal>{content}</FloatingPortal>
+  ) : (
+    content
+  );
 }

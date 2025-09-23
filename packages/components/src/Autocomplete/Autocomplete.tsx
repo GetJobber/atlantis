@@ -1,18 +1,16 @@
-import React, {
-  Ref,
-  RefAttributes,
-  forwardRef,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import type { Ref, RefAttributes } from "react";
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from "react";
+import { useDebounce } from "@jobber/hooks";
 import styles from "./Autocomplete.module.css";
 import { Menu } from "./Menu/Menu";
-import { AnyOption, AutocompleteProps, Option } from "./Autocomplete.types";
+import {
+  type AnyOption,
+  type AutocompleteLegacyProps,
+  type Option,
+} from "./Autocomplete.types";
 import { isOptionGroup } from "./Autocomplete.utils";
-import { InputText, InputTextRef } from "../InputText";
-import { useDebounce } from "../utils/useDebounce";
+import type { InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
 import { mergeRefs } from "../utils/mergeRefs";
 
 // Max statements increased to make room for the debounce functions
@@ -36,7 +34,7 @@ function AutocompleteInternal<
     validations,
     customRenderMenu,
     ...inputProps
-  }: AutocompleteProps<
+  }: AutocompleteLegacyProps<
     GenericOption,
     GenericOptionValue,
     GenericGetOptionsValue
@@ -51,7 +49,9 @@ function AutocompleteInternal<
     useState<Array<GenericOption | GenericGetOptionsValue>>(initialOptionsMemo);
   const [inputFocused, setInputFocused] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
-  const autocompleteRef = useRef(null);
+  const [autocompleteRef, setAutocompleteRef] = useState<HTMLDivElement | null>(
+    null,
+  );
   const delayedSearch = useDebounce(updateSearch, debounceRate);
   const inputRef = useRef<InputTextRef | null>(null);
 
@@ -64,7 +64,7 @@ function AutocompleteInternal<
   }, [value]);
 
   return (
-    <div className={styles.autocomplete} ref={autocompleteRef}>
+    <div className={styles.autocomplete} ref={setAutocompleteRef}>
       <InputText
         ref={mergeRefs([ref, inputRef])}
         autocomplete={false}
@@ -161,7 +161,7 @@ export const Autocomplete = forwardRef(AutocompleteInternal) as <
   GenericOptionValue extends Option = Option,
   GenericGetOptionsValue extends AnyOption = AnyOption,
 >(
-  props: AutocompleteProps<
+  props: AutocompleteLegacyProps<
     GenericOption,
     GenericOptionValue,
     GenericGetOptionsValue
