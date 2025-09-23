@@ -75,19 +75,19 @@ const variation = {
     let y = Y_TRANSLATION_DESKTOP;
 
     if (placement?.includes("bottom")) y *= -1;
-    if (window.innerWidth < SMALL_SCREEN_BREAKPOINT) y = Y_TRANSLATION_MOBILE;
+    if (isMobileDevice()) y = Y_TRANSLATION_MOBILE;
 
     return { opacity: 0, y };
   },
   done: { opacity: 1, y: 0 },
 };
 
-export function useIsMobileDevice(): boolean {
+function isMobileDevice(): boolean {
   if (typeof window === "undefined") {
     return false;
   }
 
-  return window.screen.width <= SMALL_SCREEN_BREAKPOINT;
+  return window.innerWidth <= SMALL_SCREEN_BREAKPOINT;
 }
 
 function isLegacy(
@@ -422,9 +422,7 @@ function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
 }
 
 function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
-  const isMobile = useIsMobileDevice();
-
-  if (!isMobile || animation === "unmounted") return null;
+  if (animation === "unmounted") return null;
 
   return (
     <motion.div
@@ -518,7 +516,7 @@ function MenuContentComposable({
   UNSAFE_className,
 }: MenuContentComposableProps) {
   const { state: animation, setState } = useMenuAnimation();
-  const isMobile = useIsMobileDevice();
+  const isMobile = isMobileDevice();
 
   return (
     <>
@@ -562,7 +560,7 @@ function MenuContentComposable({
           );
         }}
       </AriaPopover>
-      <MenuMobileUnderlay animation={animation} />
+      {isMobile && <MenuMobileUnderlay animation={animation} />}
     </>
   );
 }
