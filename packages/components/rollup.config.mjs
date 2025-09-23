@@ -137,6 +137,7 @@ export default {
   ],
   external: [
     "react",
+    "react/jsx-runtime",
     "react-hook-form",
     "react-router-dom",
     "react-dom",

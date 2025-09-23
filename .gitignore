@@ -2,6 +2,7 @@
 coverage
 dist
 node_modules
+node_modules.e2e/
 **/tsconfig.tsbuildinfo
 **/tsconfig.*.tsbuildinfo
 .DS_Store
