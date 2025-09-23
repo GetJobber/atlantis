@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "6.94.1",
+  "version": "6.95.0",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
@@ -490,7 +490,7 @@
     "react-datepicker": "^8.7.0",
     "react-dropzone": "^11.0.2",
     "react-hook-form": "^7.43.7",
-    "react-markdown": "^8.0.3",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^5.3.4",
     "ts-xor": "^1.0.8"
   },

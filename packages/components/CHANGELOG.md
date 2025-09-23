@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.95.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.94.1...@jobber/components@6.95.0) (2025-09-23)
+
+
+### Features
+
+* **components:** Upgrade react-markdown to 10.1.0 ([#2739](https://github.com/GetJobber/atlantis/issues/2739)) ([715acc6](https://github.com/GetJobber/atlantis/commit/715acc6144829f299a498343f1dbd118c4f40737))
+
+
+
+
+
 ## [6.94.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.94.0...@jobber/components@6.94.1) (2025-09-23)
 
 **Note:** Version bump only for package @jobber/components
