@@ -142,7 +142,6 @@ export default {
     "react-router-dom",
     "react-dom",
     "react-dom/client",
-    "react/jsx-runtime",
     "axios",
     "lodash",
     "filesize",
