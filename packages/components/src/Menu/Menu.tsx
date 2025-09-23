@@ -428,7 +428,10 @@ function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
       >
         {trigger}
         {/* Keep Popover mounted while exiting, but do not animate it. */}
-        <AriaPopover isExiting={animation === "hidden"}>
+        <AriaPopover
+          isExiting={animation === "hidden"}
+          placement="bottom start"
+        >
           {({ placement }) => {
             if (React.isValidElement(menu)) {
               return React.cloneElement(
