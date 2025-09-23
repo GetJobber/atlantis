@@ -17,7 +17,7 @@ exports[`InputText V2 renders a regular input for text and numbers 1`] = `
         >
           <label
             class="label"
-            for=":rf:"
+            for="«rf»"
           >
             Describe your favourite colour?
           </label>
@@ -27,8 +27,8 @@ exports[`InputText V2 renders a regular input for text and numbers 1`] = `
           >
             <textarea
               class="input"
-              id=":rf:"
-              name="generatedName--:rf:"
+              id="«rf»"
+              name="generatedName--«rf»"
               rows="3"
             />
           </div>
@@ -56,7 +56,7 @@ exports[`InputText V2 renders a textarea with 4 rows 1`] = `
         >
           <label
             class="label"
-            for=":rg:"
+            for="«rg»"
           >
             Describe your favourite colour?
           </label>
@@ -66,8 +66,8 @@ exports[`InputText V2 renders a textarea with 4 rows 1`] = `
           >
             <textarea
               class="input"
-              id=":rg:"
-              name="generatedName--:rg:"
+              id="«rg»"
+              name="generatedName--«rg»"
               rows="4"
             />
           </div>
@@ -95,7 +95,7 @@ exports[`InputText Version 1 renders a regular input for text and numbers 1`] = 
         >
           <label
             class="label"
-            for=":r0:"
+            for="«r0»"
           >
             Favourite colour
           </label>
@@ -105,7 +105,7 @@ exports[`InputText Version 1 renders a regular input for text and numbers 1`] = 
           >
             <input
               class="input"
-              id=":r0:"
+              id="«r0»"
               type="text"
               value=""
             />
@@ -134,7 +134,7 @@ exports[`InputText Version 1 renders a textarea 1`] = `
         >
           <label
             class="label"
-            for=":r1:"
+            for="«r1»"
           >
             Describe your favourite colour?
           </label>
@@ -144,7 +144,7 @@ exports[`InputText Version 1 renders a textarea 1`] = `
           >
             <textarea
               class="input"
-              id=":r1:"
+              id="«r1»"
               rows="3"
             />
           </div>
@@ -172,7 +172,7 @@ exports[`InputText Version 1 renders a textarea with 4 rows 1`] = `
         >
           <label
             class="label"
-            for=":r2:"
+            for="«r2»"
           >
             Describe your favourite colour?
           </label>
@@ -182,7 +182,7 @@ exports[`InputText Version 1 renders a textarea with 4 rows 1`] = `
           >
             <textarea
               class="input"
-              id=":r2:"
+              id="«r2»"
               rows="4"
             />
           </div>
