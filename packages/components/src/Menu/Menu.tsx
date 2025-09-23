@@ -565,6 +565,7 @@ const MenuItemComposable = React.forwardRef<
     textValue,
     href,
     target,
+    ...rest
   }: MenuItemComposableProps,
   ref,
 ) {
@@ -576,9 +577,27 @@ const MenuItemComposable = React.forwardRef<
       textValue={textValue}
       href={href}
       target={target}
-      onAction={() => {
-        onClick?.();
-      }}
+      // Forward only the TanStack Router onClick when this item is a link.
+      // This allows SPA navigation without exposing arbitrary props.
+      onClick={
+        href
+          ? ((): ((event: unknown) => void) | undefined => {
+              const maybeClick = (rest as Record<string, unknown>)?.onClick;
+
+              return typeof maybeClick === "function"
+                ? (maybeClick as (event: unknown) => void)
+                : undefined;
+            })()
+          : undefined
+      }
+      onAction={
+        !href
+          ? () => {
+              // Only call the zero-arg onClick for non-link items.
+              onClick?.();
+            }
+          : undefined
+      }
     >
       {children}
     </AriaMenuItem>
