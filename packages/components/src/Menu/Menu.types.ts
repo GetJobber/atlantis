@@ -172,7 +172,6 @@ export interface MenuItemComposableProps extends UnsafeProps {
 
 export interface MenuContentComposableProps extends UnsafeProps {
   readonly children: ReactNode;
-  readonly placement?: string | null;
 }
 
 export interface MenuTriggerComposableProps {

@@ -410,10 +410,6 @@ function useMenuAnimation(): MenuAnimationContextValue {
 }
 
 function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
-  // Use positional arguments to determine the trigger and content
-  // Avoids parsing/iterating over the children
-  const [trigger, menu] = React.Children.toArray(children);
-
   const [animation, setAnimation] = useState<AnimationState>("unmounted");
 
   return (
@@ -426,26 +422,7 @@ function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
           onOpenChange?.(isOpen);
         }}
       >
-        {trigger}
-        {/* Keep Popover mounted while exiting, but do not animate it. */}
-        <AriaPopover
-          isExiting={animation === "hidden"}
-          placement="bottom start"
-        >
-          {({ placement }) => {
-            if (React.isValidElement(menu)) {
-              return React.cloneElement(
-                menu as ReactElement<MenuContentComposableProps>,
-                {
-                  placement,
-                },
-              );
-            }
-
-            return menu;
-          }}
-        </AriaPopover>
-        <MenuMobileUnderlay animation={animation} />
+        {children}
       </AriaMenuTrigger>
     </MenuAnimationContext.Provider>
   );
@@ -544,39 +521,50 @@ const MotionMenu = motion.create(AriaMenu);
 
 function MenuContentComposable({
   children,
-  placement,
   UNSAFE_style,
   UNSAFE_className,
 }: MenuContentComposableProps) {
   const { state: animation, setState } = useMenuAnimation();
   const isMobile = useIsMobileDevice();
 
-  const yTranslation = placement?.includes("bottom") ? -10 : 10;
-  const variants = isMobile
-    ? { hidden: { opacity: 0, y: 150 }, visible: { opacity: 1, y: 0 } }
-    : {
-        hidden: { opacity: 0, y: yTranslation },
-        visible: { opacity: 1, y: 0 },
-      };
-
   return (
-    <MotionMenu
-      key={`menu-content-${placement ?? "pending"}`}
-      className={classnames(styles.menu, UNSAFE_className)}
-      style={UNSAFE_style}
-      variants={variants}
-      initial="hidden"
-      // placement is null on first render cycle, so we need to wait for it to be defined
-      animate={placement ? animation : false}
-      transition={{ ...MENU_ANIMATION_CONFIG }}
-      onAnimationComplete={animationState => {
-        setState(prev =>
-          animationState === "hidden" && prev === "hidden" ? "unmounted" : prev,
-        );
-      }}
-    >
-      {children}
-    </MotionMenu>
+    <>
+      {/* Keep Popover mounted while exiting, but do not animate it. */}
+      <AriaPopover isExiting={animation === "hidden"} placement="bottom start">
+        {({ placement }) => {
+          const yTranslation = placement?.includes("bottom") ? -10 : 10;
+          const variants = isMobile
+            ? { hidden: { opacity: 0, y: 150 }, visible: { opacity: 1, y: 0 } }
+            : {
+                hidden: { opacity: 0, y: yTranslation },
+                visible: { opacity: 1, y: 0 },
+              };
+
+          return (
+            <MotionMenu
+              key={`menu-content-${placement ?? "pending"}`}
+              className={classnames(styles.menu, UNSAFE_className)}
+              style={UNSAFE_style}
+              variants={variants}
+              initial="hidden"
+              // placement is null on first render cycle, so we need to wait for it to be defined
+              animate={placement ? animation : false}
+              transition={{ ...MENU_ANIMATION_CONFIG }}
+              onAnimationComplete={animationState => {
+                setState(prev =>
+                  animationState === "hidden" && prev === "hidden"
+                    ? "unmounted"
+                    : prev,
+                );
+              }}
+            >
+              {children}
+            </MotionMenu>
+          );
+        }}
+      </AriaPopover>
+      <MenuMobileUnderlay animation={animation} />
+    </>
   );
 }
 
