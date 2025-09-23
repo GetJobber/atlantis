@@ -35,6 +35,7 @@ export default {
     "@apollo/client",
     "@jobber/formatters",
     "react",
+    "react/jsx-runtime",
     "react-dom",
     "tslib",
   ],
