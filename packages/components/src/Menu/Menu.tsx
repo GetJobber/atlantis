@@ -553,17 +553,24 @@ function MenuHeaderComposable({
   );
 }
 
-function MenuItemComposable({
-  onClick,
-  children,
-  UNSAFE_style,
-  UNSAFE_className,
-  textValue,
-  href,
-  target,
-}: MenuItemComposableProps) {
+const MenuItemComposable = React.forwardRef<
+  React.ElementRef<typeof AriaMenuItem>,
+  MenuItemComposableProps
+>(function MenuItemComposable(
+  {
+    onClick,
+    children,
+    UNSAFE_style,
+    UNSAFE_className,
+    textValue,
+    href,
+    target,
+  }: MenuItemComposableProps,
+  ref,
+) {
   return (
     <AriaMenuItem
+      ref={ref}
       className={classnames(styles.action, UNSAFE_className)}
       style={UNSAFE_style}
       textValue={textValue}
@@ -576,7 +583,7 @@ function MenuItemComposable({
       {children}
     </AriaMenuItem>
   );
-}
+});
 
 Menu.Section = MenuSectionComposable;
 Menu.Header = MenuHeaderComposable;
