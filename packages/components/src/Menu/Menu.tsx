@@ -96,6 +96,8 @@ function isLegacy(
   return "items" in props;
 }
 
+const MotionMenu = motion.create(AriaMenu);
+
 // Overload declarations (no bodies)
 export function Menu(props: MenuLegacyProps): ReactElement;
 export function Menu(props: MenuComposableProps): ReactElement;
@@ -421,94 +423,18 @@ function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
   );
 }
 
-function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
-  if (animation === "unmounted") return null;
-
-  return (
-    <motion.div
-      key="menu-mobile-underlay"
-      variants={composeOverlayVariation}
-      initial="hidden"
-      transition={{
-        ...OVERLAY_ANIMATION_CONFIG,
-      }}
-      className={styles.overlay}
-      animate={animation}
-    />
-  );
-}
-
-function MenuSectionComposable({
-  children,
-  UNSAFE_style,
-  UNSAFE_className,
+function MenuTriggerComposable({
   ariaLabel,
-}: MenuSectionComposableProps) {
-  return (
-    <AriaMenuSection
-      aria-label={ariaLabel}
-      className={classnames(styles.section, UNSAFE_className)}
-      style={UNSAFE_style}
-    >
-      {children}
-    </AriaMenuSection>
-  );
-}
-
-function MenuHeaderComposable({
   children,
-  UNSAFE_style,
-  UNSAFE_className,
-}: MenuHeaderComposableProps) {
+}: MenuTriggerComposableProps) {
   return (
-    <AriaHeader
-      className={classnames(styles.sectionHeader, UNSAFE_className)}
-      style={UNSAFE_style}
-    >
-      {children}
-    </AriaHeader>
+    <AriaPressable aria-label={ariaLabel}>
+      <div role="button" className={styles.triggerWrapper}>
+        {children}
+      </div>
+    </AriaPressable>
   );
 }
-
-function MenuSeparatorComposable({
-  UNSAFE_style,
-  UNSAFE_className,
-}: MenuSeparatorComposableProps) {
-  return (
-    <AriaSeparator
-      className={classnames(styles.separator, UNSAFE_className)}
-      style={UNSAFE_style}
-      data-testid="ATL-Menu-Separator"
-    />
-  );
-}
-
-function MenuItemComposable({
-  onClick,
-  children,
-  UNSAFE_style,
-  UNSAFE_className,
-  textValue,
-  href,
-  target,
-}: MenuItemComposableProps) {
-  return (
-    <AriaMenuItem
-      className={classnames(styles.action, UNSAFE_className)}
-      style={UNSAFE_style}
-      textValue={textValue}
-      href={href}
-      target={target}
-      onAction={() => {
-        onClick?.();
-      }}
-    >
-      {children}
-    </AriaMenuItem>
-  );
-}
-
-const MotionMenu = motion.create(AriaMenu);
 
 function MenuContentComposable({
   children,
@@ -565,16 +491,90 @@ function MenuContentComposable({
   );
 }
 
-function MenuTriggerComposable({
-  ariaLabel,
-  children,
-}: MenuTriggerComposableProps) {
+function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
+  if (animation === "unmounted") return null;
+
   return (
-    <AriaPressable aria-label={ariaLabel}>
-      <div role="button" className={styles.triggerWrapper}>
-        {children}
-      </div>
-    </AriaPressable>
+    <motion.div
+      key="menu-mobile-underlay"
+      variants={composeOverlayVariation}
+      initial="hidden"
+      transition={{
+        ...OVERLAY_ANIMATION_CONFIG,
+      }}
+      className={styles.overlay}
+      animate={animation}
+    />
+  );
+}
+
+function MenuSeparatorComposable({
+  UNSAFE_style,
+  UNSAFE_className,
+}: MenuSeparatorComposableProps) {
+  return (
+    <AriaSeparator
+      className={classnames(styles.separator, UNSAFE_className)}
+      style={UNSAFE_style}
+      data-testid="ATL-Menu-Separator"
+    />
+  );
+}
+
+function MenuSectionComposable({
+  children,
+  UNSAFE_style,
+  UNSAFE_className,
+  ariaLabel,
+}: MenuSectionComposableProps) {
+  return (
+    <AriaMenuSection
+      aria-label={ariaLabel}
+      className={classnames(styles.section, UNSAFE_className)}
+      style={UNSAFE_style}
+    >
+      {children}
+    </AriaMenuSection>
+  );
+}
+
+function MenuHeaderComposable({
+  children,
+  UNSAFE_style,
+  UNSAFE_className,
+}: MenuHeaderComposableProps) {
+  return (
+    <AriaHeader
+      className={classnames(styles.sectionHeader, UNSAFE_className)}
+      style={UNSAFE_style}
+    >
+      {children}
+    </AriaHeader>
+  );
+}
+
+function MenuItemComposable({
+  onClick,
+  children,
+  UNSAFE_style,
+  UNSAFE_className,
+  textValue,
+  href,
+  target,
+}: MenuItemComposableProps) {
+  return (
+    <AriaMenuItem
+      className={classnames(styles.action, UNSAFE_className)}
+      style={UNSAFE_style}
+      textValue={textValue}
+      href={href}
+      target={target}
+      onAction={() => {
+        onClick?.();
+      }}
+    >
+      {children}
+    </AriaMenuItem>
   );
 }
 
