@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Menu, SectionProps } from "@jobber/components/Menu";
 import { Button } from "@jobber/components/Button";
@@ -9,6 +9,10 @@ import { Chip } from "@jobber/components/Chip";
 import { Grid } from "@jobber/components/Grid";
 import { Typography } from "@jobber/components/Typography";
 import { Emphasis } from "@jobber/components/Emphasis";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { Tooltip } from "@jobber/components/Tooltip";
+import { Popover } from "@jobber/components/Popover";
+import { Content } from "@jobber/components/Content";
 
 export default {
   title: "Components/Navigation/Menu/Web",
@@ -152,14 +156,27 @@ export const Composable = () => {
     },
   ];
 
+  const [canView, setCanView] = useState(false);
+  const divRef = useRef<HTMLDivElement>(null);
+  const [showPopover, setShowPopover] = useState(true);
+
   return (
     <div>
       <section>
         <h1>Composable with sections</h1>
         <Menu>
-          <Menu.Trigger>
+          <Popover
+            attachTo={divRef}
+            open={showPopover}
+            onRequestClose={() => setShowPopover(false)}
+          >
+            <Content>
+              <Text>Click here for new features!</Text>
+            </Content>
+          </Popover>
+          <Menu.Trigger ref={divRef}>
             <Button>
-              <Button.Label>Press me</Button.Label>
+              <Button.Label>I have a popover</Button.Label>
             </Button>
           </Menu.Trigger>
           <Menu.Content>
@@ -191,11 +208,13 @@ export const Composable = () => {
       <section>
         <h1>Composable flat</h1>
         <Menu>
-          <Menu.Trigger>
-            <Button>
-              <Button.Label>Press me</Button.Label>
-            </Button>
-          </Menu.Trigger>
+          <Tooltip message="Menu Tooltip">
+            <Menu.Trigger>
+              <Button>
+                <Button.Label>I have a tooltip</Button.Label>
+              </Button>
+            </Menu.Trigger>
+          </Tooltip>
           <Menu.Content>
             <Menu.Item onClick={() => alert("�")}>
               <Icon name="email" />
@@ -280,40 +299,56 @@ export const Composable = () => {
       </section>
       <section>
         <h1>Composable with Conditional Items</h1>
-        <Menu>
-          <Menu.Trigger>
-            <Button>
-              <Button.Label>Second Item Rendered After 2 Seconds</Button.Label>
-            </Button>
-          </Menu.Trigger>
-          <Menu.Content>
-            <Menu.Item onClick={() => alert("Timesheets")}>
-              <Icon name="timer" />
-              <Text>Timesheets</Text>
-            </Menu.Item>
-            <PseudoAuth>
-              <Menu.Item onClick={() => alert("Admin")}>
-                <Icon name="lock" />
-                <Text>Admin</Text>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            alignItems: "flex-start",
+          }}
+        >
+          <Checkbox
+            label="Admin?"
+            checked={canView}
+            onChange={() => setCanView(!canView)}
+          />
+          <Menu>
+            <Menu.Trigger>
+              <Button>
+                <Button.Label>Conditonal Menu Items</Button.Label>
+              </Button>
+            </Menu.Trigger>
+            <Menu.Content>
+              <Menu.Item onClick={() => alert("Timesheets")}>
+                <Icon name="timer" />
+                <Text>Timesheets</Text>
               </Menu.Item>
-            </PseudoAuth>
-          </Menu.Content>
-        </Menu>
+              <Menu.Item onClick={() => alert("Invoices")}>
+                <Icon name="invoice" />
+                <Text>Invoices</Text>
+              </Menu.Item>
+              <PermissionCheck canView={canView}>
+                <Menu.Item onClick={() => alert("Admin")}>
+                  <Icon name="lock" />
+                  <Text>Admin</Text>
+                </Menu.Item>
+              </PermissionCheck>
+            </Menu.Content>
+          </Menu>
+        </div>
       </section>
     </div>
   );
 };
 
-function PseudoAuth({ children }: { readonly children: React.ReactNode }) {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setVisible(true);
-    }, 2000);
-  }, []);
-
-  if (!visible) return null;
+function PermissionCheck({
+  children,
+  canView,
+}: {
+  readonly children: React.ReactNode;
+  readonly canView: boolean;
+}) {
+  if (!canView) return null;
 
   return <>{children}</>;
 }
