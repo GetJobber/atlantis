@@ -1,4 +1,5 @@
 import type {
+  DeepPartial,
   FieldValues,
   UseFormHandleSubmit,
   UseFormReturn,
@@ -31,7 +32,7 @@ interface UseInternalForm<T extends FieldValues> {
   readonly isSubmitting: boolean;
   readonly isDirty: boolean;
   readonly removeListenerRef: MutableRefObject<() => void>;
-  readonly setLocalCache: (data: T) => void;
+  readonly setLocalCache: (data: DeepPartial<T>) => void;
 }
 
 export function useInternalForm<T extends FieldValues, SubmitResponseType>({

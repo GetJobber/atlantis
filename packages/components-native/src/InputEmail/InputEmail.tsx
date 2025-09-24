@@ -7,6 +7,17 @@ export const InputEmail = forwardRef(InputEmailInternal);
 type InputEmailProps = Omit<InputTextProps, "keyboard">;
 
 function InputEmailInternal(props: InputEmailProps, ref: Ref<InputTextRef>) {
+  const defaultValidations = {
+    pattern: {
+      value:
+        /[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/,
+      message: "Enter a valid email address (email@example.com)",
+    },
+  } as const;
+  const mergedValidations = props.validations
+    ? Object.assign({}, defaultValidations, props.validations)
+    : defaultValidations;
+
   return (
     <InputText
       {...props}
@@ -14,14 +25,7 @@ function InputEmailInternal(props: InputEmailProps, ref: Ref<InputTextRef>) {
       autoCapitalize="none"
       autoCorrect={false}
       keyboard={"email-address"}
-      validations={{
-        pattern: {
-          value:
-            /[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?/,
-          message: "Enter a valid email address (email@example.com)",
-        },
-        ...props.validations,
-      }}
+      validations={mergedValidations}
     />
   );
 }
