@@ -9,8 +9,6 @@ declare const styles: {
   readonly "action": string;
   readonly "destructive": string;
   readonly "triggerWrapper": string;
-  readonly "ariaPopover": string;
-  readonly "slide": string;
   readonly "overlay": string;
   readonly "fullWidth": string;
   readonly "screenReaderOnly": string;

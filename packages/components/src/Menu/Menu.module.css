@@ -23,18 +23,15 @@
   overflow-y: scroll;
   background-color: var(--color-surface);
   -webkit-overflow-scrolling: touch;
-  --y-translation: 150px;
 
   @media (--small-screens-and-below) {
     position: fixed;
-    top: unset !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 
   @media (--small-screens-and-up) {
-    --y-translation: 10px;
     width: calc(var(--base-unit) * 12.5);
     padding: var(--menu-space);
     border: var(--border-base) solid var(--color-border);
@@ -111,63 +108,19 @@
   outline: none;
 }
 
-/* Animate the popover itself on enter/exit */
-.ariaPopover[data-entering] {
-  animation: slide 250ms ease-out;
-}
-
-.ariaPopover[data-exiting] {
-  animation: slide 250ms ease-out reverse;
-}
-
-/* Overlay should sit behind the popover but above content */
 .overlay {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: var(--elevation-menu);
+  z-index: var(--elevation-modal);
   background-color: var(--color-overlay);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 150ms ease-out;
 
   @media (--small-screens-and-up) {
     background-color: transparent;
   }
 }
-
-/* Animate overlay based on adjacent popover state */
-.ariaPopover + .overlay {
-  pointer-events: auto;
-  opacity: 1;
-}
-
-.ariaPopover[data-exiting] + .overlay {
-  opacity: 0;
-}
-
-/* Placement-based direction (desktop defaults) */
-.ariaPopover[data-placement^="top"] {
-  --slide-direction: 1;
-}
-
-.ariaPopover[data-placement^="bottom"] {
-  --slide-direction: -1;
-}
-
-/* Force upward slide on small screens regardless of placement (after placement rules to win cascade) */
-@media (--small-screens-and-below) {
-  .ariaPopover,
-  .ariaPopover[data-placement^="top"],
-  .ariaPopover[data-placement^="bottom"] {
-    --slide-direction: 1;
-  }
-}
-
-/* Remove unused keyframes fade if present */
-/* @keyframes fade { ... } */
 
 .fullWidth {
   width: 100%;
@@ -181,17 +134,4 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-}
-
-@keyframes slide {
-  from {
-    opacity: 0;
-    transform: translateY(
-      calc(var(--y-translation) * var(--slide-direction, -1))
-    );
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
