@@ -5,6 +5,7 @@
       "dom",
       "es2018"
     ],
+    "types": ["@testing-library/jest-dom"],
     "jsx": "react",
     "declaration": true,
     "rootDir": "src",
