@@ -160,41 +160,6 @@
     "tags": {},
     "filePath": "../components/src/Menu/Menu.tsx",
     "description": "",
-    "displayName": "Menu.Trigger",
-    "methods": [],
-    "props": {
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "Accessible name for the trigger.",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuTriggerComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "children": {
-        "defaultValue": null,
-        "description": "Trigger content.\nThis MUST be an interactive element, such as Button. Note that any onClick is ignored.\nIf you want to access the open event, use the onOpenChange on the Menu component.\nIf it does not have an interactive role, or a focus style it will have issues.",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuTriggerComposableProps"
-        },
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
-    "description": "",
     "displayName": "Menu.Content",
     "methods": [],
     "props": {
