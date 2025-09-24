@@ -1,6 +1,17 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "master",
+  "targetDefaults": {
+    "bootstrap": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default"
+      ],
+      "outputs": ["{projectRoot}/dist"],
+      "dependsOn": ["^bootstrap"]
+    }
+  },
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
