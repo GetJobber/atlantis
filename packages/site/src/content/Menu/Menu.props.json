@@ -160,106 +160,6 @@
     "tags": {},
     "filePath": "../components/src/Menu/Menu.tsx",
     "description": "",
-    "displayName": "Menu.Item",
-    "methods": [],
-    "props": {
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuItemComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "children": {
-        "defaultValue": null,
-        "description": "Menu item content",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuItemComposableProps"
-        },
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "textValue": {
-        "defaultValue": null,
-        "description": "String representation of the item's content.\nMust be provided if the item's content is not plain text.",
-        "name": "textValue",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuItemComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "href": {
-        "defaultValue": null,
-        "description": "Href for the item.",
-        "name": "href",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuItemComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "target": {
-        "defaultValue": null,
-        "description": "Target window for the link.",
-        "name": "target",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuItemComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "UnsafeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "CSSProperties"
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "UnsafeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
-    "description": "",
     "displayName": "Menu.Trigger",
     "methods": [],
     "props": {
@@ -298,19 +198,6 @@
     "displayName": "Menu.Content",
     "methods": [],
     "props": {
-      "placement": {
-        "defaultValue": null,
-        "description": "",
-        "name": "placement",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuContentComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "UNSAFE_style": {
         "defaultValue": null,
         "description": "",
