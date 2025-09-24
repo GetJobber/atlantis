@@ -43,7 +43,7 @@ function ButtonGroupForTest(props: TestFormSaveButtonProps) {
   );
 }
 
-describe.skip("the form save button is enabled", () => {
+describe("the form save button is enabled", () => {
   const loading = false;
   it("renders the form save button with default label", () => {
     const pressHandler = jest.fn();
@@ -89,7 +89,7 @@ describe.skip("the form save button is enabled", () => {
   });
 });
 
-describe.skip("the form save button is loading", () => {
+describe("the form save button is loading", () => {
   const loading = true;
   it("renders the form save button as loading", () => {
     const pressHandler = jest.fn();
@@ -105,7 +105,7 @@ describe.skip("the form save button is loading", () => {
   });
 });
 
-describe.skip("when a secondaryActions is passed in", () => {
+describe("when a secondaryActions is passed in", () => {
   it("renders a secondaryAction element", () => {
     const pressHandler = jest.fn();
     const { getByLabelText } = render(

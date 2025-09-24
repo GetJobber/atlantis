@@ -83,7 +83,7 @@ const basicRenderTestWithValue = () => {
   );
 };
 
-describe.skip("ios", () => {
+describe("ios", () => {
   beforeEach(() => {
     Platform.OS = "ios";
   });
@@ -91,7 +91,7 @@ describe.skip("ios", () => {
   basicRenderTestWithValue();
 });
 
-describe.skip("android", () => {
+describe("android", () => {
   beforeEach(() => {
     Platform.OS = "android";
   });
