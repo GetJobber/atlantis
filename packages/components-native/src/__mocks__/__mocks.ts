@@ -5,7 +5,9 @@ import type { Modalize, ModalizeProps } from "react-native-modalize";
 import type { Ref } from "react";
 import { MockModal } from "./MockModal";
 
-jest.mock("react-native/Libraries/Modal/Modal", () => MockModal);
+jest.mock("react-native/Libraries/Modal/Modal", () => ({
+  default: MockModal,
+}));
 
 jest.mock("react-native-reanimated", () => {
   const reanimated = require("react-native-reanimated/mock");

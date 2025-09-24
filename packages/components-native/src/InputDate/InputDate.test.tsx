@@ -9,7 +9,7 @@ import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 
 const keyboardDismissSpy = jest.spyOn(Keyboard, "dismiss");
 
-describe.skip("InputDate", () => {
+describe("InputDate", () => {
   describe("Visuals", () => {
     const placeholder = "Start time";
     const expectedDate = "May 30, 2022";

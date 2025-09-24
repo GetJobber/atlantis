@@ -44,7 +44,7 @@ function setup(props?: Partial<SelectInternalPickerProps>) {
   );
 }
 
-describe.skip("SelectInternalPicker", () => {
+describe("SelectInternalPicker", () => {
   it("fires the onChange", () => {
     const screen = setup();
     fireEvent.press(screen.getByText(childText));

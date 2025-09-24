@@ -210,7 +210,7 @@ afterEach(() => {
 
 const loadingLabel = "Loading";
 const tryAgainLabel = "Try again";
-describe.skip("Form", () => {
+describe("Form", () => {
   describe("Initial Load", () => {
     it("should show activity indicator", () => {
       const { getByLabelText } = render(
