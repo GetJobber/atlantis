@@ -423,18 +423,18 @@ function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
   );
 }
 
-function MenuTriggerComposable({
-  ariaLabel,
-  children,
-}: MenuTriggerComposableProps) {
+const MenuTriggerComposable = React.forwardRef<
+  HTMLDivElement,
+  MenuTriggerComposableProps
+>(function MenuTriggerComposable({ ariaLabel, children }, ref) {
   return (
     <AriaPressable aria-label={ariaLabel}>
-      <div role="button" className={styles.triggerWrapper}>
+      <div role="button" className={styles.triggerWrapper} ref={ref}>
         {children}
       </div>
     </AriaPressable>
   );
-}
+});
 
 function MenuContentComposable({
   children,
