@@ -5,6 +5,7 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@0.1.1
   aws-s3: circleci/aws-s3@1.0.8
+  nx: nrwl/nx@1.7.0
 
 references:
   container_config: &container_config
@@ -24,6 +25,18 @@ references:
       name: Restore npm cache
       keys:
         - npm-cache-v1
+
+  restore_nx_cache: &restore_nx_cache
+    restore_cache:
+      name: Restore NX cache
+      key: nx-cache-v1-{{ .Branch }}-
+
+  save_nx_cache: &save_nx_cache
+    save_cache:
+      name: Save NX cache
+      key: nx-cache-v1-{{ .Branch }}-{{ epoch }}
+      paths:
+        - .nx/cache
 
   attach_workspace: &attach_workspace
     attach_workspace:
@@ -89,6 +102,9 @@ jobs:
     steps:
       - *attach_workspace
       - *restore_npm_cache
+      - nx/set-shas:
+        main-branch-name: 'master'
+      - *restore_nx_cache
       - run:
           name: Authenticate with npm
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
@@ -240,6 +256,12 @@ jobs:
       - store_artifacts:
           path: packages/site/test-results
 
+  save_nx_cache:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - *save_nx_cache
+
 workflows:
   version: 2
 
@@ -274,6 +296,9 @@ workflows:
           requires:
             - install_dependencies
       - e2e_tests:
+          requires:
+            - install_dependencies
+      - save_nx_cache:
           requires:
             - install_dependencies
       - release:

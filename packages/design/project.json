@@ -1,0 +1,14 @@
+{
+  "name": "@jobber/design",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "bootstrap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean && npm run build",
+        "cwd": "{projectRoot}"
+      },
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
+}
