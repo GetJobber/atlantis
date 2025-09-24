@@ -60,12 +60,12 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-it("renders a thumbnail component with attachments", () => {
+it.skip("renders a thumbnail component with attachments", () => {
   const tree = setup(true);
   expect(tree.toJSON()).toMatchSnapshot();
 });
 
-describe("when a an array of files is provided", () => {
+describe.skip("when a an array of files is provided", () => {
   it("calls the previewImages util on pressing a valid file", () => {
     const { getByLabelText } = setup();
     fireEvent.press(

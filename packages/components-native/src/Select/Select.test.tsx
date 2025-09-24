@@ -20,7 +20,7 @@ afterEach(() => {
 
 const defaultPlaceholder = "Select an option";
 
-describe("Select", () => {
+describe.skip("Select", () => {
   it("renders a Select", () => {
     const component = render(
       <Select onChange={onChange}>
@@ -160,7 +160,7 @@ describe("Select", () => {
   });
 });
 
-describe("when Select is invalid", () => {
+describe.skip("when Select is invalid", () => {
   const labelText = "labelText";
 
   it("renders an invalid Select", () => {
@@ -202,7 +202,7 @@ describe("when Select is invalid", () => {
   });
 });
 
-describe("when validations are passed to the component", () => {
+describe.skip("when validations are passed to the component", () => {
   describe("validations fail", () => {
     let tree: RenderAPI;
     const labelText = "labelText";

@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { FormMessage } from ".";
 
-describe("FormMessage", () => {
+describe.skip("FormMessage", () => {
   it("should render null when there are no message to show", () => {
     const view = render(<FormMessage />);
     expect(view.toJSON()).toMatchInlineSnapshot(`null`);

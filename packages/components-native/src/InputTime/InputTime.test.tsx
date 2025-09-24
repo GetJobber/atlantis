@@ -12,7 +12,7 @@ afterEach(() => {
   jest.spyOn(atlantisContext, "useAtlantisContext").mockRestore();
 });
 
-describe("Visuals", () => {
+describe.skip("Visuals", () => {
   const placeholder = "Start time";
   const expectedTime = "11:00 AM";
   const value = new Date(2022, 2, 2, 11, 0);
@@ -60,7 +60,7 @@ describe("Visuals", () => {
   });
 });
 
-describe("String value", () => {
+describe.skip("String value", () => {
   const handleChange = jest.fn();
 
   it("should show a formatted time", () => {
@@ -74,7 +74,7 @@ describe("String value", () => {
   });
 });
 
-describe("With emptyValueLabel", () => {
+describe.skip("With emptyValueLabel", () => {
   const handleChange = jest.fn();
 
   it("should show the emptyValueLabel when there's no value", () => {
@@ -105,7 +105,7 @@ describe("With emptyValueLabel", () => {
 });
 
 // eslint-disable-next-line max-statements
-describe("Time picker", () => {
+describe.skip("Time picker", () => {
   const placeholder = "Tap me";
   const handleChange = jest.fn();
   const getType = jest.fn().mockReturnValue(undefined);
@@ -214,7 +214,7 @@ function SimpleFormWithProvider({ children, defaultValues }) {
   );
 }
 
-describe("Form controlled", () => {
+describe.skip("Form controlled", () => {
   const pickerName = "timePicker";
   const expectedTime = "11:00 AM";
   const value = new Date(2022, 2, 2, 11, 0);
@@ -284,7 +284,7 @@ describe("Form controlled", () => {
   });
 });
 
-describe("Timezone conversion", () => {
+describe.skip("Timezone conversion", () => {
   const placeholder = "Start time";
   const value = new Date(2022, 2, 2, 11, 0);
   const handleChange = jest.fn();

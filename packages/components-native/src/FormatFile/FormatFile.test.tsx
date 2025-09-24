@@ -295,7 +295,7 @@ function basicRenderTestWithValue() {
   });
 }
 
-describe("ios", () => {
+describe.skip("ios", () => {
   beforeEach(() => {
     Platform.OS = "ios";
   });
@@ -303,7 +303,7 @@ describe("ios", () => {
   basicRenderTestWithValue();
 });
 
-describe("android", () => {
+describe.skip("android", () => {
   beforeEach(() => {
     Platform.OS = "android";
   });

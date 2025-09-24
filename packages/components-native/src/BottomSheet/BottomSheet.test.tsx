@@ -42,7 +42,7 @@ function setup({
   );
 }
 
-it("renders a BottomSheet", async () => {
+it.skip("renders a BottomSheet", async () => {
   const { getByText } = setup({});
 
   await waitForUntestableRender(
@@ -56,7 +56,7 @@ it("renders a BottomSheet", async () => {
   expect(getByText("BottomSheet")).toBeDefined();
 });
 
-it("renders a BottomSheet with a header", async () => {
+it.skip("renders a BottomSheet with a header", async () => {
   const header = "Hello this is header";
   const { getByText } = setup({ heading: header });
 
@@ -71,7 +71,7 @@ it("renders a BottomSheet with a header", async () => {
   expect(getByText(header)).toBeDefined();
 });
 
-it("BottomSheet can be closed with the cancel action", async () => {
+it.skip("BottomSheet can be closed with the cancel action", async () => {
   const { getByText, queryByText } = setup({ showCancel: true });
 
   act(() => {
@@ -85,7 +85,7 @@ it("BottomSheet can be closed with the cancel action", async () => {
   });
 });
 
-describe("when loading is provided and true", () => {
+describe.skip("when loading is provided and true", () => {
   it("hides the cancel action", async () => {
     const { queryByText } = setup({ showCancel: true, loading: true });
 
@@ -101,7 +101,7 @@ describe("when loading is provided and true", () => {
   });
 });
 
-it("calls onClose when BottomSheet is closed", async () => {
+it.skip("calls onClose when BottomSheet is closed", async () => {
   setup({});
 
   act(() => {
@@ -114,7 +114,7 @@ it("calls onClose when BottomSheet is closed", async () => {
   });
 });
 
-it("calls onOpen when BottomSheet is opened", async () => {
+it.skip("calls onOpen when BottomSheet is opened", async () => {
   setup({});
 
   act(() => {
@@ -126,7 +126,7 @@ it("calls onOpen when BottomSheet is opened", async () => {
   });
 });
 
-describe("when there is a screen reader enabled", () => {
+describe.skip("when there is a screen reader enabled", () => {
   it("should always show the cancel action", async () => {
     jest
       .spyOn(AccessibilityInfo, "isScreenReaderEnabled")

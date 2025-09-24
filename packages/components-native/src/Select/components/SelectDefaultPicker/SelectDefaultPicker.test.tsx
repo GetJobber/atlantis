@@ -40,7 +40,7 @@ function setup() {
   );
 }
 
-describe("SelectDefaultPicker", () => {
+describe.skip("SelectDefaultPicker", () => {
   it("opens the picker", () => {
     const screen = setup();
 

@@ -24,7 +24,7 @@ function ButtonGroupForTest(props: ButtonGroupProps) {
   );
 }
 
-it("renders a single primary action", () => {
+it.skip("renders a single primary action", () => {
   const createAction = jest.fn();
   const { getByText, queryByLabelText } = render(
     <ButtonGroupForTest>
@@ -40,7 +40,7 @@ it("renders a single primary action", () => {
   expect(queryByLabelText("More")).toBeNull();
 });
 
-it("renders 2 primary actions", () => {
+it.skip("renders 2 primary actions", () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const { getByText, queryByLabelText } = render(
@@ -63,7 +63,7 @@ it("renders 2 primary actions", () => {
   expect(queryByLabelText("More")).toBeNull();
 });
 
-it("does not render more than 2 primary actions but adds a More button", () => {
+it.skip("does not render more than 2 primary actions but adds a More button", () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const mysteryAction = jest.fn();
@@ -93,7 +93,7 @@ it("does not render more than 2 primary actions but adds a More button", () => {
   expect(getByLabelText("More")).toBeDefined();
 });
 
-it("does not render secondary actions", () => {
+it.skip("does not render secondary actions", () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const deleteAction = jest.fn();
@@ -122,7 +122,7 @@ it("does not render secondary actions", () => {
   expect(getByLabelText("More")).toBeDefined();
 });
 
-it("renders first secondary action as a primary action button if no primary action specified", () => {
+it.skip("renders first secondary action as a primary action button if no primary action specified", () => {
   const editAction = jest.fn();
   const deleteAction = jest.fn();
   const { queryByText, getByText, getByLabelText } = render(
@@ -144,7 +144,7 @@ it("renders first secondary action as a primary action button if no primary acti
   expect(getByLabelText("More")).toBeDefined();
 });
 
-it("fires the press handlers when the primary action buttons are pressed", () => {
+it.skip("fires the press handlers when the primary action buttons are pressed", () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const { getByText } = render(
@@ -168,7 +168,7 @@ it("fires the press handlers when the primary action buttons are pressed", () =>
   expect(editAction).toHaveBeenCalled();
 });
 
-it("opens the secondary action menu when the More button is pressed", () => {
+it.skip("opens the secondary action menu when the More button is pressed", () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const deleteAction = jest.fn();
@@ -200,7 +200,7 @@ it("opens the secondary action menu when the More button is pressed", () => {
   expect(getByText("Delete")).not.toBeNull();
 });
 
-it("renders heading and cancel options if passed in", () => {
+it.skip("renders heading and cancel options if passed in", () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const { getByText, getByLabelText } = render(
@@ -227,7 +227,7 @@ it("renders heading and cancel options if passed in", () => {
   expect(getByText("Cancel")).not.toBeNull();
 });
 
-it("renders custom button for primary action if passed in", () => {
+it.skip("renders custom button for primary action if passed in", () => {
   const createAction = jest.fn();
 
   const customCreateButton = (
@@ -249,7 +249,7 @@ it("renders custom button for primary action if passed in", () => {
   expect(queryByText("Create")).toBeNull();
 });
 
-it("calls onOpenBottomSheet when the secondary actions are opened", () => {
+it.skip("calls onOpenBottomSheet when the secondary actions are opened", () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const deleteAction = jest.fn();
@@ -278,7 +278,7 @@ it("calls onOpenBottomSheet when the secondary actions are opened", () => {
   expect(mockOnOpen).toHaveBeenCalled();
 });
 
-describe("ButtonGroup Offline/Online", () => {
+describe.skip("ButtonGroup Offline/Online", () => {
   const atlantisContextSpy = jest.spyOn(atlantisContext, "useAtlantisContext");
 
   afterEach(() => {

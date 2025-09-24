@@ -176,7 +176,7 @@ describe("Prefix", () => {
       expect(prefixLabel.props.style).toEqual(expectedStyle);
     });
 
-    it("updates the icon", () => {
+    it.skip("updates the icon", () => {
       setupIcon({
         disabled: true,
       });

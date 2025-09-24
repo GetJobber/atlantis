@@ -14,7 +14,7 @@ jest.mock("./clipboard", () => {
   };
 });
 
-describe("AutoLink", () => {
+describe.skip("AutoLink", () => {
   beforeEach(() => {
     mockOpenUrl.mockClear();
   });

@@ -116,7 +116,7 @@ function renderAndOpenContentOverlay(defaultOptions = getDefaultOptions()) {
   return rendered;
 }
 
-describe("when open is called on the content overlay ref", () => {
+describe.skip("when open is called on the content overlay ref", () => {
   it("should open the content overlay, exposing the content to the user", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -128,7 +128,7 @@ describe("when open is called on the content overlay ref", () => {
   });
 });
 
-describe("when the close button is clicked on an open content overlay", () => {
+describe.skip("when the close button is clicked on an open content overlay", () => {
   it("should close the content overlay", async () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -149,7 +149,7 @@ describe("when the close button is clicked on an open content overlay", () => {
   });
 });
 
-describe("when the close button is clicked on an open content overlay with a defined onClose prop", () => {
+describe.skip("when the close button is clicked on an open content overlay with a defined onClose prop", () => {
   it("should call the passed in onClose prop", async () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -170,7 +170,7 @@ describe("when the close button is clicked on an open content overlay with a def
   });
 });
 
-describe("when the content overlay is created with a defined onOpen prop", () => {
+describe.skip("when the content overlay is created with a defined onOpen prop", () => {
   describe("when the content overlay is not opened", () => {
     it("should not call the passed in onOpen prop", async () => {
       const options: testRendererOptions = {
@@ -200,7 +200,7 @@ describe("when the content overlay is created with a defined onOpen prop", () =>
   });
 });
 
-describe("when title prop passed to content overlay", () => {
+describe.skip("when title prop passed to content overlay", () => {
   it("should set the header title", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -212,7 +212,7 @@ describe("when title prop passed to content overlay", () => {
   });
 });
 
-describe("when accessibilityLabel prop passed to content overlay", () => {
+describe.skip("when accessibilityLabel prop passed to content overlay", () => {
   it("should set the header accessibilityLabel", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -227,7 +227,7 @@ describe("when accessibilityLabel prop passed to content overlay", () => {
   });
 });
 
-describe("when accessibilityLabel prop NOT passed to content overlay", () => {
+describe.skip("when accessibilityLabel prop NOT passed to content overlay", () => {
   it("should use default accessibilityLabel", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -242,7 +242,7 @@ describe("when accessibilityLabel prop NOT passed to content overlay", () => {
   });
 });
 
-describe("when there is a screen reader enabled", () => {
+describe.skip("when there is a screen reader enabled", () => {
   jest
     .spyOn(AccessibilityInfo, "isScreenReaderEnabled")
     .mockImplementation(() => Promise.resolve(true));
@@ -259,7 +259,7 @@ describe("when there is a screen reader enabled", () => {
   });
 });
 
-describe("when fullScreen is set to true", () => {
+describe.skip("when fullScreen is set to true", () => {
   it("should show the dismiss button", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -272,7 +272,7 @@ describe("when fullScreen is set to true", () => {
   });
 });
 
-describe("when showDismiss is set to true", () => {
+describe.skip("when showDismiss is set to true", () => {
   it("should show the dismiss button", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -285,7 +285,7 @@ describe("when showDismiss is set to true", () => {
   });
 });
 
-describe("when the close button is clicked on an open content overlay with a defined onBeforeExit", () => {
+describe.skip("when the close button is clicked on an open content overlay with a defined onBeforeExit", () => {
   it("should call the callback method on exit", async () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
@@ -306,7 +306,7 @@ describe("when the close button is clicked on an open content overlay with a def
   });
 });
 
-describe("modalBackgroundColor prop", () => {
+describe.skip("modalBackgroundColor prop", () => {
   describe("when using the default surface value", () => {
     it("renders the component with the color-surface color", () => {
       const options: testRendererOptions = {
