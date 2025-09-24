@@ -189,8 +189,3 @@ export interface MenuTriggerComposableProps {
 }
 
 export interface MenuSeparatorComposableProps extends UnsafeProps {}
-
-export type AnimationState = "unmounted" | "hidden" | "visible";
-export interface MenuMobileUnderlayProps {
-  readonly animation: AnimationState;
-}

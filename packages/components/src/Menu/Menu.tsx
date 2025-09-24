@@ -1,11 +1,5 @@
 import type { MouseEvent, ReactElement, RefObject } from "react";
-import React, {
-  createContext,
-  useContext,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import React, { useId, useRef, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -37,13 +31,11 @@ import {
 import styles from "./Menu.module.css";
 import type {
   ActionProps,
-  AnimationState,
   MenuComposableProps,
   MenuContentComposableProps,
   MenuHeaderComposableProps,
   MenuItemComposableProps,
   MenuLegacyProps,
-  MenuMobileUnderlayProps,
   MenuSectionComposableProps,
   MenuSeparatorComposableProps,
   MenuTriggerComposableProps,
@@ -63,11 +55,6 @@ import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 import { calculateMaxHeight } from "../utils/maxHeight";
-
-const composeOverlayVariation = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
 
 const variation = {
   overlayStartStop: { opacity: 0 },
@@ -95,8 +82,6 @@ function isLegacy(
 ): props is MenuLegacyProps {
   return "items" in props;
 }
-
-const MotionMenu = motion.create(AriaMenu);
 
 // Overload declarations (no bodies)
 export function Menu(props: MenuLegacyProps): ReactElement;
@@ -386,40 +371,15 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
   return <FloatingPortal>{children}</FloatingPortal>;
 }
 
-interface MenuAnimationContextValue {
-  state: AnimationState;
-  setState: React.Dispatch<React.SetStateAction<AnimationState>>;
-}
-const MenuAnimationContext = createContext<MenuAnimationContextValue | null>(
-  null,
-);
-
-function useMenuAnimation(): MenuAnimationContextValue {
-  const ctx = useContext(MenuAnimationContext);
-
-  if (!ctx) {
-    throw new Error("MenuAnimationContext used outside provider");
-  }
-
-  return ctx;
-}
-
 function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
-  const [animation, setAnimation] = useState<AnimationState>("unmounted");
-
   return (
-    <MenuAnimationContext.Provider
-      value={{ state: animation, setState: setAnimation }}
+    <AriaMenuTrigger
+      onOpenChange={isOpen => {
+        onOpenChange?.(isOpen);
+      }}
     >
-      <AriaMenuTrigger
-        onOpenChange={isOpen => {
-          setAnimation(isOpen ? "visible" : "hidden");
-          onOpenChange?.(isOpen);
-        }}
-      >
-        {children}
-      </AriaMenuTrigger>
-    </MenuAnimationContext.Provider>
+      {children}
+    </AriaMenuTrigger>
   );
 }
 
@@ -441,71 +401,25 @@ function MenuContentComposable({
   UNSAFE_style,
   UNSAFE_className,
 }: MenuContentComposableProps) {
-  const { state: animation, setState } = useMenuAnimation();
   const isMobile = isMobileDevice();
 
   return (
     <>
-      {/* Keep Popover mounted while exiting, but do not animate it. */}
-      <AriaPopover isExiting={animation === "hidden"} placement="bottom start">
-        {({ placement }) => {
-          const directionModifier = placement?.includes("bottom") ? -1 : 1;
-          const variants = isMobile
-            ? {
-                hidden: { opacity: 0, y: Y_TRANSLATION_MOBILE },
-                visible: { opacity: 1, y: 0 },
-              }
-            : {
-                hidden: {
-                  opacity: 0,
-                  y: Y_TRANSLATION_DESKTOP * directionModifier,
-                },
-                visible: { opacity: 1, y: 0 },
-              };
-
-          return (
-            <MotionMenu
-              key={`menu-content-${placement ?? "pending"}`}
-              className={classnames(styles.menu, UNSAFE_className)}
-              style={UNSAFE_style}
-              variants={variants}
-              initial="hidden"
-              // placement is null on first render cycle, so we need to wait for it to be defined
-              animate={placement ? animation : false}
-              transition={{ ...MENU_ANIMATION_CONFIG }}
-              onAnimationComplete={animationState => {
-                setState(prev =>
-                  animationState === "hidden" && prev === "hidden"
-                    ? "unmounted"
-                    : prev,
-                );
-              }}
-            >
-              {children}
-            </MotionMenu>
-          );
-        }}
+      <AriaPopover
+        placement="bottom start"
+        className={classnames(styles.ariaPopover, styles.menu)}
+      >
+        <AriaMenu className={UNSAFE_className} style={UNSAFE_style}>
+          {children}
+        </AriaMenu>
       </AriaPopover>
-      {isMobile && <MenuMobileUnderlay animation={animation} />}
+      {isMobile && <MenuMobileUnderlay />}
     </>
   );
 }
 
-function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
-  if (animation === "unmounted") return null;
-
-  return (
-    <motion.div
-      key="menu-mobile-underlay"
-      variants={composeOverlayVariation}
-      initial="hidden"
-      transition={{
-        ...OVERLAY_ANIMATION_CONFIG,
-      }}
-      className={styles.overlay}
-      animate={animation}
-    />
-  );
+function MenuMobileUnderlay() {
+  return <div className={styles.overlay} />;
 }
 
 function MenuSeparatorComposable({
