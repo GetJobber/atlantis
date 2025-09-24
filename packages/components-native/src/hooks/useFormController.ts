@@ -43,6 +43,7 @@ export function useFormController<T>({
     defaultValue: value || undefined,
   });
 
+  // The naming convention established by react-hook-form for arrays of fields is, for example, "emails.0.description".
   // Preserve original behavior: only treat three-part names as nested paths.
   // For anything else, perform a flat lookup to avoid behavioral changes.
   const identifiers = fieldName.split(".");
