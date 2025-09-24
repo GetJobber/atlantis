@@ -556,48 +556,38 @@ function MenuHeaderComposable({
 const MenuItemComposable = React.forwardRef<
   React.ElementRef<typeof AriaMenuItem>,
   MenuItemComposableProps
->(function MenuItemComposable(
-  {
-    onClick,
-    children,
-    UNSAFE_style,
-    UNSAFE_className,
-    textValue,
-    href,
-    target,
-    ...rest
-  }: MenuItemComposableProps,
-  ref,
-) {
+>(function MenuItemComposable(props: MenuItemComposableProps, ref) {
+  const { children, UNSAFE_style, UNSAFE_className, textValue } = props;
+
+  if (props.href) {
+    const { href, target, rel, onClick } = props;
+
+    return (
+      <AriaMenuItem
+        ref={ref}
+        className={classnames(styles.action, UNSAFE_className)}
+        style={UNSAFE_style}
+        textValue={textValue}
+        href={href}
+        target={target}
+        rel={rel}
+        onClick={onClick as ((e: React.MouseEvent) => void) | undefined}
+      >
+        {children}
+      </AriaMenuItem>
+    );
+  }
+
   return (
     <AriaMenuItem
       ref={ref}
       className={classnames(styles.action, UNSAFE_className)}
       style={UNSAFE_style}
       textValue={textValue}
-      href={href}
-      target={target}
-      // Forward only the TanStack Router onClick when this item is a link.
-      // This allows SPA navigation without exposing arbitrary props.
-      onClick={
-        href
-          ? ((): ((event: unknown) => void) | undefined => {
-              const maybeClick = (rest as Record<string, unknown>)?.onClick;
-
-              return typeof maybeClick === "function"
-                ? (maybeClick as (event: unknown) => void)
-                : undefined;
-            })()
-          : undefined
-      }
-      onAction={
-        !href
-          ? () => {
-              // Only call the zero-arg onClick for non-link items.
-              onClick?.();
-            }
-          : undefined
-      }
+      onAction={() => {
+        // Zero-arg activation for non-link items
+        props.onClick?.();
+      }}
     >
       {children}
     </AriaMenuItem>

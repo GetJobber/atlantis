@@ -1,4 +1,5 @@
 import type { IconColorNames, IconNames } from "@jobber/design";
+import type React from "react";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
 
 export interface MenuLegacyProps extends MenuBaseProps {
@@ -144,9 +145,10 @@ export interface MenuHeaderComposableProps extends UnsafeProps {
 
 export interface MenuItemComposableProps extends UnsafeProps {
   /*
-   * Callback when an item is activated with Space, Enter, click or press.
+   * Callback when an item is activated.
+   * If href is provided, this will be ignored.
    */
-  readonly onClick?: () => void;
+  readonly onClick?: (event?: React.MouseEvent) => void;
 
   /**
    * Menu item content
@@ -168,6 +170,11 @@ export interface MenuItemComposableProps extends UnsafeProps {
    * Target window for the link.
    */
   readonly target?: string;
+
+  /**
+   * Rel attribute for the link.
+   */
+  readonly rel?: string;
 }
 
 export interface MenuContentComposableProps extends UnsafeProps {
