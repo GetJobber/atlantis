@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.96.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.95.0...@jobber/components@6.96.0) (2025-09-23)
+
+
+### Features
+
+* **components:** Adding aria-busy to Button when in a loading state. ([#2592](https://github.com/GetJobber/atlantis/issues/2592)) ([b2a5fe7](https://github.com/GetJobber/atlantis/commit/b2a5fe7254666f8a227e392982816be2b088db5e))
+
+
+
+
+
 # [6.95.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.94.1...@jobber/components@6.95.0) (2025-09-23)
 
 
