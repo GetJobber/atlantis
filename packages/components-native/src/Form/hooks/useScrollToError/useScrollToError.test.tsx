@@ -25,6 +25,7 @@ jest.mock("../../../ErrorMessageWrapper", () => ({
       el: {
         measure: jest.fn((_, callback) => callback()),
         hasErrorMessage: true,
+        accessibilityFocus: jest.fn(),
       },
     },
     register: jest.fn(),
@@ -47,7 +48,7 @@ afterEach(() => {
   handleSetFocus.mockClear();
 });
 
-describe.skip("useScrollToError", () => {
+describe("useScrollToError", () => {
   it("should do nothing if everything is valid", () => {
     renderHook(useScrollToError, { initialProps });
 
