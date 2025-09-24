@@ -1,7 +1,8 @@
 import React from "react";
-import { render, renderHook } from "@testing-library/react-native";
+import { render, renderHook, screen } from "@testing-library/react-native";
 import type { TextStyle } from "react-native";
 import type { ReactTestInstance } from "react-test-renderer";
+import { Path } from "react-native-svg";
 import type { PrefixIconProps, PrefixLabelProps } from "./Prefix";
 import {
   PrefixIcon,
@@ -12,9 +13,6 @@ import {
 import { useTypographyStyles } from "../../../Typography";
 import { useStyles } from "../../InputFieldWrapper.style";
 import { tokens } from "../../../utils/design";
-import * as IconComponent from "../../../Icon/Icon";
-
-const iconSpy = jest.spyOn(IconComponent, "Icon");
 
 const mockLabel = "$";
 
@@ -176,17 +174,13 @@ describe("Prefix", () => {
       expect(prefixLabel.props.style).toEqual(expectedStyle);
     });
 
-    it.skip("updates the icon", () => {
+    it("updates the icon", () => {
       setupIcon({
         disabled: true,
       });
-      expect(iconSpy).toHaveBeenCalledWith(
-        {
-          customColor: tokens["color-disabled"],
-          name: "invoice",
-        },
-        {},
-      );
+      const icon = screen.getByTestId("invoice");
+      const path = icon.findByType(Path);
+      expect(path.props.fill).toEqual(tokens["color-disabled"]);
     });
   });
 
