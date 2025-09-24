@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.97.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.96.0...@jobber/components@6.97.0) (2025-09-24)
+
+
+### Features
+
+* **components:** Upgrade Framer Motion Version ([#2743](https://github.com/GetJobber/atlantis/issues/2743)) ([42599e8](https://github.com/GetJobber/atlantis/commit/42599e860b74076c6d0230faa15e4b5abcc8ccf5))
+
+
+
+
+
 # [6.96.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.95.0...@jobber/components@6.96.0) (2025-09-23)
 
 
