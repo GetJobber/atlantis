@@ -1,12 +1,10 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
+import { Linking } from "react-native";
 import { copyTextToClipboard } from "./clipboard";
 import { AutoLink } from "./AutoLink";
 
-const mockOpenUrl = jest.fn();
-jest.mock("react-native/Libraries/Linking/Linking", () => ({
-  openURL: mockOpenUrl,
-}));
+const mockOpenUrl = jest.spyOn(Linking, "openURL").mockImplementation();
 
 jest.mock("./clipboard", () => {
   return {
@@ -14,7 +12,7 @@ jest.mock("./clipboard", () => {
   };
 });
 
-describe.skip("AutoLink", () => {
+describe("AutoLink", () => {
   beforeEach(() => {
     mockOpenUrl.mockClear();
   });
