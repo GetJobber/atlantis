@@ -16,7 +16,7 @@
     "packages/site"
   ],
   "scripts": {
-    "bootstrap": "npm run bootstrap --workspaces --if-present",
+    "bootstrap": "nx affected --target=bootstrap",
     "build": "./scripts/build.sh",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
     "ci:release": "lerna publish --yes --no-private",
