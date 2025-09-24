@@ -169,15 +169,11 @@ describe("when all of the checkboxes in a group are checked", () => {
 });
 
 describe("when the parent checkbox does not have a label", () => {
-  it.skip("does not render the parent checkbox", async () => {
+  it("does not render the parent checkbox", async () => {
     const { checkboxGroup } = setup(undefined);
 
-    const findParentCheckbox = () => {
-      checkboxGroup.getByLabelText(parentCheckboxLabel);
-    };
-    expect(findParentCheckbox).toThrow(
-      "Unable to find an element with accessibilityLabel: all condiments",
-    );
+    const parentCheckbox = checkboxGroup.queryByLabelText(parentCheckboxLabel);
+    expect(parentCheckbox).toBeNull();
   });
 });
 
