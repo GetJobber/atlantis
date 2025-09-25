@@ -1,4 +1,4 @@
-import type { Clearable } from "@jobber/hooks/useShowClear";
+import type { Clearable } from "@jobber/hooks";
 import type { InputMaskProps } from "./InputMask";
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 

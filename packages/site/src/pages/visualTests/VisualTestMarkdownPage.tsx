@@ -5,6 +5,9 @@ export const VisualTestMarkdownPage = () => {
   const complexContent = `
 # Heading 1
 ## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
 
 This is a paragraph with **bold** and _italic_ text.
 
@@ -75,6 +78,36 @@ This is a paragraph with **bold** and _italic_ text.
                     console.log("Link clicked:", target.href);
                   }}
                 />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* With telephone link */}
+          <section>
+            <Text size="large">With telephone link</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Markdown content="Call us at [1-888-424-5301](tel:18884245301)" />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* With SMS link */}
+          <section>
+            <Text size="large">With SMS link</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Markdown content="Text us at [1-888-424-5301](sms:18884245301)" />
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          {/* With email link */}
+          <section>
+            <Text size="large">With email link</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Markdown content="Email us at [hello@getjobber.com](mailto:hello@getjobber.com)" />
               </Grid.Cell>
             </Grid>
           </section>

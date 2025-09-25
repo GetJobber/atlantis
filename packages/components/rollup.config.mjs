@@ -1,6 +1,4 @@
 /* eslint-disable import/no-default-export */
-import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
@@ -12,10 +10,6 @@ import tools from "@csstools/postcss-global-data";
 import presetenv from "postcss-preset-env";
 import multiInput from "rollup-plugin-multi-input";
 import nodePolyfills from "rollup-plugin-polyfill-node";
-import alias from "@rollup/plugin-alias";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 /**
  * When PREBUILD_CSS is supplied, only build the main index.ts file.
@@ -31,15 +25,6 @@ export default {
   input: PREBUILD_CSS ? "src/index.ts" : `src/**/index.{ts,tsx}`,
   plugins: [
     nodePolyfills(),
-    alias({
-      entries: [
-        {
-          find: /@jobber\/hooks\/(.*)/,
-          replacement: (_, p1) =>
-            resolve(__dirname, `../hooks/dist/${p1}/${p1}.js`),
-        },
-      ],
-    }),
     nodeResolve(),
     multiInput.default(),
     typescript({
@@ -152,6 +137,7 @@ export default {
   ],
   external: [
     "react",
+    "react/jsx-runtime",
     "react-hook-form",
     "react-router-dom",
     "react-dom",

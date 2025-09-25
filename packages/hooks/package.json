@@ -1,12 +1,114 @@
 {
   "name": "@jobber/hooks",
-  "version": "2.17.4",
+  "version": "2.18.1",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./dist": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./useBool": {
+      "types": "./dist/useBool/index.d.ts",
+      "import": "./dist/useBool/index.mjs",
+      "require": "./dist/useBool/index.cjs"
+    },
+    "./useBreakpoints": {
+      "types": "./dist/useBreakpoints/index.d.ts",
+      "import": "./dist/useBreakpoints/index.mjs",
+      "require": "./dist/useBreakpoints/index.cjs"
+    },
+    "./useCallbackRef": {
+      "types": "./dist/useCallbackRef/index.d.ts",
+      "import": "./dist/useCallbackRef/index.mjs",
+      "require": "./dist/useCallbackRef/index.cjs"
+    },
+    "./useCollectionQuery": {
+      "types": "./dist/useCollectionQuery/index.d.ts",
+      "import": "./dist/useCollectionQuery/index.mjs",
+      "require": "./dist/useCollectionQuery/index.cjs"
+    },
+    "./useDebounce": {
+      "types": "./dist/useDebounce/index.d.ts",
+      "import": "./dist/useDebounce/index.mjs",
+      "require": "./dist/useDebounce/index.cjs"
+    },
+    "./useFocusTrap": {
+      "types": "./dist/useFocusTrap/index.d.ts",
+      "import": "./dist/useFocusTrap/index.mjs",
+      "require": "./dist/useFocusTrap/index.cjs"
+    },
+    "./useFormState": {
+      "types": "./dist/useFormState/index.d.ts",
+      "import": "./dist/useFormState/index.mjs",
+      "require": "./dist/useFormState/index.cjs"
+    },
+    "./useInView": {
+      "types": "./dist/useInView/index.d.ts",
+      "import": "./dist/useInView/index.mjs",
+      "require": "./dist/useInView/index.cjs"
+    },
+    "./useIsMounted": {
+      "types": "./dist/useIsMounted/index.d.ts",
+      "import": "./dist/useIsMounted/index.mjs",
+      "require": "./dist/useIsMounted/index.cjs"
+    },
+    "./useLiveAnnounce": {
+      "types": "./dist/useLiveAnnounce/index.d.ts",
+      "import": "./dist/useLiveAnnounce/index.mjs",
+      "require": "./dist/useLiveAnnounce/index.cjs"
+    },
+    "./useOnKeyDown": {
+      "types": "./dist/useOnKeyDown/index.d.ts",
+      "import": "./dist/useOnKeyDown/index.mjs",
+      "require": "./dist/useOnKeyDown/index.cjs"
+    },
+    "./useOnMount": {
+      "types": "./dist/useOnMount/index.d.ts",
+      "import": "./dist/useOnMount/index.mjs",
+      "require": "./dist/useOnMount/index.cjs"
+    },
+    "./useRefocusOnActivator": {
+      "types": "./dist/useRefocusOnActivator/index.d.ts",
+      "import": "./dist/useRefocusOnActivator/index.mjs",
+      "require": "./dist/useRefocusOnActivator/index.cjs"
+    },
+    "./useResizeObserver": {
+      "types": "./dist/useResizeObserver/index.d.ts",
+      "import": "./dist/useResizeObserver/index.mjs",
+      "require": "./dist/useResizeObserver/index.cjs"
+    },
+    "./useSafeLayoutEffect": {
+      "types": "./dist/useSafeLayoutEffect/index.d.ts",
+      "import": "./dist/useSafeLayoutEffect/index.mjs",
+      "require": "./dist/useSafeLayoutEffect/index.cjs"
+    },
+    "./useShowClear": {
+      "types": "./dist/useShowClear/index.d.ts",
+      "import": "./dist/useShowClear/index.mjs",
+      "require": "./dist/useShowClear/index.cjs"
+    },
+    "./useStepper": {
+      "types": "./dist/useStepper/index.d.ts",
+      "import": "./dist/useStepper/index.mjs",
+      "require": "./dist/useStepper/index.cjs"
+    },
+    "./useWindowDimensions": {
+      "types": "./dist/useWindowDimensions/index.d.ts",
+      "import": "./dist/useWindowDimensions/index.mjs",
+      "require": "./dist/useWindowDimensions/index.cjs"
+    }
+  },
   "scripts": {
-    "build": "tsc --project . --skipLibCheck",
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "build": "rollup -c rollup.config.mjs",
+    "clean": "rm -rf dist tsconfig.*tsbuildinfo",
     "bootstrap": "npm run clean; npm run build",
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
     "entryPoints:clean": "npm run entryPoints:build clean",
@@ -20,7 +122,7 @@
   ],
   "devDependencies": {
     "@apollo/react-testing": "^4.0.0",
-    "@jobber/formatters": "^0.4.2",
+    "@jobber/formatters": "^0.5.0",
     "@types/lodash": "4.14.136",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",

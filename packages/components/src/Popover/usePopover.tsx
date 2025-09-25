@@ -9,7 +9,7 @@ import {
   useFloating,
 } from "@floating-ui/react";
 import { useMemo, useState } from "react";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import type { PopoverProps } from "./Popover.types";
 
 const POPOVER_OFFSET = 10;

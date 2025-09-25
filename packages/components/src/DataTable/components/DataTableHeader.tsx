@@ -6,7 +6,7 @@ export function DataTableHeader(
   props: PropsWithChildren<React.HTMLAttributes<HTMLTableSectionElement>>,
 ) {
   return (
-    <thead className={classNames(styles.header, props.className)} {...props}>
+    <thead {...props} className={classNames(styles.header, props.className)}>
       <tr>{props.children}</tr>
     </thead>
   );

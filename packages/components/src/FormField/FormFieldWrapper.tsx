@@ -1,7 +1,7 @@
 import type { PropsWithChildren, ReactNode, RefObject } from "react";
 import React, { useRef } from "react";
-import type { Clearable } from "@jobber/hooks/useShowClear";
-import { useShowClear } from "@jobber/hooks/useShowClear";
+import type { Clearable } from "@jobber/hooks";
+import { useShowClear } from "@jobber/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import type { FormFieldProps } from "./FormFieldTypes";

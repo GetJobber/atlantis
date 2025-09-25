@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.88.0...@jobber/design@0.89.0) (2025-09-24)
+
+
+### Features
+
+* **design:** add new icons (flash + variants, shape, text) ([#2750](https://github.com/GetJobber/atlantis/issues/2750)) ([4a82cae](https://github.com/GetJobber/atlantis/commit/4a82caee36040a95e45b7b18fabb74f2c5a78272))
+
+
+
+
+
+# [0.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.87.0...@jobber/design@0.88.0) (2025-09-19)
+
+
+### Features
+
+* **design:** Update color-disabled token ([#2735](https://github.com/GetJobber/atlantis/issues/2735)) ([d8105cf](https://github.com/GetJobber/atlantis/commit/d8105cf6aa3c83cdb9c50670eb8a8bd2e03c4fca))
+
+
+
+
+
 # [0.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.86.0...@jobber/design@0.87.0) (2025-09-08)
 
 

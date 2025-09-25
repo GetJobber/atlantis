@@ -13,7 +13,7 @@ export function DataTablePagination({
   ...props
 }: DataTablePaginationProps) {
   return (
-    <div className={classNames(styles.pagination, className)} {...props}>
+    <div {...props} className={classNames(styles.pagination, className)}>
       {children}
     </div>
   );

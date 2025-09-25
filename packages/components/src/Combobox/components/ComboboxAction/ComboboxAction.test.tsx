@@ -66,4 +66,49 @@ describe("ComboboxAction", () => {
 
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
+
+  describe("visible prop", () => {
+    it("renders the action when visible is not provided", () => {
+      renderAction([{ label: "Action", onClick }]);
+
+      expect(screen.getByText("Action")).toBeInTheDocument();
+    });
+
+    it("renders the action when visible is true", () => {
+      renderAction([{ label: "Action", onClick, visible: true }]);
+
+      expect(screen.getByText("Action")).toBeInTheDocument();
+    });
+
+    it("does not render the action when visible is false", () => {
+      renderAction([{ label: "Action", onClick, visible: false }]);
+
+      expect(screen.queryByText("Action")).not.toBeInTheDocument();
+    });
+
+    it("renders the action when visible function shows action for empty searchValue", () => {
+      renderAction([
+        {
+          label: "Action",
+          onClick,
+          visible: ({ searchValue }: { searchValue: string }) => !searchValue,
+        },
+      ]);
+
+      expect(screen.getByText("Action")).toBeInTheDocument();
+    });
+
+    it("does not render the action when visible function returns false for empty searchValue", () => {
+      renderAction([
+        {
+          label: "Action",
+          onClick,
+          visible: ({ searchValue }: { searchValue: string }) =>
+            Boolean(searchValue),
+        },
+      ]);
+
+      expect(screen.queryByText("Action")).not.toBeInTheDocument();
+    });
+  });
 });

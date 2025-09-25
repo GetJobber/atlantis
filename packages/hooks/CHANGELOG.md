@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.18.0...@jobber/hooks@2.18.1) (2025-09-23)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.4...@jobber/hooks@2.18.0) (2025-09-16)
+
+
+### Features
+
+* **hooks:** Update hooks and formatters to build with rollup ([#2722](https://github.com/GetJobber/atlantis/issues/2722)) ([aa8a44c](https://github.com/GetJobber/atlantis/commit/aa8a44ce120c8f2d3e2f6a95bf3adda5d4867faf)), closes [#2700](https://github.com/GetJobber/atlantis/issues/2700) [#2698](https://github.com/GetJobber/atlantis/issues/2698)
+
+
+
+
+
 ## [2.17.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.3...@jobber/hooks@2.17.4) (2025-09-02)
 
 

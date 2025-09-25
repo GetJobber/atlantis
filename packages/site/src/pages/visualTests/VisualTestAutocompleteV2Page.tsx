@@ -16,6 +16,7 @@ function AutoV2Demo({
   initialInputValue,
   loading,
   emptyStateMessage,
+  disabled,
 }: {
   readonly placeholder: string;
   readonly menu: AutocompleteRebuiltProps<OptionV2, false>["menu"];
@@ -23,6 +24,7 @@ function AutoV2Demo({
   readonly initialInputValue?: string;
   readonly loading?: boolean;
   readonly emptyStateMessage?: React.ReactNode | false;
+  readonly disabled?: boolean;
 }) {
   const [value, setValue] = useState<OptionV2 | undefined>(initialValue);
   const [inputValue, setInputValue] = useState<string>(
@@ -40,6 +42,7 @@ function AutoV2Demo({
       menu={menu}
       loading={loading}
       emptyStateMessage={emptyStateMessage}
+      disabled={disabled}
     />
   );
 }
@@ -250,6 +253,13 @@ export const VisualTestAutocompleteV2Page = () => {
                 <AutoV2Demo
                   placeholder="Empty: text header + interactive footer"
                   menu={emptyWithHeaderFooterMenu}
+                />
+              </Grid.Cell>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <AutoV2Demo
+                  placeholder="Disabled state"
+                  menu={flatOnlyMenu}
+                  disabled
                 />
               </Grid.Cell>
             </Grid>
