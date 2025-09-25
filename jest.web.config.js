@@ -24,5 +24,9 @@ module.exports = {
     "/packages/generators/templates/",
     "/packages/components-native/",
   ],
-  transformIgnorePatterns: ["node_modules/(?!@codesandbox/sandpack-react)/"],
+  modulePathIgnorePatterns: ["/node_modules.e2e/"],
+  transformIgnorePatterns: [
+    "node_modules/(?!@codesandbox/sandpack-react)/",
+    "/node_modules.e2e/",
+  ],
 };
