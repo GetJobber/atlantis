@@ -500,6 +500,8 @@
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@storybook/addon-a11y": "^9.1.1",
+    "@storybook/react-vite": "^9.1.1",
     "@types/glob": "^7.1.1",
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.4.1",
@@ -512,6 +514,7 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-postcss": "^4.0.2",
+    "storybook": "^9.1.1",
     "typed-css-modules": "^0.7.0"
   },
   "peerDependencies": {
