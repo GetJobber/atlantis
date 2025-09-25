@@ -1,0 +1,272 @@
+# FormatRelativeDateTime
+
+# FormatRelativeDateTime
+
+A FormatRelateDateTime displays the date and time using relative wording or
+approximate values. This component only represents current date and dates in the
+past. No future dating.
+
+## Rules
+
+If the message was received less than an hour ago the format is x minutes ago.
+
+If the message was received today, but more than an hour ago, the format becomes
+the hours and minutes it was received at.
+
+If the message was received within the last six days, the format is Sun, Mon,
+Tue, Wed, Thu, Fri, Sat.
+
+If the message was received between six days ago and yesterday’s date one year
+previous, the format is Month Date.
+
+If the message was received exactly one year ago or more than one year ago, the
+format is Month Day, Year.
+
+## Web Component Code
+
+```tsx
+FormatRelativeDateTime  Web React import React from "react";
+
+interface FormatRelativeDateTimeProps {
+  /**
+   * Date to be displayed.
+   *
+   * A `string` should be an ISO 8601 format date string.
+   */
+  readonly date: Date | string;
+}
+
+export function FormatRelativeDateTime({
+  date: inputDate,
+}: FormatRelativeDateTimeProps) {
+  let dateObject: Date;
+
+  if (inputDate instanceof Date) {
+    dateObject = inputDate;
+  } else {
+    dateObject = new Date(inputDate);
+  }
+
+  const now = Date.now() / 1000; //seconds
+  const date = dateObject;
+  const delta = now - date.getTime() / 1000; //seconds;
+
+  switch (relativeTimeRange(delta)) {
+    case "less than an hour":
+      return <>{showMinutes(Math.round(delta / 60))}</>;
+    case "less then a day":
+      return (
+        <>
+          {date.toLocaleTimeString(undefined, {
+            hour: "numeric",
+            minute: "numeric",
+          })}
+        </>
+      );
+    case "less than a week":
+      return <>{strFormatDate(date, { weekday: "short" })}</>;
+    case "less than a year":
+      return <>{strFormatDate(date, { month: "short", day: "numeric" })}</>;
+    default:
+      return (
+        <>
+          {strFormatDate(date, {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </>
+      );
+  }
+}
+
+function relativeTimeRange(delta: number) {
+  delta = delta / 60;
+  if (delta < 60) return "less than an hour";
+
+  delta = delta / 60;
+  if (delta < 24) return "less then a day";
+
+  delta = delta / 24;
+  if (delta < 7) return "less than a week";
+
+  delta = delta / 365;
+  if (delta < 1) return "less than a year";
+
+  return "a year or more";
+}
+
+function strFormatDate(date: Date, options: { [key: string]: string }) {
+  return date.toLocaleDateString(undefined, options);
+}
+
+function showMinutes(minutes: number) {
+  if (minutes <= 1) {
+    return "1 minute ago";
+  } else {
+    return minutes + " minutes ago";
+  }
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop   | Type    | Required | Default | Description |
+| ------ | ------- | -------- | ------- | ----------- | --------------------- |
+| `date` | `string | Date`    | ✅      | `_none_`    | Date to be displayed. |
+
+A `string` should be an ISO 8601 format date string. |
+
+## Categories
+
+- Utilities
+
+## Web Test Code
+
+```typescript
+FormatRelativeDateTime  Web React Test Testing Jest import React from "react";
+import { render } from "@testing-library/react";
+import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
+
+describe.skip("Less than an hour ago", () => {
+  const testDate = new Date();
+  testDate.setMinutes(testDate.getMinutes() - 5);
+  const dates = getMockDates(testDate);
+
+  it.each(Object.entries(dates))("renders x minutes ago for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText("5 minutes ago")).toBeDefined();
+  });
+});
+
+describe("Less than a minute ago", () => {
+  const testDate = new Date();
+  testDate.setSeconds(testDate.getSeconds() - 25);
+  const dates = getMockDates(testDate);
+
+  it.each(Object.entries(dates))("renders 1 minute ago for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText("1 minute ago")).toBeDefined();
+  });
+});
+
+describe("Less than a day ago", () => {
+  const testDate = new Date();
+  testDate.setHours(testDate.getHours() - 9);
+  const dates = getMockDates(testDate);
+
+  it.each(Object.entries(dates))("renders time ago for %s", (_, value) => {
+    const expectedTime = testDate
+      .toLocaleTimeString(undefined, {
+        hour: "numeric",
+        minute: "numeric",
+      })
+      // The space between  HH:MM and AM/PM is a non-breaking space which
+      // breaks the test.
+      .replace(/[\u202F]/, " ");
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText(expectedTime, { exact: false })).toBeDefined();
+  });
+});
+
+describe("Less than 7 days ago", () => {
+  const testDate = new Date();
+  testDate.setDate(testDate.getDate() - 3);
+  const dates = getMockDates(testDate);
+
+  it.each(Object.entries(dates))("renders the day for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(
+      getByText(testDate.toLocaleDateString(undefined, { weekday: "short" })),
+    ).toBeDefined();
+  });
+});
+
+describe("Less than 1 year ago", () => {
+  const testDate = new Date();
+  testDate.setDate(testDate.getDate() - 60);
+  const dates = getMockDates(testDate);
+
+  it.each(Object.entries(dates))(
+    "renders the month and date for %s",
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
+      expect(
+        getByText(
+          testDate.toLocaleDateString(undefined, {
+            month: "short",
+            day: "numeric",
+          }),
+        ),
+      ).toBeDefined();
+    },
+  );
+});
+
+describe("Yesterday's date 1 year previous (border case)", () => {
+  const testDate = new Date();
+  testDate.setFullYear(testDate.getFullYear() - 1);
+  testDate.setDate(testDate.getDate() + 2); //The +2 vs. +1 is a fudge for leap year
+  const dates = getMockDates(testDate);
+
+  it.each(Object.entries(dates))(
+    "renders the month and date for %s",
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
+      expect(
+        getByText(
+          testDate.toLocaleDateString(undefined, {
+            month: "short",
+            day: "numeric",
+          }),
+        ),
+      ).toBeDefined();
+    },
+  );
+});
+
+describe("Over a year ago", () => {
+  const testDate = new Date();
+  testDate.setFullYear(testDate.getFullYear() - 2);
+  const dates = getMockDates(testDate);
+
+  it.each(Object.entries(dates))(
+    "renders the month day, year for %s",
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
+      expect(
+        getByText(
+          testDate.toLocaleDateString(undefined, {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          }),
+        ),
+      ).toBeDefined();
+    },
+  );
+});
+
+function getMockDates(date: Date) {
+  return {
+    Date: date,
+    ISO8601DateString: getISOString(date),
+  };
+}
+
+function getISOString(date: Date) {
+  return date.toISOString();
+}
+
+```
+
+## Component Path
+
+`/components/FormatRelativeDateTime`
+
+---
+
+_Generated on 2025-08-21T17:35:16.361Z_

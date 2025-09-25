@@ -1,0 +1,618 @@
+# MultiSelect
+
+# Multi Select
+
+The MultiSelect component gives our users the possibility to select multiple
+options from a menu.
+
+## Design & usage guidelines
+
+The goal of the MultiSelect component is to allow a user to check multiple
+options within a list of items.
+
+A user can click on the element to expand it and display the multiple options.
+The element will display the selected options or the placeholder text if none
+are selected.
+
+Every time an option is checked or unchecked, a behavior can be triggered using
+the `onOptionsChange` prop.
+
+Adjusting the
+[size](../?path=/story/components-selections-multiselect-web--sizes) of the
+MultiSelect can be used to help align with common adjacent elements such as
+[InputText](/components/InputText) or [Select](/components/Select).
+
+## Accessibility
+
+The MultiSelect trigger element contains a downward-pointing-arrow to visually
+hint that it can be expanded.
+
+Features and behavior are announced to the user when using a screen reader.
+
+| Shortcut Keys                        | Action                            |
+| ------------------------------------ | --------------------------------- |
+| Tab                                  | Focus MultiSelect trigger element |
+| Space or Enter/Return                | Display options                   |
+| Tab or ArrowDown/ArrowUp             | Navigate through options          |
+| Space or Enter/Return                | Check/uncheck options             |
+| Escape or click out or click trigger | Close the menu                    |
+
+## Web Component Code
+
+```tsx
+MultiSelect Dropdown Menu Web React import type {
+  Dispatch,
+  KeyboardEvent,
+  MouseEvent,
+  MutableRefObject,
+} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import classNames from "classnames";
+import styles from "./DropDownMenu.module.css";
+import type { Option, Options } from "./types";
+import { Checkbox } from "../Checkbox";
+
+interface DropDownMenuProps {
+  /**
+   * List of options to be selected
+   * @default false
+   */
+  readonly options: Options;
+
+  /**
+   * Change handler.
+   */
+  readonly setOptions: Dispatch<React.SetStateAction<Options>>;
+}
+
+export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const menuDiv = useRef() as MutableRefObject<HTMLUListElement>;
+
+  const handleOptionClick = useCallback((clickedOption: Option) => {
+    setOptions(current =>
+      current.map(option => {
+        if (option.label == clickedOption.label) {
+          return { ...option, checked: !clickedOption.checked };
+        }
+
+        return option;
+      }),
+    );
+  }, []);
+
+  function handleOptionHover(event: MouseEvent<HTMLLIElement>, index: number) {
+    event.preventDefault();
+    setHighlightedIndex(index);
+  }
+
+  function handleOptionFocus(index: number) {
+    setHighlightedIndex(index);
+
+    if (menuDiv.current) {
+      const option = menuDiv.current.children[index].querySelector("input");
+      option?.focus();
+    }
+  }
+
+  function scrollMenuIfItemNotInView(
+    menuDivElement: HTMLUListElement,
+    direction: "up" | "down",
+  ) {
+    const itemDiv = menuDivElement.querySelector(
+      `:nth-child(${highlightedIndex + 1})`,
+    ) as HTMLButtonElement;
+
+    if (!itemDiv) return;
+
+    const menuTop = menuDivElement.getBoundingClientRect().top;
+    const {
+      top: itemTop,
+      height: itemHeight,
+      bottom: itemBottom,
+    } = itemDiv.getBoundingClientRect();
+    const itemTrueBottom = itemBottom + itemHeight;
+    const menuBottom = menuDivElement.getBoundingClientRect().bottom;
+
+    if (direction == "up" && itemTop - itemHeight < menuTop) {
+      menuDivElement.scrollTop -= itemHeight;
+    } else if (direction == "down" && itemTrueBottom > menuBottom) {
+      menuDivElement.scrollTop += itemHeight;
+    }
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLUListElement>) {
+    const { key, metaKey, ctrlKey } = event;
+
+    if (metaKey || ctrlKey) return;
+
+    switch (key) {
+      case "Enter": {
+        if (highlightedIndex >= 0) {
+          handleOptionClick(options[highlightedIndex]);
+        }
+        break;
+      }
+      case "ArrowDown": {
+        handlePressDown(event);
+        break;
+      }
+      case "ArrowUp": {
+        handlePressUp(event);
+        break;
+      }
+    }
+  }
+
+  useEffect(() => {
+    // focus first option
+    handleOptionFocus(0);
+  }, [menuDiv]);
+
+  return (
+    <ul
+      data-testid="dropdown-menu"
+      data-elevation={"elevated"}
+      className={styles.dropDownMenuContainer}
+      ref={menuDiv}
+      onKeyDown={handleKeyDown}
+    >
+      {options.map((option, index) => {
+        const optionClass = classNames(styles.option, {
+          [styles.active]: index === highlightedIndex,
+        });
+
+        return (
+          <li
+            key={`${index}-${option.label}`}
+            className={optionClass}
+            onClick={event => {
+              event.stopPropagation();
+              event.preventDefault();
+              handleOptionClick(option);
+            }}
+            onMouseOver={e => handleOptionHover(e, index)}
+          >
+            <Checkbox
+              label={option.label}
+              checked={option.checked}
+              onFocus={() => setHighlightedIndex(index)}
+            />
+          </li>
+        );
+      })}
+    </ul>
+  );
+
+  function handlePressUp(event: React.KeyboardEvent<HTMLUListElement>) {
+    event.preventDefault();
+    const newIndex = Math.max(0, highlightedIndex - 1);
+
+    handleOptionFocus(newIndex);
+    scrollMenuIfItemNotInView(menuDiv.current, "up");
+  }
+
+  function handlePressDown(event: React.KeyboardEvent<HTMLUListElement>) {
+    event.preventDefault();
+    const newIndex = Math.min(options.length - 1, highlightedIndex + 1);
+
+    handleOptionFocus(newIndex);
+    scrollMenuIfItemNotInView(menuDiv.current, "down");
+  }
+}
+import type { Dispatch, KeyboardEvent, MutableRefObject } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import classNames from "classnames";
+import styles from "./MultiSelect.module.css";
+import { DropDownMenu } from "./DropDownMenu";
+import type { Options } from "./types";
+import { Text } from "../Text";
+import { Icon } from "../Icon";
+
+interface MultiSelectProps {
+  /**
+   * The label to be displayed by default when no options are selected
+   */
+  readonly defaultLabel: string;
+
+  /**
+   * The label to be displayed when all options are selected
+   */
+  readonly allSelectedLabel: string;
+
+  /**
+   * List of options to be checked
+   */
+  readonly options: Options;
+
+  /**
+   * Change handler
+   */
+  readonly onOptionsChange: Dispatch<React.SetStateAction<Options>>;
+
+  /**
+   * Adjusts the interface to either have small or large spacing.
+   */
+  readonly size?: "small" | "large";
+}
+
+export function MultiSelect({
+  defaultLabel,
+  allSelectedLabel,
+  options,
+  onOptionsChange,
+  size,
+}: MultiSelectProps) {
+  const [label, setLabel] = useState(defaultLabel);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const multiSelectContainer = useRef() as MutableRefObject<HTMLDivElement>;
+  const multiSelectRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const multiSelectClass = classNames(styles.multiSelect, {
+    [styles.active]: menuVisible,
+    [styles.large]: size === "large",
+    [styles.small]: size === "small",
+  });
+
+  function handleMenuVisibility() {
+    multiSelectRef.current.focus();
+    setMenuVisible(!menuVisible);
+  }
+
+  const handleClickOutside = (e: globalThis.MouseEvent) => {
+    if (!multiSelectContainer?.current?.contains(e.target as Node)) {
+      setMenuVisible(false);
+    }
+  };
+
+  function handleKeydown(event: KeyboardEvent<HTMLDivElement>) {
+    const { key, metaKey, ctrlKey } = event;
+
+    if (metaKey || ctrlKey) return;
+
+    switch (key) {
+      case "Enter":
+      case " ": {
+        if (focused) {
+          setMenuVisible(!menuVisible);
+        }
+        break;
+      }
+      case "Escape": {
+        multiSelectRef.current.focus();
+        setMenuVisible(false);
+        break;
+      }
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  });
+
+  useEffect(() => {
+    const selected = options.filter(option => option.checked);
+
+    if (selected.length === 0) {
+      setLabel(defaultLabel);
+    } else if (selected.length == options.length) {
+      setLabel(allSelectedLabel);
+    } else {
+      const selectedLabels: string[] = [];
+      selected.forEach(option => selectedLabels.push(option.label));
+      setLabel(selectedLabels.join(", "));
+    }
+  }, [options]);
+
+  return (
+    <div
+      ref={multiSelectContainer}
+      className={styles.multiSelectContainer}
+      onKeyDown={handleKeydown}
+    >
+      <div
+        data-testid="multi-select"
+        className={multiSelectClass}
+        onClick={handleMenuVisibility}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        tabIndex={0}
+        ref={multiSelectRef}
+        role="button"
+        aria-label={`${defaultLabel}: ${label}`}
+        aria-multiselectable
+        aria-haspopup
+      >
+        <Text>{label}</Text>
+        <Icon name="arrowDown" />
+      </div>
+      {menuVisible && (
+        <DropDownMenu options={options} setOptions={onOptionsChange} />
+      )}
+    </div>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop               | Type                                      | Required | Default  | Description                                                       |
+| ------------------ | ----------------------------------------- | -------- | -------- | ----------------------------------------------------------------- | ------------------------------------------------------------ |
+| `defaultLabel`     | `string`                                  | ✅       | `_none_` | The label to be displayed by default when no options are selected |
+| `allSelectedLabel` | `string`                                  | ✅       | `_none_` | The label to be displayed when all options are selected           |
+| `options`          | `Options`                                 | ✅       | `_none_` | List of options to be checked                                     |
+| `onOptionsChange`  | `Dispatch<React.SetStateAction<Options>>` | ✅       | `_none_` | Change handler                                                    |
+| `size`             | `"small"                                  | "large"` | ❌       | `_none_`                                                          | Adjusts the interface to either have small or large spacing. |
+
+## Categories
+
+- Selections
+
+## Web Test Code
+
+```typescript
+MultiSelect Dropdown Menu Web React Test Testing Jest import React, { useState } from "react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MultiSelect } from ".";
+
+const Component = () => {
+  const [options, setOptions] = useState([
+    { label: "Synced", checked: true },
+    { label: "Errors", checked: false },
+    { label: "Warnings", checked: true },
+    { label: "Ignored", checked: true },
+  ]);
+
+  return (
+    <MultiSelect
+      defaultLabel="Status"
+      allSelectedLabel="All Statuses"
+      options={options}
+      onOptionsChange={setOptions}
+    />
+  );
+};
+
+describe("when rendering MultiSelect component", () => {
+  describe("when not all options are checked", () => {
+    beforeEach(() => {
+      render(<Component />);
+    });
+
+    it("input should have checked options as the value", () => {
+      const multiSelectInput = screen.getByTestId("multi-select");
+
+      expect(multiSelectInput).toHaveTextContent("Synced, Warnings, Ignored");
+    });
+  });
+
+  describe("when all options are unchecked", () => {
+    const AllOptionsUnchecked = () => {
+      const [options, setOptions] = useState([
+        { label: "Synced", checked: false },
+        { label: "Errors", checked: false },
+        { label: "Warnings", checked: false },
+        { label: "Ignored", checked: false },
+      ]);
+
+      return (
+        <MultiSelect
+          defaultLabel="Status"
+          allSelectedLabel="All Statuses"
+          options={options}
+          onOptionsChange={setOptions}
+        />
+      );
+    };
+
+    beforeEach(() => {
+      render(<AllOptionsUnchecked />);
+    });
+
+    it("input should have the provided defaultLabel as value", () => {
+      const multiSelectInput = screen.getByTestId("multi-select");
+
+      expect(multiSelectInput).toHaveTextContent("Status");
+    });
+  });
+
+  describe("when all options are checked", () => {
+    const AllOptionsChecked = () => {
+      const [options, setOptions] = useState([
+        { label: "Synced", checked: true },
+        { label: "Errors", checked: true },
+        { label: "Warnings", checked: true },
+        { label: "Ignored", checked: true },
+      ]);
+
+      return (
+        <MultiSelect
+          defaultLabel="Status"
+          allSelectedLabel="All Statuses"
+          options={options}
+          onOptionsChange={setOptions}
+        />
+      );
+    };
+
+    beforeEach(() => {
+      render(<AllOptionsChecked />);
+    });
+
+    it("input should have the provided allSelectedLabel as value", () => {
+      const multiSelectInput = screen.getByTestId("multi-select");
+
+      expect(multiSelectInput).toHaveTextContent("All Statuses");
+    });
+  });
+});
+
+describe("when focusing multislect to display the options", () => {
+  beforeEach(() => {
+    render(<Component />);
+  });
+
+  it("should not display the menu", () => {
+    expect(screen.queryByTestId("dropdown-menu")).toBeNull();
+  });
+
+  describe("when clicking MultiSelect", () => {
+    it("should display the dropdown menu with the options", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
+      const dropDownMenu = screen.getByTestId("dropdown-menu");
+
+      expect(dropDownMenu).not.toBeNull();
+      expect(within(dropDownMenu).getByText(/Synced/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Errors/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Warnings/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Ignored/i)).toBeInTheDocument();
+    });
+  });
+
+  describe("when pressing Spacebar key", () => {
+    it("should display the dropdown menu with the options", async () => {
+      await userEvent.tab();
+      fireEvent(
+        screen.getByTestId("multi-select"),
+        new KeyboardEvent("keydown", {
+          key: " ",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+
+      const dropDownMenu = screen.getByTestId("dropdown-menu");
+
+      expect(dropDownMenu).not.toBeNull();
+      expect(within(dropDownMenu).getByText(/Synced/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Errors/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Warnings/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Ignored/i)).toBeInTheDocument();
+    });
+  });
+
+  describe("when pressing Enter key", () => {
+    it("should display the dropdown menu with the options", async () => {
+      await userEvent.tab();
+      fireEvent(
+        screen.getByTestId("multi-select"),
+        new KeyboardEvent("keydown", {
+          key: "Enter",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+
+      const dropDownMenu = screen.getByTestId("dropdown-menu");
+
+      expect(dropDownMenu).not.toBeNull();
+      expect(within(dropDownMenu).getByText(/Synced/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Errors/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Warnings/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Ignored/i)).toBeInTheDocument();
+    });
+  });
+
+  describe("when pressing 'Escape' key", () => {
+    it("should hide the dropdown menu", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
+
+      expect(screen.queryByTestId("dropdown-menu")).not.toBeNull();
+
+      fireEvent(
+        screen.getByTestId("multi-select"),
+        new KeyboardEvent("keydown", {
+          key: "Escape",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+
+      expect(screen.queryByTestId("dropdown-menu")).toBeNull();
+    });
+  });
+
+  describe("when clicking out of the component", () => {
+    it("should hide the dropdown menu", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
+
+      expect(screen.queryByTestId("dropdown-menu")).not.toBeNull();
+
+      await userEvent.click(document.body);
+
+      expect(screen.queryByTestId("dropdown-menu")).toBeNull();
+    });
+  });
+});
+
+describe("when selecting an option", () => {
+  beforeEach(() => {
+    render(<Component />);
+  });
+
+  describe("when using mouse click event", () => {
+    it("should call the provided callback", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
+      await userEvent.click(screen.getAllByRole("checkbox")[2]);
+
+      expect(screen.getByLabelText("Warnings")).not.toBeChecked();
+    });
+  });
+
+  describe("when using keyboard navigation", () => {
+    it("should call the provided callback when using arrows and Enter keys", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
+
+      fireEvent(
+        screen.getByTestId("dropdown-menu"),
+        new KeyboardEvent("keydown", {
+          key: "ArrowDown",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+      fireEvent(
+        screen.getByTestId("dropdown-menu"),
+        new KeyboardEvent("keydown", {
+          key: "Enter",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+
+      expect(screen.getByLabelText("Errors")).toBeChecked();
+    });
+
+    it("should call the provided callback when using tab and Enter keys", async () => {
+      await userEvent.click(screen.getByTestId("multi-select"));
+
+      await userEvent.tab();
+      fireEvent(
+        screen.getByTestId("dropdown-menu"),
+        new KeyboardEvent("keydown", {
+          key: "Enter",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+
+      expect(screen.getByLabelText("Errors")).toBeChecked();
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/MultiSelect`
+
+---
+
+_Generated on 2025-08-21T17:35:16.369Z_
