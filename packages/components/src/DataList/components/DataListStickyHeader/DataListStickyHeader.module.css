@@ -27,15 +27,14 @@
   height: 0;
   background-color: var(--color-border);
   transform: translateX(-50%);
-  transition:
-    height var(--sticky-header-transition-properties) var(--timing-quick),
+  transition: height var(--sticky-header-transition-properties)
+      var(--timing-quick),
     width var(--sticky-header-transition-properties);
 }
 
 .stuck::before {
   width: 100%;
   height: var(--border-thick);
-  transition:
-    height var(--sticky-header-transition-properties),
+  transition: height var(--sticky-header-transition-properties),
     width var(--sticky-header-transition-properties) var(--timing-quick);
 }

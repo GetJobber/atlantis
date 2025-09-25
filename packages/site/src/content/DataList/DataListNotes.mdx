@@ -330,12 +330,12 @@ DataList.Search adds a search input to the list. This is debounced by 500ms.
 
 #### Controlling the search input
 
-By default, DataList.Search is uncontrolled and internally manages its value.
-If you need the ability to control it, you can pass in a `value` prop and use
-the `onSearch` prop to handle updating your state with the latest value. In
-this case `onSearch` will *not* be debounced. Be sure to gracefully handle
-rapid key presses and avoid over-triggering expensive operations, like network
-requests for example.
+By default, DataList.Search is uncontrolled and internally manages its value. If
+you need the ability to control it, you can pass in a `value` prop and use the
+`onSearch` prop to handle updating your state with the latest value. In this
+case `onSearch` will _not_ be debounced. Be sure to gracefully handle rapid key
+presses and avoid over-triggering expensive operations, like network requests
+for example.
 
 ```tsx
 const [searchValue, setSearchValue] = useState("");
@@ -347,12 +347,12 @@ const debouncedRequest = useDebounce((search: string) => {
 <DataList>
   <DataList.Search
     value={searchValue}
-    onSearch={(search) => {
+    onSearch={search => {
       setSearchValue(search);
       debouncedRequest(search);
     }}
   />
-</DataList>
+</DataList>;
 ```
 
 ### Empty state

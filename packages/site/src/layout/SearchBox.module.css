@@ -1,8 +1,8 @@
 .searchBoxResults {
-    width: 100%;
-    height: 600px;
-    max-height: calc(100vh - 240px);
-    overflow-y: scroll;
-    padding: var(--space-smallest);
-    box-sizing: border-box;
+  width: 100%;
+  height: 600px;
+  max-height: calc(100vh - 240px);
+  overflow-y: scroll;
+  padding: var(--space-smallest);
+  box-sizing: border-box;
 }
