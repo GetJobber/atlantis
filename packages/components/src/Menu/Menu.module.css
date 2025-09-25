@@ -19,6 +19,7 @@
   padding: var(--menu-space);
   padding-bottom: calc(env(safe-area-inset-bottom) + var(--menu-space));
   border-radius: var(--radius-base) var(--radius-base) 0 0;
+  outline: none;
   overflow-y: scroll;
   background-color: var(--color-surface);
   -webkit-overflow-scrolling: touch;
@@ -39,9 +40,17 @@
   }
 }
 
+.sectionBorder,
+.separator {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.sectionBorder:last-of-type {
+  border-bottom: none;
+}
+
 .section {
   padding: var(--menu-space) 0;
-  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .section:first-of-type {
@@ -50,7 +59,6 @@
 
 .section:last-of-type {
   padding-bottom: 0;
-  border-bottom: none;
 }
 
 .sectionHeader {
@@ -62,6 +70,7 @@
 .action {
   display: flex;
   width: 100%;
+  box-sizing: border-box;
   padding: var(--menu-space);
   border: none;
   border-radius: var(--radius-base);
@@ -92,6 +101,11 @@
 
 .action.destructive > span {
   color: var(--color-destructive);
+}
+
+.triggerWrapper {
+  display: inline-flex;
+  outline: none;
 }
 
 .overlay {
