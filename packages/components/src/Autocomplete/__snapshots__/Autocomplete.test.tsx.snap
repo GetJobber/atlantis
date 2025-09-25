@@ -20,7 +20,7 @@ exports[`Autocomplete renders an Autocomplete 1`] = `
           >
             <label
               class="label"
-              for=":r0:"
+              for="«r0»"
             >
               placeholder_name
             </label>
@@ -31,7 +31,7 @@ exports[`Autocomplete renders an Autocomplete 1`] = `
               <input
                 autocomplete="off"
                 class="input"
-                id=":r0:"
+                id="«r0»"
                 type="text"
                 value=""
               />
@@ -64,7 +64,7 @@ exports[`Autocomplete should display headers when headers are passed in 1`] = `
           >
             <label
               class="label"
-              for=":r5:"
+              for="«r5»"
             >
               placeholder_name
             </label>
@@ -75,7 +75,7 @@ exports[`Autocomplete should display headers when headers are passed in 1`] = `
               <input
                 autocomplete="off"
                 class="input"
-                id=":r5:"
+                id="«r5»"
                 type="text"
                 value=""
               />
