@@ -25,7 +25,7 @@ const packageAliases = [
 ];
 
 module.exports = {
-  plugins: ["monorepo-cop", "react"],
+  plugins: ["monorepo-cop", "react", "jobber"],
   extends: ["@jobber/eslint-config", "plugin:monorepo-cop/recommended"],
   root: true,
   settings: {
@@ -44,6 +44,7 @@ module.exports = {
      */
     "import/no-extraneous-dependencies": "off",
     "import/no-relative-parent-imports": "off",
+    "jobber/no-src-imports": "warn",
     "no-restricted-imports": [
       "error",
       {
