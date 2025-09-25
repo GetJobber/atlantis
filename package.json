@@ -75,6 +75,10 @@
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@types/react-router-dom": "^5.3.3",
+    "@storybook/addon-a11y": "^9.1.2",
+    "@storybook/react": "^9.1.2",
+    "@storybook/react-native-web-vite": "^9.1.2",
+    "@storybook/react-vite": "^9.1.2",
     "axios": "^1.11.0",
     "babel-plugin-react-native-web": "^0.20.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
@@ -108,7 +112,8 @@
     "stylelint-junit-formatter": "^0.2.1",
     "subscriptions-transport-ws": "^0.11.0",
     "ts-node": "^10.9.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "storybook": "^9.1.2"
   },
   "husky": {
     "hooks": {
