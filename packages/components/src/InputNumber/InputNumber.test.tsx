@@ -50,7 +50,7 @@ test("it should call the handler with a number value", () => {
       onChange={changeHandler}
       placeholder={placeholder}
       name={placeholder}
-    />
+    />,
   );
 
   fireEvent.change(getByLabelText(placeholder), {
@@ -69,7 +69,7 @@ test("it should call the validation with empty string as a success", () => {
       max={100}
       onValidation={validationHandler}
       placeholder="Count to 100"
-    />
+    />,
   );
 
   expect(validationHandler).toHaveBeenCalledWith("");
@@ -85,7 +85,7 @@ test("it should call the validation with a range error", async () => {
       max={100}
       onValidation={validationHandler}
       placeholder="Count to 100"
-    />
+    />,
   );
 
   const input = getByLabelText("Count to 100");
@@ -94,7 +94,7 @@ test("it should call the validation with a range error", async () => {
 
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith(
-      "Enter a number between 99 and 100"
+      "Enter a number between 99 and 100",
     );
   });
 });
@@ -108,7 +108,7 @@ test("it should call the validation with a max length error", async () => {
       max={100}
       onValidation={validationHandler}
       placeholder="Count to 100"
-    />
+    />,
   );
 
   const input = getByLabelText("Count to 100");
@@ -117,7 +117,7 @@ test("it should call the validation with a max length error", async () => {
 
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith(
-      "Enter a number that is less than or equal to 100"
+      "Enter a number that is less than or equal to 100",
     );
   });
 });
@@ -131,7 +131,7 @@ test("it should call the validation with a min length error", async () => {
       min={99}
       onValidation={validationHandler}
       placeholder="Count to 100"
-    />
+    />,
   );
 
   const input = getByLabelText("Count to 100");
@@ -140,7 +140,7 @@ test("it should call the validation with a min length error", async () => {
 
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith(
-      "Enter a number that is greater than or equal to 99"
+      "Enter a number that is greater than or equal to 99",
     );
   });
 });
@@ -154,7 +154,7 @@ test("validation passes if number is correct", async () => {
       min={99}
       onValidation={validationHandler}
       placeholder="Count to 100"
-    />
+    />,
   );
 
   const input = getByLabelText("Count to 100");
@@ -163,7 +163,7 @@ test("validation passes if number is correct", async () => {
 
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith(
-      "Enter a number that is greater than or equal to 99"
+      "Enter a number that is greater than or equal to 99",
     );
   });
 
@@ -191,7 +191,7 @@ test("allows custom validation", async () => {
           message: "only one number",
         },
       }}
-    />
+    />,
   );
 
   const input = getByLabelText("Count to 10");
@@ -207,7 +207,7 @@ test("allows custom validation", async () => {
 test("it should call the custom validate function if provided", async () => {
   const validationHandler = jest.fn();
   const expectedValidationValue = Math.floor(
-    Math.random() * Number.MAX_SAFE_INTEGER
+    Math.random() * Number.MAX_SAFE_INTEGER,
   );
   const { getByLabelText } = render(
     <InputNumber
@@ -216,7 +216,7 @@ test("it should call the custom validate function if provided", async () => {
       validations={{
         validate: validationHandler,
       }}
-    />
+    />,
   );
 
   const input = getByLabelText("Custom validation function");
@@ -227,7 +227,7 @@ test("it should call the custom validate function if provided", async () => {
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith(
       expectedValidationValue,
-      expect.any(Object)
+      expect.any(Object),
     );
     // Received: 12, {"generatedName--123e4567-e89b-12d3-a456-426655440063": 12}
   });
@@ -237,7 +237,7 @@ test("it should use the custom validate object if provided", async () => {
   const validationHandler = jest.fn();
   const validationHandler2 = jest.fn();
   const expectedValidationValue = Math.floor(
-    Math.random() * Number.MAX_SAFE_INTEGER
+    Math.random() * Number.MAX_SAFE_INTEGER,
   );
 
   const { getByLabelText } = render(
@@ -250,7 +250,7 @@ test("it should use the custom validate object if provided", async () => {
           validationHandler2,
         },
       }}
-    />
+    />,
   );
 
   const input = getByLabelText("Custom validation function");
@@ -261,11 +261,11 @@ test("it should use the custom validate object if provided", async () => {
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith(
       expectedValidationValue,
-      expect.anything()
+      expect.anything(),
     );
     expect(validationHandler2).toHaveBeenCalledWith(
       expectedValidationValue,
-      expect.anything()
+      expect.anything(),
     );
   });
 });
@@ -281,7 +281,7 @@ test("it should call the min validation if the custom validation passes", async 
         },
       }}
       placeholder="Count to 100"
-    />
+    />,
   );
 
   const input = getByLabelText("Count to 100");
@@ -290,7 +290,7 @@ test("it should call the min validation if the custom validation passes", async 
 
   await waitFor(() => {
     expect(
-      getByText("Enter a number that is greater than or equal to 99")
+      getByText("Enter a number that is greater than or equal to 99"),
     ).toBeInTheDocument();
   });
 });
@@ -306,7 +306,7 @@ test("it should call the max validation if the custom validation passes", async 
         },
       }}
       placeholder="Count to 100"
-    />
+    />,
   );
 
   const input = getByLabelText("Count to 100");
@@ -315,7 +315,7 @@ test("it should call the max validation if the custom validation passes", async 
 
   await waitFor(() => {
     expect(
-      getByText("Enter a number that is less than or equal to 100")
+      getByText("Enter a number that is less than or equal to 100"),
     ).toBeInTheDocument();
   });
 });
@@ -325,7 +325,7 @@ test("it should handle focus", () => {
   const placeholder = "Number";
 
   const { getByLabelText } = render(
-    <InputNumber placeholder={placeholder} ref={inputRef} />
+    <InputNumber placeholder={placeholder} ref={inputRef} />,
   );
 
   inputRef.current.focus();
@@ -345,7 +345,7 @@ test("it should handle blur", () => {
 
 it("should set inputMode to decimal", () => {
   const { getByLabelText } = render(
-    <InputNumber keyboard="decimal" placeholder="Allow Decimals" />
+    <InputNumber keyboard="decimal" placeholder="Allow Decimals" />,
   );
   const input = getByLabelText("Allow Decimals");
 
@@ -354,7 +354,7 @@ it("should set inputMode to decimal", () => {
 
 it("should set inputMode to numeric", () => {
   const { getByLabelText } = render(
-    <InputNumber keyboard="numeric" placeholder="Numeric" />
+    <InputNumber keyboard="numeric" placeholder="Numeric" />,
   );
   const input = getByLabelText("Numeric");
 
