@@ -23,8 +23,8 @@ describe("Thumbnail", () => {
       src: () => Promise.resolve("https://picsum.photos/250"),
     };
     renderInternalThumbnail(file);
+    const imageElement = screen.getByAltText("image_of_something.png");
     await waitFor(() => {
-      const imageElement = screen.getByAltText("image_of_something.png");
       expect(imageElement).toHaveAttribute("src", "https://picsum.photos/250");
     });
   });
