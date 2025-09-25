@@ -1,11 +1,12 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Modal } from ".";
 import styles from "./Modal.module.css";
+import { MODAL_HEADER_ID } from "./constants";
 
 it('modal contains aria role of "dialog"', async () => {
-  const { findByRole } = render(<Modal open>Content</Modal>);
-  expect(await findByRole("dialog")).toBeInTheDocument();
+  render(<Modal open>Content</Modal>);
+  expect(await screen.findByRole("dialog")).toBeInTheDocument();
 });
 
 it("modal shows the children and a close button", () => {
@@ -28,7 +29,7 @@ it("modal shows the children and a close button", () => {
 
 it("modal without a title doesn't show the header", () => {
   const { queryByTestId } = render(<Modal open={true}>Content</Modal>);
-  expect(queryByTestId("modal-header")).toBeNull();
+  expect(queryByTestId(MODAL_HEADER_ID)).toBeNull();
 });
 
 it("modal doesn't show up", () => {
@@ -116,4 +117,28 @@ it("modal shows with primary learning button", () => {
   const learningButton = baseElement.querySelector(".learning.primary");
   expect(learningButton).toBeTruthy();
   expect(learningButton).toHaveTextContent("I Would Like to Know More");
+});
+
+it("names the dialog from title via aria-labelledby when ariaLabel is not provided", async () => {
+  render(
+    <Modal open title="Legacy Modal">
+      Content
+    </Modal>,
+  );
+
+  expect(
+    await screen.findByRole("dialog", { name: "Legacy Modal" }),
+  ).toBeInTheDocument();
+});
+
+it("uses ariaLabel via aria-label only when no title is provided", async () => {
+  render(
+    <Modal open ariaLabel="Payment Details">
+      Content
+    </Modal>,
+  );
+
+  expect(
+    await screen.findByRole("dialog", { name: "Payment Details" }),
+  ).toBeInTheDocument();
 });
