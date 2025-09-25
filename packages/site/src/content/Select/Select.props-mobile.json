@@ -172,7 +172,7 @@
         },
         "required": false,
         "type": {
-          "name": "Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>"
+          "name": "RegisterOptions"
         }
       },
       "testID": {

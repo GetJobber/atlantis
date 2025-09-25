@@ -80,6 +80,56 @@ const getKeyboard = (props: InputCurrencyProps) => {
   }
 };
 
+const computeDisplayFromNumericInput = (
+  numberedValue: number,
+  decimalNumbers: string,
+  decimalCount: number,
+  maxLength: number,
+  maxDecimalPlaces: number,
+  decimalPlaces: number,
+  formatNumber: (
+    value: number,
+    opts?: FormatNumberOptions | undefined,
+  ) => string,
+): {
+  onChangeValue: number | string;
+  displayValue: string;
+} => {
+  const transformedValue = limitInputWholeDigits(numberedValue, maxLength);
+  const stringValue =
+    decimalNumbers !== ""
+      ? transformedValue.toString() + "." + decimalNumbers.slice(1)
+      : transformedValue.toString();
+
+  if (checkLastChar(stringValue)) {
+    const roundedDecimal = configureDecimal(
+      decimalCount,
+      maxDecimalPlaces,
+      stringValue,
+      decimalPlaces,
+    );
+    const internationalizedValueToDisplay = formatNumber(roundedDecimal, {
+      maximumFractionDigits: maxDecimalPlaces,
+    });
+
+    return {
+      onChangeValue: roundedDecimal,
+      displayValue: internationalizedValueToDisplay,
+    };
+  } else {
+    const internationalizedValueToDisplay =
+      formatNumber(transformedValue, {
+        maximumFractionDigits: maxDecimalPlaces,
+      }) + decimalNumbers;
+
+    return {
+      onChangeValue:
+        transformedValue.toString() + "." + decimalNumbers.slice(1),
+      displayValue: internationalizedValueToDisplay,
+    };
+  }
+};
+
 export function InputCurrency(props: InputCurrencyProps): JSX.Element {
   const {
     showCurrencySymbol = true,
@@ -99,54 +149,6 @@ export function InputCurrency(props: InputCurrencyProps): JSX.Element {
     internalValue,
   );
 
-  const setOnChangeAndDisplayValues = (
-    onChangeValue: number | string | undefined,
-    valueToDisplay: string | undefined,
-  ) => {
-    props.onChange?.(onChangeValue);
-    setDisplayValue(valueToDisplay);
-  };
-
-  const checkDecimalAndI18nOfDisplayValue = (
-    numberedValue: number,
-    decimalNumbers: string,
-    decimalCount: number,
-  ) => {
-    const transformedValue = limitInputWholeDigits(numberedValue, maxLength);
-    const stringValue =
-      decimalNumbers !== ""
-        ? transformedValue.toString() + "." + decimalNumbers.slice(1)
-        : transformedValue.toString();
-
-    if (checkLastChar(stringValue)) {
-      const roundedDecimal = configureDecimal(
-        decimalCount,
-        maxDecimalPlaces,
-        stringValue,
-        decimalPlaces,
-      );
-      const internationalizedValueToDisplay = intl.formatNumber(
-        roundedDecimal,
-        {
-          maximumFractionDigits: maxDecimalPlaces,
-        },
-      );
-      setOnChangeAndDisplayValues(
-        roundedDecimal,
-        internationalizedValueToDisplay,
-      );
-    } else {
-      const internationalizedValueToDisplay =
-        intl.formatNumber(transformedValue, {
-          maximumFractionDigits: maxDecimalPlaces,
-        }) + decimalNumbers;
-      setOnChangeAndDisplayValues(
-        transformedValue.toString() + "." + decimalNumbers.slice(1),
-        internationalizedValueToDisplay,
-      );
-    }
-  };
-
   const handleChange = (newValue: string | undefined) => {
     const [decimalCount, wholeIntegerValue, decimalNumbers] = parseGivenInput(
       newValue,
@@ -158,18 +160,36 @@ export function InputCurrency(props: InputCurrencyProps): JSX.Element {
       : wholeIntegerValue;
 
     if (isValidNumber(numberedValue) && typeof numberedValue === "number") {
-      checkDecimalAndI18nOfDisplayValue(
+      const result = computeDisplayFromNumericInput(
         numberedValue,
         decimalNumbers,
         decimalCount,
+        maxLength,
+        maxDecimalPlaces,
+        decimalPlaces,
+        intl.formatNumber,
       );
+      const { onChangeValue, displayValue: valueToDisplay } = result;
+      props.onChange?.(onChangeValue);
+      setDisplayValue(valueToDisplay);
     } else {
       const value = numberedValue?.toString() + decimalNumbers;
-      setOnChangeAndDisplayValues(value, value);
+      props.onChange?.(value);
+      setDisplayValue(value);
     }
   };
 
   const { t } = useAtlantisI18n();
+
+  const defaultValidations = {
+    pattern: {
+      value: NUMBER_VALIDATION_REGEX,
+      message: t("errors.notANumber"),
+    },
+  } as const;
+  const mergedValidations = props.validations
+    ? Object.assign({}, defaultValidations, props.validations)
+    : defaultValidations;
 
   return (
     <InputText
@@ -187,13 +207,7 @@ export function InputCurrency(props: InputCurrencyProps): JSX.Element {
             .replace(floatSeparators.decimal, ".");
         },
       }}
-      validations={{
-        pattern: {
-          value: NUMBER_VALIDATION_REGEX,
-          message: t("errors.notANumber"),
-        },
-        ...props.validations,
-      }}
+      validations={mergedValidations}
       onBlur={() => {
         props.onBlur?.();
 
