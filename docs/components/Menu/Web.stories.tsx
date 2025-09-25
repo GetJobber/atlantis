@@ -110,7 +110,12 @@ CustomActivator.args = {
 };
 
 export const Composable = () => {
-  const items: { label: string; icon: IconNames; onClick: () => void }[] = [
+  const items: {
+    label: string;
+    icon: IconNames;
+    onClick: () => void;
+    destructive?: boolean;
+  }[] = [
     {
       label: "Text Message",
       icon: "sms",
@@ -120,6 +125,14 @@ export const Composable = () => {
       label: "Email",
       icon: "email",
       onClick: () => alert("📨"),
+    },
+    {
+      label: "Delete",
+      icon: "trash",
+      destructive: true,
+      onClick: () => {
+        alert("🗑️");
+      },
     },
   ];
 
@@ -150,6 +163,14 @@ export const Composable = () => {
           icon: "email",
           onClick: () => {
             alert("📨");
+          },
+        },
+        {
+          label: "Delete",
+          icon: "trash",
+          destructive: true,
+          onClick: () => {
+            alert("🗑️");
           },
         },
       ],
@@ -259,7 +280,9 @@ export const Composable = () => {
                 <Menu.Section>
                   <Menu.Item onClick={() => alert("✏️")}>
                     <Icon name="edit" />
-                    <Text>Edit</Text>
+                    <Typography fontWeight="semiBold" element="span">
+                      Edit
+                    </Typography>
                   </Menu.Item>
                 </Menu.Section>
                 <Menu.Separator />
@@ -277,8 +300,17 @@ export const Composable = () => {
                   </Menu.Header>
                   {items.map(item => (
                     <Menu.Item key={item.label} onClick={item.onClick}>
-                      <Icon name={item.icon} />
-                      <Text>{item.label}</Text>
+                      <Icon
+                        name={item.icon}
+                        color={item.destructive ? "destructive" : "icon"}
+                      />
+                      <Typography
+                        fontWeight="semiBold"
+                        element="span"
+                        textColor={item.destructive ? "destructive" : "text"}
+                      >
+                        {item.label}
+                      </Typography>
                     </Menu.Item>
                   ))}
                 </Menu.Section>
