@@ -1,5 +1,5 @@
 import type { ChangeEvent, KeyboardEvent, MutableRefObject } from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 import { useInternalChipDismissibleInput } from "../useInternalChipDismissibleInput";
 
 const handleOptionSelect = jest.fn(value => value);

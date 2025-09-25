@@ -423,6 +423,7 @@ function InputTextInternal(
         onFocus={event => {
           _name && setFocusedInput(_name);
           setFocused(true);
+          // @ts-expect-error - TODO: fix this!
           onFocus?.(event);
         }}
         onBlur={() => {

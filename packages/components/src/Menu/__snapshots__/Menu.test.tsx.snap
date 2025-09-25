@@ -7,11 +7,11 @@ exports[`Menu renders 1`] = `
   >
     <div>
       <button
-        aria-controls=":r1:"
+        aria-controls="«r1»"
         aria-expanded="false"
         aria-haspopup="true"
         class="button base work secondary fullWidth buttonChildren"
-        id=":r0:"
+        id="«r0»"
         type="button"
       >
         <svg
@@ -42,11 +42,11 @@ exports[`Menu with custom activator renders 1`] = `
   >
     <div>
       <button
-        aria-controls=":rk:"
+        aria-controls="«rk»"
         aria-expanded="false"
         aria-haspopup="true"
         class="button base work primary buttonChildren"
-        id=":rj:"
+        id="«rj»"
         type="button"
       >
         <span
