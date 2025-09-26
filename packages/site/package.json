@@ -11,6 +11,7 @@
     "generate": "node generateDocs.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "test:visual:clean": "../../scripts/e2e.sh --clean",
     "test:visual:ci": "playwright test --config=playwright.config.ts tests/visual/",
     "test:visual:reload": "cd .. && npm run bootstrap && cd - && npm run test:visual",
     "test:visual": "../../scripts/e2e.sh playwright test --config=playwright.config.ts --project=chromium tests/visual/",

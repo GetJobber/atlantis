@@ -3,6 +3,13 @@
 # Go to the root of the project
 cd ../..
 
+# If --clean is supplied, delete existing docker volumes
+if [[ " $* " == *" --clean "* ]]; then
+    echo "Cleaning up docker volumes for a fresh install..."
+    docker volume rm --force atlantis_site_node_modules
+    docker volume rm --force atlantis_storybook_v7_node_modules
+fi
+
 # NOTES:
 # This line prevents mounting the site's node_modules and instead stores them in a
 # named docker volume. We need to install modules inside the container because linux
