@@ -10,12 +10,22 @@ set -e # Exit on error
 # /storybook/mobile -> storybook v9 mobile (components-native)
 
 # Install storybook v7 dependencies and build it
-
-# rm -rf node_modules
-
 cd packages/storybook-v7
-echo "Installing storybook v7..."
-npm install
-echo "Building storybook v7..."
 npm run storybook:build
 cd -
+
+# Build storybook v9 instances
+npm run --prefix packages/components storybook:build
+npm run --prefix packages/components-native storybook:build
+
+# Generate the sitemap
+npm run generate:sitemap
+
+# Build the docs site
+npm run --prefix packages/site build
+
+# Merge all outputs into the final dist directory
+mv packages/storybook-v7/storybook-static packages/site/dist/storybook
+mv packages/components/storybook-static packages/site/dist/storybook/web
+mv packages/components-native/storybook-static packages/site/dist/storybook/mobile
+mv packages/site/dist storybook-static
