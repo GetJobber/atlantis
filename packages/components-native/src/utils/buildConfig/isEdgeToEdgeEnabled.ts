@@ -1,25 +1,21 @@
 import { Platform } from "react-native";
 
-export function isEdgeToEdgeEnabled(): boolean {
-  if (Platform.OS !== "android") {
-    return false;
-  }
+type BuildCfg = { IS_EDGE_TO_EDGE_ENABLED?: boolean } | undefined | null;
 
+function loadBuildConfig(): BuildCfg {
   try {
-    const BuildConfig = require("react-native-build-config") as {
-      default?: {
-        IS_EDGE_TO_EDGE_ENABLED?: boolean;
-        [key: string]: unknown;
-      };
-      IS_EDGE_TO_EDGE_ENABLED?: boolean;
-    };
-    const edgeToEdgeValue =
-      BuildConfig?.default?.IS_EDGE_TO_EDGE_ENABLED ??
-      BuildConfig?.IS_EDGE_TO_EDGE_ENABLED;
-    const result = !!edgeToEdgeValue;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const mod = require("react-native-build-config");
 
-    return result;
-  } catch (error) {
-    return false; // peer dep missing or not linked
+    return (mod?.default ?? mod) as BuildCfg;
+  } catch {
+    return null; // module not installed or not linked
   }
+}
+
+export function isEdgeToEdgeEnabled(): boolean {
+  if (Platform.OS !== "android") return false;
+  const cfg = loadBuildConfig();
+
+  return !!cfg?.IS_EDGE_TO_EDGE_ENABLED;
 }

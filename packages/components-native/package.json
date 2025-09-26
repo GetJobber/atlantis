@@ -95,5 +95,8 @@
     "react-native-build-config": "^0.3.2",
     "react-native-safe-area-context": "^5.4.0",
     "react-native-svg": ">=12.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-build-config": { "optional": true }
   }
 }
