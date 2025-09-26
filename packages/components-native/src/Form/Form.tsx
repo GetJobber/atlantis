@@ -26,6 +26,7 @@ import { useScrollToError } from "./hooks/useScrollToError";
 import { FormSaveButton } from "./components/FormSaveButton";
 import { useSaveButtonPosition } from "./hooks/useSaveButtonPosition";
 import { FormCache } from "./components/FormCache/FormCache";
+import { isEdgeToEdgeEnabled } from "../utils/buildConfig/isEdgeToEdgeEnabled";
 import { InputAccessoriesProvider } from "../InputText";
 import { tokens } from "../utils/design";
 import { ErrorMessageProvider } from "../ErrorMessageWrapper";
@@ -134,6 +135,9 @@ function InternalForm<T extends FieldValues, S>({
 
   const styles = useStyles();
 
+  // Check if edge-to-edge is enabled using utility function
+  const edgeToEdgeEnabled = isEdgeToEdgeEnabled();
+
   return (
     <FormProvider {...formMethods}>
       <>
@@ -161,6 +165,7 @@ function InternalForm<T extends FieldValues, S>({
           <KeyboardAwareScrollView
             enableResetScrollToCoords={false}
             enableAutomaticScroll={true}
+            enableOnAndroid={edgeToEdgeEnabled}
             keyboardOpeningTime={
               Platform.OS === "ios" ? tokens["timing-slowest"] : 0
             }
@@ -168,6 +173,7 @@ function InternalForm<T extends FieldValues, S>({
             ref={scrollViewRef}
             {...keyboardProps}
             extraHeight={headerHeight}
+            extraScrollHeight={edgeToEdgeEnabled ? 20 : 0}
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
             }
