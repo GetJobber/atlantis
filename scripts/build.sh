@@ -11,7 +11,7 @@ set -e # Exit on error
 
 # Install storybook v7 dependencies and build it
 
-rm -rf node_modules
+# rm -rf node_modules
 
 cd packages/storybook-v7
 echo "Installing storybook v7..."
