@@ -4,9 +4,10 @@
 cd ../..
 
 # NOTES:
-# This line prevents mounting the site's node_modules. We need to install those inside the container
-# because linux requires different modules compared to macOS.
-#     -v $(pwd)/packages/site/node_modules.e2e:/atlantis/packages/site/node_modules \
+# This line prevents mounting the site's node_modules and instead stores them in a
+# named docker volume. We need to install modules inside the container because linux
+# requires different modules compared to macOS.
+#     -v atlantis_site_node_modules:/atlantis/packages/site/node_modules
 #
 # The bash script does the following:
 # 1. Install dependencies for this linux container environment
@@ -22,8 +23,8 @@ echo "Running e2e tests inside a docker container..."
 # Run the e2e tests
 docker run --rm -it \
     -v $(pwd):/atlantis \
-    -v $(pwd)/packages/site/node_modules.e2e:/atlantis/packages/site/node_modules \
-    -v $(pwd)/packages/storybook-v7/node_modules.e2e:/atlantis/packages/storybook-v7/node_modules \
+    -v atlantis_site_node_modules:/atlantis/packages/site/node_modules \
+    -v atlantis_storybook_v7_node_modules:/atlantis/packages/storybook-v7/node_modules \
     -w /atlantis/packages/site \
     mcr.microsoft.com/playwright:v1.52.0-noble \
     bash -c "npm install --ignore-scripts && (cd ../storybook-v7 && npm install) && npm run bundle && npm run copyFiles && (npx vite --force &) && sleep 3 && npx $PLAYWRIGHT_COMMAND"
