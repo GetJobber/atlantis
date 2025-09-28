@@ -1,5 +1,4 @@
 import type { MutableRefObject, PropsWithChildren, ReactNode } from "react";
-import type React from "react";
 import type {
   ExtendedRefs,
   FloatingContext,
@@ -9,38 +8,6 @@ import type {
 import type { XOR } from "ts-xor";
 import type sizes from "./ModalSizes.module.css";
 import type { ButtonProps } from "../Button";
-
-export interface ModalProviderProps {
-  readonly children: React.ReactNode;
-  /**
-   * Size of the modal.
-   */
-  readonly size?: keyof typeof sizes;
-  /**
-   * Whether the modal is open.
-   */
-  readonly open?: boolean;
-  /**
-   * Callback executed when the user wants to close/dismiss the Modal
-   */
-  readonly onRequestClose?: () => void;
-  /**
-   * Ref to specify the activator element. Useful if the activator can unmount
-   * and focus needs to be returned to the activator element.
-   */
-  readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
-  readonly dismissible?: boolean;
-  /**
-   * Id to provide aria-labelledby to the modal. If you are using Modal.Header with children or another header you will need to provide this as the id of the header.
-   * @default "ATL-Modal-Header"
-   */
-  readonly modalLabelledBy?: string;
-  /**
-   * Accessible name override applied to the modal via aria-label. When provided, it takes
-   * precedence over aria-labelledby/title.
-   */
-  readonly ariaLabel?: string;
-}
 
 export type ModalContentProps = PropsWithChildren;
 
@@ -88,8 +55,8 @@ export interface ModalContextType {
   readonly modalLabelledBy?: string;
 
   /**
-   * Accessible name override applied to the modal via aria-label. When provided, it takes
-   * precedence over aria-labelledby/title.
+   * Accessible name override applied to the modal via aria-label.
+   * Intended for use when no Header/Title content is provided, as the Heading/title takes precedence over ariaLabel.
    */
   readonly ariaLabel?: string;
 
