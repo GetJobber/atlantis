@@ -131,3 +131,67 @@ function ModalWithCustomFocus() {
   );
 }
 ```
+
+## Accessibility
+
+**Role and modality**: Modal renders with `role="dialog"` and
+`aria-modal="true"`.
+
+**Naming precedence**:
+
+- If a visible heading/title is provided, the dialog is named via
+  `aria-labelledby` that references the heading element.
+- If there is no visible heading/title, you can provide `accessibleName` to set
+  `aria-label` on the dialog.
+
+### Composable Modal (v2)
+
+When using the composable API, the name is derived from `Modal.Header` when a
+`title` is provided. If you use a custom header node, set `modalLabelledBy` on
+`Modal.Provider` to the `id` of your heading element.
+
+```tsx
+// Title provided → named by aria-labelledby
+<Modal.Provider open>
+  <Modal.Content>
+    <Modal.Header title="Billing Settings" />
+    ...
+  </Modal.Content>
+ </Modal.Provider>
+
+// No title → fallback to ariaLabel
+<Modal.Provider open ariaLabel="Add Customer">
+  <Modal.Content>{/* custom content without heading */}</Modal.Content>
+</Modal.Provider>
+
+// Custom header → provide matching id via modalLabelledBy
+<Modal.Provider open modalLabelledBy="custom-header-id">
+  <Modal.Content>
+    <Modal.Header>
+      <h2 id="custom-header-id">My Custom Header</h2>
+    </Modal.Header>
+  </Modal.Content>
+</Modal.Provider>
+```
+
+### Legacy Modal (v1)
+
+For the legacy API, when `title` is provided it names the dialog via
+`aria-labelledby`. If there is no `title`, you can provide `accessibleName` to
+label the dialog via `aria-label`.
+
+```tsx
+// Title provided → named by aria-labelledby
+<Modal open title="Legacy Modal Title">...</Modal>
+
+// No title → fallback to ariaLabel
+<Modal open ariaLabel="Payment Details">...</Modal>
+```
+
+### Testing tip
+
+Use the accessible name in queries:
+
+```tsx
+screen.getByRole("dialog", { name: /Billing Settings/i });
+```
