@@ -4,11 +4,6 @@ import { Modal } from ".";
 import styles from "./Modal.module.css";
 import { MODAL_HEADER_ID } from "./constants";
 
-it('modal contains aria role of "dialog"', async () => {
-  render(<Modal open>Content</Modal>);
-  expect(await screen.findByRole("dialog")).toBeInTheDocument();
-});
-
 it("modal shows the children and a close button", () => {
   const title = "Dis be a title";
   const content = "Dis be a content 🎉";
@@ -119,26 +114,63 @@ it("modal shows with primary learning button", () => {
   expect(learningButton).toHaveTextContent("I Would Like to Know More");
 });
 
-it("names the dialog from title via aria-labelledby when ariaLabel is not provided", async () => {
-  render(
-    <Modal open title="Legacy Modal">
-      Content
-    </Modal>,
-  );
+describe("accessibility", () => {
+  it('modal contains aria role of "dialog"', async () => {
+    render(<Modal open>Content</Modal>);
+    expect(await screen.findByRole("dialog")).toBeInTheDocument();
+  });
 
-  expect(
-    await screen.findByRole("dialog", { name: "Legacy Modal" }),
-  ).toBeInTheDocument();
-});
+  describe("dialog is named from title prop", () => {
+    it("when ariaLabel is not provided", async () => {
+      render(
+        <Modal open title="Legacy Modal">
+          Content
+        </Modal>,
+      );
 
-it("uses ariaLabel via aria-label only when no title is provided", async () => {
-  render(
-    <Modal open ariaLabel="Payment Details">
-      Content
-    </Modal>,
-  );
+      const dialog = await screen.findByRole("dialog");
 
-  expect(
-    await screen.findByRole("dialog", { name: "Payment Details" }),
-  ).toBeInTheDocument();
+      expect(
+        screen.getByRole("dialog", { name: "Legacy Modal" }),
+      ).toBeInTheDocument();
+      expect(dialog).toHaveAttribute("aria-labelledby");
+    });
+
+    it("when ariaLabel is provided (title takes precedence)", async () => {
+      render(
+        <Modal open title="Legacy Modal" ariaLabel="This should be ignored">
+          Content
+        </Modal>,
+      );
+
+      const dialog = await screen.findByRole("dialog");
+
+      expect(dialog).toBeInTheDocument();
+      expect(
+        screen.getByRole("dialog", { name: "Legacy Modal" }),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole("dialog", { name: "This should be ignored" }),
+      ).not.toBeInTheDocument();
+      expect(dialog).toHaveAttribute("aria-labelledby");
+    });
+  });
+
+  describe("dialog is named from ariaLabel", () => {
+    it("when no title is provided", async () => {
+      render(
+        <Modal open ariaLabel="Payment Details">
+          Content
+        </Modal>,
+      );
+
+      const dialog = await screen.findByRole("dialog");
+
+      expect(
+        screen.getByRole("dialog", { name: "Payment Details" }),
+      ).toBeInTheDocument();
+      expect(dialog).toHaveAttribute("aria-label", "Payment Details");
+      expect(dialog).not.toHaveAttribute("aria-labelledby");
+    });
+  });
 });
