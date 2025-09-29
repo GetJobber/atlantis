@@ -5,8 +5,7 @@ import { Chip } from "@jobber/components/Chip";
 import * as POM from "../Menu.pom";
 import { Menu } from "..";
 import { Button } from "../../Button";
-import { Text } from "../../Text";
-import { Heading } from "../../Heading";
+// Removed Text import: end-of-line components no longer accept children
 
 describe("Menu (composable API)", () => {
   it("opens via mouse click and renders items", async () => {
@@ -72,8 +71,7 @@ describe("Menu (composable API)", () => {
   it("renders a header", async () => {
     render(<TestSectionMenu />);
     await POM.openWithClick("Menu");
-    expect(screen.getByRole("heading", { level: 4 })).toBeInTheDocument();
-    expect(screen.getByRole("heading")).toHaveTextContent("Section Header");
+    expect(screen.getByText("Section Header")).toBeInTheDocument();
   });
 
   describe("Trigger content without visible text", () => {
@@ -115,8 +113,9 @@ describe("Menu (composable API)", () => {
       render(<TestUnsafePropsMenu />);
       await POM.openWithClick("Menu");
 
-      const heading = screen.getByRole("heading", { level: 4 });
-      const sectionContainer = heading.closest(".unsafe-section");
+      const headingText = screen.getByText("Section Header");
+      const headerEl = headingText.closest("header");
+      const sectionContainer = headerEl?.closest(".unsafe-section");
       expect(sectionContainer).toBeInTheDocument();
       expect(sectionContainer).toHaveClass("unsafe-section");
       expect(sectionContainer).toHaveStyle("padding: 13px");
@@ -126,8 +125,8 @@ describe("Menu (composable API)", () => {
       render(<TestUnsafePropsMenu />);
       await POM.openWithClick("Menu");
 
-      const heading = screen.getByRole("heading", { level: 4 });
-      const headerContainer = heading.closest(".unsafe-header");
+      const headingText = screen.getByText("Section Header");
+      const headerContainer = headingText.closest(".unsafe-header");
       expect(headerContainer).toBeInTheDocument();
       expect(headerContainer).toHaveClass("unsafe-header");
       expect(headerContainer).toHaveStyle("color: rgb(10, 20, 30)");
@@ -184,9 +183,7 @@ describe("Menu (composable API)", () => {
             <Button label="Menu" />
           </Menu.Trigger>
           <Menu.Content>
-            <Menu.Item onClick={onItem}>
-              <Text>Open</Text>
-            </Menu.Item>
+            <Menu.Item label="Open" onClick={onItem} />
           </Menu.Content>
         </Menu>,
       );
@@ -212,13 +209,12 @@ function TestLinkMenu(props: {
       <Menu.Content>
         <Menu.Item
           href="/jobs"
+          label="Jobs"
           onClick={
             props.onItemClick as ((e?: React.MouseEvent) => void) | undefined
           }
           ref={props.withRef}
-        >
-          <Text>Jobs</Text>
-        </Menu.Item>
+        />
       </Menu.Content>
     </Menu>
   );
@@ -235,18 +231,12 @@ function TestSectionMenu(props: {
       </Menu.Trigger>
       <Menu.Content>
         <Menu.Section>
-          <Menu.Header>
-            <Heading level={4}>Section Header</Heading>
-          </Menu.Header>
-          <Menu.Item onClick={props.onItem}>
-            <span>Open</span>
-          </Menu.Item>
+          <Menu.Header label="Section Header" />
+          <Menu.Item label="Open" onClick={props.onItem} />
         </Menu.Section>
         <Menu.Separator />
         <Menu.Section>
-          <Menu.Item>
-            <Text>Two</Text>
-          </Menu.Item>
+          <Menu.Item label="Two" />
         </Menu.Section>
       </Menu.Content>
     </Menu>
@@ -263,9 +253,7 @@ function TestIconTriggerMenu() {
       </Menu.Trigger>
       <Menu.Content>
         <Menu.Section>
-          <Menu.Item>
-            <Text>One</Text>
-          </Menu.Item>
+          <Menu.Item label="One" />
         </Menu.Section>
       </Menu.Content>
     </Menu>
@@ -279,9 +267,7 @@ function TestChipTriggerMenu(props: { readonly onOpenChange?: () => void }) {
         <Chip label="Menu" />
       </Menu.Trigger>
       <Menu.Content>
-        <Menu.Item>
-          <Text>One</Text>
-        </Menu.Item>
+        <Menu.Item label="One" />
       </Menu.Content>
     </Menu>
   );
@@ -304,15 +290,13 @@ function TestUnsafePropsMenu() {
           <Menu.Header
             UNSAFE_className="unsafe-header"
             UNSAFE_style={{ color: "rgb(10, 20, 30)" }}
-          >
-            <Heading level={4}>Section Header</Heading>
-          </Menu.Header>
+            label="Section Header"
+          />
           <Menu.Item
             UNSAFE_className="unsafe-item"
             UNSAFE_style={{ margin: "11px" }}
-          >
-            <Text>Open</Text>
-          </Menu.Item>
+            label="Open"
+          />
         </Menu.Section>
         <Menu.Separator
           UNSAFE_className="unsafe-sep"

@@ -140,7 +140,18 @@ export interface MenuSectionComposableProps extends UnsafeProps {
 }
 
 export interface MenuHeaderComposableProps extends UnsafeProps {
-  readonly children: ReactNode;
+  /**
+   * Opinionated header label. When provided, renders with default typography.
+   */
+  readonly label?: string;
+
+  /**
+   * Fully customize the header rendering. When provided, it takes full control.
+   * You may use the provided `defaultContent` to re-use the opinionated header.
+   */
+  readonly customRender?: (args: {
+    readonly defaultContent: ReactNode;
+  }) => ReactNode;
 }
 
 export interface MenuItemComposableProps extends UnsafeProps {
@@ -151,9 +162,25 @@ export interface MenuItemComposableProps extends UnsafeProps {
   readonly onClick?: (event?: React.MouseEvent) => void;
 
   /**
-   * Menu item content
+   * Opinionated item label.
    */
-  readonly children: ReactNode;
+  readonly label?: string;
+
+  /**
+   * Optional leading icon.
+   */
+  readonly icon?: IconNames;
+
+  /**
+   * Icon color. Defaults to "icon". If `destructive` is true, the icon
+   * color will be forced to "destructive".
+   */
+  readonly iconColor?: IconColorNames;
+
+  /**
+   * Apply destructive styling to the item label and icon.
+   */
+  readonly destructive?: boolean;
 
   /**
    * String representation of the item's content.
@@ -162,7 +189,7 @@ export interface MenuItemComposableProps extends UnsafeProps {
   readonly textValue?: string;
 
   /**
-   * Href for the item.
+   * Href for the item. When provided, renders as a link item.
    */
   readonly href?: string;
 
@@ -175,6 +202,14 @@ export interface MenuItemComposableProps extends UnsafeProps {
    * Rel attribute for the link.
    */
   readonly rel?: string;
+
+  /**
+   * Fully customize the item rendering. When provided, it takes full control.
+   * You may use the provided `defaultContent` to re-use the opinionated item.
+   */
+  readonly customRender?: (args: {
+    readonly defaultContent: ReactNode;
+  }) => ReactNode;
 }
 
 export interface MenuContentComposableProps extends UnsafeProps {

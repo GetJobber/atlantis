@@ -347,7 +347,7 @@ function Action({
   onClick,
 }: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
-  const buttonClasses = classnames(styles.action, {
+  const buttonClasses = classnames(styles.action, styles.legacyAction, {
     [styles.destructive]: destructive,
   });
 
@@ -361,18 +361,62 @@ function Action({
       ref={actionButtonRef}
       style={UNSAFE_style}
     >
+      <DefaultItemContent
+        label={label}
+        icon={icon}
+        iconColor={iconColor}
+        destructive={destructive}
+        sectionLabel={sectionLabel}
+      />
+    </button>
+  );
+}
+
+function DefaultItemContent({
+  label,
+  icon,
+  iconColor,
+  destructive,
+  sectionLabel,
+}: {
+  readonly label?: string;
+  readonly icon?: React.ComponentProps<typeof Icon>["name"];
+  readonly iconColor?: React.ComponentProps<typeof Icon>["color"];
+  readonly destructive?: boolean;
+  readonly sectionLabel?: string;
+}) {
+  return (
+    <>
       {icon && (
         <div>
           <Icon color={destructive ? "destructive" : iconColor} name={icon} />
         </div>
       )}
-      <Typography element="span" fontWeight="semiBold" textColor="text">
+      <Typography
+        element="span"
+        fontWeight="semiBold"
+        textColor={destructive ? "destructive" : "text"}
+      >
         {sectionLabel && (
           <span className={styles.screenReaderOnly}>{sectionLabel}</span>
         )}
         {label}
       </Typography>
-    </button>
+    </>
+  );
+}
+
+function DefaultHeaderContent({ label }: { readonly label?: string }) {
+  return (
+    <Typography
+      element="h6"
+      size="base"
+      textColor="textSecondary"
+      fontWeight="regular"
+      textCase="none"
+    >
+      {label}
+    </Typography>
   );
 }
 
@@ -539,16 +583,19 @@ function MenuSectionComposable({
 }
 
 function MenuHeaderComposable({
-  children,
+  label,
+  customRender,
   UNSAFE_style,
   UNSAFE_className,
 }: MenuHeaderComposableProps) {
+  const defaultContent = <DefaultHeaderContent label={label} />;
+
   return (
     <AriaHeader
       className={classnames(styles.sectionHeader, UNSAFE_className)}
       style={UNSAFE_style}
     >
-      {children}
+      {customRender ? customRender({ defaultContent }) : defaultContent}
     </AriaHeader>
   );
 }
@@ -557,7 +604,36 @@ const MenuItemComposable = React.forwardRef<
   React.ElementRef<typeof AriaMenuItem>,
   MenuItemComposableProps
 >(function MenuItemComposable(props: MenuItemComposableProps, ref) {
-  const { children, UNSAFE_style, UNSAFE_className, textValue } = props;
+  const {
+    label,
+    icon,
+    iconColor,
+    destructive,
+    customRender,
+    UNSAFE_style,
+    UNSAFE_className,
+  } = props;
+
+  const computedTextValue = props.textValue ?? label;
+
+  const defaultContent = (
+    <DefaultItemContent
+      label={label}
+      icon={icon}
+      iconColor={iconColor}
+      destructive={destructive}
+    />
+  );
+
+  const content = customRender
+    ? customRender({ defaultContent })
+    : defaultContent;
+
+  const className = classnames(
+    styles.action,
+    { [styles.destructive]: destructive },
+    UNSAFE_className,
+  );
 
   if (props.href) {
     const { href, target, rel, onClick } = props;
@@ -565,15 +641,15 @@ const MenuItemComposable = React.forwardRef<
     return (
       <AriaMenuItem
         ref={ref}
-        className={classnames(styles.action, UNSAFE_className)}
+        className={className}
         style={UNSAFE_style}
-        textValue={textValue}
+        textValue={computedTextValue}
         href={href}
         target={target}
         rel={rel}
         onClick={onClick as ((e: React.MouseEvent) => void) | undefined}
       >
-        {children}
+        {content}
       </AriaMenuItem>
     );
   }
@@ -581,15 +657,15 @@ const MenuItemComposable = React.forwardRef<
   return (
     <AriaMenuItem
       ref={ref}
-      className={classnames(styles.action, UNSAFE_className)}
+      className={className}
       style={UNSAFE_style}
-      textValue={textValue}
+      textValue={computedTextValue}
       onAction={() => {
         // Zero-arg activation for non-link items
         props.onClick?.();
       }}
     >
-      {children}
+      {content}
     </AriaMenuItem>
   );
 });

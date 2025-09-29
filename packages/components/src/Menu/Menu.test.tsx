@@ -334,3 +334,152 @@ it("should focus first action item from the menu when activated", async () => {
   const firstMenuItem = screen.getAllByRole("menuitem")[0];
   expect(firstMenuItem).toHaveFocus();
 });
+
+describe("Menu (composable)", () => {
+  async function openMenu() {
+    await userEvent.click(screen.getByRole("button", { name: "menu-trigger" }));
+  }
+
+  it("renders opinionated Menu.Item with label and icon", async () => {
+    render(
+      <Menu>
+        <Menu.Trigger ariaLabel="menu-trigger">
+          <Button label="Menu" />
+        </Menu.Trigger>
+        <Menu.Content>
+          <Menu.Item label="Email" icon="email" />
+        </Menu.Content>
+      </Menu>,
+    );
+
+    await openMenu();
+
+    expect(screen.getByRole("menuitem")).toBeInTheDocument();
+    expect(screen.getByText("Email")).toBeInTheDocument();
+    expect(screen.getByTestId("email")).toBeInTheDocument();
+  });
+
+  it("applies destructive styling to item label and icon", async () => {
+    render(
+      <Menu>
+        <Menu.Trigger ariaLabel="menu-trigger">
+          <Button label="Menu" />
+        </Menu.Trigger>
+        <Menu.Content>
+          <Menu.Item label="Delete" icon="trash" destructive />
+        </Menu.Content>
+      </Menu>,
+    );
+
+    await openMenu();
+
+    const iconSvg = screen.getByTestId("trash");
+    const pathElement = iconSvg.querySelector("path");
+    expect(pathElement).toHaveStyle("fill: var(--color-destructive)");
+    const item = screen.getByRole("menuitem");
+    expect(item).toHaveClass("destructive");
+  });
+
+  it("invokes onClick when opinionated item is activated", async () => {
+    const onClick = jest.fn();
+    render(
+      <Menu>
+        <Menu.Trigger ariaLabel="menu-trigger">
+          <Button label="Menu" />
+        </Menu.Trigger>
+        <Menu.Content>
+          <Menu.Item label="Email" icon="email" onClick={onClick} />
+        </Menu.Content>
+      </Menu>,
+    );
+
+    await openMenu();
+    await userEvent.click(screen.getByRole("menuitem"));
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders a link item when href is provided", async () => {
+    render(
+      <Menu>
+        <Menu.Trigger ariaLabel="menu-trigger">
+          <Button label="Menu" />
+        </Menu.Trigger>
+        <Menu.Content>
+          <Menu.Item label="Help" href="/help" />
+        </Menu.Content>
+      </Menu>,
+    );
+
+    await openMenu();
+
+    const link = screen.getByRole("menuitem");
+    expect(link).toHaveAttribute("href");
+  });
+
+  it("uses customRender to fully customize item content", async () => {
+    render(
+      <Menu>
+        <Menu.Trigger ariaLabel="menu-trigger">
+          <Button label="Menu" />
+        </Menu.Trigger>
+        <Menu.Content>
+          <Menu.Item
+            label="Email"
+            icon="email"
+            customRender={({ defaultContent }) => (
+              <div data-testid="custom-item">{defaultContent}</div>
+            )}
+          />
+        </Menu.Content>
+      </Menu>,
+    );
+
+    await openMenu();
+    expect(screen.getByTestId("custom-item")).toBeInTheDocument();
+  });
+
+  it("renders opinionated Menu.Header with label", async () => {
+    render(
+      <Menu>
+        <Menu.Trigger ariaLabel="menu-trigger">
+          <Button label="Menu" />
+        </Menu.Trigger>
+        <Menu.Content>
+          <Menu.Section>
+            <Menu.Header label="Send as..." />
+            <Menu.Item label="Email" />
+          </Menu.Section>
+        </Menu.Content>
+      </Menu>,
+    );
+
+    await openMenu();
+    expect(
+      screen.getByRole("heading", { name: "Send as..." }),
+    ).toBeInTheDocument();
+  });
+
+  it("uses customRender to fully customize header content", async () => {
+    render(
+      <Menu>
+        <Menu.Trigger ariaLabel="menu-trigger">
+          <Button label="Menu" />
+        </Menu.Trigger>
+        <Menu.Content>
+          <Menu.Section>
+            <Menu.Header
+              label="Send as..."
+              customRender={({ defaultContent }) => (
+                <div data-testid="custom-header">{defaultContent}</div>
+              )}
+            />
+            <Menu.Item label="Email" />
+          </Menu.Section>
+        </Menu.Content>
+      </Menu>,
+    );
+
+    await openMenu();
+    expect(screen.getByTestId("custom-header")).toBeInTheDocument();
+  });
+});

@@ -85,13 +85,39 @@
     box-shadow var(--timing-base) ease-out;
 }
 
-.action:hover,
-.action:focus-visible {
+.action:hover {
   background-color: var(--color-surface--hover);
 }
 
-.action:focus-visible {
+/* Background on both legacy (:focus-visible) and RAC ([data-focused]) */
+.action[data-focused] {
+  background-color: var(--color-surface--hover);
+}
+
+/* Focus ring for legacy and RAC keyboard focus */
+.action[data-focus-visible] {
   box-shadow: var(--shadow-focus);
+}
+
+/* Do not show focus ring when item is hovered (pointer interaction) */
+.action[data-hovered][data-focus-visible] {
+  box-shadow: none;
+}
+
+/* class-based flags injected via react-aria render props */
+/* RAC state classes (focus ring only; background handled by [data-focused]) */
+.isFocusVisible {
+  box-shadow: var(--shadow-focus);
+}
+
+.isHovered.isFocusVisible {
+  box-shadow: none;
+}
+
+/* Legacy variant focus-visible styling */
+.legacyAction:focus-visible {
+  box-shadow: var(--shadow-focus);
+  background-color: var(--color-surface--hover);
 }
 
 .action span {

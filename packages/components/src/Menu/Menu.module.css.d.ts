@@ -7,6 +7,9 @@ declare const styles: {
   readonly "section": string;
   readonly "sectionHeader": string;
   readonly "action": string;
+  readonly "isFocusVisible": string;
+  readonly "isHovered": string;
+  readonly "legacyAction": string;
   readonly "destructive": string;
   readonly "triggerWrapper": string;
   readonly "overlay": string;
