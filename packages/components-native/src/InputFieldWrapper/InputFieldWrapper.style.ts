@@ -43,6 +43,7 @@ export const useStyles = buildThemedStyles(tokens => {
       right: 0,
       bottom: 0,
       left: 0,
+      zIndex: 1,
     },
 
     miniLabel: {
@@ -53,7 +54,6 @@ export const useStyles = buildThemedStyles(tokens => {
       maxHeight:
         (typographyStyles.defaultSize.lineHeight || 0) +
         tokens["space-smaller"],
-      zIndex: 1,
     },
     // Prevents the miniLabel from cutting off the ClearAction button
     miniLabelShowClearAction: {
