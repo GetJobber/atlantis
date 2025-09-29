@@ -8,12 +8,12 @@ import { Icon } from "@jobber/components/Icon";
 
 ## Summary
 
-Banners are persistent messages used to communicate important changes, ongoing conditions, or
-system errors. They appear at the top of a screen or near related content and remain visible
-until dismissed or the condition is resolved.
+Banners are persistent messages used to communicate important changes, ongoing
+conditions, or system errors. They appear at the top of a screen or near related
+content and remain visible until dismissed or the condition is resolved.
 
-At Jobber, Banners help service providers (SPs) stay informed about updates that impact their
-business, without unnecessarily interrupting their flow. 
+At Jobber, Banners help service providers (SPs) stay informed about updates that
+impact their business, without unnecessarily interrupting their flow.
 
 ## Anatomy
 
@@ -28,48 +28,55 @@ A Banner typically includes:
 
 ## Behaviour
 
-- Alignment: Banner should align with the left and right of the content it relates to. In a
-modal or page layout, this means aligning with text, inputs, or other components beneath it.
-Use the [Content](/components/Content) to ensure consistent vertical spacing between
-the Banner and adjacent elements.
+- Alignment: Banner should align with the left and right of the content it
+  relates to. In a modal or page layout, this means aligning with text, inputs,
+  or other components beneath it. Use the [Content](/components/Content) to
+  ensure consistent vertical spacing between the Banner and adjacent elements.
 
-- Dismissal: Banners remain visible until they are dismissed or the condition resolves. Include
-a dismiss button only when no further user action is required.
+- Dismissal: Banners remain visible until they are dismissed or the condition
+  resolves. Include a dismiss button only when no further user action is
+  required.
 
-#### Global Banner (Web and Mobile) 
-Use Global banner for system-wide messages that need to persist beyond a specific view or layout.
+#### Global Banner (Web and Mobile)
+
+Use Global banner for system-wide messages that need to persist beyond a
+specific view or layout.
 
 <ul>
- <li>It should be positioned above the top navigation bar</li>
- <li>It should be full-width, flush with the screen edges</li>
+  <li>It should be positioned above the top navigation bar</li>
+  <li>It should be full-width, flush with the screen edges</li>
 </ul>
 
-Note that Global Banner is a separate component (there's a version of it in Jobber and Jobber Online repos). 
+Note that Global Banner is a separate component (there's a version of it in
+Jobber and Jobber Online repos).
 
 ## Variants
 
 Banners come in four types; `success`, `notice`, `warning` and `error`. Each
 type has guidelines for usage:
 
-### Success (Web only)
+### Success
 
 <Canvas>
-  <Banner type="success">You've connected your bank account and can start receiving payouts.</Banner>
+  <Banner type="success">
+    You've connected your bank account and can start receiving payouts.
+  </Banner>
 </Canvas>
 
 Success banners are appropriate when:
 
 <ul>
-  <li>A meaningful user action is complete and feedback is delayed or needs to persist</li>
-  <li>It’s important for SPs to understand that a key change has been applied</li>
+  <li>
+    A meaningful user action is complete and feedback is delayed or needs to
+    persist
+  </li>
+  <li>
+    It’s important for SPs to understand that a key change has been applied
+  </li>
 </ul>
 
 Otherwise, use [Toast](/components/Toast) as the default for success messages.
 Do not use the term "Success" when writing a success banner.
-
-### Success (Mobile)
-
-On mobile, use [Toast](/components/Toast) for a success message.
 
 ### Notice (Info)
 
@@ -113,22 +120,22 @@ blocking or redirecting a workflow.
 #### Warning banner vs. Confirmation modal
 
 On web, you should use [ConfirmationModal](/components/ConfirmationModal) when
-you need to get explicit confirmation from the SP before they complete an
-action that is difficult to reverse.
+you need to get explicit confirmation from the SP before they complete an action
+that is difficult to reverse.
 
-| Use a **Warning Banner** when...                     | Use a **Confirmation Modal** when...                   |
-|------------------------------------------------------|--------------------------------------------------------|
-| You’re communicating a persistent or upcoming state  | You need to confirm intent before proceeding           |
-| The SP needs to act, but isn’t initiating the risk   | The SP is triggering a high-impact change              |
-| The risk persists until resolved (e.g. paused plan)  | The action could disrupt billing, payments, or data    |
-| You want the message visible across sessions         | You want to keep context to current action             |
-| The SP may need time to decide or follow up          | The SP must make a choice before continuing            |
+| Use a **Warning Banner** when...                    | Use a **Confirmation Modal** when...                |
+| --------------------------------------------------- | --------------------------------------------------- |
+| You’re communicating a persistent or upcoming state | You need to confirm intent before proceeding        |
+| The SP needs to act, but isn’t initiating the risk  | The SP is triggering a high-impact change           |
+| The risk persists until resolved (e.g. paused plan) | The action could disrupt billing, payments, or data |
+| You want the message visible across sessions        | You want to keep context to current action          |
+| The SP may need time to decide or follow up         | The SP must make a choice before continuing         |
 
 ### Error message
 
 <Canvas>
   <Banner type="error" icon="alert">
-   Your changes couldn't be saved. Check your connection and try again.
+    Your changes couldn't be saved. Check your connection and try again.
   </Banner>
 </Canvas>
 
@@ -176,61 +183,87 @@ individual input(s).
 
 ## Content guidelines
 
-Banner messages should be concise, clear, and actionable. They inform users of system states,
-requirements, or follow-ups—especially ones that persist until resolved.
+Banner messages should be concise, clear, and actionable. They inform users of
+system states, requirements, or follow-ups—especially ones that persist until
+resolved.
 
-This guidance helps ensure Banners are useful for all users, and particularly for SPs who may be
-multitasking, working on mobile, or managing their business on the go.
+This guidance helps ensure Banners are useful for all users, and particularly
+for SPs who may be multitasking, working on mobile, or managing their business
+on the go.
 
 #### General guidance
+
 <ul>
- <li>Use plain, direct language.</li>
- <li>Limit to 1–2 short sentences (ideally under 200 characters).</li>
- <li>Start with what’s happening, then what’s needed (if anything).</li>
- <li>Be specific—avoid vague phrases like “something went wrong.”</li>
- <li>You can reuse key terms from the message in the CTA, especially to reinforce the action.</li>
- <li>Use full sentences for clarity. Avoid fragments or trailing thoughts.</li>
+  <li>Use plain, direct language.</li>
+  <li>Limit to 1–2 short sentences (ideally under 200 characters).</li>
+  <li>Start with what’s happening, then what’s needed (if anything).</li>
+  <li>Be specific—avoid vague phrases like “something went wrong.”</li>
+  <li>
+    You can reuse key terms from the message in the CTA, especially to reinforce
+    the action.
+  </li>
+  <li>Use full sentences for clarity. Avoid fragments or trailing thoughts.</li>
 </ul>
 
 #### SP specific tips
 
 <ul>
- <li>Prioritize clarity over cleverness. SPs need fast, scannable guidance.</li>
- <li>Avoid backend or system terms (e.g. “system error,” “processing failed”).</li>
- <li>Frame language around outcomes: payouts, scheduling, client experience.</li>
- <li>Keep urgency proportional to actual impact.</li>
+  <li>
+    Prioritize clarity over cleverness. SPs need fast, scannable guidance.
+  </li>
+  <li>
+    Avoid backend or system terms (e.g. “system error,” “processing failed”).
+  </li>
+  <li>
+    Frame language around outcomes: payouts, scheduling, client experience.
+  </li>
+  <li>Keep urgency proportional to actual impact.</li>
 </ul>
 
 #### Language Rules
 
 <ul>
- <li>Avoid exclamation points. They add unnecessary emotion and visual noise.</li>
- <li>Don’t use “Heads up,” “FYI,” or “Just so you know.” These take space but say nothing.</li>
- <li>Get to the point as quickly as possible. Start with the action required if there is one.</li>
- <li>Avoid apologizing in system messages. Focus on clarity and resolution rather than sentiment.</li>
+  <li>
+    Avoid exclamation points. They add unnecessary emotion and visual noise.
+  </li>
+  <li>
+    Don’t use “Heads up,” “FYI,” or “Just so you know.” These take space but say
+    nothing.
+  </li>
+  <li>
+    Get to the point as quickly as possible. Start with the action required if
+    there is one.
+  </li>
+  <li>
+    Avoid apologizing in system messages. Focus on clarity and resolution rather
+    than sentiment.
+  </li>
 </ul>
 
 #### Language examples
 
-| Type    | ✅ Better phrasing                                                                   | ❌ Less clear phrasing                         |
-|---------|--------------------------------------------------------------------------------------|------------------------------------------------|
-| Success | “You've connected your bank account and can start recieving payouts.”                | “Bank connection successful!”                  |
-|         | “Your logo has been added to your invoices.”                                         | “Update saved successfully.”                   |
-| Notice  | “Client reminders now include a booking link.”                                       | “We’ve made updates to reminders.”             |
-|         | “You can now double-book visits on your calendar.”                                   | “New scheduling feature added.”                |
-| Warning | “To receive payouts, you need to add your bank account details.” CTA: “Add bank account”  | “Missing payout details!”                 |
-|         | “Your trial ends in 2 days. Select a plan to keep your account active.” CTA: “Select plan” | “Trial ending—don’t forget to upgrade!”  |
-| Error   | “We couldn’t sync your calendar. Try reconnecting your account.”                     | “Calendar sync failed: error 503.”             |
-|         | “We couldn’t save your changes. Check your connection and try again.”                | “Something went wrong. Please try again later.”|
+| Type    | ✅ Better phrasing                                                                         | ❌ Less clear phrasing                          |
+| ------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| Success | “You've connected your bank account and can start recieving payouts.”                      | “Bank connection successful!”                   |
+|         | “Your logo has been added to your invoices.”                                               | “Update saved successfully.”                    |
+| Notice  | “Client reminders now include a booking link.”                                             | “We’ve made updates to reminders.”              |
+|         | “You can now double-book visits on your calendar.”                                         | “New scheduling feature added.”                 |
+| Warning | “To receive payouts, you need to add your bank account details.” CTA: “Add bank account”   | “Missing payout details!”                       |
+|         | “Your trial ends in 2 days. Select a plan to keep your account active.” CTA: “Select plan” | “Trial ending—don’t forget to upgrade!”         |
+| Error   | “We couldn’t sync your calendar. Try reconnecting your account.”                           | “Calendar sync failed: error 503.”              |
+|         | “We couldn’t save your changes. Check your connection and try again.”                      | “Something went wrong. Please try again later.” |
 
-Use these examples as starting points. Focus on clarity, relevance, and next steps.
-For actions that must be taken, make the language outcome-focused, rather than technical or emotional.
+Use these examples as starting points. Focus on clarity, relevance, and next
+steps. For actions that must be taken, make the language outcome-focused, rather
+than technical or emotional.
 
 ## Dos and Don'ts
 
-In summary, here are some general rules to follow when working with the banner component:
+In summary, here are some general rules to follow when working with the banner
+component:
 
 #### Do:
+
 <ul>
   <li> ✅ Use for persistent and important messages </li>
   <li> ✅ Try to keep the content to under 200 characters </li>
@@ -240,8 +273,12 @@ In summary, here are some general rules to follow when working with the banner c
 </ul>
 
 #### Don't:
+
 <ul>
-  <li> ❌ Use Banners for short-lived success feedback (use the Toast component instead) </li>
+  <li>
+    {" "}
+    ❌ Use Banners for short-lived success feedback (use the Toast component instead){" "}
+  </li>
   <li> ❌ Stack multiple Banners without clear visual hierarchy </li>
   <li> ❌ Add filler intros like “Heads up” or “FYI" </li>
   <li> ❌ Over-explain or apologize; stay focused and practical </li>
@@ -249,9 +286,13 @@ In summary, here are some general rules to follow when working with the banner c
 
 ## Accessibility notes
 
- <ul>
+{" "}
+<ul>
   <li>Banners should be announced to screen readers when rendered</li>
-  <li>Ensure high contrast between background and text—especially for error and warning states</li>
+  <li>
+    Ensure high contrast between background and text—especially for error and
+    warning states
+  </li>
   <li>Avoid positioning mobile Banners over navigation or actionable UI</li>
 </ul>
 
@@ -261,5 +302,6 @@ In summary, here are some general rules to follow when working with the banner c
   use [Toast](/components/Toast) instead.
 - Use [ConfirmationModal](/components/ConfirmationModal) when you need to get
   explicit confirmation from the user before they complete an action.
-- As stated in the Behaviour section, Global Banner is a a separate component 
-  (shared component, a version exists in both the Jobber and Jobber Online repos).
+- As stated in the Behaviour section, Global Banner is a a separate component
+  (shared component, a version exists in both the Jobber and Jobber Online
+  repos).
