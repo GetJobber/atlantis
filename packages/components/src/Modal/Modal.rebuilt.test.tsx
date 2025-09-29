@@ -76,56 +76,6 @@ describe("Composable Modal", () => {
       "secondary destructive",
     );
   });
-  it('modal contains aria role of "dialog"', async () => {
-    render(
-      <Modal.Provider open={true}>
-        <Modal.Content>
-          <Modal.Header title="Modal Title" />
-        </Modal.Content>
-      </Modal.Provider>,
-    );
-    expect(await screen.findByRole("dialog")).toBeInTheDocument();
-  });
-
-  it("names the dialog from title via aria-labelledby when ariaLabel is not provided", async () => {
-    render(
-      <Modal.Provider open={true}>
-        <Modal.Content>
-          <Modal.Header title="Billing Settings" />
-        </Modal.Content>
-      </Modal.Provider>,
-    );
-
-    expect(
-      await screen.findByRole("dialog", { name: "Billing Settings" }),
-    ).toBeInTheDocument();
-  });
-
-  it("uses ariaLabel via aria-label only when no title/header is provided", async () => {
-    render(
-      <Modal.Provider open={true} ariaLabel="Add Customer">
-        <Modal.Content>{/* no Modal.Header on purpose */}</Modal.Content>
-      </Modal.Provider>,
-    );
-
-    expect(
-      await screen.findByRole("dialog", { name: "Add Customer" }),
-    ).toBeInTheDocument();
-  });
-
-  it("calls onRequestClose when pressing the escape key", async () => {
-    const handleRequestClose = jest.fn();
-    render(
-      <Modal.Provider open={true} onRequestClose={handleRequestClose}>
-        <Modal.Content>
-          <Modal.Header title="Modal Title" />
-        </Modal.Content>
-      </Modal.Provider>,
-    );
-
-    await userEvent.keyboard("{Escape}");
-    expect(handleRequestClose).toHaveBeenCalledTimes(1);
-  });
 
   it("should render the modal header with custom content", () => {
     render(
@@ -144,6 +94,149 @@ describe("Composable Modal", () => {
     expect(screen.getByRole("dialog")).toHaveTextContent(
       "Custom Header Content",
     );
+  });
+
+  describe("accessibility", () => {
+    it('modal contains aria role of "dialog"', async () => {
+      render(
+        <Modal.Provider open={true}>
+          <Modal.Content>
+            <Modal.Header title="Modal Title" />
+          </Modal.Content>
+        </Modal.Provider>,
+      );
+      expect(await screen.findByRole("dialog")).toBeInTheDocument();
+    });
+
+    describe("dialog is named from title prop", () => {
+      it("when ariaLabel is not provided", async () => {
+        render(
+          <Modal.Provider open={true}>
+            <Modal.Content>
+              <Modal.Header title="Billing Settings" />
+            </Modal.Content>
+          </Modal.Provider>,
+        );
+
+        const dialog = await screen.findByRole("dialog");
+
+        expect(
+          screen.getByRole("dialog", { name: "Billing Settings" }),
+        ).toBeInTheDocument();
+        expect(dialog).toHaveAttribute("aria-labelledby");
+      });
+
+      it("when ariaLabel is provided (title takes precedence)", async () => {
+        render(
+          <Modal.Provider open={true} ariaLabel="This should be ignored">
+            <Modal.Content>
+              <Modal.Header title="Billing Settings" />
+            </Modal.Content>
+          </Modal.Provider>,
+        );
+
+        const dialog = await screen.findByRole("dialog");
+
+        expect(dialog).toBeInTheDocument();
+        expect(
+          screen.getByRole("dialog", { name: "Billing Settings" }),
+        ).toBeInTheDocument();
+        expect(dialog).toHaveAttribute("aria-labelledby");
+      });
+    });
+
+    describe("dialog is named from ariaLabel", () => {
+      it("when no header is provided", async () => {
+        render(
+          <Modal.Provider open={true} ariaLabel="Add Customer">
+            <Modal.Content>{/* no Modal.Header on purpose */}</Modal.Content>
+          </Modal.Provider>,
+        );
+
+        const dialog = await screen.findByRole("dialog");
+
+        expect(
+          screen.getByRole("dialog", { name: "Add Customer" }),
+        ).toBeInTheDocument();
+        expect(dialog).toHaveAttribute("aria-label", "Add Customer");
+      });
+
+      it("when header lacks id/modalLabelledBy", async () => {
+        render(
+          <Modal.Provider open={true} ariaLabel="Fallback Label">
+            <Modal.Content>
+              <Modal.Header>
+                <span>Custom Header Without ID</span>
+              </Modal.Header>
+            </Modal.Content>
+          </Modal.Provider>,
+        );
+
+        const dialog = await screen.findByRole("dialog");
+
+        expect(
+          screen.getByRole("dialog", { name: "Fallback Label" }),
+        ).toBeInTheDocument();
+        expect(dialog).toHaveAttribute("aria-label", "Fallback Label");
+      });
+    });
+
+    describe("dialog is named from Modal.Header", () => {
+      it("when modalLabelledBy matches header id", async () => {
+        render(
+          <Modal.Provider
+            open={true}
+            modalLabelledBy="custom-header"
+            ariaLabel="This should be ignored"
+          >
+            <Modal.Content>
+              <Modal.Header>
+                <span id="custom-header">Custom Header Content</span>
+              </Modal.Header>
+            </Modal.Content>
+          </Modal.Provider>,
+        );
+
+        const dialog = await screen.findByRole("dialog");
+
+        expect(dialog).toBeInTheDocument();
+        expect(
+          screen.getByRole("dialog", { name: "Custom Header Content" }),
+        ).toBeInTheDocument();
+        expect(dialog).toHaveAttribute("aria-labelledby", "custom-header");
+      });
+
+      it("has no accessible name when header lacks id and no ariaLabel", async () => {
+        render(
+          <Modal.Provider open={true}>
+            <Modal.Content>
+              <Modal.Header>
+                <span>Custom Header Without ID</span>
+              </Modal.Header>
+            </Modal.Content>
+          </Modal.Provider>,
+        );
+
+        const dialog = await screen.findByRole("dialog");
+
+        expect(dialog).toBeInTheDocument();
+        expect(dialog).not.toHaveAttribute("aria-label");
+      });
+    });
+  });
+
+  it("calls onRequestClose when pressing the escape key", async () => {
+    const handleRequestClose = jest.fn();
+    render(
+      <Modal.Provider open={true} onRequestClose={handleRequestClose}>
+        <Modal.Content>
+          <Modal.Header title="Modal Title" />
+        </Modal.Content>
+      </Modal.Provider>,
+    );
+
+    await userEvent.keyboard("{Escape}");
+    expect(handleRequestClose).toHaveBeenCalledTimes(1);
   });
 
   it("closes when clicking the backdrop and stays open when clicking inside", async () => {
