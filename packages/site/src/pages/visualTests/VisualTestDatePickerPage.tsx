@@ -28,7 +28,7 @@ export const VisualTestDatePickerPage = () => {
 
   // DatePicker with highlighted dates
   const [highlightedDate, setHighlightedDate] = useState<Date | undefined>(
-    undefined,
+    new Date(2025, 8, 18),
   );
   const highlightDates = [
     new Date(2025, 5, 3),
