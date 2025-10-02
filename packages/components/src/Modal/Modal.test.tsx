@@ -154,6 +154,9 @@ describe("accessibility", () => {
       expect(
         screen.getByRole("dialog", { name: "Legacy Modal" }),
       ).toBeVisible();
+      expect(
+        screen.queryByRole("dialog", { name: "Legacy Modal Aria Label" }),
+      ).not.toBeInTheDocument();
     });
   });
 
