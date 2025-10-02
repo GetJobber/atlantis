@@ -56,12 +56,6 @@ export interface MenuComposableProps extends MenuBaseProps {
  */
 export type MenuProps = MenuLegacyProps;
 
-/**
- * Full set of props supported by the `Menu` component implementation (legacy | composable).
- * Prefer using `ComponentProps<typeof Menu>` if you need the full union.
- */
-export type MenuAllProps = MenuLegacyProps | MenuComposableProps;
-
 export interface SectionProps {
   /**
    * Defines the section header to further explain the group of actions.
