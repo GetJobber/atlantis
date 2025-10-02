@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "Omit<RegisterOptions<FieldValues, string>, \"disabled\" | \"valueAsNumber\" | \"valueAsDate\" | \"setValueAs\">"
+          "name": "Omit<Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>, \"disabled\" | ... 2 more ... | \"setValueAs\">"
         }
       },
       "defaultValue": {

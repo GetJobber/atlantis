@@ -153,6 +153,32 @@
         "type": {
           "name": "string"
         }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "Opinionated header label. When provided, renders with default typography.\nMust not be provided when using custom presentation",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuHeaderDefaultPresentation"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "customRender": {
+        "defaultValue": null,
+        "description": "Must not be provided when using default presentation\nFully customize the header rendering. When provided, it takes full control.\nYou may use the provided `defaultContent` to re-use the opinionated header.",
+        "name": "customRender",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuHeaderDefaultPresentation"
+        },
+        "required": false,
+        "type": {
+          "name": "() => ReactNode"
+        }
       }
     }
   },
