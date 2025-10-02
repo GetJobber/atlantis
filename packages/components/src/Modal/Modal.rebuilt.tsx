@@ -29,8 +29,10 @@ export function ModalHeader({ title, children }: HeaderProps) {
   }
 
   return (
-    <div className={header} data-testid={MODAL_HEADER_ID} id={modalLabelledBy}>
-      <Heading level={2}>{title}</Heading>
+    <div className={header} data-testid={MODAL_HEADER_ID}>
+      <Heading level={2} id={modalLabelledBy}>
+        {title}
+      </Heading>
 
       {dismissible && (
         <div className={dismissButton}>

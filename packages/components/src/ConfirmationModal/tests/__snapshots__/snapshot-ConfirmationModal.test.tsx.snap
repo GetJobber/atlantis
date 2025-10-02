@@ -20,10 +20,10 @@ exports[`renders a simple ConfirmationModal 1`] = `
       <div
         class="header"
         data-testid="modal-header"
-        id="ATL-Modal-Header"
       >
         <h2
           class="base bold largest heading"
+          id="ATL-Modal-Header"
         >
           Should we?
         </h2>

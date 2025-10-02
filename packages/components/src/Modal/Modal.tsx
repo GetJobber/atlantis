@@ -104,12 +104,10 @@ interface HeaderProps {
 
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
-    <div
-      className={styles.header}
-      data-testid="modal-header"
-      id={MODAL_HEADER_ID}
-    >
-      <Heading level={2}>{title}</Heading>
+    <div className={styles.header} data-testid="modal-header">
+      <Heading level={2} id={MODAL_HEADER_ID}>
+        {title}
+      </Heading>
 
       {dismissible && (
         <div className={styles.closeButton}>
