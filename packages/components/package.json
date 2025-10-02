@@ -489,7 +489,7 @@
     "react-countdown": "^2.3.2",
     "react-datepicker": "^8.7.0",
     "react-dropzone": "^11.0.2",
-    "react-hook-form": "^7.43.7",
+    "react-hook-form": "^7.52.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^5.3.4",
     "ts-xor": "^1.0.8"
@@ -530,7 +530,7 @@
     "lodash": "^4",
     "react": "^18 || ^19.1.0",
     "react-dom": "^18 || ^19.1.0",
-    "react-hook-form": "^7",
+    "react-hook-form": "^7.52.0",
     "react-router-dom": "^6"
   },
   "browserslist": [
