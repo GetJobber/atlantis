@@ -203,11 +203,11 @@ export const VisualTestDatePickerPage = () => {
 
           {/* Position Test DatePicker */}
           <section>
+            <div style={{ height: "400px" }} />
             <Text size="large">Position Test - Bottom Constraint</Text>
             <Text size="small">
               For testing positioning when insufficient space below
             </Text>
-            <div style={{ height: "60vh" }} />
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <DatePicker
