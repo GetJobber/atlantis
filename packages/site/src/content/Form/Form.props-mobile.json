@@ -120,7 +120,7 @@
         },
         "required": false,
         "type": {
-          "name": "(Date & FieldValues) | (FileList & FieldValues) | (File & FieldValues) | { [x: string]: any; } | ((Date | Blob | FileList | File) & FileList & FieldValues) | { ...; } | (object & FieldValues) | ((Date | ... 2 more ... | File) & { ...; }) | { ...; }"
+          "name": "{ [x: string]: any; } | ((BrowserNativeObject | NestedValue) & FieldValues) | { [x: string]: any; }"
         }
       },
       "mode": {
@@ -133,7 +133,7 @@
         },
         "required": false,
         "type": {
-          "name": "keyof ValidationMode"
+          "name": "\"onBlur\" | \"onChange\" | \"onSubmit\" | \"onTouched\" | \"all\""
         }
       },
       "reValidateMode": {
