@@ -42,8 +42,8 @@ export function ModalLegacy({
           className={styles.container}
           tabIndex={0}
           aria-modal="true"
-          aria-labelledby={title !== undefined ? MODAL_HEADER_ID : undefined}
-          aria-label={ariaLabel ?? title}
+          aria-labelledby={title ? MODAL_HEADER_ID : undefined}
+          aria-label={ariaLabel}
         >
           <motion.div
             key={styles.overlay}
@@ -67,7 +67,6 @@ export function ModalLegacy({
           >
             {title != undefined && (
               <Header
-                id={MODAL_HEADER_ID}
                 title={title}
                 dismissible={dismissible}
                 onRequestClose={onRequestClose}
@@ -98,15 +97,18 @@ export function ModalLegacy({
 }
 
 interface HeaderProps {
-  readonly id?: string;
   readonly title: string;
   readonly dismissible?: boolean;
   onRequestClose?(): void;
 }
 
-function Header({ id, title, dismissible, onRequestClose }: HeaderProps) {
+function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
-    <div className={styles.header} data-testid="modal-header" id={id}>
+    <div
+      className={styles.header}
+      data-testid="modal-header"
+      id={MODAL_HEADER_ID}
+    >
       <Heading level={2}>{title}</Heading>
 
       {dismissible && (

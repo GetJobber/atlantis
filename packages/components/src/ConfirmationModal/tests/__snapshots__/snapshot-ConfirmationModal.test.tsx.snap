@@ -3,7 +3,6 @@
 exports[`renders a simple ConfirmationModal 1`] = `
 <div>
   <div
-    aria-label="Should we?"
     aria-labelledby="ATL-Modal-Header"
     aria-modal="true"
     class="container"
