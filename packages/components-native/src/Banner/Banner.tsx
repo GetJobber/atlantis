@@ -97,5 +97,7 @@ function getBannerIcon(type: BannerTypes): IconNames | undefined {
       return "help";
     case "error":
       return "alert";
+    case "success":
+      return "checkmark";
   }
 }
