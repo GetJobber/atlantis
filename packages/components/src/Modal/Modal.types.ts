@@ -55,7 +55,7 @@ export interface ModalContextType {
   readonly modalLabelledBy?: string;
 
   /**
-   * Accessible name override applied to the modal via aria-label.
+   * Accessible name for the Modal.
    * Intended for use when no Header/Title content is provided, as the Heading/title takes precedence over ariaLabel.
    */
   readonly ariaLabel?: string;
@@ -118,8 +118,8 @@ export interface ModalLegacyProps {
   onRequestClose?(): void;
   readonly version?: 1;
   /**
-   * Accessible name override applied to the modal via aria-label. When provided, it takes
-   * precedence over using the title.
+   * Accessible name for the Modal.
+   * Only required if no title is provided. Title takes precedence over ariaLabel.
    */
   readonly ariaLabel?: string;
 }
