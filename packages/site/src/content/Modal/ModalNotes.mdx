@@ -1,15 +1,15 @@
 ## Component customization
 
-### Composable usage (Version 2)
+### Modal Provider API
 
-**Note:** This is only support in new projects due to some incompatibilities
-with some testing environments.
+**Note:** This is only supported in new projects due to incompatibilities with
+some testing environments.
 
 Modal exposes its internal building blocks as subcomponents: `Modal.Provider`,
 `Modal.Activator`, `Modal.Header`, `Modal.Content`, `Modal.Actions`. This gives
 you more control over the Modal's appearance and behaviour.
 
-Here is a basic example of how our current non-composable Modal is used:
+Here is a basic example of how our current Modal is used:
 
 ```tsx
 <Modal
@@ -144,10 +144,10 @@ function ModalWithCustomFocus() {
 - If there is no visible heading/title, you can provide `ariaLabel` to provide
   an accessible name for the Modal.
 
-### Composable Modal
+### Provider Modal
 
-When using the composable API, the name is derived from `Modal.Header` when a
-`title` is provided. If you use a custom header node, set `modalLabelledBy` on
+When using the Modal Provider API, the name is derived from `Modal.Header` when
+a `title` is provided. If you use a custom header node, set `modalLabelledBy` on
 `Modal.Provider` to the `id` of your heading element.
 
 ```tsx
@@ -174,7 +174,7 @@ When using the composable API, the name is derived from `Modal.Header` when a
 </Modal.Provider>
 ```
 
-### Standard Modal
+### Non Provider Modal
 
 For the non provider invocation, when `title` is present it names the dialog via
 `aria-labelledby`. If there is no `title`, you must provide `ariaLabel` to
