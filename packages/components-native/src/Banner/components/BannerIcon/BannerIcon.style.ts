@@ -15,5 +15,8 @@ export const useStyles = buildThemedStyles(tokens => {
     notice: {
       backgroundColor: tokens["color-informative"],
     },
+    success: {
+      backgroundColor: tokens["color-success"],
+    },
   };
 });

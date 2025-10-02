@@ -28,7 +28,7 @@ export const VisualTestDatePickerPage = () => {
 
   // DatePicker with highlighted dates
   const [highlightedDate, setHighlightedDate] = useState<Date | undefined>(
-    undefined,
+    new Date(2025, 8, 18),
   );
   const highlightDates = [
     new Date(2025, 5, 3),
@@ -203,11 +203,11 @@ export const VisualTestDatePickerPage = () => {
 
           {/* Position Test DatePicker */}
           <section>
+            <div style={{ height: "400px" }} />
             <Text size="large">Position Test - Bottom Constraint</Text>
             <Text size="small">
               For testing positioning when insufficient space below
             </Text>
-            <div style={{ height: "60vh" }} />
             <Grid>
               <Grid.Cell size={{ xs: 12, md: 6 }}>
                 <DatePicker

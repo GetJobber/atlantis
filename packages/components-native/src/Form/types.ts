@@ -1,17 +1,16 @@
 import type { MutableRefObject, RefObject } from "react";
 import type {
   ControllerProps,
-  DeepPartial,
+  DefaultValues,
   FieldPath,
   FieldValues,
   Mode,
-  UnpackNestedValue,
   UseFormReturn,
 } from "react-hook-form";
 import type { IconNames } from "@jobber/design";
 import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-export type FormValues<T> = UnpackNestedValue<T>;
+export type FormValues<T> = T;
 export type FormErrors = FormNetworkErrors | FormUserErrors;
 export type FormBannerMessage = FormWarningMessage | FormNoticeMessage;
 
@@ -109,7 +108,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * The initial values of the form inputs
    * This should be available as soon as initialLoading is set to false
    */
-  initialValues?: FormValues<DeepPartial<T>>;
+  initialValues?: DefaultValues<T>;
 
   /**
    * When the validation should happen.

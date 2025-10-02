@@ -5,6 +5,7 @@ test.describe("DatePicker Visual Tests", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/visual-tests/datepicker");
     await page.waitForLoadState("networkidle");
+    await page.setViewportSize({ width: 1280, height: 1600 });
     await page.waitForTimeout(1000);
   });
 
