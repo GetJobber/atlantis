@@ -582,20 +582,21 @@ function MenuSectionComposable({
   );
 }
 
-function MenuHeaderComposable({
-  label,
-  customRender,
-  UNSAFE_style,
-  UNSAFE_className,
-}: MenuHeaderComposableProps) {
-  const defaultContent = <DefaultHeaderContent label={label} />;
+function MenuHeaderComposable(props: MenuHeaderComposableProps) {
+  const { UNSAFE_style, UNSAFE_className } = props;
+
+  const isCustom = props.customRender !== undefined;
 
   return (
     <AriaHeader
       className={classnames(styles.sectionHeader, UNSAFE_className)}
       style={UNSAFE_style}
     >
-      {customRender ? customRender({ defaultContent }) : defaultContent}
+      {isCustom ? (
+        props.customRender()
+      ) : (
+        <DefaultHeaderContent label={props.label} />
+      )}
     </AriaHeader>
   );
 }
@@ -604,34 +605,27 @@ const MenuItemComposable = React.forwardRef<
   React.ElementRef<typeof AriaMenuItem>,
   MenuItemComposableProps
 >(function MenuItemComposable(props: MenuItemComposableProps, ref) {
-  const {
-    label,
-    icon,
-    iconColor,
-    destructive,
-    customRender,
-    UNSAFE_style,
-    UNSAFE_className,
-  } = props;
+  const { UNSAFE_style, UNSAFE_className } = props;
 
-  const computedTextValue = props.textValue ?? label;
+  const isCustom = props.customRender !== undefined;
+  const computedTextValue = props.label ?? props.textValue ?? undefined;
 
-  const defaultContent = (
+  const content = isCustom ? (
+    props.customRender()
+  ) : (
     <DefaultItemContent
-      label={label}
-      icon={icon}
-      iconColor={iconColor}
-      destructive={destructive}
+      label={props.label}
+      icon={props.icon}
+      iconColor={props.iconColor}
+      destructive={props.destructive}
     />
   );
 
-  const content = customRender
-    ? customRender({ defaultContent })
-    : defaultContent;
-
   const className = classnames(
     styles.action,
-    { [styles.destructive]: destructive },
+    {
+      [styles.destructive]: !isCustom && props.destructive,
+    },
     UNSAFE_className,
   );
 

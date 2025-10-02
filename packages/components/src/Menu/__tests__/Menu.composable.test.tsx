@@ -5,8 +5,8 @@ import { Chip } from "@jobber/components/Chip";
 import * as POM from "../Menu.pom";
 import { Menu } from "..";
 import { Button } from "../../Button";
-// Removed Text import: end-of-line components no longer accept children
 
+// eslint-disable-next-line max-statements
 describe("Menu (composable API)", () => {
   it("opens via mouse click and renders items", async () => {
     render(<TestSectionMenu />);
@@ -195,6 +195,53 @@ describe("Menu (composable API)", () => {
       expect(onItem.mock.calls[0][0]).toBeUndefined();
     });
   });
+
+  describe("Menu Customized", () => {
+    it("uses customRender to fully customize item content", async () => {
+      render(<TestCustomRenderMenu />);
+      await POM.openWithClick("Menu");
+      expect(screen.getByTestId("custom-item")).toBeInTheDocument();
+    });
+
+    it("uses customRender to fully customize header content", async () => {
+      render(<TestCustomRenderMenu />);
+      await POM.openWithClick("Menu");
+      expect(screen.getByTestId("custom-header")).toBeInTheDocument();
+    });
+  });
+
+  describe("Menu Default", () => {
+    it("renders opinionated Menu.Item with label and icon", async () => {
+      render(<TestDefaultMenuWithIcons />);
+      await POM.openWithClick("Menu");
+      const items = screen.getAllByRole("menuitem");
+      expect(items.length).toBeGreaterThan(0);
+      expect(screen.getByText("Email")).toBeInTheDocument();
+      expect(screen.getByTestId("email")).toBeInTheDocument();
+    });
+
+    it("renders opinionated Menu.Header with label", async () => {
+      render(<TestDefaultMenuWithIcons />);
+
+      await POM.openWithClick("Menu");
+      expect(
+        screen.getByRole("heading", { name: "Send as..." }),
+      ).toBeInTheDocument();
+    });
+
+    it("applies destructive styling to item label and icon", async () => {
+      render(<TestDefaultMenuWithIcons />);
+      await POM.openWithClick("Menu");
+
+      const iconSvg = screen.getByTestId("trash");
+      const pathElement = iconSvg.querySelector("path");
+      expect(pathElement).toHaveStyle("fill: var(--color-destructive)");
+      const deleteItem = screen
+        .getByText("Delete")
+        .closest('[role="menuitem"]') as HTMLElement;
+      expect(deleteItem).toHaveClass("destructive");
+    });
+  });
 });
 
 function TestLinkMenu(props: {
@@ -302,6 +349,48 @@ function TestUnsafePropsMenu() {
           UNSAFE_className="unsafe-sep"
           UNSAFE_style={{ height: "7px" }}
         />
+      </Menu.Content>
+    </Menu>
+  );
+}
+
+function TestCustomRenderMenu() {
+  return (
+    <Menu>
+      <Menu.Trigger ariaLabel="Menu">
+        <Button label="Menu" />
+      </Menu.Trigger>
+      <Menu.Content>
+        <Menu.Section>
+          <Menu.Header
+            customRender={() => <div data-testid="custom-header">Header</div>}
+          />
+          <Menu.Item
+            customRender={() => <div data-testid="custom-item">Email</div>}
+          />
+          <Menu.Item customRender={() => <div>Text message</div>} />
+          <Menu.Item customRender={() => <div>Phone</div>} />
+        </Menu.Section>
+      </Menu.Content>
+    </Menu>
+  );
+}
+
+function TestDefaultMenuWithIcons() {
+  return (
+    <Menu>
+      <Menu.Trigger ariaLabel="Menu">
+        <Button label="Menu" />
+      </Menu.Trigger>
+      <Menu.Content>
+        <Menu.Section>
+          <Menu.Header label="Send as..." />
+          <Menu.Item label="Email" icon="email" />
+        </Menu.Section>
+        <Menu.Separator />
+        <Menu.Section>
+          <Menu.Item label="Delete" icon="trash" destructive />
+        </Menu.Section>
       </Menu.Content>
     </Menu>
   );

@@ -139,32 +139,37 @@ export interface MenuSectionComposableProps extends UnsafeProps {
   readonly ariaLabel?: string;
 }
 
-export interface MenuHeaderComposableProps extends UnsafeProps {
+interface MenuHeaderDefaultPresentation {
   /**
    * Opinionated header label. When provided, renders with default typography.
    */
-  readonly label?: string;
+  readonly label: string;
+  /**
+   * Must not be provided when using default presentation
+   */
+  readonly customRender?: never;
+}
 
+interface MenuHeaderCustomPresentation {
   /**
    * Fully customize the header rendering. When provided, it takes full control.
    * You may use the provided `defaultContent` to re-use the opinionated header.
    */
-  readonly customRender?: (args: {
-    readonly defaultContent: ReactNode;
-  }) => ReactNode;
+  readonly customRender: () => ReactNode;
+  /**
+   * Must not be provided when using custom presentation
+   */
+  readonly label?: never;
 }
 
-export interface MenuItemComposableProps extends UnsafeProps {
-  /*
-   * Callback when an item is activated.
-   * If href is provided, this will be ignored.
-   */
-  readonly onClick?: (event?: React.MouseEvent) => void;
+export type MenuHeaderComposableProps = UnsafeProps &
+  (MenuHeaderDefaultPresentation | MenuHeaderCustomPresentation);
 
+interface MenuItemDefaultPresentation {
   /**
    * Opinionated item label.
    */
-  readonly label?: string;
+  readonly label: string;
 
   /**
    * Optional leading icon.
@@ -181,6 +186,33 @@ export interface MenuItemComposableProps extends UnsafeProps {
    * Apply destructive styling to the item label and icon.
    */
   readonly destructive?: boolean;
+  /**
+   * Must not be provided when using default presentation
+   */
+  readonly customRender?: never;
+}
+
+interface MenuItemCustomPresentation {
+  /**
+   * Fully customize the item rendering. When provided, it takes full control.
+   * You may use the provided `defaultContent` to re-use the opinionated item.
+   */
+  readonly customRender: () => ReactNode;
+  /**
+   * Must not be provided when using custom presentation
+   */
+  readonly label?: never;
+  readonly icon?: never;
+  readonly iconColor?: never;
+  readonly destructive?: never;
+}
+
+type MenuItemBehaviorProps = UnsafeProps & {
+  /*
+   * Callback when an item is activated.
+   * If href is provided, this will be ignored.
+   */
+  readonly onClick?: (event?: React.MouseEvent) => void;
 
   /**
    * String representation of the item's content.
@@ -202,15 +234,10 @@ export interface MenuItemComposableProps extends UnsafeProps {
    * Rel attribute for the link.
    */
   readonly rel?: string;
+};
 
-  /**
-   * Fully customize the item rendering. When provided, it takes full control.
-   * You may use the provided `defaultContent` to re-use the opinionated item.
-   */
-  readonly customRender?: (args: {
-    readonly defaultContent: ReactNode;
-  }) => ReactNode;
-}
+export type MenuItemComposableProps = MenuItemBehaviorProps &
+  (MenuItemDefaultPresentation | MenuItemCustomPresentation);
 
 export interface MenuContentComposableProps extends UnsafeProps {
   readonly children: ReactNode;

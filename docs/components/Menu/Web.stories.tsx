@@ -383,15 +383,12 @@ export const ComposableCustomRender = () => {
       <Menu.Content>
         <Menu.Section>
           <Menu.Header
-            label="Send as..."
-            customRender={({ defaultContent }) => (
-              <div style={{ display: "flex", gap: 8 }}>{defaultContent}</div>
+            customRender={() => (
+              <div style={{ display: "flex", gap: 8 }}>Send as...</div>
             )}
           />
           {/* Example: Replace default layout entirely */}
           <Menu.Item
-            label="Email"
-            icon="email"
             customRender={() => (
               <div
                 style={{
@@ -430,11 +427,15 @@ export const ComposableMixed = () => {
         </Menu.Section>
         <Menu.Separator />
         <Menu.Section>
-          <Menu.Header label="CustomRender" />
+          <Menu.Header
+            customRender={() => (
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span style={{ fontWeight: 600 }}>CustomRender</span>
+              </div>
+            )}
+          />
           {/* Example: Icon aligns right instead of left */}
           <Menu.Item
-            label="Email"
-            icon="email"
             customRender={() => (
               <div
                 style={{
@@ -451,8 +452,6 @@ export const ComposableMixed = () => {
           />
           {/* Example: Include a StatusLabel inside */}
           <Menu.Item
-            label="Sync"
-            icon="job"
             customRender={() => (
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <span style={{ fontWeight: 600 }}>Sync</span>
@@ -477,7 +476,6 @@ export const ComposableMixed = () => {
           <Menu.Header label="Link + customRender" />
           {/* Example: Link rendered as full-width pill with external indicator */}
           <Menu.Item
-            label="Example"
             href="https://example.com"
             target="_blank"
             rel="noreferrer"
