@@ -8,10 +8,9 @@ import React, {
   useState,
 } from "react";
 import type {
-  NativeSyntheticEvent,
+  FocusEvent,
   ReturnKeyTypeOptions,
   StyleProp,
-  TextInputFocusEventData,
   TextInputProps,
   TextStyle,
 } from "react-native";
@@ -113,9 +112,7 @@ export interface InputTextProps
    * Callback that is called when the text input is focused
    * @param event
    */
-  readonly onFocus?: (
-    event?: NativeSyntheticEvent<TextInputFocusEventData>,
-  ) => void;
+  readonly onFocus?: (event?: FocusEvent) => void;
 
   /**
    * Callback that is called when the text input is blurred

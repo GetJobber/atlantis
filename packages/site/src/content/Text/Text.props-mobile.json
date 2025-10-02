@@ -216,7 +216,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: NativeSyntheticEvent<TextLayoutEventData>) => void"
+          "name": "(event: TextLayoutEvent) => void"
         }
       },
       "maxFontScaleSize": {
