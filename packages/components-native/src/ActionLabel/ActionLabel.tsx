@@ -12,9 +12,9 @@ type ActionLabelType = "default" | "cardTitle";
 
 interface ActionLabelProps {
   /**
-   * Text to display
+   * Text to display. Supports strings, numbers, and nested text nodes.
    */
-  readonly children?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * Set the display text to disabled color
