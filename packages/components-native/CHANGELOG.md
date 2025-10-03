@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.86.0...@jobber/components-native@0.86.1) (2025-10-01)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.85.0...@jobber/components-native@0.86.0) (2025-09-29)
+
+
+### Bug Fixes
+
+* **components-native:** Keep the zindex stable between both regular and mini label styles ([#2754](https://github.com/GetJobber/atlantis/issues/2754)) ([2f2d74a](https://github.com/GetJobber/atlantis/commit/2f2d74a5db2d4b337ccc2d22d85174cf2e2b3fc2))
+
+
+### Features
+
+* **components-native:** Add support for Banner success type  ([#2758](https://github.com/GetJobber/atlantis/issues/2758)) ([240ac72](https://github.com/GetJobber/atlantis/commit/240ac729de73cce96322298a4f73543952eec8c9))
+
+
+
+
+
 # [0.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.84.3...@jobber/components-native@0.85.0) (2025-09-16)
 
 
