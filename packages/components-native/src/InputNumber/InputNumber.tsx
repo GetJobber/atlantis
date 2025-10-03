@@ -1,8 +1,10 @@
-import React, { Ref, forwardRef, useState } from "react";
+import type { Ref } from "react";
+import React, { forwardRef, useState } from "react";
 import { Platform } from "react-native";
 import flow from "lodash/flow";
 import identity from "lodash/identity";
-import { InputText, InputTextProps, InputTextRef } from "../InputText";
+import type { InputTextProps, InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 type NumberKeyboard = "decimal-pad" | "numbers-and-punctuation";
@@ -44,6 +46,16 @@ function InputNumberInternal(props: InputNumberProps, ref: Ref<InputTextRef>) {
   const { inputTransform: convertToString, outputTransform: convertToNumber } =
     useNumberTransform(props.value);
 
+  const defaultValidations = {
+    pattern: {
+      value: NUMBER_VALIDATION_REGEX,
+      message: t("errors.notANumber"),
+    },
+  } as const;
+  const mergedValidations = props.validations
+    ? Object.assign({}, defaultValidations, props.validations)
+    : defaultValidations;
+
   return (
     <InputText
       {...props}
@@ -56,13 +68,7 @@ function InputNumberInternal(props: InputNumberProps, ref: Ref<InputTextRef>) {
       value={props.value?.toString()}
       defaultValue={props.defaultValue?.toString()}
       onChangeText={handleChange}
-      validations={{
-        pattern: {
-          value: NUMBER_VALIDATION_REGEX,
-          message: t("errors.notANumber"),
-        },
-        ...props.validations,
-      }}
+      validations={mergedValidations}
     />
   );
 }

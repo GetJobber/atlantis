@@ -1,9 +1,11 @@
-import React, { CSSProperties } from "react";
+import type { CSSProperties } from "react";
+import React from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
+import type { XOR } from "ts-xor";
 import styles from "./Avatar.module.css";
 import { isDark } from "./utilities";
-import { Icon, IconProps } from "../Icon";
+import type { IconProps } from "../Icon";
+import { Icon } from "../Icon";
 
 type AvatarSize = "base" | "large" | "small";
 interface AvatarFoundationProps {

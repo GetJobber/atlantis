@@ -1,4 +1,5 @@
-import Content from "@atlantis/docs/components/Select/Select.stories.mdx";
+import Content from "./Select.stories.mdx";
+import Notes from "./SelectNotes.mdx";
 import Props from "./Select.props.json";
 import MobileProps from "./Select.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -8,6 +9,7 @@ export default {
   content: () => <Content />,
   props: Props,
   mobileProps: MobileProps,
+  notes: () => <Notes />,
   component: {
     element: `<Select placeholder={"My best friend"}>
       <Option value="tony">Tony</Option>

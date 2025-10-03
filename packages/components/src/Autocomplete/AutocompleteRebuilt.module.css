@@ -1,0 +1,95 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  z-index: var(--elevation-modal);
+  max-height: 320px;
+  box-shadow: var(--shadow-base);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  background: var(--color-surface);
+  scroll-behavior: smooth;
+}
+
+.loadingList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-small);
+  padding: var(--space-small) var(--space-base);
+}
+
+.option {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-small);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.defaultOptionContent {
+  display: flex;
+  text-align: left;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: center;
+}
+
+.option .icon {
+  flex: 0 1 auto;
+  align-self: auto;
+  width: var(--space-large);
+}
+
+.optionActive,
+.actionActive {
+  background: var(--color-surface--hover);
+}
+
+.action {
+  box-sizing: border-box;
+  padding: var(--space-small);
+  cursor: pointer;
+}
+
+.option:hover,
+.action:hover {
+  background: var(--color-surface--hover);
+}
+
+.section {
+  padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.emptyStateMessage {
+  padding: var(--space-small) var(--space-base);
+}
+
+.stickyTop {
+  position: sticky;
+  top: 0;
+  z-index: var(--elevation-base);
+  background: var(--color-surface);
+}
+
+.scrollRegion {
+  overflow: auto;
+}
+
+.persistentHeader {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.persistentFooter {
+  border-top: var(--border-base) solid var(--color-border);
+}
+
+.textPersistent {
+  padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
+}

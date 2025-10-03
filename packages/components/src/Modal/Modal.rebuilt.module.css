@@ -17,8 +17,8 @@
 
 .overlay {
   display: grid;
-  z-index: var(--elevation-modal);
   place-items: center;
+  z-index: var(--elevation-modal);
 }
 
 .overlayBackground {
@@ -27,9 +27,9 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: var(--elevation-modal);
+  outline: none;
   background-color: var(--color-overlay);
-  opacity: 0.8;
+  will-change: opacity;
 }
 
 .modal {
@@ -42,9 +42,12 @@
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  outline: none;
   background-color: var(--color-surface);
   flex: 0 0 auto;
-  outline-color: var(--color-focus);
+}
+.modal:focus-visible {
+  box-shadow: var(--shadow-focus);
 }
 
 /* Adjust `Content` and `Tab` components public padding to match the modal */

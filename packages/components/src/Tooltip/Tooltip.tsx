@@ -1,12 +1,12 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import type { ReactElement, ReactNode } from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
 import { FloatingPortal } from "@floating-ui/react";
 import { motion } from "framer-motion";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { useIsMounted, useSafeLayoutEffect } from "@jobber/hooks";
 import styles from "./Tooltip.module.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
-import { Placement } from "./Tooltip.types";
+import type { Placement } from "./Tooltip.types";
 
 const variation = {
   startOrStop: { opacity: 0 },

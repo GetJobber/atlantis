@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
-import { ViewStyle } from "react-native";
+import type { ViewStyle } from "react-native";
 import { Switch } from "./Switch";
 
 it("renders a labeled Switch with value true", () => {

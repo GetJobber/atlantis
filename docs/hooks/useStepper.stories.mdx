@@ -78,10 +78,10 @@ function useStepper<StepName extends string>(
   currentStep: StepName;
 
   // Move to next step
-  nextStep: () => void;
+  goToNextStep: () => void;
 
   // Move to previous step
-  previousStep: () => void;
+  goToPreviousStep: () => void;
 
   // Navigate to specific step
   goToStep: (step: StepName) => void;

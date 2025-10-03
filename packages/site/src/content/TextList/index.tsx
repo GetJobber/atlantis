@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/TextList/TextList.stories.mdx";
+import Content from "./TextList.stories.mdx";
 import MobileProps from "./TextList.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

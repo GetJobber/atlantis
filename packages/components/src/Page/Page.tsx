@@ -1,17 +1,15 @@
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/useResizeObserver";
+import type { XOR } from "ts-xor";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.module.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
-import { Button, ButtonProps } from "../Button";
-import { Menu, SectionProps } from "../Menu";
+import { Button, type ButtonProps } from "../Button";
+import { Menu, type SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 
 export type ButtonActionProps = ButtonProps & {

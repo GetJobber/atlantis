@@ -1,9 +1,17 @@
-import React, { ReactNode } from "react";
-import { Typography, TypographyOptions, TypographyProps } from "../Typography";
+import type { ReactNode } from "react";
+import React from "react";
+import type { TypographyOptions, TypographyProps } from "../Typography";
+import { Typography } from "../Typography";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface HeadingProps {
+  /**
+   * Adds a unique identifier to the heading.
+   * Useful when the heading needs to be referenced by another element.
+   * Not intended for styling.
+   */
+  readonly id?: string;
   /**
    * @default 5
    */
@@ -44,6 +52,7 @@ export interface HeadingProps {
 export type LevelMap = Record<HeadingLevel, TypographyOptions>;
 
 export function Heading({
+  id,
   level = 5,
   children,
   element,
@@ -102,6 +111,7 @@ export function Heading({
 
   return (
     <Typography
+      id={id}
       {...levelMap[level]}
       element={element || levelMap[level].element}
       numberOfLines={maxLineToNumber[maxLines]}

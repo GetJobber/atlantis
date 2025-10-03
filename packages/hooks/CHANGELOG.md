@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.18.0...@jobber/hooks@2.18.1) (2025-09-23)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.4...@jobber/hooks@2.18.0) (2025-09-16)
+
+
+### Features
+
+* **hooks:** Update hooks and formatters to build with rollup ([#2722](https://github.com/GetJobber/atlantis/issues/2722)) ([aa8a44c](https://github.com/GetJobber/atlantis/commit/aa8a44ce120c8f2d3e2f6a95bf3adda5d4867faf)), closes [#2700](https://github.com/GetJobber/atlantis/issues/2700) [#2698](https://github.com/GetJobber/atlantis/issues/2698)
+
+
+
+
+
+## [2.17.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.3...@jobber/hooks@2.17.4) (2025-09-02)
+
+
+### Bug Fixes
+
+* **hooks:** Prevent mockViewportWidth from accessing window until necessary ([#2707](https://github.com/GetJobber/atlantis/issues/2707)) ([c987e77](https://github.com/GetJobber/atlantis/commit/c987e77bfd390e31df837dfe8ff337aa4af75989))
+
+
+
+
+
+## [2.17.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.2...@jobber/hooks@2.17.3) (2025-08-28)
+
+
+### Bug Fixes
+
+* **hooks:** Revert ESM Update (Also Formatters) ([#2698](https://github.com/GetJobber/atlantis/issues/2698)) ([c95fe8e](https://github.com/GetJobber/atlantis/commit/c95fe8e8cf977381da7caf123256477b74859141)), closes [#2653](https://github.com/GetJobber/atlantis/issues/2653)
+
+
+
+
+
+## [2.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.1...@jobber/hooks@2.17.2) (2025-08-27)
+
+
+### Bug Fixes
+
+* **hooks:** ESM Update (Also Formatters) ([#2653](https://github.com/GetJobber/atlantis/issues/2653)) ([1a486ee](https://github.com/GetJobber/atlantis/commit/1a486eed319a1c6eda2da79e43f8d3ad1ca06020))
+
+
+
+
+
 ## [2.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.0...@jobber/hooks@2.17.1) (2025-08-01)
 
 

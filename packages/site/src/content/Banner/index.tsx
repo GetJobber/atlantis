@@ -1,4 +1,4 @@
-import BannerContent from "@atlantis/docs/components/Banner/Banner.stories.mdx";
+import BannerContent from "./Banner.stories.mdx";
 import Props from "./Banner.props.json";
 import MobileProps from "./Banner.props-mobile.json";
 import Notes from "./BannerNotes.mdx";

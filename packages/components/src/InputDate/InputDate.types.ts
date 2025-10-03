@@ -1,5 +1,5 @@
-import { CommonFormFieldProps, FormFieldProps } from "../FormField";
-import { InputTextRebuiltProps } from "../InputText/InputText.types";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type { InputTextRebuiltProps } from "../InputText/InputText.types";
 
 export interface InputDateRebuiltProps
   extends Omit<
@@ -91,17 +91,4 @@ export interface InputDateProps
    * Text to display instead of a date value
    */
   readonly emptyValueLabel?: string;
-
-  /**
-   * Experimental:
-   * Whether to replace empty/invalid values with the original value on blur.
-   *
-   * This solves an immediate UX problem and is likely to change in the future.
-   * It prevents the input from retaining empty/invalid values when the user tabs
-   * into it, clears the value, and tabs away. In this scenario, the original
-   * value will be restored.
-   *
-   * @default false
-   */
-  readonly restoreLastValueOnBlur?: boolean;
 }

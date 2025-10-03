@@ -1,13 +1,14 @@
-import { Children, ReactElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import { Children, isValidElement } from "react";
 import { ComboboxActivator } from "../components/ComboboxActivator";
-import { ComboboxOption } from "../components/ComboboxOption";
 import {
-  ComboboxActionProps,
-  ComboboxActivatorProps,
-  ComboboxOptionProps,
-  ComboboxProps,
+  type ComboboxActionProps,
+  type ComboboxActivatorProps,
+  type ComboboxOptionProps,
+  type ComboboxProps,
 } from "../Combobox.types";
 import { ComboboxAction } from "../components/ComboboxAction";
+import { ComboboxOption } from "../components/ComboboxOption";
 
 export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
   "Combobox must have exactly one Trigger element";

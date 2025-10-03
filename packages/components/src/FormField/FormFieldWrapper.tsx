@@ -1,8 +1,10 @@
-import React, { PropsWithChildren, ReactNode, RefObject, useRef } from "react";
-import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
+import type { PropsWithChildren, ReactNode, RefObject } from "react";
+import React, { useRef } from "react";
+import type { Clearable } from "@jobber/hooks";
+import { useShowClear } from "@jobber/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
-import { FormFieldProps } from "./FormFieldTypes";
+import type { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";

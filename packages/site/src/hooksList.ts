@@ -70,6 +70,11 @@ export const hooksList = [
     sections: ["Window & Layout"],
   },
   {
+    title: "useStepper",
+    to: "/hooks/useStepper",
+    sections: ["React Utilities"],
+  },
+  {
     title: "useWindowDimensions",
     to: "/hooks/useWindowDimensions",
     sections: ["Window & Layout"],

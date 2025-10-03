@@ -1,5 +1,5 @@
-import { ChipProps } from "../Chip";
-import { ChipDismissibleProps } from "../ChipsTypes";
+import type { ChipProps } from "../Chip";
+import type { ChipDismissibleProps } from "../ChipsTypes";
 
 export type InternalChipDismissibleProps = Omit<ChipDismissibleProps, "type">;
 

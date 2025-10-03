@@ -1,6 +1,6 @@
 import React from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
-import { Breakpoints } from "@jobber/components/DataList/DataList.const";
+import type { Breakpoints } from "@jobber/components/DataList/DataList.const";
 import {
   generateHeaderElements,
   sortBreakpoints,
@@ -10,7 +10,7 @@ import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
 import { useActiveLayout } from "../../hooks/useActiveLayout";
 import { useBatchSelect } from "../../hooks/useBatchSelect";
 import styles from "../../DataList.module.css";
-import { DataListObject, LayoutRenderer } from "../../DataList.types";
+import type { DataListObject, LayoutRenderer } from "../../DataList.types";
 
 export function DataListHeader() {
   const breakpoints = useResponsiveSizing();

@@ -7,7 +7,7 @@ import {
   ModalContent,
   ModalHeader,
 } from "./Modal.rebuilt";
-import { ModalLegacyProps } from "./Modal.types";
+import type { ModalLegacyProps } from "./Modal.types";
 
 export type { ModalLegacyProps as ModalProps } from "./Modal.types";
 

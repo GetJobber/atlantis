@@ -1,1 +1,6 @@
-export { Menu, SectionProps, ActionProps, MenuProps } from "./Menu";
+export {
+  Menu,
+  type SectionProps,
+  type ActionProps,
+  type MenuProps,
+} from "./Menu";

@@ -1,6 +1,6 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { View } from "react-native";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Card, Content, Flex, Icon, Text } from "@jobber/components-native";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 

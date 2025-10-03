@@ -1,4 +1,4 @@
-import FormatEmailContent from "@atlantis/docs/components/FormatEmail/FormatEmail.stories.mdx";
+import FormatEmailContent from "./FormatEmail.stories.mdx";
 import Props from "./FormatEmail.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

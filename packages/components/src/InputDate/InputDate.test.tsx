@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { InputDate, InputDateProps } from ".";
+import type { InputDateProps } from ".";
+import { InputDate } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
 import { Text } from "../Text";
@@ -353,7 +354,7 @@ describe("InputDate V1", () => {
     );
   }
 
-  describe("when restoreLastValueOnBlur is true", () => {
+  describe("when onChange skips empty or invalid dates", () => {
     it("restores the last value when the input is empty", async () => {
       const originalValue = "11/11/2011";
       const placeholder = "placeholder";
@@ -361,7 +362,6 @@ describe("InputDate V1", () => {
         <>
           <textarea data-testid="textarea" />
           <InputDateWithStateTest
-            restoreLastValueOnBlur
             initialValue={originalValue}
             placeholder={placeholder}
           />
@@ -390,7 +390,6 @@ describe("InputDate V1", () => {
         <>
           <textarea data-testid="textarea" />
           <InputDateWithStateTest
-            restoreLastValueOnBlur
             initialValue={originalValue}
             placeholder={placeholder}
           />

@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ComboboxProps } from "./Combobox.types";
+import type { ComboboxProps } from "./Combobox.types";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";

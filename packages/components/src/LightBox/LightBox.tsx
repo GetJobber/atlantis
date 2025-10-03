@@ -1,14 +1,18 @@
 /* eslint-disable max-statements */
-import React, { CSSProperties, useEffect, useRef, useState } from "react";
-import { AnimatePresence, PanInfo, motion } from "framer-motion";
+import type { CSSProperties } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import type { PanInfo } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import ReactDOM from "react-dom";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
-import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
+import {
+  useBreakpoints,
+  useDebounce,
+  useFocusTrap,
+  useIsMounted,
+  useOnKeyDown,
+  useRefocusOnActivator,
+} from "@jobber/hooks";
 import classNames from "classnames";
-import { useDebounce } from "@jobber/hooks/useDebounce";
 import styles from "./LightBox.module.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Text } from "../Text";

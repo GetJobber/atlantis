@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Checkbox } from "@jobber/components/Checkbox";
-import { DataListObject } from "@jobber/components/DataList/DataList.types";
+import type { DataListObject } from "@jobber/components/DataList/DataList.types";
 import { useBatchSelect } from "@jobber/components/DataList/hooks/useBatchSelect";
 import styles from "../../DataList.module.css";
 

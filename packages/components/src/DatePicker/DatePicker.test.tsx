@@ -229,7 +229,9 @@ describe("Week Start", () => {
     await userEvent.click(screen.getByLabelText("Open Datepicker"));
 
     const dayNames = Array.from(
-      document.querySelectorAll(".react-datepicker__day-name"),
+      document.querySelectorAll(
+        ".react-datepicker__day-name > span[aria-hidden='true']",
+      ),
     ).map(el => el.textContent);
 
     expect(dayNames[0]).toBe("Sun");
@@ -242,7 +244,9 @@ describe("Week Start", () => {
     await userEvent.click(screen.getByLabelText("Open Datepicker"));
 
     const dayNames = Array.from(
-      document.querySelectorAll(".react-datepicker__day-name"),
+      document.querySelectorAll(
+        ".react-datepicker__day-name > span[aria-hidden='true']",
+      ),
     ).map(el => el.textContent);
 
     expect(dayNames[0]).toBe("Mon");
@@ -261,7 +265,9 @@ describe("Week Start", () => {
     await userEvent.click(screen.getByLabelText("Open Datepicker"));
 
     const dayNames = Array.from(
-      document.querySelectorAll(".react-datepicker__day-name"),
+      document.querySelectorAll(
+        ".react-datepicker__day-name > span[aria-hidden='true']",
+      ),
     ).map(el => el.textContent);
 
     expect(dayNames[0]).toBe("Wed");
@@ -280,7 +286,9 @@ describe("Week Start", () => {
     await userEvent.click(screen.getByLabelText("Open Datepicker"));
 
     const dayNames = Array.from(
-      document.querySelectorAll(".react-datepicker__day-name"),
+      document.querySelectorAll(
+        ".react-datepicker__day-name > span[aria-hidden='true']",
+      ),
     ).map(el => el.textContent);
 
     expect(dayNames[0]).toBe("Mon");

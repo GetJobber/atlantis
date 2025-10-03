@@ -1,17 +1,14 @@
-import React, {
-  CSSProperties,
-  MouseEvent,
-  ReactElement,
-  RefObject,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import type { CSSProperties, MouseEvent, ReactElement, RefObject } from "react";
+import React, { useId, useRef, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
-import { IconColorNames, IconNames } from "@jobber/design";
+import {
+  useFocusTrap,
+  useIsMounted,
+  useRefocusOnActivator,
+  useWindowDimensions,
+} from "@jobber/hooks";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import {
   FloatingPortal,
   autoUpdate,
@@ -22,8 +19,6 @@ import {
   useFloating,
   useInteractions,
 } from "@floating-ui/react";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import styles from "./Menu.module.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -126,7 +121,7 @@ export function Menu({
     strategy: "fixed",
     middleware: [
       offset(MENU_OFFSET),
-      flip({ flipAlignment: false }),
+      flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
       size({
         apply({ availableHeight, elements }) {
           // The inner element is the scrollable menu that requires the max height

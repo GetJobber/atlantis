@@ -1,5 +1,5 @@
-import { ReactElement, ReactNode } from "react";
-import { XOR } from "ts-xor";
+import type { ReactElement, ReactNode } from "react";
+import type { XOR } from "ts-xor";
 
 export interface BaseCheckboxProps {
   /**

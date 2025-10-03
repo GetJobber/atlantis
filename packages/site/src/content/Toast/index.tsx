@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Toast/Toast.stories.mdx";
+import Content from "./Toast.stories.mdx";
 import Props from "./Toast.props.json";
 import MobileProps from "./Toast.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -17,7 +17,7 @@ export default {
         label="Show toast"
         onPress={
         () => {
-        alert('A toast shows on your mobile device!') 
+        alert('A toast shows on your mobile device!')
         showToast({ message: "Showed toast" })
         }}
       />

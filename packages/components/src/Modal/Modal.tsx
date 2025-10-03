@@ -2,14 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import {
+  useFocusTrap,
+  useOnKeyDown,
+  useRefocusOnActivator,
+} from "@jobber/hooks";
 import styles from "./Modal.module.css";
 import sizes from "./ModalSizes.module.css";
-import { ModalLegacyProps } from "./Modal.types";
+import type { ModalLegacyProps } from "./Modal.types";
 import { Heading } from "../Heading";
-import { Button, ButtonProps } from "../Button";
+import type { ButtonProps } from "../Button";
+import { Button } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
 
 export function ModalLegacy({

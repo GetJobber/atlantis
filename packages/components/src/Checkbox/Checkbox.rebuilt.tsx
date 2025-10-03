@@ -1,7 +1,8 @@
-import React, { ChangeEvent, forwardRef, useId } from "react";
+import type { ChangeEvent } from "react";
+import React, { forwardRef, useId } from "react";
 import classnames from "classnames";
 import styles from "./Checkbox.module.css";
-import { CheckboxRebuiltProps } from "./Checkbox.types";
+import type { CheckboxRebuiltProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 

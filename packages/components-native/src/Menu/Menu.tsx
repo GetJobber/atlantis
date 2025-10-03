@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
+import type { LayoutRectangle } from "react-native";
 import {
   Keyboard,
-  LayoutRectangle,
   Platform,
   Pressable,
   View,
@@ -11,7 +11,7 @@ import { Portal } from "react-native-portalize";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
 import { useStyles } from "./Menu.style";
 import { findViewpoint } from "./utils";
-import { MenuProps } from "./types";
+import type { MenuProps } from "./types";
 import { MenuOption } from "./components/MenuOption";
 import { Overlay } from "./components/Overlay";
 import { Button } from "../Button";

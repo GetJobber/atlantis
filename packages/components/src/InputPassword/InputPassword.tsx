@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import { FormField } from "../FormField";
 
 interface InputPasswordProps
   extends CommonFormFieldProps,

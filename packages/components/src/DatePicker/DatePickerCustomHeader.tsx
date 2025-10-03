@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactDatePickerCustomHeaderProps } from "react-datepicker";
+import type { ReactDatePickerCustomHeaderProps } from "react-datepicker";
 import styles from "./DatePicker.module.css";
 import { Typography } from "../Typography";
 import { Button } from "../Button";

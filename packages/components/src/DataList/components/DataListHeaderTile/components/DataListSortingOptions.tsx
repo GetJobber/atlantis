@@ -1,9 +1,9 @@
-import React, { KeyboardEvent, useEffect } from "react";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import type { KeyboardEvent } from "react";
+import React, { useEffect } from "react";
+import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import { Icon } from "@jobber/components/Icon";
 import styles from "./DataListSortingOptions.module.css";
-import { DataListSorting, SortableOptions } from "../../../DataList.types";
+import type { DataListSorting, SortableOptions } from "../../../DataList.types";
 
 interface DataListSortingOptionsProps {
   readonly options: SortableOptions[];

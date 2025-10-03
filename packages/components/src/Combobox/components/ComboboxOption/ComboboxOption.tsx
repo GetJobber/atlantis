@@ -4,7 +4,7 @@ import { Icon } from "@jobber/components/Icon";
 import { Flex } from "@jobber/components/Flex";
 import styles from "./ComboboxOption.module.css";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxOptionProps } from "../../Combobox.types";
+import { type ComboboxOptionProps } from "../../Combobox.types";
 
 export function ComboboxOption(props: ComboboxOptionProps) {
   const { customRender, onClick, ...contentProps } = props;
@@ -34,6 +34,9 @@ export function ComboboxOption(props: ComboboxOptionProps) {
         customRender({
           ...contentProps,
           isSelected,
+          defaultContent: (
+            <InternalDefaultContent {...contentProps} isSelected={isSelected} />
+          ),
         })
       ) : (
         <InternalDefaultContent {...contentProps} isSelected={isSelected} />

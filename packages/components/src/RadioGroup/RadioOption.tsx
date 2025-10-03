@@ -1,5 +1,6 @@
-import React, { ReactNode, useId } from "react";
-import { XOR } from "ts-xor";
+import type { ReactNode } from "react";
+import React, { useId } from "react";
+import type { XOR } from "ts-xor";
 import styles from "./RadioGroup.module.css";
 import { Text } from "../Text";
 

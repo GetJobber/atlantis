@@ -16,7 +16,7 @@ export default {
       code: {
         hidden: false,
         extraImports: {
-          "@jobber/components/Select": ["Select", "Option"],
+          "@jobber/components/Select": ["Option", "Select"],
         },
       },
     },
@@ -25,9 +25,9 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Select> = args => (
   <Select {...args}>
-    <Option value="tony">Tony</Option>
-    <Option value="quincy">Quincy</Option>
-    <Option value="peppa">Peppa Pig</Option>
+    <Option value="alice">Alice</Option>
+    <Option value="bob">Bob</Option>
+    <Option value="charlie">Charlie</Option>
   </Select>
 );
 
@@ -35,9 +35,9 @@ const InlineTemplate: ComponentStory<typeof Select> = args => (
   <Flex template={["shrink", "shrink"]}>
     <p>My best Friend: </p>
     <Select {...args}>
-      <Option value="tony">Tony</Option>
-      <Option value="quincy">Quincy</Option>
-      <Option value="peppa">Peppa Pig</Option>
+      <Option value="alice">Alice</Option>
+      <Option value="bob">Bob</Option>
+      <Option value="charlie">Charlie</Option>
     </Select>
   </Flex>
 );
@@ -47,29 +47,29 @@ const SizesTemplate: ComponentStory<typeof Select> = args => {
     <Content>
       <Select size="small">
         <Option value="">Small</Option>
-        <Option value="tony" disabled>
-          Tony
+        <Option value="alice" disabled>
+          Alice
         </Option>
-        <Option value="steve">Steve</Option>
-        <Option value="natasha">Natasha</Option>
+        <Option value="bob">Bob</Option>
+        <Option value="charlie">Charlie</Option>
       </Select>
       <Divider size="largest" />
       <Select {...args}>
         <Option value="">Default</Option>
-        <Option value="tony" disabled>
-          Tony
+        <Option value="alice" disabled>
+          Alice
         </Option>
-        <Option value="steve">Steve</Option>
-        <Option value="natasha">Natasha</Option>
+        <Option value="bob">Bob</Option>
+        <Option value="charlie">Charlie</Option>
       </Select>
       <Divider size="largest" />
       <Select {...args} size="large">
         <Option value="">Large</Option>
-        <Option value="tony" disabled>
-          Tony
+        <Option value="alice" disabled>
+          Alice
         </Option>
-        <Option value="steve">Steve</Option>
-        <Option value="natasha">Natasha</Option>
+        <Option value="bob">Bob</Option>
+        <Option value="charlie">Charlie</Option>
       </Select>
     </Content>
   );
@@ -77,10 +77,10 @@ const SizesTemplate: ComponentStory<typeof Select> = args => {
 
 const InitialValueTemplate: ComponentStory<typeof Select> = args => (
   <Select {...args}>
-    <Option value="tony">Tony</Option>
-    <Option value="steve">Steve</Option>
-    <Option value="natasha">Natasha</Option>
+    <Option value="alice">Alice</Option>
     <Option value="bob">Bob</Option>
+    <Option value="charlie">Charlie</Option>
+    <Option value="diana">Diana</Option>
   </Select>
 );
 
@@ -92,10 +92,10 @@ const OnFocusAndBlurTemplate: ComponentStory<typeof Select> = args => (
     }}
     onBlur={() => console.log("I have been blurred!")}
   >
-    <Option value="tony">Tony</Option>
-    <Option value="steve">Steve</Option>
-    <Option value="natasha">Natasha</Option>
+    <Option value="alice">Alice</Option>
     <Option value="bob">Bob</Option>
+    <Option value="charlie">Charlie</Option>
+    <Option value="diana">Diana</Option>
   </Select>
 );
 
@@ -134,6 +134,135 @@ OnFocusAndBlur.args = {
   defaultValue: "bob",
 };
 
+const BaseOptionGroupTemplate: ComponentStory<typeof Select> = () => (
+  <Select version={1} placeholder="Select an option">
+    <Select.OptionGroup label="Team A">
+      <Select.Option value="alice">Alice</Select.Option>
+      <Select.Option value="bob">Bob</Select.Option>
+      <Select.Option value="charlie">Charlie</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="Team B">
+      <Select.Option value="diana">Diana</Select.Option>
+      <Select.Option value="evan">Evan</Select.Option>
+      <Select.Option value="frank">Frank</Select.Option>
+    </Select.OptionGroup>
+  </Select>
+);
+
+const OptionGroupTemplate: ComponentStory<typeof Select> = () => (
+  <Select version={2} UNSAFE_experimentalStyles placeholder="Select an option">
+    <Select.OptionGroup label="Team A">
+      <Select.Option value="alice">Alice</Select.Option>
+      <Select.Option value="bob">Bob</Select.Option>
+      <Select.Option value="charlie">Charlie</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="Team B">
+      <Select.Option value="diana">Diana</Select.Option>
+      <Select.Option value="evan">Evan</Select.Option>
+      <Select.Option value="frank">Frank</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="Team C">
+      <Select.Option value="grace">Grace</Select.Option>
+      <Select.Option value="hector">Hector</Select.Option>
+      <Select.Option value="isabel">Isabel</Select.Option>
+    </Select.OptionGroup>
+  </Select>
+);
+
+const CustomOptionGroupSizesTemplate: ComponentStory<typeof Select> = () => {
+  return (
+    <Content>
+      <Select
+        size="small"
+        placeholder="Small with groups"
+        version={2}
+        UNSAFE_experimentalStyles
+      >
+        <Select.OptionGroup label="Team A">
+          <Select.Option value="alice">Alice</Select.Option>
+          <Select.Option value="bob">Bob</Select.Option>
+        </Select.OptionGroup>
+        <Select.OptionGroup label="Team B">
+          <Select.Option value="charlie">Charlie</Select.Option>
+          <Select.Option value="diana">Diana</Select.Option>
+        </Select.OptionGroup>
+      </Select>
+      <Divider size="largest" />
+      <Select
+        placeholder="Default with groups"
+        version={2}
+        UNSAFE_experimentalStyles
+      >
+        <Select.OptionGroup label="Team A">
+          <Select.Option value="alice">Alice</Select.Option>
+          <Select.Option value="bob">Bob</Select.Option>
+        </Select.OptionGroup>
+        <Select.OptionGroup label="Team B">
+          <Select.Option value="charlie">Charlie</Select.Option>
+          <Select.Option value="diana">Diana</Select.Option>
+        </Select.OptionGroup>
+      </Select>
+      <Divider size="largest" />
+      <Select
+        size="large"
+        placeholder="Large with groups"
+        version={2}
+        UNSAFE_experimentalStyles
+      >
+        <Select.OptionGroup label="Team A">
+          <Select.Option value="alice">Alice</Select.Option>
+          <Select.Option value="bob">Bob</Select.Option>
+        </Select.OptionGroup>
+        <Select.OptionGroup label="Team B">
+          <Select.Option value="charlie">Charlie</Select.Option>
+          <Select.Option value="diana">Diana</Select.Option>
+        </Select.OptionGroup>
+      </Select>
+    </Content>
+  );
+};
+
+const CustomOptionGroupDisabledTemplate: ComponentStory<typeof Select> = () => (
+  <Select version={2} UNSAFE_experimentalStyles placeholder="Select an option">
+    <Select.OptionGroup label="Available Items">
+      <Select.Option value="option1">Option 1</Select.Option>
+      <Select.Option value="option2">Option 2</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="Unavailable Items" disabled>
+      <Select.Option value="option3">Option 3</Select.Option>
+      <Select.Option value="option4">Option 4</Select.Option>
+    </Select.OptionGroup>
+    <Select.OptionGroup label="More Items">
+      <Select.Option value="option5">Option 5</Select.Option>
+      <Select.Option value="option6">Option 6</Select.Option>
+    </Select.OptionGroup>
+  </Select>
+);
+
+export const BaseOptionGroups = BaseOptionGroupTemplate.bind({});
+BaseOptionGroups.args = {
+  placeholder: "Select an option",
+  version: 2,
+};
+
+export const CustomOptionGroups = OptionGroupTemplate.bind({});
+CustomOptionGroups.args = {
+  placeholder: "Select an option",
+  version: 2,
+  UNSAFE_experimentalStyles: true,
+};
+
+export const CustomOptionGroupSizes = CustomOptionGroupSizesTemplate.bind({});
+CustomOptionGroupSizes.args = {};
+
+export const CustomOptionGroupDisabled = CustomOptionGroupDisabledTemplate.bind(
+  {},
+);
+CustomOptionGroupDisabled.args = {
+  placeholder: "Select an option",
+  version: 2,
+};
+
 export const VersionComparison = () => {
   const [values, setValues] = useState({
     basic: "",
@@ -150,6 +279,7 @@ export const VersionComparison = () => {
     sizeLarge: "",
     loading: "",
     maxLength: "",
+    optionGroups: "",
   });
 
   const [inline, setInline] = useState(false);
@@ -185,9 +315,9 @@ export const VersionComparison = () => {
           value={values[field]}
           onChange={handleChange(field)}
         >
-          <Option value="tony">Tony</Option>
-          <Option value="steve">Steve</Option>
-          <Option value="natasha">Natasha</Option>
+          <Option value="alice">Alice</Option>
+          <Option value="bob">Bob</Option>
+          <Option value="charlie">Charlie</Option>
         </Select>
       </Grid.Cell>
       <Grid.Cell size={{ xs: 6 }}>
@@ -197,9 +327,55 @@ export const VersionComparison = () => {
           value={values[field]}
           onChange={handleChange(field)}
         >
-          <Option value="tony">Tony</Option>
-          <Option value="steve">Steve</Option>
-          <Option value="natasha">Natasha</Option>
+          <Option value="alice">Alice</Option>
+          <Option value="bob">Bob</Option>
+          <Option value="charlie">Charlie</Option>
+        </Select>
+      </Grid.Cell>
+    </Grid>
+  );
+
+  const renderBothVersionsWithGroups = (
+    title: string,
+    props: Record<string, unknown>,
+    field: keyof typeof values,
+  ) => (
+    <Grid>
+      <Grid.Cell size={{ xs: 12 }}>
+        <h3>{title}</h3>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Select
+          {...props}
+          version={1}
+          value={values[field]}
+          onChange={handleChange(field)}
+        >
+          <Select.OptionGroup label="Group A">
+            <Select.Option value="alice">Alice</Select.Option>
+            <Select.Option value="bob">Bob</Select.Option>
+          </Select.OptionGroup>
+          <Select.OptionGroup label="Group B">
+            <Select.Option value="charlie">Charlie</Select.Option>
+            <Select.Option value="diana">Diana</Select.Option>
+          </Select.OptionGroup>
+        </Select>
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 6 }}>
+        <Select
+          {...props}
+          version={2}
+          value={values[field]}
+          onChange={handleChange(field)}
+        >
+          <Select.OptionGroup label="Group A">
+            <Select.Option value="alice">Alice</Select.Option>
+            <Select.Option value="bob">Bob</Select.Option>
+          </Select.OptionGroup>
+          <Select.OptionGroup label="Group B">
+            <Select.Option value="charlie">Charlie</Select.Option>
+            <Select.Option value="diana">Diana</Select.Option>
+          </Select.OptionGroup>
         </Select>
       </Grid.Cell>
     </Grid>
@@ -220,7 +396,7 @@ export const VersionComparison = () => {
         {renderBothVersions(
           "Basic Select",
           {
-            placeholder: "Select a hero",
+            placeholder: "Select an option",
             ...extraProps,
           },
           "basic",
@@ -315,6 +491,35 @@ export const VersionComparison = () => {
             ...extraProps,
           },
           "maxLength",
+        )}
+
+        {renderBothVersionsWithGroups(
+          "Grouped",
+          {
+            placeholder: "Grouped",
+            ...extraProps,
+          },
+          "optionGroups",
+        )}
+
+        {renderBothVersions(
+          "With experimental styles",
+          {
+            placeholder: "Experimental styles",
+            UNSAFE_experimentalStyles: true,
+            ...extraProps,
+          },
+          "basic",
+        )}
+
+        {renderBothVersionsWithGroups(
+          "Grouped with experimental styles",
+          {
+            placeholder: "Grouped with experimental styles",
+            UNSAFE_experimentalStyles: true,
+            ...extraProps,
+          },
+          "optionGroups",
         )}
       </div>
 

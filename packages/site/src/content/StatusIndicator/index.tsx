@@ -1,4 +1,4 @@
-import StatusIndicatorContent from "@atlantis/docs/components/StatusIndicator/StatusIndicator.stories.mdx";
+import StatusIndicatorContent from "./StatusIndicator.stories.mdx";
 import Props from "./StatusIndicator.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

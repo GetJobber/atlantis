@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "./Gallery.module.css";
-import { GalleryFile, GalleryProps } from "./GalleryTypes";
+import type { GalleryFile, GalleryProps } from "./GalleryTypes";
 import { LightBox } from "../LightBox";
 import { FormatFile } from "../FormatFile";
 import { Button } from "../Button";

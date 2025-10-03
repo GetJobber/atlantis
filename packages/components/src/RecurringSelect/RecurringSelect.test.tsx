@@ -3,7 +3,8 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 /* eslint-disable import/no-deprecated */
 import { RecurringSelect } from "./RecurringSelect";
-import { DayOfMonth, DurationPeriod, WeekDay } from "./types";
+import type { DayOfMonth } from "./types";
+import { DurationPeriod, WeekDay } from "./types";
 
 let onChange: jest.Mock;
 

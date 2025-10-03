@@ -1,4 +1,4 @@
-import {{ name }}Content from "@atlantis/docs/components/{{name}}/{{name}}.stories.mdx";
+import {{ name }}Content from "./{{name}}.stories.mdx";
 import Props from "./{{name}}.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

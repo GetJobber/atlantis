@@ -3,9 +3,11 @@
  * https://github.com/GetJobber/atlantis/pull/171/files
  */
 
-import React, { RefObject, useRef } from "react";
+import type { RefObject } from "react";
+import React, { useRef } from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { ConfirmationModal, ConfirmationModalRef } from "..";
+import type { ConfirmationModalRef } from "..";
+import { ConfirmationModal } from "..";
 import { Button } from "../../Button";
 
 test("simple ConfirmationModal should confirm", () => {

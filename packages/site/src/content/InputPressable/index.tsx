@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/InputPressable/InputPressable.stories.mdx";
+import Content from "./InputPressable.stories.mdx";
 import MobileProps from "./InputPressable.props-mobile.json";
 import Notes from "./InputPressableNotes.mdx";
 import { ContentExport } from "../../types/content";

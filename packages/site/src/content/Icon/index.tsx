@@ -1,4 +1,4 @@
-import IconContent from "@atlantis/docs/components/Icon/Icon.stories.mdx";
+import IconContent from "./Icon.stories.mdx";
 import Props from "./Icon.props.json";
 import MobileProps from "./Icon.props-mobile.json";
 import Notes from "./IconNotes.mdx";

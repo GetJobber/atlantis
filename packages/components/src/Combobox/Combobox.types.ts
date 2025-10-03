@@ -1,4 +1,4 @@
-import { Dispatch, ReactElement, SetStateAction } from "react";
+import type { Dispatch, ReactElement, SetStateAction } from "react";
 
 type ComboboxFragment = Iterable<ComboboxNode>;
 type ComboboxNode = ReactElement | ComboboxFragment;
@@ -143,8 +143,10 @@ export interface ComboboxOptionProps {
    * The function receives the option's props, and a boolean indicating if the option is selected.
    */
   readonly customRender?: (
-    option: Omit<ComboboxOptionProps, "customRender"> & {
+    option: Pick<ComboboxOptionProps, "id" | "label" | "prefix"> & {
       isSelected: boolean;
+      /** Render the default option content. */
+      defaultContent: ReactElement;
     },
   ) => React.ReactNode;
 

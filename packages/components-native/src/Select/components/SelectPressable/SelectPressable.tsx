@@ -1,7 +1,8 @@
 import React from "react";
-import { Keyboard, Pressable, PressableProps } from "react-native";
+import type { PressableProps } from "react-native";
+import { Keyboard, Pressable } from "react-native";
 import { useStyles } from "./SelectPressable.style";
-import { SelectInternalPickerProps } from "../../types";
+import type { SelectInternalPickerProps } from "../../types";
 import { useIsScreenReaderEnabled } from "../../../hooks";
 
 type SelectPressableProps = Pick<SelectInternalPickerProps, "children"> &

@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo } from "react";
-import { FieldValues, useFormContext, useWatch } from "react-hook-form";
+import type { DeepPartial, FieldValues } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import omit from "lodash/omit";
 
 interface FormCacheProps<T extends FieldValues> {
   readonly localCacheId?: string | string[];
   readonly localCacheKey?: string;
   readonly localCacheExclude?: string[];
-  readonly setLocalCache: (data: T) => void;
+  readonly setLocalCache: (data: DeepPartial<T>) => void;
 }
 
 export function FormCache<T extends FieldValues>({
@@ -17,7 +18,7 @@ export function FormCache<T extends FieldValues>({
   const { control, formState } = useFormContext<T>();
   const { isDirty } = formState;
 
-  const formData = useWatch<T>({ control });
+  const formData = useWatch({ control });
   const shouldExclude = useMemo(() => {
     return Array.isArray(localCacheExclude) && localCacheExclude.length > 0;
   }, [localCacheExclude]);
@@ -45,5 +46,6 @@ export function FormCache<T extends FieldValues>({
     }
   }, [formData, isDirty, localCacheExclude, setLocalCache, shouldExclude]);
 
+  // eslint-disable-next-line react/jsx-no-useless-fragment
   return <></>;
 }

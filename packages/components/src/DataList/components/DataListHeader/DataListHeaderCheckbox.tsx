@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import React from "react";
-import { ReactElement } from "react-markdown/lib/react-markdown";
+import React, { type ReactElement } from "react";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
 import { Text } from "../../../Text";
 import { Button } from "../../../Button";
@@ -10,7 +9,7 @@ import styles from "../../DataList.module.css";
 import { InternalDataListBulkActions } from "../DataListBulkActions";
 import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
 import { useBatchSelect } from "../../hooks/useBatchSelect";
-import { DataListSelectedType } from "../../DataList.types";
+import type { DataListSelectedType } from "../../DataList.types";
 
 interface DataListHeaderCheckbox {
   readonly children: ReactElement;

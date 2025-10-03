@@ -3,7 +3,7 @@ import styles from "./MonthlyDayOfWeekSelect.module.css";
 import { WeeklySelect } from "./WeeklySelect";
 import { Text } from "../../Text";
 /* eslint-disable import/no-deprecated */
-import { WeekDay } from "../types";
+import type { WeekDay } from "../types";
 
 interface MonthlyDayOfWeekSelectProps {
   readonly disabled: boolean;

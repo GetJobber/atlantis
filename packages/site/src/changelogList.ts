@@ -1,5 +1,10 @@
 export const changelogList = [
   {
+    title: "Upcoming Breaking Changes",
+    to: "/changelog/breaking-changes",
+    additionalMatches: ["Changelog", "Log", "Breaking", "Changes"],
+  },
+  {
     title: "Components",
     to: "/changelog/components",
     additionalMatches: ["Changelog", "Log", "Components"],

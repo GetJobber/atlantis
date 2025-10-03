@@ -1,4 +1,5 @@
-import { ReactNode, createElement } from "react";
+import type { ReactNode } from "react";
+import { createElement } from "react";
 import classnames from "classnames";
 import spacings from "./Spacing.module.css";
 import styles from "./Content.module.css";

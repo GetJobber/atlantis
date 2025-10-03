@@ -6,9 +6,14 @@ import styles from "./Chip.module.css";
 import { Avatar } from "../Avatar";
 
 let mockIsInView = jest.fn(() => true);
-jest.mock("@jobber/hooks/useInView", () => ({
-  useInView: () => [{ current: null }, mockIsInView()],
-}));
+jest.mock("@jobber/hooks", () => {
+  const actual = jest.requireActual("@jobber/hooks");
+
+  return {
+    ...actual,
+    useInView: () => [{ current: null }, mockIsInView()],
+  };
+});
 
 describe("Chip", () => {
   it("renders without error", () => {

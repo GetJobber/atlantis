@@ -1,11 +1,12 @@
-import React, { ReactElement } from "react";
+import type { ReactElement } from "react";
+import React from "react";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";
 import { ComboboxActivator } from "./ComboboxActivator";
 import { ComboboxContextProvider } from "../../ComboboxProvider";
-import { ComboboxCustomActivatorProps } from "../../Combobox.types";
+import type { ComboboxCustomActivatorProps } from "../../Combobox.types";
 
 const handleOpen = jest.fn();
 

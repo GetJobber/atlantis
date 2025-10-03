@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Keyboard, KeyboardEvent } from "react-native";
+import type { KeyboardEvent } from "react-native";
+import { Keyboard } from "react-native";
 
 interface KeyboardVisibility {
   readonly isKeyboardVisible: boolean;
