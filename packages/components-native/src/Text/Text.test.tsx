@@ -151,6 +151,16 @@ it("renders text with underline styling", () => {
   expect(text.toJSON()).toMatchSnapshot();
 });
 
+it("supports nested Text children with mixed styles", () => {
+  const { getByText, toJSON } = render(
+    <Text>
+      Hello <Text emphasis="strong">World</Text>!
+    </Text>,
+  );
+  expect(getByText("World")).toBeDefined();
+  expect(toJSON()).toMatchSnapshot();
+});
+
 describe("UNSAFE_style", () => {
   it("applies custom styles via UNSAFE_style prop", () => {
     const customStyle = {
@@ -218,4 +228,16 @@ describe("TypographyGestureDetector", () => {
 
     expect(textElement.props.collapsable).toBeUndefined();
   });
+});
+
+it("works when nested inside a native RN Text wrapper", () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { Text: RNText } = require("react-native");
+  const { getByText, toJSON } = render(
+    <RNText>
+      Outer <Text emphasis="strong">Atlantis</Text> Text
+    </RNText>,
+  );
+  expect(getByText("Atlantis")).toBeDefined();
+  expect(toJSON()).toMatchSnapshot();
 });
