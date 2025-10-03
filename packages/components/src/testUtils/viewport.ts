@@ -24,7 +24,16 @@ export function mockViewport({
     });
   }
 
-  window.dispatchEvent(new Event("resize"));
+  // Wrap resize in act to avoid warnings during tests
+  try {
+    const { act } = require("@testing-library/react");
+
+    act(() => {
+      window.dispatchEvent(new Event("resize"));
+    });
+  } catch {
+    window.dispatchEvent(new Event("resize"));
+  }
 
   return () => {
     Object.defineProperty(window, "innerWidth", {
@@ -35,7 +44,16 @@ export function mockViewport({
       configurable: true,
       value: originalInnerHeight,
     });
-    window.dispatchEvent(new Event("resize"));
+
+    try {
+      const { act } = require("@testing-library/react");
+
+      act(() => {
+        window.dispatchEvent(new Event("resize"));
+      });
+    } catch {
+      window.dispatchEvent(new Event("resize"));
+    }
   };
 }
 
