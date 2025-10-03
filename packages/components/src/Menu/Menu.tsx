@@ -213,6 +213,38 @@ export function MenuLegacy({
     );
   }
 
+  let itemIndexCounter = 0;
+
+  const renderedSections = items?.map((item, key: number) => (
+    <div key={key} className={classnames(styles.section, styles.sectionBorder)}>
+      {item.header && (
+        <SectionHeader
+          text={item.header}
+          UNSAFE_style={UNSAFE_style?.header}
+          UNSAFE_className={UNSAFE_className?.header}
+        />
+      )}
+      {item.actions.map(action => {
+        const currentIndex = itemIndexCounter++;
+
+        return (
+          <Action
+            UNSAFE_style={UNSAFE_style?.action}
+            UNSAFE_className={UNSAFE_className?.action}
+            sectionLabel={item.header}
+            key={action.label}
+            tabIndex={activeIndex === currentIndex ? 0 : -1}
+            setItemNode={node => {
+              listRef.current[currentIndex] = node;
+            }}
+            getItemProps={getItemProps}
+            {...action}
+          />
+        );
+      })}
+    </div>
+  ));
+
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
       <div ref={setReferenceElement} {...getReferenceProps()}>
@@ -242,7 +274,13 @@ export function MenuLegacy({
               <div
                 ref={refs.setFloating}
                 className={styles.floatingContainer}
-                {...getFloatingProps()}
+                {...getFloatingProps({
+                  onKeyDown: event => {
+                    if (event.key === "Tab") {
+                      event.preventDefault();
+                    }
+                  },
+                })}
                 {...positionAttributes}
                 {...formFieldFocusAttribute}
               >
@@ -259,51 +297,10 @@ export function MenuLegacy({
                     animate="done"
                     exit="startOrStop"
                     custom={context?.placement}
-                    transition={{
-                      ...MENU_ANIMATION_CONFIG,
-                    }}
+                    transition={{ ...MENU_ANIMATION_CONFIG }}
                     style={UNSAFE_style?.menu}
                   >
-                    {(() => {
-                      let itemIndexCounter = 0;
-
-                      return items?.map((item, key: number) => (
-                        <div
-                          key={key}
-                          className={classnames(
-                            styles.section,
-                            styles.sectionBorder,
-                          )}
-                        >
-                          {item.header && (
-                            <SectionHeader
-                              text={item.header}
-                              UNSAFE_style={UNSAFE_style?.header}
-                              UNSAFE_className={UNSAFE_className?.header}
-                            />
-                          )}
-
-                          {item.actions.map(action => {
-                            const currentIndex = itemIndexCounter++;
-
-                            return (
-                              <Action
-                                UNSAFE_style={UNSAFE_style?.action}
-                                UNSAFE_className={UNSAFE_className?.action}
-                                sectionLabel={item.header}
-                                key={action.label}
-                                tabIndex={activeIndex === currentIndex ? 0 : -1}
-                                setItemNode={node => {
-                                  listRef.current[currentIndex] = node;
-                                }}
-                                getItemProps={getItemProps}
-                                {...action}
-                              />
-                            );
-                          })}
-                        </div>
-                      ));
-                    })()}
+                    {renderedSections}
                   </motion.div>
                 )}
               </div>
