@@ -491,7 +491,11 @@ function MenuContentComposable({
   return (
     <>
       {/* Keep Popover mounted while exiting, but do not animate it. */}
-      <AriaPopover isExiting={animation === "hidden"} placement="bottom start">
+      <AriaPopover
+        isExiting={animation === "hidden"}
+        placement="bottom start"
+        offset={MENU_OFFSET}
+      >
         {({ placement }) => {
           const directionModifier = placement?.includes("bottom") ? -1 : 1;
           const variants = isMobile
@@ -510,7 +514,11 @@ function MenuContentComposable({
           return (
             <MotionMenu
               key={`menu-content-${placement ?? "pending"}`}
-              className={classnames(styles.menu, UNSAFE_className)}
+              className={classnames(
+                styles.menu,
+                styles.ariaMenu,
+                UNSAFE_className,
+              )}
               style={UNSAFE_style}
               variants={variants}
               initial="hidden"

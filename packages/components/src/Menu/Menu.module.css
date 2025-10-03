@@ -10,6 +10,10 @@
   z-index: var(--elevation-modal);
 }
 
+.ariaMenu {
+  max-height: inherit;
+}
+
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);

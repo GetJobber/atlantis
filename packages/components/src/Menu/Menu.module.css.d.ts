@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "wrapper": string;
   readonly "floatingContainer": string;
+  readonly "ariaMenu": string;
   readonly "menu": string;
   readonly "sectionBorder": string;
   readonly "separator": string;
