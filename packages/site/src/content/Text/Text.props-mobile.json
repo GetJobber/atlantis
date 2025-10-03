@@ -109,7 +109,7 @@
       },
       "children": {
         "defaultValue": null,
-        "description": "Text to display",
+        "description": "Text to display. Supports strings, numbers, and nested text nodes.",
         "name": "children",
         "parent": {
           "fileName": "../components-native/src/Text/Text.tsx",
@@ -117,7 +117,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "React.ReactNode"
         }
       },
       "reverseTheme": {
