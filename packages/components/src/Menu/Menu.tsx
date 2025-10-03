@@ -1,4 +1,4 @@
-import type { MouseEvent, ReactElement, RefObject } from "react";
+import type { MouseEvent, ReactElement } from "react";
 import React, {
   createContext,
   useContext,
@@ -9,7 +9,6 @@ import React, {
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  useFocusTrap,
   useIsMounted,
   useRefocusOnActivator,
   useWindowDimensions,
@@ -23,6 +22,7 @@ import {
   useDismiss,
   useFloating,
   useInteractions,
+  useListNavigation,
 } from "@floating-ui/react";
 import {
   Header as AriaHeader,
@@ -127,6 +127,8 @@ export function MenuLegacy({
   const [visible, setVisible] = useState(false);
   const [referenceElement, setReferenceElement] =
     useState<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const listRef = useRef<Array<HTMLElement | null>>([]);
 
   const { width } = useWindowDimensions();
 
@@ -139,9 +141,8 @@ export function MenuLegacy({
     [styles.fullWidth]: fullWidth,
   });
 
-  // useRefocusOnActivator must come before useFocusTrap for them both to work
+  // Ensure focus returns to the activator when closed
   useRefocusOnActivator(visible);
-  const menuRef = useFocusTrap<HTMLDivElement>(visible);
 
   const { refs, floatingStyles, context } = useFloating({
     open: visible,
@@ -183,7 +184,16 @@ export function MenuLegacy({
   });
 
   const dismiss = useDismiss(context);
-  const { getFloatingProps } = useInteractions([dismiss]);
+  const listNavigation = useListNavigation(context, {
+    listRef,
+    activeIndex,
+    onNavigate: setActiveIndex,
+    loop: true,
+    focusItemOnOpen: true,
+  });
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
+    [dismiss, listNavigation],
+  );
 
   const positionAttributes =
     width >= SMALL_SCREEN_BREAKPOINT
@@ -205,7 +215,7 @@ export function MenuLegacy({
 
   return (
     <div className={wrapperClasses} onClick={handleParentClick}>
-      <div ref={setReferenceElement}>
+      <div ref={setReferenceElement} {...getReferenceProps()}>
         {React.cloneElement(activator, {
           onClick: toggle(activator.props.onClick),
           id: buttonID,
@@ -249,39 +259,51 @@ export function MenuLegacy({
                     animate="done"
                     exit="startOrStop"
                     custom={context?.placement}
-                    ref={menuRef}
                     transition={{
                       ...MENU_ANIMATION_CONFIG,
                     }}
                     style={UNSAFE_style?.menu}
                   >
-                    {items?.map((item, key: number) => (
-                      <div
-                        key={key}
-                        className={classnames(
-                          styles.section,
-                          styles.sectionBorder,
-                        )}
-                      >
-                        {item.header && (
-                          <SectionHeader
-                            text={item.header}
-                            UNSAFE_style={UNSAFE_style?.header}
-                            UNSAFE_className={UNSAFE_className?.header}
-                          />
-                        )}
+                    {(() => {
+                      let itemIndexCounter = 0;
 
-                        {item.actions.map(action => (
-                          <Action
-                            UNSAFE_style={UNSAFE_style?.action}
-                            UNSAFE_className={UNSAFE_className?.action}
-                            sectionLabel={item.header}
-                            key={action.label}
-                            {...action}
-                          />
-                        ))}
-                      </div>
-                    ))}
+                      return items?.map((item, key: number) => (
+                        <div
+                          key={key}
+                          className={classnames(
+                            styles.section,
+                            styles.sectionBorder,
+                          )}
+                        >
+                          {item.header && (
+                            <SectionHeader
+                              text={item.header}
+                              UNSAFE_style={UNSAFE_style?.header}
+                              UNSAFE_className={UNSAFE_className?.header}
+                            />
+                          )}
+
+                          {item.actions.map(action => {
+                            const currentIndex = itemIndexCounter++;
+
+                            return (
+                              <Action
+                                UNSAFE_style={UNSAFE_style?.action}
+                                UNSAFE_className={UNSAFE_className?.action}
+                                sectionLabel={item.header}
+                                key={action.label}
+                                tabIndex={activeIndex === currentIndex ? 0 : -1}
+                                setItemNode={node => {
+                                  listRef.current[currentIndex] = node;
+                                }}
+                                getItemProps={getItemProps}
+                                {...action}
+                              />
+                            );
+                          })}
+                        </div>
+                      ));
+                    })()}
                   </motion.div>
                 )}
               </div>
@@ -301,6 +323,7 @@ export function MenuLegacy({
 
   function hide() {
     setVisible(false);
+    setActiveIndex(null);
   }
 
   function handleParentClick(event: MouseEvent<HTMLDivElement>) {
@@ -336,30 +359,45 @@ function SectionHeader({
   );
 }
 
-function Action({
-  label,
-  sectionLabel,
-  icon,
-  iconColor,
-  destructive,
-  UNSAFE_style,
-  UNSAFE_className,
-  onClick,
-}: ActionProps) {
-  const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
+function Action(
+  props: ActionProps & {
+    readonly tabIndex: number;
+    readonly setItemNode: (node: HTMLButtonElement | null) => void;
+    readonly getItemProps: (
+      userProps?: Record<string, unknown>,
+    ) => Record<string, unknown>;
+  },
+) {
+  const {
+    label,
+    sectionLabel,
+    icon,
+    iconColor,
+    destructive,
+    UNSAFE_style,
+    UNSAFE_className,
+    onClick,
+    tabIndex,
+    setItemNode,
+    getItemProps,
+  } = props;
+
   const buttonClasses = classnames(styles.action, styles.legacyAction, {
     [styles.destructive]: destructive,
   });
 
   return (
     <button
-      role="menuitem"
-      type="button"
       className={classnames(buttonClasses, UNSAFE_className)}
-      key={label}
-      onClick={onClick}
-      ref={actionButtonRef}
       style={UNSAFE_style}
+      key={label}
+      type="button"
+      {...getItemProps({
+        ref: setItemNode,
+        role: "menuitem",
+        onClick,
+        tabIndex,
+      })}
     >
       <DefaultItemContent
         label={label}
