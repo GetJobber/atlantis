@@ -10,6 +10,7 @@ import { Tooltip } from "@jobber/components/Tooltip";
 import { Popover } from "@jobber/components/Popover";
 import { Content } from "@jobber/components/Content";
 import { StatusLabel } from "@jobber/components/StatusLabel";
+import { Emphasis } from "@jobber/components/Emphasis";
 
 export default {
   title: "Components/Navigation/Menu/Web",
@@ -183,6 +184,7 @@ export const Composable = () => {
           <Popover
             attachTo={divRef}
             open={showPopover}
+            preferredPlacement="right"
             onRequestClose={() => setShowPopover(false)}
           >
             <Content>
@@ -348,155 +350,102 @@ export const Composable = () => {
           </Menu>
         </div>
       </section>
+      <section>
+        <h1>Composable with Custom Render</h1>
+        <Menu>
+          <Menu.Trigger>
+            <Button>
+              <Button.Label>Mixed</Button.Label>
+            </Button>
+          </Menu.Trigger>
+          <Menu.Content>
+            <Menu.Section>
+              <Menu.Header label="Opinionated" />
+              <Menu.Item
+                onClick={() => alert("Email")}
+                label="Email"
+                icon="email"
+              />
+              <Menu.Item
+                onClick={() => alert("Text message")}
+                label="Text message"
+                icon="sms"
+              />
+            </Menu.Section>
+            <Menu.Separator />
+            <Menu.Section>
+              <Menu.Header
+                customRender={() => (
+                  <Emphasis variation="highlight">Emphasized Header</Emphasis>
+                )}
+              />
+              <Menu.Item
+                onClick={() => alert("Email")}
+                customRender={() => (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "100%",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <span style={{ fontWeight: 600 }}>Email</span>
+                    <span aria-hidden>📧</span>
+                  </div>
+                )}
+              />
+              <Menu.Item
+                onClick={() => alert("Sync")}
+                customRender={() => (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  >
+                    <span style={{ fontWeight: 600 }}>Sync</span>
+                    <StatusLabel label="In progress" status="success" />
+                  </div>
+                )}
+              />
+            </Menu.Section>
+            <Menu.Separator />
+            <Menu.Section>
+              <Menu.Header label="Links" />
+              <Menu.Item
+                label="Jobber"
+                href="https://getjobber.com"
+                target="_blank"
+                rel="noreferrer"
+              />
+            </Menu.Section>
+            <Menu.Separator />
+            <Menu.Section>
+              <Menu.Header label="Link + customRender" />
+              <Menu.Item
+                href="https://help.getjobber.com/hc/en-us"
+                target="_blank"
+                rel="noreferrer"
+                customRender={() => (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      width: "100%",
+                      padding: 4,
+                    }}
+                  >
+                    <span style={{ textDecoration: "underline" }}>
+                      Jobber Docs
+                    </span>
+                    <span aria-hidden>↗</span>
+                  </div>
+                )}
+              />
+            </Menu.Section>
+          </Menu.Content>
+        </Menu>
+      </section>
     </div>
-  );
-};
-
-export const ComposableOpinionated = () => {
-  return (
-    <Menu>
-      <Menu.Trigger>
-        <Button>
-          <Button.Label>Opinionated</Button.Label>
-        </Button>
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Section>
-          <Menu.Header label="Send as..." />
-          <Menu.Item label="Text message" icon="sms" />
-          <Menu.Item label="Email" icon="email" />
-          <Menu.Item label="Delete" icon="trash" destructive />
-        </Menu.Section>
-      </Menu.Content>
-    </Menu>
-  );
-};
-
-export const ComposableCustomRender = () => {
-  return (
-    <Menu>
-      <Menu.Trigger>
-        <Button>
-          <Button.Label>Custom render</Button.Label>
-        </Button>
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Section>
-          <Menu.Header
-            customRender={() => (
-              <div style={{ display: "flex", gap: 8 }}>Send as...</div>
-            )}
-          />
-          {/* Example: Replace default layout entirely */}
-          <Menu.Item
-            customRender={() => (
-              <div
-                style={{
-                  display: "flex",
-                  gap: 8,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "100%",
-                }}
-              >
-                <span style={{ fontWeight: 600 }}>Email</span>
-                <span style={{ opacity: 0.6 }}>Cmd+E</span>
-              </div>
-            )}
-          />
-          <Menu.Item label="Text message" icon="sms" />
-        </Menu.Section>
-      </Menu.Content>
-    </Menu>
-  );
-};
-
-export const ComposableMixed = () => {
-  return (
-    <Menu>
-      <Menu.Trigger>
-        <Button>
-          <Button.Label>Mixed</Button.Label>
-        </Button>
-      </Menu.Trigger>
-      <Menu.Content>
-        <Menu.Section>
-          <Menu.Header label="Opinionated" />
-          <Menu.Item label="Email" icon="email" />
-          <Menu.Item label="Text message" icon="sms" />
-        </Menu.Section>
-        <Menu.Separator />
-        <Menu.Section>
-          <Menu.Header
-            customRender={() => (
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontWeight: 600 }}>CustomRender</span>
-              </div>
-            )}
-          />
-          {/* Example: Icon aligns right instead of left */}
-          <Menu.Item
-            customRender={() => (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "100%",
-                  justifyContent: "space-between",
-                }}
-              >
-                <span style={{ fontWeight: 600 }}>Email</span>
-                <span aria-hidden>📧</span>
-              </div>
-            )}
-          />
-          {/* Example: Include a StatusLabel inside */}
-          <Menu.Item
-            customRender={() => (
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontWeight: 600 }}>Sync</span>
-                <StatusLabel label="In progress" status="success" />
-              </div>
-            )}
-          />
-        </Menu.Section>
-        <Menu.Separator />
-        <Menu.Section>
-          <Menu.Header label="Links" />
-          <Menu.Item label="Docs" href="/docs" />
-          <Menu.Item
-            label="Jobber"
-            href="https://getjobber.com"
-            target="_blank"
-            rel="noreferrer"
-          />
-        </Menu.Section>
-        <Menu.Separator />
-        <Menu.Section>
-          <Menu.Header label="Link + customRender" />
-          {/* Example: Link rendered as full-width pill with external indicator */}
-          <Menu.Item
-            href="https://example.com"
-            target="_blank"
-            rel="noreferrer"
-            customRender={() => (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  padding: 4,
-                }}
-              >
-                <span style={{ textDecoration: "underline" }}>example.com</span>
-                <span aria-hidden>↗</span>
-              </div>
-            )}
-          />
-        </Menu.Section>
-      </Menu.Content>
-    </Menu>
   );
 };
 
