@@ -28,6 +28,7 @@
     right: 0;
     bottom: 0;
     left: 0;
+    max-height: 70vh;
   }
 
   @media (--small-screens-and-up) {
