@@ -231,7 +231,6 @@ describe("TypographyGestureDetector", () => {
 });
 
 it("works when nested inside a native RN Text wrapper", () => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { Text: RNText } = require("react-native");
   const { getByText, toJSON } = render(
     <RNText>
