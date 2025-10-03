@@ -40,12 +40,13 @@ export function useComboboxAccessibility(
 
   const floatingRef = useFocusTrap<HTMLDivElement>(open);
 
-  const { floatingStyles, update, context } = useFloating({
+  const { floatingStyles, update, context, elements } = useFloating({
     nodeId,
     elements: {
       reference: wrapperRef.current,
       floating: floatingRef.current,
     },
+    placement: "bottom-start",
     open,
     onOpenChange: openState => {
       if (!openState) handleClose();
@@ -54,13 +55,21 @@ export function useComboboxAccessibility(
       offset(COMBOBOX_OFFSET),
       flip({ fallbackPlacements: ["top-start", "bottom-end", "top-end"] }),
     ],
-    placement: "bottom-start",
-    whileElementsMounted: autoUpdate,
   });
 
   const dismiss = useDismiss(context);
 
   const { getFloatingProps } = useInteractions([dismiss]);
+
+  // Floating element is hidden via CSS (not conditionally rendered),
+  // set up and tear down autoUpdate manually to avoid unnecessary observers.
+  useEffect(() => {
+    if (open && elements.reference && elements.floating) {
+      const cleanup = autoUpdate(elements.reference, elements.floating, update);
+
+      return cleanup;
+    }
+  }, [open, autoUpdate, elements, update]);
 
   useEffect(() => {
     focusedIndex.current = null;
