@@ -12,7 +12,25 @@ export default {
   },
 } as ComponentMeta<typeof Menu>;
 
-const BasicTemplate: ComponentStory<typeof Menu> = args => <Menu {...args} />;
+const BasicTemplate: ComponentStory<typeof Menu> = args => {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+      }}
+    >
+      <div style={{ display: "inline-flex" }}>
+        <div style={{ position: "sticky", bottom: 0 }}>
+          <Menu {...args} />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const Horizontal = BasicTemplate.bind({});
 Horizontal.args = {
