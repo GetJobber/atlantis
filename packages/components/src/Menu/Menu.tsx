@@ -1,5 +1,11 @@
-import type { CSSProperties, MouseEvent, ReactElement, RefObject } from "react";
-import React, { useId, useRef, useState } from "react";
+import type { MouseEvent, ReactElement, RefObject } from "react";
+import React, {
+  createContext,
+  useContext,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -8,7 +14,6 @@ import {
   useRefocusOnActivator,
   useWindowDimensions,
 } from "@jobber/hooks";
-import type { IconColorNames, IconNames } from "@jobber/design";
 import {
   FloatingPortal,
   autoUpdate,
@@ -19,82 +24,106 @@ import {
   useFloating,
   useInteractions,
 } from "@floating-ui/react";
+import {
+  Header as AriaHeader,
+  Menu as AriaMenu,
+  MenuItem as AriaMenuItem,
+  MenuSection as AriaMenuSection,
+  MenuTrigger as AriaMenuTrigger,
+  Popover as AriaPopover,
+  Pressable as AriaPressable,
+  Separator as AriaSeparator,
+} from "react-aria-components";
 import styles from "./Menu.module.css";
+import type {
+  ActionProps,
+  AnimationState,
+  MenuComposableProps,
+  MenuContentComposableProps,
+  MenuHeaderComposableProps,
+  MenuItemComposableProps,
+  MenuLegacyProps,
+  MenuMobileUnderlayProps,
+  MenuSectionComposableProps,
+  MenuSeparatorComposableProps,
+  MenuTriggerComposableProps,
+  SectionHeaderProps,
+} from "./Menu.types";
+import {
+  MENU_ANIMATION_CONFIG,
+  MENU_MAX_HEIGHT_PERCENTAGE,
+  MENU_OFFSET,
+  OVERLAY_ANIMATION_CONFIG,
+  SMALL_SCREEN_BREAKPOINT,
+  Y_TRANSLATION_DESKTOP,
+  Y_TRANSLATION_MOBILE,
+} from "./constants";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 import { calculateMaxHeight } from "../utils/maxHeight";
 
-const SMALL_SCREEN_BREAKPOINT = 490;
-const MENU_OFFSET = 6;
-const MENU_MAX_HEIGHT_PERCENTAGE = 72;
+const composeOverlayVariation = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
 const variation = {
   overlayStartStop: { opacity: 0 },
   startOrStop: (placement: string | undefined) => {
-    let y = 10;
+    let y = Y_TRANSLATION_DESKTOP;
 
     if (placement?.includes("bottom")) y *= -1;
-    if (window.innerWidth < SMALL_SCREEN_BREAKPOINT) y = 150;
+    if (isMobileDevice()) y = Y_TRANSLATION_MOBILE;
 
     return { opacity: 0, y };
   },
   done: { opacity: 1, y: 0 },
 };
 
-export interface MenuProps {
-  /**
-   * Custom menu activator. If this is not provided a default [… More] will be used.
-   */
-  readonly activator?: ReactElement;
-  /**
-   * Collection of action items.
-   */
-  readonly items: SectionProps[];
+function isMobileDevice(): boolean {
+  if (typeof window === "undefined") {
+    return false;
+  }
 
-  /**
-   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_className?: {
-    menu?: string;
-    header?: string;
-    action?: string;
-  };
-
-  /**
-   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
-   * **last resort**. Using this may result in unexpected side effects.
-   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
-   */
-  readonly UNSAFE_style?: {
-    menu?: CSSProperties;
-    header?: CSSProperties;
-    action?: CSSProperties;
-  };
+  return window.innerWidth <= SMALL_SCREEN_BREAKPOINT;
 }
 
-export interface SectionProps {
-  /**
-   * Defines the section header to further explain the group of actions.
-   */
-  header?: string;
+function isLegacy(
+  props: MenuLegacyProps | MenuComposableProps,
+): props is MenuLegacyProps {
+  return "items" in props;
+}
 
-  /**
-   * List of actions.
-   */
-  actions: ActionProps[];
+const MotionMenu = motion.create(AriaMenu);
+
+// Overload declarations (no bodies)
+export function Menu(props: MenuLegacyProps): ReactElement;
+export function Menu(props: MenuComposableProps): ReactElement;
+
+// Single implementation
+export function Menu(
+  props: MenuLegacyProps | MenuComposableProps,
+): ReactElement {
+  if (isLegacy(props)) {
+    return <MenuLegacy {...props} />;
+  }
+
+  return (
+    <MenuComposable onOpenChange={props.onOpenChange}>
+      {props.children}
+    </MenuComposable>
+  );
 }
 
 // eslint-disable-next-line max-statements
-export function Menu({
+export function MenuLegacy({
   activator,
   items,
   UNSAFE_className,
   UNSAFE_style,
-}: MenuProps) {
+}: MenuLegacyProps) {
   const [visible, setVisible] = useState(false);
   const [referenceElement, setReferenceElement] =
     useState<HTMLDivElement | null>(null);
@@ -116,7 +145,9 @@ export function Menu({
 
   const { refs, floatingStyles, context } = useFloating({
     open: visible,
-    onOpenChange: setVisible,
+    onOpenChange: (isOpen: boolean) => {
+      setVisible(isOpen);
+    },
     placement: "bottom-start",
     strategy: "fixed",
     middleware: [
@@ -195,8 +226,7 @@ export function Menu({
                 animate="done"
                 exit="overlayStartStop"
                 transition={{
-                  type: "tween",
-                  duration: 0.15,
+                  ...OVERLAY_ANIMATION_CONFIG,
                 }}
               />
               <div
@@ -221,13 +251,18 @@ export function Menu({
                     custom={context?.placement}
                     ref={menuRef}
                     transition={{
-                      type: "tween",
-                      duration: 0.25,
+                      ...MENU_ANIMATION_CONFIG,
                     }}
                     style={UNSAFE_style?.menu}
                   >
-                    {items.map((item, key: number) => (
-                      <div key={key} className={styles.section}>
+                    {items?.map((item, key: number) => (
+                      <div
+                        key={key}
+                        className={classnames(
+                          styles.section,
+                          styles.sectionBorder,
+                        )}
+                      >
                         {item.header && (
                           <SectionHeader
                             text={item.header}
@@ -277,12 +312,6 @@ export function Menu({
   }
 }
 
-interface SectionHeaderProps {
-  readonly text: string;
-  readonly UNSAFE_style?: CSSProperties;
-  readonly UNSAFE_className?: string;
-}
-
 function SectionHeader({
   text,
   UNSAFE_style,
@@ -307,48 +336,6 @@ function SectionHeader({
   );
 }
 
-export interface ActionProps {
-  /**
-   * Action label
-   */
-  readonly label: string;
-
-  /**
-   * Parent Section Label
-   */
-  readonly sectionLabel?: string;
-
-  /**
-   * Visual cue for the action label
-   */
-  readonly icon?: IconNames;
-
-  /**
-   * Color for the icon. Defaults to "icon".
-   */
-  readonly iconColor?: IconColorNames;
-
-  /**
-   * Visual style for the action button
-   */
-  readonly destructive?: boolean;
-
-  /**
-   * Inline style overrides for the action button
-   */
-  readonly UNSAFE_style?: CSSProperties;
-
-  /**
-   * Style class overrides for the action button
-   */
-  readonly UNSAFE_className?: string;
-
-  /**
-   * Callback when an action gets clicked
-   */
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
-}
-
 function Action({
   label,
   sectionLabel,
@@ -360,7 +347,7 @@ function Action({
   onClick,
 }: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
-  const buttonClasses = classnames(styles.action, {
+  const buttonClasses = classnames(styles.action, styles.legacyAction, {
     [styles.destructive]: destructive,
   });
 
@@ -374,18 +361,62 @@ function Action({
       ref={actionButtonRef}
       style={UNSAFE_style}
     >
+      <DefaultItemContent
+        label={label}
+        icon={icon}
+        iconColor={iconColor}
+        destructive={destructive}
+        sectionLabel={sectionLabel}
+      />
+    </button>
+  );
+}
+
+function DefaultItemContent({
+  label,
+  icon,
+  iconColor,
+  destructive,
+  sectionLabel,
+}: {
+  readonly label?: string;
+  readonly icon?: React.ComponentProps<typeof Icon>["name"];
+  readonly iconColor?: React.ComponentProps<typeof Icon>["color"];
+  readonly destructive?: boolean;
+  readonly sectionLabel?: string;
+}) {
+  return (
+    <>
       {icon && (
         <div>
           <Icon color={destructive ? "destructive" : iconColor} name={icon} />
         </div>
       )}
-      <Typography element="span" fontWeight="semiBold" textColor="text">
+      <Typography
+        element="span"
+        fontWeight="semiBold"
+        textColor={destructive ? "destructive" : "text"}
+      >
         {sectionLabel && (
           <span className={styles.screenReaderOnly}>{sectionLabel}</span>
         )}
         {label}
       </Typography>
-    </button>
+    </>
+  );
+}
+
+function DefaultHeaderContent({ label }: { readonly label?: string }) {
+  return (
+    <Typography
+      element="h6"
+      size="base"
+      textColor="textSecondary"
+      fontWeight="regular"
+      textCase="none"
+    >
+      {label}
+    </Typography>
   );
 }
 
@@ -398,3 +429,252 @@ function MenuPortal({ children }: { readonly children: React.ReactElement }) {
 
   return <FloatingPortal>{children}</FloatingPortal>;
 }
+
+interface MenuAnimationContextValue {
+  state: AnimationState;
+  setState: React.Dispatch<React.SetStateAction<AnimationState>>;
+}
+const MenuAnimationContext = createContext<MenuAnimationContextValue | null>(
+  null,
+);
+
+function useMenuAnimation(): MenuAnimationContextValue {
+  const ctx = useContext(MenuAnimationContext);
+
+  if (!ctx) {
+    throw new Error("MenuAnimationContext used outside provider");
+  }
+
+  return ctx;
+}
+
+function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
+  const [animation, setAnimation] = useState<AnimationState>("unmounted");
+
+  return (
+    <MenuAnimationContext.Provider
+      value={{ state: animation, setState: setAnimation }}
+    >
+      <AriaMenuTrigger
+        onOpenChange={isOpen => {
+          setAnimation(isOpen ? "visible" : "hidden");
+          onOpenChange?.(isOpen);
+        }}
+      >
+        {children}
+      </AriaMenuTrigger>
+    </MenuAnimationContext.Provider>
+  );
+}
+
+const MenuTriggerComposable = React.forwardRef<
+  HTMLDivElement,
+  MenuTriggerComposableProps
+>(function MenuTriggerComposable({ ariaLabel, children }, ref) {
+  return (
+    <AriaPressable aria-label={ariaLabel}>
+      <div role="button" className={styles.triggerWrapper} ref={ref}>
+        {children}
+      </div>
+    </AriaPressable>
+  );
+});
+
+function MenuContentComposable({
+  children,
+  UNSAFE_style,
+  UNSAFE_className,
+}: MenuContentComposableProps) {
+  const { state: animation, setState } = useMenuAnimation();
+  const isMobile = isMobileDevice();
+
+  return (
+    <>
+      {/* Keep Popover mounted while exiting, but do not animate it. */}
+      <AriaPopover
+        isExiting={animation === "hidden"}
+        placement="bottom start"
+        offset={MENU_OFFSET}
+      >
+        {({ placement }) => {
+          const directionModifier = placement?.includes("bottom") ? -1 : 1;
+          const variants = isMobile
+            ? {
+                hidden: { opacity: 0, y: Y_TRANSLATION_MOBILE },
+                visible: { opacity: 1, y: 0 },
+              }
+            : {
+                hidden: {
+                  opacity: 0,
+                  y: Y_TRANSLATION_DESKTOP * directionModifier,
+                },
+                visible: { opacity: 1, y: 0 },
+              };
+
+          return (
+            <MotionMenu
+              key={`menu-content-${placement ?? "pending"}`}
+              className={classnames(
+                styles.menu,
+                styles.ariaMenu,
+                UNSAFE_className,
+              )}
+              style={UNSAFE_style}
+              variants={variants}
+              initial="hidden"
+              // placement is null on first render cycle, so we need to wait for it to be defined
+              animate={placement ? animation : false}
+              transition={{ ...MENU_ANIMATION_CONFIG }}
+              onAnimationComplete={animationState => {
+                setState(prev =>
+                  animationState === "hidden" && prev === "hidden"
+                    ? "unmounted"
+                    : prev,
+                );
+              }}
+            >
+              {children}
+            </MotionMenu>
+          );
+        }}
+      </AriaPopover>
+      {isMobile && <MenuMobileUnderlay animation={animation} />}
+    </>
+  );
+}
+
+function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
+  if (animation === "unmounted") return null;
+
+  return (
+    <motion.div
+      key="menu-mobile-underlay"
+      variants={composeOverlayVariation}
+      initial="hidden"
+      transition={{
+        ...OVERLAY_ANIMATION_CONFIG,
+      }}
+      className={styles.overlay}
+      animate={animation}
+    />
+  );
+}
+
+function MenuSeparatorComposable({
+  UNSAFE_style,
+  UNSAFE_className,
+}: MenuSeparatorComposableProps) {
+  return (
+    <AriaSeparator
+      className={classnames(styles.separator, UNSAFE_className)}
+      style={UNSAFE_style}
+      data-testid="ATL-Menu-Separator"
+    />
+  );
+}
+
+function MenuSectionComposable({
+  children,
+  UNSAFE_style,
+  UNSAFE_className,
+  ariaLabel,
+}: MenuSectionComposableProps) {
+  return (
+    <AriaMenuSection
+      aria-label={ariaLabel}
+      className={classnames(styles.section, UNSAFE_className)}
+      style={UNSAFE_style}
+    >
+      {children}
+    </AriaMenuSection>
+  );
+}
+
+function MenuHeaderComposable(props: MenuHeaderComposableProps) {
+  const { UNSAFE_style, UNSAFE_className } = props;
+
+  const isCustom = props.customRender !== undefined;
+
+  return (
+    <AriaHeader
+      className={classnames(styles.sectionHeader, UNSAFE_className)}
+      style={UNSAFE_style}
+    >
+      {isCustom ? (
+        props.customRender()
+      ) : (
+        <DefaultHeaderContent label={props.label} />
+      )}
+    </AriaHeader>
+  );
+}
+
+const MenuItemComposable = React.forwardRef<
+  React.ElementRef<typeof AriaMenuItem>,
+  MenuItemComposableProps
+>(function MenuItemComposable(props: MenuItemComposableProps, ref) {
+  const { UNSAFE_style, UNSAFE_className } = props;
+
+  const isCustom = props.customRender !== undefined;
+  const computedTextValue = props.label ?? props.textValue ?? undefined;
+
+  const content = isCustom ? (
+    props.customRender()
+  ) : (
+    <DefaultItemContent
+      label={props.label}
+      icon={props.icon}
+      iconColor={props.iconColor}
+      destructive={props.destructive}
+    />
+  );
+
+  const className = classnames(
+    styles.action,
+    {
+      [styles.destructive]: !isCustom && props.destructive,
+    },
+    UNSAFE_className,
+  );
+
+  if (props.href) {
+    const { href, target, rel, onClick } = props;
+
+    return (
+      <AriaMenuItem
+        ref={ref}
+        className={className}
+        style={UNSAFE_style}
+        textValue={computedTextValue}
+        href={href}
+        target={target}
+        rel={rel}
+        onClick={onClick as ((e: React.MouseEvent) => void) | undefined}
+      >
+        {content}
+      </AriaMenuItem>
+    );
+  }
+
+  return (
+    <AriaMenuItem
+      ref={ref}
+      className={className}
+      style={UNSAFE_style}
+      textValue={computedTextValue}
+      onAction={() => {
+        // Zero-arg activation for non-link items
+        props.onClick?.();
+      }}
+    >
+      {content}
+    </AriaMenuItem>
+  );
+});
+
+Menu.Section = MenuSectionComposable;
+Menu.Header = MenuHeaderComposable;
+Menu.Item = MenuItemComposable;
+Menu.Trigger = MenuTriggerComposable;
+Menu.Content = MenuContentComposable;
+Menu.Separator = MenuSeparatorComposable;

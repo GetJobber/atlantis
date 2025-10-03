@@ -1,4 +1,128 @@
-## Component customization
+## Composable Version (Web Only)
+
+The Menu may be invoked with a subcomponent structure enabling a declarative
+style, greater customization and composability with other components.
+
+```
+<Menu>
+  <Menu.Trigger>
+    <Button>Trigger</Button>
+  </Menu.Trigger>
+  <Menu.Content>
+    <Menu.Item label="Email" onClick={clickHandler("email")}/>
+
+    <PrivacyMask>
+      <Menu.Item label="Sensitive" onClick={clickHandler("sensitive")}/>
+    </PrivacyMask>
+
+    <AuthCheck can="viewAdmin">
+      <Menu.Item lable="Admin"onClick={clickHandler("admin")}/>
+    </AuthCheck>
+  </Menu.Content>
+</Menu>
+```
+
+#### Sub Components
+
+**_Menu.Trigger (Required)_**
+
+An interactive element that will cause the Menu to open when clicked or
+interacted with via keyboard. The open behavior is handled internally, and no
+`onClick` is required on the provided component. A provided `Button` is purely
+for appearance, however there is still a requirement that whatever is given to
+Menu.Trigger must be an element with an interactive role.
+
+Clicking the trigger again, or clicking anywhere outside the Menu at all will
+close the Menu.
+
+**_Menu.Content (Required)_**
+
+A structural container element for the Menu's content which should consist of
+one or more `Menu.Item`s, and optional additional content.
+
+**_Menu.Item (Strongly recommended)_**
+
+The interactive elements of a Menu responsible for the primary function of a
+Menu. These must be provided an `onClick`, or a `href`\*.
+
+A Menu Item has some simple defaults provided for text via the `label` prop,
+`icon` for the name of an Icon that will receive the standard size and position,
+`iconColor` and `destructive` for some predefined styling of a destructive
+action.
+
+If these defaults are not desired, please use `customRender` to take full
+control over the Item's _content_. `label` and the other default style props are
+not used when leveraging `customRender`.
+
+If it is necessary to also adjust the _styles of the container_, `UNSAFE` props
+will apply to the _container_ element. No access is provided to the
+functionality or markup of this container element due to requirements for
+accessibility and functionality of the Menu.
+
+\*If being used for client side navigation such as TanStack Router, please
+consult with us first.
+
+**_Menu.Section (Optional)_**
+
+A structural/conceptual element to group your related Items together. Provides
+some default spacing that can be overriden with `UNSAFE`.
+
+**_Menu.Header (Optional)_**
+
+A presentational element primarily used to describe a group/section. Also
+provides simple default styled text via `label`.
+
+If further customization is required, `customRender` and `UNSAFE` are once again
+available. With the _content_ being dictated by `customRender` the simple
+`label` prop should be omitted.
+
+**_Menu.Separator (Optional)_**
+
+A presentational element primarily used to create visual separation between the
+groups.
+
+Comes with a default appearance that can be overriden with `UNSAFE`.
+
+## Data Hierarchy Version
+
+```
+<Menu
+    items={[
+      {
+        actions: [
+          {
+            label: "Edit",
+            icon: "edit",
+            onClick: () => {
+              alert("✏️");
+            },
+          },
+        ],
+      },
+      {
+        header: "Send as...",
+        actions: [
+          {
+            label: "Text message",
+            icon: "sms",
+            onClick: () => {
+              alert("📱");
+            },
+          },
+          {
+            label: "Email",
+            icon: "email",
+            onClick: () => {
+              alert("📨");
+            },
+          },
+        ],
+      },
+    ]}
+  />
+```
+
+### Component customization
 
 ### UNSAFE\_ props (advanced usage)
 

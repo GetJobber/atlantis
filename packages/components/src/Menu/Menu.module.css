@@ -10,6 +10,10 @@
   z-index: var(--elevation-modal);
 }
 
+.ariaMenu {
+  max-height: inherit;
+}
+
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);
@@ -19,6 +23,7 @@
   padding: var(--menu-space);
   padding-bottom: calc(env(safe-area-inset-bottom) + var(--menu-space));
   border-radius: var(--radius-base) var(--radius-base) 0 0;
+  outline: none;
   overflow-y: scroll;
   background-color: var(--color-surface);
   -webkit-overflow-scrolling: touch;
@@ -39,9 +44,17 @@
   }
 }
 
+.sectionBorder,
+.separator {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.sectionBorder:last-of-type {
+  border-bottom: none;
+}
+
 .section {
   padding: var(--menu-space) 0;
-  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .section:first-of-type {
@@ -50,7 +63,6 @@
 
 .section:last-of-type {
   padding-bottom: 0;
-  border-bottom: none;
 }
 
 .sectionHeader {
@@ -62,6 +74,7 @@
 .action {
   display: flex;
   width: 100%;
+  box-sizing: border-box;
   padding: var(--menu-space);
   border: none;
   border-radius: var(--radius-base);
@@ -76,13 +89,39 @@
     box-shadow var(--timing-base) ease-out;
 }
 
-.action:hover,
-.action:focus-visible {
+.action:hover {
   background-color: var(--color-surface--hover);
 }
 
-.action:focus-visible {
+/* Background on both legacy (:focus-visible) and RAC ([data-focused]) */
+.action[data-focused] {
+  background-color: var(--color-surface--hover);
+}
+
+/* Focus ring for legacy and RAC keyboard focus */
+.action[data-focus-visible] {
   box-shadow: var(--shadow-focus);
+}
+
+/* Do not show focus ring when item is hovered (pointer interaction) */
+.action[data-hovered][data-focus-visible] {
+  box-shadow: none;
+}
+
+/* class-based flags injected via react-aria render props */
+/* RAC state classes (focus ring only; background handled by [data-focused]) */
+.isFocusVisible {
+  box-shadow: var(--shadow-focus);
+}
+
+.isHovered.isFocusVisible {
+  box-shadow: none;
+}
+
+/* Legacy variant focus-visible styling */
+.legacyAction:focus-visible {
+  box-shadow: var(--shadow-focus);
+  background-color: var(--color-surface--hover);
 }
 
 .action span {
@@ -92,6 +131,11 @@
 
 .action.destructive > span {
   color: var(--color-destructive);
+}
+
+.triggerWrapper {
+  display: inline-flex;
+  outline: none;
 }
 
 .overlay {
