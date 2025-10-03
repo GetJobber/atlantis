@@ -41,9 +41,9 @@ export interface TypographyProps<T extends FontFamily> {
   readonly size?: TextSize;
 
   /**
-   * Text to display
+   * Text to display. Supports strings, numbers, and nested text nodes.
    */
-  readonly children?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * The maximum amount of lines the text can occupy before being truncated with "...".
@@ -204,7 +204,7 @@ function InternalTypography<T extends FontFamily = "base">({
 
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
 
-  const text = getTransformedText(children, transform);
+  const content = transformChildren(children, transform);
   const accessibilityProps: AccessibilityProps = hideFromScreenReader
     ? {
         accessibilityRole: "none",
@@ -232,7 +232,7 @@ function InternalTypography<T extends FontFamily = "base">({
       selectionColor={tokens["color-brand--highlight"]}
       onTextLayout={onTextLayout}
     >
-      {text}
+      {content}
     </Text>
   );
 
@@ -284,6 +284,22 @@ function getTransformedText(text?: string, transform?: TextTransform) {
     default:
       return text;
   }
+}
+
+function transformChildren(
+  children: React.ReactNode,
+  transform?: TextTransform,
+): React.ReactNode {
+  if (children == null) return children;
+
+  return React.Children.map(children, child => {
+    if (typeof child === "string") {
+      return getTransformedText(child, transform);
+    }
+
+    // Keep non-string children (numbers, elements, fragments) unchanged
+    return child as React.ReactNode;
+  });
 }
 
 function getColorStyle(

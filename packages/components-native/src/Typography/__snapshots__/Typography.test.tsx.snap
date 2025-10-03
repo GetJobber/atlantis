@@ -1,5 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`allows child Typography to control its own transform 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(197, 15%, 43%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  BEFORE 
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-bold",
+        },
+        {
+          "color": "hsl(197, 15%, 43%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 20,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    inner
+  </Text>
+   AFTER
+</Text>
+`;
+
 exports[`renders text respecting the text direction 1`] = `
 <Text
   accessibilityRole="text"
@@ -899,6 +963,164 @@ exports[`renders text with white color 1`] = `
   }
 >
   Test Text
+</Text>
+`;
+
+exports[`supports multi-level nesting across Typography and Text 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(197, 15%, 43%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  LEVEL1 
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(197, 15%, 43%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 20,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    and 
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      selectable={true}
+      selectionColor="hsl(86, 100%, 46%)"
+      style={
+        [
+          {
+            "fontFamily": "inter-regular",
+          },
+          {
+            "color": "hsl(197, 15%, 43%)",
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 16,
+            "lineHeight": 20,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      inner
+    </Text>
+  </Text>
+   END
+</Text>
+`;
+
+exports[`supports nested children and applies transform only to string children 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(197, 15%, 43%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  BEFORE 
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-bold",
+        },
+        {
+          "color": "hsl(197, 15%, 43%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 20,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    Inner
+  </Text>
+   AFTER
 </Text>
 `;
 

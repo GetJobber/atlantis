@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionLabel supports nested inline content 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  maxFontSizeMultiplier={1.125}
+  selectable={false}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-semibold",
+      },
+      {
+        "color": "hsl(107, 58%, 33%)",
+      },
+      {
+        "textAlign": "center",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 18,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Before 
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    maxFontSizeMultiplier={3.125}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-regular",
+        },
+        {
+          "color": "hsl(107, 58%, 33%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 20,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    Inner
+  </Text>
+   After
+</Text>
+`;

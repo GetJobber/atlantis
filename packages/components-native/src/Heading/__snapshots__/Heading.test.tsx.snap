@@ -268,3 +268,68 @@ exports[`when Heading called with title variation should match snapshot 1`] = `
   Title Heading
 </Text>
 `;
+
+exports[`when Heading contains nested inline text renders nested Text within Heading 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-bold",
+      },
+      {
+        "color": "hsl(197, 90%, 12%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 20,
+        "lineHeight": 22,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Heading before 
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    maxFontSizeMultiplier={3.125}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-semibold",
+        },
+        {
+          "color": "hsl(198, 35%, 21%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 20,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    Inner
+  </Text>
+   after
+</Text>
+`;

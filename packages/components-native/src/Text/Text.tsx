@@ -53,9 +53,9 @@ export interface TextProps
   readonly align?: TextAlign;
 
   /**
-   * Text to display
+   * Text to display. Supports strings, numbers, and nested text nodes.
    */
-  readonly children?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * Reverse theme for better display on dark background
