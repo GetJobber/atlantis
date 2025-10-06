@@ -47,6 +47,7 @@
     },
     "./sprites.svg": {
       "import": "./sprites.svg",
+      "types": "./sprites.d.ts",
       "require": "./sprites.svg"
     }
   },
@@ -57,14 +58,13 @@
     "*.cjs",
     "*.js",
     "foundation.*",
-    "icons/*",
-    "names.ts"
+    "sprites.*"
   ],
   "scripts": {
     "build:design": "rollup -c rollup.config.mjs",
     "generate:iconMap": "tsx src/scripts/buildIconMap.ts",
     "generate:tokenCSS": "tsx src/scripts/buildTokens.ts",
-    "generate:spritesheet": "tsx build-icons.ts",
+    "generate:spritesheet": "tsx src/scripts/buildIconSprites.ts",
     "generate:spriteDeclarations": "tsx src/scripts/buildSpriteDeclarations.ts",
     "generate:assets": "npm run generate:iconMap && npm run generate:tokenCSS && npm run generate:spritesheet && npm run generate:spriteDeclarations",
     "build": "mkdir -p dist && npm run generate:assets && npm run build:design",

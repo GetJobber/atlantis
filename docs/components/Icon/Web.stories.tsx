@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Icon } from "@jobber/components/Icon";
+import { Icon, IconSprite } from "@jobber/components/Icon";
+import { Box } from "@jobber/components/Box";
 
 export default {
   title: "Components/Images and Icons/Icon/Web",
@@ -11,7 +12,12 @@ export default {
   },
 } as ComponentMeta<typeof Icon>;
 
-const BasicTemplate: ComponentStory<typeof Icon> = args => <Icon {...args} />;
+const BasicTemplate: ComponentStory<typeof Icon> = args => (
+  <Box gap="small">
+    <Icon {...args} />
+    <IconSprite {...args} />
+  </Box>
+);
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {

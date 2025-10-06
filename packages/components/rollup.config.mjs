@@ -1,4 +1,6 @@
 /* eslint-disable import/no-default-export */
+import path from "path";
+import fs from "fs";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
@@ -21,11 +23,34 @@ import nodePolyfills from "rollup-plugin-polyfill-node";
  */
 const PREBUILD_CSS = process.env.PREBUILD_CSS === "true";
 
+function svgResolverPlugin() {
+  return {
+    name: "svg-resolver",
+    resolveId(source, importer) {
+      if (source.endsWith(".svg")) {
+        return path.resolve(path.dirname(importer), source);
+      }
+    },
+    load(id) {
+      if (id.endsWith(".svg")) {
+        const referenceId = this.emitFile({
+          type: "asset",
+          name: path.basename(id),
+          source: fs.readFileSync(id),
+        });
+
+        return `export default import.meta.ROLLUP_FILE_URL_${referenceId};`;
+      }
+    },
+  };
+}
+
 export default {
   input: PREBUILD_CSS ? "src/index.ts" : `src/**/index.{ts,tsx}`,
   plugins: [
     nodePolyfills(),
     nodeResolve(),
+    svgResolverPlugin(),
     multiInput.default(),
     typescript({
       tsconfig: "./tsconfig.rollup.json",
@@ -151,6 +176,7 @@ export default {
     "@apollo/client",
     "@jobber/design",
     "@jobber/design/foundation",
+    "@jobber/design/sprites",
     "@jobber/formatters",
     "@jobber/hooks",
     "@tanstack/react-table",

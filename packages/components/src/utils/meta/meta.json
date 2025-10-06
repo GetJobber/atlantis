@@ -116,6 +116,7 @@
     "Header",
     "Heading",
     "Icon",
+    "IconSprite",
     "InlineLabel",
     "InputAvatar",
     "InputDate",

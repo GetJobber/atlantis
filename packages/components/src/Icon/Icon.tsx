@@ -2,6 +2,10 @@ import type { CSSProperties } from "react";
 import React from "react";
 import type { IconColorNames, IconNames, IconSizes } from "@jobber/design";
 import { getIcon } from "@jobber/design";
+// import spritesheetContent from "@jobber/design/foundation.css";
+// import spriteHref from "@jobber/design/sprites.svg";
+// import spriteHref from "@jobber/design/sprites.svg";
+import spriteHref from "@jobber/design/sprites";
 
 export type { IconColorNames, IconNames } from "@jobber/design";
 
@@ -136,5 +140,30 @@ function getTruck(pathStyle: { fill: string }, customColor?: string) {
         fill="#2A2A2A"
       ></path>
     </g>
+  );
+}
+
+// export function IconSprite() {
+/**
+ * Test component for Icon with spritesheet
+ */
+export function IconSprite({ name }: { readonly name: IconNames }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      data-testid={name}
+      height="24"
+      width="24"
+      style={{
+        fill: "var(--color-icon)",
+        display: "inline-block",
+        verticalAlign: "middle",
+        width: "24px",
+        height: "24px",
+      }}
+    >
+      <use href={`${spriteHref}#${name}`} />
+    </svg>
   );
 }
