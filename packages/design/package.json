@@ -39,6 +39,15 @@
     "./colors.js": {
       "import": "./dist/colors.mjs",
       "require:": "./dist/colors.cjs"
+    },
+    "./sprites": {
+      "types": "./sprites.d.ts",
+      "import": "./sprites.svg",
+      "require": "./sprites.svg"
+    },
+    "./sprites.svg": {
+      "import": "./sprites.svg",
+      "require": "./sprites.svg"
     }
   },
   "files": [
@@ -48,13 +57,16 @@
     "*.cjs",
     "*.js",
     "foundation.*",
-    "icons/*"
+    "icons/*",
+    "names.ts"
   ],
   "scripts": {
     "build:design": "rollup -c rollup.config.mjs",
     "generate:iconMap": "tsx src/scripts/buildIconMap.ts",
     "generate:tokenCSS": "tsx src/scripts/buildTokens.ts",
-    "generate:assets": "npm run generate:iconMap && npm run generate:tokenCSS",
+    "generate:spritesheet": "tsx build-icons.ts",
+    "generate:spriteDeclarations": "tsx src/scripts/buildSpriteDeclarations.ts",
+    "generate:assets": "npm run generate:iconMap && npm run generate:tokenCSS && npm run generate:spritesheet && npm run generate:spriteDeclarations",
     "build": "mkdir -p dist && npm run generate:assets && npm run build:design",
     "watch": "mkdir -p dist & chokidar \"**/*.ts\" \"**/*.json\" \"**/*.svg\"-c \"npm run generate:assets && npm run build:design\"",
     "clean": "rm -rf dist colors.js foundation.css src/assets colors.cjs colors.mjs",
@@ -66,7 +78,9 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/jsdom": "^21.1.7",
+    "glob": "^11.0.3",
     "jsdom": "^24.1.0",
+    "node-html-parser": "^7.0.1",
     "rollup": "^4.13.0",
     "tsx": "^4.16.2"
   }
