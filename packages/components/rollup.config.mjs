@@ -23,6 +23,10 @@ import nodePolyfills from "rollup-plugin-polyfill-node";
  */
 const PREBUILD_CSS = process.env.PREBUILD_CSS === "true";
 
+/**
+ *
+ * Plugin to resolve SVG files for the Icon sprite sheet
+ */
 function svgResolverPlugin() {
   return {
     name: "svg-resolver",
@@ -176,6 +180,7 @@ export default {
     "@apollo/client",
     "@jobber/design",
     "@jobber/design/foundation",
+    // Not sure if this is needed
     "@jobber/design/sprites",
     "@jobber/formatters",
     "@jobber/hooks",
