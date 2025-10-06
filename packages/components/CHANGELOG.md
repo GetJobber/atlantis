@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.97.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.97.0...@jobber/components@6.97.1) (2025-10-06)
+
+
+### Bug Fixes
+
+* **components:** Improve Floating Usages ([#2666](https://github.com/GetJobber/atlantis/issues/2666)) ([7587d32](https://github.com/GetJobber/atlantis/commit/7587d32b03869b1fd6207f3e490ef4474579d194))
+
+
+
+
+
 # [6.97.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.96.0...@jobber/components@6.97.0) (2025-09-24)
 
 
