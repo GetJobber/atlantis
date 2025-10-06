@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.98.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.97.1...@jobber/components@6.98.0) (2025-10-06)
+
+
+### Features
+
+* **components:** accessible naming and a11y updates for Modal v1/v2 ([#2724](https://github.com/GetJobber/atlantis/issues/2724)) ([363d89b](https://github.com/GetJobber/atlantis/commit/363d89b6a729cc19d2cc4e1387a973c8769048eb))
+
+
+
+
+
 ## [6.97.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.97.0...@jobber/components@6.97.1) (2025-10-06)
 
 
