@@ -189,7 +189,6 @@ export function MenuLegacy({
     activeIndex,
     onNavigate: setActiveIndex,
     loop: true,
-    focusItemOnOpen: true,
   });
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
     [dismiss, listNavigation],
