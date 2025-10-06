@@ -35,9 +35,6 @@ export function useModal({
     open: open,
   });
 
-  // No document listeners; decision is delegated to capture handlers set on overlay/dialog
-
-  // Keep the interaction flag in a sane state across open/close
   useEffect(() => {
     if (!startedInsideRef) return;
 
@@ -45,7 +42,7 @@ export function useModal({
       // Ensure the first interaction after open is treated as inside
       startedInsideRef.current = true;
     } else {
-      // Reset on close so future opens start cleanly
+      // Reset on close
       startedInsideRef.current = false;
     }
   }, [open, startedInsideRef]);
