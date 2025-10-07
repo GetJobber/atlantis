@@ -1,0 +1,81 @@
+# Frame
+
+## Web Component Code
+
+```tsx
+Frame Layout Stack Container Web React import React from "react";
+import classNames from "classnames";
+import styles from "./Frame.module.css";
+import type { FrameProps } from "./types";
+
+export function Frame({
+  children,
+  aspectX = 16,
+  aspectY = 9,
+  as: Tag = "div",
+  dataAttributes,
+  ariaAttributes,
+  role,
+  id,
+  UNSAFE_className,
+  UNSAFE_style,
+}: FrameProps) {
+  return (
+    <Tag
+      role={role}
+      id={id}
+      {...dataAttributes}
+      {...ariaAttributes}
+      className={classNames(styles.frame, UNSAFE_className?.container)}
+      style={
+        {
+          "--public-frame-numerator": aspectX,
+          "--public-frame-denominator": aspectY,
+          ...UNSAFE_style?.container,
+        } as React.CSSProperties
+      }
+    >
+      {children}
+    </Tag>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop               | Type                      | Required | Default  | Description                                                                                       |
+| ------------------ | ------------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `aspectX`          | `number`                  | ❌       | `16`     | The horizontal (width) part of the aspect ratio                                                   |
+| `aspectY`          | `number`                  | ❌       | `9`      | The vertical (height) part of the aspect ratio                                                    |
+| `as`               | `CommonAllowedElements`   | ❌       | `_none_` | The HTML tag to render the container as. Defaults to `div`.                                       |
+| `UNSAFE_className` | `{ container?: string; }` | ❌       | `_none_` | **Use at your own risk:** Custom class names for specific elements. This should only be used as a |
+
+**last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `UNSAFE_style` | `{ container?: CSSProperties; }` | ❌ | `_none_` | **Use at
+your own risk:** Custom style for specific elements. This should only be used as
+a **last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `dataAttributes` | `{ [key: `data-${string}`]: string; }` | ❌ | `_none_` |
+Standard HTML data attributes. Accepts anything in a {{"data-key":"value"}}
+format. | | `ariaAttributes` | `AriaAttributes` | ❌ | `_none_` | Standard HTML
+aria attributes. Accepts all standard HTML aria attributes. | | `role` |
+`AriaRole` | ❌ | `_none_` | Standard HTML role attribute. | | `id` | `string` |
+❌ | `_none_` | Standard HTML id attribute. |
+
+## Categories
+
+- Layouts & Structure
+
+## Component Path
+
+`/components/Frame`
+
+---
+
+_Generated on 2025-08-21T17:35:16.361Z_

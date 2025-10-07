@@ -1,0 +1,864 @@
+# InputPhoneNumber
+
+# InputPhoneNumber
+
+Automatically format your user's phone number as they type.
+
+InputPhoneNumber's auto-format is set to always be `(***) ***-****` and doesn't
+expect the user to type in their country code. Because phone numbers vary so
+much around the world, typing more than 10 digits will turn off the
+auto-formatting.
+
+## Design & usage guidelines
+
+Due to the auto-format, this component is restricted to only be used as a
+controlled component. That means the `value` and `onChange` props are required,
+unlike the other input components.
+
+## Content guidelines
+
+The `prefix` prop can be used to add a
+[country code](../?path=/story/components-forms-and-inputs-inputphonenumber-web--with-country-code)
+to the input. The country code won't be added to the value that the component
+would return. It is simply for visual purposes.
+
+InputPhoneNumber can also have a
+[custom pattern](../?path=/story/components-forms-and-inputs-inputphonenumber-web--custom-pattern)
+if you wish to use a different format for the phone number.
+
+Lastly, InputPhoneNumber will respect the format of the
+[initial value](../?path=/story/components-forms-and-inputs-inputphonenumber-web--initial-value)
+it is given. It will only start auto-formatting the existing value when the user
+edits the input.
+
+## Web Component Code
+
+````tsx
+InputPhoneNumber Phone Number Input Web React import type { ReactElement } from "react";
+import React, { cloneElement } from "react";
+import styles from "./InputMask.module.css";
+import { useInputMask } from "./useInputMask";
+import type { FormFieldProps } from "../FormField";
+
+interface MaskElementProps {
+  readonly isMasking: boolean;
+  readonly formattedValue: string;
+  readonly placeholderMask: string;
+}
+
+export function MaskElement({
+  isMasking,
+  formattedValue,
+  placeholderMask,
+}: MaskElementProps) {
+  if (!isMasking) {
+    return null;
+  }
+
+  return (
+    <div className={styles.mask} aria-hidden="true">
+      <span className={styles.hiddenValue}>{formattedValue}</span>
+      <span>{placeholderMask}</span>
+    </div>
+  );
+}
+
+export interface InputMaskProps {
+  /**
+   * A string pattern to mask the value. For example:
+   *
+   * - Phone number: `(***) ***-*****` = `(555) 123-3456`
+   * - Hours and minutes: `**:**` = `01:20`
+   *
+   * By default, a `*` is used to indicate where a value would be in place. To
+   * change that, use the `delimiter` prop.
+   */
+  readonly pattern: string;
+
+  /**
+   * Change the delimiter when you need to have a `*` as a value that the input
+   * returns. For example, you want your pattern to have a `*` in it.
+   *
+   * ```
+   * <InputMask pattern="n*n=n" delimiter="n" />
+   * ```
+   *
+   * It would now replace `n` with the value you type and end up with `1*2=2` if
+   * you give a value of `122`.
+   *
+   * @default "*"
+   */
+  readonly delimiter?: string;
+
+  /**
+   * Allow/prevent users adding from more value than the desired pattern.
+   * For example, your pattern could accept 10 characters. If it's strict, your
+   * users can only type 10 characters.
+   *
+   * @default true
+   */
+  readonly strict?: boolean;
+
+  readonly children: ReactElement<FormFieldProps>;
+}
+
+export function InputMask({
+  children,
+  delimiter = "*",
+  pattern,
+  strict = true,
+}: InputMaskProps) {
+  const { value: inputValue, onChange } = children.props;
+  const { placeholderMask, isMasking, formattedValue, maskedOnChange } =
+    useInputMask({
+      value: String(inputValue || ""),
+      pattern,
+      delimiter,
+      strict,
+      onChange: onChange,
+    });
+
+  const inputMask = (
+    <MaskElement
+      isMasking={isMasking}
+      formattedValue={formattedValue}
+      placeholderMask={placeholderMask}
+    />
+  );
+
+  return cloneElement(children, {
+    onChange: maskedOnChange,
+    children: isMasking && inputMask,
+  });
+}
+import React, { forwardRef, useId } from "react";
+import classNames from "classnames";
+import { MaskElement } from "./InputMask";
+import { useInputMask } from "./useInputMask";
+import styles from "./InputMask.module.css";
+import type { InputPhoneNumberRebuiltProps } from "./InputPhoneNumber.types";
+import { DEFAULT_PATTERN } from "./InputPhoneNumber.types";
+import { useInputPhoneActions } from "./hooks/useInputPhoneActions";
+import { useInputPhoneFormField } from "./hooks/useInputPhoneFormField";
+import {
+  FormFieldWrapper,
+  useAtlantisFormFieldName,
+  useFormFieldWrapperStyles,
+} from "../FormField";
+import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
+
+export const InputPhoneNumberRebuilt = forwardRef(
+  function InputPhoneNumberInternal(
+    { pattern = DEFAULT_PATTERN, ...props }: InputPhoneNumberRebuiltProps,
+    ref: React.Ref<HTMLInputElement>,
+  ) {
+    const inputPhoneNumberRef =
+      (ref as React.RefObject<HTMLInputElement>) ??
+      React.useRef<HTMLInputElement>(null);
+    const wrapperRef = React.useRef<HTMLDivElement>(null);
+    const { inputStyle } = useFormFieldWrapperStyles({
+      ...props,
+      type: "tel",
+    });
+    const generatedId = useId();
+    const id = props.id || generatedId;
+
+    const { name } = useAtlantisFormFieldName({
+      nameProp: props.name,
+      id: id,
+    });
+
+    const {
+      formattedValue,
+      isMasking,
+      placeholderMask,
+      inputValue,
+      maskedOnChange,
+    } = useInputMask({
+      value: props.value,
+      pattern,
+      strict: false,
+      onChange: props.onChange,
+    });
+
+    const {
+      handleChange,
+      handleBlur,
+      handleFocus,
+      handleClear,
+      handleKeyDown,
+    } = useInputPhoneActions({
+      onChange: maskedOnChange,
+      onBlur: props.onBlur,
+      onFocus: props.onFocus,
+      onEnter: props.onEnter,
+      inputRef: inputPhoneNumberRef,
+    });
+
+    const { fieldProps, descriptionIdentifier } = useInputPhoneFormField({
+      id,
+      name,
+      handleChange,
+      handleBlur,
+      handleFocus,
+      handleKeyDown,
+      autofocus: props.autoFocus,
+      disabled: props.disabled,
+      readonly: props.readonly,
+      invalid: props.invalid,
+      error: props.error,
+      description: props.description,
+      inline: props.inline,
+    });
+
+    return (
+      <FormFieldWrapper
+        disabled={props.disabled}
+        size={props.size}
+        inline={props.inline}
+        wrapperRef={wrapperRef}
+        error={props.error ?? ""}
+        invalid={Boolean(props.error || props.invalid)}
+        identifier={id}
+        descriptionIdentifier={descriptionIdentifier}
+        description={props.description}
+        clearable={props.clearable ?? "never"}
+        onClear={handleClear}
+        type="tel"
+        placeholder={props.placeholder}
+        value={formattedValue}
+        prefix={props.prefix}
+        suffix={props.suffix}
+        readonly={props.readonly}
+        loading={props.loading}
+      >
+        <input
+          type="tel"
+          {...fieldProps}
+          ref={inputPhoneNumberRef}
+          className={classNames(inputStyle, {
+            [styles.emptyValue]: inputValue.length === 0 && pattern[0] === "(",
+          })}
+          value={formattedValue}
+        />
+        <MaskElement
+          isMasking={isMasking}
+          formattedValue={formattedValue}
+          placeholderMask={placeholderMask}
+        />
+        <FormFieldPostFix
+          variation="spinner"
+          visible={props.loading ?? false}
+        />
+      </FormFieldWrapper>
+    );
+  },
+);
+import React from "react";
+import { useForm, useFormContext } from "react-hook-form";
+import { InputMask } from "./InputMask";
+import {
+  DEFAULT_PATTERN,
+  type InputPhoneNumberLegacyProps,
+} from "./InputPhoneNumber.types";
+import { FormField } from "../FormField";
+
+export function InputPhoneNumber({
+  required,
+  ...props
+}: InputPhoneNumberLegacyProps) {
+  const { placeholder, validations, pattern = DEFAULT_PATTERN } = props;
+  const errorSubject = placeholder || "Phone number";
+  const { getValues } =
+    useFormContext() != undefined
+      ? useFormContext()
+      : // If there isn't a Form Context being provided, get a form for this field.
+        useForm({ mode: "onTouched" });
+
+  return (
+    <InputMask pattern={pattern} strict={false}>
+      <FormField
+        {...props}
+        type="tel"
+        pattern={pattern}
+        validations={{
+          required: {
+            value: Boolean(required),
+            message: `${errorSubject} is required`,
+          },
+          ...validations,
+          validate: getPhoneNumberValidation,
+        }}
+      />
+    </InputMask>
+  );
+
+  function getPhoneNumberValidation(value: string) {
+    // Get unique characters that aren't * in the pattern
+    const patternNonDelimterCharacters = pattern
+      .split("")
+      .filter(char => char !== "*")
+      .filter((char, index, arr) => arr.indexOf(char) === index);
+    const specialCharacters = patternNonDelimterCharacters.join(" ");
+    // Remove special characters from pattern
+    const cleanValue = value.replace(
+      new RegExp(`[${specialCharacters}]`, "g"),
+      "",
+    );
+    const cleanValueRequiredLength = (pattern.match(/\*/g) || []).length;
+
+    if (cleanValue.length > 0 && cleanValue.length < cleanValueRequiredLength) {
+      return `${errorSubject} must contain ${cleanValueRequiredLength} or more digits`;
+    }
+
+    if (typeof validations?.validate === "function") {
+      return validations.validate(value, getValues);
+    }
+
+    return true;
+  }
+}
+import type { ForwardedRef } from "react";
+import React, { forwardRef } from "react";
+import {
+  type InputPhoneNumberLegacyProps,
+  type InputPhoneNumberRebuiltProps,
+} from "./InputPhoneNumber.types";
+import { InputPhoneNumberRebuilt } from "./InputPhoneNumber.rebuilt";
+import { InputPhoneNumber as InputPhoneNumberLegacy } from "./InputPhoneNumber";
+
+export type InputPhoneNumberShimProps =
+  | InputPhoneNumberLegacyProps
+  | InputPhoneNumberRebuiltProps;
+
+function isNewInputPhoneNumberProps(
+  props: InputPhoneNumberShimProps,
+): props is InputPhoneNumberRebuiltProps {
+  return props.version === 2;
+}
+
+export const InputPhoneNumber = forwardRef(function InputPhoneNumberShim(
+  props: InputPhoneNumberShimProps,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
+  if (isNewInputPhoneNumberProps(props)) {
+    return <InputPhoneNumberRebuilt {...props} ref={ref} />;
+  } else {
+    return <InputPhoneNumberLegacy {...props} />;
+  }
+});
+
+export type { InputPhoneNumberLegacyProps, InputPhoneNumberRebuiltProps };
+
+````
+
+## Props
+
+### Web Props
+
+| Prop       | Type                      | Required | Default            | Description                                                     |
+| ---------- | ------------------------- | -------- | ------------------ | --------------------------------------------------------------- |
+| `value`    | `string`                  | ✅       | `_none_`           | Set the component to the given value.                           |
+| `onChange` | `(value: string) => void` | ✅       | `_none_`           | onChange handler that provides the new value (or event)         |
+| `pattern`  | `string`                  | ❌       | `"(***) ***-****"` | A pattern to specify the format to display the phone number in. |
+
+For example if you want to display the format for
+[Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)
+you could set it to `** ** ** **` | | `required` | `boolean` | ❌ | `_none_` |
+Shows a "required" validation message when the component is left empty. | | `id`
+| `string` | ❌ | `_none_` | A unique identifier for the input. | |
+`description` | `ReactNode` | ❌ | `_none_` | Further description of the input,
+can be used for a hint. | | `disabled` | `boolean` | ❌ | `_none_` | Disable the
+input | | `showMiniLabel` | `boolean` | ❌ | `true` | Controls the visibility of
+the mini label that appears inside the input when a value is entered. By
+default, the placeholder text moves up to become a mini label. Set to false to
+disable this behavior. | | `invalid` | `boolean` | ❌ | `_none_` | Highlights
+the field red to indicate an error. | | `inline` | `boolean` | ❌ | `_none_` |
+Adjusts the form field to go inline with a content. This also silences the given
+`validations` prop. You'd have to used the `onValidate` prop to capture the
+message and render it somewhere else using the `InputValidation` component. | |
+`loading` | `boolean` | ❌ | `_none_` | Show a spinner to indicate loading | |
+`name` | `string` | ❌ | `_none_` | Name of the input. | | `onValidation` |
+`(message: string) => void` | ❌ | `_none_` | Callback to get the the status and
+message when validating a field @param message | | `placeholder` | `string` | ❌
+| `_none_` | Text that appears inside the input when empty and floats above the
+value as a mini label once the user enters a value. When showMiniLabel is false,
+this text only serves as a standard placeholder and disappears when the user
+types. | | `size` | `"small" | "large"` | ❌ | `_none_` | Adjusts the interface
+to either have small or large spacing. | | `clearable` | `Clearable` | ❌ |
+`_none_` | Add a clear action on the input that clears the value.
+
+You should always use `while-editing` if you want the input to be clearable. if
+the input value isn't editable (i.e. `InputTime`) you can set it to `always`. |
+| `version` | `1` | ❌ | `_none_` | Experimental: Determine which version of the
+FormField to use. Right now this isn't used but it will be used in the future to
+allow us to release new versions of our form inputs without breaking existing
+functionality. | | `autocomplete` | `boolean | AutocompleteTypes` | ❌ |
+`_none_` | Determines if browser form autocomplete is enabled. Note that
+"one-time-code" is experimental and should not be used without consultation.
+"address-line1" and "address-line2" are used for billing address information. |
+| `onEnter` | `(event: React.KeyboardEvent) => void` | ❌ | `_none_` | A
+callback to handle "Enter" keypress. This will only run if Enter is the only
+key. Will not run if Shift or Control are being held. | | `onFocus` |
+`(event?: React.FocusEvent) => void` | ❌ | `_none_` | Focus callback. | |
+`onBlur` | `(event?: React.FocusEvent) => void` | ❌ | `_none_` | Blur callback.
+| | `validations` | `RegisterOptions` | ❌ | `_none_` | Show an error message
+above the field. This also highlights the the field red if an error message
+shows up. | | `readonly` | `boolean` | ❌ | `_none_` | Prevents users from
+editing the value. | | `prefix` | `Affix` | ❌ | `_none_` | Adds a prefix label
+and icon to the field | | `suffix` |
+`{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }`
+| ❌ | `_none_` | Adds a suffix label and icon with an optional action to the
+field |
+
+## Categories
+
+- Forms & Inputs
+
+## Web Test Code
+
+```typescript
+InputPhoneNumber Phone Number Input Web React Test Testing Jest import React, { useState } from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import type { InputMaskProps } from "./InputMask";
+import { InputMask } from "./InputMask";
+import { FormField } from "../FormField";
+
+const placeholder = "Expiry date";
+
+describe("InputMask", () => {
+  it("should render the pattern with * replaced as _", () => {
+    render(<TestInputMask />);
+    expect(screen.getByText("__/__")).toBeInTheDocument();
+  });
+
+  describe("With user typed value", () => {
+    beforeEach(() => {
+      render(<TestInputMask />);
+    });
+
+    it("should have a hidden and visible placeholder value and the correct input value", () => {
+      const input = screen.getByLabelText(placeholder);
+      fireEvent.change(input, {
+        target: { value: "02" },
+      });
+
+      const invisiblePlaceholder = screen.getByText("02");
+      expect(invisiblePlaceholder).toBeInTheDocument();
+      expect(invisiblePlaceholder).toHaveClass("hiddenValue");
+      expect(screen.getByText("/__")).toBeInTheDocument();
+      expect(input).toHaveValue("02");
+    });
+
+    it("should add the special character", () => {
+      const input = screen.getByLabelText(placeholder);
+      fireEvent.change(input, {
+        target: { value: "023" },
+      });
+
+      const invisiblePlaceholder = screen.getByText("02/3");
+      expect(invisiblePlaceholder).toBeInTheDocument();
+      expect(invisiblePlaceholder).toHaveClass("hiddenValue");
+      expect(screen.getByText("_")).toBeInTheDocument();
+      expect(input).toHaveValue("02/3");
+    });
+
+    it("should not have the placeholder value when the full value is typed", () => {
+      const input = screen.getByLabelText(placeholder);
+      fireEvent.change(input, {
+        target: { value: "0231" },
+      });
+
+      const expectedValue = "02/31";
+      expect(screen.getByText(expectedValue)).toBeInTheDocument();
+      expect(input).toHaveValue(expectedValue);
+    });
+
+    it("should not allow typing values longer than the mask allows", () => {
+      const input = screen.getByLabelText(placeholder);
+      fireEvent.change(input, {
+        target: { value: "02231" },
+      });
+
+      expect(screen.getByText("02/23")).toBeInTheDocument();
+      expect(input).toHaveValue("02/23");
+    });
+
+    // This would need to be removed/updated once we generalize this component
+    it("should only accept numbers", () => {
+      const input = screen.getByLabelText(placeholder);
+      fireEvent.change(input, {
+        target: { value: "0one2" },
+      });
+
+      expect(screen.getByText("02")).toBeInTheDocument();
+      expect(screen.getByText("/__")).toBeInTheDocument();
+      expect(input).toHaveValue("02");
+    });
+  });
+
+  describe("Exceeding typed value when strict is set to false", () => {
+    beforeEach(() => {
+      render(<TestInputMask pattern="(***) ***-****" strict={false} />);
+    });
+
+    it("should allow typing values longer than the mask allows", () => {
+      const expectedValue = "555123456789";
+      const input = screen.getByLabelText(placeholder);
+      fireEvent.change(input, {
+        target: { value: expectedValue },
+      });
+
+      expect(screen.queryByText(expectedValue)).not.toBeInTheDocument();
+      expect(input).toHaveValue(expectedValue);
+    });
+
+    it("should start off formatted and stops formatting after exceeding", () => {
+      const input = screen.getByLabelText(placeholder);
+      fireEvent.change(input, {
+        target: { value: "5551234567" },
+      });
+
+      const formattedValue = "(555) 123-4567";
+      expect(input).toHaveValue(formattedValue);
+
+      const unFormattedValue = "555123456789";
+      fireEvent.change(input, {
+        target: { value: unFormattedValue },
+      });
+
+      expect(input).toHaveValue(unFormattedValue);
+    });
+  });
+});
+
+function TestInputMask({
+  pattern = "**/**",
+  ...props
+}: Partial<InputMaskProps>) {
+  const [value, setValue] = useState("");
+
+  return (
+    <InputMask pattern={pattern} {...props}>
+      <FormField
+        placeholder={placeholder}
+        value={value}
+        onChange={(v: string) => setValue(v)}
+      />
+    </InputMask>
+  );
+}
+import React from "react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { InputPhoneNumberRebuilt } from "./InputPhoneNumber.rebuilt";
+
+const placeholder = "Phone";
+
+describe("InputPhoneNumber V2", () => {
+  it("should render a field", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        loading={false}
+        placeholder={placeholder}
+        value=""
+        version={2}
+        onChange={jest.fn()}
+      />,
+    );
+
+    const input = screen.getByLabelText(placeholder);
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute("type", "tel");
+  });
+
+  it("should call onChange with the correct value", async () => {
+    const mockOnChange = jest.fn();
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value="123123"
+        onChange={mockOnChange}
+        version={2}
+      />,
+    );
+    const input = screen.getByRole("textbox");
+    await userEvent.type(input, "123123");
+    await waitFor(() => {
+      expect(mockOnChange).toHaveBeenCalledWith(
+        "(123) 123-3",
+        expect.any(Object),
+      );
+    });
+  });
+});
+
+describe("pattern", () => {
+  it("should have the phone number pattern", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+      />,
+    );
+
+    expect(screen.getByText("(___) ___-____")).toBeInTheDocument();
+  });
+
+  it("should have the correct style when the input is empty", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    expect(input).toHaveClass("emptyValue");
+  });
+
+  it("should have the correct style when the input is not empty", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value="123123"
+        onChange={jest.fn()}
+        version={2}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    expect(input).not.toHaveClass("emptyValue");
+  });
+  it("should have the correct style when the pattern isn't one we need to adjust for", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        pattern="***-***-**"
+        value="123123"
+        version={2}
+        onChange={jest.fn()}
+      />,
+    );
+
+    const input = screen.getByRole("textbox");
+    expect(input).not.toHaveClass("emptyValue");
+  });
+
+  it("should render a custom pattern", () => {
+    const { getByText } = render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        pattern="***-***-** n **"
+        value=""
+        onChange={jest.fn()}
+        version={2}
+      />,
+    );
+
+    expect(getByText("___-___-__ n __")).toBeInTheDocument();
+  });
+});
+import React, { useState } from "react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { InputPhoneNumber } from "./InputPhoneNumber";
+
+const placeholder = "Phone";
+const validationMessage = "Phone number must contain 10 or more digits";
+
+describe("InputPhoneNumber", () => {
+  it("should render a field", () => {
+    render(
+      <InputPhoneNumber
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+      />,
+    );
+
+    const input = screen.getByLabelText(placeholder);
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute("type", "tel");
+  });
+
+  it("should throw a required error when blurred", async () => {
+    render(
+      <InputPhoneNumber
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        required={true}
+      />,
+    );
+
+    const input = screen.getByLabelText(placeholder);
+    fireEvent.focus(input);
+    fireEvent.blur(input);
+
+    expect(
+      await screen.findByText(`${placeholder} is required`),
+    ).toBeInTheDocument();
+  });
+
+  it("should use 'Phone number' as a subject of the error when the placeholder doesn't exist", async () => {
+    render(<InputPhoneNumber value="" onChange={jest.fn()} required={true} />);
+
+    const input = screen.getByRole("textbox");
+    fireEvent.focus(input);
+    fireEvent.blur(input);
+
+    expect(
+      await screen.findByText("Phone number is required"),
+    ).toBeInTheDocument();
+  });
+
+  describe("The validation error message", () => {
+    it("should appear when the user doesn't enter ten or more digits", async () => {
+      render(<InputPhoneNumber value="123123" onChange={jest.fn()} />);
+      const input = screen.getByRole("textbox");
+      input.focus();
+      input.blur();
+      expect(await screen.findByText(validationMessage)).toBeInTheDocument();
+    });
+
+    it("should disappear once the input has been changed back to a valid phone number", async () => {
+      render(<TestInput />);
+
+      const input = screen.getByRole("textbox");
+
+      fireEvent.focus(input);
+      fireEvent.change(input, {
+        target: { value: "32732" },
+      });
+      fireEvent.blur(input);
+
+      expect(await screen.findByText(validationMessage)).toBeInTheDocument();
+
+      fireEvent.focus(input);
+      fireEvent.change(input, {
+        target: { value: "6135551232" },
+      });
+      fireEvent.blur(input);
+
+      await waitFor(() => {
+        expect(screen.queryByText(validationMessage)).not.toBeInTheDocument();
+      });
+
+      function TestInput() {
+        const [value, setValue] = useState("");
+
+        return <InputPhoneNumber value={value} onChange={setValue} />;
+      }
+    });
+    it("should call onChange with the correct value", async () => {
+      const mockOnChange = jest.fn();
+      render(<InputPhoneNumber value="123123" onChange={mockOnChange} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "123123");
+      await waitFor(() => {
+        expect(mockOnChange).toHaveBeenCalledWith(
+          "(123) 123-3",
+          expect.any(Object),
+        );
+      });
+    });
+  });
+
+  describe("pattern", () => {
+    it("should have the phone number pattern", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value=""
+          onChange={jest.fn()}
+        />,
+      );
+
+      expect(screen.getByText("(___) ___-____")).toBeInTheDocument();
+    });
+
+    it("should have the correct style when the input is empty", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value=""
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      expect(input).toHaveClass("emptyPhoneNumber");
+    });
+    it("should have the correct style when the input is not empty", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value="123123"
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      expect(input).not.toHaveClass("emptyPhoneNumber");
+    });
+    it("should have the correct style when the pattern isn't one we need to adjust for", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          pattern="***-***-**"
+          value="123123"
+          onChange={jest.fn()}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      expect(input).not.toHaveClass("emptyPhoneNumber");
+    });
+
+    it("should render a custom pattern", () => {
+      const { getByText } = render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          pattern="***-***-** n **"
+          value=""
+          onChange={jest.fn()}
+        />,
+      );
+
+      expect(getByText("___-___-__ n __")).toBeInTheDocument();
+    });
+
+    it("should update the validation to limit characters", async () => {
+      render(
+        <InputPhoneNumber
+          value="123123"
+          pattern="*** ****"
+          onChange={jest.fn()}
+        />,
+      );
+      const customPatternValidationMessage =
+        "Phone number must contain 7 or more digits";
+      const input = screen.getByRole("textbox");
+      input.focus();
+      input.blur();
+      expect(
+        await screen.findByText(customPatternValidationMessage),
+      ).toBeInTheDocument();
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/InputPhoneNumber`
+
+---
+
+_Generated on 2025-08-21T17:35:16.366Z_
