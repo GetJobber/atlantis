@@ -15,7 +15,7 @@
   }
 }
 
-.navMenuContainer>* {
+.navMenuContainer > * {
   padding-left: var(--space-base);
   padding-right: var(--space-base);
   padding-bottom: var(--space-base);
@@ -53,7 +53,6 @@
   background-color: var(--color-surface);
   border-radius: var(--radius-small);
 }
-
 
 .navMenuLink {
   color: var(--color-text);

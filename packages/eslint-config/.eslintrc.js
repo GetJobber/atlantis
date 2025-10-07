@@ -5,15 +5,17 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "prettier",
-    "plugin:prettier/recommended",
     "plugin:jest/recommended",
     "plugin:import/typescript",
   ],
-  plugins: ["@typescript-eslint", "react", "prettier", "import", "jest"],
+  plugins: ["@typescript-eslint", "react", "import", "jest"],
   settings: {
     react: { version: "detect" },
-    "import/resolver": { typescript: {} },
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
   },
   parserOptions: {
     ecmaFeatures: { jsx: true },
@@ -29,7 +31,12 @@ module.exports = {
       },
     ],
     "import/no-default-export": "error",
-    "import/no-unresolved": ["error", { ignore: [".css$"] }],
+    "import/no-unresolved": [
+      "error",
+      {
+        ignore: [".css$", "react-native", "react-native-.*"],
+      },
+    ],
     "import/namespace": "error",
     "import/default": "error",
     "import/export": "error",
@@ -45,11 +52,6 @@ module.exports = {
     "import/newline-after-import": "error",
     "jest/no-jasmine-globals": "error",
     "react/no-danger": "error",
-    "prettier/prettier": [
-      "error",
-      { trailingComma: "all", arrowParens: "avoid" },
-      { usePrettierrc: false },
-    ],
     "@typescript-eslint/consistent-type-assertions": [
       "error",
       {

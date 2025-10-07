@@ -1,4 +1,5 @@
 module.exports = {
   proseWrap: "always",
-  arrowParens: "avoid"
+  arrowParens: "avoid",
+  trailingComma: "all",
 };

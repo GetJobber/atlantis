@@ -15,8 +15,7 @@
   list-style: none;
   cursor: pointer;
   outline-color: transparent;
-  transition:
-    background-color var(--timing-base) ease-out,
+  transition: background-color var(--timing-base) ease-out,
     box-shadow var(--timing-base);
 }
 
