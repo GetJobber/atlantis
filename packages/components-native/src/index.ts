@@ -39,6 +39,7 @@ export * from "./Menu";
 export * from "./ProgressBar";
 export * from "./Select";
 export * from "./StatusLabel";
+export * from "./StatusIndicator";
 export * from "./Switch";
 export * from "./Text";
 export * from "./TextList";
