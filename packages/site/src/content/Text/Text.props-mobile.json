@@ -109,7 +109,7 @@
       },
       "children": {
         "defaultValue": null,
-        "description": "Text to display. Supports strings, numbers, and nested text nodes.",
+        "description": "Text to display. Supports nesting text elements.",
         "name": "children",
         "parent": {
           "fileName": "../components-native/src/Text/Text.tsx",
