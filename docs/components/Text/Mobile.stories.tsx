@@ -58,10 +58,10 @@ export const NestedMixedStyles = () => (
 
 export const MultiLevelNesting = () => (
   <Text>
-    {"Level 1 "}
+    Level 1{" "}
     <Text>
       contains <Text emphasis="strong">Level 2</Text>
-    </Text>
-    {" done."}
+    </Text>{" "}
+    done.
   </Text>
 );
