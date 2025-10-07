@@ -41,7 +41,7 @@ export interface TypographyProps<T extends FontFamily> {
   readonly size?: TextSize;
 
   /**
-   * Text to display. Supports strings, numbers, and nested text nodes.
+   * Text to display. Supports nesting text elements.
    */
   readonly children?: React.ReactNode;
 
@@ -273,14 +273,14 @@ function getFontStyle(
   }
 }
 
-function getTransformedText(text?: string, transform?: TextTransform) {
+function getTransformedText(text: string, transform?: TextTransform) {
   switch (transform) {
     case "lowercase":
-      return text?.toLocaleLowerCase();
+      return text.toLocaleLowerCase();
     case "uppercase":
-      return text?.toLocaleUpperCase();
+      return text.toLocaleUpperCase();
     case "capitalize":
-      return capitalize(text || "");
+      return capitalize(text);
     default:
       return text;
   }
@@ -290,7 +290,7 @@ function transformChildren(
   children: React.ReactNode,
   transform?: TextTransform,
 ): React.ReactNode {
-  if (children == null) return children;
+  if (children == null || !transform || transform === "none") return children;
 
   return React.Children.map(children, child => {
     if (typeof child === "string") {
@@ -298,7 +298,7 @@ function transformChildren(
     }
 
     // Keep non-string children (numbers, elements, fragments) unchanged
-    return child as React.ReactNode;
+    return child;
   });
 }
 
