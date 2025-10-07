@@ -19,7 +19,7 @@ export type HeadingLevel = "title" | "subtitle" | "heading" | "subHeading";
 interface HeadingProps<T extends HeadingLevel>
   extends Pick<TypographyProps<"base">, "selectable"> {
   /**
-   * Text to display. Supports strings, numbers, and nested text nodes.
+   * Text to display. Supports nesting text elements.
    */
   readonly children: React.ReactNode;
 
