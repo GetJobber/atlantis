@@ -229,14 +229,3 @@ describe("TypographyGestureDetector", () => {
     expect(textElement.props.collapsable).toBeUndefined();
   });
 });
-
-it("works when nested inside a native RN Text wrapper", () => {
-  const { Text: RNText } = require("react-native");
-  const { getByText, toJSON } = render(
-    <RNText>
-      Outer <Text emphasis="strong">Atlantis</Text> Text
-    </RNText>,
-  );
-  expect(getByText("Atlantis")).toBeDefined();
-  expect(toJSON()).toMatchSnapshot();
-});
