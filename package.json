@@ -16,7 +16,7 @@
     "packages/site"
   ],
   "scripts": {
-    "bootstrap": "npm run bootstrap --workspaces --if-present",
+    "bootstrap": "nx affected --target=bootstrap",
     "build": "./scripts/build.sh",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
     "ci:release": "lerna publish --yes --no-private",
@@ -98,6 +98,7 @@
     "lerna": "^6.5.1",
     "lint-staged": "^9.4.2",
     "lodash": "^4.17.21",
+    "nx": "21.5.3",
     "plop": "^4.0.1",
     "prettier": "^2.4.1",
     "react": "^18.2.0",
