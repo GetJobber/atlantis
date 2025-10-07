@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.98.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.98.0...@jobber/components@6.98.1) (2025-10-07)
+
+
+### Bug Fixes
+
+* **components:** Fix Menu Height Calculations on Small Screen ([#2767](https://github.com/GetJobber/atlantis/issues/2767)) ([be7a52a](https://github.com/GetJobber/atlantis/commit/be7a52ad39d0ae3109ad406557a3efdc0af89b13))
+
+
+
+
+
 # [6.98.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.97.1...@jobber/components@6.98.0) (2025-10-06)
 
 
