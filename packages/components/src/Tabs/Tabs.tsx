@@ -95,6 +95,7 @@ export function Tabs({
             }
 
             const index = tabChildren.findIndex(
+              // @ts-expect-error - TODO: fix tab.props type is unknown
               tab => tab.props.label === child.props.label,
             );
 
@@ -120,8 +121,10 @@ export function Tabs({
       <section
         role="tabpanel"
         className={styles.tabContent}
+        // @ts-expect-error - TODO: fix activeTabProps type is unknown
         aria-label={activeTabProps?.label}
       >
+        {/* @ts-expect-error - TODO: fix activeTabProps type is unknown */}
         {activeTabProps?.children}
       </section>
     </div>

@@ -104,6 +104,7 @@ export function Menu({
   const buttonID = useId();
   const menuID = useId();
 
+  // @ts-expect-error - TODO: fix activator.props type is unknown
   const fullWidth = activator?.props?.fullWidth || false;
 
   const wrapperClasses = classnames(styles.wrapper, {
@@ -176,6 +177,7 @@ export function Menu({
     <div className={wrapperClasses} onClick={handleParentClick}>
       <div ref={setReferenceElement}>
         {React.cloneElement(activator, {
+          // @ts-expect-error - TODO: fix activator.props type is unknown, onClick doesn't exist in unknown type
           onClick: toggle(activator.props.onClick),
           id: buttonID,
           ariaControls: menuID,
