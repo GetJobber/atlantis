@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.98.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.98.1...@jobber/components@6.98.2) (2025-10-08)
+
+
+### Bug Fixes
+
+* **components:** Short term fix for toast causing flakey tests ([#2770](https://github.com/GetJobber/atlantis/issues/2770)) ([a3a301b](https://github.com/GetJobber/atlantis/commit/a3a301b80f691eb6cbab5ad64d88bb7d393bf46b))
+
+
+
+
+
 ## [6.98.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.98.0...@jobber/components@6.98.1) (2025-10-07)
 
 
