@@ -12,7 +12,9 @@ import type {
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
 import { ComboboxLoadMore } from "../ComboboxLoadMore";
 
-export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
+export function ComboboxContentList(
+  props: ComboboxListProps,
+): React.JSX.Element {
   const optionsExist = props.options.length > 0;
   const hasSearchTerm = props.searchValue.length > 0;
   const { listScrollState } = useScrollState(

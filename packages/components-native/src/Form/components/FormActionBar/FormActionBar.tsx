@@ -18,7 +18,7 @@ export interface FormActionBarProps {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => JSX.Element;
+  ) => React.JSX.Element;
   readonly secondaryActions?: SecondaryActionProp[];
   readonly setSecondaryActionLoading?: (bool: boolean) => void;
 }
@@ -32,7 +32,7 @@ export function FormActionBar({
   setSaveButtonHeight,
   secondaryActions,
   setSecondaryActionLoading,
-}: FormActionBarProps): JSX.Element {
+}: FormActionBarProps): React.JSX.Element {
   const styles = useStyles();
 
   const buttonStyle = StyleSheet.flatten([

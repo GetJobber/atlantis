@@ -94,7 +94,7 @@ interface FormTestProps {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => JSX.Element;
+  ) => React.JSX.Element;
   readonly initialLoading?: boolean;
   readonly initialValues?: FormFields;
   readonly bannerMessages?: FormBannerMessage[];

@@ -1,5 +1,5 @@
 export interface ContentExport {
-  content: (props?: unknown) => JSX.Element;
+  content: (props?: unknown) => React.JSX.Element;
   props?: Array<{
     description: string;
     displayName: string;
@@ -25,7 +25,7 @@ export interface ContentExport {
   title: string;
   description?: string;
   links: ContentExportLinks[];
-  notes?: () => JSX.Element;
+  notes?: () => React.JSX.Element;
 }
 interface GeneratedTag {
   name: string;

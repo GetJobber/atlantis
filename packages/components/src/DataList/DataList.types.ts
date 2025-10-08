@@ -184,7 +184,7 @@ export type DataListSelectedType<
 
 export type LayoutRenderer<T extends DataListObject> = (
   item: DataListItemType<T[]>,
-) => JSX.Element;
+) => React.JSX.Element;
 
 export interface DataListLayoutProps<T extends DataListObject> {
   readonly children: LayoutRenderer<T>;

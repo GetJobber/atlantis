@@ -23,7 +23,7 @@ export function SecondaryActionSheet({
   showCancel,
   onOpenBottomSheet,
   onCloseBottomSheet,
-}: SecondaryActionSheetProps): JSX.Element {
+}: SecondaryActionSheetProps): React.JSX.Element {
   return (
     <Portal>
       <BottomSheet

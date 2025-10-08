@@ -10,7 +10,7 @@ export interface BannerIconProps {
   readonly type: BannerTypes;
 }
 
-export function BannerIcon({ icon, type }: BannerIconProps): JSX.Element {
+export function BannerIcon({ icon, type }: BannerIconProps): React.JSX.Element {
   const styles = useStyles();
 
   return (

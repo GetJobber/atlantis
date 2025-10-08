@@ -79,7 +79,7 @@ const OutOfLayoutSwitch = () => {
 };
 
 const RoutesSwitch = () => {
-  const baseRoutes: JSX.Element[] = [];
+  const baseRoutes: React.JSX.Element[] = [];
 
   routes?.forEach((route, routeIndex) => {
     // Top level items with children (Changelog)

@@ -15,7 +15,7 @@ interface ErrorMessageProviderProps {
 
 export function ErrorMessageProvider({
   children,
-}: ErrorMessageProviderProps): JSX.Element {
+}: ErrorMessageProviderProps): React.JSX.Element {
   const [elements, setElements] = useState<
     ErrorMessageContextProps["elements"]
   >({});

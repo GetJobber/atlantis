@@ -73,7 +73,9 @@ describe("ComboboxActivator", () => {
 });
 
 function renderComboboxActivator(
-  child: ReactElement | ((args: ComboboxCustomActivatorProps) => JSX.Element),
+  child:
+    | ReactElement
+    | ((args: ComboboxCustomActivatorProps) => React.JSX.Element),
   open: boolean,
 ) {
   return render(

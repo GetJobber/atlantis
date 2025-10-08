@@ -26,7 +26,7 @@ export function Divider({
   size = "base",
   direction = "horizontal",
   testID = "Divider",
-}: DividerProps): JSX.Element {
+}: DividerProps): React.JSX.Element {
   const horizontalStyles = useHorizontalStyles();
   const verticalStyles = useVerticalStyles();
 

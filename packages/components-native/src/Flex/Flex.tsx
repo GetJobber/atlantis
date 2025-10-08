@@ -11,7 +11,7 @@ export function Flex({
   align = "center",
   gap = "base",
   children,
-}: PropsWithChildren<FlexProps>): JSX.Element {
+}: PropsWithChildren<FlexProps>): React.JSX.Element {
   if (template.length === 1) {
     console.warn("Please use <Content /> component for a stacked layout");
   }
@@ -54,7 +54,7 @@ function Row({
   align = "center",
   gap = "base",
   children,
-}: PropsWithChildren<FlexProps>): JSX.Element {
+}: PropsWithChildren<FlexProps>): React.JSX.Element {
   return (
     <View testID="ATL-Flex-Row" style={[styles.row, { alignItems: align }]}>
       {Children.map(children, (child, index) => (

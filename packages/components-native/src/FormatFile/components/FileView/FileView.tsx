@@ -27,7 +27,7 @@ export function FileView({
   showOverlay,
   showError,
   onUploadComplete,
-}: FileViewProps): JSX.Element {
+}: FileViewProps): React.JSX.Element {
   const { t } = useAtlantisI18n();
   const styles = useStyles();
 

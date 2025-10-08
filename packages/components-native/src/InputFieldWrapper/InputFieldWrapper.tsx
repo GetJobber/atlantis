@@ -131,7 +131,7 @@ export function InputFieldWrapper({
   toolbarVisibility = "while-editing",
   loading = false,
   loadingType = "spinner",
-}: InputFieldWrapperProps): JSX.Element {
+}: InputFieldWrapperProps): React.JSX.Element {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
   warnIfClearActionWithNoOnClear(onClear, showClearAction);

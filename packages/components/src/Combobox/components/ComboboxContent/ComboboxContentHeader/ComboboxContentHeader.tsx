@@ -4,7 +4,9 @@ import { Button } from "@jobber/components/Button";
 import styles from "./ComboboxContentHeader.module.css";
 import type { ComboboxHeaderProps } from "../../../Combobox.types";
 
-export function ComboboxContentHeader(props: ComboboxHeaderProps): JSX.Element {
+export function ComboboxContentHeader(
+  props: ComboboxHeaderProps,
+): React.JSX.Element {
   const hasSelected = props.selectedCount > 0;
   const actionLabel = hasSelected ? "Clear" : "Select all";
   const label = getLabel(hasSelected, props.selectedCount, props.subjectNoun);

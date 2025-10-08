@@ -376,7 +376,9 @@ describe("InputDate V2", () => {
     ).toBeInTheDocument();
   });
 
-  function NestedTestComponent(props: { readonly date: string }): JSX.Element {
+  function NestedTestComponent(props: {
+    readonly date: string;
+  }): React.JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
     const changeHandler = jest.fn();
 
