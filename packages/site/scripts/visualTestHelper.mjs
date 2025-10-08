@@ -13,10 +13,12 @@ import path from "node:path";
 //    - npm run visual:update:single -- autocomplete-v2
 //    → Runs tests/visual/<name>.visual.ts
 //
-// 2) Page-based by tag (explicit @ShortName tag):
-//    - npm run visual:test:single -- @InputGroup
-//    - npm run visual:update:single -- @Menu
-//    → Runs tests/visual/site.visual.ts filtered by the provided tag
+// 2) Page-based by tag (explicit @ShortName) or regex grep:
+//    - Tag: npm run visual:test:single -- @InputGroup
+//    - OR tags: npm run visual:test:single -- '@InputGroup|@Menu'
+//    - Regex (advanced): npm run visual:test:single -- '(?=.*@InputGroup)(?=.*@Menu)'
+//    - Title regex (advanced): npm run visual:test:single -- 'input group components$'
+//    → Runs tests/visual/site.visual.ts filtered by -g <pattern>
 //
 // Optional flags:
 // --no-build   Skip bootstrapping packages before running Playwright
@@ -61,8 +63,14 @@ if (existsSync(specPath)) {
   process.exit(0);
 }
 
-// 2) Page-based by explicit tag: require name to start with '@'
-if (name.startsWith("@")) {
+// 2) Page-based by tag/regex: treat input as grep when it looks regex-y or starts with '@'
+const looksRegex =
+  /[\s(){}|^$*+?.]/.test(name) ||
+  name.includes("[") ||
+  name.includes("]") ||
+  name.includes("@");
+
+if (looksRegex) {
   run(
     `../../scripts/e2e.sh playwright test --config=playwright.config.ts tests/visual/site.visual.ts${updateFlag} --project=chromium --project=firefox --project=webkit -g "${name}"`,
   );
@@ -73,8 +81,8 @@ console.error(
   [
     `No tests found for input: ${name}`,
     `Tried classic spec: tests/visual/${name}.visual.ts`,
-    `Tried page tag: ${name} (in tests/visual/site.visual.ts)`,
-    "Hint: pass a classic spec (e.g., 'modal') or a tag (e.g., '@InputGroup')",
+    `Tried page tag/regex: ${name} (in tests/visual/site.visual.ts)`,
+    "Hint: pass a classic spec (e.g., 'modal') or a tag/regex (e.g., '@InputGroup' or '@InputGroup|@Menu')",
   ].join("\n"),
 );
 process.exit(1);

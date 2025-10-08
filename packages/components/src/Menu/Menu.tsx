@@ -3,6 +3,7 @@ import React, {
   createContext,
   useContext,
   useId,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -144,6 +145,40 @@ export function MenuLegacy({
   useRefocusOnActivator(visible);
   const menuRef = useFocusTrap<HTMLDivElement>(visible);
 
+  const isLargeScreen = width >= SMALL_SCREEN_BREAKPOINT;
+  const middleware = useMemo(() => {
+    if (isLargeScreen) {
+      return [
+        offset(MENU_OFFSET),
+        flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
+        size({
+          apply({ availableHeight, elements }) {
+            // The inner element is the scrollable menu that requires the max height
+            const menuElement = elements.floating.querySelector(
+              '[role="menu"]',
+            ) as HTMLElement;
+
+            if (menuElement) {
+              const viewportHeight = window.innerHeight;
+              const maxHeightVh =
+                (viewportHeight * MENU_MAX_HEIGHT_PERCENTAGE) / 100;
+
+              const maxHeight = calculateMaxHeight(availableHeight, {
+                maxHeight: maxHeightVh,
+              });
+
+              Object.assign(menuElement.style, {
+                maxHeight: `${maxHeight}px`,
+              });
+            }
+          },
+        }),
+      ];
+    }
+
+    return [];
+  }, [isLargeScreen]);
+
   const { refs, floatingStyles, context } = useFloating({
     open: visible,
     onOpenChange: (isOpen: boolean) => {
@@ -151,32 +186,7 @@ export function MenuLegacy({
     },
     placement: "bottom-start",
     strategy: "fixed",
-    middleware: [
-      offset(MENU_OFFSET),
-      flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
-      size({
-        apply({ availableHeight, elements }) {
-          // The inner element is the scrollable menu that requires the max height
-          const menuElement = elements.floating.querySelector(
-            '[role="menu"]',
-          ) as HTMLElement;
-
-          if (menuElement) {
-            const viewportHeight = window.innerHeight;
-            const maxHeightVh =
-              (viewportHeight * MENU_MAX_HEIGHT_PERCENTAGE) / 100;
-
-            const maxHeight = calculateMaxHeight(availableHeight, {
-              maxHeight: maxHeightVh,
-            });
-
-            Object.assign(menuElement.style, {
-              maxHeight: `${maxHeight}px`,
-            });
-          }
-        },
-      }),
-    ],
+    middleware,
     elements: {
       reference: referenceElement,
     },
@@ -186,12 +196,11 @@ export function MenuLegacy({
   const dismiss = useDismiss(context);
   const { getFloatingProps } = useInteractions([dismiss]);
 
-  const positionAttributes =
-    width >= SMALL_SCREEN_BREAKPOINT
-      ? {
-          style: floatingStyles,
-        }
-      : {};
+  const positionAttributes = isLargeScreen
+    ? {
+        style: floatingStyles,
+      }
+    : {};
 
   if (!activator) {
     activator = (

@@ -41,9 +41,9 @@ export interface TypographyProps<T extends FontFamily> {
   readonly size?: TextSize;
 
   /**
-   * Text to display
+   * Text to display. Supports nesting text elements.
    */
-  readonly children?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * The maximum amount of lines the text can occupy before being truncated with "...".
@@ -204,7 +204,7 @@ function InternalTypography<T extends FontFamily = "base">({
 
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
 
-  const text = getTransformedText(children, transform);
+  const content = transformChildren(children, transform);
   const accessibilityProps: AccessibilityProps = hideFromScreenReader
     ? {
         accessibilityRole: "none",
@@ -232,7 +232,7 @@ function InternalTypography<T extends FontFamily = "base">({
       selectionColor={tokens["color-brand--highlight"]}
       onTextLayout={onTextLayout}
     >
-      {text}
+      {content}
     </Text>
   );
 
@@ -273,17 +273,33 @@ function getFontStyle(
   }
 }
 
-function getTransformedText(text?: string, transform?: TextTransform) {
+function getTransformedText(text: string, transform?: TextTransform) {
   switch (transform) {
     case "lowercase":
-      return text?.toLocaleLowerCase();
+      return text.toLocaleLowerCase();
     case "uppercase":
-      return text?.toLocaleUpperCase();
+      return text.toLocaleUpperCase();
     case "capitalize":
-      return capitalize(text || "");
+      return capitalize(text);
     default:
       return text;
   }
+}
+
+function transformChildren(
+  children: React.ReactNode,
+  transform?: TextTransform,
+): React.ReactNode {
+  if (children == null || !transform || transform === "none") return children;
+
+  return React.Children.map(children, child => {
+    if (typeof child === "string") {
+      return getTransformedText(child, transform);
+    }
+
+    // Keep non-string children (numbers, elements, fragments) unchanged
+    return child;
+  });
 }
 
 function getColorStyle(

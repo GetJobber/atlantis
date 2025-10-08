@@ -79,6 +79,67 @@ it("renders text with lowercase transform", () => {
   expect(typography.toJSON()).toMatchSnapshot();
 });
 
+it("supports nested children and applies transform only to string children", () => {
+  const typography = render(
+    <Typography transform="uppercase">
+      before <Typography fontWeight="bold">Inner</Typography> after
+    </Typography>,
+  );
+  expect(typography.toJSON()).toMatchSnapshot();
+});
+
+it("allows child Typography to control its own transform", () => {
+  const view = render(
+    <Typography transform="uppercase">
+      {"before "}
+      <Typography fontWeight="bold" transform="lowercase">
+        Inner
+      </Typography>
+      {" after"}
+    </Typography>,
+  ).toJSON();
+
+  expect(view).toMatchSnapshot();
+});
+
+it("supports multi-level nesting across Typography and Text", () => {
+  const view = render(
+    <Typography transform="uppercase">
+      {"level1 "}
+      <Typography>
+        and <Typography transform="lowercase">INNER</Typography>
+      </Typography>
+      {" end"}
+    </Typography>,
+  ).toJSON();
+
+  expect(view).toMatchSnapshot();
+});
+
+it("applies transform to parent strings only", () => {
+  const { getByText } = render(
+    <Typography transform="uppercase">
+      {"test "}
+      <Typography>inner</Typography>
+    </Typography>,
+  );
+
+  expect(getByText(/TEST/)).toBeDefined();
+  expect(getByText("inner")).toBeDefined();
+});
+
+it("allows child transform to override parent transform", () => {
+  const { getByText } = render(
+    <Typography transform="uppercase">
+      before <Typography transform="lowercase">INNER</Typography> after
+    </Typography>,
+  );
+
+  expect(getByText(/BEFORE/)).toBeDefined();
+  expect(getByText("inner")).toBeDefined();
+  expect(getByText(/AFTER/)).toBeDefined();
+});
+
 it("renders text with white color", () => {
   const typography = render(<Typography color="white">Test Text</Typography>);
   expect(typography.toJSON()).toMatchSnapshot();
