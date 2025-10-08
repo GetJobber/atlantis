@@ -330,15 +330,7 @@ function SectionHeader({
       aria-hidden={true}
       style={UNSAFE_style}
     >
-      <Typography
-        element="h6"
-        size="base"
-        textColor="textSecondary"
-        fontWeight="regular"
-        textCase="none"
-      >
-        {text}
-      </Typography>
+      <DefaultHeaderContent>{text}</DefaultHeaderContent>
     </div>
   );
 }
@@ -413,7 +405,11 @@ function DefaultItemContent({
   );
 }
 
-function DefaultHeaderContent({ label }: { readonly label?: string }) {
+function DefaultHeaderContent({
+  children,
+}: {
+  readonly children: React.ReactNode;
+}) {
   return (
     <Typography
       element="h6"
@@ -422,7 +418,7 @@ function DefaultHeaderContent({ label }: { readonly label?: string }) {
       fontWeight="regular"
       textCase="none"
     >
-      {label}
+      {children}
     </Typography>
   );
 }
@@ -699,8 +695,8 @@ function MenuItemLabelComposable(props: { readonly children: string }) {
   );
 }
 
-function MenuHeaderLabel(props: { readonly children: string }) {
-  return <DefaultHeaderContent label={props.children} />;
+function MenuHeaderLabel(props: { readonly children: React.ReactNode }) {
+  return <DefaultHeaderContent>{props.children}</DefaultHeaderContent>;
 }
 
 Menu.Section = MenuSectionComposable;
