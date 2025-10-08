@@ -113,7 +113,11 @@ export function Menu(
   }
 
   return (
-    <MenuComposable onOpenChange={props.onOpenChange}>
+    <MenuComposable
+      onOpenChange={props.onOpenChange}
+      open={props.open}
+      defaultOpen={props.defaultOpen}
+    >
       {props.children}
     </MenuComposable>
   );
@@ -451,14 +455,25 @@ function useMenuAnimation(): MenuAnimationContextValue {
   return ctx;
 }
 
-function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
-  const [animation, setAnimation] = useState<AnimationState>("unmounted");
+function MenuComposable({
+  children,
+  onOpenChange,
+  open,
+  defaultOpen,
+}: MenuComposableProps) {
+  const isInitiallyOpen = Boolean(open ?? defaultOpen);
+  const [animation, setAnimation] = useState<AnimationState>(
+    isInitiallyOpen ? "visible" : "unmounted",
+  );
+  const derivedAnimation = getDerivedAnimation(open, animation);
 
   return (
     <MenuAnimationContext.Provider
-      value={{ state: animation, setState: setAnimation }}
+      value={{ state: derivedAnimation, setState: setAnimation }}
     >
       <AriaMenuTrigger
+        isOpen={open}
+        defaultOpen={defaultOpen}
         onOpenChange={isOpen => {
           setAnimation(isOpen ? "visible" : "hidden");
           onOpenChange?.(isOpen);
@@ -468,6 +483,20 @@ function MenuComposable({ children, onOpenChange }: MenuComposableProps) {
       </AriaMenuTrigger>
     </MenuAnimationContext.Provider>
   );
+}
+
+function getDerivedAnimation(
+  open: boolean | undefined,
+  animation: AnimationState,
+): AnimationState {
+  const isControlled = open !== undefined;
+
+  if (!isControlled) return animation;
+  if (open) return "visible";
+
+  // When controlled and closing, allow local state to progress to "unmounted"
+  // so the Popover can be removed from the DOM once exit completes.
+  return animation === "unmounted" ? "unmounted" : "hidden";
 }
 
 const MenuTriggerComposable = React.forwardRef<

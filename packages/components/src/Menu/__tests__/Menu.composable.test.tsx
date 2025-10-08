@@ -33,16 +33,17 @@ describe("Menu (composable API)", () => {
     await waitFor(() =>
       expect(screen.getAllByRole("menuitem")[0]).toHaveFocus(),
     );
+    const menuRefEnter = screen.getByRole("menu");
     await userEvent.keyboard("{Enter}");
+
     expect(onItem).toHaveBeenCalledTimes(1);
-    await waitFor(() =>
-      expect(screen.queryByRole("menu")).not.toBeInTheDocument(),
-    );
+    await POM.waitForMenuToClose(menuRefEnter);
   });
 
   it("activates an item when clicked", async () => {
     const onItem = jest.fn();
     render(<TestSectionMenu onItem={onItem} />);
+
     await POM.openWithClick("Menu");
     await userEvent.click(screen.getAllByRole("menuitem")[0]);
     expect(onItem).toHaveBeenCalledTimes(1);
@@ -55,11 +56,11 @@ describe("Menu (composable API)", () => {
     await waitFor(() =>
       expect(screen.getAllByRole("menuitem")[0]).toHaveFocus(),
     );
+    const menuReference = screen.getByRole("menu");
     await userEvent.keyboard(" ");
+
     expect(onItem).toHaveBeenCalledTimes(1);
-    await waitFor(() =>
-      expect(screen.queryByRole("menu")).not.toBeInTheDocument(),
-    );
+    await POM.waitForMenuToClose(menuReference);
   });
 
   it("renders a separator", async () => {
@@ -78,7 +79,7 @@ describe("Menu (composable API)", () => {
     it("opens via click using provided ariaLabel", async () => {
       render(<TestIconTriggerMenu />);
       await POM.openWithIconClick("menu");
-      expect(screen.getByRole("menu")).toBeInTheDocument();
+      await waitFor(() => expect(screen.getByRole("menu")).toBeVisible());
     });
   });
   describe("Trigger content with Chip", () => {
@@ -98,6 +99,46 @@ describe("Menu (composable API)", () => {
       });
     });
   });
+  describe("Controlled Component", () => {
+    it("renders the menu in the open state", async () => {
+      render(<TestSectionMenu open />);
+
+      expect(await screen.findByRole("menu")).toBeVisible();
+    });
+
+    it("does not call onOpenChange when the menu is open by default", async () => {
+      const onOpenChange = jest.fn();
+      render(<TestSectionMenu onOpenChange={onOpenChange} open />);
+      expect(onOpenChange).not.toHaveBeenCalled();
+    });
+
+    it("calls onOpenChange(false) and closes when controlled menu is interacted with", async () => {
+      const onOpenChange = jest.fn();
+      render(<ControlledMenuHarness onChange={onOpenChange} />);
+
+      // Starts open
+      expect(await screen.findByRole("menu")).toBeVisible();
+
+      const menuRef = screen.getByRole("menu");
+      // Interact with the first item -> should request close
+      await POM.activateFirstItemOnly();
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+      await POM.waitForMenuToClose(menuRef);
+    });
+  });
+
+  describe("Uncontrolled Component", () => {
+    it("renders the menu in the defaultOpen state", async () => {
+      render(<TestSectionMenu defaultOpen />);
+      expect(await screen.findByRole("menu")).toBeVisible();
+    });
+
+    it("does not call onOpenChange when the menu is open by default", async () => {
+      const onOpenChange = jest.fn();
+      render(<TestSectionMenu onOpenChange={onOpenChange} defaultOpen />);
+      expect(onOpenChange).not.toHaveBeenCalled();
+    });
+  });
 
   describe("UNSAFE_className and UNSAFE_style", () => {
     it("applies UNSAFE props on Menu.Content", async () => {
@@ -113,9 +154,9 @@ describe("Menu (composable API)", () => {
       render(<TestUnsafePropsMenu />);
       await POM.openWithClick("Menu");
 
-      const headingText = screen.getByText("Section Header");
-      const headerEl = headingText.closest("header");
+      const headerEl = await POM.getSectionHeader("Section Header");
       const sectionContainer = headerEl?.closest(".unsafe-section");
+
       expect(sectionContainer).toBeInTheDocument();
       expect(sectionContainer).toHaveClass("unsafe-section");
       expect(sectionContainer).toHaveStyle("padding: 13px");
@@ -125,8 +166,8 @@ describe("Menu (composable API)", () => {
       render(<TestUnsafePropsMenu />);
       await POM.openWithClick("Menu");
 
-      const headingText = screen.getByText("Section Header");
-      const headerContainer = headingText.closest(".unsafe-header");
+      const headerContainer = await POM.getSectionHeader("Section Header");
+
       expect(headerContainer).toBeInTheDocument();
       expect(headerContainer).toHaveClass("unsafe-header");
       expect(headerContainer).toHaveStyle("color: rgb(10, 20, 30)");
@@ -153,7 +194,8 @@ describe("Menu (composable API)", () => {
 
   describe("Link integration and event mapping", () => {
     it("calls onClick with a MouseEvent for link items", async () => {
-      const onItemClick = jest.fn();
+      // Avoid href link navigation in test environment
+      const onItemClick = jest.fn((e: React.MouseEvent) => e.preventDefault());
       render(<TestLinkMenu onItemClick={onItemClick} />);
 
       await POM.openWithClick("Menu");
@@ -199,14 +241,14 @@ describe("Menu (composable API)", () => {
   });
 
   describe("Menu Customized", () => {
-    it("uses customRender to fully customize item content", async () => {
-      render(<TestCustomRenderMenu />);
+    it("uses children to fully customize item content", async () => {
+      render(<TextCustomContentMenu />);
       await POM.openWithClick("Menu");
       expect(screen.getByTestId("custom-item")).toBeInTheDocument();
     });
 
-    it("uses customRender to fully customize header content", async () => {
-      render(<TestCustomRenderMenu />);
+    it("uses children to fully customize header content", async () => {
+      render(<TextCustomContentMenu />);
       await POM.openWithClick("Menu");
       expect(screen.getByTestId("custom-header")).toBeInTheDocument();
     });
@@ -217,6 +259,7 @@ describe("Menu (composable API)", () => {
       render(<TestDefaultMenuWithIcons />);
       await POM.openWithClick("Menu");
       const items = screen.getAllByRole("menuitem");
+
       expect(items.length).toBeGreaterThan(0);
       expect(screen.getByText("Email")).toBeInTheDocument();
       expect(screen.getByTestId("email")).toBeInTheDocument();
@@ -260,10 +303,16 @@ function TestLinkMenu(props: {
 
 function TestSectionMenu(props: {
   readonly onItem?: () => void;
-  readonly onOpenChange?: () => void;
+  readonly onOpenChange?: (isOpen: boolean) => void;
+  readonly open?: boolean;
+  readonly defaultOpen?: boolean;
 }) {
   return (
-    <Menu onOpenChange={props.onOpenChange}>
+    <Menu
+      onOpenChange={props.onOpenChange}
+      open={props.open}
+      defaultOpen={props.defaultOpen}
+    >
       <Menu.Trigger ariaLabel="Menu">
         <Button label="Menu" />
       </Menu.Trigger>
@@ -287,6 +336,22 @@ function TestSectionMenu(props: {
   );
 }
 
+function ControlledMenuHarness(props: {
+  readonly onChange?: (isOpen: boolean) => void;
+}) {
+  const [isOpen, setIsOpen] = React.useState(true);
+
+  return (
+    <TestSectionMenu
+      open={isOpen}
+      onOpenChange={(next: boolean) => {
+        props.onChange?.(next);
+        setIsOpen(next);
+      }}
+    />
+  );
+}
+
 function TestIconTriggerMenu() {
   return (
     <Menu>
@@ -306,7 +371,9 @@ function TestIconTriggerMenu() {
   );
 }
 
-function TestChipTriggerMenu(props: { readonly onOpenChange?: () => void }) {
+function TestChipTriggerMenu(props: {
+  readonly onOpenChange?: (isOpen: boolean) => void;
+}) {
   return (
     <Menu onOpenChange={props.onOpenChange}>
       <Menu.Trigger ariaLabel="ChipMenu">
@@ -358,7 +425,7 @@ function TestUnsafePropsMenu() {
   );
 }
 
-function TestCustomRenderMenu() {
+function TextCustomContentMenu() {
   return (
     <Menu>
       <Menu.Trigger ariaLabel="Menu">

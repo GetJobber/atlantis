@@ -177,6 +177,7 @@ export const Composable = () => {
   const [canView, setCanView] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const [showPopover, setShowPopover] = useState(true);
+  const [controlledOpen, setControlledOpen] = useState(false);
 
   return (
     <div>
@@ -192,17 +193,17 @@ export const Composable = () => {
       </style>
       <section>
         <h1>Composable with sections</h1>
+        <Popover
+          attachTo={divRef}
+          open={showPopover}
+          preferredPlacement="right"
+          onRequestClose={() => setShowPopover(false)}
+        >
+          <Content>
+            <Text>Click here for new features!</Text>
+          </Content>
+        </Popover>
         <Menu>
-          <Popover
-            attachTo={divRef}
-            open={showPopover}
-            preferredPlacement="right"
-            onRequestClose={() => setShowPopover(false)}
-          >
-            <Content>
-              <Text>Click here for new features!</Text>
-            </Content>
-          </Popover>
           <Menu.Trigger ref={divRef}>
             <Button>
               <Button.Label>I have a popover</Button.Label>
@@ -239,8 +240,8 @@ export const Composable = () => {
         </Menu>
       </section>
       <section>
-        <h1>Composable flat</h1>
-        <Menu>
+        <h1>Composable flat (controlled)</h1>
+        <Menu open={controlledOpen} onOpenChange={setControlledOpen}>
           <Tooltip message="Menu Tooltip">
             <Menu.Trigger>
               <Button>
