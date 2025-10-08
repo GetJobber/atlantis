@@ -180,6 +180,16 @@ export const Composable = () => {
 
   return (
     <div>
+      <style>
+        {`
+          .custom-styles {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            justify-content: space-between;
+          }
+        `}
+      </style>
       <section>
         <h1>Composable with sections</h1>
         <Menu>
@@ -371,12 +381,7 @@ export const Composable = () => {
               <Button.Label>Custom</Button.Label>
             </Button>
           </Menu.Trigger>
-          <Menu.Content
-            UNSAFE_style={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
+          <Menu.Content>
             <Menu.Section>
               <Menu.Header>
                 <Typography
@@ -391,12 +396,7 @@ export const Composable = () => {
               <Menu.Item
                 onClick={() => alert("Email")}
                 textValue="Email"
-                UNSAFE_style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  gap: "5px",
-                }}
+                UNSAFE_className="custom-styles"
               >
                 <Typography element="span" fontWeight="semiBold">
                   Email (Right)
@@ -406,12 +406,7 @@ export const Composable = () => {
               <Menu.Item
                 onClick={() => alert("Text message")}
                 textValue="Text Message"
-                UNSAFE_style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  gap: "5px",
-                }}
+                UNSAFE_className="custom-styles"
               >
                 <Typography element="span" fontWeight="semiBold">
                   Text Message (Right)
@@ -427,12 +422,7 @@ export const Composable = () => {
               <Menu.Item
                 onClick={() => alert("New")}
                 textValue="Line Items"
-                UNSAFE_style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  gap: "5px",
-                }}
+                UNSAFE_className="custom-styles"
               >
                 <Typography element="span" fontWeight="bold">
                   Line Items
@@ -443,12 +433,7 @@ export const Composable = () => {
               <Menu.Item
                 onClick={() => alert("Job Forms")}
                 textValue="Job Forms"
-                UNSAFE_style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  gap: "5px",
-                }}
+                UNSAFE_className="custom-styles"
               >
                 <Typography element="span" fontWeight="bold">
                   Job Forms
@@ -466,12 +451,7 @@ export const Composable = () => {
                 target="_blank"
                 rel="noreferrer"
                 textValue="Jobber"
-                UNSAFE_style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  gap: "5px",
-                }}
+                UNSAFE_className="custom-styles"
               >
                 <Typography element="span">Jobber</Typography>
               </Menu.Item>
@@ -480,12 +460,7 @@ export const Composable = () => {
                 target="_blank"
                 rel="noreferrer"
                 textValue="Jobber Docs"
-                UNSAFE_style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  gap: "5px",
-                }}
+                UNSAFE_className="custom-styles"
               >
                 <span style={{ textDecoration: "underline" }}>Jobber Docs</span>
                 <span aria-hidden>↗</span>
