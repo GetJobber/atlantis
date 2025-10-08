@@ -1,6 +1,7 @@
 import type { IconColorNames, IconNames } from "@jobber/design";
 import type React from "react";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
+import type { IconProps } from "../Icon";
 
 export interface MenuLegacyProps extends MenuBaseProps {
   /**
@@ -175,6 +176,8 @@ export interface MenuItemComposableProps extends UnsafeProps {
    */
   readonly rel?: string;
 }
+
+export interface MenuItemIconComposableProps extends IconProps {}
 
 export interface MenuContentComposableProps extends UnsafeProps {
   readonly children: ReactNode;

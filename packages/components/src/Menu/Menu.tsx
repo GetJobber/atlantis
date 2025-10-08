@@ -43,6 +43,7 @@ import type {
   MenuContentComposableProps,
   MenuHeaderComposableProps,
   MenuItemComposableProps,
+  MenuItemIconComposableProps,
   MenuLegacyProps,
   MenuMobileUnderlayProps,
   MenuSectionComposableProps,
@@ -61,7 +62,6 @@ import {
 } from "./constants";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
-import type { IconProps } from "../Icon";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 import { calculateMaxHeight } from "../utils/maxHeight";
@@ -673,8 +673,6 @@ function useMenuItemContext(): { destructive?: boolean } {
   return ctx ?? {};
 }
 
-interface MenuItemIconComposableProps extends IconProps {}
-
 function MenuItemIconComposable(props: MenuItemIconComposableProps) {
   const { destructive } = useMenuItemContext();
 
@@ -685,11 +683,7 @@ function MenuItemIconComposable(props: MenuItemIconComposableProps) {
   );
 }
 
-interface MenuItemLabelComposableProps {
-  readonly children: string;
-}
-
-function MenuItemLabelComposable(props: MenuItemLabelComposableProps) {
+function MenuItemLabelComposable(props: { readonly children: string }) {
   const { destructive } = useMenuItemContext();
 
   return (
