@@ -13,7 +13,7 @@ export function FormSaveButton({
   setSecondaryActionLoading,
   onOpenBottomSheet,
   onCloseBottomSheet,
-}: FormSaveButtonProps): JSX.Element {
+}: FormSaveButtonProps): React.JSX.Element {
   const { t } = useAtlantisI18n();
   const formContext = useFormContext();
   const buttonActions = useButtonGroupAction(secondaryActions);

@@ -11,9 +11,9 @@ import { DataListItemActions } from "@jobber/components/DataList/components/Data
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
 import { DataListItemClickable } from "./DataListItemClickable";
 
-const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
-  <DataListItemActions />
-));
+const mockItemActionComponent = jest.fn<React.JSX.Element | undefined, []>(
+  () => <DataListItemActions />,
+);
 
 const expectedItem = { id: 1 };
 const mockActiveItem = jest.fn<DataListObject | undefined, []>(

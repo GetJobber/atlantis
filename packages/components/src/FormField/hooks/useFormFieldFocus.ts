@@ -5,7 +5,7 @@ interface UseFormFieldFocus {
 }
 
 interface UseFormFieldFocusProps {
-  wrapperRef?: React.RefObject<HTMLDivElement>;
+  wrapperRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 const PORTAL_FOCUS_ATTRIBUTE_NAME = "data-atl-maintain-portal-focus";

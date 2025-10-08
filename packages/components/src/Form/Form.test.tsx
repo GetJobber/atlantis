@@ -178,6 +178,7 @@ interface MockFormValidateProps {
 }
 
 function MockFormValidate({ onSubmit }: MockFormValidateProps) {
+  // @ts-expect-error - TODO: fix this
   const formRef = useRef() as MutableRefObject<FormRef>;
 
   return (

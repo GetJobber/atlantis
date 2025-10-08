@@ -34,7 +34,7 @@ export function ErrorMessageWrapper({
   message,
   wrapFor = "default",
   children,
-}: ErrorMessageWrapperProps): JSX.Element {
+}: ErrorMessageWrapperProps): React.JSX.Element {
   const errorMessageContext = useErrorMessageContext();
   const register = errorMessageContext?.register;
   const unregister = errorMessageContext?.unregister;

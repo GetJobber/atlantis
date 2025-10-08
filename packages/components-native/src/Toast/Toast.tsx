@@ -17,7 +17,7 @@ import { tokens as staticTokens } from "../utils/design";
 const MAX_TOAST_MESSAGE_LENGTH = 60;
 const ANNOUNCEMENT_DELAY = 100;
 
-function DefaultToast({ text1 }: ToastConfigParams<string>): JSX.Element {
+function DefaultToast({ text1 }: ToastConfigParams<string>): React.JSX.Element {
   const { bottom } = useSafeAreaInsets();
   const { t } = useAtlantisI18n();
   const styles = useStyles();
@@ -56,7 +56,9 @@ export interface JobberToastProps {
   readonly bottomOffset?: number;
 }
 
-export function JobberToast({ bottomOffset }: JobberToastProps): JSX.Element {
+export function JobberToast({
+  bottomOffset,
+}: JobberToastProps): React.JSX.Element {
   return <Toast bottomOffset={bottomOffset} config={toastConfig} />;
 }
 

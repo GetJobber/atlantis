@@ -20,11 +20,11 @@ const COMBOBOX_OFFSET = 8;
 export function useComboboxAccessibility(
   selectionCallback: (selection: ComboboxOption) => void,
   filteredOptions: ComboboxOption[],
-  optionsListRef: React.RefObject<HTMLUListElement>,
+  optionsListRef: React.RefObject<HTMLUListElement | null>,
   open: boolean,
-  wrapperRef: React.RefObject<HTMLDivElement>,
+  wrapperRef: React.RefObject<HTMLDivElement | null>,
 ): {
-  floatingRef: React.RefObject<HTMLDivElement>;
+  floatingRef: React.RefObject<HTMLDivElement | null>;
   floatingStyles: React.CSSProperties;
   floatingProps: ReturnType<UseInteractionsReturn["getFloatingProps"]>;
   nodeId?: string;

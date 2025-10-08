@@ -213,7 +213,7 @@ export interface ComboboxContentProps {
   /**
    * Reference to the wrapping div element of all the Combobox pieces
    */
-  readonly wrapperRef: React.RefObject<HTMLDivElement>;
+  readonly wrapperRef: React.RefObject<HTMLDivElement | null>;
 
   /**
    * Is the Combobox open
@@ -297,7 +297,7 @@ export interface ComboboxListProps {
   /**
    * A ref to the list element.
    */
-  readonly optionsListRef: React.RefObject<HTMLUListElement>;
+  readonly optionsListRef: React.RefObject<HTMLUListElement | null>;
 
   /**
    * The current search term. Used in the no results message.

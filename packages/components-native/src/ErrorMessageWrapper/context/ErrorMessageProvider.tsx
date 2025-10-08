@@ -15,7 +15,7 @@ interface ErrorMessageProviderProps {
 
 export function ErrorMessageProvider({
   children,
-}: ErrorMessageProviderProps): JSX.Element {
+}: ErrorMessageProviderProps): React.JSX.Element {
   const [elements, setElements] = useState<
     ErrorMessageContextProps["elements"]
   >({});
@@ -51,13 +51,13 @@ export function ErrorMessageProvider({
   }
 }
 
-function getMeasure(ref: RefObject<View>) {
+function getMeasure(ref: RefObject<View | null>) {
   return function measure(...args: Parameters<NativeMethods["measureLayout"]>) {
     ref.current?.measureLayout(...args);
   };
 }
 
-function getAccessibilityFocus(ref: RefObject<View>) {
+function getAccessibilityFocus(ref: RefObject<View | null>) {
   return function accessibilityFocus() {
     const reactTag = findNodeHandle(ref.current);
     reactTag &&

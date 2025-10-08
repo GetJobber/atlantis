@@ -6,7 +6,7 @@ import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 export function FormErrorBanner({
   networkError,
   bannerError,
-}: FormBannerErrors): JSX.Element {
+}: FormBannerErrors): React.JSX.Element {
   const { t } = useAtlantisI18n();
 
   if (networkError) {

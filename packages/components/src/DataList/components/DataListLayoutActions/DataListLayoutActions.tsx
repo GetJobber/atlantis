@@ -30,6 +30,7 @@ export function DataListLayoutActions() {
 
   return (
     <DataListLayoutActionsWrapper>
+      {/* @ts-expect-error - TODO: fix actions type is unknown */}
       <DataListItemActionsOverflow actions={actions} />
     </DataListLayoutActionsWrapper>
   );

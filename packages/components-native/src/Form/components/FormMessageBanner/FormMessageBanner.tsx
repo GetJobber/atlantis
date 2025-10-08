@@ -10,7 +10,7 @@ interface FormMessageBannerProps {
 
 export function FormMessageBanner({
   bannerMessages,
-}: FormMessageBannerProps): JSX.Element {
+}: FormMessageBannerProps): React.JSX.Element {
   return (
     <>
       {bannerMessages?.map((message, index) => (

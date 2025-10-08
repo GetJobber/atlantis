@@ -6,7 +6,7 @@ import { useBatchSelect } from "@jobber/components/DataList/hooks/useBatchSelect
 import styles from "../../DataList.module.css";
 
 interface ListItemInternalProps<T extends DataListObject> {
-  readonly children: JSX.Element;
+  readonly children: React.JSX.Element;
   readonly item: T;
 }
 

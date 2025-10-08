@@ -161,7 +161,7 @@ export interface CommonFormFieldProps {
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
-  actionsRef?: RefObject<FieldActionsRef>;
+  actionsRef?: RefObject<FieldActionsRef | null>;
 
   /**
    * Determines if the input should be auto-focused, using the HTML attribute
@@ -183,10 +183,10 @@ export interface FormFieldProps extends CommonFormFieldProps {
   readonly children?: ReactNode;
 
   inputRef?: RefObject<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null
   >;
 
-  wrapperRef?: RefObject<HTMLDivElement>;
+  wrapperRef?: RefObject<HTMLDivElement | null>;
 
   /**
    * Initial value of the input. Only use this when you need to pre-populate

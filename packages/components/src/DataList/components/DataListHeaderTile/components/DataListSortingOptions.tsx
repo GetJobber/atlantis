@@ -10,8 +10,8 @@ interface DataListSortingOptionsProps {
   readonly selectedOption: DataListSorting | null;
   readonly onSelectChange: (selectedOption: SortableOptions) => void;
   readonly onClose: () => void;
-  readonly optionsListRef: React.RefObject<HTMLUListElement>;
-  readonly dataListHeaderTileRef: React.RefObject<HTMLElement>;
+  readonly optionsListRef: React.RefObject<HTMLUListElement | null>;
+  readonly dataListHeaderTileRef: React.RefObject<HTMLElement | null>;
 }
 
 export function DataListSortingOptions({

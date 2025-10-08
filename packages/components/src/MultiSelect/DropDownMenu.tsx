@@ -25,6 +25,7 @@ interface DropDownMenuProps {
 
 export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
+  // @ts-expect-error - TODO: fix this
   const menuDiv = useRef() as MutableRefObject<HTMLUListElement>;
 
   const handleOptionClick = useCallback((clickedOption: Option) => {

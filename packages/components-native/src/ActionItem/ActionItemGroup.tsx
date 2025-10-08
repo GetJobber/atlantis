@@ -20,7 +20,7 @@ interface ActionItemGroupProps {
 
 export function ActionItemGroup({
   children,
-}: ActionItemGroupProps): JSX.Element {
+}: ActionItemGroupProps): React.JSX.Element {
   return <View>{renderChildren(children)}</View>;
 }
 

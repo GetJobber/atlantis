@@ -10,7 +10,9 @@ import { useComboboxAccessibility } from "../../hooks/useComboboxAccessibility";
 import type { ComboboxContentProps } from "../../Combobox.types";
 import { COMBOBOX_MENU_ID } from "../../constants";
 
-export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
+export function ComboboxContent(
+  props: ComboboxContentProps,
+): React.JSX.Element {
   const optionsExist = props.options.length > 0;
   const { onClear, onSelectAll, optionsListRef } = useComboboxContent(
     props.open,

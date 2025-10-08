@@ -28,7 +28,7 @@ const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
 function InternalButtonLoadingInternal({
   variation,
   type,
-}: InternalButtonLoadingProps): JSX.Element {
+}: InternalButtonLoadingProps): React.JSX.Element {
   const translateX = useSharedValue(0);
   translateX.value = withRepeat(
     withTiming(offset, {

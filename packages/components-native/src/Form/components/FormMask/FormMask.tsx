@@ -4,7 +4,7 @@ import { useStyles } from "./FormMask.style";
 import { ActivityIndicator } from "../../../ActivityIndicator";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
-export function FormMask(): JSX.Element {
+export function FormMask(): React.JSX.Element {
   const { t } = useAtlantisI18n();
   const styles = useStyles();
 

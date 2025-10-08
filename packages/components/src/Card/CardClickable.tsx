@@ -22,6 +22,7 @@ export function CardClickable({
   children,
   UNSAFE_style = {},
 }: ClickableCardProps) {
+  // @ts-expect-error - TODO: fix this
   const cardRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   return (

@@ -195,7 +195,7 @@ export function DatePicker({
 function useEscapeKeyToCloseDatePicker(
   open: boolean,
   ref: React.RefObject<HTMLDivElement>,
-): { pickerRef: React.RefObject<ReactDatePicker> } {
+): { pickerRef: React.RefObject<ReactDatePicker | null> } {
   const pickerRef = useRef<ReactDatePicker>(null);
 
   const escFunction = (event: KeyboardEvent) => {

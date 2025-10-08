@@ -19,6 +19,7 @@ export function InternalChipButton({
   label,
   onClick,
 }: ChipButtonProps) {
+  // @ts-expect-error - TODO: fix this
   const buttonRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   return (

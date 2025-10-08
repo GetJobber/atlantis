@@ -13,7 +13,9 @@ export function useGetItemActions<T extends DataListObject>(item: T) {
 
   const actions = useMemo(() => {
     return actionsArray.filter(action => {
+      // @ts-expect-error - TODO: fix action.props type is unknown
       if (isValidElement(action) && action.props.visible) {
+        // @ts-expect-error - TODO: fix action.props type is unknown
         return action.props.visible(item);
       }
 

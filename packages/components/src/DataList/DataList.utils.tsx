@@ -110,7 +110,9 @@ export function getExposedActions(
   const firstNChildren = childrenArray.slice(0, childCount);
 
   return firstNChildren.reduce((result: typeof childrenArray, child, i) => {
+    // @ts-expect-error - TODO: fix props are type unknown
     const hasIcon = Boolean(child.props.icon);
+    // @ts-expect-error - TODO: fix props are type unknown
     const isAlwaysVisible = child.props.alwaysVisible; // If true, the child action will always be visible and not nested in the dropdown.
 
     if (

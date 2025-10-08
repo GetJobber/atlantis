@@ -5,7 +5,7 @@ import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export function JobberActivityIndicator(
   props: ActivityIndicatorProps,
-): JSX.Element {
+): React.JSX.Element {
   const { tokens } = useAtlantisTheme();
 
   return (

@@ -50,7 +50,9 @@ export function FormFieldWrapper({
   showMiniLabel = true,
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
+  // @ts-expect-error - TODO: fix this
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
+  // @ts-expect-error - TODO: fix this
   const suffixRef = useRef() as RefObject<HTMLDivElement>;
 
   const { wrapperClasses, containerClasses, wrapperInlineStyle, labelStyle } =

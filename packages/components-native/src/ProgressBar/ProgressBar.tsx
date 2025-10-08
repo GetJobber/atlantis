@@ -17,7 +17,7 @@ export function ProgressBar({
   header,
   variation = "progress",
   size = "base",
-}: ProgressBarProps): JSX.Element {
+}: ProgressBarProps): React.JSX.Element {
   const { t } = useAtlantisI18n();
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
