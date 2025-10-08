@@ -372,7 +372,12 @@ export const Composable = () => {
               <Button.Label>Custom</Button.Label>
             </Button>
           </Menu.Trigger>
-          <Menu.Content>
+          <Menu.Content
+            UNSAFE_style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <Menu.Section>
               <Menu.Header>
                 <Typography
@@ -384,7 +389,16 @@ export const Composable = () => {
                   Communications
                 </Typography>
               </Menu.Header>
-              <Menu.Item onClick={() => alert("Email")} textValue="Email">
+              <Menu.Item
+                onClick={() => alert("Email")}
+                textValue="Email"
+                UNSAFE_style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gap: "5px",
+                }}
+              >
                 <Typography element="span" fontWeight="semiBold">
                   Email (Right)
                 </Typography>
@@ -393,6 +407,12 @@ export const Composable = () => {
               <Menu.Item
                 onClick={() => alert("Text message")}
                 textValue="Text Message"
+                UNSAFE_style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gap: "5px",
+                }}
               >
                 <Typography element="span" fontWeight="semiBold">
                   Text Message (Right)
@@ -405,7 +425,16 @@ export const Composable = () => {
               <Menu.Header>
                 <Emphasis variation="highlight">Featured Items</Emphasis>
               </Menu.Header>
-              <Menu.Item onClick={() => alert("New")} textValue="Line Items">
+              <Menu.Item
+                onClick={() => alert("New")}
+                textValue="Line Items"
+                UNSAFE_style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gap: "5px",
+                }}
+              >
                 <Typography element="span" fontWeight="bold">
                   Line Items
                 </Typography>
@@ -415,6 +444,12 @@ export const Composable = () => {
               <Menu.Item
                 onClick={() => alert("Job Forms")}
                 textValue="Job Forms"
+                UNSAFE_style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gap: "5px",
+                }}
               >
                 <Typography element="span" fontWeight="bold">
                   Job Forms
@@ -432,6 +467,12 @@ export const Composable = () => {
                 target="_blank"
                 rel="noreferrer"
                 textValue="Jobber"
+                UNSAFE_style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gap: "5px",
+                }}
               >
                 <Typography element="span">Jobber</Typography>
               </Menu.Item>
@@ -440,6 +481,12 @@ export const Composable = () => {
                 target="_blank"
                 rel="noreferrer"
                 textValue="Jobber Docs"
+                UNSAFE_style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  gap: "5px",
+                }}
               >
                 <span style={{ textDecoration: "underline" }}>Jobber Docs</span>
                 <span aria-hidden>↗</span>
