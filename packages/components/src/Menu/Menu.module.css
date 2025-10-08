@@ -10,10 +10,6 @@
   z-index: var(--elevation-modal);
 }
 
-.ariaMenu {
-  max-height: inherit;
-}
-
 .menu {
   --menu-space: var(--space-small);
   --menu-offset: var(--space-smallest);
@@ -53,6 +49,50 @@
   border-bottom: none;
 }
 
+.separator {
+  grid-column: 1 / -1;
+}
+
+.triggerWrapper {
+  display: inline-flex;
+  outline: none;
+}
+
+.ariaMenu {
+  display: grid;
+  max-height: inherit;
+  grid-template-columns: auto 1fr auto;
+}
+
+.ariaItem {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: var(--menu-space);
+}
+
+.ariaItem > [data-menu-slot="icon"] {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.ariaItem > [data-menu-slot="label"] {
+  grid-column-start: 2;
+}
+
+.ariaSection {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  grid-column-start: 1;
+}
+
+.ariaSectionHeader {
+  grid-column: 1 / -1;
+  grid-column-start: 1;
+}
+
 .section {
   padding: var(--menu-space) 0;
 }
@@ -71,9 +111,20 @@
   padding: calc(var(--menu-space) * 1.5) var(--menu-space);
 }
 
-.action {
+.legacyAction {
   display: flex;
+  gap: var(--menu-space);
+  align-items: center;
   width: 100%;
+}
+
+/* Legacy variant focus-visible styling */
+.legacyAction:focus-visible {
+  box-shadow: var(--shadow-focus);
+  background-color: var(--color-surface--hover);
+}
+
+.action {
   box-sizing: border-box;
   padding: var(--menu-space);
   border: none;
@@ -82,8 +133,7 @@
   text-align: start;
   background-color: transparent;
   cursor: pointer;
-  gap: var(--menu-space);
-  align-items: center;
+
   transition:
     background-color var(--timing-base) ease-out,
     box-shadow var(--timing-base) ease-out;
@@ -108,22 +158,6 @@
   box-shadow: none;
 }
 
-/* class-based flags injected via react-aria render props */
-/* RAC state classes (focus ring only; background handled by [data-focused]) */
-.isFocusVisible {
-  box-shadow: var(--shadow-focus);
-}
-
-.isHovered.isFocusVisible {
-  box-shadow: none;
-}
-
-/* Legacy variant focus-visible styling */
-.legacyAction:focus-visible {
-  box-shadow: var(--shadow-focus);
-  background-color: var(--color-surface--hover);
-}
-
 .action span {
   /* match appearance of Button labels */
   -webkit-font-smoothing: antialiased;
@@ -131,11 +165,6 @@
 
 .action.destructive > span {
   color: var(--color-destructive);
-}
-
-.triggerWrapper {
-  display: inline-flex;
-  outline: none;
 }
 
 .overlay {

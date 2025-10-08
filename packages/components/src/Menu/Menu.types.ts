@@ -133,75 +133,21 @@ export interface MenuSectionComposableProps extends UnsafeProps {
   readonly ariaLabel?: string;
 }
 
-interface MenuHeaderDefaultPresentation {
-  /**
-   * Opinionated header label. When provided, renders with default typography.
-   */
-  readonly label: string;
-  /**
-   * Must not be provided when using default presentation
-   */
-  readonly customRender?: never;
+export interface MenuHeaderComposableProps extends UnsafeProps {
+  readonly children: ReactNode;
 }
 
-interface MenuHeaderCustomPresentation {
-  /**
-   * Fully customize the header rendering. When provided, it takes full control.
-   * You may use the provided `defaultContent` to re-use the opinionated header.
-   */
-  readonly customRender: () => ReactNode;
-  /**
-   * Must not be provided when using custom presentation
-   */
-  readonly label?: never;
-}
-
-export type MenuHeaderComposableProps = UnsafeProps &
-  (MenuHeaderDefaultPresentation | MenuHeaderCustomPresentation);
-
-interface MenuItemDefaultPresentation {
-  /**
-   * Opinionated item label.
-   */
-  readonly label: string;
-
-  /**
-   * Optional leading icon.
-   */
-  readonly icon?: IconNames;
-
-  /**
-   * Icon color. Defaults to "icon". If `destructive` is true, the icon
-   * color will be forced to "destructive".
-   */
-  readonly iconColor?: IconColorNames;
-
+export interface MenuItemComposableProps extends UnsafeProps {
   /**
    * Apply destructive styling to the item label and icon.
    */
   readonly destructive?: boolean;
-  /**
-   * Must not be provided when using default presentation
-   */
-  readonly customRender?: never;
-}
 
-interface MenuItemCustomPresentation {
   /**
-   * Fully customize the item rendering. When provided, it takes full control.
-   * You may use the provided `defaultContent` to re-use the opinionated item.
+   * Item content.
    */
-  readonly customRender: () => ReactNode;
-  /**
-   * Must not be provided when using custom presentation
-   */
-  readonly label?: never;
-  readonly icon?: never;
-  readonly iconColor?: never;
-  readonly destructive?: never;
-}
+  readonly children: ReactNode;
 
-type MenuItemBehaviorProps = UnsafeProps & {
   /*
    * Callback when an item is activated.
    * If href is provided, this will be ignored.
@@ -210,9 +156,9 @@ type MenuItemBehaviorProps = UnsafeProps & {
 
   /**
    * String representation of the item's content.
-   * Must be provided if the item's content is not plain text.
+   * Required for typeahead functionality.
    */
-  readonly textValue?: string;
+  readonly textValue: string;
 
   /**
    * Href for the item. When provided, renders as a link item.
@@ -228,10 +174,7 @@ type MenuItemBehaviorProps = UnsafeProps & {
    * Rel attribute for the link.
    */
   readonly rel?: string;
-};
-
-export type MenuItemComposableProps = MenuItemBehaviorProps &
-  (MenuItemDefaultPresentation | MenuItemCustomPresentation);
+}
 
 export interface MenuContentComposableProps extends UnsafeProps {
   readonly children: ReactNode;

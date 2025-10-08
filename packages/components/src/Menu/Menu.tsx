@@ -60,6 +60,7 @@ import {
 } from "./constants";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
+import type { IconProps } from "../Icon";
 import { Icon } from "../Icon";
 import { formFieldFocusAttribute } from "../FormField/hooks/useFormFieldFocus";
 import { calculateMaxHeight } from "../utils/maxHeight";
@@ -582,7 +583,11 @@ function MenuSectionComposable({
   return (
     <AriaMenuSection
       aria-label={ariaLabel}
-      className={classnames(styles.section, UNSAFE_className)}
+      className={classnames(
+        styles.section,
+        styles.ariaSection,
+        UNSAFE_className,
+      )}
       style={UNSAFE_style}
     >
       {children}
@@ -593,18 +598,16 @@ function MenuSectionComposable({
 function MenuHeaderComposable(props: MenuHeaderComposableProps) {
   const { UNSAFE_style, UNSAFE_className } = props;
 
-  const isCustom = props.customRender !== undefined;
-
   return (
     <AriaHeader
-      className={classnames(styles.sectionHeader, UNSAFE_className)}
+      className={classnames(
+        styles.sectionHeader,
+        styles.ariaSectionHeader,
+        UNSAFE_className,
+      )}
       style={UNSAFE_style}
     >
-      {isCustom ? (
-        props.customRender()
-      ) : (
-        <DefaultHeaderContent label={props.label} />
-      )}
+      {props.children}
     </AriaHeader>
   );
 }
@@ -615,25 +618,9 @@ const MenuItemComposable = React.forwardRef<
 >(function MenuItemComposable(props: MenuItemComposableProps, ref) {
   const { UNSAFE_style, UNSAFE_className } = props;
 
-  const isCustom = props.customRender !== undefined;
-  const computedTextValue = props.label ?? props.textValue ?? undefined;
-
-  const content = isCustom ? (
-    props.customRender()
-  ) : (
-    <DefaultItemContent
-      label={props.label}
-      icon={props.icon}
-      iconColor={props.iconColor}
-      destructive={props.destructive}
-    />
-  );
-
   const className = classnames(
     styles.action,
-    {
-      [styles.destructive]: !isCustom && props.destructive,
-    },
+    styles.ariaItem,
     UNSAFE_className,
   );
 
@@ -645,13 +632,15 @@ const MenuItemComposable = React.forwardRef<
         ref={ref}
         className={className}
         style={UNSAFE_style}
-        textValue={computedTextValue}
+        textValue={props.textValue}
         href={href}
         target={target}
         rel={rel}
         onClick={onClick as ((e: React.MouseEvent) => void) | undefined}
       >
-        {content}
+        <MenuItemContext.Provider value={{ destructive: props.destructive }}>
+          {props.children}
+        </MenuItemContext.Provider>
       </AriaMenuItem>
     );
   }
@@ -661,16 +650,62 @@ const MenuItemComposable = React.forwardRef<
       ref={ref}
       className={className}
       style={UNSAFE_style}
-      textValue={computedTextValue}
+      textValue={props.textValue}
       onAction={() => {
         // Zero-arg activation for non-link items
         props.onClick?.();
       }}
     >
-      {content}
+      <MenuItemContext.Provider value={{ destructive: props.destructive }}>
+        {props.children}
+      </MenuItemContext.Provider>
     </AriaMenuItem>
   );
 });
+
+const MenuItemContext = createContext<{ destructive?: boolean } | null>(null);
+
+function useMenuItemContext(): { destructive?: boolean } {
+  const ctx = useContext(MenuItemContext);
+
+  return ctx ?? {};
+}
+
+interface MenuItemIconComposableProps extends IconProps {}
+
+function MenuItemIconComposable(props: MenuItemIconComposableProps) {
+  const { destructive } = useMenuItemContext();
+
+  return (
+    <div data-menu-slot="icon">
+      <Icon {...props} color={destructive ? "destructive" : props.color} />
+    </div>
+  );
+}
+
+interface MenuItemLabelComposableProps {
+  readonly children: string;
+}
+
+function MenuItemLabelComposable(props: MenuItemLabelComposableProps) {
+  const { destructive } = useMenuItemContext();
+
+  return (
+    <div data-menu-slot="label">
+      <Typography
+        element="span"
+        fontWeight="semiBold"
+        textColor={destructive ? "destructive" : "text"}
+      >
+        {props.children}
+      </Typography>
+    </div>
+  );
+}
+
+function MenuHeaderLabel(props: { readonly children: string }) {
+  return <DefaultHeaderContent label={props.children} />;
+}
 
 Menu.Section = MenuSectionComposable;
 Menu.Header = MenuHeaderComposable;
@@ -678,3 +713,6 @@ Menu.Item = MenuItemComposable;
 Menu.Trigger = MenuTriggerComposable;
 Menu.Content = MenuContentComposable;
 Menu.Separator = MenuSeparatorComposable;
+Menu.ItemIcon = MenuItemIconComposable;
+Menu.ItemLabel = MenuItemLabelComposable;
+Menu.HeaderLabel = MenuHeaderLabel;

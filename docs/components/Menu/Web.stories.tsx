@@ -2,15 +2,17 @@ import React, { useRef, useState } from "react";
 import { Menu, SectionProps } from "@jobber/components/Menu";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
-import type { IconNames } from "@jobber/components/Icon";
+import { Icon, type IconNames } from "@jobber/components/Icon";
 import { Chip } from "@jobber/components/Chip";
 import { Grid } from "@jobber/components/Grid";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Popover } from "@jobber/components/Popover";
 import { Content } from "@jobber/components/Content";
-import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Emphasis } from "@jobber/components/Emphasis";
+import { Typography } from "@jobber/components/Typography";
+import { StatusIndicator } from "@jobber/components/StatusIndicator";
+import { Heading } from "@jobber/components/Heading";
 
 export default {
   title: "Components/Navigation/Menu/Web",
@@ -198,25 +200,31 @@ export const Composable = () => {
           </Menu.Trigger>
           <Menu.Content>
             <Menu.Section>
-              <Menu.Header label="Nav" />
-              <Menu.Item
-                label="Home"
-                icon="home"
-                onClick={() => alert("Home")}
-              />
-              <Menu.Item
-                label="Admin"
-                icon="lock"
-                onClick={() => alert("Admin")}
-              />
+              <Menu.Header>
+                <Menu.HeaderLabel>Nav</Menu.HeaderLabel>
+              </Menu.Header>
+              <Menu.Item onClick={() => alert("Home")} textValue="Home">
+                <Menu.ItemLabel>Home</Menu.ItemLabel>
+                <Menu.ItemIcon name="home" />
+              </Menu.Item>
+              <Menu.Item onClick={() => alert("Admin")} textValue="Admin">
+                <Menu.ItemLabel>Admin</Menu.ItemLabel>
+                <Menu.ItemIcon name="lock" />
+                <StatusIndicator status="critical" />
+              </Menu.Item>
             </Menu.Section>
             <Menu.Separator />
             <Menu.Section>
-              <Menu.Header label="Misc" />
+              <Menu.Header>
+                <Menu.HeaderLabel>Misc</Menu.HeaderLabel>
+              </Menu.Header>
               <Menu.Item
-                label="Toggle Theme"
-                onClick={() => alert("Something")}
-              />
+                onClick={() => alert("Toggle")}
+                textValue="Toggle Theme"
+              >
+                <Menu.ItemLabel>Toggle Theme</Menu.ItemLabel>
+                <Menu.ItemIcon name="sun" />
+              </Menu.Item>
             </Menu.Section>
           </Menu.Content>
         </Menu>
@@ -232,12 +240,13 @@ export const Composable = () => {
             </Menu.Trigger>
           </Tooltip>
           <Menu.Content>
-            <Menu.Item label="Email" icon="email" onClick={() => alert("")} />
-            <Menu.Item
-              label="Text Message"
-              icon="sms"
-              onClick={() => alert("🔋")}
-            />
+            <Menu.Item onClick={() => alert("")} textValue="Email">
+              <Menu.ItemLabel>Email</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Separator />
+            <Menu.Item onClick={() => alert("🔋")} textValue="Text Message">
+              <Menu.ItemLabel>Text Message</Menu.ItemLabel>
+            </Menu.Item>
           </Menu.Content>
         </Menu>
       </section>
@@ -252,10 +261,12 @@ export const Composable = () => {
             {items.map(item => (
               <Menu.Item
                 key={item.label}
-                label={item.label}
-                icon={item.icon}
                 onClick={item.onClick}
-              />
+                textValue={item.label}
+              >
+                <Menu.ItemLabel>{item.label}</Menu.ItemLabel>
+                <Menu.ItemIcon name={item.icon} />
+              </Menu.Item>
             ))}
           </Menu.Content>
         </Menu>
@@ -273,23 +284,26 @@ export const Composable = () => {
               </Menu.Trigger>
               <Menu.Content>
                 <Menu.Section>
-                  <Menu.Item
-                    label="Edit"
-                    icon="edit"
-                    onClick={() => alert("✏️")}
-                  />
+                  <Menu.Item onClick={() => alert("✏️")} textValue="Edit">
+                    <Menu.ItemLabel>Edit</Menu.ItemLabel>
+                    <Menu.ItemIcon name="edit" />
+                  </Menu.Item>
                 </Menu.Section>
                 <Menu.Separator />
                 <Menu.Section>
-                  <Menu.Header label="Send as..." />
+                  <Menu.Header>
+                    <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
+                  </Menu.Header>
                   {items.map(item => (
                     <Menu.Item
                       key={item.label}
-                      label={item.label}
-                      icon={item.icon}
                       onClick={item.onClick}
                       destructive={item.destructive}
-                    />
+                      textValue={item.label}
+                    >
+                      <Menu.ItemLabel>{item.label}</Menu.ItemLabel>
+                      <Menu.ItemIcon name={item.icon} />
+                    </Menu.Item>
                   ))}
                 </Menu.Section>
               </Menu.Content>
@@ -330,117 +344,106 @@ export const Composable = () => {
             </Menu.Trigger>
             <Menu.Content>
               <Menu.Item
-                label="Timesheets"
-                icon="timer"
                 onClick={() => alert("Timesheets")}
-              />
-              <Menu.Item
-                label="Invoices"
-                icon="invoice"
-                onClick={() => alert("Invoices")}
-              />
+                textValue="Timesheets"
+              >
+                <Menu.ItemLabel>Timesheets</Menu.ItemLabel>
+                <Menu.ItemIcon name="timer" />
+              </Menu.Item>
+              <Menu.Item onClick={() => alert("Invoices")} textValue="Invoices">
+                <Menu.ItemLabel>Invoices</Menu.ItemLabel>
+                <Menu.ItemIcon name="invoice" />
+              </Menu.Item>
               <PermissionCheck canView={canView}>
-                <Menu.Item
-                  label="Admin"
-                  icon="lock"
-                  onClick={() => alert("Admin")}
-                />
+                <Menu.Item onClick={() => alert("Admin")} textValue="Admin">
+                  <Menu.ItemLabel>Admin</Menu.ItemLabel>
+                  <Menu.ItemIcon name="lock" />
+                </Menu.Item>
               </PermissionCheck>
             </Menu.Content>
           </Menu>
         </div>
       </section>
       <section>
-        <h1>Composable with Custom Render</h1>
+        <h1>Composable with Custom Content</h1>
         <Menu>
           <Menu.Trigger>
             <Button>
-              <Button.Label>Mixed</Button.Label>
+              <Button.Label>Custom</Button.Label>
             </Button>
           </Menu.Trigger>
           <Menu.Content>
             <Menu.Section>
-              <Menu.Header label="Opinionated" />
-              <Menu.Item
-                onClick={() => alert("Email")}
-                label="Email"
-                icon="email"
-              />
+              <Menu.Header>
+                <Typography
+                  element="span"
+                  size="large"
+                  fontWeight="bold"
+                  textColor="invoice"
+                >
+                  Communications
+                </Typography>
+              </Menu.Header>
+              <Menu.Item onClick={() => alert("Email")} textValue="Email">
+                <Typography element="span" fontWeight="semiBold">
+                  Email (Right)
+                </Typography>
+                <Icon name="email" />
+              </Menu.Item>
               <Menu.Item
                 onClick={() => alert("Text message")}
-                label="Text message"
-                icon="sms"
-              />
+                textValue="Text Message"
+              >
+                <Typography element="span" fontWeight="semiBold">
+                  Text Message (Right)
+                </Typography>
+                <Icon name="sms" />
+              </Menu.Item>
             </Menu.Section>
             <Menu.Separator />
             <Menu.Section>
-              <Menu.Header
-                customRender={() => (
-                  <Emphasis variation="highlight">Emphasized Header</Emphasis>
-                )}
-              />
+              <Menu.Header>
+                <Emphasis variation="highlight">Featured Items</Emphasis>
+              </Menu.Header>
+              <Menu.Item onClick={() => alert("New")} textValue="Line Items">
+                <Typography element="span" fontWeight="bold">
+                  Line Items
+                </Typography>
+                <StatusIndicator status="critical" />
+              </Menu.Item>
+
               <Menu.Item
-                onClick={() => alert("Email")}
-                customRender={() => (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      width: "100%",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <span style={{ fontWeight: 600 }}>Email</span>
-                    <span aria-hidden>📧</span>
-                  </div>
-                )}
-              />
-              <Menu.Item
-                onClick={() => alert("Sync")}
-                customRender={() => (
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  >
-                    <span style={{ fontWeight: 600 }}>Sync</span>
-                    <StatusLabel label="In progress" status="success" />
-                  </div>
-                )}
-              />
+                onClick={() => alert("Job Forms")}
+                textValue="Job Forms"
+              >
+                <Typography element="span" fontWeight="bold">
+                  Job Forms
+                </Typography>
+                <StatusIndicator status="critical" />
+              </Menu.Item>
             </Menu.Section>
             <Menu.Separator />
             <Menu.Section>
-              <Menu.Header label="Links" />
+              <Menu.Header>
+                <Heading level={6}>Links</Heading>
+              </Menu.Header>
               <Menu.Item
-                label="Jobber"
                 href="https://getjobber.com"
                 target="_blank"
                 rel="noreferrer"
-              />
-            </Menu.Section>
-            <Menu.Separator />
-            <Menu.Section>
-              <Menu.Header label="Link + customRender" />
+                textValue="Jobber"
+              >
+                <Typography element="span">Jobber</Typography>
+              </Menu.Item>
               <Menu.Item
                 href="https://help.getjobber.com/hc/en-us"
                 target="_blank"
                 rel="noreferrer"
-                customRender={() => (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      width: "100%",
-                      padding: 4,
-                    }}
-                  >
-                    <span style={{ textDecoration: "underline" }}>
-                      Jobber Docs
-                    </span>
-                    <span aria-hidden>↗</span>
-                  </div>
-                )}
-              />
+                textValue="Jobber Docs"
+              >
+                <span style={{ textDecoration: "underline" }}>Jobber Docs</span>
+                <span aria-hidden>↗</span>
+              </Menu.Item>
             </Menu.Section>
           </Menu.Content>
         </Menu>
