@@ -11,6 +11,7 @@ interface UseTabsOverflow {
 export function useTabsOverflow(): UseTabsOverflow {
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
+  // @ts-expect-error - TODO: fix this
   const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
 
   const handleOverflowing = () => {

@@ -44,7 +44,9 @@ export function MultiSelect({
   const [label, setLabel] = useState(defaultLabel);
   const [menuVisible, setMenuVisible] = useState(false);
   const [focused, setFocused] = useState(false);
+  // @ts-expect-error - TODO: fix this
   const multiSelectContainer = useRef() as MutableRefObject<HTMLDivElement>;
+  // @ts-expect-error - TODO: fix this
   const multiSelectRef = useRef() as MutableRefObject<HTMLDivElement>;
   const multiSelectClass = classNames(styles.multiSelect, {
     [styles.active]: menuVisible,

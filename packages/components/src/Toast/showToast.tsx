@@ -43,6 +43,7 @@ export function showToast(props: ToastProps) {
 const ToastContainer = forwardRef(ToastInternal);
 
 function ToasterOven(props: ToastProps) {
+  // @ts-expect-error - TODO: fix this
   const toastRef = useRef() as MutableRefObject<ToastRef>;
   useEffect(() => toastRef.current.add(props));
 

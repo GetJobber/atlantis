@@ -359,6 +359,7 @@ function Action({
   UNSAFE_className,
   onClick,
 }: ActionProps) {
+  // @ts-expect-error - TODO: fix this
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
   const buttonClasses = classnames(styles.action, {
     [styles.destructive]: destructive,

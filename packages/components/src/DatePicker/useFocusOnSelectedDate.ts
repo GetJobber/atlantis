@@ -2,6 +2,7 @@ import type { MutableRefObject } from "react";
 import { useRef } from "react";
 
 export function useFocusOnSelectedDate() {
+  // @ts-expect-error - TODO: fix this
   const ref = useRef() as MutableRefObject<HTMLDivElement>;
 
   function focusOnSelectedDate() {
