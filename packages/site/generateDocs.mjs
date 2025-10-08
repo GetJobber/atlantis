@@ -1,10 +1,52 @@
-import { mkdirSync, writeFileSync } from "fs";
-import { dirname } from "path";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  statSync,
+  writeFileSync,
+} from "fs";
+import { dirname, join, relative, resolve } from "path";
+import { fileURLToPath } from "url";
 import { parse } from "react-docgen-typescript";
 import {
   ListOfGeneratedMobileComponents,
   ListOfGeneratedWebComponents,
 } from "./baseComponentLists.mjs";
+
+// Summary stats for clear output
+const stats = {
+  parsed: 0,
+  written: 0,
+  skippedUnchanged: 0,
+  parsedFiles: [],
+  writtenFiles: [],
+  skippedUnchangedFiles: [],
+};
+
+// Helpers for stats and IO
+const recordParsed = componentPath => {
+  stats.parsed += 1;
+  stats.parsedFiles.push(componentPath);
+};
+
+const recordWritten = outputPath => {
+  stats.written += 1;
+  stats.writtenFiles.push(relative(__dirname, outputPath));
+};
+
+const recordSkipped = outputPath => {
+  stats.skippedUnchanged += 1;
+  stats.skippedUnchangedFiles.push(relative(__dirname, outputPath));
+};
+
+const ensureDir = dir => {
+  mkdirSync(dir, { recursive: true });
+};
+
+const writeOutput = (outputPath, content) => {
+  console.log("writing documentation to:", outputPath);
+  writeFileSync(outputPath, content);
+};
 
 /**
  * This script is used to generate the *.props.json files under the src/content directory of this repo.
@@ -21,23 +63,66 @@ import {
  */
 
 /**
- * Take in a component location, and where you want the output written. We will parse the component contents at the provided location, and write the
- * associated JSON file in the provided output location.
- * @param {string} componentPath
- * @param {string} outputPath
+ * Parse a component file and write its cleaned JSON to the output path.
+ * Skips the write when the generated content has not changed.
+ *
+ * @param {string} componentPath Absolute path to component source
+ * @param {string} outputPath Absolute path for the JSON output
  */
 const parseAndWriteDocs = (componentPath, outputPath) => {
-  console.log("parsing component at:", componentPath);
-  const documentation = parse(componentPath);
-  const cleanedDocumentation = removeNonComponents(
-    removeDeclarations(documentation),
-  );
+  try {
+    console.log("parsing component at:", componentPath);
+    const documentation = parse(componentPath),
+      cleanedDocumentation = cleanDoc(documentation),
+      outputDir = dirname(outputPath),
+      newContent = JSON.stringify(cleanedDocumentation, null, 2);
+    ensureDir(outputDir);
+    const shouldWrite = !existsSync(outputPath)
+      ? true
+      : newContent !== readFileSync(outputPath, "utf8");
+    recordParsed(componentPath);
 
-  const outputDir = dirname(outputPath);
-  mkdirSync(outputDir, { recursive: true });
+    if (shouldWrite) {
+      writeOutput(outputPath, newContent);
+      recordWritten(outputPath);
+    } else {
+      recordSkipped(outputPath);
+    }
+  } catch (error) {
+    console.error("Failed to generate docs for:", componentPath, "\n", error);
+  }
+};
 
-  console.log("writing documentation to:", outputPath);
-  writeFileSync(outputPath, JSON.stringify(cleanedDocumentation, null, 2));
+/**
+ * Check if the generated output is up-to-date with respect to the source file
+ * by comparing modification times. Returns true if output exists and is newer
+ * or equal to the source; false otherwise.
+ *
+ * @param {string} componentPath Absolute or relative path to component source
+ * @param {string} outputPath Absolute path to JSON output
+ */
+const isOutputUpToDate = (componentPath, outputPath) => {
+  if (!existsSync(outputPath)) return false;
+
+  try {
+    const srcStat = statSync(componentPath);
+    const outStat = statSync(outputPath);
+
+    return outStat.mtimeMs >= srcStat.mtimeMs;
+  } catch (_err) {
+    return false;
+  }
+};
+
+/**
+ * Generate docs for a component only when the output is missing or stale.
+ * Handles building the relative parse path and skips work when safe.
+ */
+const generateIfNeeded = (componentPath, outputPath) => {
+  const parsePath = relative(__dirname, componentPath);
+  if (isOutputUpToDate(parsePath, outputPath)) return;
+
+  parseAndWriteDocs(parsePath, outputPath);
 };
 
 /**
@@ -51,7 +136,13 @@ const parseAndWriteDocs = (componentPath, outputPath) => {
  * @returns The doc without any functions
  */
 const removeNonComponents = doc => {
-  doc = doc.filter(item => item.displayName.match(/^[A-Z]/));
+  doc = doc.filter(item => {
+    return Boolean(
+      item &&
+        typeof item.displayName === "string" &&
+        /^[A-Z]/.test(item.displayName),
+    );
+  });
 
   return doc;
 };
@@ -89,6 +180,14 @@ const removeDeclarations = doc => {
 };
 
 /**
+ * Combine all cleaning steps for documentation into a single function.
+ *
+ * @param {unknown} doc
+ * @returns cleaned doc
+ */
+const cleanDoc = doc => removeNonComponents(removeDeclarations(doc));
+
+/**
  * Takes in 3 pieces of information (component directory, output directory, and componentname) and builds a standard path object from it.
  *
  * The pattern is currently to have a directory in the components directory that matches the component name.
@@ -104,21 +203,55 @@ const buildPaths = (
   componentName,
   tack = "",
 ) => {
-  const componentPath = `${baseComponentDir}/${componentName}/${componentName}.tsx`;
-  const outputPath = `${baseOutputDir}/${componentName}/${componentName}.props${tack}.json`;
+  const componentPath = join(
+    baseComponentDir,
+    componentName,
+    `${componentName}.tsx`,
+  );
+  const outputPath = join(
+    baseOutputDir,
+    componentName,
+    `${componentName}.props${tack}.json`,
+  );
 
   return { componentPath, outputPath };
 };
 
 /**
- * In a library world, these would be provided at run-time for more reusability but this script is hyper-specific for now.
+ * Build paths for V2 (rebuilt) components. V2 files follow the naming pattern
+ * <Component>/<Component>.rebuilt.tsx and we output to a distinct folder
+ * <Component>V2/<Component>V2.props.json so it won't interfere with the
+ * existing site UI until it's ready to consume V2 docs.
  *
- * With these as relative paths, we also need to make sure we build from the correct location. An
- * improvement in the future would be take in the location of the script, and work from there instead (__dirname in the old world).
+ * @param {string} baseComponentDir
+ * @param {string} baseOutputDir
+ * @param {string} componentName
+ * @returns {{componentPath: string, outputPath: string}}
  */
-const baseComponentDir = `../components/src`;
-const baseMobileComponentDir = `../components-native/src`;
-const baseOutputDir = "./src/content";
+const buildV2Paths = (baseComponentDir, baseOutputDir, componentName) => {
+  const componentPath = join(
+    baseComponentDir,
+    componentName,
+    `${componentName}.rebuilt.tsx`,
+  );
+  const outputPath = join(
+    baseOutputDir,
+    `${componentName}V2`,
+    `${componentName}V2.props.json`,
+  );
+
+  return { componentPath, outputPath };
+};
+
+/**
+ * Resolve base directories relative to this script so the generator can be
+ * executed from any working directory.
+ */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const baseComponentDir = resolve(__dirname, "../components/src");
+const baseMobileComponentDir = resolve(__dirname, "../components-native/src");
+const baseOutputDir = resolve(__dirname, "./src/content");
 
 const buildComponentDocs = name => {
   const { componentPath, outputPath } = buildPaths(
@@ -126,7 +259,7 @@ const buildComponentDocs = name => {
     baseOutputDir,
     name,
   );
-  parseAndWriteDocs(componentPath, outputPath);
+  generateIfNeeded(componentPath, outputPath);
 };
 
 const buildMobileComponentDocs = name => {
@@ -136,17 +269,39 @@ const buildMobileComponentDocs = name => {
     name,
     "-mobile",
   );
-  parseAndWriteDocs(componentPath, outputPath);
+  generateIfNeeded(componentPath, outputPath);
 };
 
 ListOfGeneratedWebComponents.forEach(buildComponentDocs);
-
 ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
 
-// Custom generation for components that don't follow the standard
-// <Component>/<Component>.tsx convention.
-// Autocomplete v2 (rebuilt) lives alongside v1 but uses a different filename.
-parseAndWriteDocs(
-  `${baseComponentDir}/Autocomplete/Autocomplete.rebuilt.tsx`,
-  `${baseOutputDir}/AutocompleteV2/AutocompleteV2.props.json`,
-);
+/**
+ * Additionally, auto-detect and generate docs for any V2 (rebuilt) web components
+ * without needing to hardcode them. This sets up the content files now so the
+ * site can display them when the UI is ready.
+ */
+const buildWebComponentDocsV2 = name => {
+  const { componentPath, outputPath } = buildV2Paths(
+    baseComponentDir,
+    baseOutputDir,
+    name,
+  );
+
+  if (existsSync(componentPath)) {
+    generateIfNeeded(componentPath, outputPath);
+  }
+};
+
+ListOfGeneratedWebComponents.forEach(buildWebComponentDocsV2);
+
+// Print a concise summary at the end for clarity
+if (stats.written === 0) {
+  console.log("No changes detected. Component docs are up-to-date.");
+} else {
+  console.log(
+    `Generated/updated ${stats.written} file(s). Parsed ${stats.parsed} component(s).`,
+  );
+  stats.writtenFiles.forEach(file => {
+    console.log(" -", file);
+  });
+}
