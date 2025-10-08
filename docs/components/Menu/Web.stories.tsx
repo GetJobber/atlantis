@@ -213,7 +213,6 @@ export const Composable = () => {
                 <StatusIndicator status="critical" />
               </Menu.Item>
             </Menu.Section>
-            <Menu.Separator />
             <Menu.Section>
               <Menu.Header>
                 <Menu.HeaderLabel>Misc</Menu.HeaderLabel>

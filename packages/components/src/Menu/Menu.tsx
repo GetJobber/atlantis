@@ -259,10 +259,7 @@ export function MenuLegacy({
                     {items?.map((item, key: number) => (
                       <div
                         key={key}
-                        className={classnames(
-                          styles.section,
-                          styles.sectionBorder,
-                        )}
+                        className={classnames(styles.legacySection)}
                       >
                         {item.header && (
                           <SectionHeader
@@ -583,11 +580,7 @@ function MenuSectionComposable({
   return (
     <AriaMenuSection
       aria-label={ariaLabel}
-      className={classnames(
-        styles.section,
-        styles.ariaSection,
-        UNSAFE_className,
-      )}
+      className={classnames(styles.ariaSection, UNSAFE_className)}
       style={UNSAFE_style}
     >
       {children}

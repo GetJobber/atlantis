@@ -40,16 +40,26 @@
   }
 }
 
-.sectionBorder,
+.legacySection {
+  padding: var(--menu-space) 0;
+}
+
+.legacySection,
 .separator {
   border-bottom: var(--border-base) solid var(--color-border);
 }
 
-.sectionBorder:last-of-type {
+.legacySection:last-of-type {
+  padding-bottom: 0;
   border-bottom: none;
 }
 
+.legacySection:first-of-type {
+  padding-top: 0;
+}
+
 .separator {
+  margin: var(--space-small) 0;
   grid-column: 1 / -1;
 }
 
@@ -88,21 +98,20 @@
   grid-column-start: 1;
 }
 
+.ariaMenu .ariaSection:not(:first-child) {
+  margin-top: var(--space-small);
+}
+
+/* When a section follows a separator, avoid doubling vertical spacing.
+   Grid items don't collapse margins, so the section's top margin would add
+   to the separator's bottom margin. Remove the section margin in this case. */
+.ariaMenu .separator + .ariaSection {
+  margin-top: 0;
+}
+
 .ariaSectionHeader {
   grid-column: 1 / -1;
   grid-column-start: 1;
-}
-
-.section {
-  padding: var(--menu-space) 0;
-}
-
-.section:first-of-type {
-  padding-top: 0;
-}
-
-.section:last-of-type {
-  padding-bottom: 0;
 }
 
 .sectionHeader {
