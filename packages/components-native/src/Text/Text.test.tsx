@@ -151,6 +151,16 @@ it("renders text with underline styling", () => {
   expect(text.toJSON()).toMatchSnapshot();
 });
 
+it("supports nested Text children with mixed styles", () => {
+  const { getByText, toJSON } = render(
+    <Text>
+      Hello <Text emphasis="strong">World</Text>!
+    </Text>,
+  );
+  expect(getByText("World")).toBeDefined();
+  expect(toJSON()).toMatchSnapshot();
+});
+
 describe("UNSAFE_style", () => {
   it("applies custom styles via UNSAFE_style prop", () => {
     const customStyle = {

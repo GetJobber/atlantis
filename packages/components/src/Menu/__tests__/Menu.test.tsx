@@ -3,6 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Menu } from "..";
 import { Button } from "../../Button";
+import { withMockedViewport } from "../../testUtils/viewport";
 
 describe("Menu", () => {
   it("renders", () => {
@@ -338,5 +339,56 @@ it("should focus first action item from the menu when activated by keyboard", as
 
   await waitFor(() => {
     expect(allItems[0]).toHaveFocus();
+  });
+});
+
+describe("Menu max-height behavior", () => {
+  const items = [
+    {
+      actions: [
+        {
+          label: "One",
+        },
+        {
+          label: "Two",
+        },
+        {
+          label: "Three",
+        },
+      ],
+    },
+  ];
+
+  it("applies an inline max-height on large screens", async () => {
+    await withMockedViewport({ width: 1024, height: 800 }, async () => {
+      render(<Menu activator={<Button label="Menu" />} items={items} />);
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const menu = await screen.findByRole("menu");
+      await waitFor(() => {
+        // Ensure inline max-height is present with a px value
+        expect(menu).toHaveAttribute(
+          "style",
+          expect.stringMatching(/max-height:\s*\d+px/i),
+        );
+      });
+    });
+  });
+
+  it("does not apply inline max-height on small screens", async () => {
+    await withMockedViewport({ width: 360, height: 640 }, async () => {
+      render(<Menu activator={<Button label="Menu" />} items={items} />);
+
+      await userEvent.click(screen.getByRole("button"));
+
+      const menu = await screen.findByRole("menu");
+
+      // On small screens we omit the FloatingUI size middleware, so no inline max-height should be set
+      expect(menu).not.toHaveAttribute(
+        "style",
+        expect.stringMatching(/max-height\s*:/i),
+      );
+    });
   });
 });

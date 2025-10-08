@@ -1,4 +1,208 @@
-## Component customization
+import { Banner } from "@jobber/components";
+
+## Composable Version (Web Only)
+
+The Menu may be invoked with a subcomponent structure enabling a declarative
+style, greater customization and composability with other components.
+
+```
+<Menu>
+  <Menu.Trigger>
+    <Button>Trigger</Button>
+  </Menu.Trigger>
+  <Menu.Content>
+    <Menu.Item onClick={clickHandler("email")} textValue="Email">
+      <Menu.ItemLabel>Email</Menu.ItemLabel>
+      <Menu.ItemIcon name="email" />
+    </Menu.Item>
+
+    <PrivacyMask>
+      <Menu.Item onClick={clickHandler("sensitive")} textValue="Sensitive">
+        <Menu.ItemLabel>Sensitive</Menu.ItemLabel>
+      </Menu.Item>
+    </PrivacyMask>
+
+    <AuthCheck can="viewAdmin">
+      <Menu.Item onClick={clickHandler("admin")} textValue="Admin">
+        <Menu.ItemLabel>Admin</Menu.ItemLabel>
+        <Menu.ItemIcon name="lock" />
+      </Menu.Item>
+    </AuthCheck>
+  </Menu.Content>
+</Menu>
+```
+
+#### Sub Components
+
+**_Menu.Trigger (Required)_**
+
+An interactive element that will cause the Menu to open when clicked or
+interacted with via keyboard. The open behavior is handled internally, and no
+`onClick` is required on the provided component. A provided `Button` is purely
+for appearance, however there is still a requirement that whatever is given to
+Menu.Trigger must be an element with an interactive role.
+
+Clicking the trigger again, or clicking anywhere outside the Menu at all will
+close the Menu.
+
+**_Menu.Content (Required)_**
+
+A structural container element for the Menu's content which should consist of
+one or more `Menu.Item`s, and optional additional content.
+
+**_Menu.Item (Strongly recommended)_**
+
+The interactive, main element of a Menu.
+
+Each item must be provided an `onClick`, or a `href`\*. Provide a `textValue`
+for accessibility and type‑ahead behavior.
+
+Menu Items support default subcomponents that plug into the Menu grid:
+
+- **Menu.ItemLabel**: Renders the action label with our standard typography.
+  (responds to the destructive Menu.Item prop)
+- **Menu.ItemIcon**: Renders a leading icon with consistent sizing and spacing
+  (responds to the destructive Menu.Item prop)
+
+These defaults are placed in a strict order and align automatically via the
+Menu's parent grid (see “Layout and spacing” below). Using them is the easiest
+way to get correct spacing and alignment.
+
+If it is necessary to also adjust the _styles of the container_, `UNSAFE` props
+apply to the _container_ element. No access is provided to internal markup due
+to accessibility and behavior requirements.
+
+\*If being used for client side navigation such as TanStack Router, please
+consult with us first.
+
+**_Menu.Section (Optional)_**
+
+A structural/conceptual element to group your related Items together. Provides
+some default spacing that can be overriden with `UNSAFE`.
+
+**_Menu.Header (Optional)_**
+
+A presentational element primarily used to describe a group/section.
+
+For convenience it includes **Menu.HeaderLabel**, the default way to render
+header text with our standard menu heading typography.
+
+**_Menu.Separator (Optional)_**
+
+A presentational element primarily used to create visual separation between the
+groups. Can be used with sections, or with a "flat" Menu.
+
+Comes with a default appearance that can be overriden with `UNSAFE`.
+
+### Layout and spacing (subgrid)
+
+The Menu uses CSS Grid with `subgrid` on `Menu.Content` to control alignment
+across all rows. This allows us to reserve a leading column for icons only when
+**any item** includes an icon:
+
+- If at least one `Menu.Item` uses `Menu.ItemIcon`, the grid creates and aligns
+  a leading icon column for every item.
+- If no items include `Menu.ItemIcon`, the grid collapses that column and all
+  labels move flush left.
+
+This behavior is why the order of the default subcomponents is predetermined and
+why mixing defaults with custom elements can produce unexpected results. This
+also means that the order of the provided default `Menu.ItemLabel` and
+`Menu.ItemIcon` in the JSX is incosequential. They will be placed where they
+belong irrespective of the order.
+
+### Custom content (advanced)
+
+When you need full control over an item's inner content, do not use the default
+subcomponents:
+
+- Use a text component such as `Typography` directly instead of
+  `Menu.ItemLabel`.
+- Use `Icon` directly instead of `Menu.ItemIcon` (e.g., to place an icon on the
+  right).
+
+Because the grid lives on `Menu.Content`, you may also need to override the
+layout there to match your custom content. Provide your own column definition
+via `UNSAFE_style` or `UNSAFE_className` on `Menu.Content`.
+
+Example: label on the left, custom element on the right, no icon column:
+
+```
+<Menu>
+  <Menu.Trigger>
+    <Button>Custom layout</Button>
+  </Menu.Trigger>
+  <Menu.Content
+    UNSAFE_style={{
+      display: 'grid',
+      gridTemplateColumns: '1fr auto'
+    }}
+  >
+    <Menu.Item onClick={clickHandler('email')} textValue="Email">
+      <Typography element="span" fontWeight="semiBold">Email</Typography>
+      <StatusIndicator status="critical" />
+    </Menu.Item>
+  </Menu.Content>
+</Menu>
+```
+
+<Banner type="notice" dismissible={false}>
+Tip: If your content simply needs to be full width, giving it a `grid-column: 1/-1` can achieve
+this result without additional changes to the item container, nor parent.
+
+</Banner>
+
+<Banner type="warning" dismissible={false}>
+
+Avoid mixing default subcomponents with custom content within the same
+composition. The grid reserves space based on the presence of default elements.
+Combining them can lead to unexpected spacing or alignment.
+
+Keep in mind the mobile bottom-sheet like appearance that has notably different
+dimensions when customizing content.
+
+</Banner>
+
+## Data Hierarchy Version
+
+```
+<Menu
+    items={[
+      {
+        actions: [
+          {
+            label: "Edit",
+            icon: "edit",
+            onClick: () => {
+              alert("✏️");
+            },
+          },
+        ],
+      },
+      {
+        header: "Send as...",
+        actions: [
+          {
+            label: "Text message",
+            icon: "sms",
+            onClick: () => {
+              alert("📱");
+            },
+          },
+          {
+            label: "Email",
+            icon: "email",
+            onClick: () => {
+              alert("📨");
+            },
+          },
+        ],
+      },
+    ]}
+  />
+```
+
+### Component customization
 
 ### UNSAFE\_ props (advanced usage)
 

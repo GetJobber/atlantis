@@ -7,6 +7,7 @@ import identity from "lodash/identity";
 import type sizes from "./ModalSizes.module.css";
 import { useModal } from "./useModal";
 import type { ModalContextType } from "./Modal.types";
+import { MODAL_HEADER_ID } from "./constants";
 
 export const ModalContext = createContext<ModalContextType>({
   open: false,
@@ -27,6 +28,7 @@ export interface ModalProviderProps {
   readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
   readonly dismissible?: boolean;
   readonly modalLabelledBy?: string;
+  readonly ariaLabel?: string;
 }
 
 export function ModalProvider({
@@ -36,7 +38,8 @@ export function ModalProvider({
   onRequestClose = noop,
   activatorRef: refProp,
   dismissible = true,
-  modalLabelledBy = "ATL-Modal-Header",
+  modalLabelledBy = MODAL_HEADER_ID,
+  ariaLabel,
 }: ModalProviderProps) {
   const startedInsideRef = useRef<boolean>(true);
   const {
@@ -65,6 +68,7 @@ export function ModalProvider({
         floatingNodeId: nodeId,
         dismissible,
         modalLabelledBy,
+        ariaLabel,
         getFloatingProps,
         startedInsideRef,
       }}

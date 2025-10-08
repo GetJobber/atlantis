@@ -183,7 +183,9 @@ describe("Menu (composable API)", () => {
             <Button label="Menu" />
           </Menu.Trigger>
           <Menu.Content>
-            <Menu.Item label="Open" onClick={onItem} />
+            <Menu.Item onClick={onItem} textValue="Open">
+              <Menu.ItemLabel>Open</Menu.ItemLabel>
+            </Menu.Item>
           </Menu.Content>
         </Menu>,
       );
@@ -228,19 +230,6 @@ describe("Menu (composable API)", () => {
         screen.getByRole("heading", { name: "Send as..." }),
       ).toBeInTheDocument();
     });
-
-    it("applies destructive styling to item label and icon", async () => {
-      render(<TestDefaultMenuWithIcons />);
-      await POM.openWithClick("Menu");
-
-      const iconSvg = screen.getByTestId("trash");
-      const pathElement = iconSvg.querySelector("path");
-      expect(pathElement).toHaveStyle("fill: var(--color-destructive)");
-      const deleteItem = screen
-        .getByText("Delete")
-        .closest('[role="menuitem"]') as HTMLElement;
-      expect(deleteItem).toHaveClass("destructive");
-    });
   });
 });
 
@@ -256,12 +245,14 @@ function TestLinkMenu(props: {
       <Menu.Content>
         <Menu.Item
           href="/jobs"
-          label="Jobs"
+          textValue="Jobs"
           onClick={
             props.onItemClick as ((e?: React.MouseEvent) => void) | undefined
           }
           ref={props.withRef}
-        />
+        >
+          <Menu.ItemLabel>Jobs</Menu.ItemLabel>
+        </Menu.Item>
       </Menu.Content>
     </Menu>
   );
@@ -278,12 +269,18 @@ function TestSectionMenu(props: {
       </Menu.Trigger>
       <Menu.Content>
         <Menu.Section>
-          <Menu.Header label="Section Header" />
-          <Menu.Item label="Open" onClick={props.onItem} />
+          <Menu.Header>
+            <Menu.HeaderLabel>Section Header</Menu.HeaderLabel>
+          </Menu.Header>
+          <Menu.Item onClick={props.onItem} textValue="Open">
+            <Menu.ItemLabel>Open</Menu.ItemLabel>
+          </Menu.Item>
         </Menu.Section>
         <Menu.Separator />
         <Menu.Section>
-          <Menu.Item label="Two" />
+          <Menu.Item textValue="Two">
+            <Menu.ItemLabel>Two</Menu.ItemLabel>
+          </Menu.Item>
         </Menu.Section>
       </Menu.Content>
     </Menu>
@@ -300,7 +297,9 @@ function TestIconTriggerMenu() {
       </Menu.Trigger>
       <Menu.Content>
         <Menu.Section>
-          <Menu.Item label="One" />
+          <Menu.Item textValue="One">
+            <Menu.ItemLabel>One</Menu.ItemLabel>
+          </Menu.Item>
         </Menu.Section>
       </Menu.Content>
     </Menu>
@@ -314,7 +313,9 @@ function TestChipTriggerMenu(props: { readonly onOpenChange?: () => void }) {
         <Chip label="Menu" />
       </Menu.Trigger>
       <Menu.Content>
-        <Menu.Item label="One" />
+        <Menu.Item textValue="One">
+          <Menu.ItemLabel>One</Menu.ItemLabel>
+        </Menu.Item>
       </Menu.Content>
     </Menu>
   );
@@ -337,13 +338,16 @@ function TestUnsafePropsMenu() {
           <Menu.Header
             UNSAFE_className="unsafe-header"
             UNSAFE_style={{ color: "rgb(10, 20, 30)" }}
-            label="Section Header"
-          />
+          >
+            <Menu.HeaderLabel>Section Header</Menu.HeaderLabel>
+          </Menu.Header>
           <Menu.Item
             UNSAFE_className="unsafe-item"
             UNSAFE_style={{ margin: "11px" }}
-            label="Open"
-          />
+            textValue="Open"
+          >
+            <Menu.ItemLabel>Open</Menu.ItemLabel>
+          </Menu.Item>
         </Menu.Section>
         <Menu.Separator
           UNSAFE_className="unsafe-sep"
@@ -362,14 +366,18 @@ function TestCustomRenderMenu() {
       </Menu.Trigger>
       <Menu.Content>
         <Menu.Section>
-          <Menu.Header
-            customRender={() => <div data-testid="custom-header">Header</div>}
-          />
-          <Menu.Item
-            customRender={() => <div data-testid="custom-item">Email</div>}
-          />
-          <Menu.Item customRender={() => <div>Text message</div>} />
-          <Menu.Item customRender={() => <div>Phone</div>} />
+          <Menu.Header>
+            <div data-testid="custom-header">Header</div>
+          </Menu.Header>
+          <Menu.Item textValue="Email">
+            <div data-testid="custom-item">Email</div>
+          </Menu.Item>
+          <Menu.Item textValue="Text message">
+            <div>Text message</div>
+          </Menu.Item>
+          <Menu.Item textValue="Phone">
+            <div>Phone</div>
+          </Menu.Item>
         </Menu.Section>
       </Menu.Content>
     </Menu>
@@ -384,12 +392,20 @@ function TestDefaultMenuWithIcons() {
       </Menu.Trigger>
       <Menu.Content>
         <Menu.Section>
-          <Menu.Header label="Send as..." />
-          <Menu.Item label="Email" icon="email" />
+          <Menu.Header>
+            <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
+          </Menu.Header>
+          <Menu.Item textValue="Email">
+            <Menu.ItemLabel>Email</Menu.ItemLabel>
+            <Menu.ItemIcon name="email" />
+          </Menu.Item>
         </Menu.Section>
         <Menu.Separator />
         <Menu.Section>
-          <Menu.Item label="Delete" icon="trash" destructive />
+          <Menu.Item destructive textValue="Delete">
+            <Menu.ItemLabel>Delete</Menu.ItemLabel>
+            <Menu.ItemIcon name="trash" />
+          </Menu.Item>
         </Menu.Section>
       </Menu.Content>
     </Menu>

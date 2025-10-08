@@ -3,6 +3,7 @@ import React, {
   createContext,
   useContext,
   useId,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -42,6 +43,7 @@ import type {
   MenuContentComposableProps,
   MenuHeaderComposableProps,
   MenuItemComposableProps,
+  MenuItemIconComposableProps,
   MenuLegacyProps,
   MenuMobileUnderlayProps,
   MenuSectionComposableProps,
@@ -144,6 +146,40 @@ export function MenuLegacy({
   // Ensure focus returns to the activator when closed
   useRefocusOnActivator(visible);
 
+  const isLargeScreen = width >= SMALL_SCREEN_BREAKPOINT;
+  const middleware = useMemo(() => {
+    if (isLargeScreen) {
+      return [
+        offset(MENU_OFFSET),
+        flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
+        size({
+          apply({ availableHeight, elements }) {
+            // The inner element is the scrollable menu that requires the max height
+            const menuElement = elements.floating.querySelector(
+              '[role="menu"]',
+            ) as HTMLElement;
+
+            if (menuElement) {
+              const viewportHeight = window.innerHeight;
+              const maxHeightVh =
+                (viewportHeight * MENU_MAX_HEIGHT_PERCENTAGE) / 100;
+
+              const maxHeight = calculateMaxHeight(availableHeight, {
+                maxHeight: maxHeightVh,
+              });
+
+              Object.assign(menuElement.style, {
+                maxHeight: `${maxHeight}px`,
+              });
+            }
+          },
+        }),
+      ];
+    }
+
+    return [];
+  }, [isLargeScreen]);
+
   const { refs, floatingStyles, context } = useFloating({
     open: visible,
     onOpenChange: (isOpen: boolean) => {
@@ -151,32 +187,7 @@ export function MenuLegacy({
     },
     placement: "bottom-start",
     strategy: "fixed",
-    middleware: [
-      offset(MENU_OFFSET),
-      flip({ fallbackPlacements: ["bottom-end", "top-start", "top-end"] }),
-      size({
-        apply({ availableHeight, elements }) {
-          // The inner element is the scrollable menu that requires the max height
-          const menuElement = elements.floating.querySelector(
-            '[role="menu"]',
-          ) as HTMLElement;
-
-          if (menuElement) {
-            const viewportHeight = window.innerHeight;
-            const maxHeightVh =
-              (viewportHeight * MENU_MAX_HEIGHT_PERCENTAGE) / 100;
-
-            const maxHeight = calculateMaxHeight(availableHeight, {
-              maxHeight: maxHeightVh,
-            });
-
-            Object.assign(menuElement.style, {
-              maxHeight: `${maxHeight}px`,
-            });
-          }
-        },
-      }),
-    ],
+    middleware,
     elements: {
       reference: referenceElement,
     },
@@ -194,12 +205,11 @@ export function MenuLegacy({
     [dismiss, listNavigation],
   );
 
-  const positionAttributes =
-    width >= SMALL_SCREEN_BREAKPOINT
-      ? {
-          style: floatingStyles,
-        }
-      : {};
+  const positionAttributes = isLargeScreen
+    ? {
+        style: floatingStyles,
+      }
+    : {};
 
   if (!activator) {
     activator = (
@@ -215,7 +225,7 @@ export function MenuLegacy({
   let itemIndexCounter = 0;
 
   const renderedSections = items?.map((item, key: number) => (
-    <div key={key} className={classnames(styles.section, styles.sectionBorder)}>
+    <div key={key} className={styles.legacySection}>
       {item.header && (
         <SectionHeader
           text={item.header}
@@ -525,7 +535,11 @@ function MenuContentComposable({
   return (
     <>
       {/* Keep Popover mounted while exiting, but do not animate it. */}
-      <AriaPopover isExiting={animation === "hidden"} placement="bottom start">
+      <AriaPopover
+        isExiting={animation === "hidden"}
+        placement="bottom start"
+        offset={MENU_OFFSET}
+      >
         {({ placement }) => {
           const directionModifier = placement?.includes("bottom") ? -1 : 1;
           const variants = isMobile
@@ -544,7 +558,11 @@ function MenuContentComposable({
           return (
             <MotionMenu
               key={`menu-content-${placement ?? "pending"}`}
-              className={classnames(styles.menu, UNSAFE_className)}
+              className={classnames(
+                styles.menu,
+                styles.ariaMenu,
+                UNSAFE_className,
+              )}
               style={UNSAFE_style}
               variants={variants}
               initial="hidden"
@@ -608,7 +626,7 @@ function MenuSectionComposable({
   return (
     <AriaMenuSection
       aria-label={ariaLabel}
-      className={classnames(styles.section, UNSAFE_className)}
+      className={classnames(styles.ariaSection, UNSAFE_className)}
       style={UNSAFE_style}
     >
       {children}
@@ -619,18 +637,16 @@ function MenuSectionComposable({
 function MenuHeaderComposable(props: MenuHeaderComposableProps) {
   const { UNSAFE_style, UNSAFE_className } = props;
 
-  const isCustom = props.customRender !== undefined;
-
   return (
     <AriaHeader
-      className={classnames(styles.sectionHeader, UNSAFE_className)}
+      className={classnames(
+        styles.sectionHeader,
+        styles.ariaSectionHeader,
+        UNSAFE_className,
+      )}
       style={UNSAFE_style}
     >
-      {isCustom ? (
-        props.customRender()
-      ) : (
-        <DefaultHeaderContent label={props.label} />
-      )}
+      {props.children}
     </AriaHeader>
   );
 }
@@ -641,25 +657,9 @@ const MenuItemComposable = React.forwardRef<
 >(function MenuItemComposable(props: MenuItemComposableProps, ref) {
   const { UNSAFE_style, UNSAFE_className } = props;
 
-  const isCustom = props.customRender !== undefined;
-  const computedTextValue = props.label ?? props.textValue ?? undefined;
-
-  const content = isCustom ? (
-    props.customRender()
-  ) : (
-    <DefaultItemContent
-      label={props.label}
-      icon={props.icon}
-      iconColor={props.iconColor}
-      destructive={props.destructive}
-    />
-  );
-
   const className = classnames(
     styles.action,
-    {
-      [styles.destructive]: !isCustom && props.destructive,
-    },
+    styles.ariaItem,
     UNSAFE_className,
   );
 
@@ -671,13 +671,15 @@ const MenuItemComposable = React.forwardRef<
         ref={ref}
         className={className}
         style={UNSAFE_style}
-        textValue={computedTextValue}
+        textValue={props.textValue}
         href={href}
         target={target}
         rel={rel}
         onClick={onClick as ((e: React.MouseEvent) => void) | undefined}
       >
-        {content}
+        <MenuItemContext.Provider value={{ destructive: props.destructive }}>
+          {props.children}
+        </MenuItemContext.Provider>
       </AriaMenuItem>
     );
   }
@@ -687,16 +689,56 @@ const MenuItemComposable = React.forwardRef<
       ref={ref}
       className={className}
       style={UNSAFE_style}
-      textValue={computedTextValue}
+      textValue={props.textValue}
       onAction={() => {
         // Zero-arg activation for non-link items
         props.onClick?.();
       }}
     >
-      {content}
+      <MenuItemContext.Provider value={{ destructive: props.destructive }}>
+        {props.children}
+      </MenuItemContext.Provider>
     </AriaMenuItem>
   );
 });
+
+const MenuItemContext = createContext<{ destructive?: boolean } | null>(null);
+
+function useMenuItemContext(): { destructive?: boolean } {
+  const ctx = useContext(MenuItemContext);
+
+  return ctx ?? {};
+}
+
+function MenuItemIconComposable(props: MenuItemIconComposableProps) {
+  const { destructive } = useMenuItemContext();
+
+  return (
+    <div data-menu-slot="icon">
+      <Icon {...props} color={destructive ? "destructive" : props.color} />
+    </div>
+  );
+}
+
+function MenuItemLabelComposable(props: { readonly children: string }) {
+  const { destructive } = useMenuItemContext();
+
+  return (
+    <div data-menu-slot="label">
+      <Typography
+        element="span"
+        fontWeight="semiBold"
+        textColor={destructive ? "destructive" : "text"}
+      >
+        {props.children}
+      </Typography>
+    </div>
+  );
+}
+
+function MenuHeaderLabel(props: { readonly children: string }) {
+  return <DefaultHeaderContent label={props.children} />;
+}
 
 Menu.Section = MenuSectionComposable;
 Menu.Header = MenuHeaderComposable;
@@ -704,3 +746,6 @@ Menu.Item = MenuItemComposable;
 Menu.Trigger = MenuTriggerComposable;
 Menu.Content = MenuContentComposable;
 Menu.Separator = MenuSeparatorComposable;
+Menu.ItemIcon = MenuItemIconComposable;
+Menu.ItemLabel = MenuItemLabelComposable;
+Menu.HeaderLabel = MenuHeaderLabel;
