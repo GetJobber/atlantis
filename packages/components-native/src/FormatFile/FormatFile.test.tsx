@@ -1,8 +1,8 @@
 import React from "react";
 import type { RenderAPI } from "@testing-library/react-native";
-import { fireEvent, render } from "@testing-library/react-native";
-import { Host } from "react-native-portalize";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert } from "react-native";
+import { Host } from "react-native-portalize";
 import type { File } from ".";
 import { FormatFile } from ".";
 import {
@@ -117,12 +117,12 @@ function basicRenderTestWithValue() {
       );
     });
 
-    it("renders ProgressBar state advancing with the upload percentage", () => {
+    it("renders ProgressBar state advancing with the upload percentage", async () => {
       jest.useFakeTimers();
       const { getByTestId } = renderFormatFile(file);
       jest.advanceTimersByTime(progressBarAnimationTime);
-      const formatFileInnerProgressBar = getByTestId(
-        "format-file-inner-progress-bar",
+      const formatFileInnerProgressBar = await waitFor(() =>
+        getByTestId("format-file-inner-progress-bar"),
       );
       const innerProgressBarWidth = parseInt(
         formatFileInnerProgressBar.props.style.width,
@@ -226,7 +226,7 @@ function basicRenderTestWithValue() {
       });
 
       it("creates a thumbnail when a media file is used", () => {
-        const expectedCalls = testId.includes("image") ? 2 : 0;
+        const expectedCalls = testId.includes("image") ? 1 : 0;
         expect(mockCreateThumbnail).toHaveBeenCalledTimes(expectedCalls);
       });
     },

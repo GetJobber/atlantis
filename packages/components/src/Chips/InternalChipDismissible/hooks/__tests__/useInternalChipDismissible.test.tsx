@@ -1,6 +1,6 @@
 import type { MouseEvent } from "react";
 import React from "react";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { useInternalChipDismissible } from "..";
 import { Chip } from "../../..";
 
