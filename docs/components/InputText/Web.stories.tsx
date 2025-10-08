@@ -397,3 +397,54 @@ export const Controlled = ControlledTemplate.bind({});
 Controlled.args = {
   placeholder: "Hakunamatata",
 };
+
+const ToolbarVisibilityTemplate = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  return (
+    <Box gap="base">
+      <Button label="Reset Submit" onClick={() => setSubmitted(false)} />
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          setSubmitted(true);
+        }}
+      >
+        <Box gap="base">
+          {submitted && <p>Submitted</p>}
+          <InputText
+            placeholder="Hakunamatata"
+            toolbar={
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Button
+                  label="Rewrite"
+                  size="small"
+                  icon="sparkles"
+                  fullWidth={false}
+                />
+                <Button
+                  ariaLabel="Undo"
+                  size="small"
+                  icon="redo"
+                  type="tertiary"
+                  fullWidth={false}
+                />
+              </div>
+            }
+            toolbarVisibility="while-editing"
+            multiline
+          />
+          <button type="submit">Submit</button>
+        </Box>
+      </form>
+    </Box>
+  );
+};
+
+export const ToolbarVisibility = ToolbarVisibilityTemplate.bind({});
