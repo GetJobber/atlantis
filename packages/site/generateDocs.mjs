@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { dirname } from "path";
 import { parse } from "react-docgen-typescript";
 import {
@@ -143,10 +143,14 @@ ListOfGeneratedWebComponents.forEach(buildComponentDocs);
 
 ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
 
-// Custom generation for components that don't follow the standard
-// <Component>/<Component>.tsx convention.
-// Autocomplete v2 (rebuilt) lives alongside v1 but uses a different filename.
-parseAndWriteDocs(
-  `${baseComponentDir}/Autocomplete/Autocomplete.rebuilt.tsx`,
-  `${baseOutputDir}/AutocompleteV2/AutocompleteV2.props.json`,
-);
+// V2 auto-detection: if a rebuilt file exists, emit separate V2 props
+const buildWebComponentDocsV2 = name => {
+  const rebuiltPath = `${baseComponentDir}/${name}/${name}.rebuilt.tsx`;
+  const v2OutputPath = `${baseOutputDir}/${name}V2/${name}V2.props.json`;
+
+  if (existsSync(rebuiltPath)) {
+    parseAndWriteDocs(rebuiltPath, v2OutputPath);
+  }
+};
+
+ListOfGeneratedWebComponents.forEach(buildWebComponentDocsV2);

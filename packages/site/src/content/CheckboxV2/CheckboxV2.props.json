@@ -1,0 +1,205 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/Checkbox/Checkbox.rebuilt.tsx",
+    "description": "",
+    "displayName": "CheckboxRebuilt",
+    "methods": [],
+    "props": {
+      "checked": {
+        "defaultValue": null,
+        "description": "Determines if the checkbox is checked or not.",
+        "name": "checked",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "defaultChecked": {
+        "defaultValue": null,
+        "description": "Initial checked value of the checkbox. Only use this when you need to\npre-populate the checked attribute that is not controlled by the component's\nstate. If a state is controlling it, use the `checked` prop instead.",
+        "name": "defaultChecked",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Disables the checkbox.",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "indeterminate": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "When `true` the checkbox to appears in indeterminate.",
+        "name": "indeterminate",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "Checkbox input name",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Value of the checkbox.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "ID for the checkbox input",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Called when the checkbox is focused",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Called when the checkbox loses focus",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Whether the checkbox is invalid",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "Label that shows up beside the checkbox.\nString will be rendered with the default markup.\nReactElement will be rendered with provided positionining.",
+        "name": "label",
+        "required": false,
+        "type": {
+          "name": "string | ReactElement<any, string | JSXElementConstructor<any>>"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Additional description of the checkbox.\nString will be rendered with the default markup.\nReactElement will be rendered with provided positioning.",
+        "name": "description",
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Called when the checkbox value changes.\nIncludes the change event as a second argument.",
+        "name": "onChange",
+        "required": false,
+        "type": {
+          "name": "(newValue: boolean, event: ChangeEvent<HTMLInputElement>) => void"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "required": true,
+        "type": {
+          "name": "2"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<unknown>"
+        }
+      },
+      "key": {
+        "defaultValue": null,
+        "description": "",
+        "name": "key",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "Attributes"
+        },
+        "required": false,
+        "type": {
+          "name": "Key"
+        }
+      }
+    }
+  }
+]
