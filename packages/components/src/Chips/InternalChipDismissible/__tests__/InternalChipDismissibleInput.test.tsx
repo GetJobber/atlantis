@@ -1,6 +1,6 @@
 import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
 import type { ChipProps } from "../../Chip";
 
