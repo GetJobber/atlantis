@@ -70,9 +70,9 @@ function ContentOverlayInternal(
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
-  const overlayHeader = useRef<View>();
+  const overlayHeader = useRef<View | null>(null);
 
-  const internalRef = useRef<Modalize>();
+  const internalRef = useRef<Modalize | null>(null);
   const [modalizeMethods, setModalizeMethods] = useState<ContentOverlayRef>();
   const callbackInternalRef = useCallback((instance: Modalize) => {
     if (instance && !internalRef.current) {
@@ -243,7 +243,6 @@ function ContentOverlayInternal(
           {shouldShowDismiss && (
             <View
               style={styles.dismissButton}
-              // @ts-expect-error tsc-ci
               ref={overlayHeader}
               accessibilityLabel={accessibilityLabel || closeOverlayA11YLabel}
               accessible={true}
