@@ -114,52 +114,57 @@ belong irrespective of the order.
 ### Custom content (advanced)
 
 When you need full control over an item's inner content, do not use the default
-subcomponents:
+subcomponents. There are two recommended approaches depending on scope:
+
+1. Per‑item custom layout (easiest)
 
 - Use a text component such as `Typography` directly instead of
   `Menu.ItemLabel`.
 - Use `Icon` directly instead of `Menu.ItemIcon` (e.g., to place an icon on the
   right).
-
-Because the grid lives on `Menu.Content`, you may also need to override the
-layout there to match your custom content. Provide your own column definition
-via `UNSAFE_style` or `UNSAFE_className` on `Menu.Content`.
-
-Example: label on the left, custom element on the right, no icon column:
+- Apply your layout to the item container using `UNSAFE_style` or
+  `UNSAFE_className`. A simple, high‑success recipe is flex:
 
 ```
-<Menu>
-  <Menu.Trigger>
-    <Button>Custom layout</Button>
-  </Menu.Trigger>
-  <Menu.Content
-    UNSAFE_style={{
-      display: 'grid',
-      gridTemplateColumns: '1fr auto'
-    }}
-  >
-    <Menu.Item onClick={clickHandler('email')} textValue="Email">
-      <Typography element="span" fontWeight="semiBold">Email</Typography>
-      <StatusIndicator status="critical" />
-    </Menu.Item>
-  </Menu.Content>
-</Menu>
+<Menu.Item
+  textValue="Email"
+  UNSAFE_style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 'var(--space-small)'
+  }}
+>
+  <Typography element="span" fontWeight="semiBold">Email</Typography>
+  <StatusIndicator status="critical" />
+</Menu.Item>
 ```
 
-<Banner type="notice" dismissible={false}>
-Tip: If your content simply needs to be full width, giving it a `grid-column: 1/-1` can achieve
-this result without additional changes to the item container, nor parent.
+This breaks the item out of the subgrid layout and lets you arrange content as
+desired.
 
-</Banner>
+2. Whole‑menu custom layout (advanced)
+
+If every item is custom, override the grid on `Menu.Content` and provide your
+own columns. For example, a simple single‑column stack:
+
+```
+<Menu.Content UNSAFE_style={{ display: 'grid', gridTemplateColumns: '1fr' }}>
+  {/* all items use custom content; avoid Menu.ItemLabel/Menu.ItemIcon */}
+</Menu.Content>
+```
+
+Notes and caveats
 
 <Banner type="warning" dismissible={false}>
 
-Avoid mixing default subcomponents with custom content within the same
-composition. The grid reserves space based on the presence of default elements.
-Combining them can lead to unexpected spacing or alignment.
+Avoid mixing default subcomponents with custom content within the same item or
+even menu. The parent grid reserves space based on the presence of default
+elements and can lead to unexpected spacing or alignment when combined with
+custom layouts.
 
-Keep in mind the mobile bottom-sheet like appearance that has notably different
-dimensions when customizing content.
+Also remember the mobile bottom‑sheet presentation has different dimensions;
+test custom layouts on small screens.
 
 </Banner>
 

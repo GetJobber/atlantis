@@ -45,6 +45,19 @@ export interface MenuComposableProps extends MenuBaseProps {
    * The second child must be the Menu.Content
    */
   readonly children: ReactNode;
+
+  /**
+   * Used to make the menu a Controlled Component.
+   */
+  readonly open?: boolean;
+
+  /**
+   * This sets the default open state of the menu.
+   * By default the menu is closed.
+   * For use when the component is being used as an Uncontrolled Component.
+   */
+  readonly defaultOpen?: boolean;
+
   /**
    * Callback when the menu is opened or closed
    */
