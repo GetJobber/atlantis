@@ -6,6 +6,7 @@ import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Box } from "@jobber/components/Box";
 import { FormFieldLabel } from "@jobber/components/FormField";
+import { Stack } from "@jobber/components/Stack";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -410,8 +411,36 @@ const ToolbarVisibilityTemplate = () => {
           setSubmitted(true);
         }}
       >
-        <Box gap="base">
+        <Stack gap="base">
           {submitted && <p>Submitted</p>}
+          <InputText
+            placeholder="Hakunamatata"
+            toolbar={
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Button
+                  label="Rewrite"
+                  size="small"
+                  icon="sparkles"
+                  fullWidth={false}
+                />
+                <Button
+                  ariaLabel="Undo"
+                  size="small"
+                  icon="redo"
+                  type="tertiary"
+                  fullWidth={false}
+                />
+              </div>
+            }
+            toolbarVisibility="while-editing"
+          />
+
           <InputText
             placeholder="Hakunamatata"
             toolbar={
@@ -441,7 +470,7 @@ const ToolbarVisibilityTemplate = () => {
             multiline
           />
           <button type="submit">Submit</button>
-        </Box>
+        </Stack>
       </form>
     </Box>
   );
