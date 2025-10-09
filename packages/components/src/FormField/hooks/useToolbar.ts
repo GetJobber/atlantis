@@ -32,7 +32,7 @@ export function useToolbar(props: UseToolBarProps): UseToolbar {
   useEffect(() => {
     if (props.focused) {
       setVisible(true);
-    } else if (isPointerDown) {
+    } else if (isPointerDown()) {
       onPointerUp(() => {
         setVisible(false);
       });
@@ -40,6 +40,7 @@ export function useToolbar(props: UseToolBarProps): UseToolbar {
       setVisible(false);
     }
   }, [props.focused]);
+
   const toolbarAnimationEnd = !shouldReduceMotion
     ? {
         opacity: 0,
@@ -63,16 +64,16 @@ export function useToolbar(props: UseToolBarProps): UseToolbar {
 type PointerEventCallback = (evt: PointerEvent) => undefined;
 
 export function usePointerState() {
-  const [pointerDown, setPointerDown] = useState(false);
+  const pointerStateRef = useRef(false);
   const onPointerUpRef = useRef<PointerEventCallback[]>([]);
 
   useEffect(() => {
     const handlePointerDown = () => {
-      setPointerDown(true);
+      pointerStateRef.current = true;
     };
 
     const handlePointerUp = (evt: PointerEvent) => {
-      setPointerDown(false);
+      pointerStateRef.current = false;
       onPointerUpRef.current.forEach(cb => cb(evt));
       onPointerUpRef.current = [];
     };
@@ -89,9 +90,11 @@ export function usePointerState() {
 
   return {
     /**
-     * Whether the pointer is currently down
+     * Whether the pointer is currently down.
      */
-    isPointerDown: pointerDown,
+    isPointerDown() {
+      return pointerStateRef.current;
+    },
     /**
      * A callback to be called when the pointerup event fires.
      */
