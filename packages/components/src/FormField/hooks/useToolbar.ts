@@ -1,5 +1,6 @@
 import { useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { usePointerState } from "@jobber/components/utils/usePointerState";
 import type { FormFieldProps } from "../FormFieldTypes";
 
 interface UseToolBarProps {
@@ -58,48 +59,5 @@ export function useToolbar(props: UseToolBarProps): UseToolbar {
     isToolbarVisible,
     toolbarAnimationEnd,
     toolbarAnimationStart,
-  };
-}
-
-type PointerEventCallback = (evt: PointerEvent) => undefined;
-
-export function usePointerState() {
-  const pointerStateRef = useRef(false);
-  const onPointerUpRef = useRef<PointerEventCallback[]>([]);
-
-  useEffect(() => {
-    const handlePointerDown = () => {
-      pointerStateRef.current = true;
-    };
-
-    const handlePointerUp = (evt: PointerEvent) => {
-      pointerStateRef.current = false;
-      onPointerUpRef.current.forEach(cb => cb(evt));
-      onPointerUpRef.current = [];
-    };
-
-    // TODO: optimize this by using a single global event listener instead of N for N usePointerState instances
-    document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("pointerup", handlePointerUp);
-
-    return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("pointerup", handlePointerUp);
-    };
-  }, []);
-
-  return {
-    /**
-     * Whether the pointer is currently down.
-     */
-    isPointerDown() {
-      return pointerStateRef.current;
-    },
-    /**
-     * A callback to be called when the pointerup event fires.
-     */
-    onPointerUp: (cb: (evt: PointerEvent) => undefined) => {
-      onPointerUpRef.current.push(cb);
-    },
   };
 }
