@@ -469,7 +469,7 @@ const ToolbarVisibilityTemplate = () => {
             toolbarVisibility="while-editing"
             multiline
           />
-          <button type="submit">Submit</button>
+          <Button submit label="Submit" />
         </Stack>
       </form>
     </Box>
