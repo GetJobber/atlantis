@@ -17,13 +17,17 @@ export function usePointerState() {
       onPointerUpRef.current = [];
     };
 
+    const options: AddEventListenerOptions = {
+      capture: true,
+    };
+
     // TODO: optimize this by using a single global event listener instead of N for N usePointerState instances
-    document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("pointerup", handlePointerUp);
+    document.addEventListener("pointerdown", handlePointerDown, options);
+    document.addEventListener("pointerup", handlePointerUp, options);
 
     return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("pointerup", handlePointerUp);
+      document.removeEventListener("pointerdown", handlePointerDown, options);
+      document.removeEventListener("pointerup", handlePointerUp, options);
     };
   }, []);
 
