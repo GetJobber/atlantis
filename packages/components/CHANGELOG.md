@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.99.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.98.2...@jobber/components@6.99.0) (2025-10-09)
+
+
+### Features
+
+* **components:** Add Composable Compound Menu Component ([#2747](https://github.com/GetJobber/atlantis/issues/2747)) ([300d29a](https://github.com/GetJobber/atlantis/commit/300d29afdc5a41604e63d25c888f98e78f7791dd)), closes [#2765](https://github.com/GetJobber/atlantis/issues/2765)
+
+
+
+
+
 ## [6.98.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.98.1...@jobber/components@6.98.2) (2025-10-08)
 
 
