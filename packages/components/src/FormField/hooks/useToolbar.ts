@@ -1,3 +1,4 @@
+import { useReducedMotion } from "framer-motion";
 import type { FormFieldProps } from "../FormFieldTypes";
 
 interface UseToolBarProps {
@@ -10,13 +11,13 @@ interface UseToolbar {
   isToolbarVisible: boolean;
   toolbarAnimationEnd: {
     opacity: number;
-    maxHeight: number;
-    overflow: string;
+    maxHeight?: number;
+    overflow?: string;
   };
   toolbarAnimationStart: {
     opacity: number;
-    maxHeight: string;
-    overflow: string;
+    maxHeight?: string;
+    overflow?: string;
   };
 }
 
@@ -24,16 +25,22 @@ export function useToolbar(props: UseToolBarProps): UseToolbar {
   const isToolbarVisible =
     props.toolbar !== undefined &&
     (props.toolbarVisibility === "always" || props.focused);
-  const toolbarAnimationEnd = {
-    opacity: 0,
-    maxHeight: 0,
-    overflow: "hidden",
-  };
-  const toolbarAnimationStart = {
-    opacity: 1,
-    maxHeight: "200px", // Set a reasonable max height
-    overflow: "hidden",
-  };
+  const shouldReduceMotion = useReducedMotion();
+
+  const toolbarAnimationEnd = !shouldReduceMotion
+    ? {
+        opacity: 0,
+        maxHeight: 0,
+        overflow: "hidden",
+      }
+    : { opacity: 0 };
+  const toolbarAnimationStart = !shouldReduceMotion
+    ? {
+        opacity: 1,
+        maxHeight: "200px", // Set a reasonable max height
+        overflow: "hidden",
+      }
+    : { opacity: 1 };
 
   return {
     isToolbarVisible,
