@@ -12,13 +12,11 @@ interface UseToolbar {
   isToolbarVisible: boolean;
   toolbarAnimationEnd: {
     opacity: number;
-    maxHeight?: number;
-    overflow?: string;
+    height?: number;
   };
   toolbarAnimationStart: {
     opacity: number;
-    maxHeight?: string;
-    overflow?: string;
+    height?: string;
   };
 }
 
@@ -46,14 +44,12 @@ export function useToolbar(props: UseToolBarProps): UseToolbar {
     ? {
         opacity: 0,
         height: 0,
-        overflow: "hidden",
       }
     : { opacity: 0 };
   const toolbarAnimationStart = !shouldReduceMotion
     ? {
         opacity: 1,
         height: "auto",
-        overflow: "hidden",
       }
     : { opacity: 1 };
 

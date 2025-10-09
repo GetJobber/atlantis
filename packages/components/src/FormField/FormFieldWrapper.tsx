@@ -214,13 +214,11 @@ export function FormFieldWrapperToolbar({
   readonly isToolbarVisible: boolean;
   readonly toolbarAnimationEnd: {
     opacity: number;
-    maxHeight?: number;
-    overflow?: string;
+    height?: number;
   };
   readonly toolbarAnimationStart: {
     opacity: number;
-    maxHeight?: string;
-    overflow?: string;
+    height?: string;
   };
   readonly toolbar: ReactNode;
 }) {
