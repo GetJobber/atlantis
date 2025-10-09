@@ -1,5 +1,5 @@
 import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
-import { useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
@@ -24,11 +24,9 @@ import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
 // eslint-disable-next-line max-statements
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
-  const location = useLocation();
   const { updateCode, iframe, iframeMobile, type, updateType } =
     useAtlantisPreview();
   const PageMeta = SiteContent[name];
-  const PageMetaV2 = SiteContent[`${name} (v2)` as keyof typeof SiteContent];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
@@ -50,25 +48,10 @@ export const ComponentView = () => {
 
   const ComponentContent = PageMeta?.content;
 
-  // Support version toggling via query params for components that expose multiple elements
-  // Example: Autocomplete can provide both v1 and v2 via component.element and component.elementV2
-  const searchParams = new URLSearchParams(location.search);
-  const requestedVersion = searchParams.get("version") || searchParams.get("v");
-  const isV2Requested =
-    requestedVersion === "2" ||
-    searchParams.has("v2") ||
-    searchParams.get("variant") === "v2";
-
-  const elementV2Candidate =
-    (PageMeta?.component as unknown as { elementV2?: string })?.elementV2 ||
-    (PageMetaV2?.component?.element as unknown as string | undefined);
-
   const code =
-    type === "web"
-      ? isV2Requested && elementV2Candidate
-        ? elementV2Candidate
-        : (PageMeta?.component?.element as unknown as string)
-      : (PageMeta?.component?.mobileElement as unknown as string);
+    type === "web" && PageMeta?.component?.element
+      ? PageMeta?.component?.element
+      : PageMeta?.component?.mobileElement;
 
   useEffect(() => {
     if (iframe?.current || iframeMobile?.current) {
