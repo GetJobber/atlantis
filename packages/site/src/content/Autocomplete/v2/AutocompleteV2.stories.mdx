@@ -89,14 +89,22 @@ export const AutocompleteV2HeaderFooterExample = () => {
   const [value, setValue] = useState();
   const [inputValue, setInputValue] = useState("");
 
-return ( <Content> <Heading level={5}>Header/Footer</Heading> <Autocomplete
-version={2} placeholder="Search" value={value} onChange={setValue}
-inputValue={inputValue} onInputChange={setInputValue} menu={[ { type: "header",
-label: "Pinned header", shouldClose: false }, { type: "options", options: [ {
-label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line
-Repair" }, { label: "Window Cleaning" }, { label: "Roof Inspection" }, { label:
-"Lawn Mowing" }, { label: "Hedge Trimming" }, ], }, { type: "footer", label:
-"Interactive footer", onClick: () => { alert("Clicked") } }, ]} /> </Content> );
+return ( <Content> <Heading level={5}>Header/Footer</Heading> 
+<Autocomplete
+  version={2} 
+  placeholder="Search" 
+  value={value} 
+  onChange={setValue}
+  inputValue={inputValue} 
+  onInputChange={setInputValue} 
+  menu={[ { type: "header",
+  label: "Pinned header", shouldClose: false }, { type: "options", options: [ 
+    { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line Repair" }, 
+    { label: "Window Cleaning" }, { label: "Roof Inspection" }, { label: "Lawn Mowing" }, { label: "Hedge Trimming" }, 
+    ], 
+  }, { type: "footer", label: "Interactive footer", onClick: () => { alert("Clicked") } }, 
+  ]} /> 
+</Content> );
 };
 
 <Canvas>
@@ -115,18 +123,27 @@ export const AutocompleteV2ActionsExample = () => {
   const [open, setOpen] = useState(false);
   const [newService, setNewService] = useState("");
 
-return ( <Content> <Heading level={5}>Actions</Heading> <Autocomplete
-version={2} placeholder="Options and actions" value={value} onChange={setValue}
-inputValue={inputValue} onInputChange={setInputValue} emptyStateMessage="No
-services found" menu={[ { type: "section", label: "Indoor", options: [ { label:
-"Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line Repair"
-}, { label: "Window Cleaning" }, ], actions: [ { type: "action", label: "New
-Indoor", onClick: () => { alert("Adding indoor service") } } ], }, { type:
-"section", label: "Outdoor", options: [ { label: "Window Cleaning" }, { label:
-"Roof Inspection" }, { label: "Lawn Mowing" }, { label: "Hedge Trimming" }, ],
-actions: [ { type: "action", label: "New Outdoor", onClick: () => {
-alert("Adding outdoor service") } } ], },  
- ]} /> </Content> ); };
+return ( <Content> <Heading level={5}>Actions</Heading> 
+<Autocomplete
+  version={2} 
+  placeholder="Options and actions" 
+  value={value} 
+  onChange={setValue}
+  inputValue={inputValue} 
+  onInputChange={setInputValue} 
+  emptyStateMessage="No services found" 
+  menu={[ { type: "section", label: "Indoor", options: [ 
+    { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line Repair" }, 
+    { label: "Window Cleaning" }, 
+  ], 
+  actions: [ { type: "action", label: "New Indoor", onClick: () => { alert("Adding indoor service") } } ], }, 
+  { type: "section", label: "Outdoor", options: [ { label: "Window Cleaning" }, 
+  { label: "Roof Inspection" }, { label: "Lawn Mowing" }, { label: "Hedge Trimming" }, 
+  ],
+  actions: [ { type: "action", label: "New Outdoor", onClick: () => { alert("Adding outdoor service") } } ], 
+  },  
+ ]} /> 
+ </Content> ); };
 
 <Canvas>
   <AutocompleteV2ActionsExample />
@@ -143,16 +160,24 @@ export const AutocompleteV2EmptyActionsExample = () => {
   const [open, setOpen] = useState(false);
   const [newService, setNewService] = useState("");
 
-return ( <Content> <Heading level={5}>Empty actions</Heading> <Autocomplete
-version={2} placeholder="Try a term with no matches" value={value}
-onChange={setValue} inputValue={inputValue} onInputChange={setInputValue}
-emptyStateMessage="No services found" emptyActions={[ { type: "action", label:
-"Create service", onClick: () => setOpen(true), }, ]} menu={[ { type: "options",
-options: [ { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label:
-"Sewer Line Repair" }, ], }, ]} /> {open ? ( <Content> <Heading level={5}>Create
-service</Heading> <input value={newService} onChange={e =>
-setNewService(e.target.value)} /> <Button label="Create" onClick={() =>
-setOpen(false)} /> </Content> ) : null} </Content> ); };
+return ( <Content> 
+<Heading level={5}>Empty actions</Heading> 
+<Autocomplete
+  version={2} 
+  placeholder="Try a term with no matches" 
+  value={value}
+  onChange={setValue} 
+  inputValue={inputValue} 
+  onInputChange={setInputValue}
+  emptyStateMessage="No services found" 
+  emptyActions={[ { type: "action", label: "Create service", onClick: () => setOpen(true), }, ]} 
+  menu={[ { type: "options",
+    options: [ { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line Repair" }, ]
+    , }, 
+  ]} /> 
+{open ? ( <Content> <Heading level={5}>Create service</Heading> 
+<input value={newService} onChange={e => setNewService(e.target.value)} /> 
+<Button label="Create" onClick={() => setOpen(false)} /> </Content> ) : null} </Content> ); };
 
 <Canvas>
   <AutocompleteV2EmptyActionsExample />
@@ -167,13 +192,22 @@ export const AutocompleteV2StayOpenExample = () => {
   const [value, setValue] = useState();
   const [inputValue, setInputValue] = useState("");
 
-return ( <Content> <Heading level={5}>Stay Open Action</Heading> <Autocomplete
-version={2} placeholder="Search" value={value} onChange={setValue}
-inputValue={inputValue} onInputChange={setInputValue} menu={[ { type: "options",
-options: [ { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label:
-"Sewer Line Repair" }, ], actions: [ { type: "action", label: "Add Service
-(stays open)", shouldClose: false, onClick: () => alert("Add Service"), }, ], },
-]} /> </Content> ); };
+return ( <Content> <Heading level={5}>Stay Open Action</Heading> 
+<Autocomplete
+  version={2} 
+  placeholder="Search" 
+  value={value} 
+  onChange={setValue}
+  inputValue={inputValue} 
+  onInputChange={setInputValue} 
+  menu={[ { type: "options", options: [ 
+    { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line Repair" }, 
+    ], 
+  actions: [ 
+    { type: "action", label: "Add Service (stays open)", shouldClose: false, onClick: () => alert("Add Service"), }, 
+  ], },
+]} /> 
+</Content> ); };
 
 <Canvas>
   <AutocompleteV2StayOpenExample />
