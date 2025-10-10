@@ -56,3 +56,12 @@ export interface ContentExportLinks {
   url: string;
   type?: "web" | "mobile";
 }
+
+// Versioned content structure - just contains versioned ContentExport objects
+export interface VersionedContentExport {
+  v1?: ContentExport;
+  v2?: ContentExport;
+}
+
+// Union type for SiteContent that can contain both regular and versioned content
+export type SiteContentItem = ContentExport | VersionedContentExport;

@@ -6,35 +6,42 @@ import RebuiltNotes from "./v2/AutocompleteV2Notes.mdx";
 import originalExample from "./v1/example";
 import RebuiltProps from "./v2/AutocompleteV2.props.json";
 import rebuiltExample from "./v2/example";
-import { ContentExport } from "../../types/content";
+import { VersionedContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
-  content: () => <AutocompleteContent />,
-  webRebuiltContent: () => <RebuiltContent />,
-  props: Props,
-  webRebuiltProps: RebuiltProps,
-  component: {
-    element: originalExample,
-    webRebuiltElement: rebuiltExample,
+  v1: {
+    content: () => <AutocompleteContent />,
+    props: Props,
+    component: {
+      element: originalExample,
+    },
+    title: "Autocomplete",
+    links: [
+      {
+        label: "Storybook",
+        url: getStorybookUrl(
+          "?path=/docs/components-forms-and-inputs-autocomplete--docs",
+        ),
+      },
+    ],
+    notes: () => <Notes />,
   },
-  title: "Autocomplete",
-  links: [
-    {
-      label: "Storybook",
-      url: getStorybookUrl(
-        "?path=/docs/components-forms-and-inputs-autocomplete--docs",
-      ),
+  v2: {
+    content: () => <RebuiltContent />,
+    props: RebuiltProps,
+    component: {
+      element: rebuiltExample,
     },
-  ],
-  webRebuiltLinks: [
-    {
-      label: "Storybook",
-      url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-autocomplete-web-v2--flat",
-      ),
-    },
-  ],
-  notes: () => <Notes />,
-  webRebuiltNotes: () => <RebuiltNotes />,
-} as const satisfies ContentExport;
+    title: "Autocomplete V2",
+    links: [
+      {
+        label: "Storybook",
+        url: getStorybookUrl(
+          "?path=/story/components-forms-and-inputs-autocomplete-web-v2--flat",
+        ),
+      },
+    ],
+    notes: () => <RebuiltNotes />,
+  },
+} as const satisfies VersionedContentExport;
