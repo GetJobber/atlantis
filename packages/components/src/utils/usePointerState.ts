@@ -1,33 +1,43 @@
 import { useEffect, useRef } from "react";
 
-type PointerEventCallback = (evt: PointerEvent) => undefined;
+type PointerEventCallback = (evt: PointerEvent) => void;
+
+const subscribers = new Set<PointerEventCallback>();
+let globalPointerDown = false;
+
+function initPointerEvents() {
+  function handlePointerDown() {
+    globalPointerDown = true;
+  }
+
+  function handlePointerUp(evt: PointerEvent) {
+    globalPointerDown = false;
+    subscribers.forEach(callback => callback(evt));
+  }
+
+  if (globalThis.document) {
+    const eventOptions: AddEventListenerOptions = { capture: true };
+    const { addEventListener } = globalThis.document;
+    addEventListener("pointerdown", handlePointerDown, eventOptions);
+    addEventListener("pointerup", handlePointerUp, eventOptions);
+  }
+}
+
+initPointerEvents();
 
 export function usePointerState() {
-  const pointerStateRef = useRef(false);
   const onPointerUpRef = useRef<PointerEventCallback[]>([]);
 
   useEffect(() => {
-    const handlePointerDown = () => {
-      pointerStateRef.current = true;
-    };
-
-    const handlePointerUp = (evt: PointerEvent) => {
-      pointerStateRef.current = false;
+    const handler = (evt: PointerEvent) => {
       onPointerUpRef.current.forEach(cb => cb(evt));
       onPointerUpRef.current = [];
     };
 
-    const options: AddEventListenerOptions = {
-      capture: true,
-    };
-
-    // TODO: optimize this by using a single global event listener instead of N for N usePointerState instances
-    document.addEventListener("pointerdown", handlePointerDown, options);
-    document.addEventListener("pointerup", handlePointerUp, options);
+    subscribers.add(handler);
 
     return () => {
-      document.removeEventListener("pointerdown", handlePointerDown, options);
-      document.removeEventListener("pointerup", handlePointerUp, options);
+      subscribers.delete(handler);
     };
   }, []);
 
@@ -36,7 +46,7 @@ export function usePointerState() {
      * Whether the pointer is currently down.
      */
     isPointerDown() {
-      return pointerStateRef.current;
+      return globalPointerDown;
     },
     /**
      * Add a callback to be called when the pointerup event fires.
