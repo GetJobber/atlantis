@@ -69,17 +69,40 @@ const writeOutput = (outputPath, content) => {
  * @param {string} componentPath Absolute path to component source
  * @param {string} outputPath Absolute path for the JSON output
  */
+const processDocumentation = componentPath => {
+  const documentation = parse(componentPath);
+  const docPipeline = [
+    removeDeclarations,
+    removeNonComponents,
+    filterOutInheritedReactProps,
+  ];
+
+  return docPipeline.reduce(
+    (docs, cleanUpFn) => cleanUpFn(docs),
+    documentation,
+  );
+};
+
+const shouldWriteFile = (outputPath, newContent) => {
+  return (
+    !existsSync(outputPath) || newContent !== readFileSync(outputPath, "utf8")
+  );
+};
+
+const prepareOutput = (cleanedDocumentation, outputPath) => {
+  const outputDir = dirname(outputPath);
+  const newContent = JSON.stringify(cleanedDocumentation, null, 2);
+  ensureDir(outputDir);
+
+  return newContent;
+};
+
 const parseAndWriteDocs = (componentPath, outputPath) => {
   try {
     console.log("parsing component at:", componentPath);
-    const documentation = parse(componentPath),
-      cleanedDocumentation = cleanDoc(documentation),
-      outputDir = dirname(outputPath),
-      newContent = JSON.stringify(cleanedDocumentation, null, 2);
-    ensureDir(outputDir);
-    const shouldWrite = !existsSync(outputPath)
-      ? true
-      : newContent !== readFileSync(outputPath, "utf8");
+    const cleanedDocumentation = processDocumentation(componentPath);
+    const newContent = prepareOutput(cleanedDocumentation, outputPath);
+    const shouldWrite = shouldWriteFile(outputPath, newContent);
     recordParsed(componentPath);
 
     if (shouldWrite) {
@@ -99,30 +122,31 @@ const parseAndWriteDocs = (componentPath, outputPath) => {
  * or equal to the source; false otherwise.
  *
  * @param {string} componentPath Absolute or relative path to component source
- * @param {string} outputPath Absolute path to JSON output
+ * @param {string} outputPath Absolute or relative path to output file
+ * @returns {boolean} true if output is up-to-date, false otherwise
  */
+
 const isOutputUpToDate = (componentPath, outputPath) => {
   if (!existsSync(outputPath)) return false;
+  const componentTime = statSync(componentPath).mtime;
+  const outputTime = statSync(outputPath).mtime;
 
-  try {
-    const srcStat = statSync(componentPath);
-    const outStat = statSync(outputPath);
-
-    return outStat.mtimeMs >= srcStat.mtimeMs;
-  } catch (_err) {
-    return false;
-  }
+  return outputTime >= componentTime;
 };
 
 /**
- * Generate docs for a component only when the output is missing or stale.
- * Handles building the relative parse path and skips work when safe.
+ * Generate documentation for a component if needed (when source is newer than output).
+ *
+ * @param {string} componentPath Absolute path to component source
+ * @param {string} outputPath Absolute path for the JSON output
  */
 const generateIfNeeded = (componentPath, outputPath) => {
-  const parsePath = relative(__dirname, componentPath);
-  if (isOutputUpToDate(parsePath, outputPath)) return;
-
-  parseAndWriteDocs(parsePath, outputPath);
+  if (!isOutputUpToDate(componentPath, outputPath)) {
+    parseAndWriteDocs(componentPath, outputPath);
+  } else {
+    console.log("skipping up-to-date docs for:", componentPath);
+    recordSkipped(outputPath);
+  }
 };
 
 /**
@@ -180,12 +204,67 @@ const removeDeclarations = doc => {
 };
 
 /**
- * Combine all cleaning steps for documentation into a single function.
+ * Filter out inherited React base attributes from component docs.
+ * Operate only on the top-level array returned by
+ * react-docgen-typescript and the top-level `props` per component.
  *
- * @param {unknown} doc
- * @returns cleaned doc
+ * - Keeps prop tables focused on component-specific props
+ * - Drops any prop whose parent is a React base attribute type or originates
+ *   from `@types/react`
+ *
+ * @param {Array} docs - array of component docs from react-docgen-typescript
+ * @returns {Array} new array with filtered `props` per component
  */
-const cleanDoc = doc => removeNonComponents(removeDeclarations(doc));
+const filterOutInheritedReactProps = docs => {
+  if (!Array.isArray(docs)) return docs;
+
+  // Explicit list of React parent types we want to exclude from docs.
+  const REACT_PARENT_NAMES = new Set([
+    "InputHTMLAttributes",
+    "HTMLAttributes",
+    "AriaAttributes",
+    "DOMAttributes",
+    "Attributes",
+  ]);
+
+  // Consider anything from @types/react an inherited React attribute as well.
+  const isReactTypesFile = fileName =>
+    typeof fileName === "string" &&
+    fileName.includes("node_modules/@types/react");
+
+  // Explicit keep-list: props we want to always show even if they originate
+  // from @types/react (e.g., `ref`).
+  const KEEP_PROP_NAMES = new Set(["ref"]);
+
+  const filterPropsObject = propsObject => {
+    if (!propsObject || typeof propsObject !== "object") return propsObject;
+
+    return Object.entries(propsObject).reduce((acc, [propName, propDef]) => {
+      const parentName = propDef?.parent?.name;
+      const parentFile = propDef?.parent?.fileName;
+      const isInheritedReactAttribute =
+        REACT_PARENT_NAMES.has(parentName) || isReactTypesFile(parentFile);
+
+      // Skip inherited React base attributes; keep only explicit component props,
+      // except for props we intentionally surface (like `ref`).
+      if (isInheritedReactAttribute && !KEEP_PROP_NAMES.has(propName)) {
+        return acc;
+      }
+
+      acc[propName] = propDef;
+
+      return acc;
+    }, {});
+  };
+
+  return docs.map(componentDoc => {
+    if (!componentDoc || typeof componentDoc !== "object") return componentDoc;
+
+    const filteredProps = filterPropsObject(componentDoc.props);
+
+    return { ...componentDoc, props: filteredProps };
+  });
+};
 
 /**
  * Takes in 3 pieces of information (component directory, output directory, and componentname) and builds a standard path object from it.
@@ -212,32 +291,6 @@ const buildPaths = (
     baseOutputDir,
     componentName,
     `${componentName}.props${tack}.json`,
-  );
-
-  return { componentPath, outputPath };
-};
-
-/**
- * Build paths for V2 (rebuilt) components. V2 files follow the naming pattern
- * <Component>/<Component>.rebuilt.tsx and we output to a distinct folder
- * <Component>V2/<Component>V2.props.json so it won't interfere with the
- * existing site UI until it's ready to consume V2 docs.
- *
- * @param {string} baseComponentDir
- * @param {string} baseOutputDir
- * @param {string} componentName
- * @returns {{componentPath: string, outputPath: string}}
- */
-const buildV2Paths = (baseComponentDir, baseOutputDir, componentName) => {
-  const componentPath = join(
-    baseComponentDir,
-    componentName,
-    `${componentName}.rebuilt.tsx`,
-  );
-  const outputPath = join(
-    baseOutputDir,
-    `${componentName}V2`,
-    `${componentName}V2.props.json`,
   );
 
   return { componentPath, outputPath };
@@ -275,20 +328,21 @@ const buildMobileComponentDocs = name => {
 ListOfGeneratedWebComponents.forEach(buildComponentDocs);
 ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
 
-/**
- * Additionally, auto-detect and generate docs for any V2 (rebuilt) web components
- * without needing to hardcode them. This sets up the content files now so the
- * site can display them when the UI is ready.
- */
-const buildWebComponentDocsV2 = name => {
-  const { componentPath, outputPath } = buildV2Paths(
-    baseComponentDir,
-    baseOutputDir,
-    name,
-  );
+// Custom generation for components that don't follow the standard
+// <Component>/<Component>.tsx convention.
+// Autocomplete v2 (rebuilt) lives alongside v1 but uses a different filename.
+parseAndWriteDocs(
+  `${baseComponentDir}/Autocomplete/Autocomplete.rebuilt.tsx`,
+  `${baseOutputDir}/AutocompleteV2/AutocompleteV2.props.json`,
+);
 
-  if (existsSync(componentPath)) {
-    generateIfNeeded(componentPath, outputPath);
+// V2 auto-detection: if a rebuilt file exists, emit separate V2 props
+const buildWebComponentDocsV2 = name => {
+  const rebuiltPath = `${baseComponentDir}/${name}/${name}.rebuilt.tsx`;
+  const v2OutputPath = `${baseOutputDir}/${name}V2/${name}V2.props.json`;
+
+  if (existsSync(rebuiltPath)) {
+    parseAndWriteDocs(rebuiltPath, v2OutputPath);
   }
 };
 
