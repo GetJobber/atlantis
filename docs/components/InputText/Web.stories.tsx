@@ -6,7 +6,6 @@ import { Content } from "@jobber/components/Content";
 import { Grid } from "@jobber/components/Grid";
 import { Box } from "@jobber/components/Box";
 import { FormFieldLabel } from "@jobber/components/FormField";
-import { Stack } from "@jobber/components/Stack";
 
 export default {
   title: "Components/Forms and Inputs/InputText/Web",
@@ -398,82 +397,3 @@ export const Controlled = ControlledTemplate.bind({});
 Controlled.args = {
   placeholder: "Hakunamatata",
 };
-
-const ToolbarVisibilityTemplate = () => {
-  const [submitted, setSubmitted] = useState(false);
-
-  return (
-    <Box gap="base">
-      <Button label="Reset Submit" onClick={() => setSubmitted(false)} />
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          setSubmitted(true);
-        }}
-      >
-        <Stack gap="base">
-          {submitted && <p>Submitted</p>}
-          <InputText
-            placeholder="Hakunamatata"
-            toolbar={
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Button
-                  label="Rewrite"
-                  size="small"
-                  icon="sparkles"
-                  fullWidth={false}
-                />
-                <Button
-                  ariaLabel="Undo"
-                  size="small"
-                  icon="redo"
-                  type="tertiary"
-                  fullWidth={false}
-                />
-              </div>
-            }
-            toolbarVisibility="while-editing"
-          />
-
-          <InputText
-            placeholder="Hakunamatata"
-            toolbar={
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Button
-                  label="Rewrite"
-                  size="small"
-                  icon="sparkles"
-                  fullWidth={false}
-                />
-                <Button
-                  ariaLabel="Undo"
-                  size="small"
-                  icon="redo"
-                  type="tertiary"
-                  fullWidth={false}
-                />
-              </div>
-            }
-            toolbarVisibility="while-editing"
-            multiline
-          />
-          <Button submit label="Submit" />
-        </Stack>
-      </form>
-    </Box>
-  );
-};
-
-export const ToolbarVisibility = ToolbarVisibilityTemplate.bind({});
