@@ -57,7 +57,10 @@ export interface ContentExportLinks {
   type?: "web" | "mobile";
 }
 
-// Versioned content structure - just contains versioned ContentExport objects
+// Version names - change this type to rename versions across the entire system
+export type VersionName = "v1" | "v2";
+
+// Versioned content structure - uses the VersionName type for keys
 export interface VersionedContentExport {
   v1?: ContentExport;
   v2?: ContentExport;

@@ -1,11 +1,15 @@
-import { ContentExport, VersionedContentExport } from "../types/content";
+import {
+  ContentExport,
+  VersionName,
+  VersionedContentExport,
+} from "../types/content";
 
 /**
  * Get the content for a specific version
  */
 export function getVersionedContent(
   content: VersionedContentExport,
-  version?: "v1" | "v2",
+  version?: VersionName,
 ): ContentExport {
   // If no version specified, prefer v2, then v1
   if (!version) {
@@ -40,8 +44,8 @@ export function hasMultipleVersions(content: VersionedContentExport): boolean {
  */
 export function getAvailableVersions(
   content: VersionedContentExport,
-): ("v1" | "v2")[] {
-  const versions: ("v1" | "v2")[] = [];
+): VersionName[] {
+  const versions: VersionName[] = [];
 
   if (content.v1) {
     versions.push("v1");
@@ -59,7 +63,7 @@ export function getAvailableVersions(
  */
 export function getDefaultVersion(
   content: VersionedContentExport,
-): "v1" | "v2" | undefined {
+): VersionName | undefined {
   if (content.v2) {
     return "v2";
   }

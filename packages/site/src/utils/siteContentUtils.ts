@@ -2,6 +2,7 @@ import { getVersionedContent } from "./versionedContentUtils";
 import {
   ContentExport,
   SiteContentItem,
+  VersionName,
   VersionedContentExport,
 } from "../types/content";
 
@@ -24,7 +25,7 @@ function isVersionedContent(
 export function getSiteContent(
   siteContent: SiteContentType,
   componentName: string,
-  version?: "v1" | "v2",
+  version?: VersionName,
 ): ContentExport {
   const componentContent = siteContent[componentName];
 
@@ -79,7 +80,7 @@ export function hasComponentVersions(
 export function getComponentVersions(
   siteContent: SiteContentType,
   componentName: string,
-): ("v1" | "v2")[] {
+): VersionName[] {
   const componentContent = siteContent[componentName];
 
   if (!componentContent) {
@@ -110,7 +111,7 @@ export function getComponentVersions(
 export function getDefaultComponentVersion(
   siteContent: SiteContentType,
   componentName: string,
-): "v1" | "v2" | undefined {
+): VersionName | undefined {
   const componentContent = siteContent[componentName];
 
   if (!componentContent) {
