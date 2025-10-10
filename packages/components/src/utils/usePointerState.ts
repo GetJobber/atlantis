@@ -51,7 +51,7 @@ export function usePointerState() {
     /**
      * Add a callback to be called when the pointerup event fires.
      */
-    onPointerUp: (cb: (evt: PointerEvent) => undefined) => {
+    onPointerUp: (cb: PointerEventCallback) => {
       onPointerUpRef.current.push(cb);
     },
   };
