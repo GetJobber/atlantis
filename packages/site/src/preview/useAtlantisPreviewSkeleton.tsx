@@ -1,7 +1,8 @@
 import { type Theme } from "@jobber/components";
 import { RefObject } from "react";
+import { ComponentType } from "../types/content";
 
-const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
+const skeletonHTML = (theme: Theme, type: ComponentType) => {
   const imports =
     type == "mobile"
       ? `
@@ -354,7 +355,7 @@ export const MobileCodeWrapper = (
               root.render(React.createElement(IntlWrapper, null));
           `;
 
-export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
+export const useAtlantisPreviewSkeleton = (type: ComponentType) => {
   const writeSkeleton = (
     doc: Document | null | undefined,
     iframeTheme: Theme,
@@ -374,9 +375,9 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
 
     if (iframeWindow) {
       const codeWrapper =
-        type == "web"
-          ? WebCodeWrapper(transpiledCode)
-          : MobileCodeWrapper(transpiledCode);
+        type == "mobile"
+          ? MobileCodeWrapper(transpiledCode)
+          : WebCodeWrapper(transpiledCode); // Use WebCodeWrapper for both 'web' and 'webRebuilt'
       iframeWindow.postMessage({ type: "updateCode", code: codeWrapper }, "*");
     }
   };

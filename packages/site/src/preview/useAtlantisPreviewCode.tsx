@@ -2,16 +2,19 @@ import { RefObject, useCallback, useRef, useState } from "react";
 import { transform } from "@babel/standalone";
 import { type Theme } from "@jobber/components";
 import { useAtlantisPreviewSkeleton } from "./useAtlantisPreviewSkeleton";
+import { ComponentType } from "../types/content";
 
 export const useAtlantisPreviewCode = ({
   iframe,
   iframeMobile,
+  getIframeRef,
   theme,
   type,
 }: {
   iframe: RefObject<HTMLIFrameElement>;
   iframeMobile: RefObject<HTMLIFrameElement>;
-  type: "web" | "mobile";
+  getIframeRef: (type: ComponentType) => RefObject<HTMLIFrameElement>;
+  type: ComponentType;
   theme: Theme;
 }) => {
   const [code, setCode] = useState<string>("");
@@ -45,8 +48,8 @@ export const useAtlantisPreviewCode = ({
         // Clear the error state
         setError("");
 
-        // Determine which iframe to use (this is a weak point for expansion, we only suport two iframes now)
-        const selectedFrame = type == "web" ? iframe : iframeMobile;
+        // Use the flexible iframe selection system
+        const selectedFrame = getIframeRef(type);
 
         const html =
           selectedFrame.current?.contentDocument?.documentElement.outerHTML;
@@ -56,7 +59,7 @@ export const useAtlantisPreviewCode = ({
         setError((e as { message: string }).message as string);
       }
     },
-    [iframe, iframeMobile, theme, type],
+    [iframe, iframeMobile, getIframeRef, theme, type],
   );
 
   return { updateCode, code, error };
