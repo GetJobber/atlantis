@@ -28,6 +28,17 @@ describe("usePointerState", () => {
       });
     });
 
+    describe("when a mouse right pointer is used", () => {
+      it("returns false when pressed down", async () => {
+        const { result } = renderHook(() => usePointerState());
+
+        await holdDown(user, "MouseRight");
+        expect(result.current.isPointerDown()).toBe(false);
+        await release(user, "MouseRight");
+        expect(result.current.isPointerDown()).toBe(false);
+      });
+    });
+
     describe("when a touch pointer is used", () => {
       it("returns true when pressed down and false when released", async () => {
         const { result } = renderHook(() => usePointerState());

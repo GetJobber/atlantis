@@ -6,7 +6,8 @@ const subscribers = new Set<PointerEventCallback>();
 let globalPointerDown = false;
 
 function initPointerEvents() {
-  function handlePointerDown() {
+  function handlePointerDown(evt: PointerEvent) {
+    if (evt.pointerType === "mouse" && evt.button !== 0) return;
     globalPointerDown = true;
   }
 
@@ -44,6 +45,8 @@ export function usePointerState() {
   return {
     /**
      * Whether the pointer is currently down.
+     * In the case of a mouse, it will return true if the left button is down.
+     * In the case of a touch, it will return true if any touch pointer is down.
      */
     isPointerDown() {
       return globalPointerDown;
