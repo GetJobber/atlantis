@@ -1,4 +1,13 @@
-import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
+import {
+  Banner,
+  Box,
+  Combobox,
+  Content,
+  Page,
+  Tab,
+  Tabs,
+} from "@jobber/components";
+import type { ComboboxOption } from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
@@ -9,7 +18,12 @@ import { CodePreviewWindow } from "../components/CodePreviewWindow";
 import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
 import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
-import { getSiteContent } from "../utils/siteContentUtils";
+import {
+  getComponentVersions,
+  getDefaultComponentVersion,
+  getSiteContent,
+  hasComponentVersions,
+} from "../utils/siteContentUtils";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import usePageTitle from "../hooks/usePageTitle";
@@ -28,8 +42,38 @@ export const ComponentView = () => {
   const { updateCode, iframe, iframeMobile, type, updateType } =
     useAtlantisPreview();
 
-  // Get content using the new versioned content system (default version)
-  const PageMeta = getSiteContent(SiteContent, name);
+  // Check if component has versions
+  const hasVersions = hasComponentVersions(SiteContent, name);
+
+  // Get available versions if component has versions, otherwise empty array
+  const availableVersions = hasVersions
+    ? getComponentVersions(SiteContent, name)
+    : [];
+
+  // Map available versions to ComboboxOption format
+  const versionOptions: ComboboxOption[] = useMemo(() => {
+    return availableVersions.map(version => ({
+      id: version,
+      label: version,
+    }));
+  }, [availableVersions]);
+
+  // Get default version for this component
+  const defaultVersion = hasVersions
+    ? getDefaultComponentVersion(SiteContent, name) || availableVersions[0]
+    : undefined;
+
+  // State for selected version (using ComboboxOption structure)
+  const [selectedVersion, setSelectedVersion] = useState<
+    ComboboxOption | undefined
+  >(defaultVersion ? { id: defaultVersion, label: defaultVersion } : undefined);
+
+  // Get content using the versioned content system
+  const PageMeta = getSiteContent(
+    SiteContent,
+    name,
+    selectedVersion?.id as "v1" | "v2",
+  );
 
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
@@ -197,10 +241,47 @@ export const ComponentView = () => {
     setTab(0);
   };
 
+  // Version selector component
+  const VersionSelector = () => {
+    if (!hasVersions || versionOptions.length <= 1) {
+      return null;
+    }
+
+    // Current selection
+    const selectedOptions = selectedVersion ? [selectedVersion] : [];
+
+    // Handle version change
+    const handleVersionChange = (selection: ComboboxOption[]) => {
+      if (selection.length > 0) {
+        setSelectedVersion(selection[0]);
+      }
+    };
+
+    return (
+      <Combobox
+        label="Version"
+        selected={selectedOptions}
+        onSelect={handleVersionChange}
+      >
+        {versionOptions.map(option => (
+          <Combobox.Option
+            key={option.id}
+            id={option.id}
+            label={option.label}
+          />
+        ))}
+      </Combobox>
+    );
+  };
+
   return PageMeta ? (
     <BaseView>
       <BaseView.Main>
-        <Page width="narrow" title={PageMeta.title}>
+        <Page
+          width="narrow"
+          title={PageMeta.title}
+          titleMetaData={<VersionSelector />}
+        >
           <Box>
             <Content spacing="large">
               <Box direction="column" gap="small" alignItems="flex-end">
