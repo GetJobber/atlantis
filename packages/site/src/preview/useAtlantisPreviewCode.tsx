@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useState } from "react";
+import { RefObject, useCallback, useRef, useState } from "react";
 import { transform } from "@babel/standalone";
 import { type Theme } from "@jobber/components";
 import { useAtlantisPreviewSkeleton } from "./useAtlantisPreviewSkeleton";
@@ -17,14 +17,14 @@ export const useAtlantisPreviewCode = ({
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
   const { writeCodeToIFrame } = useAtlantisPreviewSkeleton(type);
+  const lastSignature = useRef<string>("");
 
   const updateCode = useCallback(
     (codeUp: string, forceUpdate?: boolean) => {
-      // Since we can update our code from the editor or from page updates (clicking tabs)
-      // We need a mechanism above to check for loops
-      if (codeUp === code && !forceUpdate) {
-        return;
-      }
+      // Skip redundant updates when both the code and the active preview type are unchanged.
+      const signature = `${type}:${codeUp}`;
+      if (!forceUpdate && signature === lastSignature.current) return;
+      lastSignature.current = signature;
       setCode(codeUp);
 
       try {

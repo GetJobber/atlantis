@@ -116,7 +116,13 @@ html,body,#root {
           script.textContent = code;
           const root = document.getElementById('root');
           if (root) {
-            root.appendChild(script); // Inject new script
+             // remove old live scripts
+            root.querySelectorAll('script[data-atlantis="live"]').forEach(n => n.remove());
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.setAttribute('data-atlantis', 'live');
+            script.textContent = code;
+            root.appendChild(script);
           }
         } else if (type === 'updateTheme') {
           document.documentElement.dataset.theme = theme;
