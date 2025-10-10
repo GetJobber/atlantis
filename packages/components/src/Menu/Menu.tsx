@@ -591,15 +591,7 @@ function MenuContentComposable({
               style={UNSAFE_style}
               variants={variants}
               initial="hidden"
-              // placement is null on first render cycle, so we need to wait for it to be defined
-              // However, during exit animation, we should always animate to prevent race conditions in certain environments
-              animate={
-                placement
-                  ? animation
-                  : animation === "hidden"
-                  ? "hidden"
-                  : false
-              }
+              animate={getAnimateValue(animation, placement)}
               transition={{ ...MENU_ANIMATION_CONFIG }}
               onAnimationComplete={animationState => {
                 setState(prev =>
@@ -617,6 +609,15 @@ function MenuContentComposable({
       {isMobile && <MenuMobileUnderlay animation={animation} />}
     </>
   );
+}
+
+function getAnimateValue(animation: AnimationState, placement: string | null) {
+  // placement is null on first render cycle, so we need to wait for it to be defined
+  // However, during exit animation, we should always animate to prevent race conditions in certain environments
+  if (placement) return animation;
+  if (animation === "hidden") return "hidden";
+
+  return false;
 }
 
 function MenuMobileUnderlay({ animation }: MenuMobileUnderlayProps) {
