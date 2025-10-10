@@ -592,7 +592,14 @@ function MenuContentComposable({
               variants={variants}
               initial="hidden"
               // placement is null on first render cycle, so we need to wait for it to be defined
-              animate={placement ? animation : false}
+              // However, during exit animation, we should always animate to prevent race conditions in certain environments
+              animate={
+                placement
+                  ? animation
+                  : animation === "hidden"
+                  ? "hidden"
+                  : false
+              }
               transition={{ ...MENU_ANIMATION_CONFIG }}
               onAnimationComplete={animationState => {
                 setState(prev =>
