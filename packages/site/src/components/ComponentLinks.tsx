@@ -7,12 +7,17 @@ import {
   Typography,
 } from "@jobber/components";
 import { AnchorLinks } from "./AnchorLinks";
-import { ContentExportLinks } from "../types/content";
+import {
+  ComponentType,
+  ContentExportLinks,
+  PlatformType,
+} from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
+import { getComponentTypeConfig } from "../utils/componentTypeUtils";
 
 /**
  * Lists some links, typically in the top right corner of the ComponentView.
- * @param param0 {links: ContentExportLinks[]}
+ * @param param0 {links: ContentExportLinks[], availablePlatforms: PlatformType[], availableVersionsForCurrentPlatform: ComponentType[], currentType: ComponentType}
  * @returns ReactNode
  */
 export const ComponentLinks = ({
@@ -20,15 +25,16 @@ export const ComponentLinks = ({
   goToProps,
   goToUsage,
   goToDesign,
-  webEnabled,
-  mobileEnabled,
+  availablePlatforms,
+  currentType,
 }: {
   readonly links?: ContentExportLinks[];
-  readonly goToProps: (type: string) => void;
-  readonly goToUsage: (type: string) => void;
+  readonly goToProps: (type: ComponentType) => void;
+  readonly goToUsage: (type: ComponentType) => void;
   readonly goToDesign: () => void;
-  readonly webEnabled: boolean;
-  readonly mobileEnabled: boolean;
+  readonly availablePlatforms: PlatformType[];
+  readonly availableVersionsForCurrentPlatform: ComponentType[];
+  readonly currentType: ComponentType;
 }) => {
   const { isMinimal } = useAtlantisSite();
   if (isMinimal) return null;
@@ -40,56 +46,37 @@ export const ComponentLinks = ({
         header="Design"
         additionalOnClickAction={goToDesign}
       />
-      {webEnabled && (
-        <Content>
-          <Typography
-            element={"h3"}
-            size="small"
-            textCase="uppercase"
-            textColor="textSecondary"
-            fontWeight={"bold"}
-          >
-            Web
-          </Typography>
-          <Content spacing="small">
-            <Box>
-              <a onClick={() => goToUsage("web")} href={`#`}>
-                Usage
-              </a>
-            </Box>
-            <Box>
-              <a onClick={() => goToProps("web")} href={`#`}>
-                Props
-              </a>
-            </Box>
+      {availablePlatforms.map(platform => {
+        const config = getComponentTypeConfig(
+          platform === "web" ? "web" : "mobile",
+        );
+
+        return (
+          <Content key={platform}>
+            <Typography
+              element={"h3"}
+              size="small"
+              textCase="uppercase"
+              textColor="textSecondary"
+              fontWeight={"bold"}
+            >
+              {config.displayName}
+            </Typography>
+            <Content spacing="small">
+              <Box>
+                <a onClick={() => goToUsage(currentType)} href={`#`}>
+                  Usage
+                </a>
+              </Box>
+              <Box>
+                <a onClick={() => goToProps(currentType)} href={`#`}>
+                  Props
+                </a>
+              </Box>
+            </Content>
           </Content>
-        </Content>
-      )}
-      {mobileEnabled && (
-        <Content>
-          <Typography
-            element={"h3"}
-            size="small"
-            textCase="uppercase"
-            textColor="textSecondary"
-            fontWeight={"bold"}
-          >
-            Mobile
-          </Typography>
-          <Content spacing="small">
-            <Box>
-              <a onClick={() => goToUsage("mobile")} href={`#`}>
-                Usage
-              </a>
-            </Box>
-            <Box>
-              <a onClick={() => goToProps("mobile")} href={`#`}>
-                Props
-              </a>
-            </Box>
-          </Content>
-        </Content>
-      )}
+        );
+      })}
       <Content>
         <Typography
           element={"h3"}

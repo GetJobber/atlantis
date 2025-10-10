@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { ContentExport } from "../types/content";
+import { ComponentType, ContentExport } from "../types/content";
+import { getComponentProps } from "../utils/componentTypeUtils";
 
 /**
  *
@@ -8,10 +9,10 @@ import { ContentExport } from "../types/content";
  */
 export const usePropsAsDataList = (
   meta: ContentExport,
-  type: "web" | "mobile",
+  type: ComponentType,
 ) => {
   const stateValues = useMemo(() => {
-    const props = type === "web" ? meta?.props : meta?.mobileProps;
+    const props = getComponentProps(meta, type);
 
     return props?.map(propList => {
       return {
@@ -29,7 +30,7 @@ export const usePropsAsDataList = (
         }),
       };
     });
-  }, [type]);
+  }, [meta, type]);
 
   return {
     stateValues,

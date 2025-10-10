@@ -1,33 +1,22 @@
-import AutocompleteContent from "./Autocomplete.stories.mdx";
-import Props from "./Autocomplete.props.json";
-import Notes from "./AutocompleteNotes.mdx";
+import AutocompleteContent from "./v1/Autocomplete.stories.mdx";
+import Props from "./v1/Autocomplete.props.json";
+import RebuiltContent from "./v2/AutocompleteV2.stories.mdx";
+import Notes from "./v1/AutocompleteNotes.mdx";
+import RebuiltNotes from "./v2/AutocompleteV2Notes.mdx";
+import originalExample from "./v1/example";
+import RebuiltProps from "./v2/AutocompleteV2.props.json";
+import rebuiltExample from "./v2/example";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AutocompleteContent />,
+  webRebuiltContent: () => <RebuiltContent />,
   props: Props,
+  webRebuiltProps: RebuiltProps,
   component: {
-    element: `
-
-const [value, setValue] = useState();
-    const getOptions = () => {
-      return [
-        { value: 1, label: "Hobbitss" },
-        { value: 2, label: "Super heroes" },
-        { value: 3, label: "Space wars and treks" },
-      ]
-    }
-
-  return <Autocomplete
-      getOptions={getOptions}
-      initialOptions={[]}
-      placeholder="Autocomplete"
-      value={value}
-      onChange={setValue}
-    />;
-
-`,
+    element: originalExample,
+    webRebuiltElement: rebuiltExample,
   },
   title: "Autocomplete",
   links: [
@@ -38,5 +27,14 @@ const [value, setValue] = useState();
       ),
     },
   ],
+  webRebuiltLinks: [
+    {
+      label: "Storybook",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-autocomplete-web-v2--flat",
+      ),
+    },
+  ],
   notes: () => <Notes />,
+  webRebuiltNotes: () => <RebuiltNotes />,
 } as const satisfies ContentExport;

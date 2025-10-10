@@ -1,7 +1,8 @@
 import { type Theme } from "@jobber/components";
 import { RefObject } from "react";
+import { ComponentType } from "../types/content";
 
-const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
+const skeletonHTML = (theme: Theme, type: ComponentType) => {
   const imports =
     type == "mobile"
       ? `
@@ -116,7 +117,13 @@ html,body,#root {
           script.textContent = code;
           const root = document.getElementById('root');
           if (root) {
-            root.appendChild(script); // Inject new script
+             // remove old live scripts
+            root.querySelectorAll('script[data-atlantis="live"]').forEach(n => n.remove());
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.setAttribute('data-atlantis', 'live');
+            script.textContent = code;
+            root.appendChild(script);
           }
         } else if (type === 'updateTheme') {
           document.documentElement.dataset.theme = theme;
@@ -348,7 +355,7 @@ export const MobileCodeWrapper = (
               root.render(React.createElement(IntlWrapper, null));
           `;
 
-export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
+export const useAtlantisPreviewSkeleton = (type: ComponentType) => {
   const writeSkeleton = (
     doc: Document | null | undefined,
     iframeTheme: Theme,
@@ -368,9 +375,9 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
 
     if (iframeWindow) {
       const codeWrapper =
-        type == "web"
-          ? WebCodeWrapper(transpiledCode)
-          : MobileCodeWrapper(transpiledCode);
+        type == "mobile"
+          ? MobileCodeWrapper(transpiledCode)
+          : WebCodeWrapper(transpiledCode); // Use WebCodeWrapper for both 'web' and 'webRebuilt'
       iframeWindow.postMessage({ type: "updateCode", code: codeWrapper }, "*");
     }
   };
