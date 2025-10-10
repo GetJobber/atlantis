@@ -582,7 +582,7 @@ function MenuContentComposable({
 
           return (
             <MotionMenu
-              key={`menu-content-${placement ?? "pending"}`}
+              key={`motion-menu-content`}
               className={classnames(
                 styles.menu,
                 styles.ariaMenu,
