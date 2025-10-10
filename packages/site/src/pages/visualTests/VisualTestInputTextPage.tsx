@@ -1,9 +1,18 @@
-import { Box, Grid, Heading, InputText, Stack, Text } from "@jobber/components";
+import {
+  Box,
+  Button,
+  Grid,
+  Heading,
+  InputText,
+  Stack,
+  Text,
+} from "@jobber/components";
 import { useState } from "react";
 
 export const VisualTestInputTextPage = () => {
   const [value, setValue] = useState("");
   const [multilineValue, setMultilineValue] = useState("");
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   return (
     <Box padding="large">
@@ -100,6 +109,47 @@ export const VisualTestInputTextPage = () => {
               </Grid.Cell>
             </Grid>
           </section>
+
+          {/* Multiline InputText with toolbar */}
+          <Stack>
+            <Text size="large">Multiline InputText with toolbar</Text>
+            <InputText
+              value={buttonClicked ? "Button was clicked" : ""}
+              name="Toolbar example"
+              multiline={true}
+              placeholder="Toolbar example"
+              rows={{ min: 1, max: 5 }}
+              toolbar={
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Button
+                    label="Rewrite"
+                    size="small"
+                    icon="sparkles"
+                    fullWidth={false}
+                  />
+                  <Button
+                    ariaLabel="Undo"
+                    size="small"
+                    icon="redo"
+                    type="tertiary"
+                    fullWidth={false}
+                  />
+                </div>
+              }
+            />
+            <div>
+              <Button
+                label="Test toolbar stays open"
+                onClick={() => setButtonClicked(true)}
+              />
+            </div>
+          </Stack>
         </Stack>
       </Stack>
     </Box>
