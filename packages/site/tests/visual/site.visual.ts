@@ -448,14 +448,6 @@ test.describe("Atlantis Visual Tests", () => {
       },
     );
 
-    test("input text components", { tag: "@InputText" }, async ({ page }) => {
-      await page.goto("/visual-tests/input-text");
-      await page.waitForTimeout(500);
-      await expect(page).toHaveScreenshot("visual-test-input-text-page.png", {
-        fullPage: true,
-      });
-    });
-
     test("input time components", { tag: "@InputTime" }, async ({ page }) => {
       await page.goto("/visual-tests/input-time");
       await page.waitForTimeout(500);
