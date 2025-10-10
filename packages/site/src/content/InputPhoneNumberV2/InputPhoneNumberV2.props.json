@@ -1,0 +1,312 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/InputPhoneNumber/InputPhoneNumber.rebuilt.tsx",
+    "description": "",
+    "displayName": "InputPhoneNumberRebuilt",
+    "methods": [],
+    "props": {
+      "error": {
+        "defaultValue": null,
+        "description": "",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "identifier": {
+        "defaultValue": null,
+        "description": "",
+        "name": "identifier",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "autocomplete": {
+        "defaultValue": null,
+        "description": "",
+        "name": "autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onKeyUp": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onKeyUp",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(value: string, event?: ChangeEvent<HTMLInputElement>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event?: FocusEvent<HTMLInputElement, Element>) => void"
+        }
+      },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event?: FocusEvent<HTMLInputElement, Element>) => void"
+        }
+      },
+      "pattern": {
+        "defaultValue": {
+          "value": "(***) ***-****"
+        },
+        "description": "A pattern to specify the format to display the phone number in.\nFor example if you want to display the format for [Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)\nyou could set it to `** ** ** **`",
+        "name": "pattern",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "required": {
+        "defaultValue": null,
+        "description": "Shows a \"required\" validation message when the component is left empty.",
+        "name": "required",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": true,
+        "type": {
+          "name": "2"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
+      "inline": {
+        "defaultValue": null,
+        "description": "",
+        "name": "inline",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"center\" | \"right\""
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Affix"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "readonly": {
+        "defaultValue": null,
+        "description": "",
+        "name": "readonly",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<unknown>"
+        }
+      }
+    }
+  }
+]
