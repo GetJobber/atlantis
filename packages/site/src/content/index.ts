@@ -100,9 +100,9 @@ import TypographyContent from "./Typography";
 import TextListContent from "./TextList";
 import ThumbnailListContent from "./ThumbnailList";
 import AtlantisThemeContextContent from "./AtlantisThemeContext";
-import { ContentExport } from "../types/content";
+import { SiteContentItem } from "../types/content";
 
-export const SiteContent: Record<string, ContentExport> = {
+export const SiteContent: Record<string, SiteContentItem> = {
   ActionItem: {
     ...ActionItemContent,
   },

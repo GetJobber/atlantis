@@ -9,6 +9,7 @@ import { CodePreviewWindow } from "../components/CodePreviewWindow";
 import { usePropsAsDataList } from "../hooks/usePropsAsDataList";
 import { SiteContent } from "../content";
 import { useStyleUpdater } from "../hooks/useStyleUpdater";
+import { getSiteContent } from "../utils/siteContentUtils";
 import { useErrorCatcher } from "../hooks/useErrorCatcher";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import usePageTitle from "../hooks/usePageTitle";
@@ -26,7 +27,10 @@ export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
   const { updateCode, iframe, iframeMobile, type, updateType } =
     useAtlantisPreview();
-  const PageMeta = SiteContent[name];
+
+  // Get content using the new versioned content system (default version)
+  const PageMeta = getSiteContent(SiteContent, name);
+
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
   const [tab, setTab] = useState(0);
@@ -34,7 +38,7 @@ export const ComponentView = () => {
   const { enableMinimal, minimal, disableMinimal, isMinimal } =
     useAtlantisSite();
 
-  usePageTitle({ title: PageMeta?.title });
+  usePageTitle({ title: PageMeta.title });
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {

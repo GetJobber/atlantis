@@ -25,12 +25,8 @@ export function getSiteContent(
   siteContent: SiteContentType,
   componentName: string,
   version?: "v1" | "v2",
-): ContentExport | undefined {
+): ContentExport {
   const componentContent = siteContent[componentName];
-
-  if (!componentContent) {
-    return undefined;
-  }
 
   // If it's versioned content, use the versioned utility
   if (isVersionedContent(componentContent)) {
@@ -38,7 +34,15 @@ export function getSiteContent(
 
     // If the requested version doesn't exist, fallback to default (v2 or v1)
     if (!versionedContent) {
-      return getVersionedContent(componentContent); // No version = default
+      const defaultContent = getVersionedContent(componentContent); // No version = default
+
+      if (!defaultContent) {
+        throw new Error(
+          `No content available for component "${componentName}"`,
+        );
+      }
+
+      return defaultContent;
     }
 
     return versionedContent;

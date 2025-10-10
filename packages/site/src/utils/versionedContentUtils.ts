@@ -6,14 +6,26 @@ import { ContentExport, VersionedContentExport } from "../types/content";
 export function getVersionedContent(
   content: VersionedContentExport,
   version?: "v1" | "v2",
-): ContentExport | undefined {
+): ContentExport {
   // If no version specified, prefer v2, then v1
   if (!version) {
-    return content.v2 || content.v1;
+    const defaultContent = content.v2 || content.v1;
+
+    if (!defaultContent) {
+      throw new Error("No content available for this component");
+    }
+
+    return defaultContent;
   }
 
   // Return version-specific content if available
-  return content[version];
+  const versionedContent = content[version];
+
+  if (!versionedContent) {
+    throw new Error(`Version "${version}" not available for this component`);
+  }
+
+  return versionedContent;
 }
 
 /**
