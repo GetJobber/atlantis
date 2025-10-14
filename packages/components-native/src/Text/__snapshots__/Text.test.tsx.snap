@@ -694,3 +694,69 @@ exports[`renders with strikethrough styling 1`] = `
   Test Text
 </Text>
 `;
+
+exports[`supports nested Text children with mixed styles 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="hsl(86, 100%, 46%)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "hsl(198, 35%, 21%)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Hello 
+  <Text
+    accessibilityRole="text"
+    adjustsFontSizeToFit={false}
+    allowFontScaling={true}
+    collapsable={false}
+    maxFontSizeMultiplier={3.125}
+    selectable={true}
+    selectionColor="hsl(86, 100%, 46%)"
+    style={
+      [
+        {
+          "fontFamily": "inter-semibold",
+        },
+        {
+          "color": "hsl(198, 35%, 21%)",
+        },
+        {
+          "textAlign": "left",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 20,
+        },
+        {
+          "letterSpacing": 0,
+        },
+      ]
+    }
+  >
+    World
+  </Text>
+  !
+</Text>
+`;

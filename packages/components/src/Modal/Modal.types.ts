@@ -64,6 +64,12 @@ export interface ModalContextType {
    * Floating-ui props to position the modal.
    */
   readonly getFloatingProps: UseInteractionsReturn["getFloatingProps"];
+
+  /**
+   * Tracks whether the current pointer interaction began inside the dialog.
+   * Used to disambiguate outsidePress after nested overlay closes.
+   */
+  readonly startedInsideRef?: MutableRefObject<boolean>;
 }
 
 export interface ModalActionsProps {

@@ -106,6 +106,7 @@ export function Toast({
   }
 
   function handleToastClose() {
+    if (!window) return;
     setVisible(false);
   }
 

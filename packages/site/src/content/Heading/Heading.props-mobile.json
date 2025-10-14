@@ -8,7 +8,7 @@
     "props": {
       "children": {
         "defaultValue": null,
-        "description": "Text to display.",
+        "description": "Text to display. Supports nesting text elements.",
         "name": "children",
         "parent": {
           "fileName": "../components-native/src/Heading/Heading.tsx",
@@ -16,7 +16,7 @@
         },
         "required": true,
         "type": {
-          "name": "string"
+          "name": "React.ReactNode"
         }
       },
       "level": {

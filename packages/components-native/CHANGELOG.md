@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.87.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.87.0...@jobber/components-native@0.87.1) (2025-10-10)
+
+
+### Bug Fixes
+
+* **components-native:** Fix switch background issue on iOS 26 ([#2773](https://github.com/GetJobber/atlantis/issues/2773)) ([4314a3b](https://github.com/GetJobber/atlantis/commit/4314a3ba3dc993aae34446fadbf6f7d4e9e77313))
+
+
+
+
+
+# [0.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.86.1...@jobber/components-native@0.87.0) (2025-10-07)
+
+
+### Features
+
+* **components-native:** allow nested children in mobile Text/Typography ([#2766](https://github.com/GetJobber/atlantis/issues/2766)) ([b8ca977](https://github.com/GetJobber/atlantis/commit/b8ca977e04ab947fcf4f668066e03870cb3b8072))
+
+
+
+
+
 ## [0.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.86.0...@jobber/components-native@0.86.1) (2025-10-01)
 
 **Note:** Version bump only for package @jobber/components-native
