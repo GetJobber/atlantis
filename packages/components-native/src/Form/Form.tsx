@@ -26,7 +26,7 @@ import { useScrollToError } from "./hooks/useScrollToError";
 import { FormSaveButton } from "./components/FormSaveButton";
 import { useSaveButtonPosition } from "./hooks/useSaveButtonPosition";
 import { FormCache } from "./components/FormCache/FormCache";
-import { isEdgeToEdgeEnabled } from "../utils/buildConfig/isEdgeToEdgeEnabled";
+import { useAtlantisFormContext } from "./context/AtlantisFormContext";
 import { InputAccessoriesProvider } from "../InputText";
 import { tokens } from "../utils/design";
 import { ErrorMessageProvider } from "../ErrorMessageWrapper";
@@ -135,8 +135,7 @@ function InternalForm<T extends FieldValues, S>({
 
   const styles = useStyles();
 
-  // Check if edge-to-edge is enabled using utility function
-  const edgeToEdgeEnabled = isEdgeToEdgeEnabled();
+  const { edgeToEdgeEnabled = false } = useAtlantisFormContext();
 
   return (
     <FormProvider {...formMethods}>
