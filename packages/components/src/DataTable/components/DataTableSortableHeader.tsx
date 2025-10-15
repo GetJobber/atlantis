@@ -26,7 +26,7 @@ export function DataTableSortableHeader(
   props: DataTableSortableHeaderProps &
     React.HTMLAttributes<HTMLTableCellElement>,
 ): JSX.Element {
-  const { children, direction, onSort } = props;
+  const { children, direction, onSort, ...rest } = props;
   const isSortable = direction !== undefined && onSort !== undefined;
 
   if (!isSortable) {
@@ -34,7 +34,7 @@ export function DataTableSortableHeader(
   }
 
   return (
-    <DataTableHeaderCell {...props}>
+    <DataTableHeaderCell {...rest}>
       <button type="button" onClick={onSort} className={styles.sortableButton}>
         <span className={styles.focusArea}>
           {children}
