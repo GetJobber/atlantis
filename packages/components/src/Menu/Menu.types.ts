@@ -151,11 +151,13 @@ export interface MenuHeaderComposableProps extends UnsafeProps {
   readonly children: ReactNode;
 }
 
+type MenuItemVariants = "destructive";
+
 export interface MenuItemComposableProps extends UnsafeProps {
   /**
-   * Apply destructive styling to the item label and icon.
+   * Visual style variations for the MenuItem default content.
    */
-  readonly destructive?: boolean;
+  readonly variation?: MenuItemVariants;
 
   /**
    * Item content.
