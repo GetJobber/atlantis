@@ -1,0 +1,69 @@
+# InputFieldWrapper
+
+# InputFieldWrapper
+
+This component is used to wrap input fields such as
+[InputText](/components/InputText) and
+[InputPressable](/components/InputPressable) to provide common patterns and
+functionality present in our input designs, such as suffix/prefix icons,
+placeholders, etc.
+
+## Design & usage guidelines
+
+### Prefix/Suffix
+
+Use a prefix or suffix when additional visual cues about an input's function may
+be helpful.
+
+Some fields have common visual patterns such as "search" having a magnifying
+glass icon, "Select" having a downwards arrow, or currency inputs having a
+currency symbol. These signifiers reinforce the purpose of the input to increase
+[Recognition over Recall](https://www.nngroup.com/articles/ten-usability-heuristics/)
+and align the input with
+[Consistency and Standards](https://www.nngroup.com/articles/ten-usability-heuristics/).
+With clearer guidance around the purpose of inputs, the user is able to better
+focus on the task at hand. See
+[InputFieldWrapper/Prefix and Suffix example](../?path=/story/components-private-inputfieldwrapper-mobile--prefix-and-suffix).
+
+## Related components
+
+Refer to [InputText](/components/InputText) and
+[InputPressable](/components/InputPressable) to see implementation examples
+using InputFieldWrapper.
+
+## Props
+
+### Mobile Props
+
+| Prop                                                 | Type                                                          | Required         | Default           | Description                                                                                 |
+| ---------------------------------------------------- | ------------------------------------------------------------- | ---------------- | ----------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `invalid`                                            | `string                                                       | boolean`         | ❌                | `_none_`                                                                                    | Highlights the field red and shows message below (if string) to indicate an error |
+| `disabled`                                           | `boolean`                                                     | ❌               | `_none_`          | Disable the input                                                                           |
+| `placeholder`                                        | `string`                                                      | ❌               | `_none_`          | Hint text that goes above the value once the field is filled out                            |
+| `assistiveText`                                      | `string`                                                      | ❌               | `_none_`          | Text that goes below the input to help the user understand the input                        |
+| `hasMiniLabel`                                       | `boolean`                                                     | ❌               | `[object Object]` | _No description_                                                                            |
+| `hasValue`                                           | `boolean`                                                     | ❌               | `[object Object]` | _No description_                                                                            |
+| `prefix`                                             | `{ icon?: IconNames; label?: string; }`                       | ❌               | `_none_`          | Symbol to display before the text input                                                     |
+| `suffix`                                             | `{ icon?: IconNames; label?: string; onPress?: () => void; }` | ❌               | `_none_`          | Symbol to display after the text input                                                      |
+| `error`                                              | `FieldError`                                                  | ❌               | `_none_`          | _No description_                                                                            |
+| `focused`                                            | `boolean`                                                     | ❌               | `[object Object]` | _No description_                                                                            |
+| `showClearAction`                                    | `boolean`                                                     | ❌               | `[object Object]` | Adds the ClearAction that will call the onClear handler when pressed                        |
+| `onClear`                                            | `() => void`                                                  | ❌               | `_none_`          | Callback called when the user clicks the ClearAction button. Should clear the value passed. |
+| To disallow clearing set the clearable prop to never |
+| `styleOverride`                                      | `InputFieldStyleOverride`                                     | ❌               | `_none_`          | Custom styling to override default style of the input field                                 |
+| `toolbar`                                            | `React.ReactNode`                                             | ❌               | `_none_`          | Add a toolbar below the input field for actions like rewriting the text.                    |
+| `toolbarVisibility`                                  | `"always"                                                     | "while-editing"` | ❌                | `while-editing`                                                                             | Change the behaviour of when the toolbar becomes visible.                         |
+| `loading`                                            | `boolean`                                                     | ❌               | `[object Object]` | Show loading indicator.                                                                     |
+| `loadingType`                                        | `"spinner"                                                    | "glimmer"`       | ❌                | `spinner`                                                                                   | Change the type of loading indicator to spinner or glimmer.                       |
+
+## Categories
+
+- Private
+
+## Component Path
+
+`/components/InputFieldWrapper`
+
+---
+
+_Generated on 2025-08-21T17:35:16.365Z_

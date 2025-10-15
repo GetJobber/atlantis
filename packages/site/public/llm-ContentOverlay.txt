@@ -1,0 +1,104 @@
+# ContentOverlay
+
+# ContentOverlay
+
+ContentOverlay allows the user to quickly access information that supports their
+understanding of the primary content of their current view.
+
+## Design & usage guidelines
+
+The ContentOverlay component will allow users to quickly access detailed
+information about a topic without having to navigate away from their current
+view.
+
+## Content guidelines
+
+The ContentOverlay should be able to present any type of content, but its most
+common use case will probably be text and images. Since the overlay's content is
+scrollable on overflow, the amount of content can be as little or as much as
+needed, within reason. Unless content being used within the overlay is fetched
+from an online source, there shouldn't be any concerns about the represented
+content being unreliable.
+
+## Accessibility
+
+ContentOverlay responds to touch events, specifically swiping.
+
+The ContentOverlay heading receives focus when opened. There is an
+accessibilityLabel prop which describes the ContentOverlay. ContentOverlay has a
+heading text for its title, and the close button on the overlay has an
+accessibilityLabel that clearly communicates that it is used for closing the
+overlay.
+
+The overlay uses focus trapping, so that the overlay is immediately focused and
+the user is only able to engage with elements within the overlay view until the
+overlay is closed. After the overlay is closed, focus is returned to the element
+that opened the ContentOverlay.
+
+## Responsiveness
+
+ContentOverlay will take up as much vertical space as needed, minus a small
+amount of space between the top of the overlay and the top of the screen. It
+will also take up the full width of the screen up to a breakpoint of 640px,
+where it will be a maximum width of 640px and be centered on the screen.
+ContentOverlay will always be fixed at the bottom for small screens, but on
+larger screen sizes that are 1024px or greater, they will be centered vertically
+with a maximum height with large spacing on the top and bottom.
+
+The height of a ContentOverlay will accommodate the size of content that it
+holds, and if the content exceeds the space of the overlay, it will overflow and
+be scrollable. When the content of an overlay does not bring the overlay to
+maximum height, the user will have the ability to swipe up to bring the
+ContentOverlay to fullscreen.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/Product%2FMobile?node-id=46695%3A174234&t=99B8hWLcDU6BdfTe-1"
+/>
+
+## Props
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `children` | `ReactNode` | ✅ | `_none_` | Content to be passed into the overlay |
+| `title` | `string` | ✅ | `_none_` | Title of overlay, appears in the header next to the close button. |
+| `accessibilityLabel` | `string` | ❌ | `"Close {title} modal"` | Optional accessibilityLabel describing the overlay.
+This will read out when the overlay is opened. |
+| `fullScreen` | `boolean` | ❌ | `false` | Force overlay height to fill the screen.
+Width not impacted. |
+| `showDismiss` | `boolean` | ❌ | `false` | Display the dismiss button in the header of the overlay. |
+| `isDraggable` | `boolean` | ❌ | `true` | If false, hides the handle and turns off dragging. |
+| `adjustToContentHeight` | `boolean` | ❌ | `false` | If true, automatically adjusts the overlay height to the content height.
+This will disable the ability to drag the overlay to fullscreen when
+`isDraggable` is true. |
+| `keyboardShouldPersistTaps` | `boolean` | ❌ | `false` | Allows taps to be registered behind keyboard if enabled |
+| `scrollEnabled` | `boolean` | ❌ | `_none_` | Enables scrolling in the content body of overlay |
+| `modalBackgroundColor` | `ModalBackgroundColor` | ❌ | `"surface"` | Set the background color of the modal window |
+| `onClose` | `() => void` | ❌ | `_none_` | Callback that is called when the overlay is closed. |
+| `onOpen` | `() => void` | ❌ | `_none_` | Callback that is called when the overlay is opened. |
+| `onBeforeExit` | `() => void` | ❌ | `_none_` | Callback that is called between overlay is closed and when the "x" button is pressed |
+| `keyboardAvoidingBehavior` | `"height" | "padding" | "position"` | ❌ | `padding` | Define the behavior of the keyboard when having inputs inside the modal. |
+| `loading` | `boolean` | ❌ | `false` | Boolean to show a disabled state |
+| `avoidKeyboardLikeIOS` | `boolean` | ❌ | `Platform.select({ ios: true, android: false })` | Define keyboard's Android behavior like iOS's one. |
+| `ref` | `LegacyRef<{ open?: (dest?: TOpen) => void; close?: (dest?: TClose) => void; }>` | ❌ | `_none_` | Allows getting a ref to the component instance.
+Once the component unmounts, React will set `ref.current` to `null`
+(or call the ref with `null` if you passed a callback ref).
+@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs} |
+| `key` | `Key` | ❌ | `_none_` | _No description_ |
+
+
+## Categories
+
+- Overlays
+
+## Component Path
+
+`/components/ContentOverlay`
+
+---
+
+_Generated on 2025-08-21T17:35:16.357Z_
