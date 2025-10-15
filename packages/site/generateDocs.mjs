@@ -1,10 +1,4 @@
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  statSync,
-  writeFileSync,
-} from "fs";
+import { existsSync, mkdirSync, statSync, writeFileSync } from "fs";
 import { dirname, join, relative, resolve } from "path";
 import { fileURLToPath } from "url";
 import { parse } from "react-docgen-typescript";
@@ -18,15 +12,12 @@ const stats = {
   parsed: 0,
   written: 0,
   skippedUnchanged: 0,
-  parsedFiles: [],
   writtenFiles: [],
-  skippedUnchangedFiles: [],
 };
 
 // Helpers for stats and IO
-const recordParsed = componentPath => {
+const recordParsed = () => {
   stats.parsed += 1;
-  stats.parsedFiles.push(componentPath);
 };
 
 const recordWritten = outputPath => {
@@ -34,9 +25,8 @@ const recordWritten = outputPath => {
   stats.writtenFiles.push(relative(__dirname, outputPath));
 };
 
-const recordSkipped = outputPath => {
+const recordSkipped = () => {
   stats.skippedUnchanged += 1;
-  stats.skippedUnchangedFiles.push(relative(__dirname, outputPath));
 };
 
 const ensureDir = dir => {
@@ -70,7 +60,9 @@ const writeOutput = (outputPath, content) => {
  * @param {string} outputPath Absolute path for the JSON output
  */
 const processDocumentation = componentPath => {
-  const documentation = parse(componentPath);
+  // Use a relative path for parsing so docgen's filePath output matches previous behavior
+  const parsePath = relative(__dirname, componentPath);
+  const documentation = parse(parsePath);
   const docPipeline = [
     removeDeclarations,
     removeNonComponents,
@@ -80,12 +72,6 @@ const processDocumentation = componentPath => {
   return docPipeline.reduce(
     (docs, cleanUpFn) => cleanUpFn(docs),
     documentation,
-  );
-};
-
-const shouldWriteFile = (outputPath, newContent) => {
-  return (
-    !existsSync(outputPath) || newContent !== readFileSync(outputPath, "utf8")
   );
 };
 
@@ -102,15 +88,10 @@ const parseAndWriteDocs = (componentPath, outputPath) => {
     console.log("parsing component at:", componentPath);
     const cleanedDocumentation = processDocumentation(componentPath);
     const newContent = prepareOutput(cleanedDocumentation, outputPath);
-    const shouldWrite = shouldWriteFile(outputPath, newContent);
-    recordParsed(componentPath);
+    recordParsed();
 
-    if (shouldWrite) {
-      writeOutput(outputPath, newContent);
-      recordWritten(outputPath);
-    } else {
-      recordSkipped(outputPath);
-    }
+    writeOutput(outputPath, newContent);
+    recordWritten(outputPath);
   } catch (error) {
     console.error("Failed to generate docs for:", componentPath, "\n", error);
   }
@@ -141,11 +122,14 @@ const isOutputUpToDate = (componentPath, outputPath) => {
  * @param {string} outputPath Absolute path for the JSON output
  */
 const generateIfNeeded = (componentPath, outputPath) => {
+  if (!existsSync(componentPath)) {
+    return;
+  }
+
   if (!isOutputUpToDate(componentPath, outputPath)) {
     parseAndWriteDocs(componentPath, outputPath);
   } else {
-    console.log("skipping up-to-date docs for:", componentPath);
-    recordSkipped(outputPath);
+    recordSkipped();
   }
 };
 
@@ -306,13 +290,42 @@ const baseComponentDir = resolve(__dirname, "../components/src");
 const baseMobileComponentDir = resolve(__dirname, "../components-native/src");
 const baseOutputDir = resolve(__dirname, "./src/content");
 
+// Default behavior: always write outputs. With -t/--touched, only write when changed.
+// Note: When invoking via npm scripts, pass flags after "--" (e.g., `npm run generate -- -t`).
+const args = process.argv.slice(2);
+const allowedFlags = new Set(["-t", "--touched"]);
+const unknownFlags = args.filter(
+  a => a.startsWith("-") && !allowedFlags.has(a),
+);
+
+if (unknownFlags.length > 0) {
+  console.error(
+    `Unknown flag(s): ${unknownFlags.join(", ")}\n` +
+      "Usage: npm run generate -- [-t|--touched]",
+  );
+  process.exit(1);
+}
+
+const touchedMode = args.includes("-t") || args.includes("--touched");
+
+// Run generation depending on mode: touched mode only writes when changed,
+// default mode always writes.
+const generate = (componentPath, outputPath) => {
+  if (touchedMode) {
+    generateIfNeeded(componentPath, outputPath);
+  } else {
+    parseAndWriteDocs(componentPath, outputPath);
+  }
+};
+
 const buildComponentDocs = name => {
   const { componentPath, outputPath } = buildPaths(
     baseComponentDir,
     baseOutputDir,
     name,
   );
-  generateIfNeeded(componentPath, outputPath);
+
+  generate(componentPath, outputPath);
 };
 
 const buildMobileComponentDocs = name => {
@@ -322,19 +335,12 @@ const buildMobileComponentDocs = name => {
     name,
     "-mobile",
   );
-  generateIfNeeded(componentPath, outputPath);
+
+  generate(componentPath, outputPath);
 };
 
 ListOfGeneratedWebComponents.forEach(buildComponentDocs);
 ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
-
-// Custom generation for components that don't follow the standard
-// <Component>/<Component>.tsx convention.
-// Autocomplete v2 (rebuilt) lives alongside v1 but uses a different filename.
-parseAndWriteDocs(
-  `${baseComponentDir}/Autocomplete/Autocomplete.rebuilt.tsx`,
-  `${baseOutputDir}/AutocompleteV2/AutocompleteV2.props.json`,
-);
 
 // V2 auto-detection: if a rebuilt file exists, emit separate V2 props
 const buildWebComponentDocsV2 = name => {
@@ -342,19 +348,18 @@ const buildWebComponentDocsV2 = name => {
   const v2OutputPath = `${baseOutputDir}/${name}V2/${name}V2.props.json`;
 
   if (existsSync(rebuiltPath)) {
-    parseAndWriteDocs(rebuiltPath, v2OutputPath);
+    generate(rebuiltPath, v2OutputPath);
   }
 };
 
 ListOfGeneratedWebComponents.forEach(buildWebComponentDocsV2);
 
 // Print a concise summary at the end for clarity
-if (stats.written === 0) {
-  console.log("No changes detected. Component docs are up-to-date.");
-} else {
-  console.log(
-    `Generated/updated ${stats.written} file(s). Parsed ${stats.parsed} component(s).`,
-  );
+console.log(
+  `Parsed ${stats.parsed} component(s). Updated ${stats.written} file(s). Skipped ${stats.skippedUnchanged}.`,
+);
+
+if (stats.written > 0) {
   stats.writtenFiles.forEach(file => {
     console.log(" -", file);
   });
