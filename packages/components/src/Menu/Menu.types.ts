@@ -1,8 +1,15 @@
 import type { IconColorNames, IconNames } from "@jobber/design";
 import type React from "react";
-import type { CSSProperties, ReactElement, ReactNode } from "react";
+import type {
+  CSSProperties,
+  ComponentProps,
+  ReactElement,
+  ReactNode,
+} from "react";
+import type { Pressable as AriaPressable } from "react-aria-components";
 import type { IconProps } from "../Icon";
 
+type PressableChild = ComponentProps<typeof AriaPressable>["children"];
 export interface MenuLegacyProps extends MenuBaseProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
@@ -209,7 +216,7 @@ export interface MenuTriggerComposableProps {
    * If you want to access the open event, use the onOpenChange on the Menu component.
    * If it does not have an interactive role, or a focus style it will have issues.
    */
-  readonly children: ReactNode;
+  readonly children: PressableChild;
 }
 
 export interface MenuSeparatorComposableProps extends UnsafeProps {}
