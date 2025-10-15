@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.87.1...@jobber/components-native@0.88.0) (2025-10-15)
+
+
+### Features
+
+* **components:** React 19 support ([#2687](https://github.com/GetJobber/atlantis/issues/2687)) ([36e8563](https://github.com/GetJobber/atlantis/commit/36e8563e75500b7ce70a148eb44d97cceb101fe7)), closes [#2752](https://github.com/GetJobber/atlantis/issues/2752) [#2756](https://github.com/GetJobber/atlantis/issues/2756) [#2762](https://github.com/GetJobber/atlantis/issues/2762)
+
+
+
+
+
 ## [0.87.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.87.0...@jobber/components-native@0.87.1) (2025-10-10)
 
 
