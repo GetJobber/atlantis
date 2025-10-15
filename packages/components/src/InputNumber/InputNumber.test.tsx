@@ -26,8 +26,8 @@ it("renders an input type number", () => {
               >
                 <input
                   class="input"
-                  id=":r0:"
-                  name="generatedName--:r0:"
+                  id="«r0»"
+                  name="generatedName--«r0»"
                   type="number"
                   value="123"
                 />

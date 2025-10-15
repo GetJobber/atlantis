@@ -3,8 +3,9 @@
   "compilerOptions": {
     "lib": [
       "dom",
-      "es2018"
+      "es2020"
     ],
+    "types": ["node", "@testing-library/jest-dom"],
     "jsx": "react",
     "declaration": true,
     "rootDir": "src",

@@ -11,14 +11,14 @@ exports[`renders a RadioGroup 1`] = `
       <input
         checked=""
         class="input"
-        id="one_:r1:"
-        name=":r0:"
+        id="one_«r1»"
+        name="«r0»"
         type="radio"
         value="one"
       />
       <label
         class="label"
-        for="one_:r1:"
+        for="one_«r1»"
       >
         One
       </label>
@@ -26,14 +26,14 @@ exports[`renders a RadioGroup 1`] = `
     <div>
       <input
         class="input"
-        id="two_:r2:"
-        name=":r0:"
+        id="two_«r2»"
+        name="«r0»"
         type="radio"
         value="two"
       />
       <label
         class="label"
-        for="two_:r2:"
+        for="two_«r2»"
       >
         Two
       </label>
@@ -48,14 +48,14 @@ exports[`renders a RadioGroup 1`] = `
       <input
         checked=""
         class="input"
-        id="one_:r4:"
-        name=":r3:"
+        id="one_«r4»"
+        name="«r3»"
         type="radio"
         value="one"
       />
       <label
         class="label"
-        for="one_:r4:"
+        for="one_«r4»"
       >
         One
       </label>
@@ -63,14 +63,14 @@ exports[`renders a RadioGroup 1`] = `
     <div>
       <input
         class="input"
-        id="two_:r5:"
-        name=":r3:"
+        id="two_«r5»"
+        name="«r3»"
         type="radio"
         value="two"
       />
       <label
         class="label"
-        for="two_:r5:"
+        for="two_«r5»"
       >
         Two
       </label>
