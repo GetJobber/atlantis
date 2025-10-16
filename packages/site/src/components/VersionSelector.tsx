@@ -1,12 +1,17 @@
 import { Box, Chip, Menu } from "@jobber/components";
 import { ComponentType } from "../types/content";
-import { getComponentTypeConfig } from "../utils/componentTypeUtils";
 
 interface VersionSelectorProps {
   readonly availableVersions: ComponentType[];
   readonly currentVersion: ComponentType;
   readonly onVersionChange: (version: ComponentType) => void;
 }
+
+const versionLabelMap: Record<ComponentType, string> = {
+  web: "Legacy",
+  webRebuilt: "Supported",
+  mobile: "Supported",
+};
 
 export const VersionSelector = ({
   availableVersions,
@@ -22,23 +27,17 @@ export const VersionSelector = ({
     <Box direction="row" gap="small" alignItems="center">
       <Menu>
         <Menu.Trigger>
-          <Chip
-            label={
-              currentVersion.charAt(0).toUpperCase() + currentVersion.slice(1)
-            }
-          />
+          <Chip heading="Version" label={versionLabelMap[currentVersion]} />
         </Menu.Trigger>
         <Menu.Content>
           {availableVersions.map(version => {
-            const config = getComponentTypeConfig(version);
-
             return (
               <Menu.Item
                 key={version}
-                textValue={config.displayName}
+                textValue={versionLabelMap[version]}
                 onClick={() => onVersionChange(version)}
               >
-                <Menu.ItemLabel>{config.displayName}</Menu.ItemLabel>
+                <Menu.ItemLabel>{versionLabelMap[version]}</Menu.ItemLabel>
               </Menu.Item>
             );
           })}
