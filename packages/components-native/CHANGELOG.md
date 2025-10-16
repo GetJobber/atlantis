@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.88.1...@jobber/components-native@0.89.0) (2025-10-16)
+
+
+### Features
+
+* **components-native:** Add conditional Android edge-to-edge keyboard handling to Form ([#2746](https://github.com/GetJobber/atlantis/issues/2746)) ([5336bcc](https://github.com/GetJobber/atlantis/commit/5336bccb08959012941098ecabe710b91321aaa5))
+
+
+
+
+
 ## [0.88.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.88.0...@jobber/components-native@0.88.1) (2025-10-16)
 
 
