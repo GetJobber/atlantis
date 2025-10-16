@@ -85,7 +85,7 @@ html,body,#root {
           }
       }
   @container wrapper-three (min-width:0px){
- 
+
         .item > *{
           width: 50%;
           background-color: var(--color-success);
@@ -213,7 +213,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               RadioGroup,
               RadioOption,
               RecurringSelect,
-              ResponsiveSwitcher, 
+              ResponsiveSwitcher,
               SegmentedControl,
               Select,
               SideDrawer,
@@ -252,9 +252,6 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               return React.createElement(AtlantisThemeContextProvider, null, React.createElement(App));
             }
 
-          if (rootElement) {
-              ReactDOM.unmountComponentAtNode(rootElement);
-            }
              if(!rootElement){
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
@@ -345,9 +342,6 @@ export const MobileCodeWrapper = (
               return React.createElement(IntlProvider, {locale: 'en'}, React.createElement(RootWrapper));
             }
 
-          if (rootElement) {
-            //  ReactDOM.unmountComponentAtNode(rootElement);
-            }
              if(!rootElement){
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);

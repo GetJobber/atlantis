@@ -65,18 +65,16 @@
     "@jobber/eslint-config": "*",
     "@jobber/generators": "*",
     "@jobber/stylelint-config": "*",
-    "@react-native-community/datetimepicker": "^7.1.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^14.5.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/history": "^4.7.6",
     "@types/jest": "^29.5.0",
     "@types/lodash": "^4.14.149",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
     "@types/react-router-dom": "^5.3.3",
-    "@types/react-test-renderer": "^18.0.0",
     "axios": "^1.11.0",
     "babel-plugin-react-native-web": "^0.20.0",
     "babel-plugin-transform-import-meta": "^2.2.1",
@@ -100,11 +98,13 @@
     "lodash": "^4.17.21",
     "plop": "^4.0.1",
     "prettier": "^2.4.1",
-    "react": "^18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-ga4": "^2.1.0",
-    "react-intl": "^6.4.2",
+    "react-intl": "^7.1.11",
     "react-router-dom": "^5.3.4",
+    "rollup": "^4.24.0",
+    "storybook": "^9.1.8",
     "stylelint": "^16.2.1",
     "stylelint-junit-formatter": "^0.2.1",
     "subscriptions-transport-ws": "^0.11.0",
@@ -134,7 +134,10 @@
         "semver": "^6.3.1"
       }
     },
-    "trim": "0.0.3"
+    "trim": "0.0.3",
+    "pretty-format": {
+      "react-is": "19.1.1"
+    }
   },
   "engineStrict": true
 }

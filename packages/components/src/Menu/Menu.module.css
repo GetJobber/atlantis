@@ -19,6 +19,7 @@
   padding: var(--menu-space);
   padding-bottom: calc(env(safe-area-inset-bottom) + var(--menu-space));
   border-radius: var(--radius-base) var(--radius-base) 0 0;
+  outline: none;
   overflow-y: scroll;
   background-color: var(--color-surface);
   -webkit-overflow-scrolling: touch;
@@ -40,18 +41,78 @@
   }
 }
 
-.section {
+.legacySection {
   padding: var(--menu-space) 0;
+}
+
+.legacySection,
+.separator {
   border-bottom: var(--border-base) solid var(--color-border);
 }
 
-.section:first-of-type {
+.legacySection:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.legacySection:first-of-type {
   padding-top: 0;
 }
 
-.section:last-of-type {
-  padding-bottom: 0;
-  border-bottom: none;
+.separator {
+  margin: var(--space-small) 0;
+  grid-column: 1 / -1;
+}
+
+.triggerWrapper {
+  display: inline-flex;
+  outline: none;
+}
+
+.ariaMenu {
+  display: grid;
+  max-height: inherit;
+  grid-template-columns: auto 1fr auto;
+}
+
+.ariaItem {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: var(--menu-space);
+}
+
+.ariaItem > [data-menu-slot="icon"] {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.ariaItem > [data-menu-slot="label"] {
+  grid-column-start: 2;
+}
+
+.ariaSection {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  grid-column-start: 1;
+}
+
+.ariaMenu .ariaSection:not(:first-child) {
+  margin-top: var(--space-small);
+}
+
+/* When a section follows a separator, avoid doubling vertical spacing.
+   Grid items don't collapse margins, so the section's top margin would add
+   to the separator's bottom margin. Remove the section margin in this case. */
+.ariaMenu .separator + .ariaSection {
+  margin-top: 0;
+}
+
+.ariaSectionHeader {
+  grid-column: 1 / -1;
+  grid-column-start: 1;
 }
 
 .sectionHeader {
@@ -60,9 +121,21 @@
   padding: calc(var(--menu-space) * 1.5) var(--menu-space);
 }
 
-.action {
+.legacyAction {
   display: flex;
+  gap: var(--menu-space);
+  align-items: center;
   width: 100%;
+}
+
+/* Legacy variant focus-visible styling */
+.legacyAction:focus-visible {
+  box-shadow: var(--shadow-focus);
+  background-color: var(--color-surface--hover);
+}
+
+.action {
+  box-sizing: border-box;
   padding: var(--menu-space);
   border: none;
   border-radius: var(--radius-base);
@@ -70,20 +143,29 @@
   text-align: start;
   background-color: transparent;
   cursor: pointer;
-  gap: var(--menu-space);
-  align-items: center;
+
   transition:
     background-color var(--timing-base) ease-out,
     box-shadow var(--timing-base) ease-out;
 }
 
-.action:hover,
-.action:focus-visible {
+.action:hover {
   background-color: var(--color-surface--hover);
 }
 
-.action:focus-visible {
+/* Background on both legacy (:focus-visible) and RAC ([data-focused]) */
+.action[data-focused] {
+  background-color: var(--color-surface--hover);
+}
+
+/* Focus ring for legacy and RAC keyboard focus */
+.action[data-focus-visible] {
   box-shadow: var(--shadow-focus);
+}
+
+/* Do not show focus ring when item is hovered (pointer interaction) */
+.action[data-hovered][data-focus-visible] {
+  box-shadow: none;
 }
 
 .action span {

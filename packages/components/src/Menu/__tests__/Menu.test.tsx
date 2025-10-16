@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Menu } from ".";
-import { Button } from "../Button";
-import { withMockedViewport } from "../testUtils/viewport";
+import { Menu } from "..";
+import { Button } from "../../Button";
+import { withMockedViewport } from "../../testUtils/viewport";
 
 describe("Menu", () => {
   it("renders", () => {
@@ -309,7 +309,7 @@ describe("Menu", () => {
   });
 });
 
-it("should focus first action item from the menu when activated", async () => {
+it("should focus first action item from the menu when activated by keyboard", async () => {
   render(
     <Menu
       activator={<Button label="Menu" />}
@@ -330,10 +330,16 @@ it("should focus first action item from the menu when activated", async () => {
       ]}
     />,
   );
+  const trigger = screen.getByRole("button");
 
-  await userEvent.click(screen.getByRole("button"));
-  const firstMenuItem = screen.getAllByRole("menuitem")[0];
-  expect(firstMenuItem).toHaveFocus();
+  trigger.focus();
+
+  await userEvent.keyboard("{Enter}");
+  const allItems = await screen.findAllByRole("menuitem");
+
+  await waitFor(() => {
+    expect(allItems[0]).toHaveFocus();
+  });
 });
 
 describe("Menu max-height behavior", () => {

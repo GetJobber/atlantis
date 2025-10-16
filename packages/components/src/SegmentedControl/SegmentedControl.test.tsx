@@ -135,6 +135,6 @@ describe("SegmentedControl", () => {
       </SegmentedControl>,
     );
     const firstOptionName = screen.getByLabelText("Pizza").getAttribute("name");
-    expect(firstOptionName).toMatch(":ro:");
+    expect(firstOptionName).toMatch("«ro»");
   });
 });

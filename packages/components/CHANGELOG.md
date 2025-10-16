@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.101.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.100.0...@jobber/components@6.101.0) (2025-10-15)
+
+
+### Features
+
+* **components:** React 19 support ([#2687](https://github.com/GetJobber/atlantis/issues/2687)) ([36e8563](https://github.com/GetJobber/atlantis/commit/36e8563e75500b7ce70a148eb44d97cceb101fe7)), closes [#2752](https://github.com/GetJobber/atlantis/issues/2752) [#2756](https://github.com/GetJobber/atlantis/issues/2756) [#2762](https://github.com/GetJobber/atlantis/issues/2762)
+
+
+
+
+
+# [6.100.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.99.0...@jobber/components@6.100.0) (2025-10-10)
+
+
+### Features
+
+* **components:** Expose toast props ([#2776](https://github.com/GetJobber/atlantis/issues/2776)) ([8e7044d](https://github.com/GetJobber/atlantis/commit/8e7044da8902898fa83cbb7cfcdccda50d9436f9))
+
+
+
+
+
+# [6.99.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.98.2...@jobber/components@6.99.0) (2025-10-09)
+
+
+### Features
+
+* **components:** Add Composable Compound Menu Component ([#2747](https://github.com/GetJobber/atlantis/issues/2747)) ([300d29a](https://github.com/GetJobber/atlantis/commit/300d29afdc5a41604e63d25c888f98e78f7791dd)), closes [#2765](https://github.com/GetJobber/atlantis/issues/2765)
+
+
+
+
+
 ## [6.98.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.98.1...@jobber/components@6.98.2) (2025-10-08)
 
 
