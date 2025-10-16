@@ -1,11 +1,11 @@
-import AutocompleteContent from "./v1/Autocomplete.stories.mdx";
-import Props from "./v1/Autocomplete.props.json";
-import RebuiltContent from "./v2/AutocompleteV2.stories.mdx";
-import Notes from "./v1/AutocompleteNotes.mdx";
-import RebuiltNotes from "./v2/AutocompleteV2Notes.mdx";
-import originalExample from "./v1/example";
-import RebuiltProps from "./v2/AutocompleteV2.props.json";
-import rebuiltExample from "./v2/example";
+import AutocompleteContent from "./Autocomplete.stories.mdx";
+import Props from "./Autocomplete.props.json";
+import RebuiltContent from "./AutocompleteV2.stories.mdx";
+import Notes from "./AutocompleteNotes.mdx";
+import RebuiltNotes from "./AutocompleteV2Notes.mdx";
+import originalExample from "./exampleV1";
+import rebuiltExample from "./exampleV2";
+import RebuiltProps from "./AutocompleteV2.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
