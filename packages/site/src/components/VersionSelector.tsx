@@ -1,4 +1,4 @@
-import { Box, Option, Select, Typography } from "@jobber/components";
+import { Box, Chip, Menu } from "@jobber/components";
 import { ComponentType } from "../types/content";
 import { getComponentTypeConfig } from "../utils/componentTypeUtils";
 
@@ -20,24 +20,30 @@ export const VersionSelector = ({
 
   return (
     <Box direction="row" gap="small" alignItems="center">
-      <Typography size="small" textColor="textSecondary">
-        Version:
-      </Typography>
-      <Select
-        value={currentVersion}
-        onChange={value => onVersionChange(value as ComponentType)}
-        size="small"
-      >
-        {availableVersions.map(version => {
-          const config = getComponentTypeConfig(version);
+      <Menu>
+        <Menu.Trigger>
+          <Chip
+            label={
+              currentVersion.charAt(0).toUpperCase() + currentVersion.slice(1)
+            }
+          />
+        </Menu.Trigger>
+        <Menu.Content>
+          {availableVersions.map(version => {
+            const config = getComponentTypeConfig(version);
 
-          return (
-            <Option key={version} value={version}>
-              {config.displayName}
-            </Option>
-          );
-        })}
-      </Select>
+            return (
+              <Menu.Item
+                key={version}
+                textValue={config.displayName}
+                onClick={() => onVersionChange(version)}
+              >
+                <Menu.ItemLabel>{config.displayName}</Menu.ItemLabel>
+              </Menu.Item>
+            );
+          })}
+        </Menu.Content>
+      </Menu>
     </Box>
   );
 };

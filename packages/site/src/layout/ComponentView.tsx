@@ -1,4 +1,12 @@
-import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
+import {
+  Banner,
+  Box,
+  Content,
+  Heading,
+  Page,
+  Tab,
+  Tabs,
+} from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
@@ -237,19 +245,25 @@ export const ComponentView = () => {
   return PageMeta ? (
     <BaseView>
       <BaseView.Main>
-        <Page width="narrow" title={PageMeta.title}>
+        <Page
+          width="narrow"
+          title={
+            <Box direction="row" gap="small" alignItems="center">
+              <Heading level={1}>{PageMeta.title}</Heading>
+              <VersionSelector
+                availableVersions={availableVersionsForCurrentPlatform}
+                currentVersion={type}
+                onVersionChange={updateType}
+              />
+            </Box>
+          }
+        >
           <Box>
             <Content spacing="large">
               <Box direction="column" gap="small" alignItems="flex-end">
                 <CodePreviewWindow>
                   <AtlantisPreviewViewer />
                 </CodePreviewWindow>
-                {/* Version selector - only show if there are multiple versions for current platform */}
-                <VersionSelector
-                  availableVersions={availableVersionsForCurrentPlatform}
-                  currentVersion={type}
-                  onVersionChange={updateType}
-                />
               </Box>
               <span style={{ "--public-tab--inset": 0 } as React.CSSProperties}>
                 <Tabs onTabChange={handleTabChange} activeTab={tab}>
