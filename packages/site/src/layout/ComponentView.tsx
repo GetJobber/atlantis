@@ -248,7 +248,7 @@ export const ComponentView = () => {
         <Page
           width="narrow"
           title={
-            <Box direction="row" gap="small" alignItems="center">
+            <Box direction="row" gap="small" alignItems="start">
               <Heading level={1}>{PageMeta.title}</Heading>
               <VersionSelector
                 availableVersions={availableVersionsForCurrentPlatform}
