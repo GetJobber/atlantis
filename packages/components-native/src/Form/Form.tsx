@@ -172,7 +172,7 @@ function InternalForm<T extends FieldValues, S>({
             ref={scrollViewRef}
             {...keyboardProps}
             extraHeight={headerHeight}
-            extraScrollHeight={edgeToEdgeEnabled ? 20 : 0}
+            extraScrollHeight={edgeToEdgeEnabled ? tokens["space-large"] : 0}
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
             }
