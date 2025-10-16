@@ -30,7 +30,7 @@ export function DataTableSortableHeader(
   const isSortable = direction !== undefined && onSort !== undefined;
 
   if (!isSortable) {
-    return <DataTableHeaderCell {...props}>{children}</DataTableHeaderCell>;
+    return <DataTableHeaderCell {...rest}>{children}</DataTableHeaderCell>;
   }
 
   return (
