@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.88.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.88.0...@jobber/components-native@0.88.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* **components-native:** add modalize wrapper to fix new arch issues ([#2781](https://github.com/GetJobber/atlantis/issues/2781)) ([cd1d6c6](https://github.com/GetJobber/atlantis/commit/cd1d6c60884c43500dd0bb128a734978ce43d3ac))
+
+
+
+
+
 # [0.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.87.1...@jobber/components-native@0.88.0) (2025-10-15)
 
 
