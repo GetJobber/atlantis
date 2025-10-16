@@ -371,7 +371,7 @@ export const useAtlantisPreviewSkeleton = (type: ComponentType) => {
       const codeWrapper =
         type == "mobile"
           ? MobileCodeWrapper(transpiledCode)
-          : WebCodeWrapper(transpiledCode); // Use WebCodeWrapper for both 'web' and 'webRebuilt'
+          : WebCodeWrapper(transpiledCode); // Use WebCodeWrapper for both 'webSupported' and 'webLegacy'
       iframeWindow.postMessage({ type: "updateCode", code: codeWrapper }, "*");
     }
   };

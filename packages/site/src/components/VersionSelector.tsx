@@ -9,8 +9,8 @@ interface VersionSelectorProps {
 
 const versionLabelMap: Record<ComponentType, string> = {
   web: "Legacy",
-  webRebuilt: "Supported",
-  mobile: "Supported",
+  webSupported: "Supported",
+  mobile: "Mobile",
 };
 
 export const VersionSelector = ({

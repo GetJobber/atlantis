@@ -19,9 +19,9 @@ export function getAvailableComponentTypes(
     types.push("web");
   }
 
-  // Check for webRebuilt components (legacy and new)
-  if (content.component?.webRebuiltElement || content.component?.webRebuilt) {
-    types.push("webRebuilt");
+  // Check for webSupported components
+  if (content.component?.webSupported) {
+    types.push("webSupported");
   }
 
   // Check for mobile components (legacy and new)
@@ -82,10 +82,8 @@ export function getComponentElement(
   switch (type) {
     case "web":
       return content.component?.web || content.component?.element;
-    case "webRebuilt":
-      return (
-        content.component?.webRebuilt || content.component?.webRebuiltElement
-      );
+    case "webSupported":
+      return content.component?.webSupported;
     case "mobile":
       return content.component?.mobile || content.component?.mobileElement;
     default:
@@ -100,8 +98,8 @@ export function getComponentProps(content: ContentExport, type: ComponentType) {
   switch (type) {
     case "web":
       return content.webProps || content.props;
-    case "webRebuilt":
-      return content.webRebuiltProps;
+    case "webSupported":
+      return content.webSupportedProps;
     case "mobile":
       return content.mobileProps;
     default:
@@ -119,8 +117,8 @@ export function getComponentContent(
   switch (type) {
     case "web":
       return content.webContent || content.content;
-    case "webRebuilt":
-      return content.webRebuiltContent || content.content; // Add fallback
+    case "webSupported":
+      return content.webSupportedContent || content.content;
     case "mobile":
       return content.mobileContent || content.content;
     default:
@@ -135,8 +133,8 @@ export function getComponentNotes(content: ContentExport, type: ComponentType) {
   switch (type) {
     case "web":
       return content.webNotes || content.notes;
-    case "webRebuilt":
-      return content.webRebuiltNotes || content.notes; // Add fallback
+    case "webSupported":
+      return content.webSupportedNotes || content.notes;
     case "mobile":
       return content.mobileNotes || content.notes;
     default:
@@ -151,8 +149,8 @@ export function getComponentLinks(content: ContentExport, type: ComponentType) {
   switch (type) {
     case "web":
       return content.webLinks || content.links;
-    case "webRebuilt":
-      return content.webRebuiltLinks;
+    case "webSupported":
+      return content.webSupportedLinks;
     case "mobile":
       return content.mobileLinks || content.links;
     default:
@@ -171,17 +169,18 @@ export function getComponentTypeConfig(
 
 /**
  * Get the default component type for a content export
+ * Prefers webSupported over web, then falls back to mobile
  */
 export function getDefaultComponentType(content: ContentExport): ComponentType {
   const availableTypes = getAvailableComponentTypes(content);
 
-  // Prefer web, then webRebuilt, then mobile
+  // Prefer webSupported if available
+  if (availableTypes.includes("webSupported")) return "webSupported";
   if (availableTypes.includes("web")) return "web";
-  if (availableTypes.includes("webRebuilt")) return "webRebuilt";
   if (availableTypes.includes("mobile")) return "mobile";
 
   // Fallback (shouldn't happen with valid content)
-  return "web";
+  return "webSupported";
 }
 
 /**

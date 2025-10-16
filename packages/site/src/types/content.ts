@@ -2,7 +2,7 @@
 export type PlatformType = "web" | "mobile";
 
 // Define supported component types (including versions)
-export type ComponentType = "web" | "webRebuilt" | "mobile";
+export type ComponentType = "web" | "webSupported" | "mobile";
 
 // Define component type configuration
 export interface ComponentTypeConfig {
@@ -19,13 +19,13 @@ export const COMPONENT_TYPE_CONFIGS: Record<
   ComponentTypeConfig
 > = {
   web: {
-    label: "Web",
-    displayName: "Web",
+    label: "Web (Legacy)",
+    displayName: "Legacy",
     platform: "web",
   },
-  webRebuilt: {
-    label: "Web (Rebuilt)",
-    displayName: "Web Rebuilt",
+  webSupported: {
+    label: "Web (Supported)",
+    displayName: "Supported",
     platform: "web", // Uses same iframe as web
     isVersion: true,
     baseType: "web",
@@ -55,13 +55,13 @@ export interface ContentExport {
 
   // Type-specific content
   webContent?: (props?: unknown) => JSX.Element;
-  webRebuiltContent?: (props?: unknown) => JSX.Element;
+  webSupportedContent?: (props?: unknown) => JSX.Element;
   mobileContent?: (props?: unknown) => JSX.Element;
 
   // Type-specific props
   props?: Array<ComponentProps>;
   webProps?: Array<ComponentProps>;
-  webRebuiltProps?: Array<ComponentProps>;
+  webSupportedProps?: Array<ComponentProps>;
   mobileProps?: Array<ComponentProps>;
 
   // Component elements
@@ -69,11 +69,10 @@ export interface ContentExport {
     // Legacy support
     element?: unknown;
     mobileElement?: unknown;
-    webRebuiltElement?: unknown;
 
     // New flexible structure
     web?: unknown;
-    webRebuilt?: unknown;
+    webSupported?: unknown;
     mobile?: unknown;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Will be deleted soon, don't worry.
@@ -86,13 +85,13 @@ export interface ContentExport {
   // Type-specific links
   links: ContentExportLinks[];
   webLinks?: ContentExportLinks[];
-  webRebuiltLinks?: ContentExportLinks[];
+  webSupportedLinks?: ContentExportLinks[];
   mobileLinks?: ContentExportLinks[];
 
   // Type-specific notes
   notes?: () => JSX.Element;
   webNotes?: () => JSX.Element;
-  webRebuiltNotes?: () => JSX.Element;
+  webSupportedNotes?: () => JSX.Element;
   mobileNotes?: () => JSX.Element;
 }
 interface GeneratedTag {

@@ -11,12 +11,12 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AutocompleteContent />,
-  webRebuiltContent: () => <RebuiltContent />,
+  webSupportedContent: () => <RebuiltContent />,
   props: Props,
-  webRebuiltProps: RebuiltProps,
+  webSupportedProps: RebuiltProps,
   component: {
     element: originalExample,
-    webRebuiltElement: rebuiltExample,
+    webSupported: rebuiltExample,
   },
   title: "Autocomplete",
   links: [
@@ -27,7 +27,7 @@ export default {
       ),
     },
   ],
-  webRebuiltLinks: [
+  webSupportedLinks: [
     {
       label: "Storybook",
       url: getStorybookUrl(
@@ -36,5 +36,5 @@ export default {
     },
   ],
   notes: () => <Notes />,
-  webRebuiltNotes: () => <RebuiltNotes />,
+  webSupportedNotes: () => <RebuiltNotes />,
 } as const satisfies ContentExport;

@@ -10,9 +10,9 @@ export const useAtlantisPreviewViewer = () => {
   const getInitialType = (): ComponentType => {
     const params = new URLSearchParams(window.location.search);
     if (params.has("mobile")) return "mobile";
-    if (params.has("webRebuilt")) return "webRebuilt";
+    if (params.has("webLegacy")) return "web";
 
-    return "web";
+    return "webSupported"; // Default to supported version
   };
 
   const [type, setType] = useState<ComponentType>(getInitialType());
@@ -25,10 +25,10 @@ export const useAtlantisPreviewViewer = () => {
 
     if (value === "mobile") {
       params.set("mobile", "");
-    } else if (value === "webRebuilt") {
-      params.set("webRebuilt", "");
+    } else if (value === "web") {
+      params.set("webLegacy", "");
     }
-    // For "web", we don't add any parameters (default)
+    // For "webSupported", we don't add any parameters (default)
 
     window.history.replaceState(
       null,
@@ -45,7 +45,7 @@ export const useAtlantisPreviewViewer = () => {
 
     switch (platform) {
       case "web":
-        return iframe; // Both web and webRebuilt use the same iframe
+        return iframe; // Both webSupported and webLegacy use the same iframe
       case "mobile":
         return iframeMobile;
       default:
