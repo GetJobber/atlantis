@@ -135,7 +135,7 @@ function InternalForm<T extends FieldValues, S>({
 
   const styles = useStyles();
 
-  const { edgeToEdgeEnabled = false } = useAtlantisFormContext();
+  const { edgeToEdgeEnabled } = useAtlantisFormContext();
 
   return (
     <FormProvider {...formMethods}>
