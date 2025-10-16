@@ -215,7 +215,8 @@ ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
 // V2 auto-detection: if a rebuilt file exists, emit separate V2 props
 const buildWebComponentDocsV2 = name => {
   const rebuiltPath = `${baseComponentDir}/${name}/${name}.rebuilt.tsx`;
-  const v2OutputPath = `${baseOutputDir}/${name}V2/${name}V2.props.json`;
+  // Write V2 props into the same directory as V1: <Component>/<Component>V2.props.json
+  const v2OutputPath = `${baseOutputDir}/${name}/${name}V2.props.json`;
 
   if (existsSync(rebuiltPath)) {
     parseAndWriteDocs(rebuiltPath, v2OutputPath);
