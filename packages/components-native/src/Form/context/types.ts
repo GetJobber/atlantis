@@ -30,4 +30,5 @@ export interface AtlantisFormContextProps {
     setLocalCache: (data: DeepPartial<TData>) => void;
     removeLocalCache: () => void;
   };
+  edgeToEdgeEnabled?: boolean;
 }
