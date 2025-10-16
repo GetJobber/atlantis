@@ -8,8 +8,8 @@ interface VersionSelectorProps {
 }
 
 const versionLabelMap: Record<ComponentType, string> = {
-  web: "Legacy",
-  webSupported: "Supported",
+  web: "Legacy (v1)",
+  webSupported: "Supported (v2)",
   mobile: "Mobile",
 };
 
