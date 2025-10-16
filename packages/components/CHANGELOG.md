@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.101.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.0...@jobber/components@6.101.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* **components:** Fix unknown prop onSort on DataTableHeaderCell ([#2783](https://github.com/GetJobber/atlantis/issues/2783)) ([48a0111](https://github.com/GetJobber/atlantis/commit/48a0111fa04bbad1283466b45ff2e4496905e22e))
+
+
+
+
+
 # [6.101.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.100.0...@jobber/components@6.101.0) (2025-10-15)
 
 

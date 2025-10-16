@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "6.101.0",
+  "version": "6.101.1",
   "license": "MIT",
   "type": "module",
   "main": "dist/index.cjs",
