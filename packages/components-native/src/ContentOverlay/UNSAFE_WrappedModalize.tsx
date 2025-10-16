@@ -10,7 +10,7 @@ import type { IHandles } from "react-native-modalize/lib/options";
 type Props = React.ComponentProps<typeof Modalize>;
 
 // DON'T USE THIS COMPONENT DIRECTLY.
-// It is exposed only so that the deprecated ContentOverlay component can use this along with the
+// It exists only so that the deprecated ContentOverlay component can use this along with the
 // newer one contained in this lib.
 // This is a temporary solution for new architecture. JOB-137549 plans to replace modalize entirely.
 export const UNSAFE_WrappedModalize = forwardRef<IHandles, Props>(

@@ -64,7 +64,6 @@
     "ThumbnailList",
     "Toast",
     "Typography",
-    "TypographyGestureDetector",
-    "UNSAFE_WrappedModalize"
+    "TypographyGestureDetector"
   ]
 }
