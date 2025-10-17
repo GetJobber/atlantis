@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
 import { dirname } from "path";
 import { parse } from "react-docgen-typescript";
 import {
@@ -29,8 +29,14 @@ import {
 const parseAndWriteDocs = (componentPath, outputPath) => {
   console.log("parsing component at:", componentPath);
   const documentation = parse(componentPath);
-  const cleanedDocumentation = removeNonComponents(
-    removeDeclarations(documentation),
+  const docPipeline = [
+    removeDeclarations,
+    removeNonComponents,
+    filterOutInheritedReactProps,
+  ];
+  const cleanedDocumentation = docPipeline.reduce(
+    (docs, cleanUpFn) => cleanUpFn(docs),
+    documentation,
   );
 
   const outputDir = dirname(outputPath);
@@ -88,6 +94,69 @@ const removeDeclarations = doc => {
   return doc;
 };
 
+// Explicit list of React parent types we want to exclude from docs.
+const REACT_PARENT_NAMES = new Set([
+  "InputHTMLAttributes",
+  "HTMLAttributes",
+  "AriaAttributes",
+  "DOMAttributes",
+  "Attributes",
+]);
+
+// Explicit keep-list: props we want to always show even if they originate
+// from @types/react (e.g., `ref`).
+const KEEP_PROP_NAMES = new Set(["ref"]);
+
+/**
+ * Filter out inherited React base attributes from component docs.
+ * Operate only on the top-level array returned by
+ * react-docgen-typescript and the top-level `props` per component.
+ *
+ * - Keeps prop tables focused on component-specific props
+ * - Drops any prop whose parent is a React base attribute type or originates
+ *   from `@types/react`
+ *
+ * @param {Array} docs - array of component docs from react-docgen-typescript
+ * @returns {Array} new array with filtered `props` per component
+ */
+const filterOutInheritedReactProps = docs => {
+  if (docs.length === 0) return docs;
+
+  // Consider anything from @types/react an inherited React attribute as well.
+  const isReactTypesFile = fileName =>
+    typeof fileName === "string" &&
+    fileName.includes("node_modules/@types/react");
+
+  const filterPropsObject = propsObject => {
+    if (!propsObject || typeof propsObject !== "object") return propsObject;
+
+    return Object.entries(propsObject).reduce((acc, [propName, propDef]) => {
+      const parentName = propDef?.parent?.name;
+      const parentFile = propDef?.parent?.fileName;
+      const isInheritedReactAttribute =
+        REACT_PARENT_NAMES.has(parentName) || isReactTypesFile(parentFile);
+
+      // Skip inherited React base attributes; keep only explicit component props,
+      // except for props we intentionally surface (like `ref`).
+      if (isInheritedReactAttribute && !KEEP_PROP_NAMES.has(propName)) {
+        return acc;
+      }
+
+      acc[propName] = propDef;
+
+      return acc;
+    }, {});
+  };
+
+  return docs.map(componentDoc => {
+    if (!componentDoc || typeof componentDoc !== "object") return componentDoc;
+
+    const filteredProps = filterPropsObject(componentDoc.props);
+
+    return { ...componentDoc, props: filteredProps };
+  });
+};
+
 /**
  * Takes in 3 pieces of information (component directory, output directory, and componentname) and builds a standard path object from it.
  *
@@ -143,10 +212,15 @@ ListOfGeneratedWebComponents.forEach(buildComponentDocs);
 
 ListOfGeneratedMobileComponents.forEach(buildMobileComponentDocs);
 
-// Custom generation for components that don't follow the standard
-// <Component>/<Component>.tsx convention.
-// Autocomplete v2 (rebuilt) lives alongside v1 but uses a different filename.
-parseAndWriteDocs(
-  `${baseComponentDir}/Autocomplete/Autocomplete.rebuilt.tsx`,
-  `${baseOutputDir}/AutocompleteV2/AutocompleteV2.props.json`,
-);
+// V2 auto-detection: if a rebuilt file exists, emit separate V2 props
+const buildWebComponentDocsV2 = name => {
+  const rebuiltPath = `${baseComponentDir}/${name}/${name}.rebuilt.tsx`;
+  // Write V2 props into the same directory as V1: <Component>/<Component>V2.props.json
+  const v2OutputPath = `${baseOutputDir}/${name}/${name}V2.props.json`;
+
+  if (existsSync(rebuiltPath)) {
+    parseAndWriteDocs(rebuiltPath, v2OutputPath);
+  }
+};
+
+ListOfGeneratedWebComponents.forEach(buildWebComponentDocsV2);

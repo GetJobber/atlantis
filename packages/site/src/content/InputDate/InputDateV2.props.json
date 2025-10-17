@@ -1,0 +1,312 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/InputDate/InputDate.rebuilt.tsx",
+    "description": "",
+    "displayName": "InputDateRebuilt",
+    "methods": [],
+    "props": {
+      "value": {
+        "defaultValue": null,
+        "description": "A Date object value\n(e.g., `new Date(\"11/11/2011\")`)",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Date"
+        }
+      },
+      "maxDate": {
+        "defaultValue": null,
+        "description": "The maximum selectable date.",
+        "name": "maxDate",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Date"
+        }
+      },
+      "minDate": {
+        "defaultValue": null,
+        "description": "The minimum selectable date.",
+        "name": "minDate",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Date"
+        }
+      },
+      "showIcon": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Whether to show the calendar icon",
+        "name": "showIcon",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "emptyValueLabel": {
+        "defaultValue": null,
+        "description": "Text to display instead of a date value",
+        "name": "emptyValueLabel",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": true,
+        "type": {
+          "name": "2"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(newValue: Date, event?: ChangeEvent<HTMLInputElement>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event?: React.FocusEvent) => void"
+        }
+      },
+      "maxLength": {
+        "defaultValue": null,
+        "description": "",
+        "name": "maxLength",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
+      "onKeyUp": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onKeyUp",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "identifier": {
+        "defaultValue": null,
+        "description": "",
+        "name": "identifier",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "autocomplete": {
+        "defaultValue": null,
+        "description": "",
+        "name": "autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean | AutocompleteTypes"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.KeyboardEvent) => void"
+        }
+      },
+      "inline": {
+        "defaultValue": null,
+        "description": "",
+        "name": "inline",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"center\" | \"right\""
+        }
+      },
+      "toolbar": {
+        "defaultValue": null,
+        "description": "",
+        "name": "toolbar",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "React.ReactNode"
+        }
+      },
+      "toolbarVisibility": {
+        "defaultValue": null,
+        "description": "",
+        "name": "toolbarVisibility",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"always\" | \"while-editing\""
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "InputTextRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<HTMLInputElement>"
+        }
+      }
+    }
+  }
+]
