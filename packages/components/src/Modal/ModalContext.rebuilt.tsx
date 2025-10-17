@@ -1,6 +1,6 @@
 import noop from "lodash/noop";
 import type { MutableRefObject } from "react";
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useRef } from "react";
 import type { FloatingContext } from "@floating-ui/react";
 import { FloatingTree } from "@floating-ui/react";
 import identity from "lodash/identity";
@@ -41,6 +41,7 @@ export function ModalProvider({
   modalLabelledBy = MODAL_HEADER_ID,
   ariaLabel,
 }: ModalProviderProps) {
+  const startedInsideRef = useRef<boolean>(true);
   const {
     floatingRefs,
     floatingContext,
@@ -52,6 +53,7 @@ export function ModalProvider({
     open,
     activatorRef: refProp,
     onRequestClose,
+    startedInsideRef,
   });
 
   const content = (
@@ -68,6 +70,7 @@ export function ModalProvider({
         modalLabelledBy,
         ariaLabel,
         getFloatingProps,
+        startedInsideRef,
       }}
     >
       {children}

@@ -37,6 +37,10 @@ import { VisualTestLinkPage } from "./VisualTestLinkPage";
 import { VisualTestListPage } from "./VisualTestListPage";
 import { VisualTestMarkdownPage } from "./VisualTestMarkdownPage";
 import { VisualTestMenuPage } from "./VisualTestMenuPage";
+import {
+  VisualTestMenuSmallPage,
+  VisualTestMenuSmallStickyPage,
+} from "./VisualTestMenuSmallPage";
 import { VisualTestModalPage } from "./VisualTestModalPage";
 import { VisualTestPopoverPage } from "./VisualTestPopoverPage";
 import { VisualTestProgressBarPage } from "./VisualTestProgressBarPage";
@@ -258,6 +262,16 @@ export const VisualTestRouter = () => {
         path="/visual-tests/menu"
         exact={true}
         component={VisualTestMenuPage}
+      />
+      <Route
+        path="/visual-tests/menu-small"
+        exact={true}
+        component={VisualTestMenuSmallPage}
+      />
+      <Route
+        path="/visual-tests/menu-small-sticky"
+        exact={true}
+        component={VisualTestMenuSmallStickyPage}
       />
       <Route
         path="/visual-tests/popover"

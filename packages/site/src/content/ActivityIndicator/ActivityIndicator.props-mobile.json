@@ -175,26 +175,13 @@
           "name": "string"
         }
       },
-      "experimental_layoutConformance": {
-        "defaultValue": null,
-        "description": "Contols whether this view, and its transitive children, are laid in a way\nconsistent with web browsers ('strict'), or consistent with existing\nReact Native code which may rely on incorrect behavior ('classic').",
-        "name": "experimental_layoutConformance",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"strict\" | \"classic\""
-        }
-      },
       "collapsable": {
         "defaultValue": null,
         "description": "Views that are only used to layout their children or otherwise don't draw anything\nmay be automatically removed from the native hierarchy as an optimization.\nSet this property to false to disable this optimization and ensure that this View exists in the native view hierarchy.",
         "name": "collapsable",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsAndroid"
+          "name": "ViewProps"
         },
         "required": false,
         "type": {
@@ -207,11 +194,37 @@
         "name": "collapsableChildren",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsAndroid"
+          "name": "ViewProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Callback that is called when the view is blurred.\n\nNote: This will only be called if the view is focusable.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "(e: BlurEvent) => void"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Callback that is called when the view is focused.\n\nNote: This will only be called if the view is focusable.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "(e: FocusEvent) => void"
         }
       },
       "renderToHardwareTextureAndroid": {
@@ -281,7 +294,7 @@
       },
       "hasTVPreferredFocus": {
         "defaultValue": null,
-        "description": "*(Apple TV only)* May be set to true to force the Apple TV focus engine to move focus to this view.\n@platform ios",
+        "description": "*(Apple TV only)* May be set to true to force the Apple TV focus engine to move focus to this view.\n@platform ios\n@deprecated Use `focusable` instead",
         "name": "hasTVPreferredFocus",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
@@ -1059,6 +1072,19 @@
           "name": "\"polite\" | \"assertive\" | \"off\""
         }
       },
+      "screenReaderFocusable": {
+        "defaultValue": null,
+        "description": "Enables the view to be screen reader focusable, not keyboard focusable.\n@platform android",
+        "name": "screenReaderFocusable",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "accessibilityElementsHidden": {
         "defaultValue": null,
         "description": "A Boolean value indicating whether the accessibility elements contained within this accessibility element\nare hidden to the screen reader.\n@platform ios",
@@ -1174,6 +1200,19 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "accessibilityRespondsToUserInteraction": {
+        "defaultValue": null,
+        "description": "Blocks the user from interacting with the component through keyboard while still allowing\nscreen reader to interact with it if this View is still accessible.\n@platform ios",
+        "name": "accessibilityRespondsToUserInteraction",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }
