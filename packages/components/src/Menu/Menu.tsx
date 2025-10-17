@@ -71,7 +71,7 @@ const composeOverlayVariation = {
   visible: { opacity: 1 },
 };
 
-const variation = {
+const animationVariation = {
   overlayStartStop: { opacity: 0 },
   startOrStop: (placement: string | undefined) => {
     let y = Y_TRANSLATION_DESKTOP;
@@ -276,7 +276,7 @@ export function MenuLegacy({
               <motion.div
                 className={styles.overlay}
                 onClick={toggle()}
-                variants={variation}
+                variants={animationVariation}
                 initial="overlayStartStop"
                 animate="done"
                 exit="overlayStartStop"
@@ -305,7 +305,7 @@ export function MenuLegacy({
                     aria-labelledby={buttonID}
                     id={menuID}
                     onClick={hide}
-                    variants={variation}
+                    variants={animationVariation}
                     initial="startOrStop"
                     animate="done"
                     exit="startOrStop"
@@ -702,7 +702,7 @@ const MenuItemComposable = React.forwardRef<
         rel={rel}
         onClick={onClick as ((e: React.MouseEvent) => void) | undefined}
       >
-        <MenuItemContext.Provider value={{ destructive: props.destructive }}>
+        <MenuItemContext.Provider value={{ variation: props.variation }}>
           {props.children}
         </MenuItemContext.Provider>
       </AriaMenuItem>
@@ -720,40 +720,47 @@ const MenuItemComposable = React.forwardRef<
         props.onClick?.();
       }}
     >
-      <MenuItemContext.Provider value={{ destructive: props.destructive }}>
+      <MenuItemContext.Provider value={{ variation: props.variation }}>
         {props.children}
       </MenuItemContext.Provider>
     </AriaMenuItem>
   );
 });
 
-const MenuItemContext = createContext<{ destructive?: boolean } | null>(null);
+const MenuItemContext = createContext<{
+  variation?: MenuItemComposableProps["variation"];
+} | null>(null);
 
-function useMenuItemContext(): { destructive?: boolean } {
+function useMenuItemContext(): {
+  variation?: MenuItemComposableProps["variation"];
+} {
   const ctx = useContext(MenuItemContext);
 
   return ctx ?? {};
 }
 
 function MenuItemIconComposable(props: MenuItemIconComposableProps) {
-  const { destructive } = useMenuItemContext();
+  const { variation } = useMenuItemContext();
 
   return (
     <div data-menu-slot="icon">
-      <Icon {...props} color={destructive ? "destructive" : props.color} />
+      <Icon
+        {...props}
+        color={variation === "destructive" ? "destructive" : props.color}
+      />
     </div>
   );
 }
 
 function MenuItemLabelComposable(props: { readonly children: string }) {
-  const { destructive } = useMenuItemContext();
+  const { variation } = useMenuItemContext();
 
   return (
     <div data-menu-slot="label">
       <Typography
         element="span"
         fontWeight="semiBold"
-        textColor={destructive ? "destructive" : "text"}
+        textColor={variation === "destructive" ? "destructive" : "text"}
       >
         {props.children}
       </Typography>
