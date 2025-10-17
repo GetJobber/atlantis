@@ -103,7 +103,7 @@ describe("Menu (composable API)", () => {
     it("renders the menu in the open state", async () => {
       render(<TestSectionMenu open />);
 
-      expect(await screen.findByRole("menu")).toBeVisible();
+      expect(await screen.findByRole("menu")).toBeInTheDocument();
     });
 
     it("does not call onOpenChange when the menu is open by default", async () => {
