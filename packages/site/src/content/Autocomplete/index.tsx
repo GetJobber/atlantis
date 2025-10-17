@@ -1,22 +1,33 @@
 import AutocompleteContent from "./Autocomplete.stories.mdx";
 import Props from "./Autocomplete.props.json";
-import RebuiltContent from "./AutocompleteV2.stories.mdx";
 import Notes from "./AutocompleteNotes.mdx";
-import RebuiltNotes from "./AutocompleteV2Notes.mdx";
-import originalExample from "./exampleV1.ts";
-import rebuiltExample from "./exampleV2.ts";
-import RebuiltProps from "./AutocompleteV2.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AutocompleteContent />,
-  webRebuiltContent: () => <RebuiltContent />,
   props: Props,
-  webRebuiltProps: RebuiltProps,
   component: {
-    element: originalExample,
-    webRebuiltElement: rebuiltExample,
+    element: `
+
+const [value, setValue] = useState();
+    const getOptions = () => {
+      return [
+        { value: 1, label: "Hobbitss" },
+        { value: 2, label: "Super heroes" },
+        { value: 3, label: "Space wars and treks" },
+      ]
+    }
+
+  return <Autocomplete
+      getOptions={getOptions}
+      initialOptions={[]}
+      placeholder="Autocomplete"
+      value={value}
+      onChange={setValue}
+    />;
+
+`,
   },
   title: "Autocomplete",
   links: [
@@ -27,14 +38,5 @@ export default {
       ),
     },
   ],
-  webRebuiltLinks: [
-    {
-      label: "Storybook",
-      url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-autocomplete-web-v2--flat",
-      ),
-    },
-  ],
   notes: () => <Notes />,
-  webRebuiltNotes: () => <RebuiltNotes />,
 } as const satisfies ContentExport;
