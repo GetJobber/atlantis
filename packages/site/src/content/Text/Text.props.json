@@ -1,11 +1,26 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Text/Text.tsx",
+    "filePath": "packages/components/src/Text/Text.tsx",
     "description": "",
     "displayName": "Text",
     "methods": [],
     "props": {
+      "align": {
+        "defaultValue": {
+          "value": "start"
+        },
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"center\" | \"end\" | \"start\""
+        }
+      },
       "element": {
         "defaultValue": {
           "value": "p"
@@ -13,7 +28,7 @@
         "description": "The HTML element to render the text as.",
         "name": "element",
         "parent": {
-          "fileName": "../components/src/Text/Text.tsx",
+          "fileName": "packages/components/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
@@ -28,42 +43,12 @@
         "description": "",
         "name": "maxLines",
         "parent": {
-          "fileName": "../components/src/Text/Text.tsx",
+          "fileName": "packages/components/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
         "type": {
-          "name": "\"single\" | \"small\" | \"base\" | \"large\" | \"larger\" | \"unlimited\""
-        }
-      },
-      "variation": {
-        "defaultValue": {
-          "value": "default"
-        },
-        "description": "",
-        "name": "variation",
-        "parent": {
-          "fileName": "../components/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"default\" | \"subdued\" | \"success\" | \"error\" | \"warn\" | \"info\" | \"disabled\""
-        }
-      },
-      "align": {
-        "defaultValue": {
-          "value": "start"
-        },
-        "description": "",
-        "name": "align",
-        "parent": {
-          "fileName": "../components/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"start\" | \"center\" | \"end\""
+          "name": "\"small\" | \"large\" | \"base\" | \"larger\" | \"single\" | \"unlimited\""
         }
       },
       "size": {
@@ -73,12 +58,12 @@
         "description": "",
         "name": "size",
         "parent": {
-          "fileName": "../components/src/Text/Text.tsx",
+          "fileName": "packages/components/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
         "type": {
-          "name": "\"small\" | \"base\" | \"large\""
+          "name": "\"small\" | \"large\" | \"base\""
         }
       },
       "UNSAFE_className": {
@@ -86,7 +71,7 @@
         "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
-          "fileName": "../components/src/Text/Text.tsx",
+          "fileName": "packages/components/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
@@ -99,12 +84,27 @@
         "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_style",
         "parent": {
-          "fileName": "../components/src/Text/Text.tsx",
+          "fileName": "packages/components/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
         "type": {
           "name": "{ textStyle?: CSSProperties; }"
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "default"
+        },
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"info\" | \"disabled\" | \"success\" | \"error\" | \"default\" | \"subdued\" | \"warn\""
         }
       }
     }

@@ -1,11 +1,24 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Spinner/Spinner.tsx",
+    "filePath": "packages/components/src/Spinner/Spinner.tsx",
     "description": "",
     "displayName": "Spinner",
     "methods": [],
     "props": {
+      "inline": {
+        "defaultValue": null,
+        "description": "Spinner becomes an inline element when true,\notherwise it is a block element",
+        "name": "inline",
+        "parent": {
+          "fileName": "packages/components/src/Spinner/Spinner.tsx",
+          "name": "SpinnerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "size": {
         "defaultValue": {
           "value": "base"
@@ -13,25 +26,12 @@
         "description": "Specifies the size of the spinner",
         "name": "size",
         "parent": {
-          "fileName": "../components/src/Spinner/Spinner.tsx",
+          "fileName": "packages/components/src/Spinner/Spinner.tsx",
           "name": "SpinnerProps"
         },
         "required": false,
         "type": {
           "name": "\"small\" | \"base\""
-        }
-      },
-      "inline": {
-        "defaultValue": null,
-        "description": "Spinner becomes an inline element when true,\notherwise it is a block element",
-        "name": "inline",
-        "parent": {
-          "fileName": "../components/src/Spinner/Spinner.tsx",
-          "name": "SpinnerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       }
     }

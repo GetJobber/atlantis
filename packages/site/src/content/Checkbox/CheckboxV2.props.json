@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Checkbox/Checkbox.rebuilt.tsx",
+    "filePath": "packages/components/src/Checkbox/Checkbox.rebuilt.tsx",
     "description": "",
     "displayName": "CheckboxRebuilt",
     "methods": [],
@@ -32,6 +32,15 @@
           "name": "boolean"
         }
       },
+      "description": {
+        "defaultValue": null,
+        "description": "Additional description of the checkbox.\nString will be rendered with the default markup.\nReactElement will be rendered with provided positioning.",
+        "name": "description",
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
       "disabled": {
         "defaultValue": null,
         "description": "Disables the checkbox.",
@@ -43,47 +52,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "indeterminate": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "When `true` the checkbox to appears in indeterminate.",
-        "name": "indeterminate",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Checkbox input name",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "Value of the checkbox.",
-        "name": "value",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       },
       "id": {
@@ -99,30 +67,19 @@
           "name": "string"
         }
       },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Called when the checkbox is focused",
-        "name": "onFocus",
+      "indeterminate": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "When `true` the checkbox to appears in indeterminate.",
+        "name": "indeterminate",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
           "name": "BaseCheckboxProps"
         },
         "required": false,
         "type": {
-          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Called when the checkbox loses focus",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
+          "name": "boolean"
         }
       },
       "invalid": {
@@ -147,13 +104,30 @@
           "name": "string | ReactElement<any, string | JSXElementConstructor<any>>"
         }
       },
-      "description": {
+      "name": {
         "defaultValue": null,
-        "description": "Additional description of the checkbox.\nString will be rendered with the default markup.\nReactElement will be rendered with provided positioning.",
-        "name": "description",
+        "description": "Checkbox input name",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
         "required": false,
         "type": {
-          "name": "ReactNode"
+          "name": "string"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Called when the checkbox loses focus",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: FocusEvent<HTMLInputElement, Element>) => void)"
         }
       },
       "onChange": {
@@ -162,16 +136,20 @@
         "name": "onChange",
         "required": false,
         "type": {
-          "name": "(newValue: boolean, event: ChangeEvent<HTMLInputElement>) => void"
+          "name": "((newValue: boolean, event: ChangeEvent<HTMLInputElement>) => void)"
         }
       },
-      "version": {
+      "onFocus": {
         "defaultValue": null,
-        "description": "Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.",
-        "name": "version",
-        "required": true,
+        "description": "Called when the checkbox is focused",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
         "type": {
-          "name": "2"
+          "name": "((event: FocusEvent<HTMLInputElement, Element>) => void)"
         }
       },
       "ref": {
@@ -184,7 +162,29 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<unknown>"
+          "name": "LegacyRef<HTMLInputElement>"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Value of the checkbox.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "required": true,
+        "type": {
+          "name": "2"
         }
       }
     }

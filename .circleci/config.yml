@@ -115,7 +115,11 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - run: npm run lint:js -- --quiet --format junit -o reports/junit/js-lint-results.xml
+      - run:
+          name: Lint JavaScript with increased Node heap
+          command: npm run lint:js -- --quiet --format junit -o reports/junit/js-lint-results.xml
+          environment:
+            NODE_OPTIONS: "--max-old-space-size=4096"
       - store_test_results:
           path: reports/junit
       - store_artifacts:

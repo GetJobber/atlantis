@@ -9,6 +9,9 @@ packages/generators/templates
 packages/site/playwright-report
 packages/site/public
 packages/site/test-results
+packages/site/src/content/**/*.props.json
+packages/site/src/content/**/*.props-mobile.json
+
 storybook-static
 
 *.css.d.ts

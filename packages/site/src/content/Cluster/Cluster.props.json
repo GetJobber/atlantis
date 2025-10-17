@@ -1,24 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Cluster/Cluster.tsx",
+    "filePath": "packages/components/src/Cluster/Cluster.tsx",
     "description": "",
     "displayName": "Cluster",
     "methods": [],
     "props": {
-      "justify": {
-        "defaultValue": null,
-        "description": "The horizontal justification of the cluster elements.",
-        "name": "justify",
-        "parent": {
-          "fileName": "packages/components/src/Cluster/types.ts",
-          "name": "ClusterProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"start\" | \"end\" | \"center\" | \"space-between\" | \"space-around\""
-        }
-      },
       "align": {
         "defaultValue": null,
         "description": "The vertical alignment of the cluster elements.",
@@ -29,20 +16,48 @@
         },
         "required": false,
         "type": {
-          "name": "\"start\" | \"end\" | \"center\" | \"stretch\""
+          "name": "\"stretch\" | \"center\" | \"end\" | \"start\""
         }
       },
-      "gap": {
+      "ariaAttributes": {
         "defaultValue": null,
-        "description": "The amount of space between the cluster elements. Semantic tokens are available.",
-        "name": "gap",
+        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
+        "name": "ariaAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaAttributes"
+        }
+      },
+      "as": {
+        "defaultValue": null,
+        "description": "The HTML tag to render the cluster as.",
+        "name": "as",
         "parent": {
           "fileName": "packages/components/src/Cluster/types.ts",
           "name": "ClusterProps"
         },
         "required": false,
         "type": {
-          "name": "GapSpacing"
+          "name": "CommonAllowedElements"
+        }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Enabling this prevents the cluster from taking 100% of the width of the parent and instead flows with the content.",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Cluster/types.ts",
+          "name": "ClusterProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "collapseBelow": {
@@ -71,32 +86,69 @@
           "name": "boolean"
         }
       },
-      "autoWidth": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "Enabling this prevents the cluster from taking 100% of the width of the parent and instead flows with the content.",
-        "name": "autoWidth",
+      "dataAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "dataAttributes",
         "parent": {
-          "fileName": "packages/components/src/Cluster/types.ts",
-          "name": "ClusterProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "{ [key: `data-${string}`]: string; }"
         }
       },
-      "as": {
+      "gap": {
         "defaultValue": null,
-        "description": "The HTML tag to render the cluster as.",
-        "name": "as",
+        "description": "The amount of space between the cluster elements. Semantic tokens are available.",
+        "name": "gap",
         "parent": {
           "fileName": "packages/components/src/Cluster/types.ts",
           "name": "ClusterProps"
         },
         "required": false,
         "type": {
-          "name": "CommonAllowedElements"
+          "name": "GapSpacing"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "Standard HTML id attribute.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "justify": {
+        "defaultValue": null,
+        "description": "The horizontal justification of the cluster elements.",
+        "name": "justify",
+        "parent": {
+          "fileName": "packages/components/src/Cluster/types.ts",
+          "name": "ClusterProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"space-around\" | \"space-between\" | \"center\" | \"end\" | \"start\""
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Standard HTML role attribute.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaRole"
         }
       },
       "UNSAFE_className": {
@@ -123,58 +175,6 @@
         "required": false,
         "type": {
           "name": "{ container?: CSSProperties; }"
-        }
-      },
-      "dataAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
-        "name": "dataAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ [key: `data-${string}`]: string; }"
-        }
-      },
-      "ariaAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
-        "name": "ariaAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaAttributes"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Standard HTML role attribute.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaRole"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "Standard HTML id attribute.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       }
     }

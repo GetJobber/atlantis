@@ -1,26 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Divider/Divider.tsx",
+    "filePath": "packages/components/src/Divider/Divider.tsx",
     "description": "",
     "displayName": "Divider",
     "methods": [],
     "props": {
-      "size": {
-        "defaultValue": {
-          "value": "base"
-        },
-        "description": "The weight of the divider.",
-        "name": "size",
-        "parent": {
-          "fileName": "../components/src/Divider/Divider.tsx",
-          "name": "DividerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number | symbol"
-        }
-      },
       "direction": {
         "defaultValue": {
           "value": "horizontal"
@@ -28,12 +13,27 @@
         "description": "The direction of the divider",
         "name": "direction",
         "parent": {
-          "fileName": "../components/src/Divider/Divider.tsx",
+          "fileName": "packages/components/src/Divider/Divider.tsx",
           "name": "DividerProps"
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"horizontal\" | \"vertical\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The weight of the divider.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Divider/Divider.tsx",
+          "name": "DividerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"large\" | \"base\" | \"larger\" | \"largest\""
         }
       },
       "testID": {
@@ -41,7 +41,7 @@
         "description": "A reference to the element in the rendered output",
         "name": "testID",
         "parent": {
-          "fileName": "../components/src/Divider/Divider.tsx",
+          "fileName": "packages/components/src/Divider/Divider.tsx",
           "name": "DividerProps"
         },
         "required": false,
@@ -54,7 +54,7 @@
         "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
-          "fileName": "../components/src/Divider/Divider.tsx",
+          "fileName": "packages/components/src/Divider/Divider.tsx",
           "name": "DividerProps"
         },
         "required": false,
@@ -67,12 +67,12 @@
         "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_style",
         "parent": {
-          "fileName": "../components/src/Divider/Divider.tsx",
+          "fileName": "packages/components/src/Divider/Divider.tsx",
           "name": "DividerProps"
         },
         "required": false,
         "type": {
-          "name": "{ readonly container?: React.CSSProperties; }"
+          "name": "{ readonly container?: CSSProperties; }"
         }
       }
     }

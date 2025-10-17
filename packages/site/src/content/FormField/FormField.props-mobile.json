@@ -1,22 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/FormField/FormField.tsx",
+    "filePath": "packages/components-native/src/FormField/FormField.tsx",
     "description": "",
     "displayName": "FormField",
     "methods": [],
     "props": {
-      "name": {
+      "children": {
         "defaultValue": null,
-        "description": "Name of the field.",
-        "name": "name",
+        "description": "Children to render.",
+        "name": "children",
         "parent": {
-          "fileName": "../components-native/src/FormField/FormField.tsx",
+          "fileName": "packages/components-native/src/FormField/FormField.tsx",
           "name": "FormFieldProps"
         },
         "required": true,
         "type": {
-          "name": "string"
+          "name": "(field: ControllerRenderProps<FieldValues, string>, error?: FieldError | undefined) => ReactNode"
         }
       },
       "defaultValue": {
@@ -24,7 +24,7 @@
         "description": "The initial value of the form field.",
         "name": "defaultValue",
         "parent": {
-          "fileName": "../components-native/src/FormField/FormField.tsx",
+          "fileName": "packages/components-native/src/FormField/FormField.tsx",
           "name": "FormFieldProps"
         },
         "required": false,
@@ -32,17 +32,17 @@
           "name": "T"
         }
       },
-      "children": {
+      "name": {
         "defaultValue": null,
-        "description": "Children to render.",
-        "name": "children",
+        "description": "Name of the field.",
+        "name": "name",
         "parent": {
-          "fileName": "../components-native/src/FormField/FormField.tsx",
+          "fileName": "packages/components-native/src/FormField/FormField.tsx",
           "name": "FormFieldProps"
         },
         "required": true,
         "type": {
-          "name": "(field: ControllerRenderProps<FieldValues, string>, error?: FieldError) => React.ReactNode"
+          "name": "string"
         }
       },
       "validations": {
@@ -50,7 +50,7 @@
         "description": "Rules for returning an error when validations are violated.\nWARNING: This component needs to be nested inside a FormProvider\n  for validations to work.",
         "name": "validations",
         "parent": {
-          "fileName": "../components-native/src/FormField/FormField.tsx",
+          "fileName": "packages/components-native/src/FormField/FormField.tsx",
           "name": "FormFieldProps"
         },
         "required": false,

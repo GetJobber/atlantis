@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/DescriptionList/DescriptionList.tsx",
+    "filePath": "packages/components/src/DescriptionList/DescriptionList.tsx",
     "description": "",
     "displayName": "DescriptionList",
     "methods": [],
@@ -11,7 +11,7 @@
         "description": "A tuple where the first item is the string to display as the term\nand the second value is the string to display as the definition",
         "name": "data",
         "parent": {
-          "fileName": "../components/src/DescriptionList/DescriptionList.tsx",
+          "fileName": "packages/components/src/DescriptionList/DescriptionList.tsx",
           "name": "DescriptionListProps"
         },
         "required": true,

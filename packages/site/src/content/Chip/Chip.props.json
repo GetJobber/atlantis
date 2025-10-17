@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Chip/Chip.tsx",
+    "filePath": "packages/components/src/Chip/Chip.tsx",
     "description": "",
     "displayName": "Chip",
     "methods": [],
@@ -10,19 +10,6 @@
         "defaultValue": null,
         "description": "Accessible label, which can be different from the primary label.",
         "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.ts",
-          "name": "ChipProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "testID": {
-        "defaultValue": null,
-        "description": "The testing id for the chip if necessary.",
-        "name": "testID",
         "parent": {
           "fileName": "packages/components/src/Chip/Chip.types.ts",
           "name": "ChipProps"
@@ -84,6 +71,45 @@
           "name": "string"
         }
       },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Chip Click Callback. Sends an event and sometimes a value (SelectableChip).",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
+          "name": "ChipProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((value: string | number, ev: MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>) => void)"
+        }
+      },
+      "onKeyDown": {
+        "defaultValue": null,
+        "description": "Callback. Called when you keydown on Chip. Ships the event, so you can get the key pushed.",
+        "name": "onKeyDown",
+        "parent": {
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
+          "name": "ChipProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((ev: KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void)"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<HTMLButtonElement | HTMLDivElement>"
+        }
+      },
       "role": {
         "defaultValue": {
           "value": "button"
@@ -101,7 +127,7 @@
       },
       "tabIndex": {
         "defaultValue": {
-          "value": 0
+          "value": "0"
         },
         "description": "Used for accessibility purpopses, specifically using the tab key as navigation.",
         "name": "tabIndex",
@@ -112,6 +138,19 @@
         "required": false,
         "type": {
           "name": "number"
+        }
+      },
+      "testID": {
+        "defaultValue": null,
+        "description": "The testing id for the chip if necessary.",
+        "name": "testID",
+        "parent": {
+          "fileName": "packages/components/src/Chip/Chip.types.ts",
+          "name": "ChipProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "value": {
@@ -140,45 +179,6 @@
         "required": false,
         "type": {
           "name": "ChipVariations"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "Chip Click Callback. Sends an event and sometimes a value (SelectableChip).",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.ts",
-          "name": "ChipProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(value: string | number, ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void"
-        }
-      },
-      "onKeyDown": {
-        "defaultValue": null,
-        "description": "Callback. Called when you keydown on Chip. Ships the event, so you can get the key pushed.",
-        "name": "onKeyDown",
-        "parent": {
-          "fileName": "packages/components/src/Chip/Chip.types.ts",
-          "name": "ChipProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void"
-        }
-      },
-      "ref": {
-        "defaultValue": null,
-        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
-        "name": "ref",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "RefAttributes"
-        },
-        "required": false,
-        "type": {
-          "name": "LegacyRef<HTMLButtonElement | HTMLDivElement>"
         }
       }
     }

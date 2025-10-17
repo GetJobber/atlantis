@@ -1,141 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Combobox/Combobox.tsx",
+    "filePath": "packages/components/src/Combobox/Combobox.tsx",
     "description": "",
     "displayName": "Combobox",
     "methods": [],
     "props": {
-      "multiSelect": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "When `true`, `Combobox` will allow for multiple selections",
-        "name": "multiSelect",
+      "defaultActivatorRef": {
+        "defaultValue": null,
+        "description": "A ref to the default activator button element.",
+        "name": "defaultActivatorRef",
         "parent": {
           "fileName": "packages/components/src/Combobox/Combobox.types.ts",
           "name": "ComboboxProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
-        }
-      },
-      "selected": {
-        "defaultValue": null,
-        "description": "The selected options of the Combobox.",
-        "name": "selected",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": true,
-        "type": {
-          "name": "ComboboxOptionProps[]"
-        }
-      },
-      "subjectNoun": {
-        "defaultValue": null,
-        "description": "The encapsulating noun for the content of the combobox. Used\nin the empty state, and search placeholder. Should be pluralized.",
-        "name": "subjectNoun",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onSelect": {
-        "defaultValue": null,
-        "description": "Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.",
-        "name": "onSelect",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": true,
-        "type": {
-          "name": "(selection: ComboboxOptionProps[]) => void"
-        }
-      },
-      "onSelectAll": {
-        "defaultValue": null,
-        "description": "Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.\nThis is only available when `multiSelect` is `true`.",
-        "name": "onSelectAll",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(selection: ComboboxOptionProps[]) => void"
-        }
-      },
-      "onClear": {
-        "defaultValue": null,
-        "description": "Callback function invoked upon the clearing of all options.\nThis is only available when `multiSelect` is `true`.",
-        "name": "onClear",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "onClose": {
-        "defaultValue": null,
-        "description": "Callback function invoked upon the Combobox menu closing.",
-        "name": "onClose",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "onSearch": {
-        "defaultValue": null,
-        "description": "Debounced callback function invoked on Combobox search input change. Receives the current search value as an argument.",
-        "name": "onSearch",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(searchValue: string) => void"
-        }
-      },
-      "onSearchDebounce": {
-        "defaultValue": null,
-        "description": "The amount of time in ms to debounce the onSearch callback. Defaults to 300ms.",
-        "name": "onSearchDebounce",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "onLoadMore": {
-        "defaultValue": null,
-        "description": "Callback to load more options, this is called when the user scrolls to the bottom of the list.",
-        "name": "onLoadMore",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
+          "name": "Ref<HTMLButtonElement>"
         }
       },
       "label": {
@@ -164,47 +45,160 @@
           "name": "boolean"
         }
       },
-      "defaultActivatorRef": {
-        "defaultValue": null,
-        "description": "A ref to the default activator button element.",
-        "name": "defaultActivatorRef",
+      "multiSelect": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "When `true`, `Combobox` will allow for multiple selections",
+        "name": "multiSelect",
         "parent": {
           "fileName": "packages/components/src/Combobox/Combobox.types.ts",
           "name": "ComboboxProps"
         },
         "required": false,
         "type": {
-          "name": "Ref<HTMLButtonElement>"
+          "name": "boolean"
+        }
+      },
+      "onClear": {
+        "defaultValue": null,
+        "description": "Callback function invoked upon the clearing of all options.\nThis is only available when `multiSelect` is `true`.",
+        "name": "onClear",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onClose": {
+        "defaultValue": null,
+        "description": "Callback function invoked upon the Combobox menu closing.",
+        "name": "onClose",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onLoadMore": {
+        "defaultValue": null,
+        "description": "Callback to load more options, this is called when the user scrolls to the bottom of the list.",
+        "name": "onLoadMore",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onSearch": {
+        "defaultValue": null,
+        "description": "Debounced callback function invoked on Combobox search input change. Receives the current search value as an argument.",
+        "name": "onSearch",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((searchValue: string) => void)"
+        }
+      },
+      "onSearchDebounce": {
+        "defaultValue": null,
+        "description": "The amount of time in ms to debounce the onSearch callback. Defaults to 300ms.",
+        "name": "onSearchDebounce",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "onSelect": {
+        "defaultValue": null,
+        "description": "Callback function invoked upon the selection of an option. Provides the selected option(s) as an argument.",
+        "name": "onSelect",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(selection: ComboboxOptionProps[]) => void"
+        }
+      },
+      "onSelectAll": {
+        "defaultValue": null,
+        "description": "Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.\nThis is only available when `multiSelect` is `true`.",
+        "name": "onSelectAll",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((selection: ComboboxOptionProps[]) => void)"
+        }
+      },
+      "selected": {
+        "defaultValue": null,
+        "description": "The selected options of the Combobox.",
+        "name": "selected",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ComboboxOptionProps[]"
+        }
+      },
+      "subjectNoun": {
+        "defaultValue": null,
+        "description": "The encapsulating noun for the content of the combobox. Used\nin the empty state, and search placeholder. Should be pluralized.",
+        "name": "subjectNoun",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Combobox/Combobox.tsx",
-    "description": "",
-    "displayName": "Combobox.Activator",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Combobox/Combobox.tsx",
+    "filePath": "packages/components/src/Combobox/Combobox.tsx",
     "description": "",
     "displayName": "Combobox.Action",
     "methods": [],
     "props": {
-      "onClick": {
-        "defaultValue": null,
-        "description": "The function to call when the action is clicked.",
-        "name": "onClick",
+      "keepOpenOnClick": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Keeps the Combobox open when the action is clicked.",
+        "name": "keepOpenOnClick",
         "parent": {
           "fileName": "packages/components/src/Combobox/Combobox.types.ts",
           "name": "ComboboxActionProps"
         },
-        "required": true,
+        "required": false,
         "type": {
-          "name": "(event: MouseEvent<HTMLButtonElement, MouseEvent>, options: ComboboxActionCallbackOptions) => void"
+          "name": "boolean"
         }
       },
       "label": {
@@ -220,6 +214,19 @@
           "name": "string | ((options: ComboboxActionCallbackOptions) => string)"
         }
       },
+      "onClick": {
+        "defaultValue": null,
+        "description": "The function to call when the action is clicked.",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxActionProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(event: MouseEvent<HTMLButtonElement, MouseEvent>, options: ComboboxActionCallbackOptions) => void"
+        }
+      },
       "visible": {
         "defaultValue": null,
         "description": "Determine if the action is visible for a given item.",
@@ -232,31 +239,37 @@
         "type": {
           "name": "boolean | ((options: ComboboxActionCallbackOptions) => boolean)"
         }
-      },
-      "keepOpenOnClick": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Keeps the Combobox open when the action is clicked.",
-        "name": "keepOpenOnClick",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Combobox/Combobox.tsx",
+    "filePath": "packages/components/src/Combobox/Combobox.tsx",
+    "description": "",
+    "displayName": "Combobox.Activator",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/Combobox/Combobox.tsx",
     "description": "",
     "displayName": "Combobox.Option",
     "methods": [],
     "props": {
+      "customRender": {
+        "defaultValue": null,
+        "description": "Advanced: A custom render prop to completely control how this option is rendered.\nThe function receives the option's props, and a boolean indicating if the option is selected.",
+        "name": "customRender",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxOptionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((option: Pick<ComboboxOptionProps, \"prefix\" | \"label\" | \"id\"> & { isSelected: boolean; defaultContent: ReactElement<any, string | JSXElementConstructor<any>>; }) => ReactNode)"
+        }
+      },
       "id": {
         "defaultValue": null,
         "description": "A unique identifier for the option.",
@@ -283,6 +296,19 @@
           "name": "string"
         }
       },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Callback function invoked when the option is clicked.",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
+          "name": "ComboboxOptionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((option: ComboboxOptionProps) => void)"
+        }
+      },
       "prefix": {
         "defaultValue": null,
         "description": "An optional component to be displayed before the label.",
@@ -294,32 +320,6 @@
         "required": false,
         "type": {
           "name": "ReactNode"
-        }
-      },
-      "customRender": {
-        "defaultValue": null,
-        "description": "Advanced: A custom render prop to completely control how this option is rendered.\nThe function receives the option's props, and a boolean indicating if the option is selected.",
-        "name": "customRender",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxOptionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(option: Pick<ComboboxOptionProps, \"id\" | \"label\" | \"prefix\"> & { isSelected: boolean; defaultContent: ReactElement<any, string | JSXElementConstructor<any>>; }) => ReactNode"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "Callback function invoked when the option is clicked.",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Combobox/Combobox.types.ts",
-          "name": "ComboboxOptionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(option: ComboboxOptionProps) => void"
         }
       }
     }

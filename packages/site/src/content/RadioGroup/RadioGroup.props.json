@@ -1,61 +1,20 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/RadioGroup/RadioGroup.tsx",
+    "filePath": "packages/components/src/RadioGroup/RadioGroup.tsx",
     "description": "",
     "displayName": "RadioGroup",
     "methods": [],
     "props": {
-      "value": {
-        "defaultValue": null,
-        "description": "Defines the default value that will be pre-selected in the radio group.",
-        "name": "value",
-        "parent": {
-          "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
-          "name": "RadioGroupProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string | number"
-        }
-      },
-      "onChange": {
-        "defaultValue": null,
-        "description": "Change handler for the RadioGroup.\n@param newValue",
-        "name": "onChange",
-        "parent": {
-          "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
-          "name": "RadioGroupProps"
-        },
-        "required": true,
-        "type": {
-          "name": "(newValue: string | number) => void"
-        }
-      },
       "ariaLabel": {
         "defaultValue": null,
         "description": "Defines the aria label that describes the radio group.",
         "name": "ariaLabel",
         "parent": {
-          "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
+          "fileName": "packages/components/src/RadioGroup/RadioGroup.tsx",
           "name": "RadioGroupProps"
         },
         "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "name": {
-        "defaultValue": {
-          "value": "useId()"
-        },
-        "description": "The name of the radio group, that links the radio options back up\nto the group.",
-        "name": "name",
-        "parent": {
-          "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
-          "name": "RadioGroupProps"
-        },
-        "required": false,
         "type": {
           "name": "string"
         }
@@ -67,12 +26,53 @@
         "description": "Layout direction for the options.",
         "name": "direction",
         "parent": {
-          "fileName": "../components/src/RadioGroup/RadioGroup.tsx",
+          "fileName": "packages/components/src/RadioGroup/RadioGroup.tsx",
           "name": "RadioGroupProps"
         },
         "required": false,
         "type": {
-          "name": "\"vertical\" | \"horizontal\""
+          "name": "\"horizontal\" | \"vertical\""
+        }
+      },
+      "name": {
+        "defaultValue": {
+          "value": "useId()"
+        },
+        "description": "The name of the radio group, that links the radio options back up\nto the group.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/RadioGroup/RadioGroup.tsx",
+          "name": "RadioGroupProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Change handler for the RadioGroup.\n@param newValue",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/RadioGroup/RadioGroup.tsx",
+          "name": "RadioGroupProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(newValue: string | number) => void"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Defines the default value that will be pre-selected in the radio group.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/RadioGroup/RadioGroup.tsx",
+          "name": "RadioGroupProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string | number"
         }
       }
     }

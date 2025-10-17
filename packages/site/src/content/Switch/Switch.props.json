@@ -1,43 +1,17 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Switch/Switch.tsx",
+    "filePath": "packages/components/src/Switch/Switch.tsx",
     "description": "",
     "displayName": "Switch",
     "methods": [],
     "props": {
-      "value": {
-        "defaultValue": null,
-        "description": "",
-        "name": "value",
-        "parent": {
-          "fileName": "../components/src/Switch/Switch.tsx",
-          "name": "SwitchProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Adds a name for the hidden input and an ID so a label can be used to\ndescribe the switch instead of an aria-label. This prevents screen readers\nfrom reading the label twice",
-        "name": "name",
-        "parent": {
-          "fileName": "../components/src/Switch/Switch.tsx",
-          "name": "SwitchProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "ariaLabel": {
         "defaultValue": null,
         "description": "",
         "name": "ariaLabel",
         "parent": {
-          "fileName": "../components/src/Switch/Switch.tsx",
+          "fileName": "packages/components/src/Switch/Switch.tsx",
           "name": "SwitchProps"
         },
         "required": false,
@@ -50,7 +24,7 @@
         "description": "",
         "name": "disabled",
         "parent": {
-          "fileName": "../components/src/Switch/Switch.tsx",
+          "fileName": "packages/components/src/Switch/Switch.tsx",
           "name": "SwitchProps"
         },
         "required": false,
@@ -58,17 +32,43 @@
           "name": "boolean"
         }
       },
+      "name": {
+        "defaultValue": null,
+        "description": "Adds a name for the hidden input and an ID so a label can be used to\ndescribe the switch instead of an aria-label. This prevents screen readers\nfrom reading the label twice",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Switch/Switch.tsx",
+          "name": "SwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "onChange": {
         "defaultValue": null,
         "description": "",
         "name": "onChange",
         "parent": {
-          "fileName": "../components/src/Switch/Switch.tsx",
+          "fileName": "packages/components/src/Switch/Switch.tsx",
           "name": "SwitchProps"
         },
         "required": false,
         "type": {
-          "name": "(newValue: boolean) => void"
+          "name": "((newValue: boolean) => void)"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Switch/Switch.tsx",
+          "name": "SwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

@@ -1,97 +1,24 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Text/Text.tsx",
+    "filePath": "packages/components-native/src/Text/Text.tsx",
     "description": "",
     "displayName": "Text",
     "methods": [],
     "props": {
-      "level": {
-        "defaultValue": {
-          "value": "text"
-        },
-        "description": "Visual hierarchy of the text",
-        "name": "level",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "TextLevel"
-        }
-      },
-      "variation": {
-        "defaultValue": {
-          "value": "base"
-        },
-        "description": "Color variation of text",
-        "name": "variation",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "TextVariation"
-        }
-      },
-      "emphasis": {
-        "defaultValue": null,
-        "description": "Change the appearance of the text",
-        "name": "emphasis",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"strong\""
-        }
-      },
-      "allowFontScaling": {
-        "defaultValue": {
-          "value": true
-        },
-        "description": "Allow text to be resized based on user's device display scale",
-        "name": "allowFontScaling",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "adjustsFontSizeToFit": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Determines whether text should be scaled down to fit based on maxLines prop",
         "name": "adjustsFontSizeToFit",
         "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
+          "fileName": "packages/components-native/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "maxLines": {
-        "defaultValue": {
-          "value": "unlimited"
-        },
-        "description": "The maximum amount of lines the text can occupy before being truncated with \"...\".\nUses predefined string values that correspond to a doubling scale for the amount of lines.",
-        "name": "maxLines",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "TruncateLength"
         }
       },
       "align": {
@@ -99,7 +26,7 @@
         "description": "Alignment of text",
         "name": "align",
         "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
+          "fileName": "packages/components-native/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
@@ -107,27 +34,14 @@
           "name": "TextAlign"
         }
       },
-      "children": {
-        "defaultValue": null,
-        "description": "Text to display. Supports nesting text elements.",
-        "name": "children",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "React.ReactNode"
-        }
-      },
-      "reverseTheme": {
+      "allowFontScaling": {
         "defaultValue": {
-          "value": false
+          "value": "true"
         },
-        "description": "Reverse theme for better display on dark background",
-        "name": "reverseTheme",
+        "description": "Allow text to be resized based on user's device display scale",
+        "name": "allowFontScaling",
         "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
+          "fileName": "packages/components-native/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
@@ -135,14 +49,40 @@
           "name": "boolean"
         }
       },
-      "strikeThrough": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "Have text styled with strike through",
-        "name": "strikeThrough",
+      "children": {
+        "defaultValue": null,
+        "description": "Text to display. Supports nesting text elements.",
+        "name": "children",
         "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "emphasis": {
+        "defaultValue": null,
+        "description": "Change the appearance of the text",
+        "name": "emphasis",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"strong\""
+        }
+      },
+      "hideFromScreenReader": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "This will make the text inaccessible to the screen reader.\nThis should be avoided unless there is a good reason.\nFor example this is used in InputText to make it so the label isn't\nselectable because it is already read from the accessibilityLabel\nof the TextInput",
+        "name": "hideFromScreenReader",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
@@ -152,12 +92,12 @@
       },
       "italic": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Use italic font style",
         "name": "italic",
         "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
+          "fileName": "packages/components-native/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
@@ -165,58 +105,19 @@
           "name": "boolean"
         }
       },
-      "underline": {
-        "defaultValue": null,
-        "description": "Underline style to use for the text. The non-solid style is only supported\non iOS, as per React Native's Text component's limitations.\nhttps://reactnative.dev/docs/text-style-props#textdecorationstyle-ios",
-        "name": "underline",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"solid\" | \"dotted\""
-        }
-      },
-      "hideFromScreenReader": {
+      "level": {
         "defaultValue": {
-          "value": false
+          "value": "text"
         },
-        "description": "This will make the text inaccessible to the screen reader.\nThis should be avoided unless there is a good reason.\nFor example this is used in InputText to make it so the label isn't\nselectable because it is already read from the accessibilityLabel\nof the TextInput",
-        "name": "hideFromScreenReader",
+        "description": "Visual hierarchy of the text",
+        "name": "level",
         "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
+          "fileName": "packages/components-native/src/Text/Text.tsx",
           "name": "TextProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "TypographyUnsafeStyle"
-        }
-      },
-      "onTextLayout": {
-        "defaultValue": null,
-        "description": "Callback that is called when the text is laid out.",
-        "name": "onTextLayout",
-        "parent": {
-          "fileName": "../components-native/src/Text/Text.tsx",
-          "name": "TextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: TextLayoutEvent) => void"
+          "name": "TextLevel"
         }
       },
       "maxFontScaleSize": {
@@ -232,6 +133,49 @@
           "name": "number"
         }
       },
+      "maxLines": {
+        "defaultValue": {
+          "value": "unlimited"
+        },
+        "description": "The maximum amount of lines the text can occupy before being truncated with \"...\".\nUses predefined string values that correspond to a doubling scale for the amount of lines.",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TruncateLength"
+        }
+      },
+      "onTextLayout": {
+        "defaultValue": null,
+        "description": "Callback that is called when the text is laid out.",
+        "name": "onTextLayout",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: TextLayoutEvent) => void)"
+        }
+      },
+      "reverseTheme": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Reverse theme for better display on dark background",
+        "name": "reverseTheme",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "selectable": {
         "defaultValue": {
           "value": "true"
@@ -245,6 +189,62 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "strikeThrough": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Have text styled with strike through",
+        "name": "strikeThrough",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "underline": {
+        "defaultValue": null,
+        "description": "Underline style to use for the text. The non-solid style is only supported\non iOS, as per React Native's Text component's limitations.\nhttps://reactnative.dev/docs/text-style-props#textdecorationstyle-ios",
+        "name": "underline",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"solid\" | \"dotted\""
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TypographyUnsafeStyle"
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Color variation of text",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextVariation"
         }
       }
     }

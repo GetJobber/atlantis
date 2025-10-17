@@ -1,30 +1,17 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Checkbox/Checkbox.tsx",
+    "filePath": "packages/components-native/src/Checkbox/Checkbox.tsx",
     "description": "",
     "displayName": "Checkbox",
     "methods": [],
     "props": {
-      "name": {
+      "accessibilityLabel": {
         "defaultValue": null,
-        "description": "Name of the checkbox; this is important when using in a form component",
-        "name": "name",
+        "description": "Accessibility Label for the checkbox. Defaults to label",
+        "name": "accessibilityLabel",
         "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
-          "name": "UncontrolledCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "label": {
-        "defaultValue": null,
-        "description": "Label to be displayed beside the checkbox",
-        "name": "label",
-        "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
           "name": "CommonCheckboxProps"
         },
         "required": false,
@@ -32,12 +19,25 @@
           "name": "string"
         }
       },
-      "defaultChecked": {
+      "assistiveText": {
         "defaultValue": null,
-        "description": "Default value for when the checkbox is uncontrolled",
-        "name": "defaultChecked",
+        "description": "Assistive Text, shown under label",
+        "name": "assistiveText",
         "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
+          "name": "CommonCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "checked": {
+        "defaultValue": null,
+        "description": "If the checkbox is checked. This should be set when this is intended as a controlled component",
+        "name": "checked",
+        "parent": {
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
           "name": "CommonCheckboxProps"
         },
         "required": false,
@@ -45,12 +45,12 @@
           "name": "boolean"
         }
       },
-      "indeterminate": {
+      "defaultChecked": {
         "defaultValue": null,
-        "description": "When true, the checkbox is shown as indeterminate",
-        "name": "indeterminate",
+        "description": "Default value for when the checkbox is uncontrolled",
+        "name": "defaultChecked",
         "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
           "name": "CommonCheckboxProps"
         },
         "required": false,
@@ -63,7 +63,7 @@
         "description": "Checkbox is disabled",
         "name": "disabled",
         "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
           "name": "CommonCheckboxProps"
         },
         "required": false,
@@ -71,12 +71,25 @@
           "name": "boolean"
         }
       },
-      "assistiveText": {
+      "indeterminate": {
         "defaultValue": null,
-        "description": "Assistive Text, shown under label",
-        "name": "assistiveText",
+        "description": "When true, the checkbox is shown as indeterminate",
+        "name": "indeterminate",
         "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
+          "name": "CommonCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "Label to be displayed beside the checkbox",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
           "name": "CommonCheckboxProps"
         },
         "required": false,
@@ -84,13 +97,13 @@
           "name": "string"
         }
       },
-      "accessibilityLabel": {
+      "name": {
         "defaultValue": null,
-        "description": "Accessibility Label for the checkbox. Defaults to label",
-        "name": "accessibilityLabel",
+        "description": "Name of the checkbox; this is important when using in a form component",
+        "name": "name",
         "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
-          "name": "CommonCheckboxProps"
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
+          "name": "UncontrolledCheckboxProps"
         },
         "required": false,
         "type": {
@@ -102,25 +115,12 @@
         "description": "Press handler",
         "name": "onChange",
         "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
+          "fileName": "packages/components-native/src/Checkbox/Checkbox.tsx",
           "name": "CommonCheckboxProps"
         },
         "required": false,
         "type": {
           "name": "((value: boolean) => void) | ((value: boolean) => void)"
-        }
-      },
-      "checked": {
-        "defaultValue": null,
-        "description": "If the checkbox is checked. This should be set when this is intended as a controlled component",
-        "name": "checked",
-        "parent": {
-          "fileName": "../components-native/src/Checkbox/Checkbox.tsx",
-          "name": "CommonCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       }
     }

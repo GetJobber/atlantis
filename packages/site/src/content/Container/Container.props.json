@@ -1,50 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Container/Container.tsx",
+    "filePath": "packages/components/src/Container/Container.tsx",
     "description": "",
     "displayName": "Container",
     "methods": [],
     "props": {
-      "name": {
+      "ariaAttributes": {
         "defaultValue": null,
-        "description": "The name of the container. This allows you to name your container query, but it's not necessary.",
-        "name": "name",
+        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
+        "name": "ariaAttributes",
         "parent": {
-          "fileName": "packages/components/src/Container/types.ts",
-          "name": "ContainerProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "className": {
-        "defaultValue": null,
-        "description": "The class name for the container. This allows you to target the container with CSS.",
-        "name": "className",
-        "parent": {
-          "fileName": "packages/components/src/Container/types.ts",
-          "name": "ContainerProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
         },
         "required": false,
         "type": {
-          "name": "string"
-        }
-      },
-      "autoWidth": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "Whether to allow the container to take the width of the content. Defaults to 100%",
-        "name": "autoWidth",
-        "parent": {
-          "fileName": "packages/components/src/Container/types.ts",
-          "name": "ContainerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
+          "name": "AriaAttributes"
         }
       },
       "as": {
@@ -60,6 +32,34 @@
           "name": "CommonAllowedElements"
         }
       },
+      "autoWidth": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Whether to allow the container to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "className": {
+        "defaultValue": null,
+        "description": "The class name for the container. This allows you to target the container with CSS.",
+        "name": "className",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "dataAttributes": {
         "defaultValue": null,
         "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
@@ -71,32 +71,6 @@
         "required": false,
         "type": {
           "name": "{ [key: `data-${string}`]: string; }"
-        }
-      },
-      "ariaAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
-        "name": "ariaAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaAttributes"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Standard HTML role attribute.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaRole"
         }
       },
       "id": {
@@ -111,16 +85,57 @@
         "type": {
           "name": "string"
         }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The name of the container. This allows you to name your container query, but it's not necessary.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Standard HTML role attribute.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaRole"
+        }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Container/Container.tsx",
+    "filePath": "packages/components/src/Container/Container.tsx",
     "description": "",
     "displayName": "Container.Apply",
     "methods": [],
     "props": {
+      "autoWidth": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Whether to allow the container to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Container/types.ts",
+          "name": "ContainerApplyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "className": {
         "defaultValue": null,
         "description": "The class name for the container. This allows you to target the container with CSS.",
@@ -145,21 +160,6 @@
         "required": false,
         "type": {
           "name": "CSSProperties"
-        }
-      },
-      "autoWidth": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "Whether to allow the container to take the width of the content. Defaults to 100%",
-        "name": "autoWidth",
-        "parent": {
-          "fileName": "packages/components/src/Container/types.ts",
-          "name": "ContainerApplyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       }
     }

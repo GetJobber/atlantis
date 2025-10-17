@@ -1,22 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/FormatFile/FormatFile.tsx",
+    "filePath": "packages/components-native/src/FormatFile/FormatFile.tsx",
     "description": "",
     "displayName": "FormatFile",
     "methods": [],
     "props": {
-      "file": {
+      "accessibilityHint": {
         "defaultValue": null,
-        "description": "File upload details object. Can be a File or a FileUpload",
-        "name": "file",
+        "description": "Accessibility hint",
+        "name": "accessibilityHint",
         "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
           "name": "FormatFileProps"
         },
-        "required": true,
+        "required": false,
         "type": {
-          "name": "File | FileUpload"
+          "name": "string"
         }
       },
       "accessibilityLabel": {
@@ -24,64 +24,12 @@
         "description": "Accessibility label",
         "name": "accessibilityLabel",
         "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
           "name": "FormatFileProps"
         },
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "accessibilityHint": {
-        "defaultValue": null,
-        "description": "Accessibility hint",
-        "name": "accessibilityHint",
-        "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
-          "name": "FormatFileProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onTap": {
-        "defaultValue": null,
-        "description": "A function which handles the onTap event.",
-        "name": "onTap",
-        "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
-          "name": "FormatFileProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(file: T) => void"
-        }
-      },
-      "onRemove": {
-        "defaultValue": null,
-        "description": "A function to be called on \"Remove\" Bottom Sheet Option press",
-        "name": "onRemove",
-        "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
-          "name": "FormatFileProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "onPreviewPress": {
-        "defaultValue": null,
-        "description": "Handler for the \"Preview\" Bottom Sheet Option press",
-        "name": "onPreviewPress",
-        "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
-          "name": "FormatFileProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(formattedFile: FormattedFile) => void"
         }
       },
       "bottomSheetOptionsSuffix": {
@@ -89,7 +37,7 @@
         "description": "A file type to show at Bottom Sheet options",
         "name": "bottomSheetOptionsSuffix",
         "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
           "name": "FormatFileProps"
         },
         "required": false,
@@ -97,14 +45,94 @@
           "name": "BottomSheetOptionsSuffix"
         }
       },
+      "createThumbnail": {
+        "defaultValue": null,
+        "description": "",
+        "name": "createThumbnail",
+        "parent": {
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CreateThumbnail"
+        }
+      },
+      "file": {
+        "defaultValue": null,
+        "description": "File upload details object. Can be a File or a FileUpload",
+        "name": "file",
+        "parent": {
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileProps"
+        },
+        "required": true,
+        "type": {
+          "name": "File | FileUpload"
+        }
+      },
+      "onPreviewPress": {
+        "defaultValue": null,
+        "description": "Handler for the \"Preview\" Bottom Sheet Option press",
+        "name": "onPreviewPress",
+        "parent": {
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((formattedFile: FormattedFile) => void)"
+        }
+      },
+      "onRemove": {
+        "defaultValue": null,
+        "description": "A function to be called on \"Remove\" Bottom Sheet Option press",
+        "name": "onRemove",
+        "parent": {
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onTap": {
+        "defaultValue": null,
+        "description": "A function which handles the onTap event.",
+        "name": "onTap",
+        "parent": {
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((file: T) => void)"
+        }
+      },
+      "showFileTypeIndicator": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Set false to hide the filetype icon",
+        "name": "showFileTypeIndicator",
+        "parent": {
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "styleInGrid": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Uses a grid layout when multi-file upload is supported",
         "name": "styleInGrid",
         "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
           "name": "FormatFileProps"
         },
         "required": false,
@@ -117,40 +145,12 @@
         "description": "A reference to the element in the rendered output",
         "name": "testID",
         "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "fileName": "packages/components-native/src/FormatFile/FormatFile.tsx",
           "name": "FormatFileProps"
         },
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "showFileTypeIndicator": {
-        "defaultValue": {
-          "value": true
-        },
-        "description": "Set false to hide the filetype icon",
-        "name": "showFileTypeIndicator",
-        "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
-          "name": "FormatFileProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "createThumbnail": {
-        "defaultValue": null,
-        "description": "",
-        "name": "createThumbnail",
-        "parent": {
-          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
-          "name": "FormatFileProps"
-        },
-        "required": false,
-        "type": {
-          "name": "CreateThumbnail"
         }
       }
     }

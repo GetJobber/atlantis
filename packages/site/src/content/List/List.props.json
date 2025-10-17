@@ -1,22 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/List/List.tsx",
+    "filePath": "packages/components/src/List/List.tsx",
     "description": "",
     "displayName": "List",
     "methods": [],
     "props": {
-      "items": {
+      "customItemStyles": {
         "defaultValue": null,
-        "description": "Array of the list items.",
-        "name": "items",
+        "description": "Set to true for more control over the item styles. Only modifies styles\nwhen used with customRenderItem.",
+        "name": "customItemStyles",
         "parent": {
-          "fileName": "../components/src/List/List.tsx",
+          "fileName": "packages/components/src/List/List.tsx",
           "name": "ListProps"
         },
-        "required": true,
+        "required": false,
         "type": {
-          "name": "T[]"
+          "name": "boolean"
         }
       },
       "customRenderItem": {
@@ -24,25 +24,12 @@
         "description": "A function that will be called for each item instead of the default\nrendering\n@argument item - The item to render",
         "name": "customRenderItem",
         "parent": {
-          "fileName": "../components/src/List/List.tsx",
+          "fileName": "packages/components/src/List/List.tsx",
           "name": "ListProps"
         },
         "required": false,
         "type": {
-          "name": "(item: T) => React.ReactNode"
-        }
-      },
-      "customItemStyles": {
-        "defaultValue": null,
-        "description": "Set to true for more control over the item styles. Only modifies styles\nwhen used with customRenderItem.",
-        "name": "customItemStyles",
-        "parent": {
-          "fileName": "../components/src/List/List.tsx",
-          "name": "ListProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
+          "name": "((item: T) => ReactNode)"
         }
       },
       "customRenderSection": {
@@ -50,12 +37,12 @@
         "description": "A function that will be called for each section heading instead of the default\nrendering\n@argument sectionName - The name of the section to render",
         "name": "customRenderSection",
         "parent": {
-          "fileName": "../components/src/List/List.tsx",
+          "fileName": "packages/components/src/List/List.tsx",
           "name": "ListProps"
         },
         "required": false,
         "type": {
-          "name": "(sectionName: string) => React.ReactNode"
+          "name": "((sectionName: string) => ReactNode)"
         }
       },
       "customSectionStyles": {
@@ -63,25 +50,12 @@
         "description": "Set to true for more control over the section heading styles. Only modifies styles\nwhen used with customRenderItem.",
         "name": "customSectionStyles",
         "parent": {
-          "fileName": "../components/src/List/List.tsx",
+          "fileName": "packages/components/src/List/List.tsx",
           "name": "ListProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "labelledBy": {
-        "defaultValue": null,
-        "description": "An ID of an element that provides the labelling for this list.",
-        "name": "labelledBy",
-        "parent": {
-          "fileName": "../components/src/List/List.tsx",
-          "name": "ListProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       },
       "defaultSectionHeader": {
@@ -91,7 +65,33 @@
         "description": "A default section header value for items that do not have a section.",
         "name": "defaultSectionHeader",
         "parent": {
-          "fileName": "../components/src/List/List.tsx",
+          "fileName": "packages/components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "items": {
+        "defaultValue": null,
+        "description": "Array of the list items.",
+        "name": "items",
+        "parent": {
+          "fileName": "packages/components/src/List/List.tsx",
+          "name": "ListProps"
+        },
+        "required": true,
+        "type": {
+          "name": "T[]"
+        }
+      },
+      "labelledBy": {
+        "defaultValue": null,
+        "description": "An ID of an element that provides the labelling for this list.",
+        "name": "labelledBy",
+        "parent": {
+          "fileName": "packages/components/src/List/List.tsx",
           "name": "ListProps"
         },
         "required": false,

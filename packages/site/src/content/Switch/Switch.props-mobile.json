@@ -1,48 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Switch/Switch.tsx",
+    "filePath": "packages/components-native/src/Switch/Switch.tsx",
     "description": "",
     "displayName": "Switch",
     "methods": [],
     "props": {
-      "label": {
+      "accessibilityLabel": {
         "defaultValue": null,
-        "description": "Optional label to display in front of the switch",
-        "name": "label",
-        "parent": {
-          "fileName": "../components-native/src/Switch/Switch.tsx",
-          "name": "WithLabelProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "description": {
-        "defaultValue": null,
-        "description": "Optional descriptive text to display under the switch",
-        "name": "description",
-        "parent": {
-          "fileName": "../components-native/src/Switch/Switch.tsx",
-          "name": "WithLabelProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "Value of the switch",
-        "name": "value",
+        "description": "Accessibility label for this switch",
+        "name": "accessibilityLabel",
         "parent": {
           "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
           "name": "BaseSwitchProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "string"
         }
       },
       "defaultValue": {
@@ -58,17 +32,17 @@
           "name": "boolean"
         }
       },
-      "onValueChange": {
+      "description": {
         "defaultValue": null,
-        "description": "Callback to handle value changes",
-        "name": "onValueChange",
+        "description": "Optional descriptive text to display under the switch",
+        "name": "description",
         "parent": {
-          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
-          "name": "BaseSwitchProps"
+          "fileName": "packages/components-native/src/Switch/Switch.tsx",
+          "name": "WithLabelProps"
         },
         "required": false,
         "type": {
-          "name": "(val: boolean) => void"
+          "name": "string"
         }
       },
       "disabled": {
@@ -84,13 +58,13 @@
           "name": "boolean"
         }
       },
-      "accessibilityLabel": {
+      "label": {
         "defaultValue": null,
-        "description": "Accessibility label for this switch",
-        "name": "accessibilityLabel",
+        "description": "Optional label to display in front of the switch",
+        "name": "label",
         "parent": {
-          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
-          "name": "BaseSwitchProps"
+          "fileName": "packages/components-native/src/Switch/Switch.tsx",
+          "name": "WithLabelProps"
         },
         "required": false,
         "type": {
@@ -108,6 +82,32 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "onValueChange": {
+        "defaultValue": null,
+        "description": "Callback to handle value changes",
+        "name": "onValueChange",
+        "parent": {
+          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
+          "name": "BaseSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((val: boolean) => void)"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Value of the switch",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components-native/src/Switch/components/BaseSwitch/BaseSwitch.tsx",
+          "name": "BaseSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

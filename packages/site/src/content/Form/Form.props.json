@@ -1,35 +1,35 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Form/Form.tsx",
+    "filePath": "packages/components/src/Form/Form.tsx",
     "description": "",
     "displayName": "Form",
     "methods": [],
     "props": {
-      "onSubmit": {
-        "defaultValue": null,
-        "description": "Callback for when the form has been sucessfully\nsubmitted.",
-        "name": "onSubmit",
-        "parent": {
-          "fileName": "../components/src/Form/Form.tsx",
-          "name": "FormProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
       "onStateChange": {
         "defaultValue": null,
         "description": "",
         "name": "onStateChange",
         "parent": {
-          "fileName": "../components/src/Form/Form.tsx",
+          "fileName": "packages/components/src/Form/Form.tsx",
           "name": "FormProps"
         },
         "required": false,
         "type": {
-          "name": "(formState: { isDirty: boolean; isValid: boolean; }) => void"
+          "name": "((formState: { isDirty: boolean; isValid: boolean; }) => void)"
+        }
+      },
+      "onSubmit": {
+        "defaultValue": null,
+        "description": "Callback for when the form has been sucessfully\nsubmitted.",
+        "name": "onSubmit",
+        "parent": {
+          "fileName": "packages/components/src/Form/Form.tsx",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
         }
       },
       "ref": {

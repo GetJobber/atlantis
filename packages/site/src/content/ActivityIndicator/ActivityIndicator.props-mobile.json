@@ -1,752 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/ActivityIndicator/ActivityIndicator.tsx",
+    "filePath": "packages/components-native/src/ActivityIndicator/ActivityIndicator.tsx",
     "description": "",
     "displayName": "JobberActivityIndicator",
     "methods": [],
     "props": {
-      "animating": {
-        "defaultValue": null,
-        "description": "Whether to show the indicator (true, the default) or hide it (false).",
-        "name": "animating",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
-          "name": "ActivityIndicatorProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "color": {
-        "defaultValue": null,
-        "description": "The foreground color of the spinner (default is gray).",
-        "name": "color",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
-          "name": "ActivityIndicatorProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ColorValue"
-        }
-      },
-      "hidesWhenStopped": {
-        "defaultValue": null,
-        "description": "Whether the indicator should hide when not animating (true by default).",
-        "name": "hidesWhenStopped",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
-          "name": "ActivityIndicatorProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "size": {
-        "defaultValue": null,
-        "description": "Size of the indicator.\nSmall has a height of 20, large has a height of 36.\n\nenum('small', 'large')",
-        "name": "size",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
-          "name": "ActivityIndicatorProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number | \"small\" | \"large\""
-        }
-      },
-      "style": {
-        "defaultValue": null,
-        "description": "",
-        "name": "style",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
-          "name": "ActivityIndicatorProps"
-        },
-        "required": false,
-        "type": {
-          "name": "StyleProp<ViewStyle>"
-        }
-      },
-      "hitSlop": {
-        "defaultValue": null,
-        "description": "This defines how far a touch event can start away from the view.\nTypical interface guidelines recommend touch targets that are at least\n30 - 40 points/density-independent pixels. If a Touchable view has\na height of 20 the touchable height can be extended to 40 with\nhitSlop={{top: 10, bottom: 10, left: 0, right: 0}}\nNOTE The touch area never extends past the parent view bounds and\nthe Z-index of sibling views always takes precedence if a touch\nhits two overlapping views.",
-        "name": "hitSlop",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number | Insets"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "Used to reference react managed views from native code.",
-        "name": "id",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "needsOffscreenAlphaCompositing": {
-        "defaultValue": null,
-        "description": "Whether this view needs to rendered offscreen and composited with an alpha in order to preserve 100% correct colors and blending behavior.\nThe default (false) falls back to drawing the component and its children\nwith an alpha applied to the paint used to draw each element instead of rendering the full component offscreen and compositing it back with an alpha value.\nThis default may be noticeable and undesired in the case where the View you are setting an opacity on\nhas multiple overlapping elements (e.g. multiple overlapping Views, or text and a background).\n\nRendering offscreen to preserve correct alpha behavior is extremely expensive\nand hard to debug for non-native developers, which is why it is not turned on by default.\nIf you do need to enable this property for an animation,\nconsider combining it with renderToHardwareTextureAndroid if the view contents are static (i.e. it doesn't need to be redrawn each frame).\nIf that property is enabled, this View will be rendered off-screen once,\nsaved in a hardware texture, and then composited onto the screen with an alpha each frame without having to switch rendering targets on the GPU.",
-        "name": "needsOffscreenAlphaCompositing",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onLayout": {
-        "defaultValue": null,
-        "description": "Invoked on mount and layout changes with\n\n{nativeEvent: { layout: {x, y, width, height}}}.",
-        "name": "onLayout",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: LayoutChangeEvent) => void"
-        }
-      },
-      "pointerEvents": {
-        "defaultValue": null,
-        "description": "In the absence of auto property, none is much like CSS's none value. box-none is as if you had applied the CSS class:\n\n.box-none {\n  pointer-events: none;\n}\n.box-none * {\n  pointer-events: all;\n}\n\nbox-only is the equivalent of\n\n.box-only {\n  pointer-events: all;\n}\n.box-only * {\n  pointer-events: none;\n}\n\nBut since pointerEvents does not affect layout/appearance, and we are already deviating from the spec by adding additional modes,\nwe opt to not include pointerEvents on style. On some platforms, we would need to implement it as a className anyways. Using style or not is an implementation detail of the platform.",
-        "name": "pointerEvents",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"box-none\" | \"none\" | \"box-only\" | \"auto\""
-        }
-      },
-      "removeClippedSubviews": {
-        "defaultValue": null,
-        "description": "This is a special performance property exposed by RCTView and is useful for scrolling content when there are many subviews,\nmost of which are offscreen. For this property to be effective, it must be applied to a view that contains many subviews that extend outside its bound.\nThe subviews must also have overflow: hidden, as should the containing view (or one of its superviews).",
-        "name": "removeClippedSubviews",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "testID": {
-        "defaultValue": null,
-        "description": "Used to locate this view in end-to-end tests.",
-        "name": "testID",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "nativeID": {
-        "defaultValue": null,
-        "description": "Used to reference react managed views from native code.",
-        "name": "nativeID",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "collapsable": {
-        "defaultValue": null,
-        "description": "Views that are only used to layout their children or otherwise don't draw anything\nmay be automatically removed from the native hierarchy as an optimization.\nSet this property to false to disable this optimization and ensure that this View exists in the native view hierarchy.",
-        "name": "collapsable",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "collapsableChildren": {
-        "defaultValue": null,
-        "description": "Setting to false prevents direct children of the view from being removed\nfrom the native view hierarchy, similar to the effect of setting\n`collapsable={false}` on each child.",
-        "name": "collapsableChildren",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Callback that is called when the view is blurred.\n\nNote: This will only be called if the view is focusable.",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "(e: BlurEvent) => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Callback that is called when the view is focused.\n\nNote: This will only be called if the view is focusable.",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "(e: FocusEvent) => void"
-        }
-      },
-      "renderToHardwareTextureAndroid": {
-        "defaultValue": null,
-        "description": "Whether this view should render itself (and all of its children) into a single hardware texture on the GPU.\n\nOn Android, this is useful for animations and interactions that only modify opacity, rotation, translation, and/or scale:\nin those cases, the view doesn't have to be redrawn and display lists don't need to be re-executed. The texture can just be\nre-used and re-composited with different parameters. The downside is that this can use up limited video memory, so this prop should be set back to false at the end of the interaction/animation.",
-        "name": "renderToHardwareTextureAndroid",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "focusable": {
-        "defaultValue": null,
-        "description": "Whether this `View` should be focusable with a non-touch input device, eg. receive focus with a hardware keyboard.",
-        "name": "focusable",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "tabIndex": {
-        "defaultValue": null,
-        "description": "Indicates whether this `View` should be focusable with a non-touch input device, eg. receive focus with a hardware keyboard.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex\nfor more details.\n\nSupports the following values:\n-  0 (View is focusable)\n- -1 (View is not focusable)",
-        "name": "tabIndex",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "0 | -1"
-        }
-      },
-      "shouldRasterizeIOS": {
-        "defaultValue": null,
-        "description": "Whether this view should be rendered as a bitmap before compositing.\n\nOn iOS, this is useful for animations and interactions that do not modify this component's dimensions nor its children;\nfor example, when translating the position of a static view, rasterization allows the renderer to reuse a cached bitmap of a static view\nand quickly composite it during each frame.\n\nRasterization incurs an off-screen drawing pass and the bitmap consumes memory.\nTest and measure when using this property.",
-        "name": "shouldRasterizeIOS",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "ViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isTVSelectable": {
-        "defaultValue": null,
-        "description": "*(Apple TV only)* When set to true, this view will be focusable\nand navigable using the Apple TV remote.\n@platform ios",
-        "name": "isTVSelectable",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "TVViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "hasTVPreferredFocus": {
-        "defaultValue": null,
-        "description": "*(Apple TV only)* May be set to true to force the Apple TV focus engine to move focus to this view.\n@platform ios\n@deprecated Use `focusable` instead",
-        "name": "hasTVPreferredFocus",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "TVViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "tvParallaxShiftDistanceX": {
-        "defaultValue": null,
-        "description": "*(Apple TV only)* May be used to change the appearance of the Apple TV parallax effect when this view goes in or out of focus.  Defaults to 2.0.\n@platform ios",
-        "name": "tvParallaxShiftDistanceX",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "TVViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "tvParallaxShiftDistanceY": {
-        "defaultValue": null,
-        "description": "*(Apple TV only)* May be used to change the appearance of the Apple TV parallax effect when this view goes in or out of focus.  Defaults to 2.0.\n@platform ios",
-        "name": "tvParallaxShiftDistanceY",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "TVViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "tvParallaxTiltAngle": {
-        "defaultValue": null,
-        "description": "*(Apple TV only)* May be used to change the appearance of the Apple TV parallax effect when this view goes in or out of focus.  Defaults to 0.05.\n@platform ios",
-        "name": "tvParallaxTiltAngle",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "TVViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "tvParallaxMagnification": {
-        "defaultValue": null,
-        "description": "*(Apple TV only)* May be used to change the appearance of the Apple TV parallax effect when this view goes in or out of focus.  Defaults to 1.0.\n@platform ios",
-        "name": "tvParallaxMagnification",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
-          "name": "TVViewPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "onStartShouldSetResponder": {
-        "defaultValue": null,
-        "description": "Does this view want to become responder on the start of a touch?",
-        "name": "onStartShouldSetResponder",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => boolean"
-        }
-      },
-      "onMoveShouldSetResponder": {
-        "defaultValue": null,
-        "description": "Called for every touch move on the View when it is not the responder: does this view want to \"claim\" touch responsiveness?",
-        "name": "onMoveShouldSetResponder",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => boolean"
-        }
-      },
-      "onResponderEnd": {
-        "defaultValue": null,
-        "description": "If the View returns true and attempts to become the responder, one of the following will happen:",
-        "name": "onResponderEnd",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onResponderGrant": {
-        "defaultValue": null,
-        "description": "The View is now responding for touch events.\nThis is the time to highlight and show the user what is happening",
-        "name": "onResponderGrant",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onResponderReject": {
-        "defaultValue": null,
-        "description": "Something else is the responder right now and will not release it",
-        "name": "onResponderReject",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onResponderMove": {
-        "defaultValue": null,
-        "description": "The user is moving their finger",
-        "name": "onResponderMove",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onResponderRelease": {
-        "defaultValue": null,
-        "description": "Fired at the end of the touch, ie \"touchUp\"",
-        "name": "onResponderRelease",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onResponderStart": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onResponderStart",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onResponderTerminationRequest": {
-        "defaultValue": null,
-        "description": "Something else wants to become responder.\nShould this view release the responder? Returning true allows release",
-        "name": "onResponderTerminationRequest",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => boolean"
-        }
-      },
-      "onResponderTerminate": {
-        "defaultValue": null,
-        "description": "The responder has been taken from the View.\nMight be taken by other views after a call to onResponderTerminationRequest,\nor might be taken by the OS without asking (happens with control center/ notification center on iOS)",
-        "name": "onResponderTerminate",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onStartShouldSetResponderCapture": {
-        "defaultValue": null,
-        "description": "onStartShouldSetResponder and onMoveShouldSetResponder are called with a bubbling pattern,\nwhere the deepest node is called first.\nThat means that the deepest component will become responder when multiple Views return true for *ShouldSetResponder handlers.\nThis is desirable in most cases, because it makes sure all controls and buttons are usable.\n\nHowever, sometimes a parent will want to make sure that it becomes responder.\nThis can be handled by using the capture phase.\nBefore the responder system bubbles up from the deepest component,\nit will do a capture phase, firing on*ShouldSetResponderCapture.\nSo if a parent View wants to prevent the child from becoming responder on a touch start,\nit should have a onStartShouldSetResponderCapture handler which returns true.",
-        "name": "onStartShouldSetResponderCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => boolean"
-        }
-      },
-      "onMoveShouldSetResponderCapture": {
-        "defaultValue": null,
-        "description": "onStartShouldSetResponder and onMoveShouldSetResponder are called with a bubbling pattern,\nwhere the deepest node is called first.\nThat means that the deepest component will become responder when multiple Views return true for *ShouldSetResponder handlers.\nThis is desirable in most cases, because it makes sure all controls and buttons are usable.\n\nHowever, sometimes a parent will want to make sure that it becomes responder.\nThis can be handled by using the capture phase.\nBefore the responder system bubbles up from the deepest component,\nit will do a capture phase, firing on*ShouldSetResponderCapture.\nSo if a parent View wants to prevent the child from becoming responder on a touch start,\nit should have a onStartShouldSetResponderCapture handler which returns true.",
-        "name": "onMoveShouldSetResponderCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
-          "name": "GestureResponderHandlers"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => boolean"
-        }
-      },
-      "onTouchStart": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onTouchStart",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
-          "name": "Touchable"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onTouchMove": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onTouchMove",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
-          "name": "Touchable"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onTouchEnd": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onTouchEnd",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
-          "name": "Touchable"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onTouchCancel": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onTouchCancel",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
-          "name": "Touchable"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onTouchEndCapture": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onTouchEndCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
-          "name": "Touchable"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: GestureResponderEvent) => void"
-        }
-      },
-      "onPointerEnter": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerEnter",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerEnterCapture": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerEnterCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerLeave": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerLeave",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerLeaveCapture": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerLeaveCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerMove": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerMove",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerMoveCapture": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerMoveCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerCancel": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerCancel",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerCancelCapture": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerCancelCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerDown": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerDown",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerDownCapture": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerDownCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerUp": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerUp",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "onPointerUpCapture": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onPointerUpCapture",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
-          "name": "PointerEvents"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: PointerEvent) => void"
-        }
-      },
-      "accessible": {
-        "defaultValue": null,
-        "description": "When true, indicates that the view is an accessibility element.\nBy default, all the touchable elements are accessible.",
-        "name": "accessible",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "accessibilityActions": {
         "defaultValue": null,
         "description": "Provides an array of custom actions available for accessibility.",
@@ -758,6 +17,45 @@
         "required": false,
         "type": {
           "name": "readonly Readonly<{ name: string; label?: string; }>[]"
+        }
+      },
+      "accessibilityElementsHidden": {
+        "defaultValue": null,
+        "description": "A Boolean value indicating whether the accessibility elements contained within this accessibility element\nare hidden to the screen reader.\n@platform ios",
+        "name": "accessibilityElementsHidden",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "accessibilityHint": {
+        "defaultValue": null,
+        "description": "An accessibility hint helps users understand what will happen when they perform an action on the accessibility element when that result is not obvious from the accessibility label.",
+        "name": "accessibilityHint",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "accessibilityIgnoresInvertColors": {
+        "defaultValue": null,
+        "description": "https://reactnative.dev/docs/accessibility#accessibilityignoresinvertcolorsios\n@platform ios",
+        "name": "accessibilityIgnoresInvertColors",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "accessibilityLabel": {
@@ -773,17 +71,69 @@
           "name": "string"
         }
       },
-      "aria-label": {
+      "accessibilityLabelledBy": {
         "defaultValue": null,
-        "description": "Alias for accessibilityLabel  https://reactnative.dev/docs/view#accessibilitylabel\nhttps://github.com/facebook/react-native/issues/34424",
-        "name": "aria-label",
+        "description": "Identifies the element that labels the element it is applied to. When the assistive technology focuses on the component with this props,\nthe text is read aloud. The value should should match the nativeID of the related element.\n@platform android",
+        "name": "accessibilityLabelledBy",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "string | string[]"
+        }
+      },
+      "accessibilityLanguage": {
+        "defaultValue": null,
+        "description": "By using the accessibilityLanguage property, the screen reader will understand which language to use while reading the element's label, value and hint. The provided string value must follow the BCP 47 specification (https://www.rfc-editor.org/info/bcp47).\nhttps://reactnative.dev/docs/accessibility#accessibilitylanguage-ios\n@platform ios",
+        "name": "accessibilityLanguage",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
         },
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "accessibilityLargeContentTitle": {
+        "defaultValue": null,
+        "description": "When `accessibilityShowsLargeContentViewer` is set, this string will be used as title for the large content viewer.\nhttps://reactnative.dev/docs/accessibility#accessibilitylargecontenttitle\n@platform ios",
+        "name": "accessibilityLargeContentTitle",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "accessibilityLiveRegion": {
+        "defaultValue": null,
+        "description": "Indicates to accessibility services whether the user should be notified\nwhen this view changes. Works for Android API >= 19 only.\n@platform android\n\nSee https://reactnative.dev/docs/view#accessibilityliveregion",
+        "name": "accessibilityLiveRegion",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "\"none\" | \"assertive\" | \"polite\""
+        }
+      },
+      "accessibilityRespondsToUserInteraction": {
+        "defaultValue": null,
+        "description": "Blocks the user from interacting with the component through keyboard while still allowing\nscreen reader to interact with it if this View is still accessible.\n@platform ios",
+        "name": "accessibilityRespondsToUserInteraction",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "accessibilityRole": {
@@ -799,6 +149,19 @@
           "name": "AccessibilityRole"
         }
       },
+      "accessibilityShowsLargeContentViewer": {
+        "defaultValue": null,
+        "description": "A Boolean value that indicates whether or not to show the item in the large content viewer.\nAvailable on iOS 13.0+\nhttps://reactnative.dev/docs/accessibility#accessibilityshowslargecontentviewer\n@platform ios",
+        "name": "accessibilityShowsLargeContentViewer",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "accessibilityState": {
         "defaultValue": null,
         "description": "Accessibility State tells a person using either VoiceOver on iOS or TalkBack on Android the state of the element currently focused on.",
@@ -810,6 +173,58 @@
         "required": false,
         "type": {
           "name": "AccessibilityState"
+        }
+      },
+      "accessibilityValue": {
+        "defaultValue": null,
+        "description": "Represents the current value of a component. It can be a textual description of a component's value, or for range-based components, such as sliders and progress bars,\nit contains range information (minimum, current, and maximum).",
+        "name": "accessibilityValue",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AccessibilityValue"
+        }
+      },
+      "accessibilityViewIsModal": {
+        "defaultValue": null,
+        "description": "A Boolean value indicating whether VoiceOver should ignore the elements within views that are siblings of the receiver.\n@platform ios",
+        "name": "accessibilityViewIsModal",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "accessible": {
+        "defaultValue": null,
+        "description": "When true, indicates that the view is an accessibility element.\nBy default, all the touchable elements are accessible.",
+        "name": "accessible",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "animating": {
+        "defaultValue": null,
+        "description": "Whether to show the indicator (true, the default) or hide it (false).",
+        "name": "animating",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
+          "name": "ActivityIndicatorProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "aria-busy": {
@@ -864,6 +279,71 @@
           "name": "boolean"
         }
       },
+      "aria-hidden": {
+        "defaultValue": null,
+        "description": "A value indicating whether the accessibility elements contained within\nthis accessibility element are hidden.",
+        "name": "aria-hidden",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "aria-label": {
+        "defaultValue": null,
+        "description": "Alias for accessibilityLabel  https://reactnative.dev/docs/view#accessibilitylabel\nhttps://github.com/facebook/react-native/issues/34424",
+        "name": "aria-label",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-labelledby": {
+        "defaultValue": null,
+        "description": "Identifies the element that labels the element it is applied to. When the assistive technology focuses on the component with this props,\nthe text is read aloud. The value should should match the nativeID of the related element.\n@platform android",
+        "name": "aria-labelledby",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-live": {
+        "defaultValue": null,
+        "description": "Indicates to accessibility services whether the user should be notified\nwhen this view changes. Works for Android API >= 19 only.\n@platform android\n\nSee https://reactnative.dev/docs/view#accessibilityliveregion",
+        "name": "aria-live",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "\"off\" | \"assertive\" | \"polite\""
+        }
+      },
+      "aria-modal": {
+        "defaultValue": null,
+        "description": "",
+        "name": "aria-modal",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "aria-selected": {
         "defaultValue": null,
         "description": "",
@@ -875,32 +355,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "accessibilityHint": {
-        "defaultValue": null,
-        "description": "An accessibility hint helps users understand what will happen when they perform an action on the accessibility element when that result is not obvious from the accessibility label.",
-        "name": "accessibilityHint",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "accessibilityValue": {
-        "defaultValue": null,
-        "description": "Represents the current value of a component. It can be a textual description of a component's value, or for range-based components, such as sliders and progress bars,\nit contains range information (minimum, current, and maximum).",
-        "name": "accessibilityValue",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AccessibilityValue"
         }
       },
       "aria-valuemax": {
@@ -955,17 +409,108 @@
           "name": "string"
         }
       },
-      "onAccessibilityAction": {
+      "collapsable": {
         "defaultValue": null,
-        "description": "When `accessible` is true, the system will try to invoke this function when the user performs an accessibility custom action.",
-        "name": "onAccessibilityAction",
+        "description": "Views that are only used to layout their children or otherwise don't draw anything\nmay be automatically removed from the native hierarchy as an optimization.\nSet this property to false to disable this optimization and ensure that this View exists in the native view hierarchy.",
+        "name": "collapsable",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
         },
         "required": false,
         "type": {
-          "name": "(event: AccessibilityActionEvent) => void"
+          "name": "boolean"
+        }
+      },
+      "collapsableChildren": {
+        "defaultValue": null,
+        "description": "Setting to false prevents direct children of the view from being removed\nfrom the native view hierarchy, similar to the effect of setting\n`collapsable={false}` on each child.",
+        "name": "collapsableChildren",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "color": {
+        "defaultValue": null,
+        "description": "The foreground color of the spinner (default is gray).",
+        "name": "color",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
+          "name": "ActivityIndicatorProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ColorValue"
+        }
+      },
+      "focusable": {
+        "defaultValue": null,
+        "description": "Whether this `View` should be focusable with a non-touch input device, eg. receive focus with a hardware keyboard.",
+        "name": "focusable",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "hasTVPreferredFocus": {
+        "defaultValue": null,
+        "description": "*(Apple TV only)* May be set to true to force the Apple TV focus engine to move focus to this view.\n@platform ios\n@deprecated Use `focusable` instead",
+        "name": "hasTVPreferredFocus",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "TVViewPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "hidesWhenStopped": {
+        "defaultValue": null,
+        "description": "Whether the indicator should hide when not animating (true by default).",
+        "name": "hidesWhenStopped",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
+          "name": "ActivityIndicatorProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "hitSlop": {
+        "defaultValue": null,
+        "description": "This defines how far a touch event can start away from the view.\nTypical interface guidelines recommend touch targets that are at least\n30 - 40 points/density-independent pixels. If a Touchable view has\na height of 20 the touchable height can be extended to 40 with\nhitSlop={{top: 10, bottom: 10, left: 0, right: 0}}\nNOTE The touch area never extends past the parent view bounds and\nthe Z-index of sibling views always takes precedence if a touch\nhits two overlapping views.",
+        "name": "hitSlop",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number | Insets | null"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "Used to reference react managed views from native code.",
+        "name": "id",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "importantForAccessibility": {
@@ -981,26 +526,546 @@
           "name": "\"auto\" | \"yes\" | \"no\" | \"no-hide-descendants\""
         }
       },
-      "aria-hidden": {
+      "isTVSelectable": {
         "defaultValue": null,
-        "description": "A value indicating whether the accessibility elements contained within\nthis accessibility element are hidden.",
-        "name": "aria-hidden",
+        "description": "*(Apple TV only)* When set to true, this view will be focusable\nand navigable using the Apple TV remote.\n@platform ios",
+        "name": "isTVSelectable",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityProps"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "TVViewPropsIOS"
         },
         "required": false,
         "type": {
           "name": "boolean"
         }
       },
-      "aria-modal": {
+      "nativeID": {
         "defaultValue": null,
-        "description": "",
-        "name": "aria-modal",
+        "description": "Used to reference react managed views from native code.",
+        "name": "nativeID",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "needsOffscreenAlphaCompositing": {
+        "defaultValue": null,
+        "description": "Whether this view needs to rendered offscreen and composited with an alpha in order to preserve 100% correct colors and blending behavior.\nThe default (false) falls back to drawing the component and its children\nwith an alpha applied to the paint used to draw each element instead of rendering the full component offscreen and compositing it back with an alpha value.\nThis default may be noticeable and undesired in the case where the View you are setting an opacity on\nhas multiple overlapping elements (e.g. multiple overlapping Views, or text and a background).\n\nRendering offscreen to preserve correct alpha behavior is extremely expensive\nand hard to debug for non-native developers, which is why it is not turned on by default.\nIf you do need to enable this property for an animation,\nconsider combining it with renderToHardwareTextureAndroid if the view contents are static (i.e. it doesn't need to be redrawn each frame).\nIf that property is enabled, this View will be rendered off-screen once,\nsaved in a hardware texture, and then composited onto the screen with an alpha each frame without having to switch rendering targets on the GPU.",
+        "name": "needsOffscreenAlphaCompositing",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onAccessibilityAction": {
+        "defaultValue": null,
+        "description": "When `accessible` is true, the system will try to invoke this function when the user performs an accessibility custom action.",
+        "name": "onAccessibilityAction",
         "parent": {
           "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
           "name": "AccessibilityProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: AccessibilityActionEvent) => void)"
+        }
+      },
+      "onAccessibilityEscape": {
+        "defaultValue": null,
+        "description": "When accessible is true, the system will invoke this function when the user performs the escape gesture (scrub with two fingers).\n@platform ios",
+        "name": "onAccessibilityEscape",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onAccessibilityTap": {
+        "defaultValue": null,
+        "description": "When `accessible` is true, the system will try to invoke this function when the user performs accessibility tap gesture.\n@platform ios",
+        "name": "onAccessibilityTap",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Callback that is called when the view is blurred.\n\nNote: This will only be called if the view is focusable.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "((e: BlurEvent) => void) | null"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Callback that is called when the view is focused.\n\nNote: This will only be called if the view is focusable.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
+        },
+        "required": false,
+        "type": {
+          "name": "((e: FocusEvent) => void) | null"
+        }
+      },
+      "onLayout": {
+        "defaultValue": null,
+        "description": "Invoked on mount and layout changes with\n\n{nativeEvent: { layout: {x, y, width, height}}}.",
+        "name": "onLayout",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: LayoutChangeEvent) => void)"
+        }
+      },
+      "onMagicTap": {
+        "defaultValue": null,
+        "description": "When accessible is true, the system will invoke this function when the user performs the magic tap gesture.\n@platform ios",
+        "name": "onMagicTap",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
+          "name": "AccessibilityPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onMoveShouldSetResponder": {
+        "defaultValue": null,
+        "description": "Called for every touch move on the View when it is not the responder: does this view want to \"claim\" touch responsiveness?",
+        "name": "onMoveShouldSetResponder",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => boolean)"
+        }
+      },
+      "onMoveShouldSetResponderCapture": {
+        "defaultValue": null,
+        "description": "onStartShouldSetResponder and onMoveShouldSetResponder are called with a bubbling pattern,\nwhere the deepest node is called first.\nThat means that the deepest component will become responder when multiple Views return true for *ShouldSetResponder handlers.\nThis is desirable in most cases, because it makes sure all controls and buttons are usable.\n\nHowever, sometimes a parent will want to make sure that it becomes responder.\nThis can be handled by using the capture phase.\nBefore the responder system bubbles up from the deepest component,\nit will do a capture phase, firing on*ShouldSetResponderCapture.\nSo if a parent View wants to prevent the child from becoming responder on a touch start,\nit should have a onStartShouldSetResponderCapture handler which returns true.",
+        "name": "onMoveShouldSetResponderCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => boolean)"
+        }
+      },
+      "onPointerCancel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerCancel",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerCancelCapture": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerCancelCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerDown",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerDownCapture": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerDownCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerEnter": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerEnter",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerEnterCapture": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerEnterCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerLeave": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerLeave",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerLeaveCapture": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerLeaveCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerMove": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerMove",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerMoveCapture": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerMoveCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerUp": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerUp",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onPointerUpCapture": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onPointerUpCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Types/CoreEventTypes.d.ts",
+          "name": "PointerEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: PointerEvent) => void)"
+        }
+      },
+      "onResponderEnd": {
+        "defaultValue": null,
+        "description": "If the View returns true and attempts to become the responder, one of the following will happen:",
+        "name": "onResponderEnd",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onResponderGrant": {
+        "defaultValue": null,
+        "description": "The View is now responding for touch events.\nThis is the time to highlight and show the user what is happening",
+        "name": "onResponderGrant",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onResponderMove": {
+        "defaultValue": null,
+        "description": "The user is moving their finger",
+        "name": "onResponderMove",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onResponderReject": {
+        "defaultValue": null,
+        "description": "Something else is the responder right now and will not release it",
+        "name": "onResponderReject",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onResponderRelease": {
+        "defaultValue": null,
+        "description": "Fired at the end of the touch, ie \"touchUp\"",
+        "name": "onResponderRelease",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onResponderStart": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onResponderStart",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onResponderTerminate": {
+        "defaultValue": null,
+        "description": "The responder has been taken from the View.\nMight be taken by other views after a call to onResponderTerminationRequest,\nor might be taken by the OS without asking (happens with control center/ notification center on iOS)",
+        "name": "onResponderTerminate",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onResponderTerminationRequest": {
+        "defaultValue": null,
+        "description": "Something else wants to become responder.\nShould this view release the responder? Returning true allows release",
+        "name": "onResponderTerminationRequest",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => boolean)"
+        }
+      },
+      "onStartShouldSetResponder": {
+        "defaultValue": null,
+        "description": "Does this view want to become responder on the start of a touch?",
+        "name": "onStartShouldSetResponder",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => boolean)"
+        }
+      },
+      "onStartShouldSetResponderCapture": {
+        "defaultValue": null,
+        "description": "onStartShouldSetResponder and onMoveShouldSetResponder are called with a bubbling pattern,\nwhere the deepest node is called first.\nThat means that the deepest component will become responder when multiple Views return true for *ShouldSetResponder handlers.\nThis is desirable in most cases, because it makes sure all controls and buttons are usable.\n\nHowever, sometimes a parent will want to make sure that it becomes responder.\nThis can be handled by using the capture phase.\nBefore the responder system bubbles up from the deepest component,\nit will do a capture phase, firing on*ShouldSetResponderCapture.\nSo if a parent View wants to prevent the child from becoming responder on a touch start,\nit should have a onStartShouldSetResponderCapture handler which returns true.",
+        "name": "onStartShouldSetResponderCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/types/public/ReactNativeRenderer.d.ts",
+          "name": "GestureResponderHandlers"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => boolean)"
+        }
+      },
+      "onTouchCancel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onTouchCancel",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
+          "name": "Touchable"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onTouchEnd": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onTouchEnd",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
+          "name": "Touchable"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onTouchEndCapture": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onTouchEndCapture",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
+          "name": "Touchable"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onTouchMove": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onTouchMove",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
+          "name": "Touchable"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "onTouchStart": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onTouchStart",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/Touchable/Touchable.d.ts",
+          "name": "Touchable"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: GestureResponderEvent) => void)"
+        }
+      },
+      "pointerEvents": {
+        "defaultValue": null,
+        "description": "In the absence of auto property, none is much like CSS's none value. box-none is as if you had applied the CSS class:\n\n.box-none {\n  pointer-events: none;\n}\n.box-none * {\n  pointer-events: all;\n}\n\nbox-only is the equivalent of\n\n.box-only {\n  pointer-events: all;\n}\n.box-only * {\n  pointer-events: none;\n}\n\nBut since pointerEvents does not affect layout/appearance, and we are already deviating from the spec by adding additional modes,\nwe opt to not include pointerEvents on style. On some platforms, we would need to implement it as a className anyways. Using style or not is an implementation detail of the platform.",
+        "name": "pointerEvents",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"auto\" | \"none\" | \"box-none\" | \"box-only\""
+        }
+      },
+      "removeClippedSubviews": {
+        "defaultValue": null,
+        "description": "This is a special performance property exposed by RCTView and is useful for scrolling content when there are many subviews,\nmost of which are offscreen. For this property to be effective, it must be applied to a view that contains many subviews that extend outside its bound.\nThe subviews must also have overflow: hidden, as should the containing view (or one of its superviews).",
+        "name": "removeClippedSubviews",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "renderToHardwareTextureAndroid": {
+        "defaultValue": null,
+        "description": "Whether this view should render itself (and all of its children) into a single hardware texture on the GPU.\n\nOn Android, this is useful for animations and interactions that only modify opacity, rotation, translation, and/or scale:\nin those cases, the view doesn't have to be redrawn and display lists don't need to be re-executed. The texture can just be\nre-used and re-composited with different parameters. The downside is that this can use up limited video memory, so this prop should be set back to false at the end of the interaction/animation.",
+        "name": "renderToHardwareTextureAndroid",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
         },
         "required": false,
         "type": {
@@ -1020,58 +1085,6 @@
           "name": "Role"
         }
       },
-      "accessibilityLabelledBy": {
-        "defaultValue": null,
-        "description": "Identifies the element that labels the element it is applied to. When the assistive technology focuses on the component with this props,\nthe text is read aloud. The value should should match the nativeID of the related element.\n@platform android",
-        "name": "accessibilityLabelledBy",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "string | string[]"
-        }
-      },
-      "aria-labelledby": {
-        "defaultValue": null,
-        "description": "Identifies the element that labels the element it is applied to. When the assistive technology focuses on the component with this props,\nthe text is read aloud. The value should should match the nativeID of the related element.\n@platform android",
-        "name": "aria-labelledby",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "accessibilityLiveRegion": {
-        "defaultValue": null,
-        "description": "Indicates to accessibility services whether the user should be notified\nwhen this view changes. Works for Android API >= 19 only.\n@platform android\n\nSee https://reactnative.dev/docs/view#accessibilityliveregion",
-        "name": "accessibilityLiveRegion",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "\"none\" | \"polite\" | \"assertive\""
-        }
-      },
-      "aria-live": {
-        "defaultValue": null,
-        "description": "Indicates to accessibility services whether the user should be notified\nwhen this view changes. Works for Android API >= 19 only.\n@platform android\n\nSee https://reactnative.dev/docs/view#accessibilityliveregion",
-        "name": "aria-live",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsAndroid"
-        },
-        "required": false,
-        "type": {
-          "name": "\"polite\" | \"assertive\" | \"off\""
-        }
-      },
       "screenReaderFocusable": {
         "defaultValue": null,
         "description": "Enables the view to be screen reader focusable, not keyboard focusable.\n@platform android",
@@ -1085,134 +1098,121 @@
           "name": "boolean"
         }
       },
-      "accessibilityElementsHidden": {
+      "shouldRasterizeIOS": {
         "defaultValue": null,
-        "description": "A Boolean value indicating whether the accessibility elements contained within this accessibility element\nare hidden to the screen reader.\n@platform ios",
-        "name": "accessibilityElementsHidden",
+        "description": "Whether this view should be rendered as a bitmap before compositing.\n\nOn iOS, this is useful for animations and interactions that do not modify this component's dimensions nor its children;\nfor example, when translating the position of a static view, rasterization allows the renderer to reuse a cached bitmap of a static view\nand quickly composite it during each frame.\n\nRasterization incurs an off-screen drawing pass and the bitmap consumes memory.\nTest and measure when using this property.",
+        "name": "shouldRasterizeIOS",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsIOS"
         },
         "required": false,
         "type": {
           "name": "boolean"
         }
       },
-      "accessibilityViewIsModal": {
+      "size": {
         "defaultValue": null,
-        "description": "A Boolean value indicating whether VoiceOver should ignore the elements within views that are siblings of the receiver.\n@platform ios",
-        "name": "accessibilityViewIsModal",
+        "description": "Size of the indicator.\nSmall has a height of 20, large has a height of 36.\n\nenum('small', 'large')",
+        "name": "size",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
+          "name": "ActivityIndicatorProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "number | \"small\" | \"large\""
         }
       },
-      "onAccessibilityEscape": {
+      "style": {
         "defaultValue": null,
-        "description": "When accessible is true, the system will invoke this function when the user performs the escape gesture (scrub with two fingers).\n@platform ios",
-        "name": "onAccessibilityEscape",
+        "description": "",
+        "name": "style",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts",
+          "name": "ActivityIndicatorProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "StyleProp<ViewStyle>"
         }
       },
-      "onAccessibilityTap": {
+      "tabIndex": {
         "defaultValue": null,
-        "description": "When `accessible` is true, the system will try to invoke this function when the user performs accessibility tap gesture.\n@platform ios",
-        "name": "onAccessibilityTap",
+        "description": "Indicates whether this `View` should be focusable with a non-touch input device, eg. receive focus with a hardware keyboard.\nSee https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex\nfor more details.\n\nSupports the following values:\n-  0 (View is focusable)\n- -1 (View is not focusable)",
+        "name": "tabIndex",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewPropsAndroid"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "0 | -1"
         }
       },
-      "onMagicTap": {
+      "testID": {
         "defaultValue": null,
-        "description": "When accessible is true, the system will invoke this function when the user performs the magic tap gesture.\n@platform ios",
-        "name": "onMagicTap",
+        "description": "Used to locate this view in end-to-end tests.",
+        "name": "testID",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "accessibilityIgnoresInvertColors": {
-        "defaultValue": null,
-        "description": "https://reactnative.dev/docs/accessibility#accessibilityignoresinvertcolorsios\n@platform ios",
-        "name": "accessibilityIgnoresInvertColors",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "accessibilityLanguage": {
-        "defaultValue": null,
-        "description": "By using the accessibilityLanguage property, the screen reader will understand which language to use while reading the element's label, value and hint. The provided string value must follow the BCP 47 specification (https://www.rfc-editor.org/info/bcp47).\nhttps://reactnative.dev/docs/accessibility#accessibilitylanguage-ios\n@platform ios",
-        "name": "accessibilityLanguage",
-        "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "ViewProps"
         },
         "required": false,
         "type": {
           "name": "string"
         }
       },
-      "accessibilityShowsLargeContentViewer": {
+      "tvParallaxMagnification": {
         "defaultValue": null,
-        "description": "A Boolean value that indicates whether or not to show the item in the large content viewer.\nAvailable on iOS 13.0+\nhttps://reactnative.dev/docs/accessibility#accessibilityshowslargecontentviewer\n@platform ios",
-        "name": "accessibilityShowsLargeContentViewer",
+        "description": "*(Apple TV only)* May be used to change the appearance of the Apple TV parallax effect when this view goes in or out of focus.  Defaults to 1.0.\n@platform ios",
+        "name": "tvParallaxMagnification",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "TVViewPropsIOS"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "number"
         }
       },
-      "accessibilityLargeContentTitle": {
+      "tvParallaxShiftDistanceX": {
         "defaultValue": null,
-        "description": "When `accessibilityShowsLargeContentViewer` is set, this string will be used as title for the large content viewer.\nhttps://reactnative.dev/docs/accessibility#accessibilitylargecontenttitle\n@platform ios",
-        "name": "accessibilityLargeContentTitle",
+        "description": "*(Apple TV only)* May be used to change the appearance of the Apple TV parallax effect when this view goes in or out of focus.  Defaults to 2.0.\n@platform ios",
+        "name": "tvParallaxShiftDistanceX",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "TVViewPropsIOS"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "number"
         }
       },
-      "accessibilityRespondsToUserInteraction": {
+      "tvParallaxShiftDistanceY": {
         "defaultValue": null,
-        "description": "Blocks the user from interacting with the component through keyboard while still allowing\nscreen reader to interact with it if this View is still accessible.\n@platform ios",
-        "name": "accessibilityRespondsToUserInteraction",
+        "description": "*(Apple TV only)* May be used to change the appearance of the Apple TV parallax effect when this view goes in or out of focus.  Defaults to 2.0.\n@platform ios",
+        "name": "tvParallaxShiftDistanceY",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewAccessibility.d.ts",
-          "name": "AccessibilityPropsIOS"
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "TVViewPropsIOS"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "number"
+        }
+      },
+      "tvParallaxTiltAngle": {
+        "defaultValue": null,
+        "description": "*(Apple TV only)* May be used to change the appearance of the Apple TV parallax effect when this view goes in or out of focus.  Defaults to 0.05.\n@platform ios",
+        "name": "tvParallaxTiltAngle",
+        "parent": {
+          "fileName": "atlantis/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts",
+          "name": "TVViewPropsIOS"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
         }
       }
     }

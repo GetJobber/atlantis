@@ -1,17 +1,30 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/EmptyState/EmptyState.tsx",
+    "filePath": "packages/components-native/src/EmptyState/EmptyState.tsx",
     "description": "",
     "displayName": "EmptyState",
     "methods": [],
     "props": {
+      "description": {
+        "defaultValue": null,
+        "description": "Description of the empty state.",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components-native/src/EmptyState/EmptyState.tsx",
+          "name": "EmptyStateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "icon": {
         "defaultValue": null,
         "description": "Icon to display.",
         "name": "icon",
         "parent": {
-          "fileName": "../components-native/src/EmptyState/EmptyState.tsx",
+          "fileName": "packages/components-native/src/EmptyState/EmptyState.tsx",
           "name": "EmptyStateProps"
         },
         "required": false,
@@ -26,38 +39,12 @@
         "description": "Color of Icon to display.",
         "name": "iconColor",
         "parent": {
-          "fileName": "../components-native/src/EmptyState/EmptyState.tsx",
+          "fileName": "packages/components-native/src/EmptyState/EmptyState.tsx",
           "name": "EmptyStateProps"
         },
         "required": false,
         "type": {
-          "name": "\"task\" | \"text\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | ... 33 more ... | \"brandHighlight\""
-        }
-      },
-      "title": {
-        "defaultValue": null,
-        "description": "Title of the empty state.",
-        "name": "title",
-        "parent": {
-          "fileName": "../components-native/src/EmptyState/EmptyState.tsx",
-          "name": "EmptyStateProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "description": {
-        "defaultValue": null,
-        "description": "Description of the empty state.",
-        "name": "description",
-        "parent": {
-          "fileName": "../components-native/src/EmptyState/EmptyState.tsx",
-          "name": "EmptyStateProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
+          "name": "\"task\" | \"text\" | \"warning\" | \"icon\" | \"disabled\" | \"success\" | \"blue\" | \"green\" | \"yellow\" | \"red\" | \"grey\" | \"white\" | \"greyBlue\" | \"lightBlue\" | \"orange\" | \"navy\" | \"interactive\" | ... 33 more ..."
         }
       },
       "primaryAction": {
@@ -65,7 +52,7 @@
         "description": "Handler for the primary action.",
         "name": "primaryAction",
         "parent": {
-          "fileName": "../components-native/src/EmptyState/EmptyState.tsx",
+          "fileName": "packages/components-native/src/EmptyState/EmptyState.tsx",
           "name": "EmptyStateProps"
         },
         "required": false,
@@ -78,12 +65,25 @@
         "description": "Handler for the secondary action.",
         "name": "secondaryAction",
         "parent": {
-          "fileName": "../components-native/src/EmptyState/EmptyState.tsx",
+          "fileName": "packages/components-native/src/EmptyState/EmptyState.tsx",
           "name": "EmptyStateProps"
         },
         "required": false,
         "type": {
           "name": "Action"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title of the empty state.",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components-native/src/EmptyState/EmptyState.tsx",
+          "name": "EmptyStateProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }

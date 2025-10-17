@@ -1,24 +1,75 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Modal/Modal.rebuilt.tsx",
+    "filePath": "packages/components/src/Modal/Modal.rebuilt.tsx",
+    "description": "",
+    "displayName": "ModalActions",
+    "methods": [],
+    "props": {
+      "primary": {
+        "defaultValue": null,
+        "description": "Primary action of the modal.",
+        "name": "primary",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalActionsProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick?: undefined; external?: undefined; readonly name?: string; submit: boolean; readonly type?: ButtonType; readonly value?: string | undefined; ... 19 more ...; readonly children?: undefined; } | ... 20 more ... | undefined"
+        }
+      },
+      "secondary": {
+        "defaultValue": null,
+        "description": "Secondary action of the modal.",
+        "name": "secondary",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalActionsProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick?: undefined; external?: undefined; readonly name?: string; submit: boolean; readonly type?: ButtonType; readonly value?: string | undefined; ... 19 more ...; readonly children?: undefined; } | ... 20 more ... | undefined"
+        }
+      },
+      "tertiary": {
+        "defaultValue": null,
+        "description": "Tertiary action of the modal. This will be rendered on the left side of the action bar.\nUseful for actions like \"Cancel\" that are not destructive.",
+        "name": "tertiary",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalActionsProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick?: undefined; external?: undefined; readonly name?: string; submit: boolean; readonly type?: ButtonType; readonly value?: string | undefined; ... 19 more ...; readonly children?: undefined; } | ... 20 more ... | undefined"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/Modal/Modal.rebuilt.tsx",
+    "description": "",
+    "displayName": "ModalActivator",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/Modal/Modal.rebuilt.tsx",
+    "description": "",
+    "displayName": "ModalContent",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/Modal/Modal.rebuilt.tsx",
     "description": "",
     "displayName": "ModalHeader",
     "methods": [],
     "props": {
-      "title": {
-        "defaultValue": null,
-        "description": "Title of the modal.",
-        "name": "title",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "HeaderPropsWithoutChildren"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "dismissible": {
         "defaultValue": null,
         "description": "Whether the modal is dismissible.",
@@ -42,80 +93,29 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(() => void)"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title of the modal.",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "HeaderPropsWithoutChildren"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Modal/Modal.rebuilt.tsx",
-    "description": "",
-    "displayName": "ModalActions",
-    "methods": [],
-    "props": {
-      "primary": {
-        "defaultValue": null,
-        "description": "Primary action of the modal.",
-        "name": "primary",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalActionsProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
-        }
-      },
-      "secondary": {
-        "defaultValue": null,
-        "description": "Secondary action of the modal.",
-        "name": "secondary",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalActionsProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
-        }
-      },
-      "tertiary": {
-        "defaultValue": null,
-        "description": "Tertiary action of the modal. This will be rendered on the left side of the action bar.\nUseful for actions like \"Cancel\" that are not destructive.",
-        "name": "tertiary",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalActionsProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Modal/Modal.rebuilt.tsx",
-    "description": "",
-    "displayName": "ModalActivator",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Modal/Modal.rebuilt.tsx",
+    "filePath": "packages/components/src/Modal/Modal.rebuilt.tsx",
     "description": "Background overlay for the modal. Used in the ModalContent.",
     "displayName": "ModalOverlay",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Modal/Modal.rebuilt.tsx",
-    "description": "",
-    "displayName": "ModalContent",
     "methods": [],
     "props": {}
   }

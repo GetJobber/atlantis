@@ -1,56 +1,17 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/InputText/InputText.tsx",
+    "filePath": "packages/components-native/src/InputText/InputText.tsx",
     "description": "",
     "displayName": "InputText",
     "methods": [],
     "props": {
-      "invalid": {
+      "accessibilityHint": {
         "defaultValue": null,
-        "description": "Highlights the field red and shows message below (if string) to indicate an error",
-        "name": "invalid",
+        "description": "An accessibility hint helps users understand what will happen when they perform an action on the\naccessibility element when that result is not clear from the accessibility label",
+        "name": "accessibilityHint",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | boolean"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Disable the input",
-        "name": "disabled",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "readonly": {
-        "defaultValue": null,
-        "description": "Makes the input read-only",
-        "name": "readonly",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Name of the input.",
-        "name": "name",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
@@ -58,12 +19,12 @@
           "name": "string"
         }
       },
-      "placeholder": {
+      "accessibilityLabel": {
         "defaultValue": null,
-        "description": "Hint text that goes above the value once the field is filled out",
-        "name": "placeholder",
+        "description": "VoiceOver will read this string when a user selects the associated element",
+        "name": "accessibilityLabel",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
@@ -76,168 +37,12 @@
         "description": "Text that helps the user understand the input",
         "name": "assistiveText",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "keyboard": {
-        "defaultValue": null,
-        "description": "Determines what keyboard is shown",
-        "name": "keyboard",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"default\" | \"numeric\" | \"phone-pad\" | \"email-address\" | \"numbers-and-punctuation\" | \"decimal-pad\""
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "Set the component to a given value",
-        "name": "value",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "defaultValue": {
-        "defaultValue": null,
-        "description": "Default value for when component is uncontrolled",
-        "name": "defaultValue",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "autoFocus": {
-        "defaultValue": null,
-        "description": "Automatically focus the input after it is rendered",
-        "name": "autoFocus",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "validations": {
-        "defaultValue": null,
-        "description": "Shows an error message below the field and highlight the field red when value is invalid",
-        "name": "validations",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RegisterOptions"
-        }
-      },
-      "onChangeText": {
-        "defaultValue": null,
-        "description": "Simplified callback that only provides the new value\n@param newValue",
-        "name": "onChangeText",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(newValue: string) => void"
-        }
-      },
-      "onSubmitEditing": {
-        "defaultValue": null,
-        "description": "Callback that is called when the text input's submit button is pressed\n@param event",
-        "name": "onSubmitEditing",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: SyntheticEvent<Element, Event>) => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Callback that is called when the text input is focused\n@param event",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: FocusEvent) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Callback that is called when the text input is blurred",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "accessibilityLabel": {
-        "defaultValue": null,
-        "description": "VoiceOver will read this string when a user selects the associated element",
-        "name": "accessibilityLabel",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "accessibilityHint": {
-        "defaultValue": null,
-        "description": "An accessibility hint helps users understand what will happen when they perform an action on the\naccessibility element when that result is not clear from the accessibility label",
-        "name": "accessibilityHint",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "autoCorrect": {
-        "defaultValue": null,
-        "description": "Turn off autocorrect",
-        "name": "autoCorrect",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "autoCapitalize": {
@@ -245,12 +50,12 @@
         "description": "Determines where to autocapitalize",
         "name": "autoCapitalize",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
         "type": {
-          "name": "\"characters\" | \"words\" | \"sentences\" | \"none\""
+          "name": "\"none\" | \"sentences\" | \"words\" | \"characters\""
         }
       },
       "autoComplete": {
@@ -258,33 +63,20 @@
         "description": "Determines which content to suggest on auto complete, e.g.`username`.\nDefault is `off` which disables auto complete\n\n*Android Only*",
         "name": "autoComplete",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
         "type": {
-          "name": "\"name\" | \"additional-name\" | \"address-line1\" | \"address-line2\" | \"birthdate-day\" | \"birthdate-full\" | \"birthdate-month\" | \"birthdate-year\" | \"cc-csc\" | \"cc-exp\" | \"cc-exp-day\" | ... 45 more ... | \"off\""
+          "name": "\"email\" | \"name\" | \"url\" | \"off\" | \"tel\" | \"one-time-code\" | \"address-line1\" | \"address-line2\" | \"password\" | \"additional-name\" | \"birthdate-day\" | \"birthdate-full\" | \"birthdate-month\" | ... 44 more ..."
         }
       },
-      "textContentType": {
+      "autoCorrect": {
         "defaultValue": null,
-        "description": "Determines which content to suggest on auto complete, e.g.`username`.\nDefault is `none` which disables auto complete\n\n*iOS Only*",
-        "name": "textContentType",
+        "description": "Turn off autocorrect",
+        "name": "autoCorrect",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"name\" | \"none\" | \"nickname\" | \"password\" | \"username\" | \"URL\" | \"addressCity\" | \"addressCityAndState\" | \"addressState\" | \"countryName\" | \"creditCardNumber\" | \"creditCardExpiration\" | ... 33 more ... | \"shipmentTrackingNumber\""
-        }
-      },
-      "multiline": {
-        "defaultValue": null,
-        "description": "Determines if inputText will span multiple lines.\nDefault is `false`\n\nhttps://reactnative.dev/docs/textinput#multiline",
-        "name": "multiline",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
@@ -292,43 +84,17 @@
           "name": "boolean"
         }
       },
-      "prefix": {
+      "autoFocus": {
         "defaultValue": null,
-        "description": "Symbol to display before the text input",
-        "name": "prefix",
+        "description": "Automatically focus the input after it is rendered",
+        "name": "autoFocus",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
         "type": {
-          "name": "{ icon?: IconNames; label?: string; }"
-        }
-      },
-      "suffix": {
-        "defaultValue": null,
-        "description": "Symbol to display after the text input",
-        "name": "suffix",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ icon?: IconNames; label?: string; onPress?: () => void; }"
-        }
-      },
-      "transform": {
-        "defaultValue": null,
-        "description": "transform object is used to transform the internal TextInput value\nIt's useful for components like InputNumber where we want to transform\nthe internal value to a number.\n\"input\" is a function that transform the value to the string format that should be shown to the user\n\"output\" is a function that transform the string representation of the value to the value that is sent to onChange and the form",
-        "name": "transform",
-        "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ input?: (v: any) => string; output?: (v: string) => any; }"
+          "name": "boolean"
         }
       },
       "clearable": {
@@ -336,7 +102,7 @@
         "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputDateTime`) you can\nset it to `always`.",
         "name": "clearable",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
@@ -344,12 +110,12 @@
           "name": "Clearable"
         }
       },
-      "testID": {
+      "defaultValue": {
         "defaultValue": null,
-        "description": "Used to locate this view in end-to-end tests",
-        "name": "testID",
+        "description": "Default value for when component is uncontrolled",
+        "name": "defaultValue",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
@@ -357,12 +123,12 @@
           "name": "string"
         }
       },
-      "secureTextEntry": {
+      "disabled": {
         "defaultValue": null,
-        "description": "Use secure text entry",
-        "name": "secureTextEntry",
+        "description": "Disable the input",
+        "name": "disabled",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
@@ -370,56 +136,30 @@
           "name": "boolean"
         }
       },
-      "spellCheck": {
+      "invalid": {
         "defaultValue": null,
-        "description": "Determines whether spell check is used. Turn it off to hide empty autoCorrect\nsuggestions when autoCorrect is off.\n\n*iOS Only*",
-        "name": "spellCheck",
+        "description": "Highlights the field red and shows message below (if string) to indicate an error",
+        "name": "invalid",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "string | boolean"
         }
       },
-      "styleOverride": {
+      "keyboard": {
         "defaultValue": null,
-        "description": "Custom styling to override default style of the input text",
-        "name": "styleOverride",
+        "description": "Determines what keyboard is shown",
+        "name": "keyboard",
         "parent": {
-          "fileName": "../components-native/src/InputText/InputText.tsx",
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
           "name": "InputTextProps"
         },
         "required": false,
         "type": {
-          "name": "InputTextStyleOverride"
-        }
-      },
-      "toolbar": {
-        "defaultValue": null,
-        "description": "Add a toolbar below the input field for actions like rewriting the text.",
-        "name": "toolbar",
-        "parent": {
-          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
-          "name": "InputFieldWrapperProps"
-        },
-        "required": false,
-        "type": {
-          "name": "React.ReactNode"
-        }
-      },
-      "toolbarVisibility": {
-        "defaultValue": null,
-        "description": "Change the behaviour of when the toolbar becomes visible.",
-        "name": "toolbarVisibility",
-        "parent": {
-          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
-          "name": "InputFieldWrapperProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"while-editing\" | \"always\""
+          "name": "\"numeric\" | \"default\" | \"decimal-pad\" | \"numbers-and-punctuation\" | \"phone-pad\" | \"email-address\""
         }
       },
       "loading": {
@@ -448,6 +188,123 @@
           "name": "\"spinner\" | \"glimmer\""
         }
       },
+      "multiline": {
+        "defaultValue": null,
+        "description": "Determines if inputText will span multiple lines.\nDefault is `false`\n\nhttps://reactnative.dev/docs/textinput#multiline",
+        "name": "multiline",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "Name of the input.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Callback that is called when the text input is blurred",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onChangeText": {
+        "defaultValue": null,
+        "description": "Simplified callback that only provides the new value\n@param newValue",
+        "name": "onChangeText",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((newValue: string) => void)"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Callback that is called when the text input is focused\n@param event",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event?: FocusEvent) => void)"
+        }
+      },
+      "onSubmitEditing": {
+        "defaultValue": null,
+        "description": "Callback that is called when the text input's submit button is pressed\n@param event",
+        "name": "onSubmitEditing",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event?: SyntheticEvent<Element, Event>) => void)"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Hint text that goes above the value once the field is filled out",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Symbol to display before the text input",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ icon?: IconNames; label?: string; } | undefined"
+        }
+      },
+      "readonly": {
+        "defaultValue": null,
+        "description": "Makes the input read-only",
+        "name": "readonly",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "ref": {
         "defaultValue": null,
         "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
@@ -459,6 +316,149 @@
         "required": false,
         "type": {
           "name": "LegacyRef<InputTextRef>"
+        }
+      },
+      "secureTextEntry": {
+        "defaultValue": null,
+        "description": "Use secure text entry",
+        "name": "secureTextEntry",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "spellCheck": {
+        "defaultValue": null,
+        "description": "Determines whether spell check is used. Turn it off to hide empty autoCorrect\nsuggestions when autoCorrect is off.\n\n*iOS Only*",
+        "name": "spellCheck",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "styleOverride": {
+        "defaultValue": null,
+        "description": "Custom styling to override default style of the input text",
+        "name": "styleOverride",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "InputTextStyleOverride"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Symbol to display after the text input",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ icon?: IconNames; label?: string; onPress?: (() => void) | undefined; } | undefined"
+        }
+      },
+      "testID": {
+        "defaultValue": null,
+        "description": "Used to locate this view in end-to-end tests",
+        "name": "testID",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "textContentType": {
+        "defaultValue": null,
+        "description": "Determines which content to suggest on auto complete, e.g.`username`.\nDefault is `none` which disables auto complete\n\n*iOS Only*",
+        "name": "textContentType",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"name\" | \"none\" | \"location\" | \"password\" | \"nickname\" | \"username\" | \"URL\" | \"addressCity\" | \"addressCityAndState\" | \"addressState\" | \"countryName\" | \"creditCardNumber\" | \"creditCardExpiration\" | ... 33 more ..."
+        }
+      },
+      "toolbar": {
+        "defaultValue": null,
+        "description": "Add a toolbar below the input field for actions like rewriting the text.",
+        "name": "toolbar",
+        "parent": {
+          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "toolbarVisibility": {
+        "defaultValue": null,
+        "description": "Change the behaviour of when the toolbar becomes visible.",
+        "name": "toolbarVisibility",
+        "parent": {
+          "fileName": "packages/components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
+          "name": "InputFieldWrapperProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"while-editing\" | \"always\""
+        }
+      },
+      "transform": {
+        "defaultValue": null,
+        "description": "transform object is used to transform the internal TextInput value\nIt's useful for components like InputNumber where we want to transform\nthe internal value to a number.\n\"input\" is a function that transform the value to the string format that should be shown to the user\n\"output\" is a function that transform the string representation of the value to the value that is sent to onChange and the form",
+        "name": "transform",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ input?: ((v: any) => string); output?: ((v: string | undefined) => any) | undefined; } | undefined"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "Shows an error message below the field and highlight the field red when value is invalid",
+        "name": "validations",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RegisterOptions"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Set the component to a given value",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }

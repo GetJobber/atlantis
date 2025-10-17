@@ -1,32 +1,17 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+    "filePath": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
     "description": "",
     "displayName": "AnimatedSwitcher",
     "methods": [],
     "props": {
-      "switched": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Determines when to switch the component to the `switchTo` prop.",
-        "name": "switched",
-        "parent": {
-          "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-          "name": "AnimatedSwitcherProps"
-        },
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "initialChild": {
         "defaultValue": null,
         "description": "The component that shows up when the `switched` prop is `false`",
         "name": "initialChild",
         "parent": {
-          "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+          "fileName": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
         "required": true,
@@ -34,12 +19,27 @@
           "name": "ReactElement<any, string | JSXElementConstructor<any>>"
         }
       },
+      "switched": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Determines when to switch the component to the `switchTo` prop.",
+        "name": "switched",
+        "parent": {
+          "fileName": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+          "name": "AnimatedSwitcherProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "switchTo": {
         "defaultValue": null,
         "description": "The component that shows up when the `switched` prop is `true`",
         "name": "switchTo",
         "parent": {
-          "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+          "fileName": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
         "required": true,
@@ -54,19 +54,19 @@
         "description": "Change the transition between 2 elements.",
         "name": "type",
         "parent": {
-          "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+          "fileName": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
         "required": false,
         "type": {
-          "name": "\"slideFromBottom\" | \"fade\""
+          "name": "\"fade\" | \"slideFromBottom\""
         }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+    "filePath": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
     "description": "",
     "displayName": "AnimatedSwitcher.Icon",
     "methods": [],
@@ -76,20 +76,7 @@
         "description": "",
         "name": "initialIcon",
         "parent": {
-          "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
-          "name": "AnimatedSwitcherIconProps"
-        },
-        "required": true,
-        "type": {
-          "name": "IconNames"
-        }
-      },
-      "switchToIcon": {
-        "defaultValue": null,
-        "description": "",
-        "name": "switchToIcon",
-        "parent": {
-          "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+          "fileName": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherIconProps"
         },
         "required": true,
@@ -104,12 +91,25 @@
         "description": "Determines when to switch the component to the `switchTo` prop.",
         "name": "switched",
         "parent": {
-          "fileName": "../components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+          "fileName": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
           "name": "AnimatedSwitcherProps"
         },
         "required": true,
         "type": {
           "name": "boolean"
+        }
+      },
+      "switchToIcon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "switchToIcon",
+        "parent": {
+          "fileName": "packages/components/src/AnimatedSwitcher/AnimatedSwitcher.tsx",
+          "name": "AnimatedSwitcherIconProps"
+        },
+        "required": true,
+        "type": {
+          "name": "IconNames"
         }
       }
     }

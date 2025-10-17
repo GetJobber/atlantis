@@ -1,11 +1,78 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Stack/Stack.tsx",
+    "filePath": "packages/components/src/Stack/Stack.tsx",
     "description": "",
     "displayName": "Stack",
     "methods": [],
     "props": {
+      "align": {
+        "defaultValue": null,
+        "description": "The alignment of the stack.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"center\" | \"end\" | \"start\""
+        }
+      },
+      "ariaAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
+        "name": "ariaAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaAttributes"
+        }
+      },
+      "as": {
+        "defaultValue": null,
+        "description": "The HTML tag to render the container as. Defaults to `div`.",
+        "name": "as",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CommonAllowedElements"
+        }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Whether to allow the stack to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
+        "parent": {
+          "fileName": "packages/components/src/Stack/types.ts",
+          "name": "StackProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "dataAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "dataAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ [key: `data-${string}`]: string; }"
+        }
+      },
       "gap": {
         "defaultValue": {
           "value": "spaceTokens.base"
@@ -21,17 +88,17 @@
           "name": "GapSpacing"
         }
       },
-      "splitAfter": {
+      "id": {
         "defaultValue": null,
-        "description": "Setting this will push the stack down to the bottom of the parent container,\nafter the number of children provided (1-15).\nRequires parent to have height greater than the sum of the children.",
-        "name": "splitAfter",
+        "description": "Standard HTML id attribute.",
+        "name": "id",
         "parent": {
-          "fileName": "packages/components/src/Stack/types.ts",
-          "name": "StackProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
         },
         "required": false,
         "type": {
-          "name": "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15"
+          "name": "string"
         }
       },
       "recursive": {
@@ -47,45 +114,30 @@
           "name": "boolean"
         }
       },
-      "align": {
+      "role": {
         "defaultValue": null,
-        "description": "The alignment of the stack.",
-        "name": "align",
+        "description": "Standard HTML role attribute.",
+        "name": "role",
         "parent": {
-          "fileName": "packages/components/src/Stack/types.ts",
-          "name": "StackProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
         },
         "required": false,
         "type": {
-          "name": "\"start\" | \"center\" | \"end\""
+          "name": "AriaRole"
         }
       },
-      "autoWidth": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "Whether to allow the stack to take the width of the content. Defaults to 100%",
-        "name": "autoWidth",
-        "parent": {
-          "fileName": "packages/components/src/Stack/types.ts",
-          "name": "StackProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "as": {
+      "splitAfter": {
         "defaultValue": null,
-        "description": "The HTML tag to render the container as. Defaults to `div`.",
-        "name": "as",
+        "description": "Setting this will push the stack down to the bottom of the parent container,\nafter the number of children provided (1-15).\nRequires parent to have height greater than the sum of the children.",
+        "name": "splitAfter",
         "parent": {
           "fileName": "packages/components/src/Stack/types.ts",
           "name": "StackProps"
         },
         "required": false,
         "type": {
-          "name": "CommonAllowedElements"
+          "name": "1 | 2 | 5 | 3 | 4 | 6 | 11 | 7 | 8 | 9 | 10 | 12 | 13 | 14 | 15"
         }
       },
       "UNSAFE_className": {
@@ -112,58 +164,6 @@
         "required": false,
         "type": {
           "name": "{ container?: CSSProperties; }"
-        }
-      },
-      "dataAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
-        "name": "dataAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ [key: `data-${string}`]: string; }"
-        }
-      },
-      "ariaAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
-        "name": "ariaAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaAttributes"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Standard HTML role attribute.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaRole"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "Standard HTML id attribute.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       }
     }

@@ -1,14 +1,40 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Frame/Frame.tsx",
+    "filePath": "packages/components/src/Frame/Frame.tsx",
     "description": "",
     "displayName": "Frame",
     "methods": [],
     "props": {
+      "ariaAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
+        "name": "ariaAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaAttributes"
+        }
+      },
+      "as": {
+        "defaultValue": null,
+        "description": "The HTML tag to render the container as. Defaults to `div`.",
+        "name": "as",
+        "parent": {
+          "fileName": "packages/components/src/Frame/types.ts",
+          "name": "FrameProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CommonAllowedElements"
+        }
+      },
       "aspectX": {
         "defaultValue": {
-          "value": 16
+          "value": "16"
         },
         "description": "The horizontal (width) part of the aspect ratio",
         "name": "aspectX",
@@ -23,7 +49,7 @@
       },
       "aspectY": {
         "defaultValue": {
-          "value": 9
+          "value": "9"
         },
         "description": "The vertical (height) part of the aspect ratio",
         "name": "aspectY",
@@ -36,17 +62,43 @@
           "name": "number"
         }
       },
-      "as": {
+      "dataAttributes": {
         "defaultValue": null,
-        "description": "The HTML tag to render the container as. Defaults to `div`.",
-        "name": "as",
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "dataAttributes",
         "parent": {
-          "fileName": "packages/components/src/Frame/types.ts",
-          "name": "FrameProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
         },
         "required": false,
         "type": {
-          "name": "CommonAllowedElements"
+          "name": "{ [key: `data-${string}`]: string; }"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "Standard HTML id attribute.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Standard HTML role attribute.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaRole"
         }
       },
       "UNSAFE_className": {
@@ -73,58 +125,6 @@
         "required": false,
         "type": {
           "name": "{ container?: CSSProperties; }"
-        }
-      },
-      "dataAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
-        "name": "dataAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ [key: `data-${string}`]: string; }"
-        }
-      },
-      "ariaAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
-        "name": "ariaAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaAttributes"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Standard HTML role attribute.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaRole"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "Standard HTML id attribute.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       }
     }

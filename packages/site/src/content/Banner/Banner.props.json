@@ -1,40 +1,29 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Banner/Banner.tsx",
+    "filePath": "packages/components/src/Banner/Banner.tsx",
     "description": "",
     "displayName": "Banner",
     "methods": [],
     "props": {
-      "type": {
-        "defaultValue": null,
-        "description": "Sets the status-based theme of the Banner",
-        "name": "type",
-        "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerProps"
+      "controlledVisiblity": {
+        "defaultValue": {
+          "value": "undefined"
         },
-        "required": true,
-        "type": {
-          "name": "BannerType"
-        }
-      },
-      "primaryAction": {
-        "defaultValue": null,
-        "description": "Accepts props for Button. Default action uses a 'subtle' Button",
-        "name": "primaryAction",
+        "description": "When provided, Banner's visibility is controlled by this value",
+        "name": "controlledVisiblity",
         "parent": {
           "fileName": "packages/components/src/Banner/Banner.types.ts",
           "name": "BannerProps"
         },
         "required": false,
         "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly UNSAFE_className?: { container?: string; buttonLabel?: { ...; }; buttonIcon?: { ...; }; }; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+          "name": "boolean"
         }
       },
       "dismissible": {
         "defaultValue": {
-          "value": true
+          "value": "true"
         },
         "description": "Set to false to hide the dismiss button",
         "name": "dismissible",
@@ -70,248 +59,374 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(() => void)"
         }
       },
-      "controlledVisiblity": {
-        "defaultValue": {
-          "value": "undefined"
-        },
-        "description": "When provided, Banner's visibility is controlled by this value",
-        "name": "controlledVisiblity",
+      "primaryAction": {
+        "defaultValue": null,
+        "description": "Accepts props for Button. Default action uses a 'subtle' Button",
+        "name": "primaryAction",
         "parent": {
           "fileName": "packages/components/src/Banner/Banner.types.ts",
           "name": "BannerProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "{ onClick?: undefined; external?: undefined; readonly name?: string; submit: boolean; readonly type?: ButtonType; readonly value?: string | undefined; ... 19 more ...; readonly children?: undefined; } | ... 20 more ... | undefined"
         }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Banner/Banner.tsx",
-    "description": "",
-    "displayName": "Banner.Provider",
-    "methods": [],
-    "props": {
+      },
       "type": {
         "defaultValue": null,
-        "description": "Sets the status-based theme of the Banner.",
+        "description": "Sets the status-based theme of the Banner",
         "name": "type",
         "parent": {
           "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerProviderProps"
+          "name": "BannerProps"
         },
         "required": true,
         "type": {
           "name": "BannerType"
         }
-      },
-      "visible": {
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/Banner/Banner.tsx",
+    "description": "",
+    "displayName": "Banner.Action",
+    "methods": [],
+    "props": {
+      "ariaControls": {
         "defaultValue": null,
-        "description": "When provided, Banner's visibility is controlled by this value.",
-        "name": "visible",
+        "description": "Used for screen readers. Will override label on screen\nreader if present.",
+        "name": "ariaControls",
         "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerProviderProps"
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "ariaExpanded": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaExpanded",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
         }
       },
-      "onDismiss": {
+      "ariaHaspopup": {
         "defaultValue": null,
-        "description": "Callback to be called when the Banner is dismissed.",
-        "name": "onDismiss",
+        "description": "",
+        "name": "ariaHaspopup",
         "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerProviderProps"
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "boolean"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "external": {
+        "defaultValue": null,
+        "description": "",
+        "name": "external",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "fullWidth": {
+        "defaultValue": null,
+        "description": "",
+        "name": "fullWidth",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "icon": {
-        "defaultValue": {
-          "value": "<Banner.Icon/>"
-        },
-        "description": "Icon to be used for the Banner.\nIf you want to remove the icon, set to false.",
+        "defaultValue": null,
+        "description": "",
         "name": "icon",
         "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "dismissButton": {
-        "defaultValue": {
-          "value": "<Banner.DismissButton/>"
-        },
-        "description": "Dismiss button to be used for the Banner.\nIf you want to remove the dismiss button, set to false.",
-        "name": "dismissButton",
-        "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ readonly container?: string; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerProviderProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ readonly container?: CSSProperties; }"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Banner/Banner.tsx",
-    "description": "",
-    "displayName": "Banner.Icon",
-    "methods": [],
-    "props": {
-      "backgroundColor": {
-        "defaultValue": null,
-        "description": "Sets the background color of the icon.",
-        "name": "backgroundColor",
-        "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerIconProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"success\" | \"warning\" | \"icon\" | \"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | ... 272 more ... | \"client--onSurface\""
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerIconProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ readonly container?: string; readonly icon?: { svg?: string; path?: string; }; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerIconProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ readonly container?: CSSProperties; readonly icon?: { svg?: CSSProperties; path?: CSSProperties; }; }"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "The icon to show.",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
         },
         "required": false,
         "type": {
           "name": "IconNames"
         }
       },
-      "size": {
-        "defaultValue": {
-          "value": "base"
+      "iconOnRight": {
+        "defaultValue": null,
+        "description": "",
+        "name": "iconOnRight",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonNonComposableProps"
         },
-        "description": "Changes the size to small or large.",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void)"
+        }
+      },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onMouseDown",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void)"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Used to override the default button role.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "BasicButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
         "name": "size",
         "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonFoundationProps"
         },
         "required": false,
         "type": {
-          "name": "\"small\" | \"base\" | \"large\""
+          "name": "ButtonSize"
         }
       },
-      "color": {
+      "submit": {
         "defaultValue": null,
-        "description": "Determines the color of the icon. Some icons have a default system colour\nlike quotes, jobs, and invoices. Others that doesn't have a system colour\nfalls back to greyBlueDark.",
-        "name": "color",
+        "description": "Allows the button to submit a form",
+        "name": "submit",
         "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
         },
         "required": false,
         "type": {
-          "name": "\"success\" | \"warning\" | \"icon\" | \"blue\" | \"green\" | \"yellow\" | \"red\" | \"grey\" | \"white\" | \"greyBlue\" | \"lightBlue\" | \"orange\" | \"navy\" | \"interactive\" | \"destructive\" | \"disabled\" | ... 33 more ... | \"brandHighlight\""
+          "name": "boolean"
         }
       },
-      "customColor": {
+      "to": {
         "defaultValue": null,
-        "description": "Sets a custom color for the icon. Can be a rgb() or hex value.",
-        "name": "customColor",
+        "description": "**Deprecated**: to will be removed in the next major version\n@deprecated",
+        "name": "to",
         "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonLinkProps"
+        },
+        "required": false,
+        "type": {
+          "name": "LocationDescriptor<unknown> | ((location: Location<unknown>) => LocationDescriptor<unknown>)"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonType"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly container?: string; readonly button?: { container?: string; buttonLabel?: { textStyle?: string | undefined; } | undefined; buttonIcon?: { svg?: string | undefined; path?: string | undefined; } | undefined; } | undefined; } | undefined"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ readonly container?: CSSProperties; readonly button?: { container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties | undefined; } | undefined; buttonIcon?: { ...; } | undefined; } | undefined; } | undefined"
+        }
+      },
+      "url": {
+        "defaultValue": null,
+        "description": "Used to create an 'href' on an anchor tag.",
+        "name": "url",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "ButtonAnchorProps"
         },
         "required": false,
         "type": {
           "name": "string"
         }
       },
-      "testID": {
+      "value": {
         "defaultValue": null,
-        "description": "Used to locate this view in end-to-end tests",
-        "name": "testID",
+        "description": "",
+        "name": "value",
         "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "SubmitActionProps"
         },
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "variation": {
+        "defaultValue": null,
+        "description": "",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components/src/Button/Button.types.ts",
+          "name": "BaseActionProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ButtonVariation"
         }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Banner/Banner.tsx",
+    "filePath": "packages/components/src/Banner/Banner.tsx",
     "description": "",
     "displayName": "Banner.Content",
     "methods": [],
@@ -346,24 +461,11 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/Banner/Banner.tsx",
+    "filePath": "packages/components/src/Banner/Banner.tsx",
     "description": "",
     "displayName": "Banner.DismissButton",
     "methods": [],
     "props": {
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerDismissButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
-        }
-      },
       "ariaLabel": {
         "defaultValue": null,
         "description": "",
@@ -375,6 +477,19 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerDismissButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void)"
         }
       },
       "UNSAFE_className": {
@@ -407,22 +522,78 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/Banner/Banner.tsx",
+    "filePath": "packages/components/src/Banner/Banner.tsx",
     "description": "",
-    "displayName": "Banner.Action",
+    "displayName": "Banner.Provider",
     "methods": [],
     "props": {
+      "dismissButton": {
+        "defaultValue": {
+          "value": "<Banner.DismissButton/>"
+        },
+        "description": "Dismiss button to be used for the Banner.\nIf you want to remove the dismiss button, set to false.",
+        "name": "dismissButton",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerProviderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "icon": {
+        "defaultValue": {
+          "value": "<Banner.Icon/>"
+        },
+        "description": "Icon to be used for the Banner.\nIf you want to remove the icon, set to false.",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerProviderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "onDismiss": {
+        "defaultValue": null,
+        "description": "Callback to be called when the Banner is dismissed.",
+        "name": "onDismiss",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerProviderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "type": {
+        "defaultValue": null,
+        "description": "Sets the status-based theme of the Banner.",
+        "name": "type",
+        "parent": {
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerProviderProps"
+        },
+        "required": true,
+        "type": {
+          "name": "BannerType"
+        }
+      },
       "UNSAFE_className": {
         "defaultValue": null,
         "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
           "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerActionProps"
+          "name": "BannerProviderProps"
         },
         "required": false,
         "type": {
-          "name": "{ readonly container?: string; readonly button?: { container?: string; buttonLabel?: { textStyle?: string; }; buttonIcon?: { svg?: string; path?: string; }; }; }"
+          "name": "{ readonly container?: string; }"
         }
       },
       "UNSAFE_style": {
@@ -431,310 +602,24 @@
         "name": "UNSAFE_style",
         "parent": {
           "fileName": "packages/components/src/Banner/Banner.types.ts",
-          "name": "BannerActionProps"
+          "name": "BannerProviderProps"
         },
         "required": false,
         "type": {
-          "name": "{ readonly container?: CSSProperties; readonly button?: { container?: CSSProperties; buttonLabel?: { textStyle?: CSSProperties; }; buttonIcon?: { svg?: CSSProperties; path?: CSSProperties; }; }; }"
+          "name": "{ readonly container?: CSSProperties; }"
         }
       },
-      "type": {
+      "visible": {
         "defaultValue": null,
-        "description": "",
-        "name": "type",
+        "description": "When provided, Banner's visibility is controlled by this value.",
+        "name": "visible",
         "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonType"
-        }
-      },
-      "icon": {
-        "defaultValue": null,
-        "description": "",
-        "name": "icon",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonNonComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "IconNames"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "size": {
-        "defaultValue": null,
-        "description": "",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonSize"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
+          "fileName": "packages/components/src/Banner/Banner.types.ts",
+          "name": "BannerProviderProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "external": {
-        "defaultValue": null,
-        "description": "",
-        "name": "external",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
-        }
-      },
-      "variation": {
-        "defaultValue": null,
-        "description": "",
-        "name": "variation",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BaseActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ButtonVariation"
-        }
-      },
-      "ariaControls": {
-        "defaultValue": null,
-        "description": "Used for screen readers. Will override label on screen\nreader if present.",
-        "name": "ariaControls",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "ariaHaspopup": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ariaHaspopup",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "ariaExpanded": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ariaExpanded",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "fullWidth": {
-        "defaultValue": null,
-        "description": "",
-        "name": "fullWidth",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "loading": {
-        "defaultValue": null,
-        "description": "",
-        "name": "loading",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onMouseDown": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onMouseDown",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
-        }
-      },
-      "submit": {
-        "defaultValue": null,
-        "description": "Allows the button to submit a form",
-        "name": "submit",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "",
-        "name": "value",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "SubmitActionProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Used to override the default button role.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "BasicButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "to": {
-        "defaultValue": null,
-        "description": "**Deprecated**: to will be removed in the next major version\n@deprecated",
-        "name": "to",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonLinkProps"
-        },
-        "required": false,
-        "type": {
-          "name": "LocationDescriptor<unknown> | ((location: Location<unknown>) => LocationDescriptor<unknown>)"
-        }
-      },
-      "url": {
-        "defaultValue": null,
-        "description": "Used to create an 'href' on an anchor tag.",
-        "name": "url",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonAnchorProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "iconOnRight": {
-        "defaultValue": null,
-        "description": "",
-        "name": "iconOnRight",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonNonComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "label": {
-        "defaultValue": null,
-        "description": "",
-        "name": "label",
-        "parent": {
-          "fileName": "packages/components/src/Button/Button.types.ts",
-          "name": "ButtonLabelProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       }
     }

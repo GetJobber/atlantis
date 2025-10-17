@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/DatePicker/DatePicker.tsx",
+    "filePath": "packages/components/src/DatePicker/DatePicker.tsx",
     "description": "",
     "displayName": "DatePicker",
     "methods": [],
@@ -11,7 +11,7 @@
         "description": "Use a custom activator to trigger the DatePicker",
         "name": "activator",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
           "name": "DatePickerModalProps"
         },
         "required": false,
@@ -21,27 +21,42 @@
       },
       "disabled": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Stops the user from interaction",
         "name": "disabled",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
           "name": "DatePickerModalProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "firstDayOfWeek": {
+        "defaultValue": {
+          "value": "0"
+        },
+        "description": "Sets which day is considered the first day of the week.\n0 = Sunday, 1 = Monday, etc.",
+        "name": "firstDayOfWeek",
+        "parent": {
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "DayOfWeek"
         }
       },
       "fullWidth": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Whether the datepicker should take up a whole block",
         "name": "fullWidth",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
           "name": "DatePickerModalProps"
         },
         "required": false,
@@ -49,19 +64,17 @@
           "name": "boolean"
         }
       },
-      "readonly": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "Whether or not you can select a date",
-        "name": "readonly",
+      "highlightDates": {
+        "defaultValue": null,
+        "description": "Dates on the calendar to highlight",
+        "name": "highlightDates",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
-          "name": "DatePickerModalProps"
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "Date[]"
         }
       },
       "inline": {
@@ -69,7 +82,7 @@
         "description": "Determines if the DatePicker should be shown without needing to trigger the Activator.",
         "name": "inline",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
           "name": "DatePickerInlineProps"
         },
         "required": false,
@@ -82,7 +95,7 @@
         "description": "The maximum selectable date.",
         "name": "maxDate",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
           "name": "BaseDatePickerProps"
         },
         "required": false,
@@ -95,68 +108,12 @@
         "description": "The minimum selectable date.",
         "name": "minDate",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
           "name": "BaseDatePickerProps"
         },
         "required": false,
         "type": {
           "name": "Date"
-        }
-      },
-      "selected": {
-        "defaultValue": null,
-        "description": "The selected Date object",
-        "name": "selected",
-        "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
-          "name": "BaseDatePickerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Date"
-        }
-      },
-      "smartAutofocus": {
-        "defaultValue": {
-          "value": true
-        },
-        "description": "Determines if the focus moves to the selected date (if any) or back to\nthe activator",
-        "name": "smartAutofocus",
-        "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
-          "name": "BaseDatePickerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "highlightDates": {
-        "defaultValue": null,
-        "description": "Dates on the calendar to highlight",
-        "name": "highlightDates",
-        "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
-          "name": "BaseDatePickerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Date[]"
-        }
-      },
-      "firstDayOfWeek": {
-        "defaultValue": {
-          "value": "0"
-        },
-        "description": "Sets which day is considered the first day of the week.\n0 = Sunday, 1 = Monday, etc.",
-        "name": "firstDayOfWeek",
-        "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
-          "name": "BaseDatePickerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "DayOfWeek"
         }
       },
       "onChange": {
@@ -164,7 +121,7 @@
         "description": "Change handler that will return the date selected.",
         "name": "onChange",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
           "name": "BaseDatePickerProps"
         },
         "required": true,
@@ -177,12 +134,55 @@
         "description": "Change handler when the selected month changes",
         "name": "onMonthChange",
         "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
           "name": "BaseDatePickerProps"
         },
         "required": false,
         "type": {
-          "name": "(val: Date) => void"
+          "name": "((val: Date) => void)"
+        }
+      },
+      "readonly": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Whether or not you can select a date",
+        "name": "readonly",
+        "parent": {
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
+          "name": "DatePickerModalProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "selected": {
+        "defaultValue": null,
+        "description": "The selected Date object",
+        "name": "selected",
+        "parent": {
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Date"
+        }
+      },
+      "smartAutofocus": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Determines if the focus moves to the selected date (if any) or back to\nthe activator",
+        "name": "smartAutofocus",
+        "parent": {
+          "fileName": "packages/components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

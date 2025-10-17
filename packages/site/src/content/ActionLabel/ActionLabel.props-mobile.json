@@ -1,52 +1,52 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/ActionLabel/ActionLabel.tsx",
+    "filePath": "packages/components-native/src/ActionLabel/ActionLabel.tsx",
     "description": "",
     "displayName": "ActionLabel",
     "methods": [],
     "props": {
+      "align": {
+        "defaultValue": {
+          "value": "center"
+        },
+        "description": "Alignment of action label",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components-native/src/ActionLabel/ActionLabel.tsx",
+          "name": "ActionLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextAlign"
+        }
+      },
       "children": {
         "defaultValue": null,
         "description": "Text to display. Supports nesting text elements.",
         "name": "children",
         "parent": {
-          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "fileName": "packages/components-native/src/ActionLabel/ActionLabel.tsx",
           "name": "ActionLabelProps"
         },
         "required": false,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "disabled": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Set the display text to disabled color",
         "name": "disabled",
         "parent": {
-          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "fileName": "packages/components-native/src/ActionLabel/ActionLabel.tsx",
           "name": "ActionLabelProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "variation": {
-        "defaultValue": {
-          "value": "interactive"
-        },
-        "description": "The text color",
-        "name": "variation",
-        "parent": {
-          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
-          "name": "ActionLabelProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ActionLabelVariation"
         }
       },
       "type": {
@@ -56,7 +56,7 @@
         "description": "Changes the appearance to match the style of where it's getting used",
         "name": "type",
         "parent": {
-          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "fileName": "packages/components-native/src/ActionLabel/ActionLabel.tsx",
           "name": "ActionLabelProps"
         },
         "required": false,
@@ -64,19 +64,19 @@
           "name": "ActionLabelType"
         }
       },
-      "align": {
+      "variation": {
         "defaultValue": {
-          "value": "center"
+          "value": "interactive"
         },
-        "description": "Alignment of action label",
-        "name": "align",
+        "description": "The text color",
+        "name": "variation",
         "parent": {
-          "fileName": "../components-native/src/ActionLabel/ActionLabel.tsx",
+          "fileName": "packages/components-native/src/ActionLabel/ActionLabel.tsx",
           "name": "ActionLabelProps"
         },
         "required": false,
         "type": {
-          "name": "TextAlign"
+          "name": "ActionLabelVariation"
         }
       }
     }

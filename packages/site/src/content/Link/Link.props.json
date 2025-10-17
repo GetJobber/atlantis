@@ -1,22 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Link/Link.tsx",
+    "filePath": "packages/components/src/Link/Link.tsx",
     "description": "",
     "displayName": "Link",
     "methods": [],
     "props": {
-      "url": {
+      "ariaExpanded": {
         "defaultValue": null,
         "description": "",
-        "name": "url",
+        "name": "ariaExpanded",
         "parent": {
-          "fileName": "../components/src/Link/Link.tsx",
+          "fileName": "packages/components/src/Link/Link.tsx",
           "name": "LinkProps"
         },
-        "required": true,
+        "required": false,
         "type": {
-          "name": "string"
+          "name": "boolean"
         }
       },
       "ariaLabel": {
@@ -24,7 +24,7 @@
         "description": "",
         "name": "ariaLabel",
         "parent": {
-          "fileName": "../components/src/Link/Link.tsx",
+          "fileName": "packages/components/src/Link/Link.tsx",
           "name": "LinkProps"
         },
         "required": false,
@@ -32,12 +32,14 @@
           "name": "string"
         }
       },
-      "ariaExpanded": {
-        "defaultValue": null,
+      "external": {
+        "defaultValue": {
+          "value": "false"
+        },
         "description": "",
-        "name": "ariaExpanded",
+        "name": "external",
         "parent": {
-          "fileName": "../components/src/Link/Link.tsx",
+          "fileName": "packages/components/src/Link/Link.tsx",
           "name": "LinkProps"
         },
         "required": false,
@@ -45,19 +47,17 @@
           "name": "boolean"
         }
       },
-      "external": {
-        "defaultValue": {
-          "value": false
-        },
+      "url": {
+        "defaultValue": null,
         "description": "",
-        "name": "external",
+        "name": "url",
         "parent": {
-          "fileName": "../components/src/Link/Link.tsx",
+          "fileName": "packages/components/src/Link/Link.tsx",
           "name": "LinkProps"
         },
-        "required": false,
+        "required": true,
         "type": {
-          "name": "boolean"
+          "name": "string"
         }
       }
     }

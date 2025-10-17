@@ -1,22 +1,24 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Typography/Typography.tsx",
+    "filePath": "packages/components/src/Typography/Typography.tsx",
     "description": "",
     "displayName": "Typography",
     "methods": [],
     "props": {
-      "id": {
-        "defaultValue": null,
-        "description": "",
-        "name": "id",
+      "align": {
+        "defaultValue": {
+          "value": "\"start\""
+        },
+        "description": "Sets the alignment to start, center, or end.\nIn LTR scripts this equates to left, center, or right.",
+        "name": "align",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "\"center\" | \"end\" | \"start\""
         }
       },
       "element": {
@@ -26,25 +28,38 @@
         "description": "",
         "name": "element",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
         "type": {
-          "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"b\" | \"em\" | \"dd\" | \"dt\" | \"strong\" | \"span\""
+          "name": "\"span\" | \"p\" | \"dd\" | \"dt\" | \"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"b\" | \"em\" | \"strong\""
         }
       },
-      "size": {
+      "emphasisType": {
         "defaultValue": null,
         "description": "",
-        "name": "size",
+        "name": "emphasisType",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"italic\" | \"highlight\""
+        }
+      },
+      "fontFamily": {
+        "defaultValue": null,
+        "description": "",
+        "name": "fontFamily",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"base\" | \"display\""
         }
       },
       "fontWeight": {
@@ -54,79 +69,25 @@
         "description": "Aside from changing the font weights, this also changes the font family.\nSource sans for `regular` and `bold`.\nPoppins for `extraBold` and `black`.",
         "name": "fontWeight",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"black\" | \"bold\" | \"regular\" | \"medium\" | \"semiBold\" | \"extraBold\""
         }
       },
-      "textCase": {
+      "id": {
         "defaultValue": null,
         "description": "",
-        "name": "textCase",
+        "name": "id",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
-        }
-      },
-      "textColor": {
-        "defaultValue": null,
-        "description": "",
-        "name": "textColor",
-        "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
-          "name": "TypographyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number | symbol"
-        }
-      },
-      "emphasisType": {
-        "defaultValue": null,
-        "description": "",
-        "name": "emphasisType",
-        "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
-          "name": "TypographyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number | symbol"
-        }
-      },
-      "align": {
-        "defaultValue": {
-          "value": "\"start\""
-        },
-        "description": "Sets the alignment to start, center, or end.\nIn LTR scripts this equates to left, center, or right.",
-        "name": "align",
-        "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
-          "name": "TypographyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number | symbol"
-        }
-      },
-      "fontFamily": {
-        "defaultValue": null,
-        "description": "",
-        "name": "fontFamily",
-        "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
-          "name": "TypographyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number | symbol"
+          "name": "string"
         }
       },
       "numberOfLines": {
@@ -134,7 +95,7 @@
         "description": "",
         "name": "numberOfLines",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
@@ -142,17 +103,56 @@
           "name": "number"
         }
       },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\" | \"base\" | \"smaller\" | \"larger\" | \"largest\" | \"extravagant\" | \"jumbo\""
+        }
+      },
+      "textCase": {
+        "defaultValue": null,
+        "description": "",
+        "name": "textCase",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"none\" | \"uppercase\" | \"lowercase\" | \"capitalize\""
+        }
+      },
+      "textColor": {
+        "defaultValue": null,
+        "description": "",
+        "name": "textColor",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"event\" | \"invoice\" | \"job\" | \"quote\" | \"request\" | \"task\" | \"text\" | \"visit\" | \"warning\" | \"icon\" | \"disabled\" | \"success\" | \"blue\" | \"green\" | \"yellow\" | \"red\" | \"grey\" | \"white\" | ... 47 more ..."
+        }
+      },
       "underline": {
         "defaultValue": null,
         "description": "The style (and optionally a color) of underline the text is decorated with.\nAll semantic color tokens (other than the base values) defined in tokens.web\nare valid values. If omitted, no underline is applied.\n@example \"solid\" for a non-dashed underline of the same color as `textColor`\n@example \"double color-invoice\" for a double underline in the specified color",
         "name": "underline",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
         "type": {
-          "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 642 more ... | \"dashed color-client--onSurface\""
+          "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 643 more ..."
         }
       },
       "UNSAFE_className": {
@@ -160,7 +160,7 @@
         "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
@@ -173,7 +173,7 @@
         "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_style",
         "parent": {
-          "fileName": "../components/src/Typography/Typography.tsx",
+          "fileName": "packages/components/src/Typography/Typography.tsx",
           "name": "TypographyProps"
         },
         "required": false,
