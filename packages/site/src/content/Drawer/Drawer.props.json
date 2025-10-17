@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Drawer/Drawer.tsx",
+    "filePath": "packages/components/src/Drawer/Drawer.tsx",
     "description": "",
     "displayName": "Drawer",
     "methods": [],
@@ -11,40 +11,12 @@
         "description": "",
         "name": "id",
         "parent": {
-          "fileName": "../components/src/Drawer/Drawer.tsx",
+          "fileName": "packages/components/src/Drawer/Drawer.tsx",
           "name": "DrawerProps"
         },
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "title": {
-        "defaultValue": null,
-        "description": "",
-        "name": "title",
-        "parent": {
-          "fileName": "../components/src/Drawer/Drawer.tsx",
-          "name": "DrawerProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "open": {
-        "defaultValue": {
-          "value": true
-        },
-        "description": "",
-        "name": "open",
-        "parent": {
-          "fileName": "../components/src/Drawer/Drawer.tsx",
-          "name": "DrawerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "onRequestClose": {
@@ -52,12 +24,40 @@
         "description": "",
         "name": "onRequestClose",
         "parent": {
-          "fileName": "../components/src/Drawer/Drawer.tsx",
+          "fileName": "packages/components/src/Drawer/Drawer.tsx",
           "name": "DrawerProps"
         },
         "required": true,
         "type": {
           "name": "() => void"
+        }
+      },
+      "open": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "",
+        "name": "open",
+        "parent": {
+          "fileName": "packages/components/src/Drawer/Drawer.tsx",
+          "name": "DrawerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components/src/Drawer/Drawer.tsx",
+          "name": "DrawerProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
         }
       }
     }

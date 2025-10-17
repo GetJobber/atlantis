@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/FormatTime/FormatTime.tsx",
+    "filePath": "packages/components/src/FormatTime/FormatTime.tsx",
     "description": "",
     "displayName": "FormatTime",
     "methods": [],
@@ -11,7 +11,7 @@
         "description": "Time (as JS Date) to be displayed.\n\nA `string` should be an ISO 8601 format date string.",
         "name": "time",
         "parent": {
-          "fileName": "../components/src/FormatTime/FormatTime.tsx",
+          "fileName": "packages/components/src/FormatTime/FormatTime.tsx",
           "name": "FormatTimeProps"
         },
         "required": true,
@@ -24,7 +24,7 @@
         "description": "Optionally specify clock format. If `undefined` system format will be respected.",
         "name": "use24HourClock",
         "parent": {
-          "fileName": "../components/src/FormatTime/FormatTime.tsx",
+          "fileName": "packages/components/src/FormatTime/FormatTime.tsx",
           "name": "FormatTimeProps"
         },
         "required": false,

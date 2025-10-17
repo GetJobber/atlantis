@@ -1,37 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/ContentOverlay/ContentOverlay.tsx",
+    "filePath": "packages/components-native/src/ContentOverlay/ContentOverlay.tsx",
     "description": "",
     "displayName": "ContentOverlay",
     "methods": [],
     "props": {
-      "children": {
-        "defaultValue": null,
-        "description": "Content to be passed into the overlay",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "title": {
-        "defaultValue": null,
-        "description": "Title of overlay, appears in the header next to the close button.",
-        "name": "title",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
       "accessibilityLabel": {
         "defaultValue": {
           "value": "\"Close {title} modal\""
@@ -47,169 +21,12 @@
           "name": "string"
         }
       },
-      "fullScreen": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Force overlay height to fill the screen.\nWidth not impacted.",
-        "name": "fullScreen",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "showDismiss": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Display the dismiss button in the header of the overlay.",
-        "name": "showDismiss",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isDraggable": {
-        "defaultValue": {
-          "value": "true"
-        },
-        "description": "If false, hides the handle and turns off dragging.",
-        "name": "isDraggable",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "adjustToContentHeight": {
         "defaultValue": {
           "value": "false"
         },
         "description": "If true, automatically adjusts the overlay height to the content height.\nThis will disable the ability to drag the overlay to fullscreen when\n`isDraggable` is true.",
         "name": "adjustToContentHeight",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "keyboardShouldPersistTaps": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Allows taps to be registered behind keyboard if enabled",
-        "name": "keyboardShouldPersistTaps",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "scrollEnabled": {
-        "defaultValue": null,
-        "description": "Enables scrolling in the content body of overlay",
-        "name": "scrollEnabled",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "modalBackgroundColor": {
-        "defaultValue": {
-          "value": "\"surface\""
-        },
-        "description": "Set the background color of the modal window",
-        "name": "modalBackgroundColor",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ModalBackgroundColor"
-        }
-      },
-      "onClose": {
-        "defaultValue": null,
-        "description": "Callback that is called when the overlay is closed.",
-        "name": "onClose",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "onOpen": {
-        "defaultValue": null,
-        "description": "Callback that is called when the overlay is opened.",
-        "name": "onOpen",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "onBeforeExit": {
-        "defaultValue": null,
-        "description": "Callback that is called between overlay is closed and when the \"x\" button is pressed",
-        "name": "onBeforeExit",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "keyboardAvoidingBehavior": {
-        "defaultValue": {
-          "value": "padding"
-        },
-        "description": "Define the behavior of the keyboard when having inputs inside the modal.",
-        "name": "keyboardAvoidingBehavior",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"height\" | \"padding\" | \"position\""
-        }
-      },
-      "loading": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Boolean to show a disabled state",
-        "name": "loading",
         "parent": {
           "fileName": "packages/components-native/src/ContentOverlay/types.ts",
           "name": "ContentOverlayProps"
@@ -234,6 +51,148 @@
           "name": "boolean"
         }
       },
+      "children": {
+        "defaultValue": null,
+        "description": "Content to be passed into the overlay",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "fullScreen": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Force overlay height to fill the screen.\nWidth not impacted.",
+        "name": "fullScreen",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "isDraggable": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "If false, hides the handle and turns off dragging.",
+        "name": "isDraggable",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "keyboardAvoidingBehavior": {
+        "defaultValue": {
+          "value": "padding"
+        },
+        "description": "Define the behavior of the keyboard when having inputs inside the modal.",
+        "name": "keyboardAvoidingBehavior",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"position\" | \"height\" | \"padding\""
+        }
+      },
+      "keyboardShouldPersistTaps": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Allows taps to be registered behind keyboard if enabled",
+        "name": "keyboardShouldPersistTaps",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Boolean to show a disabled state",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "modalBackgroundColor": {
+        "defaultValue": {
+          "value": "\"surface\""
+        },
+        "description": "Set the background color of the modal window",
+        "name": "modalBackgroundColor",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ModalBackgroundColor"
+        }
+      },
+      "onBeforeExit": {
+        "defaultValue": null,
+        "description": "Callback that is called between overlay is closed and when the \"x\" button is pressed",
+        "name": "onBeforeExit",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onClose": {
+        "defaultValue": null,
+        "description": "Callback that is called when the overlay is closed.",
+        "name": "onClose",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onOpen": {
+        "defaultValue": null,
+        "description": "Callback that is called when the overlay is opened.",
+        "name": "onOpen",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
       "ref": {
         "defaultValue": null,
         "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
@@ -244,7 +203,48 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<{ open?: (dest?: TOpen) => void; close?: (dest?: TClose) => void; }>"
+          "name": "LegacyRef<{ open?: ((dest?: TOpen) => void); close?: ((dest?: TClose | undefined) => void) | undefined; } | undefined> | undefined"
+        }
+      },
+      "scrollEnabled": {
+        "defaultValue": null,
+        "description": "Enables scrolling in the content body of overlay",
+        "name": "scrollEnabled",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "showDismiss": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Display the dismiss button in the header of the overlay.",
+        "name": "showDismiss",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title of overlay, appears in the header next to the close button.",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
         }
       }
     }

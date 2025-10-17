@@ -1,22 +1,48 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Cover/Cover.tsx",
+    "filePath": "packages/components/src/Cover/Cover.tsx",
     "description": "",
     "displayName": "Cover",
     "methods": [],
     "props": {
-      "minHeight": {
+      "ariaAttributes": {
         "defaultValue": null,
-        "description": "The minimum height of the element. Suggested to use `vh` units.",
-        "name": "minHeight",
+        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
+        "name": "ariaAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaAttributes"
+        }
+      },
+      "as": {
+        "defaultValue": null,
+        "description": "The HTML tag to render the container as. Defaults to `div`.",
+        "name": "as",
         "parent": {
           "fileName": "packages/components/src/Cover/types.ts",
           "name": "CoverProps"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "CommonAllowedElements"
+        }
+      },
+      "dataAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "dataAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ [key: `data-${string}`]: string; }"
         }
       },
       "gap": {
@@ -32,17 +58,43 @@
           "name": "GapSpacing"
         }
       },
-      "as": {
+      "id": {
         "defaultValue": null,
-        "description": "The HTML tag to render the container as. Defaults to `div`.",
-        "name": "as",
+        "description": "Standard HTML id attribute.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "minHeight": {
+        "defaultValue": null,
+        "description": "The minimum height of the element. Suggested to use `vh` units.",
+        "name": "minHeight",
         "parent": {
           "fileName": "packages/components/src/Cover/types.ts",
           "name": "CoverProps"
         },
         "required": false,
         "type": {
-          "name": "CommonAllowedElements"
+          "name": "string"
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Standard HTML role attribute.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaRole"
         }
       },
       "UNSAFE_className": {
@@ -70,20 +122,16 @@
         "type": {
           "name": "{ container?: CSSProperties; }"
         }
-      },
-      "dataAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
-        "name": "dataAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ [key: `data-${string}`]: string; }"
-        }
-      },
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/Cover/Cover.tsx",
+    "description": "",
+    "displayName": "Cover.Center",
+    "methods": [],
+    "props": {
       "ariaAttributes": {
         "defaultValue": null,
         "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
@@ -95,67 +143,6 @@
         "required": false,
         "type": {
           "name": "AriaAttributes"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Standard HTML role attribute.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaRole"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "Standard HTML id attribute.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Cover/Cover.tsx",
-    "description": "",
-    "displayName": "Cover.Center",
-    "methods": [],
-    "props": {
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Cover/types.ts",
-          "name": "CoverCenterContentProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ centerContent?: string; }"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Cover/types.ts",
-          "name": "CoverCenterContentProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ centerContent?: CSSProperties; }"
         }
       },
       "as": {
@@ -184,17 +171,17 @@
           "name": "{ [key: `data-${string}`]: string; }"
         }
       },
-      "ariaAttributes": {
+      "id": {
         "defaultValue": null,
-        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
-        "name": "ariaAttributes",
+        "description": "Standard HTML id attribute.",
+        "name": "id",
         "parent": {
           "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "CommonAtlantisProps"
         },
         "required": false,
         "type": {
-          "name": "AriaAttributes"
+          "name": "string"
         }
       },
       "role": {
@@ -210,17 +197,30 @@
           "name": "AriaRole"
         }
       },
-      "id": {
+      "UNSAFE_className": {
         "defaultValue": null,
-        "description": "Standard HTML id attribute.",
-        "name": "id",
+        "description": "",
+        "name": "UNSAFE_className",
         "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
+          "fileName": "packages/components/src/Cover/types.ts",
+          "name": "CoverCenterContentProps"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "{ centerContent?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Cover/types.ts",
+          "name": "CoverCenterContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ centerContent?: CSSProperties; }"
         }
       }
     }

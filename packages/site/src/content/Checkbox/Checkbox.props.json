@@ -1,22 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Checkbox/Checkbox.tsx",
+    "filePath": "packages/components/src/Checkbox/Checkbox.tsx",
     "description": "",
     "displayName": "CheckboxLegacy",
     "methods": [],
     "props": {
-      "label": {
+      "checked": {
         "defaultValue": null,
-        "description": "Label that shows up beside the checkbox.",
-        "name": "label",
+        "description": "Determines if the checkbox is checked or not.",
+        "name": "checked",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "CheckboxLabelProps"
+          "name": "BaseCheckboxProps"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "boolean"
         }
       },
       "children": {
@@ -32,19 +32,6 @@
           "name": "ReactElement<any, string | JSXElementConstructor<any>>"
         }
       },
-      "checked": {
-        "defaultValue": null,
-        "description": "Determines if the checkbox is checked or not.",
-        "name": "checked",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "defaultChecked": {
         "defaultValue": null,
         "description": "Initial checked value of the checkbox. Only use this when you need to\npre-populate the checked attribute that is not controlled by the component's\nstate. If a state is controlling it, use the `checked` prop instead.",
@@ -56,60 +43,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Disables the checkbox.",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "indeterminate": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "When `true` the checkbox to appears in indeterminate.",
-        "name": "indeterminate",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Checkbox input name",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "Value of the checkbox.",
-        "name": "value",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       },
       "description": {
@@ -125,6 +58,19 @@
           "name": "ReactNode"
         }
       },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Disables the checkbox.",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "id": {
         "defaultValue": null,
         "description": "ID for the checkbox input",
@@ -138,43 +84,19 @@
           "name": "string"
         }
       },
-      "onChange": {
-        "defaultValue": null,
-        "description": "Called when the checkbox value changes",
-        "name": "onChange",
+      "indeterminate": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "When `true` the checkbox to appears in indeterminate.",
+        "name": "indeterminate",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
           "name": "BaseCheckboxProps"
         },
         "required": false,
         "type": {
-          "name": "(newValue: boolean) => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Called when the checkbox is focused",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Called when the checkbox loses focus",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
+          "name": "boolean"
         }
       },
       "invalid": {
@@ -188,6 +110,84 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "Label that shows up beside the checkbox.",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "CheckboxLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "Checkbox input name",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Called when the checkbox loses focus",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: FocusEvent<HTMLInputElement, Element>) => void)"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Called when the checkbox value changes",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((newValue: boolean) => void)"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Called when the checkbox is focused",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: FocusEvent<HTMLInputElement, Element>) => void)"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Value of the checkbox.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "BaseCheckboxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "version": {

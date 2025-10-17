@@ -1,17 +1,17 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/InputPressable/InputPressable.tsx",
+    "filePath": "packages/components-native/src/InputPressable/InputPressable.tsx",
     "description": "",
     "displayName": "InputPressable",
     "methods": [],
     "props": {
-      "value": {
+      "accessibilityHint": {
         "defaultValue": null,
-        "description": "Current value of the component",
-        "name": "value",
+        "description": "Helps users understand what will happen when they perform an action",
+        "name": "accessibilityHint",
         "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
           "name": "InputPressableProps"
         },
         "required": false,
@@ -19,17 +19,30 @@
           "name": "string"
         }
       },
-      "placeholder": {
+      "accessibilityLabel": {
         "defaultValue": null,
-        "description": "Placeholder item shown until a selection is made",
-        "name": "placeholder",
+        "description": "VoiceOver will read this string when a user selects the element",
+        "name": "accessibilityLabel",
         "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
           "name": "InputPressableProps"
         },
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Add a clear action on the input that clears the value.\n\nSince the input value isn't editable (i.e. `InputDateTime`) you can\nset it to `always`. If you set it to `always` you must also provide an\nonClear to clear the input's value",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
         }
       },
       "disabled": {
@@ -37,20 +50,7 @@
         "description": "Disables input selection",
         "name": "disabled",
         "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
-          "name": "InputPressableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "focused": {
-        "defaultValue": null,
-        "description": "Indicates if the input is focused",
-        "name": "focused",
-        "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
           "name": "InputPressableProps"
         },
         "required": false,
@@ -63,7 +63,7 @@
         "description": "Indicates if there is an validation error",
         "name": "error",
         "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
           "name": "InputPressableProps"
         },
         "required": false,
@@ -71,12 +71,25 @@
           "name": "FieldError"
         }
       },
+      "focused": {
+        "defaultValue": null,
+        "description": "Indicates if the input is focused",
+        "name": "focused",
+        "parent": {
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "invalid": {
         "defaultValue": null,
         "description": "Indicates the current selection is invalid",
         "name": "invalid",
         "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
           "name": "InputPressableProps"
         },
         "required": false,
@@ -84,38 +97,38 @@
           "name": "string | boolean"
         }
       },
+      "onClear": {
+        "defaultValue": null,
+        "description": "Callback called when the user clicks the ClearAction button. Should clear\nthe value passed. To disallow clearing set the clearable prop to never",
+        "name": "onClear",
+        "parent": {
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
       "onPress": {
         "defaultValue": null,
         "description": "Callback that is called when the text input is focused\n@param event",
         "name": "onPress",
         "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
           "name": "InputPressableProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(() => void)"
         }
       },
-      "accessibilityLabel": {
+      "placeholder": {
         "defaultValue": null,
-        "description": "VoiceOver will read this string when a user selects the element",
-        "name": "accessibilityLabel",
+        "description": "Placeholder item shown until a selection is made",
+        "name": "placeholder",
         "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
-          "name": "InputPressableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "accessibilityHint": {
-        "defaultValue": null,
-        "description": "Helps users understand what will happen when they perform an action",
-        "name": "accessibilityHint",
-        "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
           "name": "InputPressableProps"
         },
         "required": false,
@@ -128,51 +141,12 @@
         "description": "Symbol to display before the text input",
         "name": "prefix",
         "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
           "name": "InputPressableProps"
         },
         "required": false,
         "type": {
-          "name": "{ icon?: IconNames; label?: string; }"
-        }
-      },
-      "suffix": {
-        "defaultValue": null,
-        "description": "Symbol to display after the text input",
-        "name": "suffix",
-        "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
-          "name": "InputPressableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ icon: IconNames; label?: string; onPress: () => void; } | { onPress?: never; icon?: IconNames; label?: string; }"
-        }
-      },
-      "clearable": {
-        "defaultValue": null,
-        "description": "Add a clear action on the input that clears the value.\n\nSince the input value isn't editable (i.e. `InputDateTime`) you can\nset it to `always`. If you set it to `always` you must also provide an\nonClear to clear the input's value",
-        "name": "clearable",
-        "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
-          "name": "InputPressableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Clearable"
-        }
-      },
-      "onClear": {
-        "defaultValue": null,
-        "description": "Callback called when the user clicks the ClearAction button. Should clear\nthe value passed. To disallow clearing set the clearable prop to never",
-        "name": "onClear",
-        "parent": {
-          "fileName": "../components-native/src/InputPressable/InputPressable.tsx",
-          "name": "InputPressableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
+          "name": "{ icon?: IconNames; label?: string; } | undefined"
         }
       },
       "ref": {
@@ -186,6 +160,32 @@
         "required": false,
         "type": {
           "name": "LegacyRef<Text>"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Symbol to display after the text input",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ icon: IconNames; label?: string; onPress: () => void; } | { onPress?: undefined; icon?: IconNames; label?: string | undefined; } | undefined"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Current value of the component",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }

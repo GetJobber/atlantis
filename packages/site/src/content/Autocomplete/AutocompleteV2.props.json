@@ -1,28 +1,160 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Autocomplete/Autocomplete.rebuilt.tsx",
+    "filePath": "packages/components/src/Autocomplete/Autocomplete.rebuilt.tsx",
     "description": "",
     "displayName": "AutocompleteRebuilt",
     "methods": [],
     "props": {
-      "version": {
+      "allowFreeForm": {
         "defaultValue": null,
-        "description": "",
-        "name": "version",
+        "description": "Whether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options * in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and\nWhether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.\nWhether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.",
+        "name": "allowFreeForm",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "FreeFormOn"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "createFreeFormValue": {
+        "defaultValue": null,
+        "description": "Factory used to create a Value from free-form input when committing. Necessary with complex option values. The only value the input can produce is a string.\n@param input - The input value",
+        "name": "createFreeFormValue",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "FreeFormOn"
+        },
+        "required": true,
+        "type": {
+          "name": "(input: string) => Value"
+        }
+      },
+      "customRenderAction": {
+        "defaultValue": null,
+        "description": "Render prop to customize the rendering of an action.\n@param args.value - The action value including all extra keys from the menu item\n@param args.isActive - Whether the action is currently highlighted/active\n@param args.origin - The origin of the action (\"menu\" or \"empty\")",
+        "name": "customRenderAction",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
-        "required": true,
+        "required": false,
         "type": {
-          "name": "2"
+          "name": "((args: { value: MenuAction<ExtraProps>; isActive: boolean; origin?: ActionOrigin; }) => ReactNode)"
         }
       },
-      "multiple": {
+      "customRenderFooter": {
         "defaultValue": null,
-        "description": "Whether the autocomplete allows multiple selections.\nWARNING: This is currently incomplete and will not display selections, only data is returned.\nDo not use this prop unless you are sure you know what you are doing.",
-        "name": "multiple",
+        "description": "Render prop to customize the rendering of footer items.",
+        "name": "customRenderFooter",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((args: { value: MenuFooter<ExtraProps>; isActive?: boolean; }) => ReactNode)"
+        }
+      },
+      "customRenderHeader": {
+        "defaultValue": null,
+        "description": "Render prop to customize the rendering of header items.",
+        "name": "customRenderHeader",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((args: { value: MenuHeader<ExtraProps>; isActive?: boolean; }) => ReactNode)"
+        }
+      },
+      "customRenderInput": {
+        "defaultValue": null,
+        "description": "Render prop to customize the rendering of the input.\n@param props.inputRef - The ref to the input element\n@param props.inputProps - The props to pass to the input element\nNote that you must pass the inputRef to the input",
+        "name": "customRenderInput",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((props: { inputRef: Ref<HTMLInputElement | HTMLTextAreaElement>; inputProps: InputTextRebuiltProps; }) => ReactNode)"
+        }
+      },
+      "customRenderLoading": {
+        "defaultValue": null,
+        "description": "Custom render prop for content to render when `loading` is true.",
+        "name": "customRenderLoading",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "customRenderOption": {
+        "defaultValue": null,
+        "description": "Render prop to customize the rendering of an option.\n@param args.value - The option value including all extra keys from the menu item\n@param args.isActive - Whether the option is currently highlighted/active\n@param args.isSelected - Whether the option is currently selected",
+        "name": "customRenderOption",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((args: { value: Value; isActive: boolean; isSelected: boolean; }) => ReactNode)"
+        }
+      },
+      "customRenderSection": {
+        "defaultValue": null,
+        "description": "Render prop to customize the rendering of a section.\n@param args.section - The section value including all extra keys from the menu item",
+        "name": "customRenderSection",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((section: MenuSection<Value, ExtraProps, ExtraProps>) => ReactNode)"
+        }
+      },
+      "debounce": {
+        "defaultValue": {
+          "value": "300"
+        },
+        "description": "Debounce in milliseconds for input-driven filtering and search render.\nSet to 0 to disable debouncing.",
+        "name": "debounce",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Description to display below the input",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
@@ -32,95 +164,45 @@
           "name": "boolean"
         }
       },
-      "value": {
+      "emptyActions": {
         "defaultValue": null,
-        "description": "The currently selected value of the Autocomplete.\nSingle-select: undefined indicates no selection",
-        "name": "value",
+        "description": "Actions to display when there are no options to render after filtering.\nCan be a static list or a function that derives actions from the current input value.\nWhen provided and options are empty, these are rendered as navigable actions. Compatible with or without `emptyStateMessage`.",
+        "name": "emptyActions",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
-        "required": true,
+        "required": false,
         "type": {
-          "name": "Value[] | OptionLike"
+          "name": "MenuAction<ExtraProps>[] | ((args: { inputValue: string; }) => MenuAction<ExtraProps>[])"
         }
       },
-      "inputValue": {
-        "defaultValue": null,
-        "description": "The current input value of the Autocomplete.",
-        "name": "inputValue",
+      "emptyStateMessage": {
+        "defaultValue": {
+          "value": "string \"No options\""
+        },
+        "description": "Render a custom empty state when the menu is empty.\nNOTE: Do not put interactive elements in the empty state, it will break accessibility.\nIf you require interactive elements in the empty state, use the `emptyActions` prop.\nTo opt out of the default empty state message entirely use \"false\".",
+        "name": "emptyStateMessage",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
-        "required": true,
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "Error message to display below the input\nWhen present, invalid appearance applied to the input",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "onInputChange": {
-        "defaultValue": null,
-        "description": "Callback invoked when the input value changes.",
-        "name": "onInputChange",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": true,
-        "type": {
-          "name": "(value: string) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Callback invoked when the input is blurred.",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Callback invoked when the input is focused.",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "inputEqualsOption": {
-        "defaultValue": null,
-        "description": "Custom equality for input text to option mapping.\nDefaults to case-sensitive label equality via getOptionLabel.",
-        "name": "inputEqualsOption",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(input: string, option: Value) => boolean"
-        }
-      },
-      "menu": {
-        "defaultValue": null,
-        "description": "Data structure for the menu.\nObserves a data hierarchy to determine elements, order, and grouping.\nAccepts Sections, Options as top level objects in the array.\nActions may appear in both sections and options.",
-        "name": "menu",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": true,
-        "type": {
-          "name": "MenuItem<Value, ExtraProps, ExtraProps>[]"
         }
       },
       "filterOptions": {
@@ -146,154 +228,189 @@
         },
         "required": false,
         "type": {
-          "name": "(option: Value) => string"
+          "name": "((option: Value) => string)"
         }
       },
-      "debounce": {
-        "defaultValue": {
-          "value": "300"
-        },
-        "description": "Debounce in milliseconds for input-driven filtering and search render.\nSet to 0 to disable debouncing.",
-        "name": "debounce",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "customRenderOption": {
+      "inputEqualsOption": {
         "defaultValue": null,
-        "description": "Render prop to customize the rendering of an option.\n@param args.value - The option value including all extra keys from the menu item\n@param args.isActive - Whether the option is currently highlighted/active\n@param args.isSelected - Whether the option is currently selected",
-        "name": "customRenderOption",
+        "description": "Custom equality for input text to option mapping.\nDefaults to case-sensitive label equality via getOptionLabel.",
+        "name": "inputEqualsOption",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "(args: { value: Value; isActive: boolean; isSelected: boolean; }) => ReactNode"
+          "name": "((input: string, option: Value) => boolean)"
         }
       },
-      "customRenderSection": {
+      "inputValue": {
         "defaultValue": null,
-        "description": "Render prop to customize the rendering of a section.\n@param args.section - The section value including all extra keys from the menu item",
-        "name": "customRenderSection",
+        "description": "The current input value of the Autocomplete.",
+        "name": "inputValue",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
-        "required": false,
+        "required": true,
         "type": {
-          "name": "(section: MenuSection<Value, ExtraProps, ExtraProps>) => ReactNode"
+          "name": "string"
         }
       },
-      "customRenderAction": {
+      "invalid": {
         "defaultValue": null,
-        "description": "Render prop to customize the rendering of an action.\n@param args.value - The action value including all extra keys from the menu item\n@param args.isActive - Whether the action is currently highlighted/active\n@param args.origin - The origin of the action (\"menu\" or \"empty\")",
-        "name": "customRenderAction",
+        "description": "Whether the input is invalid. Receives invalid appearance.",
+        "name": "invalid",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "(args: { value: MenuAction<ExtraProps>; isActive: boolean; origin?: ActionOrigin; }) => ReactNode"
+          "name": "boolean"
         }
       },
-      "customRenderHeader": {
+      "isOptionEqualToValue": {
         "defaultValue": null,
-        "description": "Render prop to customize the rendering of header items.",
-        "name": "customRenderHeader",
+        "description": "Custom equality for option to value mapping.",
+        "name": "isOptionEqualToValue",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "(args: { value: MenuHeader<ExtraProps>; isActive?: boolean; }) => ReactNode"
+          "name": "((option: Value, value: Value) => boolean)"
         }
       },
-      "customRenderFooter": {
+      "loading": {
         "defaultValue": null,
-        "description": "Render prop to customize the rendering of footer items.",
-        "name": "customRenderFooter",
+        "description": "Whether the menu is loading.\nDisplays glimmers in the menu",
+        "name": "loading",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "(args: { value: MenuFooter<ExtraProps>; isActive?: boolean; }) => ReactNode"
+          "name": "boolean"
         }
       },
-      "customRenderInput": {
+      "menu": {
         "defaultValue": null,
-        "description": "Render prop to customize the rendering of the input.\n@param props.inputRef - The ref to the input element\n@param props.inputProps - The props to pass to the input element\nNote that you must pass the inputRef to the input",
-        "name": "customRenderInput",
+        "description": "Data structure for the menu.\nObserves a data hierarchy to determine elements, order, and grouping.\nAccepts Sections, Options as top level objects in the array.\nActions may appear in both sections and options.",
+        "name": "menu",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
-        "required": false,
+        "required": true,
         "type": {
-          "name": "(props: { inputRef: Ref<HTMLInputElement | HTMLTextAreaElement>; inputProps: InputTextRebuiltProps; }) => ReactNode"
+          "name": "MenuItem<Value, ExtraProps, ExtraProps>[]"
         }
       },
-      "UNSAFE_className": {
+      "multiple": {
         "defaultValue": null,
-        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_className",
+        "description": "Whether the autocomplete allows multiple selections.\nWARNING: This is currently incomplete and will not display selections, only data is returned.\nDo not use this prop unless you are sure you know what you are doing.",
+        "name": "multiple",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "{ menu?: string; option?: string; section?: string; action?: string; input?: string; header?: string; footer?: string; }"
+          "name": "boolean"
         }
       },
-      "UNSAFE_styles": {
+      "name": {
         "defaultValue": null,
-        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
-        "name": "UNSAFE_styles",
+        "description": "Name of the input for form submission",
+        "name": "name",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "{ menu?: CSSProperties; option?: CSSProperties; section?: CSSProperties; action?: CSSProperties; input?: CSSProperties; header?: CSSProperties; footer?: CSSProperties; }"
+          "name": "string"
         }
       },
-      "emptyStateMessage": {
-        "defaultValue": {
-          "value": "string \"No options\""
-        },
-        "description": "Render a custom empty state when the menu is empty.\nNOTE: Do not put interactive elements in the empty state, it will break accessibility.\nIf you require interactive elements in the empty state, use the `emptyActions` prop.\nTo opt out of the default empty state message entirely use \"false\".",
-        "name": "emptyStateMessage",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "emptyActions": {
+      "onBlur": {
         "defaultValue": null,
-        "description": "Actions to display when there are no options to render after filtering.\nCan be a static list or a function that derives actions from the current input value.\nWhen provided and options are empty, these are rendered as navigable actions. Compatible with or without `emptyStateMessage`.",
-        "name": "emptyActions",
+        "description": "Callback invoked when the input is blurred.",
+        "name": "onBlur",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "MenuAction<ExtraProps>[] | ((args: { inputValue: string; }) => MenuAction<ExtraProps>[])"
+          "name": "(() => void)"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Callback invoked when the selection value changes.\nThis is called when we consider a selection \"committed\"\n- The user presses enter\n- The user clicks outside the menu with a selection typed\n- The user clicks the clear button\nThe user clears a previous selection by deleting the input value\n- The user selects an option with click or enter\n- The user types a value that matches an option\n- The user types a value that does not match an option and allowFreeForm is true\nCallback invoked when the selection value changes.",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "FreeFormOn"
+        },
+        "required": true,
+        "type": {
+          "name": "((value: AutocompleteValue<Value, Multiple>) => void) | ((value: AutocompleteValue<Value, Multiple>) => void)"
+        }
+      },
+      "onClose": {
+        "defaultValue": null,
+        "description": "Callback invoked when the menu closes.",
+        "name": "onClose",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Callback invoked when the input is focused.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      },
+      "onInputChange": {
+        "defaultValue": null,
+        "description": "Callback invoked when the input value changes.",
+        "name": "onInputChange",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(value: string) => void"
+        }
+      },
+      "onOpen": {
+        "defaultValue": null,
+        "description": "Callback invoked when the menu opens.",
+        "name": "onOpen",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
         }
       },
       "openOnFocus": {
@@ -324,43 +441,17 @@
           "name": "string"
         }
       },
-      "disabled": {
+      "prefix": {
         "defaultValue": null,
-        "description": "Whether the input is disabled.",
-        "name": "disabled",
+        "description": "",
+        "name": "prefix",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
-        }
-      },
-      "error": {
-        "defaultValue": null,
-        "description": "Error message to display below the input\nWhen present, invalid appearance applied to the input",
-        "name": "error",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Whether the input is invalid. Receives invalid appearance.",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
+          "name": "Affix"
         }
       },
       "readOnly": {
@@ -378,30 +469,13 @@
           "name": "boolean"
         }
       },
-      "description": {
+      "ref": {
         "defaultValue": null,
-        "description": "Description to display below the input",
-        "name": "description",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
+        "description": "",
+        "name": "ref",
         "required": false,
         "type": {
-          "name": "string"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Name of the input for form submission",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
+          "name": "Ref<HTMLInputElement | HTMLTextAreaElement>"
         }
       },
       "size": {
@@ -427,133 +501,59 @@
         },
         "required": false,
         "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: undefined; ariaLabel?: undefined; readonly label?: string; readonly icon?: IconNames | undefined; } | undefined"
         }
       },
-      "prefix": {
+      "UNSAFE_className": {
         "defaultValue": null,
-        "description": "",
-        "name": "prefix",
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "Affix"
+          "name": "{ menu?: string; option?: string; section?: string | undefined; action?: string | undefined; input?: string | undefined; header?: string | undefined; footer?: string | undefined; } | undefined"
         }
       },
-      "onOpen": {
+      "UNSAFE_styles": {
         "defaultValue": null,
-        "description": "Callback invoked when the menu opens.",
-        "name": "onOpen",
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_styles",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "{ menu?: CSSProperties; option?: CSSProperties; section?: CSSProperties | undefined; action?: CSSProperties | undefined; input?: CSSProperties | undefined; header?: CSSProperties | undefined; footer?: CSSProperties | undefined; } | undefined"
         }
       },
-      "onClose": {
+      "value": {
         "defaultValue": null,
-        "description": "Callback invoked when the menu closes.",
-        "name": "onClose",
+        "description": "The currently selected value of the Autocomplete.\nSingle-select: undefined indicates no selection",
+        "name": "value",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "loading": {
-        "defaultValue": null,
-        "description": "Whether the menu is loading.\nDisplays glimmers in the menu",
-        "name": "loading",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "customRenderLoading": {
-        "defaultValue": null,
-        "description": "Custom render prop for content to render when `loading` is true.",
-        "name": "customRenderLoading",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "isOptionEqualToValue": {
-        "defaultValue": null,
-        "description": "Custom equality for option to value mapping.",
-        "name": "isOptionEqualToValue",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(option: Value, value: Value) => boolean"
-        }
-      },
-      "allowFreeForm": {
-        "defaultValue": null,
-        "description": "Whether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options * in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and\nWhether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.\nWhether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.",
-        "name": "allowFreeForm",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "FreeFormOn"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "createFreeFormValue": {
-        "defaultValue": null,
-        "description": "Factory used to create a Value from free-form input when committing. Necessary with complex option values. The only value the input can produce is a string.\n@param input - The input value",
-        "name": "createFreeFormValue",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "FreeFormOn"
         },
         "required": true,
         "type": {
-          "name": "(input: string) => Value"
+          "name": "Value[] | OptionLike | undefined"
         }
       },
-      "onChange": {
+      "version": {
         "defaultValue": null,
-        "description": "Callback invoked when the selection value changes.\nThis is called when we consider a selection \"committed\"\n- The user presses enter\n- The user clicks outside the menu with a selection typed\n- The user clicks the clear button\nThe user clears a previous selection by deleting the input value\n- The user selects an option with click or enter\n- The user types a value that matches an option\n- The user types a value that does not match an option and allowFreeForm is true\nCallback invoked when the selection value changes.",
-        "name": "onChange",
+        "description": "",
+        "name": "version",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "FreeFormOn"
+          "name": "AutocompleteRebuiltBaseProps"
         },
         "required": true,
         "type": {
-          "name": "((value: AutocompleteValue<Value, Multiple>) => void) | ((value: AutocompleteValue<Value, Multiple>) => void)"
-        }
-      },
-      "ref": {
-        "defaultValue": null,
-        "description": "",
-        "name": "ref",
-        "required": false,
-        "type": {
-          "name": "Ref<HTMLInputElement | HTMLTextAreaElement>"
+          "name": "2"
         }
       }
     }

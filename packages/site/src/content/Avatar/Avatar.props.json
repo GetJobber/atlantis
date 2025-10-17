@@ -1,18 +1,18 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Avatar/Avatar.tsx",
+    "filePath": "packages/components/src/Avatar/Avatar.tsx",
     "description": "",
     "displayName": "Avatar",
     "methods": [],
     "props": {
-      "initials": {
+      "color": {
         "defaultValue": null,
-        "description": "The initials that will be displayed if no image is set.\\",
-        "name": "initials",
+        "description": "The background and border color that represents the user. This should be\nrepresented as a value that can be read by CSS",
+        "name": "color",
         "parent": {
-          "fileName": "../components/src/Avatar/Avatar.tsx",
-          "name": "AvatarWithInitialsProps"
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
+          "name": "AvatarFoundationProps"
         },
         "required": false,
         "type": {
@@ -24,8 +24,21 @@
         "description": "A url for the image that will be displayed",
         "name": "imageUrl",
         "parent": {
-          "fileName": "../components/src/Avatar/Avatar.tsx",
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
           "name": "AvatarFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "initials": {
+        "defaultValue": null,
+        "description": "The initials that will be displayed if no image is set.\\",
+        "name": "initials",
+        "parent": {
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
+          "name": "AvatarWithInitialsProps"
         },
         "required": false,
         "type": {
@@ -37,20 +50,7 @@
         "description": "A users name to be used for assistive technology",
         "name": "name",
         "parent": {
-          "fileName": "../components/src/Avatar/Avatar.tsx",
-          "name": "AvatarFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "color": {
-        "defaultValue": null,
-        "description": "The background and border color that represents the user. This should be\nrepresented as a value that can be read by CSS",
-        "name": "color",
-        "parent": {
-          "fileName": "../components/src/Avatar/Avatar.tsx",
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
           "name": "AvatarFoundationProps"
         },
         "required": false,
@@ -65,7 +65,7 @@
         "description": "Change the size of the avatar\n@property \"large\" - Make avatar to be the focal point\n@property \"small\" - For higher-density/compact places or components",
         "name": "size",
         "parent": {
-          "fileName": "../components/src/Avatar/Avatar.tsx",
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
           "name": "AvatarFoundationProps"
         },
         "required": false,
@@ -80,12 +80,12 @@
         "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
-          "fileName": "../components/src/Avatar/Avatar.tsx",
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
           "name": "AvatarFoundationProps"
         },
         "required": false,
         "type": {
-          "name": "{ container?: string; } & InitialsUnsafeClassNameProps"
+          "name": "({ container?: string; } & InitialsUnsafeClassNameProps)"
         }
       },
       "UNSAFE_style": {
@@ -95,12 +95,12 @@
         "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_style",
         "parent": {
-          "fileName": "../components/src/Avatar/Avatar.tsx",
+          "fileName": "packages/components/src/Avatar/Avatar.tsx",
           "name": "AvatarFoundationProps"
         },
         "required": false,
         "type": {
-          "name": "{ container?: CSSProperties; } & InitialsUnsafeStyleProps"
+          "name": "({ container?: CSSProperties; } & InitialsUnsafeStyleProps)"
         }
       }
     }

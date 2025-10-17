@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Glimmer/Glimmer.tsx",
+    "filePath": "packages/components-native/src/Glimmer/Glimmer.tsx",
     "description": "",
     "displayName": "Glimmer",
     "methods": [],
@@ -13,12 +13,12 @@
         "description": "Sets the size of the glimmer.",
         "name": "shape",
         "parent": {
-          "fileName": "../components-native/src/Glimmer/Glimmer.tsx",
+          "fileName": "packages/components-native/src/Glimmer/Glimmer.tsx",
           "name": "GlimmerProps"
         },
         "required": false,
         "type": {
-          "name": "\"rectangle\" | \"square\" | \"circle\""
+          "name": "\"circle\" | \"rectangle\" | \"square\""
         }
       },
       "size": {
@@ -28,12 +28,12 @@
         "description": "Sets the shape of the glimmer.\n\nIf you need a specific width, use the `width` prop.",
         "name": "size",
         "parent": {
-          "fileName": "../components-native/src/Glimmer/Glimmer.tsx",
+          "fileName": "packages/components-native/src/Glimmer/Glimmer.tsx",
           "name": "GlimmerProps"
         },
         "required": false,
         "type": {
-          "name": "\"small\" | \"base\" | \"large\" | \"larger\" | \"largest\""
+          "name": "\"small\" | \"large\" | \"base\" | \"larger\" | \"largest\""
         }
       },
       "timing": {
@@ -43,7 +43,7 @@
         "description": "Control how fast the shine moves from left to right. This is useful when\nthe glimmer is used on smaller spaces.",
         "name": "timing",
         "parent": {
-          "fileName": "../components-native/src/Glimmer/Glimmer.tsx",
+          "fileName": "packages/components-native/src/Glimmer/Glimmer.tsx",
           "name": "GlimmerProps"
         },
         "required": false,
@@ -56,7 +56,7 @@
         "description": "Adjust the width of the glimmer in px or % values.",
         "name": "width",
         "parent": {
-          "fileName": "../components-native/src/Glimmer/Glimmer.tsx",
+          "fileName": "packages/components-native/src/Glimmer/Glimmer.tsx",
           "name": "GlimmerProps"
         },
         "required": false,

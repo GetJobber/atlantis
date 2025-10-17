@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/InputGroup/InputGroup.tsx",
+    "filePath": "packages/components/src/InputGroup/InputGroup.tsx",
     "description": "",
     "displayName": "InputGroup",
     "methods": [],
@@ -13,7 +13,7 @@
         "description": "Determine the direction the fields are laid out in.",
         "name": "flowDirection",
         "parent": {
-          "fileName": "../components/src/InputGroup/InputGroup.tsx",
+          "fileName": "packages/components/src/InputGroup/InputGroup.tsx",
           "name": "InputGroupProps"
         },
         "required": false,

@@ -1,24 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/StatusLabel/StatusLabel.tsx",
+    "filePath": "packages/components/src/StatusLabel/StatusLabel.tsx",
     "description": "",
     "displayName": "StatusLabel",
     "methods": [],
     "props": {
-      "label": {
-        "defaultValue": null,
-        "description": "Text to display",
-        "name": "label",
-        "parent": {
-          "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
-          "name": "StatusLabelProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
       "alignment": {
         "defaultValue": {
           "value": "start"
@@ -26,12 +13,25 @@
         "description": "Alignment of label",
         "name": "alignment",
         "parent": {
-          "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
+          "fileName": "packages/components/src/StatusLabel/StatusLabel.tsx",
           "name": "StatusLabelProps"
         },
         "required": false,
         "type": {
-          "name": "\"start\" | \"end\""
+          "name": "\"end\" | \"start\""
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "Text to display",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/StatusLabel/StatusLabel.tsx",
+          "name": "StatusLabelProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
         }
       },
       "status": {
@@ -41,7 +41,7 @@
         "description": "Status color of the indicator beside text",
         "name": "status",
         "parent": {
-          "fileName": "../components/src/StatusLabel/StatusLabel.tsx",
+          "fileName": "packages/components/src/StatusLabel/StatusLabel.tsx",
           "name": "StatusLabelProps"
         },
         "required": false,

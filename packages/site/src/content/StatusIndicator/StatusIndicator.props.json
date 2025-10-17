@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/StatusIndicator/StatusIndicator.tsx",
+    "filePath": "packages/components/src/StatusIndicator/StatusIndicator.tsx",
     "description": "",
     "displayName": "StatusIndicator",
     "methods": [],
@@ -11,7 +11,7 @@
         "description": "",
         "name": "status",
         "parent": {
-          "fileName": "../components/src/StatusIndicator/StatusIndicator.tsx",
+          "fileName": "packages/components/src/StatusIndicator/StatusIndicator.tsx",
           "name": "StatusIndicatorProps"
         },
         "required": true,

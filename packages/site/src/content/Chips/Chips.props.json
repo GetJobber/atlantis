@@ -1,22 +1,143 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Chips/Chips.tsx",
+    "filePath": "packages/components/src/Chips/Chips.tsx",
     "description": "",
     "displayName": "Chips",
     "methods": [],
     "props": {
-      "type": {
+      "activator": {
         "defaultValue": null,
-        "description": "Change the interaction on the chip.",
-        "name": "type",
+        "description": "Use a custom activator to trigger the Chip option selector",
+        "name": "activator",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipDismissibleProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+        }
+      },
+      "autoSelectOnClickOutside": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "If true, automatically selects an option based on the current search value when the input loses focus.\nThe automatic selection order is: an exact match of the search value if available, a custom option if\nonCustomOptionSelect is provided, or the closest match.",
+        "name": "autoSelectOnClickOutside",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipDismissibleProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "isLoadingMore": {
+        "defaultValue": null,
+        "description": "Adds a loading indicator",
+        "name": "isLoadingMore",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipDismissibleProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The Chip's radio input name.\n@link https://www.w3schools.com/tags/att_input_name.asp",
+        "name": "name",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
           "name": "ChipSingleSelectProps"
         },
         "required": false,
         "type": {
-          "name": "\"singleselect\" | \"multiselect\" | \"dismissible\""
+          "name": "string"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Callback whenever a chip is clicked. This returns a new value of\nselected chips.",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipSingleSelectProps"
+        },
+        "required": true,
+        "type": {
+          "name": "((value?: string | undefined) => void) | ((value: string[]) => void) | ((value: string[]) => void)"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Callback when a specific chip is clicked\n@param event\n@param clickedChipValue - The value of the chip that was clicked",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipFoundationProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: MouseEvent<HTMLInputElement | HTMLButtonElement | HTMLDivElement, MouseEvent>, clickedChipValue?: string) => void)"
+        }
+      },
+      "onCustomAdd": {
+        "defaultValue": null,
+        "description": "Callback when the user selects the custom option instead of the available\nchips.\n\nIf not implemented, it won't allow custom add.\n@param value",
+        "name": "onCustomAdd",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipDismissibleProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((value: string) => void)"
+        }
+      },
+      "onLoadMore": {
+        "defaultValue": null,
+        "description": "Callback when the user scrolls at the end of the chip option list. Use this\nto load more options from the database.\n@param searchValue - The input value",
+        "name": "onLoadMore",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipDismissibleProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((searchValue: string) => void)"
+        }
+      },
+      "onlyShowMenuOnSearch": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Control whether the menu only appears once the user types.",
+        "name": "onlyShowMenuOnSearch",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipDismissibleProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onSearch": {
+        "defaultValue": null,
+        "description": "Callback when a user types a word that filters the options. Use this when\nyou need to query new options from the database based on the search value.\n@param searchValue - The input value",
+        "name": "onSearch",
+        "parent": {
+          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
+          "name": "ChipDismissibleProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((searchValue: string) => void)"
         }
       },
       "selected": {
@@ -45,138 +166,17 @@
           "name": "boolean"
         }
       },
-      "onChange": {
+      "type": {
         "defaultValue": null,
-        "description": "Callback whenever a chip is clicked. This returns a new value of\nselected chips.",
-        "name": "onChange",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipSingleSelectProps"
-        },
-        "required": true,
-        "type": {
-          "name": "((value?: string) => void) | ((value: string[]) => void) | ((value: string[]) => void)"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "The Chip's radio input name.\n@link https://www.w3schools.com/tags/att_input_name.asp",
-        "name": "name",
+        "description": "Change the interaction on the chip.",
+        "name": "type",
         "parent": {
           "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
           "name": "ChipSingleSelectProps"
         },
         "required": false,
         "type": {
-          "name": "string"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "Callback when a specific chip is clicked\n@param event\n@param clickedChipValue - The value of the chip that was clicked",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipFoundationProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement, MouseEvent>, clickedChipValue?: string) => void"
-        }
-      },
-      "activator": {
-        "defaultValue": null,
-        "description": "Use a custom activator to trigger the Chip option selector",
-        "name": "activator",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipDismissibleProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
-        }
-      },
-      "isLoadingMore": {
-        "defaultValue": null,
-        "description": "Adds a loading indicator",
-        "name": "isLoadingMore",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipDismissibleProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onCustomAdd": {
-        "defaultValue": null,
-        "description": "Callback when the user selects the custom option instead of the available\nchips.\n\nIf not implemented, it won't allow custom add.\n@param value",
-        "name": "onCustomAdd",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipDismissibleProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(value: string) => void"
-        }
-      },
-      "onSearch": {
-        "defaultValue": null,
-        "description": "Callback when a user types a word that filters the options. Use this when\nyou need to query new options from the database based on the search value.\n@param searchValue - The input value",
-        "name": "onSearch",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipDismissibleProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(searchValue: string) => void"
-        }
-      },
-      "onLoadMore": {
-        "defaultValue": null,
-        "description": "Callback when the user scrolls at the end of the chip option list. Use this\nto load more options from the database.\n@param searchValue - The input value",
-        "name": "onLoadMore",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipDismissibleProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(searchValue: string) => void"
-        }
-      },
-      "onlyShowMenuOnSearch": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Control whether the menu only appears once the user types.",
-        "name": "onlyShowMenuOnSearch",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipDismissibleProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "autoSelectOnClickOutside": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "If true, automatically selects an option based on the current search value when the input loses focus.\nThe automatic selection order is: an exact match of the search value if available, a custom option if\nonCustomOptionSelect is provided, or the closest match.",
-        "name": "autoSelectOnClickOutside",
-        "parent": {
-          "fileName": "packages/components/src/Chips/ChipsTypes.tsx",
-          "name": "ChipDismissibleProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
+          "name": "\"singleselect\" | \"multiselect\" | \"dismissible\""
         }
       }
     }

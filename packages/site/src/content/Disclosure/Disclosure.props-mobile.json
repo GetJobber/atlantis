@@ -1,63 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Disclosure/Disclosure.tsx",
+    "filePath": "packages/components-native/src/Disclosure/Disclosure.tsx",
     "description": "",
     "displayName": "Disclosure",
     "methods": [],
     "props": {
-      "content": {
-        "defaultValue": null,
-        "description": "Specifies the main content of the disclosure component.\nIt can be any React Node - simple text, JSX, or a complex React component.",
-        "name": "content",
-        "parent": {
-          "fileName": "../components-native/src/Disclosure/Disclosure.tsx",
-          "name": "DisclosureProps"
-        },
-        "required": true,
-        "type": {
-          "name": "React.ReactNode"
-        }
-      },
-      "header": {
-        "defaultValue": null,
-        "description": "Defines the header of the disclosure component.\nSimilar to `content`, it can be any React Node.",
-        "name": "header",
-        "parent": {
-          "fileName": "../components-native/src/Disclosure/Disclosure.tsx",
-          "name": "DisclosureProps"
-        },
-        "required": true,
-        "type": {
-          "name": "React.ReactNode"
-        }
-      },
-      "open": {
-        "defaultValue": null,
-        "description": "A boolean that determines whether the disclosure component is in an open or closed state.\nIf `open` is true, the disclosure is in an open state; if false, it's closed.",
-        "name": "open",
-        "parent": {
-          "fileName": "../components-native/src/Disclosure/Disclosure.tsx",
-          "name": "DisclosureProps"
-        },
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isEmpty": {
-        "defaultValue": null,
-        "description": "A boolean that indicates whether the disclosure component is empty or not.\nIf `isEmpty` is `true`, there is no content in the disclosure; if false, there is some content.",
-        "name": "isEmpty",
-        "parent": {
-          "fileName": "../components-native/src/Disclosure/Disclosure.tsx",
-          "name": "DisclosureProps"
-        },
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "animationDuration": {
         "defaultValue": {
           "value": "staticTokens[\"timing-slowest\"]"
@@ -65,7 +13,7 @@
         "description": "An optional property that determines the duration of the opening and closing animation of the disclosure component.\nIt's defined in milliseconds.",
         "name": "animationDuration",
         "parent": {
-          "fileName": "../components-native/src/Disclosure/Disclosure.tsx",
+          "fileName": "packages/components-native/src/Disclosure/Disclosure.tsx",
           "name": "DisclosureProps"
         },
         "required": false,
@@ -73,17 +21,69 @@
           "name": "number"
         }
       },
+      "content": {
+        "defaultValue": null,
+        "description": "Specifies the main content of the disclosure component.\nIt can be any React Node - simple text, JSX, or a complex React component.",
+        "name": "content",
+        "parent": {
+          "fileName": "packages/components-native/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "header": {
+        "defaultValue": null,
+        "description": "Defines the header of the disclosure component.\nSimilar to `content`, it can be any React Node.",
+        "name": "header",
+        "parent": {
+          "fileName": "packages/components-native/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "isEmpty": {
+        "defaultValue": null,
+        "description": "A boolean that indicates whether the disclosure component is empty or not.\nIf `isEmpty` is `true`, there is no content in the disclosure; if false, there is some content.",
+        "name": "isEmpty",
+        "parent": {
+          "fileName": "packages/components-native/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "onToggle": {
         "defaultValue": null,
         "description": "A function that is called whenever the disclosure component is toggled between its open and closed states.",
         "name": "onToggle",
         "parent": {
-          "fileName": "../components-native/src/Disclosure/Disclosure.tsx",
+          "fileName": "packages/components-native/src/Disclosure/Disclosure.tsx",
           "name": "DisclosureProps"
         },
         "required": true,
         "type": {
           "name": "() => void"
+        }
+      },
+      "open": {
+        "defaultValue": null,
+        "description": "A boolean that determines whether the disclosure component is in an open or closed state.\nIf `open` is true, the disclosure is in an open state; if false, it's closed.",
+        "name": "open",
+        "parent": {
+          "fileName": "packages/components-native/src/Disclosure/Disclosure.tsx",
+          "name": "DisclosureProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
         }
       }
     }

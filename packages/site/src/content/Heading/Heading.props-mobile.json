@@ -1,60 +1,32 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Heading/Heading.tsx",
+    "filePath": "packages/components-native/src/Heading/Heading.tsx",
     "description": "",
     "displayName": "Heading",
     "methods": [],
     "props": {
-      "children": {
+      "align": {
         "defaultValue": null,
-        "description": "Text to display. Supports nesting text elements.",
-        "name": "children",
+        "description": "Alignment of heading",
+        "name": "align",
         "parent": {
-          "fileName": "../components-native/src/Heading/Heading.tsx",
-          "name": "HeadingProps"
-        },
-        "required": true,
-        "type": {
-          "name": "React.ReactNode"
-        }
-      },
-      "level": {
-        "defaultValue": null,
-        "description": "The type of heading, e.g., \"Title\"",
-        "name": "level",
-        "parent": {
-          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "fileName": "packages/components-native/src/Heading/Heading.tsx",
           "name": "HeadingProps"
         },
         "required": false,
         "type": {
-          "name": "HeadingLevel"
+          "name": "TextAlign"
         }
       },
-      "variation": {
+      "allowFontScaling": {
         "defaultValue": {
-          "value": "heading"
+          "value": "true"
         },
-        "description": "The text color of heading",
-        "name": "variation",
+        "description": "Allow text to be resized based on user's device display scale",
+        "name": "allowFontScaling",
         "parent": {
-          "fileName": "../components-native/src/Heading/Heading.tsx",
-          "name": "HeadingProps"
-        },
-        "required": false,
-        "type": {
-          "name": "HeadingColor"
-        }
-      },
-      "reverseTheme": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "Uses the reverse variant of the text color for the heading",
-        "name": "reverseTheme",
-        "parent": {
-          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "fileName": "packages/components-native/src/Heading/Heading.tsx",
           "name": "HeadingProps"
         },
         "required": false,
@@ -62,17 +34,30 @@
           "name": "boolean"
         }
       },
-      "align": {
+      "children": {
         "defaultValue": null,
-        "description": "Alignment of heading",
-        "name": "align",
+        "description": "Text to display. Supports nesting text elements.",
+        "name": "children",
         "parent": {
-          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "fileName": "packages/components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "level": {
+        "defaultValue": null,
+        "description": "The type of heading, e.g., \"Title\"",
+        "name": "level",
+        "parent": {
+          "fileName": "packages/components-native/src/Heading/Heading.tsx",
           "name": "HeadingProps"
         },
         "required": false,
         "type": {
-          "name": "TextAlign"
+          "name": "HeadingLevel"
         }
       },
       "maxLines": {
@@ -82,7 +67,7 @@
         "description": "The maximum amount of lines the text can occupy before being truncated with \"...\".\nUses predefined string values that correspond to a doubling scale for the amount of lines.",
         "name": "maxLines",
         "parent": {
-          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "fileName": "packages/components-native/src/Heading/Heading.tsx",
           "name": "HeadingProps"
         },
         "required": false,
@@ -90,14 +75,14 @@
           "name": "TruncateLength"
         }
       },
-      "allowFontScaling": {
+      "reverseTheme": {
         "defaultValue": {
-          "value": true
+          "value": "false"
         },
-        "description": "Allow text to be resized based on user's device display scale",
-        "name": "allowFontScaling",
+        "description": "Uses the reverse variant of the text color for the heading",
+        "name": "reverseTheme",
         "parent": {
-          "fileName": "../components-native/src/Heading/Heading.tsx",
+          "fileName": "packages/components-native/src/Heading/Heading.tsx",
           "name": "HeadingProps"
         },
         "required": false,
@@ -118,6 +103,21 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "variation": {
+        "defaultValue": {
+          "value": "heading"
+        },
+        "description": "The text color of heading",
+        "name": "variation",
+        "parent": {
+          "fileName": "packages/components-native/src/Heading/Heading.tsx",
+          "name": "HeadingProps"
+        },
+        "required": false,
+        "type": {
+          "name": "HeadingColor"
         }
       }
     }

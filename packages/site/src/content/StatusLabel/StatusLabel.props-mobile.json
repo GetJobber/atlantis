@@ -1,24 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/StatusLabel/StatusLabel.tsx",
+    "filePath": "packages/components-native/src/StatusLabel/StatusLabel.tsx",
     "description": "",
     "displayName": "StatusLabel",
     "methods": [],
     "props": {
-      "text": {
-        "defaultValue": null,
-        "description": "Text to display.",
-        "name": "text",
-        "parent": {
-          "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
-          "name": "StatusLabelProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
       "alignment": {
         "defaultValue": {
           "value": "end"
@@ -26,12 +13,12 @@
         "description": "Alignment of text",
         "name": "alignment",
         "parent": {
-          "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
+          "fileName": "packages/components-native/src/StatusLabel/StatusLabel.tsx",
           "name": "StatusLabelProps"
         },
         "required": false,
         "type": {
-          "name": "\"start\" | \"end\""
+          "name": "\"end\" | \"start\""
         }
       },
       "status": {
@@ -41,12 +28,25 @@
         "description": "Status color of the square beside text",
         "name": "status",
         "parent": {
-          "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
+          "fileName": "packages/components-native/src/StatusLabel/StatusLabel.tsx",
           "name": "StatusLabelProps"
         },
         "required": false,
         "type": {
           "name": "StatusType"
+        }
+      },
+      "text": {
+        "defaultValue": null,
+        "description": "Text to display.",
+        "name": "text",
+        "parent": {
+          "fileName": "packages/components-native/src/StatusLabel/StatusLabel.tsx",
+          "name": "StatusLabelProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
         }
       }
     }

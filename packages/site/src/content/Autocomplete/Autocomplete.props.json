@@ -1,91 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Autocomplete/Autocomplete.tsx",
+    "filePath": "packages/components/src/Autocomplete/Autocomplete.tsx",
     "description": "",
     "displayName": "Autocomplete",
     "methods": [],
     "props": {
-      "version": {
-        "defaultValue": {
-          "value": "1"
-        },
-        "description": "Version of the component to use.",
-        "name": "version",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteLegacyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "1"
-        }
-      },
-      "inputRef": {
-        "defaultValue": null,
-        "description": "@deprecated Use `ref` instead.",
-        "name": "inputRef",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteLegacyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
-        }
-      },
-      "initialOptions": {
-        "defaultValue": null,
-        "description": "Initial options to display in the autocomplete.",
-        "name": "initialOptions",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteLegacyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "GenericOption[]"
-        }
-      },
-      "getOptions": {
-        "defaultValue": null,
-        "description": "Called as the user types in the input. The autocomplete will display what\nis returned from this method to the user as available options.\n@param newInputText",
-        "name": "getOptions",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteLegacyProps"
-        },
-        "required": true,
-        "type": {
-          "name": "(newInputText: string) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
-        }
-      },
-      "validations": {
-        "defaultValue": null,
-        "description": "Validations to run on the input.",
-        "name": "validations",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteLegacyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RegisterOptions"
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "Set Autocomplete value.",
-        "name": "value",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteBaseProps"
-        },
-        "required": true,
-        "type": {
-          "name": "Option"
-        }
-      },
       "allowFreeForm": {
         "defaultValue": {
           "value": "true"
@@ -99,6 +19,32 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
+        }
+      },
+      "customRenderMenu": {
+        "defaultValue": null,
+        "description": "Override the content rendered in the menu.",
+        "name": "customRenderMenu",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((props: CustomOptionsMenuProp<GenericOption | GenericGetOptionsValue, GenericOptionValue>) => ReactElement<...>)"
         }
       },
       "debounce": {
@@ -116,58 +62,6 @@
           "name": "number"
         }
       },
-      "onChange": {
-        "defaultValue": null,
-        "description": "Simplified onChange handler that only provides the new value.\n@param newValue",
-        "name": "onChange",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteBaseProps"
-        },
-        "required": true,
-        "type": {
-          "name": "(newValue?: GenericOptionValue) => void"
-        }
-      },
-      "placeholder": {
-        "defaultValue": null,
-        "description": "Hint text that goes above the value once the form is filled out.",
-        "name": "placeholder",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteBaseProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "customRenderMenu": {
-        "defaultValue": null,
-        "description": "Override the content rendered in the menu.",
-        "name": "customRenderMenu",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(props: CustomOptionsMenuProp<GenericOption | GenericGetOptionsValue, GenericOptionValue>) => ReactElement<...>"
-        }
-      },
-      "clearable": {
-        "defaultValue": null,
-        "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
-        "name": "clearable",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Clearable"
-        }
-      },
       "description": {
         "defaultValue": null,
         "description": "Further description of the input, can be used for a hint.",
@@ -179,6 +73,45 @@
         "required": false,
         "type": {
           "name": "ReactNode"
+        }
+      },
+      "getOptions": {
+        "defaultValue": null,
+        "description": "Called as the user types in the input. The autocomplete will display what\nis returned from this method to the user as available options.\n@param newInputText",
+        "name": "getOptions",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteLegacyProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(newInputText: string) => (GenericOption | GenericGetOptionsValue)[] | Promise<(GenericOption | GenericGetOptionsValue)[]>"
+        }
+      },
+      "initialOptions": {
+        "defaultValue": null,
+        "description": "Initial options to display in the autocomplete.",
+        "name": "initialOptions",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "GenericOption[]"
+        }
+      },
+      "inputRef": {
+        "defaultValue": null,
+        "description": "@deprecated Use `ref` instead.",
+        "name": "inputRef",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
         }
       },
       "invalid": {
@@ -217,7 +150,20 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "((event?: FocusEvent<Element, Element>) => void)"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Simplified onChange handler that only provides the new value.\n@param newValue",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteBaseProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(newValue?: GenericOptionValue | undefined) => void"
         }
       },
       "onFocus": {
@@ -230,7 +176,20 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "((event?: FocusEvent<Element, Element>) => void)"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Hint text that goes above the value once the form is filled out.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteBaseProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
         }
       },
       "prefix": {
@@ -244,6 +203,19 @@
         "required": false,
         "type": {
           "name": "Affix"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<InputTextRef>"
         }
       },
       "size": {
@@ -269,20 +241,48 @@
         },
         "required": false,
         "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: undefined; ariaLabel?: undefined; readonly label?: string; readonly icon?: IconNames | undefined; } | undefined"
         }
       },
-      "ref": {
+      "validations": {
         "defaultValue": null,
-        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
-        "name": "ref",
+        "description": "Validations to run on the input.",
+        "name": "validations",
         "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "RefAttributes"
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteLegacyProps"
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<InputTextRef>"
+          "name": "RegisterOptions"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Set Autocomplete value.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteBaseProps"
+        },
+        "required": true,
+        "type": {
+          "name": "Option | undefined"
+        }
+      },
+      "version": {
+        "defaultValue": {
+          "value": "1"
+        },
+        "description": "Version of the component to use.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
         }
       }
     }

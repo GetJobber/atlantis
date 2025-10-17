@@ -1,58 +1,43 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/SideKick/SideKick.tsx",
+    "filePath": "packages/components/src/SideKick/SideKick.tsx",
     "description": "",
     "displayName": "SideKick",
     "methods": [],
     "props": {
-      "sideWidth": {
+      "ariaAttributes": {
         "defaultValue": null,
-        "description": "The width of the sidekick.",
-        "name": "sideWidth",
+        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
+        "name": "ariaAttributes",
         "parent": {
-          "fileName": "packages/components/src/SideKick/types.ts",
-          "name": "SideKickProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "AriaAttributes"
         }
       },
-      "contentMinWidth": {
-        "defaultValue": {
-          "value": "50%"
-        },
-        "description": "The minimum width of the content.",
-        "name": "contentMinWidth",
-        "parent": {
-          "fileName": "packages/components/src/SideKick/types.ts",
-          "name": "SideKickProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "gap": {
-        "defaultValue": {
-          "value": "var(--space-base)"
-        },
-        "description": "The amount of space between the sidekick and the content. Semantic tokens are available.",
-        "name": "gap",
-        "parent": {
-          "fileName": "packages/components/src/SideKick/types.ts",
-          "name": "SideKickProps"
-        },
-        "required": false,
-        "type": {
-          "name": "GapSpacing"
-        }
-      },
-      "onRight": {
+      "as": {
         "defaultValue": null,
-        "description": "Whether to place the sidekick on the right.",
-        "name": "onRight",
+        "description": "The HTML tag to render the container as. Defaults to `div`.",
+        "name": "as",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CommonAllowedElements"
+        }
+      },
+      "autoWidth": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "Whether to allow the sidekick to take the width of the content. Defaults to 100%",
+        "name": "autoWidth",
         "parent": {
           "fileName": "packages/components/src/SideKick/types.ts",
           "name": "SideKickProps"
@@ -88,12 +73,66 @@
           "name": "boolean"
         }
       },
-      "autoWidth": {
+      "contentMinWidth": {
         "defaultValue": {
-          "value": false
+          "value": "50%"
         },
-        "description": "Whether to allow the sidekick to take the width of the content. Defaults to 100%",
-        "name": "autoWidth",
+        "description": "The minimum width of the content.",
+        "name": "contentMinWidth",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "dataAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "dataAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ [key: `data-${string}`]: string; }"
+        }
+      },
+      "gap": {
+        "defaultValue": {
+          "value": "var(--space-base)"
+        },
+        "description": "The amount of space between the sidekick and the content. Semantic tokens are available.",
+        "name": "gap",
+        "parent": {
+          "fileName": "packages/components/src/SideKick/types.ts",
+          "name": "SideKickProps"
+        },
+        "required": false,
+        "type": {
+          "name": "GapSpacing"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "Standard HTML id attribute.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onRight": {
+        "defaultValue": null,
+        "description": "Whether to place the sidekick on the right.",
+        "name": "onRight",
         "parent": {
           "fileName": "packages/components/src/SideKick/types.ts",
           "name": "SideKickProps"
@@ -103,17 +142,30 @@
           "name": "boolean"
         }
       },
-      "as": {
+      "role": {
         "defaultValue": null,
-        "description": "The HTML tag to render the container as. Defaults to `div`.",
-        "name": "as",
+        "description": "Standard HTML role attribute.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "CommonAtlantisProps"
+        },
+        "required": false,
+        "type": {
+          "name": "AriaRole"
+        }
+      },
+      "sideWidth": {
+        "defaultValue": null,
+        "description": "The width of the sidekick.",
+        "name": "sideWidth",
         "parent": {
           "fileName": "packages/components/src/SideKick/types.ts",
           "name": "SideKickProps"
         },
         "required": false,
         "type": {
-          "name": "CommonAllowedElements"
+          "name": "string"
         }
       },
       "UNSAFE_className": {
@@ -140,58 +192,6 @@
         "required": false,
         "type": {
           "name": "{ container?: CSSProperties; }"
-        }
-      },
-      "dataAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
-        "name": "dataAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ [key: `data-${string}`]: string; }"
-        }
-      },
-      "ariaAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML aria attributes. Accepts all standard HTML aria attributes.",
-        "name": "ariaAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaAttributes"
-        }
-      },
-      "role": {
-        "defaultValue": null,
-        "description": "Standard HTML role attribute.",
-        "name": "role",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "AriaRole"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "Standard HTML id attribute.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "CommonAtlantisProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       }
     }

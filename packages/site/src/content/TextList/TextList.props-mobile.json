@@ -1,22 +1,24 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/TextList/TextList.tsx",
+    "filePath": "packages/components-native/src/TextList/TextList.tsx",
     "description": "",
     "displayName": "TextList",
     "methods": [],
     "props": {
-      "items": {
-        "defaultValue": null,
-        "description": "Text to display.",
-        "name": "items",
+      "childSpacing": {
+        "defaultValue": {
+          "value": "none"
+        },
+        "description": "The amount of spacing that will be applied between the list items.",
+        "name": "childSpacing",
         "parent": {
-          "fileName": "../components-native/src/TextList/TextList.tsx",
+          "fileName": "packages/components-native/src/TextList/TextList.tsx",
           "name": "TextListProps"
         },
         "required": false,
         "type": {
-          "name": "string[]"
+          "name": "Spacing"
         }
       },
       "emphasis": {
@@ -24,12 +26,25 @@
         "description": "Change the appearance of the text",
         "name": "emphasis",
         "parent": {
-          "fileName": "../components-native/src/TextList/TextList.tsx",
+          "fileName": "packages/components-native/src/TextList/TextList.tsx",
           "name": "TextListProps"
         },
         "required": false,
         "type": {
           "name": "\"strong\""
+        }
+      },
+      "items": {
+        "defaultValue": null,
+        "description": "Text to display.",
+        "name": "items",
+        "parent": {
+          "fileName": "packages/components-native/src/TextList/TextList.tsx",
+          "name": "TextListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string[]"
         }
       },
       "level": {
@@ -39,7 +54,7 @@
         "description": "Visual hierarchy of the text.",
         "name": "level",
         "parent": {
-          "fileName": "../components-native/src/TextList/TextList.tsx",
+          "fileName": "packages/components-native/src/TextList/TextList.tsx",
           "name": "TextListProps"
         },
         "required": false,
@@ -54,22 +69,7 @@
         "description": "The amount of spacing that content will give.",
         "name": "spacing",
         "parent": {
-          "fileName": "../components-native/src/TextList/TextList.tsx",
-          "name": "TextListProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Spacing"
-        }
-      },
-      "childSpacing": {
-        "defaultValue": {
-          "value": "none"
-        },
-        "description": "The amount of spacing that will be applied between the list items.",
-        "name": "childSpacing",
-        "parent": {
-          "fileName": "../components-native/src/TextList/TextList.tsx",
+          "fileName": "packages/components-native/src/TextList/TextList.tsx",
           "name": "TextListProps"
         },
         "required": false,

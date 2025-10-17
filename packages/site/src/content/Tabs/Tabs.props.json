@@ -1,19 +1,17 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Tabs/Tabs.tsx",
+    "filePath": "packages/components/src/Tabs/Tabs.tsx",
     "description": "",
     "displayName": "InternalTab",
     "methods": [],
     "props": {
-      "defaultTab": {
-        "defaultValue": {
-          "value": 0
-        },
-        "description": "Specifies the index of the tab that should be active on mount",
-        "name": "defaultTab",
+      "activeTab": {
+        "defaultValue": null,
+        "description": "Specifies the index of the active tab.\nIf provided, the component will be controlled and the active tab will be determined by this prop.\nIf not provided, the component will manage its own state internally.",
+        "name": "activeTab",
         "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
+          "fileName": "packages/components/src/Tabs/Tabs.tsx",
           "name": "TabsProps"
         },
         "required": false,
@@ -21,12 +19,14 @@
           "name": "number"
         }
       },
-      "activeTab": {
-        "defaultValue": null,
-        "description": "Specifies the index of the active tab.\nIf provided, the component will be controlled and the active tab will be determined by this prop.\nIf not provided, the component will manage its own state internally.",
-        "name": "activeTab",
+      "defaultTab": {
+        "defaultValue": {
+          "value": "0"
+        },
+        "description": "Specifies the index of the tab that should be active on mount",
+        "name": "defaultTab",
         "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
+          "fileName": "packages/components/src/Tabs/Tabs.tsx",
           "name": "TabsProps"
         },
         "required": false,
@@ -39,12 +39,12 @@
         "description": "Callback that fires when the active tab changes\n@param newTabIndex",
         "name": "onTabChange",
         "parent": {
-          "fileName": "../components/src/Tabs/Tabs.tsx",
+          "fileName": "packages/components/src/Tabs/Tabs.tsx",
           "name": "TabsProps"
         },
         "required": false,
         "type": {
-          "name": "(newTabIndex: number) => void"
+          "name": "((newTabIndex: number) => void)"
         }
       }
     }

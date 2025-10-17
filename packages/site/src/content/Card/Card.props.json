@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Card/Card.tsx",
+    "filePath": "packages/components/src/Card/Card.tsx",
     "description": "",
     "displayName": "Card",
     "methods": [],
@@ -16,33 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
-        }
-      },
-      "title": {
-        "defaultValue": null,
-        "description": "@deprecated Use header instead.",
-        "name": "title",
-        "parent": {
-          "fileName": "packages/components/src/Card/types.ts",
-          "name": "CardProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "header": {
-        "defaultValue": null,
-        "description": "The header props of the card.",
-        "name": "header",
-        "parent": {
-          "fileName": "packages/components/src/Card/types.ts",
-          "name": "CardProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | HeaderActionProps | ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "\"indigo\" | \"teal\" | \"blue\" | \"green\" | \"lime\" | \"yellowGreen\" | \"yellow\" | \"red\" | \"grey\" | \"white\" | \"greyBlue\" | \"lightBlue\" | \"purple\" | \"pink\" | \"orange\" | \"brown\" | \"navy\" | ... 69 more ..."
         }
       },
       "elevation": {
@@ -58,6 +32,50 @@
           "name": "elevationProp"
         }
       },
+      "external": {
+        "defaultValue": null,
+        "description": "Makes the URL open in new tab on click.",
+        "name": "external",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "header": {
+        "defaultValue": null,
+        "description": "The header props of the card.",
+        "name": "header",
+        "parent": {
+          "fileName": "packages/components/src/Card/types.ts",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | ReactElement<any, string | JSXElementConstructor<any>> | HeaderActionProps"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Event handler that gets called when the card is clicked.",
+        "name": "onClick",
+        "required": false,
+        "type": {
+          "name": "((event: MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void)"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "@deprecated Use header instead.",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components/src/Card/types.ts",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "UNSAFE_className": {
         "defaultValue": null,
         "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
@@ -68,7 +86,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ container?: string; header?: string; }"
+          "name": "{ container?: string; header?: string; } | undefined"
         }
       },
       "UNSAFE_style": {
@@ -81,7 +99,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ container?: CSSProperties; header?: CSSProperties; }"
+          "name": "{ container?: CSSProperties; header?: CSSProperties; } | undefined"
         }
       },
       "url": {
@@ -92,24 +110,6 @@
         "type": {
           "name": "string"
         }
-      },
-      "external": {
-        "defaultValue": null,
-        "description": "Makes the URL open in new tab on click.",
-        "name": "external",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "Event handler that gets called when the card is clicked.",
-        "name": "onClick",
-        "required": false,
-        "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => void"
-        }
       }
     }
   },
@@ -117,9 +117,9 @@
     "tags": {
       "example": "```tsx\n<Card>\n  <Card.Header>\n    <Text>Header Content</Text>\n  </Card.Header>\n  <Card.Body>\n    <p>Card content</p>\n  </Card.Body>\n</Card>\n```"
     },
-    "filePath": "../components/src/Card/Card.tsx",
-    "description": "Header component for the Card.\nUsed in the compound component pattern to provide a consistent header layout.",
-    "displayName": "Card.Header",
+    "filePath": "packages/components/src/Card/Card.tsx",
+    "description": "Body component for the Card.\nUsed in the compound component pattern to provide a consistent content layout.",
+    "displayName": "Card.Body",
     "methods": [],
     "props": {}
   },
@@ -127,9 +127,9 @@
     "tags": {
       "example": "```tsx\n<Card>\n  <Card.Header>\n    <Text>Header Content</Text>\n  </Card.Header>\n  <Card.Body>\n    <p>Card content</p>\n  </Card.Body>\n</Card>\n```"
     },
-    "filePath": "../components/src/Card/Card.tsx",
-    "description": "Body component for the Card.\nUsed in the compound component pattern to provide a consistent content layout.",
-    "displayName": "Card.Body",
+    "filePath": "packages/components/src/Card/Card.tsx",
+    "description": "Header component for the Card.\nUsed in the compound component pattern to provide a consistent header layout.",
+    "displayName": "Card.Header",
     "methods": [],
     "props": {}
   }

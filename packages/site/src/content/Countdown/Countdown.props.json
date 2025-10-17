@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Countdown/Countdown.tsx",
+    "filePath": "packages/components/src/Countdown/Countdown.tsx",
     "description": "",
     "displayName": "Countdown",
     "methods": [],
@@ -11,25 +11,12 @@
         "description": "The date that is being counted down to.\nValue for date as a `string` should be in ISO 8601 format.",
         "name": "date",
         "parent": {
-          "fileName": "../components/src/Countdown/Countdown.tsx",
+          "fileName": "packages/components/src/Countdown/Countdown.tsx",
           "name": "CountdownProps"
         },
         "required": true,
         "type": {
           "name": "string | number | Date"
-        }
-      },
-      "showUnits": {
-        "defaultValue": null,
-        "description": "Whether or not to present the unit of time to the user, or just the raw numbers.",
-        "name": "showUnits",
-        "parent": {
-          "fileName": "../components/src/Countdown/Countdown.tsx",
-          "name": "CountdownProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "granularity": {
@@ -39,7 +26,7 @@
         "description": "Defines the time format presented\n(e.g., dhms will show days, hours, minutes, and seconds)",
         "name": "granularity",
         "parent": {
-          "fileName": "../components/src/Countdown/Countdown.tsx",
+          "fileName": "packages/components/src/Countdown/Countdown.tsx",
           "name": "CountdownProps"
         },
         "required": false,
@@ -52,12 +39,25 @@
         "description": "Callback when the countdown is done",
         "name": "onComplete",
         "parent": {
-          "fileName": "../components/src/Countdown/Countdown.tsx",
+          "fileName": "packages/components/src/Countdown/Countdown.tsx",
           "name": "CountdownProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(() => void)"
+        }
+      },
+      "showUnits": {
+        "defaultValue": null,
+        "description": "Whether or not to present the unit of time to the user, or just the raw numbers.",
+        "name": "showUnits",
+        "parent": {
+          "fileName": "packages/components/src/Countdown/Countdown.tsx",
+          "name": "CountdownProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

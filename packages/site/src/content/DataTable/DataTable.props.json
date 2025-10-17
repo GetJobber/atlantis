@@ -1,30 +1,17 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
     "description": "",
     "displayName": "DataTable",
     "methods": [],
     "props": {
-      "data": {
-        "defaultValue": null,
-        "description": "The actual data that will be used for the table.\nTypescript should infer T from typeof data.",
-        "name": "data",
-        "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
-          "name": "DataTableProps"
-        },
-        "required": true,
-        "type": {
-          "name": "T[]"
-        }
-      },
       "columns": {
         "defaultValue": null,
         "description": "Should follow the\n@tanstack /react-table [ColumnDef](https://tanstack.com/table/v8/docs/guide/column-defs).\n[createColumnHelper](https://tanstack.com/table/v8/docs/guide/column-defs#column-helpers) is also exposed to make it more convenient\nto create columns.",
         "name": "columns",
         "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
           "name": "DataTableProps"
         },
         "required": true,
@@ -32,30 +19,30 @@
           "name": "ColumnDef<T>[]"
         }
       },
-      "pagination": {
+      "data": {
         "defaultValue": null,
-        "description": "Enables pagination, mostly follows:\nhttps://tanstack.com/table/v8/docs/api/features/pagination",
-        "name": "pagination",
+        "description": "The actual data that will be used for the table.\nTypescript should infer T from typeof data.",
+        "name": "data",
         "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
           "name": "DataTableProps"
         },
-        "required": false,
+        "required": true,
         "type": {
-          "name": "PaginationType"
+          "name": "T[]"
         }
       },
-      "sorting": {
+      "emptyState": {
         "defaultValue": null,
-        "description": "Enables sorting, mostly follows:\nhttps://tanstack.com/table/v8/docs/api/features/sorting#table-options",
-        "name": "sorting",
+        "description": "The elements to display when the data table is empty",
+        "name": "emptyState",
         "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
           "name": "DataTableProps"
         },
         "required": false,
         "type": {
-          "name": "SortingType"
+          "name": "ReactNode | ReactNode[]"
         }
       },
       "height": {
@@ -63,7 +50,7 @@
         "description": "This will force the table to have the specified hight",
         "name": "height",
         "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
           "name": "DataTableProps"
         },
         "required": false,
@@ -71,25 +58,14 @@
           "name": "number"
         }
       },
-      "stickyHeader": {
-        "defaultValue": null,
-        "description": "When set to true makes the header sticky while scrolling vertically",
-        "name": "stickyHeader",
-        "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
-          "name": "DataTableProps"
+      "loading": {
+        "defaultValue": {
+          "value": "false"
         },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "pinFirstColumn": {
-        "defaultValue": null,
-        "description": "Pins the firstColumn when scrolling horizontally",
-        "name": "pinFirstColumn",
+        "description": "When true, shows the loading state of the DataTable",
+        "name": "loading",
         "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
           "name": "DataTableProps"
         },
         "required": false,
@@ -102,35 +78,59 @@
         "description": "Enables row click action. The provided callback will be executed when the row is clicked.",
         "name": "onRowClick",
         "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
           "name": "DataTableProps"
         },
         "required": false,
         "type": {
-          "name": "(row: Row<T>) => void"
+          "name": "((row: Row<T>) => void)"
         }
       },
-      "emptyState": {
+      "pagination": {
         "defaultValue": null,
-        "description": "The elements to display when the data table is empty",
-        "name": "emptyState",
+        "description": "Enables pagination, mostly follows:\nhttps://tanstack.com/table/v8/docs/api/features/pagination",
+        "name": "pagination",
         "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
           "name": "DataTableProps"
         },
         "required": false,
         "type": {
-          "name": "ReactNode | ReactNode[]"
+          "name": "PaginationType"
         }
       },
-      "loading": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "When true, shows the loading state of the DataTable",
-        "name": "loading",
+      "pinFirstColumn": {
+        "defaultValue": null,
+        "description": "Pins the firstColumn when scrolling horizontally",
+        "name": "pinFirstColumn",
         "parent": {
-          "fileName": "../components/src/DataTable/DataTable.tsx",
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
+          "name": "DataTableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "sorting": {
+        "defaultValue": null,
+        "description": "Enables sorting, mostly follows:\nhttps://tanstack.com/table/v8/docs/api/features/sorting#table-options",
+        "name": "sorting",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
+          "name": "DataTableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "SortingType"
+        }
+      },
+      "stickyHeader": {
+        "defaultValue": null,
+        "description": "When set to true makes the header sticky while scrolling vertically",
+        "name": "stickyHeader",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/DataTable.tsx",
           "name": "DataTableProps"
         },
         "required": false,
@@ -142,49 +142,7 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
-    "description": "",
-    "displayName": "DataTable.Table",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
-    "description": "",
-    "displayName": "DataTable.Header",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
-    "description": "",
-    "displayName": "DataTable.HeaderCell",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
-    "description": "",
-    "displayName": "DataTable.RowActions",
-    "methods": [],
-    "props": {
-      "className": {
-        "defaultValue": null,
-        "description": "",
-        "name": "className",
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
     "description": "",
     "displayName": "DataTable.Actions",
     "methods": [],
@@ -192,7 +150,7 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
     "description": "",
     "displayName": "DataTable.Body",
     "methods": [],
@@ -200,7 +158,7 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
     "description": "",
     "displayName": "DataTable.Container",
     "methods": [],
@@ -208,15 +166,7 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
-    "description": "",
-    "displayName": "DataTable.SortableHeader",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
     "description": "",
     "displayName": "DataTable.Footer",
     "methods": [],
@@ -238,7 +188,23 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Header",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.HeaderCell",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
     "description": "",
     "displayName": "DataTable.Pagination",
     "methods": [],
@@ -246,11 +212,24 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
     "description": "",
     "displayName": "DataTable.PaginationButton",
     "methods": [],
     "props": {
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Function that returns the aria-label for the button. Required for accessibility.\nShould return translated strings based on the direction parameter.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(direction: \"next\" | \"previous\") => string"
+        }
+      },
       "direction": {
         "defaultValue": null,
         "description": "The direction of the pagination button",
@@ -261,25 +240,12 @@
         },
         "required": true,
         "type": {
-          "name": "\"previous\" | \"next\""
-        }
-      },
-      "onClick": {
-        "defaultValue": null,
-        "description": "Callback function when the pagination button is clicked",
-        "name": "onClick",
-        "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
-          "name": "DataTablePaginationButtonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
+          "name": "\"next\" | \"previous\""
         }
       },
       "disabled": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Whether the pagination button is disabled",
         "name": "disabled",
@@ -292,19 +258,93 @@
           "name": "boolean"
         }
       },
-      "ariaLabel": {
+      "onClick": {
         "defaultValue": null,
-        "description": "Function that returns the aria-label for the button. Required for accessibility.\nShould return translated strings based on the direction parameter.",
-        "name": "ariaLabel",
+        "description": "Callback function when the pagination button is clicked",
+        "name": "onClick",
         "parent": {
           "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
           "name": "DataTablePaginationButtonProps"
         },
-        "required": true,
+        "required": false,
         "type": {
-          "name": "(direction: \"previous\" | \"next\") => string"
+          "name": "(() => void)"
         }
       }
     }
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.RowActions",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.SortableHeader",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "The header content to display (text, icons, etc.)",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "direction": {
+        "defaultValue": null,
+        "description": "The current sort direction for this column. When undefined, the header renders as non-interactive.",
+        "name": "direction",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "SortDirection"
+        }
+      },
+      "onSort": {
+        "defaultValue": null,
+        "description": "Callback function triggered when the sortable header is clicked.\nWhen undefined, the header renders as non-interactive.",
+        "name": "onSort",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Table",
+    "methods": [],
+    "props": {}
   }
 ]

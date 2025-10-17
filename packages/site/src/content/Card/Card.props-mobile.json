@@ -1,22 +1,37 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Card/Card.tsx",
+    "filePath": "packages/components-native/src/Card/Card.tsx",
     "description": "",
     "displayName": "Card",
     "methods": [],
     "props": {
-      "header": {
-        "defaultValue": null,
-        "description": "@deprecated Use <ActionItem /> with the title and onPress properties instead",
-        "name": "header",
+      "elevation": {
+        "defaultValue": {
+          "value": "none"
+        },
+        "description": "",
+        "name": "elevation",
         "parent": {
-          "fileName": "../components-native/src/Card/Card.tsx",
+          "fileName": "packages/components-native/src/Card/Card.tsx",
           "name": "CardProps"
         },
         "required": false,
         "type": {
-          "name": "HeaderProps"
+          "name": "elevationProp"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components-native/src/Card/Card.tsx",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "footer": {
@@ -24,7 +39,7 @@
         "description": "",
         "name": "footer",
         "parent": {
-          "fileName": "../components-native/src/Card/Card.tsx",
+          "fileName": "packages/components-native/src/Card/Card.tsx",
           "name": "CardProps"
         },
         "required": false,
@@ -32,17 +47,30 @@
           "name": "FooterProps"
         }
       },
+      "header": {
+        "defaultValue": null,
+        "description": "@deprecated Use <ActionItem /> with the title and onPress properties instead",
+        "name": "header",
+        "parent": {
+          "fileName": "packages/components-native/src/Card/Card.tsx",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "HeaderProps"
+        }
+      },
       "reportCardHeight": {
         "defaultValue": null,
         "description": "",
         "name": "reportCardHeight",
         "parent": {
-          "fileName": "../components-native/src/Card/Card.tsx",
+          "fileName": "packages/components-native/src/Card/Card.tsx",
           "name": "CardProps"
         },
         "required": false,
         "type": {
-          "name": "(height: number) => void"
+          "name": "((height: number) => void)"
         }
       },
       "testID": {
@@ -52,40 +80,12 @@
         "description": "",
         "name": "testID",
         "parent": {
-          "fileName": "../components-native/src/Card/Card.tsx",
+          "fileName": "packages/components-native/src/Card/Card.tsx",
           "name": "CardProps"
         },
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "error": {
-        "defaultValue": null,
-        "description": "",
-        "name": "error",
-        "parent": {
-          "fileName": "../components-native/src/Card/Card.tsx",
-          "name": "CardProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "elevation": {
-        "defaultValue": {
-          "value": "none"
-        },
-        "description": "",
-        "name": "elevation",
-        "parent": {
-          "fileName": "../components-native/src/Card/Card.tsx",
-          "name": "CardProps"
-        },
-        "required": false,
-        "type": {
-          "name": "elevationProp"
         }
       }
     }

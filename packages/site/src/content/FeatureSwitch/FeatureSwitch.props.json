@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
+    "filePath": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
     "description": "",
     "displayName": "FeatureSwitch",
     "methods": [],
@@ -11,7 +11,7 @@
         "description": "Feature description. This supports basic markdown node types such as\n`_italic_`, `**bold**`, and `[link name](url)`",
         "name": "description",
         "parent": {
-          "fileName": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
+          "fileName": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
           "name": "FeatureSwitchProps"
         },
         "required": false,
@@ -21,12 +21,12 @@
       },
       "disabled": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Determines if the switch is disabled",
         "name": "disabled",
         "parent": {
-          "fileName": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
+          "fileName": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
           "name": "FeatureSwitchProps"
         },
         "required": false,
@@ -41,7 +41,7 @@
         "description": "Defines if the feature should be ON or OFF by default.",
         "name": "enabled",
         "parent": {
-          "fileName": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
+          "fileName": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
           "name": "FeatureSwitchProps"
         },
         "required": false,
@@ -51,58 +51,32 @@
       },
       "externalLink": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Defines if the links in the description should open in a new tab.",
         "name": "externalLink",
         "parent": {
-          "fileName": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
+          "fileName": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
           "name": "FeatureSwitchProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "title": {
-        "defaultValue": null,
-        "description": "Feature title.",
-        "name": "title",
-        "parent": {
-          "fileName": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
-          "name": "FeatureSwitchProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       },
       "hasSaveIndicator": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "Determines if a save indicator should show up when the `enabled` prop\nchanges. This means, it would only work for controlled components.",
         "name": "hasSaveIndicator",
         "parent": {
-          "fileName": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
+          "fileName": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
           "name": "FeatureSwitchProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "onSwitch": {
-        "defaultValue": null,
-        "description": "Callback when interacting with the switch.\n@param newValue",
-        "name": "onSwitch",
-        "parent": {
-          "fileName": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
-          "name": "FeatureSwitchProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(newValue: boolean) => void"
         }
       },
       "onEdit": {
@@ -110,12 +84,38 @@
         "description": "Callback when clicking with the edit button. This also determines if the\nedit button should show up in the UI.",
         "name": "onEdit",
         "parent": {
-          "fileName": "../components/src/FeatureSwitch/FeatureSwitch.tsx",
+          "fileName": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
           "name": "FeatureSwitchProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(() => void)"
+        }
+      },
+      "onSwitch": {
+        "defaultValue": null,
+        "description": "Callback when interacting with the switch.\n@param newValue",
+        "name": "onSwitch",
+        "parent": {
+          "fileName": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
+          "name": "FeatureSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((newValue: boolean) => void)"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Feature title.",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components/src/FeatureSwitch/FeatureSwitch.tsx",
+          "name": "FeatureSwitchProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }

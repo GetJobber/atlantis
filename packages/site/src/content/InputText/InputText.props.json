@@ -1,50 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/InputText/InputText.tsx",
+    "filePath": "packages/components/src/InputText/InputText.tsx",
     "description": "",
     "displayName": "InputText",
     "methods": [],
     "props": {
-      "multiline": {
-        "defaultValue": null,
-        "description": "Use this when you're expecting a long answer.",
-        "name": "multiline",
-        "parent": {
-          "fileName": "packages/components/src/InputText/InputText.types.ts",
-          "name": "MultilineProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "rows": {
-        "defaultValue": null,
-        "description": "Specifies the visible height of a long answer form field. Can be in the\nform of a single number to set a static height, or an object with a min\nand max keys indicating the minimum number of visible rows, and the\nmaximum number of visible rows.",
-        "name": "rows",
-        "parent": {
-          "fileName": "packages/components/src/InputText/InputText.types.ts",
-          "name": "MultilineProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number | RowRange"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "A unique identifier for the input.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "align": {
         "defaultValue": null,
         "description": "Determines the alignment of the text inside the input.",
@@ -56,6 +17,58 @@
         "required": false,
         "type": {
           "name": "\"center\" | \"right\""
+        }
+      },
+      "autocomplete": {
+        "defaultValue": null,
+        "description": "Determines if browser form autocomplete is enabled.\nNote that \"one-time-code\" is experimental and should not be used without\nconsultation. \"address-line1\" and \"address-line2\" are\nused for billing address information.",
+        "name": "autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean | AutocompleteTypes"
+        }
+      },
+      "autofocus": {
+        "defaultValue": null,
+        "description": "Determines if the input should be auto-focused, using the HTML attribute",
+        "name": "autofocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "Initial value of the input. Only use this when you need to pre-populate\nthe field with a data that is not controlled by the components state. If a\nstate is controlling the value, use the `value` prop instead.",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | Date"
         }
       },
       "description": {
@@ -84,32 +97,17 @@
           "name": "boolean"
         }
       },
-      "showMiniLabel": {
-        "defaultValue": {
-          "value": "true"
-        },
-        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
-        "name": "showMiniLabel",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "invalid": {
+      "id": {
         "defaultValue": null,
-        "description": "Highlights the field red to indicate an error.",
-        "name": "invalid",
+        "description": "A unique identifier for the input.",
+        "name": "id",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "string"
         }
       },
       "inline": {
@@ -125,10 +123,23 @@
           "name": "boolean"
         }
       },
-      "loading": {
+      "inputRef": {
         "defaultValue": null,
-        "description": "Show a spinner to indicate loading",
-        "name": "loading",
+        "description": "",
+        "name": "inputRef",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
@@ -138,117 +149,26 @@
           "name": "boolean"
         }
       },
-      "name": {
+      "keyboard": {
         "defaultValue": null,
-        "description": "Name of the input.",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onChange": {
-        "defaultValue": null,
-        "description": "onChange handler that provides the new value (or event)\n@param newValue\n@param event",
-        "name": "onChange",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(newValue: string | number | boolean | Date, event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void"
-        }
-      },
-      "onValidation": {
-        "defaultValue": null,
-        "description": "Callback to get the the status and message when validating a field\n@param message",
-        "name": "onValidation",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(message: string) => void"
-        }
-      },
-      "placeholder": {
-        "defaultValue": null,
-        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
-        "name": "placeholder",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "size": {
-        "defaultValue": null,
-        "description": "Adjusts the interface to either have small or large spacing.",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"small\" | \"large\""
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "Set the component to the given value.",
-        "name": "value",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number | Date"
-        }
-      },
-      "clearable": {
-        "defaultValue": null,
-        "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
-        "name": "clearable",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Clearable"
-        }
-      },
-      "version": {
-        "defaultValue": null,
-        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality.",
-        "name": "version",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "1"
-        }
-      },
-      "autofocus": {
-        "defaultValue": null,
-        "description": "Determines if the input should be auto-focused, using the HTML attribute",
-        "name": "autofocus",
+        "description": "Determines what kind of keyboard appears on mobile web.",
+        "name": "keyboard",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"numeric\" | \"decimal\""
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "Show a spinner to indicate loading",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
         },
         "required": false,
         "type": {
@@ -268,69 +188,30 @@
           "name": "number"
         }
       },
-      "readonly": {
+      "multiline": {
         "defaultValue": null,
-        "description": "Prevents users from editing the value.",
-        "name": "readonly",
+        "description": "Use this when you're expecting a long answer.",
+        "name": "multiline",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "MultilineProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
         }
       },
-      "autocomplete": {
+      "name": {
         "defaultValue": null,
-        "description": "Determines if browser form autocomplete is enabled.\nNote that \"one-time-code\" is experimental and should not be used without\nconsultation. \"address-line1\" and \"address-line2\" are\nused for billing address information.",
-        "name": "autocomplete",
+        "description": "Name of the input.",
+        "name": "name",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "name": "CommonFormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "boolean | AutocompleteTypes"
-        }
-      },
-      "keyboard": {
-        "defaultValue": null,
-        "description": "Determines what kind of keyboard appears on mobile web.",
-        "name": "keyboard",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"numeric\" | \"decimal\""
-        }
-      },
-      "onEnter": {
-        "defaultValue": null,
-        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
-        "name": "onEnter",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.KeyboardEvent) => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Focus callback.",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "string"
         }
       },
       "onBlur": {
@@ -343,46 +224,72 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "((event?: FocusEvent<Element, Element>) => void)"
         }
       },
-      "inputRef": {
+      "onChange": {
         "defaultValue": null,
-        "description": "",
-        "name": "inputRef",
+        "description": "onChange handler that provides the new value (or event)\n@param newValue\n@param event",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((newValue: string | number | boolean | Date, event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void)"
+        }
+      },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
+        "name": "onEnter",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "FormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
+          "name": "((event: KeyboardEvent<Element>) => void)"
         }
       },
-      "validations": {
+      "onFocus": {
         "defaultValue": null,
-        "description": "Show an error message above the field. This also\nhighlights the the field red if an error message shows up.",
-        "name": "validations",
+        "description": "Focus callback.",
+        "name": "onFocus",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "FormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "RegisterOptions"
+          "name": "((event?: FocusEvent<Element, Element>) => void)"
         }
       },
-      "defaultValue": {
+      "onValidation": {
         "defaultValue": null,
-        "description": "Initial value of the input. Only use this when you need to pre-populate\nthe field with a data that is not controlled by the components state. If a\nstate is controlling the value, use the `value` prop instead.",
-        "name": "defaultValue",
+        "description": "Callback to get the the status and message when validating a field\n@param message",
+        "name": "onValidation",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "name": "CommonFormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "string | Date"
+          "name": "((message: string) => void)"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "prefix": {
@@ -398,6 +305,73 @@
           "name": "Affix"
         }
       },
+      "readonly": {
+        "defaultValue": null,
+        "description": "Prevents users from editing the value.",
+        "name": "readonly",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<InputTextRef>"
+        }
+      },
+      "rows": {
+        "defaultValue": null,
+        "description": "Specifies the visible height of a long answer form field. Can be in the\nform of a single number to set a static height, or an object with a min\nand max keys indicating the minimum number of visible rows, and the\nmaximum number of visible rows.",
+        "name": "rows",
+        "parent": {
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
+          "name": "MultilineProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number | RowRange"
+        }
+      },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Adjusts the interface to either have small or large spacing.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
       "suffix": {
         "defaultValue": null,
         "description": "Adds a suffix label and icon with an optional action to the field",
@@ -408,7 +382,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: undefined; ariaLabel?: undefined; readonly label?: string; readonly icon?: IconNames | undefined; } | undefined"
         }
       },
       "toolbar": {
@@ -421,7 +395,7 @@
         },
         "required": false,
         "type": {
-          "name": "any"
+          "name": "ReactNode"
         }
       },
       "toolbarVisibility": {
@@ -437,17 +411,43 @@
           "name": "\"while-editing\" | \"always\""
         }
       },
-      "ref": {
+      "validations": {
         "defaultValue": null,
-        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
-        "name": "ref",
+        "description": "Show an error message above the field. This also\nhighlights the the field red if an error message shows up.",
+        "name": "validations",
         "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "RefAttributes"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<InputTextRef>"
+          "name": "RegisterOptions"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Set the component to the given value.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number | Date"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
         }
       }
     }

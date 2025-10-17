@@ -1,63 +1,22 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Chip/Chip.tsx",
+    "filePath": "packages/components-native/src/Chip/Chip.tsx",
     "description": "",
     "displayName": "Chip",
     "methods": [],
     "props": {
-      "label": {
+      "accent": {
         "defaultValue": null,
-        "description": "label of the chip.",
-        "name": "label",
+        "description": "Background color to be used for Active chips",
+        "name": "accent",
         "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
           "name": "ChipProps"
         },
         "required": false,
         "type": {
-          "name": "string"
-        }
-      },
-      "isActive": {
-        "defaultValue": null,
-        "description": "chip's active status",
-        "name": "isActive",
-        "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
-          "name": "ChipProps"
-        },
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "isDismissible": {
-        "defaultValue": null,
-        "description": "Boolean for chip's ability to be dismissed",
-        "name": "isDismissible",
-        "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
-          "name": "ChipProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "inactiveBackgroundColor": {
-        "defaultValue": {
-          "value": "background"
-        },
-        "description": "Background color to be used for inactive chips",
-        "name": "inactiveBackgroundColor",
-        "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
-          "name": "ChipProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"surface\" | \"background\""
+          "name": "AccentType"
         }
       },
       "accessibilityLabel": {
@@ -65,7 +24,7 @@
         "description": "Accessibility label for the component. It's also used for testing",
         "name": "accessibilityLabel",
         "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
           "name": "ChipProps"
         },
         "required": false,
@@ -80,7 +39,7 @@
         "description": "Accessibility role for the component",
         "name": "accessibilityRole",
         "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
           "name": "ChipProps"
         },
         "required": false,
@@ -88,25 +47,12 @@
           "name": "AccessibilityRole"
         }
       },
-      "onPress": {
-        "defaultValue": null,
-        "description": "Press handler",
-        "name": "onPress",
-        "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
-          "name": "ChipProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
       "icon": {
         "defaultValue": null,
         "description": "Optional Icon",
         "name": "icon",
         "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
           "name": "ChipProps"
         },
         "required": false,
@@ -114,17 +60,71 @@
           "name": "IconNames"
         }
       },
-      "accent": {
-        "defaultValue": null,
-        "description": "Background color to be used for Active chips",
-        "name": "accent",
+      "inactiveBackgroundColor": {
+        "defaultValue": {
+          "value": "background"
+        },
+        "description": "Background color to be used for inactive chips",
+        "name": "inactiveBackgroundColor",
         "parent": {
-          "fileName": "../components-native/src/Chip/Chip.tsx",
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
           "name": "ChipProps"
         },
         "required": false,
         "type": {
-          "name": "AccentType"
+          "name": "\"surface\" | \"background\""
+        }
+      },
+      "isActive": {
+        "defaultValue": null,
+        "description": "chip's active status",
+        "name": "isActive",
+        "parent": {
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
+          "name": "ChipProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "isDismissible": {
+        "defaultValue": null,
+        "description": "Boolean for chip's ability to be dismissed",
+        "name": "isDismissible",
+        "parent": {
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
+          "name": "ChipProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "label of the chip.",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
+          "name": "ChipProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onPress": {
+        "defaultValue": null,
+        "description": "Press handler",
+        "name": "onPress",
+        "parent": {
+          "fileName": "packages/components-native/src/Chip/Chip.tsx",
+          "name": "ChipProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(() => void)"
         }
       }
     }

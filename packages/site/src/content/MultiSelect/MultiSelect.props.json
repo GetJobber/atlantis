@@ -1,30 +1,17 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/MultiSelect/MultiSelect.tsx",
+    "filePath": "packages/components/src/MultiSelect/MultiSelect.tsx",
     "description": "",
     "displayName": "MultiSelect",
     "methods": [],
     "props": {
-      "defaultLabel": {
-        "defaultValue": null,
-        "description": "The label to be displayed by default when no options are selected",
-        "name": "defaultLabel",
-        "parent": {
-          "fileName": "../components/src/MultiSelect/MultiSelect.tsx",
-          "name": "MultiSelectProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
       "allSelectedLabel": {
         "defaultValue": null,
         "description": "The label to be displayed when all options are selected",
         "name": "allSelectedLabel",
         "parent": {
-          "fileName": "../components/src/MultiSelect/MultiSelect.tsx",
+          "fileName": "packages/components/src/MultiSelect/MultiSelect.tsx",
           "name": "MultiSelectProps"
         },
         "required": true,
@@ -32,17 +19,17 @@
           "name": "string"
         }
       },
-      "options": {
+      "defaultLabel": {
         "defaultValue": null,
-        "description": "List of options to be checked",
-        "name": "options",
+        "description": "The label to be displayed by default when no options are selected",
+        "name": "defaultLabel",
         "parent": {
-          "fileName": "../components/src/MultiSelect/MultiSelect.tsx",
+          "fileName": "packages/components/src/MultiSelect/MultiSelect.tsx",
           "name": "MultiSelectProps"
         },
         "required": true,
         "type": {
-          "name": "Options"
+          "name": "string"
         }
       },
       "onOptionsChange": {
@@ -50,12 +37,25 @@
         "description": "Change handler",
         "name": "onOptionsChange",
         "parent": {
-          "fileName": "../components/src/MultiSelect/MultiSelect.tsx",
+          "fileName": "packages/components/src/MultiSelect/MultiSelect.tsx",
           "name": "MultiSelectProps"
         },
         "required": true,
         "type": {
-          "name": "Dispatch<React.SetStateAction<Options>>"
+          "name": "Dispatch<SetStateAction<Options>>"
+        }
+      },
+      "options": {
+        "defaultValue": null,
+        "description": "List of options to be checked",
+        "name": "options",
+        "parent": {
+          "fileName": "packages/components/src/MultiSelect/MultiSelect.tsx",
+          "name": "MultiSelectProps"
+        },
+        "required": true,
+        "type": {
+          "name": "Options"
         }
       },
       "size": {
@@ -63,7 +63,7 @@
         "description": "Adjusts the interface to either have small or large spacing.",
         "name": "size",
         "parent": {
-          "fileName": "../components/src/MultiSelect/MultiSelect.tsx",
+          "fileName": "packages/components/src/MultiSelect/MultiSelect.tsx",
           "name": "MultiSelectProps"
         },
         "required": false,

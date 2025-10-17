@@ -1,22 +1,67 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/ActionItem/ActionItem.tsx",
+    "filePath": "packages/components-native/src/ActionItem/ActionItem.tsx",
     "description": "",
     "displayName": "ActionItem",
     "methods": [],
     "props": {
-      "title": {
-        "defaultValue": null,
-        "description": "Title of the Action Item",
-        "name": "title",
+      "actionIcon": {
+        "defaultValue": {
+          "value": "edit"
+        },
+        "description": "Action icon to display",
+        "name": "actionIcon",
         "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
           "name": "ActionItemProps"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "ActionIconNames"
+        }
+      },
+      "actionIconAlignment": {
+        "defaultValue": {
+          "value": "center"
+        },
+        "description": "Alignment of action icon",
+        "name": "actionIconAlignment",
+        "parent": {
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"center\" | \"flex-end\" | \"flex-start\""
+        }
+      },
+      "actionIconColour": {
+        "defaultValue": {
+          "value": "interactive"
+        },
+        "description": "Colour of the action icon",
+        "name": "actionIconColour",
+        "parent": {
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ActionIconColour"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Content to display.",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
         }
       },
       "icon": {
@@ -24,7 +69,7 @@
         "description": "Name of the icon to display before content",
         "name": "icon",
         "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
           "name": "ActionItemProps"
         },
         "required": false,
@@ -37,70 +82,12 @@
         "description": "Colour of the icon displayed before content",
         "name": "iconColor",
         "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
           "name": "ActionItemProps"
         },
         "required": false,
         "type": {
-          "name": "\"task\" | \"text\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | ... 33 more ... | \"brandHighlight\""
-        }
-      },
-      "children": {
-        "defaultValue": null,
-        "description": "Content to display.",
-        "name": "children",
-        "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
-          "name": "ActionItemProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "actionIcon": {
-        "defaultValue": {
-          "value": "edit"
-        },
-        "description": "Action icon to display",
-        "name": "actionIcon",
-        "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
-          "name": "ActionItemProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ActionIconNames"
-        }
-      },
-      "actionIconColour": {
-        "defaultValue": {
-          "value": "interactive"
-        },
-        "description": "Colour of the action icon",
-        "name": "actionIconColour",
-        "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
-          "name": "ActionItemProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ActionIconColour"
-        }
-      },
-      "actionIconAlignment": {
-        "defaultValue": {
-          "value": "center"
-        },
-        "description": "Alignment of action icon",
-        "name": "actionIconAlignment",
-        "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
-          "name": "ActionItemProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"flex-start\" | \"flex-end\" | \"center\""
+          "name": "\"task\" | \"text\" | \"warning\" | \"icon\" | \"disabled\" | \"success\" | \"blue\" | \"green\" | \"yellow\" | \"red\" | \"grey\" | \"white\" | \"greyBlue\" | \"lightBlue\" | \"orange\" | \"navy\" | \"interactive\" | ... 33 more ..."
         }
       },
       "onPress": {
@@ -108,12 +95,12 @@
         "description": "Press handler",
         "name": "onPress",
         "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
           "name": "ActionItemProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(() => void)"
         }
       },
       "testID": {
@@ -123,7 +110,20 @@
         "description": "",
         "name": "testID",
         "parent": {
-          "fileName": "../components-native/src/ActionItem/ActionItem.tsx",
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
+          "name": "ActionItemProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "title": {
+        "defaultValue": null,
+        "description": "Title of the Action Item",
+        "name": "title",
+        "parent": {
+          "fileName": "packages/components-native/src/ActionItem/ActionItem.tsx",
           "name": "ActionItemProps"
         },
         "required": false,

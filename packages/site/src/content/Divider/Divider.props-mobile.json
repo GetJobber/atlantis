@@ -1,26 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Divider/Divider.tsx",
+    "filePath": "packages/components-native/src/Divider/Divider.tsx",
     "description": "",
     "displayName": "Divider",
     "methods": [],
     "props": {
-      "size": {
-        "defaultValue": {
-          "value": "base"
-        },
-        "description": "The weight of the divider.",
-        "name": "size",
-        "parent": {
-          "fileName": "../components-native/src/Divider/Divider.tsx",
-          "name": "DividerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"base\" | \"large\" | \"larger\" | \"largest\""
-        }
-      },
       "direction": {
         "defaultValue": {
           "value": "horizontal"
@@ -28,12 +13,27 @@
         "description": "The direction of the divider",
         "name": "direction",
         "parent": {
-          "fileName": "../components-native/src/Divider/Divider.tsx",
+          "fileName": "packages/components-native/src/Divider/Divider.tsx",
           "name": "DividerProps"
         },
         "required": false,
         "type": {
           "name": "\"horizontal\" | \"vertical\""
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The weight of the divider.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components-native/src/Divider/Divider.tsx",
+          "name": "DividerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"large\" | \"base\" | \"larger\" | \"largest\""
         }
       },
       "testID": {
@@ -43,7 +43,7 @@
         "description": "Used to locate this view in end-to-end tests.",
         "name": "testID",
         "parent": {
-          "fileName": "../components-native/src/Divider/Divider.tsx",
+          "fileName": "packages/components-native/src/Divider/Divider.tsx",
           "name": "DividerProps"
         },
         "required": false,

@@ -1,65 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/LightBox/LightBox.tsx",
+    "filePath": "packages/components/src/LightBox/LightBox.tsx",
     "description": "",
     "displayName": "LightBox",
     "methods": [],
     "props": {
-      "open": {
-        "defaultValue": null,
-        "description": "Specify if the Lightbox is open or closed.",
-        "name": "open",
-        "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
-          "name": "LightBoxProps"
-        },
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "images": {
-        "defaultValue": null,
-        "description": "Images is an array of objects defining a LightBox image. This object consists of\n`title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is\nrequired, for each image.",
-        "name": "images",
-        "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
-          "name": "LightBoxProps"
-        },
-        "required": true,
-        "type": {
-          "name": "PresentedImage[]"
-        }
-      },
-      "imageIndex": {
-        "defaultValue": {
-          "value": 0
-        },
-        "description": "Use this to specify which image in `images` to initialize the lightbox with.\nThis is useful when you have a collection of thumbnails as you only need one\ncollection of image urls, order doesn't matter.",
-        "name": "imageIndex",
-        "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
-          "name": "LightBoxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "onRequestClose": {
-        "defaultValue": null,
-        "description": "This function must set open to false in order to close the lightbox. Note there\nis a 300ms easing animation on lightbox close that occurs before this function\nis called.\nThis function receives an object as an argument with the key `lastPosition`\nthat has the index of the image the user was on when LightBox was closed.",
-        "name": "onRequestClose",
-        "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
-          "name": "LightBoxProps"
-        },
-        "required": true,
-        "type": {
-          "name": "(options: RequestCloseOptions) => void"
-        }
-      },
       "boxSizing": {
         "defaultValue": {
           "value": "content-box"
@@ -67,12 +13,66 @@
         "description": "Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where\ntailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.",
         "name": "boxSizing",
         "parent": {
-          "fileName": "../components/src/LightBox/LightBox.tsx",
+          "fileName": "packages/components/src/LightBox/LightBox.tsx",
           "name": "LightBoxProps"
         },
         "required": false,
         "type": {
           "name": "BoxSizing"
+        }
+      },
+      "imageIndex": {
+        "defaultValue": {
+          "value": "0"
+        },
+        "description": "Use this to specify which image in `images` to initialize the lightbox with.\nThis is useful when you have a collection of thumbnails as you only need one\ncollection of image urls, order doesn't matter.",
+        "name": "imageIndex",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.tsx",
+          "name": "LightBoxProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "images": {
+        "defaultValue": null,
+        "description": "Images is an array of objects defining a LightBox image. This object consists of\n`title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is\nrequired, for each image.",
+        "name": "images",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.tsx",
+          "name": "LightBoxProps"
+        },
+        "required": true,
+        "type": {
+          "name": "PresentedImage[]"
+        }
+      },
+      "onRequestClose": {
+        "defaultValue": null,
+        "description": "This function must set open to false in order to close the lightbox. Note there\nis a 300ms easing animation on lightbox close that occurs before this function\nis called.\nThis function receives an object as an argument with the key `lastPosition`\nthat has the index of the image the user was on when LightBox was closed.",
+        "name": "onRequestClose",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.tsx",
+          "name": "LightBoxProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(options: RequestCloseOptions) => void"
+        }
+      },
+      "open": {
+        "defaultValue": null,
+        "description": "Specify if the Lightbox is open or closed.",
+        "name": "open",
+        "parent": {
+          "fileName": "packages/components/src/LightBox/LightBox.tsx",
+          "name": "LightBoxProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
         }
       }
     }

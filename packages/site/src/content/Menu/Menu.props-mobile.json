@@ -1,24 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Menu/Menu.tsx",
+    "filePath": "packages/components-native/src/Menu/Menu.tsx",
     "description": "",
     "displayName": "Menu",
     "methods": [],
     "props": {
-      "menuOptions": {
-        "defaultValue": null,
-        "description": "",
-        "name": "menuOptions",
-        "parent": {
-          "fileName": "packages/components-native/src/Menu/types.ts",
-          "name": "MenuProps"
-        },
-        "required": false,
-        "type": {
-          "name": "MenuOptionProps[]"
-        }
-      },
       "customActivator": {
         "defaultValue": null,
         "description": "",
@@ -30,6 +17,19 @@
         "required": false,
         "type": {
           "name": "Element"
+        }
+      },
+      "menuOptions": {
+        "defaultValue": null,
+        "description": "",
+        "name": "menuOptions",
+        "parent": {
+          "fileName": "packages/components-native/src/Menu/types.ts",
+          "name": "MenuProps"
+        },
+        "required": false,
+        "type": {
+          "name": "MenuOptionProps[]"
         }
       }
     }

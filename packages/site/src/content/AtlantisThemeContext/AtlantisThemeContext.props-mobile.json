@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/AtlantisThemeContext/AtlantisThemeContext.tsx",
+    "filePath": "packages/components-native/src/AtlantisThemeContext/AtlantisThemeContext.tsx",
     "description": "",
     "displayName": "AtlantisThemeContextProvider",
     "methods": [],

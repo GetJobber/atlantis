@@ -1,35 +1,35 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
+    "filePath": "packages/components/src/AnimatedPresence/AnimatedPresence.tsx",
     "description": "",
     "displayName": "AnimatedPresence",
     "methods": [],
     "props": {
-      "transition": {
-        "defaultValue": null,
-        "description": "The type of transition you can use.",
-        "name": "transition",
-        "parent": {
-          "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
-          "name": "AnimatedPresenceProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"fromBottom\" | \"fromTop\" | \"fromLeft\" | \"fromRight\" | \"popIn\" | \"fromLeftToRight\" | \"fromRightToLeft\" | \"fade\""
-        }
-      },
       "initial": {
         "defaultValue": null,
         "description": "Whether or not to animate the children on mount. By default it's set to false.",
         "name": "initial",
         "parent": {
-          "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
+          "fileName": "packages/components/src/AnimatedPresence/AnimatedPresence.tsx",
           "name": "AnimatedPresenceProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "transition": {
+        "defaultValue": null,
+        "description": "The type of transition you can use.",
+        "name": "transition",
+        "parent": {
+          "fileName": "packages/components/src/AnimatedPresence/AnimatedPresence.tsx",
+          "name": "AnimatedPresenceProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"fromBottom\" | \"fromTop\" | \"fromLeft\" | \"fromRight\" | \"popIn\" | \"fromLeftToRight\" | \"fromRightToLeft\" | \"fade\""
         }
       }
     }

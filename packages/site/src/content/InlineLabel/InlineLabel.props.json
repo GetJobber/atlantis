@@ -1,26 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/InlineLabel/InlineLabel.tsx",
+    "filePath": "packages/components/src/InlineLabel/InlineLabel.tsx",
     "description": "",
     "displayName": "InlineLabel",
     "methods": [],
     "props": {
-      "size": {
-        "defaultValue": {
-          "value": "base"
-        },
-        "description": "The size of the label",
-        "name": "size",
-        "parent": {
-          "fileName": "../components/src/InlineLabel/InlineLabel.tsx",
-          "name": "InlineLabelProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"small\" | \"base\" | \"large\" | \"larger\""
-        }
-      },
       "color": {
         "defaultValue": {
           "value": "greyBlue"
@@ -28,12 +13,27 @@
         "description": "The color of the label",
         "name": "color",
         "parent": {
-          "fileName": "../components/src/InlineLabel/InlineLabel.tsx",
+          "fileName": "packages/components/src/InlineLabel/InlineLabel.tsx",
           "name": "InlineLabelProps"
         },
         "required": false,
         "type": {
           "name": "InlineLabelColors"
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The size of the label",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/InlineLabel/InlineLabel.tsx",
+          "name": "InlineLabelProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\" | \"base\" | \"larger\""
         }
       }
     }

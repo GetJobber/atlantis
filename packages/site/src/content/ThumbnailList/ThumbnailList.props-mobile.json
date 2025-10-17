@@ -1,11 +1,24 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/ThumbnailList/ThumbnailList.tsx",
+    "filePath": "packages/components-native/src/ThumbnailList/ThumbnailList.tsx",
     "description": "",
     "displayName": "ThumbnailList",
     "methods": [],
     "props": {
+      "createThumbnail": {
+        "defaultValue": null,
+        "description": "",
+        "name": "createThumbnail",
+        "parent": {
+          "fileName": "packages/components-native/src/ThumbnailList/types.ts",
+          "name": "ThumbnailListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CreateThumbnail"
+        }
+      },
       "files": {
         "defaultValue": null,
         "description": "",
@@ -17,6 +30,19 @@
         "required": true,
         "type": {
           "name": "File[]"
+        }
+      },
+      "handleOpenFile": {
+        "defaultValue": null,
+        "description": "",
+        "name": "handleOpenFile",
+        "parent": {
+          "fileName": "packages/components-native/src/ThumbnailList/types.ts",
+          "name": "ThumbnailListProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(({ file, index, imageList, }: { file: File; index: number; imageList: File[]; }) => void)"
         }
       },
       "rowCount": {
@@ -32,32 +58,6 @@
         "required": false,
         "type": {
           "name": "RowCount"
-        }
-      },
-      "handleOpenFile": {
-        "defaultValue": null,
-        "description": "",
-        "name": "handleOpenFile",
-        "parent": {
-          "fileName": "packages/components-native/src/ThumbnailList/types.ts",
-          "name": "ThumbnailListProps"
-        },
-        "required": false,
-        "type": {
-          "name": "({ file, index, imageList, }: { file: File; index: number; imageList: File[]; }) => void"
-        }
-      },
-      "createThumbnail": {
-        "defaultValue": null,
-        "description": "",
-        "name": "createThumbnail",
-        "parent": {
-          "fileName": "packages/components-native/src/ThumbnailList/types.ts",
-          "name": "ThumbnailListProps"
-        },
-        "required": false,
-        "type": {
-          "name": "CreateThumbnail"
         }
       }
     }

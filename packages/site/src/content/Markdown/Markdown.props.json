@@ -1,17 +1,30 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Markdown/Markdown.tsx",
+    "filePath": "packages/components/src/Markdown/Markdown.tsx",
     "description": "",
     "displayName": "Markdown",
     "methods": [],
     "props": {
+      "basicUsage": {
+        "defaultValue": null,
+        "description": "Only allow basic inline elements such as `_italic_`, `**bold**`, and\n`[link name](url)`",
+        "name": "basicUsage",
+        "parent": {
+          "fileName": "packages/components/src/Markdown/Markdown.tsx",
+          "name": "MarkdownProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "content": {
         "defaultValue": null,
         "description": "Rich text content.",
         "name": "content",
         "parent": {
-          "fileName": "../components/src/Markdown/Markdown.tsx",
+          "fileName": "packages/components/src/Markdown/Markdown.tsx",
           "name": "MarkdownProps"
         },
         "required": true,
@@ -24,20 +37,7 @@
         "description": "Open all links in new tab.",
         "name": "externalLink",
         "parent": {
-          "fileName": "../components/src/Markdown/Markdown.tsx",
-          "name": "MarkdownProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "basicUsage": {
-        "defaultValue": null,
-        "description": "Only allow basic inline elements such as `_italic_`, `**bold**`, and\n`[link name](url)`",
-        "name": "basicUsage",
-        "parent": {
-          "fileName": "../components/src/Markdown/Markdown.tsx",
+          "fileName": "packages/components/src/Markdown/Markdown.tsx",
           "name": "MarkdownProps"
         },
         "required": false,
@@ -50,12 +50,12 @@
         "description": "Callback that gets called when a link in the text is clicked.\n@param target the target element that was clicked",
         "name": "onLinkClick",
         "parent": {
-          "fileName": "../components/src/Markdown/Markdown.tsx",
+          "fileName": "packages/components/src/Markdown/Markdown.tsx",
           "name": "MarkdownProps"
         },
         "required": false,
         "type": {
-          "name": "(target: HTMLAnchorElement) => void"
+          "name": "((target: HTMLAnchorElement) => void)"
         }
       }
     }

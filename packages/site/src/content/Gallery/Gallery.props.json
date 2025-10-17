@@ -1,26 +1,11 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Gallery/Gallery.tsx",
+    "filePath": "packages/components/src/Gallery/Gallery.tsx",
     "description": "",
     "displayName": "Gallery",
     "methods": [],
     "props": {
-      "size": {
-        "defaultValue": {
-          "value": "base"
-        },
-        "description": "The size of the files and their spacing in the gallery",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/Gallery/GalleryTypes.ts",
-          "name": "GalleryProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"base\" | \"large\""
-        }
-      },
       "files": {
         "defaultValue": null,
         "description": "The files for the Gallery to display",
@@ -57,7 +42,22 @@
         },
         "required": false,
         "type": {
-          "name": "(file: GalleryFile) => void"
+          "name": "((file: GalleryFile) => void)"
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "The size of the files and their spacing in the gallery",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Gallery/GalleryTypes.ts",
+          "name": "GalleryProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"large\" | \"base\""
         }
       }
     }

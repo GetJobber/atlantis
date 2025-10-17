@@ -1,17 +1,15 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Modal/Modal.tsx",
+    "filePath": "packages/components/src/Modal/Modal.tsx",
     "description": "",
     "displayName": "ModalLegacy",
     "methods": [],
     "props": {
-      "title": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "",
-        "name": "title",
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Accessible name for the Modal.\nOnly required if no title is provided. Title takes precedence over ariaLabel.",
+        "name": "ariaLabel",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
           "name": "ModalLegacyProps"
@@ -21,12 +19,12 @@
           "name": "string"
         }
       },
-      "open": {
+      "dismissible": {
         "defaultValue": {
-          "value": false
+          "value": "true"
         },
         "description": "",
-        "name": "open",
+        "name": "dismissible",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
           "name": "ModalLegacyProps"
@@ -36,25 +34,25 @@
           "name": "boolean"
         }
       },
-      "size": {
+      "onRequestClose": {
         "defaultValue": null,
         "description": "",
-        "name": "size",
+        "name": "onRequestClose",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
           "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "(() => void)"
         }
       },
-      "dismissible": {
+      "open": {
         "defaultValue": {
-          "value": true
+          "value": "false"
         },
         "description": "",
-        "name": "dismissible",
+        "name": "open",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
           "name": "ModalLegacyProps"
@@ -74,7 +72,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+          "name": "{ onClick?: undefined; external?: undefined; readonly name?: string; submit: boolean; readonly type?: ButtonType; readonly value?: string | undefined; ... 19 more ...; readonly children?: undefined; } | ... 20 more ... | undefined"
         }
       },
       "secondaryAction": {
@@ -87,7 +85,20 @@
         },
         "required": false,
         "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+          "name": "{ onClick?: undefined; external?: undefined; readonly name?: string; submit: boolean; readonly type?: ButtonType; readonly value?: string | undefined; ... 19 more ...; readonly children?: undefined; } | ... 20 more ... | undefined"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
         }
       },
       "tertiaryAction": {
@@ -100,20 +111,22 @@
         },
         "required": false,
         "type": {
-          "name": "{ external?: never; onClick?: never; readonly name?: string; submit: never; readonly type?: ButtonType; readonly value?: string; readonly variation?: ButtonVariation; ... 18 more ...; readonly children?: never; } | ... 34 more ... | { ...; }"
+          "name": "{ onClick?: undefined; external?: undefined; readonly name?: string; submit: boolean; readonly type?: ButtonType; readonly value?: string | undefined; ... 19 more ...; readonly children?: undefined; } | ... 20 more ... | undefined"
         }
       },
-      "onRequestClose": {
-        "defaultValue": null,
+      "title": {
+        "defaultValue": {
+          "value": "false"
+        },
         "description": "",
-        "name": "onRequestClose",
+        "name": "title",
         "parent": {
           "fileName": "packages/components/src/Modal/Modal.types.ts",
           "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "string"
         }
       },
       "version": {
@@ -127,19 +140,6 @@
         "required": false,
         "type": {
           "name": "1"
-        }
-      },
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "Accessible name for the Modal.\nOnly required if no title is provided. Title takes precedence over ariaLabel.",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Modal/Modal.types.ts",
-          "name": "ModalLegacyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       }
     }

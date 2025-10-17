@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/ProgressBar/ProgressBar.tsx",
+    "filePath": "packages/components/src/ProgressBar/ProgressBar.tsx",
     "description": "",
     "displayName": "ProgressBar",
     "methods": [],
@@ -11,20 +11,7 @@
         "description": "The current step that the progress bar is on.",
         "name": "currentStep",
         "parent": {
-          "fileName": "../components/src/ProgressBar/ProgressBar.tsx",
-          "name": "ProgressBarProps"
-        },
-        "required": true,
-        "type": {
-          "name": "number"
-        }
-      },
-      "totalSteps": {
-        "defaultValue": null,
-        "description": "The total steps to use. For percentages you can set this to 100.",
-        "name": "totalSteps",
-        "parent": {
-          "fileName": "../components/src/ProgressBar/ProgressBar.tsx",
+          "fileName": "packages/components/src/ProgressBar/ProgressBar.tsx",
           "name": "ProgressBarProps"
         },
         "required": true,
@@ -39,12 +26,25 @@
         "description": "Set the size of the progress bar",
         "name": "size",
         "parent": {
-          "fileName": "../components/src/ProgressBar/ProgressBar.tsx",
+          "fileName": "packages/components/src/ProgressBar/ProgressBar.tsx",
           "name": "ProgressBarProps"
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"small\" | \"base\" | \"smaller\""
+        }
+      },
+      "totalSteps": {
+        "defaultValue": null,
+        "description": "The total steps to use. For percentages you can set this to 100.",
+        "name": "totalSteps",
+        "parent": {
+          "fileName": "packages/components/src/ProgressBar/ProgressBar.tsx",
+          "name": "ProgressBarProps"
+        },
+        "required": true,
+        "type": {
+          "name": "number"
         }
       },
       "variation": {
@@ -54,7 +54,7 @@
         "description": "Set the variation of the progress bar",
         "name": "variation",
         "parent": {
-          "fileName": "../components/src/ProgressBar/ProgressBar.tsx",
+          "fileName": "packages/components/src/ProgressBar/ProgressBar.tsx",
           "name": "ProgressBarProps"
         },
         "required": false,

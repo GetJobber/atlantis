@@ -1,76 +1,35 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/InputPhoneNumber/InputPhoneNumber.tsx",
+    "filePath": "packages/components/src/InputPhoneNumber/InputPhoneNumber.tsx",
     "description": "",
     "displayName": "InputPhoneNumber",
     "methods": [],
     "props": {
-      "value": {
+      "autocomplete": {
         "defaultValue": null,
-        "description": "Set the component to the given value.",
-        "name": "value",
+        "description": "Determines if browser form autocomplete is enabled.\nNote that \"one-time-code\" is experimental and should not be used without\nconsultation. \"address-line1\" and \"address-line2\" are\nused for billing address information.",
+        "name": "autocomplete",
         "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberLegacyProps"
-        },
-        "required": true,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onChange": {
-        "defaultValue": null,
-        "description": "onChange handler that provides the new value (or event)",
-        "name": "onChange",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberLegacyProps"
-        },
-        "required": true,
-        "type": {
-          "name": "(value: string) => void"
-        }
-      },
-      "pattern": {
-        "defaultValue": {
-          "value": "\"(***) ***-****\""
-        },
-        "description": "A pattern to specify the format to display the phone number in.\nFor example if you want to display the format for [Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)\nyou could set it to `** ** ** **`",
-        "name": "pattern",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberLegacyProps"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "boolean | AutocompleteTypes"
         }
       },
-      "required": {
+      "clearable": {
         "defaultValue": null,
-        "description": "Shows a \"required\" validation message when the component is left empty.",
-        "name": "required",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberLegacyProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "A unique identifier for the input.",
-        "name": "id",
+        "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
+        "name": "clearable",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "Clearable"
         }
       },
       "description": {
@@ -99,12 +58,23 @@
           "name": "boolean"
         }
       },
-      "showMiniLabel": {
-        "defaultValue": {
-          "value": "true"
+      "id": {
+        "defaultValue": null,
+        "description": "A unique identifier for the input.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
         },
-        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
-        "name": "showMiniLabel",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "inline": {
+        "defaultValue": null,
+        "description": "Adjusts the form field to go inline with a content. This also silences the\ngiven `validations` prop. You'd have to used the `onValidate` prop to\ncapture the message and render it somewhere else using the\n`InputValidation` component.",
+        "name": "inline",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
@@ -118,19 +88,6 @@
         "defaultValue": null,
         "description": "Highlights the field red to indicate an error.",
         "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "inline": {
-        "defaultValue": null,
-        "description": "Adjusts the form field to go inline with a content. This also silences the\ngiven `validations` prop. You'd have to used the `onValidate` prop to\ncapture the message and render it somewhere else using the\n`InputValidation` component.",
-        "name": "inline",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
@@ -166,6 +123,58 @@
           "name": "string"
         }
       },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Blur callback.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event?: FocusEvent<Element, Element>) => void)"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "onChange handler that provides the new value (or event)",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberLegacyProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(value: string) => void"
+        }
+      },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event: KeyboardEvent<Element>) => void)"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Focus callback.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((event?: FocusEvent<Element, Element>) => void)"
+        }
+      },
       "onValidation": {
         "defaultValue": null,
         "description": "Callback to get the the status and message when validating a field\n@param message",
@@ -176,7 +185,22 @@
         },
         "required": false,
         "type": {
-          "name": "(message: string) => void"
+          "name": "((message: string) => void)"
+        }
+      },
+      "pattern": {
+        "defaultValue": {
+          "value": "\"(***) ***-****\""
+        },
+        "description": "A pattern to specify the format to display the phone number in.\nFor example if you want to display the format for [Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)\nyou could set it to `** ** ** **`",
+        "name": "pattern",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "placeholder": {
@@ -192,108 +216,17 @@
           "name": "string"
         }
       },
-      "size": {
+      "prefix": {
         "defaultValue": null,
-        "description": "Adjusts the interface to either have small or large spacing.",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"small\" | \"large\""
-        }
-      },
-      "clearable": {
-        "defaultValue": null,
-        "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
-        "name": "clearable",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Clearable"
-        }
-      },
-      "version": {
-        "defaultValue": null,
-        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality.",
-        "name": "version",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "1"
-        }
-      },
-      "autocomplete": {
-        "defaultValue": null,
-        "description": "Determines if browser form autocomplete is enabled.\nNote that \"one-time-code\" is experimental and should not be used without\nconsultation. \"address-line1\" and \"address-line2\" are\nused for billing address information.",
-        "name": "autocomplete",
+        "description": "Adds a prefix label and icon to the field",
+        "name": "prefix",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "FormFieldProps"
         },
         "required": false,
         "type": {
-          "name": "boolean | AutocompleteTypes"
-        }
-      },
-      "onEnter": {
-        "defaultValue": null,
-        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
-        "name": "onEnter",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.KeyboardEvent) => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Focus callback.",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: React.FocusEvent) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Blur callback.",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: React.FocusEvent) => void"
-        }
-      },
-      "validations": {
-        "defaultValue": null,
-        "description": "Show an error message above the field. This also\nhighlights the the field red if an error message shows up.",
-        "name": "validations",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RegisterOptions"
+          "name": "Affix"
         }
       },
       "readonly": {
@@ -309,17 +242,45 @@
           "name": "boolean"
         }
       },
-      "prefix": {
+      "required": {
         "defaultValue": null,
-        "description": "Adds a prefix label and icon to the field",
-        "name": "prefix",
+        "description": "Shows a \"required\" validation message when the component is left empty.",
+        "name": "required",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberLegacyProps"
         },
         "required": false,
         "type": {
-          "name": "Affix"
+          "name": "boolean"
+        }
+      },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Adjusts the interface to either have small or large spacing.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
         }
       },
       "suffix": {
@@ -332,7 +293,46 @@
         },
         "required": false,
         "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: undefined; ariaLabel?: undefined; readonly label?: string; readonly icon?: IconNames | undefined; } | undefined"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "Show an error message above the field. This also\nhighlights the the field red if an error message shows up.",
+        "name": "validations",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RegisterOptions"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Set the component to the given value.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberLegacyProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Experimental:\nDetermine which version of the FormField to use.\nRight now this isn't used but it will be used in the future\nto allow us to release new versions of our form inputs without breaking existing functionality.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
         }
       }
     }

@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/InputValidation/InputValidation.tsx",
+    "filePath": "packages/components/src/InputValidation/InputValidation.tsx",
     "description": "",
     "displayName": "InputValidation",
     "methods": [],
@@ -11,7 +11,7 @@
         "description": "Validation message to be displayed",
         "name": "message",
         "parent": {
-          "fileName": "../components/src/InputValidation/InputValidation.tsx",
+          "fileName": "packages/components/src/InputValidation/InputValidation.tsx",
           "name": "InputValidationProps"
         },
         "required": true,
@@ -21,12 +21,12 @@
       },
       "visible": {
         "defaultValue": {
-          "value": true
+          "value": "true"
         },
         "description": "",
         "name": "visible",
         "parent": {
-          "fileName": "../components/src/InputValidation/InputValidation.tsx",
+          "fileName": "packages/components/src/InputValidation/InputValidation.tsx",
           "name": "InputValidationProps"
         },
         "required": false,

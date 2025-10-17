@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Emphasis/Emphasis.tsx",
+    "filePath": "packages/components/src/Emphasis/Emphasis.tsx",
     "description": "",
     "displayName": "Emphasis",
     "methods": [],
@@ -11,7 +11,7 @@
         "description": "",
         "name": "variation",
         "parent": {
-          "fileName": "../components/src/Emphasis/Emphasis.tsx",
+          "fileName": "packages/components/src/Emphasis/Emphasis.tsx",
           "name": "EmphasisProps"
         },
         "required": true,

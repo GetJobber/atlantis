@@ -1,7 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
+    "filePath": "packages/components/src/Menu/Menu.tsx",
     "description": "",
     "displayName": "Menu",
     "methods": [],
@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ menu?: string; header?: string; action?: string; }"
+          "name": "{ menu?: string; header?: string; action?: string | undefined; } | undefined"
         }
       },
       "UNSAFE_style": {
@@ -55,127 +55,18 @@
         },
         "required": false,
         "type": {
-          "name": "{ menu?: CSSProperties; header?: CSSProperties; action?: CSSProperties; }"
+          "name": "{ menu?: CSSProperties; header?: CSSProperties; action?: CSSProperties | undefined; } | undefined"
         }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
-    "description": "",
-    "displayName": "Menu.Section",
-    "methods": [],
-    "props": {
-      "children": {
-        "defaultValue": null,
-        "description": "Section content\nIf no Menu.Header is provided, ariaLabel must be provided to identify the section to assistive technologies",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuSectionComposableProps"
-        },
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "Accessible label for the section",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "MenuSectionComposableProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "UnsafeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "CSSProperties"
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "UnsafeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
-    "description": "",
-    "displayName": "Menu.Header",
-    "methods": [],
-    "props": {
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "UnsafeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "CSSProperties"
-        }
-      },
-      "UNSAFE_className": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_className",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "UnsafeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
+    "filePath": "packages/components/src/Menu/Menu.tsx",
     "description": "",
     "displayName": "Menu.Content",
     "methods": [],
     "props": {
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "UnsafeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "CSSProperties"
-        }
-      },
       "UNSAFE_className": {
         "defaultValue": null,
         "description": "",
@@ -188,29 +79,29 @@
         "type": {
           "name": "string"
         }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
+    "filePath": "packages/components/src/Menu/Menu.tsx",
     "description": "",
-    "displayName": "Menu.Separator",
+    "displayName": "Menu.Header",
     "methods": [],
     "props": {
-      "UNSAFE_style": {
-        "defaultValue": null,
-        "description": "",
-        "name": "UNSAFE_style",
-        "parent": {
-          "fileName": "packages/components/src/Menu/Menu.types.ts",
-          "name": "UnsafeProps"
-        },
-        "required": false,
-        "type": {
-          "name": "CSSProperties"
-        }
-      },
       "UNSAFE_className": {
         "defaultValue": null,
         "description": "",
@@ -223,16 +114,63 @@
         "type": {
           "name": "string"
         }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
+    "filePath": "packages/components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.HeaderLabel",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/Menu/Menu.tsx",
     "description": "",
     "displayName": "Menu.ItemIcon",
     "methods": [],
     "props": {
+      "color": {
+        "defaultValue": null,
+        "description": "Determines the color of the icon. Some icons have a default system colour\nlike quotes, jobs, and invoices. Others that doesn't have a system colour\nfalls back to greyBlueDark.",
+        "name": "color",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"task\" | \"text\" | \"warning\" | \"icon\" | \"disabled\" | \"success\" | \"blue\" | \"green\" | \"yellow\" | \"red\" | \"grey\" | \"white\" | \"greyBlue\" | \"lightBlue\" | \"orange\" | \"navy\" | \"interactive\" | ... 33 more ..."
+        }
+      },
+      "customColor": {
+        "defaultValue": null,
+        "description": "Sets a custom color for the icon. Can be a rgb() or hex value.",
+        "name": "customColor",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "name": {
         "defaultValue": null,
         "description": "The icon to show.",
@@ -258,33 +196,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"small\" | \"large\""
-        }
-      },
-      "color": {
-        "defaultValue": null,
-        "description": "Determines the color of the icon. Some icons have a default system colour\nlike quotes, jobs, and invoices. Others that doesn't have a system colour\nfalls back to greyBlueDark.",
-        "name": "color",
-        "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"text\" | \"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | ... 33 more ... | \"brandHighlight\""
-        }
-      },
-      "customColor": {
-        "defaultValue": null,
-        "description": "Sets a custom color for the icon. Can be a rgb() or hex value.",
-        "name": "customColor",
-        "parent": {
-          "fileName": "packages/components/src/Icon/Icon.tsx",
-          "name": "IconProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
+          "name": "\"small\" | \"large\" | \"base\""
         }
       },
       "testID": {
@@ -310,7 +222,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ svg?: string; path?: string; }"
+          "name": "{ svg?: string; path?: string; } | undefined"
         }
       },
       "UNSAFE_style": {
@@ -323,14 +235,14 @@
         },
         "required": false,
         "type": {
-          "name": "{ svg?: CSSProperties; path?: CSSProperties; }"
+          "name": "{ svg?: CSSProperties; path?: CSSProperties; } | undefined"
         }
       }
     }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
+    "filePath": "packages/components/src/Menu/Menu.tsx",
     "description": "",
     "displayName": "Menu.ItemLabel",
     "methods": [],
@@ -338,15 +250,103 @@
   },
   {
     "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
+    "filePath": "packages/components/src/Menu/Menu.tsx",
     "description": "",
-    "displayName": "Menu.HeaderLabel",
+    "displayName": "Menu.Section",
     "methods": [],
-    "props": {}
+    "props": {
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Accessible label for the section",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuSectionComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Section content\nIf no Menu.Header is provided, ariaLabel must be provided to identify the section to assistive technologies",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuSectionComposableProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
+      }
+    }
   },
   {
     "tags": {},
-    "filePath": "../components/src/Menu/Menu.tsx",
+    "filePath": "packages/components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Separator",
+    "methods": [],
+    "props": {
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components/src/Menu/Menu.tsx",
     "description": "",
     "displayName": "MenuLegacy",
     "methods": [],
@@ -387,7 +387,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ menu?: string; header?: string; action?: string; }"
+          "name": "{ menu?: string; header?: string; action?: string | undefined; } | undefined"
         }
       },
       "UNSAFE_style": {
@@ -400,7 +400,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ menu?: CSSProperties; header?: CSSProperties; action?: CSSProperties; }"
+          "name": "{ menu?: CSSProperties; header?: CSSProperties; action?: CSSProperties | undefined; } | undefined"
         }
       }
     }

@@ -1,198 +1,7 @@
 [
   {
     "tags": {},
-    "filePath": "../components-native/src/Select/Select.tsx",
-    "description": "",
-    "displayName": "Select",
-    "methods": [],
-    "props": {
-      "value": {
-        "defaultValue": null,
-        "description": "Current value of the component",
-        "name": "value",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "defaultValue": {
-        "defaultValue": null,
-        "description": "Default value for when the component is uncontrolled",
-        "name": "defaultValue",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "placeholder": {
-        "defaultValue": null,
-        "description": "Adds a first option to let users select a \"no value\".\nPlaceholder item selected by default until a selection is made.",
-        "name": "placeholder",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "label": {
-        "defaultValue": null,
-        "description": "Label text shown above the selection.",
-        "name": "label",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "assistiveText": {
-        "defaultValue": null,
-        "description": "Help text shown below the control.",
-        "name": "assistiveText",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "onChange": {
-        "defaultValue": null,
-        "description": "Callback that provides the new value when the selection changes",
-        "name": "onChange",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(newValue?: string) => void"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Disables input selection",
-        "name": "disabled",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Indicates the current selection is invalid",
-        "name": "invalid",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "accessibilityLabel": {
-        "defaultValue": null,
-        "description": "VoiceOver will read this string when a user selects the element",
-        "name": "accessibilityLabel",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "accessibilityHint": {
-        "defaultValue": null,
-        "description": "Helps users understand what will happen when they perform an action",
-        "name": "accessibilityHint",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Name of the input.",
-        "name": "name",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "children": {
-        "defaultValue": null,
-        "description": "The options to select from",
-        "name": "children",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": true,
-        "type": {
-          "name": "ReactElement<SelectOption, string | JSXElementConstructor<any>>[]"
-        }
-      },
-      "validations": {
-        "defaultValue": null,
-        "description": "The validations that will mark this component as invalid",
-        "name": "validations",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RegisterOptions"
-        }
-      },
-      "testID": {
-        "defaultValue": null,
-        "description": "Used to locate this view in end-to-end tests.",
-        "name": "testID",
-        "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
-          "name": "SelectProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components-native/src/Select/Select.tsx",
+    "filePath": "packages/components-native/src/Select/Select.tsx",
     "description": "",
     "displayName": "Option",
     "methods": [],
@@ -202,7 +11,7 @@
         "description": "Text that shows up as the option",
         "name": "children",
         "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
+          "fileName": "packages/components-native/src/Select/Select.tsx",
           "name": "SelectOption"
         },
         "required": true,
@@ -215,10 +24,201 @@
         "description": "The value that gets returned when an option is selected",
         "name": "value",
         "parent": {
-          "fileName": "../components-native/src/Select/Select.tsx",
+          "fileName": "packages/components-native/src/Select/Select.tsx",
           "name": "SelectOption"
         },
         "required": true,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "packages/components-native/src/Select/Select.tsx",
+    "description": "",
+    "displayName": "Select",
+    "methods": [],
+    "props": {
+      "accessibilityHint": {
+        "defaultValue": null,
+        "description": "Helps users understand what will happen when they perform an action",
+        "name": "accessibilityHint",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "accessibilityLabel": {
+        "defaultValue": null,
+        "description": "VoiceOver will read this string when a user selects the element",
+        "name": "accessibilityLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "assistiveText": {
+        "defaultValue": null,
+        "description": "Help text shown below the control.",
+        "name": "assistiveText",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "The options to select from",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactElement<SelectOption, string | JSXElementConstructor<any>>[]"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "Default value for when the component is uncontrolled",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Disables input selection",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Indicates the current selection is invalid",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "Label text shown above the selection.",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "Name of the input.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "Callback that provides the new value when the selection changes",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "((newValue?: string) => void)"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Adds a first option to let users select a \"no value\".\nPlaceholder item selected by default until a selection is made.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "testID": {
+        "defaultValue": null,
+        "description": "Used to locate this view in end-to-end tests.",
+        "name": "testID",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "The validations that will mark this component as invalid",
+        "name": "validations",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RegisterOptions"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Current value of the component",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components-native/src/Select/Select.tsx",
+          "name": "SelectProps"
+        },
+        "required": false,
         "type": {
           "name": "string"
         }
