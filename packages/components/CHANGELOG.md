@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.101.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.1...@jobber/components@6.101.2) (2025-10-17)
+
+
+### Bug Fixes
+
+* **components:** Apply modal floating styles to composable Modal motion div ([#2785](https://github.com/GetJobber/atlantis/issues/2785)) ([10de1b0](https://github.com/GetJobber/atlantis/commit/10de1b05b557cc944790fefd18cad0e4559b3bac))
+
+
+
+
+
 ## [6.101.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.0...@jobber/components@6.101.1) (2025-10-16)
 
 
