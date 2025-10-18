@@ -7,7 +7,6 @@ import AnimatedSwitcherContent from "./AnimatedSwitcher";
 import AvatarContent from "./Avatar";
 import AutoLinkContent from "./AutoLink";
 import AutoCompleteContent from "./Autocomplete";
-import AutocompleteV2Content from "./AutocompleteV2";
 import BannerContent from "./Banner";
 import BottomSheetContent from "./BottomSheet";
 import BoxContent from "./Box";
@@ -127,9 +126,6 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   Autocomplete: {
     ...AutoCompleteContent,
-  },
-  "Autocomplete (v2)": {
-    ...AutocompleteV2Content,
   },
   AutoLink: {
     ...AutoLinkContent,
