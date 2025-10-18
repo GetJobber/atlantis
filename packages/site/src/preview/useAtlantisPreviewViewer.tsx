@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { ComponentType } from "../types/content";
 import { getPlatformForComponentType } from "../utils/componentTypeUtils";
 
@@ -40,18 +40,21 @@ export const useAtlantisPreviewViewer = () => {
   };
 
   // Get the appropriate iframe ref for a given type based on platform
-  const getIframeRef = (componentType: ComponentType) => {
-    const platform = getPlatformForComponentType(componentType);
+  const getIframeRef = useCallback(
+    (componentType: ComponentType) => {
+      const platform = getPlatformForComponentType(componentType);
 
-    switch (platform) {
-      case "web":
-        return iframe; // Both webSupported and webLegacy use the same iframe
-      case "mobile":
-        return iframeMobile;
-      default:
-        return iframe;
-    }
-  };
+      switch (platform) {
+        case "web":
+          return iframe; // Both webSupported and webLegacy use the same iframe
+        case "mobile":
+          return iframeMobile;
+        default:
+          return iframe;
+      }
+    },
+    [iframe, iframeMobile],
+  ); // Only depends on the refs, which are stable
 
   return {
     iframe,
