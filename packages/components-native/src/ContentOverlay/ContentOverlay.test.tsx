@@ -4,7 +4,7 @@ import { AccessibilityInfo, View } from "react-native";
 import { Host } from "react-native-portalize";
 import type { ReactTestInstance } from "react-test-renderer";
 import { act } from "react-test-renderer";
-import type { ContentOverlayRef, ModalBackgroundColor } from "./types";
+import type { ContentOverlayRef, ModalBackgroundColor } from "./ContentOverlay";
 import { ContentOverlay } from "./ContentOverlay";
 import { tokens } from "../utils/design";
 import { Button } from "../Button";
@@ -106,30 +106,23 @@ function renderContentOverlay(
   return renderResult;
 }
 
-async function renderAndOpenContentOverlay(
-  defaultOptions = getDefaultOptions(),
-) {
+function renderAndOpenContentOverlay(defaultOptions = getDefaultOptions()) {
   const rendered = renderContentOverlay(defaultOptions);
 
   act(() => {
     fireEvent.press(rendered.getByLabelText(defaultOptions.buttonLabel));
   });
 
-  // Wait for the modal to open asynchronously (due to requestAnimationFrame)
-  await waitFor(() => {
-    expect(rendered.getByTestId("ATL-Overlay-Header")).toBeDefined();
-  });
-
   return rendered;
 }
 
 describe("when open is called on the content overlay ref", () => {
-  it("should open the content overlay, exposing the content to the user", async () => {
+  it("should open the content overlay, exposing the content to the user", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
       text: "I am text within the content overlay",
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     expect(contentOverlayScreen.getByText(options.text)).toBeDefined();
   });
@@ -142,7 +135,7 @@ describe("when the close button is clicked on an open content overlay", () => {
       text: "I am text within the content overlay",
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     act(() => {
       fireEvent.press(
@@ -163,7 +156,7 @@ describe("when the close button is clicked on an open content overlay with a def
       onCloseCallback: jest.fn(),
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     act(() => {
       fireEvent.press(
@@ -198,7 +191,7 @@ describe("when the content overlay is created with a defined onOpen prop", () =>
         ...getDefaultOptions(),
         onOpenCallback: jest.fn(),
       };
-      await renderAndOpenContentOverlay(options);
+      renderAndOpenContentOverlay(options);
 
       await waitFor(() => {
         expect(options.onOpenCallback).toHaveBeenCalled();
@@ -208,25 +201,25 @@ describe("when the content overlay is created with a defined onOpen prop", () =>
 });
 
 describe("when title prop passed to content overlay", () => {
-  it("should set the header title", async () => {
+  it("should set the header title", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
       title: "Awesome Title",
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     expect(contentOverlayScreen.getByText(options.title)).toBeDefined();
   });
 });
 
 describe("when accessibilityLabel prop passed to content overlay", () => {
-  it("should set the header accessibilityLabel", async () => {
+  it("should set the header accessibilityLabel", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
       a11yLabel: "Awesome a11y Label",
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     expect(
       contentOverlayScreen.getByLabelText(options.a11yLabel || "ohno"),
@@ -235,13 +228,13 @@ describe("when accessibilityLabel prop passed to content overlay", () => {
 });
 
 describe("when accessibilityLabel prop NOT passed to content overlay", () => {
-  it("should use default accessibilityLabel", async () => {
+  it("should use default accessibilityLabel", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
       title: "Awesome Title",
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     expect(
       contentOverlayScreen.getAllByLabelText(`Close ${options.title} modal`),
@@ -258,7 +251,7 @@ describe("when there is a screen reader enabled", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     expect(
       await contentOverlayScreen.findByTestId("ATL-Overlay-CloseButton"),
@@ -267,12 +260,12 @@ describe("when there is a screen reader enabled", () => {
 });
 
 describe("when fullScreen is set to true", () => {
-  it("should show the dismiss button", async () => {
+  it("should show the dismiss button", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
       fullScreen: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
     expect(
       contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
     ).toBeDefined();
@@ -280,12 +273,12 @@ describe("when fullScreen is set to true", () => {
 });
 
 describe("when showDismiss is set to true", () => {
-  it("should show the dismiss button", async () => {
+  it("should show the dismiss button", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
     expect(
       contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
     ).toBeDefined();
@@ -299,7 +292,7 @@ describe("when the close button is clicked on an open content overlay with a def
       onBeforeExitCallback: jest.fn(),
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     act(() => {
       fireEvent.press(
@@ -315,11 +308,11 @@ describe("when the close button is clicked on an open content overlay with a def
 
 describe("modalBackgroundColor prop", () => {
   describe("when using the default surface value", () => {
-    it("renders the component with the color-surface color", async () => {
+    it("renders the component with the color-surface color", () => {
       const options: testRendererOptions = {
         ...getDefaultOptions(),
       };
-      const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+      const contentOverlayScreen = renderAndOpenContentOverlay(options);
       const OverlayHeader = contentOverlayScreen.getByTestId(
         "ATL-Overlay-Header",
       ).children[0] as ReactTestInstance;
@@ -344,12 +337,12 @@ describe("modalBackgroundColor prop", () => {
   });
 
   describe("when set to background", () => {
-    it("changes the backround color of the modal to color-surface--background", async () => {
+    it("changes the backround color of the modal to color-surface--background", () => {
       const options: testRendererOptions = {
         ...getDefaultOptions(),
         modalBackgroundColor: "background",
       };
-      const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+      const contentOverlayScreen = renderAndOpenContentOverlay(options);
       const OverlayHeader = contentOverlayScreen.getByTestId(
         "ATL-Overlay-Header",
       ).children[0] as ReactTestInstance;

@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import type { Modalize } from "react-native-modalize";
+import { Modalize } from "react-native-modalize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import {
@@ -26,7 +26,6 @@ import type {
   ContentOverlayRef,
   ModalBackgroundColor,
 } from "./types";
-import { UNSAFE_WrappedModalize } from "./UNSAFE_WrappedModalize";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
@@ -154,7 +153,7 @@ function ContentOverlayInternal(
   return (
     <>
       {headerHeightKnown && childrenHeightKnown && (
-        <UNSAFE_WrappedModalize
+        <Modalize
           ref={callbackInternalRef}
           overlayStyle={styles.overlay}
           handleStyle={styles.handle}
@@ -197,7 +196,7 @@ function ContentOverlayInternal(
         >
           {Platform.OS === "android" ? renderedHeader : undefined}
           {renderedChildren}
-        </UNSAFE_WrappedModalize>
+        </Modalize>
       )}
       {!childrenHeightKnown && (
         <View style={[styles.hiddenContent, modalStyle]}>
