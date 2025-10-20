@@ -77,6 +77,7 @@ test.describe("Modal Visual Tests", () => {
     test("should test large modal", async ({ page }) => {
       const largeModalButton = page.getByRole("button", {
         name: "Open Large Modal",
+        exact: true,
       });
       await largeModalButton.click();
       await page.waitForTimeout(500);
@@ -203,6 +204,7 @@ test.describe("Modal Visual Tests", () => {
     test("should test large modal with narrow content", async ({ page }) => {
       const narrowContentModalButton = page.getByRole("button", {
         name: "Open Large Modal with Narrow Content",
+        exact: true,
       });
       await narrowContentModalButton.click();
       await page.waitForTimeout(500);
