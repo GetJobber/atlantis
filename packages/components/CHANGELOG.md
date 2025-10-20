@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.101.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.2...@jobber/components@6.101.3) (2025-10-20)
+
+
+### Bug Fixes
+
+* **components:** Fix Flakey Composable Menu Test ([#2787](https://github.com/GetJobber/atlantis/issues/2787)) ([84c790d](https://github.com/GetJobber/atlantis/commit/84c790d1e80cc0a9fe760192c602fba0a483aa2d))
+
+
+
+
+
 ## [6.101.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.1...@jobber/components@6.101.2) (2025-10-17)
 
 
