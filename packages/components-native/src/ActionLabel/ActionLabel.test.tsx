@@ -117,6 +117,18 @@ describe("ActionLabel", () => {
       });
     });
   });
+
+  it("supports nested inline content", () => {
+    const { Text } = require("../Text");
+    const { getByText, toJSON } = render(
+      <ActionLabel>
+        Before <Text variation="interactive">Inner</Text> After
+      </ActionLabel>,
+    );
+
+    expect(getByText("Inner")).toBeDefined();
+    expect(toJSON()).toMatchSnapshot();
+  });
 });
 
 function getStyleObject(el: ReactTestInstance) {

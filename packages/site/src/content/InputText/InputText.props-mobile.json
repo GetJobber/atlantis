@@ -185,7 +185,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: NativeSyntheticEvent<TextInputFocusEventData>) => void"
+          "name": "(event?: FocusEvent) => void"
         }
       },
       "onBlur": {

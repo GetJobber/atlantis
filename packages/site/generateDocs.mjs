@@ -187,6 +187,19 @@ const removeDeclarations = doc => {
   return doc;
 };
 
+// Explicit list of React parent types we want to exclude from docs.
+const REACT_PARENT_NAMES = new Set([
+  "InputHTMLAttributes",
+  "HTMLAttributes",
+  "AriaAttributes",
+  "DOMAttributes",
+  "Attributes",
+]);
+
+// Explicit keep-list: props we want to always show even if they originate
+// from @types/react (e.g., `ref`).
+const KEEP_PROP_NAMES = new Set(["ref"]);
+
 /**
  * Filter out inherited React base attributes from component docs.
  * Operate only on the top-level array returned by
@@ -200,25 +213,12 @@ const removeDeclarations = doc => {
  * @returns {Array} new array with filtered `props` per component
  */
 const filterOutInheritedReactProps = docs => {
-  if (!Array.isArray(docs)) return docs;
-
-  // Explicit list of React parent types we want to exclude from docs.
-  const REACT_PARENT_NAMES = new Set([
-    "InputHTMLAttributes",
-    "HTMLAttributes",
-    "AriaAttributes",
-    "DOMAttributes",
-    "Attributes",
-  ]);
+  if (docs.length === 0) return docs;
 
   // Consider anything from @types/react an inherited React attribute as well.
   const isReactTypesFile = fileName =>
     typeof fileName === "string" &&
     fileName.includes("node_modules/@types/react");
-
-  // Explicit keep-list: props we want to always show even if they originate
-  // from @types/react (e.g., `ref`).
-  const KEEP_PROP_NAMES = new Set(["ref"]);
 
   const filterPropsObject = propsObject => {
     if (!propsObject || typeof propsObject !== "object") return propsObject;
@@ -354,7 +354,6 @@ const buildWebComponentDocsV2 = name => {
 };
 
 ListOfGeneratedWebComponents.forEach(buildWebComponentDocsV2);
-
 // Print a concise summary at the end for clarity
 console.log(
   `Parsed ${stats.parsed} component(s). Updated ${stats.written} file(s). Skipped ${stats.skippedUnchanged}.`,

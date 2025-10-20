@@ -81,6 +81,22 @@ export const styles = StyleSheet.create({
 Text uses the core component [Text](https://reactnative.dev/docs/text) from
 `react-native`.
 
+#### Nested text (mobile)
+
+The mobile `Text` component now supports nested children like React Native’s
+`Text`. You can compose inline layouts and mixed formatting:
+
+```tsx
+<Text>
+  Normal <Text emphasis="strong">Bold</Text> and
+  <Text italic> italic</Text> text
+</Text>
+```
+
+Transforms (e.g., `transform="uppercase"`) apply only to string children of the
+component they are set on. Nested `Text`/`Typography` elements can set their own
+`transform` independently.
+
 ### Copying text
 
 There are a few caveats around copying text on Android and iOS that you can read
