@@ -312,8 +312,7 @@ export const VisualTestModalPage = () => {
             {/* Large modal with content that does not take up the whole width */}
             <section>
               <Text size="large">
-                Large composable modal with content that does not take up the
-                whole width
+                Large composable modal with narrow content
               </Text>
               <Button
                 label="Open Large Modal with Narrow Content"
