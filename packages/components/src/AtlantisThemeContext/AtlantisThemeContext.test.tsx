@@ -17,11 +17,13 @@ describe("ThemeContext", () => {
   function TestWrapper({
     children,
     dangerouslyOverrideTheme,
+    dangerouslyOverrideTokens,
   }: AtlantisThemeContextProviderProps) {
     return (
       <div data-testid="test-wrapper">
         <AtlantisThemeContextProvider
           dangerouslyOverrideTheme={dangerouslyOverrideTheme}
+          dangerouslyOverrideTokens={dangerouslyOverrideTokens}
         >
           <InlineLabel color="red">Past due</InlineLabel>
           {children}
@@ -45,6 +47,60 @@ describe("ThemeContext", () => {
 
       expect(results.result.current.theme).toBe("dark");
       expect(results.result.current.tokens).toEqual(expectedDarkTokens);
+    });
+  });
+
+  describe("when dangerouslyOverrideTokens are provided", () => {
+    it("applies overridden tokens and CSS variables in dynamic provider", () => {
+      const tokenName = "color-text" as const;
+      const overrideValue = "hsl(198, 35%, 30%)";
+      const overrideTokens = { [tokenName]: overrideValue } as Record<
+        string,
+        string
+      >;
+
+      const results = renderHook(useAtlantisTheme, {
+        wrapper: (props: AtlantisThemeContextProviderProps) => (
+          <TestWrapper {...props} dangerouslyOverrideTokens={overrideTokens} />
+        ),
+      });
+
+      expect(results.result.current.tokens[tokenName]).toBe(overrideValue);
+
+      const wrapper = screen.getByTestId("test-wrapper");
+      const overrideWrapper = wrapper.firstElementChild as HTMLElement | null;
+      expect(
+        (overrideWrapper as HTMLElement).style.getPropertyValue(
+          `--${tokenName}`,
+        ),
+      ).toBe(String(overrideValue));
+    });
+
+    it("applies overridden tokens and CSS variables in static provider", () => {
+      const tokenName = "color-text" as const;
+      const overrideValue = "hsl(198, 35%, 30%)";
+      const overrideTokens = { [tokenName]: overrideValue } as Record<
+        string,
+        string
+      >;
+
+      const results = renderHook(useAtlantisTheme, {
+        wrapper: (props: AtlantisThemeContextProviderProps) => (
+          <TestWrapper
+            {...props}
+            dangerouslyOverrideTheme="dark"
+            dangerouslyOverrideTokens={overrideTokens}
+          />
+        ),
+      });
+
+      expect(results.result.current.tokens[tokenName]).toBe(overrideValue);
+
+      const wrapper = screen.getByTestId("test-wrapper");
+      const overrideWrapper = wrapper.firstElementChild as HTMLElement | null;
+      expect(overrideWrapper?.style.getPropertyValue(`--${tokenName}`)).toBe(
+        String(overrideValue),
+      );
     });
   });
 

@@ -1,0 +1,240 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Autocomplete } from "@jobber/components/Autocomplete";
+import { Content } from "@jobber/components/Content";
+import { Heading } from "@jobber/components/Heading";
+import { Button } from "@jobber/components/Button";
+import { useState } from "react";
+
+<Meta
+  title="Components/Forms and Inputs/Autocomplete/Web (v2)"
+  component={Autocomplete}
+/>
+
+# Autocomplete (v2)
+
+An Autocomplete component allows a user to quickly pick a preset value from a
+larger list of possible options.
+
+## Design & usage guidelines
+
+The options in an Autocomplete component should be a list of possible values
+that the user can select. These options should be presented in a way that makes
+it easy for the user to find the value they are looking for. There are a few
+ways to achieve this.
+
+### Sectioned
+
+Section headings can be added to an Autocomplete to break up the options into
+groups. This can be useful if there are a lot of options or if the options are
+related to different things.
+
+export const AutocompleteV2SectionedExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const menu = [
+    {
+      type: "section",
+      label: "Indoor",
+      options: [
+        { label: "Drain Cleaning" },
+        { label: "Pipe Replacement" },
+        { label: "Sewer Line Repair" },
+        { label: "Window Cleaning" },
+      ],
+    },
+    {
+      type: "section",
+      label: "Outdoor",
+      options: [
+        { label: "Window Cleaning" },
+        { label: "Roof Inspection" },
+        { label: "Lawn Mowing" },
+        { label: "Hedge Trimming" },
+      ],
+    },      
+    {
+      type: "section",
+      label: "Misc",
+      options: [
+        { label: "Assessment" },
+        { label: "Inspection" },
+        { label: "2nd Opinion" },
+      ],
+    },
+  ];
+
+return ( <Autocomplete
+      version={2}
+      placeholder="Search"
+      value={value}
+      onChange={setValue}
+      inputValue={inputValue}
+      onInputChange={setInputValue}
+      menu={menu}
+    /> ); };
+
+<Canvas>
+  <AutocompleteV2SectionedExample />
+</Canvas>
+
+### Header and Footers
+
+Headers and Footers can be used to present persistent information or actions
+that should always be available regardless of results, or scroll location in the
+list of options. While there is no limit to how many can be present, it is
+advisable to use them sparringly to prevent the options from being the primary
+focus of the Autocomplete.
+
+export const AutocompleteV2HeaderFooterExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+
+return ( <Content> <Heading level={5}>Header/Footer</Heading> <Autocomplete
+version={2} placeholder="Search" value={value} onChange={setValue}
+inputValue={inputValue} onInputChange={setInputValue} menu={[ { type: "header",
+label: "Pinned header", shouldClose: false }, { type: "options", options: [ {
+label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line
+Repair" }, { label: "Window Cleaning" }, { label: "Roof Inspection" }, { label:
+"Lawn Mowing" }, { label: "Hedge Trimming" }, ], }, { type: "footer", label:
+"Interactive footer", onClick: () => { alert("Clicked") } }, ]} /> </Content> );
+};
+
+<Canvas>
+  <AutocompleteV2HeaderFooterExample />
+</Canvas>
+
+### Actions
+
+Actions may be placed either on the "flat" list of options or in individual
+sections. They are accessible by keyboard using arrow keys and Enter to select
+the highlighted action.
+
+export const AutocompleteV2ActionsExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const [open, setOpen] = useState(false);
+  const [newService, setNewService] = useState("");
+
+return ( <Content> <Heading level={5}>Actions</Heading> <Autocomplete
+version={2} placeholder="Options and actions" value={value} onChange={setValue}
+inputValue={inputValue} onInputChange={setInputValue} emptyStateMessage="No
+services found" menu={[ { type: "section", label: "Indoor", options: [ { label:
+"Drain Cleaning" }, { label: "Pipe Replacement" }, { label: "Sewer Line Repair"
+}, { label: "Window Cleaning" }, ], actions: [ { type: "action", label: "New
+Indoor", onClick: () => { alert("Adding indoor service") } } ], }, { type:
+"section", label: "Outdoor", options: [ { label: "Window Cleaning" }, { label:
+"Roof Inspection" }, { label: "Lawn Mowing" }, { label: "Hedge Trimming" }, ],
+actions: [ { type: "action", label: "New Outdoor", onClick: () => {
+alert("Adding outdoor service") } } ], },  
+ ]} /> </Content> ); };
+
+<Canvas>
+  <AutocompleteV2ActionsExample />
+</Canvas>
+
+### Empty Actions
+
+Empty actions can be used to present a user with relevant actions to take when
+no options exist. They will not be visible otherwise.
+
+export const AutocompleteV2EmptyActionsExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const [open, setOpen] = useState(false);
+  const [newService, setNewService] = useState("");
+
+return ( <Content> <Heading level={5}>Empty actions</Heading> <Autocomplete
+version={2} placeholder="Try a term with no matches" value={value}
+onChange={setValue} inputValue={inputValue} onInputChange={setInputValue}
+emptyStateMessage="No services found" emptyActions={[ { type: "action", label:
+"Create service", onClick: () => setOpen(true), }, ]} menu={[ { type: "options",
+options: [ { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label:
+"Sewer Line Repair" }, ], }, ]} /> {open ? ( <Content> <Heading level={5}>Create
+service</Heading> <input value={newService} onChange={e =>
+setNewService(e.target.value)} /> <Button label="Create" onClick={() =>
+setOpen(false)} /> </Content> ) : null} </Content> ); };
+
+<Canvas>
+  <AutocompleteV2EmptyActionsExample />
+</Canvas>
+
+### Stay Open Behavior
+
+All interactive elements (actions, headers, footers, empty actions) can be
+individually configured to keep the menu open when used if desired.
+
+export const AutocompleteV2StayOpenExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+
+return ( <Content> <Heading level={5}>Stay Open Action</Heading> <Autocomplete
+version={2} placeholder="Search" value={value} onChange={setValue}
+inputValue={inputValue} onInputChange={setInputValue} menu={[ { type: "options",
+options: [ { label: "Drain Cleaning" }, { label: "Pipe Replacement" }, { label:
+"Sewer Line Repair" }, ], actions: [ { type: "action", label: "Add Service
+(stays open)", shouldClose: false, onClick: () => alert("Add Service"), }, ], },
+]} /> </Content> ); };
+
+<Canvas>
+  <AutocompleteV2StayOpenExample />
+</Canvas>
+
+### FreeForm
+
+The "free form" allows for using a text value that does not already exist in the
+list of options. This works best when the content of an option is simply a word.
+When the content is more complex, we have to consider what to populate the
+additional fields with.
+
+An alternate approach with complex data, is to leverage the empty actions,
+actions, or header/footer actions to launch a creation flow to populate the
+fields.
+
+export const AutocompleteV2FreeFormExample = () => {
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const options = [
+    { label: "Drain Cleaning" },
+    { label: "Pipe Replacement" },
+    { label: "Sewer Line Repair" },
+    { label: "Window Cleaning" },
+  ];
+
+return ( <> <p>Your selection is: {value?.label ?? "" }</p> <Autocomplete
+version={2} placeholder="Type anything" value={value} onChange={setValue}
+inputValue={inputValue} onInputChange={setInputValue} allowFreeForm
+createFreeFormValue={label => ({ label })} menu={[{ type: "options", options }]}
+/> </> ); };
+
+<Canvas>
+  <AutocompleteV2FreeFormExample />
+</Canvas>
+
+### Interactive Content
+
+Content in options, actions, headers, footers, and sections can all be
+customized, however it is imperative to avoid putting additional interactive
+elements inside any of these. Because focus remains in the input, and we
+"virtually" move the highlighted item with arrow keys on keyboard navigation, it
+is impossible to Tab to any nested interactive elements such as a button inside
+of a row. Instead, use the provided action interfaces.
+
+### Content Complexity
+
+When providing complex content in each option, it is recommended to separate the
+options with a border bottom to improve readability of the options.
+
+### Content Consistency
+
+Items of the same type should appear consistently ie. if an Autocomplete has
+options, sections and actions avoid making the appearance of some options
+different from the rest.
+
+## Related components
+
+- If you want to present a list of predefined options without text input, or the
+  number of options is smaller, use a [Select](/components/Select)
+- If autocompleted results are not required for the text input, use
+  [InputText](/components/InputText)
+- If a text input appearance is not required, and options can only be from a
+  predefined set then a Combobox can be used

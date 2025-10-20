@@ -1,0 +1,56 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Navigation/Menu" />
+
+# Menu
+
+A Menu is made up of 2 primary parts: the trigger, typically a Button, and the
+Menu container.
+
+The Menu container is not visible by default, interacting with the trigger will
+open the Menu.
+
+The Menu is meant to offer a list of actions for a user to choose from, though
+only one may be used at a time. The Menu will close after an action is invoked,
+the ESC key is pressed, or a click outside the Menu is registered.
+
+Menu does not have a selected state. The actions are ephemeral with no state
+persisting between opens making them well suited for actions such as navigating
+to a new page, or launching a Modal.
+
+Menu is navigable by keyboard with arrow keys. Because of this only one action
+may occur per row. Nesting additional interactive elements within a single Menu
+action prevents keyboard access. When the Trigger is activated by keyboard, we
+move focus to the first item in the Menu upon opening.
+
+The other elements of a Menu are optional Sections, Separators and Headers.
+These elements are non interactive, nor focusable.
+
+> Keep Menu item content simple. Aim for at most three columns per row: a
+> leading icon, a label, and one simple trailing element (e.g., a
+> `StatusIndicator`). More complex layouts increase cognitive load and can
+> introduce complexity with the Menu's built in alignment features.
+
+### Small screens
+
+When a user is on a small screen device (less than ~500px), the Menu when opened
+will display as a tray or bottom-sheet like interface, opening upward from the
+bottom of the screen.
+
+It will have all the same elements as the standard version, and an additional
+Overlay covering the non-Menu area.
+
+## Content guidelines
+
+Menu action labels should be sentence-cased. This means in general, capitalize
+only the first letter of the label unless there is a proper noun (such as a
+person's name) in the label.
+
+Jobber features, such as jobs, quotes, and invoices, are not proper nouns and
+[should not be capitalized.](/content/product-vocabulary)
+
+| ✅ Do                            | ❌ Don't                         |
+| -------------------------------- | -------------------------------- |
+| Send as text message             | Send As Text Message             |
+| Collect signature                | COLLECT SIGNATURE                |
+| Assign Jasmine Williams to visit | Assign jasmine williams to visit |

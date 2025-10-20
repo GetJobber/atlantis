@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react-native";
 import { useScrollToError } from "./useScrollToError";
 
 const mockFormState = {
@@ -25,6 +25,7 @@ jest.mock("../../../ErrorMessageWrapper", () => ({
       el: {
         measure: jest.fn((_, callback) => callback()),
         hasErrorMessage: true,
+        accessibilityFocus: jest.fn(),
       },
     },
     register: jest.fn(),

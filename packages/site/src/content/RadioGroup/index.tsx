@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/RadioGroup/RadioGroup.stories.mdx";
+import Content from "./RadioGroup.stories.mdx";
 import Props from "./RadioGroup.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

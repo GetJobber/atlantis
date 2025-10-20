@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/InputNumber/InputNumber.stories.mdx";
+import Content from "./InputNumber.stories.mdx";
 import Props from "./InputNumber.props.json";
 import MobileProps from "./InputNumber.props-mobile.json";
 import Notes from "./InputNumberNotes.mdx";

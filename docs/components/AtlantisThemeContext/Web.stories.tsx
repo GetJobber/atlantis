@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import {
   AtlantisThemeContextProvider,
   updateTheme,
@@ -139,3 +139,73 @@ const ForceThemeTemplate: ComponentStory<
 
 export const ForceThemeForProvider = ForceThemeTemplate.bind({});
 ForceThemeForProvider.args = {};
+
+function OverrideTokensComponent({ message }: { readonly message: string }) {
+  const { theme, tokens, overrideTokens } = useAtlantisTheme();
+  const customBrandColor = overrideTokens?.["custom-brand-color"];
+
+  return (
+    <Box background="surface" padding="base">
+      <Content>
+        <Text>{message}</Text>
+        <Text size="small">Current theme: {theme}</Text>
+        <Text size="small">Original color-text: {tokens["color-text"]}</Text>
+        <Text size="small">Original space-base: {tokens["space-base"]}</Text>
+        <div style={{ backgroundColor: "var(--custom-brand-color)" }}>
+          <Text size="small">Custom token example: {customBrandColor}</Text>
+        </div>
+        <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
+          <InlineLabel color="red">Notice the custom styling</InlineLabel>
+          <InlineLabel color="green">With overridden tokens</InlineLabel>
+          <InlineLabel color="lightBlue">Applied throughout</InlineLabel>
+        </div>
+        <Flex
+          gap="base"
+          align="center"
+          direction="row"
+          template={["grow", "grow"]}
+        >
+          <Button label="Test dark theme" onClick={() => updateTheme("dark")} />
+          <Button
+            label="Test light theme"
+            onClick={() => updateTheme("light")}
+          />
+        </Flex>
+      </Content>
+    </Box>
+  );
+}
+
+const OverrideTokensTemplate: ComponentStory<
+  typeof AtlantisThemeContextProvider
+> = args => {
+  const customTokens = {
+    "color-text": "hsl(280, 100%, 50%)",
+    "color-critical--onSurface": "blue",
+    "color-success--onSurface": "blue",
+    "color-informative--onSurface": "blue",
+    "color-interactive": "hsl(280, 100%, 50%)",
+    "color-interactive--hover": "hsl(280, 85%, 37%)",
+    "custom-brand-color": "hsl(120, 81%, 50%)",
+  };
+
+  return (
+    <>
+      <AtlantisThemeContextProvider
+        {...args}
+        dangerouslyOverrideTokens={customTokens}
+      >
+        <OverrideTokensComponent message="Provider with overridden tokens" />
+      </AtlantisThemeContextProvider>
+      <AtlantisThemeContextProvider
+        dangerouslyOverrideTheme="dark"
+        dangerouslyOverrideTokens={customTokens}
+      >
+        <OverrideTokensComponent message="Provider with overridden tokens - forced dark" />
+      </AtlantisThemeContextProvider>
+    </>
+  );
+};
+
+export const OverrideTokens = OverrideTokensTemplate.bind({});
+OverrideTokens.args = {};

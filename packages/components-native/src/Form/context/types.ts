@@ -1,5 +1,5 @@
 import type { MutableRefObject } from "react";
-import type { FieldValues, UseFormReturn } from "react-hook-form";
+import type { DeepPartial, FieldValues, UseFormReturn } from "react-hook-form";
 
 export interface UseConfirmBeforeBackProps {
   alwaysPreventBack: boolean;
@@ -27,7 +27,8 @@ export interface AtlantisFormContextProps {
     cacheKey?: string,
     options?: LocalCacheOptions,
   ) => {
-    setLocalCache: (data: TData) => void;
+    setLocalCache: (data: DeepPartial<TData>) => void;
     removeLocalCache: () => void;
   };
+  edgeToEdgeEnabled?: boolean;
 }

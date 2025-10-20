@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Modal/Modal.stories.mdx";
+import Content from "./Modal.stories.mdx";
 import Props from "./Modal.props.json";
 import Notes from "./ModalNotes.mdx";
 import { ContentExport } from "../../types/content";

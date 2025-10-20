@@ -2,8 +2,9 @@
 coverage
 dist
 node_modules
+node_modules.e2e/
 **/tsconfig.tsbuildinfo
-**/tsconfig.rollup.tsbuildinfo
+**/tsconfig.*.tsbuildinfo
 .DS_Store
 .idea
 storybook-static
@@ -11,3 +12,6 @@ storybook-static
 jobber-*.tgz
 .npmrc
 styles.css.backup
+
+# Ignore local Cursor rules
+.cursor/rules/local-*

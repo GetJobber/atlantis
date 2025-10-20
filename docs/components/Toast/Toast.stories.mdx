@@ -1,68 +1,8 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
-import { Button } from "@jobber/components/Button";
-import { Toast, showToast } from "@jobber/components/Toast";
+import { Meta } from "@storybook/addon-docs";
 
-<Meta title="Components/Status and Feedback/Toast" component={Toast} />
+<Meta title="Components/Status and Feedback/Toast" />
 
 # Toast
 
-Toasts are short, temporary messages used to inform users that a process was
-performed. They provide visual feedback on the outcome of an action and require
-minimal user interaction.
-
-Toast, unlike common React components, is not a component that will be added to
-your view. Instead, Toast is used by importing and calling the `showToast()`
-function.
-
-## Design & usage guidelines
-
-Use `Toast` to present non-blocking feedback about the system to a user.
-
-### Related components
-
-For more persistent feedback (such as displaying errors), communicating a
-background process that is ongoing, or for feedback that has a longer reading
-length or CTA, use [Banner.](/components/Banner)
-
-### Variation (Web only)
-
-The primary use case for Toast is success messages.
-
-In some cases, an informational Toast may be used to inform the user of some
-background system activity. See
-[Web/Info example](../?path=/story/components-status-and-feedback-toast-web--variation)
-
-### Errors
-
-> Do not use Toast for errors. This is currently an available variation, but
-> should be considered deprecated and not propagated.
-
-Use [Banner](/components/Banner) and, where necessary, targeted error messaging
-(such as [InputValidation](/components/InputValidation)) so that the user can
-appropriately assess and recover from the error.
-
-## Content guidelines
-
-The Toast label should be clear and concise, and should not take up more than
-one line.
-
-Use the pattern "action + subject" to maintain
-[active voice](/content/voice-and-tone). The subject should be specific without
-overloading too much detail for the user to parse at a quick glance.
-
-| ✅ Do             | ❌ Don't                                           |
-| ----------------- | -------------------------------------------------- |
-| Saved job         | Saved job #216 - Weekly mowing for Nathaniel Lewis |
-| Archived property | Archived 289 NW 198th St, Shoreline, WA 98177, USA |
-
-- No need to use "Successfully", should be implicit in the Toast
-- Don't use `Dismiss` or `Cancel` as an action label
-  - Examples of action labels: `Undo`, `View`, `Refresh`
-- Toast's label does not require a period
-- Use sentence case, and only capitalize
-  ["branded"](/content/product-vocabulary) Jobber features
-
-| ✅ Do      | ❌ Don't                |
-| ---------- | ----------------------- |
-| Saved job  | Saved Job Successfully. |
-| Sent quote | Sent Quote              |
+[Toast docs](https://atlantis.getjobber.com/components/Toast) have moved to the
+new site.

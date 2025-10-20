@@ -1,4 +1,4 @@
-import AtlantisThemeContextContent from "@atlantis/docs/components/AtlantisThemeContext/AtlantisThemeContext.stories.mdx";
+import AtlantisThemeContextContent from "./AtlantisThemeContext.stories.mdx";
 import Props from "./AtlantisThemeContext.props.json";
 import MobileProps from "./AtlantisThemeContext.props-mobile.json";
 import { ContentExport } from "../../types/content";

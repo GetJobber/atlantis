@@ -14,6 +14,7 @@ import type {
   ModalContentProps as ModalContainerProps,
 } from "./Modal.types";
 import { useModalStyles } from "./useModalStyles";
+import { MODAL_HEADER_ID } from "./constants";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
@@ -28,8 +29,10 @@ export function ModalHeader({ title, children }: HeaderProps) {
   }
 
   return (
-    <div className={header} data-testid="ATL-Modal-Header" id={modalLabelledBy}>
-      <Heading level={2}>{title}</Heading>
+    <div className={header} data-testid={MODAL_HEADER_ID}>
+      <Heading level={2} id={modalLabelledBy}>
+        {title}
+      </Heading>
 
       {dismissible && (
         <div className={dismissButton}>
@@ -84,19 +87,31 @@ export function ModalActivator({ children }: PropsWithChildren) {
  * Background overlay for the modal. Used in the ModalContent.
  */
 
-export function ModalOverlay() {
-  const { onRequestClose } = useModalContext();
-  const { overlayBackground } = useModalStyles();
+export function ModalOverlay({ children }: PropsWithChildren) {
+  const { overlay, overlayBackground } = useModalStyles();
+  const { floatingNodeId, startedInsideRef } = useModalContext();
 
   return (
-    <motion.div
-      onClick={onRequestClose}
-      className={overlayBackground}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 0.8 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-    />
+    <FloatingOverlay
+      lockScroll
+      className={overlay}
+      data-modal-node-id={floatingNodeId}
+    >
+      <motion.div
+        aria-hidden="true"
+        className={overlayBackground}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        data-modal-node-id={floatingNodeId}
+        onPointerDownCapture={() => {
+          // Interaction began on overlay: mark as outside for the next click
+          if (startedInsideRef) startedInsideRef.current = false;
+        }}
+      />
+      {children}
+    </FloatingOverlay>
   );
 }
 
@@ -109,9 +124,11 @@ export function ModalContent({ children }: ModalContainerProps) {
     size,
     floatingNodeId,
     modalLabelledBy,
+    ariaLabel,
     getFloatingProps,
+    startedInsideRef,
   } = useModalContext();
-  const { modal, overlay } = useModalStyles(size);
+  const { modal } = useModalStyles(size);
 
   return (
     <AnimatePresence>
@@ -119,36 +136,38 @@ export function ModalContent({ children }: ModalContainerProps) {
         <FloatingNode id={floatingNodeId}>
           <FloatingPortal>
             <AtlantisPortalContent>
-              <FloatingOverlay className={overlay}>
+              <ModalOverlay>
                 <FloatingFocusManager
                   context={floatingContext}
                   returnFocus={activatorRef?.current ? activatorRef : true}
-                  initialFocus={floatingRefs?.floating}
+                  order={["floating", "content"]}
                 >
-                  <div
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                    }}
                     ref={floatingRefs?.setFloating}
-                    role="dialog"
-                    tabIndex={0}
-                    aria-labelledby={modalLabelledBy}
-                    {...getFloatingProps()}
+                    data-modal-node-id={floatingNodeId}
+                    {...getFloatingProps({
+                      role: "dialog",
+                      className: modal,
+                      "aria-labelledby": modalLabelledBy,
+                      "aria-label": ariaLabel,
+                      "aria-modal": true,
+                    })}
+                    onPointerDownCapture={() => {
+                      // Interaction began inside dialog
+                      if (startedInsideRef) startedInsideRef.current = true;
+                    }}
                   >
-                    <ModalOverlay />
-                    <motion.div
-                      data-floating-ui-focusable
-                      className={modal}
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      {children}
-                    </motion.div>
-                  </div>
+                    {children}
+                  </motion.div>
                 </FloatingFocusManager>
-              </FloatingOverlay>
+              </ModalOverlay>
             </AtlantisPortalContent>
           </FloatingPortal>
         </FloatingNode>

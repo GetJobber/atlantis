@@ -1,0 +1,135 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Box } from "@jobber/components/Box";
+import { Banner } from "@jobber/components/Banner";
+
+<Meta
+  title="Components/Layouts and Structure/Box"
+  component={Box}
+  parameters={{ alpha: true }}
+/>
+
+# Box
+
+<Banner type="warning" dismissible={false}>
+  The Box component is currently in Alpha status and breaking changes may occur
+</Banner>
+
+A box is a generic way to add structure to your page. Stop reaching for CSS
+Modules to perform basic page layout, and instead use the Box component.
+
+## Design & usage guidelines
+
+A Box is useful for wrapping content with a specific HTML5 element, and with
+common Atlantis specific CSS styles. Box supports standard alignment, border,
+borderColor, borderRadius, direction, gap, height, justification, margin,
+overflow, padding, position, width and whitespace options.
+
+Use Box if your wrapping CSS styles can be achieved with a prop configuration of
+the Box component, to avoid the need for creating a CSS module. Some basic
+examples are below, all configuration options are provided in the Basic Web
+example via the left-hand navigation.
+
+## Related components
+
+[Card](/components/Card) is a more opionated layout container, with a set
+background, border, radius, and an optional preset header. It is the preferred
+way to group related information and tasks so that users can consistently scan
+and prioritize information more easily.
+
+### No Props
+
+<Canvas>
+  <Box>
+    This is Box without props. It marks your content as display: flex and
+    flex-direction: column
+  </Box>
+</Canvas>
+
+### Border Base and Padding Base
+
+<Canvas>
+  <Box border="base" padding="base">
+    By default you get no padding or borders, but with two 'base' props you can
+    have both.
+  </Box>
+</Canvas>
+
+### Border Thick and Padding Large
+
+<Canvas>
+  <Box border="thick" padding="large">
+    Standard paddings and margins are available, and different borders. This is
+    using the 'thick' border along with padding 'large'
+  </Box>
+</Canvas>
+
+### Border Thickest and Margin Largest and Padding Extravagant
+
+<Canvas>
+  <Box margin="largest" border="thickest" padding="extravagant">
+    Want a big margin and huge padding? Box has those too.
+  </Box>
+</Canvas>
+
+## What about actual layout usages?
+
+If you don't really want borders around everything but just want to lay out some
+content on the page? You can do that too.
+
+<Canvas>
+  <Box direction="row">
+    <Box padding="base" width="grow">
+      Left
+    </Box>
+    <Box padding="base" width="grow">
+      Right
+    </Box>
+  </Box>
+</Canvas>
+
+### Maybe some custom heights or widths?
+
+Box has those as well.
+
+<Canvas>
+  <Box direction="row" alignItems="center">
+    <Box padding="base" width={350} border="base">
+      Left, 350px wide
+    </Box>
+    <Box padding="base" height={75} border="base">
+      Right, 75px high
+    </Box>
+  </Box>
+</Canvas>
+
+### What about a gap between elements?
+
+Standard sizes are supported.
+
+<Canvas>
+  <Box direction="row" alignItems="center" gap="large">
+    <Box padding="base" width={50} border="base">
+      Left, 50px wide
+    </Box>
+    <Box padding="base" height={25} border="base">
+      Right, 25px high
+    </Box>
+  </Box>
+</Canvas>
+
+### I have specific border-left and margin-bottom requirements.
+
+Box supports objects for some of its props, including padding and margin
+"bottom, horizontal, left, right, top, vertical"
+
+<Canvas>
+  <Box padding={{ top: "large" }} border="thick">
+    Top Padding?
+  </Box>
+</Canvas>
+
+<Canvas>
+  <Box margin={{ left: "large" }} border="base" padding="base">
+    Left Margin?
+  </Box>
+</Canvas>

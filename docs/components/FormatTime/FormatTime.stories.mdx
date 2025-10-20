@@ -1,27 +1,8 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
-import { FormatTime } from "@jobber/components/FormatTime";
+import { Meta } from "@storybook/addon-docs";
 
 <Meta title="Components/Utilities/FormatTime" />
 
 # FormatTime
 
-In Jobber a FormatTime is used to ensure that time is displayed in the expected
-format. No text styling is applied, this simply formats the text.
-
-## Specify format
-
-You can select a specific format to use in FormatTime.
-
-In the following example, we create a new `Date` object and set its time to
-22:35:00 (10:35 PM) using the `setHours` method. The `setHours` method sets the
-hours, minutes, seconds, and milliseconds for a specified date.
-
-```tsx
-const newDate = new Date();
-newDate.setHours(22, 35, 0, 0);
-
-<FormatTime time={newDate} use24HourClock={true} /> // prints 22:35
-
-<FormatTime time={newDate} use24HourClock={false} /> // prints 10:35 PM
-
-```
+[FormatTime docs](https://atlantis.getjobber.com/components/FormatTime) have
+moved to the new site.

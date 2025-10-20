@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Spinner/Spinner.stories.mdx";
+import Content from "./Spinner.stories.mdx";
 import Props from "./Spinner.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

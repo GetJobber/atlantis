@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/IconButton/IconButton.stories.mdx";
+import Content from "./IconButton.stories.mdx";
 import MobileProps from "./IconButton.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

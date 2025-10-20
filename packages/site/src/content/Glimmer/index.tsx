@@ -1,4 +1,4 @@
-import GlimmerContent from "@atlantis/docs/components/Glimmer/Glimmer.stories.mdx";
+import GlimmerContent from "./Glimmer.stories.mdx";
 import Props from "./Glimmer.props.json";
 import MobileProps from "./Glimmer.props-mobile.json";
 import { ContentExport } from "../../types/content";

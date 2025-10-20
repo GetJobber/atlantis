@@ -1,4 +1,4 @@
-import CountdownContent from "@atlantis/docs/components/Countdown/Countdown.stories.mdx";
+import CountdownContent from "./Countdown.stories.mdx";
 import Props from "./Countdown.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

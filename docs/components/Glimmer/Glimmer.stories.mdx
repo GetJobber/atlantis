@@ -1,61 +1,8 @@
-import { ArgsTable, Canvas, Meta, Source } from "@storybook/addon-docs";
-import { Tab, Tabs } from "@jobber/components/Tabs";
-import { Glimmer } from "@jobber/components/Glimmer";
-import { Box } from "@jobber/components/Box";
+import { Meta } from "@storybook/addon-docs";
 
-<Meta title="Components/Status and Feedback/Glimmer" component={Glimmer} />
+<Meta title="Components/Status and Feedback/Glimmer" />
 
 # Glimmer
 
-Glimmer is a foundational component that is used to build Skeleton (_coming
-soon_) or other components that invoke loading such as an image waiting to load
-on [FormatFile](/components/FormatFile).
-
-## Colors
-
-Glimmers adapts to the background you put it in. If you have a grey background,
-the `Glimmer` will automatically darken itself so it's still noticeable.
-
-<Canvas style={{ background: "var(--color-surface--background)" }}>
-  <Glimmer />
-</Canvas>
-
-If the Glimmer sits on a `reverse` background (dark in light mode, light in dark
-mode), you can toggle the `reverseTheme` prop to switch the colors so it's still
-noticeable.
-
-<Canvas style={{ background: "var(--color-surface--reverse)" }}>
-  <Box background="surface--reverse" padding="base">
-    <Glimmer reverseTheme />
-  </Box>
-</Canvas>
-
-## Semantic blocks
-
-A pre-made block can be used to indicate a certain component.
-
-export const semanticComponent = [Glimmer.Header, Glimmer.Text, Glimmer.Button];
-
-<Tabs>
-  <Tab label={"Glimmer.Header"}>
-    <Source code={"Glimmer.Header"} />
-    <Canvas withSource="none">
-      <Glimmer.Header />
-    </Canvas>
-    <ArgsTable of={Glimmer.Header} />
-  </Tab>
-  <Tab label={"Glimmer.Text"}>
-    <Source code={"Glimmer.Text"} />
-    <Canvas withSource="none">
-      <Glimmer.Text />
-    </Canvas>
-    <ArgsTable of={Glimmer.Text} />
-  </Tab>
-  <Tab label={"Glimmer.Button"}>
-    <Source code={"Glimmer.Button"} />
-    <Canvas withSource="none">
-      <Glimmer.Button />
-    </Canvas>
-    <ArgsTable of={Glimmer.Button} />
-  </Tab>
-</Tabs>
+[Glimmer docs](https://atlantis.getjobber.com/components/Glimmer) have moved to
+the new site.

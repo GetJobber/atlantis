@@ -7,6 +7,8 @@ export const VisualTestCatchAll = () => {
     { path: "modal", label: "Modal" },
     { path: "datalist", label: "Data List" },
     { path: "autocomplete", label: "Autocomplete" },
+    { path: "card", label: "Card" },
+    { path: "autocomplete-v2", label: "Autocomplete v2" },
     { path: "chip", label: "Chip" },
     { path: "chips", label: "Chips" },
     { path: "combobox", label: "Combobox" },

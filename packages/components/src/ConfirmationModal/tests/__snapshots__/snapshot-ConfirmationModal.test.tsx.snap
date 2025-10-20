@@ -3,6 +3,8 @@
 exports[`renders a simple ConfirmationModal 1`] = `
 <div>
   <div
+    aria-labelledby="ATL-Modal-Header"
+    aria-modal="true"
     class="container"
     role="dialog"
     tabindex="0"
@@ -13,7 +15,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
     />
     <div
       class="modal"
-      style="opacity: 0; transform: scale(0.9) translateZ(0);"
+      style="opacity: 0; transform: scale(0.9);"
     >
       <div
         class="header"
@@ -21,6 +23,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
       >
         <h2
           class="base bold largest heading"
+          id="ATL-Modal-Header"
         >
           Should we?
         </h2>
