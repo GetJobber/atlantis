@@ -77,6 +77,7 @@ test.describe("Modal Visual Tests", () => {
     test("should test large modal", async ({ page }) => {
       const largeModalButton = page.getByRole("button", {
         name: "Open Large Modal",
+        exact: true,
       });
       await largeModalButton.click();
       await page.waitForTimeout(500);
@@ -194,6 +195,20 @@ test.describe("Modal Visual Tests", () => {
       await saveButton.click();
       await page.waitForTimeout(500);
       await expect(page).toHaveScreenshot("17-tab-modal-closed.png", {
+        fullPage: true,
+      });
+    });
+  });
+
+  test.describe("narrow content large composable modal", () => {
+    test("should test large modal with narrow content", async ({ page }) => {
+      const narrowContentModalButton = page.getByRole("button", {
+        name: "Open Large Modal with Narrow Content",
+        exact: true,
+      });
+      await narrowContentModalButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("18-narrow-content-modal-open.png", {
         fullPage: true,
       });
     });
