@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   Cluster,
+  Content,
   Heading,
   InputEmail,
   InputText,
@@ -21,6 +22,7 @@ export const VisualTestModalPage = () => {
   const [largeModalOpen, setLargeModalOpen] = useState(false);
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [tabModalOpen, setTabModalOpen] = useState(false);
+  const [narrowContentModalOpen, setNarrowContentModalOpen] = useState(false);
 
   return (
     <Box padding="large">
@@ -305,6 +307,36 @@ export const VisualTestModalPage = () => {
                   </Text>
                 </Box>
               </Card>
+            </section>
+
+            {/* Large modal with content that does not take up the whole width */}
+            <section>
+              <Text size="large">
+                Large composable modal with content that does not take up the
+                whole width
+              </Text>
+              <Button
+                label="Open Large Modal with Narrow Content"
+                onClick={() => setNarrowContentModalOpen(true)}
+              />
+
+              <Modal.Provider
+                open={narrowContentModalOpen}
+                size="large"
+                onRequestClose={() => setNarrowContentModalOpen(false)}
+              >
+                <Modal.Content>
+                  <Content>
+                    <Text>
+                      This is a large composable modal that demonstrates content
+                      that doesn&apos;t take up the full width.
+                    </Text>
+                    <Text>
+                      Rendered modal width stillrespects the Modal size prop
+                    </Text>
+                  </Content>
+                </Modal.Content>
+              </Modal.Provider>
             </section>
           </Stack>
         </Stack>

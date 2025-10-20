@@ -198,4 +198,17 @@ test.describe("Modal Visual Tests", () => {
       });
     });
   });
+
+  test.describe("narrow content large composable modal", () => {
+    test("should test large modal with narrow content", async ({ page }) => {
+      const narrowContentModalButton = page.getByRole("button", {
+        name: "Open Large Modal with Narrow Content",
+      });
+      await narrowContentModalButton.click();
+      await page.waitForTimeout(500);
+      await expect(page).toHaveScreenshot("18-narrow-content-modal-open.png", {
+        fullPage: true,
+      });
+    });
+  });
 });
