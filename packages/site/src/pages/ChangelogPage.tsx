@@ -1,19 +1,18 @@
-import { PageBlock } from "../components/PageBlock";
-import { changelogList } from "../changelogList";
+import { Page } from "@jobber/components";
+import { ChangelogDataTable } from "./changelog/ChangelogDataTable";
+import { BaseView } from "../layout/BaseView";
+import usePageTitle from "../hooks/usePageTitle";
 
 export const ChangelogPage = () => {
+  usePageTitle({ title: "Changelog" });
+
   return (
-    <PageBlock
-      structure={{
-        header: {
-          title: "Changelog",
-          body: "What's new and notable",
-          imageURL: "/img-page-divider-collage.webp",
-        },
-        body: {
-          content: changelogList,
-        },
-      }}
-    />
+    <BaseView>
+      <BaseView.Main>
+        <Page title="Changelog">
+          <ChangelogDataTable />
+        </Page>
+      </BaseView.Main>
+    </BaseView>
   );
 };
