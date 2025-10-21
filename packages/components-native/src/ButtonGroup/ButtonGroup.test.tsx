@@ -168,11 +168,11 @@ it("fires the press handlers when the primary action buttons are pressed", () =>
   expect(editAction).toHaveBeenCalled();
 });
 
-it("opens the secondary action menu when the More button is pressed", () => {
+it("opens the secondary action menu when the More button is pressed", async () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const deleteAction = jest.fn();
-  const { getByText, queryByText, getByLabelText } = render(
+  const { findByText, queryByText, getByLabelText } = render(
     <ButtonGroupForTest>
       <ButtonGroup.PrimaryAction
         label="Create"
@@ -196,14 +196,14 @@ it("opens the secondary action menu when the More button is pressed", () => {
 
   fireEvent.press(getByLabelText("More"));
 
-  expect(getByText("Edit")).not.toBeNull();
-  expect(getByText("Delete")).not.toBeNull();
+  expect(await findByText("Edit")).not.toBeNull();
+  expect(await findByText("Delete")).not.toBeNull();
 });
 
-it("renders heading and cancel options if passed in", () => {
+it("renders heading and cancel options if passed in", async () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
-  const { getByText, getByLabelText } = render(
+  const { findByText, getByLabelText } = render(
     <ButtonGroupForTest
       bottomSheetHeading={"Heading"}
       showCancelInBottomSheet={true}
@@ -223,8 +223,8 @@ it("renders heading and cancel options if passed in", () => {
 
   fireEvent.press(getByLabelText("More"));
 
-  expect(getByText("Heading")).not.toBeNull();
-  expect(getByText("Cancel")).not.toBeNull();
+  expect(await findByText("Heading")).not.toBeNull();
+  expect(await findByText("Cancel")).not.toBeNull();
 });
 
 it("renders custom button for primary action if passed in", () => {

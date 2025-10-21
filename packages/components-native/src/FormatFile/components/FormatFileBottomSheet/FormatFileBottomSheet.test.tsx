@@ -52,29 +52,29 @@ const basicRenderTestWithValue = () => {
       });
 
       describe("onPreviewPress", () => {
-        it("renders the preview option", () => {
-          const { getByLabelText } = tree;
+        it("renders the preview option", async () => {
+          const { findByLabelText } = tree;
 
-          expect(getByLabelText(previewLabel)).toBeDefined();
+          expect(await findByLabelText(previewLabel)).toBeDefined();
         });
 
-        it("is called when pressed", () => {
-          const { getByLabelText } = tree;
-          fireEvent.press(getByLabelText(previewLabel));
+        it("is called when pressed", async () => {
+          const { findByLabelText } = tree;
+          fireEvent.press(await findByLabelText(previewLabel));
           expect(onPreview).toHaveBeenCalledTimes(1);
         });
       });
 
       describe("onRemovePress", () => {
-        it("renders the remove option", () => {
-          const { getByLabelText } = tree;
+        it("renders the remove option", async () => {
+          const { findByLabelText } = tree;
 
-          expect(getByLabelText(removeLabel)).toBeDefined();
+          expect(await findByLabelText(removeLabel)).toBeDefined();
         });
 
-        it("is called when pressed", () => {
-          const { getByLabelText } = tree;
-          fireEvent.press(getByLabelText(removeLabel));
+        it("is called when pressed", async () => {
+          const { findByLabelText } = tree;
+          fireEvent.press(await findByLabelText(removeLabel));
 
           expect(onRemove).toHaveBeenCalledTimes(1);
         });
