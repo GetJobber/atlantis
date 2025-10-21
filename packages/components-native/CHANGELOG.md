@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.89.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.1...@jobber/components-native@0.89.2) (2025-10-21)
+
+
+### Bug Fixes
+
+* **components-native:** Remove unnecessary onOpen/onClose props ([#2792](https://github.com/GetJobber/atlantis/issues/2792)) ([512910d](https://github.com/GetJobber/atlantis/commit/512910dfe24d17d8f3f0ef66c6523ef0faa24bfa))
+
+
+
+
+
 ## [0.89.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.0...@jobber/components-native@0.89.1) (2025-10-21)
 
 
