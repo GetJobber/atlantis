@@ -110,7 +110,7 @@ it("calls onClose when BottomSheet is closed", async () => {
   });
 
   await waitFor(() => {
-    expect(mockOnClose).toHaveBeenCalled();
+    expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -122,7 +122,7 @@ it("calls onOpen when BottomSheet is opened", async () => {
   });
 
   await waitFor(() => {
-    expect(mockOnOpen).toHaveBeenCalled();
+    expect(mockOnOpen).toHaveBeenCalledTimes(1);
   });
 });
 
