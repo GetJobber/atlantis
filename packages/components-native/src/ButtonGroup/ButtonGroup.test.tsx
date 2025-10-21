@@ -276,7 +276,7 @@ it("calls onOpenBottomSheet when the secondary actions are opened", async () => 
   fireEvent.press(getByLabelText("More"));
 
   await waitFor(() => {
-    expect(mockOnOpen).toHaveBeenCalled();
+    expect(mockOnOpen).toHaveBeenCalledTimes(1);
   });
 });
 
