@@ -23,9 +23,11 @@ export const UNSAFE_WrappedModalize = forwardRef<IHandles | undefined, Props>(
           requestAnimationFrame(() => {
             innerRef.current?.open(dest);
           });
+          props.onOpen?.();
         },
         close(dest) {
           innerRef.current?.close(dest);
+          props.onClose?.();
         },
       }),
       [],
