@@ -1,4 +1,4 @@
-import React, { act } from "react";
+import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { Alert } from "react-native";
