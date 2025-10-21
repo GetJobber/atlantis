@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.89.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.0...@jobber/components-native@0.89.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* **components-native:** Use modalize workaround for BottomSheet ([#2789](https://github.com/GetJobber/atlantis/issues/2789)) ([4802142](https://github.com/GetJobber/atlantis/commit/48021423eae4c8a4cbf403523765d3ae0fd0627f))
+
+
+
+
+
 # [0.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.88.1...@jobber/components-native@0.89.0) (2025-10-16)
 
 
