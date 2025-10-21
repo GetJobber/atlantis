@@ -127,7 +127,7 @@ describe("when a secondaryActions is passed in", () => {
     const beforeSubmitMock = jest.fn().mockImplementation(() => {
       return Promise.resolve(true);
     });
-    const { getByLabelText } = render(
+    const { findByLabelText, getByLabelText } = render(
       <ButtonGroupForTest
         primaryAction={pressHandler}
         loading={false}
@@ -145,7 +145,7 @@ describe("when a secondaryActions is passed in", () => {
       />,
     );
     fireEvent.press(getByLabelText("More"));
-    expect(getByLabelText("hi")).toBeDefined();
+    expect(await findByLabelText("hi")).toBeDefined();
     fireEvent.press(getByLabelText("hi"));
     expect(beforeSubmitMock).toHaveBeenCalled();
     await waitFor(() => {

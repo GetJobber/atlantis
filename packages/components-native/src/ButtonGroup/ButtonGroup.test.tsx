@@ -168,7 +168,7 @@ it("fires the press handlers when the primary action buttons are pressed", () =>
   expect(editAction).toHaveBeenCalled();
 });
 
-it("opens the secondary action menu when the More button is pressed", () => {
+it("opens the secondary action menu when the More button is pressed", async () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const deleteAction = jest.fn();
@@ -196,11 +196,11 @@ it("opens the secondary action menu when the More button is pressed", () => {
 
   fireEvent.press(getByLabelText("More"));
 
-  expect(findByText("Edit")).not.toBeNull();
-  expect(findByText("Delete")).not.toBeNull();
+  expect(await findByText("Edit")).not.toBeNull();
+  expect(await findByText("Delete")).not.toBeNull();
 });
 
-it("renders heading and cancel options if passed in", () => {
+it("renders heading and cancel options if passed in", async () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const { findByText, getByLabelText } = render(
@@ -223,8 +223,8 @@ it("renders heading and cancel options if passed in", () => {
 
   fireEvent.press(getByLabelText("More"));
 
-  expect(findByText("Heading")).not.toBeNull();
-  expect(findByText("Cancel")).not.toBeNull();
+  expect(await findByText("Heading")).not.toBeNull();
+  expect(await findByText("Cancel")).not.toBeNull();
 });
 
 it("renders custom button for primary action if passed in", () => {
