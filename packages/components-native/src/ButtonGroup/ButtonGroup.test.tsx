@@ -1,5 +1,5 @@
-import React from "react";
-import { fireEvent, render } from "@testing-library/react-native";
+import React, { act } from "react";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { Alert } from "react-native";
 import type { ButtonGroupProps } from "./ButtonGroup";
@@ -249,7 +249,7 @@ it("renders custom button for primary action if passed in", () => {
   expect(queryByText("Create")).toBeNull();
 });
 
-it("calls onOpenBottomSheet when the secondary actions are opened", () => {
+it("calls onOpenBottomSheet when the secondary actions are opened", async () => {
   const createAction = jest.fn();
   const editAction = jest.fn();
   const deleteAction = jest.fn();
@@ -275,7 +275,9 @@ it("calls onOpenBottomSheet when the secondary actions are opened", () => {
 
   fireEvent.press(getByLabelText("More"));
 
-  expect(mockOnOpen).toHaveBeenCalled();
+  await waitFor(() => {
+    expect(mockOnOpen).toHaveBeenCalled();
+  });
 });
 
 describe("ButtonGroup Offline/Online", () => {
