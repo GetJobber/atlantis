@@ -24,10 +24,10 @@ describe("useStepper", () => {
     expect(result.current.isLast).toBe(false);
   });
 
-  it("moves to next step when nextStep is called", () => {
+  it("moves to next step when nextStep is called", async () => {
     const { result } = renderHook(() => useStepper(steps));
 
-    act(() => {
+    await act(async () => {
       result.current.goToNextStep();
     });
 
@@ -36,14 +36,14 @@ describe("useStepper", () => {
     expect(result.current.isFirst).toBe(false);
   });
 
-  it("moves to previous step when previousStep is called", () => {
+  it("moves to previous step when previousStep is called", async () => {
     const { result } = renderHook(() =>
       useStepper(steps, {
         defaultStep: "step2",
       }),
     );
 
-    act(() => {
+    await act(async () => {
       result.current.goToPreviousStep();
     });
 
@@ -52,14 +52,14 @@ describe("useStepper", () => {
     expect(result.current.isFirst).toBe(true);
   });
 
-  it("does not move past the last step", () => {
+  it("does not move past the last step", async () => {
     const { result } = renderHook(() =>
       useStepper(steps, {
         defaultStep: "step3",
       }),
     );
 
-    act(() => {
+    await act(async () => {
       result.current.goToNextStep();
     });
 
@@ -68,14 +68,14 @@ describe("useStepper", () => {
     expect(result.current.isFirst).toBe(false);
   });
 
-  it("does not move before the first step", () => {
+  it("does not move before the first step", async () => {
     const { result } = renderHook(() =>
       useStepper(steps, {
         defaultStep: "step1",
       }),
     );
 
-    act(() => {
+    await act(async () => {
       result.current.goToPreviousStep();
     });
 
@@ -84,10 +84,10 @@ describe("useStepper", () => {
     expect(result.current.isLast).toBe(false);
   });
 
-  it("moves to specific step when goToStep is called", () => {
+  it("moves to specific step when goToStep is called", async () => {
     const { result } = renderHook(() => useStepper(steps));
 
-    act(() => {
+    await act(async () => {
       result.current.goToStep("step3");
     });
 

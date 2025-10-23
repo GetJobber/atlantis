@@ -82,7 +82,7 @@ it("should call the delete handler", async () => {
     <FormatFile onDelete={deleteHandler} file={testFile} />,
   );
 
-  act(() => {
+  await act(async () => {
     fireEvent.click(getByLabelText("Delete File"));
   });
 

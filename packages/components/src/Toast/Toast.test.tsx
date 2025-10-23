@@ -21,8 +21,8 @@ beforeEach(() => {
   jest.spyOn(global, "setTimeout");
 });
 
-afterEach(() => {
-  act(() => jest.runOnlyPendingTimers());
+afterEach(async () => {
+  await act(async () => jest.runOnlyPendingTimers());
   jest.useRealTimers();
 });
 
@@ -85,7 +85,7 @@ it("sets a timer and clears the Slice after a certain amount of time", async () 
   expect(setTimeout).toHaveBeenCalled();
   expect(await findAllByText(infoMessage)).toHaveLength(1);
 
-  act(() => {
+  await act(async () => {
     jest.runAllTimers();
   });
 
@@ -103,7 +103,7 @@ it("stops and starts the timer when the item is hover toggled", async () => {
 
   fireEvent.mouseEnter(getByText("Bland Toast"));
 
-  act(() => {
+  await act(async () => {
     jest.advanceTimersByTime(10000);
   });
 
@@ -111,7 +111,7 @@ it("stops and starts the timer when the item is hover toggled", async () => {
 
   fireEvent.mouseLeave(getByText("Bland Toast"));
 
-  act(() => {
+  await act(async () => {
     jest.advanceTimersByTime(10000);
   });
 

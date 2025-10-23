@@ -51,24 +51,24 @@ describe("ThemeContext", () => {
     expect(result.current.tokens).toEqual(expectedLightTokens);
   });
 
-  it("updates the theme and tokens", () => {
+  it("updates the theme and tokens", async () => {
     const { result } = renderHook(useAtlantisTheme, {
       wrapper: (props: AtlantisThemeContextProviderProps) => (
         <Wrapper {...props} />
       ),
     });
 
-    act(() => result.current.setTheme("dark"));
+    await act(async () => result.current.setTheme("dark"));
     expect(result.current.theme).toBe("dark");
     expect(result.current.tokens).toEqual(expectedDarkTokens);
 
-    act(() => result.current.setTheme("light"));
+    await act(async () => result.current.setTheme("light"));
     expect(result.current.theme).toBe("light");
     expect(result.current.tokens).toEqual(expectedLightTokens);
   });
 
   describe("when theme is forced for provider", () => {
-    it("ignores updates to the global theme", () => {
+    it("ignores updates to the global theme", async () => {
       const { result } = renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
           <WrapperWithOverride {...props} dangerouslyOverrideTheme="light" />
@@ -76,7 +76,7 @@ describe("ThemeContext", () => {
       });
 
       // Update the global theme
-      act(() => result.current.setTheme("dark"));
+      await act(async () => result.current.setTheme("dark"));
 
       // This hook shouldn't be affected by it because it's set to the light theme
       expect(result.current.theme).toBe("light");

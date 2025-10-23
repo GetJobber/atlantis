@@ -21,7 +21,7 @@ describe("useDebounce", () => {
     result.current("test");
     expect(mockFn).not.toHaveBeenCalled();
 
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
 
@@ -29,7 +29,7 @@ describe("useDebounce", () => {
     expect(mockFn).toHaveBeenCalledTimes(1);
   });
 
-  it("should cancel pending debounced calls on unmount", () => {
+  it("should cancel pending debounced calls on unmount", async () => {
     const mockFn = jest.fn();
     const { result, unmount } = renderHook(() =>
       useDebounce(mockFn, DEBOUNCE_WAIT),
@@ -38,26 +38,26 @@ describe("useDebounce", () => {
     result.current("test");
     unmount();
 
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
 
     expect(mockFn).not.toHaveBeenCalled();
   });
 
-  it("should handle multiple calls within the debounce period", () => {
+  it("should handle multiple calls within the debounce period", async () => {
     const mockFn = jest.fn();
     const { result } = renderHook(() => useDebounce(mockFn, DEBOUNCE_WAIT));
 
     result.current("first");
 
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT / 2);
     });
 
     result.current("second");
 
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
 
@@ -81,7 +81,7 @@ describe("useDebounce", () => {
     expect(debounceRef).toBe(result.current);
   });
 
-  it("should not recreate debounced function when options config changes", () => {
+  it("should not recreate debounced function when options config changes", async () => {
     const mockFn = jest.fn();
     // Largely arbitrary, this value x 2 must simply be less than the debounce wait
     const TIME_INCREMENT_LESSER_THAN_DEBOUNCE_WAIT = 1;
@@ -96,7 +96,7 @@ describe("useDebounce", () => {
 
     result.current("first");
 
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(TIME_INCREMENT_LESSER_THAN_DEBOUNCE_WAIT);
     });
 
@@ -107,7 +107,7 @@ describe("useDebounce", () => {
 
     result.current("second");
 
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(TIME_INCREMENT_LESSER_THAN_DEBOUNCE_WAIT);
     });
 
@@ -150,7 +150,7 @@ describe("useDebounce", () => {
 
     expect(debouncedValue.textContent).toBe("");
 
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT + 100);
     });
 
@@ -211,7 +211,7 @@ describe("useDebounce", () => {
     expect(debouncedCount.textContent).toBe("1");
 
     // After the debounce period, the trailing edge should update with the latest value
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT);
     });
 
@@ -228,11 +228,11 @@ describe("useDebounce", () => {
 
     result.current("test");
 
-    act(() => {
+    await act(async () => {
       controller.abort();
     });
 
-    act(() => {
+    await act(async () => {
       jest.advanceTimersByTime(DEBOUNCE_WAIT + 100);
     });
 

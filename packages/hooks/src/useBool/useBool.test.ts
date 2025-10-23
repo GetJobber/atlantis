@@ -14,19 +14,19 @@ describe("useBool, a hook for managing boolean state", () => {
     expect(value).toBe(true);
   });
 
-  it("provides helpful setters and a toggle method", () => {
+  it("provides helpful setters and a toggle method", async () => {
     const { result } = renderHook(() => useBool());
     const value = () => result.current[0];
     const [, setTrue, setFalse, toggle] = result.current;
 
     expect(value()).toBe(false);
-    act(setTrue);
+    await act(async () => setTrue());
     expect(value()).toBe(true);
-    act(setFalse);
+    await act(async () => setFalse());
     expect(value()).toBe(false);
-    act(toggle);
+    await act(async () => toggle());
     expect(value()).toBe(true);
-    act(toggle);
+    await act(async () => toggle());
     expect(value()).toBe(false);
   });
 });

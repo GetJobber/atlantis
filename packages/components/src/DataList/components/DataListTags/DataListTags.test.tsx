@@ -21,8 +21,10 @@ describe("DataListTags", () => {
     expect(screen.queryByText("+", { exact: false })).not.toBeInTheDocument();
   });
 
-  it("should render the '+' counter with the amount of tags hidden", () => {
-    act(observer.leaveAll);
+  it("should render the '+' counter with the amount of tags hidden", async () => {
+    await act(async () => {
+      observer.leaveAll();
+    });
 
     expect(screen.getByText(`+${tags.length}`)).toBeInTheDocument();
 
@@ -34,7 +36,7 @@ describe("DataListTags", () => {
   it("should count the correct amount of overflown tags", async () => {
     const element = screen.getByText(tags[1]);
     const target: HTMLElement | null = element.closest("[data-tag-element]");
-    act(() => {
+    await act(async () => {
       target && observer.leaveNode(target);
     });
 

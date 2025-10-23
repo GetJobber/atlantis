@@ -111,7 +111,7 @@ async function renderAndOpenContentOverlay(
 ) {
   const rendered = renderContentOverlay(defaultOptions);
 
-  act(() => {
+  await act(async () => {
     fireEvent.press(rendered.getByLabelText(defaultOptions.buttonLabel));
   });
 
@@ -144,7 +144,7 @@ describe("when the close button is clicked on an open content overlay", () => {
     };
     const contentOverlayScreen = await renderAndOpenContentOverlay(options);
 
-    act(() => {
+    await act(async () => {
       fireEvent.press(
         contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
       );
@@ -165,7 +165,7 @@ describe("when the close button is clicked on an open content overlay with a def
     };
     const contentOverlayScreen = await renderAndOpenContentOverlay(options);
 
-    act(() => {
+    await act(async () => {
       fireEvent.press(
         contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
       );
@@ -301,7 +301,7 @@ describe("when the close button is clicked on an open content overlay with a def
     };
     const contentOverlayScreen = await renderAndOpenContentOverlay(options);
 
-    act(() => {
+    await act(async () => {
       fireEvent.press(
         contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
       );
