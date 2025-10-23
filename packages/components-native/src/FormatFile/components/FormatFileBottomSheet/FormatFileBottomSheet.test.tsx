@@ -39,11 +39,11 @@ const basicRenderTestWithValue = () => {
       const removeLabel = `Remove ${bottomSheetOptionsSuffix}`;
       let tree: RenderAPI;
 
-      beforeEach(() => {
+      beforeEach(async () => {
         tree = renderBottomSheet(
           bottomSheetOptionsSuffix as BottomSheetOptionsSuffix,
         );
-        act(() => {
+        await act(async () => {
           bottomSheetRef.current?.open();
         });
       });
