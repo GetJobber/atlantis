@@ -46,7 +46,7 @@ describe("Glimmer", () => {
     );
   });
 
-  it("renders sets the correct width", () => {
+  it("renders sets the correct width", async () => {
     jest.useFakeTimers();
 
     // Spy on Animated.timing to verify the animation configuration
@@ -54,7 +54,7 @@ describe("Glimmer", () => {
 
     render(<Glimmer />);
 
-    act(() => {
+    await act(async () => {
       fireEvent(screen.getByTestId(GLIMMER_TEST_ID), "onLayout", {
         nativeEvent: { layout: { width: 300 } },
       });
