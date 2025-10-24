@@ -14,6 +14,7 @@ export const useStyles = buildThemedStyles(tokens => {
         minHeight: tokens["space-largest"] + tokens["space-small"],
         marginVertical: 0,
         borderWidth: 0,
+        backgroundColor: "transparent",
       },
     ]),
 
