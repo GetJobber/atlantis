@@ -2,8 +2,6 @@ import React from "react";
 import { ModalLegacy } from "./Modal";
 import { ModalProvider } from "./ModalContext.rebuilt";
 import {
-  ModalActions,
-  ModalActivator,
   ModalContent,
   ModalFooter,
   ModalFooterActions,
@@ -20,12 +18,11 @@ function Modal(props: ModalLegacyProps) {
 
 Modal.Header = ModalHeader;
 
-Modal.Actions = ModalActions;
-
-Modal.Activator = ModalActivator;
 Modal.Provider = ModalProvider;
 
 Modal.Content = ModalContent;
+// New alias for body-area wrapper
+Modal.Body = ModalContent;
 Modal.Title = ModalHeaderTitle;
 
 Modal.Footer = ModalFooter;

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Modal } from "@jobber/components/Modal";
 import { Content } from "@jobber/components/Content";
@@ -151,6 +151,11 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
   const [autocompleteValue, setAutocompleteValue] = useState<
     AutocompleteOption | undefined
   >();
+  const returnFocusRef = useRef<HTMLInputElement>(null);
+
+  // useEffect(() => {
+  //   console.log("returnFocusRef", returnFocusRef.current);
+  // }, [returnFocusRef.current]);
 
   return (
     <Content>
@@ -160,6 +165,12 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
         after it has been closed. This is done with the Modal.Activator
         component
       </Text>
+      <InputText
+        placeholder="Modal will return focus here"
+        ref={returnFocusRef}
+        value="Modal will return focus here"
+        version={2}
+      />
 
       <Button
         label="Open Modal with Custom Focus"
@@ -167,16 +178,18 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
       />
       <Modal.Provider
         open={modalOpen}
+        returnFocusRef={returnFocusRef}
+        dismissible={false}
         onRequestClose={() => {
           setModalOpen(false);
           setPopoverOpen(false);
         }}
       >
-        <Modal.Content>
-          <Box padding="large" gap="base">
-            <Modal.Header>
-              <Modal.Title>My Modal Title</Modal.Title>
-            </Modal.Header>
+        <Modal.Header>
+          <Modal.Title>My Modal Title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Content>
             <Text>
               This is an example of a modal using the modal provider for
               rendering the modal. This modal also includes various components
@@ -248,23 +261,18 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
               ]}
               placeholder="Search options..."
             />
-
-            <Tooltip message="This field cannot be left empty">
-              <Icon name="help" color="blue" />
-            </Tooltip>
-
-            <Modal.Footer>
-              <Modal.FooterActions>
-                <Button label="Submit" onClick={() => alert("Submitted ✅")} />
-                <Button
-                  label="Cancel"
-                  variation="destructive"
-                  onClick={() => setModalOpen(false)}
-                />
-              </Modal.FooterActions>
-            </Modal.Footer>
-          </Box>
-        </Modal.Content>
+          </Content>
+        </Modal.Body>
+        <Modal.Footer>
+          <Modal.FooterActions>
+            <Button label="Submit" onClick={() => alert("Submitted ✅")} />
+            <Button
+              label="Cancel"
+              variation="destructive"
+              onClick={() => setModalOpen(false)}
+            />
+          </Modal.FooterActions>
+        </Modal.Footer>
       </Modal.Provider>
     </Content>
   );

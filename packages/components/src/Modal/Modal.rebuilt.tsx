@@ -1,12 +1,7 @@
 import type { PropsWithChildren } from "react";
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import {
-  FloatingFocusManager,
-  FloatingNode,
-  FloatingOverlay,
-  FloatingPortal,
-} from "@floating-ui/react";
+import { motion } from "framer-motion";
+import { FloatingOverlay } from "@floating-ui/react";
 import { useModalContext } from "./ModalContext.rebuilt";
 import type {
   HeaderProps,
@@ -16,16 +11,20 @@ import type {
 import { useModalStyles } from "./useModalStyles";
 import styles from "./Modal.rebuilt.module.css";
 import { Heading } from "../Heading";
-import { ButtonDismiss } from "../ButtonDismiss";
+// ButtonDismiss rendered by provider
 import { Button } from "../Button";
-import { AtlantisPortalContent } from "../AtlantisPortalContent";
+// removed usage here; provider owns portal
 
 export function ModalHeader({ children }: HeaderProps) {
   return <div className={styles.header}>{children}</div>;
 }
 
 export function ModalHeaderTitle({ children }: PropsWithChildren) {
-  return <Heading level={2}>{children}</Heading>;
+  return (
+    <div className={styles.headerTitle}>
+      <Heading level={2}>{children}</Heading>
+    </div>
+  );
 }
 
 export function ModalFooter({ children }: PropsWithChildren) {
@@ -117,77 +116,7 @@ export function ModalOverlay({ children }: PropsWithChildren) {
 }
 
 export function ModalContent({ children }: ModalContainerProps) {
-  const {
-    open,
-    floatingContext,
-    floatingRefs,
-    size,
-    floatingNodeId,
-    modalLabelledBy,
-    ariaLabel,
-    getFloatingProps,
-    startedInsideRef,
-    // dismissible,
-    onRequestClose,
-    returnFocusRef,
-  } = useModalContext();
-  const { modal } = useModalStyles(size);
-  console.log("returnFocusRef", returnFocusRef);
-
-  return (
-    <AnimatePresence>
-      {open && (
-        <FloatingNode id={floatingNodeId}>
-          <FloatingPortal>
-            <AtlantisPortalContent>
-              <ModalOverlay>
-                <FloatingFocusManager
-                  context={floatingContext}
-                  returnFocus={returnFocusRef ? returnFocusRef : true}
-                  order={["floating", "content"]}
-                >
-                  <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.9, opacity: 0 }}
-                    transition={{
-                      duration: 0.2,
-                      ease: "easeInOut",
-                    }}
-                    ref={floatingRefs?.setFloating}
-                    data-modal-node-id={floatingNodeId}
-                    {...getFloatingProps({
-                      role: "dialog",
-                      className: modal,
-                      "aria-labelledby": modalLabelledBy,
-                      "aria-label": ariaLabel,
-                      "aria-modal": true,
-                    })}
-                    onPointerDownCapture={() => {
-                      // Interaction began inside dialog
-                      if (startedInsideRef) startedInsideRef.current = true;
-                    }}
-                  >
-                    {children}
-                  </motion.div>
-                </FloatingFocusManager>
-              </ModalOverlay>
-            </AtlantisPortalContent>
-          </FloatingPortal>
-        </FloatingNode>
-      )}
-    </AnimatePresence>
-  );
+  return <div className={styles.body}>{children}</div>;
 }
 
-function ModalHeaderDismiss({
-  onRequestClose,
-}: {
-  readonly onRequestClose?: () => void;
-}) {
-  return (
-    <div className={styles.headerDismiss}>
-      <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
-    </div>
-  );
-}
+// Dismiss button is now rendered by ModalProvider to avoid duplication and placement issues

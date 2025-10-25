@@ -20,6 +20,7 @@
 }
 
 .modal {
+  display: grid;
   position: relative;
   z-index: var(--elevation-modal);
   width: 100%;
@@ -31,6 +32,16 @@
   outline: none;
   background-color: var(--color-surface);
   flex: 0 0 auto;
+
+  /* Grid layout with gutters providing outer spacing */
+  grid-template-columns: var(--space-large) 1fr max-content var(--space-large);
+  grid-template-rows: var(--space-large) auto 1fr auto var(--space-large);
+  grid-template-areas:
+    ". . . ."
+    ". header dismiss ."
+    ". body body ."
+    ". footer footer ."
+    ". . . .";
 }
 .modal:focus-visible {
   box-shadow: var(--shadow-focus);
@@ -43,22 +54,34 @@
 
 .footer {
   display: grid;
+  grid-area: footer;
 }
 
 .footerActions {
+  display: flex;
+  margin-top: var(--space-large);
   justify-self: flex-end;
   gap: var(--space-small);
-  display: flex;
   flex-direction: row;
 }
 
 .header {
+  grid-area: header;
+}
+
+.headerTitle {
+  margin-bottom: var(--space-large);
 }
 
 .headerDismiss {
-  position: absolute;
-  top: 0;
-  right: 0;
   z-index: var(--elevation-modal);
-  padding: var(--space-small);
+  margin-top: -6px;
+  margin-right: -6px;
+  grid-area: dismiss;
+  justify-self: end;
+  align-self: start;
+}
+
+.body {
+  grid-area: body;
 }
