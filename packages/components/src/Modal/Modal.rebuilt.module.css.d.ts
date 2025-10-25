@@ -5,6 +5,7 @@ declare const styles: {
   readonly "closeButton": string;
   readonly "footer": string;
   readonly "footerActions": string;
+  readonly "footerOtherActions": string;
   readonly "header": string;
   readonly "headerTitle": string;
   readonly "headerDismiss": string;

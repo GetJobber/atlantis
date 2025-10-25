@@ -264,14 +264,18 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
           </Content>
         </Modal.Body>
         <Modal.Footer>
-          <Modal.FooterActions>
+          <Modal.FooterOtherActions>
+            <Button label="Help" onClick={() => alert("Help ❓")} />
+            <Button label="Info" onClick={() => alert("Info ℹ️")} />
+          </Modal.FooterOtherActions>
+          <Modal.FooterMainActions>
             <Button label="Submit" onClick={() => alert("Submitted ✅")} />
             <Button
               label="Cancel"
               variation="destructive"
               onClick={() => setModalOpen(false)}
             />
-          </Modal.FooterActions>
+          </Modal.FooterMainActions>
         </Modal.Footer>
       </Modal.Provider>
     </Content>

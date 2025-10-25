@@ -5,6 +5,8 @@ import {
   ModalContent,
   ModalFooter,
   ModalFooterActions,
+  ModalFooterMainActions,
+  ModalFooterOtherActions,
   ModalHeader,
   ModalHeaderTitle,
 } from "./Modal.rebuilt";
@@ -26,7 +28,8 @@ Modal.Body = ModalContent;
 Modal.Title = ModalHeaderTitle;
 
 Modal.Footer = ModalFooter;
-Modal.FooterActions = ModalFooterActions;
+Modal.FooterMainActions = ModalFooterMainActions;
+Modal.FooterOtherActions = ModalFooterOtherActions;
 
 export { useModalContext } from "./ModalContext.rebuilt";
 

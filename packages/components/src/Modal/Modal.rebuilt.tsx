@@ -31,8 +31,12 @@ export function ModalFooter({ children }: PropsWithChildren) {
   return <div className={styles.footer}>{children}</div>;
 }
 
-export function ModalFooterActions({ children }: PropsWithChildren) {
+export function ModalFooterMainActions({ children }: PropsWithChildren) {
   return <div className={styles.footerActions}>{children}</div>;
+}
+
+export function ModalFooterOtherActions({ children }: PropsWithChildren) {
+  return <div className={styles.footerOtherActions}>{children}</div>;
 }
 
 /*
