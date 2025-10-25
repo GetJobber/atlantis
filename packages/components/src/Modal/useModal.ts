@@ -11,23 +11,20 @@ import { useEffect, useRef } from "react";
 
 interface UseModalProps {
   open: boolean;
-  activatorRef?: React.RefObject<HTMLElement | null> | null;
   onRequestClose: () => void;
   startedInsideRef?: MutableRefObject<boolean> | undefined;
 }
 
 export function useModal({
   open,
-  activatorRef: refProp,
   onRequestClose,
   startedInsideRef,
 }: UseModalProps) {
   const nodeId = useFloatingNodeId();
   const defaultActivatorRef = useRef<HTMLElement | null>(null);
-  const activatorRef = refProp ?? defaultActivatorRef;
 
   const { refs: floatingRefs, context: floatingContext } = useFloating({
-    elements: { reference: activatorRef?.current },
+    elements: { reference: defaultActivatorRef.current },
     nodeId,
     onOpenChange: (newOpen: boolean) => {
       if (!newOpen) onRequestClose?.();
@@ -68,7 +65,6 @@ export function useModal({
     floatingRefs,
     floatingContext,
     nodeId,
-    activatorRef,
     parentId,
     getFloatingProps,
   };

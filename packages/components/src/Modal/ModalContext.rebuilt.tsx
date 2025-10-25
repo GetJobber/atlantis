@@ -19,6 +19,7 @@ export const ModalContext = createContext<ModalContextType>({
   floatingNodeId: undefined,
   dismissible: true,
   getFloatingProps: identity,
+  returnFocusRef: undefined,
 });
 export interface ModalProviderProps {
   readonly children: React.ReactNode;
@@ -29,6 +30,7 @@ export interface ModalProviderProps {
   readonly dismissible?: boolean;
   readonly modalLabelledBy?: string;
   readonly ariaLabel?: string;
+  readonly returnFocusRef?: MutableRefObject<HTMLElement | null> | null;
 }
 
 export function ModalProvider({
@@ -36,31 +38,24 @@ export function ModalProvider({
   open = false,
   size,
   onRequestClose = noop,
-  activatorRef: refProp,
   dismissible = true,
   modalLabelledBy = MODAL_HEADER_ID,
   ariaLabel,
+  returnFocusRef,
 }: ModalProviderProps) {
   const startedInsideRef = useRef<boolean>(true);
-  const {
-    floatingRefs,
-    floatingContext,
-    nodeId,
-    activatorRef,
-    parentId,
-    getFloatingProps,
-  } = useModal({
-    open,
-    activatorRef: refProp,
-    onRequestClose,
-    startedInsideRef,
-  });
+  const { floatingRefs, floatingContext, nodeId, parentId, getFloatingProps } =
+    useModal({
+      open,
+      onRequestClose,
+      startedInsideRef,
+    });
 
   const content = (
     <ModalContext.Provider
       value={{
+        returnFocusRef,
         onRequestClose,
-        activatorRef,
         floatingRefs,
         floatingContext,
         size,

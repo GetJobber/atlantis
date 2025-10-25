@@ -17,6 +17,9 @@ export interface ModalContextType {
    * Whether the modal is open.
    */
   readonly open?: boolean;
+
+  readonly returnFocusRef?: MutableRefObject<HTMLElement | null> | null;
+
   /**
    * Callback executed when the user wants to close/dismiss the Modal
    */

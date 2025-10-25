@@ -14,7 +14,6 @@ import type {
   ModalContentProps as ModalContainerProps,
 } from "./Modal.types";
 import { useModalStyles } from "./useModalStyles";
-import { MODAL_HEADER_ID } from "./constants";
 import styles from "./Modal.rebuilt.module.css";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
@@ -121,7 +120,6 @@ export function ModalContent({ children }: ModalContainerProps) {
   const {
     open,
     floatingContext,
-    activatorRef,
     floatingRefs,
     size,
     floatingNodeId,
@@ -129,10 +127,12 @@ export function ModalContent({ children }: ModalContainerProps) {
     ariaLabel,
     getFloatingProps,
     startedInsideRef,
-    dismissible,
+    // dismissible,
     onRequestClose,
+    returnFocusRef,
   } = useModalContext();
   const { modal } = useModalStyles(size);
+  console.log("returnFocusRef", returnFocusRef);
 
   return (
     <AnimatePresence>
@@ -143,7 +143,7 @@ export function ModalContent({ children }: ModalContainerProps) {
               <ModalOverlay>
                 <FloatingFocusManager
                   context={floatingContext}
-                  returnFocus={activatorRef?.current ? activatorRef : true}
+                  returnFocus={returnFocusRef ? returnFocusRef : true}
                   order={["floating", "content"]}
                 >
                   <motion.div
@@ -168,9 +168,6 @@ export function ModalContent({ children }: ModalContainerProps) {
                       if (startedInsideRef) startedInsideRef.current = true;
                     }}
                   >
-                    {dismissible && (
-                      <ModalHeaderDismiss onRequestClose={onRequestClose} />
-                    )}
                     {children}
                   </motion.div>
                 </FloatingFocusManager>
