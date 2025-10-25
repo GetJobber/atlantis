@@ -173,10 +173,10 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
         }}
       >
         <Modal.Content>
-          <Modal.Header>
-            <CustomHeader />
-          </Modal.Header>
-          <Content>
+          <Box padding="large" gap="base">
+            <Modal.Header>
+              <Modal.Title>My Modal Title</Modal.Title>
+            </Modal.Header>
             <Text>
               This is an example of a modal using the modal provider for
               rendering the modal. This modal also includes various components
@@ -252,11 +252,19 @@ const ModalWithProviderExampleTemplate: ComponentStory<typeof Modal> = () => {
             <Tooltip message="This field cannot be left empty">
               <Icon name="help" color="blue" />
             </Tooltip>
-          </Content>
+
+            <Modal.Footer>
+              <Modal.FooterActions>
+                <Button label="Submit" onClick={() => alert("Submitted ✅")} />
+                <Button
+                  label="Cancel"
+                  variation="destructive"
+                  onClick={() => setModalOpen(false)}
+                />
+              </Modal.FooterActions>
+            </Modal.Footer>
+          </Box>
         </Modal.Content>
-        <Modal.Activator>
-          <InputText placeholder="Modal will return focus here" />
-        </Modal.Activator>
       </Modal.Provider>
     </Content>
   );
@@ -290,8 +298,7 @@ const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
         }}
       >
         <Modal.Content>
-          <Modal.Header title={args.title} />
-          <Content>
+          <Box padding="large" gap="base">
             <Text>
               This is the outer modal. You can interact with components here and
               open another modal inside it.
@@ -303,14 +310,13 @@ const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
               type="secondary"
               fullWidth
             />
-          </Content>
+          </Box>
           <Modal.Provider
             open={innerModalOpen}
             onRequestClose={() => setInnerModalOpen(false)}
           >
             <Modal.Content>
-              <Modal.Header title="Inner Modal" />
-              <Content>
+              <Box padding="large" gap="base">
                 <Flex template={["shrink", "shrink"]}>
                   <Text>This is the inner modal!</Text>
                   <Tooltip message="Exercise caution when nesting modals beyond this level.">
@@ -321,20 +327,22 @@ const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
                   You can close this modal independently, or close both modals
                   together.
                 </Text>
-              </Content>
-              <Modal.Actions
-                primary={{
-                  label: "Close Inner Modal",
-                  onClick: () => setInnerModalOpen(false),
-                }}
-                secondary={{
-                  label: "Close Both Modals",
-                  onClick: () => {
-                    setInnerModalOpen(false);
-                    setOuterModalOpen(false);
-                  },
-                }}
-              />
+                <Modal.Footer>
+                  <Modal.FooterActions>
+                    <Button
+                      label="Close Inner Modal"
+                      onClick={() => setInnerModalOpen(false)}
+                    />
+                    <Button
+                      label="Close Both Modals"
+                      onClick={() => {
+                        setInnerModalOpen(false);
+                        setOuterModalOpen(false);
+                      }}
+                    />
+                  </Modal.FooterActions>
+                </Modal.Footer>
+              </Box>
             </Modal.Content>
           </Modal.Provider>
         </Modal.Content>

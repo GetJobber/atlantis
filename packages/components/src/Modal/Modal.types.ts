@@ -5,7 +5,6 @@ import type {
   ReferenceType,
   UseInteractionsReturn,
 } from "@floating-ui/react";
-import type { XOR } from "ts-xor";
 import type sizes from "./ModalSizes.module.css";
 import type { ButtonProps } from "../Button";
 
@@ -88,23 +87,7 @@ export interface ModalActionsProps {
   readonly tertiary?: ButtonProps;
 }
 
-interface HeaderPropsWithoutChildren {
-  /**
-   * Title of the modal.
-   */
-  readonly title: string;
-  /**
-   * Whether the modal is dismissible.
-   */
-  readonly dismissible?: boolean;
-  /**
-   * Callback executed when the user wants to close/dismiss the Modal
-   */
-  onRequestClose?(): void;
-}
-type HeaderWithChildren = PropsWithChildren;
-
-export type HeaderProps = XOR<HeaderPropsWithoutChildren, HeaderWithChildren>;
+export interface HeaderProps extends PropsWithChildren {}
 
 export interface ModalLegacyProps {
   /**

@@ -5,7 +5,10 @@ import {
   ModalActions,
   ModalActivator,
   ModalContent,
+  ModalFooter,
+  ModalFooterActions,
   ModalHeader,
+  ModalHeaderTitle,
 } from "./Modal.rebuilt";
 import type { ModalLegacyProps } from "./Modal.types";
 
@@ -23,8 +26,13 @@ Modal.Activator = ModalActivator;
 Modal.Provider = ModalProvider;
 
 Modal.Content = ModalContent;
+Modal.Title = ModalHeaderTitle;
+
+Modal.Footer = ModalFooter;
+Modal.FooterActions = ModalFooterActions;
 
 export { useModalContext } from "./ModalContext.rebuilt";
+
 export { useModalStyles } from "./useModalStyles";
 
 export { Modal };

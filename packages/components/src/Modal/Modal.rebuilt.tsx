@@ -15,34 +15,32 @@ import type {
 } from "./Modal.types";
 import { useModalStyles } from "./useModalStyles";
 import { MODAL_HEADER_ID } from "./constants";
+import styles from "./Modal.rebuilt.module.css";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
 import { AtlantisPortalContent } from "../AtlantisPortalContent";
 
-export function ModalHeader({ title, children }: HeaderProps) {
-  const { header, dismissButton } = useModalStyles();
-  const { dismissible, onRequestClose, modalLabelledBy } = useModalContext();
-
-  if (children) {
-    return <>{children}</>;
-  }
-
-  return (
-    <div className={header} data-testid={MODAL_HEADER_ID}>
-      <Heading level={2} id={modalLabelledBy}>
-        {title}
-      </Heading>
-
-      {dismissible && (
-        <div className={dismissButton}>
-          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
-        </div>
-      )}
-    </div>
-  );
+export function ModalHeader({ children }: HeaderProps) {
+  return <div className={styles.header}>{children}</div>;
 }
 
+export function ModalHeaderTitle({ children }: PropsWithChildren) {
+  return <Heading level={2}>{children}</Heading>;
+}
+
+export function ModalFooter({ children }: PropsWithChildren) {
+  return <div className={styles.footer}>{children}</div>;
+}
+
+export function ModalFooterActions({ children }: PropsWithChildren) {
+  return <div className={styles.footerActions}>{children}</div>;
+}
+
+/*
+  @deprecated This component is deprecated. Please use the <ModalFooterActions /> instead.
+  @deprecatedSince 1.2.0
+*/
 export function ModalActions({
   primary,
   secondary,
@@ -73,6 +71,10 @@ export function ModalActions({
   );
 }
 
+/**
+ * @deprecated This component is deprecated. Please use the <NewComponent /> instead.
+ * @deprecatedSince 1.2.0
+ */
 export function ModalActivator({ children }: PropsWithChildren) {
   const { activatorRef } = useModalContext();
 
@@ -127,6 +129,8 @@ export function ModalContent({ children }: ModalContainerProps) {
     ariaLabel,
     getFloatingProps,
     startedInsideRef,
+    dismissible,
+    onRequestClose,
   } = useModalContext();
   const { modal } = useModalStyles(size);
 
@@ -164,6 +168,9 @@ export function ModalContent({ children }: ModalContainerProps) {
                       if (startedInsideRef) startedInsideRef.current = true;
                     }}
                   >
+                    {dismissible && (
+                      <ModalHeaderDismiss onRequestClose={onRequestClose} />
+                    )}
                     {children}
                   </motion.div>
                 </FloatingFocusManager>
@@ -173,5 +180,17 @@ export function ModalContent({ children }: ModalContainerProps) {
         </FloatingNode>
       )}
     </AnimatePresence>
+  );
+}
+
+function ModalHeaderDismiss({
+  onRequestClose,
+}: {
+  readonly onRequestClose?: () => void;
+}) {
+  return (
+    <div className={styles.headerDismiss}>
+      <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+    </div>
   );
 }
