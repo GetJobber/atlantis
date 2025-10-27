@@ -11,6 +11,7 @@ export const atlantisFormContextDefaultValues = {
     setLocalCache: () => undefined,
     removeLocalCache: () => undefined,
   }),
+  edgeToEdgeEnabled: false,
 };
 
 export const AtlantisFormContext = createContext<AtlantisFormContextProps>(

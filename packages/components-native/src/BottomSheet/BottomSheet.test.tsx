@@ -43,42 +43,42 @@ function setup({
 }
 
 it("renders a BottomSheet", async () => {
-  const { getByText } = setup({});
+  const { findByText } = setup({});
 
   await waitForUntestableRender(
     "Wait for AccessibilityInfo.isScreenReaderEnabled to resolve",
   );
 
-  act(() => {
+  await act(async () => {
     ref.current?.open();
   });
 
-  expect(getByText("BottomSheet")).toBeDefined();
+  expect(await findByText("BottomSheet")).toBeDefined();
 });
 
 it("renders a BottomSheet with a header", async () => {
   const header = "Hello this is header";
-  const { getByText } = setup({ heading: header });
+  const { findByText } = setup({ heading: header });
 
   await waitForUntestableRender(
     "Wait for AccessibilityInfo.isScreenReaderEnabled to resolve",
   );
 
-  act(() => {
+  await act(async () => {
     ref.current?.open();
   });
 
-  expect(getByText(header)).toBeDefined();
+  expect(await findByText(header)).toBeDefined();
 });
 
 it("BottomSheet can be closed with the cancel action", async () => {
-  const { getByText, queryByText } = setup({ showCancel: true });
+  const { findByLabelText, queryByText } = setup({ showCancel: true });
 
-  act(() => {
+  await act(async () => {
     ref.current?.open();
   });
 
-  fireEvent.press(getByText("Cancel"));
+  fireEvent.press(await findByLabelText("Cancel"));
 
   await waitFor(() => {
     expect(queryByText("BottomSheet")).toBeNull();
@@ -93,7 +93,7 @@ describe("when loading is provided and true", () => {
       "Wait for AccessibilityInfo.isScreenReaderEnabled to resolve",
     );
 
-    act(() => {
+    await act(async () => {
       ref.current?.open();
     });
 
@@ -104,25 +104,25 @@ describe("when loading is provided and true", () => {
 it("calls onClose when BottomSheet is closed", async () => {
   setup({});
 
-  act(() => {
+  await act(async () => {
     ref.current?.open();
     ref.current?.close();
   });
 
   await waitFor(() => {
-    expect(mockOnClose).toHaveBeenCalled();
+    expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 });
 
 it("calls onOpen when BottomSheet is opened", async () => {
   setup({});
 
-  act(() => {
+  await act(async () => {
     ref.current?.open();
   });
 
   await waitFor(() => {
-    expect(mockOnOpen).toHaveBeenCalled();
+    expect(mockOnOpen).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -132,17 +132,17 @@ describe("when there is a screen reader enabled", () => {
       .spyOn(AccessibilityInfo, "isScreenReaderEnabled")
       .mockImplementation(() => Promise.resolve(true));
 
-    const { getByText, queryByText } = setup({});
+    const { findByLabelText, queryByText } = setup({});
 
     await waitForUntestableRender(
       "Wait for AccessibilityInfo.isScreenReaderEnabled to resolve",
     );
 
-    act(() => {
+    await act(async () => {
       ref.current?.open();
     });
 
-    fireEvent.press(getByText("Cancel"));
+    fireEvent.press(await findByLabelText("Cancel"));
 
     await waitFor(() => {
       expect(queryByText("BottomSheet")).toBeNull();

@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.101.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.3...@jobber/components@6.101.4) (2025-10-27)
+
+
+### Bug Fixes
+
+* await act calls in tests ([#2793](https://github.com/GetJobber/atlantis/issues/2793)) ([a16009f](https://github.com/GetJobber/atlantis/commit/a16009f8e2d058771b50280bb0c3d209f8d41688))
+
+
+
+
+
+## [6.101.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.2...@jobber/components@6.101.3) (2025-10-20)
+
+
+### Bug Fixes
+
+* **components:** Fix Flakey Composable Menu Test ([#2787](https://github.com/GetJobber/atlantis/issues/2787)) ([84c790d](https://github.com/GetJobber/atlantis/commit/84c790d1e80cc0a9fe760192c602fba0a483aa2d))
+
+
+
+
+
+## [6.101.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.1...@jobber/components@6.101.2) (2025-10-17)
+
+
+### Bug Fixes
+
+* **components:** Apply modal floating styles to composable Modal motion div ([#2785](https://github.com/GetJobber/atlantis/issues/2785)) ([10de1b0](https://github.com/GetJobber/atlantis/commit/10de1b05b557cc944790fefd18cad0e4559b3bac))
+
+
+
+
+
+## [6.101.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.0...@jobber/components@6.101.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* **components:** Fix unknown prop onSort on DataTableHeaderCell ([#2783](https://github.com/GetJobber/atlantis/issues/2783)) ([48a0111](https://github.com/GetJobber/atlantis/commit/48a0111fa04bbad1283466b45ff2e4496905e22e))
+
+
+
+
+
 # [6.101.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.100.0...@jobber/components@6.101.0) (2025-10-15)
 
 

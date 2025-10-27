@@ -150,24 +150,21 @@ export function ModalContent({ children }: ModalContainerProps) {
                       duration: 0.2,
                       ease: "easeInOut",
                     }}
+                    ref={floatingRefs?.setFloating}
+                    data-modal-node-id={floatingNodeId}
+                    {...getFloatingProps({
+                      role: "dialog",
+                      className: modal,
+                      "aria-labelledby": modalLabelledBy,
+                      "aria-label": ariaLabel,
+                      "aria-modal": true,
+                    })}
+                    onPointerDownCapture={() => {
+                      // Interaction began inside dialog
+                      if (startedInsideRef) startedInsideRef.current = true;
+                    }}
                   >
-                    <div
-                      ref={floatingRefs?.setFloating}
-                      data-modal-node-id={floatingNodeId}
-                      {...getFloatingProps({
-                        role: "dialog",
-                        className: modal,
-                        "aria-labelledby": modalLabelledBy,
-                        "aria-label": ariaLabel,
-                        "aria-modal": true,
-                      })}
-                      onPointerDownCapture={() => {
-                        // Interaction began inside dialog
-                        if (startedInsideRef) startedInsideRef.current = true;
-                      }}
-                    >
-                      {children}
-                    </div>
+                    {children}
                   </motion.div>
                 </FloatingFocusManager>
               </ModalOverlay>
