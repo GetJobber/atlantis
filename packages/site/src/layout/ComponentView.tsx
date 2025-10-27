@@ -82,13 +82,24 @@ export const ComponentView = () => {
     [PageMeta, currentPlatform],
   );
 
-  // Set initial type based on what's available
+  // Set initial type based on what's available for this component
   useEffect(() => {
     if (PageMeta && availableTypes.length > 0) {
       const defaultType = getDefaultComponentType(PageMeta);
 
       if (!availableTypes.includes(type)) {
+        // Current type isn't available for this component, switch to default
         updateType(defaultType);
+      } else {
+        // Current type is available, but we should prefer the default if URL doesn't specify otherwise
+        const params = new URLSearchParams(window.location.search);
+        const hasExplicitUrlParam =
+          params.has("webLegacy") || params.has("mobile");
+
+        // If there's no explicit URL parameter and we're not on the default type, switch to default
+        if (!hasExplicitUrlParam && type !== defaultType) {
+          updateType(defaultType);
+        }
       }
     }
   }, [PageMeta, availableTypes, type, updateType]);
