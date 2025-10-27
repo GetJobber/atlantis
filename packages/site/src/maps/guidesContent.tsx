@@ -11,6 +11,7 @@ import ContributingComponent from "@atlantis/docs/guides/contributing.mdx";
 import PageLayoutsComponent from "../guides/page-layouts.stories.mdx";
 import ScaffoldingComponent from "../guides/scaffolding.stories.mdx";
 import { ContentMapItems } from "../types/maps";
+import ComponentSupportLevelsComponent from "../content/guides/component-support-levels.stories.mdx";
 
 export const guidesContentMap: ContentMapItems = {
   "atlantis-overview": {
@@ -73,5 +74,10 @@ export const guidesContentMap: ContentMapItems = {
     title: "Scaffolding",
     content: () => <ScaffoldingComponent />,
     noMaxWidth: true,
+  },
+  "component-support-levels": {
+    intro: "Component support levels",
+    title: "Component support levels",
+    content: () => <ComponentSupportLevelsComponent />,
   },
 };
