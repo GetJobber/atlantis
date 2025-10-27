@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.89.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.2...@jobber/components-native@0.89.3) (2025-10-27)
+
+
+### Bug Fixes
+
+* **components-native:** Select background border cut off on New Arch ([#2794](https://github.com/GetJobber/atlantis/issues/2794)) ([c6a5f87](https://github.com/GetJobber/atlantis/commit/c6a5f87c294e233520edda69c4b20dfe5d1a865e))
+
+
+
+
+
 ## [0.89.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.1...@jobber/components-native@0.89.2) (2025-10-21)
 
 
