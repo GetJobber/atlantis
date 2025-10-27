@@ -259,6 +259,11 @@ export const routes: Array<AtlantisRoute> = [
         handle: "Scaffolding",
         exact: true,
       },
+      {
+        path: "/guides/component-support-levels",
+        handle: "Component support levels",
+        exact: true,
+      },
     ],
   },
   {
