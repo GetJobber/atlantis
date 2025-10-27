@@ -21,7 +21,7 @@ function setupHook() {
 it("should render a div to announce", async () => {
   const { liveAnnounce } = setupHook();
   const message = "Huzzah";
-  act(() => liveAnnounce(message));
+  await act(async () => liveAnnounce(message));
 
   await waitFor(() => {
     const expectedElement = screen.queryByRole("status");
@@ -43,13 +43,13 @@ it("should only have 1 div to announce a message on a single instance of the hoo
   const firstMessage = "I am first";
   const secondMessage = "I am second";
 
-  act(() => liveAnnounce(firstMessage));
+  await act(async () => liveAnnounce(firstMessage));
   await waitFor(() => {
     expect(screen.queryAllByRole("status")).toHaveLength(1);
     expect(screen.getByRole("status").textContent).toBe(firstMessage);
   });
 
-  act(() => liveAnnounce(secondMessage));
+  await act(async () => liveAnnounce(secondMessage));
   await waitFor(() => {
     expect(screen.queryAllByRole("status")).toHaveLength(1);
     expect(screen.getByRole("status").textContent).toBe(secondMessage);

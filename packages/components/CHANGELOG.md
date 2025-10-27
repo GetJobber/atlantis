@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.101.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.3...@jobber/components@6.101.4) (2025-10-27)
+
+
+### Bug Fixes
+
+* await act calls in tests ([#2793](https://github.com/GetJobber/atlantis/issues/2793)) ([a16009f](https://github.com/GetJobber/atlantis/commit/a16009f8e2d058771b50280bb0c3d209f8d41688))
+
+
+
+
+
 ## [6.101.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.2...@jobber/components@6.101.3) (2025-10-20)
 
 
