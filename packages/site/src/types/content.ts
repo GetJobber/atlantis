@@ -9,8 +9,6 @@ export interface ComponentTypeConfig {
   label: string;
   displayName: string;
   platform: PlatformType; // Which iframe/platform to use
-  isVersion?: boolean; // Whether this is a version of another type
-  baseType?: ComponentType; // The base type this is a version of
   warningMessage?: string;
 }
 
@@ -27,8 +25,6 @@ export const COMPONENT_TYPE_CONFIGS: Record<
     label: "Web (Supported)",
     displayName: "Supported",
     platform: "web", // Uses same iframe as web
-    isVersion: true,
-    baseType: "web",
   },
   mobile: {
     label: "Mobile",
