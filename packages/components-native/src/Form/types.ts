@@ -172,6 +172,13 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
   localCacheId?: string | string[];
 
   /**
+   * If true, the local cache will be removed when the user navigates away from
+   * the form even when offline. By default, cache is only removed on back when online.
+   * Defaults to false.
+   */
+  removeLocalCacheOnBackOffline?: boolean;
+
+  /**
    * Secondary Action for ButtonGroup
    */
   secondaryActions?: SecondaryActionProp[];
