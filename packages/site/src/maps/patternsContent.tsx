@@ -1,7 +1,7 @@
-import InteractionDocs from "@atlantis/docs/patterns/interaction.stories.mdx";
-import ErrorDocs from "@atlantis/docs/patterns/errors.stories.mdx";
-import EmptyStateDocs from "@atlantis/docs/patterns/empty-states.stories.mdx";
-import DisabledStateDocs from "@atlantis/docs/patterns/disabled-states.stories.mdx";
+import InteractionDocs from "../content/Patterns/interaction.stories.mdx";
+import ErrorDocs from "../content/Patterns/errors.stories.mdx";
+import EmptyStateDocs from "../content/Patterns/empty-states.stories.mdx";
+import DisabledStateDocs from "../content/Patterns/disabled-states.stories.mdx";
 import SettingsDocs from "../content/Patterns/settings.mdx";
 import { ContentMapItems } from "../types/maps";
 
