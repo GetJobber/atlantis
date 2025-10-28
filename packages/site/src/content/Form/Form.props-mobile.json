@@ -201,6 +201,19 @@
           "name": "string"
         }
       },
+      "removeLocalCacheOnBackOffline": {
+        "defaultValue": false,
+        "description": "If true, the local cache will be removed when the user navigates away from the dirty form even when offline. By default, cache is only removed on back when online.",
+        "name": "removeLocalCacheOnBackOffline",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "localCacheExclude": {
         "defaultValue": null,
         "description": "Forms field names that will not be considered for caching.\nUseful for omitting sensitive data.",
