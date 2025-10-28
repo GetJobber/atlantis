@@ -1,4 +1,3 @@
-import React from "react";
 import { DescriptionList } from "@jobber/components/DescriptionList";
 import { InlineLabel } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";

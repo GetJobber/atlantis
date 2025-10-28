@@ -1,4 +1,3 @@
-import React from "react";
 import { List } from "@jobber/components/List";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";

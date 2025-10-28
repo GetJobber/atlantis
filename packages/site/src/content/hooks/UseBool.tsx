@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Checkbox } from "@jobber/components/Checkbox";

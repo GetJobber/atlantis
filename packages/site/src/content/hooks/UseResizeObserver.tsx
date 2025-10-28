@@ -1,4 +1,3 @@
-import React from "react";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";

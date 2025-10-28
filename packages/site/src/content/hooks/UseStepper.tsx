@@ -1,4 +1,3 @@
-import React from "react";
 import { useStepper } from "@jobber/hooks/useStepper";
 import { Button, Flex } from "@jobber/components";
 
