@@ -745,7 +745,9 @@ function MenuItemIconComposable(props: MenuItemIconComposableProps) {
   );
 }
 
-function MenuItemLabelComposable(props: { readonly children: string }) {
+function MenuItemLabelComposable(props: {
+  readonly children: React.ReactNode;
+}) {
   const { destructive } = useMenuItemContext();
 
   return (
