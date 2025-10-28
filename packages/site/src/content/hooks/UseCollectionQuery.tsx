@@ -5,8 +5,10 @@ import { InlineLabel } from "@jobber/components/InlineLabel";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   LIST_QUERY,
+  ListQueryType,
   apolloClient,
   getLoadingState,
+  // @ts-expect-error This does exist, though we don't export it publicly for consumers.
 } from "@jobber/hooks/useCollectionQuery/mdxUtils";
 
 export function UseCollectionQuery() {
@@ -17,7 +19,7 @@ export function UseCollectionQuery() {
     loadingRefresh,
     loadingNextPage,
     loadingInitialContent,
-  } = useCollectionQuery({
+  } = useCollectionQuery<ListQueryType>({
     // useCollectionQuery should be called with the query type, and
     // optionally, the subscription type. The Canvas errors with
     // typing included, so typing has been removed in this example.
@@ -40,15 +42,17 @@ export function UseCollectionQuery() {
   let items = [];
 
   if (data) {
-    items = data.allPlanets.edges.map(edge => {
-      return {
-        section: "Star Wars Planets",
-        id: edge.node.id,
-        icon: "starFill",
-        iconColor: "green",
-        content: edge.node.name,
-      };
-    });
+    items = data.allPlanets.edges.map(
+      (edge: ListQueryType["allPlanets"]["edges"][number]) => {
+        return {
+          section: "Star Wars Planets",
+          id: edge.node.id,
+          icon: "starFill",
+          iconColor: "green",
+          content: edge.node.name,
+        };
+      },
+    );
   }
 
   return (
