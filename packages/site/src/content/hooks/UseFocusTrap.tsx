@@ -7,7 +7,7 @@ import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 
 export function UseFocusTrap() {
   const [checked, setChecked] = useState(false);
-  const trapRef = useFocusTrap(checked);
+  const trapRef = useFocusTrap<HTMLDivElement>(checked);
 
   return (
     <>
