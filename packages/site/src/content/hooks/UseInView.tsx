@@ -3,7 +3,7 @@ import { Content } from "@jobber/components/Content";
 import { useInView } from "@jobber/hooks/useInView";
 
 export function UseInView() {
-  const [ref, isInView] = useInView();
+  const [ref, isInView] = useInView<HTMLDivElement>();
 
   return (
     <Content>
