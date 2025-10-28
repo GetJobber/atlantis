@@ -1,43 +1,50 @@
 <!--
-  Atlantis uses Conventional Commits to track versions.
-  Pull request titles should follow the following format.
+## Important notes
 
-  For help creating your pull request, you can [use this tool](https://atlantis.getjobber.com/guides/pull-request-title-generator)
+* Atlantis is a PUBLIC repo. Please avoid sharing internal details/context.
+* If you haven't yet, please create a slack thread to ensure UXF is aware of this PR.
 
-  <TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>
+## PR title formatting
 
-  eg.
-    fix(SCOPE): stop graphite breaking when too much pressure applied — Patch Release
-    feat(SCOPE): add 'graphiteWidth' option — (Minor) Feature Release
-    feat(SCOPE): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
+Atlantis uses Conventional Commits to track versions.
+Pull request titles should follow the following format.
 
-  TYPE should consist of:
-    - fix: a commit of the type fix patches a bug in your codebase
-    - feat: a commit of the type feat introduces a new feature to the codebase
-    - docs: documentation only changes
-    - build: improvements to the build system
-    - refactor: a change that neither fixes a bug nor introduces a feature
-    - chore: other changes that don't modify src or test files
+For help creating your pull request, you can [use this tool](https://atlantis.getjobber.com/guides/pull-request-title-generator)
 
-  SCOPE should be one of:
-    - components
-    - components-native
-    - deps
-    - deps-dev
-    - design
-    - docx
-    - eslint
-    - formatters
-    - generators
-    - hooks
-    - stylelint
+<TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>
+
+eg.
+fix(SCOPE): stop graphite breaking when too much pressure applied — Patch Release
+feat(SCOPE): add 'graphiteWidth' option — (Minor) Feature Release
+feat(SCOPE): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
+
+TYPE should consist of:
+- fix: a commit of the type fix patches a bug in your codebase
+- feat: a commit of the type feat introduces a new feature to the codebase
+- docs: documentation only changes
+- build: improvements to the build system
+- refactor: a change that neither fixes a bug nor introduces a feature
+- chore: other changes that don't modify src or test files
+
+SCOPE should be one of:
+- components
+- components-native
+- deps
+- deps-dev
+- design
+- docx
+- eslint
+- formatters
+- generators
+- hooks
+- stylelint
 
 
-  If your pull request introduces a breaking change please append `BREAKING CHANGE:` following type / scope.
+If your pull request introduces a breaking change please append `BREAKING CHANGE:` following type / scope.
 
-  Further Reading:
-    - https://www.conventionalcommits.org
-    - https://github.com/commitizen/conventional-commit-types/blob/master/index.json
+Further Reading:
+- https://www.conventionalcommits.org
+- https://github.com/commitizen/conventional-commit-types/blob/master/index.json
 -->
 
 ## Motivations
