@@ -1,15 +1,15 @@
-import CreateAReactComponentComponent from "@atlantis/docs/guides/create-basic-component.stories.mdx";
-import CustomizingComponentsComponent from "@atlantis/docs/guides/customizing-components.stories.mdx";
-import DocumentationStyleguideComponent from "@atlantis/docs/guides/documentation-style.stories.mdx";
-import FrontendStyleguideComponent from "@atlantis/docs/guides/frontend-style.stories.mdx";
-import AddingAnIcon from "@atlantis/docs/guides/adding-an-icon.stories.mdx";
-import GettingStartedWithReactComponent from "@atlantis/docs/getting-started-with-react/getting-started-with-react.stories.mdx";
-import PullRequestTitleGeneratorComponent from "@atlantis/docs/guides/pull-request-title-generator.stories.mdx";
-import Figma101Component from "@atlantis/docs/guides/figma-101.mdx";
-import AtlantisOverviewComponent from "@atlantis/docs/guides/atlantis-overview.mdx";
-import ContributingComponent from "@atlantis/docs/guides/contributing.mdx";
-import PageLayoutsComponent from "../guides/page-layouts.stories.mdx";
-import ScaffoldingComponent from "../guides/scaffolding.stories.mdx";
+import CreateAReactComponentComponent from "../content/guides/create-basic-component.stories.mdx";
+import CustomizingComponentsComponent from "../content/guides/customizing-components.stories.mdx";
+import DocumentationStyleguideComponent from "../content/guides/documentation-style.stories.mdx";
+import FrontendStyleguideComponent from "../content/guides/frontend-style.stories.mdx";
+import AddingAnIcon from "../content/guides/adding-an-icon.stories.mdx";
+import GettingStartedWithReactComponent from "../content/guides/getting-started-with-react/getting-started-with-react.stories.mdx";
+import PullRequestTitleGeneratorComponent from "../content/guides/pull-request-title-generator.stories.mdx";
+import Figma101Component from "../content/guides/figma-101.mdx";
+import AtlantisOverviewComponent from "../content/guides/atlantis-overview.mdx";
+import ContributingComponent from "../content/guides/contributing.mdx";
+import PageLayoutsComponent from "../content/guides/page-layouts.stories.mdx";
+import ScaffoldingComponent from "../content/guides/scaffolding.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 import ComponentSupportLevelsComponent from "../content/guides/component-support-levels.stories.mdx";
 
