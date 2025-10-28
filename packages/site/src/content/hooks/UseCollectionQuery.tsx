@@ -3,13 +3,11 @@ import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
 import { InlineLabel } from "@jobber/components/InlineLabel";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
-/* eslint-disable import/no-internal-modules */
 import {
   LIST_QUERY,
   apolloClient,
   getLoadingState,
 } from "@jobber/hooks/useCollectionQuery/mdxUtils";
-/* eslint-enable import/no-internal-modules */
 
 export function UseCollectionQuery() {
   const {
