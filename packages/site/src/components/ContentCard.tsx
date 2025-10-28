@@ -27,7 +27,7 @@ export const ContentCard = ({
 
   return (
     <Card
-      elevation="low"
+      elevation={theme === "dark" ? "none" : "low"}
       onClick={() => {
         history.push(to);
         onClick?.();

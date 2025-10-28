@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";

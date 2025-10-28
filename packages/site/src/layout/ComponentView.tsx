@@ -1,4 +1,12 @@
-import { Banner, Box, Content, Page, Tab, Tabs } from "@jobber/components";
+import {
+  Banner,
+  Box,
+  Content,
+  Heading,
+  Page,
+  Tab,
+  Tabs,
+} from "@jobber/components";
 import { useParams } from "react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
@@ -15,6 +23,20 @@ import usePageTitle from "../hooks/usePageTitle";
 import { useAtlantisPreview } from "../preview/AtlantisPreviewProvider";
 import { AtlantisPreviewEditor } from "../preview/AtlantisPreviewEditor";
 import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
+import { ComponentType, PlatformType } from "../types/content";
+import {
+  getAvailableComponentTypes,
+  getAvailablePlatformTypes,
+  getAvailableVersionsForPlatform,
+  getComponentContent,
+  getComponentElement,
+  getComponentLinks,
+  getComponentNotes,
+  getComponentTypeConfig,
+  getDefaultComponentType,
+  getPlatformForComponentType,
+} from "../utils/componentTypeUtils";
+import { VersionSelector } from "../components/VersionSelector";
 
 /**
  * Layout for displaying a Component documentation page. This will display the component, props, and code.
@@ -24,8 +46,7 @@ import { AtlantisPreviewViewer } from "../preview/AtlantisPreviewViewer";
 // eslint-disable-next-line max-statements
 export const ComponentView = () => {
   const { name = "" } = useParams<{ name: string }>();
-  const { updateCode, iframe, iframeMobile, type, updateType } =
-    useAtlantisPreview();
+  const { updateCode, type, updateType } = useAtlantisPreview();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
   const { updateStyles } = useStyleUpdater();
@@ -35,6 +56,53 @@ export const ComponentView = () => {
     useAtlantisSite();
 
   usePageTitle({ title: PageMeta?.title });
+
+  // Get available component types for this component
+  const availableTypes = useMemo(
+    () => (PageMeta ? getAvailableComponentTypes(PageMeta) : []),
+    [PageMeta],
+  );
+
+  const availablePlatforms = useMemo(
+    () => (PageMeta ? getAvailablePlatformTypes(PageMeta) : []),
+    [PageMeta],
+  );
+
+  // Get current platform and available versions for that platform
+  const currentPlatform = useMemo(
+    () => getPlatformForComponentType(type),
+    [type],
+  );
+
+  const availableVersionsForCurrentPlatform = useMemo(
+    () =>
+      PageMeta
+        ? getAvailableVersionsForPlatform(PageMeta, currentPlatform)
+        : [],
+    [PageMeta, currentPlatform],
+  );
+
+  // Set initial type based on what's available for this component
+  useEffect(() => {
+    if (PageMeta && availableTypes.length > 0) {
+      const defaultType = getDefaultComponentType(PageMeta);
+
+      if (!availableTypes.includes(type)) {
+        // Current type isn't available for this component, switch to default
+        updateType(defaultType);
+      } else {
+        // Current type is available, but we should prefer the default if URL doesn't specify otherwise
+        const params = new URLSearchParams(window.location.search);
+        const hasExplicitUrlParam =
+          params.has("webLegacy") || params.has("mobile");
+
+        // If there's no explicit URL parameter and we're not on the default type, switch to default
+        if (!hasExplicitUrlParam && type !== defaultType) {
+          updateType(defaultType);
+        }
+      }
+    }
+  }, [PageMeta, availableTypes, type, updateType]);
 
   useEffect(() => {
     if (minimal.requested && !minimal.enabled) {
@@ -46,147 +114,139 @@ export const ComponentView = () => {
     };
   }, []);
 
-  const ComponentContent = PageMeta?.content;
+  const ComponentContent = getComponentContent(PageMeta, type);
 
-  const code =
-    type === "web" && PageMeta?.component?.element
-      ? PageMeta?.component?.element
-      : PageMeta?.component?.mobileElement;
+  const code = getComponentElement(PageMeta, type);
 
   useEffect(() => {
-    if (iframe?.current || iframeMobile?.current) {
+    if (code) {
       setTimeout(() => updateCode(code as string, true), 100);
     }
-  }, [code, type]);
-
-  useEffect(() => {
-    if (
-      type === "web" &&
-      !PageMeta?.component?.element &&
-      PageMeta?.component?.mobileElement
-    ) {
-      updateType("mobile");
-    }
-
-    if (type === "mobile" && !PageMeta?.component?.mobileElement) {
-      updateType("web");
-    }
-  }, [type, PageMeta]);
+  }, [code, type, updateCode]);
 
   const handleTabChange = (tabIn: number) => {
-    if (tabIn == 1) {
-      updateType("web");
-    } else if (tabIn == 2) {
-      updateType("mobile");
+    if (tabIn === 0) {
+      // Design tab - no type change needed
+      setTab(tabIn);
+    } else if (tabIn <= availablePlatforms.length) {
+      // Platform implementation tabs (Web, Mobile)
+      const platformTabIndex = tabIn - 1; // Adjust for design tab being first
+      const targetPlatform = availablePlatforms[platformTabIndex];
+
+      if (targetPlatform) {
+        // Only change the component type if we're switching to a different platform
+        if (currentPlatform !== targetPlatform) {
+          // Find the first available version for this platform
+          const versionsForPlatform = getAvailableVersionsForPlatform(
+            PageMeta,
+            targetPlatform,
+          );
+
+          if (versionsForPlatform.length > 0) {
+            updateType(versionsForPlatform[0]);
+          }
+        }
+        // Always set the tab regardless of whether we changed the type
+        setTab(tabIn);
+      }
+    } else {
+      // Implement tab or other tabs - just switch without changing type
+      setTab(tabIn);
     }
-    setTab(tabIn);
     updateStyles();
   };
-  const tabs = [
-    {
-      label: "Design",
-      children: (
-        <Content spacing="large">
-          <ComponentContent />
-        </Content>
-      ),
-    },
-    {
-      label: "Web",
-      children: (
-        <>
-          <Box margin={{ bottom: "base" }}>
-            <AtlantisPreviewEditor />
-          </Box>
-          <PropsList values={stateValues || []} />
-        </>
-      ),
-    },
-    {
-      label: "Mobile",
-      children: (
-        <div data-usage-tab>
-          <Box margin={{ bottom: "base" }}>
-            <AtlantisPreviewEditor />
-          </Box>
-          <Box margin={{ top: "base", bottom: "base" }}>
-            <Banner type="warning" dismissible={false}>
-              Due to distinctions between web and native platform, this may not
-              render accurately in a web browser.
-            </Banner>
-          </Box>
-          <PropsList values={stateValues || []} />
-        </div>
-      ),
-    },
-    {
-      label: "Implement",
-      children: PageMeta?.notes ? (
-        <Content spacing="large">
-          <PageMeta.notes />
-        </Content>
-      ) : null,
-    },
-  ];
 
-  const activeTabs = useMemo(() => {
-    return tabs.filter((_, index) => {
-      if (!PageMeta?.component.element && index === 1) {
-        return false;
-      }
+  // Create tabs dynamically based on available platforms (not individual component types)
+  const tabs = useMemo(() => {
+    const tabList = [
+      {
+        label: "Design",
+        children: (
+          <Content spacing="large">
+            {ComponentContent && <ComponentContent />}
+          </Content>
+        ),
+      },
+    ];
 
-      if (!PageMeta?.component.mobileElement && index === 2) {
-        return false;
-      }
+    // Add platform implementation tabs
+    availablePlatforms.forEach((platform: PlatformType) => {
+      const versionsForPlatform = getAvailableVersionsForPlatform(
+        PageMeta,
+        platform,
+      );
+      if (versionsForPlatform.length === 0) return;
 
-      if (!PageMeta?.notes && index === 3) {
-        return false;
-      }
+      // Use the first version to get the platform config
+      const firstVersion = versionsForPlatform[0];
+      const config = getComponentTypeConfig(firstVersion);
 
-      return true;
+      tabList.push({
+        label: config.platform === "web" ? "Web" : "Mobile",
+        children: (
+          <div data-usage-tab={platform}>
+            <Box margin={{ bottom: "base" }}>
+              <AtlantisPreviewEditor />
+            </Box>
+            {config.warningMessage && (
+              <Box margin={{ top: "base", bottom: "base" }}>
+                <Banner type="warning" dismissible={false}>
+                  {config.warningMessage}
+                </Banner>
+              </Box>
+            )}
+            <PropsList values={stateValues || []} />
+          </div>
+        ),
+      });
     });
-  }, [tabs]);
 
-  const goToProps = (typeIn: string) => {
-    if (typeIn === "web" && PageMeta?.component?.element) {
-      handleTabChange(1);
-    } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
-      handleTabChange(1);
-    } else if (
-      typeIn === "mobile" &&
-      PageMeta?.component?.element &&
-      PageMeta?.component?.mobileElement
-    ) {
-      handleTabChange(2);
-    } else {
-      handleTabChange(1);
+    // Add Implement tab if notes are available
+    const currentNotes = getComponentNotes(PageMeta, type);
+
+    if (currentNotes && typeof currentNotes === "function") {
+      const NotesComponent = currentNotes;
+      tabList.push({
+        label: "Implement",
+        children: (
+          <Content spacing="large">
+            <NotesComponent />
+          </Content>
+        ),
+      });
     }
-    setTimeout(() => {
-      document
-        .querySelector("[data-props-list]")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+
+    return tabList;
+  }, [availablePlatforms, PageMeta, ComponentContent, stateValues, type]);
+
+  const goToProps = (typeIn: ComponentType) => {
+    const platform = getPlatformForComponentType(typeIn);
+    const platformIndex = availablePlatforms.indexOf(platform);
+
+    if (platformIndex !== -1) {
+      updateType(typeIn); // Switch to the specific version
+      handleTabChange(platformIndex + 1); // +1 to account for Design tab
+      setTimeout(() => {
+        document
+          .querySelector("[data-props-list]")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
   };
 
-  const goToUsage = (typeIn: string) => {
-    if (typeIn === "web" && PageMeta?.component?.element) {
-      handleTabChange(1);
-    } else if (typeIn === "mobile" && !PageMeta?.component?.element) {
-      handleTabChange(1);
-    } else if (
-      typeIn === "mobile" &&
-      PageMeta?.component?.element &&
-      PageMeta?.component?.mobileElement
-    ) {
-      handleTabChange(2);
-    } else {
-      handleTabChange(1);
+  const goToUsage = (typeIn: ComponentType) => {
+    const platform = getPlatformForComponentType(typeIn);
+    const platformIndex = availablePlatforms.indexOf(platform);
+
+    if (platformIndex !== -1) {
+      updateType(typeIn); // Switch to the specific version
+      handleTabChange(platformIndex + 1); // +1 to account for Design tab
+      setTimeout(() => {
+        document
+          .querySelector(`[data-usage-tab="${platform}"]`)
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     }
-    setTimeout(() => {
-      document
-        .querySelector("[data-usage-tab]")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
   };
 
   const goToDesign = () => {
@@ -196,7 +256,19 @@ export const ComponentView = () => {
   return PageMeta ? (
     <BaseView>
       <BaseView.Main>
-        <Page width="narrow" title={PageMeta.title}>
+        <Page
+          width="narrow"
+          title={
+            <Box direction="row" gap="small" alignItems="start">
+              <Heading level={1}>{PageMeta.title}</Heading>
+              <VersionSelector
+                availableVersions={availableVersionsForCurrentPlatform}
+                currentVersion={type}
+                onVersionChange={updateType}
+              />
+            </Box>
+          }
+        >
           <Box>
             <Content spacing="large">
               <Box direction="column" gap="small" alignItems="flex-end">
@@ -206,7 +278,7 @@ export const ComponentView = () => {
               </Box>
               <span style={{ "--public-tab--inset": 0 } as React.CSSProperties}>
                 <Tabs onTabChange={handleTabChange} activeTab={tab}>
-                  {activeTabs.map((activeTab, index) => (
+                  {tabs.map((activeTab, index) => (
                     <Tab key={index} label={activeTab.label}>
                       {activeTab.children}
                     </Tab>
@@ -220,9 +292,12 @@ export const ComponentView = () => {
       <BaseView.Siderail visible={!isMinimal}>
         <ComponentLinks
           key={`component-${name}`}
-          links={PageMeta?.links}
-          mobileEnabled={!!PageMeta?.component?.mobileElement}
-          webEnabled={!!PageMeta?.component?.element}
+          links={getComponentLinks(PageMeta, type)}
+          availablePlatforms={availablePlatforms}
+          availableVersionsForCurrentPlatform={
+            availableVersionsForCurrentPlatform
+          }
+          currentType={type}
           goToDesign={goToDesign}
           goToProps={goToProps}
           goToUsage={goToUsage}

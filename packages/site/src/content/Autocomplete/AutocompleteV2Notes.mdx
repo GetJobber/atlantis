@@ -2,30 +2,30 @@ import { Banner } from "@jobber/components/Banner";
 
 ## Configuration
 
-### V1 to V2
+### Legacy to Supported
 
-V1 has a single mechanism to update the options. Only `initialOptions` are
+Legacy has a single mechanism to update the options. Only `initialOptions` are
 directly controlled, then `getOptions` is used to populate the options based on
 the input term. This is managed with internal state that creates barriers as to
 what can be done with the experience.
 
-V2 is entirely controlled, having both sets of `inputValue`, `onInputChange`,
-`value` and `onChange`.
+Now, Autocomplete is entirely controlled, having both sets of `inputValue`,
+`onInputChange`, `value` and `onChange`.
 
-Filtering is now built into Autocomplete v2. It has a default filter of
-comparing the input value to the case insensitive "label" value. If using custom
-data, where we might want to search a different field, or even multiple fields,
+Filtering is now built into Autocomplete. It has a default filter of comparing
+the input value to the case insensitive "label" value. If using custom data,
+where we might want to search a different field, or even multiple fields,
 providing filterOptions allows customization of the filter logic. For cases with
 async data it is recommended to opt out of filtering entirely, and manage that
 yourself with the results you return and pass as options. This can be done with
 `filterOptions={false}`.
 
-V2 has been decoupled from React Hook Form, and has no built in validation. To
-validate, you must create your own logic and use either `error` or `invalid` to
-set the visually invalid state on the input. `onBlur`, `value`, `onChange`,
-`inputValue`, `onInputChange` provide all the necessary callbacks to determine
-the state of the Autocomplete. These callbacks will integrate with a schema like
-Zod, and an external instance of RHF.
+Autocomplete has been decoupled from React Hook Form, and has no built in
+validation. To validate, you must create your own logic and use either `error`
+or `invalid` to set the visually invalid state on the input. `onBlur`, `value`,
+`onChange`, `inputValue`, `onInputChange` provide all the necessary callbacks to
+determine the state of the Autocomplete. These callbacks will integrate with a
+schema like Zod, and an external instance of RHF.
 
 Filtering is now built in, and not necessary to implement yourself. You are able
 to opt out or customize it if desired, see more about this in the filtering
@@ -36,7 +36,7 @@ While sections still exist, the additional pre defined "details" and
 re-created with custom data, custom layouts, and modified option/section styles.
 
 All options will by default continue to be visible after making a selection
-whereas v1 would limit your options to the selected option if a selection is
+whereas Legacy would limit your options to the selected option if a selection is
 present.
 
 ### Structure, `menu` and `type`s
@@ -59,7 +59,7 @@ mouse click. Space will do nothing because focus is intentionally kept in the
 input for further refinements to the search term.
 
 <details>
- <summary>V1 Section vs V2</summary>
+ <summary>Legacy Section vs Supported</summary>
 
 ```
  const SectionHeadingOptions = [
