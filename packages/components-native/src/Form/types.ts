@@ -173,7 +173,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
 
   /**
    * If true, the local cache will be removed when the user navigates away from
-   * the form even when offline. By default, cache is only removed on back when online.
+   * the dirty form even when offline. By default, cache is only removed on back when online.
    * Defaults to false.
    */
   removeLocalCacheOnBackOffline?: boolean;
