@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@jobber/components/Button";
 import { useLiveAnnounce } from "@jobber/hooks/useLiveAnnounce";
 

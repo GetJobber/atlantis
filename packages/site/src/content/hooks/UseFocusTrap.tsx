@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Checkbox } from "@jobber/components/Checkbox";
@@ -7,7 +7,7 @@ import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 
 export function UseFocusTrap() {
   const [checked, setChecked] = useState(false);
-  const trapRef = useFocusTrap(checked);
+  const trapRef = useFocusTrap<HTMLDivElement>(checked);
 
   return (
     <>

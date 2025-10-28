@@ -1,4 +1,3 @@
-import React from "react";
 import { useWindowDimensions } from "@jobber/hooks/useWindowDimensions";
 
 export function UseWindowDimensions() {
