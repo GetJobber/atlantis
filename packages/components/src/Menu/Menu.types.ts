@@ -220,9 +220,9 @@ export interface MenuMobileUnderlayProps {
 export interface MenuItemLabelComposableProps {
   /**
    * Item label content.
-   * This is rendered inside a Typography (span) component, so you MUST supply valid
-   * "phrasing" content, such as a string or a single qualifying element. Utility components
-   * that render down to a string (e.g. translation helpers) are acceptable.
+   * This is rendered inside a Typography (span) component, so you MUST supply either
+   * a string or a fragment/utility component that renders down to a raw string (e.g.
+   * translation helpers).
    */
   readonly children: React.ReactNode;
 }
