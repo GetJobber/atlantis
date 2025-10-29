@@ -337,7 +337,7 @@
     "props": {
       "children": {
         "defaultValue": null,
-        "description": "Item label content.\nThis is rendered inside a Typography (span) component, so you MUST supply valid\n\"phrasing\" content, such as a string or a single qualifying element. Utility components\nthat render down to a string (e.g. translation helpers) are acceptable.",
+        "description": "Item label content.\nThis is rendered inside a Typography (span) component, so you MUST supply either\na string or a fragment/utility component that renders down to a raw string (e.g.\ntranslation helpers).",
         "name": "children",
         "parent": {
           "fileName": "packages/components/src/Menu/Menu.types.ts",
