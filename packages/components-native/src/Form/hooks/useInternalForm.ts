@@ -20,6 +20,7 @@ type UseInternalFormProps<T extends FieldValues, SubmitResponseType> = Pick<
   | "localCacheKey"
   | "localCacheExclude"
   | "localCacheId"
+  | "UNSAFE_allowDiscardLocalCacheWhenOffline"
 > & {
   scrollViewRef?: RefObject<KeyboardAwareScrollView>;
   readonly saveButtonHeight: number;
@@ -45,6 +46,7 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
   scrollViewRef,
   saveButtonHeight,
   messageBannerHeight,
+  UNSAFE_allowDiscardLocalCacheWhenOffline = false,
 }: UseInternalFormProps<T, SubmitResponseType>): UseInternalForm<T> {
   const { useConfirmBeforeBack, useInternalFormLocalCache } =
     useAtlantisFormContext();
@@ -82,11 +84,16 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
     };
   }
 
+  const shouldRemoveCacheOnBack = UNSAFE_allowDiscardLocalCacheWhenOffline
+    ? true
+    : isOnline;
+
   const removeListenerRef = useConfirmBeforeBack({
     alwaysPreventBack: isSubmitting,
     shouldShowAlert: isDirty,
-    onAcceptEvent: isOnline ? removeLocalCache : undefined,
-    showLostProgressMessage: isOnline || !clientSideSaveOn ? true : false,
+    onAcceptEvent: shouldRemoveCacheOnBack ? removeLocalCache : undefined,
+    showLostProgressMessage:
+      shouldRemoveCacheOnBack || !clientSideSaveOn ? true : false,
   });
 
   return {
