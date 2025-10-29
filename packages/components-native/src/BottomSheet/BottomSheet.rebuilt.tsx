@@ -1,6 +1,11 @@
 import type { ReactNode, Ref } from "react";
-import React, { forwardRef } from "react";
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import React, { forwardRef, useCallback } from "react";
+import BottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
+import type { BottomSheetBackdropProps } from "@gorhom/bottom-sheet";
+import { useStyles } from "./BottomSheet.rebuilt.style";
 
 export interface BottomSheetProps {
   readonly children: ReactNode;
@@ -38,9 +43,30 @@ function BottomSheetRebuiltInternal(
   props: BottomSheetProps,
   ref: Ref<BottomSheetRebuiltRef>,
 ) {
+  const styles = useStyles();
+
+  const renderBackdrop = useCallback(
+    (bottomSheetBackdropProps: BottomSheetBackdropProps) => (
+      <BottomSheetBackdrop
+        {...bottomSheetBackdropProps}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+      />
+    ),
+    [],
+  );
+
   return (
-    <BottomSheet ref={ref} index={-1}>
-      <BottomSheetView>{props.children}</BottomSheetView>
+    <BottomSheet
+      ref={ref}
+      index={-1}
+      style={styles.modal}
+      // backgroundStyle={styles.overlay}
+      backdropComponent={renderBackdrop}
+    >
+      <BottomSheetView style={styles.children}>
+        {props.children}
+      </BottomSheetView>
     </BottomSheet>
   );
 }
