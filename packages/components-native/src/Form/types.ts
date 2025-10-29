@@ -176,7 +176,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * the dirty form even when offline. By default, cache is only removed on back when online.
    * Defaults to false.
    */
-  removeLocalCacheOnBackOffline?: boolean;
+  UNSAFE_allowDiscardLocalCacheWhenOffline?: boolean;
 
   /**
    * Secondary Action for ButtonGroup

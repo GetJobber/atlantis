@@ -104,7 +104,7 @@ interface FormTestProps {
   readonly onBeforeSubmit?: jest.Mock;
   readonly renderFooter?: React.ReactNode;
   readonly saveButtonOffset?: number;
-  readonly removeLocalCacheOnBackOffline?: boolean;
+  readonly UNSAFE_allowDiscardLocalCacheWhenOffline?: boolean;
 }
 
 function FormTest(props: FormTestProps) {
@@ -126,7 +126,7 @@ function MockForm({
   localCacheId,
   renderFooter,
   saveButtonOffset,
-  removeLocalCacheOnBackOffline = false,
+  UNSAFE_allowDiscardLocalCacheWhenOffline = false,
 }: FormTestProps) {
   const formErrors: FormBannerErrors = {};
 
@@ -156,7 +156,9 @@ function MockForm({
         onBeforeSubmit={onBeforeSubmit}
         renderFooter={renderFooter}
         saveButtonOffset={saveButtonOffset}
-        removeLocalCacheOnBackOffline={removeLocalCacheOnBackOffline}
+        UNSAFE_allowDiscardLocalCacheWhenOffline={
+          UNSAFE_allowDiscardLocalCacheWhenOffline
+        }
       >
         <InputText
           name={testInputTextName}
@@ -608,7 +610,7 @@ describe("Form", () => {
         render(
           <FormTest
             onSubmit={onSubmitMock}
-            removeLocalCacheOnBackOffline={false}
+            UNSAFE_allowDiscardLocalCacheWhenOffline={false}
             localCacheKey="testCacheKey"
           />,
         );
@@ -628,7 +630,7 @@ describe("Form", () => {
         render(
           <FormTest
             onSubmit={onSubmitMock}
-            removeLocalCacheOnBackOffline={false}
+            UNSAFE_allowDiscardLocalCacheWhenOffline={false}
             localCacheKey="testCacheKey"
           />,
         );
@@ -650,7 +652,7 @@ describe("Form", () => {
         render(
           <FormTest
             onSubmit={onSubmitMock}
-            removeLocalCacheOnBackOffline={true}
+            UNSAFE_allowDiscardLocalCacheWhenOffline={true}
             localCacheKey="testCacheKey"
           />,
         );
@@ -670,7 +672,7 @@ describe("Form", () => {
         render(
           <FormTest
             onSubmit={onSubmitMock}
-            removeLocalCacheOnBackOffline={true}
+            UNSAFE_allowDiscardLocalCacheWhenOffline={true}
             localCacheKey="testCacheKey"
           />,
         );
@@ -692,7 +694,7 @@ describe("Form", () => {
         render(
           <FormTest
             onSubmit={onSubmitMock}
-            removeLocalCacheOnBackOffline={false}
+            UNSAFE_allowDiscardLocalCacheWhenOffline={false}
           />,
         );
 
