@@ -44,6 +44,7 @@ import type {
   MenuHeaderComposableProps,
   MenuItemComposableProps,
   MenuItemIconComposableProps,
+  MenuItemLabelComposableProps,
   MenuLegacyProps,
   MenuMobileUnderlayProps,
   MenuSectionComposableProps,
@@ -745,9 +746,7 @@ function MenuItemIconComposable(props: MenuItemIconComposableProps) {
   );
 }
 
-function MenuItemLabelComposable(props: {
-  readonly children: React.ReactNode;
-}) {
+function MenuItemLabelComposable(props: MenuItemLabelComposableProps) {
   const { destructive } = useMenuItemContext();
 
   return (
