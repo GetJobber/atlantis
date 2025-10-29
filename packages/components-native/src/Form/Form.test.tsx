@@ -600,7 +600,7 @@ describe("Form", () => {
       jest.restoreAllMocks();
     });
 
-    describe("when removeLocalCacheOnBackOffline is false", () => {
+    describe("when UNSAFE_allowDiscardLocalCacheWhenOffline is false", () => {
       it("should NOT pass onAcceptEvent when offline", () => {
         atlantisContextSpy.mockReturnValue({
           ...atlantisContextDefaultValues,
@@ -642,7 +642,7 @@ describe("Form", () => {
       });
     });
 
-    describe("when removeLocalCacheOnBackOffline is true", () => {
+    describe("when UNSAFE_allowDiscardLocalCacheWhenOffline is true", () => {
       it("should pass onAcceptEvent when offline", () => {
         atlantisContextSpy.mockReturnValue({
           ...atlantisContextDefaultValues,

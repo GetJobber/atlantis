@@ -66,7 +66,7 @@ function InternalForm<T extends FieldValues, S>({
   saveButtonOffset,
   showStickySaveButton = false,
   renderFooter,
-  removeLocalCacheOnBackOffline,
+  UNSAFE_allowDiscardLocalCacheWhenOffline,
 }: InternalFormProps<T, S>) {
   const { scrollViewRef, bottomViewRef, scrollToTop } = useFormViewRefs();
   const [saveButtonHeight, setSaveButtonHeight] = useState(0);
@@ -88,7 +88,7 @@ function InternalForm<T extends FieldValues, S>({
     scrollViewRef,
     saveButtonHeight,
     messageBannerHeight,
-    removeLocalCacheOnBackOffline,
+    UNSAFE_allowDiscardLocalCacheWhenOffline,
   });
   const { windowHeight, headerHeight } = useScreenInformation();
   const [keyboardHeight, setKeyboardHeight] = useState(0);
