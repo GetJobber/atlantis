@@ -378,7 +378,7 @@ export const Composable = () => {
         <h1>Composable with Custom Content</h1>
         <Menu>
           <Menu.Trigger>
-            <Button>
+            <Button fullWidth={true}>
               <Button.Label>Custom</Button.Label>
             </Button>
           </Menu.Trigger>
