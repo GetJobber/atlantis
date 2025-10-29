@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.4...@jobber/components-native@0.90.0) (2025-10-29)
+
+
+### Features
+
+* **components-native:** Allow discarding local form cache when offline ([#2797](https://github.com/GetJobber/atlantis/issues/2797)) ([0a09cbc](https://github.com/GetJobber/atlantis/commit/0a09cbca470f2029a6db7b7b4ca97ac93f7c43b6))
+
+
+
+
+
 ## [0.89.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.3...@jobber/components-native@0.89.4) (2025-10-27)
 
 
