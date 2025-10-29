@@ -104,6 +104,7 @@ interface FormTestProps {
   readonly onBeforeSubmit?: jest.Mock;
   readonly renderFooter?: React.ReactNode;
   readonly saveButtonOffset?: number;
+  readonly removeLocalCacheOnBackOffline?: boolean;
 }
 
 function FormTest(props: FormTestProps) {
@@ -125,6 +126,7 @@ function MockForm({
   localCacheId,
   renderFooter,
   saveButtonOffset,
+  removeLocalCacheOnBackOffline = false,
 }: FormTestProps) {
   const formErrors: FormBannerErrors = {};
 
@@ -154,6 +156,7 @@ function MockForm({
         onBeforeSubmit={onBeforeSubmit}
         renderFooter={renderFooter}
         saveButtonOffset={saveButtonOffset}
+        removeLocalCacheOnBackOffline={removeLocalCacheOnBackOffline}
       >
         <InputText
           name={testInputTextName}
@@ -559,6 +562,144 @@ describe("Form", () => {
       );
 
       expect(queryByTestId("ATL-FormSafeArea")).toBeNull();
+    });
+  });
+
+  describe("Leaving the form", () => {
+    let mockUseConfirmBeforeBack: jest.Mock;
+    let mockRemoveLocalCache: jest.Mock;
+    const atlantisContextSpy = jest.spyOn(
+      atlantisContext,
+      "useAtlantisContext",
+    );
+
+    beforeEach(() => {
+      mockUseConfirmBeforeBack = jest
+        .fn()
+        .mockReturnValue({ current: jest.fn() });
+      mockRemoveLocalCache = jest.fn();
+
+      jest
+        .spyOn(
+          require("../Form/context/AtlantisFormContext"),
+          "useAtlantisFormContext",
+        )
+        .mockReturnValue({
+          useConfirmBeforeBack: mockUseConfirmBeforeBack,
+          useInternalFormLocalCache: () => ({
+            setLocalCache: jest.fn(),
+            removeLocalCache: mockRemoveLocalCache,
+          }),
+          edgeToEdgeEnabled: false,
+        });
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    describe("when removeLocalCacheOnBackOffline is false", () => {
+      it("should NOT pass onAcceptEvent when offline", () => {
+        atlantisContextSpy.mockReturnValue({
+          ...atlantisContextDefaultValues,
+          isOnline: false,
+        });
+
+        render(
+          <FormTest
+            onSubmit={onSubmitMock}
+            removeLocalCacheOnBackOffline={false}
+            localCacheKey="testCacheKey"
+          />,
+        );
+
+        expect(mockUseConfirmBeforeBack).toHaveBeenCalled();
+        const callArgs = mockUseConfirmBeforeBack.mock.calls[0][0];
+        expect(callArgs.onAcceptEvent).toBeUndefined();
+        expect(callArgs.showLostProgressMessage).toBe(false);
+      });
+
+      it("should pass onAcceptEvent when online", () => {
+        atlantisContextSpy.mockReturnValue({
+          ...atlantisContextDefaultValues,
+          isOnline: true,
+        });
+
+        render(
+          <FormTest
+            onSubmit={onSubmitMock}
+            removeLocalCacheOnBackOffline={false}
+            localCacheKey="testCacheKey"
+          />,
+        );
+
+        expect(mockUseConfirmBeforeBack).toHaveBeenCalled();
+        const callArgs = mockUseConfirmBeforeBack.mock.calls[0][0];
+        expect(callArgs.onAcceptEvent).toBe(mockRemoveLocalCache);
+        expect(callArgs.showLostProgressMessage).toBe(true);
+      });
+    });
+
+    describe("when removeLocalCacheOnBackOffline is true", () => {
+      it("should pass onAcceptEvent when offline", () => {
+        atlantisContextSpy.mockReturnValue({
+          ...atlantisContextDefaultValues,
+          isOnline: false,
+        });
+
+        render(
+          <FormTest
+            onSubmit={onSubmitMock}
+            removeLocalCacheOnBackOffline={true}
+            localCacheKey="testCacheKey"
+          />,
+        );
+
+        expect(mockUseConfirmBeforeBack).toHaveBeenCalled();
+        const callArgs = mockUseConfirmBeforeBack.mock.calls[0][0];
+        expect(callArgs.onAcceptEvent).toBe(mockRemoveLocalCache);
+        expect(callArgs.showLostProgressMessage).toBe(true);
+      });
+
+      it("should pass onAcceptEvent when online", () => {
+        atlantisContextSpy.mockReturnValue({
+          ...atlantisContextDefaultValues,
+          isOnline: true,
+        });
+
+        render(
+          <FormTest
+            onSubmit={onSubmitMock}
+            removeLocalCacheOnBackOffline={true}
+            localCacheKey="testCacheKey"
+          />,
+        );
+
+        expect(mockUseConfirmBeforeBack).toHaveBeenCalled();
+        const callArgs = mockUseConfirmBeforeBack.mock.calls[0][0];
+        expect(callArgs.onAcceptEvent).toBe(mockRemoveLocalCache);
+        expect(callArgs.showLostProgressMessage).toBe(true);
+      });
+    });
+
+    describe("without localCacheKey", () => {
+      it("should always show lost progress message when no cache key is provided", () => {
+        atlantisContextSpy.mockReturnValue({
+          ...atlantisContextDefaultValues,
+          isOnline: false,
+        });
+
+        render(
+          <FormTest
+            onSubmit={onSubmitMock}
+            removeLocalCacheOnBackOffline={false}
+          />,
+        );
+
+        expect(mockUseConfirmBeforeBack).toHaveBeenCalled();
+        const callArgs = mockUseConfirmBeforeBack.mock.calls[0][0];
+        expect(callArgs.showLostProgressMessage).toBe(true);
+      });
     });
   });
 });
