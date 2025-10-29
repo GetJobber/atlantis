@@ -1,4 +1,3 @@
-import React from "react";
 import { Form } from "@jobber/components/Form";
 import { InputText } from "@jobber/components/InputText";
 import { Content } from "@jobber/components/Content";
