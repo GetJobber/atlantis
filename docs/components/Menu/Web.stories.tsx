@@ -308,7 +308,7 @@ export const Composable = () => {
                     <Menu.Item
                       key={item.label}
                       onClick={item.onClick}
-                      destructive={item.destructive}
+                      variation={item.destructive ? "destructive" : undefined}
                       textValue={item.label}
                     >
                       <Menu.ItemLabel>{item.label}</Menu.ItemLabel>
