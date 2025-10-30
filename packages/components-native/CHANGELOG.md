@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.4...@jobber/components-native@0.90.0) (2025-10-29)
+
+
+### Features
+
+* **components-native:** Allow discarding local form cache when offline ([#2797](https://github.com/GetJobber/atlantis/issues/2797)) ([0a09cbc](https://github.com/GetJobber/atlantis/commit/0a09cbca470f2029a6db7b7b4ca97ac93f7c43b6))
+
+
+
+
+
+## [0.89.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.3...@jobber/components-native@0.89.4) (2025-10-27)
+
+
+### Bug Fixes
+
+* await act calls in tests ([#2793](https://github.com/GetJobber/atlantis/issues/2793)) ([a16009f](https://github.com/GetJobber/atlantis/commit/a16009f8e2d058771b50280bb0c3d209f8d41688))
+
+
+
+
+
+## [0.89.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.2...@jobber/components-native@0.89.3) (2025-10-27)
+
+
+### Bug Fixes
+
+* **components-native:** Select background border cut off on New Arch ([#2794](https://github.com/GetJobber/atlantis/issues/2794)) ([c6a5f87](https://github.com/GetJobber/atlantis/commit/c6a5f87c294e233520edda69c4b20dfe5d1a865e))
+
+
+
+
+
+## [0.89.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.1...@jobber/components-native@0.89.2) (2025-10-21)
+
+
+### Bug Fixes
+
+* **components-native:** Remove unnecessary onOpen/onClose props ([#2792](https://github.com/GetJobber/atlantis/issues/2792)) ([512910d](https://github.com/GetJobber/atlantis/commit/512910dfe24d17d8f3f0ef66c6523ef0faa24bfa))
+
+
+
+
+
+## [0.89.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.0...@jobber/components-native@0.89.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* **components-native:** Use modalize workaround for BottomSheet ([#2789](https://github.com/GetJobber/atlantis/issues/2789)) ([4802142](https://github.com/GetJobber/atlantis/commit/48021423eae4c8a4cbf403523765d3ae0fd0627f))
+
+
+
+
+
+# [0.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.88.1...@jobber/components-native@0.89.0) (2025-10-16)
+
+
+### Features
+
+* **components-native:** Add conditional Android edge-to-edge keyboard handling to Form ([#2746](https://github.com/GetJobber/atlantis/issues/2746)) ([5336bcc](https://github.com/GetJobber/atlantis/commit/5336bccb08959012941098ecabe710b91321aaa5))
+
+
+
+
+
+## [0.88.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.88.0...@jobber/components-native@0.88.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* **components-native:** add modalize wrapper to fix new arch issues ([#2781](https://github.com/GetJobber/atlantis/issues/2781)) ([cd1d6c6](https://github.com/GetJobber/atlantis/commit/cd1d6c60884c43500dd0bb128a734978ce43d3ac))
+
+
+
+
+
 # [0.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.87.1...@jobber/components-native@0.88.0) (2025-10-15)
 
 

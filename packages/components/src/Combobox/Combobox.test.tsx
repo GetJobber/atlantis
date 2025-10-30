@@ -592,7 +592,7 @@ describe("Infinite scroll", () => {
     expect(screen.getByText("Bilbo Baggins")).toBeInTheDocument();
     const loadMoreTrigger = screen.getByTestId("ATL-Combobox-Loadmore-Trigger");
     expect(loadMoreTrigger).toBeInTheDocument();
-    act(() => {
+    await act(async () => {
       observer.enterNode(loadMoreTrigger);
     });
     expect(mockLoadMore).toHaveBeenCalledTimes(1);

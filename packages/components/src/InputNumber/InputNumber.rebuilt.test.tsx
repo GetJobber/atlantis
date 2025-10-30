@@ -37,7 +37,7 @@ test("it should call the handler with a number value", async () => {
   expect(changeHandler).toHaveBeenCalledWith(newValue, undefined);
 });
 
-test("it should handle focus", () => {
+test("it should handle focus", async () => {
   const inputRef = React.createRef<InputNumberRef>();
   const placeholder = "Number";
 
@@ -45,19 +45,19 @@ test("it should handle focus", () => {
     <InputNumber placeholder={placeholder} ref={inputRef} version={2} />,
   );
 
-  act(() => {
+  await act(async () => {
     inputRef?.current?.focus();
   });
   expect(document.activeElement).toBe(getByLabelText(placeholder));
 });
 
-test("it should handle blur", () => {
+test("it should handle blur", async () => {
   const inputRef = React.createRef<InputNumberRef>();
   const blurHandler = jest.fn();
 
   render(<InputNumber ref={inputRef} onBlur={blurHandler} version={2} />);
 
-  act(() => {
+  await act(async () => {
     inputRef?.current?.focus();
     inputRef?.current?.blur();
   });

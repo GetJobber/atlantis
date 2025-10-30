@@ -3,10 +3,10 @@ export interface ViewportDimensions {
   readonly height?: number;
 }
 
-export function mockViewport({
+export async function mockViewport({
   width,
   height,
-}: ViewportDimensions): () => void {
+}: ViewportDimensions): Promise<() => void> {
   const originalInnerWidth = window.innerWidth;
   const originalInnerHeight = window.innerHeight;
 
@@ -28,14 +28,14 @@ export function mockViewport({
   try {
     const { act } = require("@testing-library/react");
 
-    act(() => {
+    await act(async () => {
       window.dispatchEvent(new Event("resize"));
     });
   } catch {
     window.dispatchEvent(new Event("resize"));
   }
 
-  return () => {
+  return async () => {
     Object.defineProperty(window, "innerWidth", {
       configurable: true,
       value: originalInnerWidth,
@@ -48,7 +48,7 @@ export function mockViewport({
     try {
       const { act } = require("@testing-library/react");
 
-      act(() => {
+      await act(async () => {
         window.dispatchEvent(new Event("resize"));
       });
     } catch {
@@ -61,7 +61,7 @@ export async function withMockedViewport(
   dimensions: ViewportDimensions,
   run: () => Promise<void> | void,
 ): Promise<void> {
-  const restore = mockViewport(dimensions);
+  const restore = await mockViewport(dimensions);
 
   try {
     await run();

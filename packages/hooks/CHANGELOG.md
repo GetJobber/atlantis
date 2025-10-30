@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.0...@jobber/hooks@2.19.1) (2025-10-27)
+
+
+### Bug Fixes
+
+* await act calls in tests ([#2793](https://github.com/GetJobber/atlantis/issues/2793)) ([a16009f](https://github.com/GetJobber/atlantis/commit/a16009f8e2d058771b50280bb0c3d209f8d41688))
+
+
+
+
+
 # [2.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.18.1...@jobber/hooks@2.19.0) (2025-10-15)
 
 

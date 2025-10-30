@@ -1,0 +1,41 @@
+import { Banner } from "@jobber/components/Banner";
+
+# Component support levels
+
+<Banner type="notice" dismissible={false}>
+By default, all components in our design system are considered **Supported**. In some cases, we may reclassify a
+component as _Legacy_ or _Deprecated_ to better guide teams on how it should be used going forward.
+</Banner>
+
+## Supported
+
+The current, recommended way to solve a given design/UX problem.
+
+* Actively maintained and documented.
+* Supported by design and engineering teams (bug fixes, enhancements).
+
+## Beta
+
+Components that are still in development and may be subject to significant breaking changes.
+
+* Mostly functional but less stable.
+* May be missing important features.
+* Considered experimental and may contain new patterns we're exploring.
+* Supported by design and engineering teams (bug fixes, enhancements).
+
+## Legacy
+
+Components that still work and are technically supported, but not recommended for new use because a better alternative exists.
+
+* We may address critical issues (e.g., security, accessibility blockers, app-breaking bugs).
+* We cannot guarantee fixes for every bug due to the complexity or limited maintainability of this component.
+* We’ll provide guidance, workarounds, and migration help when issues come up.
+
+## Deprecated
+
+Components that are not supported.
+
+* Clearly labeled “Deprecated” in documentation.
+* No new development, features, or bug fixes.
+* Will be removed in the next major version. Please prioritize removing existing usages of this component.
+* We'll provide a migration guide to aid consumers in switching to an alternative.

@@ -1,0 +1,126 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import {
+  Card,
+  Content,
+  Disclosure,
+  InlineLabel,
+  InputText,
+  Text,
+  Tabs,
+  Tab,
+} from "@jobber/components";
+
+# Interaction
+
+| **Platform**                                                     | **Status**                                     |
+| :--------------------------------------------------------------- | :--------------------------------------------- |
+| <InlineLabel>Web</InlineLabel> <InlineLabel>Mobile</InlineLabel> | <InlineLabel color="green">Ready</InlineLabel> |
+
+## Goal
+
+Provide feedback (or feedforward) to the user in a consistent way to help them
+predict what will happen when they engage with Jobber.
+
+## Use when...
+
+An interactive element is... being interacted with.
+
+## Solution
+
+<Tabs>
+    <Tab label="Web">
+        <Canvas>
+        <Card header="Interactive element example" url="#">
+            <Content>
+            <Text>This card has examples of hover and focus states for the web</Text>
+            <InputText placeholder="Inputs change too" />
+            </Content>
+        </Card>
+        </Canvas>
+
+        #### Hover
+        - background-color increases contrast with the surface
+        - cursor changes to a pointer
+
+        #### Focused with keyboard (:focus-visible)
+        - background-color increases contrast with the surface
+        - a custom focus ring is applied
+
+        #### Timing
+        Most state transitions use `var(--timing-base) ease-out` for a pleasant
+        transition.
+
+        #### CSS implementation
+            Atlantis components come with these states handled, but if you're extending or
+            creating custom elements, this is the general pattern used to achieve an "Atlantis"
+            interactive state.
+
+            ```css
+            .myElement {
+                background-color: var(--color-surface);
+                /* apply consistent transitions to background and box-shadow */
+                transition: all var(--timing-base) ease-out;
+                cursor: pointer;
+                /* hide the default focus ring, but still support "high contrast" modes */
+                outline: transparent;
+            }
+
+            .myElement:hover,
+            /* use :focus-visible instead of :focus to reduce visual noise for mouse users */
+            .myElement:focus-visible {
+                background-color: var(--color-surface--hover);
+            }
+
+            .myElement:focus-visible {
+                box-shadow: var(--shadow-focus);
+            }
+            ```
+
+    </Tab>
+
+    <Tab label="Mobile">
+        <Figma
+            collapsable
+            url="https://www.figma.com/proto/avvgu5SkbBvS8lGVePBsqO/Product%2FMobile?node-id=63935-11952&t=9XDlpJmD0lnq3e97-1"
+            />
+
+        #### Pressed
+        - Most elements will reduce in opacity using the `opacity-pressed` token
+
+        #### Focused inputs
+        - While there is no system-wide "focus ring" in mobile, input borders change color when focused
+
+
+        #### React Native implementation
+
+        ```.ts
+        // as a classname in styles.ts files
+
+        pressed {
+            opacity: tokens["opacity-pressed"]
+        }
+        ```
+
+        ```.ts
+        // as a property on react-native core components
+
+        <TouchableOpacity
+            activeOpacity={tokens["opacity-pressed"]}
+            onPress={yourActionHere}
+        >
+        ```
+    </Tab>
+
+</Tabs>
+
+## Related
+
+- [Disabled states](../patterns/disabled-states)
+- [Color](../design/color)
+- [Animation](../design/animation)
+
+## Principles
+
+- [Visibility of system status](https://www.nngroup.com/articles/visibility-system-status/)
+- [Consistency and standards](https://www.nngroup.com/articles/consistency-and-standards/)

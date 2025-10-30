@@ -1,0 +1,131 @@
+import { Canvas } from "@storybook/addon-docs";
+import { Figma } from "@storybook/addon-designs/blocks";
+import {
+  Card,
+  Content,
+  Banner,
+  Disclosure,
+  InlineLabel,
+  InputText,
+  InputValidation,
+  Text,
+  Tabs,
+  Tab,
+} from "@jobber/components";
+
+# Errors
+
+| **Platform**                                                     | **Status**                                     |
+| :--------------------------------------------------------------- | :--------------------------------------------- |
+| <InlineLabel>Web</InlineLabel> <InlineLabel>Mobile</InlineLabel> | <InlineLabel color="green">Ready</InlineLabel> |
+
+## Goal
+
+Inform the user when something is wrong, and equip them with the resources to
+set it right whenever possible.
+
+> Good error messages are important, but the best designs carefully prevent
+> problems from occurring in the first place. Either eliminate error-prone
+> conditions, or check for them and present users with a confirmation option
+> before they commit to the action.<br/>
+> [– 10 Usability Heuristics for User Interface Design](https://www.nngroup.com/articles/ten-usability-heuristics/#toc-5-error-prevention-5)
+
+While avoiding errors is the ideal, it’s largely impossible to avoid _all_ of
+the errors, _all_ of the time. By being proactive, we can help users recover
+effectively to reduce disruption to their task-at-hand.
+
+## Solution
+
+First and foremost: design to avoid the possibility of errors!
+
+#### Effective content
+
+Follow the guidance in our [product vocabulary](../content/product-vocabulary)
+and [voice & tone](../content/voice-and-tone) guides to help you craft effective
+error messages.
+
+#### Validation and form inputs
+
+Provide a clear, concise message as close as possible to the impacted or
+offending elements.
+
+<Canvas>
+  <InputText invalid placeholder="First name" />
+  <InputValidation message="First name is required" />
+</Canvas>
+
+#### System or network errors
+
+When an error isn't tied to an inidivual UI element, place a Banner near the
+impacted area. If the issue impacts the entire view, place the banner at the top
+of the view.
+
+<Canvas>
+  <Content>
+    <Text>Be specific about what went wrong when possible</Text>
+    <Banner type="error">
+      <Text>Could not connect to the server</Text>
+    </Banner>
+    <Banner type="error">
+      <Text>The network is taking too long to respond</Text>
+    </Banner>
+    <Text>
+      If for whatever reason, we can't provide more detail to the user, use this
+      generic fallback message:
+    </Text>
+    <Banner type="error">
+      <Text>Something went wrong. Please try again later.</Text>
+    </Banner>
+  </Content>
+</Canvas>
+
+Whenever possible, avoid showing raw error messages (like
+`500 response timeout`) in the app. Write like a human and explain if there's
+anything the user can do to resolve the issue.
+
+#### System-wide errors
+
+If an issue is not specific to a given screen or user flow, use a "global" error
+message. This should be a banner that runs across the top of the application.
+
+<Figma url="https://www.figma.com/design/HXWXusJPZLmaJNGlKEpiyhXW/Product%2FBase?m=auto&node-id=21651-16&t=Xj6lgTxoUsgsDwGR-1" />
+
+#### Empty states
+
+If content is missing as a result of the error, follow guidance around
+[empty states.](../patterns/empty-states)
+
+## Implementation
+
+### Forms and inputs
+
+Atlantis inputs like [InputText](../components/InputText) have input validation
+built-in for ease of use. The input validation is integrated with the
+[Form](../components/Form) components on both web and mobile as well.
+
+You can also provide [InputValidation](../components/InputValidation) externally
+if needed.
+
+### System-wide feedback
+
+Jobber has an internal system called "GlobalBanner" that consolidates all
+system-wide messages for presentation on web and mobile. If something critical
+is occurring related to the user's account, it should be displayed in this
+banner.
+
+## Related
+
+### Patterns
+
+- [Empty states](../patterns/empty-states)
+
+### Components
+
+- [Banner](../components/Banner)
+- [InputText](../components/InputValidation)
+- [InputValidation](../components/InputValidation)
+
+## Principles
+
+- [Visibility of system status](https://www.nngroup.com/articles/visibility-system-status/)
+- [Help users recognize, diagnose and recover from errors](https://www.nngroup.com/articles/ten-usability-heuristics/#toc-9-help-users-recognize-diagnose-and-recover-from-errors-9)

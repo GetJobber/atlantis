@@ -1,0 +1,16 @@
+import { Canvas } from "@storybook/addon-docs";
+import { UseOnMount } from "./UseOnMount";
+
+# UseOnMount
+
+`useOnMount` should be used to perform a callback once a component mounts.
+Useful for emitting analytics events, fetching data, or other side effects that
+should only occur once.
+
+```tsx
+import { useOnMount } from "@jobber/hooks/useOnMount";
+```
+
+<Canvas>
+  <UseOnMount />
+</Canvas>

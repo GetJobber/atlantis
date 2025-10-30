@@ -26,6 +26,7 @@ import { useScrollToError } from "./hooks/useScrollToError";
 import { FormSaveButton } from "./components/FormSaveButton";
 import { useSaveButtonPosition } from "./hooks/useSaveButtonPosition";
 import { FormCache } from "./components/FormCache/FormCache";
+import { useAtlantisFormContext } from "./context/AtlantisFormContext";
 import { InputAccessoriesProvider } from "../InputText";
 import { tokens } from "../utils/design";
 import { ErrorMessageProvider } from "../ErrorMessageWrapper";
@@ -65,6 +66,7 @@ function InternalForm<T extends FieldValues, S>({
   saveButtonOffset,
   showStickySaveButton = false,
   renderFooter,
+  UNSAFE_allowDiscardLocalCacheWhenOffline,
 }: InternalFormProps<T, S>) {
   const { scrollViewRef, bottomViewRef, scrollToTop } = useFormViewRefs();
   const [saveButtonHeight, setSaveButtonHeight] = useState(0);
@@ -86,6 +88,7 @@ function InternalForm<T extends FieldValues, S>({
     scrollViewRef,
     saveButtonHeight,
     messageBannerHeight,
+    UNSAFE_allowDiscardLocalCacheWhenOffline,
   });
   const { windowHeight, headerHeight } = useScreenInformation();
   const [keyboardHeight, setKeyboardHeight] = useState(0);
@@ -134,6 +137,8 @@ function InternalForm<T extends FieldValues, S>({
 
   const styles = useStyles();
 
+  const { edgeToEdgeEnabled } = useAtlantisFormContext();
+
   return (
     <FormProvider {...formMethods}>
       <>
@@ -161,6 +166,7 @@ function InternalForm<T extends FieldValues, S>({
           <KeyboardAwareScrollView
             enableResetScrollToCoords={false}
             enableAutomaticScroll={true}
+            enableOnAndroid={edgeToEdgeEnabled}
             keyboardOpeningTime={
               Platform.OS === "ios" ? tokens["timing-slowest"] : 0
             }
@@ -168,6 +174,7 @@ function InternalForm<T extends FieldValues, S>({
             ref={scrollViewRef}
             {...keyboardProps}
             extraHeight={headerHeight}
+            extraScrollHeight={edgeToEdgeEnabled ? tokens["space-large"] : 0}
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
             }

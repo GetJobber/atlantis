@@ -18,7 +18,7 @@ describe("useTimePredict", () => {
       },
     });
 
-    act(() => result.current.setTypedTime("1"));
+    await act(async () => result.current.setTypedTime("1"));
     await jest.runAllTimersAsync();
 
     expect(handleChange).not.toHaveBeenCalled();
@@ -117,7 +117,7 @@ async function simpleTypedTimeTest({
     initialProps: { handleChange },
   });
 
-  act(() => result.current.setTypedTime(typedTime));
+  await act(async () => result.current.setTypedTime(typedTime));
   await jest.runAllTimersAsync();
 
   expect(handleChange).toHaveBeenCalledWith(expected);
