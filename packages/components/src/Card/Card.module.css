@@ -5,6 +5,7 @@
 
   display: block;
   width: 100%;
+  box-sizing: border-box;
   border: var(--card--border);
   border-radius: var(--radius-base);
   outline-color: var(--color-focus);
