@@ -1,5 +1,5 @@
 import type { ReactNode, Ref } from "react";
-import React, { forwardRef, useCallback } from "react";
+import React, { useCallback } from "react";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView,
@@ -36,13 +36,12 @@ export interface BottomSheetProps {
   readonly onClose?: () => void;
 }
 
-export const BottomSheetRebuilt = forwardRef(BottomSheetRebuiltInternal);
 export type BottomSheetRebuiltRef = BottomSheet;
 
-function BottomSheetRebuiltInternal(
-  props: BottomSheetProps,
-  ref: Ref<BottomSheetRebuiltRef>,
-) {
+export function BottomSheetRebuilt({
+  ref,
+  ...props
+}: BottomSheetProps & { readonly ref: Ref<BottomSheetRebuiltRef> }) {
   const styles = useStyles();
 
   const renderBackdrop = useCallback(
@@ -53,6 +52,7 @@ function BottomSheetRebuiltInternal(
         appearsOnIndex={0}
         style={styles.overlay}
         opacity={1}
+        pressBehavior="collapse"
       />
     ),
     [],
