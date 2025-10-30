@@ -51,6 +51,8 @@ function BottomSheetRebuiltInternal(
         {...bottomSheetBackdropProps}
         disappearsOnIndex={-1}
         appearsOnIndex={0}
+        style={styles.overlay}
+        opacity={1}
       />
     ),
     [],
@@ -61,8 +63,8 @@ function BottomSheetRebuiltInternal(
       ref={ref}
       index={-1}
       style={styles.modal}
-      // backgroundStyle={styles.overlay}
       backdropComponent={renderBackdrop}
+      backgroundStyle={styles.modal}
     >
       <BottomSheetView style={styles.children}>
         {props.children}

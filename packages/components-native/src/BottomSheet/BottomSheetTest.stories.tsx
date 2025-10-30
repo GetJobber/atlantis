@@ -4,6 +4,7 @@ import { Text, View } from "react-native";
 import { Button } from "@jobber/components-native";
 import { BottomSheetRebuilt } from "./BottomSheet.rebuilt";
 import type { BottomSheetRebuiltRef } from "./BottomSheet.rebuilt";
+import { BottomSheetOption } from "./components/BottomSheetOption";
 
 const meta = {
   title: "Components/Selections/BottomSheet/Test",
@@ -33,15 +34,21 @@ const TestTemplate = () => {
       <Text>Test BottomSheetRebuilt Component</Text>
 
       <BottomSheetRebuilt ref={bottomSheetRef}>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
-        <Text>Hello</Text>
+        <BottomSheetOption
+          icon="request"
+          text="Request"
+          onPress={() => console.log("pressed request")}
+        />
+        <BottomSheetOption
+          icon="quote"
+          text="Quote"
+          onPress={() => console.log("pressed quote")}
+        />
+        <BottomSheetOption
+          icon="job"
+          text="Job"
+          onPress={() => console.log("pressed job")}
+        />
       </BottomSheetRebuilt>
     </View>
   );
