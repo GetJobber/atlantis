@@ -59,10 +59,12 @@ for accessibility and type‑ahead behavior.
 
 Menu Items support default subcomponents that plug into the Menu grid:
 
-- **Menu.ItemLabel**: Renders the action label with our standard typography.
-  (responds to the destructive Menu.Item prop)
-- **Menu.ItemIcon**: Renders a leading icon with consistent sizing and spacing
-  (responds to the destructive Menu.Item prop)
+- **Menu.ItemLabel**: Renders the action label within a Typography (span)
+  component. You MUST supply either a string or a fragment/utility component
+  that renders down to a raw string (e.g. translation helpers). Responds to the
+  `destructive` Menu.Item prop.
+- **Menu.ItemIcon**: Renders a leading icon with consistent sizing and spacing.
+  Responds to the `destructive` Menu.Item prop.
 
 These defaults are placed in a strict order and align automatically via the
 Menu's parent grid (see “Layout and spacing” below). Using them is the easiest
