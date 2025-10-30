@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.102.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.4...@jobber/components@6.102.0) (2025-10-30)
+
+
+### Features
+
+* **components:** Support any ReactNode in Menu.ItemLabel ([#2801](https://github.com/GetJobber/atlantis/issues/2801)) ([949d31c](https://github.com/GetJobber/atlantis/commit/949d31cc3bd55d2a9b3996f513e7bd5542e6660a))
+
+
+
+
+
 ## [6.101.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.3...@jobber/components@6.101.4) (2025-10-27)
 
 

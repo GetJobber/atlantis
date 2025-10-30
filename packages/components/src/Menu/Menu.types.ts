@@ -225,3 +225,13 @@ export type AnimationState = "unmounted" | "hidden" | "visible";
 export interface MenuMobileUnderlayProps {
   readonly animation: AnimationState;
 }
+
+export interface MenuItemLabelComposableProps {
+  /**
+   * Item label content.
+   * This is rendered inside a Typography (span) component, so you MUST supply either
+   * a string or a fragment/utility component that renders down to a raw string (e.g.
+   * translation helpers).
+   */
+  readonly children: React.ReactNode;
+}

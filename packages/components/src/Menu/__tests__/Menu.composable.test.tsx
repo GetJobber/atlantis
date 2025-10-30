@@ -274,6 +274,15 @@ describe("Menu (composable API)", () => {
       ).toBeInTheDocument();
     });
   });
+
+  describe("Menu with ReactNode ItemLabel", () => {
+    it("renders the menu with a ReactNode item label", async () => {
+      render(<TestMenuWithReactNodeItemLabel />);
+      await POM.openWithClick("Menu");
+      expect(screen.getByText("Email")).toBeInTheDocument();
+      expect(screen.getByText("Delete")).toBeInTheDocument();
+    });
+  });
 });
 
 function TestLinkMenu(props: {
@@ -477,4 +486,40 @@ function TestDefaultMenuWithIcons() {
       </Menu.Content>
     </Menu>
   );
+}
+
+function TestMenuWithReactNodeItemLabel() {
+  return (
+    <Menu>
+      <Menu.Trigger ariaLabel="Menu">
+        <Button label="Menu" />
+      </Menu.Trigger>
+      <Menu.Content>
+        <Menu.Section>
+          <Menu.Header>
+            <Menu.HeaderLabel>Send as...</Menu.HeaderLabel>
+          </Menu.Header>
+          <Menu.Item textValue="Email">
+            <Menu.ItemLabel>
+              <ExampleUtilityComponent>Email</ExampleUtilityComponent>
+            </Menu.ItemLabel>
+            <Menu.ItemIcon name="email" />
+          </Menu.Item>
+        </Menu.Section>
+        <Menu.Separator />
+        <Menu.Section>
+          <Menu.Item destructive textValue="Delete">
+            <Menu.ItemLabel>
+              <ExampleUtilityComponent>Delete</ExampleUtilityComponent>
+            </Menu.ItemLabel>
+            <Menu.ItemIcon name="trash" />
+          </Menu.Item>
+        </Menu.Section>
+      </Menu.Content>
+    </Menu>
+  );
+}
+
+function ExampleUtilityComponent({ children }: { readonly children: string }) {
+  return children;
 }

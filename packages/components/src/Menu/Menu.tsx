@@ -44,6 +44,7 @@ import type {
   MenuHeaderComposableProps,
   MenuItemComposableProps,
   MenuItemIconComposableProps,
+  MenuItemLabelComposableProps,
   MenuLegacyProps,
   MenuMobileUnderlayProps,
   MenuSectionComposableProps,
@@ -752,7 +753,7 @@ function MenuItemIconComposable(props: MenuItemIconComposableProps) {
   );
 }
 
-function MenuItemLabelComposable(props: { readonly children: string }) {
+function MenuItemLabelComposable(props: MenuItemLabelComposableProps) {
   const { variation } = useMenuItemContext();
 
   return (
