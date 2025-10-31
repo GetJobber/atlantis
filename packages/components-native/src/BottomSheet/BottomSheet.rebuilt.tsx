@@ -14,6 +14,7 @@ import { View } from "react-native";
 import { useStyles } from "./BottomSheet.rebuilt.style";
 import { BottomSheetOption } from "./components/BottomSheetOption";
 import { Divider } from "../Divider";
+import { Heading } from "../Heading";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
@@ -59,6 +60,7 @@ export function BottomSheetRebuilt({
 
   const { t } = useAtlantisI18n();
   const insets = useSafeAreaInsets();
+
   const renderBackdrop = useCallback(
     (bottomSheetBackdropProps: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop
@@ -81,7 +83,7 @@ export function BottomSheetRebuilt({
         >
           <View>
             {cancellable && (
-              <View>
+              <View style={styles.children}>
                 <View style={styles.footerDivider}>
                   <Divider />
                 </View>
@@ -118,8 +120,23 @@ export function BottomSheetRebuilt({
         style={styles.children}
         enableFooterMarginAdjustment={true}
       >
+        {props.heading && <Header heading={props.heading} styles={styles} />}
         {props.children}
       </BottomSheetView>
     </BottomSheet>
+  );
+}
+
+function Header({
+  heading,
+  styles,
+}: {
+  readonly heading: string;
+  readonly styles: ReturnType<typeof useStyles>;
+}) {
+  return (
+    <View style={styles.header}>
+      <Heading level={"subtitle"}>{heading}</Heading>
+    </View>
   );
 }
