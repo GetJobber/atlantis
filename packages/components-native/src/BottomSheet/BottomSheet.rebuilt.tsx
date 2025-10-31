@@ -18,7 +18,7 @@ import { Heading } from "../Heading";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
-export interface BottomSheetProps {
+export interface BottomSheetRebuiltProps {
   readonly children: ReactNode;
 
   /**
@@ -50,13 +50,17 @@ export interface BottomSheetProps {
 export type BottomSheetRebuiltRef = BottomSheet;
 
 export function BottomSheetRebuilt({
+  children,
+  showCancel,
+  loading = false,
+  heading,
+  onOpen,
+  onClose,
   ref,
-  ...props
-}: BottomSheetProps & { readonly ref: Ref<BottomSheetRebuiltRef> }) {
+}: BottomSheetRebuiltProps & { readonly ref: Ref<BottomSheetRebuiltRef> }) {
   const styles = useStyles();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
-  const cancellable =
-    (props.showCancel && !props.loading) || isScreenReaderEnabled;
+  const cancellable = (showCancel && !loading) || isScreenReaderEnabled;
 
   const { t } = useAtlantisI18n();
   const insets = useSafeAreaInsets();
@@ -68,10 +72,10 @@ export function BottomSheetRebuilt({
     if (previousIndex === -1 && index >= 0) {
       // Transitioned from closed to open
       dismissKeyboard();
-      props.onOpen?.();
+      onOpen?.();
     } else if (previousIndex >= 0 && index === -1) {
       // Transitioned from open to closed
-      props.onClose?.();
+      onClose?.();
     }
 
     previousIndexRef.current = index;
@@ -124,8 +128,8 @@ export function BottomSheetRebuilt({
         style={styles.children}
         enableFooterMarginAdjustment={true}
       >
-        {props.heading && <Header heading={props.heading} styles={styles} />}
-        {props.children}
+        {heading && <Header heading={heading} styles={styles} />}
+        {children}
       </BottomSheetView>
     </BottomSheet>
   );
