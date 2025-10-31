@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.103.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.0...@jobber/components@6.103.1) (2025-10-31)
+
+
+### Bug Fixes
+
+* **components:** Prevent Card accent from causing overflow under certain conditions ([#2802](https://github.com/GetJobber/atlantis/issues/2802)) ([e76e743](https://github.com/GetJobber/atlantis/commit/e76e7432a1ef9b5f80564d31b8f90fa3f986757e))
+
+
+
+
+
 # [6.103.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.102.0...@jobber/components@6.103.0) (2025-10-30)
 
 
