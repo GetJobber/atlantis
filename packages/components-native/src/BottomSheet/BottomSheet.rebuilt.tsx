@@ -1,11 +1,21 @@
-import type { ReactNode, Ref } from "react";
+import type { ReactNode, Ref, RefObject } from "react";
 import React, { useCallback } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BottomSheet, {
   BottomSheetBackdrop,
+  BottomSheetFooter,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import type { BottomSheetBackdropProps } from "@gorhom/bottom-sheet";
+import type {
+  BottomSheetBackdropProps,
+  BottomSheetFooterProps,
+} from "@gorhom/bottom-sheet";
+import { View } from "react-native";
 import { useStyles } from "./BottomSheet.rebuilt.style";
+import { BottomSheetOption } from "./components/BottomSheetOption";
+import { Divider } from "../Divider";
+import { useIsScreenReaderEnabled } from "../hooks";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface BottomSheetProps {
   readonly children: ReactNode;
@@ -43,7 +53,12 @@ export function BottomSheetRebuilt({
   ...props
 }: BottomSheetProps & { readonly ref: Ref<BottomSheetRebuiltRef> }) {
   const styles = useStyles();
+  const isScreenReaderEnabled = useIsScreenReaderEnabled();
+  const cancellable =
+    (props.showCancel && !props.loading) || isScreenReaderEnabled;
 
+  const { t } = useAtlantisI18n();
+  const insets = useSafeAreaInsets();
   const renderBackdrop = useCallback(
     (bottomSheetBackdropProps: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop
@@ -52,21 +67,57 @@ export function BottomSheetRebuilt({
         appearsOnIndex={0}
         style={styles.overlay}
         opacity={1}
-        pressBehavior="collapse"
       />
     ),
     [],
   );
 
+  const renderFooter = useCallback(
+    (bottomSheetFooterProps: BottomSheetFooterProps) => {
+      return (
+        <BottomSheetFooter
+          {...bottomSheetFooterProps}
+          bottomInset={insets.bottom}
+        >
+          <View>
+            {cancellable && (
+              <View>
+                <View style={styles.footerDivider}>
+                  <Divider />
+                </View>
+                <BottomSheetOption
+                  text={t("cancel")}
+                  icon={"remove"}
+                  onPress={() =>
+                    (ref as RefObject<BottomSheetRebuiltRef>)?.current?.close()
+                  }
+                />
+              </View>
+            )}
+          </View>
+        </BottomSheetFooter>
+      );
+    },
+    [cancellable],
+  );
+
+  // const snapPoints = useMemo(() => ["25%", "50%"], []);
+
   return (
     <BottomSheet
       ref={ref}
       index={-1}
-      style={styles.modal}
       backdropComponent={renderBackdrop}
       backgroundStyle={styles.modal}
+      footerComponent={renderFooter}
+      enablePanDownToClose={true}
+      // enableDynamicSizing={false}
+      // snapPoints={snapPoints}
     >
-      <BottomSheetView style={styles.children}>
+      <BottomSheetView
+        style={styles.children}
+        enableFooterMarginAdjustment={true}
+      >
         {props.children}
       </BottomSheetView>
     </BottomSheet>
