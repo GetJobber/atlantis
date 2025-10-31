@@ -1,5 +1,6 @@
 import type { ReactNode, Ref, RefObject } from "react";
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
+import { Keyboard, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BottomSheet, {
   BottomSheetBackdrop,
@@ -10,7 +11,6 @@ import type {
   BottomSheetBackdropProps,
   BottomSheetFooterProps,
 } from "@gorhom/bottom-sheet";
-import { View } from "react-native";
 import { useStyles } from "./BottomSheet.rebuilt.style";
 import { BottomSheetOption } from "./components/BottomSheetOption";
 import { Divider } from "../Divider";
@@ -60,19 +60,22 @@ export function BottomSheetRebuilt({
 
   const { t } = useAtlantisI18n();
   const insets = useSafeAreaInsets();
+  const previousIndexRef = useRef(-1);
 
-  const renderBackdrop = useCallback(
-    (bottomSheetBackdropProps: BottomSheetBackdropProps) => (
-      <BottomSheetBackdrop
-        {...bottomSheetBackdropProps}
-        disappearsOnIndex={-1}
-        appearsOnIndex={0}
-        style={styles.overlay}
-        opacity={1}
-      />
-    ),
-    [],
-  );
+  const handleChange = (index: number) => {
+    const previousIndex = previousIndexRef.current;
+
+    if (previousIndex === -1 && index >= 0) {
+      // Transitioned from closed to open
+      dismissKeyboard();
+      props.onOpen?.();
+    } else if (previousIndex >= 0 && index === -1) {
+      // Transitioned from open to closed
+      props.onClose?.();
+    }
+
+    previousIndexRef.current = index;
+  };
 
   const renderFooter = useCallback(
     (bottomSheetFooterProps: BottomSheetFooterProps) => {
@@ -109,10 +112,11 @@ export function BottomSheetRebuilt({
     <BottomSheet
       ref={ref}
       index={-1}
-      backdropComponent={renderBackdrop}
+      backdropComponent={Backdrop}
       backgroundStyle={styles.modal}
       footerComponent={renderFooter}
       enablePanDownToClose={true}
+      onChange={handleChange}
       // enableDynamicSizing={false}
       // snapPoints={snapPoints}
     >
@@ -138,5 +142,25 @@ function Header({
     <View style={styles.header}>
       <Heading level={"subtitle"}>{heading}</Heading>
     </View>
+  );
+}
+
+function dismissKeyboard() {
+  //Dismisses the keyboard before opening the bottom sheet.
+  //In the case where an input text field is focused we don't want to show the bottom sheet behind or above keyboard
+  Keyboard.dismiss();
+}
+
+function Backdrop(bottomSheetBackdropProps: BottomSheetBackdropProps) {
+  const styles = useStyles();
+
+  return (
+    <BottomSheetBackdrop
+      {...bottomSheetBackdropProps}
+      appearsOnIndex={0}
+      disappearsOnIndex={-1}
+      style={styles.overlay}
+      opacity={1}
+    />
   );
 }
