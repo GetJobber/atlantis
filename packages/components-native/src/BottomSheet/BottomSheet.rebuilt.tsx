@@ -1,5 +1,10 @@
-import type { ReactNode, Ref, RefObject } from "react";
-import React, { useCallback, useRef } from "react";
+import type { ReactNode, Ref } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import { Keyboard, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BottomSheet, {
@@ -47,17 +52,25 @@ export interface BottomSheetRebuiltProps {
   readonly onClose?: () => void;
 }
 
-export type BottomSheetRebuiltRef = BottomSheet;
+export interface BottomSheetRebuiltRef {
+  open: () => void;
+  close: () => void;
+}
 
-export function BottomSheetRebuilt({
-  children,
-  showCancel,
-  loading = false,
-  heading,
-  onOpen,
-  onClose,
-  ref,
-}: BottomSheetRebuiltProps & { readonly ref: Ref<BottomSheetRebuiltRef> }) {
+export const BottomSheetRebuilt = forwardRef<
+  BottomSheetRebuiltRef,
+  BottomSheetRebuiltProps
+>(function BottomSheetRebuilt(
+  {
+    children,
+    showCancel,
+    loading = false,
+    heading,
+    onOpen,
+    onClose,
+  }: BottomSheetRebuiltProps,
+  ref: Ref<BottomSheetRebuiltRef>,
+) {
   const styles = useStyles();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
   const cancellable = (showCancel && !loading) || isScreenReaderEnabled;
@@ -65,6 +78,16 @@ export function BottomSheetRebuilt({
   const { t } = useAtlantisI18n();
   const insets = useSafeAreaInsets();
   const previousIndexRef = useRef(-1);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  useImperativeHandle(ref, () => ({
+    open: () => {
+      bottomSheetRef.current?.expand();
+    },
+    close: () => {
+      bottomSheetRef.current?.close();
+    },
+  }));
 
   const handleChange = (index: number) => {
     const previousIndex = previousIndexRef.current;
@@ -90,16 +113,16 @@ export function BottomSheetRebuilt({
         >
           <View>
             {cancellable && (
-              <View style={styles.children}>
+              <View style={styles.footer}>
                 <View style={styles.footerDivider}>
                   <Divider />
                 </View>
                 <BottomSheetOption
                   text={t("cancel")}
                   icon={"remove"}
-                  onPress={() =>
-                    (ref as RefObject<BottomSheetRebuiltRef>)?.current?.close()
-                  }
+                  onPress={() => {
+                    bottomSheetRef.current?.close();
+                  }}
                 />
               </View>
             )}
@@ -114,7 +137,7 @@ export function BottomSheetRebuilt({
 
   return (
     <BottomSheet
-      ref={ref}
+      ref={bottomSheetRef}
       index={-1}
       backdropComponent={Backdrop}
       backgroundStyle={styles.modal}
@@ -133,7 +156,7 @@ export function BottomSheetRebuilt({
       </BottomSheetView>
     </BottomSheet>
   );
-}
+});
 
 function Header({
   heading,

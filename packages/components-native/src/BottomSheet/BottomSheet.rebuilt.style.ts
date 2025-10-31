@@ -17,6 +17,9 @@ export const useStyles = buildThemedStyles(tokens => {
     children: {
       paddingBottom: tokens["space-small"],
     },
+    footer: {
+      paddingBottom: tokens["space-base"],
+    },
     header: {
       paddingHorizontal: tokens["space-base"],
       paddingTop: tokens["space-small"],
