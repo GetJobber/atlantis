@@ -38,13 +38,14 @@
     "storybook:build": "storybook build --disable-telemetry"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^5.2.6",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-native-picker/picker": "^2.4.10",
     "autolinker": "^4.0.0",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.52.0",
-    "react-intl": "^7.1.11",
+    "react-intl": "^6 || ^7",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modalize": "^2.0.13",
     "react-native-portalize": "^1.0.7",
