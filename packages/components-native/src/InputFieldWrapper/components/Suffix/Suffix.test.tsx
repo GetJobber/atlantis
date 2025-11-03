@@ -30,7 +30,6 @@ function setupLabel({
 function setupIcon({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
   inputInvalid = false,
   icon = "invoice",
 }: Partial<SuffixIconProps>) {
@@ -38,7 +37,6 @@ function setupIcon({
     <SuffixIcon
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
       inputInvalid={inputInvalid}
       icon={icon}
     />,

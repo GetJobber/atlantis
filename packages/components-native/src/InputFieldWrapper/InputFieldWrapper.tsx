@@ -160,7 +160,6 @@ export function InputFieldWrapper({
             <PrefixIcon
               disabled={disabled}
               focused={focused}
-              hasMiniLabel={hasMiniLabel}
               inputInvalid={inputInvalid}
               icon={prefix.icon}
             />
@@ -245,7 +244,6 @@ export function InputFieldWrapper({
                   <SuffixIcon
                     disabled={disabled}
                     focused={focused}
-                    hasMiniLabel={hasMiniLabel}
                     hasLeftMargin={!!(!showClearAction || suffix?.label)}
                     inputInvalid={inputInvalid}
                     icon={suffix.icon}

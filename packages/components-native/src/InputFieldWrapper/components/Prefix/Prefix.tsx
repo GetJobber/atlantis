@@ -67,7 +67,6 @@ export function PrefixLabel({
 export interface PrefixIconProps {
   readonly focused: boolean;
   readonly disabled?: boolean;
-  readonly hasMiniLabel: boolean;
   readonly inputInvalid?: boolean;
   readonly icon: IconNames;
   readonly styleOverride?: StyleProp<ViewStyle>;

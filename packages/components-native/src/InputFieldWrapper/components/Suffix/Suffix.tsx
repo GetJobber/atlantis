@@ -70,7 +70,6 @@ export function SuffixLabel({
 export interface SuffixIconProps {
   readonly focused: boolean;
   readonly disabled?: boolean;
-  readonly hasMiniLabel: boolean;
   readonly inputInvalid?: boolean;
   readonly icon: IconNames;
   readonly hasLeftMargin?: boolean;
