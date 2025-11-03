@@ -11,7 +11,7 @@ import { useStyles } from "../../InputFieldWrapper.style";
 export interface SuffixLabelProps {
   readonly focused: boolean;
   readonly disabled?: boolean;
-  readonly hasMiniLabel: boolean;
+  readonly miniLabelActive: boolean;
   readonly inputInvalid?: boolean;
   readonly label: string;
   readonly hasLeftMargin?: boolean;
@@ -24,7 +24,7 @@ export const suffixIconTestId = "ATL-InputFieldWrapper-SuffixIcon";
 export function SuffixLabel({
   focused,
   disabled,
-  hasMiniLabel,
+  miniLabelActive,
   inputInvalid,
   label,
   hasLeftMargin = true,
@@ -44,7 +44,10 @@ export function SuffixLabel({
       ]}
     >
       <View
-        style={[styles.suffixLabel, hasMiniLabel && styles.fieldAffixMiniLabel]}
+        style={[
+          styles.suffixLabel,
+          miniLabelActive && styles.fieldAffixMiniLabel,
+        ]}
       >
         {!styleOverride ? (
           <Text variation={disabled ? "disabled" : "base"}>{label}</Text>

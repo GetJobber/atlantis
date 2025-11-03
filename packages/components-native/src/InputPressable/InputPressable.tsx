@@ -7,6 +7,7 @@ import type { Clearable } from "@jobber/hooks";
 import { useShowClear } from "@jobber/hooks";
 import type { XOR } from "ts-xor";
 import { useStyles } from "./InputPressable.style";
+import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { InputFieldWrapper, useCommonInputStyles } from "../InputFieldWrapper";
 
 interface BasicSuffix {
@@ -127,11 +128,9 @@ export function InputPressableInternal(
   ref: Ref<InputPressableRef>,
 ): JSX.Element {
   const hasValue = !!value;
-  const [hasMiniLabel, setHasMiniLabel] = useState(Boolean(value));
 
-  useEffect(() => {
-    setHasMiniLabel(Boolean(value));
-  }, [value]);
+  const placeholderMode = getPlaceholderMode(showMiniLabel, value);
+  const miniLabelActive = placeholderMode === "mini";
 
   const showClear = useShowClear({
     clearable,
@@ -144,15 +143,12 @@ export function InputPressableInternal(
   const styles = useStyles();
   const commonInputStyles = useCommonInputStyles();
 
-  const miniLabelActive = showMiniLabel && hasMiniLabel;
-
   return (
     <InputFieldWrapper
       prefix={prefix}
       suffix={suffix}
       hasValue={hasValue}
-      hasMiniLabel={hasMiniLabel}
-      showMiniLabel={showMiniLabel}
+      placeholderMode={placeholderMode}
       focused={focused}
       error={error}
       invalid={invalid}
@@ -188,4 +184,21 @@ export function InputPressableInternal(
       </Pressable>
     </InputFieldWrapper>
   );
+}
+
+function getPlaceholderMode(
+  isMiniLabelAllowed: boolean,
+  internalValue: string | undefined,
+): InputFieldWrapperProps["placeholderMode"] {
+  const hasValue = Boolean(internalValue);
+
+  if (hasValue) {
+    if (isMiniLabelAllowed) {
+      return "mini";
+    } else {
+      return "hidden";
+    }
+  } else {
+    return "normal";
+  }
 }

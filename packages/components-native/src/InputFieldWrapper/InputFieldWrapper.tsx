@@ -44,19 +44,15 @@ export interface InputFieldWrapperProps {
   readonly assistiveText?: string;
 
   /**
-   * Controls the current rendering state of the placeholder text.
-   * If true, the placeholder text will float above the input value.
-   * If false, the placeholder text will be displayed in the normal placeholder position.
+   * Controls how the placeholder text is displayed.
+   * - normal: the placeholder text will be displayed in the normal placeholder position
+   * - mini: the placeholder text will float above the input value
+   * - hidden: the placeholder text will not be displayed
+   * @default "normal"
    */
-  readonly hasMiniLabel?: boolean;
+  readonly placeholderMode?: "normal" | "mini" | "hidden";
 
   readonly hasValue?: boolean;
-
-  /**
-   * Controls whether the mini label should be rendered at all.
-   * @default true
-   */
-  readonly showMiniLabel?: boolean;
 
   /**
    * Symbol to display before the text input
@@ -130,9 +126,8 @@ export function InputFieldWrapper({
   assistiveText,
   prefix,
   suffix,
-  hasMiniLabel = false,
+  placeholderMode = "normal",
   hasValue = false,
-  showMiniLabel = true,
   error,
   focused = false,
   children,
@@ -155,7 +150,8 @@ export function InputFieldWrapper({
   const showLoadingGlimmer = loading && loadingType === "glimmer";
   const styles = useStyles();
 
-  const miniLabelActive = showMiniLabel && hasMiniLabel;
+  const placeholderVisible = placeholderMode !== "hidden";
+  const miniLabelActive = placeholderMode === "mini";
 
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
@@ -179,13 +175,13 @@ export function InputFieldWrapper({
             />
           )}
           <View style={[styles.inputContainer]}>
-            {showMiniLabel && (
+            {placeholderVisible && (
               <View
                 style={[
                   !!placeholder && styles.label,
-                  hasMiniLabel && styles.miniLabel,
+                  miniLabelActive && styles.miniLabel,
                   disabled && styles.disabled,
-                  hasMiniLabel &&
+                  miniLabelActive &&
                     showClearAction &&
                     styles.miniLabelShowClearAction,
                 ]}
@@ -194,7 +190,7 @@ export function InputFieldWrapper({
                 <Placeholder
                   placeholder={placeholder}
                   labelVariation={getLabelVariation(error, invalid, disabled)}
-                  hasMiniLabel={hasMiniLabel}
+                  miniLabelActive={miniLabelActive}
                   styleOverride={styleOverride?.placeholderText}
                 />
               </View>
@@ -203,7 +199,7 @@ export function InputFieldWrapper({
               <PrefixLabel
                 disabled={disabled}
                 focused={focused}
-                hasMiniLabel={miniLabelActive}
+                miniLabelActive={miniLabelActive}
                 inputInvalid={inputInvalid}
                 label={prefix.label}
                 styleOverride={styleOverride?.prefixLabel}
@@ -240,7 +236,7 @@ export function InputFieldWrapper({
                   <SuffixLabel
                     disabled={disabled}
                     focused={focused}
-                    hasMiniLabel={miniLabelActive}
+                    miniLabelActive={miniLabelActive}
                     inputInvalid={inputInvalid}
                     label={suffix.label}
                     hasLeftMargin={!showClearAction}
@@ -346,12 +342,12 @@ function Placeholder({
   placeholder,
   styleOverride,
   labelVariation,
-  hasMiniLabel,
+  miniLabelActive,
 }: {
   readonly placeholder?: string;
   readonly styleOverride: StyleProp<TextStyle>;
   readonly labelVariation: TextVariation;
-  readonly hasMiniLabel: boolean;
+  readonly miniLabelActive: boolean;
 }) {
   const typographyStyles = useTypographyStyles();
 
@@ -362,7 +358,7 @@ function Placeholder({
           hideFromScreenReader={true}
           maxLines="single"
           variation={labelVariation}
-          level={hasMiniLabel ? "textSupporting" : "text"}
+          level={miniLabelActive ? "textSupporting" : "text"}
         >
           {placeholder}
         </Text>
@@ -375,7 +371,7 @@ function Placeholder({
           style={[
             typographyStyles[labelVariation],
             typographyStyles.baseRegularRegular,
-            hasMiniLabel
+            miniLabelActive
               ? typographyStyles.smallSize
               : typographyStyles.defaultSize,
             styleOverride,

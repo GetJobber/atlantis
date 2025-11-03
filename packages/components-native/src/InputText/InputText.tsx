@@ -302,7 +302,8 @@ function InputTextInternal(
 
   const hasValue = internalValue !== "" && internalValue !== undefined;
   const [focused, setFocused] = useState(false);
-  const { hasMiniLabel } = useMiniLabel(internalValue);
+  const placeholderMode = getPlaceholderMode(showMiniLabel, internalValue);
+  const miniLabelActive = placeholderMode === "mini";
 
   const textInputRef = useTextInputRef({ ref, onClear: handleClear });
 
@@ -372,15 +373,12 @@ function InputTextInternal(
   const styles = useStyles();
   const commonInputStyles = useCommonInputStyles();
 
-  const miniLabelActive = showMiniLabel && hasMiniLabel;
-
   return (
     <InputFieldWrapper
       prefix={prefix}
       suffix={suffix}
       hasValue={hasValue}
-      hasMiniLabel={hasMiniLabel}
-      showMiniLabel={showMiniLabel}
+      placeholderMode={placeholderMode}
       assistiveText={assistiveText}
       focused={focused}
       error={error}
@@ -523,13 +521,19 @@ function useTextInputRef({ ref, onClear }: UseTextInputRefProps) {
   return textInputRef;
 }
 
-function useMiniLabel(internalValue: string): {
-  hasMiniLabel: boolean;
-} {
-  const [hasMiniLabel, setHasMiniLabel] = useState(Boolean(internalValue));
-  useEffect(() => {
-    setHasMiniLabel(Boolean(internalValue));
-  }, [internalValue]);
+function getPlaceholderMode(
+  isMiniLabelAllowed: boolean,
+  internalValue: string,
+): InputFieldWrapperProps["placeholderMode"] {
+  const hasValue = Boolean(internalValue);
 
-  return { hasMiniLabel };
+  if (hasValue) {
+    if (isMiniLabelAllowed) {
+      return "mini";
+    } else {
+      return "hidden";
+    }
+  } else {
+    return "normal";
+  }
 }
