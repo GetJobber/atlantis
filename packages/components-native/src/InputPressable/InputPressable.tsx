@@ -52,6 +52,15 @@ export interface InputPressableProps {
   readonly invalid?: boolean | string;
 
   /**
+   * Controls the visibility of the mini label that appears inside the input
+   * when a value is entered. By default, the placeholder text moves up to
+   * become a mini label. Set to false to disable this behavior.
+   *
+   * @default true
+   */
+  readonly showMiniLabel?: boolean;
+
+  /**
    * Callback that is called when the text input is focused
    * @param event
    */
@@ -105,6 +114,7 @@ export function InputPressableInternal(
     disabled,
     invalid,
     error,
+    showMiniLabel = true,
     onPress,
     accessibilityLabel,
     accessibilityHint,
@@ -134,12 +144,15 @@ export function InputPressableInternal(
   const styles = useStyles();
   const commonInputStyles = useCommonInputStyles();
 
+  const miniLabelActive = showMiniLabel && hasMiniLabel;
+
   return (
     <InputFieldWrapper
       prefix={prefix}
       suffix={suffix}
       hasValue={hasValue}
       hasMiniLabel={hasMiniLabel}
+      showMiniLabel={showMiniLabel}
       focused={focused}
       error={error}
       invalid={invalid}
@@ -160,7 +173,7 @@ export function InputPressableInternal(
           style={[
             commonInputStyles.input,
             styles.inputPressableStyles,
-            !hasMiniLabel && commonInputStyles.inputEmpty,
+            !miniLabelActive && commonInputStyles.inputEmpty,
             disabled && commonInputStyles.inputDisabled,
             (Boolean(invalid) || error) && styles.inputInvalid,
           ]}

@@ -43,9 +43,20 @@ export interface InputFieldWrapperProps {
    */
   readonly assistiveText?: string;
 
+  /**
+   * Controls the current rendering state of the placeholder text.
+   * If true, the placeholder text will float above the input value.
+   * If false, the placeholder text will be displayed in the normal placeholder position.
+   */
   readonly hasMiniLabel?: boolean;
 
   readonly hasValue?: boolean;
+
+  /**
+   * Controls whether the mini label should be rendered at all.
+   * @default true
+   */
+  readonly showMiniLabel?: boolean;
 
   /**
    * Symbol to display before the text input
@@ -121,6 +132,7 @@ export function InputFieldWrapper({
   suffix,
   hasMiniLabel = false,
   hasValue = false,
+  showMiniLabel = true,
   error,
   focused = false,
   children,
@@ -142,6 +154,8 @@ export function InputFieldWrapper({
   const showLoadingSpinner = loading && loadingType === "spinner";
   const showLoadingGlimmer = loading && loadingType === "glimmer";
   const styles = useStyles();
+
+  const miniLabelActive = showMiniLabel && hasMiniLabel;
 
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
@@ -165,29 +179,31 @@ export function InputFieldWrapper({
             />
           )}
           <View style={[styles.inputContainer]}>
-            <View
-              style={[
-                !!placeholder && styles.label,
-                hasMiniLabel && styles.miniLabel,
-                disabled && styles.disabled,
-                hasMiniLabel &&
-                  showClearAction &&
-                  styles.miniLabelShowClearAction,
-              ]}
-              pointerEvents="none"
-            >
-              <Placeholder
-                placeholder={placeholder}
-                labelVariation={getLabelVariation(error, invalid, disabled)}
-                hasMiniLabel={hasMiniLabel}
-                styleOverride={styleOverride?.placeholderText}
-              />
-            </View>
+            {showMiniLabel && (
+              <View
+                style={[
+                  !!placeholder && styles.label,
+                  hasMiniLabel && styles.miniLabel,
+                  disabled && styles.disabled,
+                  hasMiniLabel &&
+                    showClearAction &&
+                    styles.miniLabelShowClearAction,
+                ]}
+                pointerEvents="none"
+              >
+                <Placeholder
+                  placeholder={placeholder}
+                  labelVariation={getLabelVariation(error, invalid, disabled)}
+                  hasMiniLabel={hasMiniLabel}
+                  styleOverride={styleOverride?.placeholderText}
+                />
+              </View>
+            )}
             {prefix?.label && hasValue && (
               <PrefixLabel
                 disabled={disabled}
                 focused={focused}
-                hasMiniLabel={hasMiniLabel}
+                hasMiniLabel={miniLabelActive}
                 inputInvalid={inputInvalid}
                 label={prefix.label}
                 styleOverride={styleOverride?.prefixLabel}
@@ -224,7 +240,7 @@ export function InputFieldWrapper({
                   <SuffixLabel
                     disabled={disabled}
                     focused={focused}
-                    hasMiniLabel={hasMiniLabel}
+                    hasMiniLabel={miniLabelActive}
                     inputInvalid={inputInvalid}
                     label={suffix.label}
                     hasLeftMargin={!showClearAction}

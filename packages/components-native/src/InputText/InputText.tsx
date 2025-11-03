@@ -66,6 +66,15 @@ export interface InputTextProps
   readonly assistiveText?: string;
 
   /**
+   * Controls the visibility of the mini label that appears inside the input
+   * when a value is entered. By default, the placeholder text moves up to
+   * become a mini label. Set to false to disable this behavior.
+   *
+   * @default true
+   */
+  readonly showMiniLabel?: boolean;
+
+  /**
    * Determines what keyboard is shown
    */
   readonly keyboard?:
@@ -245,6 +254,7 @@ function InputTextInternal(
     name,
     placeholder,
     assistiveText,
+    showMiniLabel = true,
     keyboard,
     value: controlledValue,
     defaultValue,
@@ -362,12 +372,15 @@ function InputTextInternal(
   const styles = useStyles();
   const commonInputStyles = useCommonInputStyles();
 
+  const miniLabelActive = showMiniLabel && hasMiniLabel;
+
   return (
     <InputFieldWrapper
       prefix={prefix}
       suffix={suffix}
       hasValue={hasValue}
       hasMiniLabel={hasMiniLabel}
+      showMiniLabel={showMiniLabel}
       assistiveText={assistiveText}
       focused={focused}
       error={error}
@@ -391,11 +404,11 @@ function InputTextInternal(
         style={[
           commonInputStyles.input,
           styles.inputPaddingTop,
-          !hasMiniLabel && commonInputStyles.inputEmpty,
+          !miniLabelActive && commonInputStyles.inputEmpty,
           disabled && commonInputStyles.inputDisabled,
           multiline && styles.multiLineInput,
           multiline && Platform.OS === "ios" && styles.multilineInputiOS,
-          multiline && hasMiniLabel && styles.multiLineInputWithMini,
+          multiline && miniLabelActive && styles.multiLineInputWithMini,
           styleOverride?.inputText,
           loading && loadingType === "glimmer" && { color: "transparent" },
         ]}
