@@ -146,6 +146,7 @@ export const BottomSheetRebuilt = forwardRef<
       onChange={handleChange}
       // enableDynamicSizing={false}
       // snapPoints={snapPoints}
+      keyboardBlurBehavior="restore"
     >
       <BottomSheetView
         style={styles.children}
