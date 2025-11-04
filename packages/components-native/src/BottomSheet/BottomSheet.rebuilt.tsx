@@ -52,15 +52,14 @@ export interface BottomSheetRebuiltProps {
   readonly onClose?: () => void;
 }
 
+export const BottomSheetRebuilt = forwardRef(BottomSheetRebuiltInternal);
+
 export interface BottomSheetRebuiltRef {
   open: () => void;
   close: () => void;
 }
 
-export const BottomSheetRebuilt = forwardRef<
-  BottomSheetRebuiltRef,
-  BottomSheetRebuiltProps
->(function BottomSheetRebuilt(
+function BottomSheetRebuiltInternal(
   {
     children,
     showCancel,
@@ -98,6 +97,7 @@ export const BottomSheetRebuilt = forwardRef<
       onOpen?.();
     } else if (previousIndex >= 0 && index === -1) {
       // Transitioned from open to closed
+      dismissKeyboard();
       onClose?.();
     }
 
@@ -107,11 +107,8 @@ export const BottomSheetRebuilt = forwardRef<
   const renderFooter = useCallback(
     (bottomSheetFooterProps: BottomSheetFooterProps) => {
       return (
-        <BottomSheetFooter
-          {...bottomSheetFooterProps}
-          bottomInset={insets.bottom}
-        >
-          <View>
+        <BottomSheetFooter {...bottomSheetFooterProps}>
+          <View style={{ marginBottom: insets.bottom }}>
             {cancellable && (
               <View style={styles.footer}>
                 <View style={styles.footerDivider}>
@@ -133,8 +130,6 @@ export const BottomSheetRebuilt = forwardRef<
     [cancellable],
   );
 
-  // const snapPoints = useMemo(() => ["25%", "50%"], []);
-
   return (
     <BottomSheet
       ref={bottomSheetRef}
@@ -144,8 +139,6 @@ export const BottomSheetRebuilt = forwardRef<
       footerComponent={renderFooter}
       enablePanDownToClose={true}
       onChange={handleChange}
-      // enableDynamicSizing={false}
-      // snapPoints={snapPoints}
       keyboardBlurBehavior="restore"
     >
       <BottomSheetView
@@ -157,7 +150,7 @@ export const BottomSheetRebuilt = forwardRef<
       </BottomSheetView>
     </BottomSheet>
   );
-});
+}
 
 function Header({
   heading,
