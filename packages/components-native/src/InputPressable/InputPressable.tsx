@@ -1,5 +1,5 @@
 import type { Ref } from "react";
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { forwardRef } from "react";
 import type { IconNames } from "@jobber/design";
 import type { FieldError } from "react-hook-form";
 import { Text as NativeText, Pressable } from "react-native";
