@@ -1,7 +1,8 @@
 import React, { forwardRef, useCallback } from "react";
 import type { FocusEvent } from "react-native";
-import { TextInput, findNodeHandle } from "react-native";
+import { TextInput, View, findNodeHandle } from "react-native";
 import { useBottomSheetInternal } from "@gorhom/bottom-sheet";
+import { useStyles } from "./BottomSheetInputText.styles";
 import type {
   InputTextProps,
   InputTextRef,
@@ -16,6 +17,7 @@ import { InputText } from "../../../InputText/InputText";
  */
 export const BottomSheetInputText = forwardRef<InputTextRef, InputTextProps>(
   function BottomSheetInputText(props, ref) {
+    const styles = useStyles();
     const { onFocus, onBlur } = props;
     const { animatedKeyboardState, textInputNodesRef } =
       useBottomSheetInternal();
@@ -57,6 +59,11 @@ export const BottomSheetInputText = forwardRef<InputTextRef, InputTextProps>(
           currentFocusedInput &&
           textInputNodesRef.current.has(currentFocusedInput);
 
+        console.log(
+          "animatedKeyboardState on blur 1",
+          animatedKeyboardState.get(),
+        );
+
         if (shouldRemoveCurrentTarget && !shouldIgnoreBlurEvent) {
           animatedKeyboardState.set(state => ({
             ...state,
@@ -70,12 +77,14 @@ export const BottomSheetInputText = forwardRef<InputTextRef, InputTextProps>(
     );
 
     return (
-      <InputText
-        {...props}
-        ref={ref}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-      />
+      <View style={styles.inputText}>
+        <InputText
+          {...props}
+          ref={ref}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+        />
+      </View>
     );
   },
 );
