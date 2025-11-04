@@ -5,20 +5,23 @@ export const useStyles = buildThemedStyles(tokens => {
   const modalBorderRadius = tokens["radius-larger"];
 
   return {
-    overlay: {
+    backdrop: {
       ...StyleSheet.absoluteFillObject,
       backgroundColor: tokens["color-overlay"],
     },
-    modal: {
+    background: {
       borderTopLeftRadius: modalBorderRadius,
       borderTopRightRadius: modalBorderRadius,
       paddingTop: tokens["space-small"],
     },
-    children: {
+    content: {
       paddingBottom: tokens["space-small"],
     },
     footer: {
       paddingBottom: tokens["space-small"],
+    },
+    footerContainer: {
+      backgroundColor: tokens["color-surface"],
     },
     header: {
       paddingHorizontal: tokens["space-base"],

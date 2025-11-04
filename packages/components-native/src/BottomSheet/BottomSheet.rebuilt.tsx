@@ -108,7 +108,9 @@ function BottomSheetRebuiltInternal(
     (bottomSheetFooterProps: BottomSheetFooterProps) => {
       return (
         <BottomSheetFooter {...bottomSheetFooterProps}>
-          <View style={{ marginBottom: insets.bottom }}>
+          <View
+            style={[styles.footerContainer, { paddingBottom: insets.bottom }]}
+          >
             {cancellable && (
               <View style={styles.footer}>
                 <View style={styles.footerDivider}>
@@ -135,14 +137,14 @@ function BottomSheetRebuiltInternal(
       ref={bottomSheetRef}
       index={-1}
       backdropComponent={Backdrop}
-      backgroundStyle={styles.modal}
+      backgroundStyle={styles.background}
       footerComponent={renderFooter}
       enablePanDownToClose={true}
       onChange={handleChange}
       keyboardBlurBehavior="restore"
     >
       <BottomSheetView
-        style={styles.children}
+        style={styles.content}
         enableFooterMarginAdjustment={true}
       >
         {heading && <Header heading={heading} styles={styles} />}
@@ -180,7 +182,7 @@ function Backdrop(bottomSheetBackdropProps: BottomSheetBackdropProps) {
       {...bottomSheetBackdropProps}
       appearsOnIndex={0}
       disappearsOnIndex={-1}
-      style={styles.overlay}
+      style={styles.backdrop}
       opacity={1}
     />
   );
