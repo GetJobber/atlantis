@@ -19,11 +19,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   );
 
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const legacyPropHelper = {
-    ...props,
-    version: 1,
-    max: typeof props.max === "string" ? parseFloat(props.max) : props.max,
-  };
 
   const id = useInputTextId(props);
 
@@ -34,7 +29,19 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     wrapperRef: wrapperRef,
   });
 
-  const { inputStyle } = useFormFieldWrapperStyles(legacyPropHelper);
+  const { inputStyle } = useFormFieldWrapperStyles({
+    size: props.size,
+    align: props.align,
+    placeholder: props.placeholder,
+    value: props.value,
+    invalid: props.invalid,
+    error: props.error,
+    max: typeof props.max === "string" ? parseFloat(props.max) : props.max,
+    maxLength: props.maxLength,
+    type: props.multiline ? "textarea" : "text",
+    disabled: props.disabled,
+    inline: props.inline,
+  });
 
   const { name } = useAtlantisFormFieldName({
     nameProp: props.name,

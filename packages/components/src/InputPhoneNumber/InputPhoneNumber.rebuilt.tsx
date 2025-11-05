@@ -24,7 +24,15 @@ export const InputPhoneNumberRebuilt = forwardRef(
       React.useRef<HTMLInputElement>(null);
     const wrapperRef = React.useRef<HTMLDivElement>(null);
     const { inputStyle } = useFormFieldWrapperStyles({
-      ...props,
+      size: props.size,
+      align: props.align,
+      placeholder: props.placeholder,
+      value: props.value,
+      invalid: props.invalid,
+      error: props.error,
+      maxLength: undefined, // Phone numbers use mask pattern, not maxLength
+      disabled: props.disabled,
+      inline: props.inline,
       type: "tel",
     });
     const generatedId = useId();
@@ -104,7 +112,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
           required={props.required}
           autoFocus={props.autoFocus}
           autoComplete={props.autoComplete}
-          pattern={props.pattern}
           placeholder={props.placeholder}
           inputMode={props.inputMode}
           tabIndex={props.tabIndex}
