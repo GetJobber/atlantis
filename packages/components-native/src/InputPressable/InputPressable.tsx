@@ -130,7 +130,6 @@ export function InputPressableInternal(
   const hasValue = !!value;
 
   const placeholderMode = getPlaceholderMode(showMiniLabel, value);
-  const miniLabelActive = placeholderMode === "mini";
 
   const showClear = useShowClear({
     clearable,
@@ -169,7 +168,8 @@ export function InputPressableInternal(
           style={[
             commonInputStyles.input,
             styles.inputPressableStyles,
-            !miniLabelActive && commonInputStyles.inputEmpty,
+            placeholderMode === "normal" && commonInputStyles.inputEmpty,
+            placeholderMode === "hidden" && styles.withoutMiniLabel,
             disabled && commonInputStyles.inputDisabled,
             (Boolean(invalid) || error) && styles.inputInvalid,
           ]}
