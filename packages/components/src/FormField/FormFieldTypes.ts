@@ -156,7 +156,9 @@ export interface HTMLInputBaseProps extends AriaInputProps {
   readonly autoComplete?: string;
 
   /**
-   * Maximum character length for the input.
+   * Maximum character length for the input (HTML validation only).
+   * Note: In v2, this does NOT affect the visual width of the component.
+   * Use CSS or the size prop for width control.
    */
   readonly maxLength?: number;
 

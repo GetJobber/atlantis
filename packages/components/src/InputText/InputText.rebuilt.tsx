@@ -37,7 +37,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     invalid: props.invalid,
     error: props.error,
     max: typeof props.max === "string" ? parseFloat(props.max) : props.max,
-    maxLength: props.maxLength,
+    maxLength: undefined, // v2: maxLength is for HTML validation only, not for width styling
     type: props.multiline ? "textarea" : "text",
     disabled: props.disabled,
     inline: props.inline,
