@@ -26,14 +26,23 @@ export function useInputDateActivatorActions({
     onChange?.(event);
   }
 
-  function handleFocus(event: FocusEvent<HTMLInputElement>) {
-    onFocus?.(event);
+  function handleFocus(
+    event?: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    if (event) {
+      onFocus?.(event as FocusEvent<HTMLInputElement>);
+    }
     setIsFocused(true);
   }
 
-  function handleBlur(event: FocusEvent<HTMLInputElement>) {
+  function handleBlur(
+    event?: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
     setIsFocused(false);
-    onBlur?.(event);
+
+    if (event) {
+      onBlur?.(event as FocusEvent<HTMLInputElement>);
+    }
   }
 
   return {
