@@ -91,7 +91,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         maxLength={props.maxLength}
         minLength={props.minLength}
         pattern={props.pattern}
-        placeholder={props.placeholder}
         inputMode={props.inputMode}
         tabIndex={props.tabIndex}
         role={props.role}

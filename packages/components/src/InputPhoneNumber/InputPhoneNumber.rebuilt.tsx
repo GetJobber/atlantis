@@ -112,7 +112,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
           required={props.required}
           autoFocus={props.autoFocus}
           autoComplete={props.autoComplete}
-          placeholder={props.placeholder}
           inputMode={props.inputMode}
           tabIndex={props.tabIndex}
           role={props.role}
