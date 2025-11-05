@@ -6,100 +6,9 @@
     "displayName": "InputPhoneNumberRebuilt",
     "methods": [],
     "props": {
-      "error": {
-        "defaultValue": null,
-        "description": "",
-        "name": "error",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "identifier": {
-        "defaultValue": null,
-        "description": "",
-        "name": "identifier",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "autocomplete": {
-        "defaultValue": null,
-        "description": "",
-        "name": "autocomplete",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | boolean"
-        }
-      },
-      "loading": {
-        "defaultValue": null,
-        "description": "",
-        "name": "loading",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onKeyUp": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onKeyUp",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
-        }
-      },
-      "clearable": {
-        "defaultValue": null,
-        "description": "",
-        "name": "clearable",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Clearable"
-        }
-      },
       "value": {
         "defaultValue": null,
-        "description": "",
+        "description": "The current value of the input.",
         "name": "value",
         "parent": {
           "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
@@ -112,7 +21,7 @@
       },
       "onChange": {
         "defaultValue": null,
-        "description": "",
+        "description": "Custom onChange handler that provides the new value as the first argument.",
         "name": "onChange",
         "parent": {
           "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
@@ -123,22 +32,9 @@
           "name": "(value: string, event?: ChangeEvent<HTMLInputElement>) => void"
         }
       },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: FocusEvent<HTMLInputElement, Element>) => void"
-        }
-      },
       "onEnter": {
         "defaultValue": null,
-        "description": "",
+        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
         "name": "onEnter",
         "parent": {
           "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
@@ -147,19 +43,6 @@
         "required": false,
         "type": {
           "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
       "pattern": {
@@ -177,39 +60,442 @@
           "name": "string"
         }
       },
-      "required": {
+      "identifier": {
         "defaultValue": null,
-        "description": "Shows a \"required\" validation message when the component is left empty.",
-        "name": "required",
+        "description": "@deprecated Use `id` instead. This prop will be removed in a future version.",
+        "name": "identifier",
         "parent": {
           "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
           "name": "InputPhoneNumberRebuiltProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "string"
         }
       },
-      "version": {
+      "autocomplete": {
         "defaultValue": null,
-        "description": "Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.",
-        "name": "version",
+        "description": "@deprecated Use `autoComplete` with string values instead. This prop will be removed in a future version.",
+        "name": "autocomplete",
         "parent": {
           "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
           "name": "InputPhoneNumberRebuiltProps"
         },
-        "required": true,
+        "required": false,
         "type": {
-          "name": "2"
+          "name": "never"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "@deprecated Use `aria-label` instead. This prop will be removed in a future version.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "never"
+        }
+      },
+      "readonly": {
+        "defaultValue": null,
+        "description": "@deprecated Use `readOnly` instead. This prop will be removed in a future version.",
+        "name": "readonly",
+        "parent": {
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "never"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "The unique identifier for the input element.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The name attribute for the input element.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Placeholder text that appears when the input is empty.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "required": {
+        "defaultValue": null,
+        "description": "Whether the input is required.",
+        "name": "required",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "readOnly": {
+        "defaultValue": null,
+        "description": "Whether the input is read-only (HTML standard casing).",
+        "name": "readOnly",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "autoFocus": {
+        "defaultValue": null,
+        "description": "Whether the input should be auto-focused (React casing).",
+        "name": "autoFocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "autoComplete": {
+        "defaultValue": null,
+        "description": "Autocomplete behavior for the input (React casing, string values only).\nUse standard HTML autocomplete values or \"on\"/\"off\".",
+        "name": "autoComplete",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "max": {
+        "defaultValue": null,
+        "description": "Maximum numerical value (for number inputs).",
+        "name": "max",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number"
+        }
+      },
+      "min": {
+        "defaultValue": null,
+        "description": "Minimum numerical value (for number inputs).",
+        "name": "min",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number"
+        }
+      },
+      "inputMode": {
+        "defaultValue": null,
+        "description": "Input mode hint for virtual keyboards.",
+        "name": "inputMode",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"search\" | \"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\""
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Role attribute for accessibility.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "tabIndex": {
+        "defaultValue": null,
+        "description": "Tab index for keyboard navigation.",
+        "name": "tabIndex",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "aria-label": {
+        "defaultValue": null,
+        "description": "ARIA label for accessibility.",
+        "name": "aria-label",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-describedby": {
+        "defaultValue": null,
+        "description": "ARIA described-by for accessibility.",
+        "name": "aria-describedby",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-invalid": {
+        "defaultValue": null,
+        "description": "ARIA invalid state for accessibility.",
+        "name": "aria-invalid",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean | \"true\" | \"false\""
+        }
+      },
+      "aria-controls": {
+        "defaultValue": null,
+        "description": "ARIA controls attribute.",
+        "name": "aria-controls",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-expanded": {
+        "defaultValue": null,
+        "description": "ARIA expanded state.",
+        "name": "aria-expanded",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "aria-activedescendant": {
+        "defaultValue": null,
+        "description": "ARIA active descendant.",
+        "name": "aria-activedescendant",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-autocomplete": {
+        "defaultValue": null,
+        "description": "ARIA autocomplete attribute.",
+        "name": "aria-autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"inline\" | \"none\" | \"list\" | \"both\""
+        }
+      },
+      "aria-required": {
+        "defaultValue": null,
+        "description": "ARIA required attribute.",
+        "name": "aria-required",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Focus event handler.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Blur event handler.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "onKeyDown": {
+        "defaultValue": null,
+        "description": "Key down event handler.",
+        "name": "onKeyDown",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "KeyboardEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.KeyboardEvent<Target>) => void"
+        }
+      },
+      "onKeyUp": {
+        "defaultValue": null,
+        "description": "Key up event handler.",
+        "name": "onKeyUp",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "KeyboardEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.KeyboardEvent<Target>) => void"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "Error message to display. This also highlights the field red.",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "Show a spinner to indicate loading.",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Add a clear action on the input that clears the value.",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
         }
       },
       "size": {
         "defaultValue": null,
-        "description": "",
+        "description": "Adjusts the interface to either have small or large spacing.",
         "name": "size",
         "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
         },
         "required": false,
         "type": {
@@ -218,11 +504,11 @@
       },
       "inline": {
         "defaultValue": null,
-        "description": "",
+        "description": "Adjusts the form field to go inline with content.",
         "name": "inline",
         "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
         },
         "required": false,
         "type": {
@@ -231,11 +517,11 @@
       },
       "align": {
         "defaultValue": null,
-        "description": "",
+        "description": "Determines the alignment of the text inside the input.",
         "name": "align",
         "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
         },
         "required": false,
         "type": {
@@ -244,11 +530,11 @@
       },
       "prefix": {
         "defaultValue": null,
-        "description": "",
+        "description": "Adds a prefix label and icon to the field.",
         "name": "prefix",
         "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
         },
         "required": false,
         "type": {
@@ -257,41 +543,54 @@
       },
       "suffix": {
         "defaultValue": null,
-        "description": "",
+        "description": "Adds a suffix label and icon with an optional action to the field.",
         "name": "suffix",
         "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
         },
         "required": false,
         "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { ariaLabel?: never; onClick?: never; readonly label?: string; readonly icon?: IconNames; }"
         }
       },
       "description": {
         "defaultValue": null,
-        "description": "",
+        "description": "Further description of the input, can be used for a hint.",
         "name": "description",
         "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
         },
         "required": false,
         "type": {
           "name": "ReactNode"
         }
       },
-      "readonly": {
+      "children": {
         "defaultValue": null,
-        "description": "",
-        "name": "readonly",
+        "description": "Children elements to render inside the component.",
+        "name": "children",
         "parent": {
-          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
-          "name": "InputPhoneNumberRebuiltProps"
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "ReactNode"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "2"
         }
       },
       "ref": {
