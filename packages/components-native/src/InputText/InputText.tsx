@@ -407,6 +407,9 @@ function InputTextInternal(
           multiline && styles.multiLineInput,
           multiline && Platform.OS === "ios" && styles.multilineInputiOS,
           multiline && miniLabelActive && styles.multiLineInputWithMini,
+          multiline &&
+            placeholderMode === "hidden" &&
+            styles.multilineWithoutMiniLabel,
           styleOverride?.inputText,
           loading && loadingType === "glimmer" && { color: "transparent" },
         ]}
