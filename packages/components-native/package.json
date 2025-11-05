@@ -45,7 +45,7 @@
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.52.0",
-    "react-intl": "^6 || ^7",
+    "react-intl": "^7.1.11",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modalize": "^2.0.13",
     "react-native-portalize": "^1.0.7",
@@ -79,6 +79,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",
+    "@gorhom/bottom-sheet": "^5.2.6",
     "@jobber/design": "*",
     "@react-native-community/datetimepicker": ">=6.7.0",
     "date-fns": "^2.30.0",
