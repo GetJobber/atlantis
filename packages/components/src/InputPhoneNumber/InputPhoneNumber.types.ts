@@ -1,8 +1,10 @@
 import type { InputMaskProps } from "./InputMask";
 import type {
   CommonFormFieldProps,
+  FocusEvents,
   FormFieldProps,
   HTMLInputBaseProps,
+  KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../FormField";
 
@@ -38,6 +40,8 @@ export interface InputPhoneNumberLegacyProps
 
 export interface InputPhoneNumberRebuiltProps
   extends Omit<HTMLInputBaseProps, "type" | "maxLength" | "minLength">,
+    FocusEvents<HTMLInputElement>,
+    KeyboardEvents<HTMLInputElement>,
     RebuiltInputCommonProps {
   /**
    * The current value of the input.
@@ -53,21 +57,11 @@ export interface InputPhoneNumberRebuiltProps
   ) => void;
 
   /**
-   * Blur callback.
-   */
-  readonly onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-
-  /**
    * A callback to handle "Enter" keypress. This will only run
    * if Enter is the only key. Will not run if Shift or Control
    * are being held.
    */
   readonly onEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-
-  /**
-   * Focus callback.
-   */
-  readonly onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
    * A pattern to specify the format to display the phone number in.

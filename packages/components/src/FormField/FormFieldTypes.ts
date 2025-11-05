@@ -30,9 +30,42 @@ export type AutocompleteTypes =
   | "address-line2";
 
 /**
+ * Focus event handlers for input elements.
+ * Generic interface that can be specialized for different element types.
+ */
+export interface FocusEvents<Target = HTMLElement> {
+  /**
+   * Focus event handler.
+   */
+  readonly onFocus?: (event: React.FocusEvent<Target>) => void;
+
+  /**
+   * Blur event handler.
+   */
+  readonly onBlur?: (event: React.FocusEvent<Target>) => void;
+}
+
+/**
+ * Keyboard event handlers for input elements.
+ * Generic interface that can be specialized for different element types.
+ */
+export interface KeyboardEvents<Target = HTMLElement> {
+  /**
+   * Key down event handler.
+   */
+  readonly onKeyDown?: (event: React.KeyboardEvent<Target>) => void;
+
+  /**
+   * Key up event handler.
+   */
+  readonly onKeyUp?: (event: React.KeyboardEvent<Target>) => void;
+}
+
+/**
  * Curated set of HTML input attributes for rebuilt input components.
  * This provides a whitelist of standard HTML/React props we want to support,
  * avoiding the issues of extending React.InputHTMLAttributes directly.
+ * Note: Event handlers are NOT included here - use FocusEvents and KeyboardEvents instead.
  */
 export interface HTMLInputBaseProps {
   /**
@@ -163,27 +196,6 @@ export interface HTMLInputBaseProps {
    * Tab index for keyboard navigation.
    */
   readonly tabIndex?: number;
-
-  /**
-   * Key down event handler.
-   */
-  readonly onKeyDown?: (
-    event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
-
-  /**
-   * Key up event handler.
-   */
-  readonly onKeyUp?: (
-    event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
-
-  /**
-   * Focus event handler.
-   */
-  readonly onFocus?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
 }
 
 /**

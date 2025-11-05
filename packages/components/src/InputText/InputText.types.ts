@@ -1,10 +1,11 @@
 import type { XOR } from "ts-xor";
 import type {
-  AutocompleteTypes,
   CommonFormFieldProps,
+  FocusEvents,
   FormFieldProps,
   FormFieldTypes,
   HTMLInputBaseProps,
+  KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../FormField";
 
@@ -21,6 +22,8 @@ export type InputTextVersion = 1 | 2 | undefined;
  */
 export interface InputTextRebuiltProps
   extends HTMLInputBaseProps,
+    FocusEvents<HTMLInputElement | HTMLTextAreaElement>,
+    KeyboardEvents<HTMLInputElement | HTMLTextAreaElement>,
     RebuiltInputCommonProps {
   /**
    * Use this when you're expecting a long answer.
@@ -69,13 +72,6 @@ export interface InputTextRebuiltProps
    * are being held.
    */
   readonly onEnter?: FormFieldProps["onEnter"];
-
-  /**
-   * Blur callback.
-   */
-  readonly onBlur?: (
-    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
 
   /**
    * @deprecated Use `id` instead. This prop will be removed in a future version.

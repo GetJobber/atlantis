@@ -1,7 +1,9 @@
 import type {
   CommonFormFieldProps,
+  FocusEvents,
   FormFieldProps,
   HTMLInputBaseProps,
+  KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../FormField";
 
@@ -21,6 +23,8 @@ export type InputEmailVersion = 1 | 2 | undefined;
  */
 export interface InputEmailRebuiltProps
   extends HTMLInputBaseProps,
+    FocusEvents<HTMLInputElement>,
+    KeyboardEvents<HTMLInputElement>,
     RebuiltInputCommonProps {
   /**
    * The current value of the input.
@@ -41,11 +45,6 @@ export interface InputEmailRebuiltProps
    * are being held.
    */
   readonly onEnter?: FormFieldProps["onEnter"];
-
-  /**
-   * Blur callback.
-   */
-  readonly onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
    * @deprecated Use `id` instead. This prop will be removed in a future version.
