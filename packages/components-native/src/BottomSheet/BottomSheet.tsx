@@ -1,14 +1,26 @@
-import type { ReactNode, Ref, RefObject } from "react";
-import React, { forwardRef, useState } from "react";
-import type { Modalize } from "react-native-modalize";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import type { ReactNode, Ref } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import { Keyboard, View } from "react-native";
-import { BottomSheetOption } from "./components/BottomSheetOption";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import RNBottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetFooter,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
+import type {
+  BottomSheetBackdropProps,
+  BottomSheetFooterProps,
+} from "@gorhom/bottom-sheet";
 import { useStyles } from "./BottomSheet.style";
-import { UNSAFE_WrappedModalize } from "../ContentOverlay/UNSAFE_WrappedModalize";
-import { useIsScreenReaderEnabled } from "../hooks";
+import { BottomSheetOption } from "./components/BottomSheetOption";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
+import { useIsScreenReaderEnabled } from "../hooks";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface BottomSheetProps {
@@ -42,7 +54,10 @@ export interface BottomSheetProps {
 
 export const BottomSheet = forwardRef(BottomSheetInternal);
 
-export type BottomSheetRef = Modalize | undefined;
+export interface BottomSheetRef {
+  open: () => void;
+  close: () => void;
+}
 
 function BottomSheetInternal(
   {
@@ -55,56 +70,88 @@ function BottomSheetInternal(
   }: BottomSheetProps,
   ref: Ref<BottomSheetRef>,
 ) {
-  const isScreenReaderEnabled = useIsScreenReaderEnabled();
-  const [open, setOpen] = useState<boolean>(false);
   const styles = useStyles();
+  const isScreenReaderEnabled = useIsScreenReaderEnabled();
+  const cancellable = (showCancel && !loading) || isScreenReaderEnabled;
 
-  return (
-    <>
-      {open && <Overlay styles={styles} />}
-      <UNSAFE_WrappedModalize
-        ref={ref}
-        adjustToContentHeight={true}
-        modalStyle={styles.modal}
-        overlayStyle={styles.overlayModalize}
-        HeaderComponent={
-          heading && <Header heading={heading} styles={styles} />
-        }
-        FooterComponent={
-          <Footer
-            cancellable={(showCancel && !loading) || isScreenReaderEnabled}
-            onCancel={() => {
-              (ref as RefObject<BottomSheetRef>)?.current?.close();
-            }}
-            styles={styles}
-          />
-        }
-        withHandle={false}
-        withReactModal={isScreenReaderEnabled}
-        onOpen={openModal}
-        onClose={closeModal}
-      >
-        <View
-          style={
-            !showCancel && !isScreenReaderEnabled ? styles.children : undefined
-          }
-        >
-          {children}
-        </View>
-      </UNSAFE_WrappedModalize>
-    </>
+  const { t } = useAtlantisI18n();
+  const insets = useSafeAreaInsets();
+  const previousIndexRef = useRef(-1);
+  const bottomSheetRef = useRef<RNBottomSheet>(null);
+
+  useImperativeHandle(ref, () => ({
+    open: () => {
+      bottomSheetRef.current?.expand();
+    },
+    close: () => {
+      bottomSheetRef.current?.close();
+    },
+  }));
+
+  const handleChange = (index: number) => {
+    const previousIndex = previousIndexRef.current;
+
+    if (previousIndex === -1 && index >= 0) {
+      // Transitioned from closed to open
+      dismissKeyboard();
+      onOpen?.();
+    } else if (previousIndex >= 0 && index === -1) {
+      // Transitioned from open to closed
+      dismissKeyboard();
+      onClose?.();
+    }
+
+    previousIndexRef.current = index;
+  };
+
+  const renderFooter = useCallback(
+    (bottomSheetFooterProps: BottomSheetFooterProps) => {
+      return (
+        <BottomSheetFooter {...bottomSheetFooterProps}>
+          <View
+            style={[styles.footerContainer, { paddingBottom: insets.bottom }]}
+          >
+            {cancellable && (
+              <View style={styles.footer}>
+                <View style={styles.footerDivider}>
+                  <Divider />
+                </View>
+                <BottomSheetOption
+                  text={t("cancel")}
+                  icon={"remove"}
+                  onPress={() => {
+                    bottomSheetRef.current?.close();
+                  }}
+                />
+              </View>
+            )}
+          </View>
+        </BottomSheetFooter>
+      );
+    },
+    [cancellable],
   );
 
-  function openModal() {
-    onOpen?.();
-    setOpen(true);
-    dismissKeyboard();
-  }
-
-  function closeModal() {
-    onClose?.();
-    setOpen(false);
-  }
+  return (
+    <RNBottomSheet
+      ref={bottomSheetRef}
+      index={-1}
+      backdropComponent={Backdrop}
+      backgroundStyle={styles.background}
+      footerComponent={renderFooter}
+      enablePanDownToClose={true}
+      onChange={handleChange}
+      keyboardBlurBehavior="restore"
+    >
+      <BottomSheetView
+        style={styles.content}
+        enableFooterMarginAdjustment={true}
+      >
+        {heading && <Header heading={heading} styles={styles} />}
+        {children}
+      </BottomSheetView>
+    </RNBottomSheet>
+  );
 }
 
 function Header({
@@ -121,46 +168,22 @@ function Header({
   );
 }
 
-function Footer({
-  cancellable,
-  onCancel,
-  styles,
-}: {
-  readonly cancellable: boolean;
-  readonly onCancel: () => void;
-  readonly styles: ReturnType<typeof useStyles>;
-}) {
-  const insets = useSafeAreaInsets();
-  const { t } = useAtlantisI18n();
-
-  return (
-    <View style={{ marginBottom: insets.bottom }}>
-      {cancellable && (
-        <View style={styles.children}>
-          <View style={styles.footerDivider}>
-            <Divider />
-          </View>
-          <BottomSheetOption
-            text={t("cancel")}
-            icon={"remove"}
-            onPress={onCancel}
-          />
-        </View>
-      )}
-    </View>
-  );
-}
-
 function dismissKeyboard() {
   //Dismisses the keyboard before opening the bottom sheet.
   //In the case where an input text field is focused we don't want to show the bottom sheet behind or above keyboard
   Keyboard.dismiss();
 }
 
-function Overlay({
-  styles,
-}: {
-  readonly styles: ReturnType<typeof useStyles>;
-}) {
-  return <View style={styles.overlay} />;
+function Backdrop(bottomSheetBackdropProps: BottomSheetBackdropProps) {
+  const styles = useStyles();
+
+  return (
+    <BottomSheetBackdrop
+      {...bottomSheetBackdropProps}
+      appearsOnIndex={0}
+      disappearsOnIndex={-1}
+      style={styles.backdrop}
+      opacity={1}
+    />
+  );
 }
