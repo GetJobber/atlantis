@@ -45,7 +45,7 @@ export interface InputEmailRebuiltProps
   /**
    * Blur callback.
    */
-  readonly onBlur?: FormFieldProps["onBlur"];
+  readonly onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
    * @deprecated Use `id` instead. This prop will be removed in a future version.

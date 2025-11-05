@@ -182,7 +182,7 @@ export interface HTMLInputBaseProps {
    * Focus event handler.
    */
   readonly onFocus?: (
-    event?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
 }
 

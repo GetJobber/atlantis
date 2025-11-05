@@ -34,11 +34,11 @@ export const InputDateRebuilt = forwardRef<
     const { handleChange, handleFocus, handleBlur, isFocused } =
       useInputDateActivatorActions({
         onChange: activatorProps.onChange,
-        onFocus: (event?) => {
+        onFocus: event => {
           props.onFocus?.(event);
           activatorProps.onFocus?.();
         },
-        onBlur: (event?) => {
+        onBlur: event => {
           props.onBlur?.(event);
           activatorProps.onBlur?.();
         },

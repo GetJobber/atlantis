@@ -73,7 +73,9 @@ export interface InputTextRebuiltProps
   /**
    * Blur callback.
    */
-  readonly onBlur?: FormFieldProps["onBlur"];
+  readonly onBlur?: (
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
 
   /**
    * @deprecated Use `id` instead. This prop will be removed in a future version.

@@ -55,7 +55,7 @@ export interface InputPhoneNumberRebuiltProps
   /**
    * Blur callback.
    */
-  readonly onBlur?: (event?: React.FocusEvent<HTMLInputElement>) => void;
+  readonly onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
    * A callback to handle "Enter" keypress. This will only run
@@ -67,7 +67,7 @@ export interface InputPhoneNumberRebuiltProps
   /**
    * Focus callback.
    */
-  readonly onFocus?: (event?: React.FocusEvent<HTMLInputElement>) => void;
+  readonly onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
    * A pattern to specify the format to display the phone number in.
