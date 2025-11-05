@@ -30,6 +30,52 @@ export type AutocompleteTypes =
   | "address-line2";
 
 /**
+ * ARIA attributes for accessibility.
+ * Common attributes that can be used across input components.
+ */
+export interface AriaInputProps {
+  /**
+   * ARIA label for accessibility.
+   */
+  readonly "aria-label"?: string;
+
+  /**
+   * ARIA described-by for accessibility.
+   */
+  readonly "aria-describedby"?: string;
+
+  /**
+   * ARIA invalid state for accessibility.
+   */
+  readonly "aria-invalid"?: boolean | "true" | "false";
+
+  /**
+   * ARIA controls attribute.
+   */
+  readonly "aria-controls"?: string;
+
+  /**
+   * ARIA expanded state.
+   */
+  readonly "aria-expanded"?: boolean;
+
+  /**
+   * ARIA active descendant.
+   */
+  readonly "aria-activedescendant"?: string;
+
+  /**
+   * ARIA autocomplete attribute.
+   */
+  readonly "aria-autocomplete"?: "none" | "inline" | "list" | "both";
+
+  /**
+   * ARIA required attribute.
+   */
+  readonly "aria-required"?: boolean;
+}
+
+/**
  * Focus event handlers for input elements.
  * Generic interface that can be specialized for different element types.
  */
@@ -65,9 +111,9 @@ export interface KeyboardEvents<Target = HTMLElement> {
  * Curated set of HTML input attributes for rebuilt input components.
  * This provides a whitelist of standard HTML/React props we want to support,
  * avoiding the issues of extending React.InputHTMLAttributes directly.
- * Note: Event handlers are NOT included here - use FocusEvents and KeyboardEvents instead.
+ * Note: Event handlers and ARIA attributes are separate - use FocusEvents, KeyboardEvents, and AriaInputProps.
  */
-export interface HTMLInputBaseProps {
+export interface HTMLInputBaseProps extends AriaInputProps {
   /**
    * The unique identifier for the input element.
    */
@@ -146,46 +192,6 @@ export interface HTMLInputBaseProps {
     | "numeric"
     | "decimal"
     | "search";
-
-  /**
-   * ARIA label for accessibility.
-   */
-  readonly "aria-label"?: string;
-
-  /**
-   * ARIA described-by for accessibility.
-   */
-  readonly "aria-describedby"?: string;
-
-  /**
-   * ARIA invalid state for accessibility.
-   */
-  readonly "aria-invalid"?: boolean | "true" | "false";
-
-  /**
-   * ARIA controls attribute.
-   */
-  readonly "aria-controls"?: string;
-
-  /**
-   * ARIA expanded state.
-   */
-  readonly "aria-expanded"?: boolean;
-
-  /**
-   * ARIA active descendant.
-   */
-  readonly "aria-activedescendant"?: string;
-
-  /**
-   * ARIA autocomplete attribute.
-   */
-  readonly "aria-autocomplete"?: "none" | "inline" | "list" | "both";
-
-  /**
-   * ARIA required attribute.
-   */
-  readonly "aria-required"?: boolean;
 
   /**
    * Role attribute for accessibility.
