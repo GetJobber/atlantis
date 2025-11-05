@@ -6,7 +6,6 @@ import styles from "./InputMask.module.css";
 import type { InputPhoneNumberRebuiltProps } from "./InputPhoneNumber.types";
 import { DEFAULT_PATTERN } from "./InputPhoneNumber.types";
 import { useInputPhoneActions } from "./hooks/useInputPhoneActions";
-import { useInputPhoneFormField } from "./hooks/useInputPhoneFormField";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -15,6 +14,7 @@ import {
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 
 export const InputPhoneNumberRebuilt = forwardRef(
+  // eslint-disable-next-line max-statements
   function InputPhoneNumberInternal(
     { pattern = DEFAULT_PATTERN, ...props }: InputPhoneNumberRebuiltProps,
     ref: React.Ref<HTMLInputElement>,
@@ -28,7 +28,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
       type: "tel",
     });
     const generatedId = useId();
-    const id = props.id || generatedId;
+    const id = props.identifier || props.id || generatedId;
 
     const { name } = useAtlantisFormFieldName({
       nameProp: props.name,
@@ -62,21 +62,12 @@ export const InputPhoneNumberRebuilt = forwardRef(
       inputRef: inputPhoneNumberRef,
     });
 
-    const { fieldProps, descriptionIdentifier } = useInputPhoneFormField({
-      id,
-      name,
-      handleChange,
-      handleBlur,
-      handleFocus,
-      handleKeyDown,
-      autofocus: props.autoFocus,
-      disabled: props.disabled,
-      readonly: props.readonly,
-      invalid: props.invalid,
-      error: props.error,
-      description: props.description,
-      inline: props.inline,
-    });
+    const descriptionIdentifier = `descriptionUUID--${id}`;
+    const hasDescription = props.description && !props.inline;
+    const isInvalid = Boolean(
+      props["aria-invalid"] || props.error || props.invalid,
+    );
+    const effectiveReadOnly = props.readonly || props.readOnly;
 
     return (
       <FormFieldWrapper
@@ -96,17 +87,42 @@ export const InputPhoneNumberRebuilt = forwardRef(
         value={formattedValue}
         prefix={props.prefix}
         suffix={props.suffix}
-        readonly={props.readonly}
+        readonly={effectiveReadOnly}
         loading={props.loading}
       >
         <input
+          id={id}
+          name={name}
           type="tel"
-          {...fieldProps}
           ref={inputPhoneNumberRef}
           className={classNames(inputStyle, {
             [styles.emptyValue]: inputValue.length === 0 && pattern[0] === "(",
           })}
           value={formattedValue}
+          disabled={props.disabled}
+          readOnly={effectiveReadOnly}
+          required={props.required}
+          autoFocus={props.autoFocus}
+          autoComplete={props.autoComplete}
+          pattern={props.pattern}
+          placeholder={props.placeholder}
+          inputMode={props.inputMode}
+          tabIndex={props.tabIndex}
+          role={props.role}
+          aria-label={props["aria-label"]}
+          aria-describedby={
+            hasDescription ? descriptionIdentifier : props["aria-describedby"]
+          }
+          aria-invalid={isInvalid ? true : undefined}
+          aria-controls={props["aria-controls"]}
+          aria-expanded={props["aria-expanded"]}
+          aria-activedescendant={props["aria-activedescendant"]}
+          aria-autocomplete={props["aria-autocomplete"]}
+          aria-required={props["aria-required"]}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onKeyDown={handleKeyDown}
         />
         <MaskElement
           isMasking={isMasking}

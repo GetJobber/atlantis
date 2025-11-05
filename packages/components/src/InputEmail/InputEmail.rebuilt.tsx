@@ -1,7 +1,5 @@
 import React, { forwardRef, useId, useRef } from "react";
-import omit from "lodash/omit";
 import { useInputEmailActions } from "./hooks/useInputEmailActions";
-import { useInputEmailFormField } from "./hooks/useInputEmailFormField";
 import type { InputEmailRebuiltProps } from "./InputEmail.types";
 import {
   FormFieldWrapper,
@@ -14,7 +12,8 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
   props: InputEmailRebuiltProps,
   ref: React.Ref<HTMLInputElement>,
 ) {
-  const id = useId();
+  const generatedId = useId();
+  const id = props.identifier || props.id || generatedId;
   const inputRef =
     (ref as React.RefObject<HTMLInputElement>) ??
     useRef<HTMLInputElement>(null);
@@ -48,33 +47,17 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       inputRef,
     });
 
-  const inputProps = omit(props, [
-    "placeholder",
-    "onChange",
-    "onBlur",
-    "onFocus",
-    "onEnter",
-    "size",
-    "prefix",
-    "suffix",
-    "version",
-  ]);
-
-  const { fieldProps, descriptionIdentifier } = useInputEmailFormField({
-    ...inputProps,
-    id,
-    name,
-    handleChange,
-    handleBlur,
-    handleFocus,
-    handleKeyDown,
-  });
+  const descriptionIdentifier = `descriptionUUID--${id}`;
+  const hasDescription = props.description && !props.inline;
+  const isInvalid = Boolean(
+    props["aria-invalid"] || props.error || props.invalid,
+  );
 
   return (
     <FormFieldWrapper
       error={props.error || ""}
       invalid={props.invalid}
-      identifier={props.identifier || id}
+      identifier={id}
       descriptionIdentifier={descriptionIdentifier}
       size={props.size}
       inline={props.inline}
@@ -94,11 +77,39 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       name={name}
     >
       <input
-        {...fieldProps}
-        ref={inputRef}
+        id={id}
+        name={name}
         type="email"
+        ref={inputRef}
         className={inputStyle}
         value={props.value}
+        disabled={props.disabled}
+        readOnly={props.readOnly}
+        required={props.required}
+        autoFocus={props.autoFocus}
+        autoComplete={props.autoComplete}
+        maxLength={props.maxLength}
+        minLength={props.minLength}
+        pattern={props.pattern}
+        placeholder={props.placeholder}
+        inputMode={props.inputMode}
+        tabIndex={props.tabIndex}
+        role={props.role}
+        aria-label={props["aria-label"]}
+        aria-describedby={
+          hasDescription ? descriptionIdentifier : props["aria-describedby"]
+        }
+        aria-invalid={isInvalid ? true : undefined}
+        aria-controls={props["aria-controls"]}
+        aria-expanded={props["aria-expanded"]}
+        aria-activedescendant={props["aria-activedescendant"]}
+        aria-autocomplete={props["aria-autocomplete"]}
+        aria-required={props["aria-required"]}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
+        onKeyUp={props.onKeyUp}
         data-testid="ATL-InputEmail-input"
       />
       <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />

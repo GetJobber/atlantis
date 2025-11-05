@@ -1,5 +1,9 @@
-import type { Clearable } from "@jobber/hooks";
-import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type {
+  CommonFormFieldProps,
+  FormFieldProps,
+  HTMLInputBaseProps,
+  RebuiltInputCommonProps,
+} from "../FormField";
 
 export type InputEmailLegacyProps = CommonFormFieldProps &
   Pick<
@@ -16,43 +20,50 @@ export type InputEmailVersion = 1 | 2 | undefined;
  * Do not use unless you have talked with Atlantis first.
  */
 export interface InputEmailRebuiltProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    | "onChange"
-    | "onBlur"
-    | "size"
-    | "suffix"
-    | "prefix"
-    | "value"
-    | "max"
-    | "min"
-    | "defaultValue"
-  > {
-  readonly error?: string;
-  readonly invalid?: boolean;
-  readonly identifier?: string;
-  readonly autocomplete?: boolean | string;
-  readonly loading?: boolean;
-  readonly onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  readonly children?: React.ReactNode;
-  readonly clearable?: Clearable;
+  extends HTMLInputBaseProps,
+    RebuiltInputCommonProps {
+  /**
+   * The current value of the input.
+   */
+  readonly value?: string;
 
   /**
-   * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
+   * Custom onChange handler that provides the new value as the first argument.
    */
-  readonly version: 2;
-
   readonly onChange?: (
     newValue: string,
     event?: React.ChangeEvent<HTMLInputElement>,
   ) => void;
+
+  /**
+   * A callback to handle "Enter" keypress. This will only run
+   * if Enter is the only key. Will not run if Shift or Control
+   * are being held.
+   */
   readonly onEnter?: FormFieldProps["onEnter"];
+
+  /**
+   * Blur callback.
+   */
   readonly onBlur?: FormFieldProps["onBlur"];
-  readonly value?: string;
-  readonly size?: FormFieldProps["size"];
-  readonly inline?: FormFieldProps["inline"];
-  readonly align?: FormFieldProps["align"];
-  readonly prefix?: FormFieldProps["prefix"];
-  readonly suffix?: FormFieldProps["suffix"];
-  readonly description?: FormFieldProps["description"];
+
+  /**
+   * @deprecated Use `id` instead. This prop will be removed in a future version.
+   */
+  readonly identifier?: string;
+
+  /**
+   * @deprecated Use `autoComplete` with string values instead. This prop will be removed in a future version.
+   */
+  readonly autocomplete?: never;
+
+  /**
+   * @deprecated Use `aria-label` instead. This prop will be removed in a future version.
+   */
+  readonly ariaLabel?: never;
+
+  /**
+   * @deprecated Use `readOnly` instead. This prop will be removed in a future version.
+   */
+  readonly readonly?: never;
 }

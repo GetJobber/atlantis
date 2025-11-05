@@ -1,6 +1,10 @@
-import type { Clearable } from "@jobber/hooks";
 import type { InputMaskProps } from "./InputMask";
-import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type {
+  CommonFormFieldProps,
+  FormFieldProps,
+  HTMLInputBaseProps,
+  RebuiltInputCommonProps,
+} from "../FormField";
 
 export interface InputPhoneNumberLegacyProps
   extends Omit<CommonFormFieldProps, "align">,
@@ -33,39 +37,36 @@ export interface InputPhoneNumberLegacyProps
 }
 
 export interface InputPhoneNumberRebuiltProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    | "onChange"
-    | "onBlur"
-    | "size"
-    | "suffix"
-    | "prefix"
-    | "value"
-    | "max"
-    | "min"
-    | "defaultValue"
-    | "readOnly"
-    | "type"
-    | "maxLength"
-    | "minLength"
-  > {
-  readonly error?: string;
-  readonly invalid?: boolean;
-  readonly identifier?: string;
-  readonly autocomplete?: boolean | string;
-  readonly loading?: boolean;
-  readonly onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  readonly children?: React.ReactNode;
-  readonly clearable?: Clearable;
-
+  extends Omit<HTMLInputBaseProps, "type" | "maxLength" | "minLength">,
+    RebuiltInputCommonProps {
+  /**
+   * The current value of the input.
+   */
   readonly value: string;
+
+  /**
+   * Custom onChange handler that provides the new value as the first argument.
+   */
   readonly onChange: (
     value: string,
     event?: React.ChangeEvent<HTMLInputElement>,
   ) => void;
 
+  /**
+   * Blur callback.
+   */
   readonly onBlur?: (event?: React.FocusEvent<HTMLInputElement>) => void;
+
+  /**
+   * A callback to handle "Enter" keypress. This will only run
+   * if Enter is the only key. Will not run if Shift or Control
+   * are being held.
+   */
   readonly onEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+
+  /**
+   * Focus callback.
+   */
   readonly onFocus?: (event?: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
@@ -77,22 +78,24 @@ export interface InputPhoneNumberRebuiltProps
   readonly pattern?: InputMaskProps["pattern"];
 
   /**
-   * Shows a "required" validation message when the component is left empty.
+   * @deprecated Use `id` instead. This prop will be removed in a future version.
    */
-  readonly required?: boolean;
+  readonly identifier?: string;
 
   /**
-   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
+   * @deprecated Use `autoComplete` with string values instead. This prop will be removed in a future version.
    */
-  readonly version: 2;
+  readonly autocomplete?: never;
 
-  readonly size?: FormFieldProps["size"];
-  readonly inline?: FormFieldProps["inline"];
-  readonly align?: FormFieldProps["align"];
-  readonly prefix?: FormFieldProps["prefix"];
-  readonly suffix?: FormFieldProps["suffix"];
-  readonly description?: FormFieldProps["description"];
-  readonly readonly?: boolean;
+  /**
+   * @deprecated Use `aria-label` instead. This prop will be removed in a future version.
+   */
+  readonly ariaLabel?: never;
+
+  /**
+   * @deprecated Use `readOnly` instead. This prop will be removed in a future version.
+   */
+  readonly readonly?: never;
 }
 
 export const DEFAULT_PATTERN = "(***) ***-****";

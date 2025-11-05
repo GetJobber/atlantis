@@ -29,6 +29,229 @@ export type AutocompleteTypes =
   | "address-line1"
   | "address-line2";
 
+/**
+ * Curated set of HTML input attributes for rebuilt input components.
+ * This provides a whitelist of standard HTML/React props we want to support,
+ * avoiding the issues of extending React.InputHTMLAttributes directly.
+ */
+export interface HTMLInputBaseProps {
+  /**
+   * The unique identifier for the input element.
+   */
+  readonly id?: string;
+
+  /**
+   * The name attribute for the input element.
+   */
+  readonly name?: string;
+
+  /**
+   * Placeholder text that appears when the input is empty.
+   */
+  readonly placeholder?: string;
+
+  /**
+   * Whether the input is disabled.
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Whether the input is required.
+   */
+  readonly required?: boolean;
+
+  /**
+   * Whether the input is read-only (HTML standard casing).
+   */
+  readonly readOnly?: boolean;
+
+  /**
+   * Whether the input should be auto-focused (React casing).
+   */
+  readonly autoFocus?: boolean;
+
+  /**
+   * Autocomplete behavior for the input (React casing, string values only).
+   * Use standard HTML autocomplete values or "on"/"off".
+   */
+  readonly autoComplete?: string;
+
+  /**
+   * Maximum character length for the input.
+   */
+  readonly maxLength?: number;
+
+  /**
+   * Minimum character length for the input.
+   */
+  readonly minLength?: number;
+
+  /**
+   * Maximum numerical value (for number inputs).
+   */
+  readonly max?: number | string;
+
+  /**
+   * Minimum numerical value (for number inputs).
+   */
+  readonly min?: number | string;
+
+  /**
+   * Validation pattern (regex) for the input.
+   */
+  readonly pattern?: string;
+
+  /**
+   * Input mode hint for virtual keyboards.
+   */
+  readonly inputMode?:
+    | "none"
+    | "text"
+    | "tel"
+    | "url"
+    | "email"
+    | "numeric"
+    | "decimal"
+    | "search";
+
+  /**
+   * ARIA label for accessibility.
+   */
+  readonly "aria-label"?: string;
+
+  /**
+   * ARIA described-by for accessibility.
+   */
+  readonly "aria-describedby"?: string;
+
+  /**
+   * ARIA invalid state for accessibility.
+   */
+  readonly "aria-invalid"?: boolean | "true" | "false";
+
+  /**
+   * ARIA controls attribute.
+   */
+  readonly "aria-controls"?: string;
+
+  /**
+   * ARIA expanded state.
+   */
+  readonly "aria-expanded"?: boolean;
+
+  /**
+   * ARIA active descendant.
+   */
+  readonly "aria-activedescendant"?: string;
+
+  /**
+   * ARIA autocomplete attribute.
+   */
+  readonly "aria-autocomplete"?: "none" | "inline" | "list" | "both";
+
+  /**
+   * ARIA required attribute.
+   */
+  readonly "aria-required"?: boolean;
+
+  /**
+   * Role attribute for accessibility.
+   */
+  readonly role?: string;
+
+  /**
+   * Tab index for keyboard navigation.
+   */
+  readonly tabIndex?: number;
+
+  /**
+   * Key down event handler.
+   */
+  readonly onKeyDown?: (
+    event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+
+  /**
+   * Key up event handler.
+   */
+  readonly onKeyUp?: (
+    event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+
+  /**
+   * Focus event handler.
+   */
+  readonly onFocus?: (
+    event?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+}
+
+/**
+ * Common props shared across all rebuilt input components.
+ * These are Atlantis-specific features not part of standard HTML inputs.
+ */
+export interface RebuiltInputCommonProps {
+  /**
+   * Error message to display. This also highlights the field red.
+   */
+  readonly error?: string;
+
+  /**
+   * Highlights the field red to indicate an error.
+   */
+  readonly invalid?: boolean;
+
+  /**
+   * Show a spinner to indicate loading.
+   */
+  readonly loading?: boolean;
+
+  /**
+   * Add a clear action on the input that clears the value.
+   */
+  readonly clearable?: Clearable;
+
+  /**
+   * Adjusts the interface to either have small or large spacing.
+   */
+  readonly size?: "small" | "large";
+
+  /**
+   * Adjusts the form field to go inline with content.
+   */
+  readonly inline?: boolean;
+
+  /**
+   * Determines the alignment of the text inside the input.
+   */
+  readonly align?: "center" | "right";
+
+  /**
+   * Adds a prefix label and icon to the field.
+   */
+  readonly prefix?: Affix;
+
+  /**
+   * Adds a suffix label and icon with an optional action to the field.
+   */
+  readonly suffix?: XOR<Affix, Suffix>;
+
+  /**
+   * Further description of the input, can be used for a hint.
+   */
+  readonly description?: ReactNode;
+
+  /**
+   * Children elements to render inside the component.
+   */
+  readonly children?: ReactNode;
+
+  /**
+   * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
+   */
+  readonly version: 2;
+}
+
 export interface FieldActionsRef {
   setValue(value: string | number): void;
 }

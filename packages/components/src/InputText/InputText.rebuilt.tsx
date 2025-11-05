@@ -1,10 +1,7 @@
 import React, { forwardRef, useId } from "react";
-import omit from "lodash/omit";
 import type { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { useInputTextActions } from "./useInputTextActions";
-import type { UseInputTextFormFieldReturn } from "./useInputTextFormField";
-import { useInputTextFormField } from "./useInputTextFormField";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -25,6 +22,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   const legacyPropHelper = {
     ...props,
     version: 1,
+    max: typeof props.max === "string" ? parseFloat(props.max) : props.max,
   };
 
   const id = useInputTextId(props);
@@ -35,8 +33,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     inputRef: inputTextRef,
     wrapperRef: wrapperRef,
   });
-
-  const type = props.multiline ? "textarea" : "text";
 
   const { inputStyle } = useFormFieldWrapperStyles(legacyPropHelper);
 
@@ -55,28 +51,11 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       inputRef: inputTextRef,
     });
 
-  const inputProps = omit(props, [
-    "onChange",
-    "onBlur",
-    "onFocus",
-    "onEnter",
-    "size",
-    "placeholder",
-    "multiline",
-    "prefix",
-    "suffix",
-    "version",
-  ]);
-
-  const { fieldProps, descriptionIdentifier } = useInputTextFormField({
-    ...inputProps,
-    id,
-    name,
-    handleChange,
-    handleBlur,
-    handleFocus,
-    handleKeyDown,
-  });
+  const descriptionIdentifier = `descriptionUUID--${id}`;
+  const hasDescription = props.description && !props.inline;
+  const isInvalid = Boolean(
+    props["aria-invalid"] || props.error || props.invalid,
+  );
 
   return (
     <FormFieldWrapper
@@ -104,20 +83,79 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       toolbarVisibility={props.toolbarVisibility}
     >
       <>
-        {type === "textarea" ? (
+        {props.multiline ? (
           <TextArea
-            fieldProps={fieldProps}
-            rowRange={rowRange}
-            inputRefs={[inputRefs, inputTextRef]}
+            id={id}
+            name={name}
+            className={inputStyle}
             value={props.value}
-            inputStyle={inputStyle}
+            rows={rowRange.min}
+            disabled={props.disabled}
+            readOnly={props.readOnly}
+            required={props.required}
+            autoFocus={props.autoFocus}
+            autoComplete={props.autoComplete}
+            maxLength={props.maxLength}
+            minLength={props.minLength}
+            placeholder={props.placeholder}
+            inputMode={props.inputMode}
+            tabIndex={props.tabIndex}
+            role={props.role}
+            aria-label={props["aria-label"]}
+            aria-describedby={
+              hasDescription ? descriptionIdentifier : props["aria-describedby"]
+            }
+            aria-invalid={isInvalid ? true : undefined}
+            aria-controls={props["aria-controls"]}
+            aria-expanded={props["aria-expanded"]}
+            aria-activedescendant={props["aria-activedescendant"]}
+            aria-autocomplete={props["aria-autocomplete"]}
+            aria-required={props["aria-required"]}
+            invalid={isInvalid ? ("true" as const) : undefined}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            onKeyDown={handleKeyDown}
+            onKeyUp={props.onKeyUp}
+            ref={mergeRefs([inputRefs, inputTextRef])}
           />
         ) : (
           <TextInput
-            fieldProps={fieldProps}
-            inputRefs={[inputRefs, inputTextRef]}
+            id={id}
+            name={name}
+            className={inputStyle}
             value={props.value}
-            inputStyle={inputStyle}
+            disabled={props.disabled}
+            readOnly={props.readOnly}
+            required={props.required}
+            autoFocus={props.autoFocus}
+            autoComplete={props.autoComplete}
+            maxLength={props.maxLength}
+            minLength={props.minLength}
+            max={props.max}
+            min={props.min}
+            pattern={props.pattern}
+            placeholder={props.placeholder}
+            inputMode={props.inputMode}
+            tabIndex={props.tabIndex}
+            role={props.role}
+            aria-label={props["aria-label"]}
+            aria-describedby={
+              hasDescription ? descriptionIdentifier : props["aria-describedby"]
+            }
+            aria-invalid={isInvalid ? true : undefined}
+            aria-controls={props["aria-controls"]}
+            aria-expanded={props["aria-expanded"]}
+            aria-activedescendant={props["aria-activedescendant"]}
+            aria-autocomplete={props["aria-autocomplete"]}
+            aria-required={props["aria-required"]}
+            invalid={isInvalid ? ("true" as const) : undefined}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            onKeyDown={handleKeyDown}
+            onKeyUp={props.onKeyUp}
+            ref={mergeRefs([inputRefs, inputTextRef])}
           />
         )}
         <FormFieldPostFix
@@ -133,50 +171,26 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
 function useInputTextId(props: InputTextRebuiltProps) {
   const generatedId = useId();
 
-  return props.id || generatedId;
+  return props.identifier || props.id || generatedId;
 }
 
-function TextArea({
-  fieldProps,
-  rowRange,
-  inputRefs,
-  value,
-  inputStyle,
-}: {
-  readonly fieldProps: UseInputTextFormFieldReturn["fieldProps"];
-  readonly rowRange: ReturnType<typeof useTextAreaResize>["rowRange"];
-  readonly inputRefs: React.Ref<HTMLTextAreaElement | HTMLInputElement>[];
-  readonly value: string;
-  readonly inputStyle: string;
-}) {
-  return (
-    <textarea
-      {...fieldProps}
-      rows={rowRange.min}
-      ref={mergeRefs(inputRefs)}
-      className={inputStyle}
-      value={value}
-    />
-  );
+interface TextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  readonly invalid?: "true";
 }
 
-function TextInput({
-  fieldProps,
-  inputRefs,
-  value,
-  inputStyle,
-}: {
-  readonly fieldProps: UseInputTextFormFieldReturn["fieldProps"];
-  readonly inputRefs: React.Ref<HTMLTextAreaElement | HTMLInputElement>[];
-  readonly value: string;
-  readonly inputStyle: string;
-}) {
-  return (
-    <input
-      {...fieldProps}
-      ref={mergeRefs(inputRefs)}
-      className={inputStyle}
-      value={value}
-    />
-  );
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  function TextArea(props, ref) {
+    return <textarea {...props} ref={ref} />;
+  },
+);
+
+interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  readonly invalid?: "true";
 }
+
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  function TextInput(props, ref) {
+    return <input {...props} ref={ref} />;
+  },
+);
