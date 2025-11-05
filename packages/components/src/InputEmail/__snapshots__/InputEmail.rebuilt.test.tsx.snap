@@ -160,8 +160,8 @@ exports[`InputEmailRebuilt renders correctly when invalid 1`] = `
               aria-invalid="true"
               class="input"
               data-testid="ATL-InputEmail-input"
-              id="«r0»"
-              name="generatedName--«r0»"
+              id="«r5»"
+              name="generatedName--«r5»"
               type="email"
             />
           </div>
