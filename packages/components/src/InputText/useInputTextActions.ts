@@ -22,7 +22,7 @@ export function useInputTextActions({
   onKeyDown,
 }: useInputTextActionsProps) {
   function handleClear() {
-    handleBlur();
+    // Don't call blur handler when programmatically clearing
     onChange && onChange("");
     inputRef?.current?.focus();
   }
@@ -52,7 +52,9 @@ export function useInputTextActions({
     onFocus?.(event);
   }
 
-  function handleBlur(event?: FocusEvent) {
+  function handleBlur(
+    event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
     onBlur?.(event);
   }
 

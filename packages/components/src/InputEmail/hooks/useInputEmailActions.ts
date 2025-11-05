@@ -18,7 +18,7 @@ export function useInputEmailActions({
   onKeyDown,
 }: UseInputEmailActionsProps) {
   function handleClear() {
-    handleBlur();
+    // Don't call blur handler when programmatically clearing
     onChange?.("");
     inputRef?.current?.focus();
   }
@@ -42,7 +42,7 @@ export function useInputEmailActions({
     onFocus?.(event);
   }
 
-  function handleBlur(event?: FocusEvent) {
+  function handleBlur(event: FocusEvent<HTMLInputElement>) {
     onBlur?.(event);
   }
 
