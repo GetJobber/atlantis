@@ -71,6 +71,58 @@
           "name": "string"
         }
       },
+      "autofocus": {
+        "defaultValue": null,
+        "description": "@deprecated Use `autoFocus` (camelCase) instead.",
+        "name": "autofocus",
+        "parent": {
+          "fileName": "packages/components/src/Select/Select.types.ts",
+          "name": "SelectRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "autoFocus": {
+        "defaultValue": null,
+        "description": "Automatically focus the select when mounted.",
+        "name": "autoFocus",
+        "parent": {
+          "fileName": "packages/components/src/Select/Select.types.ts",
+          "name": "SelectRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "inputRef": {
+        "defaultValue": null,
+        "description": "@deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.",
+        "name": "inputRef",
+        "parent": {
+          "fileName": "packages/components/src/Select/Select.types.ts",
+          "name": "SelectRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>"
+        }
+      },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "@deprecated Use `onKeyDown` or `onKeyUp` instead.",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/Select/Select.types.ts",
+          "name": "SelectRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.KeyboardEvent) => void"
+        }
+      },
       "UNSAFE_experimentalStyles": {
         "defaultValue": null,
         "description": "Opt-in to the customizable select UI (Chromium 123+).\nWhen true, the component will apply the custom select styles\nDefaults to false for native behavior.\nOnly supported by Select version={2}.",
@@ -201,71 +253,6 @@
           "name": "\"small\" | \"large\""
         }
       },
-      "autofocus": {
-        "defaultValue": null,
-        "description": "Determines if the input should be auto-focused, using the HTML attribute",
-        "name": "autofocus",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "onEnter": {
-        "defaultValue": null,
-        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
-        "name": "onEnter",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.KeyboardEvent) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Blur callback.",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: React.FocusEvent) => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Focus callback.",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: React.FocusEvent) => void"
-        }
-      },
-      "inputRef": {
-        "defaultValue": null,
-        "description": "",
-        "name": "inputRef",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
-        }
-      },
       "wrapperRef": {
         "defaultValue": null,
         "description": "",
@@ -329,6 +316,149 @@
         "required": false,
         "type": {
           "name": "number"
+        }
+      },
+      "aria-label": {
+        "defaultValue": null,
+        "description": "ARIA label for accessibility.",
+        "name": "aria-label",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-describedby": {
+        "defaultValue": null,
+        "description": "ARIA described-by for accessibility.",
+        "name": "aria-describedby",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-invalid": {
+        "defaultValue": null,
+        "description": "ARIA invalid state for accessibility.",
+        "name": "aria-invalid",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean | \"true\" | \"false\""
+        }
+      },
+      "aria-controls": {
+        "defaultValue": null,
+        "description": "ARIA controls attribute.",
+        "name": "aria-controls",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-expanded": {
+        "defaultValue": null,
+        "description": "ARIA expanded state.",
+        "name": "aria-expanded",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "aria-activedescendant": {
+        "defaultValue": null,
+        "description": "ARIA active descendant.",
+        "name": "aria-activedescendant",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-autocomplete": {
+        "defaultValue": null,
+        "description": "ARIA autocomplete attribute.",
+        "name": "aria-autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"inline\" | \"none\" | \"list\" | \"both\""
+        }
+      },
+      "aria-required": {
+        "defaultValue": null,
+        "description": "ARIA required attribute.",
+        "name": "aria-required",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Focus event handler.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Blur event handler.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<HTMLSelectElement>"
         }
       }
     }

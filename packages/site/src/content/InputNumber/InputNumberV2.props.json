@@ -21,7 +21,7 @@
       },
       "autocomplete": {
         "defaultValue": null,
-        "description": "",
+        "description": "@deprecated Use `autoComplete` (camelCase) instead.",
         "name": "autocomplete",
         "parent": {
           "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
@@ -30,6 +30,19 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "autoComplete": {
+        "defaultValue": null,
+        "description": "HTML autocomplete attribute for browser autofill.",
+        "name": "autoComplete",
+        "parent": {
+          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
+          "name": "InputNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "autoFocus": {
@@ -99,8 +112,21 @@
       },
       "identifier": {
         "defaultValue": null,
-        "description": "",
+        "description": "@deprecated Use `id` instead.",
         "name": "identifier",
+        "parent": {
+          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
+          "name": "InputNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "The ID of the input element.",
+        "name": "id",
         "parent": {
           "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
           "name": "InputNumberRebuiltProps"
@@ -164,7 +190,7 @@
       },
       "onChange": {
         "defaultValue": null,
-        "description": "onChange handler that provides the new value (or event)",
+        "description": "Callback for value changes.\n@param newValue - The new numeric value\n@param event - Optional change event",
         "name": "onChange",
         "parent": {
           "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
@@ -173,6 +199,32 @@
         "required": false,
         "type": {
           "name": "(newValue: number, event?: React.ChangeEvent<HTMLInputElement>) => void"
+        }
+      },
+      "readonly": {
+        "defaultValue": null,
+        "description": "@deprecated Use `readOnly` (camelCase) instead.",
+        "name": "readonly",
+        "parent": {
+          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
+          "name": "InputNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "readOnly": {
+        "defaultValue": null,
+        "description": "Whether the input is read-only.",
+        "name": "readOnly",
+        "parent": {
+          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
+          "name": "InputNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "showMiniLabel": {
@@ -186,6 +238,19 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Adjusts the interface to either have small or large spacing.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
+          "name": "InputNumberRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
         }
       },
       "value": {
@@ -212,19 +277,6 @@
         "required": true,
         "type": {
           "name": "2"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "A unique identifier for the input.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       },
       "disabled": {
@@ -292,19 +344,6 @@
           "name": "string"
         }
       },
-      "size": {
-        "defaultValue": null,
-        "description": "Adjusts the interface to either have small or large spacing.",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"small\" | \"large\""
-        }
-      },
       "clearable": {
         "defaultValue": null,
         "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
@@ -318,56 +357,160 @@
           "name": "Clearable"
         }
       },
-      "onFocus": {
+      "aria-label": {
         "defaultValue": null,
-        "description": "Focus callback.",
-        "name": "onFocus",
+        "description": "ARIA label for accessibility.",
+        "name": "aria-label",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "name": "AriaInputProps"
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "string"
         }
       },
-      "onBlur": {
+      "aria-describedby": {
         "defaultValue": null,
-        "description": "Blur callback.",
-        "name": "onBlur",
+        "description": "ARIA described-by for accessibility.",
+        "name": "aria-describedby",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "name": "AriaInputProps"
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "string"
         }
       },
-      "inputRef": {
+      "aria-invalid": {
         "defaultValue": null,
-        "description": "",
-        "name": "inputRef",
+        "description": "ARIA invalid state for accessibility.",
+        "name": "aria-invalid",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "name": "AriaInputProps"
         },
         "required": false,
         "type": {
-          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
+          "name": "boolean | \"true\" | \"false\""
         }
       },
-      "readonly": {
+      "aria-controls": {
         "defaultValue": null,
-        "description": "Prevents users from editing the value.",
-        "name": "readonly",
+        "description": "ARIA controls attribute.",
+        "name": "aria-controls",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-expanded": {
+        "defaultValue": null,
+        "description": "ARIA expanded state.",
+        "name": "aria-expanded",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "aria-activedescendant": {
+        "defaultValue": null,
+        "description": "ARIA active descendant.",
+        "name": "aria-activedescendant",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-autocomplete": {
+        "defaultValue": null,
+        "description": "ARIA autocomplete attribute.",
+        "name": "aria-autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"inline\" | \"none\" | \"list\" | \"both\""
+        }
+      },
+      "aria-required": {
+        "defaultValue": null,
+        "description": "ARIA required attribute.",
+        "name": "aria-required",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Focus event handler.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Blur event handler.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "onKeyDown": {
+        "defaultValue": null,
+        "description": "Key down event handler.",
+        "name": "onKeyDown",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "KeyboardEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.KeyboardEvent<Target>) => void"
+        }
+      },
+      "onKeyUp": {
+        "defaultValue": null,
+        "description": "Key up event handler.",
+        "name": "onKeyUp",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "KeyboardEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.KeyboardEvent<Target>) => void"
         }
       },
       "ref": {

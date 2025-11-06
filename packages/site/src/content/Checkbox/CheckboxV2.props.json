@@ -99,32 +99,6 @@
           "name": "string"
         }
       },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Called when the checkbox is focused",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Called when the checkbox loses focus",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
-        }
-      },
       "invalid": {
         "defaultValue": null,
         "description": "Whether the checkbox is invalid",
@@ -136,6 +110,136 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "aria-label": {
+        "defaultValue": null,
+        "description": "ARIA label for accessibility.",
+        "name": "aria-label",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-describedby": {
+        "defaultValue": null,
+        "description": "ARIA described-by for accessibility.",
+        "name": "aria-describedby",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-invalid": {
+        "defaultValue": null,
+        "description": "ARIA invalid state for accessibility.",
+        "name": "aria-invalid",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean | \"true\" | \"false\""
+        }
+      },
+      "aria-controls": {
+        "defaultValue": null,
+        "description": "ARIA controls attribute.",
+        "name": "aria-controls",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-expanded": {
+        "defaultValue": null,
+        "description": "ARIA expanded state.",
+        "name": "aria-expanded",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "aria-activedescendant": {
+        "defaultValue": null,
+        "description": "ARIA active descendant.",
+        "name": "aria-activedescendant",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-autocomplete": {
+        "defaultValue": null,
+        "description": "ARIA autocomplete attribute.",
+        "name": "aria-autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"none\" | \"inline\" | \"list\" | \"both\""
+        }
+      },
+      "aria-required": {
+        "defaultValue": null,
+        "description": "ARIA required attribute.",
+        "name": "aria-required",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Focus event handler.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Blur event handler.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
         }
       },
       "label": {
