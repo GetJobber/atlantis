@@ -3,7 +3,6 @@ import omit from "lodash/omit";
 import classnames from "classnames";
 import type { SelectRebuiltProps } from "./Select.types";
 import { useSelectActions } from "./hooks/useSelectActions";
-import { useSelectFormField } from "./hooks/useSelectFormField";
 import styles from "./Select.module.css";
 import {
   FormFieldWrapper,
@@ -31,6 +30,7 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
     });
 
     const id = useSelectId(props);
+    const descriptionIdentifier = `descriptionUUID--${id}`;
 
     const { name } = useAtlantisFormFieldName({
       nameProp: props.name,
@@ -41,29 +41,6 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
       onChange: props.onChange,
       onBlur: props.onBlur,
       onFocus: props.onFocus,
-    });
-
-    const inputProps = omit(props, [
-      "onChange",
-      "onBlur",
-      "onFocus",
-      "size",
-      "placeholder",
-      "version",
-    ]);
-
-    const { fieldProps, descriptionIdentifier } = useSelectFormField({
-      ...inputProps,
-      id,
-      name,
-      handleChange,
-      handleBlur,
-      handleFocus,
-      autoFocus: props.autoFocus ?? props.autofocus,
-      "aria-label": props["aria-label"],
-      "aria-describedby": props["aria-describedby"],
-      "aria-invalid": props["aria-invalid"],
-      "aria-required": props["aria-required"],
     });
 
     return (
@@ -90,7 +67,23 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
       >
         <>
           <select
-            {...fieldProps}
+            id={id}
+            name={name}
+            disabled={props.disabled}
+            autoFocus={props.autoFocus ?? props.autofocus}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            value={props.value}
+            aria-label={props["aria-label"]}
+            aria-describedby={
+              props["aria-describedby"] ||
+              (props.description && !props.inline
+                ? descriptionIdentifier
+                : undefined)
+            }
+            aria-invalid={props["aria-invalid"]}
+            aria-required={props["aria-required"]}
             ref={mergedRef}
             className={classnames(
               inputStyle,
