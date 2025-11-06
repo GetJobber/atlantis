@@ -65,11 +65,18 @@ export const InputNumberRebuilt = forwardRef(
       inline,
       invalid,
       placeholder,
+      // Support both old and new prop names
       readonly,
+      readOnly = readonly,
       showMiniLabel = true,
       size,
       minValue,
       maxValue,
+      // Deprecated props (filter out to avoid spreading to React Aria)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      identifier: _deprecatedIdentifier,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      autocomplete: _deprecatedAutocomplete,
       ...ariaNumberFieldProps
     } = props;
 
@@ -80,9 +87,10 @@ export const InputNumberRebuilt = forwardRef(
         {...ariaNumberFieldProps}
         className={classnames(styles.container, inline && styles.inline)}
         formatOptions={mergedFormatOptions}
+        id={props.id ?? props.identifier}
         isDisabled={disabled}
         isInvalid={invalid}
-        isReadOnly={readonly}
+        isReadOnly={readOnly}
         minValue={minValue}
         maxValue={maxValue}
         onBlur={e => props.onBlur?.(e as FocusEvent<HTMLInputElement>)}

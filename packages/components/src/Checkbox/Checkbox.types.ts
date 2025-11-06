@@ -1,7 +1,10 @@
 import type { ReactElement, ReactNode } from "react";
 import type { XOR } from "ts-xor";
+import type { AriaInputProps, FocusEvents } from "../FormField/FormFieldTypes";
 
-export interface BaseCheckboxProps {
+export interface BaseCheckboxProps
+  extends AriaInputProps,
+    FocusEvents<HTMLInputElement> {
   /**
    * Determines if the checkbox is checked or not.
    */
@@ -50,16 +53,6 @@ export interface BaseCheckboxProps {
    * Called when the checkbox value changes
    */
   onChange?(newValue: boolean): void;
-
-  /**
-   * Called when the checkbox is focused
-   */
-  onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
-
-  /**
-   * Called when the checkbox loses focus
-   */
-  onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
 
   /**
    * Whether the checkbox is invalid

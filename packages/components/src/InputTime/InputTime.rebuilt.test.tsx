@@ -67,7 +67,7 @@ describe("InputTimeRebuilt", () => {
     expect(blurHandler).toHaveBeenCalledTimes(1);
   });
 
-  it("should call onChange with undefined, call onBlur, and focus input when cleared", async () => {
+  it("should call onChange with undefined and focus input when cleared", async () => {
     const startDate = createDate(10, 15);
     const changeHandler = jest.fn();
     const blurHandler = jest.fn();
@@ -89,7 +89,8 @@ describe("InputTimeRebuilt", () => {
     await userEvent.click(clearButton);
 
     expect(changeHandler).toHaveBeenCalledWith(undefined);
-    expect(blurHandler).toHaveBeenCalledTimes(1);
+    // onBlur should NOT be called when clearing - that was a bug
+    expect(blurHandler).not.toHaveBeenCalled();
 
     expect(document.activeElement).toBe(inputRef.current);
   });

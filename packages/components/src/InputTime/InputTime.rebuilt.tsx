@@ -1,27 +1,42 @@
 import type { ChangeEvent } from "react";
-import React, { useId, useRef } from "react";
+import React, { forwardRef, useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
-import type { InputTimeProps, InputTimeRebuiltProps } from "./InputTime.types";
+import type { InputTimeRebuiltProps } from "./InputTime.types";
 import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
+import { mergeRefs } from "../utils/mergeRefs";
 
-export function InputTimeRebuilt({
-  value,
-  onChange,
-  ...params
-}: InputTimeRebuiltProps) {
-  const ref =
-    (params.inputRef as React.RefObject<HTMLInputElement>) ??
-    useRef<HTMLInputElement>(null);
+export const InputTimeRebuilt = forwardRef<
+  HTMLInputElement,
+  InputTimeRebuiltProps
+>(function InputTimeRebuilt(
+  {
+    value,
+    onChange,
+    // Support both old and new prop names
+    readonly,
+    readOnly = readonly,
+    autocomplete,
+    autoComplete = typeof autocomplete === "string" ? autocomplete : undefined,
+    // Deprecated props
+    inputRef: deprecatedInputRef,
+    ...params
+  },
+  forwardedRef,
+) {
+  const internalRef = useRef<HTMLInputElement>(null);
+  const mergedRef = mergeRefs<HTMLInputElement>([
+    internalRef,
+    deprecatedInputRef as React.RefObject<HTMLInputElement>,
+    forwardedRef,
+  ]);
+  const id = params.id || useId();
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const { inputStyle } = useFormFieldWrapperStyles(params);
   const { setTypedTime } = useTimePredict({
     value,
     handleChange,
   });
-
-  const { inputStyle } = useFormFieldWrapperStyles(params);
-
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const id = getId(params);
 
   return (
     <FormFieldWrapper
@@ -38,29 +53,36 @@ export function InputTimeRebuilt({
       clearable={params.clearable ?? "never"}
       onClear={handleClear}
       type="time"
-      readonly={params.readonly}
+      readonly={readOnly}
       placeholder={params.placeholder}
       value={dateToTimeString(value)}
       wrapperRef={wrapperRef}
     >
       <input
-        ref={ref}
+        ref={mergedRef}
         type="time"
         name={params.name}
         className={inputStyle}
         onBlur={handleBlur}
         id={id}
         disabled={params.disabled}
-        readOnly={params.readonly}
+        readOnly={readOnly}
+        autoComplete={autoComplete}
         onChange={handleChangeEvent}
         onFocus={handleFocus}
-        data-testid="ATL-InputTime-input"
+        onKeyDown={params.onKeyDown}
         onKeyUp={e => {
-          if (params.disabled || params.readonly) return;
+          params.onKeyUp?.(e);
+          if (params.disabled || readOnly) return;
 
           !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
         }}
+        data-testid="ATL-InputTime-input"
         value={dateToTimeString(value)}
+        aria-label={params["aria-label"]}
+        aria-describedby={params["aria-describedby"]}
+        aria-invalid={params["aria-invalid"]}
+        aria-required={params["aria-required"]}
       />
     </FormFieldWrapper>
   );
@@ -73,29 +95,23 @@ export function InputTimeRebuilt({
     onChange?.(timeStringToDate(newValue, value));
   }
 
-  function handleBlur(event?: React.FocusEvent<HTMLInputElement>) {
+  function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
     params.onBlur?.(event);
 
-    if (ref.current) {
-      if (!ref.current.checkValidity()) {
-        ref.current.value = "";
+    if (internalRef.current) {
+      if (!internalRef.current.checkValidity()) {
+        internalRef.current.value = "";
       }
     }
   }
 
   function handleClear() {
-    handleBlur();
+    // Clear the value and refocus without triggering blur event
     onChange?.(undefined);
-    ref.current?.focus();
+    internalRef.current?.focus();
   }
 
-  function handleFocus(event?: React.FocusEvent<HTMLInputElement>) {
+  function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
     params.onFocus?.(event);
   }
-
-  function getId(props: InputTimeProps) {
-    const generatedId = useId();
-
-    return props.id || generatedId;
-  }
-}
+});

@@ -21,6 +21,10 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
     onChange,
     onFocus,
     invalid,
+    "aria-label": ariaLabel,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
+    "aria-required": ariaRequired,
   }: CheckboxRebuiltProps,
   ref: React.Ref<HTMLInputElement>,
 ) {
@@ -60,7 +64,13 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
             id={id}
             className={inputClassName}
             name={name}
-            aria-describedby={description ? descriptionIdentifier : undefined}
+            aria-label={ariaLabel}
+            aria-describedby={
+              ariaDescribedBy ||
+              (description ? descriptionIdentifier : undefined)
+            }
+            aria-invalid={ariaInvalid}
+            aria-required={ariaRequired}
             checked={checked}
             value={value}
             defaultChecked={defaultChecked}
