@@ -186,4 +186,70 @@ describe("InputPhoneNumber", () => {
       ).toBeInTheDocument();
     });
   });
+
+  describe("clearable while-editing", () => {
+    it("shows clear when focused and has value; hides on blur", async () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value="(555) 123-4567"
+          onChange={jest.fn()}
+          clearable="while-editing"
+        />,
+      );
+      const input = screen.getByLabelText(placeholder);
+
+      await userEvent.click(input);
+      const clear = await screen.findByLabelText("Clear input");
+
+      expect(clear).toBeVisible();
+
+      await userEvent.tab(); // focus the clear button
+      await userEvent.tab(); // blur the clear button
+
+      expect(screen.queryByLabelText("Clear input")).not.toBeInTheDocument();
+    });
+
+    it("does not show clear when there is no value", async () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value=""
+          onChange={jest.fn()}
+          clearable="while-editing"
+        />,
+      );
+
+      const input = screen.getByLabelText(placeholder);
+
+      await userEvent.click(input);
+
+      expect(screen.queryByLabelText("Clear input")).not.toBeInTheDocument();
+    });
+  });
+});
+
+describe("clearable always", () => {
+  it("always shows when clearable=always and has value, even blurred", async () => {
+    render(
+      <InputPhoneNumber
+        placeholder={placeholder}
+        value="(555) 123-4567"
+        onChange={jest.fn()}
+        clearable="always"
+      />,
+    );
+    const input = screen.getByLabelText(placeholder);
+
+    await userEvent.click(input);
+
+    const clear = await screen.findByLabelText("Clear input");
+
+    expect(clear).toBeVisible();
+
+    await userEvent.tab(); // focus the clear button
+    await userEvent.tab(); // blur the clear button
+
+    expect(screen.getByLabelText("Clear input")).toBeVisible();
+  });
 });
