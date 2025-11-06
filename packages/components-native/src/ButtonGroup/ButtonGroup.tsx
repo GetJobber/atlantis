@@ -48,7 +48,7 @@ export function ButtonGroup({
 }: ButtonGroupProps): JSX.Element {
   const { t } = useAtlantisI18n();
   const { handlePress } = usePreventTapWhenOffline();
-  const secondaryActionsRef = useRef<BottomSheetRef>();
+  const secondaryActionsRef = useRef<BottomSheetRef>(null);
   const { primaryActions, secondaryActions } = getActions(children);
   const styles = useStyles();
 

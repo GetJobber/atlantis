@@ -2,15 +2,21 @@
  * Mock implementation for @gorhom/bottom-sheet
  * Provides state management and proper rendering for testing
  */
-const {
+import {
+  Fragment,
+  type Ref,
+  createElement,
   forwardRef,
   useImperativeHandle,
   useState,
-  createElement,
-  Fragment,
-} = require("react");
-const { View } = require("react-native");
-const RN = require("react-native");
+} from "react";
+import { TextInput, View } from "react-native";
+import type { BottomSheetProps } from "@gorhom/bottom-sheet";
+import type RNBottomSheet from "@gorhom/bottom-sheet";
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const NOOP = () => {};
+const NOOP_VALUE = { value: 0, set: NOOP, get: () => 0 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BottomSheetFooter = ({ children, ...props }: any) => {
@@ -21,10 +27,7 @@ const BottomSheetFooter = ({ children, ...props }: any) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
-const BottomSheetBackdrop = (_props: any) => {
-  return createElement(Fragment, {}, null);
-};
+const BottomSheetBackdrop = NOOP;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BottomSheetView = ({ children, ...props }: any) => {
@@ -35,17 +38,15 @@ const BottomSheetView = ({ children, ...props }: any) => {
   );
 };
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const BottomSheet = forwardRef(function MockedBottomSheet(
   {
     children,
     footerComponent,
-    backdropComponent,
     onChange,
     index: initialIndex = -1,
     ...props
-  }: any,
-  ref: any,
+  }: BottomSheetProps,
+  ref: Ref<RNBottomSheet>,
 ) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
@@ -54,8 +55,7 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
       setCurrentIndex(index);
       onChange?.(index, 0, 0);
     },
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    snapToPosition: () => {},
+    snapToPosition: NOOP,
     expand: () => {
       setCurrentIndex(0);
       onChange?.(0, 0, 0);
@@ -81,58 +81,42 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
     View,
     {
       testID: "bottom-sheet-mock",
-      style: isOpen ? undefined : { display: "none" },
-      ...props,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      style: (isOpen ? undefined : { display: "none" }) as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...(props as any),
     },
     [
-      backdropComponent &&
-        createElement(
-          Fragment,
-          { key: "backdrop" },
-          typeof backdropComponent === "function"
-            ? backdropComponent({})
-            : backdropComponent,
-        ),
       createElement(Fragment, { key: "children" }, children),
       footerComponent &&
         createElement(
           Fragment,
           { key: "footer" },
-          typeof footerComponent === "function"
-            ? footerComponent({})
-            : footerComponent,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          footerComponent({} as any),
         ),
     ].filter(Boolean),
   );
 });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const NOOP = () => {};
-const NOOP_VALUE = { value: 0, set: NOOP, get: () => 0 };
+// eslint-disable-next-line import/no-default-export
+export default BottomSheet;
+export { BottomSheet, BottomSheetBackdrop, BottomSheetView, BottomSheetFooter };
 
-const mockExports = {
-  __esModule: true,
-  default: BottomSheet,
-  BottomSheet,
-  BottomSheetBackdrop,
-  BottomSheetView,
-  BottomSheetFooter,
-  BottomSheetTextInput: RN.TextInput,
-  useBottomSheet: () => ({
-    snapToIndex: NOOP,
-    snapToPosition: NOOP,
-    expand: NOOP,
-    collapse: NOOP,
-    close: NOOP,
-    forceClose: NOOP,
-    animatedIndex: NOOP_VALUE,
-    animatedPosition: NOOP_VALUE,
-  }),
-  useBottomSheetInternal: () => ({
-    animatedKeyboardState: NOOP_VALUE,
-    textInputNodesRef: { current: new Set() },
-  }),
-};
+export const BottomSheetTextInput = TextInput;
 
-// @ts-expect-error - CommonJS module export for Jest mock
-module.exports = mockExports;
+export const useBottomSheet = () => ({
+  snapToIndex: NOOP,
+  snapToPosition: NOOP,
+  expand: NOOP,
+  collapse: NOOP,
+  close: NOOP,
+  forceClose: NOOP,
+  animatedIndex: NOOP_VALUE,
+  animatedPosition: NOOP_VALUE,
+});
+
+export const useBottomSheetInternal = () => ({
+  animatedKeyboardState: NOOP_VALUE,
+  textInputNodesRef: { current: new Set() },
+});
