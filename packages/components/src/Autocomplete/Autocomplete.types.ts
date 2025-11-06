@@ -567,6 +567,14 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly size?: InputTextRebuiltProps["size"];
 
+  /**
+   * Controls the visibility of the clear button on the input.
+   * - "never": never show the clear button
+   * - "while-editing": show while the field has value and is focused
+   * - "always": show when the field has value, even when blurred
+   */
+  readonly clearable?: InputTextRebuiltProps["clearable"];
+
   readonly suffix?: InputTextRebuiltProps["suffix"];
   readonly prefix?: InputTextRebuiltProps["prefix"];
 

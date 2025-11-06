@@ -2129,6 +2129,42 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
+  describe("clearable", () => {
+    it("shows clear button when clearable=always and input has value", async () => {
+      const onChange = jest.fn();
+
+      render(
+        <Wrapper
+          initialValue={{ label: "Two" }}
+          initialInputValue="Two"
+          clearable="always"
+          onChange={onChange}
+        />,
+      );
+
+      expect(await screen.findByLabelText("Clear input")).toBeVisible();
+
+      await blurAutocomplete();
+      expect(screen.getByLabelText("Clear input")).toBeVisible();
+
+      await userEvent.click(screen.getByLabelText("Clear input"));
+
+      await waitFor(() => {
+        expect(onChange).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    it("shows clear only while editing for clearable=while-editing", async () => {
+      render(<Wrapper initialInputValue="Two" clearable="while-editing" />);
+
+      await focusAutocomplete();
+      expect(await screen.findByLabelText("Clear input")).toBeVisible();
+
+      await blurAutocomplete();
+      expect(screen.queryByLabelText("Clear input")).not.toBeInTheDocument();
+    });
+  });
+
   describe("onFocus/onBlur", () => {
     it("calls onFocus when the input is focused", async () => {
       const onFocus = jest.fn();

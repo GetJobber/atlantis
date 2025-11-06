@@ -46,6 +46,7 @@ export function Wrapper<T extends OptionLike>({
   initialInputValue,
   onChange,
   onInputChange,
+  clearable,
   onBlur,
   onFocus,
   menu,
@@ -71,6 +72,7 @@ export function Wrapper<T extends OptionLike>({
   readonly initialInputValue?: string;
   readonly onChange?: (v: T | undefined) => void;
   readonly onInputChange?: (v: string) => void;
+  readonly clearable?: AutocompleteRebuiltProps<T, false>["clearable"];
   readonly onBlur?: () => void;
   readonly onFocus?: () => void;
   readonly menu?: MenuItem<T>[];
@@ -128,6 +130,7 @@ export function Wrapper<T extends OptionLike>({
       onInputChange={onInputChange ?? setInputValue}
       onBlur={onBlur}
       onFocus={onFocus}
+      clearable={clearable}
       menu={menu ?? (built.menu as MenuItem<T>[])}
       placeholder=""
       openOnFocus={openOnFocus}

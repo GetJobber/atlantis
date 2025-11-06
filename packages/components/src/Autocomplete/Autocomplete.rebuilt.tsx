@@ -101,6 +101,7 @@ function AutocompleteRebuiltInternal<
     version: 2 as const,
     value: inputValue,
     onChange: props.readOnly ? undefined : onInputChangeFromUser,
+    clearable: props.clearable,
     // Ensure focus/blur callbacks still fire in readOnly mode where we don't spread getReferenceProps
     ...(props.readOnly ? { onFocus: onInputFocus, onBlur: onInputBlur } : {}),
     placeholder,
