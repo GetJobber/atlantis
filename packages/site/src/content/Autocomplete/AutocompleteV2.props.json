@@ -417,6 +417,19 @@
           "name": "\"small\" | \"large\""
         }
       },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Controls the visibility of the clear button on the input.\n- \"never\": never show the clear button\n- \"while-editing\": show while the field has value and is focused\n- \"always\": show when the field has value, even when blurred",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
+        }
+      },
       "suffix": {
         "defaultValue": null,
         "description": "",
