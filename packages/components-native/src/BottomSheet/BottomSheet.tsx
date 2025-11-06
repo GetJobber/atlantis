@@ -1,10 +1,5 @@
 import type { ReactNode, Ref } from "react";
-import React, {
-  forwardRef,
-  useCallback,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import React, { useCallback, useImperativeHandle, useRef } from "react";
 import { Keyboard, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import RNBottomSheet, {
@@ -18,6 +13,7 @@ import type {
 } from "@gorhom/bottom-sheet";
 import { useStyles } from "./BottomSheet.style";
 import { BottomSheetOption } from "./components/BottomSheetOption";
+import { BottomSheetInputText } from "./components/BottomSheetInputText/BottomSheetInputText";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
 import { useIsScreenReaderEnabled } from "../hooks";
@@ -50,26 +46,27 @@ export interface BottomSheetProps {
    * Callback that is called when the overlay is closed.
    */
   readonly onClose?: () => void;
-}
 
-export const BottomSheet = forwardRef(BottomSheetInternal);
+  /**
+   * Ref to the bottom sheet component.
+   */
+  readonly ref: Ref<BottomSheetRef>;
+}
 
 export interface BottomSheetRef {
   open: () => void;
   close: () => void;
 }
 
-function BottomSheetInternal(
-  {
-    children,
-    showCancel,
-    loading = false,
-    heading,
-    onOpen,
-    onClose,
-  }: BottomSheetProps,
-  ref: Ref<BottomSheetRef>,
-) {
+export function BottomSheet({
+  children,
+  showCancel,
+  loading = false,
+  heading,
+  onOpen,
+  onClose,
+  ref,
+}: BottomSheetProps) {
   const styles = useStyles();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
   const cancellable = (showCancel && !loading) || isScreenReaderEnabled;
@@ -187,3 +184,5 @@ function Backdrop(bottomSheetBackdropProps: BottomSheetBackdropProps) {
     />
   );
 }
+
+BottomSheet.InputText = BottomSheetInputText;

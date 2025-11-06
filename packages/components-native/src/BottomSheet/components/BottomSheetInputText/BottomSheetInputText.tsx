@@ -59,11 +59,6 @@ export const BottomSheetInputText = forwardRef<InputTextRef, InputTextProps>(
           currentFocusedInput &&
           textInputNodesRef.current.has(currentFocusedInput);
 
-        console.log(
-          "animatedKeyboardState on blur 1",
-          animatedKeyboardState.get(),
-        );
-
         if (shouldRemoveCurrentTarget && !shouldIgnoreBlurEvent) {
           animatedKeyboardState.set(state => ({
             ...state,
