@@ -97,19 +97,6 @@
           "name": "NumberFormatOptions"
         }
       },
-      "identifier": {
-        "defaultValue": null,
-        "description": "@deprecated Use `id` instead.",
-        "name": "identifier",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "id": {
         "defaultValue": null,
         "description": "The ID of the input element.",

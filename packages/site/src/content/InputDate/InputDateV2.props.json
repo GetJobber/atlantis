@@ -138,19 +138,6 @@
           "name": "(event: React.KeyboardEvent) => void"
         }
       },
-      "identifier": {
-        "defaultValue": null,
-        "description": "@deprecated Use `id` instead. This prop will be removed in a future version.",
-        "name": "identifier",
-        "parent": {
-          "fileName": "packages/components/src/InputText/InputText.types.ts",
-          "name": "InputTextRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "id": {
         "defaultValue": null,
         "description": "The unique identifier for the input element.",
