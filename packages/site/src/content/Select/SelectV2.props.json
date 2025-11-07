@@ -71,19 +71,6 @@
           "name": "string"
         }
       },
-      "autofocus": {
-        "defaultValue": null,
-        "description": "@deprecated Use `autoFocus` (camelCase) instead.",
-        "name": "autofocus",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "autoFocus": {
         "defaultValue": null,
         "description": "Automatically focus the select when mounted.",

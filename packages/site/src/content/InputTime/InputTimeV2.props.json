@@ -32,19 +32,6 @@
           "name": "string"
         }
       },
-      "readonly": {
-        "defaultValue": null,
-        "description": "@deprecated Use `readOnly` (camelCase) instead.",
-        "name": "readonly",
-        "parent": {
-          "fileName": "packages/components/src/InputTime/InputTime.types.ts",
-          "name": "InputTimeRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "readOnly": {
         "defaultValue": null,
         "description": "Whether the input is read-only.",
@@ -58,23 +45,8 @@
           "name": "boolean"
         }
       },
-      "autocomplete": {
-        "defaultValue": null,
-        "description": "@deprecated Use `autoComplete` (camelCase) instead.",
-        "name": "autocomplete",
-        "parent": {
-          "fileName": "packages/components/src/InputTime/InputTime.types.ts",
-          "name": "InputTimeRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "autoComplete": {
-        "defaultValue": {
-          "value": "typeof autocomplete === \"string\" ? autocomplete : undefined"
-        },
+        "defaultValue": null,
         "description": "HTML autocomplete attribute for browser autofill.",
         "name": "autoComplete",
         "parent": {

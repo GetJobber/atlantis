@@ -19,19 +19,6 @@
           "name": "\"center\" | \"right\""
         }
       },
-      "autocomplete": {
-        "defaultValue": null,
-        "description": "@deprecated Use `autoComplete` (camelCase) instead.",
-        "name": "autocomplete",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "autoComplete": {
         "defaultValue": null,
         "description": "HTML autocomplete attribute for browser autofill.",
@@ -199,19 +186,6 @@
         "required": false,
         "type": {
           "name": "(newValue: number, event?: React.ChangeEvent<HTMLInputElement>) => void"
-        }
-      },
-      "readonly": {
-        "defaultValue": null,
-        "description": "@deprecated Use `readOnly` (camelCase) instead.",
-        "name": "readonly",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "readOnly": {

@@ -58,45 +58,6 @@
           "name": "string"
         }
       },
-      "autocomplete": {
-        "defaultValue": null,
-        "description": "@deprecated Use `autoComplete` with string values instead. This prop will be removed in a future version.",
-        "name": "autocomplete",
-        "parent": {
-          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
-          "name": "InputEmailRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "never"
-        }
-      },
-      "ariaLabel": {
-        "defaultValue": null,
-        "description": "@deprecated Use `aria-label` instead. This prop will be removed in a future version.",
-        "name": "ariaLabel",
-        "parent": {
-          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
-          "name": "InputEmailRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "never"
-        }
-      },
-      "readonly": {
-        "defaultValue": null,
-        "description": "@deprecated Use `readOnly` instead. This prop will be removed in a future version.",
-        "name": "readonly",
-        "parent": {
-          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
-          "name": "InputEmailRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "never"
-        }
-      },
       "id": {
         "defaultValue": null,
         "description": "The unique identifier for the input element.",
@@ -601,7 +562,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { ariaLabel?: never; onClick?: never; readonly label?: string; readonly icon?: IconNames; }"
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
         }
       },
       "description": {
