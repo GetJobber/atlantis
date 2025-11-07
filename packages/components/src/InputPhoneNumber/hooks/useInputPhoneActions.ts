@@ -22,7 +22,6 @@ export function useInputPhoneActions({
   onEnter,
 }: useInputPhoneActionsProps) {
   function handleClear() {
-    // Don't call blur handler when programmatically clearing
     onChange && onChange("");
     inputRef?.current?.focus();
   }
