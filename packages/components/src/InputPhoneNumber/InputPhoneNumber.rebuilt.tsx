@@ -75,7 +75,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
     const isInvalid = Boolean(
       props["aria-invalid"] || props.error || props.invalid,
     );
-    const effectiveReadOnly = props.readonly || props.readOnly;
 
     return (
       <FormFieldWrapper
@@ -95,7 +94,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
         value={formattedValue}
         prefix={props.prefix}
         suffix={props.suffix}
-        readonly={effectiveReadOnly}
+        readonly={props.readOnly}
         loading={props.loading}
       >
         <input
@@ -108,7 +107,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
           })}
           value={formattedValue}
           disabled={props.disabled}
-          readOnly={effectiveReadOnly}
+          readOnly={props.readOnly}
           required={props.required}
           autoFocus={props.autoFocus}
           autoComplete={props.autoComplete}
