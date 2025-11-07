@@ -3,7 +3,7 @@ import type {
   AriaInputProps,
   FocusEvents,
   KeyboardEvents,
-} from "../FormField/FormFieldTypes";
+} from "../sharedHelpers/types";
 
 export interface InputTimeProps
   extends Pick<

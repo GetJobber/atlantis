@@ -1,12 +1,11 @@
 import type { InputMaskProps } from "./InputMask";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
-  CommonFormFieldProps,
   FocusEvents,
-  FormFieldProps,
   HTMLInputBaseProps,
   KeyboardEvents,
   RebuiltInputCommonProps,
-} from "../FormField";
+} from "../sharedHelpers/types";
 
 export interface InputPhoneNumberLegacyProps
   extends Omit<CommonFormFieldProps, "align">,

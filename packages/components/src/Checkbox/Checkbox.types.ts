@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 import type { XOR } from "ts-xor";
-import type { AriaInputProps, FocusEvents } from "../FormField/FormFieldTypes";
+import type { AriaInputProps, FocusEvents } from "../sharedHelpers/types";
 
 export interface BaseCheckboxProps
   extends AriaInputProps,

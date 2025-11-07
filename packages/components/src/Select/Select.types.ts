@@ -1,5 +1,5 @@
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
-import type { AriaInputProps, FocusEvents } from "../FormField/FormFieldTypes";
+import type { AriaInputProps, FocusEvents } from "../sharedHelpers/types";
 
 export interface SelectLegacyProps
   extends Pick<

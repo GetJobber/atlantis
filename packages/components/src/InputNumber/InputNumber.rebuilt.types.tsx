@@ -5,7 +5,7 @@ import type {
   AriaInputProps,
   FocusEvents,
   KeyboardEvents,
-} from "../FormField/FormFieldTypes";
+} from "../sharedHelpers/types";
 
 export type InputNumberVersion = 1 | 2 | undefined;
 

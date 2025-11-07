@@ -1,5 +1,5 @@
 import type { CSSProperties, Key, Ref, RefObject } from "react";
-import type { AriaInputProps } from "../FormField/FormFieldTypes";
+import type { AriaInputProps } from "../sharedHelpers/types";
 import type { FormFieldProps } from "../FormField";
 import type { InputTextRebuiltProps, InputTextRef } from "../InputText";
 

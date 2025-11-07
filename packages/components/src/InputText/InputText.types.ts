@@ -1,13 +1,15 @@
 import type { XOR } from "ts-xor";
 import type {
   CommonFormFieldProps,
-  FocusEvents,
   FormFieldProps,
   FormFieldTypes,
+} from "../FormField";
+import type {
+  FocusEvents,
   HTMLInputBaseProps,
   KeyboardEvents,
   RebuiltInputCommonProps,
-} from "../FormField";
+} from "../sharedHelpers/types";
 
 export interface RowRange {
   min: number;

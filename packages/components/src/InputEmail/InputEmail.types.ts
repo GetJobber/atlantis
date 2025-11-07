@@ -1,11 +1,10 @@
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
-  CommonFormFieldProps,
   FocusEvents,
-  FormFieldProps,
   HTMLInputBaseProps,
   KeyboardEvents,
   RebuiltInputCommonProps,
-} from "../FormField";
+} from "../sharedHelpers/types";
 
 export type InputEmailLegacyProps = CommonFormFieldProps &
   Pick<
