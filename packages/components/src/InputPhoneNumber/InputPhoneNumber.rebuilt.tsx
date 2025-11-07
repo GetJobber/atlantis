@@ -14,7 +14,6 @@ import {
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 
 export const InputPhoneNumberRebuilt = forwardRef(
-  // eslint-disable-next-line max-statements
   function InputPhoneNumberInternal(
     { pattern = DEFAULT_PATTERN, ...props }: InputPhoneNumberRebuiltProps,
     ref: React.Ref<HTMLInputElement>,
