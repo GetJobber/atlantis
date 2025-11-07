@@ -13,7 +13,7 @@ import { Content } from "@jobber/components/Content";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Icon, type IconNames } from "@jobber/components/Icon";
-import { InputText, InputTextRebuiltProps } from "@jobber/components/InputText";
+import { InputText } from "@jobber/components/InputText";
 import { Modal } from "@jobber/components/Modal";
 import { Button } from "@jobber/components/Button";
 import { Emphasis } from "@jobber/components/Emphasis";
@@ -24,25 +24,12 @@ import { AutocompleteV2Docgen } from "./V2.docgen";
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web (v2)",
   component: AutocompleteV2Docgen,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          "V2 Autocomplete supports the clearable prop (never | while-editing | always). For single-select, clearing input also clears selection.",
-      },
-    },
-  },
   argTypes: {
     clearable: {
       control: { type: "select" },
       options: ["never", "while-editing", "always"],
     },
-    openOnFocus: { control: "boolean" },
-    allowFreeForm: { control: "boolean" },
-    disabled: { control: "boolean" },
-    readOnly: { control: "boolean" },
     size: { control: { type: "select" }, options: ["small", "base", "large"] },
-    debounce: { control: "number" },
   },
   args: {
     clearable: "never",
@@ -52,6 +39,7 @@ export default {
     readOnly: false,
     size: undefined,
     debounce: 300,
+    placeholder: "Search for a service",
   },
 } as ComponentMeta<typeof AutocompleteV2Docgen>;
 
@@ -145,19 +133,12 @@ const TemplateFlat: ComponentStory<typeof Autocomplete> = args => {
     <Content>
       <Heading level={4}>Flat, default layout</Heading>
       <Autocomplete
+        {...args}
         version={2}
-        placeholder={args.placeholder ?? "Search for a service"}
         value={value}
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
-        clearable={args.clearable}
-        openOnFocus={args.openOnFocus}
-        allowFreeForm={args.allowFreeForm}
-        disabled={args.disabled}
-        readOnly={args.readOnly}
-        size={args.size as InputTextRebuiltProps["size"]}
-        debounce={(args.debounce as number) ?? 300}
         menu={[{ type: "options", options: flatOptions }]}
       />
     </Content>
@@ -172,19 +153,13 @@ const TemplateSectioned: ComponentStory<typeof Autocomplete> = args => {
     <Content>
       <Heading level={4}>Sectioned</Heading>
       <Autocomplete
+        {...args}
         version={2}
         placeholder={args.placeholder ?? "Search"}
         value={value}
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
-        clearable={args.clearable}
-        openOnFocus={args.openOnFocus}
-        allowFreeForm={args.allowFreeForm}
-        disabled={args.disabled}
-        readOnly={args.readOnly}
-        size={args.size as InputTextRebuiltProps["size"]}
-        debounce={(args.debounce as number) ?? 300}
         menu={sectionedMenu}
       />
     </Content>
