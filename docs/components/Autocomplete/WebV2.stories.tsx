@@ -614,7 +614,6 @@ const TemplateEverythingCustomized: ComponentStory<
         version={2}
         placeholder="Search"
         value={value}
-        onBlur={() => console.log("onBlur")}
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
