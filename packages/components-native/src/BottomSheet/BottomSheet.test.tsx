@@ -1,5 +1,5 @@
 import React, { createRef } from "react";
-import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
+import { act, render, userEvent, waitFor } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
 import { BottomSheet } from ".";
 import type { BottomSheetRef } from "./BottomSheet";
@@ -73,7 +73,8 @@ it("BottomSheet can be closed with the cancel action", async () => {
     ref.current?.open();
   });
 
-  fireEvent.press(await findByLabelText("Cancel"));
+  const cancelButton = await findByLabelText("Cancel");
+  await userEvent.press(cancelButton);
 
   await waitFor(() => {
     expect(queryByText("BottomSheet")).toBeNull();
@@ -136,7 +137,7 @@ describe("when there is a screen reader enabled", () => {
     const cancelButton = await findByLabelText("Cancel");
     expect(cancelButton).toBeDefined();
 
-    fireEvent.press(cancelButton);
+    await userEvent.press(cancelButton);
 
     await waitFor(() => {
       expect(queryByText("BottomSheet")).toBeNull();
