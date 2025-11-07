@@ -24,10 +24,12 @@ export const BottomSheetInputText = forwardRef<InputTextRef, InputTextProps>(
 
     const handleOnFocus = useCallback(
       (event?: FocusEvent) => {
-        animatedKeyboardState.set(state => ({
-          ...state,
-          target: event?.nativeEvent.target,
-        }));
+        animatedKeyboardState.set(
+          (state: ReturnType<typeof animatedKeyboardState.get>) => ({
+            ...state,
+            target: event?.nativeEvent.target,
+          }),
+        );
 
         onFocus?.(event);
       },
@@ -60,10 +62,12 @@ export const BottomSheetInputText = forwardRef<InputTextRef, InputTextProps>(
           textInputNodesRef.current.has(currentFocusedInput);
 
         if (shouldRemoveCurrentTarget && !shouldIgnoreBlurEvent) {
-          animatedKeyboardState.set(state => ({
-            ...state,
-            target: undefined,
-          }));
+          animatedKeyboardState.set(
+            (state: ReturnType<typeof animatedKeyboardState.get>) => ({
+              ...state,
+              target: undefined,
+            }),
+          );
         }
 
         onBlur?.(event);
