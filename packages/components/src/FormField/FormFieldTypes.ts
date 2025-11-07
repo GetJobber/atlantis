@@ -224,8 +224,6 @@ export interface FormFieldProps extends CommonFormFieldProps {
   readonly suffix?: XOR<Affix, Suffix>;
 
   /**
-   * Simplified onChange handler that only provides the new value.
-   * @param newValue
    * Specifies the minimum numerical or date value that a user can type
    */
   readonly min?: number;

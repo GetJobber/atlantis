@@ -257,7 +257,7 @@
       },
       "min": {
         "defaultValue": null,
-        "description": "Simplified onChange handler that only provides the new value.\n@param newValue Specifies the minimum numerical or date value that a user can type",
+        "description": "Specifies the minimum numerical or date value that a user can type",
         "name": "min",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
