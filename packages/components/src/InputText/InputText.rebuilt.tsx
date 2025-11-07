@@ -60,9 +60,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const hasDescription = props.description && !props.inline;
-  const isInvalid = Boolean(
-    props["aria-invalid"] || props.error || props.invalid,
-  );
+  const isInvalid = Boolean(props.ariaInvalid || props.error || props.invalid);
 
   return (
     <FormFieldWrapper
@@ -107,16 +105,16 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
             inputMode={props.inputMode}
             tabIndex={props.tabIndex}
             role={props.role}
-            aria-label={props["aria-label"]}
+            aria-label={props.ariaLabel}
             aria-describedby={
-              hasDescription ? descriptionIdentifier : props["aria-describedby"]
+              hasDescription ? descriptionIdentifier : props.ariaDescribedBy
             }
             aria-invalid={isInvalid ? true : undefined}
-            aria-controls={props["aria-controls"]}
-            aria-expanded={props["aria-expanded"]}
-            aria-activedescendant={props["aria-activedescendant"]}
-            aria-autocomplete={props["aria-autocomplete"]}
-            aria-required={props["aria-required"]}
+            aria-controls={props.ariaControls}
+            aria-expanded={props.ariaExpanded}
+            aria-activedescendant={props.ariaActiveDescendant}
+            aria-autocomplete={props.ariaAutocomplete}
+            aria-required={props.ariaRequired}
             invalid={isInvalid ? ("true" as const) : undefined}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -144,16 +142,16 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
             inputMode={props.inputMode}
             tabIndex={props.tabIndex}
             role={props.role}
-            aria-label={props["aria-label"]}
+            aria-label={props.ariaLabel}
             aria-describedby={
-              hasDescription ? descriptionIdentifier : props["aria-describedby"]
+              hasDescription ? descriptionIdentifier : props.ariaDescribedBy
             }
             aria-invalid={isInvalid ? true : undefined}
-            aria-controls={props["aria-controls"]}
-            aria-expanded={props["aria-expanded"]}
-            aria-activedescendant={props["aria-activedescendant"]}
-            aria-autocomplete={props["aria-autocomplete"]}
-            aria-required={props["aria-required"]}
+            aria-controls={props.ariaControls}
+            aria-expanded={props.ariaExpanded}
+            aria-activedescendant={props.ariaActiveDescendant}
+            aria-autocomplete={props.ariaAutocomplete}
+            aria-required={props.ariaRequired}
             invalid={isInvalid ? ("true" as const) : undefined}
             onChange={handleChange}
             onBlur={handleBlur}

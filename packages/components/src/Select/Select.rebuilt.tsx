@@ -75,15 +75,15 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
             onBlur={handleBlur}
             onFocus={handleFocus}
             value={props.value}
-            aria-label={props["aria-label"]}
+            aria-label={props.ariaLabel}
             aria-describedby={
-              props["aria-describedby"] ||
+              props.ariaDescribedBy ||
               (props.description && !props.inline
                 ? descriptionIdentifier
                 : undefined)
             }
-            aria-invalid={props["aria-invalid"]}
-            aria-required={props["aria-required"]}
+            aria-invalid={props.ariaInvalid}
+            aria-required={props.ariaRequired}
             ref={mergedRef}
             className={classnames(
               inputStyle,

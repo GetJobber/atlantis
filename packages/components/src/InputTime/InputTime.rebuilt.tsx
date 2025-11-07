@@ -76,10 +76,10 @@ export const InputTimeRebuilt = forwardRef<
         }}
         data-testid="ATL-InputTime-input"
         value={dateToTimeString(value)}
-        aria-label={params["aria-label"]}
-        aria-describedby={params["aria-describedby"]}
-        aria-invalid={params["aria-invalid"]}
-        aria-required={params["aria-required"]}
+        aria-label={params.ariaLabel}
+        aria-describedby={params.ariaDescribedBy}
+        aria-invalid={params.ariaInvalid}
+        aria-required={params.ariaRequired}
       />
     </FormFieldWrapper>
   );

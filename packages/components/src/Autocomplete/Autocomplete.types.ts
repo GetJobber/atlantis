@@ -8,16 +8,16 @@ import type { InputTextRebuiltProps, InputTextRef } from "../InputText";
  * Certain ARIA attributes are controlled internally by Autocomplete's
  * state management and floating-ui integration and shouldn't be overridden.
  *
- * Omits: aria-controls, aria-expanded, aria-activedescendant, aria-autocomplete
+ * Omits: ariaControls, ariaExpanded, ariaActiveDescendant, ariaAutocomplete
  * (These are managed by the component's internal state/floating-ui)
  */
 export interface AriaInputPropsManaged
   extends Omit<
     AriaInputProps,
-    | "aria-controls"
-    | "aria-expanded"
-    | "aria-activedescendant"
-    | "aria-autocomplete"
+    | "ariaControls"
+    | "ariaExpanded"
+    | "ariaActiveDescendant"
+    | "ariaAutocomplete"
   > {}
 
 // Extra props shape used across action/section/header/footer generics

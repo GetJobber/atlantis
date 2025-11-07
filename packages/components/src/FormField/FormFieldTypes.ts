@@ -31,71 +31,71 @@ export type AutocompleteTypes =
 
 /**
  * Core ARIA attributes for input elements.
- * Uses React's canonical type definitions to ensure accuracy and consistency.
- * Only exposes attributes that are relevant for form inputs.
+ * Uses camelCase naming for consistency with React props pattern.
+ * Based on React's canonical ARIA type definitions.
  */
 export interface AriaInputProps {
   /**
    * Defines a string value that labels the current element.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-label}
    */
-  readonly "aria-label"?: AriaAttributes["aria-label"];
+  readonly ariaLabel?: AriaAttributes["aria-label"];
 
   /**
    * Identifies the element (or elements) that labels the current element.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-labelledby}
    */
-  readonly "aria-labelledby"?: AriaAttributes["aria-labelledby"];
+  readonly ariaLabelledBy?: AriaAttributes["aria-labelledby"];
 
   /**
    * Identifies the element (or elements) that describes the object.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-describedby}
    */
-  readonly "aria-describedby"?: AriaAttributes["aria-describedby"];
+  readonly ariaDescribedBy?: AriaAttributes["aria-describedby"];
 
   /**
    * Identifies the element (or elements) that provide a detailed, extended description.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-details}
    */
-  readonly "aria-details"?: AriaAttributes["aria-details"];
+  readonly ariaDetails?: AriaAttributes["aria-details"];
 
   /**
    * ID of the currently active descendant element.
    * Used for composite widgets like combobox or listbox.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant}
    */
-  readonly "aria-activedescendant"?: AriaAttributes["aria-activedescendant"];
+  readonly ariaActiveDescendant?: AriaAttributes["aria-activedescendant"];
 
   /**
    * Indicates the entered value does not conform to the format expected.
    * Supports boolean or specific error types: "grammar" | "spelling".
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-invalid}
    */
-  readonly "aria-invalid"?: AriaAttributes["aria-invalid"];
+  readonly ariaInvalid?: AriaAttributes["aria-invalid"];
 
   /**
    * Indicates the element that controls the current element.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}
    */
-  readonly "aria-controls"?: AriaAttributes["aria-controls"];
+  readonly ariaControls?: AriaAttributes["aria-controls"];
 
   /**
    * Indicates whether the element is expanded or collapsed.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-expanded}
    */
-  readonly "aria-expanded"?: AriaAttributes["aria-expanded"];
+  readonly ariaExpanded?: AriaAttributes["aria-expanded"];
 
   /**
    * Indicates the type of autocomplete interaction.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}
    */
-  readonly "aria-autocomplete"?: AriaAttributes["aria-autocomplete"];
+  readonly ariaAutocomplete?: AriaAttributes["aria-autocomplete"];
 
   /**
    * Indicates that user input is required before form submission.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}
    */
-  readonly "aria-required"?: AriaAttributes["aria-required"];
+  readonly ariaRequired?: AriaAttributes["aria-required"];
 }
 
 /**
