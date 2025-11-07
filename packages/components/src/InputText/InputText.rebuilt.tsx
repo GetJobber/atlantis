@@ -61,6 +61,38 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   const hasDescription = props.description && !props.inline;
   const isInvalid = Boolean(props.ariaInvalid || props.error || props.invalid);
 
+  // Shared props for both TextArea and TextInput
+  const commonInputProps = {
+    id,
+    name,
+    className: inputStyle,
+    value: props.value,
+    disabled: props.disabled,
+    readOnly: props.readOnly,
+    autoFocus: props.autoFocus,
+    autoComplete: props.autoComplete,
+    maxLength: props.maxLength,
+    inputMode: props.inputMode,
+    tabIndex: props.tabIndex,
+    role: props.role,
+    "aria-label": props.ariaLabel,
+    "aria-describedby": hasDescription
+      ? descriptionIdentifier
+      : props.ariaDescribedBy,
+    "aria-invalid": isInvalid ? true : undefined,
+    "aria-controls": props.ariaControls,
+    "aria-expanded": props.ariaExpanded,
+    "aria-activedescendant": props.ariaActiveDescendant,
+    "aria-autocomplete": props.ariaAutocomplete,
+    "aria-required": props.ariaRequired,
+    onChange: handleChange,
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    onKeyDown: handleKeyDown,
+    onKeyUp: props.onKeyUp,
+    ref: mergeRefs([inputRefs, inputTextRef]),
+  };
+
   return (
     <FormFieldWrapper
       disabled={props.disabled}
@@ -88,69 +120,9 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     >
       <>
         {props.multiline ? (
-          <TextArea
-            id={id}
-            name={name}
-            className={inputStyle}
-            value={props.value}
-            rows={rowRange.min}
-            disabled={props.disabled}
-            readOnly={props.readOnly}
-            autoFocus={props.autoFocus}
-            autoComplete={props.autoComplete}
-            maxLength={props.maxLength}
-            inputMode={props.inputMode}
-            tabIndex={props.tabIndex}
-            role={props.role}
-            aria-label={props.ariaLabel}
-            aria-describedby={
-              hasDescription ? descriptionIdentifier : props.ariaDescribedBy
-            }
-            aria-invalid={isInvalid ? true : undefined}
-            aria-controls={props.ariaControls}
-            aria-expanded={props.ariaExpanded}
-            aria-activedescendant={props.ariaActiveDescendant}
-            aria-autocomplete={props.ariaAutocomplete}
-            aria-required={props.ariaRequired}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-            onKeyDown={handleKeyDown}
-            onKeyUp={props.onKeyUp}
-            ref={mergeRefs([inputRefs, inputTextRef])}
-          />
+          <TextArea {...commonInputProps} rows={rowRange.min} />
         ) : (
-          <TextInput
-            id={id}
-            name={name}
-            className={inputStyle}
-            value={props.value}
-            disabled={props.disabled}
-            readOnly={props.readOnly}
-            autoFocus={props.autoFocus}
-            autoComplete={props.autoComplete}
-            maxLength={props.maxLength}
-            pattern={props.pattern}
-            inputMode={props.inputMode}
-            tabIndex={props.tabIndex}
-            role={props.role}
-            aria-label={props.ariaLabel}
-            aria-describedby={
-              hasDescription ? descriptionIdentifier : props.ariaDescribedBy
-            }
-            aria-invalid={isInvalid ? true : undefined}
-            aria-controls={props.ariaControls}
-            aria-expanded={props.ariaExpanded}
-            aria-activedescendant={props.ariaActiveDescendant}
-            aria-autocomplete={props.ariaAutocomplete}
-            aria-required={props.ariaRequired}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-            onKeyDown={handleKeyDown}
-            onKeyUp={props.onKeyUp}
-            ref={mergeRefs([inputRefs, inputTextRef])}
-          />
+          <TextInput {...commonInputProps} pattern={props.pattern} />
         )}
         <FormFieldPostFix
           variation="spinner"
