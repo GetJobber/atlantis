@@ -27,7 +27,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     value: props.value,
     invalid: props.invalid,
     error: props.error,
-    maxLength: undefined, // v2: maxLength is for HTML validation only, not for width styling
+    maxLength: props.maxLength,
     disabled: props.disabled,
     placeholder: props.placeholder,
   });

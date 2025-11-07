@@ -144,11 +144,6 @@ export interface HTMLInputBaseProps extends AriaInputProps {
   readonly disabled?: boolean;
 
   /**
-   * Whether the input is required.
-   */
-  readonly required?: boolean;
-
-  /**
    * Whether the input is read-only (HTML standard casing).
    */
   readonly readOnly?: boolean;
@@ -165,26 +160,11 @@ export interface HTMLInputBaseProps extends AriaInputProps {
   readonly autoComplete?: string;
 
   /**
-   * Maximum character length for the input (HTML validation only).
-   * Note: In v2, this does NOT affect the visual width of the component.
-   * Use CSS or the size prop for width control.
+   * Maximum character length for the input.
+   * Note: This affects both HTML validation AND visual width of the component.
+   * Future work will separate these concerns.
    */
   readonly maxLength?: number;
-
-  /**
-   * Minimum character length for the input.
-   */
-  readonly minLength?: number;
-
-  /**
-   * Maximum numerical value (for number inputs).
-   */
-  readonly max?: number | string;
-
-  /**
-   * Minimum numerical value (for number inputs).
-   */
-  readonly min?: number | string;
 
   /**
    * Validation pattern (regex) for the input.
@@ -213,6 +193,22 @@ export interface HTMLInputBaseProps extends AriaInputProps {
    * Tab index for keyboard navigation.
    */
   readonly tabIndex?: number;
+}
+
+/**
+ * Numeric/date constraint props for inputs that support min/max values.
+ * Only extend this for input types where these make semantic sense (number, date, range, etc.).
+ */
+export interface InputConstraintProps {
+  /**
+   * Maximum numerical or date value.
+   */
+  readonly max?: number | string;
+
+  /**
+   * Minimum numerical or date value.
+   */
+  readonly min?: number | string;
 }
 
 export interface Affix {

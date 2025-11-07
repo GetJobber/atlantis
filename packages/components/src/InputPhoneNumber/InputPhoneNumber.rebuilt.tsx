@@ -29,7 +29,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
       value: props.value,
       invalid: props.invalid,
       error: props.error,
-      maxLength: undefined, // v2: maxLength not used for width styling
+      maxLength: props.maxLength,
       disabled: props.disabled,
       inline: props.inline,
       type: "tel",
