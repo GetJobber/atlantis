@@ -82,19 +82,9 @@ export interface InputTimeRebuiltProps
   error?: string;
 
   /**
-   * @deprecated Use `readOnly` (camelCase) instead.
-   */
-  readonly readonly?: boolean;
-
-  /**
    * Whether the input is read-only.
    */
   readonly readOnly?: boolean;
-
-  /**
-   * @deprecated Use `autoComplete` (camelCase) instead.
-   */
-  readonly autocomplete?: boolean;
 
   /**
    * HTML autocomplete attribute for browser autofill.

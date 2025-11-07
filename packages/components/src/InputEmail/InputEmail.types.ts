@@ -50,19 +50,4 @@ export interface InputEmailRebuiltProps
    * @deprecated Use `id` instead. This prop will be removed in a future version.
    */
   readonly identifier?: string;
-
-  /**
-   * @deprecated Use `autoComplete` with string values instead. This prop will be removed in a future version.
-   */
-  readonly autocomplete?: never;
-
-  /**
-   * @deprecated Use `aria-label` instead. This prop will be removed in a future version.
-   */
-  readonly ariaLabel?: never;
-
-  /**
-   * @deprecated Use `readOnly` instead. This prop will be removed in a future version.
-   */
-  readonly readonly?: never;
 }

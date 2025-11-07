@@ -65,11 +65,6 @@ export interface SelectRebuiltProps
   error?: string;
 
   /**
-   * @deprecated Use `autoFocus` (camelCase) instead.
-   */
-  readonly autofocus?: boolean;
-
-  /**
    * Automatically focus the select when mounted.
    */
   readonly autoFocus?: boolean;

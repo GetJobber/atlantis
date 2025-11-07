@@ -251,7 +251,7 @@ describe("InputTimeRebuilt", () => {
       expect(mockSetTypedTime).not.toHaveBeenCalled();
     });
 
-    it("should not call setTypedTime if the input is readonly", async () => {
+    it("should not call setTypedTime if the input is readOnly", async () => {
       const handleChange = jest.fn();
 
       render(
@@ -259,7 +259,7 @@ describe("InputTimeRebuilt", () => {
           version={2}
           value={initialValue}
           onChange={handleChange}
-          readonly
+          readOnly
         />,
       );
       const input = screen.getByTestId("ATL-InputTime-input");

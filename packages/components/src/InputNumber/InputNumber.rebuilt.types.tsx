@@ -17,11 +17,6 @@ export interface InputNumberRebuiltProps
   readonly align?: "center" | "right"; // todo add left and make it default
 
   /**
-   * @deprecated Use `autoComplete` (camelCase) instead.
-   */
-  readonly autocomplete?: boolean;
-
-  /**
    * HTML autocomplete attribute for browser autofill.
    */
   readonly autoComplete?: string;
@@ -56,11 +51,6 @@ export interface InputNumberRebuiltProps
     newValue: number,
     event?: React.ChangeEvent<HTMLInputElement>,
   ) => void;
-
-  /**
-   * @deprecated Use `readOnly` (camelCase) instead.
-   */
-  readonly readonly?: boolean;
 
   /**
    * Whether the input is read-only.

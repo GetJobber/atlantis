@@ -13,11 +13,8 @@ export const InputTimeRebuilt = forwardRef<
   {
     value,
     onChange,
-    // Support both old and new prop names
-    readonly,
-    readOnly = readonly,
-    autocomplete,
-    autoComplete = typeof autocomplete === "string" ? autocomplete : undefined,
+    readOnly,
+    autoComplete,
     // Deprecated props
     inputRef: deprecatedInputRef,
     ...params
