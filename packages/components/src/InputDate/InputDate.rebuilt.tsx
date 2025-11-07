@@ -1,5 +1,4 @@
-import React, { forwardRef } from "react";
-import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
+import React, { forwardRef, useState } from "react";
 import type { InputDateRebuiltProps } from "./InputDate.types";
 import type { Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
@@ -30,19 +29,30 @@ export const InputDateRebuilt = forwardRef<
 
   function InputDateActivator(activatorProps: DatePickerActivatorProps) {
     const { onClick, value } = activatorProps;
+    const [isFocused, setIsFocused] = useState(false);
 
-    const { handleChange, handleFocus, handleBlur, isFocused } =
-      useInputDateActivatorActions({
-        onChange: activatorProps.onChange,
-        onFocus: event => {
-          props.onFocus?.(event);
-          activatorProps.onFocus?.();
-        },
-        onBlur: event => {
-          props.onBlur?.(event);
-          activatorProps.onBlur?.();
-        },
-      });
+    function handleChange(
+      _newValue: string,
+      event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) {
+      activatorProps.onChange?.(event);
+    }
+
+    function handleFocus(
+      event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) {
+      props.onFocus?.(event as React.FocusEvent<HTMLInputElement>);
+      activatorProps.onFocus?.();
+      setIsFocused(true);
+    }
+
+    function handleBlur(
+      event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) {
+      props.onBlur?.(event as React.FocusEvent<HTMLInputElement>);
+      activatorProps.onBlur?.();
+      setIsFocused(false);
+    }
 
     const suffix =
       props.showIcon !== false
