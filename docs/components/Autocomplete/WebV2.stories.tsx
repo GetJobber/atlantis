@@ -155,7 +155,6 @@ const TemplateSectioned: ComponentStory<typeof Autocomplete> = args => {
       <Autocomplete
         {...args}
         version={2}
-        placeholder={args.placeholder ?? "Search"}
         value={value}
         onChange={setValue}
         inputValue={inputValue}
