@@ -134,11 +134,6 @@ export interface HTMLInputBaseProps extends AriaInputProps {
   readonly name?: string;
 
   /**
-   * Placeholder text that appears when the input is empty.
-   */
-  readonly placeholder?: string;
-
-  /**
    * Whether the input is disabled.
    */
   readonly disabled?: boolean;
@@ -158,13 +153,6 @@ export interface HTMLInputBaseProps extends AriaInputProps {
    * Use standard HTML autocomplete values or "on"/"off".
    */
   readonly autoComplete?: string;
-
-  /**
-   * Maximum character length for the input.
-   * Note: This affects both HTML validation AND visual width of the component.
-   * Future work will separate these concerns.
-   */
-  readonly maxLength?: number;
 
   /**
    * Validation pattern (regex) for the input.
@@ -211,6 +199,19 @@ export interface InputConstraintProps {
   readonly min?: number | string;
 }
 
+/**
+ * Character length constraint for inputs.
+ * Only extend this for text-based inputs where character limits make sense.
+ */
+export interface InputLengthConstraint {
+  /**
+   * Maximum character length for the input.
+   * Note: This affects both HTML validation AND visual width of the component.
+   * Future work will separate these concerns.
+   */
+  readonly maxLength?: number;
+}
+
 export interface Affix {
   readonly label?: string;
   readonly icon?: IconNames;
@@ -231,6 +232,14 @@ export interface Suffix extends BaseSuffix {
  * These are Atlantis-specific features not part of standard HTML inputs.
  */
 export interface RebuiltInputCommonProps {
+  /**
+   * Text that appears inside the input when empty and floats above the value
+   * as a mini label once the user enters a value.
+   * When showMiniLabel is false, this text only serves as a standard placeholder and
+   * disappears when the user types.
+   */
+  readonly placeholder?: string;
+
   /**
    * Error message to display. This also highlights the field red.
    */

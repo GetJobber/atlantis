@@ -2,6 +2,8 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   AriaInputProps,
   FocusEvents,
+  InputConstraintProps,
+  InputLengthConstraint,
   KeyboardEvents,
 } from "../sharedHelpers/types";
 
@@ -70,7 +72,9 @@ export interface InputTimeRebuiltProps
     >,
     AriaInputProps,
     FocusEvents<HTMLInputElement>,
-    KeyboardEvents<HTMLInputElement> {
+    KeyboardEvents<HTMLInputElement>,
+    InputLengthConstraint,
+    InputConstraintProps {
   /**
    * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
    */

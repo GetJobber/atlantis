@@ -29,7 +29,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
       value: props.value,
       invalid: props.invalid,
       error: props.error,
-      maxLength: props.maxLength,
+      maxLength: undefined, // InputPhoneNumber uses pattern masking, not maxLength
       disabled: props.disabled,
       inline: props.inline,
       type: "tel",
@@ -107,7 +107,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
           value={formattedValue}
           disabled={props.disabled}
           readOnly={props.readOnly}
-          required={props.required}
           autoFocus={props.autoFocus}
           autoComplete={props.autoComplete}
           inputMode={props.inputMode}

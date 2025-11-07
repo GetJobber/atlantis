@@ -96,11 +96,9 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
             rows={rowRange.min}
             disabled={props.disabled}
             readOnly={props.readOnly}
-            required={props.required}
             autoFocus={props.autoFocus}
             autoComplete={props.autoComplete}
             maxLength={props.maxLength}
-            minLength={props.minLength}
             inputMode={props.inputMode}
             tabIndex={props.tabIndex}
             role={props.role}
@@ -114,7 +112,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
             aria-activedescendant={props.ariaActiveDescendant}
             aria-autocomplete={props.ariaAutocomplete}
             aria-required={props.ariaRequired}
-            invalid={isInvalid ? ("true" as const) : undefined}
             onChange={handleChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
@@ -130,13 +127,9 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
             value={props.value}
             disabled={props.disabled}
             readOnly={props.readOnly}
-            required={props.required}
             autoFocus={props.autoFocus}
             autoComplete={props.autoComplete}
             maxLength={props.maxLength}
-            minLength={props.minLength}
-            max={props.max}
-            min={props.min}
             pattern={props.pattern}
             inputMode={props.inputMode}
             tabIndex={props.tabIndex}
@@ -151,7 +144,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
             aria-activedescendant={props.ariaActiveDescendant}
             aria-autocomplete={props.ariaAutocomplete}
             aria-required={props.ariaRequired}
-            invalid={isInvalid ? ("true" as const) : undefined}
             onChange={handleChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
@@ -177,9 +169,7 @@ function useInputTextId(props: InputTextRebuiltProps) {
 }
 
 interface TextAreaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  readonly invalid?: "true";
-}
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(props, ref) {
@@ -187,9 +177,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   },
 );
 
-interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  readonly invalid?: "true";
-}
+interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   function TextInput(props, ref) {

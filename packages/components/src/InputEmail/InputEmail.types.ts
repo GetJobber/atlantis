@@ -2,6 +2,7 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
+  InputLengthConstraint,
   KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
@@ -24,7 +25,8 @@ export interface InputEmailRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
-    RebuiltInputCommonProps {
+    RebuiltInputCommonProps,
+    InputLengthConstraint {
   /**
    * The current value of the input.
    */

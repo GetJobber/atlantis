@@ -500,6 +500,45 @@
           "name": "(event: React.KeyboardEvent<Target>) => void"
         }
       },
+      "maxLength": {
+        "defaultValue": null,
+        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
+        "name": "maxLength",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "InputLengthConstraint"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "max": {
+        "defaultValue": null,
+        "description": "Maximum numerical or date value.",
+        "name": "max",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "InputConstraintProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number"
+        }
+      },
+      "min": {
+        "defaultValue": null,
+        "description": "Minimum numerical or date value.",
+        "name": "min",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "InputConstraintProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number"
+        }
+      },
       "ref": {
         "defaultValue": null,
         "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",

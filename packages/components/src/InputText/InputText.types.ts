@@ -7,6 +7,7 @@ import type {
 import type {
   FocusEvents,
   HTMLInputBaseProps,
+  InputLengthConstraint,
   KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
@@ -26,7 +27,8 @@ export interface InputTextRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement | HTMLTextAreaElement>,
     KeyboardEvents<HTMLInputElement | HTMLTextAreaElement>,
-    RebuiltInputCommonProps {
+    RebuiltInputCommonProps,
+    InputLengthConstraint {
   /**
    * Use this when you're expecting a long answer.
    */

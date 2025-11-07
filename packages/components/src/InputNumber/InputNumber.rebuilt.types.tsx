@@ -4,6 +4,8 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   AriaInputProps,
   FocusEvents,
+  InputConstraintProps,
+  InputLengthConstraint,
   KeyboardEvents,
 } from "../sharedHelpers/types";
 
@@ -13,7 +15,9 @@ export interface InputNumberRebuiltProps
   extends Omit<CommonFormFieldProps, "version">,
     AriaInputProps,
     FocusEvents<HTMLInputElement>,
-    KeyboardEvents<HTMLInputElement> {
+    KeyboardEvents<HTMLInputElement>,
+    InputLengthConstraint,
+    InputConstraintProps {
   readonly align?: "center" | "right"; // todo add left and make it default
 
   /**

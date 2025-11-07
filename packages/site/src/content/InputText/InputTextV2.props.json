@@ -136,19 +136,6 @@
           "name": "string"
         }
       },
-      "placeholder": {
-        "defaultValue": null,
-        "description": "Placeholder text that appears when the input is empty.",
-        "name": "placeholder",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "disabled": {
         "defaultValue": null,
         "description": "Whether the input is disabled.",
@@ -199,19 +186,6 @@
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
         }
       },
       "pattern": {
@@ -448,6 +422,19 @@
           "name": "(event: React.KeyboardEvent<Target>) => void"
         }
       },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "error": {
         "defaultValue": null,
         "description": "Error message to display. This also highlights the field red.",
@@ -602,6 +589,19 @@
         "required": true,
         "type": {
           "name": "2"
+        }
+      },
+      "maxLength": {
+        "defaultValue": null,
+        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
+        "name": "maxLength",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "InputLengthConstraint"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
         }
       },
       "ref": {

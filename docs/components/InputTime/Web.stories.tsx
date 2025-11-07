@@ -22,7 +22,7 @@ const newDate = new Date();
 newDate.setHours(2, 35, 0, 0);
 
 const BasicTemplate: ComponentStory<typeof InputTime> = args => (
-  <InputTime {...args} />
+  <InputTime {...args} maxLength={2} />
 );
 
 const ControlledTemplate: ComponentStory<typeof InputTime> = args => {
