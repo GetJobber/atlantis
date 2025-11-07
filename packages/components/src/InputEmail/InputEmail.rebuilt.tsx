@@ -13,7 +13,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
   ref: React.Ref<HTMLInputElement>,
 ) {
   const generatedId = useId();
-  const id = props.identifier || props.id || generatedId;
+  const id = props.id || generatedId;
   const inputRef =
     (ref as React.RefObject<HTMLInputElement>) ??
     useRef<HTMLInputElement>(null);

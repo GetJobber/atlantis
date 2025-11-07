@@ -174,7 +174,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
 function useInputTextId(props: InputTextRebuiltProps) {
   const generatedId = useId();
 
-  return props.identifier || props.id || generatedId;
+  return props.id || generatedId;
 }
 
 interface TextAreaProps

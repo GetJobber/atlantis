@@ -45,9 +45,4 @@ export interface InputEmailRebuiltProps
    * are being held.
    */
   readonly onEnter?: FormFieldProps["onEnter"];
-
-  /**
-   * @deprecated Use `id` instead. This prop will be removed in a future version.
-   */
-  readonly identifier?: string;
 }

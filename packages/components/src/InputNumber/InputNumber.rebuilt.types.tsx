@@ -28,11 +28,6 @@ export interface InputNumberRebuiltProps
   readonly formatOptions?: Intl.NumberFormatOptions;
 
   /**
-   * @deprecated Use `id` instead.
-   */
-  readonly identifier?: string;
-
-  /**
    * The ID of the input element.
    */
   readonly id?: string;

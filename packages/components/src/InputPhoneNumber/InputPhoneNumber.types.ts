@@ -70,11 +70,6 @@ export interface InputPhoneNumberRebuiltProps
    * @default "(***) ***-****"
    */
   readonly pattern?: InputMaskProps["pattern"];
-
-  /**
-   * @deprecated Use `id` instead. This prop will be removed in a future version.
-   */
-  readonly identifier?: string;
 }
 
 export const DEFAULT_PATTERN = "(***) ***-****";

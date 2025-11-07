@@ -35,7 +35,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
       type: "tel",
     });
     const generatedId = useId();
-    const id = props.identifier || props.id || generatedId;
+    const id = props.id || generatedId;
 
     const { name } = useAtlantisFormFieldName({
       nameProp: props.name,

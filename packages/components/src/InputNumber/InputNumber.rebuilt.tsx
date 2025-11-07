@@ -70,9 +70,6 @@ export const InputNumberRebuilt = forwardRef(
       size,
       minValue,
       maxValue,
-      // Deprecated props (filter out to avoid spreading to React Aria)
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      identifier: _deprecatedIdentifier,
       ...ariaNumberFieldProps
     } = props;
 
