@@ -227,45 +227,6 @@
           "name": "Clearable"
         }
       },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Maximum character length for an input. This also changes the width to\nroughly the same size as the max length. This is to communicate that the\nuser that on certain cases, they can only type a limited amount of\ncharacters.",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "max": {
-        "defaultValue": null,
-        "description": "Specifies the maximum numerical or date value that a user can type",
-        "name": "max",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "min": {
-        "defaultValue": null,
-        "description": "Specifies the minimum numerical or date value that a user can type",
-        "name": "min",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "value": {
         "defaultValue": null,
         "description": "Set the component to the given value.",
@@ -472,6 +433,45 @@
         "required": false,
         "type": {
           "name": "(event: React.KeyboardEvent<Target>) => void"
+        }
+      },
+      "maxLength": {
+        "defaultValue": null,
+        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
+        "name": "maxLength",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "InputLengthConstraint"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "max": {
+        "defaultValue": null,
+        "description": "Maximum numerical or date value.",
+        "name": "max",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "InputConstraintProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number"
+        }
+      },
+      "min": {
+        "defaultValue": null,
+        "description": "Minimum numerical or date value.",
+        "name": "min",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "InputConstraintProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | number"
         }
       },
       "ref": {

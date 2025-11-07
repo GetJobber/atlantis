@@ -69,6 +69,9 @@ export interface InputTimeRebuiltProps
       | "onFocus"
       | "onBlur"
       | "onEnter"
+      | "max"
+      | "min"
+      | "maxLength"
     >,
     AriaInputProps,
     FocusEvents<HTMLInputElement>,
