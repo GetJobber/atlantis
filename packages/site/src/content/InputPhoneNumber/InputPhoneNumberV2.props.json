@@ -242,10 +242,10 @@
           "name": "number"
         }
       },
-      "aria-label": {
+      "ariaLabel": {
         "defaultValue": null,
         "description": "Defines a string value that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-label}",
-        "name": "aria-label",
+        "name": "ariaLabel",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -255,10 +255,10 @@
           "name": "string"
         }
       },
-      "aria-labelledby": {
+      "ariaLabelledBy": {
         "defaultValue": null,
         "description": "Identifies the element (or elements) that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-labelledby}",
-        "name": "aria-labelledby",
+        "name": "ariaLabelledBy",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -268,10 +268,10 @@
           "name": "string"
         }
       },
-      "aria-describedby": {
+      "ariaDescribedBy": {
         "defaultValue": null,
         "description": "Identifies the element (or elements) that describes the object.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-describedby}",
-        "name": "aria-describedby",
+        "name": "ariaDescribedBy",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -281,10 +281,10 @@
           "name": "string"
         }
       },
-      "aria-details": {
+      "ariaDetails": {
         "defaultValue": null,
         "description": "Identifies the element (or elements) that provide a detailed, extended description.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-details}",
-        "name": "aria-details",
+        "name": "ariaDetails",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -294,10 +294,10 @@
           "name": "string"
         }
       },
-      "aria-activedescendant": {
+      "ariaActiveDescendant": {
         "defaultValue": null,
         "description": "ID of the currently active descendant element.\nUsed for composite widgets like combobox or listbox.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant}",
-        "name": "aria-activedescendant",
+        "name": "ariaActiveDescendant",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -307,10 +307,10 @@
           "name": "string"
         }
       },
-      "aria-invalid": {
+      "ariaInvalid": {
         "defaultValue": null,
         "description": "Indicates the entered value does not conform to the format expected.\nSupports boolean or specific error types: \"grammar\" | \"spelling\".\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-invalid}",
-        "name": "aria-invalid",
+        "name": "ariaInvalid",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -320,10 +320,10 @@
           "name": "boolean | \"false\" | \"true\" | \"grammar\" | \"spelling\""
         }
       },
-      "aria-controls": {
+      "ariaControls": {
         "defaultValue": null,
         "description": "Indicates the element that controls the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}",
-        "name": "aria-controls",
+        "name": "ariaControls",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -333,10 +333,10 @@
           "name": "string"
         }
       },
-      "aria-expanded": {
+      "ariaExpanded": {
         "defaultValue": null,
         "description": "Indicates whether the element is expanded or collapsed.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-expanded}",
-        "name": "aria-expanded",
+        "name": "ariaExpanded",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -346,10 +346,10 @@
           "name": "Booleanish"
         }
       },
-      "aria-autocomplete": {
+      "ariaAutocomplete": {
         "defaultValue": null,
         "description": "Indicates the type of autocomplete interaction.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}",
-        "name": "aria-autocomplete",
+        "name": "ariaAutocomplete",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -359,10 +359,10 @@
           "name": "\"inline\" | \"none\" | \"list\" | \"both\""
         }
       },
-      "aria-required": {
+      "ariaRequired": {
         "defaultValue": null,
         "description": "Indicates that user input is required before form submission.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}",
-        "name": "aria-required",
+        "name": "ariaRequired",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "AriaInputProps"
@@ -538,7 +538,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { ariaLabel?: never; onClick?: never; readonly label?: string; readonly icon?: IconNames; }"
         }
       },
       "description": {
