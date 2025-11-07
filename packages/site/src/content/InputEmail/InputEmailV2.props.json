@@ -50,7 +50,7 @@
         "description": "The unique identifier for the input element.",
         "name": "id",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -63,7 +63,7 @@
         "description": "The name attribute for the input element.",
         "name": "name",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -76,7 +76,7 @@
         "description": "Placeholder text that appears when the input is empty.",
         "name": "placeholder",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -89,7 +89,7 @@
         "description": "Whether the input is disabled.",
         "name": "disabled",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -102,7 +102,7 @@
         "description": "Whether the input is required.",
         "name": "required",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -115,7 +115,7 @@
         "description": "Whether the input is read-only (HTML standard casing).",
         "name": "readOnly",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -128,7 +128,7 @@
         "description": "Whether the input should be auto-focused (React casing).",
         "name": "autoFocus",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -141,7 +141,7 @@
         "description": "Autocomplete behavior for the input (React casing, string values only).\nUse standard HTML autocomplete values or \"on\"/\"off\".",
         "name": "autoComplete",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -154,7 +154,7 @@
         "description": "Maximum character length for the input (HTML validation only).\nNote: In v2, this does NOT affect the visual width of the component.\nUse CSS or the size prop for width control.",
         "name": "maxLength",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -167,7 +167,7 @@
         "description": "Minimum character length for the input.",
         "name": "minLength",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -180,7 +180,7 @@
         "description": "Maximum numerical value (for number inputs).",
         "name": "max",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -193,7 +193,7 @@
         "description": "Minimum numerical value (for number inputs).",
         "name": "min",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -206,7 +206,7 @@
         "description": "Validation pattern (regex) for the input.",
         "name": "pattern",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -219,7 +219,7 @@
         "description": "Input mode hint for virtual keyboards.",
         "name": "inputMode",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -232,7 +232,7 @@
         "description": "Role attribute for accessibility.",
         "name": "role",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -245,7 +245,7 @@
         "description": "Tab index for keyboard navigation.",
         "name": "tabIndex",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"
         },
         "required": false,
@@ -258,7 +258,7 @@
         "description": "Defines a string value that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-label}",
         "name": "ariaLabel",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -271,7 +271,7 @@
         "description": "Identifies the element (or elements) that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-labelledby}",
         "name": "ariaLabelledBy",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -284,7 +284,7 @@
         "description": "Identifies the element (or elements) that describes the object.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-describedby}",
         "name": "ariaDescribedBy",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -297,7 +297,7 @@
         "description": "Identifies the element (or elements) that provide a detailed, extended description.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-details}",
         "name": "ariaDetails",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -310,7 +310,7 @@
         "description": "ID of the currently active descendant element.\nUsed for composite widgets like combobox or listbox.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant}",
         "name": "ariaActiveDescendant",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -323,7 +323,7 @@
         "description": "Indicates the entered value does not conform to the format expected.\nSupports boolean or specific error types: \"grammar\" | \"spelling\".\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-invalid}",
         "name": "ariaInvalid",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -336,7 +336,7 @@
         "description": "Indicates the element that controls the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}",
         "name": "ariaControls",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -349,7 +349,7 @@
         "description": "Indicates whether the element is expanded or collapsed.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-expanded}",
         "name": "ariaExpanded",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -362,7 +362,7 @@
         "description": "Indicates the type of autocomplete interaction.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}",
         "name": "ariaAutocomplete",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -375,7 +375,7 @@
         "description": "Indicates that user input is required before form submission.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}",
         "name": "ariaRequired",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -388,7 +388,7 @@
         "description": "Focus event handler.",
         "name": "onFocus",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "FocusEvents"
         },
         "required": false,
@@ -401,7 +401,7 @@
         "description": "Blur event handler.",
         "name": "onBlur",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "FocusEvents"
         },
         "required": false,
@@ -414,7 +414,7 @@
         "description": "Key down event handler.",
         "name": "onKeyDown",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "KeyboardEvents"
         },
         "required": false,
@@ -427,7 +427,7 @@
         "description": "Key up event handler.",
         "name": "onKeyUp",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "KeyboardEvents"
         },
         "required": false,
@@ -440,7 +440,7 @@
         "description": "Error message to display. This also highlights the field red.",
         "name": "error",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -453,7 +453,7 @@
         "description": "Highlights the field red to indicate an error.",
         "name": "invalid",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -466,7 +466,7 @@
         "description": "Show a spinner to indicate loading.",
         "name": "loading",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -479,7 +479,7 @@
         "description": "Add a clear action on the input that clears the value.",
         "name": "clearable",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -492,7 +492,7 @@
         "description": "Adjusts the interface to either have small or large spacing.",
         "name": "size",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -505,7 +505,7 @@
         "description": "Adjusts the form field to go inline with content.",
         "name": "inline",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -518,7 +518,7 @@
         "description": "Determines the alignment of the text inside the input.",
         "name": "align",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -531,7 +531,7 @@
         "description": "Adds a prefix label and icon to the field.",
         "name": "prefix",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -544,7 +544,7 @@
         "description": "Adds a suffix label and icon with an optional action to the field.",
         "name": "suffix",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -557,7 +557,7 @@
         "description": "Further description of the input, can be used for a hint.",
         "name": "description",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -570,7 +570,7 @@
         "description": "Children elements to render inside the component.",
         "name": "children",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": false,
@@ -583,7 +583,7 @@
         "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
         "name": "version",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "RebuiltInputCommonProps"
         },
         "required": true,

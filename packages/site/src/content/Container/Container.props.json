@@ -83,7 +83,7 @@
         },
         "required": false,
         "type": {
-          "name": "AriaAttributes"
+          "name": "React.AriaAttributes"
         }
       },
       "role": {
@@ -96,7 +96,7 @@
         },
         "required": false,
         "type": {
-          "name": "AriaRole"
+          "name": "React.AriaRole"
         }
       },
       "id": {

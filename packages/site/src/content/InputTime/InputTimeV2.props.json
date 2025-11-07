@@ -297,7 +297,7 @@
         "description": "Defines a string value that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-label}",
         "name": "ariaLabel",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -310,7 +310,7 @@
         "description": "Identifies the element (or elements) that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-labelledby}",
         "name": "ariaLabelledBy",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -323,7 +323,7 @@
         "description": "Identifies the element (or elements) that describes the object.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-describedby}",
         "name": "ariaDescribedBy",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -336,7 +336,7 @@
         "description": "Identifies the element (or elements) that provide a detailed, extended description.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-details}",
         "name": "ariaDetails",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -349,7 +349,7 @@
         "description": "ID of the currently active descendant element.\nUsed for composite widgets like combobox or listbox.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant}",
         "name": "ariaActiveDescendant",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -362,7 +362,7 @@
         "description": "Indicates the entered value does not conform to the format expected.\nSupports boolean or specific error types: \"grammar\" | \"spelling\".\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-invalid}",
         "name": "ariaInvalid",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -375,7 +375,7 @@
         "description": "Indicates the element that controls the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}",
         "name": "ariaControls",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -388,7 +388,7 @@
         "description": "Indicates whether the element is expanded or collapsed.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-expanded}",
         "name": "ariaExpanded",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -401,7 +401,7 @@
         "description": "Indicates the type of autocomplete interaction.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}",
         "name": "ariaAutocomplete",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -414,7 +414,7 @@
         "description": "Indicates that user input is required before form submission.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}",
         "name": "ariaRequired",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "AriaInputProps"
         },
         "required": false,
@@ -427,7 +427,7 @@
         "description": "Focus event handler.",
         "name": "onFocus",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "FocusEvents"
         },
         "required": false,
@@ -440,7 +440,7 @@
         "description": "Blur event handler.",
         "name": "onBlur",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "FocusEvents"
         },
         "required": false,
@@ -453,7 +453,7 @@
         "description": "Key down event handler.",
         "name": "onKeyDown",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "KeyboardEvents"
         },
         "required": false,
@@ -466,7 +466,7 @@
         "description": "Key up event handler.",
         "name": "onKeyUp",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "KeyboardEvents"
         },
         "required": false,
