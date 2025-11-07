@@ -190,19 +190,6 @@
           "name": "boolean"
         }
       },
-      "required": {
-        "defaultValue": null,
-        "description": "Whether the input is required.",
-        "name": "required",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "readOnly": {
         "defaultValue": null,
         "description": "Whether the input is read-only (HTML standard casing).",
@@ -244,7 +231,7 @@
       },
       "maxLength": {
         "defaultValue": null,
-        "description": "Maximum character length for the input (HTML validation only).\nNote: In v2, this does NOT affect the visual width of the component.\nUse CSS or the size prop for width control.",
+        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
         "name": "maxLength",
         "parent": {
           "fileName": "packages/components/src/sharedHelpers/types.ts",
@@ -253,45 +240,6 @@
         "required": false,
         "type": {
           "name": "number"
-        }
-      },
-      "minLength": {
-        "defaultValue": null,
-        "description": "Minimum character length for the input.",
-        "name": "minLength",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "max": {
-        "defaultValue": null,
-        "description": "Maximum numerical value (for number inputs).",
-        "name": "max",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number"
-        }
-      },
-      "min": {
-        "defaultValue": null,
-        "description": "Minimum numerical value (for number inputs).",
-        "name": "min",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number"
         }
       },
       "pattern": {

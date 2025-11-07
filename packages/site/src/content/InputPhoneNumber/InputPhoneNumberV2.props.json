@@ -112,19 +112,6 @@
           "name": "boolean"
         }
       },
-      "required": {
-        "defaultValue": null,
-        "description": "Whether the input is required.",
-        "name": "required",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "readOnly": {
         "defaultValue": null,
         "description": "Whether the input is read-only (HTML standard casing).",
@@ -162,32 +149,6 @@
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "max": {
-        "defaultValue": null,
-        "description": "Maximum numerical value (for number inputs).",
-        "name": "max",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number"
-        }
-      },
-      "min": {
-        "defaultValue": null,
-        "description": "Minimum numerical value (for number inputs).",
-        "name": "min",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number"
         }
       },
       "inputMode": {
