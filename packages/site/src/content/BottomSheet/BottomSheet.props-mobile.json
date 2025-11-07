@@ -20,7 +20,9 @@
         }
       },
       "loading": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": false
+        },
         "description": "Hide or show the cancel button when loading state is provided.",
         "name": "loading",
         "parent": {
@@ -73,15 +75,15 @@
       },
       "ref": {
         "defaultValue": null,
-        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "description": "Ref to the bottom sheet component.",
         "name": "ref",
         "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "RefAttributes"
+          "fileName": "../components-native/src/BottomSheet/BottomSheet.tsx",
+          "name": "BottomSheetProps"
         },
-        "required": false,
+        "required": true,
         "type": {
-          "name": "LegacyRef<IHandles>"
+          "name": "Ref<BottomSheetRef>"
         }
       }
     }
