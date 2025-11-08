@@ -5,7 +5,6 @@ import type {
   AriaInputProps,
   FocusEvents,
   InputConstraintProps,
-  InputLengthConstraint,
   KeyboardEvents,
 } from "../sharedHelpers/types";
 
@@ -16,7 +15,6 @@ export interface InputNumberRebuiltProps
     AriaInputProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
-    InputLengthConstraint,
     InputConstraintProps {
   readonly align?: "center" | "right"; // todo add left and make it default
 

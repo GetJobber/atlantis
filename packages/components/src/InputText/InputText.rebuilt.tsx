@@ -71,9 +71,9 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     readOnly: props.readOnly,
     autoFocus: props.autoFocus,
     autoComplete: props.autoComplete,
-    maxLength: props.maxLength,
     inputMode: props.inputMode,
     tabIndex: props.tabIndex,
+    maxLength: props.maxLength,
     role: props.role,
     "aria-label": props.ariaLabel,
     "aria-describedby": hasDescription
@@ -108,6 +108,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       descriptionIdentifier={descriptionIdentifier}
       description={props.description}
       clearable={props.clearable ?? "never"}
+      maxLength={props.maxLength}
       onClear={handleClear}
       type={props.multiline ? "textarea" : "text"}
       placeholder={props.placeholder}

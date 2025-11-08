@@ -29,7 +29,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
       value: props.value,
       invalid: props.invalid,
       error: props.error,
-      maxLength: undefined, // InputPhoneNumber uses pattern masking, not maxLength
       disabled: props.disabled,
       inline: props.inline,
       type: "tel",
