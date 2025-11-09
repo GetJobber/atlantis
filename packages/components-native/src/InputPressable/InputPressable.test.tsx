@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render, screen } from "@testing-library/react-native";
 import { InputPressable } from ".";
 import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 
@@ -118,6 +118,80 @@ describe("InputPressable", () => {
         <InputPressable suffix={{ label: "test" }} value={value} />,
       );
       expect(getByText(value, { includeHiddenElements: true })).toBeDefined();
+    });
+  });
+
+  describe("showMiniLabel", () => {
+    it("defaults to true", () => {
+      const props = { placeholder: "placeholder", value: "value" };
+      render(<InputPressable {...props} />);
+      expect(
+        screen.getByText("placeholder", { includeHiddenElements: true }),
+      ).toBeDefined();
+      expect(MockInputFieldWrapper).toHaveBeenCalledWith(
+        expect.objectContaining({
+          placeholderMode: "mini",
+        }),
+      );
+    });
+
+    describe("when true", () => {
+      it("renders the placeholder in its normal position when the input has no value", () => {
+        const props = { showMiniLabel: true, placeholder: "placeholder" };
+        render(<InputPressable {...props} />);
+        expect(
+          screen.getByText("placeholder", { includeHiddenElements: true }),
+        ).toBeDefined();
+        expect(MockInputFieldWrapper).toHaveBeenCalledWith(
+          expect.objectContaining({
+            placeholderMode: "normal",
+          }),
+        );
+      });
+
+      it("renders the placeholder as a mini label when the input has a value", () => {
+        const props = {
+          showMiniLabel: true,
+          placeholder: "placeholder",
+          value: "value",
+        };
+        render(<InputPressable {...props} />);
+        expect(
+          screen.getByText("placeholder", { includeHiddenElements: true }),
+        ).toBeDefined();
+        expect(MockInputFieldWrapper).toHaveBeenCalledWith(
+          expect.objectContaining({
+            placeholderMode: "mini",
+          }),
+        );
+      });
+    });
+
+    describe("when false", () => {
+      it("renders the placeholder in its normal position when the input has no value", () => {
+        const props = { showMiniLabel: false, placeholder: "placeholder" };
+        render(<InputPressable {...props} />);
+        expect(
+          screen.getByText("placeholder", { includeHiddenElements: true }),
+        ).toBeDefined();
+        expect(MockInputFieldWrapper).toHaveBeenCalledWith(
+          expect.objectContaining({
+            placeholderMode: "normal",
+          }),
+        );
+      });
+
+      it("does not render the placeholder when the input has a value", () => {
+        const props = {
+          showMiniLabel: false,
+          placeholder: "placeholder",
+          value: "value",
+        };
+        render(<InputPressable {...props} />);
+        expect(
+          screen.queryByText("placeholder", { includeHiddenElements: true }),
+        ).toBeNull();
+      });
     });
   });
 });

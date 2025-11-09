@@ -27,5 +27,10 @@ export const useStyles = buildThemedStyles(tokens => {
       paddingTop:
         (typographyStyles.defaultSize.fontSize || 0) + tokens["space-smallest"],
     },
+
+    multilineWithoutMiniLabel: {
+      paddingTop: tokens["space-base"] + tokens["space-smallest"],
+      paddingBottom: tokens["space-base"] + tokens["space-smallest"],
+    },
   };
 });

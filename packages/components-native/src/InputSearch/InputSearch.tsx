@@ -16,6 +16,7 @@ export interface InputSearchProps
     | "autoFocus"
     | "placeholder"
     | "prefix"
+    | "showMiniLabel"
   > {
   /**
    * A callback function that handles the update of the new value of the property value.

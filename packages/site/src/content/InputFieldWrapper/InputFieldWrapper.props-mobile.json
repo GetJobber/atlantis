@@ -58,19 +58,19 @@
           "name": "string"
         }
       },
-      "hasMiniLabel": {
+      "placeholderMode": {
         "defaultValue": {
-          "value": false
+          "value": "normal"
         },
-        "description": "",
-        "name": "hasMiniLabel",
+        "description": "Controls how the placeholder text is displayed.\n- normal: the placeholder text will be displayed in the normal placeholder position\n- mini: the placeholder text will float above the input value\n- hidden: the placeholder text will not be displayed",
+        "name": "placeholderMode",
         "parent": {
           "fileName": "../components-native/src/InputFieldWrapper/InputFieldWrapper.tsx",
           "name": "InputFieldWrapperProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "\"normal\" | \"mini\" | \"hidden\""
         }
       },
       "hasValue": {

@@ -27,7 +27,7 @@ export const PrefixAndSuffix = BasicTemplate.bind({});
 PrefixAndSuffix.args = {
   placeholder: "Invoice Total",
   prefix: { label: "$", icon: "invoice" },
-  hasMiniLabel: true,
+  placeholderMode: "mini",
 };
 
 export const Disabled = BasicTemplate.bind({});

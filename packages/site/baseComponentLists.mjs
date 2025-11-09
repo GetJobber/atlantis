@@ -119,6 +119,7 @@ const mobileComponents = [
   "Heading",
   "Icon",
   "IconButton",
+  "InputCurrency",
   "InputDate",
   "InputEmail",
   "InputFieldWrapper",
