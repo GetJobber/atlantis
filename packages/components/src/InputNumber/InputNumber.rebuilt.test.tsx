@@ -103,3 +103,23 @@ test("it should render element description directly without wrapping in paragrap
     HTMLParagraphElement,
   );
 });
+
+describe("hyphenated props", () => {
+  it("should not apply arbitrary data-* attributes to the input", () => {
+    const { getByRole } = render(
+      <InputNumber version={2} data-arbitrary="true" />,
+    );
+
+    const input = getByRole("textbox");
+    expect(input).not.toHaveAttribute("data-arbitrary");
+  });
+
+  it("should not apply hyphenated aria attributes to the input", () => {
+    const { getByRole } = render(
+      <InputNumber version={2} aria-expanded="true" />,
+    );
+
+    const input = getByRole("textbox");
+    expect(input).not.toHaveAttribute("aria-expanded");
+  });
+});
