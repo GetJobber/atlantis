@@ -19,19 +19,6 @@
           "name": "\"center\" | \"right\""
         }
       },
-      "autoComplete": {
-        "defaultValue": null,
-        "description": "HTML autocomplete attribute for browser autofill.",
-        "name": "autoComplete",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "autoFocus": {
         "defaultValue": null,
         "description": "",
@@ -407,19 +394,6 @@
         "required": false,
         "type": {
           "name": "Booleanish"
-        }
-      },
-      "ariaAutocomplete": {
-        "defaultValue": null,
-        "description": "Indicates the type of autocomplete interaction.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}",
-        "name": "ariaAutocomplete",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "AriaInputProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"inline\" | \"none\" | \"list\" | \"both\""
         }
       },
       "ariaRequired": {
