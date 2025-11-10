@@ -91,6 +91,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     onKeyDown: handleKeyDown,
     onKeyUp: props.onKeyUp,
     ref: mergeRefs([inputRefs, inputTextRef]),
+    ...props.dataAttributes,
   };
 
   return (

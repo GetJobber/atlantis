@@ -2247,4 +2247,15 @@ describe("AutocompleteRebuilt", () => {
       expect(onChange).toHaveBeenCalledWith([]);
     });
   });
+
+  describe("dataAttributes", () => {
+    it("should pass dataAttributes to the InputText", () => {
+      render(
+        <Wrapper dataAttributes={{ "data-test": "autocomplete-input" }} />,
+      );
+
+      const input = screen.getByRole("combobox");
+      expect(input).toHaveAttribute("data-test", "autocomplete-input");
+    });
+  });
 });

@@ -125,6 +125,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
           onBlur={handleBlur}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
+          {...props.dataAttributes}
         />
         <MaskElement
           isMasking={isMasking}

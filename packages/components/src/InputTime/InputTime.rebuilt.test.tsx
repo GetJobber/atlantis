@@ -284,5 +284,14 @@ describe("InputTimeRebuilt", () => {
       const input = screen.getByTestId("ATL-InputTime-input");
       expect(input).not.toHaveAttribute("aria-expanded");
     });
+
+    it("should apply data attributes via dataAttributes prop", () => {
+      render(
+        <InputTime version={2} dataAttributes={{ "data-test": "value" }} />,
+      );
+
+      const input = screen.getByTestId("ATL-InputTime-input");
+      expect(input).toHaveAttribute("data-test", "value");
+    });
   });
 });

@@ -586,6 +586,19 @@
           "name": "Booleanish"
         }
       },
+      "dataAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "dataAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "DataAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "{ [key: `data-${string}`]: string; }"
+        }
+      },
       "allowFreeForm": {
         "defaultValue": null,
         "description": "Whether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options * in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and\nWhether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.\nWhether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.",

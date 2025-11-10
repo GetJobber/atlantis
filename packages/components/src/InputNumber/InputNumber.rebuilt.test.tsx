@@ -122,4 +122,13 @@ describe("hyphenated props", () => {
     const input = getByRole("textbox");
     expect(input).not.toHaveAttribute("aria-expanded");
   });
+
+  it("should apply data attributes via dataAttributes prop", () => {
+    const { getByRole } = render(
+      <InputNumber version={2} dataAttributes={{ "data-test": "value" }} />,
+    );
+
+    const input = getByRole("textbox");
+    expect(input).toHaveAttribute("data-test", "value");
+  });
 });

@@ -141,5 +141,19 @@ describe("pattern", () => {
       const input = screen.getByRole("textbox");
       expect(input).not.toHaveAttribute("aria-expanded");
     });
+
+    it("should apply data attributes via dataAttributes prop", () => {
+      render(
+        <InputPhoneNumberRebuilt
+          version={2}
+          value=""
+          onChange={jest.fn()}
+          dataAttributes={{ "data-test": "value" }}
+        />,
+      );
+
+      const input = screen.getByRole("textbox");
+      expect(input).toHaveAttribute("data-test", "value");
+    });
   });
 });
