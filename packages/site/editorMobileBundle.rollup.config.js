@@ -20,6 +20,16 @@ export default {
     banner: "var global = global || {cancelAnimationFrame: () => {}};", // Some code in the mobile bundle is looking for this, so we have to stub it.
   },
   plugins: [
+    commonjs(),
+    nodePolyfills({ util: true, process: true }),
+    json(),
+    resolve({
+      dedupe: ["react", "react-dom"],
+    }),
+    replace({
+      "process.env.NODE_ENV": JSON.stringify("development"),
+      preventAssignment: true,
+    }),
     alias({
       entries: [
         { find: "react-native", replacement: "./src/MobileOverrides.jsx" },
@@ -64,16 +74,6 @@ export default {
           replacement: path.resolve(dirname, `../hooks/dist`),
         },
       ],
-    }),
-    commonjs(),
-    nodePolyfills({ util: true, process: true }),
-    json(),
-    resolve({
-      dedupe: ["react", "react-dom"],
-    }),
-    replace({
-      "process.env.NODE_ENV": JSON.stringify("development"),
-      preventAssignment: true,
     }),
     babel({
       babelHelpers: "bundled",
