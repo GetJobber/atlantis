@@ -69,7 +69,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
     });
 
     const descriptionIdentifier = `descriptionUUID--${id}`;
-    const hasDescription = props.description && !props.inline;
+    const descriptionVisible = props.description && !props.inline;
     const isInvalid = Boolean(props.error || props.invalid);
 
     return (
@@ -111,7 +111,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
           role={props.role}
           aria-label={props.ariaLabel}
           aria-describedby={
-            hasDescription ? descriptionIdentifier : props.ariaDescribedBy
+            descriptionVisible ? descriptionIdentifier : props.ariaDescribedBy
           }
           aria-invalid={isInvalid ? true : undefined}
           aria-controls={props.ariaControls}
