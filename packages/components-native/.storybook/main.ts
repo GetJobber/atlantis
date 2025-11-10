@@ -30,9 +30,6 @@ export default {
     config.plugins.push(injectReactNativeWebShims());
 
     return mergeConfig(config, {
-      optimizeDeps: {
-        include: ["react-native-reanimated", "@gorhom/bottom-sheet"],
-      },
       resolve: {
         alias: [
           {
