@@ -2150,6 +2150,45 @@ describe("AutocompleteRebuilt", () => {
 
       expect(onBlur).toHaveBeenCalled();
     });
+
+    it("does not call onBlur when clicking within the floating menu", async () => {
+      const onBlur = jest.fn();
+      const onHeaderClick = jest.fn();
+
+      render(
+        <Wrapper
+          onBlur={onBlur}
+          menu={[
+            {
+              type: "header",
+              label: "Interactive Header",
+              onClick: onHeaderClick,
+            },
+            menuOptions<OptionLike>(
+              [{ label: "First Option" }],
+              [
+                {
+                  type: "action",
+                  label: "First Action",
+                  onClick: jest.fn(),
+                },
+              ],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+
+      const headerButton = screen.getByRole("button", {
+        name: "Interactive Header",
+      });
+
+      await userEvent.click(headerButton);
+
+      expect(onBlur).not.toHaveBeenCalled();
+      expect(onHeaderClick).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe("ref", () => {
