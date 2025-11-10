@@ -6,7 +6,7 @@ export default {
   framework: {
     name: "@storybook/react-native-web-vite",
     options: {
-      modulesToTranspile: ["react-native-reanimated"],
+      modulesToTranspile: ["react-native-reanimated", "@gorhom/bottom-sheet"],
       pluginReactOptions: {
         babel: {
           plugins: [
