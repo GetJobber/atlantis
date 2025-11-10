@@ -1,8 +1,8 @@
-import type { ChangeEvent } from "react";
 import React, { forwardRef, useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
+import { useInputTimeActions } from "./hooks/useInputTimeActions";
 import type { InputTimeRebuiltProps } from "./InputTime.types";
-import { dateToTimeString, timeStringToDate } from "./utils/input-time-utils";
+import { dateToTimeString } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 import { mergeRefs } from "../utils/mergeRefs";
 
@@ -30,10 +30,39 @@ export const InputTimeRebuilt = forwardRef<
   const id = params.id || useId();
   const wrapperRef = React.useRef<HTMLDivElement>(null);
   const { inputStyle } = useFormFieldWrapperStyles(params);
+
+  const {
+    handleChangeEvent,
+    handleChange,
+    handleBlur,
+    handleClear,
+    handleFocus,
+    handleKeyDown,
+  } = useInputTimeActions({
+    onChange,
+    value,
+    readOnly,
+    disabled: params.disabled,
+    inputRef: internalRef,
+    onFocus: params.onFocus,
+    onBlur: params.onBlur,
+    onKeyDown: params.onKeyDown,
+  });
+
   const { setTypedTime } = useTimePredict({
     value,
     handleChange,
   });
+
+  // Kept outside the useInputTimeActions hook to avoid circular dependency via setTypedTime and handleChange
+  function handleKeyUp(event: React.KeyboardEvent<HTMLInputElement>) {
+    params.onKeyUp?.(event);
+    if (params.disabled || readOnly) return;
+
+    !isNaN(parseInt(event.key, 10)) && setTypedTime(prev => prev + event.key);
+  }
+
+  const isInvalid = Boolean(params.error || params.invalid);
 
   return (
     <FormFieldWrapper
@@ -72,47 +101,14 @@ export const InputTimeRebuilt = forwardRef<
         onChange={handleChangeEvent}
         onBlur={handleBlur}
         onFocus={handleFocus}
-        onKeyDown={params.onKeyDown}
-        onKeyUp={e => {
-          params.onKeyUp?.(e);
-          if (params.disabled || readOnly) return;
-
-          !isNaN(parseInt(e.key, 10)) && setTypedTime(prev => prev + e.key);
-        }}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
         data-testid="ATL-InputTime-input"
         aria-label={params.ariaLabel}
         aria-describedby={params.ariaDescribedBy}
-        aria-invalid={params.ariaInvalid}
+        aria-invalid={isInvalid ? true : undefined}
         aria-required={params.ariaRequired}
       />
     </FormFieldWrapper>
   );
-
-  function handleChangeEvent(event: ChangeEvent<HTMLInputElement>) {
-    handleChange(event.target.value);
-  }
-
-  function handleChange(newValue: string) {
-    onChange?.(timeStringToDate(newValue, value));
-  }
-
-  function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
-    params.onBlur?.(event);
-
-    if (internalRef.current) {
-      if (!internalRef.current.checkValidity()) {
-        internalRef.current.value = "";
-      }
-    }
-  }
-
-  function handleClear() {
-    // Clear the value and refocus without triggering blur event
-    onChange?.(undefined);
-    internalRef.current?.focus();
-  }
-
-  function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
-    params.onFocus?.(event);
-  }
 });

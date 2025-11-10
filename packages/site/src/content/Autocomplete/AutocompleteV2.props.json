@@ -560,19 +560,6 @@
           "name": "string"
         }
       },
-      "ariaInvalid": {
-        "defaultValue": null,
-        "description": "Indicates the entered value does not conform to the format expected.\nSupports boolean or specific error types: \"grammar\" | \"spelling\".\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-invalid}",
-        "name": "ariaInvalid",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "AriaInputProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean | \"false\" | \"true\" | \"grammar\" | \"spelling\""
-        }
-      },
       "ariaRequired": {
         "defaultValue": null,
         "description": "Indicates that user input is required before form submission.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}",

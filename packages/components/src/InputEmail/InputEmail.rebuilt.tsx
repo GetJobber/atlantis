@@ -49,7 +49,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const hasDescription = props.description && !props.inline;
-  const isInvalid = Boolean(props.ariaInvalid || props.error || props.invalid);
+  const isInvalid = Boolean(props.error || props.invalid);
 
   return (
     <FormFieldWrapper

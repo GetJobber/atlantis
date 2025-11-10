@@ -59,7 +59,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const hasDescription = props.description && !props.inline;
-  const isInvalid = Boolean(props.ariaInvalid || props.error || props.invalid);
+  const isInvalid = Boolean(props.error || props.invalid);
 
   // Shared props for both TextArea and TextInput
   const commonInputProps = {
