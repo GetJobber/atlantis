@@ -70,6 +70,7 @@ export const InputNumberRebuilt = forwardRef(
       size,
       minValue,
       maxValue,
+      dataAttributes,
       ...ariaNumberFieldProps
     } = props;
 
@@ -111,6 +112,7 @@ export const InputNumberRebuilt = forwardRef(
                 className={styles.input}
                 placeholder=" " // used for CSS minilabel
                 ref={inputRef}
+                {...dataAttributes}
               />
               <Label className={styles.label}>{placeholder}</Label>
             </div>

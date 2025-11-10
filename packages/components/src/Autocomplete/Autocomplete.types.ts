@@ -1,5 +1,5 @@
 import type { CSSProperties, Key, Ref, RefObject } from "react";
-import type { AriaInputProps } from "../sharedHelpers/types";
+import type { AriaInputProps, DataAttributes } from "../sharedHelpers/types";
 import type { FormFieldProps } from "../FormField";
 import type { InputTextRebuiltProps, InputTextRef } from "../InputText";
 
@@ -368,7 +368,8 @@ interface AutocompleteRebuiltBaseProps<
   Multiple extends boolean,
   SectionExtra extends object,
   ActionExtra extends object,
-> extends AriaInputPropsManaged {
+> extends AriaInputPropsManaged,
+    DataAttributes {
   version: 2;
 
   /**

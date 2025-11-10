@@ -123,6 +123,7 @@ function AutocompleteRebuiltInternal<
       open && activeIndex != null
         ? `${listboxId}-item-${activeIndex}`
         : undefined,
+    dataAttributes: props.dataAttributes,
   };
 
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (

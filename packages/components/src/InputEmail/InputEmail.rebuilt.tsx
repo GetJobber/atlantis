@@ -106,6 +106,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         onKeyDown={handleKeyDown}
         onKeyUp={props.onKeyUp}
         data-testid="ATL-InputEmail-input"
+        {...props.dataAttributes}
       />
       <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
       {props.children}

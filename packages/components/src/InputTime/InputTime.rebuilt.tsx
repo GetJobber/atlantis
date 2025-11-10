@@ -108,6 +108,7 @@ export const InputTimeRebuilt = forwardRef<
         aria-describedby={params.ariaDescribedBy}
         aria-invalid={isInvalid ? true : undefined}
         aria-required={params.ariaRequired}
+        {...params.dataAttributes}
       />
     </FormFieldWrapper>
   );
