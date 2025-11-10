@@ -6,7 +6,7 @@ export default {
   framework: {
     name: "@storybook/react-native-web-vite",
     options: {
-      modulesToTranspile: ["react-native-reanimated", "@gorhom/bottom-sheet"],
+      modulesToTranspile: ["@gorhom/bottom-sheet"],
       pluginReactOptions: {
         babel: {
           plugins: [
@@ -30,9 +30,6 @@ export default {
     config.plugins.push(injectReactNativeWebShims());
 
     return mergeConfig(config, {
-      optimizeDeps: {
-        include: ["react-native-reanimated", "@gorhom/bottom-sheet"],
-      },
       resolve: {
         alias: [
           {
