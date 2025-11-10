@@ -541,19 +541,6 @@
           "name": "ReactNode"
         }
       },
-      "children": {
-        "defaultValue": null,
-        "description": "Children elements to render inside the component.",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "RebuiltInputCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
       "maxLength": {
         "defaultValue": null,
         "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
