@@ -108,7 +108,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         data-testid="ATL-InputEmail-input"
       />
       <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
-      {props.children}
     </FormFieldWrapper>
   );
 });

@@ -284,11 +284,6 @@ export interface RebuiltInputCommonProps {
   readonly description?: ReactNode;
 
   /**
-   * Children elements to render inside the component.
-   */
-  readonly children?: ReactNode;
-
-  /**
    * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
    */
   readonly version: 2;

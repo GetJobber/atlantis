@@ -129,7 +129,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
           variation="spinner"
           visible={props.loading ?? false}
         />
-        {props.children}
       </>
     </FormFieldWrapper>
   );
