@@ -38,7 +38,6 @@
     "storybook:build": "storybook build --disable-telemetry"
   },
   "dependencies": {
-    "@gorhom/bottom-sheet": "^5.2.6",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-native-picker/picker": "^2.4.10",
     "autolinker": "^4.0.0",
@@ -54,6 +53,7 @@
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
+    "@gorhom/bottom-sheet": "^5.2.6",
     "@react-native-community/datetimepicker": "^8.4.5",
     "@react-native/babel-preset": "^0.81.1",
     "@storybook/addon-a11y": "^9.1.2",
