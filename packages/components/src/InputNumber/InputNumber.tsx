@@ -62,6 +62,7 @@ function InputNumberInternal(
   return (
     <FormField
       {...props}
+      clearable={"never"}
       type="number"
       inputRef={inputRef}
       onChange={handleChange}

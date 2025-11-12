@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.103.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.1...@jobber/components@6.103.2) (2025-11-07)
+
+
+### Bug Fixes
+
+* **components:** add clearable behavior to V1 inputs ([#2806](https://github.com/GetJobber/atlantis/issues/2806)) ([9a0f5c5](https://github.com/GetJobber/atlantis/commit/9a0f5c5ff14ae4e0e8bb193b3166150e20fa9ded))
+
+
+
+
+
 ## [6.103.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.0...@jobber/components@6.103.1) (2025-10-31)
 
 
