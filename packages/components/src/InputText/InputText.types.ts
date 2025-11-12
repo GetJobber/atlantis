@@ -41,12 +41,6 @@ export interface InputTextRebuiltProps
   readonly loading?: boolean;
   readonly onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   readonly children?: React.ReactNode;
-  /**
-   * Controls the visibility of the clear button on the input.
-   * - "never": never show the clear button
-   * - "while-editing": show while the field has value and is focused
-   * - "always": show when the field has value, even when blurred
-   */
   readonly clearable?: Clearable;
   /**
    * Use this when you're expecting a long answer.
