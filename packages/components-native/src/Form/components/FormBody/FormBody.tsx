@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useStyles } from "./FormBody.style";
 import { useScreenInformation } from "../../hooks/useScreenInformation";
 import type { FormActionBarProps } from "../FormActionBar";
@@ -25,13 +26,12 @@ export function FormBody({
   setSaveButtonHeight,
   saveButtonOffset,
 }: FormBodyProps): JSX.Element {
-  const paddingBottom = useBottomPadding();
-  const fullViewPadding = useMemo(() => ({ paddingBottom }), [paddingBottom]);
+  const { bottom: paddingBottom } = useSafeAreaInsets();
   const styles = useStyles();
 
   return (
     <>
-      <View style={[styles.container]}>
+      <View style={styles.container}>
         {children}
         {shouldRenderActionBar && (
           <FormActionBar
@@ -47,9 +47,9 @@ export function FormBody({
         )}
       </View>
 
-      {shouldRenderActionBar && !saveButtonOffset && (
+      {!saveButtonOffset && (
         <View
-          style={[fullViewPadding, styles.safeArea]}
+          style={[{ paddingBottom }, styles.safeArea]}
           testID="ATL-FormSafeArea"
         />
       )}
