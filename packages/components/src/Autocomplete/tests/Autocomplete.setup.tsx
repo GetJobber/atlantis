@@ -127,7 +127,10 @@ export function Wrapper<T extends OptionLike>({
       value={value}
       onChange={onChange ?? setValue}
       inputValue={inputValue}
-      onInputChange={onInputChange ?? setInputValue}
+      onInputChange={(v: string) => {
+        setInputValue(v);
+        onInputChange?.(v);
+      }}
       onBlur={onBlur}
       onFocus={onFocus}
       clearable={clearable}

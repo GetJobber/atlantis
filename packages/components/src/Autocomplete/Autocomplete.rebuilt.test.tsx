@@ -2130,8 +2130,29 @@ describe("AutocompleteRebuilt", () => {
   });
 
   describe("clearable", () => {
-    it("shows clear button when clearable=always and input has value", async () => {
+    it("clears a partial term", async () => {
       const onChange = jest.fn();
+      const onInputChange = jest.fn();
+
+      render(
+        <Wrapper
+          initialInputValue="Two"
+          clearable="always"
+          onChange={onChange}
+          onInputChange={onInputChange}
+        />,
+      );
+
+      await userEvent.click(await screen.findByLabelText("Clear input"));
+
+      expect(onInputChange).toHaveBeenCalledTimes(1);
+      expect(onInputChange).toHaveBeenCalledWith("");
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("clears a selected value and term", async () => {
+      const onChange = jest.fn();
+      const onInputChange = jest.fn();
 
       render(
         <Wrapper
@@ -2139,29 +2160,16 @@ describe("AutocompleteRebuilt", () => {
           initialInputValue="Two"
           clearable="always"
           onChange={onChange}
+          onInputChange={onInputChange}
         />,
       );
 
-      expect(await screen.findByLabelText("Clear input")).toBeVisible();
+      await userEvent.click(await screen.findByLabelText("Clear input"));
 
-      await blurAutocomplete();
-      expect(screen.getByLabelText("Clear input")).toBeVisible();
-
-      await userEvent.click(screen.getByLabelText("Clear input"));
-
-      await waitFor(() => {
-        expect(onChange).toHaveBeenCalledTimes(1);
-      });
-    });
-
-    it("shows clear only while editing for clearable=while-editing", async () => {
-      render(<Wrapper initialInputValue="Two" clearable="while-editing" />);
-
-      await focusAutocomplete();
-      expect(await screen.findByLabelText("Clear input")).toBeVisible();
-
-      await blurAutocomplete();
-      expect(screen.queryByLabelText("Clear input")).not.toBeInTheDocument();
+      expect(onInputChange).toHaveBeenCalledTimes(1);
+      expect(onInputChange).toHaveBeenCalledWith("");
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith(undefined);
     });
   });
 
