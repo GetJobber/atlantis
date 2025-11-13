@@ -51,22 +51,22 @@
     }
 
     /* options */
-    option {
+    & option {
       padding: var(--space-smaller) 0;
       color: var(--color-text);
       text-indent: var(--space-small);
       cursor: pointer;
     }
 
-    option:hover,
-    option:focus,
-    option:focus-visible,
-    option:checked {
+    & option:hover,
+    & option:focus,
+    & option:focus-visible,
+    & option:checked {
       background-color: var(--color-surface--hover);
     }
 
     /* optgroup headers */
-    optgroup {
+    & optgroup {
       padding: var(--space-small) 0 0 0;
       color: var(--color-heading);
       font-size: var(--typography--fontSize-base);
@@ -77,28 +77,28 @@
     }
 
     /* Divider directly under the group label */
-    optgroup option:first-child {
+    & optgroup option:first-child {
       border-top: var(--border-base) solid var(--color-border);
     }
 
     /* Disabled groups and their options */
-    optgroup[disabled] {
+    & optgroup[disabled] {
       color: var(--color-disabled);
     }
-    optgroup[disabled] option,
-    option[disabled] {
+    & optgroup[disabled] option,
+    & option[disabled] {
       color: var(--color-disabled);
       cursor: default;
     }
 
-    optgroup[disabled] option:focus,
-    optgroup[disabled] option:focus-visible,
-    optgroup[disabled] option:checked,
-    optgroup[disabled] option:hover,
-    option[disabled]:focus,
-    option[disabled]:focus-visible,
-    option[disabled]:checked,
-    option[disabled]:hover {
+    & optgroup[disabled] option:focus,
+    & optgroup[disabled] option:focus-visible,
+    & optgroup[disabled] option:checked,
+    & optgroup[disabled] option:hover,
+    & option[disabled]:focus,
+    & option[disabled]:focus-visible,
+    & option[disabled]:checked,
+    & option[disabled]:hover {
       background-color: transparent;
     }
 
