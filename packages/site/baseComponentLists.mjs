@@ -2,6 +2,9 @@
  * List of components to build documentation for.
  * There is a future in which this list is dynamically generated from an 'ls' command or similar, but being
  * basic and explicit is a good starting point.
+ *
+ * Note: AtlantisContext is excluded because it doesn't export a Provider component,
+ * only a raw Context object. Its props are manually maintained.
  */
 const components = [
   "AnimatedPresence",

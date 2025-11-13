@@ -1,0 +1,190 @@
+import { AtlantisContext } from "@jobber/components/AtlantisContext";
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Contexts/AtlantisContext" component={AtlantisContext} />
+
+## Configuration and Usage
+
+`AtlantisContext` is a React context that allows you to configure how Atlantis
+components behave across your application. Unlike `AtlantisThemeContext`,
+`AtlantisContext` does not include a built-in provider component - you use
+React's standard `Context.Provider` pattern directly.
+
+Both web and mobile platforms share the same core configuration properties, with
+some platform-specific additions for mobile (such as `isOnline`, `onLogError`,
+`headerHeight`, and `setHeaderHeight`).
+
+### Key configuration options
+
+- **dateFormat**: Controls how dates are displayed (uses date-fns format tokens)
+- **timeFormat**: Controls how times are displayed
+- **timeZone**: The timezone for date/time conversions
+- **locale**: The locale for internationalization (affects strings, date
+  formats, etc.)
+- **currencySymbol**: The currency symbol to use in currency inputs
+- **floatSeparators**: Decimal and thousand separators for numeric formatting
+- **firstDayOfWeek** (web only): Which day starts the week (0 = Sunday, 1 =
+  Monday, etc.)
+
+### Usage for web
+
+```tsx
+import {
+  AtlantisContext,
+  atlantisContextDefaultValues,
+  useAtlantisContext,
+} from "@jobber/components/AtlantisContext";
+
+function App() {
+  return (
+    <AtlantisContext.Provider
+      value={{
+        ...atlantisContextDefaultValues,
+        dateFormat: "MM/dd/yyyy",
+        timeFormat: "HH:mm",
+        locale: "en-US",
+        currencySymbol: "$",
+        firstDayOfWeek: 1, // Start week on Monday
+      }}
+    >
+      <YourApp />
+    </AtlantisContext.Provider>
+  );
+}
+
+function YourComponent() {
+  const { dateFormat, locale, currencySymbol } = useAtlantisContext();
+
+  // Use these values in your component
+  return <div>Current locale: {locale}</div>;
+}
+```
+
+### Usage for mobile
+
+```tsx
+import {
+  AtlantisContext,
+  atlantisContextDefaultValues,
+  useAtlantisContext,
+} from "@jobber/components-native/AtlantisContext";
+
+function App() {
+  return (
+    <AtlantisContext.Provider
+      value={{
+        ...atlantisContextDefaultValues,
+        dateFormat: "MM/dd/yyyy",
+        timeFormat: "HH:mm",
+        locale: "en-US",
+        currencySymbol: "$",
+        isOnline: true,
+        onLogError: message => console.error(message),
+        headerHeight: 64,
+        setHeaderHeight: height => {
+          // Update header height
+        },
+      }}
+    >
+      <YourApp />
+    </AtlantisContext.Provider>
+  );
+}
+
+function YourComponent() {
+  const { dateFormat, locale, isOnline } = useAtlantisContext();
+
+  // Use these values in your component
+  return <Text>Current locale: {locale}</Text>;
+}
+```
+
+### Common use cases
+
+#### Changing the first day of the week (web)
+
+Many regions start their calendar week on Monday instead of Sunday. You can
+configure this using `firstDayOfWeek`:
+
+```tsx
+<AtlantisContext.Provider
+  value={{
+    ...atlantisContextDefaultValues,
+    firstDayOfWeek: 1, // Monday
+  }}
+>
+  <DatePicker selected={date} onChange={setDate} />
+</AtlantisContext.Provider>
+```
+
+Then, in components like InputDate, we will use the provided Context value as
+the configuration for displayed calendar picker.
+
+#### Configuring date and time formats
+
+Different regions display dates and times differently. Configure the formats
+that match your users' expectations:
+
+```tsx
+<AtlantisContext.Provider
+  value={{
+    ...atlantisContextDefaultValues,
+    dateFormat: "dd/MM/yyyy", // European format
+    timeFormat: "HH:mm", // 24-hour format
+    locale: "en-GB",
+  }}
+>
+  <YourApp />
+</AtlantisContext.Provider>
+```
+
+#### Setting currency symbols
+
+For applications dealing with different currencies:
+
+```tsx
+<AtlantisContext.Provider
+  value={{
+    ...atlantisContextDefaultValues,
+    currencySymbol: "€",
+    floatSeparators: { decimal: ",", group: "." }, // European format
+  }}
+>
+  <InputCurrency />
+</AtlantisContext.Provider>
+```
+
+### Default values
+
+If you don't provide a context provider, Atlantis components will use these
+default values:
+
+**Web:**
+
+- `dateFormat`: "P" (localized date)
+- `timeFormat`: "p" (localized time)
+- `timeZone`: System timezone
+- `locale`: "en"
+- `currencySymbol`: "$"
+- `floatSeparators`: `{ decimal: ".", group: "," }`
+- `firstDayOfWeek`: 0 (Sunday)
+
+**Mobile:**
+
+- Same as web, plus:
+- `isOnline`: true
+- `onLogError`: no-op function
+- `headerHeight`: 0
+- `setHeaderHeight`: no-op function
+
+### Platform differences
+
+The mobile version of `AtlantisContext` includes additional properties not
+available on web:
+
+- **isOnline**: Determines how components behave when the app is online or
+  offline
+- **onLogError**: Callback for logging errors (e.g., to Rollbar)
+- **headerHeight**: The height of the app header, used for positioning
+  calculations
+- **setHeaderHeight**: Method to update the header height dynamically

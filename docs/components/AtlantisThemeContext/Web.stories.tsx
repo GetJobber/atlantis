@@ -13,7 +13,7 @@ import { Flex } from "@jobber/components/Flex";
 import { Box } from "@jobber/components/Box";
 
 export default {
-  title: "Components/Themes/AtlantisThemeContext/Web",
+  title: "Components/Contexts/AtlantisThemeContext/Web",
   component: AtlantisThemeContextProvider,
   parameters: {
     viewMode: "story",

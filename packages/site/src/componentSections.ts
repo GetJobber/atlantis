@@ -11,6 +11,6 @@ export const componentSections = [
   "Status & Feedback",
   "Text & Typography",
   "Deprecated",
-  "Themes",
+  "Contexts",
   "Utilities",
 ];

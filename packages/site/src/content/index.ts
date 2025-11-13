@@ -4,6 +4,7 @@ import ActionLabelContent from "./ActionLabel";
 import ActivityIndicatorContent from "./ActivityIndicator";
 import AnimatedPresenceContent from "./AnimatedPresence";
 import AnimatedSwitcherContent from "./AnimatedSwitcher";
+import AtlantisContextContent from "./AtlantisContext";
 import AvatarContent from "./Avatar";
 import AutoLinkContent from "./AutoLink";
 import AutoCompleteContent from "./Autocomplete";
@@ -120,6 +121,9 @@ export const SiteContent: Record<string, ContentExport> = {
   },
   AnimatedSwitcher: {
     ...AnimatedSwitcherContent,
+  },
+  AtlantisContext: {
+    ...AtlantisContextContent,
   },
   AtlantisThemeContext: {
     ...AtlantisThemeContextContent,

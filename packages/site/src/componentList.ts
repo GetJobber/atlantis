@@ -40,11 +40,24 @@ export const componentList = [
     sections: ["Utilities"],
   },
   {
+    title: "AtlantisContext",
+    to: "/components/AtlantisContext",
+    imageURL: "/AtlantisThemeContext.png",
+    additionalMatches: [
+      "Locale",
+      "Date Format",
+      "Time Format",
+      "Currency",
+      "Configuration",
+    ],
+    sections: ["Contexts"],
+  },
+  {
     title: "AtlantisThemeContext",
     to: "/components/AtlantisThemeContext",
     imageURL: "/AtlantisThemeContext.png",
     additionalMatches: ["Theme", "Dark Mode", "Light Mode"],
-    sections: ["Themes"],
+    sections: ["Contexts"],
   },
   {
     title: "Autocomplete",
