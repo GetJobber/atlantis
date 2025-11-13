@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.103.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.2...@jobber/components@6.103.3) (2025-11-13)
+
+
+### Bug Fixes
+
+* **components:** Use symbol in Select css nested selectors ([#2812](https://github.com/GetJobber/atlantis/issues/2812)) ([66f1e29](https://github.com/GetJobber/atlantis/commit/66f1e295dfa8f2590dbf23096fdf55ab3e505aef))
+
+
+
+
+
 ## [6.103.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.1...@jobber/components@6.103.2) (2025-11-07)
 
 
