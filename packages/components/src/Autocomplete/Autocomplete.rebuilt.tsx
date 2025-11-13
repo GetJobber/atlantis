@@ -116,10 +116,10 @@ function AutocompleteRebuiltInternal<
     suffix: props.suffix,
     ...(props.readOnly ? {} : composedReferenceProps),
     role: "combobox",
-    "aria-autocomplete": "list",
-    "aria-expanded": open ? true : false,
-    "aria-controls": listboxId,
-    "aria-activedescendant":
+    ariaAutocomplete: "list",
+    ariaExpanded: open ? true : false,
+    ariaControls: listboxId,
+    ariaActiveDescendant:
       open && activeIndex != null
         ? `${listboxId}-item-${activeIndex}`
         : undefined,

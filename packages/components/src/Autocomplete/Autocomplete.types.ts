@@ -1,6 +1,24 @@
 import type { CSSProperties, Key, Ref, RefObject } from "react";
+import type { AriaInputProps } from "../sharedHelpers/types";
 import type { FormFieldProps } from "../FormField";
 import type { InputTextRebuiltProps, InputTextRef } from "../InputText";
+
+/**
+ * ARIA attributes for Autocomplete with managed/orchestrated behavior.
+ * Certain ARIA attributes are controlled internally by Autocomplete's
+ * state management and floating-ui integration and shouldn't be overridden.
+ *
+ * Omits: ariaControls, ariaExpanded, ariaActiveDescendant, ariaAutocomplete
+ * (These are managed by the component's internal state/floating-ui)
+ */
+export interface AriaInputPropsManaged
+  extends Omit<
+    AriaInputProps,
+    | "ariaControls"
+    | "ariaExpanded"
+    | "ariaActiveDescendant"
+    | "ariaAutocomplete"
+  > {}
 
 // Extra props shape used across action/section/header/footer generics
 export type ExtraProps = Record<string, unknown>;
@@ -350,7 +368,7 @@ interface AutocompleteRebuiltBaseProps<
   Multiple extends boolean,
   SectionExtra extends object,
   ActionExtra extends object,
-> {
+> extends AriaInputPropsManaged {
   version: 2;
 
   /**

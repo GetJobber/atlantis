@@ -22,7 +22,6 @@ export function useInputTextActions({
   onKeyDown,
 }: useInputTextActionsProps) {
   function handleClear() {
-    handleBlur();
     onChange && onChange("");
     inputRef?.current?.focus();
   }
@@ -52,7 +51,9 @@ export function useInputTextActions({
     onFocus?.(event);
   }
 
-  function handleBlur(event?: FocusEvent) {
+  function handleBlur(
+    event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
     onBlur?.(event);
   }
 

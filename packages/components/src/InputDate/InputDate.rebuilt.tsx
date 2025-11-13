@@ -60,7 +60,6 @@ export const InputDateRebuilt = forwardRef<
       <div onClick={onClick}>
         <InputText
           aria-describedby={activatorProps.ariaDescribedBy}
-          aria-invalid={activatorProps.ariaInvalid === "true" ? true : false}
           aria-labelledby={activatorProps.ariaLabelledBy}
           aria-required={activatorProps.ariaRequired === "true" ? true : false}
           id={activatorProps.id}

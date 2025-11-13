@@ -5,6 +5,8 @@ import { Option } from "./Option";
 import { SelectRebuilt } from "./Select.rebuilt";
 import { OptionGroup } from "./OptionGroup";
 
+// Max statements isn't applicable. Test coverage is more valuable.
+// eslint-disable-next-line max-statements
 describe("SelectRebuilt", () => {
   it("renders a SelectRebuilt with no options", () => {
     const { container } = render(<SelectRebuilt version={2} />);
@@ -251,7 +253,7 @@ describe("SelectRebuilt", () => {
     });
   });
 
-  describe("inputRef", () => {
+  describe("inputRef (deprecated)", () => {
     it("forwards inputRef to the select element", () => {
       const ref = React.createRef<HTMLSelectElement>();
 
@@ -281,6 +283,57 @@ describe("SelectRebuilt", () => {
 
       ref.current?.blur();
       expect(selectElement).not.toHaveFocus();
+    });
+  });
+
+  describe("ref (modern)", () => {
+    it("forwards ref to the select element", () => {
+      const ref = React.createRef<HTMLSelectElement>();
+
+      render(
+        <SelectRebuilt version={2} ref={ref}>
+          <Option>Foo</Option>
+        </SelectRebuilt>,
+      );
+
+      expect(ref.current).toBeInstanceOf(HTMLSelectElement);
+    });
+
+    it("can access native select methods through ref", () => {
+      const ref = React.createRef<HTMLSelectElement>();
+
+      render(
+        <SelectRebuilt version={2} ref={ref}>
+          <Option>Foo</Option>
+        </SelectRebuilt>,
+      );
+
+      const selectElement = screen.getByRole("combobox");
+      expect(ref.current).toBe(selectElement);
+
+      ref.current?.focus();
+      expect(selectElement).toHaveFocus();
+
+      ref.current?.blur();
+      expect(selectElement).not.toHaveFocus();
+    });
+
+    it("merges both inputRef and ref correctly", () => {
+      const inputRef = React.createRef<HTMLSelectElement>();
+      const modernRef = React.createRef<HTMLSelectElement>();
+
+      render(
+        <SelectRebuilt version={2} inputRef={inputRef} ref={modernRef}>
+          <Option>Foo</Option>
+        </SelectRebuilt>,
+      );
+
+      const selectElement = screen.getByRole("combobox");
+
+      // Both refs should point to the same element
+      expect(inputRef.current).toBe(selectElement);
+      expect(modernRef.current).toBe(selectElement);
+      expect(inputRef.current).toBe(modernRef.current);
     });
   });
 

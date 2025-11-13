@@ -15,3 +15,4 @@ styles.css.backup
 
 # Ignore local Cursor rules
 .cursor/rules/local-*
+.cursor/worktrees.json

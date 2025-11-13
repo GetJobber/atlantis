@@ -97,8 +97,7 @@ describe("InputEmailRebuilt", () => {
       expect(blurHandler).toHaveBeenCalledTimes(1);
     });
 
-    it("should call onChange with undefined, call onBlur, and focus input when cleared", async () => {
-      const changeHandler = jest.fn();
+    it("should not call onBlur when cleared programmatically", async () => {
       const blurHandler = jest.fn();
       const ref = React.createRef<HTMLInputElement>();
       const initialValue = "test@example.com";
@@ -107,7 +106,6 @@ describe("InputEmailRebuilt", () => {
         <InputEmailRebuilt
           version={2}
           value={initialValue}
-          onChange={changeHandler}
           onBlur={blurHandler}
           clearable="always"
           ref={ref}
@@ -117,8 +115,28 @@ describe("InputEmailRebuilt", () => {
       const clearButton = screen.getByTestId("ATL-FormField-clearButton");
       await userEvent.click(clearButton);
 
+      expect(blurHandler).not.toHaveBeenCalled();
+    });
+
+    it("should call onChange with undefined, and focus input when cleared", async () => {
+      const changeHandler = jest.fn();
+      const ref = React.createRef<HTMLInputElement>();
+      const initialValue = "test@example.com";
+
+      render(
+        <InputEmailRebuilt
+          version={2}
+          value={initialValue}
+          onChange={changeHandler}
+          clearable="always"
+          ref={ref}
+        />,
+      );
+
+      const clearButton = screen.getByTestId("ATL-FormField-clearButton");
+      await userEvent.click(clearButton);
+
       expect(changeHandler).toHaveBeenCalledWith("");
-      expect(blurHandler).toHaveBeenCalledTimes(1);
     });
   });
 

@@ -1,33 +1,58 @@
 import type { ReactNode } from "react";
 import type React from "react";
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type {
+  AriaInputProps,
+  FocusEvents,
+  InputConstraintProps,
+  KeyboardEvents,
+} from "../sharedHelpers/types";
 
 export type InputNumberVersion = 1 | 2 | undefined;
 
 export interface InputNumberRebuiltProps
   extends Omit<CommonFormFieldProps, "version">,
-    Pick<
-      FormFieldProps,
-      "onFocus" | "onBlur" | "inputRef" | "readonly" | "size"
-    > {
+    Omit<AriaInputProps, "ariaAutocomplete">,
+    FocusEvents<HTMLInputElement>,
+    KeyboardEvents<HTMLInputElement>,
+    InputConstraintProps {
   readonly align?: "center" | "right"; // todo add left and make it default
-  readonly autocomplete?: boolean;
+
   readonly autoFocus?: boolean;
   readonly defaultValue?: number;
   readonly description?: ReactNode;
   readonly error?: string;
   readonly formatOptions?: Intl.NumberFormatOptions;
-  readonly identifier?: string;
+
+  /**
+   * The ID of the input element.
+   */
+  readonly id?: string;
+
   readonly inline?: boolean;
   readonly invalid?: boolean;
   readonly maxValue?: number;
   readonly minValue?: number;
+
+  /**
+   * Callback for value changes.
+   * @param newValue - The new numeric value
+   * @param event - Optional change event
+   */
   readonly onChange?: (
     newValue: number,
     event?: React.ChangeEvent<HTMLInputElement>,
   ) => void;
+
+  /**
+   * Whether the input is read-only.
+   */
+  readonly readOnly?: boolean;
+
   readonly showMiniLabel?: boolean;
+  readonly size?: FormFieldProps["size"];
   readonly value?: number;
+
   /**
    * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
    */

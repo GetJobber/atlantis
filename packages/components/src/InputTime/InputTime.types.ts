@@ -1,4 +1,11 @@
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type {
+  AriaInputProps,
+  FocusEvents,
+  InputConstraintProps,
+  InputLengthConstraint,
+  KeyboardEvents,
+} from "../sharedHelpers/types";
 
 export interface InputTimeProps
   extends Pick<
@@ -50,13 +57,54 @@ export interface InputTimeLegacyProps extends InputTimeProps {
 }
 
 export interface InputTimeRebuiltProps
-  extends Omit<
-    InputTimeProps,
-    "defaultValue" | "version" | "validations" | "onValidation"
-  > {
+  extends Pick<
+      InputTimeProps,
+      | "id"
+      | "align"
+      | "description"
+      | "disabled"
+      | "invalid"
+      | "inline"
+      | "loading"
+      | "name"
+      | "placeholder"
+      | "size"
+      | "clearable"
+      | "value"
+      | "onChange"
+    >,
+    AriaInputProps,
+    FocusEvents<HTMLInputElement>,
+    KeyboardEvents<HTMLInputElement>,
+    InputLengthConstraint,
+    InputConstraintProps {
   /**
    * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
    */
   version: 2;
+
+  /**
+   * Error message to display.
+   */
   error?: string;
+
+  /**
+   * Whether the input is read-only.
+   */
+  readonly readOnly?: boolean;
+
+  /**
+   * HTML autocomplete attribute for browser autofill.
+   */
+  readonly autoComplete?: string;
+
+  /**
+   * @deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.
+   */
+  readonly inputRef?: FormFieldProps["inputRef"];
+
+  /**
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
+   */
+  readonly onEnter?: FormFieldProps["onEnter"];
 }

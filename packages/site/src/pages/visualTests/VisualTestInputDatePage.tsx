@@ -56,7 +56,6 @@ export const VisualTestInputDatePage = () => {
                   value={date3}
                   onChange={setDate3}
                   placeholder="MM/DD/YYYY"
-                  required={true}
                   invalid={!date3}
                   description={!date3 ? "Please select a date" : undefined}
                 />

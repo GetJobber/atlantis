@@ -67,7 +67,7 @@ describe("InputTimeRebuilt", () => {
     expect(blurHandler).toHaveBeenCalledTimes(1);
   });
 
-  it("should call onChange with undefined, call onBlur, and focus input when cleared", async () => {
+  it("should call onChange with undefined and focus input when cleared", async () => {
     const startDate = createDate(10, 15);
     const changeHandler = jest.fn();
     const blurHandler = jest.fn();
@@ -89,9 +89,35 @@ describe("InputTimeRebuilt", () => {
     await userEvent.click(clearButton);
 
     expect(changeHandler).toHaveBeenCalledWith(undefined);
-    expect(blurHandler).toHaveBeenCalledTimes(1);
+    // onBlur should NOT be called when clearing - that was a bug
+    expect(blurHandler).not.toHaveBeenCalled();
 
     expect(document.activeElement).toBe(inputRef.current);
+  });
+
+  it("forwards modern ref to the input element", () => {
+    const ref = React.createRef<HTMLInputElement>();
+
+    render(<InputTime version={2} ref={ref} />);
+
+    const input = screen.getByTestId("ATL-InputTime-input");
+    expect(ref.current).toBe(input);
+    expect(ref.current).toBeInstanceOf(HTMLInputElement);
+  });
+
+  it("can access native input methods through modern ref", () => {
+    const ref = React.createRef<HTMLInputElement>();
+
+    render(<InputTime version={2} ref={ref} />);
+
+    const input = screen.getByTestId("ATL-InputTime-input");
+    expect(ref.current).toBe(input);
+
+    ref.current?.focus();
+    expect(input).toHaveFocus();
+
+    ref.current?.blur();
+    expect(input).not.toHaveFocus();
   });
 
   it("should display the error message when error prop is provided", () => {
@@ -225,7 +251,7 @@ describe("InputTimeRebuilt", () => {
       expect(mockSetTypedTime).not.toHaveBeenCalled();
     });
 
-    it("should not call setTypedTime if the input is readonly", async () => {
+    it("should not call setTypedTime if the input is readOnly", async () => {
       const handleChange = jest.fn();
 
       render(
@@ -233,7 +259,7 @@ describe("InputTimeRebuilt", () => {
           version={2}
           value={initialValue}
           onChange={handleChange}
-          readonly
+          readOnly
         />,
       );
       const input = screen.getByTestId("ATL-InputTime-input");
