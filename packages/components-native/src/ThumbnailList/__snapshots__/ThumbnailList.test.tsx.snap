@@ -161,6 +161,11 @@ exports[`renders a thumbnail component with attachments 1`] = `
         }
       }
       enablePanDownToClose={true}
+      handleStyle={
+        {
+          "display": "none",
+        }
+      }
       keyboardBlurBehavior="restore"
       style={
         {

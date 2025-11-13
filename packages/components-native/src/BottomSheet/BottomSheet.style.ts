@@ -33,5 +33,8 @@ export const useStyles = buildThemedStyles(tokens => {
       marginTop: tokens["space-small"],
       marginBottom: tokens["space-smaller"],
     },
+    handle: {
+      display: "none",
+    },
   };
 });

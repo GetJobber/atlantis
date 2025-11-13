@@ -139,6 +139,7 @@ export function BottomSheet({
       enablePanDownToClose={true}
       onChange={handleChange}
       keyboardBlurBehavior="restore"
+      handleStyle={styles.handle}
     >
       <BottomSheetView
         style={styles.content}
