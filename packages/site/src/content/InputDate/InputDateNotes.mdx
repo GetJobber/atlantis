@@ -5,3 +5,14 @@ would be relatively feasible to add in the future:
 
 - allow for the concept of a date-range selection
 - allow for certain days or dates to be excluded from selection
+
+### Web
+
+InputDate pairs with the
+[AtlantisContext](https://atlantis.getjobber.com/components/AtlantisContext),
+using the provided `firstDayOfWeek` value to determine what day the calendar
+date picking UI will use to start weeks.
+
+To leverage this behavior, implement the
+[AtlantisContext](https://atlantis.getjobber.com/components/AtlantisThemeContext)
+at the root of the application, populated with the applicable value.

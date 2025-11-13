@@ -10,7 +10,7 @@ import {
 } from "@jobber/components-native";
 
 export default {
-  title: "Components/Themes/AtlantisThemeContext/Mobile",
+  title: "Components/Contexts/AtlantisThemeContext/Mobile",
   component: AtlantisThemeContextProvider,
   parameters: {
     viewMode: "story",

@@ -44,7 +44,7 @@ return (
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-themes-atlantisthemecontext--docs`,
+        `?path=/docs/components-contexts-atlantisthemecontext--docs`,
       ),
     },
   ],

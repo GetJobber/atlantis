@@ -1,0 +1,88 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/AtlantisContext/AtlantisContext.tsx",
+    "description": "",
+    "displayName": "AtlantisContext",
+    "methods": [],
+    "props": {
+      "dateFormat": {
+        "defaultValue": {
+          "value": "\"P\""
+        },
+        "description": "The date format Atlantis components would use",
+        "name": "dateFormat",
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "timeFormat": {
+        "defaultValue": {
+          "value": "\"p\""
+        },
+        "description": "The time format Atlantis components would use",
+        "name": "timeFormat",
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "timeZone": {
+        "defaultValue": {
+          "value": "Intl.DateTimeFormat().resolvedOptions().timeZone"
+        },
+        "description": "Time zone used in converting the date and time formats",
+        "name": "timeZone",
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "floatSeparators": {
+        "defaultValue": {
+          "value": "{ group: \",\", decimal: \".\" }"
+        },
+        "description": "Grabs the decimal separator and group separator based on locale",
+        "name": "floatSeparators",
+        "required": true,
+        "type": {
+          "name": "Record<\"decimal\" | \"group\", string>"
+        }
+      },
+      "currencySymbol": {
+        "defaultValue": {
+          "value": "\"$\""
+        },
+        "description": "The currency symbol Atlantis components will use",
+        "name": "currencySymbol",
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "locale": {
+        "defaultValue": {
+          "value": "\"en\""
+        },
+        "description": "Change the locale of the components. This updates the strings that comes with the components, updates the date and time formats, and/or the native 3rd-party packages.",
+        "name": "locale",
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "firstDayOfWeek": {
+        "defaultValue": {
+          "value": "0"
+        },
+        "description": "Sets which day is considered the first day of the week in a calendar. 0 = Sunday, 1 = Monday, etc.",
+        "name": "firstDayOfWeek",
+        "required": true,
+        "type": {
+          "name": "DayOfWeek"
+        }
+      }
+    }
+  }
+]
