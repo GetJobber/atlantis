@@ -12,10 +12,9 @@ export const useStyles = buildThemedStyles(tokens => {
     background: {
       borderTopLeftRadius: modalBorderRadius,
       borderTopRightRadius: modalBorderRadius,
-      paddingTop: tokens["space-small"],
     },
     content: {
-      paddingBottom: tokens["space-small"],
+      paddingVertical: tokens["space-small"],
     },
     footer: {
       paddingBottom: tokens["space-small"],

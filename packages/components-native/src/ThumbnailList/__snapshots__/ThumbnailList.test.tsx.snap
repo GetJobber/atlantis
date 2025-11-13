@@ -157,7 +157,6 @@ exports[`renders a thumbnail component with attachments 1`] = `
         {
           "borderTopLeftRadius": 24,
           "borderTopRightRadius": 24,
-          "paddingTop": 8,
         }
       }
       enablePanDownToClose={true}
@@ -178,7 +177,7 @@ exports[`renders a thumbnail component with attachments 1`] = `
         enableFooterMarginAdjustment={true}
         style={
           {
-            "paddingBottom": 8,
+            "paddingVertical": 8,
           }
         }
         testID="bottom-sheet-view"
