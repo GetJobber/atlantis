@@ -66,6 +66,7 @@ function AutocompleteRebuiltInternal<
     activeIndex,
     open,
     listRef,
+    isClickingWithinRef,
     onSelection,
     onAction,
     onInputChangeFromUser,
@@ -194,6 +195,12 @@ function AutocompleteRebuiltInternal<
                     : {}),
                 },
               })}
+              onPointerDown={() => {
+                isClickingWithinRef.current = true;
+              }}
+              onPointerUp={() => {
+                isClickingWithinRef.current = false;
+              }}
             >
               {/* Header persistents */}
               <PersistentRegion<Value>

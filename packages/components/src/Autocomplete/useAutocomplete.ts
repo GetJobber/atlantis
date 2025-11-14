@@ -51,6 +51,8 @@ export function useAutocomplete<
     debounce: debounceMs = 300,
   } = props;
 
+  const isClickingWithinRef = useRef(false);
+
   // TODO: Clean up the types in these refs by enhancing the type system in useCallbackRef
   const getOptionLabelPropRef = useCallbackRef((opt: unknown) =>
     (getOptionLabelProp as ((o: Value) => string) | undefined)?.(opt as Value),
@@ -486,6 +488,10 @@ export function useAutocomplete<
   const onInputBlur = useCallback(() => {
     setInputFocused(false);
 
+    if (isClickingWithinRef.current) {
+      return;
+    }
+
     if (readOnly) {
       props.onBlur?.();
 
@@ -675,6 +681,7 @@ export function useAutocomplete<
     activeIndex,
     setActiveIndex,
     listRef,
+    isClickingWithinRef,
     // actions
     onSelection,
     onAction,
