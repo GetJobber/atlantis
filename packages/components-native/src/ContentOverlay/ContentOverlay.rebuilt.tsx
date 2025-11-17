@@ -1,12 +1,20 @@
 import React, { useImperativeHandle, useRef } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
-import type { BottomSheetModal as BottomSheetModalType } from "@gorhom/bottom-sheet";
+import {
+  BottomSheetBackdrop,
+  BottomSheetModal,
+  BottomSheetModalProvider,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
+import type {
+  BottomSheetBackdropProps,
+  BottomSheetModal as BottomSheetModalType,
+} from "@gorhom/bottom-sheet";
 import type { ContentOverlayRebuiltProps } from "./types";
-import { useStyles } from "./ContentOverlay.style";
+import { useStyles } from "./ContentOverlay.rebuilt.style";
 
-export function ContentOverlayRebuilt({
+function ContentOverlayRebuiltInternal({
   children,
   onClose,
   onOpen,
@@ -47,10 +55,35 @@ export function ContentOverlayRebuilt({
       onChange={handleChange}
       backgroundStyle={styles.modal}
       handleStyle={styles.handle}
+      backdropComponent={Backdrop}
     >
       <BottomSheetView style={{ paddingBottom: insets.bottom }}>
         <View>{children}</View>
       </BottomSheetView>
     </BottomSheetModal>
+  );
+}
+
+export function ContentOverlayRebuilt(
+  props: ContentOverlayRebuiltProps,
+): JSX.Element {
+  return (
+    <BottomSheetModalProvider>
+      <ContentOverlayRebuiltInternal {...props} />
+    </BottomSheetModalProvider>
+  );
+}
+
+function Backdrop(bottomSheetBackdropProps: BottomSheetBackdropProps) {
+  const styles = useStyles();
+
+  return (
+    <BottomSheetBackdrop
+      {...bottomSheetBackdropProps}
+      appearsOnIndex={0}
+      disappearsOnIndex={-1}
+      style={styles.backdrop}
+      opacity={1}
+    />
   );
 }
