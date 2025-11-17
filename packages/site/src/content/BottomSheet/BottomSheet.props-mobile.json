@@ -81,7 +81,7 @@
           "fileName": "../components-native/src/BottomSheet/BottomSheet.tsx",
           "name": "BottomSheetProps"
         },
-        "required": true,
+        "required": false,
         "type": {
           "name": "Ref<BottomSheetRef>"
         }
