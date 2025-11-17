@@ -7,9 +7,8 @@ export const useStyles = buildThemedStyles(tokens => {
   return {
     handle: {
       width: tokens["space-largest"],
-      height: 0,
+      height: tokens["space-smaller"] + tokens["space-smallest"],
       backgroundColor: tokens["color-border"],
-      top: tokens["space-small"],
       borderRadius: tokens["radius-circle"],
     },
 
@@ -17,9 +16,13 @@ export const useStyles = buildThemedStyles(tokens => {
       backgroundColor: tokens["color-overlay"],
     },
 
-    modal: {
+    background: {
       borderTopLeftRadius: modalBorderRadius,
       borderTopRightRadius: modalBorderRadius,
+    },
+
+    content: {
+      paddingVertical: tokens["space-small"],
     },
 
     modalForLargeScreens: {

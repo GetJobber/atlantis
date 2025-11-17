@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, useRef } from "react";
-import { View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+// import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
@@ -20,7 +19,7 @@ function ContentOverlayRebuiltInternal({
   onOpen,
   ref,
 }: ContentOverlayRebuiltProps): JSX.Element {
-  const insets = useSafeAreaInsets();
+  //   const insets = useSafeAreaInsets();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
   const styles = useStyles();
@@ -53,13 +52,11 @@ function ContentOverlayRebuiltInternal({
       ref={bottomSheetModalRef}
       snapPoints={["50%"]}
       onChange={handleChange}
-      backgroundStyle={styles.modal}
-      handleStyle={styles.handle}
+      backgroundStyle={styles.background}
+      handleIndicatorStyle={styles.handle}
       backdropComponent={Backdrop}
     >
-      <BottomSheetView style={{ paddingBottom: insets.bottom }}>
-        <View>{children}</View>
-      </BottomSheetView>
+      <BottomSheetView style={styles.content}>{children}</BottomSheetView>
     </BottomSheetModal>
   );
 }
