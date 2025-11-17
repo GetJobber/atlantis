@@ -50,7 +50,7 @@ export interface BottomSheetProps {
   /**
    * Ref to the bottom sheet component.
    */
-  readonly ref: Ref<BottomSheetRef>;
+  readonly ref?: Ref<BottomSheetRef>;
 }
 
 export interface BottomSheetRef {
