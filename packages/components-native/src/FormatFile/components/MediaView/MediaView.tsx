@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ImageBackground, View } from "react-native";
 import { useStyles } from "./MediaView.style";
 import type { FormattedFile } from "../../types";
@@ -46,10 +46,9 @@ export function MediaView({
     t,
   });
 
-  const hasError = showError || error;
-  const uri = thumbnail || file.thumbnailUrl || file.source;
-
-  const styles = useStyles();
+  const hasError = showError || error,
+    uri = thumbnail || file.thumbnailUrl || file.source,
+    styles = useStyles();
 
   const handleLoadStart = () => {
     if (!hasLoadedRef.current) {
@@ -61,6 +60,11 @@ export function MediaView({
     hasLoadedRef.current = true;
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    hasLoadedRef.current = false;
+    setIsLoading(false);
+  }, [uri]);
 
   return (
     <View accessible={true} accessibilityLabel={a11yLabel}>
