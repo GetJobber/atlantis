@@ -3,7 +3,7 @@ import { Icon } from "@jobber/components/Icon";
 import styles from "./ComboboxContentSearch.module.css";
 import type { ComboboxSearchProps } from "../../../Combobox.types";
 
-export function ComboboxContentSearch(props: ComboboxSearchProps): JSX.Element {
+export function ComboboxContentSearch(props: ComboboxSearchProps) {
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {

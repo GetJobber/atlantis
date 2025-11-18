@@ -29,7 +29,7 @@ export function SuffixLabel({
   label,
   hasLeftMargin = true,
   styleOverride,
-}: SuffixLabelProps): JSX.Element {
+}: SuffixLabelProps) {
   const styles = useStyles();
   const typographyStyles = useTypographyStyles();
 
@@ -84,7 +84,7 @@ export function SuffixIcon({
   icon,
   hasLeftMargin = false,
   onPress,
-}: SuffixIconProps): JSX.Element {
+}: SuffixIconProps) {
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
 

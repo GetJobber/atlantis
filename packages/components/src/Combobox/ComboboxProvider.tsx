@@ -1,5 +1,5 @@
-import type { MutableRefObject } from "react";
 import React from "react";
+import type { MutableRefObject } from "react";
 import { type ComboboxOption } from "./Combobox.types";
 
 export interface ComboboxProviderProps {
@@ -23,7 +23,7 @@ export const ComboboxContext = React.createContext(
 export function ComboboxContextProvider({
   children,
   ...props
-}: ComboboxProviderProps): JSX.Element {
+}: ComboboxProviderProps) {
   return (
     <ComboboxContext.Provider value={props}>
       {children}

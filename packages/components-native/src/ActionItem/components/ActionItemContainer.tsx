@@ -16,7 +16,7 @@ export function ActionItemContainer({
   title,
   children,
   testID,
-}: ActionItemContainerProps): JSX.Element {
+}: ActionItemContainerProps) {
   const styles = useStyles();
   const actionItemStyles = useActionItemStyles();
 

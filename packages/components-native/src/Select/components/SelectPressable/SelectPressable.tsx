@@ -13,10 +13,7 @@ type SelectPressableProps = Pick<SelectInternalPickerProps, "children"> &
  * screen-reader is being used to avoid screen-readers from ignoring the press
  * on the MenuView
  */
-export function SelectPressable({
-  children,
-  onPress,
-}: SelectPressableProps): JSX.Element {
+export function SelectPressable({ children, onPress }: SelectPressableProps) {
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
   const styles = useStyles();
   if (isScreenReaderEnabled) return <>{children}</>;

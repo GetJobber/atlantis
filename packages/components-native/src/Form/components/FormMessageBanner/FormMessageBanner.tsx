@@ -8,9 +8,7 @@ interface FormMessageBannerProps {
   readonly bannerMessages?: FormBannerMessage[];
 }
 
-export function FormMessageBanner({
-  bannerMessages,
-}: FormMessageBannerProps): JSX.Element {
+export function FormMessageBanner({ bannerMessages }: FormMessageBannerProps) {
   return (
     <>
       {bannerMessages?.map((message, index) => (

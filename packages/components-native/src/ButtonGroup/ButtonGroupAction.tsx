@@ -49,18 +49,18 @@ export interface ButtonGroupPrimaryActionProps extends ButtonGroupActionProps {
   /**
    * Optional custom button that can be rendered in place of the primary action button
    */
-  customButton?: JSX.Element;
+  customButton?: React.ReactElement | null;
   loading?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function PrimaryAction(_: ButtonGroupPrimaryActionProps): JSX.Element {
+export function PrimaryAction(_: ButtonGroupPrimaryActionProps) {
   return <></>;
 }
 
 export function SecondaryAction(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _: ButtonGroupSecondaryActionProps,
-): JSX.Element {
+) {
   return <></>;
 }

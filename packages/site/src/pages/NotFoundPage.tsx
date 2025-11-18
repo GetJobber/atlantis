@@ -1,6 +1,6 @@
-import { Link, Typography } from "@jobber/components";
+import { ReactElement, useRef, useState } from "react";
 import { useLocation } from "react-router";
-import { useRef, useState } from "react";
+import { Link, Typography } from "@jobber/components";
 import styles from "./NotFoundPage.module.css";
 
 export const NotFoundPage = () => {
@@ -21,7 +21,7 @@ export const NotFoundPage = () => {
     );
   };
 
-  const [fishElement, setFishElement] = useState<JSX.Element | null>(
+  const [fishElement, setFishElement] = useState<ReactElement | null>(
     getRandomFish(),
   );
   const timeoutRef = useRef<number | null>(null);

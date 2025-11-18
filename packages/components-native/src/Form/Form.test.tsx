@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactElement } from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert, Keyboard } from "react-native";
 import { Host } from "react-native-portalize";
@@ -94,7 +94,7 @@ interface FormTestProps {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => JSX.Element;
+  ) => ReactElement;
   readonly initialLoading?: boolean;
   readonly initialValues?: FormFields;
   readonly bannerMessages?: FormBannerMessage[];
