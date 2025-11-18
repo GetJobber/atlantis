@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.91.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.0...@jobber/components-native@0.91.1) (2025-11-18)
+
+
+### Bug Fixes
+
+* **components-native:** prevent infinite spinner on cached image loads in MediaView ([#2816](https://github.com/GetJobber/atlantis/issues/2816)) ([1560a63](https://github.com/GetJobber/atlantis/commit/1560a63e9ea932dc7f9936c712540639f51ca7ec))
+
+
+
+
+
 # [0.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.90.0...@jobber/components-native@0.91.0) (2025-11-18)
 
 
