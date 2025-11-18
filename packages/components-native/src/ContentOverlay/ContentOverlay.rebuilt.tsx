@@ -13,6 +13,7 @@ import type {
 import type { ContentOverlayRebuiltProps, ModalBackgroundColor } from "./types";
 import { useStyles } from "./ContentOverlay.rebuilt.style";
 import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
+import { useBottomSheetModalBackHandler } from "./hooks/useBottomSheetModalBackHandler";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
@@ -54,6 +55,9 @@ export function ContentOverlayRebuilt({
   const { tokens } = useAtlantisTheme();
   const [position] = useState<"top" | "initial">("initial");
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
+  const { handleSheetPositionChange } =
+    useBottomSheetModalBackHandler(bottomSheetModalRef);
+
   const isFullScreenOrTopPosition =
     fullScreen || (!adjustToContentHeight && position === "top");
   const shouldShowDismiss =
@@ -74,6 +78,8 @@ export function ContentOverlayRebuilt({
 
   const handleChange = (index: number) => {
     const previousIndex = previousIndexRef.current;
+
+    handleSheetPositionChange(index);
 
     if (previousIndex === -1 && index >= 0) {
       // Transitioned from closed to open
