@@ -10,7 +10,7 @@ const mockLabel = "$";
 function setupLabel({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
+  miniLabelActive = false,
   inputInvalid = false,
   label = mockLabel,
   styleOverride,
@@ -19,7 +19,7 @@ function setupLabel({
     <SuffixLabel
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
+      miniLabelActive={miniLabelActive}
       inputInvalid={inputInvalid}
       label={label}
       styleOverride={styleOverride}
@@ -30,7 +30,6 @@ function setupLabel({
 function setupIcon({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
   inputInvalid = false,
   icon = "invoice",
 }: Partial<SuffixIconProps>) {
@@ -38,7 +37,6 @@ function setupIcon({
     <SuffixIcon
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
       inputInvalid={inputInvalid}
       icon={icon}
     />,
