@@ -1,9 +1,11 @@
 import React, { useImperativeHandle, useMemo, useRef, useState } from "react";
 import { AccessibilityInfo, View, findNodeHandle } from "react-native";
+import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
+  BottomSheetScrollView,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import type {
@@ -40,6 +42,8 @@ export function ContentOverlayRebuilt({
   showDismiss = false,
   isDraggable = true,
   adjustToContentHeight = false,
+  keyboardShouldPersistTaps = false,
+  scrollEnabled = false,
   modalBackgroundColor = "surface",
   onClose,
   onOpen,
@@ -62,7 +66,7 @@ export function ContentOverlayRebuilt({
     fullScreen || (!adjustToContentHeight && position === "top");
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
-  const [showHeaderShadow] = useState<boolean>(false);
+  const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
 
   const snapPoints = useMemo(() => {
@@ -119,6 +123,12 @@ export function ContentOverlayRebuilt({
 
       return false;
     }
+  };
+
+  const handleOnScroll = ({
+    nativeEvent,
+  }: NativeSyntheticEvent<NativeScrollEvent>) => {
+    setShowHeaderShadow(nativeEvent.contentOffset.y > 0);
   };
 
   const renderHeader = () => {
@@ -190,10 +200,26 @@ export function ContentOverlayRebuilt({
       enableContentPanningGesture={isDraggable}
       enableDynamicSizing={!fullScreen}
     >
-      <BottomSheetView style={styles.content}>
-        {renderHeader()}
-        <View style={{ paddingBottom: insets.bottom }}>{children}</View>
-      </BottomSheetView>
+      {scrollEnabled ? (
+        <BottomSheetScrollView
+          style={styles.content}
+          contentContainerStyle={{ paddingBottom: insets.bottom }}
+          keyboardShouldPersistTaps={
+            keyboardShouldPersistTaps ? "handled" : "never"
+          }
+          showsVerticalScrollIndicator={false}
+          onScroll={handleOnScroll}
+          stickyHeaderIndices={[0]}
+        >
+          {renderHeader()}
+          {children}
+        </BottomSheetScrollView>
+      ) : (
+        <BottomSheetView style={styles.content}>
+          {renderHeader()}
+          <View style={{ paddingBottom: insets.bottom }}>{children}</View>
+        </BottomSheetView>
+      )}
     </BottomSheetModal>
   );
 }
