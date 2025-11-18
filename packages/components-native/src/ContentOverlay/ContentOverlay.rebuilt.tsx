@@ -199,6 +199,7 @@ export function ContentOverlayRebuilt({
       enablePanDownToClose={isDraggable}
       enableContentPanningGesture={isDraggable}
       enableDynamicSizing={!fullScreen}
+      topInset={insets.top}
     >
       {scrollEnabled ? (
         <BottomSheetScrollView
