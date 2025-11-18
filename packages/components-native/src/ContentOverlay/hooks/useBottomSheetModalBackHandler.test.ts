@@ -5,7 +5,7 @@ import { BackHandler } from "react-native";
 import type { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useBottomSheetModalBackHandler } from "./useBottomSheetModalBackHandler";
 
-describe("useBottomSheetBackHandler", () => {
+describe("useBottomSheetModalBackHandler", () => {
   let mockRemove: jest.Mock;
   let mockAddEventListener: jest.SpyInstance;
 
@@ -20,9 +20,9 @@ describe("useBottomSheetBackHandler", () => {
   });
 
   it("should register BackHandler listener when sheet becomes visible", async () => {
-    const bottomSheetRef = createRef<BottomSheetModal | null>();
+    const bottomSheetModalRef = createRef<BottomSheetModal | null>();
     const { result } = renderHook(() =>
-      useBottomSheetModalBackHandler(bottomSheetRef),
+      useBottomSheetModalBackHandler(bottomSheetModalRef),
     );
 
     await act(async () => {
@@ -37,14 +37,14 @@ describe("useBottomSheetBackHandler", () => {
 
   it("should call dismiss() when back button is pressed", async () => {
     const mockDismiss = jest.fn();
-    const bottomSheetRef = {
+    const bottomSheetModalRef = {
       current: {
         dismiss: mockDismiss,
       } as unknown as BottomSheetModal,
     } as React.RefObject<BottomSheetModal | null>;
 
     const { result } = renderHook(() =>
-      useBottomSheetModalBackHandler(bottomSheetRef),
+      useBottomSheetModalBackHandler(bottomSheetModalRef),
     );
 
     await act(async () => {
@@ -59,9 +59,9 @@ describe("useBottomSheetBackHandler", () => {
   });
 
   it("should remove listener when sheet is dismissed", async () => {
-    const bottomSheetRef = createRef<BottomSheetModal | null>();
+    const bottomSheetModalRef = createRef<BottomSheetModal | null>();
     const { result } = renderHook(() =>
-      useBottomSheetModalBackHandler(bottomSheetRef),
+      useBottomSheetModalBackHandler(bottomSheetModalRef),
     );
 
     await act(async () => {
@@ -76,9 +76,9 @@ describe("useBottomSheetBackHandler", () => {
   });
 
   it("should not register listener when index is negative", async () => {
-    const bottomSheetRef = createRef<BottomSheetModal | null>();
+    const bottomSheetModalRef = createRef<BottomSheetModal | null>();
     const { result } = renderHook(() =>
-      useBottomSheetModalBackHandler(bottomSheetRef),
+      useBottomSheetModalBackHandler(bottomSheetModalRef),
     );
 
     await act(async () => {
