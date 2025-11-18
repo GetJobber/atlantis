@@ -4,7 +4,7 @@ import type BottomSheet from "@gorhom/bottom-sheet";
 
 /**
  * Hook that closes the bottom sheet on the hardware back button press if it is visible
- * @param bottomSheetRef ref to the bottom sheet which is going to be closed on the back press
+ * @param bottomSheetRef ref to the bottom sheet component
  */
 export function useBottomSheetBackHandler(
   bottomSheetRef: React.RefObject<BottomSheet | null>,
