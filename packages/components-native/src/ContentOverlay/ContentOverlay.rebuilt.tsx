@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef, useState } from "react";
+import React, { useImperativeHandle, useMemo, useRef, useState } from "react";
 import { AccessibilityInfo, View, findNodeHandle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
@@ -12,7 +12,6 @@ import type {
 } from "@gorhom/bottom-sheet";
 import type { ContentOverlayRebuiltProps, ModalBackgroundColor } from "./types";
 import { useStyles } from "./ContentOverlay.rebuilt.style";
-import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
 import { useBottomSheetModalBackHandler } from "./hooks/useBottomSheetModalBackHandler";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
@@ -39,6 +38,7 @@ export function ContentOverlayRebuilt({
   accessibilityLabel,
   fullScreen = false,
   showDismiss = false,
+  isDraggable = true,
   adjustToContentHeight = false,
   modalBackgroundColor = "surface",
   onClose,
@@ -65,7 +65,15 @@ export function ContentOverlayRebuilt({
   const [showHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
 
-  const { handleLayout: handleHeaderLayout } = useViewLayoutHeight();
+  const snapPoints = useMemo(() => {
+    if (fullScreen) {
+      return ["100%"];
+    }
+
+    // Let bottom-sheet handle the content height calculation and add
+    // a snap point when not full screen and enableDynamicSizing is true
+    return [];
+  }, [fullScreen]);
 
   useImperativeHandle(ref, () => ({
     open: () => {
@@ -127,7 +135,7 @@ export function ContentOverlayRebuilt({
     ];
 
     return (
-      <View onLayout={handleHeaderLayout} testID="ATL-Overlay-Header">
+      <View testID="ATL-Overlay-Header">
         <View style={headerStyles}>
           <View
             style={[
@@ -174,9 +182,13 @@ export function ContentOverlayRebuilt({
       ref={bottomSheetModalRef}
       onChange={handleChange}
       backgroundStyle={styles.background}
-      handleIndicatorStyle={styles.handle}
+      handleIndicatorStyle={isDraggable ? styles.handle : undefined}
       backdropComponent={Backdrop}
       name="content-overlay-rebuilt"
+      snapPoints={snapPoints}
+      enablePanDownToClose={isDraggable}
+      enableContentPanningGesture={isDraggable}
+      enableDynamicSizing={!fullScreen}
     >
       <BottomSheetView style={styles.content}>
         {renderHeader()}
