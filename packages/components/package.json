@@ -528,8 +528,8 @@
     "filesize": "^6",
     "framer-motion": "^11.11.12",
     "lodash": "^4",
-    "react": "^18 || ^19.1.0",
-    "react-dom": "^18 || ^19.1.0",
+    "react": "^18 || ^19.1.1",
+    "react-dom": "^18 || ^19.1.1",
     "react-hook-form": "^7.52.0",
     "react-router-dom": "^6"
   },
