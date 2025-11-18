@@ -202,7 +202,6 @@ export function ContentOverlayRebuilt({
     >
       {scrollEnabled ? (
         <BottomSheetScrollView
-          style={styles.content}
           contentContainerStyle={{ paddingBottom: insets.bottom }}
           keyboardShouldPersistTaps={
             keyboardShouldPersistTaps ? "handled" : "never"
@@ -215,7 +214,7 @@ export function ContentOverlayRebuilt({
           {children}
         </BottomSheetScrollView>
       ) : (
-        <BottomSheetView style={styles.content}>
+        <BottomSheetView>
           {renderHeader()}
           <View style={{ paddingBottom: insets.bottom }}>{children}</View>
         </BottomSheetView>

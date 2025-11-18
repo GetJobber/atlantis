@@ -2,7 +2,6 @@ import { buildThemedStyles } from "../AtlantisThemeContext";
 
 export const useStyles = buildThemedStyles(tokens => {
   const modalBorderRadius = tokens["radius-larger"];
-  const titleOffsetFromHandle = tokens["space-base"];
 
   return {
     handle: {
@@ -21,10 +20,6 @@ export const useStyles = buildThemedStyles(tokens => {
       borderTopRightRadius: modalBorderRadius,
     },
 
-    content: {
-      paddingVertical: tokens["space-small"],
-    },
-
     modalForLargeScreens: {
       width: 640,
       alignSelf: "center",
@@ -33,10 +28,7 @@ export const useStyles = buildThemedStyles(tokens => {
     header: {
       flexDirection: "row",
       backgroundColor: tokens["color-surface"],
-      paddingTop: titleOffsetFromHandle,
       zIndex: tokens["elevation-base"],
-      borderTopLeftRadius: modalBorderRadius,
-      borderTopRightRadius: modalBorderRadius,
       minHeight: tokens["space-extravagant"],
     },
 
