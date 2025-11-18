@@ -14,6 +14,7 @@ import type {
 import { useStyles } from "./BottomSheet.style";
 import { BottomSheetOption } from "./components/BottomSheetOption";
 import { BottomSheetInputText } from "./components/BottomSheetInputText/BottomSheetInputText";
+import { useBottomSheetBackHandler } from "./hooks/useBottomSheetBackHandler";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
 import { useIsScreenReaderEnabled } from "../hooks";
@@ -69,12 +70,15 @@ export function BottomSheet({
 }: BottomSheetProps) {
   const styles = useStyles();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
+
   const cancellable = (showCancel && !loading) || isScreenReaderEnabled;
 
   const { t } = useAtlantisI18n();
   const insets = useSafeAreaInsets();
   const previousIndexRef = useRef(-1);
   const bottomSheetRef = useRef<RNBottomSheet>(null);
+  const { handleSheetPositionChange } =
+    useBottomSheetBackHandler(bottomSheetRef);
 
   useImperativeHandle(ref, () => ({
     open: () => {
@@ -86,6 +90,9 @@ export function BottomSheet({
   }));
 
   const handleChange = (index: number) => {
+    // Handle Android back button
+    handleSheetPositionChange(index);
+
     const previousIndex = previousIndexRef.current;
 
     if (previousIndex === -1 && index >= 0) {
