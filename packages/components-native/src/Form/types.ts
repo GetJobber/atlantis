@@ -1,4 +1,4 @@
-import type { MutableRefObject, RefObject } from "react";
+import type { MutableRefObject, ReactElement, RefObject } from "react";
 import type {
   ControllerProps,
   DefaultValues,
@@ -142,7 +142,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => JSX.Element;
+  ) => ReactElement;
 
   /**
    * Adding a key will save a local copy of the form data that will be used to

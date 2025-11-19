@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactElement } from "react";
 import type { LayoutChangeEvent } from "react-native";
 import { StyleSheet } from "react-native";
 import Reanimated from "react-native-reanimated";
@@ -18,7 +18,7 @@ export interface FormActionBarProps {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => JSX.Element;
+  ) => ReactElement;
   readonly secondaryActions?: SecondaryActionProp[];
   readonly setSecondaryActionLoading?: (bool: boolean) => void;
 }
