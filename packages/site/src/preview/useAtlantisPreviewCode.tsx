@@ -13,7 +13,7 @@ export const useAtlantisPreviewCode = ({
 }: {
   iframe: RefObject<HTMLIFrameElement | null>;
   iframeMobile: RefObject<HTMLIFrameElement | null>;
-  getIframeRef: (type: ComponentType) => RefObject<HTMLIFrameElement>;
+  getIframeRef: (type: ComponentType) => RefObject<HTMLIFrameElement | null>;
   type: ComponentType;
   theme: Theme;
 }) => {

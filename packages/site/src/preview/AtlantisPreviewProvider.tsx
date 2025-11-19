@@ -9,7 +9,9 @@ import { ComponentType } from "../types/content";
 const AtlantisPreviewContext = createContext<{
   iframe: React.RefObject<HTMLIFrameElement | null> | null;
   iframeMobile: React.RefObject<HTMLIFrameElement | null> | null;
-  getIframeRef: (type: ComponentType) => React.RefObject<HTMLIFrameElement>;
+  getIframeRef: (
+    type: ComponentType,
+  ) => React.RefObject<HTMLIFrameElement | null>;
   updateCode: (code: string, forceUpdate?: boolean) => void;
   code: string;
   error: string;
