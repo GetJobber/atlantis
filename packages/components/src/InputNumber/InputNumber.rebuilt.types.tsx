@@ -3,7 +3,6 @@ import type React from "react";
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   AriaInputProps,
-  DataAttributes,
   FocusEvents,
   InputConstraintProps,
   KeyboardEvents,
@@ -13,7 +12,6 @@ export type InputNumberVersion = 1 | 2 | undefined;
 
 export interface InputNumberRebuiltProps
   extends Omit<CommonFormFieldProps, "version">,
-    DataAttributes,
     Omit<AriaInputProps, "ariaAutocomplete">,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
