@@ -88,7 +88,7 @@ function FormatFileContent({
   styleInGrid,
   onUploadComplete,
   isMedia,
-}: FormatFileContentProps): JSX.Element {
+}: FormatFileContentProps) {
   const styles = useStyles();
 
   return (
@@ -204,7 +204,7 @@ export function FormatFile<T extends File | FileUpload>({
   showFileTypeIndicator = true,
   createThumbnail,
   onPreviewPress,
-}: FormatFileProps<T>): JSX.Element {
+}: FormatFileProps<T>) {
   const onTapModified = onTap ? () => onTap(file) : () => undefined;
 
   const formattedFile = parseFile(file, showFileTypeIndicator);
@@ -236,7 +236,7 @@ function FormatFileInternal({
   onPreviewPress,
   testID,
   createThumbnail: createThumbnailProp,
-}: FormatFileInternalProps): JSX.Element {
+}: FormatFileInternalProps) {
   const [showOverlay, setShowOverlay] = useState<boolean>(
     file.status !== StatusCode.Completed,
   );

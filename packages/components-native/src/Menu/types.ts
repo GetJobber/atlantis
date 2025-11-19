@@ -1,4 +1,5 @@
 import type { IconColorNames, IconNames } from "@jobber/design";
+import type { ReactElement } from "react";
 import type { TextAlign } from "../Typography";
 
 export interface MenuOptionProps {
@@ -17,7 +18,7 @@ export interface MenuOptionInternalProps extends MenuOptionProps {
 
 export interface MenuProps {
   readonly menuOptions?: MenuOptionProps[];
-  readonly customActivator?: JSX.Element;
+  readonly customActivator?: ReactElement;
 }
 
 export interface OverlayProp {

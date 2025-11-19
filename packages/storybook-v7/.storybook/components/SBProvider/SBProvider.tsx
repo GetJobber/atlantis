@@ -5,7 +5,7 @@ import { Host } from "react-native-portalize";
 
 export function SBProvider({
   children,
-}: PropsWithChildren<unknown>): JSX.Element {
+}: PropsWithChildren<unknown>) {
   /*
   For now, client's locale is hard coded to "en-US".
   This will change when we have a strategy for translating the app

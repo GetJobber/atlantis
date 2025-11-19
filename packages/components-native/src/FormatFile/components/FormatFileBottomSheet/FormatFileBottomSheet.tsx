@@ -20,7 +20,7 @@ export const FormatFileBottomSheet = ({
   onPreviewPress,
   onRemovePress,
   bottomSheetOptionsSuffix,
-}: FormatFileBottomSheetProps): JSX.Element => {
+}: FormatFileBottomSheetProps) => {
   const { t } = useAtlantisI18n();
 
   const handlePress = (onPressAction: () => void) => {

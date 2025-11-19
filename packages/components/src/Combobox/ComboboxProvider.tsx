@@ -23,7 +23,7 @@ export const ComboboxContext = React.createContext(
 export function ComboboxContextProvider({
   children,
   ...props
-}: ComboboxProviderProps): JSX.Element {
+}: ComboboxProviderProps) {
   return (
     <ComboboxContext.Provider value={props}>
       {children}

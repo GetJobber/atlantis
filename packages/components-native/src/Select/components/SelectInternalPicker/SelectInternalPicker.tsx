@@ -10,7 +10,7 @@ export function SelectInternalPicker({
   options,
   disabled,
   onChange,
-}: SelectInternalPickerProps): JSX.Element {
+}: SelectInternalPickerProps) {
   if (disabled) return <>{children}</>;
 
   if (isIOS14AndUp()) {

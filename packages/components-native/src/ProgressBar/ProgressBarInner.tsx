@@ -14,7 +14,7 @@ export function ProgressBarInner({
   width,
   // animationDuration = 0,
   color,
-}: ProgressBarInnerProps): JSX.Element {
+}: ProgressBarInnerProps) {
   // Animation breaking on Android
   // const [animatedOpacity] = useTiming({
   //   duration: animationDuration,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ReactElement } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router-dom";
@@ -11,7 +11,7 @@ import { DataListItemActions } from "@jobber/components/DataList/components/Data
 import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
 import { DataListItemClickable } from "./DataListItemClickable";
 
-const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
+const mockItemActionComponent = jest.fn<ReactElement | undefined, []>(() => (
   <DataListItemActions />
 ));
 
