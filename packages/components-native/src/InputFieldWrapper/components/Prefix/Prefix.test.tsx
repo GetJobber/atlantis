@@ -30,7 +30,7 @@ beforeAll(() => {
 function setupLabel({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
+  miniLabelActive = false,
   inputInvalid = false,
   label = mockLabel,
   styleOverride,
@@ -39,7 +39,7 @@ function setupLabel({
     <PrefixLabel
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
+      miniLabelActive={miniLabelActive}
       inputInvalid={inputInvalid}
       label={label}
       styleOverride={styleOverride}
@@ -50,7 +50,6 @@ function setupLabel({
 function setupIcon({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
   inputInvalid = false,
   icon = "invoice",
 }: Partial<PrefixIconProps>) {
@@ -58,7 +57,6 @@ function setupIcon({
     <PrefixIcon
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
       inputInvalid={inputInvalid}
       icon={icon}
     />,
@@ -150,7 +148,7 @@ describe("Prefix", () => {
 
   it("updates the position of the label when a value is entered", () => {
     const tree = setupLabel({
-      hasMiniLabel: true,
+      miniLabelActive: true,
     });
     const prefixLabel = tree.getByTestId(prefixLabelTestId);
     const labelWrapper = prefixLabel.children[0] as ReactTestInstance;

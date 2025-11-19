@@ -11,9 +11,11 @@ import { InputPressable } from "../InputPressable";
 import { FormField } from "../FormField";
 import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import type { InputPressableProps } from "../InputPressable/InputPressable";
 
 interface InputTimeBaseProps
-  extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder"> {
+  extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder">,
+    Pick<InputPressableProps, "showMiniLabel"> {
   /**
    * Defaulted to "always" so user can clear the time whenever there's a value.
    */
@@ -129,6 +131,7 @@ function InternalInputTime({
   value,
   name,
   type = "scheduling",
+  showMiniLabel = true,
   onChange,
   showIcon = true,
 }: InputTimeProps) {
@@ -156,6 +159,7 @@ function InternalInputTime({
   return (
     <View style={styles.container}>
       <InputPressable
+        showMiniLabel={showMiniLabel}
         clearable={canClearTime}
         disabled={disabled}
         invalid={invalid}
