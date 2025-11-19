@@ -60,13 +60,13 @@ export function ContentOverlayRebuilt({
   const { t } = useAtlantisI18n();
   const { tokens } = useAtlantisTheme();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
-  const { handleSheetPositionChange } =
-    useBottomSheetModalBackHandler(bottomSheetModalRef);
 
   const isFullScreenOrTopPosition =
     fullScreen || (!adjustToContentHeight && currentPosition === 0);
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
+
+  const draggable = onBeforeExit ? false : isDraggable;
 
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
@@ -74,6 +74,19 @@ export function ContentOverlayRebuilt({
   // If isDraggable is true, we always want to have a snap point at 100%
   // enableDynamicSizing will add another snap point of the content height
   const snapPoints = useMemo(() => ["100%"], []);
+
+  const onCloseController = () => {
+    if (!onBeforeExit) {
+      bottomSheetModalRef.current?.dismiss();
+    } else {
+      onBeforeExit();
+
+      return false;
+    }
+  };
+
+  const { handleSheetPositionChange } =
+    useBottomSheetModalBackHandler(onCloseController);
 
   useImperativeHandle(ref, () => ({
     open: () => {
@@ -108,16 +121,6 @@ export function ContentOverlayRebuilt({
     }
 
     previousIndexRef.current = index;
-  };
-
-  const onCloseController = () => {
-    if (!onBeforeExit) {
-      bottomSheetModalRef.current?.dismiss();
-    } else {
-      onBeforeExit();
-
-      return false;
-    }
   };
 
   const handleOnScroll = ({
@@ -187,12 +190,14 @@ export function ContentOverlayRebuilt({
       ref={bottomSheetModalRef}
       onChange={handleChange}
       backgroundStyle={styles.background}
-      handleIndicatorStyle={isDraggable ? styles.handle : undefined}
-      backdropComponent={Backdrop}
+      handleIndicatorStyle={draggable ? styles.handle : undefined}
+      backdropComponent={props => (
+        <Backdrop {...props} pressBehavior={onBeforeExit ? "none" : "close"} />
+      )}
       name="content-overlay-rebuilt"
       snapPoints={snapPoints}
-      enablePanDownToClose={isDraggable}
-      enableContentPanningGesture={isDraggable}
+      enablePanDownToClose={draggable}
+      enableContentPanningGesture={draggable}
       enableDynamicSizing={!fullScreen}
       topInset={insets.top}
     >
@@ -219,16 +224,22 @@ export function ContentOverlayRebuilt({
   );
 }
 
-function Backdrop(bottomSheetBackdropProps: BottomSheetBackdropProps) {
+function Backdrop(
+  bottomSheetBackdropProps: BottomSheetBackdropProps & {
+    pressBehavior: "none" | "close";
+  },
+) {
   const styles = useStyles();
+  const { pressBehavior, ...props } = bottomSheetBackdropProps;
 
   return (
     <BottomSheetBackdrop
-      {...bottomSheetBackdropProps}
+      {...props}
       appearsOnIndex={0}
       disappearsOnIndex={-1}
       style={styles.backdrop}
       opacity={1}
+      pressBehavior={pressBehavior}
     />
   );
 }
