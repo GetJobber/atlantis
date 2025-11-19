@@ -90,16 +90,16 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         inputMode={props.inputMode}
         tabIndex={props.tabIndex}
         role={props.role}
-        aria-label={props.ariaLabel}
+        aria-label={props["aria-label"]}
         aria-describedby={
-          descriptionVisible ? descriptionIdentifier : props.ariaDescribedBy
+          descriptionVisible ? descriptionIdentifier : props["aria-describedby"]
         }
         aria-invalid={isInvalid ? true : undefined}
-        aria-controls={props.ariaControls}
-        aria-expanded={props.ariaExpanded}
-        aria-activedescendant={props.ariaActiveDescendant}
-        aria-autocomplete={props.ariaAutocomplete}
-        aria-required={props.ariaRequired}
+        aria-controls={props["aria-controls"]}
+        aria-expanded={props["aria-expanded"]}
+        aria-activedescendant={props["aria-activedescendant"]}
+        aria-autocomplete={props["aria-autocomplete"]}
+        aria-required={props["aria-required"]}
         onChange={handleChange}
         onBlur={handleBlur}
         onFocus={handleFocus}
