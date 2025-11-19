@@ -39,7 +39,7 @@ export function FormField<T>({
   children,
   defaultValue: value,
   validations,
-}: FormFieldProps<T>): React.JSX.Element {
+}: FormFieldProps<T>): JSX.Element {
   const { error, field } = useFormController({
     name,
     value,

@@ -12,7 +12,7 @@ export function ComposeTextWithLinks({
   match,
   bottomTabsVisible,
   selectable = true,
-}: ComposeTextWithLinksProps): React.JSX.Element {
+}: ComposeTextWithLinksProps): JSX.Element {
   const { t } = useAtlantisI18n();
 
   const isLink = match?.getType();

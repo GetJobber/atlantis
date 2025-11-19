@@ -17,7 +17,7 @@ let close: (() => void) | undefined;
  * message to the user. Use `FormMessage.close()` to close the most
  * recent message.
  */
-export const FormMessage = (): React.JSX.Element => {
+export const FormMessage = (): JSX.Element => {
   const [data, setData] = useState<FormMessageData[]>([]);
 
   open = useCallback(

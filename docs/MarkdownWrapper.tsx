@@ -74,7 +74,7 @@ export function Header({
   }
 }
 
-export function InlineCode(props: object): React.JSX.Element {
+export function InlineCode(props: object): JSX.Element {
   const styles = {
     display: "inline-block",
     borderRadius: "var(--radius--base)",

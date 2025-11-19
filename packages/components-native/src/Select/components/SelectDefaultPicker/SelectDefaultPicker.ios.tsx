@@ -19,7 +19,7 @@ export function SelectDefaultPicker({
   children,
   options,
   onChange,
-}: SelectDefaultPickerProps): React.JSX.Element {
+}: SelectDefaultPickerProps): JSX.Element {
   const [show, setShow] = useState(false);
   const { t } = useAtlantisI18n();
   const selectedLanguage = options.find(option => option.isActive);

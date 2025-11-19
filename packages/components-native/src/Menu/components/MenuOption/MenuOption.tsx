@@ -17,7 +17,7 @@ export function MenuOption({
   textTransform = "capitalize",
   onPress,
   setOpen,
-}: MenuOptionInternalProps): React.JSX.Element {
+}: MenuOptionInternalProps): JSX.Element {
   const destructiveColor = "destructive";
   const textVariation = destructive ? destructiveColor : "heading";
   const styles = useStyles();

@@ -80,7 +80,7 @@ export function Card({
   testID = "card",
   error,
   elevation = "none",
-}: CardProps): React.JSX.Element {
+}: CardProps): JSX.Element {
   const styles = useStyles();
 
   return (

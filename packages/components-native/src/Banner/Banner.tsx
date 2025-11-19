@@ -18,7 +18,7 @@ export function Banner({
   type,
   children,
   icon,
-}: BannerProps): React.JSX.Element {
+}: BannerProps): JSX.Element {
   const bannerIcon = icon || getBannerIcon(type);
 
   const shouldFlow =
@@ -60,7 +60,7 @@ export function Banner({
   );
 }
 
-function BannerChildren({ children }: PropsWithChildren): React.JSX.Element {
+function BannerChildren({ children }: PropsWithChildren): JSX.Element {
   if (!children) return <></>;
 
   if (children && typeof children === "string") {

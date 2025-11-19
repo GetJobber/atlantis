@@ -50,7 +50,7 @@ export function IconButton({
   onPress,
   accessibilityLabel,
   testID,
-}: IconButtonProps): React.JSX.Element {
+}: IconButtonProps): JSX.Element {
   const styles = useStyles();
 
   return (

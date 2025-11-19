@@ -12,7 +12,7 @@ export function Link({
   children,
   onPress,
   onLongPress,
-}: LinkProps): React.JSX.Element {
+}: LinkProps): JSX.Element {
   return (
     <RNText onPress={onPress} onLongPress={onLongPress}>
       <Text variation="interactive">{children}</Text>

@@ -5,6 +5,6 @@ import { View } from "react-native";
 export function MockModal({
   visible,
   children,
-}: React.PropsWithChildren<ModalBaseProps>): React.JSX.Element {
+}: React.PropsWithChildren<ModalBaseProps>): JSX.Element {
   return <View>{visible && children}</View>;
 }

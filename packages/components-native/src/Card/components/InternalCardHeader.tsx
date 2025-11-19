@@ -15,7 +15,7 @@ export function InternalCardHeader({
   children,
   testID,
   collapsable,
-}: InternalCardHeaderProps): React.JSX.Element {
+}: InternalCardHeaderProps): JSX.Element {
   const styles = useStyles();
 
   const conditionalChildStyling = collapsable ? undefined : styles.noChildren;

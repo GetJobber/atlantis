@@ -7,7 +7,7 @@ import { FormActionBar } from "../FormActionBar";
 import { tokens } from "../../../utils/design";
 
 interface FormBodyProps extends FormActionBarProps {
-  readonly children: React.JSX.Element;
+  readonly children: JSX.Element;
   readonly shouldRenderActionBar?: boolean;
   readonly saveButtonOffset?: number;
 }
@@ -24,7 +24,7 @@ export function FormBody({
   setSecondaryActionLoading,
   setSaveButtonHeight,
   saveButtonOffset,
-}: FormBodyProps): React.JSX.Element {
+}: FormBodyProps): JSX.Element {
   const paddingBottom = useBottomPadding();
   const fullViewPadding = useMemo(() => ({ paddingBottom }), [paddingBottom]);
   const styles = useStyles();

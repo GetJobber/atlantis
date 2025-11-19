@@ -27,7 +27,7 @@ export function MediaView({
   file,
   styleInGrid,
   onUploadComplete,
-}: MediaViewProps): React.JSX.Element {
+}: MediaViewProps): JSX.Element {
   const { t } = useAtlantisI18n();
   const { useCreateThumbnail } = useAtlantisFormatFileContext();
   const { thumbnail, error } = useCreateThumbnail(file);

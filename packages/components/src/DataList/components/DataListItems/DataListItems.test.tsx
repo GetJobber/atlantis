@@ -27,15 +27,13 @@ const mockSelectedValue = jest.fn().mockReturnValue([]);
 const onSelectMock = jest.fn();
 const mockOnSelectValue = jest.fn().mockReturnValue(onSelectMock);
 
-const mockItemActionComponent = jest.fn<React.JSX.Element | undefined, []>(
-  () => (
-    <DataListItemActions>
-      <DataListAction label="Edit" onClick={mockEditClick} />
-      <DataListAction label="Email" />
-      <DataListAction label="Delete" />
-    </DataListItemActions>
-  ),
-);
+const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
+  <DataListItemActions>
+    <DataListAction label="Edit" onClick={mockEditClick} />
+    <DataListAction label="Email" />
+    <DataListAction label="Delete" />
+  </DataListItemActions>
+));
 
 afterEach(() => {
   mockSelectedValue.mockClear();

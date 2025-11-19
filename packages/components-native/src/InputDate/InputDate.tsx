@@ -109,7 +109,7 @@ const display = Platform.OS === "ios" ? "inline" : "default";
 /**
  * Allow users to select a date using the device date picker.
  */
-export function InputDate(props: InputDateProps): React.JSX.Element {
+export function InputDate(props: InputDateProps): JSX.Element {
   if (props.name) {
     return (
       <FormField<Date>
@@ -149,7 +149,7 @@ function InternalInputDate({
   onChange,
   accessibilityLabel,
   accessibilityHint,
-}: InputDateProps): React.JSX.Element {
+}: InputDateProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
   const { t, locale, formatDate } = useAtlantisI18n();
 

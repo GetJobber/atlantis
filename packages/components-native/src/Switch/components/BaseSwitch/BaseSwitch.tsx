@@ -43,7 +43,7 @@ export function BaseSwitch({
   disabled = false,
   accessibilityLabel,
   name,
-}: BaseSwitchProps): React.JSX.Element {
+}: BaseSwitchProps): JSX.Element {
   const { field } = useFormController({
     name,
     value: value ?? defaultValue,

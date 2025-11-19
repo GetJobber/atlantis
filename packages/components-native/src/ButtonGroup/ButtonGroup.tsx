@@ -45,7 +45,7 @@ export function ButtonGroup({
   onOpenBottomSheet,
   onCloseBottomSheet,
   allowTapWhenOffline = false,
-}: ButtonGroupProps): React.JSX.Element {
+}: ButtonGroupProps): JSX.Element {
   const { t } = useAtlantisI18n();
   const { handlePress } = usePreventTapWhenOffline();
   const secondaryActionsRef = useRef<BottomSheetRef | null>(null);

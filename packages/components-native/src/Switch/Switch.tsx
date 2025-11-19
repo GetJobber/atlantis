@@ -20,7 +20,7 @@ interface WithLabelProps extends BaseSwitchProps {
 
 export type SwitchProps = XOR<BaseSwitchProps, WithLabelProps>;
 
-export function Switch(props: SwitchProps): React.JSX.Element {
+export function Switch(props: SwitchProps): JSX.Element {
   const switchProps: SwitchProps = {
     ...props,
     accessibilityLabel: props.accessibilityLabel || props.label,

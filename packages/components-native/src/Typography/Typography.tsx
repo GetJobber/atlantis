@@ -174,7 +174,7 @@ function InternalTypography<T extends FontFamily = "base">({
   UNSAFE_style,
   selectable = true,
   onTextLayout,
-}: TypographyProps<T>): React.JSX.Element {
+}: TypographyProps<T>): JSX.Element {
   const styles = useTypographyStyles();
   const sizeAndHeight = getSizeAndHeightStyle(size, styles, lineHeight);
   const style: StyleProp<ViewStyle>[] = [

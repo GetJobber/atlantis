@@ -15,7 +15,7 @@ interface FormMessageProps {
 export function InternalFormMessage({
   data,
   onRequestClose,
-}: FormMessageProps): React.JSX.Element {
+}: FormMessageProps): JSX.Element {
   const { t } = useAtlantisI18n();
   const styles = useStyles();
   const emptyStateData: EmptyStateProps = useMemo(() => {

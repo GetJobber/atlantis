@@ -44,7 +44,7 @@ export function TextList({
   emphasis,
   level = "text",
   spacing = "none",
-}: TextListProps): React.JSX.Element {
+}: TextListProps): JSX.Element {
   const styles = useStyles();
 
   return (

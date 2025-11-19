@@ -16,7 +16,7 @@ export function InputAccessoriesProvider({
   children,
 }: {
   readonly children: ReactNode;
-}): React.JSX.Element {
+}): JSX.Element {
   const inputAccessoryID = useRef(v4()).current;
   const {
     focusedInput,

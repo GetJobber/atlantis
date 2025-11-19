@@ -12,7 +12,7 @@ export function SelectDefaultPicker({
   options,
   disabled,
   onChange,
-}: SelectDefaultPickerProps): React.JSX.Element {
+}: SelectDefaultPickerProps): JSX.Element {
   const selectedItem = options.find(option => option.isActive);
   const pickerRef = useRef<Picker<string>>(null);
   const { tokens } = useAtlantisTheme();

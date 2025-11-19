@@ -142,7 +142,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => React.JSX.Element;
+  ) => JSX.Element;
 
   /**
    * Adding a key will save a local copy of the form data that will be used to

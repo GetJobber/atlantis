@@ -17,7 +17,7 @@ import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
 
 export interface AtlantisRoute {
   path?: string;
-  component?: () => React.JSX.Element;
+  component?: () => JSX.Element;
   exact?: boolean;
   children?: Array<AtlantisRoute>;
   inNav?: boolean;

@@ -110,7 +110,7 @@ export function Select({
   accessibilityLabel,
   name,
   testID,
-}: SelectProps): React.JSX.Element {
+}: SelectProps): JSX.Element {
   const { field, error } = useFormController({
     name,
     validations,
@@ -243,6 +243,6 @@ function getTestID(testID?: string): string {
   return "ATL-Select";
 }
 
-export function Option({ children }: SelectOption): React.JSX.Element {
+export function Option({ children }: SelectOption): JSX.Element {
   return <>{children}</>;
 }

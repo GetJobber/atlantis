@@ -143,7 +143,7 @@ export function Text({
   underline,
   selectable,
   onTextLayout,
-}: TextProps): React.JSX.Element {
+}: TextProps): JSX.Element {
   const accessibilityRole: TextAccessibilityRole = "text";
 
   return (

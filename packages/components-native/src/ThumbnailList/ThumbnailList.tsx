@@ -26,7 +26,7 @@ export function ThumbnailList({
   rowCount = RowCount.TwoRows,
   handleOpenFile,
   createThumbnail,
-}: ThumbnailListProps): React.JSX.Element {
+}: ThumbnailListProps): JSX.Element {
   const imageList = filterImages(files);
   const styles = useStyles();
 

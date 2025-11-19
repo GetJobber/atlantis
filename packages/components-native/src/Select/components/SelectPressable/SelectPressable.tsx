@@ -16,7 +16,7 @@ type SelectPressableProps = Pick<SelectInternalPickerProps, "children"> &
 export function SelectPressable({
   children,
   onPress,
-}: SelectPressableProps): React.JSX.Element {
+}: SelectPressableProps): JSX.Element {
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
   const styles = useStyles();
   if (isScreenReaderEnabled) return <>{children}</>;

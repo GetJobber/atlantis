@@ -46,7 +46,7 @@ export function CheckboxGroup({
   onChange,
   name,
   ...rest
-}: CheckboxGroupProps): React.JSX.Element {
+}: CheckboxGroupProps): JSX.Element {
   if (state !== undefined && onChange !== undefined) {
     return (
       <CheckboxGroupInternal
@@ -92,7 +92,7 @@ function CheckboxGroupInternal({
   accessibilityLabel,
   onChange,
   name: parentName,
-}: ControlledCheckboxGroupProps): React.JSX.Element {
+}: ControlledCheckboxGroupProps): JSX.Element {
   const childrenNames = React.Children.map(children, child => {
     const name = throwErrorIfItHasNoName(child.props.name);
 

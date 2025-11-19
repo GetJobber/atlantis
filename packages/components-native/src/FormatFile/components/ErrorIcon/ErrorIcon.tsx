@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { useStyles } from "./ErrorIcon.style";
 import { Icon } from "../../../Icon";
 
-export function ErrorIcon(): React.JSX.Element {
+export function ErrorIcon(): JSX.Element {
   const styles = useStyles();
 
   return (

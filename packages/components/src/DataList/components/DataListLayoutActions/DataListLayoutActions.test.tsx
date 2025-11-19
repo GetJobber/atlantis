@@ -11,15 +11,13 @@ import {
 } from "../../context/DataListLayoutContext";
 
 const mockSetHasInLayoutActions = jest.fn();
-const mockItemActionComponent = jest.fn<React.JSX.Element | undefined, []>(
-  () => (
-    <DataListItemActions>
-      <DataListAction label="Edit" />
-      <DataListAction label="Email" />
-      <DataListAction label="Delete" />
-    </DataListItemActions>
-  ),
-);
+const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
+  <DataListItemActions>
+    <DataListAction label="Edit" />
+    <DataListAction label="Email" />
+    <DataListAction label="Delete" />
+  </DataListItemActions>
+));
 
 describe("DataListLayoutActions", () => {
   it("should render a more action", () => {

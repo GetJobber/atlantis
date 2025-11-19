@@ -61,7 +61,7 @@ export function ActionItem({
   actionIconAlignment = "center",
   onPress,
   testID = "actionItem",
-}: ActionItemProps): React.JSX.Element {
+}: ActionItemProps): JSX.Element {
   const actionIconStyle = {
     justifyContent: actionIconAlignment,
   };

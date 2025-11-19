@@ -27,7 +27,7 @@ export function PrefixLabel({
   inputInvalid,
   label,
   styleOverride,
-}: PrefixLabelProps): React.JSX.Element {
+}: PrefixLabelProps): JSX.Element {
   const styles = useStyles();
   const typographyStyles = useTypographyStyles();
 
@@ -78,7 +78,7 @@ export function PrefixIcon({
   disabled,
   inputInvalid,
   icon,
-}: PrefixIconProps): React.JSX.Element {
+}: PrefixIconProps): JSX.Element {
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
 

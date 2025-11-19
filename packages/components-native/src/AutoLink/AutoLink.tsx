@@ -11,7 +11,7 @@ export function AutoLink({
   bottomTabsVisible = true,
   selectable = true,
   ...rest
-}: AutoLinkProps): React.JSX.Element {
+}: AutoLinkProps): JSX.Element {
   const { splitText, matches } = useCreateLinkedText({ text, ...rest });
   const { tokens } = useAtlantisTheme();
 

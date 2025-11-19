@@ -33,7 +33,7 @@ import { ErrorMessageProvider } from "../ErrorMessageWrapper";
 export function Form<T extends FieldValues, S>({
   initialLoading,
   ...rest
-}: FormProps<T, S>): React.JSX.Element {
+}: FormProps<T, S>): JSX.Element {
   const child = initialLoading ? <FormMask /> : <InternalForm {...rest} />;
 
   return (

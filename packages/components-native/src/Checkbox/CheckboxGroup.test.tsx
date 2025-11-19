@@ -66,7 +66,7 @@ function SetupWithForm({
 }: {
   readonly initialValues: CheckboxGroupFormData;
   readonly onChangeHandlers?: CheckboxGroupFormOnChangeHandlers;
-}): React.JSX.Element {
+}): JSX.Element {
   const formMethods = useForm({ defaultValues: initialValues });
 
   return (

@@ -25,7 +25,7 @@ export interface DataTableSortableHeaderProps {
 export function DataTableSortableHeader(
   props: DataTableSortableHeaderProps &
     React.HTMLAttributes<HTMLTableCellElement>,
-): React.JSX.Element {
+): JSX.Element {
   const { children, direction, onSort } = props;
   const isSortable = direction !== undefined && onSort !== undefined;
 

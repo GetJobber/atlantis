@@ -115,7 +115,7 @@ export function InputPressableInternal(
     focused,
   }: InputPressableProps,
   ref: Ref<InputPressableRef>,
-): React.JSX.Element {
+): JSX.Element {
   const hasValue = !!value;
   const [hasMiniLabel, setHasMiniLabel] = useState(Boolean(value));
 

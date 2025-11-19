@@ -51,7 +51,7 @@ export function Content({
   childSpacing = "base",
   direction = "vertical",
   UNSAFE_style,
-}: ContentProps): React.JSX.Element {
+}: ContentProps): JSX.Element {
   const horizontalStyles = useHorizontalStyles();
   const verticalStyles = useVerticalStyles();
   const spaceAroundStyles = useSpaceAroundStyles();

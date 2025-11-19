@@ -22,7 +22,7 @@ export const ProgressBar = ({
   progress,
   status,
   onComplete,
-}: ProgressBarProps): React.JSX.Element => {
+}: ProgressBarProps): JSX.Element => {
   const barWidth = useRef(new Animated.Value(0)).current;
   const progressPercentage = barWidth.interpolate({
     inputRange: [0, 1],

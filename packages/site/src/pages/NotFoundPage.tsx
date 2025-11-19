@@ -21,7 +21,7 @@ export const NotFoundPage = () => {
     );
   };
 
-  const [fishElement, setFishElement] = useState<React.JSX.Element | null>(
+  const [fishElement, setFishElement] = useState<JSX.Element | null>(
     getRandomFish(),
   );
   const timeoutRef = useRef<number | null>(null);
