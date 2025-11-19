@@ -24,7 +24,7 @@ export function FormBody({
   setSecondaryActionLoading,
   setSaveButtonHeight,
   saveButtonOffset,
-}: FormBodyProps): JSX.Element {
+}: FormBodyProps) {
   const paddingBottom = useBottomPadding();
   const fullViewPadding = useMemo(() => ({ paddingBottom }), [paddingBottom]);
   const styles = useStyles();

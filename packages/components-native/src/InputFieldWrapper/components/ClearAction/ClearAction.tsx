@@ -15,7 +15,7 @@ interface ClearActionProps {
 export function ClearAction({
   onPress,
   hasMarginRight = false,
-}: ClearActionProps): JSX.Element {
+}: ClearActionProps) {
   const { t } = useAtlantisI18n();
   const styles = useStyles();
 

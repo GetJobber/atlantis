@@ -3,6 +3,6 @@ import type { ModalBaseProps } from "react-native";
 import { View } from "react-native";
 
 // @ts-expect-error tsc-ci
-export function MockModal({ visible, children }: ModalBaseProps): JSX.Element {
+export function MockModal({ visible, children }: ModalBaseProps) {
   return <View>{visible && children}</View>;
 }

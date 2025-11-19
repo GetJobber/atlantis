@@ -32,7 +32,7 @@ export function FormActionBar({
   setSaveButtonHeight,
   secondaryActions,
   setSecondaryActionLoading,
-}: FormActionBarProps): JSX.Element {
+}: FormActionBarProps) {
   const styles = useStyles();
 
   const buttonStyle = StyleSheet.flatten([

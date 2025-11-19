@@ -54,13 +54,13 @@ export interface ButtonGroupPrimaryActionProps extends ButtonGroupActionProps {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function PrimaryAction(_: ButtonGroupPrimaryActionProps): JSX.Element {
+export function PrimaryAction(_: ButtonGroupPrimaryActionProps) {
   return <></>;
 }
 
 export function SecondaryAction(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _: ButtonGroupSecondaryActionProps,
-): JSX.Element {
+) {
   return <></>;
 }

@@ -71,7 +71,7 @@ export function Heading<T extends HeadingLevel = "heading">({
   maxLines = "unlimited",
   allowFontScaling = true,
   selectable,
-}: HeadingProps<T>): JSX.Element {
+}: HeadingProps<T>) {
   const headingStyle = getHeadingStyle(level, variation);
   const accessibilityRole = "header";
 
