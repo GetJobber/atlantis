@@ -188,7 +188,8 @@ export function ContentOverlayRebuilt({
       ref={bottomSheetModalRef}
       onChange={handleChange}
       backgroundStyle={styles.background}
-      handleIndicatorStyle={draggable ? styles.handle : undefined}
+      handleIndicatorStyle={styles.handle}
+      handleComponent={draggable ? undefined : null}
       backdropComponent={props => (
         <Backdrop {...props} pressBehavior={onBeforeExit ? "none" : "close"} />
       )}
@@ -201,6 +202,7 @@ export function ContentOverlayRebuilt({
     >
       {scrollEnabled ? (
         <BottomSheetScrollView
+          style={styles.background}
           contentContainerStyle={{ paddingBottom: insets.bottom }}
           keyboardShouldPersistTaps={
             keyboardShouldPersistTaps ? "handled" : "never"
@@ -213,7 +215,7 @@ export function ContentOverlayRebuilt({
           {children}
         </BottomSheetScrollView>
       ) : (
-        <BottomSheetView>
+        <BottomSheetView style={styles.background}>
           {renderHeader()}
           <View style={{ paddingBottom: insets.bottom }}>{children}</View>
         </BottomSheetView>
