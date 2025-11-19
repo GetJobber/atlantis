@@ -1,4 +1,3 @@
-import type { MutableRefObject } from "react";
 import React, { useRef } from "react";
 import { render, waitFor } from "@testing-library/react";
 import { useFormState } from "@jobber/hooks";
@@ -178,7 +177,7 @@ interface MockFormValidateProps {
 }
 
 function MockFormValidate({ onSubmit }: MockFormValidateProps) {
-  const formRef = useRef() as MutableRefObject<FormRef>;
+  const formRef = useRef<FormRef>(null);
 
   return (
     <>
@@ -194,7 +193,9 @@ function MockFormValidate({ onSubmit }: MockFormValidateProps) {
           }}
         />
       </Form>
-      <button onClick={() => formRef.current.submit()}>submit</button>
+      <button type="button" onClick={() => formRef.current?.submit()}>
+        submit
+      </button>
     </>
   );
 }

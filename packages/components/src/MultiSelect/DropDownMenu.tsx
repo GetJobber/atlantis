@@ -1,10 +1,5 @@
-import type {
-  Dispatch,
-  KeyboardEvent,
-  MouseEvent,
-  MutableRefObject,
-} from "react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import type { Dispatch, KeyboardEvent, MouseEvent } from "react";
 import classNames from "classnames";
 import styles from "./DropDownMenu.module.css";
 import type { Option, Options } from "./types";
@@ -25,7 +20,7 @@ interface DropDownMenuProps {
 
 export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const menuDiv = useRef() as MutableRefObject<HTMLUListElement>;
+  const menuDiv = useRef<HTMLUListElement>(null);
 
   const handleOptionClick = useCallback((clickedOption: Option) => {
     setOptions(current =>
@@ -54,9 +49,11 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   }
 
   function scrollMenuIfItemNotInView(
-    menuDivElement: HTMLUListElement,
+    menuDivElement: HTMLUListElement | null,
     direction: "up" | "down",
   ) {
+    if (!menuDivElement) return;
+
     const itemDiv = menuDivElement.querySelector(
       `:nth-child(${highlightedIndex + 1})`,
     ) as HTMLButtonElement;

@@ -1,5 +1,5 @@
 import React from "react";
-import type { MutableRefObject } from "react";
+import type { RefObject } from "react";
 import { type ComboboxOption } from "./Combobox.types";
 
 export interface ComboboxProviderProps {
@@ -9,7 +9,7 @@ export interface ComboboxProviderProps {
   readonly open: boolean;
   readonly handleClose: () => void;
   readonly handleOpen: () => void;
-  readonly shouldScroll: MutableRefObject<boolean>;
+  readonly shouldScroll: RefObject<boolean>;
   readonly searchValue: string;
   readonly label?: string;
   readonly onClear?: () => void;

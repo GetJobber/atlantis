@@ -1,4 +1,4 @@
-import type { KeyboardEvent, MouseEvent, MutableRefObject } from "react";
+import type { KeyboardEvent, MouseEvent } from "react";
 import React, { useRef } from "react";
 import type { IconNames } from "@jobber/design";
 import styles from "./InternalChip.module.css";
@@ -19,7 +19,7 @@ export function InternalChipButton({
   label,
   onClick,
 }: ChipButtonProps) {
-  const buttonRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
@@ -45,7 +45,7 @@ export function InternalChipButton({
       (event.key === " " || event.key === "Enter")
     ) {
       event.stopPropagation();
-      buttonRef.current.click();
+      buttonRef.current?.click();
     }
   }
 

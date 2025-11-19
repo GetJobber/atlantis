@@ -12,7 +12,7 @@ import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
 
 export interface NavMenuProps {
-  readonly mainContentRef: React.RefObject<HTMLDivElement>;
+  readonly mainContentRef: React.RefObject<HTMLDivElement | null>;
 }
 
 /**
