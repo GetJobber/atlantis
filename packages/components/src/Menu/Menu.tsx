@@ -326,7 +326,7 @@ export function MenuLegacy({
   );
 
   function toggle(callbackPassthrough?: (event?: MouseEvent) => void) {
-    return (event: MouseEvent) => {
+    return (event?: MouseEvent) => {
       setVisible(!visible);
       callbackPassthrough && callbackPassthrough(event);
     };
