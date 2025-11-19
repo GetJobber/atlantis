@@ -54,18 +54,20 @@ export function ContentOverlayRebuilt({
   const insets = useSafeAreaInsets();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
+  const [currentIndex, setCurrentIndex] = useState(-1);
+
   const styles = useStyles();
   const { t } = useAtlantisI18n();
   const { tokens } = useAtlantisTheme();
-  const [position] = useState<"top" | "initial">("initial");
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
   const { handleSheetPositionChange } =
     useBottomSheetModalBackHandler(bottomSheetModalRef);
 
   const isFullScreenOrTopPosition =
-    fullScreen || (!adjustToContentHeight && position === "top");
+    fullScreen || (!adjustToContentHeight && currentIndex === 1);
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
+
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
 
@@ -86,6 +88,7 @@ export function ContentOverlayRebuilt({
     const previousIndex = previousIndexRef.current;
 
     handleSheetPositionChange(index);
+    setCurrentIndex(index);
 
     if (previousIndex === -1 && index >= 0) {
       // Transitioned from closed to open
@@ -110,8 +113,6 @@ export function ContentOverlayRebuilt({
   const onCloseController = () => {
     if (!onBeforeExit) {
       bottomSheetModalRef.current?.dismiss();
-
-      return true;
     } else {
       onBeforeExit();
 
