@@ -35,6 +35,7 @@ exports[`Tabs Component Rendering displays the label when it is a ReactNode 1`] 
       </ul>
     </div>
     <section
+      aria-label="Tab panel"
       class="tabContent"
       role="tabpanel"
     >
