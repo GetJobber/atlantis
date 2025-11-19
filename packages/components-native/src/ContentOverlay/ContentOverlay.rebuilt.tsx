@@ -69,15 +69,9 @@ export function ContentOverlayRebuilt({
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
 
-  const snapPoints = useMemo(() => {
-    if (fullScreen) {
-      return ["100%"];
-    }
-
-    // Let bottom-sheet handle the content height calculation and add
-    // a snap point when not full screen and enableDynamicSizing is true
-    return [];
-  }, [fullScreen]);
+  // If isDraggable is true, we always want to have a snap point at 100%
+  // enableDynamicSizing will add another snap point of the content height
+  const snapPoints = useMemo(() => ["100%"], []);
 
   useImperativeHandle(ref, () => ({
     open: () => {
