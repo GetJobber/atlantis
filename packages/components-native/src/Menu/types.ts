@@ -17,7 +17,10 @@ export interface MenuOptionInternalProps extends MenuOptionProps {
 
 export interface MenuProps {
   readonly menuOptions?: MenuOptionProps[];
-  readonly customActivator?: React.ReactElement;
+  readonly customActivator?: React.ReactElement<{
+    onPress?: () => void;
+    onLongPress?: () => void;
+  }>;
 }
 
 export interface OverlayProp {
