@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 
 export const useAtlantisPreviewViewer = () => {
-  const iframe = useRef<HTMLIFrameElement>(null);
-  const iframeMobile = useRef<HTMLIFrameElement>(null);
+  const iframe = useRef<HTMLIFrameElement | null>(null);
+  const iframeMobile = useRef<HTMLIFrameElement | null>(null);
 
   const [type, setType] = useState<"web" | "mobile">(
     new URLSearchParams(window.location.search)?.has("mobile")

@@ -6,8 +6,8 @@ import { useAtlantisPreviewViewer } from "./useAtlantisPreviewViewer";
 // We could probably create some better types throughout here,
 // but not necessary until we need them externally.
 const AtlantisPreviewContext = createContext<{
-  iframe: React.RefObject<HTMLIFrameElement> | null;
-  iframeMobile: React.RefObject<HTMLIFrameElement> | null;
+  iframe: React.RefObject<HTMLIFrameElement | null> | null;
+  iframeMobile: React.RefObject<HTMLIFrameElement | null> | null;
   updateCode: (code: string, forceUpdate?: boolean) => void;
   code: string;
   error: string;

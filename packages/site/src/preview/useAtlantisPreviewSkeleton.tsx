@@ -371,7 +371,7 @@ export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
 
   const writeCodeToIFrame = (
     html: string | undefined,
-    selectedFrame: RefObject<HTMLIFrameElement>,
+    selectedFrame: RefObject<HTMLIFrameElement | null>,
     theme: Theme,
     transpiledCode: string | null | undefined,
   ) => {

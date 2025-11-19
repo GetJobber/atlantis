@@ -9,8 +9,8 @@ export const useAtlantisPreviewCode = ({
   theme,
   type,
 }: {
-  iframe: RefObject<HTMLIFrameElement>;
-  iframeMobile: RefObject<HTMLIFrameElement>;
+  iframe: RefObject<HTMLIFrameElement | null>;
+  iframeMobile: RefObject<HTMLIFrameElement | null>;
   type: "web" | "mobile";
   theme: Theme;
 }) => {
