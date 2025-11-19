@@ -118,7 +118,7 @@ describe("InputEmailRebuilt", () => {
       expect(blurHandler).not.toHaveBeenCalled();
     });
 
-    it("should call onChange with undefined, and focus input when cleared", async () => {
+    it("should call onChange with empty string, and focus input when cleared", async () => {
       const changeHandler = jest.fn();
       const ref = React.createRef<HTMLInputElement>();
       const initialValue = "test@example.com";
@@ -137,6 +137,7 @@ describe("InputEmailRebuilt", () => {
       await userEvent.click(clearButton);
 
       expect(changeHandler).toHaveBeenCalledWith("");
+      expect(ref.current).toHaveFocus();
     });
   });
 

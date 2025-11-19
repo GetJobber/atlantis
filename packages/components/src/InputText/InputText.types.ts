@@ -1,9 +1,5 @@
 import type { XOR } from "ts-xor";
-import type {
-  CommonFormFieldProps,
-  FormFieldProps,
-  FormFieldTypes,
-} from "../FormField";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
@@ -41,11 +37,6 @@ export interface InputTextRebuiltProps
    * maximum number of visible rows.
    */
   readonly rows?: number | RowRange;
-
-  /**
-   * Determines what kind of form field should the component give you.
-   */
-  readonly type?: FormFieldTypes;
 
   /**
    * Toolbar to render content below the input.

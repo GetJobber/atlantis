@@ -48,8 +48,8 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     });
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
-  const hasDescription = props.description && !props.inline;
-  const isInvalid = Boolean(props.ariaInvalid || props.error || props.invalid);
+  const descriptionVisible = props.description && !props.inline;
+  const isInvalid = Boolean(props.error || props.invalid);
 
   return (
     <FormFieldWrapper
@@ -92,7 +92,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         role={props.role}
         aria-label={props.ariaLabel}
         aria-describedby={
-          hasDescription ? descriptionIdentifier : props.ariaDescribedBy
+          descriptionVisible ? descriptionIdentifier : props.ariaDescribedBy
         }
         aria-invalid={isInvalid ? true : undefined}
         aria-controls={props.ariaControls}
@@ -109,7 +109,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         {...props.dataAttributes}
       />
       <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
-      {props.children}
     </FormFieldWrapper>
   );
 });

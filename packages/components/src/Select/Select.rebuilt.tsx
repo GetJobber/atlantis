@@ -43,6 +43,8 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
       onFocus: props.onFocus,
     });
 
+    const isInvalid = Boolean(props.error || props.invalid);
+
     return (
       <FormFieldWrapper
         disabled={props.disabled}
@@ -82,7 +84,7 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
                 ? descriptionIdentifier
                 : undefined)
             }
-            aria-invalid={props.ariaInvalid}
+            aria-invalid={isInvalid ? true : undefined}
             aria-required={props.ariaRequired}
             ref={mergedRef}
             className={classnames(

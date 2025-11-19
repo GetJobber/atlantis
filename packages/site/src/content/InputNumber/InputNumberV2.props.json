@@ -19,19 +19,6 @@
           "name": "\"center\" | \"right\""
         }
       },
-      "autoComplete": {
-        "defaultValue": null,
-        "description": "HTML autocomplete attribute for browser autofill.",
-        "name": "autoComplete",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "autoFocus": {
         "defaultValue": null,
         "description": "",
@@ -318,6 +305,19 @@
           "name": "Clearable"
         }
       },
+      "dataAttributes": {
+        "defaultValue": null,
+        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
+        "name": "dataAttributes",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "DataAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "{ [key: `data-${string}`]: string; }"
+        }
+      },
       "ariaLabel": {
         "defaultValue": null,
         "description": "Defines a string value that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-label}",
@@ -383,19 +383,6 @@
           "name": "string"
         }
       },
-      "ariaInvalid": {
-        "defaultValue": null,
-        "description": "Indicates the entered value does not conform to the format expected.\nSupports boolean or specific error types: \"grammar\" | \"spelling\".\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-invalid}",
-        "name": "ariaInvalid",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "AriaInputProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean | \"false\" | \"true\" | \"grammar\" | \"spelling\""
-        }
-      },
       "ariaControls": {
         "defaultValue": null,
         "description": "Indicates the element that controls the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}",
@@ -422,19 +409,6 @@
           "name": "Booleanish"
         }
       },
-      "ariaAutocomplete": {
-        "defaultValue": null,
-        "description": "Indicates the type of autocomplete interaction.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}",
-        "name": "ariaAutocomplete",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "AriaInputProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"inline\" | \"none\" | \"list\" | \"both\""
-        }
-      },
       "ariaRequired": {
         "defaultValue": null,
         "description": "Indicates that user input is required before form submission.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}",
@@ -446,19 +420,6 @@
         "required": false,
         "type": {
           "name": "Booleanish"
-        }
-      },
-      "dataAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
-        "name": "dataAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "DataAttributes"
-        },
-        "required": false,
-        "type": {
-          "name": "{ [key: `data-${string}`]: string; }"
         }
       },
       "onFocus": {

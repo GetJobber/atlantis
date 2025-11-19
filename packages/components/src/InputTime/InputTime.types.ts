@@ -58,21 +58,21 @@ export interface InputTimeLegacyProps extends InputTimeProps {
 }
 
 export interface InputTimeRebuiltProps
-  extends Omit<
+  extends Pick<
       InputTimeProps,
-      | "defaultValue"
-      | "version"
-      | "validations"
-      | "onValidation"
-      | "readonly"
-      | "autocomplete"
-      | "inputRef"
-      | "onFocus"
-      | "onBlur"
-      | "onEnter"
-      | "max"
-      | "min"
-      | "maxLength"
+      | "id"
+      | "align"
+      | "description"
+      | "disabled"
+      | "invalid"
+      | "inline"
+      | "loading"
+      | "name"
+      | "placeholder"
+      | "size"
+      | "clearable"
+      | "value"
+      | "onChange"
     >,
     AriaInputProps,
     DataAttributes,

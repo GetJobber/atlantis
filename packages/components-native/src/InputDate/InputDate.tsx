@@ -8,9 +8,11 @@ import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { FormField } from "../FormField";
 import { InputPressable } from "../InputPressable";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import type { InputPressableProps } from "../InputPressable/InputPressable";
 
 interface BaseInputDateProps
-  extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder"> {
+  extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder">,
+    Pick<InputPressableProps, "showMiniLabel"> {
   /**
    * Defaulted to "always" so user can clear the dates whenever there's a value.
    */
@@ -145,6 +147,7 @@ function InternalInputDate({
   minDate,
   placeholder,
   value,
+  showMiniLabel = true,
   name,
   onChange,
   accessibilityLabel,
@@ -174,6 +177,7 @@ function InternalInputDate({
   return (
     <>
       <InputPressable
+        showMiniLabel={showMiniLabel}
         focused={showPicker}
         clearable={canClearDate}
         disabled={disabled}

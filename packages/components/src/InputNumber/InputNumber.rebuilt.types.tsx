@@ -13,17 +13,12 @@ export type InputNumberVersion = 1 | 2 | undefined;
 
 export interface InputNumberRebuiltProps
   extends Omit<CommonFormFieldProps, "version">,
-    AriaInputProps,
     DataAttributes,
+    Omit<AriaInputProps, "ariaAutocomplete">,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
     InputConstraintProps {
   readonly align?: "center" | "right"; // todo add left and make it default
-
-  /**
-   * HTML autocomplete attribute for browser autofill.
-   */
-  readonly autoComplete?: string;
 
   readonly autoFocus?: boolean;
   readonly defaultValue?: number;

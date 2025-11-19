@@ -18,7 +18,7 @@ export const COMPONENT_TYPE_CONFIGS: Record<
 > = {
   web: {
     label: "Web (Legacy)",
-    displayName: "Legacy",
+    displayName: "Web",
     platform: "web",
   },
   webSupported: {

@@ -58,8 +58,8 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     });
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
-  const hasDescription = props.description && !props.inline;
-  const isInvalid = Boolean(props.ariaInvalid || props.error || props.invalid);
+  const descriptionVisible = props.description && !props.inline;
+  const isInvalid = Boolean(props.error || props.invalid);
 
   // Shared props for both TextArea and TextInput
   const commonInputProps = {
@@ -76,7 +76,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     maxLength: props.maxLength,
     role: props.role,
     "aria-label": props.ariaLabel,
-    "aria-describedby": hasDescription
+    "aria-describedby": descriptionVisible
       ? descriptionIdentifier
       : props.ariaDescribedBy,
     "aria-invalid": isInvalid ? true : undefined,
@@ -130,7 +130,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
           variation="spinner"
           visible={props.loading ?? false}
         />
-        {props.children}
       </>
     </FormFieldWrapper>
   );

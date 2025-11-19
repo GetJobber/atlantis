@@ -81,7 +81,6 @@ export const InputNumberRebuilt = forwardRef(
         {...ariaNumberFieldProps}
         className={classnames(styles.container, inline && styles.inline)}
         formatOptions={mergedFormatOptions}
-        id={props.id}
         isDisabled={disabled}
         isInvalid={invalid}
         isReadOnly={readOnly}

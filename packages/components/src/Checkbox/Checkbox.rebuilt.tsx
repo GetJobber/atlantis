@@ -23,7 +23,6 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
     invalid,
     ariaLabel,
     ariaDescribedBy,
-    ariaInvalid,
     ariaRequired,
   }: CheckboxRebuiltProps,
   ref: React.Ref<HTMLInputElement>,
@@ -34,6 +33,7 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
     disabled && styles.disabled,
     invalid && styles.invalid,
   );
+  const isInvalid = Boolean(invalid);
   const inputClassName = classnames(styles.input, {
     [styles.indeterminate]: indeterminate,
   });
@@ -69,7 +69,7 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
               ariaDescribedBy ||
               (description ? descriptionIdentifier : undefined)
             }
-            aria-invalid={ariaInvalid}
+            aria-invalid={isInvalid ? true : undefined}
             aria-required={ariaRequired}
             checked={checked}
             value={value}

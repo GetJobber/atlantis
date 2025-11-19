@@ -60,13 +60,6 @@ export interface AriaInputProps {
   readonly ariaActiveDescendant?: AriaAttributes["aria-activedescendant"];
 
   /**
-   * Indicates the entered value does not conform to the format expected.
-   * Supports boolean or specific error types: "grammar" | "spelling".
-   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-invalid}
-   */
-  readonly ariaInvalid?: AriaAttributes["aria-invalid"];
-
-  /**
    * Indicates the element that controls the current element.
    * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}
    */
@@ -296,11 +289,6 @@ export interface RebuiltInputCommonProps extends DataAttributes {
    * Further description of the input, can be used for a hint.
    */
   readonly description?: ReactNode;
-
-  /**
-   * Children elements to render inside the component.
-   */
-  readonly children?: ReactNode;
 
   /**
    * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
