@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | HeaderActionProps | ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "string | HeaderActionProps | ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "elevation": {

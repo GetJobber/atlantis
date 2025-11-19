@@ -447,7 +447,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<InputTextRef>"
+          "name": "Ref<InputTextRef>"
         }
       }
     }

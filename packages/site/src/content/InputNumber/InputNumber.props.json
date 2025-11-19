@@ -408,7 +408,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<InputNumberRef>"
+          "name": "Ref<InputNumberRef>"
         }
       }
     }

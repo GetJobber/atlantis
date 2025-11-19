@@ -250,7 +250,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<unknown>"
+          "name": "Ref<unknown>"
         }
       }
     }

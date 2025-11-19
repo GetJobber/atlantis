@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<FormRef>"
+          "name": "Ref<FormRef>"
         }
       }
     }

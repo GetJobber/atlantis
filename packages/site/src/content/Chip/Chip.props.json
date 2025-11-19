@@ -178,7 +178,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<HTMLButtonElement | HTMLDivElement>"
+          "name": "Ref<HTMLButtonElement | HTMLDivElement>"
         }
       }
     }

@@ -144,7 +144,7 @@
         "name": "label",
         "required": false,
         "type": {
-          "name": "string | ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "string | ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "description": {
@@ -184,7 +184,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<unknown>"
+          "name": "Ref<unknown>"
         }
       }
     }
