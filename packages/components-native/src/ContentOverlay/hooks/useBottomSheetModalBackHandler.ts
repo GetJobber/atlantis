@@ -1,14 +1,11 @@
 import { useCallback, useRef } from "react";
 import { BackHandler, type NativeEventSubscription } from "react-native";
-import type { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 /**
  * Hook that dismisses the bottom sheet on the hardware back button press if it is visible
  * @param bottomSheetModalRef ref to the bottom sheet modal component
  */
-export function useBottomSheetModalBackHandler(
-  bottomSheetModalRef: React.RefObject<BottomSheetModal | null>,
-) {
+export function useBottomSheetModalBackHandler(onCloseController: () => void) {
   const backHandlerSubscriptionRef = useRef<NativeEventSubscription | null>(
     null,
   );
@@ -22,7 +19,7 @@ export function useBottomSheetModalBackHandler(
         backHandlerSubscriptionRef.current = BackHandler.addEventListener(
           "hardwareBackPress",
           () => {
-            bottomSheetModalRef.current?.dismiss();
+            onCloseController();
 
             return true;
           },
@@ -32,7 +29,7 @@ export function useBottomSheetModalBackHandler(
         backHandlerSubscriptionRef.current = null;
       }
     },
-    [bottomSheetModalRef],
+    [onCloseController],
   );
 
   return { handleSheetPositionChange };

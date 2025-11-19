@@ -1,8 +1,5 @@
-import { createRef } from "react";
-import type React from "react";
 import { act, renderHook } from "@testing-library/react-native";
 import { BackHandler } from "react-native";
-import type { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useBottomSheetModalBackHandler } from "./useBottomSheetModalBackHandler";
 
 describe("useBottomSheetModalBackHandler", () => {
@@ -20,9 +17,9 @@ describe("useBottomSheetModalBackHandler", () => {
   });
 
   it("should register BackHandler listener when sheet becomes visible", async () => {
-    const bottomSheetModalRef = createRef<BottomSheetModal | null>();
+    const onCloseController = jest.fn();
     const { result } = renderHook(() =>
-      useBottomSheetModalBackHandler(bottomSheetModalRef),
+      useBottomSheetModalBackHandler(onCloseController),
     );
 
     await act(async () => {
@@ -35,16 +32,10 @@ describe("useBottomSheetModalBackHandler", () => {
     );
   });
 
-  it("should call dismiss() when back button is pressed", async () => {
-    const mockDismiss = jest.fn();
-    const bottomSheetModalRef = {
-      current: {
-        dismiss: mockDismiss,
-      } as unknown as BottomSheetModal,
-    } as React.RefObject<BottomSheetModal | null>;
-
+  it("should call onCloseController when back button is pressed", async () => {
+    const onCloseController = jest.fn();
     const { result } = renderHook(() =>
-      useBottomSheetModalBackHandler(bottomSheetModalRef),
+      useBottomSheetModalBackHandler(onCloseController),
     );
 
     await act(async () => {
@@ -54,14 +45,14 @@ describe("useBottomSheetModalBackHandler", () => {
     const registeredCallback = mockAddEventListener.mock.calls[0][1];
     const returnValue = registeredCallback();
 
-    expect(mockDismiss).toHaveBeenCalled();
+    expect(onCloseController).toHaveBeenCalled();
     expect(returnValue).toBe(true);
   });
 
   it("should remove listener when sheet is dismissed", async () => {
-    const bottomSheetModalRef = createRef<BottomSheetModal | null>();
+    const onCloseController = jest.fn();
     const { result } = renderHook(() =>
-      useBottomSheetModalBackHandler(bottomSheetModalRef),
+      useBottomSheetModalBackHandler(onCloseController),
     );
 
     await act(async () => {
@@ -76,9 +67,9 @@ describe("useBottomSheetModalBackHandler", () => {
   });
 
   it("should not register listener when index is negative", async () => {
-    const bottomSheetModalRef = createRef<BottomSheetModal | null>();
+    const onCloseController = jest.fn();
     const { result } = renderHook(() =>
-      useBottomSheetModalBackHandler(bottomSheetModalRef),
+      useBottomSheetModalBackHandler(onCloseController),
     );
 
     await act(async () => {
