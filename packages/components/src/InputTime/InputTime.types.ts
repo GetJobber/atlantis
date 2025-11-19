@@ -1,7 +1,6 @@
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   AriaInputProps,
-  DataAttributes,
   FocusEvents,
   InputConstraintProps,
   InputLengthConstraint,
@@ -75,7 +74,6 @@ export interface InputTimeRebuiltProps
       | "onChange"
     >,
     AriaInputProps,
-    DataAttributes,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
     InputLengthConstraint,
