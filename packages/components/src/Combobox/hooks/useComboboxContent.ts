@@ -14,7 +14,7 @@ export function useComboboxContent(
   selected: ComboboxOption[],
 ): useComboboxContent {
   const { onClear, onSelectAll, shouldScroll } = useContext(ComboboxContext);
-  const optionsListRef = useRef<HTMLUListElement | null>(null);
+  const optionsListRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     if (open && shouldScroll.current && optionsListRef.current) {

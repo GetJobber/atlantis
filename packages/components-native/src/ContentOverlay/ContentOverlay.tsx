@@ -71,9 +71,9 @@ function ContentOverlayInternal(
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
-  const overlayHeader = useRef<View | null>(null);
+  const overlayHeader = useRef<View>(null);
 
-  const internalRef = useRef<Modalize | null>(null);
+  const internalRef = useRef<Modalize>(null);
   const [modalizeMethods, setModalizeMethods] = useState<ContentOverlayRef>();
   const callbackInternalRef = useCallback((instance: Modalize) => {
     if (instance && !internalRef.current) {

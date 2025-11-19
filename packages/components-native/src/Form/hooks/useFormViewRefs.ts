@@ -10,8 +10,8 @@ interface UseFormViewRefsReturn {
 }
 
 export function useFormViewRefs(): UseFormViewRefsReturn {
-  const scrollViewRef = useRef<KeyboardAwareScrollView | null>(null);
-  const bottomViewRef = useRef<View | null>(null);
+  const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
+  const bottomViewRef = useRef<View>(null);
   const scrollToTop = useCallback(() => {
     scrollViewRef.current?.scrollToPosition(0, 0);
   }, [scrollViewRef]);

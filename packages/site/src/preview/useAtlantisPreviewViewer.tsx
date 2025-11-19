@@ -3,8 +3,8 @@ import { ComponentType } from "../types/content";
 import { getPlatformForComponentType } from "../utils/componentTypeUtils";
 
 export const useAtlantisPreviewViewer = () => {
-  const iframe = useRef<HTMLIFrameElement | null>(null);
-  const iframeMobile = useRef<HTMLIFrameElement | null>(null);
+  const iframe = useRef<HTMLIFrameElement>(null);
+  const iframeMobile = useRef<HTMLIFrameElement>(null);
 
   // Parse the current type from URL parameters
   const getInitialType = (): ComponentType => {
