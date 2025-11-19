@@ -37,7 +37,7 @@ export function Icon({
   size = "base",
   customColor,
   testID,
-}: IconProps): JSX.Element {
+}: IconProps) {
   const { svgStyle, paths, viewBox } = getIcon({
     name,
     color,

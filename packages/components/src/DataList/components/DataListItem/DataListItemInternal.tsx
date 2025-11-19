@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import React from "react";
 import classNames from "classnames";
 import { Checkbox } from "@jobber/components/Checkbox";
@@ -6,7 +7,7 @@ import { useBatchSelect } from "@jobber/components/DataList/hooks/useBatchSelect
 import styles from "../../DataList.module.css";
 
 interface ListItemInternalProps<T extends DataListObject> {
-  readonly children: JSX.Element;
+  readonly children: ReactElement;
   readonly item: T;
 }
 

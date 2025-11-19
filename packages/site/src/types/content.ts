@@ -1,3 +1,5 @@
+import type { ReactElement } from "react";
+
 // Define supported platform types (for iframes/rendering)
 export type PlatformType = "web" | "mobile";
 
@@ -47,12 +49,12 @@ export interface ComponentProps {
 
 export interface ContentExport {
   // Design content (shared across all types)
-  content: (props?: unknown) => JSX.Element;
+  content: (props?: unknown) => ReactElement;
 
   // Type-specific content
-  webContent?: (props?: unknown) => JSX.Element;
-  webSupportedContent?: (props?: unknown) => JSX.Element;
-  mobileContent?: (props?: unknown) => JSX.Element;
+  webContent?: (props?: unknown) => ReactElement;
+  webSupportedContent?: (props?: unknown) => ReactElement;
+  mobileContent?: (props?: unknown) => ReactElement;
 
   // Type-specific props
   props?: Array<ComponentProps>;
@@ -85,10 +87,10 @@ export interface ContentExport {
   mobileLinks?: ContentExportLinks[];
 
   // Type-specific notes
-  notes?: () => JSX.Element;
-  webNotes?: () => JSX.Element;
-  webSupportedNotes?: () => JSX.Element;
-  mobileNotes?: () => JSX.Element;
+  notes?: () => ReactElement;
+  webNotes?: () => ReactElement;
+  webSupportedNotes?: () => ReactElement;
+  mobileNotes?: () => ReactElement;
 }
 interface GeneratedTag {
   name: string;

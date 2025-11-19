@@ -13,9 +13,7 @@ interface ErrorMessageProviderProps {
   readonly children: ReactNode;
 }
 
-export function ErrorMessageProvider({
-  children,
-}: ErrorMessageProviderProps): JSX.Element {
+export function ErrorMessageProvider({ children }: ErrorMessageProviderProps) {
   const [elements, setElements] = useState<
     ErrorMessageContextProps["elements"]
   >({});

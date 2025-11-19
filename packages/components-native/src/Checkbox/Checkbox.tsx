@@ -79,7 +79,7 @@ export type CheckboxProps = XOR<
   UncontrolledCheckboxProps
 >;
 
-export function Checkbox(props: CheckboxProps): JSX.Element {
+export function Checkbox(props: CheckboxProps) {
   if (props.checked !== undefined && props.onChange !== undefined) {
     return <CheckboxInternal {...props} />;
   } else if (props.name) {
@@ -113,7 +113,7 @@ function CheckboxInternal({
   assistiveText,
   onChange,
   accessibilityLabel,
-}: CheckboxProps): JSX.Element {
+}: CheckboxProps) {
   const internalValue = checked ?? !!defaultChecked;
 
   const iconName = indeterminate ? "minus2" : "checkmark";
