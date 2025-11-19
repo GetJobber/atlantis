@@ -184,7 +184,7 @@
         },
         "required": false,
         "type": {
-          "name": "Ref<unknown>"
+          "name": "Ref<HTMLInputElement>"
         }
       }
     }

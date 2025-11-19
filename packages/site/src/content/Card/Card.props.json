@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"requestColor\" | \"quoteColor\" | \"jobColor\" | \"invoiceColor\" | \"clientColor\" | \"blue\" | \"blueLight\" | \"blueLighter\" | \"blueLightest\" | \"blueDark\" | \"green\" | \"greenLight\" | \"greenLighter\" | ... 72 more ... | \"white\""
         }
       },
       "title": {
@@ -108,7 +108,7 @@
         "name": "onClick",
         "required": false,
         "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => void"
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void"
         }
       }
     }

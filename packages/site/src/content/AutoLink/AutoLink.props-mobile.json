@@ -7,14 +7,16 @@
     "methods": [],
     "props": {
       "children": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": ""
+        },
         "description": "Text to display.",
         "name": "children",
         "parent": {
           "fileName": "packages/components-native/src/AutoLink/types.ts",
           "name": "AutoLinkProps"
         },
-        "required": true,
+        "required": false,
         "type": {
           "name": "string"
         }

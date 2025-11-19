@@ -172,7 +172,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent) => void"
+          "name": "(event: KeyboardEvent<Element>) => void"
         }
       },
       "onBlur": {
@@ -185,7 +185,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "(event?: FocusEvent<Element, Element>) => void"
         }
       },
       "value": {
@@ -263,7 +263,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "toolbarVisibility": {
@@ -328,7 +328,7 @@
         },
         "required": false,
         "type": {
-          "name": "Ref<unknown>"
+          "name": "Ref<HTMLInputElement | HTMLTextAreaElement>"
         }
       }
     }

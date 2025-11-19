@@ -7,7 +7,9 @@
     "methods": [],
     "props": {
       "as": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": "div"
+        },
         "description": "",
         "name": "as",
         "parent": {
