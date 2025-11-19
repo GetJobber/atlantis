@@ -1,5 +1,11 @@
-import React, { act } from "react";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import React from "react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from "@testing-library/react";
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
 import type { ChipProps } from "../../Chip";
 
@@ -199,12 +205,12 @@ describe("Add/delete via keyboard", () => {
     expect(screen.getByRole("combobox")).toHaveFocus();
   });
 
-  it("should call onCustomOptionSelect on enter when search value is new", () => {
+  it("should call onCustomOptionSelect on enter when search value is new", async () => {
     const input = screen.getByRole("combobox");
     const newValue = "Brand New Option";
     fireEvent.change(input, { target: { value: newValue } });
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -224,12 +230,12 @@ describe("Add/delete via keyboard", () => {
     expect(input).toHaveFocus();
   });
 
-  it("should add the current input as a custom option on comma", () => {
+  it("should add the current input as a custom option on comma", async () => {
     const input = screen.getByRole("combobox");
     const newValue = "Comma Option";
     fireEvent.change(input, { target: { value: newValue } });
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -277,11 +283,11 @@ describe("onLoadMore", () => {
     jest.useRealTimers();
   });
 
-  it("should call onLoadMore when the trigger element is in view", () => {
+  it("should call onLoadMore when the trigger element is in view", async () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
 
-    act(() => {
+    await act(async () => {
       mockSetIsInView(true);
       rerender(<InternalChipDismissibleInput {...props} />);
     });
@@ -289,13 +295,13 @@ describe("onLoadMore", () => {
     expect(handleLoadMore).toHaveBeenCalledTimes(1);
     expect(handleLoadMore).toHaveBeenCalledWith("");
 
-    act(() => {
+    await act(async () => {
       mockSetIsInView(false);
       rerender(<InternalChipDismissibleInput {...props} />);
     });
     expect(handleLoadMore).toHaveBeenCalledTimes(1);
 
-    act(() => {
+    await act(async () => {
       mockSetIsInView(true);
       rerender(<InternalChipDismissibleInput {...props} />);
     });
@@ -303,14 +309,14 @@ describe("onLoadMore", () => {
     expect(screen.getByRole("combobox")).toHaveFocus();
   });
 
-  it("should call onLoadMore with current search value", () => {
+  it("should call onLoadMore with current search value", async () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
     const input = screen.getByRole("combobox");
     const searchValue = "test";
     fireEvent.change(input, { target: { value: searchValue } });
 
-    act(() => {
+    await act(async () => {
       mockSetIsInView(true);
       rerender(<InternalChipDismissibleInput {...props} />);
     });
@@ -331,14 +337,14 @@ describe("onSearch", () => {
     jest.useRealTimers();
   });
 
-  it("should call onSearch eventually after typing", () => {
+  it("should call onSearch eventually after typing", async () => {
     const input = screen.getByRole("combobox");
     const searchValue = "test";
     fireEvent.change(input, { target: { value: searchValue } });
 
     expect(handleSearch).not.toHaveBeenCalled();
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -358,7 +364,7 @@ describe("Default Blur Behavior", () => {
     jest.useRealTimers();
   });
 
-  it("should hide input and menu on blur", () => {
+  it("should hide input and menu on blur", async () => {
     const input = screen.getByRole("combobox");
     expect(input).toHaveValue("");
     fireEvent.blur(input);
@@ -366,7 +372,7 @@ describe("Default Blur Behavior", () => {
     expect(screen.getByRole("listbox")).toBeInTheDocument();
     expect(handleOptionSelect).not.toHaveBeenCalled();
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -375,7 +381,7 @@ describe("Default Blur Behavior", () => {
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
   });
 
-  it("should select item and keep input focused if blur happens due to item click", () => {
+  it("should select item and keep input focused if blur happens due to item click", async () => {
     const firstOption = screen.getByRole("option", { name: optionsArray[0] });
     fireEvent.click(firstOption);
 
@@ -405,18 +411,18 @@ describe("autoSelectOnClickOutside", () => {
     jest.useRealTimers();
   });
 
-  it("should select a custom option on blur", () => {
+  it("should select a custom option on blur", async () => {
     const input = screen.getByRole("combobox");
     const searchValue = "Superb";
     fireEvent.change(input, { target: { value: searchValue } });
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
     fireEvent.blur(input);
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -425,13 +431,13 @@ describe("autoSelectOnClickOutside", () => {
     expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
   });
 
-  it("should do nothing on blur if input is empty", () => {
+  it("should do nothing on blur if input is empty", async () => {
     const input = screen.getByRole("combobox");
     expect(input).toHaveValue("");
 
     fireEvent.blur(input);
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -460,18 +466,18 @@ describe("autoSelectOnClickOutside without onCustomOptionSelect", () => {
     jest.useRealTimers();
   });
 
-  it("should select the best matching option on blur", () => {
+  it("should select the best matching option on blur", async () => {
     const input = screen.getByRole("combobox");
     const searchValue = "Fab";
     fireEvent.change(input, { target: { value: searchValue } });
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
     fireEvent.blur(input);
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -480,13 +486,13 @@ describe("autoSelectOnClickOutside without onCustomOptionSelect", () => {
     expect(screen.queryByRole("combobox")).not.toBeInTheDocument();
   });
 
-  it("should do nothing on blur if input is empty", () => {
+  it("should do nothing on blur if input is empty", async () => {
     const input = screen.getByRole("combobox");
     expect(input).toHaveValue("");
 
     fireEvent.blur(input);
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -528,7 +534,7 @@ describe("onlyShowMenuOnSearch", () => {
     expect(screen.getByRole("combobox")).toHaveFocus();
   });
 
-  it("should update input value, and eventually show menu on type", () => {
+  it("should update input value, and eventually show menu on type", async () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
     const input = screen.getByRole("combobox");
@@ -540,7 +546,7 @@ describe("onlyShowMenuOnSearch", () => {
     expect(input).toHaveValue(searchValue);
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -560,7 +566,7 @@ describe("onlyShowMenuOnSearch", () => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
-  it("should hide input on blur", () => {
+  it("should hide input on blur", async () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
     const input = screen.getByRole("combobox");
@@ -570,7 +576,7 @@ describe("onlyShowMenuOnSearch", () => {
 
     expect(screen.getByRole("combobox")).toBeInTheDocument();
 
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 
@@ -579,20 +585,20 @@ describe("onlyShowMenuOnSearch", () => {
     expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
   });
 
-  it("should close the menu on option selection", () => {
+  it("should close the menu on option selection", async () => {
     const addButton = screen.getByRole("button", { name: "Add" });
     fireEvent.click(addButton);
     const input = screen.getByRole("combobox");
 
     fireEvent.change(input, { target: { value: "A" } });
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
     expect(screen.getByRole("listbox")).toBeInTheDocument();
 
     const firstOption = screen.getByRole("option", { name: optionsArray[0] });
     fireEvent.click(firstOption);
-    act(() => {
+    await act(async () => {
       jest.runOnlyPendingTimers();
     });
 

@@ -1,10 +1,11 @@
 import type { ReactNode, Ref, RefObject } from "react";
 import React, { forwardRef, useState } from "react";
-import { Modalize } from "react-native-modalize";
+import type { Modalize } from "react-native-modalize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Keyboard, View } from "react-native";
 import { BottomSheetOption } from "./components/BottomSheetOption";
 import { useStyles } from "./BottomSheet.style";
+import { UNSAFE_WrappedModalize } from "../ContentOverlay/UNSAFE_WrappedModalize";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
@@ -61,7 +62,7 @@ function BottomSheetInternal(
   return (
     <>
       {open && <Overlay styles={styles} />}
-      <Modalize
+      <UNSAFE_WrappedModalize
         ref={ref}
         adjustToContentHeight={true}
         modalStyle={styles.modal}
@@ -90,7 +91,7 @@ function BottomSheetInternal(
         >
           {children}
         </View>
-      </Modalize>
+      </UNSAFE_WrappedModalize>
     </>
   );
 

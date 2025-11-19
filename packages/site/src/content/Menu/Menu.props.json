@@ -11,8 +11,8 @@
         "description": "Custom menu activator. If this is not provided a default [… More] will be used.",
         "name": "activator",
         "parent": {
-          "fileName": "../components/src/Menu/Menu.tsx",
-          "name": "MenuProps"
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuLegacyProps"
         },
         "required": false,
         "type": {
@@ -24,8 +24,8 @@
         "description": "Collection of action items.",
         "name": "items",
         "parent": {
-          "fileName": "../components/src/Menu/Menu.tsx",
-          "name": "MenuProps"
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuLegacyProps"
         },
         "required": true,
         "type": {
@@ -37,8 +37,8 @@
         "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_className",
         "parent": {
-          "fileName": "../components/src/Menu/Menu.tsx",
-          "name": "MenuProps"
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuBaseProps"
         },
         "required": false,
         "type": {
@@ -50,8 +50,367 @@
         "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
         "name": "UNSAFE_style",
         "parent": {
-          "fileName": "../components/src/Menu/Menu.tsx",
-          "name": "MenuProps"
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ menu?: CSSProperties; header?: CSSProperties; action?: CSSProperties; }"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Section",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "Section content\nIf no Menu.Header is provided, ariaLabel must be provided to identify the section to assistive technologies",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuSectionComposableProps"
+        },
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Accessible label for the section",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuSectionComposableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Header",
+    "methods": [],
+    "props": {
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Content",
+    "methods": [],
+    "props": {
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.Separator",
+    "methods": [],
+    "props": {
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "UnsafeProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.ItemIcon",
+    "methods": [],
+    "props": {
+      "name": {
+        "defaultValue": null,
+        "description": "The icon to show.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": true,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Changes the size to small or large.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"base\" | \"small\" | \"large\""
+        }
+      },
+      "color": {
+        "defaultValue": null,
+        "description": "Determines the color of the icon. Some icons have a default system colour\nlike quotes, jobs, and invoices. Others that doesn't have a system colour\nfalls back to greyBlueDark.",
+        "name": "color",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"text\" | \"task\" | \"warning\" | \"icon\" | \"white\" | \"grey\" | \"greyBlue\" | \"greyBlueDark\" | \"greyBlueLighter\" | \"blue\" | \"lightBlue\" | \"green\" | \"yellow\" | \"red\" | \"navy\" | \"orange\" | ... 33 more ... | \"brandHighlight\""
+        }
+      },
+      "customColor": {
+        "defaultValue": null,
+        "description": "Sets a custom color for the icon. Can be a rgb() or hex value.",
+        "name": "customColor",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "testID": {
+        "defaultValue": null,
+        "description": "Used to locate this view in end-to-end tests",
+        "name": "testID",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classnames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ svg?: string; path?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ svg?: CSSProperties; path?: CSSProperties; }"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.ItemLabel",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "Item label content.\nThis is rendered inside a Typography (span) component, so you MUST supply either\na string or a fragment/utility component that renders down to a raw string (e.g.\ntranslation helpers).",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuItemLabelComposableProps"
+        },
+        "required": true,
+        "type": {
+          "name": "React.ReactNode"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "Menu.HeaderLabel",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Menu/Menu.tsx",
+    "description": "",
+    "displayName": "MenuLegacy",
+    "methods": [],
+    "props": {
+      "activator": {
+        "defaultValue": null,
+        "description": "Custom menu activator. If this is not provided a default [… More] will be used.",
+        "name": "activator",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+        }
+      },
+      "items": {
+        "defaultValue": null,
+        "description": "Collection of action items.",
+        "name": "items",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuLegacyProps"
+        },
+        "required": true,
+        "type": {
+          "name": "SectionProps[]"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ menu?: string; header?: string; action?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Menu/Menu.types.ts",
+          "name": "MenuBaseProps"
         },
         "required": false,
         "type": {

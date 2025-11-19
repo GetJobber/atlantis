@@ -32,3 +32,11 @@ Lastly, InputPhoneNumber will respect the format of the
 [initial value](../?path=/story/components-forms-and-inputs-inputphonenumber-web--initial-value)
 it is given. It will only start auto-formatting the existing value when the user
 edits the input.
+
+## Clearable
+
+- **while-editing**: shows the clear button only while focused and when there is
+  a value. When focus leaves the field and its controls, the button is hidden.
+- **always**: shows the clear button whenever there is a value, even when
+  blurred. Never shown when the field is empty.
+- The clear button is not shown when the field is `disabled` or `readonly`.

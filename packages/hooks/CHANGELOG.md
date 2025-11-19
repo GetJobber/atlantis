@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.0...@jobber/hooks@2.19.1) (2025-10-27)
+
+
+### Bug Fixes
+
+* await act calls in tests ([#2793](https://github.com/GetJobber/atlantis/issues/2793)) ([a16009f](https://github.com/GetJobber/atlantis/commit/a16009f8e2d058771b50280bb0c3d209f8d41688))
+
+
+
+
+
+# [2.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.18.1...@jobber/hooks@2.19.0) (2025-10-15)
+
+
+### Features
+
+* **components:** React 19 support ([#2687](https://github.com/GetJobber/atlantis/issues/2687)) ([36e8563](https://github.com/GetJobber/atlantis/commit/36e8563e75500b7ce70a148eb44d97cceb101fe7)), closes [#2752](https://github.com/GetJobber/atlantis/issues/2752) [#2756](https://github.com/GetJobber/atlantis/issues/2756) [#2762](https://github.com/GetJobber/atlantis/issues/2762)
+
+
+
+
+
 ## [2.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.18.0...@jobber/hooks@2.18.1) (2025-09-23)
 
 **Note:** Version bump only for package @jobber/hooks

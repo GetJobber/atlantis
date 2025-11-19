@@ -89,7 +89,7 @@ export function ModalActivator({ children }: PropsWithChildren) {
 
 export function ModalOverlay({ children }: PropsWithChildren) {
   const { overlay, overlayBackground } = useModalStyles();
-  const { floatingNodeId } = useModalContext();
+  const { floatingNodeId, startedInsideRef } = useModalContext();
 
   return (
     <FloatingOverlay
@@ -105,6 +105,10 @@ export function ModalOverlay({ children }: PropsWithChildren) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
         data-modal-node-id={floatingNodeId}
+        onPointerDownCapture={() => {
+          // Interaction began on overlay: mark as outside for the next click
+          if (startedInsideRef) startedInsideRef.current = false;
+        }}
       />
       {children}
     </FloatingOverlay>
@@ -122,6 +126,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     modalLabelledBy,
     ariaLabel,
     getFloatingProps,
+    startedInsideRef,
   } = useModalContext();
   const { modal } = useModalStyles(size);
 
@@ -145,20 +150,21 @@ export function ModalContent({ children }: ModalContainerProps) {
                       duration: 0.2,
                       ease: "easeInOut",
                     }}
+                    ref={floatingRefs?.setFloating}
+                    data-modal-node-id={floatingNodeId}
+                    {...getFloatingProps({
+                      role: "dialog",
+                      className: modal,
+                      "aria-labelledby": modalLabelledBy,
+                      "aria-label": ariaLabel,
+                      "aria-modal": true,
+                    })}
+                    onPointerDownCapture={() => {
+                      // Interaction began inside dialog
+                      if (startedInsideRef) startedInsideRef.current = true;
+                    }}
                   >
-                    <div
-                      ref={floatingRefs?.setFloating}
-                      data-modal-node-id={floatingNodeId}
-                      {...getFloatingProps({
-                        role: "dialog",
-                        className: modal,
-                        "aria-labelledby": modalLabelledBy,
-                        "aria-label": ariaLabel,
-                        "aria-modal": true,
-                      })}
-                    >
-                      {children}
-                    </div>
+                    {children}
                   </motion.div>
                 </FloatingFocusManager>
               </ModalOverlay>

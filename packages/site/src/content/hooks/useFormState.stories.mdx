@@ -1,0 +1,19 @@
+import { Canvas } from "@storybook/addon-docs";
+import { UseFormState } from "./UseFormState";
+
+# UseFormState
+
+`useFormState` is an extremely simple hook that wraps the
+[useState()](https://reactjs.org/docs/hooks-state.html) hook and supplies some
+default values.
+
+`useFormState` should **only** only by used when using a
+[`<Form />`](/components/Form) component.
+
+```tsx
+import { useFormState } from "@jobber/hooks/useFormState";
+```
+
+<Canvas>
+  <UseFormState />
+</Canvas>

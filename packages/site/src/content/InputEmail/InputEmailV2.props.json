@@ -1,0 +1,258 @@
+[
+  {
+    "tags": {},
+    "filePath": "../components/src/InputEmail/InputEmail.rebuilt.tsx",
+    "description": "",
+    "displayName": "InputEmailRebuilt",
+    "methods": [],
+    "props": {
+      "error": {
+        "defaultValue": null,
+        "description": "",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "identifier": {
+        "defaultValue": null,
+        "description": "",
+        "name": "identifier",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "autocomplete": {
+        "defaultValue": null,
+        "description": "",
+        "name": "autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onKeyUp": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onKeyUp",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": true,
+        "type": {
+          "name": "2"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(newValue: string, event?: ChangeEvent<HTMLInputElement>) => void"
+        }
+      },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.KeyboardEvent) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event?: React.FocusEvent) => void"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
+      "inline": {
+        "defaultValue": null,
+        "description": "",
+        "name": "inline",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"center\" | \"right\""
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Affix"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/InputEmail/InputEmail.types.ts",
+          "name": "InputEmailRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "ref": {
+        "defaultValue": null,
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "name": "ref",
+        "parent": {
+          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
+          "name": "RefAttributes"
+        },
+        "required": false,
+        "type": {
+          "name": "LegacyRef<unknown>"
+        }
+      }
+    }
+  }
+]

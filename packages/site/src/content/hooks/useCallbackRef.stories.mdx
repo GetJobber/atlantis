@@ -1,0 +1,13 @@
+import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
+
+# UseCallbackRef
+
+useCallbackRef converts a callback to a ref to avoid triggering re-renders when
+passed as a prop or to avoid re-executing effects when passed as a dependency
+
+```tsx
+import { useOnMount } from "@jobber/hooks/useCallbackRef";
+
+const callback = useCallbackRef(someFunction);
+// callback is now a ref
+```

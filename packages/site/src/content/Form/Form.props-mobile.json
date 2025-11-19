@@ -227,6 +227,19 @@
           "name": "string | string[]"
         }
       },
+      "UNSAFE_allowDiscardLocalCacheWhenOffline": {
+        "defaultValue": null,
+        "description": "If true, the local cache will be removed when the user navigates away from\nthe dirty form even when offline. By default, cache is only removed on back when online.\nDefaults to false.",
+        "name": "UNSAFE_allowDiscardLocalCacheWhenOffline",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "secondaryActions": {
         "defaultValue": null,
         "description": "Secondary Action for ButtonGroup",
