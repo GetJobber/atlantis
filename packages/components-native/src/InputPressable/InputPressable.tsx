@@ -1,5 +1,5 @@
 import type { Ref } from "react";
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { forwardRef } from "react";
 import type { IconNames } from "@jobber/design";
 import type { FieldError } from "react-hook-form";
 import { Text as NativeText, Pressable } from "react-native";
@@ -7,6 +7,7 @@ import type { Clearable } from "@jobber/hooks";
 import { useShowClear } from "@jobber/hooks";
 import type { XOR } from "ts-xor";
 import { useStyles } from "./InputPressable.style";
+import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { InputFieldWrapper, useCommonInputStyles } from "../InputFieldWrapper";
 
 interface BasicSuffix {
@@ -50,6 +51,15 @@ export interface InputPressableProps {
    * Indicates the current selection is invalid
    */
   readonly invalid?: boolean | string;
+
+  /**
+   * Controls the visibility of the mini label that appears inside the input
+   * when a value is entered. By default, the placeholder text moves up to
+   * become a mini label. Set to false to disable this behavior.
+   *
+   * @default true
+   */
+  readonly showMiniLabel?: boolean;
 
   /**
    * Callback that is called when the text input is focused
@@ -105,6 +115,7 @@ export function InputPressableInternal(
     disabled,
     invalid,
     error,
+    showMiniLabel = true,
     onPress,
     accessibilityLabel,
     accessibilityHint,
@@ -117,11 +128,8 @@ export function InputPressableInternal(
   ref: Ref<InputPressableRef>,
 ): JSX.Element {
   const hasValue = !!value;
-  const [hasMiniLabel, setHasMiniLabel] = useState(Boolean(value));
 
-  useEffect(() => {
-    setHasMiniLabel(Boolean(value));
-  }, [value]);
+  const placeholderMode = getPlaceholderMode(showMiniLabel, value);
 
   const showClear = useShowClear({
     clearable,
@@ -139,7 +147,7 @@ export function InputPressableInternal(
       prefix={prefix}
       suffix={suffix}
       hasValue={hasValue}
-      hasMiniLabel={hasMiniLabel}
+      placeholderMode={placeholderMode}
       focused={focused}
       error={error}
       invalid={invalid}
@@ -160,7 +168,8 @@ export function InputPressableInternal(
           style={[
             commonInputStyles.input,
             styles.inputPressableStyles,
-            !hasMiniLabel && commonInputStyles.inputEmpty,
+            placeholderMode === "normal" && commonInputStyles.inputEmpty,
+            placeholderMode === "hidden" && styles.withoutMiniLabel,
             disabled && commonInputStyles.inputDisabled,
             (Boolean(invalid) || error) && styles.inputInvalid,
           ]}
@@ -175,4 +184,21 @@ export function InputPressableInternal(
       </Pressable>
     </InputFieldWrapper>
   );
+}
+
+function getPlaceholderMode(
+  isMiniLabelAllowed: boolean,
+  internalValue: string | undefined,
+): InputFieldWrapperProps["placeholderMode"] {
+  const hasValue = Boolean(internalValue);
+
+  if (hasValue) {
+    if (isMiniLabelAllowed) {
+      return "mini";
+    } else {
+      return "hidden";
+    }
+  } else {
+    return "normal";
+  }
 }

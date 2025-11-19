@@ -28,5 +28,9 @@ export const useStyles = buildThemedStyles(tokens => {
     inputInvalid: {
       borderColor: tokens["color-critical"],
     },
+
+    withoutMiniLabel: {
+      paddingTop: tokens["space-base"] + tokens["space-smallest"],
+    },
   };
 });
