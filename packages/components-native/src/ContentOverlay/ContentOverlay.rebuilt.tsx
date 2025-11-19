@@ -80,8 +80,6 @@ export function ContentOverlayRebuilt({
       bottomSheetModalRef.current?.dismiss();
     } else {
       onBeforeExit();
-
-      return false;
     }
   };
 
