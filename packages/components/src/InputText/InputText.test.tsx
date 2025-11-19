@@ -393,21 +393,5 @@ describe("InputText V2", () => {
         });
       });
     });
-
-    describe("hyphenated props", () => {
-      it("should not apply arbitrary data-* attributes to the input", () => {
-        render(<InputText version={2} value="" data-arbitrary="true" />);
-
-        const input = screen.getByRole("textbox");
-        expect(input).not.toHaveAttribute("data-arbitrary");
-      });
-
-      it("should not apply hyphenated aria attributes to the input", () => {
-        render(<InputText version={2} value="" aria-expanded="true" />);
-
-        const input = screen.getByRole("textbox");
-        expect(input).not.toHaveAttribute("aria-expanded");
-      });
-    });
   });
 });

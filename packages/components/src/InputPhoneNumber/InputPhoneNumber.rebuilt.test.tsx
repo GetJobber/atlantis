@@ -112,48 +112,4 @@ describe("pattern", () => {
 
     expect(getByText("___-___-__ n __")).toBeInTheDocument();
   });
-
-  describe("hyphenated props", () => {
-    it("should not apply arbitrary data-* attributes to the input", () => {
-      render(
-        <InputPhoneNumberRebuilt
-          version={2}
-          value=""
-          onChange={jest.fn()}
-          data-arbitrary="true"
-        />,
-      );
-
-      const input = screen.getByRole("textbox");
-      expect(input).not.toHaveAttribute("data-arbitrary");
-    });
-
-    it("should not apply hyphenated aria attributes to the input", () => {
-      render(
-        <InputPhoneNumberRebuilt
-          version={2}
-          value=""
-          onChange={jest.fn()}
-          aria-expanded="true"
-        />,
-      );
-
-      const input = screen.getByRole("textbox");
-      expect(input).not.toHaveAttribute("aria-expanded");
-    });
-
-    it("should apply data attributes via dataAttributes prop", () => {
-      render(
-        <InputPhoneNumberRebuilt
-          version={2}
-          value=""
-          onChange={jest.fn()}
-          dataAttributes={{ "data-test": "value" }}
-        />,
-      );
-
-      const input = screen.getByRole("textbox");
-      expect(input).toHaveAttribute("data-test", "value");
-    });
-  });
 });

@@ -4,16 +4,9 @@ import type { XOR } from "ts-xor";
 import type { Clearable } from "@jobber/hooks";
 import type { IconNames } from "../Icon";
 
-/**
- * Data attributes interface.
- * Allows passing arbitrary data-* attributes in a type-safe way.
- */
-export interface DataAttributes {
+export interface CommonAtlantisProps {
   /** Standard HTML data attributes. Accepts anything in a {{"data-key":"value"}} format. */
   dataAttributes?: { [key: `data-${string}`]: string };
-}
-
-export interface CommonAtlantisProps extends DataAttributes {
   /** Standard HTML aria attributes. Accepts all standard HTML aria attributes. */
   ariaAttributes?: React.AriaAttributes;
   /** Standard HTML role attribute. */
@@ -231,7 +224,7 @@ export interface Suffix extends BaseSuffix {
  * Common props shared across all rebuilt input components.
  * These are Atlantis-specific features not part of standard HTML inputs.
  */
-export interface RebuiltInputCommonProps extends DataAttributes {
+export interface RebuiltInputCommonProps {
   /**
    * Text that appears inside the input when empty and floats above the value
    * as a mini label once the user enters a value.

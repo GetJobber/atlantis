@@ -11,6 +11,7 @@ import {
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
   function SelectRebuilt(props, forwardedRef) {
@@ -44,6 +45,7 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
     });
 
     const isInvalid = Boolean(props.error || props.invalid);
+    const dataAttrs = filterDataAttributes(props);
 
     return (
       <FormFieldWrapper
@@ -91,6 +93,7 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
               inputStyle,
               props.UNSAFE_experimentalStyles && styles.select,
             )}
+            {...dataAttrs}
           >
             {props.children}
           </select>

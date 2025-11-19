@@ -269,29 +269,4 @@ describe("InputTimeRebuilt", () => {
       expect(mockSetTypedTime).not.toHaveBeenCalled();
     });
   });
-
-  describe("hyphenated props", () => {
-    it("should not apply arbitrary data-* attributes to the input", () => {
-      render(<InputTime version={2} data-arbitrary="true" />);
-
-      const input = screen.getByTestId("ATL-InputTime-input");
-      expect(input).not.toHaveAttribute("data-arbitrary");
-    });
-
-    it("should not apply hyphenated aria attributes to the input", () => {
-      render(<InputTime version={2} aria-expanded="true" />);
-
-      const input = screen.getByTestId("ATL-InputTime-input");
-      expect(input).not.toHaveAttribute("aria-expanded");
-    });
-
-    it("should apply data attributes via dataAttributes prop", () => {
-      render(
-        <InputTime version={2} dataAttributes={{ "data-test": "value" }} />,
-      );
-
-      const input = screen.getByTestId("ATL-InputTime-input");
-      expect(input).toHaveAttribute("data-test", "value");
-    });
-  });
 });

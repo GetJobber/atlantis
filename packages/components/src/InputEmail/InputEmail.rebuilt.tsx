@@ -7,6 +7,7 @@ import {
   useFormFieldWrapperStyles,
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
   props: InputEmailRebuiltProps,
@@ -50,6 +51,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const descriptionVisible = props.description && !props.inline;
   const isInvalid = Boolean(props.error || props.invalid);
+  const dataAttrs = filterDataAttributes(props);
 
   return (
     <FormFieldWrapper
@@ -106,7 +108,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         onKeyDown={handleKeyDown}
         onKeyUp={props.onKeyUp}
         data-testid="ATL-InputEmail-input"
-        {...props.dataAttributes}
+        {...dataAttrs}
       />
       <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
     </FormFieldWrapper>

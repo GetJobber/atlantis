@@ -5,9 +5,13 @@ import styles from "./Checkbox.module.css";
 import type { CheckboxRebuiltProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
-  {
+  props: CheckboxRebuiltProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const {
     checked,
     defaultChecked,
     disabled,
@@ -24,9 +28,8 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
     ariaLabel,
     ariaDescribedBy,
     ariaRequired,
-  }: CheckboxRebuiltProps,
-  ref: React.Ref<HTMLInputElement>,
-) {
+  } = props;
+
   const descriptionIdentifier = useId();
   const wrapperClassName = classnames(
     styles.wrapper,
@@ -37,6 +40,7 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
   const inputClassName = classnames(styles.input, {
     [styles.indeterminate]: indeterminate,
   });
+  const dataAttrs = filterDataAttributes(props);
 
   const iconName = indeterminate ? "minus2" : "checkmark";
   const labelContent = typeof label === "string" ? <Text>{label}</Text> : label;
@@ -78,6 +82,7 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
             onChange={handleChange}
             onFocus={onFocus}
             onBlur={onBlur}
+            {...dataAttrs}
           />
           <span className={styles.checkBox}>
             <Icon name={iconName} color="surface" />

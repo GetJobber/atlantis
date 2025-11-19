@@ -12,6 +12,7 @@ import {
   useFormFieldWrapperStyles,
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const InputPhoneNumberRebuilt = forwardRef(
   function InputPhoneNumberInternal(
@@ -68,9 +69,10 @@ export const InputPhoneNumberRebuilt = forwardRef(
       inputRef: inputPhoneNumberRef,
     });
 
-    const descriptionIdentifier = `descriptionUUID--${id}`;
-    const descriptionVisible = props.description && !props.inline;
+    const descriptionIdentifier = `descriptionUUID--${id}`,
+      descriptionVisible = props.description && !props.inline;
     const isInvalid = Boolean(props.error || props.invalid);
+    const dataAttrs = filterDataAttributes(props);
 
     return (
       <FormFieldWrapper
@@ -123,7 +125,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
           onBlur={handleBlur}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
-          {...props.dataAttributes}
+          {...dataAttrs}
         />
         <MaskElement
           isMasking={isMasking}

@@ -2248,11 +2248,9 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("dataAttributes", () => {
-    it("should pass dataAttributes to the InputText", () => {
-      render(
-        <Wrapper dataAttributes={{ "data-test": "autocomplete-input" }} />,
-      );
+  describe("data-* attributes", () => {
+    it("should pass data-* attributes to the InputText", () => {
+      render(<Wrapper data-test="autocomplete-input" />);
 
       const input = screen.getByRole("combobox");
       expect(input).toHaveAttribute("data-test", "autocomplete-input");

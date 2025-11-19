@@ -5,6 +5,7 @@ import type { InputTimeRebuiltProps } from "./InputTime.types";
 import { dateToTimeString } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 import { mergeRefs } from "../utils/mergeRefs";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const InputTimeRebuilt = forwardRef<
   HTMLInputElement,
@@ -63,6 +64,7 @@ export const InputTimeRebuilt = forwardRef<
   }
 
   const isInvalid = Boolean(params.error || params.invalid);
+  const dataAttrs = filterDataAttributes(params);
 
   return (
     <FormFieldWrapper
@@ -108,7 +110,7 @@ export const InputTimeRebuilt = forwardRef<
         aria-describedby={params.ariaDescribedBy}
         aria-invalid={isInvalid ? true : undefined}
         aria-required={params.ariaRequired}
-        {...params.dataAttributes}
+        {...dataAttrs}
       />
     </FormFieldWrapper>
   );

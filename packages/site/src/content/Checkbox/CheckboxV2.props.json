@@ -47,7 +47,7 @@
       },
       "indeterminate": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "When `true` the checkbox to appears in indeterminate.",
         "name": "indeterminate",

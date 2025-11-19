@@ -66,7 +66,7 @@ export function Wrapper<T extends OptionLike>({
   UNSAFE_className,
   UNSAFE_styles,
   debounce = 0,
-  dataAttributes,
+  ...props
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -113,10 +113,6 @@ export function Wrapper<T extends OptionLike>({
   readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, false>["UNSAFE_styles"];
   readonly readOnly?: boolean;
   readonly debounce?: number;
-  readonly dataAttributes?: AutocompleteRebuiltProps<
-    T,
-    false
-  >["dataAttributes"];
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -152,7 +148,7 @@ export function Wrapper<T extends OptionLike>({
       readOnly={readOnly}
       customRenderHeader={customRenderHeader}
       customRenderFooter={customRenderFooter}
-      dataAttributes={dataAttributes}
+      {...props}
     />
   );
 }

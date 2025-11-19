@@ -305,19 +305,6 @@
           "name": "Clearable"
         }
       },
-      "dataAttributes": {
-        "defaultValue": null,
-        "description": "Standard HTML data attributes. Accepts anything in a {{\"data-key\":\"value\"}} format.",
-        "name": "dataAttributes",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "DataAttributes"
-        },
-        "required": false,
-        "type": {
-          "name": "{ [key: `data-${string}`]: string; }"
-        }
-      },
       "ariaLabel": {
         "defaultValue": null,
         "description": "Defines a string value that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-label}",
