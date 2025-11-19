@@ -53,8 +53,8 @@ export interface ButtonGroupPrimaryActionProps extends ButtonGroupActionProps {
   loading?: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function PrimaryAction(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _: ButtonGroupPrimaryActionProps,
 ): React.JSX.Element {
   return <></>;
