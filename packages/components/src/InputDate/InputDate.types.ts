@@ -13,6 +13,15 @@ export interface InputDateRebuiltProps
     | "rows"
     | "type"
     | "version"
+    | "aria-label"
+    | "aria-labelledby"
+    | "aria-describedby"
+    | "aria-details"
+    | "aria-activedescendant"
+    | "aria-controls"
+    | "aria-expanded"
+    | "aria-autocomplete"
+    | "aria-required"
   > {
   /**
    * A Date object value

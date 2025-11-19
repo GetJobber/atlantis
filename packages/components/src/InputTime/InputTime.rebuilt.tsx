@@ -106,10 +106,10 @@ export const InputTimeRebuilt = forwardRef<
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
         data-testid="ATL-InputTime-input"
-        aria-label={params.ariaLabel}
-        aria-describedby={params.ariaDescribedBy}
+        aria-label={params["aria-label"]}
+        aria-describedby={params["aria-describedby"]}
         aria-invalid={isInvalid ? true : undefined}
-        aria-required={params.ariaRequired}
+        aria-required={params["aria-required"]}
         {...dataAttrs}
       />
     </FormFieldWrapper>
