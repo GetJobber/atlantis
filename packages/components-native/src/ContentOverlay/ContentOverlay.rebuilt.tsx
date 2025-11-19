@@ -54,7 +54,7 @@ export function ContentOverlayRebuilt({
   const insets = useSafeAreaInsets();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
-  const [currentIndex, setCurrentIndex] = useState(-1);
+  const [currentPosition, setCurrentPosition] = useState<number>(-1);
 
   const styles = useStyles();
   const { t } = useAtlantisI18n();
@@ -64,7 +64,7 @@ export function ContentOverlayRebuilt({
     useBottomSheetModalBackHandler(bottomSheetModalRef);
 
   const isFullScreenOrTopPosition =
-    fullScreen || (!adjustToContentHeight && currentIndex === 1);
+    fullScreen || (!adjustToContentHeight && currentPosition === 0);
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
 
@@ -84,11 +84,11 @@ export function ContentOverlayRebuilt({
     },
   }));
 
-  const handleChange = (index: number) => {
+  const handleChange = (index: number, position: number) => {
     const previousIndex = previousIndexRef.current;
 
+    setCurrentPosition(position);
     handleSheetPositionChange(index);
-    setCurrentIndex(index);
 
     if (previousIndex === -1 && index >= 0) {
       // Transitioned from closed to open
