@@ -2,10 +2,13 @@ import type { ReactElement } from "react";
 import React, { useId } from "react";
 import classnames from "classnames";
 import { InternalRadioOption } from "./RadioOption";
+import type { RadioOptionProps } from "./RadioOption";
 import styles from "./RadioGroup.module.css";
 
 export interface RadioGroupProps {
-  readonly children: ReactElement | ReactElement[];
+  readonly children:
+    | ReactElement<RadioOptionProps>
+    | ReactElement<RadioOptionProps>[];
 
   /**
    * Defines the default value that will be pre-selected in the radio group.
