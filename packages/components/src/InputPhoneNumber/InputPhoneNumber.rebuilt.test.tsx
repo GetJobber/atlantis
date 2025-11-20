@@ -113,3 +113,238 @@ describe("pattern", () => {
     expect(getByText("___-___-__ n __")).toBeInTheDocument();
   });
 });
+
+// Tests for shared HTMLInputBaseProps
+describe("HTMLInputBaseProps", () => {
+  it("should render with id attribute", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        id="phone-id"
+      />,
+    );
+    expect(screen.getByRole("textbox")).toHaveAttribute("id", "phone-id");
+  });
+
+  it("should render with name attribute", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        name="phone-name"
+      />,
+    );
+    expect(screen.getByRole("textbox")).toHaveAttribute("name", "phone-name");
+  });
+
+  it("should be disabled when disabled prop is true", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        disabled
+      />,
+    );
+    expect(screen.getByRole("textbox")).toBeDisabled();
+  });
+
+  it("should not allow typing when disabled", async () => {
+    const changeHandler = jest.fn();
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={changeHandler}
+        version={2}
+        disabled
+      />,
+    );
+    const input = screen.getByRole("textbox");
+    await userEvent.type(input, "123");
+    expect(changeHandler).not.toHaveBeenCalled();
+  });
+
+  it("should be read-only when readOnly prop is true", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value="1234567890"
+        onChange={jest.fn()}
+        version={2}
+        readOnly
+      />,
+    );
+    expect(screen.getByRole("textbox")).toHaveAttribute("readonly");
+  });
+
+  it("should auto-focus when autoFocus prop is true", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        autoFocus
+      />,
+    );
+    expect(screen.getByRole("textbox")).toHaveFocus();
+  });
+});
+
+// Tests for shared RebuiltInputCommonProps
+describe("RebuiltInputCommonProps", () => {
+  it("should display error message", () => {
+    const errorMessage = "Invalid phone number";
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        error={errorMessage}
+      />,
+    );
+    expect(screen.getByText(errorMessage)).toBeInTheDocument();
+  });
+
+  it("should have invalid styling when invalid prop is true", () => {
+    const { container } = render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        invalid
+      />,
+    );
+    expect(container.querySelector(".invalid")).toBeInTheDocument();
+  });
+
+  it("should render with small size", () => {
+    const { container } = render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        size="small"
+      />,
+    );
+    expect(container.querySelector(".small")).toBeInTheDocument();
+  });
+
+  it("should render with large size", () => {
+    const { container } = render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        size="large"
+      />,
+    );
+    expect(container.querySelector(".large")).toBeInTheDocument();
+  });
+
+  it("should render string description", () => {
+    const description = "Enter your contact number";
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        description={description}
+      />,
+    );
+    expect(screen.getByText(description)).toBeInTheDocument();
+  });
+
+  it("should render with prefix", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        prefix={{ label: "+1" }}
+      />,
+    );
+    expect(screen.getByText("+1")).toBeInTheDocument();
+  });
+
+  it("should render with suffix", () => {
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        suffix={{ label: "Mobile" }}
+      />,
+    );
+    expect(screen.getByText("Mobile")).toBeInTheDocument();
+  });
+});
+
+// Tests for FocusEvents
+describe("Event handlers", () => {
+  it("should call onFocus when input is focused", async () => {
+    const focusHandler = jest.fn();
+    render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        onFocus={focusHandler}
+      />,
+    );
+    await userEvent.click(screen.getByRole("textbox"));
+    expect(focusHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call onBlur when input loses focus", async () => {
+    const blurHandler = jest.fn();
+    render(
+      <>
+        <InputPhoneNumberRebuilt
+          placeholder={placeholder}
+          value=""
+          onChange={jest.fn()}
+          version={2}
+          onBlur={blurHandler}
+        />
+        <button type="button" data-testid="other-element">
+          Other
+        </button>
+      </>,
+    );
+    const input = screen.getByRole("textbox");
+    await userEvent.click(input);
+    await userEvent.click(screen.getByTestId("other-element"));
+    expect(blurHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it("should accept onKeyDown prop", () => {
+    const keyDownHandler = jest.fn();
+    // Just verify the prop is accepted without error
+    const { container } = render(
+      <InputPhoneNumberRebuilt
+        placeholder={placeholder}
+        value=""
+        onChange={jest.fn()}
+        version={2}
+        onKeyDown={keyDownHandler}
+      />,
+    );
+    expect(container.querySelector("input")).toBeInTheDocument();
+  });
+});

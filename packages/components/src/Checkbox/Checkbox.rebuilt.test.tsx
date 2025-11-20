@@ -136,4 +136,47 @@ describe("Checkbox", () => {
       expect(handleBlur).toHaveBeenCalled();
     });
   });
+
+  // Additional tests for shared HTMLInputBaseProps
+  describe("Shared HTMLInputBaseProps", () => {
+    it("should render with id attribute", () => {
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" id="checkbox-id" />,
+      );
+      expect(getByRole("checkbox")).toHaveAttribute("id", "checkbox-id");
+    });
+
+    it("should render with name attribute", () => {
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" name="checkbox-name" />,
+      );
+      expect(getByRole("checkbox")).toHaveAttribute("name", "checkbox-name");
+    });
+
+    it("should render with disabled attribute when disabled", () => {
+      const { getByRole } = render(
+        <Checkbox version={2} label="Disabled" disabled />,
+      );
+      expect(getByRole("checkbox")).toBeDisabled();
+    });
+  });
+
+  // Additional tests for shared RebuiltInputCommonProps
+  describe("Shared RebuiltInputCommonProps", () => {
+    it("should have invalid styling when invalid prop is true", () => {
+      const { container } = render(
+        <Checkbox version={2} label="Test" invalid />,
+      );
+      expect(container.querySelector(".invalid")).toBeInTheDocument();
+    });
+
+    it("should render with both description and invalid state", () => {
+      const description = "Please check this box";
+      const { getByText, container } = render(
+        <Checkbox version={2} label="Test" description={description} invalid />,
+      );
+      expect(getByText(description)).toBeInTheDocument();
+      expect(container.querySelector(".invalid")).toBeInTheDocument();
+    });
+  });
 });

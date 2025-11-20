@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InputText Version 1 renders a regular input for text and numbers 1`] = `
+exports[`InputText V2 (Rebuilt) renders a regular input for text and numbers 1`] = `
 <div>
   <div
     class="container"
   >
     <div
-      class="wrapper text"
+      class="wrapper text textarea"
       data-testid="Form-Field-Wrapper"
     >
       <div
@@ -19,17 +19,17 @@ exports[`InputText Version 1 renders a regular input for text and numbers 1`] = 
             class="label"
             for="«r0»"
           >
-            Favourite colour
+            Describe your favourite colour?
           </label>
           <div
             class="childrenWrapper"
             tabindex="-1"
           >
-            <input
+            <textarea
               class="input"
               id="«r0»"
-              type="text"
-              value=""
+              name="generatedName--«r0»"
+              rows="3"
             />
           </div>
         </div>
@@ -39,7 +39,7 @@ exports[`InputText Version 1 renders a regular input for text and numbers 1`] = 
 </div>
 `;
 
-exports[`InputText Version 1 renders a textarea 1`] = `
+exports[`InputText V2 (Rebuilt) renders a textarea with 4 rows 1`] = `
 <div>
   <div
     class="container"
@@ -67,44 +67,7 @@ exports[`InputText Version 1 renders a textarea 1`] = `
             <textarea
               class="input"
               id="«r1»"
-              rows="3"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`InputText Version 1 renders a textarea with 4 rows 1`] = `
-<div>
-  <div
-    class="container"
-  >
-    <div
-      class="wrapper text textarea"
-      data-testid="Form-Field-Wrapper"
-    >
-      <div
-        class="horizontalWrapper"
-      >
-        <div
-          class="inputWrapper"
-        >
-          <label
-            class="label"
-            for="«r2»"
-          >
-            Describe your favourite colour?
-          </label>
-          <div
-            class="childrenWrapper"
-            tabindex="-1"
-          >
-            <textarea
-              class="input"
-              id="«r2»"
+              name="generatedName--«r1»"
               rows="4"
             />
           </div>

@@ -103,3 +103,160 @@ test("it should render element description directly without wrapping in paragrap
     HTMLParagraphElement,
   );
 });
+
+// Tests for shared HTMLInputBaseProps
+describe("HTMLInputBaseProps", () => {
+  it("should render with id attribute", () => {
+    const { getByRole } = render(
+      <InputNumber version={2} placeholder="Number" id="test-id" />,
+    );
+    expect(getByRole("textbox")).toHaveAttribute("id", "test-id");
+  });
+
+  it("should be disabled when disabled prop is true", () => {
+    const { getByRole } = render(
+      <InputNumber version={2} placeholder="Number" disabled />,
+    );
+    expect(getByRole("textbox")).toBeDisabled();
+  });
+
+  it("should not allow typing when disabled", async () => {
+    const changeHandler = jest.fn();
+    const { getByRole } = render(
+      <InputNumber
+        version={2}
+        placeholder="Number"
+        disabled
+        onChange={changeHandler}
+      />,
+    );
+    const input = getByRole("textbox");
+    await userEvent.type(input, "123");
+    expect(changeHandler).not.toHaveBeenCalled();
+  });
+
+  it("should be read-only when readOnly prop is true", () => {
+    const { getByRole } = render(
+      <InputNumber version={2} placeholder="Number" readOnly />,
+    );
+    expect(getByRole("textbox")).toHaveAttribute("readonly");
+  });
+
+  it("should not allow typing when readOnly", async () => {
+    const changeHandler = jest.fn();
+    const { getByRole } = render(
+      <InputNumber
+        version={2}
+        placeholder="Number"
+        readOnly
+        value={10}
+        onChange={changeHandler}
+      />,
+    );
+    const input = getByRole("textbox");
+    await userEvent.type(input, "5");
+    expect(changeHandler).not.toHaveBeenCalled();
+  });
+
+  it("should auto-focus when autoFocus prop is true", () => {
+    const { getByRole } = render(
+      <InputNumber version={2} placeholder="Number" autoFocus />,
+    );
+    expect(getByRole("textbox")).toHaveFocus();
+  });
+});
+
+// Tests for shared RebuiltInputCommonProps
+describe("RebuiltInputCommonProps", () => {
+  it("should render placeholder as label", () => {
+    const { getByLabelText } = render(
+      <InputNumber version={2} placeholder="Enter amount" />,
+    );
+    expect(getByLabelText("Enter amount")).toBeInTheDocument();
+  });
+
+  it("should have invalid styling when invalid prop is true", () => {
+    const { container } = render(
+      <InputNumber version={2} placeholder="Number" invalid />,
+    );
+    // The invalid class is applied to the wrapper
+    expect(container.querySelector(".invalid")).toBeInTheDocument();
+  });
+
+  it("should render with small size", () => {
+    const { container } = render(
+      <InputNumber version={2} placeholder="Number" size="small" />,
+    );
+    expect(container.querySelector(".small")).toBeInTheDocument();
+  });
+
+  it("should render with large size", () => {
+    const { container } = render(
+      <InputNumber version={2} placeholder="Number" size="large" />,
+    );
+    expect(container.querySelector(".large")).toBeInTheDocument();
+  });
+
+  it("should render inline", () => {
+    const { container } = render(
+      <InputNumber version={2} placeholder="Number" inline />,
+    );
+    expect(container.querySelector(".inline")).toBeInTheDocument();
+  });
+
+  it("should accept align prop", () => {
+    // InputNumber accepts align but renders differently than simple text-align
+    const { container } = render(
+      <InputNumber version={2} placeholder="Number" align="right" />,
+    );
+    expect(container.querySelector(".container")).toBeInTheDocument();
+  });
+
+  it("should render string description", () => {
+    const description = "Enter a whole number";
+    const { getByText } = render(
+      <InputNumber
+        version={2}
+        placeholder="Number"
+        description={description}
+      />,
+    );
+    expect(getByText(description)).toBeInTheDocument();
+  });
+});
+
+// Tests for FocusEvents and KeyboardEvents
+describe("Event handlers", () => {
+  it("should call onFocus when input is focused", async () => {
+    const focusHandler = jest.fn();
+    const { getByRole } = render(
+      <InputNumber version={2} placeholder="Number" onFocus={focusHandler} />,
+    );
+    await userEvent.click(getByRole("textbox"));
+    expect(focusHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call onKeyDown when key is pressed", async () => {
+    const keyDownHandler = jest.fn();
+    const { getByRole } = render(
+      <InputNumber
+        version={2}
+        placeholder="Number"
+        onKeyDown={keyDownHandler}
+      />,
+    );
+    const input = getByRole("textbox");
+    await userEvent.type(input, "1");
+    expect(keyDownHandler).toHaveBeenCalled();
+  });
+
+  it("should call onKeyUp when key is released", async () => {
+    const keyUpHandler = jest.fn();
+    const { getByRole } = render(
+      <InputNumber version={2} placeholder="Number" onKeyUp={keyUpHandler} />,
+    );
+    const input = getByRole("textbox");
+    await userEvent.type(input, "1");
+    expect(keyUpHandler).toHaveBeenCalled();
+  });
+});

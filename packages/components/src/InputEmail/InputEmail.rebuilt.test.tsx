@@ -166,4 +166,98 @@ describe("InputEmailRebuilt", () => {
       expect(blurSpy).toHaveBeenCalled();
     });
   });
+
+  // Additional tests for shared props coverage
+  describe("Shared HTMLInputBaseProps", () => {
+    it("should render with id attribute", () => {
+      render(<InputEmailRebuilt version={2} id="email-id" />);
+      expect(screen.getByRole("textbox")).toHaveAttribute("id", "email-id");
+    });
+
+    it("should render with name attribute", () => {
+      render(<InputEmailRebuilt version={2} name="email-name" />);
+      expect(screen.getByRole("textbox")).toHaveAttribute("name", "email-name");
+    });
+
+    it("should be read-only when readOnly prop is true", () => {
+      render(
+        <InputEmailRebuilt version={2} value="test@example.com" readOnly />,
+      );
+      expect(screen.getByRole("textbox")).toHaveAttribute("readonly");
+    });
+
+    it("should not allow typing when readOnly", async () => {
+      const changeHandler = jest.fn();
+      render(
+        <InputEmailRebuilt
+          version={2}
+          value="test@example.com"
+          readOnly
+          onChange={changeHandler}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "new");
+      expect(changeHandler).not.toHaveBeenCalled();
+    });
+
+    it("should auto-focus when autoFocus prop is true", () => {
+      render(<InputEmailRebuilt version={2} autoFocus />);
+      expect(screen.getByRole("textbox")).toHaveFocus();
+    });
+  });
+
+  describe("Shared RebuiltInputCommonProps", () => {
+    it("should display error message", () => {
+      const errorMessage = "Invalid email address";
+      render(<InputEmailRebuilt version={2} error={errorMessage} />);
+      expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    });
+
+    it("should show loading spinner when loading prop is true", () => {
+      const { container } = render(<InputEmailRebuilt version={2} loading />);
+      expect(container.querySelector(".spinner")).toBeInTheDocument();
+    });
+
+    it("should render string description", () => {
+      const description = "We'll never share your email";
+      render(<InputEmailRebuilt version={2} description={description} />);
+      expect(screen.getByText(description)).toBeInTheDocument();
+    });
+
+    it("should render with prefix", () => {
+      render(<InputEmailRebuilt version={2} prefix={{ icon: "email" }} />);
+      expect(screen.getByTestId("email")).toBeInTheDocument();
+    });
+
+    it("should render with suffix", () => {
+      render(
+        <InputEmailRebuilt version={2} suffix={{ label: "@company.com" }} />,
+      );
+      expect(screen.getByText("@company.com")).toBeInTheDocument();
+    });
+
+    it("should render inline", () => {
+      const { container } = render(<InputEmailRebuilt version={2} inline />);
+      expect(container.querySelector(".inline")).toBeInTheDocument();
+    });
+  });
+
+  describe("Event handlers", () => {
+    it("should call onKeyDown when key is pressed", async () => {
+      const keyDownHandler = jest.fn();
+      render(<InputEmailRebuilt version={2} onKeyDown={keyDownHandler} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "a");
+      expect(keyDownHandler).toHaveBeenCalled();
+    });
+
+    it("should call onKeyUp when key is released", async () => {
+      const keyUpHandler = jest.fn();
+      render(<InputEmailRebuilt version={2} onKeyUp={keyUpHandler} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "a");
+      expect(keyUpHandler).toHaveBeenCalled();
+    });
+  });
 });
