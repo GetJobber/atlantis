@@ -1,28 +1,26 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { buildThemedStyles } from "../AtlantisThemeContext";
-
-const { height } = Dimensions.get("window");
 
 export const useStyles = buildThemedStyles(tokens => {
   const modalBorderRadius = tokens["radius-larger"];
 
   return {
-    overlayModalize: {
-      backgroundColor: "transparent",
-    },
-
-    overlay: {
+    backdrop: {
       ...StyleSheet.absoluteFillObject,
       backgroundColor: tokens["color-overlay"],
-      height,
     },
-    modal: {
+    background: {
       borderTopLeftRadius: modalBorderRadius,
       borderTopRightRadius: modalBorderRadius,
-      paddingTop: tokens["space-small"],
     },
-    children: {
+    content: {
+      paddingVertical: tokens["space-small"],
+    },
+    footer: {
       paddingBottom: tokens["space-small"],
+    },
+    footerContainer: {
+      backgroundColor: tokens["color-surface"],
     },
     header: {
       paddingHorizontal: tokens["space-base"],
@@ -33,6 +31,9 @@ export const useStyles = buildThemedStyles(tokens => {
       marginHorizontal: tokens["space-base"],
       marginTop: tokens["space-small"],
       marginBottom: tokens["space-smaller"],
+    },
+    handle: {
+      display: "none",
     },
   };
 });
