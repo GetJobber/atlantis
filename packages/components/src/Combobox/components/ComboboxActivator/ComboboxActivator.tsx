@@ -14,7 +14,6 @@ export function ComboboxActivator(props: ComboboxActivatorProps) {
     (props.children.type === Button || props.children.type === Chip)
   ) {
     return React.cloneElement(props.children, {
-      // @ts-expect-error - TODO: fix role might not exist in type
       role: accessibilityAttributes.role,
       onClick: handleOpen,
     });
