@@ -6,19 +6,6 @@
     "displayName": "AutocompleteRebuilt",
     "methods": [],
     "props": {
-      "version": {
-        "defaultValue": null,
-        "description": "",
-        "name": "version",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": true,
-        "type": {
-          "name": "2"
-        }
-      },
       "multiple": {
         "defaultValue": null,
         "description": "Whether the autocomplete allows multiple selections.\nWARNING: This is currently incomplete and will not display selections, only data is returned.\nDo not use this prop unless you are sure you know what you are doing.",
@@ -69,32 +56,6 @@
         "required": true,
         "type": {
           "name": "(value: string) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Callback invoked when the input is blurred.",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Callback invoked when the input is focused.",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
         }
       },
       "inputEqualsOption": {
@@ -311,138 +272,6 @@
           "name": "boolean"
         }
       },
-      "placeholder": {
-        "defaultValue": null,
-        "description": "The placeholder text for the input.",
-        "name": "placeholder",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Whether the input is disabled.",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "error": {
-        "defaultValue": null,
-        "description": "Error message to display below the input\nWhen present, invalid appearance applied to the input",
-        "name": "error",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Whether the input is invalid. Receives invalid appearance.",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "readOnly": {
-        "defaultValue": {
-          "value": "false"
-        },
-        "description": "Whether the input is read-only.",
-        "name": "readOnly",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "description": {
-        "defaultValue": null,
-        "description": "Description to display below the input",
-        "name": "description",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Name of the input for form submission",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "size": {
-        "defaultValue": null,
-        "description": "Size of the input",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"small\" | \"large\""
-        }
-      },
-      "suffix": {
-        "defaultValue": null,
-        "description": "",
-        "name": "suffix",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
-        }
-      },
-      "prefix": {
-        "defaultValue": null,
-        "description": "",
-        "name": "prefix",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Affix"
-        }
-      },
       "onOpen": {
         "defaultValue": null,
         "description": "Callback invoked when the menu opens.",
@@ -467,19 +296,6 @@
         "required": false,
         "type": {
           "name": "() => void"
-        }
-      },
-      "loading": {
-        "defaultValue": null,
-        "description": "Whether the menu is loading.\nDisplays glimmers in the menu",
-        "name": "loading",
-        "parent": {
-          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
-          "name": "AutocompleteRebuiltBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "customRenderLoading": {
@@ -609,7 +425,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"list\" | \"none\" | \"inline\" | \"both\""
+          "name": "\"none\" | \"inline\" | \"list\" | \"both\""
         }
       },
       "aria-required": {
@@ -623,6 +439,188 @@
         "required": false,
         "type": {
           "name": "Booleanish"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The name attribute for the input element.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "readOnly": {
+        "defaultValue": null,
+        "description": "Whether the input is read-only (HTML standard casing).",
+        "name": "readOnly",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "Error message to display. This also highlights the field red.",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "Show a spinner to indicate loading.",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Further description of the input, can be used for a hint.",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Adjusts the interface to either have small or large spacing.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Adds a prefix label and icon to the field.",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Affix"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Adds a suffix label and icon with an optional action to the field.",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "2"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Focus event handler.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Blur event handler.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "FocusEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: React.FocusEvent<Target>) => void"
         }
       },
       "allowFreeForm": {
