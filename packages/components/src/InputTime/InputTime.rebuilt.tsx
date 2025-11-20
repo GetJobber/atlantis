@@ -17,7 +17,7 @@ export const InputTimeRebuilt = forwardRef<
     autoComplete,
     // Deprecated props
     inputRef: deprecatedInputRef,
-    ...params
+    ...props
   },
   forwardedRef,
 ) {
@@ -27,9 +27,9 @@ export const InputTimeRebuilt = forwardRef<
     deprecatedInputRef as React.RefObject<HTMLInputElement>,
     forwardedRef,
   ]);
-  const id = params.id || useId();
+  const id = props.id || useId();
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const { inputStyle } = useFormFieldWrapperStyles(params);
+  const { inputStyle } = useFormFieldWrapperStyles(props);
 
   const {
     handleChangeEvent,
@@ -42,11 +42,11 @@ export const InputTimeRebuilt = forwardRef<
     onChange,
     value,
     readOnly,
-    disabled: params.disabled,
+    disabled: props.disabled,
     inputRef: internalRef,
-    onFocus: params.onFocus,
-    onBlur: params.onBlur,
-    onKeyDown: params.onKeyDown,
+    onFocus: props.onFocus,
+    onBlur: props.onBlur,
+    onKeyDown: props.onKeyDown,
   });
 
   const { setTypedTime } = useTimePredict({
@@ -56,47 +56,47 @@ export const InputTimeRebuilt = forwardRef<
 
   // Kept outside the useInputTimeActions hook to avoid circular dependency via setTypedTime and handleChange
   function handleKeyUp(event: React.KeyboardEvent<HTMLInputElement>) {
-    params.onKeyUp?.(event);
-    if (params.disabled || readOnly) return;
+    props.onKeyUp?.(event);
+    if (props.disabled || readOnly) return;
 
     !isNaN(parseInt(event.key, 10)) && setTypedTime(prev => prev + event.key);
   }
 
-  const isInvalid = Boolean(params.error || params.invalid);
+  const isInvalid = Boolean(props.error || props.invalid);
 
   return (
     <FormFieldWrapper
-      disabled={params.disabled}
-      size={params.size}
-      align={params.align}
-      inline={params.inline}
-      name={params.name}
-      error={params.error || ""}
+      disabled={props.disabled}
+      size={props.size}
+      align={props.align}
+      inline={props.inline}
+      name={props.name}
+      error={props.error || ""}
       identifier={id}
       descriptionIdentifier={`descriptionUUID--${id}`}
-      invalid={Boolean(params.invalid)}
-      description={params.description}
-      maxLength={params.maxLength}
-      clearable={params.clearable ?? "never"}
+      invalid={Boolean(props.invalid)}
+      description={props.description}
+      maxLength={props.maxLength}
+      clearable={props.clearable ?? "never"}
       onClear={handleClear}
       type="time"
       readonly={readOnly}
-      placeholder={params.placeholder}
+      placeholder={props.placeholder}
       value={dateToTimeString(value)}
       wrapperRef={wrapperRef}
     >
       <input
         ref={mergedRef}
         type="time"
-        name={params.name}
+        name={props.name}
         className={inputStyle}
         id={id}
-        disabled={params.disabled}
+        disabled={props.disabled}
         readOnly={readOnly}
         autoComplete={autoComplete}
-        maxLength={params.maxLength}
-        max={params.max}
-        min={params.min}
+        maxLength={props.maxLength}
+        max={props.max}
+        min={props.min}
         value={dateToTimeString(value)}
         onChange={handleChangeEvent}
         onBlur={handleBlur}
@@ -104,10 +104,10 @@ export const InputTimeRebuilt = forwardRef<
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
         data-testid="ATL-InputTime-input"
-        aria-label={params["aria-label"]}
-        aria-describedby={params["aria-describedby"]}
+        aria-label={props["aria-label"]}
+        aria-describedby={props["aria-describedby"]}
         aria-invalid={isInvalid ? true : undefined}
-        aria-required={params["aria-required"]}
+        aria-required={props["aria-required"]}
       />
     </FormFieldWrapper>
   );
