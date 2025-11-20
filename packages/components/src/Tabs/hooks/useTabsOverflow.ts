@@ -1,18 +1,17 @@
-import type { MutableRefObject } from "react";
+import type { RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import throttle from "lodash/throttle";
 
 interface UseTabsOverflow {
   overflowRight: boolean;
   overflowLeft: boolean;
-  tabRow: MutableRefObject<HTMLUListElement>;
+  tabRow: RefObject<HTMLUListElement | null>;
 }
 
 export function useTabsOverflow(): UseTabsOverflow {
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
-  // @ts-expect-error - TODO: fix this
-  const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
+  const tabRow = useRef<HTMLUListElement>(null);
 
   const handleOverflowing = () => {
     if (tabRow.current) {

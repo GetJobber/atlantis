@@ -1,4 +1,4 @@
-import type { PropsWithChildren, ReactNode, RefObject } from "react";
+import type { PropsWithChildren, ReactNode } from "react";
 import React, { useRef } from "react";
 import type { Clearable } from "@jobber/hooks";
 import { useShowClear } from "@jobber/hooks";
@@ -50,10 +50,8 @@ export function FormFieldWrapper({
   showMiniLabel = true,
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
-  // @ts-expect-error - TODO: fix this
-  const prefixRef = useRef() as RefObject<HTMLDivElement>;
-  // @ts-expect-error - TODO: fix this
-  const suffixRef = useRef() as RefObject<HTMLDivElement>;
+  const prefixRef = useRef<HTMLDivElement>(null);
+  const suffixRef = useRef<HTMLDivElement>(null);
 
   const { wrapperClasses, containerClasses, wrapperInlineStyle, labelStyle } =
     useFormFieldWrapperStyles({

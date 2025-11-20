@@ -1,9 +1,4 @@
-import type {
-  Dispatch,
-  KeyboardEvent,
-  MouseEvent,
-  MutableRefObject,
-} from "react";
+import type { Dispatch, KeyboardEvent, MouseEvent } from "react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import styles from "./DropDownMenu.module.css";
@@ -25,8 +20,7 @@ interface DropDownMenuProps {
 
 export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
-  // @ts-expect-error - TODO: fix this
-  const menuDiv = useRef() as MutableRefObject<HTMLUListElement>;
+  const menuDiv = useRef<HTMLUListElement>(null);
 
   const handleOptionClick = useCallback((clickedOption: Option) => {
     setOptions(current =>
@@ -148,7 +142,10 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     const newIndex = Math.max(0, highlightedIndex - 1);
 
     handleOptionFocus(newIndex);
-    scrollMenuIfItemNotInView(menuDiv.current, "up");
+
+    if (menuDiv.current) {
+      scrollMenuIfItemNotInView(menuDiv.current, "up");
+    }
   }
 
   function handlePressDown(event: React.KeyboardEvent<HTMLUListElement>) {
@@ -156,6 +153,9 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     const newIndex = Math.min(options.length - 1, highlightedIndex + 1);
 
     handleOptionFocus(newIndex);
-    scrollMenuIfItemNotInView(menuDiv.current, "down");
+
+    if (menuDiv.current) {
+      scrollMenuIfItemNotInView(menuDiv.current, "down");
+    }
   }
 }

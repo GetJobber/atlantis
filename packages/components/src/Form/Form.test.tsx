@@ -1,4 +1,3 @@
-import type { MutableRefObject } from "react";
 import React, { useRef } from "react";
 import { render, waitFor } from "@testing-library/react";
 import { useFormState } from "@jobber/hooks";
@@ -178,8 +177,7 @@ interface MockFormValidateProps {
 }
 
 function MockFormValidate({ onSubmit }: MockFormValidateProps) {
-  // @ts-expect-error - TODO: fix this
-  const formRef = useRef() as MutableRefObject<FormRef>;
+  const formRef = useRef<FormRef>(null);
 
   return (
     <>
@@ -195,7 +193,7 @@ function MockFormValidate({ onSubmit }: MockFormValidateProps) {
           }}
         />
       </Form>
-      <button onClick={() => formRef.current.submit()}>submit</button>
+      <button onClick={() => formRef.current?.submit()}>submit</button>
     </>
   );
 }

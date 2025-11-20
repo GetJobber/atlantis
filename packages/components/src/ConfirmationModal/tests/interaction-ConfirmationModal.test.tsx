@@ -239,7 +239,6 @@ function ControlledConfirm({
   onConfirmMock,
   onCancelMock,
 }: ControlledConfirmProps) {
-  // @ts-expect-error - TODO: fix this
   const confirmationModalRef = useRef() as RefObject<ConfirmationModalRef>;
 
   return (

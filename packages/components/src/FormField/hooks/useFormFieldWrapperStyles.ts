@@ -20,8 +20,8 @@ export interface useFormFieldWrapperStylesProps
     | "inline"
   > {
   readonly error?: string;
-  suffixRef?: RefObject<HTMLDivElement>;
-  prefixRef?: RefObject<HTMLDivElement>;
+  suffixRef?: RefObject<HTMLDivElement | null>;
+  prefixRef?: RefObject<HTMLDivElement | null>;
   showMiniLabel?: boolean;
 }
 
