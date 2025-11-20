@@ -1,4 +1,4 @@
-import type { Dispatch, KeyboardEvent, MutableRefObject } from "react";
+import type { Dispatch, KeyboardEvent } from "react";
 import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import styles from "./MultiSelect.module.css";
@@ -44,10 +44,8 @@ export function MultiSelect({
   const [label, setLabel] = useState(defaultLabel);
   const [menuVisible, setMenuVisible] = useState(false);
   const [focused, setFocused] = useState(false);
-  // @ts-expect-error - TODO: fix this
-  const multiSelectContainer = useRef() as MutableRefObject<HTMLDivElement>;
-  // @ts-expect-error - TODO: fix this
-  const multiSelectRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const multiSelectContainer = useRef<HTMLDivElement>(null);
+  const multiSelectRef = useRef<HTMLDivElement>(null);
   const multiSelectClass = classNames(styles.multiSelect, {
     [styles.active]: menuVisible,
     [styles.large]: size === "large",
@@ -55,7 +53,7 @@ export function MultiSelect({
   });
 
   function handleMenuVisibility() {
-    multiSelectRef.current.focus();
+    multiSelectRef.current?.focus();
     setMenuVisible(!menuVisible);
   }
 
@@ -79,7 +77,7 @@ export function MultiSelect({
         break;
       }
       case "Escape": {
-        multiSelectRef.current.focus();
+        multiSelectRef.current?.focus();
         setMenuVisible(false);
         break;
       }
