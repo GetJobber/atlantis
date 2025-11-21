@@ -7,8 +7,8 @@ import { ComponentType } from "../types/content";
 // We could probably create some better types throughout here,
 // but not necessary until we need them externally.
 const AtlantisPreviewContext = createContext<{
-  iframe: React.RefObject<HTMLIFrameElement | null> | null;
-  iframeMobile: React.RefObject<HTMLIFrameElement | null> | null;
+  iframe: React.RefObject<HTMLIFrameElement | null>;
+  iframeMobile: React.RefObject<HTMLIFrameElement | null>;
   getIframeRef: (
     type: ComponentType,
   ) => React.RefObject<HTMLIFrameElement | null>;
@@ -18,8 +18,8 @@ const AtlantisPreviewContext = createContext<{
   type: ComponentType;
   updateType: (value: ComponentType) => void;
 }>({
-  iframe: null,
-  iframeMobile: null,
+  iframe: { current: null },
+  iframeMobile: { current: null },
   getIframeRef: () => ({ current: null }),
   updateCode: () => ({}),
   code: "",
