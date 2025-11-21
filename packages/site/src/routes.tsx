@@ -1,3 +1,4 @@
+import { type ReactElement } from "react";
 import { HomePage } from "./pages/HomePage";
 import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
@@ -17,7 +18,7 @@ import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
 
 export interface AtlantisRoute {
   path?: string;
-  component?: () => JSX.Element;
+  component?: () => ReactElement;
   exact?: boolean;
   children?: Array<AtlantisRoute>;
   inNav?: boolean;

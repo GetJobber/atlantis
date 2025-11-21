@@ -14,7 +14,7 @@ export function FormCache<T extends FieldValues>({
   localCacheExclude,
   localCacheKey,
   setLocalCache,
-}: FormCacheProps<T>): JSX.Element {
+}: FormCacheProps<T>) {
   const { control, formState } = useFormContext<T>();
   const { isDirty } = formState;
 

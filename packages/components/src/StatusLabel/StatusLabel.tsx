@@ -35,7 +35,7 @@ export function StatusLabel({
   label,
   alignment = "start",
   status = "inactive",
-}: StatusLabelProps): JSX.Element {
+}: StatusLabelProps) {
   const containerClassNames = classnames(
     styles.statusLabelRow,
     styles[status],

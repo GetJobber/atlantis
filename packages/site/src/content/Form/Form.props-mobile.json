@@ -185,7 +185,7 @@
         },
         "required": false,
         "type": {
-          "name": "(onSubmit: () => void, label: string, isSubmitting: boolean) => Element"
+          "name": "(onSubmit: () => void, label: string, isSubmitting: boolean) => ReactElement<any, string | JSXElementConstructor<any>>"
         }
       },
       "localCacheKey": {

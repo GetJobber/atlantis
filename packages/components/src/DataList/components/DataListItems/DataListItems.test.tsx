@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
 import React from "react";
 import {
   fireEvent,
@@ -27,7 +27,7 @@ const mockSelectedValue = jest.fn().mockReturnValue([]);
 const onSelectMock = jest.fn();
 const mockOnSelectValue = jest.fn().mockReturnValue(onSelectMock);
 
-const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
+const mockItemActionComponent = jest.fn<ReactElement | undefined, []>(() => (
   <DataListItemActions>
     <DataListAction label="Edit" onClick={mockEditClick} />
     <DataListAction label="Email" />
