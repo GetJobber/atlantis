@@ -1,4 +1,4 @@
-import type { MutableRefObject, ReactElement, RefObject } from "react";
+import type { ReactElement, RefObject } from "react";
 import type {
   ControllerProps,
   DefaultValues,
@@ -54,7 +54,7 @@ interface FormNoticeMessage {
 
 export type FormRef<T extends FieldValues = FieldValues> =
   | (UseFormReturn<T> & {
-      scrollViewRef?: RefObject<KeyboardAwareScrollView>;
+      scrollViewRef?: RefObject<KeyboardAwareScrollView | null>;
       saveButtonHeight?: number;
       messageBannerHeight?: number;
     })
@@ -127,7 +127,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
   /**
    * ref object to access react hook form methods and state
    */
-  formRef?: MutableRefObject<FormRef<T> | undefined>;
+  formRef?: RefObject<FormRef<T> | undefined>;
 
   /**
    * Label to be displayed for the save button

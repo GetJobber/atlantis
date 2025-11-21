@@ -9,7 +9,7 @@ import { BottomSheet } from "../../../BottomSheet/BottomSheet";
 
 interface SecondaryActionSheetProps {
   readonly actions: ButtonGroupSecondaryActionProps[];
-  readonly secondaryActionsRef: RefObject<BottomSheetRef>;
+  readonly secondaryActionsRef: RefObject<BottomSheetRef | null>;
   readonly showCancel?: boolean;
   readonly heading?: string;
   readonly onOpenBottomSheet?: () => void;

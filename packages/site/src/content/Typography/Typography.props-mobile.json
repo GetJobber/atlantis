@@ -1,1 +1,299 @@
-[]
+[
+  {
+    "tags": {},
+    "filePath": "../components-native/src/Typography/Typography.tsx",
+    "description": "",
+    "displayName": "Typography",
+    "methods": [],
+    "props": {
+      "transform": {
+        "defaultValue": null,
+        "description": "Text capitalization",
+        "name": "transform",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextTransform"
+        }
+      },
+      "color": {
+        "defaultValue": null,
+        "description": "Color of text",
+        "name": "color",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextColor"
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "Alignment of text",
+        "name": "align",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextAlign"
+        }
+      },
+      "selectable": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Lets the user select text, to use the native copy and paste functionality.\nWARNING: if true, this prevents ellipsis from being shown on Android.",
+        "name": "selectable",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Font size",
+        "name": "size",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextSize"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "Text to display. Supports nesting text elements.",
+        "name": "children",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "maxLines": {
+        "defaultValue": null,
+        "description": "The maximum amount of lines the text can occupy before being truncated with \"...\".\nUses predefined string values that correspond to a doubling scale for the amount of lines.\nWARNING: if `selectable` is true, Android will not show an ellipsis.",
+        "name": "maxLines",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TruncateLength"
+        }
+      },
+      "allowFontScaling": {
+        "defaultValue": null,
+        "description": "Allow text to be resized based on user's device display scale",
+        "name": "allowFontScaling",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "maxFontScaleSize": {
+        "defaultValue": null,
+        "description": "Set the maximum font the text can go to size when the user scales their\ndevice font size",
+        "name": "maxFontScaleSize",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "adjustsFontSizeToFit": {
+        "defaultValue": null,
+        "description": "Determines whether text should be scaled down to fit based on maxLines prop",
+        "name": "adjustsFontSizeToFit",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "lineHeight": {
+        "defaultValue": null,
+        "description": "Line Height",
+        "name": "lineHeight",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "LineHeight"
+        }
+      },
+      "letterSpacing": {
+        "defaultValue": null,
+        "description": "Spacing between letters",
+        "name": "letterSpacing",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "LetterSpacing"
+        }
+      },
+      "fontFamily": {
+        "defaultValue": null,
+        "description": "Font Family",
+        "name": "fontFamily",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "FontFamily"
+        }
+      },
+      "fontStyle": {
+        "defaultValue": null,
+        "description": "Font style",
+        "name": "fontStyle",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "FontStyle"
+        }
+      },
+      "underline": {
+        "defaultValue": null,
+        "description": "Underline style to use for the text. The non-solid style is only supported\non iOS, as per React Native's Text component's limitations.\nhttps://reactnative.dev/docs/text-style-props#textdecorationstyle-ios",
+        "name": "underline",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"solid\" | \"double\" | \"dotted\" | \"dashed\""
+        }
+      },
+      "fontWeight": {
+        "defaultValue": null,
+        "description": "Font weight",
+        "name": "fontWeight",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"regular\" | \"medium\" | \"bold\" | \"semiBold\" | \"extraBold\" | \"black\""
+        }
+      },
+      "reverseTheme": {
+        "defaultValue": null,
+        "description": "Reverse theme for better display on dark background",
+        "name": "reverseTheme",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "accessibilityRole": {
+        "defaultValue": null,
+        "description": "Accessibility role describing the context of the text",
+        "name": "accessibilityRole",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TextAccessibilityRole"
+        }
+      },
+      "hideFromScreenReader": {
+        "defaultValue": null,
+        "description": "This will make the text inaccessible to the screen reader.\nThis should be avoided unless there is a good reason.\nFor example this is used in InputText to make it so the label isn't\nselectable because it is already read from the accessibilityLabel\nof the TextInput",
+        "name": "hideFromScreenReader",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "strikeThrough": {
+        "defaultValue": null,
+        "description": "Have text styled with strike through",
+        "name": "strikeThrough",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "TypographyUnsafeStyle"
+        }
+      },
+      "onTextLayout": {
+        "defaultValue": null,
+        "description": "Callback behaves differently on iOS and Android.\nOn iOS, it is called when the text is laid out.\nOn Android, it is called before the text is laid out.\n@see https://reactnative.dev/docs/text#ontextlayout",
+        "name": "onTextLayout",
+        "parent": {
+          "fileName": "../components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: TextLayoutEvent) => void"
+        }
+      }
+    }
+  }
+]

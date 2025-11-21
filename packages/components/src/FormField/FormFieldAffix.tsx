@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import { Icon } from "../Icon";
 
 interface AffixLabelProps extends Affix {
-  readonly labelRef: RefObject<HTMLDivElement>;
+  readonly labelRef: RefObject<HTMLDivElement | null>;
   readonly variation?: "prefix" | "suffix";
 }
 

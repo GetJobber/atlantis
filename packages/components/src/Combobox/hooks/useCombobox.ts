@@ -8,7 +8,7 @@ import { useMakeComboboxHandlers } from "./useMakeComboboxHandlers";
 import { type ComboboxOption } from "../Combobox.types";
 
 type UseComboboxReturn = {
-  wrapperRef: React.RefObject<HTMLDivElement>;
+  wrapperRef: React.RefObject<HTMLDivElement | null>;
   searchValue: string;
   setSearchValue: Dispatch<React.SetStateAction<string>>;
   open: boolean;
