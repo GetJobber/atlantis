@@ -2247,4 +2247,117 @@ describe("AutocompleteRebuilt", () => {
       expect(onChange).toHaveBeenCalledWith([]);
     });
   });
+
+  describe("uncontrolled mode", () => {
+    it("works without value, onChange, inputValue and onInputChange props", async () => {
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "Apple" },
+          { label: "Banana" },
+          { label: "Cherry" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt version={2} menu={menu} placeholder="Search..." />,
+      );
+
+      const input = screen.getByRole("combobox") as HTMLInputElement;
+      expect(input).toBeVisible();
+
+      await typeInInput("Ban");
+      await openAutocomplete();
+
+      expect(screen.getByText("Banana")).toBeVisible();
+
+      await selectWithClick("Banana");
+
+      // Verify the input shows the selected value
+      expect(input.value).toBe("Banana");
+    });
+
+    it("uses defaultValue when provided", () => {
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "Apple" },
+          { label: "Banana" },
+          { label: "Cherry" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          menu={menu}
+          defaultValue={{ label: "Banana" }}
+          placeholder="Search..."
+        />,
+      );
+
+      const input = screen.getByRole("combobox") as HTMLInputElement;
+      // Input should show the label of the default value
+      expect(input.value).toBe("Banana");
+    });
+
+    it("works without inputValue/onInputChange but with controlled value", async () => {
+      const onChange = jest.fn();
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "Apple" },
+          { label: "Banana" },
+          { label: "Cherry" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          menu={menu}
+          value={{ label: "Apple" }}
+          onChange={onChange}
+          placeholder="Search..."
+        />,
+      );
+
+      const input = screen.getByRole("combobox") as HTMLInputElement;
+      // Input should show the value's label
+      expect(input.value).toBe("Apple");
+
+      await openAutocomplete();
+      await selectWithClick("Banana");
+
+      expect(onChange).toHaveBeenCalledWith({ label: "Banana" });
+    });
+
+    it("can still use fully controlled mode when all props are provided", async () => {
+      const onChange = jest.fn();
+      const onInputChange = jest.fn();
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "Apple" },
+          { label: "Banana" },
+          { label: "Cherry" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          menu={menu}
+          value={undefined}
+          onChange={onChange}
+          inputValue="Controlled"
+          onInputChange={onInputChange}
+          placeholder="Search..."
+        />,
+      );
+
+      const input = screen.getByRole("combobox") as HTMLInputElement;
+      expect(input.value).toBe("Controlled");
+
+      await typeInInput("x");
+
+      expect(onInputChange).toHaveBeenCalledWith("Controlledx");
+    });
+  });
 });
