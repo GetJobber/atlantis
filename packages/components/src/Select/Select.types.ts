@@ -1,5 +1,10 @@
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
-import type { AriaInputProps, FocusEvents } from "../sharedHelpers/types";
+import type {
+  FocusEvents,
+  HTMLInputBaseProps,
+  InputLengthConstraint,
+  RebuiltInputCommonProps,
+} from "../sharedHelpers/types";
 
 export interface SelectLegacyProps
   extends Pick<
@@ -42,32 +47,14 @@ export interface SelectLegacyProps
  * Rebuilt version of the Select component without React Hook Form dependency.
  */
 export interface SelectRebuiltProps
-  extends Omit<
-      SelectLegacyProps,
-      | "defaultValue"
-      | "version"
-      | "onChange"
-      | "value"
-      | "validations"
-      | "onValidation"
-      | "autofocus"
-      | "inputRef"
-      | "onEnter"
-      | "onBlur"
-      | "onFocus"
-    >,
-    AriaInputProps,
-    FocusEvents<HTMLSelectElement> {
+  extends Omit<HTMLInputBaseProps, "readOnly">,
+    FocusEvents<HTMLSelectElement>,
+    Omit<RebuiltInputCommonProps, "clearable" | "prefix" | "suffix" | "align">,
+    InputLengthConstraint,
+    Pick<SelectLegacyProps, "prefix" | "suffix" | "align" | "children"> {
   defaultValue?: never;
   readonly value?: string | number;
   onChange?(newValue?: string | number): void;
-  version: 2;
-  error?: string;
-
-  /**
-   * Automatically focus the select when mounted.
-   */
-  readonly autoFocus?: boolean;
 
   /**
    * @deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.

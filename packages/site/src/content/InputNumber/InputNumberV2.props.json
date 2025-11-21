@@ -6,32 +6,6 @@
     "displayName": "InputNumberRebuilt",
     "methods": [],
     "props": {
-      "align": {
-        "defaultValue": null,
-        "description": "Determines the alignment of the text inside the input.",
-        "name": "align",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"center\" | \"right\""
-        }
-      },
-      "autoFocus": {
-        "defaultValue": null,
-        "description": "",
-        "name": "autoFocus",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "defaultValue": {
         "defaultValue": null,
         "description": "",
@@ -45,32 +19,6 @@
           "name": "number"
         }
       },
-      "description": {
-        "defaultValue": null,
-        "description": "Further description of the input, can be used for a hint.",
-        "name": "description",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "error": {
-        "defaultValue": null,
-        "description": "",
-        "name": "error",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "formatOptions": {
         "defaultValue": null,
         "description": "",
@@ -82,45 +30,6 @@
         "required": false,
         "type": {
           "name": "NumberFormatOptions"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "The ID of the input element.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "inline": {
-        "defaultValue": null,
-        "description": "Adjusts the form field to go inline with a content. This also silences the\ngiven `validations` prop. You'd have to used the `onValidate` prop to\ncapture the message and render it somewhere else using the\n`InputValidation` component.",
-        "name": "inline",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Highlights the field red to indicate an error.",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "maxValue": {
@@ -162,22 +71,9 @@
           "name": "(newValue: number, event?: React.ChangeEvent<HTMLInputElement>) => void"
         }
       },
-      "readOnly": {
-        "defaultValue": null,
-        "description": "Whether the input is read-only.",
-        "name": "readOnly",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "showMiniLabel": {
         "defaultValue": null,
-        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "description": "",
         "name": "showMiniLabel",
         "parent": {
           "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
@@ -188,22 +84,9 @@
           "name": "boolean"
         }
       },
-      "size": {
-        "defaultValue": null,
-        "description": "Adjusts the interface to either have small or large spacing.",
-        "name": "size",
-        "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"small\" | \"large\""
-        }
-      },
       "value": {
         "defaultValue": null,
-        "description": "Set the component to the given value.",
+        "description": "",
         "name": "value",
         "parent": {
           "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
@@ -214,95 +97,134 @@
           "name": "number"
         }
       },
-      "version": {
+      "id": {
         "defaultValue": null,
-        "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
-        "name": "version",
+        "description": "The unique identifier for the input element.",
+        "name": "id",
         "parent": {
-          "fileName": "packages/components/src/InputNumber/InputNumber.rebuilt.types.tsx",
-          "name": "InputNumberRebuiltProps"
-        },
-        "required": true,
-        "type": {
-          "name": "2"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Disable the input",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
-          "name": "boolean"
-        }
-      },
-      "loading": {
-        "defaultValue": null,
-        "description": "Show a spinner to indicate loading",
-        "name": "loading",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
+          "name": "string"
         }
       },
       "name": {
         "defaultValue": null,
-        "description": "Name of the input.",
+        "description": "The name attribute for the input element.",
         "name": "name",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
           "name": "string"
         }
       },
-      "onValidation": {
+      "disabled": {
         "defaultValue": null,
-        "description": "Callback to get the the status and message when validating a field\n@param message",
-        "name": "onValidation",
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
-          "name": "(message: string) => void"
+          "name": "boolean"
         }
       },
-      "placeholder": {
+      "readOnly": {
         "defaultValue": null,
-        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
-        "name": "placeholder",
+        "description": "Whether the input is read-only (HTML standard casing).",
+        "name": "readOnly",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "autoFocus": {
+        "defaultValue": null,
+        "description": "Whether the input should be auto-focused (React casing).",
+        "name": "autoFocus",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "autoComplete": {
+        "defaultValue": null,
+        "description": "Autocomplete behavior for the input (React casing, string values only).\nUse standard HTML autocomplete values or \"on\"/\"off\".",
+        "name": "autoComplete",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
           "name": "string"
         }
       },
-      "clearable": {
+      "pattern": {
         "defaultValue": null,
-        "description": "Add a clear action on the input that clears the value.\n\nYou should always use `while-editing` if you want the input to be\nclearable. if the input value isn't editable (i.e. `InputTime`) you can\nset it to `always`.",
-        "name": "clearable",
+        "description": "Validation pattern (regex) for the input.",
+        "name": "pattern",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
-          "name": "Clearable"
+          "name": "string"
+        }
+      },
+      "inputMode": {
+        "defaultValue": null,
+        "description": "Input mode hint for virtual keyboards.",
+        "name": "inputMode",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"search\" | \"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\""
+        }
+      },
+      "role": {
+        "defaultValue": null,
+        "description": "Role attribute for accessibility.",
+        "name": "role",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "tabIndex": {
+        "defaultValue": null,
+        "description": "Tab index for keyboard navigation.",
+        "name": "tabIndex",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
         }
       },
       "aria-label": {
@@ -498,6 +420,149 @@
         "required": false,
         "type": {
           "name": "string | number"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "Error message to display. This also highlights the field red.",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "Show a spinner to indicate loading.",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Adjusts the interface to either have small or large spacing.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
+      "inline": {
+        "defaultValue": null,
+        "description": "Adjusts the form field to go inline with content.",
+        "name": "inline",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "Determines the alignment of the text inside the input.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"center\" | \"right\""
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Adds a prefix label and icon to the field.",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Affix"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Adds a suffix label and icon with an optional action to the field.",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Further description of the input, can be used for a hint.",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "2"
         }
       },
       "ref": {

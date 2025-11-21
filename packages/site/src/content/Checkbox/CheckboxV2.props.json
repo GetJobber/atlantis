@@ -6,6 +6,58 @@
     "displayName": "CheckboxRebuilt",
     "methods": [],
     "props": {
+      "id": {
+        "defaultValue": null,
+        "description": "The unique identifier for the input element.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The name attribute for the input element.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "checked": {
         "defaultValue": null,
         "description": "Determines if the checkbox is checked or not.",
@@ -32,19 +84,6 @@
           "name": "boolean"
         }
       },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Disables the checkbox.",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "indeterminate": {
         "defaultValue": {
           "value": "false"
@@ -60,19 +99,6 @@
           "name": "boolean"
         }
       },
-      "name": {
-        "defaultValue": null,
-        "description": "Checkbox input name",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
       "value": {
         "defaultValue": null,
         "description": "Value of the checkbox.",
@@ -84,32 +110,6 @@
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "id": {
-        "defaultValue": null,
-        "description": "ID for the checkbox input",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Whether the checkbox is invalid",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "aria-label": {
@@ -255,6 +255,19 @@
           "name": "(event: React.FocusEvent<Target>) => void"
         }
       },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "2"
+        }
+      },
       "label": {
         "defaultValue": null,
         "description": "Label that shows up beside the checkbox.\nString will be rendered with the default markup.\nReactElement will be rendered with provided positionining.",
@@ -280,15 +293,6 @@
         "required": false,
         "type": {
           "name": "(newValue: boolean, event: ChangeEvent<HTMLInputElement>) => void"
-        }
-      },
-      "version": {
-        "defaultValue": null,
-        "description": "Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.",
-        "name": "version",
-        "required": true,
-        "type": {
-          "name": "2"
         }
       },
       "ref": {

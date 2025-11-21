@@ -23,7 +23,7 @@ export interface InputPasswordProps
 function InputPasswordInternal(
   { usePrivacyEye = true, ...props }: InputPasswordProps,
   ref: Ref<InputTextRef>,
-): JSX.Element {
+) {
   const { t } = useAtlantisI18n();
   const [passwordHidden, setPasswordHidden] = useState(true);
   const [privacyEye, setPrivacyEye] = useState<IconNames>("eye");

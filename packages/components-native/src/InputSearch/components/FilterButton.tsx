@@ -10,7 +10,7 @@ interface FilterButtonProps {
 export function FilterButton({
   accessibilityLabel,
   onClick,
-}: FilterButtonProps): JSX.Element {
+}: FilterButtonProps) {
   return (
     <IconButton
       onPress={() => {

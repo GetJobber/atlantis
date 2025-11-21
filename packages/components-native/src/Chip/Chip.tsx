@@ -68,7 +68,7 @@ export function Chip({
   accessibilityLabel,
   accessibilityRole = "radio",
   accent,
-}: ChipProps): JSX.Element {
+}: ChipProps) {
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
   const defaultAccentColor = tokens["color-surface--reverse"];

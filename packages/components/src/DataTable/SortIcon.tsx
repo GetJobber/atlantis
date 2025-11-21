@@ -30,7 +30,7 @@ interface SortIconProps {
   readonly direction: SortDirection;
 }
 
-export function SortIcon({ direction }: SortIconProps): JSX.Element {
+export function SortIcon({ direction }: SortIconProps) {
   const foundStyle = sortStyleIndex.find(style => style.option === direction);
   const finalStyle = foundStyle === undefined ? sortStyleIndex[0] : foundStyle;
 

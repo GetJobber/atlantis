@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode } from "react";
 import type { IconNames } from "@jobber/design";
 import type { XOR } from "ts-xor";
 import { type Breakpoints } from "./DataList.const";
@@ -184,7 +184,7 @@ export type DataListSelectedType<
 
 export type LayoutRenderer<T extends DataListObject> = (
   item: DataListItemType<T[]>,
-) => JSX.Element;
+) => ReactElement;
 
 export interface DataListLayoutProps<T extends DataListObject> {
   readonly children: LayoutRenderer<T>;

@@ -14,7 +14,7 @@ export function SBProvider({
   theme = "light",
 }: PropsWithChildren<{
   readonly theme: Theme;
-}>): JSX.Element {
+}>) {
   /*
   For now, client's locale is hard coded to "en-US".
   This will change when we have a strategy for translating the app

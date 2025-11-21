@@ -45,45 +45,6 @@
           "name": "(newValue?: string | number) => void"
         }
       },
-      "version": {
-        "defaultValue": null,
-        "description": "",
-        "name": "version",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectRebuiltProps"
-        },
-        "required": true,
-        "type": {
-          "name": "2"
-        }
-      },
-      "error": {
-        "defaultValue": null,
-        "description": "",
-        "name": "error",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "autoFocus": {
-        "defaultValue": null,
-        "description": "Automatically focus the select when mounted.",
-        "name": "autoFocus",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectRebuiltProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "inputRef": {
         "defaultValue": null,
         "description": "@deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.",
@@ -125,180 +86,115 @@
       },
       "id": {
         "defaultValue": null,
-        "description": "A unique identifier for the input.",
+        "description": "The unique identifier for the input element.",
         "name": "id",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "align": {
-        "defaultValue": null,
-        "description": "Determines the alignment of the text inside the input.",
-        "name": "align",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"center\" | \"right\""
-        }
-      },
-      "description": {
-        "defaultValue": null,
-        "description": "Further description of the input, can be used for a hint.",
-        "name": "description",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Disable the input",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Highlights the field red to indicate an error.",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "inline": {
-        "defaultValue": null,
-        "description": "Adjusts the form field to go inline with a content. This also silences the\ngiven `validations` prop. You'd have to used the `onValidate` prop to\ncapture the message and render it somewhere else using the\n`InputValidation` component.",
-        "name": "inline",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
         }
       },
       "name": {
         "defaultValue": null,
-        "description": "Name of the input.",
+        "description": "The name attribute for the input element.",
         "name": "name",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
           "name": "string"
         }
       },
-      "placeholder": {
+      "disabled": {
         "defaultValue": null,
-        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
-        "name": "placeholder",
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "autoFocus": {
+        "defaultValue": null,
+        "description": "Whether the input should be auto-focused (React casing).",
+        "name": "autoFocus",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "autoComplete": {
+        "defaultValue": null,
+        "description": "Autocomplete behavior for the input (React casing, string values only).\nUse standard HTML autocomplete values or \"on\"/\"off\".",
+        "name": "autoComplete",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
           "name": "string"
         }
       },
-      "size": {
+      "pattern": {
         "defaultValue": null,
-        "description": "Adjusts the interface to either have small or large spacing.",
-        "name": "size",
+        "description": "Validation pattern (regex) for the input.",
+        "name": "pattern",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
-          "name": "\"small\" | \"large\""
+          "name": "string"
         }
       },
-      "wrapperRef": {
+      "inputMode": {
         "defaultValue": null,
-        "description": "",
-        "name": "wrapperRef",
+        "description": "Input mode hint for virtual keyboards.",
+        "name": "inputMode",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
-          "name": "RefObject<HTMLDivElement>"
+          "name": "\"none\" | \"text\" | \"tel\" | \"url\" | \"email\" | \"numeric\" | \"decimal\" | \"search\""
         }
       },
-      "children": {
+      "role": {
         "defaultValue": null,
-        "description": "If you need to pass in a children. For example, `<options>` inside\n`<select>`.",
-        "name": "children",
+        "description": "Role attribute for accessibility.",
+        "name": "role",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
-          "name": "ReactNode"
+          "name": "string"
         }
       },
-      "prefix": {
+      "tabIndex": {
         "defaultValue": null,
-        "description": "Adds a prefix label and icon to the field",
-        "name": "prefix",
+        "description": "Tab index for keyboard navigation.",
+        "name": "tabIndex",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Affix"
-        }
-      },
-      "suffix": {
-        "defaultValue": null,
-        "description": "Adds a suffix label and icon with an optional action to the field",
-        "name": "suffix",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
-        }
-      },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Changes the width to roughly the same size as the maximum character length",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/Select/Select.types.ts",
-          "name": "SelectLegacyProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
         },
         "required": false,
         "type": {
@@ -446,6 +342,175 @@
         "required": false,
         "type": {
           "name": "(event: React.FocusEvent<Target>) => void"
+        }
+      },
+      "placeholder": {
+        "defaultValue": null,
+        "description": "Text that appears inside the input when empty and floats above the value\nas a mini label once the user enters a value.\nWhen showMiniLabel is false, this text only serves as a standard placeholder and\ndisappears when the user types.",
+        "name": "placeholder",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "error": {
+        "defaultValue": null,
+        "description": "Error message to display. This also highlights the field red.",
+        "name": "error",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "Show a spinner to indicate loading.",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "Adjusts the interface to either have small or large spacing.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"large\""
+        }
+      },
+      "inline": {
+        "defaultValue": null,
+        "description": "Adjusts the form field to go inline with content.",
+        "name": "inline",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "description": {
+        "defaultValue": null,
+        "description": "Further description of the input, can be used for a hint.",
+        "name": "description",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "2"
+        }
+      },
+      "maxLength": {
+        "defaultValue": null,
+        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
+        "name": "maxLength",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "InputLengthConstraint"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Adds a prefix label and icon to the field",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Affix"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Adds a suffix label and icon with an optional action to the field",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+        }
+      },
+      "align": {
+        "defaultValue": null,
+        "description": "Determines the alignment of the text inside the input.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"center\" | \"right\""
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "If you need to pass in a children. For example, `<options>` inside\n`<select>`.",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
         }
       },
       "ref": {

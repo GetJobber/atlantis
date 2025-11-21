@@ -57,7 +57,7 @@ function ContentOverlayInternal(
     avoidKeyboardLikeIOS,
   }: ContentOverlayProps,
   ref: Ref<ContentOverlayRef>,
-): JSX.Element {
+) {
   isDraggable = onBeforeExit ? false : isDraggable;
   const isCloseableOnOverlayTap = onBeforeExit ? false : true;
   const { t } = useAtlantisI18n();
