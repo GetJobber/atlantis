@@ -12,15 +12,16 @@
  * return <input {...dataAttrs} />;
  * ```
  */
+type DataAttributes = Partial<Record<`data-${string}`, unknown>>;
+
 export function filterDataAttributes(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  props: any,
-): Record<string, unknown> {
+  props: Record<string, unknown>,
+): DataAttributes {
   return Object.keys(props).reduce((acc, key) => {
     if (key.startsWith("data-")) {
-      acc[key] = props[key];
+      acc[key as `data-${string}`] = props[key];
     }
 
     return acc;
-  }, {} as Record<string, unknown>);
+  }, {} as DataAttributes);
 }
