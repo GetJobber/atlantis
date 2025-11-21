@@ -1,3 +1,5 @@
+type DataAttributes = Partial<Record<`data-${string}`, unknown>>;
+
 /**
  * Filters and returns all data-* attributes from props.
  * This allows components to accept standard HTML data attributes
@@ -12,8 +14,6 @@
  * return <input {...dataAttrs} />;
  * ```
  */
-type DataAttributes = Partial<Record<`data-${string}`, unknown>>;
-
 export function filterDataAttributes<T extends object>(
   props: T,
 ): DataAttributes {
