@@ -157,7 +157,7 @@ describe("Post Requests", () => {
 
   describe("when component fails to get upload params", () => {
     it("calls onError callback", async () => {
-      const fetchParams = jest.fn(() => Promise.reject("error"));
+      const fetchParams = jest.fn(() => Promise.reject());
       const handleError = jest.fn();
 
       const { container } = render(
@@ -172,6 +172,29 @@ describe("Post Requests", () => {
       await waitFor(() => {
         expect(handleError).toHaveBeenCalledWith(
           new Error("Failed to get upload params"),
+        );
+      });
+    });
+
+    it("calls onError callback with the passed error if getUploadParams throws an error", async () => {
+      const fetchParams = jest.fn(() =>
+        Promise.reject(new Error("Custom Error Message")),
+      );
+      const handleError = jest.fn();
+
+      const { container } = render(
+        <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
+      );
+
+      const input = container.querySelector(
+        "input[type=file]",
+      ) as HTMLInputElement;
+
+      await userEvent.upload(input, testFile);
+
+      await waitFor(() => {
+        expect(handleError).toHaveBeenCalledWith(
+          new Error("Custom Error Message"),
         );
       });
     });
