@@ -152,12 +152,14 @@ function getBorderStyle(
   inactiveBackgroundColor: "surface" | "background",
   tokens: AtlantisThemeContextValue["tokens"],
 ) {
+  let borderColor = "transparent";
+
   if (inactiveBackgroundColor === "surface") {
-    return {
-      borderColor: tokens["color-border"],
-      borderWidth: tokens["border-base"],
-    };
+    borderColor = tokens["color-border"];
   }
 
-  return {};
+  return {
+    borderColor,
+    borderWidth: tokens["border-base"],
+  };
 }
