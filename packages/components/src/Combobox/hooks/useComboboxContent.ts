@@ -4,7 +4,7 @@ import { type ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
 interface useComboboxContent {
-  optionsListRef: React.RefObject<HTMLUListElement>;
+  optionsListRef: React.RefObject<HTMLUListElement | null>;
   onClear?: () => void;
   onSelectAll?: (selection: ComboboxOption[]) => void;
 }

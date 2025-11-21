@@ -100,7 +100,7 @@ function getZeroIndexStateText(subjectNoun?: string) {
 }
 
 function useScrollState(
-  optionsListRef: React.RefObject<HTMLUListElement>,
+  optionsListRef: React.RefObject<HTMLUListElement | null>,
   options: ComboboxOptionProps[],
 ) {
   const [listScrollState, setlistScrollState] = useState("");

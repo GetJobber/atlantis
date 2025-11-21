@@ -224,7 +224,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent) => void"
+          "name": "(event: KeyboardEvent<Element>) => void"
         }
       },
       "onBlur": {
@@ -237,7 +237,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "(event?: FocusEvent<Element, Element>) => void"
         }
       },
       "onFocus": {
@@ -250,7 +250,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "(event?: FocusEvent<Element, Element>) => void"
         }
       },
       "inputRef": {

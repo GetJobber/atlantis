@@ -6,7 +6,7 @@ export interface useInputTextActionsProps
     InputTextRebuiltProps,
     "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown"
   > {
-  inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
+  inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
 }
 
 /**

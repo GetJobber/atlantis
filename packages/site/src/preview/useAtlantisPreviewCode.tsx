@@ -11,9 +11,9 @@ export const useAtlantisPreviewCode = ({
   theme,
   type,
 }: {
-  iframe: RefObject<HTMLIFrameElement>;
-  iframeMobile: RefObject<HTMLIFrameElement>;
-  getIframeRef: (type: ComponentType) => RefObject<HTMLIFrameElement>;
+  iframe: RefObject<HTMLIFrameElement | null>;
+  iframeMobile: RefObject<HTMLIFrameElement | null>;
+  getIframeRef: (type: ComponentType) => RefObject<HTMLIFrameElement | null>;
   type: ComponentType;
   theme: Theme;
 }) => {

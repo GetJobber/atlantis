@@ -1,4 +1,4 @@
-import type { MutableRefObject, Ref } from "react";
+import type { Ref } from "react";
 import React, {
   forwardRef,
   useEffect,
@@ -43,8 +43,8 @@ export function showToast(props: ToastProps) {
 const ToastContainer = forwardRef(ToastInternal);
 
 function ToasterOven(props: ToastProps) {
-  const toastRef = useRef() as MutableRefObject<ToastRef>;
-  useEffect(() => toastRef.current.add(props));
+  const toastRef = useRef<ToastRef>(null);
+  useEffect(() => toastRef.current?.add(props));
 
   return <ToastContainer ref={toastRef} />;
 }

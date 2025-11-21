@@ -180,7 +180,7 @@
         "name": "onClick",
         "required": false,
         "type": {
-          "name": "React.MouseEventHandler<HTMLButtonElement | HTMLDivElement>"
+          "name": "MouseEventHandler<HTMLButtonElement | HTMLDivElement>"
         }
       },
       "tabIndex": {
@@ -279,7 +279,7 @@
         "name": "onDelete",
         "required": false,
         "type": {
-          "name": "(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void"
+          "name": "(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void"
         }
       }
     }
