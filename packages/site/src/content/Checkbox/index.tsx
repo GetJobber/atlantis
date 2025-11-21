@@ -3,8 +3,8 @@ import Props from "./Checkbox.props.json";
 import MobileProps from "./Checkbox.props-mobile.json";
 import RebuiltProps from "./CheckboxV2.props.json";
 import Notes from "./CheckboxNotes.mdx";
-import originalExample from "./exampleV1.ts";
-import rebuiltExample from "./exampleV2.ts";
+import originalExample from "./exampleV1";
+import rebuiltExample from "./exampleV2";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
