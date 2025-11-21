@@ -1,10 +1,7 @@
 import React, { forwardRef, useId } from "react";
-import omit from "lodash/omit";
 import type { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { useInputTextActions } from "./useInputTextActions";
-import type { UseInputTextFormFieldReturn } from "./useInputTextFormField";
-import { useInputTextFormField } from "./useInputTextFormField";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
@@ -22,10 +19,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   );
 
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const legacyPropHelper = {
-    ...props,
-    version: 1,
-  };
 
   const id = useInputTextId(props);
 
@@ -36,9 +29,18 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     wrapperRef: wrapperRef,
   });
 
-  const type = props.multiline ? "textarea" : "text";
-
-  const { inputStyle } = useFormFieldWrapperStyles(legacyPropHelper);
+  const { inputStyle } = useFormFieldWrapperStyles({
+    size: props.size,
+    align: props.align,
+    placeholder: props.placeholder,
+    value: props.value,
+    invalid: props.invalid,
+    error: props.error,
+    maxLength: props.maxLength,
+    type: props.multiline ? "textarea" : "text",
+    disabled: props.disabled,
+    inline: props.inline,
+  });
 
   const { name } = useAtlantisFormFieldName({
     nameProp: props.name,
@@ -55,28 +57,41 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       inputRef: inputTextRef,
     });
 
-  const inputProps = omit(props, [
-    "onChange",
-    "onBlur",
-    "onFocus",
-    "onEnter",
-    "size",
-    "placeholder",
-    "multiline",
-    "prefix",
-    "suffix",
-    "version",
-  ]);
+  const descriptionIdentifier = `descriptionUUID--${id}`;
+  const descriptionVisible = props.description && !props.inline;
+  const isInvalid = Boolean(props.error || props.invalid);
 
-  const { fieldProps, descriptionIdentifier } = useInputTextFormField({
-    ...inputProps,
+  // Shared props for both TextArea and TextInput
+  const commonInputProps = {
     id,
     name,
-    handleChange,
-    handleBlur,
-    handleFocus,
-    handleKeyDown,
-  });
+    className: inputStyle,
+    value: props.value,
+    disabled: props.disabled,
+    readOnly: props.readOnly,
+    autoFocus: props.autoFocus,
+    autoComplete: props.autoComplete,
+    inputMode: props.inputMode,
+    tabIndex: props.tabIndex,
+    maxLength: props.maxLength,
+    role: props.role,
+    "aria-label": props["aria-label"],
+    "aria-describedby": descriptionVisible
+      ? descriptionIdentifier
+      : props["aria-describedby"],
+    "aria-invalid": isInvalid ? true : undefined,
+    "aria-controls": props["aria-controls"],
+    "aria-expanded": props["aria-expanded"],
+    "aria-activedescendant": props["aria-activedescendant"],
+    "aria-autocomplete": props["aria-autocomplete"],
+    "aria-required": props["aria-required"],
+    onChange: handleChange,
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    onKeyDown: handleKeyDown,
+    onKeyUp: props.onKeyUp,
+    ref: mergeRefs([inputRefs, inputTextRef]),
+  };
 
   return (
     <FormFieldWrapper
@@ -93,6 +108,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       descriptionIdentifier={descriptionIdentifier}
       description={props.description}
       clearable={props.clearable ?? "never"}
+      maxLength={props.maxLength}
       onClear={handleClear}
       type={props.multiline ? "textarea" : "text"}
       placeholder={props.placeholder}
@@ -104,27 +120,15 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       toolbarVisibility={props.toolbarVisibility}
     >
       <>
-        {type === "textarea" ? (
-          <TextArea
-            fieldProps={fieldProps}
-            rowRange={rowRange}
-            inputRefs={[inputRefs, inputTextRef]}
-            value={props.value}
-            inputStyle={inputStyle}
-          />
+        {props.multiline ? (
+          <TextArea {...commonInputProps} rows={rowRange.min} />
         ) : (
-          <TextInput
-            fieldProps={fieldProps}
-            inputRefs={[inputRefs, inputTextRef]}
-            value={props.value}
-            inputStyle={inputStyle}
-          />
+          <TextInput {...commonInputProps} pattern={props.pattern} />
         )}
         <FormFieldPostFix
           variation="spinner"
           visible={props.loading ?? false}
         />
-        {props.children}
       </>
     </FormFieldWrapper>
   );
@@ -136,47 +140,19 @@ function useInputTextId(props: InputTextRebuiltProps) {
   return props.id || generatedId;
 }
 
-function TextArea({
-  fieldProps,
-  rowRange,
-  inputRefs,
-  value,
-  inputStyle,
-}: {
-  readonly fieldProps: UseInputTextFormFieldReturn["fieldProps"];
-  readonly rowRange: ReturnType<typeof useTextAreaResize>["rowRange"];
-  readonly inputRefs: React.Ref<HTMLTextAreaElement | HTMLInputElement>[];
-  readonly value: string;
-  readonly inputStyle: string;
-}) {
-  return (
-    <textarea
-      {...fieldProps}
-      rows={rowRange.min}
-      ref={mergeRefs(inputRefs)}
-      className={inputStyle}
-      value={value}
-    />
-  );
-}
+interface TextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-function TextInput({
-  fieldProps,
-  inputRefs,
-  value,
-  inputStyle,
-}: {
-  readonly fieldProps: UseInputTextFormFieldReturn["fieldProps"];
-  readonly inputRefs: React.Ref<HTMLTextAreaElement | HTMLInputElement>[];
-  readonly value: string;
-  readonly inputStyle: string;
-}) {
-  return (
-    <input
-      {...fieldProps}
-      ref={mergeRefs(inputRefs)}
-      className={inputStyle}
-      value={value}
-    />
-  );
-}
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  function TextArea(props, ref) {
+    return <textarea {...props} ref={ref} />;
+  },
+);
+
+interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  function TextInput(props, ref) {
+    return <input {...props} ref={ref} />;
+  },
+);

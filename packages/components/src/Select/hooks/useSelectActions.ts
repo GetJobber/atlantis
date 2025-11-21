@@ -1,12 +1,12 @@
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, FocusEvent } from "react";
 
 interface UseSelectActionsProps {
   readonly onChange?: (
     newValue: string | number,
     event?: ChangeEvent<HTMLSelectElement>,
   ) => void;
-  readonly onBlur?: () => void;
-  readonly onFocus?: () => void;
+  readonly onBlur?: (event: FocusEvent<HTMLSelectElement>) => void;
+  readonly onFocus?: (event: FocusEvent<HTMLSelectElement>) => void;
 }
 
 /**
@@ -22,12 +22,12 @@ export function useSelectActions({
     onChange?.(newValue, event);
   }
 
-  function handleBlur() {
-    onBlur?.();
+  function handleBlur(event: FocusEvent<HTMLSelectElement>) {
+    onBlur?.(event);
   }
 
-  function handleFocus() {
-    onFocus?.();
+  function handleFocus(event: FocusEvent<HTMLSelectElement>) {
+    onFocus?.(event);
   }
 
   return {

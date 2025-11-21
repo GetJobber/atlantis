@@ -477,39 +477,45 @@ export function useAutocomplete<
     value,
   ]);
 
-  const onInputFocus = useCallback(() => {
-    setInputFocused(true);
-    if (!readOnly && openOnFocus) setOpen(true);
-    props.onFocus?.();
-  }, [props.onFocus, readOnly, openOnFocus, setOpen]);
+  const onInputFocus = useCallback(
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setInputFocused(true);
+      if (!readOnly && openOnFocus) setOpen(true);
+      props.onFocus?.(event);
+    },
+    [props.onFocus, readOnly, openOnFocus, setOpen],
+  );
 
-  const onInputBlur = useCallback(() => {
-    setInputFocused(false);
+  const onInputBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setInputFocused(false);
 
-    if (readOnly) {
-      props.onBlur?.();
+      if (readOnly) {
+        props.onBlur?.(event);
 
-      return;
-    }
+        return;
+      }
 
-    if (props.allowFreeForm === true) {
-      const inputText = inputValue.trim();
-      if (inputText.length > 0) commitFromInputText(inputText);
-    } else {
-      tryRestoreInputToSelectedLabel();
-    }
+      if (props.allowFreeForm === true) {
+        const inputText = inputValue.trim();
+        if (inputText.length > 0) commitFromInputText(inputText);
+      } else {
+        tryRestoreInputToSelectedLabel();
+      }
 
-    lastInputWasUser.current = false;
+      lastInputWasUser.current = false;
 
-    props.onBlur?.();
-  }, [
-    readOnly,
-    props.allowFreeForm,
-    inputValue,
-    props.onBlur,
-    tryRestoreInputToSelectedLabel,
-    setOpen,
-  ]);
+      props.onBlur?.(event);
+    },
+    [
+      readOnly,
+      props.allowFreeForm,
+      inputValue,
+      props.onBlur,
+      tryRestoreInputToSelectedLabel,
+      setOpen,
+    ],
+  );
 
   function getRegionByActiveIndex(index: number): {
     region: "header" | "middle" | "footer";

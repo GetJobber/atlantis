@@ -7,7 +7,10 @@ import { Icon } from "../Icon";
 import { Text } from "../Text";
 
 export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
-  {
+  props: CheckboxRebuiltProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const {
     checked,
     defaultChecked,
     disabled,
@@ -21,15 +24,15 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
     onChange,
     onFocus,
     invalid,
-  }: CheckboxRebuiltProps,
-  ref: React.Ref<HTMLInputElement>,
-) {
+  } = props;
+
   const descriptionIdentifier = useId();
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
     invalid && styles.invalid,
   );
+  const isInvalid = Boolean(invalid);
   const inputClassName = classnames(styles.input, {
     [styles.indeterminate]: indeterminate,
   });
@@ -60,7 +63,13 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
             id={id}
             className={inputClassName}
             name={name}
-            aria-describedby={description ? descriptionIdentifier : undefined}
+            aria-label={props["aria-label"]}
+            aria-describedby={
+              props["aria-describedby"] ||
+              (description ? descriptionIdentifier : undefined)
+            }
+            aria-invalid={isInvalid ? true : undefined}
+            aria-required={props["aria-required"]}
             checked={checked}
             value={value}
             defaultChecked={defaultChecked}

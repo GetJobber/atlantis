@@ -1,4 +1,5 @@
-import React from "react";
+import type { ForwardedRef } from "react";
+import React, { forwardRef } from "react";
 import { Select as SelectLegacy } from "./Select";
 import { SelectRebuilt } from "./Select.rebuilt";
 import { Option } from "./Option";
@@ -15,14 +16,25 @@ function isNewSelectProps(props: SelectShimProps): props is SelectRebuiltProps {
   return props.version === 2;
 }
 
-export function Select(props: SelectShimProps) {
+type SelectComponent = React.ForwardRefExoticComponent<
+  SelectShimProps & React.RefAttributes<HTMLSelectElement>
+> & {
+  Option: typeof Option;
+  OptionGroup: typeof OptionGroup;
+};
+
+const SelectBase = forwardRef(function SelectShim(
+  props: SelectShimProps,
+  ref: ForwardedRef<HTMLSelectElement>,
+) {
   if (isNewSelectProps(props)) {
-    return <SelectRebuilt {...props} />;
+    return <SelectRebuilt {...props} ref={ref} />;
   } else {
     return <SelectLegacy {...props} />;
   }
-}
+});
 
+export const Select = SelectBase as SelectComponent;
 Select.Option = Option;
 Select.OptionGroup = OptionGroup;
 

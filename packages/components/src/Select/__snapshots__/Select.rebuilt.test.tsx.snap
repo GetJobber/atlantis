@@ -326,6 +326,7 @@ exports[`SelectRebuilt renders correctly when invalid 1`] = `
             tabindex="-1"
           >
             <select
+              aria-invalid="true"
               class="input"
               id="«r6»"
               name="generatedName--«r6»"

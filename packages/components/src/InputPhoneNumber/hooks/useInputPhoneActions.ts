@@ -22,7 +22,6 @@ export function useInputPhoneActions({
   onEnter,
 }: useInputPhoneActionsProps) {
   function handleClear() {
-    handleBlur();
     onChange && onChange("");
     inputRef?.current?.focus();
   }
@@ -46,7 +45,7 @@ export function useInputPhoneActions({
     onEnter?.(event);
   }
 
-  function handleBlur(event?: FocusEvent<HTMLInputElement>) {
+  function handleBlur(event: FocusEvent<HTMLInputElement>) {
     onBlur?.(event);
   }
 
