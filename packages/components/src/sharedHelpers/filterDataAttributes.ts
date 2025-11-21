@@ -14,12 +14,12 @@
  */
 type DataAttributes = Partial<Record<`data-${string}`, unknown>>;
 
-export function filterDataAttributes(
-  props: Record<string, unknown>,
+export function filterDataAttributes<T extends object>(
+  props: T,
 ): DataAttributes {
   return Object.keys(props).reduce((acc, key) => {
     if (key.startsWith("data-")) {
-      acc[key as `data-${string}`] = props[key];
+      acc[key as `data-${string}`] = props[key as keyof T];
     }
 
     return acc;
