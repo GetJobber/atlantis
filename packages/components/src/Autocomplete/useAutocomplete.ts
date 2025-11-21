@@ -265,7 +265,7 @@ export function useAutocomplete<
 
   const hasSelection = useMemo(() => {
     if (multiple) {
-      const current = (value as AutocompleteValue<Value, true>) ?? [];
+      const current = value ?? [];
 
       return Array.isArray(current) && current.length > 0;
     }
@@ -364,10 +364,12 @@ export function useAutocomplete<
     // (not from internal state sync when parent changes the value prop)
     // This prevents calling onChange when we're syncing state from a controlled value prop,
     // but still allows onChange to fire when the user deletes the input text
-    if (lastInputWasUser.current && hasSelection) {
+    const currentlyHasSelection = value != null;
+
+    if (lastInputWasUser.current && currentlyHasSelection) {
       onChange?.(undefined as AutocompleteValue<Value, Multiple>);
     }
-  }, [inputValue, multiple, hasSelection, setActiveIndex, onChange, open]);
+  }, [inputValue, multiple, setActiveIndex, onChange, open, value]);
 
   function selectOption(option: Value) {
     if (multiple) {
