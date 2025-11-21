@@ -12,7 +12,7 @@ export const useStyles = buildThemedStyles(tokens => {
       justifyContent: "center",
       marginHorizontal: tokens["space-smaller"],
       marginTop: tokens["space-small"],
-      paddingHorizontal: tokens["space-small"],
+      paddingHorizontal: tokens["space-base"],
     },
     iconLeft: {
       marginHorizontal: tokens["space-smallest"],

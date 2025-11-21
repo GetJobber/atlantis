@@ -4,7 +4,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Chip } from "@jobber/components-native";
 
 export default {
-  title: "Components/Selections/Chips/Mobile",
+  title: "Components/Selections/Chip/Mobile",
   component: Chip,
   parameters: {
     viewMode: "story",
