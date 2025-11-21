@@ -99,6 +99,9 @@ export function useAutocomplete<
     if (prevValueRef.current !== value) {
       prevValueRef.current = value;
       const currentValue = value as Value | undefined;
+      // Mark this as a programmatic change, not user input
+      // This prevents onChange from being called when we sync from prop changes
+      lastInputWasUser.current = false;
       setInternalInputValue(currentValue ? getOptionLabel(currentValue) : "");
     }
   }, [value, inputValueProp, multiple, getOptionLabel]);
@@ -357,8 +360,11 @@ export function useAutocomplete<
     // In multiple mode, clearing the input should NOT clear the selection
     if (multiple) return;
 
-    // For single-select, treat clearing input as clearing the selection
-    if (hasSelection) {
+    // Only clear the selection if the user actually cleared the input
+    // (not from internal state sync when parent changes the value prop)
+    // This prevents calling onChange when we're syncing state from a controlled value prop,
+    // but still allows onChange to fire when the user deletes the input text
+    if (lastInputWasUser.current && hasSelection) {
       onChange?.(undefined as AutocompleteValue<Value, Multiple>);
     }
   }, [inputValue, multiple, hasSelection, setActiveIndex, onChange, open]);
