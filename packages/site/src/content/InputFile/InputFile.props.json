@@ -143,7 +143,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "getUploadParams": {

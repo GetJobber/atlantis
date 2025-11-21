@@ -44,7 +44,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"smaller\" | \"small\" | \"base\""
         }
       },
       "variation": {

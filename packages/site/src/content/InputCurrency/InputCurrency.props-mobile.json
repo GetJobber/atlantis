@@ -110,6 +110,19 @@
           "name": "\"decimal-pad\" | \"numbers-and-punctuation\""
         }
       },
+      "name": {
+        "defaultValue": null,
+        "description": "Name of the input.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
       "toolbar": {
         "defaultValue": null,
         "description": "Add a toolbar below the input field for actions like rewriting the text.",
@@ -120,7 +133,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "toolbarVisibility": {
@@ -199,19 +212,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Name of the input.",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components-native/src/InputText/InputText.tsx",
-          "name": "InputTextProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       },
       "placeholder": {

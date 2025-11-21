@@ -144,7 +144,10 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     const newIndex = Math.max(0, highlightedIndex - 1);
 
     handleOptionFocus(newIndex);
-    scrollMenuIfItemNotInView(menuDiv.current, "up");
+
+    if (menuDiv.current) {
+      scrollMenuIfItemNotInView(menuDiv.current, "up");
+    }
   }
 
   function handlePressDown(event: React.KeyboardEvent<HTMLUListElement>) {
@@ -152,6 +155,9 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
     const newIndex = Math.min(options.length - 1, highlightedIndex + 1);
 
     handleOptionFocus(newIndex);
-    scrollMenuIfItemNotInView(menuDiv.current, "down");
+
+    if (menuDiv.current) {
+      scrollMenuIfItemNotInView(menuDiv.current, "down");
+    }
   }
 }

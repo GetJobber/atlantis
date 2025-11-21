@@ -118,7 +118,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "loading": {
