@@ -14,7 +14,11 @@ export interface MenuLegacyProps extends MenuBaseProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
    */
-  readonly activator?: ReactElement;
+  readonly activator?: ReactElement<{
+    fullWidth?: boolean;
+    onClick?: (event?: React.MouseEvent) => void;
+    [key: string]: unknown;
+  }>;
   /**
    * Collection of action items.
    */

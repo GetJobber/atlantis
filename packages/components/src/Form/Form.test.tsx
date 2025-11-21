@@ -193,7 +193,9 @@ function MockFormValidate({ onSubmit }: MockFormValidateProps) {
           }}
         />
       </Form>
-      <button onClick={() => formRef.current?.submit()}>submit</button>
+      <button type="button" onClick={() => formRef.current?.submit()}>
+        submit
+      </button>
     </>
   );
 }

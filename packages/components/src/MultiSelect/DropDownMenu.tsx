@@ -1,5 +1,5 @@
-import type { Dispatch, KeyboardEvent, MouseEvent } from "react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import type { Dispatch, KeyboardEvent, MouseEvent } from "react";
 import classNames from "classnames";
 import styles from "./DropDownMenu.module.css";
 import type { Option, Options } from "./types";
@@ -49,9 +49,11 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   }
 
   function scrollMenuIfItemNotInView(
-    menuDivElement: HTMLUListElement,
+    menuDivElement: HTMLUListElement | null,
     direction: "up" | "down",
   ) {
+    if (!menuDivElement) return;
+
     const itemDiv = menuDivElement.querySelector(
       `:nth-child(${highlightedIndex + 1})`,
     ) as HTMLButtonElement;

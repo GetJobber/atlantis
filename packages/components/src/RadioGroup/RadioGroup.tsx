@@ -2,10 +2,13 @@ import type { ReactElement } from "react";
 import React, { useId } from "react";
 import classnames from "classnames";
 import { InternalRadioOption } from "./RadioOption";
+import type { RadioOptionProps } from "./RadioOption";
 import styles from "./RadioGroup.module.css";
 
 export interface RadioGroupProps {
-  readonly children: ReactElement | ReactElement[];
+  readonly children:
+    | ReactElement<RadioOptionProps>
+    | ReactElement<RadioOptionProps>[];
 
   /**
    * Defines the default value that will be pre-selected in the radio group.
@@ -54,16 +57,12 @@ export function RadioGroup({
   return (
     <div role="radiogroup" aria-label={ariaLabel} className={className}>
       {React.Children.map(children, option => (
-        // @ts-expect-error - TODO: it thinks value is missing, but it's probably coming from option.props
         <InternalRadioOption
-          // @ts-expect-error - TODO: fix option.props type is unknown
           checked={value === option.props.value}
           name={name}
           onChange={handleChange}
-          // @ts-expect-error - TODO: fix option.props type is unknown
           {...option.props}
         >
-          {/* @ts-expect-error - TODO: fix option.props type is unknown */}
           {option.props.children}
         </InternalRadioOption>
       ))}

@@ -13,7 +13,7 @@ export function useMakeComboboxHandlers(
   open: boolean,
   setSearchValue: (searchValue: string) => void,
   selectedOptions: ComboboxOption[],
-  shouldScroll: React.MutableRefObject<boolean>,
+  shouldScroll: React.RefObject<boolean>,
   selectedStateSetter: (selected: ComboboxOption[]) => void,
   multiSelect?: boolean,
   onClose?: () => void,

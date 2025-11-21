@@ -1,4 +1,4 @@
-import { type ReactElement, type ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 import type { IconNames } from "@jobber/design";
 import type { XOR } from "ts-xor";
 import { type Breakpoints } from "./DataList.const";
@@ -369,7 +369,7 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * Determine if the action is visible for a given item.
    */
-  readonly visible?: (item: T) => boolean;
+  readonly visible?: (item?: T) => boolean;
 
   /**
    * The callback function when the action is clicked.

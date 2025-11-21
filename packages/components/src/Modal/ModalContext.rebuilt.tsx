@@ -1,5 +1,5 @@
 import noop from "lodash/noop";
-import type { MutableRefObject } from "react";
+import type { RefObject } from "react";
 import React, { createContext, useContext, useRef } from "react";
 import type { FloatingContext } from "@floating-ui/react";
 import { FloatingTree } from "@floating-ui/react";
@@ -25,7 +25,7 @@ export interface ModalProviderProps {
   readonly size?: keyof typeof sizes;
   readonly open?: boolean;
   readonly onRequestClose?: () => void;
-  readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
+  readonly activatorRef?: RefObject<HTMLElement | null>;
   readonly dismissible?: boolean;
   readonly modalLabelledBy?: string;
   readonly ariaLabel?: string;

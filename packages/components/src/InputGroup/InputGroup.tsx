@@ -23,12 +23,17 @@ export function InputGroup({
   return <div className={className}>{children}</div>;
 }
 
+function isInputGroupElement(
+  node: unknown,
+): node is React.ReactElement<InputGroupProps, typeof InputGroup> {
+  return React.isValidElement(node) && node.type === InputGroup;
+}
+
 function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
-  return (React.Children.toArray(childs) as ReactElement[]).some(child => {
+  return React.Children.toArray(childs).some(child => {
     if (
-      child.type === InputGroup &&
-      // @ts-expect-error - TODO: fix child.props type is unknown
-      child.props.flowDirection != "horizontal"
+      isInputGroupElement(child) &&
+      child.props.flowDirection !== "horizontal"
     ) {
       console.error(
         `ERROR: InputGroup not rendered: nesting 'flowDirection="vertical"' columns not supported.`,

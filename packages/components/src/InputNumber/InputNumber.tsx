@@ -40,7 +40,7 @@ function InputNumberInternal(
   props: InputNumberProps,
   ref: Ref<InputNumberRef>,
 ) {
-  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
+  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement | null>();
 
   useImperativeHandle(ref, () => ({
     blur: () => {

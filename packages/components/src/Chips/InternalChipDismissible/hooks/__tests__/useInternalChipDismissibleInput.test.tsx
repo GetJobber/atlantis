@@ -1,4 +1,4 @@
-import type { ChangeEvent, KeyboardEvent, MutableRefObject } from "react";
+import type { ChangeEvent, KeyboardEvent, RefObject } from "react";
 import { act, renderHook } from "@testing-library/react";
 import { useInternalChipDismissibleInput } from "../useInternalChipDismissibleInput";
 
@@ -37,9 +37,8 @@ async function setupHook(params?: Partial<typeof hookParams>) {
   );
 
   await act(async () => {
-    (
-      result.current.inputRef as MutableRefObject<HTMLInputElement | null>
-    ).current = document.createElement("input");
+    (result.current.inputRef as RefObject<HTMLInputElement | null>).current =
+      document.createElement("input");
   });
 
   return result;

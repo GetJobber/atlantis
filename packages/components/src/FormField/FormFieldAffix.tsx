@@ -1,6 +1,6 @@
-import classnames from "classnames";
-import type { RefObject } from "react";
 import React from "react";
+import type { RefObject } from "react";
+import classnames from "classnames";
 import type { XOR } from "ts-xor";
 import type { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
