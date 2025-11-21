@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.1...@jobber/hooks@2.19.2) (2025-11-21)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
 ## [2.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.0...@jobber/hooks@2.19.1) (2025-10-27)
 
 
