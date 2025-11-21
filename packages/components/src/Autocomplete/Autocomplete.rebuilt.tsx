@@ -38,7 +38,6 @@ function AutocompleteRebuiltInternal<
   forwardedRef: Ref<HTMLInputElement | HTMLTextAreaElement>,
 ) {
   const {
-    inputValue,
     placeholder,
     disabled,
     error,
@@ -66,6 +65,7 @@ function AutocompleteRebuiltInternal<
     activeIndex,
     open,
     listRef,
+    inputValue,
     onSelection,
     onAction,
     onInputChangeFromUser,
@@ -99,7 +99,7 @@ function AutocompleteRebuiltInternal<
 
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
-    value: inputValue,
+    value: inputValue ?? "",
     onChange: props.readOnly ? undefined : onInputChangeFromUser,
     // Ensure focus/blur callbacks still fire in readOnly mode where we don't spread getReferenceProps
     ...(props.readOnly ? { onFocus: onInputFocus, onBlur: onInputBlur } : {}),

@@ -27,11 +27,13 @@ import {
   blurAutocomplete,
   closeAutocomplete,
   deleteInput,
+  expectInputValue,
   expectMenuClosed,
   expectMenuShown,
   focusAutocomplete,
   getActiveAction,
   getActiveOption,
+  getInput,
   getSelectedOption,
   navigateDown,
   navigateUp,
@@ -41,7 +43,13 @@ import {
   selectWithKeyboard,
   typeInInput,
 } from "./Autocomplete.pom";
-import { FreeFormWrapper, Wrapper } from "./tests/Autocomplete.setup";
+import {
+  ControlledValueWrapper,
+  FreeFormWrapper,
+  SemiControlledWrapper,
+  UncontrolledWrapper,
+  Wrapper,
+} from "./tests/Autocomplete.setup";
 import { InputText } from "../InputText";
 import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
@@ -2245,6 +2253,160 @@ describe("AutocompleteRebuilt", () => {
 
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange).toHaveBeenCalledWith([]);
+    });
+  });
+
+  describe("uncontrolled mode", () => {
+    const testMenu = [
+      menuOptions<OptionLike>([
+        { label: "Apple" },
+        { label: "Banana" },
+        { label: "Cherry" },
+      ]),
+    ];
+
+    it("works without value, onChange, inputValue and onInputChange props", async () => {
+      render(<UncontrolledWrapper menu={testMenu} />);
+
+      expect(getInput()).toBeVisible();
+
+      await typeInInput("Ban");
+      await openAutocomplete();
+
+      expect(screen.getByText("Banana")).toBeVisible();
+
+      await selectWithClick("Banana");
+
+      expectInputValue("Banana");
+    });
+
+    it("uses defaultValue when provided", () => {
+      render(
+        <UncontrolledWrapper
+          menu={testMenu}
+          defaultValue={{ label: "Banana" }}
+        />,
+      );
+
+      expectInputValue("Banana");
+    });
+
+    it("works without inputValue/onInputChange but with controlled value", async () => {
+      const onChange = jest.fn();
+
+      render(
+        <SemiControlledWrapper
+          menu={testMenu}
+          initialValue={{ label: "Apple" }}
+          onChange={onChange}
+        />,
+      );
+
+      expectInputValue("Apple");
+
+      await openAutocomplete();
+      await selectWithClick("Banana");
+
+      expect(onChange).toHaveBeenCalledWith({ label: "Banana" });
+    });
+
+    it("can still use fully controlled mode when all props are provided", async () => {
+      const onInputChange = jest.fn();
+
+      render(<Wrapper menu={testMenu} onInputChange={onInputChange} />);
+
+      await typeInInput("Ban");
+
+      // onInputChange should be called for each keystroke in controlled mode
+      expect(onInputChange).toHaveBeenCalled();
+      expect(onInputChange.mock.calls.length).toBeGreaterThan(0);
+    });
+
+    it("does not call onChange when value prop changes (prevents RHF/form library feedback loops)", () => {
+      const onChange = jest.fn();
+
+      const { rerender } = render(
+        <ControlledValueWrapper
+          menu={testMenu}
+          value={{ label: "Apple" }}
+          onChange={onChange}
+        />,
+      );
+
+      expectInputValue("Apple");
+
+      // Parent updates the value (simulating React Hook Form or other form library)
+      rerender(
+        <ControlledValueWrapper
+          menu={testMenu}
+          value={{ label: "Banana" }}
+          onChange={onChange}
+        />,
+      );
+
+      // Input should sync with the new value
+      expectInputValue("Banana");
+
+      // onChange should NOT have been called - parent controlled the change
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("does not call onChange when value changes from undefined to a value", () => {
+      const onChange = jest.fn();
+
+      const { rerender } = render(
+        <ControlledValueWrapper
+          menu={testMenu}
+          value={undefined}
+          onChange={onChange}
+        />,
+      );
+
+      expectInputValue("");
+
+      // Parent sets a value (e.g., form initialization, loading saved data)
+      rerender(
+        <ControlledValueWrapper
+          menu={testMenu}
+          value={{ label: "Apple" }}
+          onChange={onChange}
+        />,
+      );
+
+      // Input should sync with the new value
+      expectInputValue("Apple");
+
+      // onChange should NOT have been called
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("does not call onChange when value changes to undefined from parent", () => {
+      const onChange = jest.fn();
+
+      const { rerender } = render(
+        <ControlledValueWrapper
+          menu={testMenu}
+          value={{ label: "Apple" }}
+          onChange={onChange}
+        />,
+      );
+
+      expectInputValue("Apple");
+
+      // Parent clears the value (e.g., form reset)
+      rerender(
+        <ControlledValueWrapper
+          menu={testMenu}
+          value={undefined}
+          onChange={onChange}
+        />,
+      );
+
+      // Input should be cleared
+      expectInputValue("");
+
+      // onChange should NOT have been called - parent controlled the change
+      expect(onChange).not.toHaveBeenCalled();
     });
   });
 });

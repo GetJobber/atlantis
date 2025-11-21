@@ -41,15 +41,25 @@ export function useAutocomplete<
     emptyActions,
     getOptionLabel: getOptionLabelProp,
     isOptionEqualToValue,
-    inputValue,
-    onInputChange,
-    value,
-    onChange,
+    inputValue: inputValueProp,
+    onInputChange: onInputChangeProp,
+    value: valueProp,
+    defaultValue,
+    onChange: onChangeProp,
     multiple,
     openOnFocus = true,
     readOnly = false,
     debounce: debounceMs = 300,
   } = props;
+
+  // Internal state for uncontrolled value
+  const [internalValue, setInternalValue] = useState<
+    AutocompleteValue<Value, Multiple> | undefined
+  >(defaultValue);
+
+  // Use controlled value if provided, otherwise use internal state
+  const value = valueProp !== undefined ? valueProp : internalValue;
+  const onChange = onChangeProp ?? setInternalValue;
 
   // TODO: Clean up the types in these refs by enhancing the type system in useCallbackRef
   const getOptionLabelPropRef = useCallbackRef((opt: unknown) =>
@@ -64,6 +74,42 @@ export function useAutocomplete<
     },
     [getOptionLabelPropRef],
   );
+
+  // Initialize internal input value from defaultValue
+  const [internalInputValue, setInternalInputValue] = useState(() => {
+    if (multiple) return "";
+    const initialValue = (defaultValue ?? valueProp) as Value | undefined;
+    if (!initialValue) return "";
+
+    // Call getOptionLabelProp directly if provided, otherwise use label
+    const customLabel = getOptionLabelProp?.(initialValue);
+
+    return customLabel ?? initialValue.label;
+  });
+
+  // Track previous value to detect when it changes
+  const prevValueRef = useRef(value);
+
+  // Sync internal input value with selected value only when value changes (not on user input)
+  useEffect(() => {
+    const isInputControlled = inputValueProp !== undefined;
+    if (isInputControlled || multiple) return;
+
+    // Only update if the value actually changed
+    if (prevValueRef.current !== value) {
+      prevValueRef.current = value;
+      const currentValue = value as Value | undefined;
+      // Mark this as a programmatic change, not user input
+      // This prevents onChange from being called when we sync from prop changes
+      lastInputWasUser.current = false;
+      setInternalInputValue(currentValue ? getOptionLabel(currentValue) : "");
+    }
+  }, [value, inputValueProp, multiple, getOptionLabel]);
+
+  // Use controlled inputValue if provided, otherwise use internal state
+  const isInputControlled = inputValueProp !== undefined;
+  const inputValue = isInputControlled ? inputValueProp : internalInputValue;
+  const onInputChange = onInputChangeProp ?? setInternalInputValue;
 
   const isOptionEqualToValueRef = useCallbackRef((a: unknown, b: unknown) =>
     (isOptionEqualToValue as ((x: Value, y: Value) => boolean) | undefined)?.(
@@ -219,7 +265,7 @@ export function useAutocomplete<
 
   const hasSelection = useMemo(() => {
     if (multiple) {
-      const current = (value as AutocompleteValue<Value, true>) ?? [];
+      const current = value ?? [];
 
       return Array.isArray(current) && current.length > 0;
     }
@@ -314,11 +360,16 @@ export function useAutocomplete<
     // In multiple mode, clearing the input should NOT clear the selection
     if (multiple) return;
 
-    // For single-select, treat clearing input as clearing the selection
-    if (hasSelection) {
+    // Only clear the selection if the user actually cleared the input
+    // (not from internal state sync when parent changes the value prop)
+    // This prevents calling onChange when we're syncing state from a controlled value prop,
+    // but still allows onChange to fire when the user deletes the input text
+    const currentlyHasSelection = value != null;
+
+    if (lastInputWasUser.current && currentlyHasSelection) {
       onChange?.(undefined as AutocompleteValue<Value, Multiple>);
     }
-  }, [inputValue, multiple, hasSelection, setActiveIndex, onChange, open]);
+  }, [inputValue, multiple, setActiveIndex, onChange, open, value]);
 
   function selectOption(option: Value) {
     if (multiple) {
@@ -448,7 +499,7 @@ export function useAutocomplete<
 
     if (!freeFormCreated) return false;
 
-    props.onChange(freeFormCreated as AutocompleteValue<Value, Multiple>);
+    onChange(freeFormCreated as AutocompleteValue<Value, Multiple>);
 
     return true;
   }
@@ -675,6 +726,7 @@ export function useAutocomplete<
     activeIndex,
     setActiveIndex,
     listRef,
+    inputValue,
     // actions
     onSelection,
     onAction,

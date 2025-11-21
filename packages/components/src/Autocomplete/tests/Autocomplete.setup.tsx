@@ -195,3 +195,68 @@ export function FreeFormWrapper({
     />
   );
 }
+
+export function UncontrolledWrapper<T extends OptionLike>({
+  defaultValue,
+  menu,
+  placeholder = "Search...",
+}: {
+  readonly defaultValue?: T;
+  readonly menu: MenuItem<T>[];
+  readonly placeholder?: string;
+}) {
+  return (
+    <AutocompleteRebuilt
+      version={2}
+      defaultValue={defaultValue}
+      menu={menu}
+      placeholder={placeholder}
+    />
+  );
+}
+
+export function SemiControlledWrapper<T extends OptionLike>({
+  initialValue,
+  onChange,
+  menu,
+  placeholder = "Search...",
+}: {
+  readonly initialValue?: T;
+  readonly onChange?: (v: T | undefined) => void;
+  readonly menu: MenuItem<T>[];
+  readonly placeholder?: string;
+}) {
+  const [value, setValue] = React.useState<T | undefined>(initialValue);
+
+  return (
+    <AutocompleteRebuilt
+      version={2}
+      value={value}
+      onChange={onChange ?? setValue}
+      menu={menu}
+      placeholder={placeholder}
+    />
+  );
+}
+
+export function ControlledValueWrapper<T extends OptionLike>({
+  value,
+  onChange,
+  menu,
+  placeholder = "Search...",
+}: {
+  readonly value: T | undefined;
+  readonly onChange: (v: T | undefined) => void;
+  readonly menu: MenuItem<T>[];
+  readonly placeholder?: string;
+}) {
+  return (
+    <AutocompleteRebuilt
+      version={2}
+      value={value}
+      onChange={onChange}
+      menu={menu}
+      placeholder={placeholder}
+    />
+  );
+}
