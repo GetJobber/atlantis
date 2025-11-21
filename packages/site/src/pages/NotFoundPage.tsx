@@ -1,6 +1,6 @@
-import { ReactElement, useRef, useState } from "react";
-import { useLocation } from "react-router";
 import { Link, Typography } from "@jobber/components";
+import { useLocation } from "react-router";
+import { type ReactElement, useRef, useState } from "react";
 import styles from "./NotFoundPage.module.css";
 
 export const NotFoundPage = () => {

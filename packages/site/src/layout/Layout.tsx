@@ -1,4 +1,5 @@
-import { PropsWithChildren, ReactElement, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
