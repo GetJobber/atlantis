@@ -12,6 +12,9 @@ storybook-static
 jobber-*.tgz
 .npmrc
 styles.css.backup
+tmp
+.tmp
 
 # Ignore local Cursor rules
 .cursor/rules/local-*
+.cursor/worktrees.json
