@@ -23,4 +23,12 @@ export default {
       ),
     },
   ],
+  webSupportedLinks: [
+    {
+      label: "Storybook",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-inputphonenumber-web-v2--basic",
+      ),
+    },
+  ],
 } as const satisfies ContentExport;
