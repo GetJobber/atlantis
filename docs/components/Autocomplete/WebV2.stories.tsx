@@ -140,6 +140,7 @@ const TemplateSectioned: ComponentStory<typeof Autocomplete> = () => {
         placeholder="Search"
         value={value}
         onChange={setValue}
+        onBlur={() => console.log("blurred")}
         inputValue={inputValue}
         onInputChange={setInputValue}
         menu={sectionedMenu}
@@ -160,6 +161,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
         placeholder="Search"
         value={value}
         onChange={setValue}
+        onBlur={() => console.log("blurred")}
         inputValue={inputValue}
         onInputChange={setInputValue}
         menu={defineMenu<OptionLike>([
@@ -171,7 +173,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Service",
-                onClick: () => alert("Add Service"),
+                onClick: () => console.log("Add Service"),
               },
             ],
           },
@@ -183,7 +185,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Outdoor Service",
-                onClick: () => alert("Add Outdoor Service"),
+                onClick: () => console.log("Add Outdoor Service"),
               },
             ],
           },
@@ -195,7 +197,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Extras Service",
-                onClick: () => alert("Add Extras Service"),
+                onClick: () => console.log("Add Extras Service"),
               },
             ],
           },
@@ -307,6 +309,7 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
         placeholder="Search"
         value={value}
         onChange={setValue}
+        onBlur={() => console.log("blurred")}
         inputValue={inputValue}
         onInputChange={setInputValue}
         menu={defineMenu<OptionLike>([
@@ -315,10 +318,11 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
           {
             type: "footer",
             label: "Pinned footer",
-            onClick: () => alert("Footer"),
+            onClick: () => console.log("Footer"),
           },
         ])}
       />
+      <input type="text" />
     </Content>
   );
 };
@@ -540,7 +544,7 @@ const customActions: MenuAction<ActionExtraProps>[] = [
     type: "action",
     label: "Add Service",
     icon: "plus",
-    onClick: () => alert("Add"),
+    onClick: () => console.log("Add"),
   },
 ];
 
@@ -549,7 +553,7 @@ const customActions2: MenuAction<ActionExtraProps>[] = [
     type: "action",
     label: "Add Other",
     icon: "plus",
-    onClick: () => alert("Add"),
+    onClick: () => console.log("Add"),
   },
 ];
 
@@ -563,7 +567,7 @@ const emptyActions: MenuAction<ActionExtraProps>[] = [
     type: "action",
     label: "Favorite",
     icon: "star",
-    onClick: () => alert("Add"),
+    onClick: () => console.log("Add"),
   },
 ];
 
@@ -571,7 +575,7 @@ const customFooter: MenuFooter<ActionExtraProps> = {
   type: "footer",
   label: "Adjust prices",
   icon: "edit",
-  onClick: () => alert("Footer"),
+  onClick: () => console.log("Footer"),
 };
 
 interface SectionExtraProps {
@@ -699,7 +703,7 @@ const TemplateEverythingCustomized: ComponentStory<
               suffix={{
                 icon: "search",
                 ariaLabel: "Search",
-                onClick: () => alert("Search"),
+                onClick: () => console.log("Search"),
               }}
             />
           );

@@ -40,6 +40,10 @@ interface MenuListProps<T extends OptionLike> {
   readonly onSelect: (option: T) => void;
   readonly onAction: (action: ActionConfig) => void;
   readonly isOptionSelected: (option: T) => boolean;
+  readonly inputElementRef: React.MutableRefObject<
+    HTMLInputElement | HTMLTextAreaElement | null
+  >;
+  readonly isHandlingMenuInteractionRef: React.MutableRefObject<boolean>;
   readonly slotOverrides?: {
     option?: { className?: string; style?: React.CSSProperties };
     action?: { className?: string; style?: React.CSSProperties };
@@ -61,6 +65,8 @@ export function MenuList<T extends OptionLike>({
   onSelect,
   onAction,
   isOptionSelected,
+  inputElementRef,
+  isHandlingMenuInteractionRef,
   slotOverrides,
 }: MenuListProps<T>) {
   let navigableIndex = -1;
@@ -88,6 +94,8 @@ export function MenuList<T extends OptionLike>({
         getOptionLabel,
         onSelect,
         indexOffset,
+        inputElementRef,
+        isHandlingMenuInteractionRef,
         optionClassName: slotOverrides?.option?.className,
         optionStyle: slotOverrides?.option?.style,
       });
@@ -107,6 +115,8 @@ export function MenuList<T extends OptionLike>({
       customRenderAction,
       onAction,
       indexOffset,
+      inputElementRef,
+      isHandlingMenuInteractionRef,
       actionClassName: slotOverrides?.action?.className,
       actionStyle: slotOverrides?.action?.style,
       origin: item.origin,
@@ -148,6 +158,10 @@ function handleSectionRendering<T extends OptionLike>({
       data-testid="ATL-AutocompleteRebuilt-Section"
       className={classNames(styles.section, styles.stickyTop, sectionClassName)}
       style={sectionStyle}
+      onMouseDown={e => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
     >
       {headerContent}
     </div>
@@ -180,6 +194,10 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   // no explicit key getter; derived from option.key/label where used
   readonly onSelect: (option: T) => void;
   readonly indexOffset?: number;
+  readonly inputElementRef: React.MutableRefObject<
+    HTMLInputElement | HTMLTextAreaElement | null
+  >;
+  readonly isHandlingMenuInteractionRef: React.MutableRefObject<boolean>;
   readonly optionClassName?: string;
   readonly optionStyle?: React.CSSProperties;
 }
@@ -196,6 +214,8 @@ function handleOptionRendering<T extends OptionLike>({
   getOptionLabel,
   onSelect,
   indexOffset = 0,
+  inputElementRef,
+  isHandlingMenuInteractionRef,
   optionClassName,
   optionStyle,
 }: HandleOptionRenderingProps<T>): {
@@ -223,7 +243,21 @@ function handleOptionRendering<T extends OptionLike>({
             const idx = nextNavigableIndex + indexOffset;
             if (node) listRef.current[idx] = node;
           },
-          onClick: () => onSelect(option),
+          onClick: () => {
+            onSelect(option);
+            // Refocus the input after selection
+            inputElementRef.current?.focus();
+            // Reset the flag after focus has been handled
+            setTimeout(() => {
+              isHandlingMenuInteractionRef.current = false;
+            }, 0);
+          },
+          onMouseDown: (e: React.MouseEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Set flag to prevent blur/focus handlers from interfering
+            isHandlingMenuInteractionRef.current = true;
+          },
           className: classNames(
             styles.option,
             isActive && styles.optionActive,
@@ -277,6 +311,10 @@ interface HandleActionRenderingProps<T extends OptionLike> {
   >["customRenderAction"];
   readonly onAction: (action: ActionConfig) => void;
   readonly indexOffset?: number;
+  readonly inputElementRef: React.MutableRefObject<
+    HTMLInputElement | HTMLTextAreaElement | null
+  >;
+  readonly isHandlingMenuInteractionRef: React.MutableRefObject<boolean>;
   readonly actionClassName?: string;
   readonly actionStyle?: React.CSSProperties;
   readonly origin?: ActionOrigin;
@@ -292,6 +330,8 @@ function handleActionRendering<T extends OptionLike>({
   customRenderAction,
   onAction,
   indexOffset = 0,
+  inputElementRef,
+  isHandlingMenuInteractionRef,
   actionClassName,
   actionStyle,
   origin,
@@ -319,6 +359,18 @@ function handleActionRendering<T extends OptionLike>({
         run: action.onClick,
         closeOnRun: action.shouldClose,
       });
+      // Refocus the input after action execution
+      inputElementRef.current?.focus();
+      // Reset the flag after focus has been handled
+      setTimeout(() => {
+        isHandlingMenuInteractionRef.current = false;
+      }, 0);
+    },
+    onMouseDown: (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      // Set flag to prevent blur/focus handlers from interfering
+      isHandlingMenuInteractionRef.current = true;
     },
     className: classNames(
       styles.action,
