@@ -30,5 +30,13 @@ export default {
       ),
     },
   ],
+  webSupportedLinks: [
+    {
+      label: "Storybook",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-inputdate-web-v2--basic",
+      ),
+    },
+  ],
   notes: () => <Notes />,
 } as const satisfies ContentExport;
