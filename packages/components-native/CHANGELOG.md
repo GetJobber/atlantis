@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.4...@jobber/components-native@0.92.0) (2025-11-24)
+
+
+### Features
+
+* **components-native:** Improve Mobile Chip Consistency ([#2825](https://github.com/GetJobber/atlantis/issues/2825)) ([8dbdc7a](https://github.com/GetJobber/atlantis/commit/8dbdc7a879fd3b24d1c640d44314621b933173ef))
+
+
+
+
+
 ## [0.91.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.3...@jobber/components-native@0.91.4) (2025-11-24)
 
 
