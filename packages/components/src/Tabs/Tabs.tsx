@@ -123,7 +123,7 @@ export function Tabs({
         aria-label={
           typeof activeTabProps?.label === "string"
             ? activeTabProps.label
-            : "Tab panel"
+            : undefined
         }
       >
         {activeTabProps?.children}
