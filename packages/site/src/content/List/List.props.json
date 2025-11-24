@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "(item: T) => React.ReactNode"
+          "name": "(item: T) => ReactNode"
         }
       },
       "customItemStyles": {
@@ -55,7 +55,7 @@
         },
         "required": false,
         "type": {
-          "name": "(sectionName: string) => React.ReactNode"
+          "name": "(sectionName: string) => ReactNode"
         }
       },
       "customSectionStyles": {

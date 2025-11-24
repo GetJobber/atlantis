@@ -212,7 +212,47 @@
     "description": "",
     "displayName": "DataTable.SortableHeader",
     "methods": [],
-    "props": {}
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "The header content to display (text, icons, etc.)",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "direction": {
+        "defaultValue": null,
+        "description": "The current sort direction for this column. When undefined, the header renders as non-interactive.",
+        "name": "direction",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "SortDirection"
+        }
+      },
+      "onSort": {
+        "defaultValue": null,
+        "description": "Callback function triggered when the sortable header is clicked.\nWhen undefined, the header renders as non-interactive.",
+        "name": "onSort",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      }
+    }
   },
   {
     "tags": {},
@@ -261,7 +301,7 @@
         },
         "required": true,
         "type": {
-          "name": "\"previous\" | \"next\""
+          "name": "\"next\" | \"previous\""
         }
       },
       "onClick": {
@@ -302,7 +342,7 @@
         },
         "required": true,
         "type": {
-          "name": "(direction: \"previous\" | \"next\") => string"
+          "name": "(direction: \"next\" | \"previous\") => string"
         }
       }
     }

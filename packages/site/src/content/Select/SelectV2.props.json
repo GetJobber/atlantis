@@ -68,7 +68,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent) => void"
+          "name": "(event: KeyboardEvent<Element>) => void"
         }
       },
       "UNSAFE_experimentalStyles": {
@@ -328,7 +328,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.FocusEvent<Target>) => void"
+          "name": "(event: FocusEvent<HTMLSelectElement, Element>) => void"
         }
       },
       "onBlur": {
@@ -341,7 +341,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.FocusEvent<Target>) => void"
+          "name": "(event: FocusEvent<HTMLSelectElement, Element>) => void"
         }
       },
       "placeholder": {
@@ -523,7 +523,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<HTMLSelectElement>"
+          "name": "Ref<HTMLSelectElement>"
         }
       }
     }

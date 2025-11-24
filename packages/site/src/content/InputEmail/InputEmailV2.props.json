@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent) => void"
+          "name": "(event: KeyboardEvent<Element>) => void"
         }
       },
       "id": {
@@ -302,7 +302,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.FocusEvent<Target>) => void"
+          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
       "onBlur": {
@@ -315,7 +315,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.FocusEvent<Target>) => void"
+          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
       "onKeyDown": {
@@ -328,7 +328,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent<Target>) => void"
+          "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
         }
       },
       "onKeyUp": {
@@ -341,7 +341,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent<Target>) => void"
+          "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
         }
       },
       "placeholder": {
@@ -523,7 +523,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<unknown>"
+          "name": "Ref<HTMLInputElement>"
         }
       }
     }
