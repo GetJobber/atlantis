@@ -49,11 +49,9 @@ export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   }
 
   function scrollMenuIfItemNotInView(
-    menuDivElement: HTMLUListElement | null,
+    menuDivElement: HTMLUListElement,
     direction: "up" | "down",
   ) {
-    if (!menuDivElement) return;
-
     const itemDiv = menuDivElement.querySelector(
       `:nth-child(${highlightedIndex + 1})`,
     ) as HTMLButtonElement;
