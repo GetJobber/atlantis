@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.2...@jobber/hooks@2.19.3) (2025-11-21)
+
+
+### Bug Fixes
+
+* **hooks:** Make returned ref type compatible with react 18 ([#2831](https://github.com/GetJobber/atlantis/issues/2831)) ([3e08ef8](https://github.com/GetJobber/atlantis/commit/3e08ef8490f9bcda17b6b29b39417ab16e51ed42))
+
+
+
+
+
 ## [2.19.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.1...@jobber/hooks@2.19.2) (2025-11-21)
 
 **Note:** Version bump only for package @jobber/hooks
