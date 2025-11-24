@@ -8,10 +8,17 @@ const meta = {
   args: {
     version: 2,
     placeholder: "Enter your phone number",
+    value: "",
+    pattern: "(***) ***-****",
     disabled: false,
     invalid: false,
-    pattern: "(***) ***-****",
     required: false,
+    onChange: (v: string) => {
+      void v;
+    },
+  },
+  argTypes: {
+    onChange: { table: { disable: true } }, // hide handler from Controls
   },
 } satisfies Meta<typeof InputPhoneNumber>;
 
@@ -19,13 +26,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  args: {
-    value: "",
-    onChange: (v: string) => {
-      void v;
-    },
-  },
   render: args => {
+    // Local state to manage the required controlled value
     const [value, setValue] = useState(args.value as string);
 
     return <InputPhoneNumber {...args} value={value} onChange={setValue} />;
