@@ -107,7 +107,7 @@ export function ModalOverlay({ children }: PropsWithChildren) {
         data-modal-node-id={floatingNodeId}
         onPointerDownCapture={() => {
           // Interaction began on overlay: mark as outside for the next click
-          if (startedInsideRef?.current) startedInsideRef.current = false;
+          if (startedInsideRef) startedInsideRef.current = false;
         }}
       />
       {children}
