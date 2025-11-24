@@ -385,7 +385,7 @@ export const useAtlantisPreviewSkeleton = (type: ComponentType) => {
   const writeCodeToIFrame = useCallback(
     (
       html: string | undefined,
-      selectedFrame: RefObject<HTMLIFrameElement>,
+      selectedFrame: RefObject<HTMLIFrameElement | null>,
       theme: Theme,
       transpiledCode: string | null | undefined,
     ) => {

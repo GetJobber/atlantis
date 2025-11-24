@@ -22,7 +22,7 @@ type UseInternalFormProps<T extends FieldValues, SubmitResponseType> = Pick<
   | "localCacheId"
   | "UNSAFE_allowDiscardLocalCacheWhenOffline"
 > & {
-  scrollViewRef?: RefObject<KeyboardAwareScrollView>;
+  scrollViewRef?: RefObject<KeyboardAwareScrollView | null>;
   readonly saveButtonHeight: number;
   readonly messageBannerHeight: number;
 };

@@ -1,7 +1,8 @@
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 
 export function useInView<T extends Element>(): [RefObject<T>, boolean] {
-  const ref = useRef<T>(null);
+  // Requires the cast because we need to be compatible with React 18's RefObject type.
+  const ref = useRef<T>(null) as RefObject<T>;
   const [isInView, setIsInView] = useState(false);
 
   const handleIntersection: IntersectionObserverCallback = useCallback(
