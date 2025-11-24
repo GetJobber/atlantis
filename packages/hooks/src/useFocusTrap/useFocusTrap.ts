@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 
 /**
  * Traps the focus within the children of the ref element.
@@ -12,7 +12,8 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
   // There's an ongoing issue with useRef return type clashing with an element's
   // ref prop type. TLDR: Use null because useRef doesn't expect undefined.
   // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572
-  const ref = useRef<T>(null);
+  // Requires the cast because we need to be compatible with React 18's RefObject type.
+  const ref = useRef<T>(null) as RefObject<T>;
 
   function handleKeyDown(event: KeyboardEvent) {
     if (!(active && ref.current) || event.key !== "Tab") {
