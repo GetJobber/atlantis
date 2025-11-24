@@ -31,10 +31,7 @@ export const useAtlantisPreviewCode = ({
       setCode(codeUp);
 
       try {
-        // If the provided code does not include a return statement, we have to provide one.
-        const preCode = !codeUp.includes("return ")
-          ? `return ${codeUp}`
-          : codeUp;
+        const preCode = getPreCode(codeUp);
 
         // Take the code, wrap it in a function named "App" which will be picked up within the iframe.
         // Transpile the code with Babel to be able to run it in the iframe.
@@ -63,4 +60,16 @@ export const useAtlantisPreviewCode = ({
   );
 
   return { updateCode, code, error };
+};
+
+/**
+ * If the provided code does not include a leading return statement,
+ * add one and wrap the JSX/expression to be resilient to formatting.
+ * @param codeUp - The code to get the pre code for.
+ * @returns The pre code.
+ */
+const getPreCode = (codeUp: string) => {
+  const hasLeadingReturn = /^\s*return\b/m.test(codeUp);
+
+  return hasLeadingReturn ? codeUp : `return (${codeUp.trim()})`;
 };

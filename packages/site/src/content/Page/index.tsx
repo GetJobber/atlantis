@@ -7,7 +7,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `(
+    element: `
     <Page
       title={"Notifications"}
       intro={
@@ -18,7 +18,7 @@ export default {
         <Text>Page content here</Text>
       </Content>
     </Page>
-  );`,
+  `,
     defaultProps: {},
   },
   title: "Page",
