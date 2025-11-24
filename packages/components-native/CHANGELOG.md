@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.91.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.3...@jobber/components-native@0.91.4) (2025-11-24)
+
+
+### Bug Fixes
+
+* fix and improve TS types related to react 19 upgrade ([#2821](https://github.com/GetJobber/atlantis/issues/2821)) ([d37070d](https://github.com/GetJobber/atlantis/commit/d37070d0b5bd4a603008cb9905ee3ce981df102b)), closes [#2831](https://github.com/GetJobber/atlantis/issues/2831) [#2829](https://github.com/GetJobber/atlantis/issues/2829) [#2827](https://github.com/GetJobber/atlantis/issues/2827) [#2830](https://github.com/GetJobber/atlantis/issues/2830)
+
+
+
+
+
 ## [0.91.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.2...@jobber/components-native@0.91.3) (2025-11-21)
 
 **Note:** Version bump only for package @jobber/components-native
