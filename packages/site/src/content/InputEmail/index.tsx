@@ -26,4 +26,12 @@ export default {
       ),
     },
   ],
+  webSupportedLinks: [
+    {
+      label: "Storybook",
+      url: getStorybookUrl(
+        "?path=/story/components-forms-and-inputs-inputemail-web-v2--basic",
+      ),
+    },
+  ],
 } as const satisfies ContentExport;
