@@ -25,5 +25,13 @@ export default {
       url: getStorybookUrl("?path=/docs/components-selections-checkbox--docs"),
     },
   ],
+  webSupportedLinks: [
+    {
+      label: "Storybook",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-checkbox-web-v2--basic",
+      ),
+    },
+  ],
   notes: () => <Notes />,
 } as const satisfies ContentExport;

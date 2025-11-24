@@ -30,4 +30,12 @@ export default {
       url: getStorybookUrl(`?path=/docs/components-selections-select--docs`),
     },
   ],
+  webSupportedLinks: [
+    {
+      label: "Storybook",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-select-web-v2--basic",
+      ),
+    },
+  ],
 } as const satisfies ContentExport;
