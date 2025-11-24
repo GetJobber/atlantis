@@ -5,13 +5,16 @@ import { useDataListLayoutContext } from "@jobber/components/DataList/context/Da
 import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActionsOverflow";
 import { Glimmer } from "@jobber/components/Glimmer";
 import styles from "./DataListLayoutActions.module.css";
+import type { DataListActionProps, DataListObject } from "../../DataList.types";
 
 export function DataListLayoutActions() {
   const { itemActionComponent, loadingState } = useDataListContext();
   const { setHasInLayoutActions } = useDataListLayoutContext();
 
   const { children: actionsChildren } = itemActionComponent?.props || {};
-  const actions = Children.toArray(actionsChildren) as ReactElement[];
+  const actions = Children.toArray(actionsChildren) as ReactElement<
+    DataListActionProps<DataListObject>
+  >[];
   const hasActions = actions.length > 0;
 
   useEffect(() => {
@@ -30,7 +33,6 @@ export function DataListLayoutActions() {
 
   return (
     <DataListLayoutActionsWrapper>
-      {/* @ts-expect-error - TODO: fix actions type is unknown */}
       <DataListItemActionsOverflow actions={actions} />
     </DataListLayoutActionsWrapper>
   );

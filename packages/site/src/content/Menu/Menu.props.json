@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<{ [key: string]: unknown; fullWidth?: boolean; onClick?: (event?: MouseEvent<Element, MouseEvent>) => void; }, string | JSXElementConstructor<any>>"
         }
       },
       "items": {
@@ -375,7 +375,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<{ [key: string]: unknown; fullWidth?: boolean; onClick?: (event?: MouseEvent<Element, MouseEvent>) => void; }, string | JSXElementConstructor<any>>"
         }
       },
       "items": {

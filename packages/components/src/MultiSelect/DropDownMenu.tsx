@@ -1,5 +1,5 @@
-import type { Dispatch, KeyboardEvent, MouseEvent } from "react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import type { Dispatch, KeyboardEvent, MouseEvent } from "react";
 import classNames from "classnames";
 import styles from "./DropDownMenu.module.css";
 import type { Option, Options } from "./types";

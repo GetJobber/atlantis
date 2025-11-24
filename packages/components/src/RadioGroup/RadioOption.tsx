@@ -43,7 +43,7 @@ interface WithRequiredLabel extends BaseRadioOptionProps {
   readonly label: string;
 }
 
-type RadioOptionProps = XOR<WithRequiredChildren, WithRequiredLabel>;
+export type RadioOptionProps = XOR<WithRequiredChildren, WithRequiredLabel>;
 
 /**
  * For rendering props only. To make updates to

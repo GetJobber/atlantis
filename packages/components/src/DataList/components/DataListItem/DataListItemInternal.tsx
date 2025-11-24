@@ -1,5 +1,4 @@
-import type { ReactElement } from "react";
-import React from "react";
+import React, { type ReactElement } from "react";
 import classNames from "classnames";
 import { Checkbox } from "@jobber/components/Checkbox";
 import type { DataListObject } from "@jobber/components/DataList/DataList.types";

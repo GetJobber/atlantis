@@ -1,5 +1,5 @@
-import type { IconColorNames, IconNames } from "@jobber/design";
 import type { ReactElement } from "react";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import type { TextAlign } from "../Typography";
 
 export interface MenuOptionProps {

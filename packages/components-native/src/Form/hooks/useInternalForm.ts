@@ -5,7 +5,7 @@ import type {
   UseFormReturn,
 } from "react-hook-form";
 import { useForm } from "react-hook-form";
-import type { MutableRefObject, RefObject } from "react";
+import type { RefObject } from "react";
 import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAtlantisContext } from "../../AtlantisContext";
 import { useAtlantisFormContext } from "../context/AtlantisFormContext";
@@ -32,7 +32,7 @@ interface UseInternalForm<T extends FieldValues> {
   readonly handleSubmit: UseFormHandleSubmit<T>;
   readonly isSubmitting: boolean;
   readonly isDirty: boolean;
-  readonly removeListenerRef: MutableRefObject<() => void>;
+  readonly removeListenerRef: RefObject<() => void>;
   readonly setLocalCache: (data: DeepPartial<T>) => void;
 }
 

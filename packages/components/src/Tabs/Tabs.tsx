@@ -95,7 +95,6 @@ export function Tabs({
             }
 
             const index = tabChildren.findIndex(
-              // @ts-expect-error - TODO: fix tab.props type is unknown
               tab => tab.props.label === child.props.label,
             );
 
@@ -121,10 +120,12 @@ export function Tabs({
       <section
         role="tabpanel"
         className={styles.tabContent}
-        // @ts-expect-error - TODO: fix activeTabProps type is unknown
-        aria-label={activeTabProps?.label}
+        aria-label={
+          typeof activeTabProps?.label === "string"
+            ? activeTabProps.label
+            : undefined
+        }
       >
-        {/* @ts-expect-error - TODO: fix activeTabProps type is unknown */}
         {activeTabProps?.children}
       </section>
     </div>
@@ -183,7 +184,7 @@ const InternalTab = React.forwardRef<HTMLButtonElement, InternalTabProps>(
 InternalTab.displayName = "InternalTab";
 
 function getActiveTabs(children: TabsProps["children"]) {
-  const activeTabChildren: ReactElement[] = [];
+  const activeTabChildren: ReactElement<TabProps, typeof Tab>[] = [];
 
   React.Children.toArray(children).forEach(child => {
     if (isChildTab(child)) {
