@@ -1,3 +1,7 @@
 export default `
-return <InputEmail version={2} placeholder={"Enter your email"} />;
+const [value, setValue] = useState("");
+
+return (
+  <InputEmail version={2} placeholder={"Enter your email"} value={value} onChange={setValue} />
+);
 `;

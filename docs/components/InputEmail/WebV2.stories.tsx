@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { fn } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react";
 import { InputEmail } from "@jobber/components/InputEmail";
 
@@ -10,6 +11,8 @@ const meta = {
     placeholder: "Enter your email",
     disabled: false,
     invalid: false,
+    onChange: fn(),
+    value: "",
   },
 } satisfies Meta<typeof InputEmail>;
 
@@ -17,5 +20,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  render: args => <InputEmail {...args} />,
+  render: args => {
+    const [value, setValue] = useState("");
+
+    return (
+      <InputEmail
+        {...args}
+        value={value}
+        onChange={(newValue: string) => {
+          setValue(newValue);
+          args.onChange?.(newValue);
+        }}
+      />
+    );
+  },
 };
