@@ -234,6 +234,7 @@ export interface RebuiltInputCommonProps {
    */
   readonly inline?: boolean;
 
+  // TODO: Offer an explicit left or "base" alignment option for better DX and control.
   /**
    * Determines the alignment of the text inside the input.
    */
