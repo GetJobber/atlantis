@@ -54,9 +54,6 @@ export interface SelectRebuiltProps
   readonly value?: string | number;
   onChange?(newValue?: string | number): void;
 
-  /**
-   * @deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.
-   */
   readonly inputRef?: FormFieldProps["inputRef"];
 
   /**
