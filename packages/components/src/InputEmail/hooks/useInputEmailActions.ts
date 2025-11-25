@@ -4,7 +4,7 @@ import type { InputEmailRebuiltProps } from "../InputEmail.types";
 export interface UseInputEmailActionsProps
   extends Pick<
     InputEmailRebuiltProps,
-    "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown"
+    "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown" | "onKeyUp"
   > {
   inputRef?: React.RefObject<HTMLInputElement>;
 }
@@ -16,6 +16,7 @@ export function useInputEmailActions({
   onFocus,
   onBlur,
   onKeyDown,
+  onKeyUp,
 }: UseInputEmailActionsProps) {
   function handleClear() {
     onChange?.("");
@@ -45,10 +46,15 @@ export function useInputEmailActions({
     onBlur?.(event);
   }
 
+  function handleKeyUp(event: KeyboardEvent<HTMLInputElement>) {
+    onKeyUp?.(event);
+  }
+
   return {
     handleClear,
     handleChange,
     handleKeyDown,
+    handleKeyUp,
     handleFocus,
     handleBlur,
   };

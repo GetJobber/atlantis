@@ -36,15 +36,22 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     id,
   });
 
-  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
-    useInputEmailActions({
-      onChange: props.onChange,
-      onBlur: props.onBlur,
-      onFocus: props.onFocus,
-      onKeyDown: props.onKeyDown,
-      onEnter: props.onEnter,
-      inputRef,
-    });
+  const {
+    handleChange,
+    handleBlur,
+    handleFocus,
+    handleKeyDown,
+    handleKeyUp,
+    handleClear,
+  } = useInputEmailActions({
+    onChange: props.onChange,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+    onKeyDown: props.onKeyDown,
+    onKeyUp: props.onKeyUp,
+    onEnter: props.onEnter,
+    inputRef,
+  });
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const descriptionVisible = props.description && !props.inline;
@@ -101,7 +108,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         onBlur={handleBlur}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
-        onKeyUp={props.onKeyUp}
+        onKeyUp={handleKeyUp}
         data-testid="ATL-InputEmail-input"
       />
       <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
