@@ -89,7 +89,6 @@ describe("InputTimeRebuilt", () => {
     await userEvent.click(clearButton);
 
     expect(changeHandler).toHaveBeenCalledWith(undefined);
-    // onBlur should NOT be called when clearing - that was a bug
     expect(blurHandler).not.toHaveBeenCalled();
 
     expect(document.activeElement).toBe(inputRef.current);
