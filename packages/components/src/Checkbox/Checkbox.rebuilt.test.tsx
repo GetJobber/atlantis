@@ -137,7 +137,6 @@ describe("Checkbox", () => {
     });
   });
 
-  // Additional tests for shared HTMLInputBaseProps
   describe("Shared HTMLInputBaseProps", () => {
     it("should render with id attribute", () => {
       const { getByRole } = render(
@@ -161,7 +160,6 @@ describe("Checkbox", () => {
     });
   });
 
-  // Additional tests for shared RebuiltInputCommonProps
   describe("Shared RebuiltInputCommonProps", () => {
     it("should have invalid styling when invalid prop is true", () => {
       const { container } = render(

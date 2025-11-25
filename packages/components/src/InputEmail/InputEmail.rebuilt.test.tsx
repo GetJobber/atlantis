@@ -167,7 +167,6 @@ describe("InputEmailRebuilt", () => {
     });
   });
 
-  // Additional tests for shared props coverage
   describe("Shared HTMLInputBaseProps", () => {
     it("should render with id attribute", () => {
       render(<InputEmailRebuilt version={2} id="email-id" />);

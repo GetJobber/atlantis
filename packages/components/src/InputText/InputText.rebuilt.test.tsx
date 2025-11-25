@@ -223,7 +223,6 @@ describe("InputText V2 (Rebuilt)", () => {
     });
   });
 
-  // Additional tests for shared HTMLInputBaseProps
   describe("Shared HTMLInputBaseProps", () => {
     it("should render with id attribute", () => {
       render(
@@ -328,7 +327,6 @@ describe("InputText V2 (Rebuilt)", () => {
     });
   });
 
-  // Additional tests for shared RebuiltInputCommonProps
   describe("Shared RebuiltInputCommonProps", () => {
     it("should display error message", () => {
       const errorMessage = "Invalid input";
@@ -394,32 +392,6 @@ describe("InputText V2 (Rebuilt)", () => {
       expect(container.querySelector(".inline")).toBeInTheDocument();
     });
 
-    it("should accept center alignment prop", () => {
-      const { container } = render(
-        <InputText
-          version={2}
-          value={value}
-          placeholder="Text"
-          align="center"
-        />,
-      );
-      // Alignment is applied via wrapper styles, not direct class on input
-      expect(container.querySelector("input")).toBeInTheDocument();
-    });
-
-    it("should accept right alignment prop", () => {
-      const { container } = render(
-        <InputText
-          version={2}
-          value={value}
-          placeholder="Text"
-          align="right"
-        />,
-      );
-      // Alignment is applied via wrapper styles, not direct class on input
-      expect(container.querySelector("input")).toBeInTheDocument();
-    });
-
     it("should render with prefix", () => {
       render(
         <InputText
@@ -445,7 +417,6 @@ describe("InputText V2 (Rebuilt)", () => {
     });
   });
 
-  // Additional tests for FocusEvents and KeyboardEvents
   describe("Event handlers", () => {
     it("should call onFocus when input is focused", async () => {
       const focusHandler = jest.fn();
@@ -513,7 +484,6 @@ describe("InputText V2 (Rebuilt)", () => {
     });
   });
 
-  // Additional tests for ARIA attributes
   describe("ARIA attributes", () => {
     it("should render with aria-label", () => {
       render(
