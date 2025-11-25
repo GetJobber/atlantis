@@ -19,7 +19,7 @@ export function useInputDateActivatorActions({
     _newValue: string,
     event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
-    onChange?.(event);
+    onChange?.(event as ChangeEvent<HTMLInputElement>);
   }
 
   function handleFocus(
