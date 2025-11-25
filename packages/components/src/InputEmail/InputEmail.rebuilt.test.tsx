@@ -213,9 +213,15 @@ describe("InputEmailRebuilt", () => {
       expect(screen.getByText(errorMessage)).toBeInTheDocument();
     });
 
-    it("should show loading spinner when loading prop is true", () => {
+    it("should apply loading spinner class when loading prop is true", () => {
       const { container } = render(<InputEmailRebuilt version={2} loading />);
-      expect(container.querySelector(".spinner")).toBeInTheDocument();
+      expect(container.querySelector('[class*="spinner"]')).toBeTruthy();
+    });
+
+    it("should apply inline class", () => {
+      const { container } = render(<InputEmailRebuilt version={2} inline />);
+      const containerEl = container.querySelector('[class*="container"]');
+      expect(containerEl).toHaveClass("inline");
     });
 
     it("should render string description", () => {
@@ -234,11 +240,6 @@ describe("InputEmailRebuilt", () => {
         <InputEmailRebuilt version={2} suffix={{ label: "@company.com" }} />,
       );
       expect(screen.getByText("@company.com")).toBeInTheDocument();
-    });
-
-    it("should render inline", () => {
-      const { container } = render(<InputEmailRebuilt version={2} inline />);
-      expect(container.querySelector(".inline")).toBeInTheDocument();
     });
   });
 

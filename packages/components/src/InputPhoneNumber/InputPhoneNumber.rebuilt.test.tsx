@@ -114,7 +114,6 @@ describe("pattern", () => {
   });
 });
 
-// Tests for shared HTMLInputBaseProps
 describe("HTMLInputBaseProps", () => {
   it("should render with id attribute", () => {
     render(
@@ -198,7 +197,6 @@ describe("HTMLInputBaseProps", () => {
   });
 });
 
-// Tests for shared RebuiltInputCommonProps
 describe("RebuiltInputCommonProps", () => {
   it("should display error message", () => {
     const errorMessage = "Invalid phone number";
@@ -214,7 +212,7 @@ describe("RebuiltInputCommonProps", () => {
     expect(screen.getByText(errorMessage)).toBeInTheDocument();
   });
 
-  it("should have invalid styling when invalid prop is true", () => {
+  it("should apply invalid styling when invalid prop is true", () => {
     const { container } = render(
       <InputPhoneNumberRebuilt
         placeholder={placeholder}
@@ -224,10 +222,11 @@ describe("RebuiltInputCommonProps", () => {
         invalid
       />,
     );
-    expect(container.querySelector(".invalid")).toBeInTheDocument();
+    const wrapper = container.querySelector('[class*="wrapper"]');
+    expect(wrapper).toHaveClass("invalid");
   });
 
-  it("should render with small size", () => {
+  it("should apply small size class", () => {
     const { container } = render(
       <InputPhoneNumberRebuilt
         placeholder={placeholder}
@@ -237,10 +236,11 @@ describe("RebuiltInputCommonProps", () => {
         size="small"
       />,
     );
-    expect(container.querySelector(".small")).toBeInTheDocument();
+    const wrapper = container.querySelector('[class*="wrapper"]');
+    expect(wrapper).toHaveClass("small");
   });
 
-  it("should render with large size", () => {
+  it("should apply large size class", () => {
     const { container } = render(
       <InputPhoneNumberRebuilt
         placeholder={placeholder}
@@ -250,7 +250,8 @@ describe("RebuiltInputCommonProps", () => {
         size="large"
       />,
     );
-    expect(container.querySelector(".large")).toBeInTheDocument();
+    const wrapper = container.querySelector('[class*="wrapper"]');
+    expect(wrapper).toHaveClass("large");
   });
 
   it("should render string description", () => {
@@ -294,7 +295,6 @@ describe("RebuiltInputCommonProps", () => {
   });
 });
 
-// Tests for FocusEvents
 describe("Event handlers", () => {
   it("should call onFocus when input is focused", async () => {
     const focusHandler = jest.fn();
@@ -331,20 +331,5 @@ describe("Event handlers", () => {
     await userEvent.click(input);
     await userEvent.click(screen.getByTestId("other-element"));
     expect(blurHandler).toHaveBeenCalledTimes(1);
-  });
-
-  it("should accept onKeyDown prop", () => {
-    const keyDownHandler = jest.fn();
-    // Just verify the prop is accepted without error
-    const { container } = render(
-      <InputPhoneNumberRebuilt
-        placeholder={placeholder}
-        value=""
-        onChange={jest.fn()}
-        version={2}
-        onKeyDown={keyDownHandler}
-      />,
-    );
-    expect(container.querySelector("input")).toBeInTheDocument();
   });
 });

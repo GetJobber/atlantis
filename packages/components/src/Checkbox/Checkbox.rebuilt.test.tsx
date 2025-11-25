@@ -161,20 +161,20 @@ describe("Checkbox", () => {
   });
 
   describe("Shared RebuiltInputCommonProps", () => {
-    it("should have invalid styling when invalid prop is true", () => {
+    it("should apply invalid styling when invalid prop is true", () => {
       const { container } = render(
         <Checkbox version={2} label="Test" invalid />,
       );
-      expect(container.querySelector(".invalid")).toBeInTheDocument();
+      const wrapper = container.querySelector('[class*="wrapper"]');
+      expect(wrapper).toHaveClass("invalid");
     });
 
     it("should render with both description and invalid state", () => {
       const description = "Please check this box";
-      const { getByText, container } = render(
+      const { getByText } = render(
         <Checkbox version={2} label="Test" description={description} invalid />,
       );
       expect(getByText(description)).toBeInTheDocument();
-      expect(container.querySelector(".invalid")).toBeInTheDocument();
     });
   });
 });

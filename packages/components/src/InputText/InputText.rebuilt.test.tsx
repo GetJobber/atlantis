@@ -341,18 +341,19 @@ describe("InputText V2 (Rebuilt)", () => {
       expect(screen.getByText(errorMessage)).toBeInTheDocument();
     });
 
-    it("should have invalid styling when invalid prop is true", () => {
+    it("should apply invalid styling when invalid prop is true", () => {
       const { container } = render(
         <InputText version={2} value={value} placeholder="Text" invalid />,
       );
-      expect(container.querySelector(".invalid")).toBeInTheDocument();
+      const wrapper = container.querySelector('[class*="wrapper"]');
+      expect(wrapper).toHaveClass("invalid");
     });
 
-    it("should show loading spinner when loading prop is true", () => {
+    it("should apply loading spinner class when loading prop is true", () => {
       const { container } = render(
         <InputText version={2} value={value} placeholder="Text" loading />,
       );
-      expect(container.querySelector(".spinner")).toBeInTheDocument();
+      expect(container.querySelector('[class*="spinner"]')).toBeTruthy();
     });
 
     it("should render with clearable always", async () => {
@@ -371,25 +372,28 @@ describe("InputText V2 (Rebuilt)", () => {
       expect(changeHandler).toHaveBeenCalledWith("");
     });
 
-    it("should render with small size", () => {
+    it("should apply small size class", () => {
       const { container } = render(
         <InputText version={2} value={value} placeholder="Text" size="small" />,
       );
-      expect(container.querySelector(".small")).toBeInTheDocument();
+      const wrapper = container.querySelector('[class*="wrapper"]');
+      expect(wrapper).toHaveClass("small");
     });
 
-    it("should render with large size", () => {
+    it("should apply large size class", () => {
       const { container } = render(
         <InputText version={2} value={value} placeholder="Text" size="large" />,
       );
-      expect(container.querySelector(".large")).toBeInTheDocument();
+      const wrapper = container.querySelector('[class*="wrapper"]');
+      expect(wrapper).toHaveClass("large");
     });
 
-    it("should render inline", () => {
+    it("should apply inline class", () => {
       const { container } = render(
         <InputText version={2} value={value} placeholder="Text" inline />,
       );
-      expect(container.querySelector(".inline")).toBeInTheDocument();
+      const containerEl = container.querySelector('[class*="container"]');
+      expect(containerEl).toHaveClass("inline");
     });
 
     it("should render with prefix", () => {

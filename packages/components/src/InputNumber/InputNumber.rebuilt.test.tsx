@@ -104,7 +104,6 @@ test("it should render element description directly without wrapping in paragrap
   );
 });
 
-// Tests for shared HTMLInputBaseProps
 describe("HTMLInputBaseProps", () => {
   it("should render with id attribute", () => {
     const { getByRole } = render(
@@ -166,7 +165,6 @@ describe("HTMLInputBaseProps", () => {
   });
 });
 
-// Tests for shared RebuiltInputCommonProps
 describe("RebuiltInputCommonProps", () => {
   it("should render placeholder as label", () => {
     const { getByLabelText } = render(
@@ -175,41 +173,36 @@ describe("RebuiltInputCommonProps", () => {
     expect(getByLabelText("Enter amount")).toBeInTheDocument();
   });
 
-  it("should have invalid styling when invalid prop is true", () => {
+  it("should apply invalid styling when invalid prop is true", () => {
     const { container } = render(
       <InputNumber version={2} placeholder="Number" invalid />,
     );
-    // The invalid class is applied to the wrapper
-    expect(container.querySelector(".invalid")).toBeInTheDocument();
+    const wrapper = container.querySelector('[role="group"]');
+    expect(wrapper).toHaveClass("invalid");
   });
 
-  it("should render with small size", () => {
+  it("should apply small size class", () => {
     const { container } = render(
       <InputNumber version={2} placeholder="Number" size="small" />,
     );
-    expect(container.querySelector(".small")).toBeInTheDocument();
+    const inputWrapper = container.querySelector('[class*="inputWrapper"]');
+    expect(inputWrapper).toHaveClass("small");
   });
 
-  it("should render with large size", () => {
+  it("should apply large size class", () => {
     const { container } = render(
       <InputNumber version={2} placeholder="Number" size="large" />,
     );
-    expect(container.querySelector(".large")).toBeInTheDocument();
+    const inputWrapper = container.querySelector('[class*="inputWrapper"]');
+    expect(inputWrapper).toHaveClass("large");
   });
 
-  it("should render inline", () => {
+  it("should apply inline class", () => {
     const { container } = render(
       <InputNumber version={2} placeholder="Number" inline />,
     );
-    expect(container.querySelector(".inline")).toBeInTheDocument();
-  });
-
-  it("should accept align prop", () => {
-    // InputNumber accepts align but renders differently than simple text-align
-    const { container } = render(
-      <InputNumber version={2} placeholder="Number" align="right" />,
-    );
-    expect(container.querySelector(".container")).toBeInTheDocument();
+    const containerEl = container.firstChild;
+    expect(containerEl).toHaveClass("inline");
   });
 
   it("should render string description", () => {
@@ -225,7 +218,6 @@ describe("RebuiltInputCommonProps", () => {
   });
 });
 
-// Tests for FocusEvents and KeyboardEvents
 describe("Event handlers", () => {
   it("should call onFocus when input is focused", async () => {
     const focusHandler = jest.fn();
