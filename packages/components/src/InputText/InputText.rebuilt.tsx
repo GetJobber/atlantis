@@ -12,7 +12,7 @@ import { mergeRefs } from "../utils/mergeRefs";
 
 export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
-  inputRefs: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
+  inputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
 ) {
   const inputTextRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
     null,
@@ -47,15 +47,22 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     id: id,
   });
 
-  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
-    useInputTextActions({
-      onChange: props.onChange,
-      onBlur: props.onBlur,
-      onFocus: props.onFocus,
-      onKeyDown: props.onKeyDown,
-      onEnter: props.onEnter,
-      inputRef: inputTextRef,
-    });
+  const {
+    handleChange,
+    handleBlur,
+    handleFocus,
+    handleKeyDown,
+    handleKeyUp,
+    handleClear,
+  } = useInputTextActions({
+    onChange: props.onChange,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+    onKeyDown: props.onKeyDown,
+    onKeyUp: props.onKeyUp,
+    onEnter: props.onEnter,
+    inputRef: inputTextRef,
+  });
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const descriptionVisible = props.description && !props.inline;
@@ -89,8 +96,8 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     onBlur: handleBlur,
     onFocus: handleFocus,
     onKeyDown: handleKeyDown,
-    onKeyUp: props.onKeyUp,
-    ref: mergeRefs([inputRefs, inputTextRef]),
+    onKeyUp: handleKeyUp,
+    ref: mergeRefs([inputRef, inputTextRef]),
   };
 
   return (
