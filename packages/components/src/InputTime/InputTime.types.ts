@@ -2,8 +2,6 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
-  InputConstraintProps,
-  InputLengthConstraint,
   KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
@@ -61,10 +59,18 @@ export interface InputTimeRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
-    InputLengthConstraint,
-    InputConstraintProps,
     RebuiltInputCommonProps,
     Pick<InputTimeProps, "value" | "onChange"> {
+  /**
+   * Maximum numerical or date value.
+   */
+  readonly max?: number;
+
+  /**
+   * Minimum numerical or date value.
+   */
+  readonly min?: number;
+
   /**
    * @deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.
    */

@@ -6,6 +6,32 @@
     "displayName": "InputTimeRebuilt",
     "methods": [],
     "props": {
+      "max": {
+        "defaultValue": null,
+        "description": "Maximum numerical or date value.",
+        "name": "max",
+        "parent": {
+          "fileName": "packages/components/src/InputTime/InputTime.types.ts",
+          "name": "InputTimeRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "min": {
+        "defaultValue": null,
+        "description": "Minimum numerical or date value.",
+        "name": "min",
+        "parent": {
+          "fileName": "packages/components/src/InputTime/InputTime.types.ts",
+          "name": "InputTimeRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
       "inputRef": {
         "defaultValue": null,
         "description": "@deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.",
@@ -329,45 +355,6 @@
         "required": false,
         "type": {
           "name": "(event: KeyboardEvent<HTMLInputElement>) => void"
-        }
-      },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "InputLengthConstraint"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "max": {
-        "defaultValue": null,
-        "description": "Maximum numerical or date value.",
-        "name": "max",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "InputConstraintProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number"
-        }
-      },
-      "min": {
-        "defaultValue": null,
-        "description": "Minimum numerical or date value.",
-        "name": "min",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "InputConstraintProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | number"
         }
       },
       "placeholder": {

@@ -500,19 +500,6 @@
           "name": "2"
         }
       },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "InputLengthConstraint"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "ref": {
         "defaultValue": null,
         "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",

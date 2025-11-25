@@ -448,19 +448,6 @@
           "name": "2"
         }
       },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "InputLengthConstraint"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "prefix": {
         "defaultValue": null,
         "description": "Adds a prefix label and icon to the field",
