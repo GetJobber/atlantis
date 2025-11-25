@@ -65,7 +65,6 @@ export const SelectRebuilt = forwardRef<HTMLSelectElement, SelectRebuiltProps>(
         prefix={props.prefix}
         suffix={props.suffix}
         clearable="never"
-        maxLength={props.maxLength}
       >
         <>
           <select

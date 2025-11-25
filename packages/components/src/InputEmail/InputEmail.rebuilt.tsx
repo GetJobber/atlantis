@@ -27,7 +27,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     value: props.value,
     invalid: props.invalid,
     error: props.error,
-    maxLength: props.maxLength,
     disabled: props.disabled,
     placeholder: props.placeholder,
   });
@@ -66,7 +65,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       clearable={props.clearable ?? "never"}
       onClear={handleClear}
       wrapperRef={wrapperRef}
-      maxLength={props.maxLength}
       disabled={props.disabled}
       type="email"
       value={props.value}
@@ -85,7 +83,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         readOnly={props.readOnly}
         autoFocus={props.autoFocus}
         autoComplete={props.autoComplete}
-        maxLength={props.maxLength}
         pattern={props.pattern}
         inputMode={props.inputMode}
         tabIndex={props.tabIndex}
