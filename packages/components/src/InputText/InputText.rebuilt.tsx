@@ -1,3 +1,4 @@
+import type { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import React, { forwardRef, useId } from "react";
 import type { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
@@ -147,19 +148,16 @@ function useInputTextId(props: InputTextRebuiltProps) {
   return props.id || generatedId;
 }
 
-interface TextAreaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+const TextArea = forwardRef<
+  HTMLTextAreaElement,
+  TextareaHTMLAttributes<HTMLTextAreaElement>
+>(function TextArea(props, ref) {
+  return <textarea {...props} ref={ref} />;
+});
 
-const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  function TextArea(props, ref) {
-    return <textarea {...props} ref={ref} />;
-  },
-);
-
-interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
-
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  function TextInput(props, ref) {
-    return <input {...props} ref={ref} />;
-  },
-);
+const TextInput = forwardRef<
+  HTMLInputElement,
+  InputHTMLAttributes<HTMLInputElement>
+>(function TextInput(props, ref) {
+  return <input {...props} ref={ref} />;
+});
