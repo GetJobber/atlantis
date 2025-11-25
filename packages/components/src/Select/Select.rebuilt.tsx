@@ -26,7 +26,8 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
     ...omit(props, ["version"]),
   });
 
-  const id = useSelectId(props);
+  const generatedId = useId();
+  const id = props.id || generatedId;
   const descriptionIdentifier = `descriptionUUID--${id}`;
 
   const { name } = useAtlantisFormFieldName({
@@ -94,10 +95,4 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       </>
     </FormFieldWrapper>
   );
-}
-
-function useSelectId(props: SelectRebuiltProps) {
-  const generatedId = useId();
-
-  return props.id || generatedId;
 }
