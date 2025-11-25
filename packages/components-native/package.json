@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.91.1",
+  "version": "0.91.3",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {

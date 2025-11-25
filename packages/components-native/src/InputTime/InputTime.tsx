@@ -99,7 +99,7 @@ function formatInvalidState(
   return Boolean(error);
 }
 
-export function InputTime(props: InputTimeProps): JSX.Element {
+export function InputTime(props: InputTimeProps) {
   if (props.name) {
     return (
       <FormField name={props.name} validations={props.validations}>
@@ -134,7 +134,7 @@ function InternalInputTime({
   showMiniLabel = true,
   onChange,
   showIcon = true,
-}: InputTimeProps): JSX.Element {
+}: InputTimeProps) {
   const [showPicker, setShowPicker] = useState(false);
   const { t, formatTime } = useAtlantisI18n();
   const { timeZone, timeFormat } = useAtlantisContext();

@@ -18,9 +18,7 @@ interface ActionItemGroupProps {
   readonly children: ActionItemElement | ActionItemElement[];
 }
 
-export function ActionItemGroup({
-  children,
-}: ActionItemGroupProps): JSX.Element {
+export function ActionItemGroup({ children }: ActionItemGroupProps) {
   return <View>{renderChildren(children)}</View>;
 }
 

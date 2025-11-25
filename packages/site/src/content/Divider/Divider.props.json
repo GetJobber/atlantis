@@ -18,7 +18,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"base\" | \"large\" | \"larger\" | \"largest\""
         }
       },
       "direction": {
@@ -33,7 +33,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"horizontal\" | \"vertical\""
         }
       },
       "testID": {
@@ -72,7 +72,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ readonly container?: React.CSSProperties; }"
+          "name": "{ readonly container?: CSSProperties; }"
         }
       }
     }

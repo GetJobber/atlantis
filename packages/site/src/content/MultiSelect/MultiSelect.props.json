@@ -55,7 +55,7 @@
         },
         "required": true,
         "type": {
-          "name": "Dispatch<React.SetStateAction<Options>>"
+          "name": "Dispatch<SetStateAction<Options>>"
         }
       },
       "size": {

@@ -126,7 +126,7 @@ export function InputPressableInternal(
     focused,
   }: InputPressableProps,
   ref: Ref<InputPressableRef>,
-): JSX.Element {
+) {
   const hasValue = !!value;
 
   const placeholderMode = getPlaceholderMode(showMiniLabel, value);

@@ -54,7 +54,8 @@ const Message = ({ question, response }: MessageProps) => (
               p: ({ children }) => <Text>{children}</Text>,
               pre: ({ children, ...props }) => {
                 const codeContent =
-                  (children as ReactElement)?.props?.children || "";
+                  (children as ReactElement<{ children: string }>)?.props
+                    ?.children || "";
 
                 return (
                   <div style={{ position: "relative" }}>

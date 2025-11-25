@@ -65,7 +65,7 @@ export function EmptyState({
   primaryAction,
   secondaryAction,
   iconColor = "blue",
-}: EmptyStateProps): JSX.Element {
+}: EmptyStateProps) {
   const styles = useStyles();
 
   return (

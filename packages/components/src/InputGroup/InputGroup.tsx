@@ -27,6 +27,7 @@ function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
   return (React.Children.toArray(childs) as ReactElement[]).some(child => {
     if (
       child.type === InputGroup &&
+      // @ts-expect-error - TODO: fix child.props type is unknown
       child.props.flowDirection != "horizontal"
     ) {
       console.error(

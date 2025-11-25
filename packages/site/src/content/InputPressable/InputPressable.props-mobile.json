@@ -200,7 +200,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<Text>"
+          "name": "Ref<Text>"
         }
       }
     }

@@ -63,7 +63,9 @@
         }
       },
       "as": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": "div"
+        },
         "description": "The HTML tag to render the container as. Defaults to `div`.",
         "name": "as",
         "parent": {
@@ -124,7 +126,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.AriaAttributes"
+          "name": "AriaAttributes"
         }
       },
       "role": {
@@ -137,7 +139,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.AriaRole"
+          "name": "AriaRole"
         }
       },
       "id": {

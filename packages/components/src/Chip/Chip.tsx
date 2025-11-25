@@ -135,9 +135,7 @@ function getTooltipMessage(
 
 ChipComponent.displayName = "Chip";
 
-const ChipNamespace = Object.assign(ChipComponent, {
+export const Chip = Object.assign(ChipComponent, {
   Prefix: ChipPrefix,
   Suffix: ChipSuffix,
 });
-
-export { ChipNamespace as Chip };

@@ -124,7 +124,7 @@ export function Button({
   icon,
   testID,
   UNSAFE_style,
-}: ButtonProps): JSX.Element {
+}: ButtonProps) {
   const { tokens } = useAtlantisTheme();
   const styles = useStyles();
 

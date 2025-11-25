@@ -61,7 +61,7 @@ export function Disclosure({
   onToggle,
   isEmpty,
   animationDuration = staticTokens["timing-slowest"],
-}: DisclosureProps): JSX.Element {
+}: DisclosureProps) {
   const styles = useStyles();
 
   return (

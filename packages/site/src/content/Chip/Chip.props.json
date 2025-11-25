@@ -152,7 +152,7 @@
         },
         "required": false,
         "type": {
-          "name": "(value: string | number, ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void"
+          "name": "(value: string | number, ev: MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>) => void"
         }
       },
       "onKeyDown": {
@@ -165,7 +165,7 @@
         },
         "required": false,
         "type": {
-          "name": "(ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void"
+          "name": "(ev: KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void"
         }
       },
       "ref": {
@@ -178,7 +178,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<HTMLButtonElement | HTMLDivElement>"
+          "name": "Ref<HTMLButtonElement | HTMLDivElement>"
         }
       }
     }
