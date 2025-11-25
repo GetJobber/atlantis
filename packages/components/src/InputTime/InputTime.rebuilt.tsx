@@ -93,6 +93,7 @@ export const InputTimeRebuilt = forwardRef<
         disabled={props.disabled}
         readOnly={readOnly}
         autoComplete={autoComplete}
+        autoFocus={props.autoFocus}
         max={props.max}
         min={props.min}
         value={dateToTimeString(value)}

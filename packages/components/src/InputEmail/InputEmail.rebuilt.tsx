@@ -76,7 +76,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       type="email"
       value={props.value}
       placeholder={props.placeholder}
-      autofocus={props.autoFocus}
       name={name}
     >
       <input

@@ -107,7 +107,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       size={props.size}
       align={props.align}
       inline={props.inline}
-      autofocus={props.autoFocus}
       name={name}
       wrapperRef={wrapperRef}
       error={props.error ?? ""}
