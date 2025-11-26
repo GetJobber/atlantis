@@ -4,12 +4,14 @@ import type {
   AriaInputProps,
   FocusEvents,
   HTMLInputBaseProps,
+  MouseEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
 export interface BaseCheckboxProps
   extends AriaInputProps,
     FocusEvents<HTMLInputElement>,
+    MouseEvents<HTMLInputElement>,
     Pick<HTMLInputBaseProps, "id" | "name" | "disabled">,
     Pick<RebuiltInputCommonProps, "description" | "invalid"> {
   /**

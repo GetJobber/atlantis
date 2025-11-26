@@ -1,7 +1,10 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Checkbox } from ".";
 import { Text } from "../Text";
+
+const user = userEvent.setup();
 
 describe("Checkbox", () => {
   it("renders a basic checkbox", () => {
@@ -84,7 +87,7 @@ describe("Checkbox", () => {
   });
 
   describe("Event handling", () => {
-    it("calls onChange with true when unchecked checkbox is clicked", () => {
+    it("calls onChange with true when unchecked checkbox is clicked", async () => {
       const handleChange = jest.fn();
       const { getByRole } = render(
         <Checkbox
@@ -95,12 +98,12 @@ describe("Checkbox", () => {
         />,
       );
 
-      fireEvent.click(getByRole("checkbox"));
+      await user.click(getByRole("checkbox"));
       expect(handleChange).toHaveBeenCalledWith(true, expect.any(Object));
       expect(handleChange).toHaveBeenCalledTimes(1);
     });
 
-    it("calls onChange with false when checked checkbox is clicked", () => {
+    it("calls onChange with false when checked checkbox is clicked", async () => {
       const handleChange = jest.fn();
       const { getByRole } = render(
         <Checkbox
@@ -111,7 +114,7 @@ describe("Checkbox", () => {
         />,
       );
 
-      fireEvent.click(getByRole("checkbox"));
+      await user.click(getByRole("checkbox"));
       expect(handleChange).toHaveBeenCalledWith(false, expect.any(Object));
       expect(handleChange).toHaveBeenCalledTimes(1);
     });
@@ -134,6 +137,28 @@ describe("Checkbox", () => {
 
       fireEvent.blur(getByRole("checkbox"));
       expect(handleBlur).toHaveBeenCalled();
+    });
+
+    it("calls all mouse event handlers when checkbox is clicked", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
+      const { getByRole } = render(
+        <Checkbox version={2} label="Click me" {...handlers} />,
+      );
+
+      const checkbox = getByRole("checkbox");
+      await user.click(checkbox);
+
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
     });
   });
 

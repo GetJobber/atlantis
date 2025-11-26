@@ -24,6 +24,11 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
     onBlur,
     onChange,
     onFocus,
+    onClick,
+    onMouseDown,
+    onMouseUp,
+    onPointerDown,
+    onPointerUp,
     invalid,
   } = props;
 
@@ -81,6 +86,11 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
             onChange={handleChange}
             onFocus={onFocus}
             onBlur={onBlur}
+            onClick={onClick}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onPointerDown={onPointerDown}
+            onPointerUp={onPointerUp}
             {...dataAttrs}
           />
           <span className={styles.checkBox}>
