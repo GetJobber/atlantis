@@ -42,13 +42,13 @@ describe("Post Requests", () => {
   });
 
   it("renders an InputFile with custom accepted MIME types", () => {
-    const { container } = render(
+    render(
       <InputFile
         allowedTypes={["image/png", "image/jpg", "application/pdf"]}
         getUploadParams={fetchUploadParams}
       />,
     );
-    const input = container.querySelector("input[type=file]");
+    const input = screen.getByTestId("input-file-input");
     expect(input).toHaveAttribute(
       "accept",
       "image/png,image/jpg,application/pdf",
@@ -106,7 +106,7 @@ describe("Post Requests", () => {
     const handleProgress = jest.fn();
     const handleComplete = jest.fn();
 
-    const { container } = render(
+    render(
       <InputFile
         getUploadParams={fetchParams}
         onUploadStart={handleStart}
@@ -114,9 +114,7 @@ describe("Post Requests", () => {
         onUploadComplete={handleComplete}
       />,
     );
-    const input = container.querySelector(
-      "input[type=file]",
-    ) as HTMLInputElement;
+    const input = screen.getByTestId("input-file-input");
 
     await userEvent.upload(input, testFile);
 
@@ -157,21 +155,40 @@ describe("Post Requests", () => {
 
   describe("when component fails to get upload params", () => {
     it("calls onError callback", async () => {
-      const fetchParams = jest.fn(() => Promise.reject("error"));
+      const fetchParams = jest.fn(() => Promise.reject());
       const handleError = jest.fn();
 
-      const { container } = render(
+      render(
         <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
       );
-      const input = container.querySelector(
-        "input[type=file]",
-      ) as HTMLInputElement;
+      const input = screen.getByTestId("input-file-input");
 
       await userEvent.upload(input, testFile);
 
       await waitFor(() => {
         expect(handleError).toHaveBeenCalledWith(
           new Error("Failed to get upload params"),
+        );
+      });
+    });
+
+    it("calls onError callback with the passed error if getUploadParams throws an error", async () => {
+      const fetchParams = jest.fn(() =>
+        Promise.reject(new Error("Custom Error Message")),
+      );
+      const handleError = jest.fn();
+
+      render(
+        <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
+      );
+
+      const input = screen.getByTestId("input-file-input");
+
+      await userEvent.upload(input, testFile);
+
+      await waitFor(() => {
+        expect(handleError).toHaveBeenCalledWith(
+          new Error("Custom Error Message"),
         );
       });
     });
@@ -186,12 +203,10 @@ describe("Post Requests", () => {
         new Error("Failed to upload file"),
       );
 
-      const { container } = render(
+      render(
         <InputFile getUploadParams={fetchParams} onUploadError={handleError} />,
       );
-      const input = container.querySelector(
-        "input[type=file]",
-      ) as HTMLInputElement;
+      const input = screen.getByTestId("input-file-input");
 
       await userEvent.upload(input, testFile);
 
@@ -216,27 +231,27 @@ describe("Post Requests", () => {
         return null;
       }
 
-      const { container } = render(
+      render(
         <InputFile
           getUploadParams={fetchUploadParams}
           validator={pngFileValidator}
         />,
       );
-      const input = container.querySelector(
-        "input[type=file]",
-      ) as HTMLInputElement;
+      const input = screen.getByTestId("input-file-input");
 
       await userEvent.upload(input, testFile);
 
       await waitFor(() => {
-        expect(container).toContainHTML("Only .png files are allowed");
+        expect(
+          screen.getByText("Only .png files are allowed", { exact: false }),
+        ).toBeInTheDocument();
       });
     });
   });
 
   describe("when the number of file uploads exceeds maxFiles", () => {
     it("shows the validation message and does not upload files", async () => {
-      const { container, getByText } = render(
+      render(
         <InputFile
           getUploadParams={fetchUploadParams}
           maxFilesValidation={{ maxFiles: 2, numberOfCurrentFiles: 0 }}
@@ -244,15 +259,13 @@ describe("Post Requests", () => {
         />,
       );
 
-      const input = container.querySelector(
-        "input[type=file]",
-      ) as HTMLInputElement;
+      const input = screen.getByTestId("input-file-input");
 
       await userEvent.upload(input, [testFile, testFile, testFile]);
 
       await waitFor(() => {
         expect(
-          getByText("Cannot exceed a maximum of 2 files."),
+          screen.getByText("Cannot exceed a maximum of 2 files."),
         ).toBeInTheDocument();
       });
 
@@ -262,7 +275,7 @@ describe("Post Requests", () => {
 
   describe("when allowedTypes uses FileTypes enum", () => {
     it("sets the correct MIME types for allowedTypes prop", () => {
-      const { container } = render(
+      render(
         <InputFile
           getUploadParams={fetchUploadParams}
           allowedTypes={[
@@ -279,9 +292,7 @@ describe("Post Requests", () => {
         />,
       );
 
-      const input = container.querySelector(
-        "input[type=file]",
-      ) as HTMLInputElement;
+      const input = screen.getByTestId<HTMLInputElement>("input-file-input");
 
       const expectedMimeTypes = [
         "image/jpeg",
@@ -319,7 +330,7 @@ describe("PUT requests", () => {
     const handleProgress = jest.fn();
     const handleComplete = jest.fn();
 
-    const { container } = render(
+    render(
       <InputFile
         getUploadParams={fetchParams}
         onUploadStart={handleStart}
@@ -327,9 +338,7 @@ describe("PUT requests", () => {
         onUploadComplete={handleComplete}
       />,
     );
-    const input = container.querySelector(
-      "input[type=file]",
-    ) as HTMLInputElement;
+    const input = screen.getByTestId("input-file-input");
 
     await userEvent.upload(input, testFile);
 
@@ -530,11 +539,11 @@ describe("Content", () => {
   });
 
   it("passes the name prop to the underlying input element", () => {
-    const { container } = render(
+    render(
       <InputFile getUploadParams={fetchUploadParams} name="file-upload" />,
     );
 
-    const input = container.querySelector("input[type=file]");
+    const input = screen.getByTestId("input-file-input");
     expect(input).toHaveAttribute("name", "file-upload");
   });
 });
