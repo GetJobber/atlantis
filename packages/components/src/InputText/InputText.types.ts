@@ -3,7 +3,6 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
-  InputLengthConstraint,
   KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
@@ -11,6 +10,19 @@ import type {
 export interface RowRange {
   min: number;
   max: number;
+}
+
+/**
+ * Character length constraint for inputs.
+ * Only extend this for text-based inputs where character limits make sense.
+ */
+interface InputLengthConstraint {
+  /**
+   * Maximum character length for the input.
+   * Note: This affects both HTML validation AND visual width of the component.
+   * Future work will separate these concerns.
+   */
+  readonly maxLength?: number;
 }
 
 export type InputTextVersion = 1 | 2 | undefined;
@@ -41,12 +53,12 @@ export interface InputTextRebuiltProps
   /**
    * Toolbar to render content below the input.
    */
-  readonly toolbar?: React.ReactNode;
+  readonly toolbar?: FormFieldProps["toolbar"];
 
   /**
    * Determines the visibility of the toolbar.
    */
-  readonly toolbarVisibility?: "always" | "while-editing";
+  readonly toolbarVisibility?: FormFieldProps["toolbarVisibility"];
 
   /**
    * The current value of the input.
@@ -62,9 +74,7 @@ export interface InputTextRebuiltProps
   ) => void;
 
   /**
-   * A callback to handle "Enter" keypress. This will only run
-   * if Enter is the only key. Will not run if Shift or Control
-   * are being held.
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
    */
   readonly onEnter?: FormFieldProps["onEnter"];
 }

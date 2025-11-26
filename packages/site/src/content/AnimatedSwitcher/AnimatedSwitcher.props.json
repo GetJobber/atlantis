@@ -31,7 +31,7 @@
         },
         "required": true,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "switchTo": {
@@ -44,7 +44,7 @@
         },
         "required": true,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "type": {

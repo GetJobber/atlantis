@@ -32,6 +32,19 @@
           "name": "(newValue: Date, event?: ChangeEvent<HTMLInputElement>) => void"
         }
       },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "@deprecated Use `onKeyDown` or `onKeyUp` instead.",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: KeyboardEvent<Element>) => void"
+        }
+      },
       "maxDate": {
         "defaultValue": null,
         "description": "The maximum selectable date.",
@@ -343,7 +356,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.FocusEvent<Target>) => void"
+          "name": "(event: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => void"
         }
       },
       "onBlur": {
@@ -356,7 +369,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.FocusEvent<Target>) => void"
+          "name": "(event: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => void"
         }
       },
       "onKeyDown": {
@@ -369,7 +382,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent<Target>) => void"
+          "name": "(event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void"
         }
       },
       "onKeyUp": {
@@ -382,20 +395,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent<Target>) => void"
-        }
-      },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "InputLengthConstraint"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
+          "name": "(event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void"
         }
       },
       "placeholder": {
@@ -525,7 +525,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<HTMLInputElement>"
+          "name": "Ref<HTMLInputElement>"
         }
       }
     }

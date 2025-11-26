@@ -87,7 +87,9 @@
         }
       },
       "as": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": "div"
+        },
         "description": "The HTML tag to render the cluster as.",
         "name": "as",
         "parent": {
@@ -148,7 +150,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.AriaAttributes"
+          "name": "AriaAttributes"
         }
       },
       "role": {
@@ -161,7 +163,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.AriaRole"
+          "name": "AriaRole"
         }
       },
       "id": {

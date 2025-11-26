@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "checked": {
@@ -226,7 +226,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.FocusEvent<Target>) => void"
+          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
       "onBlur": {
@@ -239,7 +239,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.FocusEvent<Target>) => void"
+          "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
       "id": {

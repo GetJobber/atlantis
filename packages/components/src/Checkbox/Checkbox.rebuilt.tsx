@@ -28,6 +28,7 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
   } = props;
 
   const descriptionIdentifier = useId();
+  const descriptionVisible = Boolean(description);
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
@@ -67,8 +68,9 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
             name={name}
             aria-label={props["aria-label"]}
             aria-describedby={
-              props["aria-describedby"] ||
-              (description ? descriptionIdentifier : undefined)
+              descriptionVisible
+                ? descriptionIdentifier
+                : props["aria-describedby"]
             }
             aria-invalid={isInvalid ? true : undefined}
             aria-required={props["aria-required"]}

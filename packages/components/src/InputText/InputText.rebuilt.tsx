@@ -1,3 +1,4 @@
+import type { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import React, { forwardRef, useId } from "react";
 import type { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
@@ -13,7 +14,7 @@ import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
-  inputRefs: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
+  inputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
 ) {
   const inputTextRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
       null,
@@ -47,15 +48,22 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     id: id,
   });
 
-  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
-    useInputTextActions({
-      onChange: props.onChange,
-      onBlur: props.onBlur,
-      onFocus: props.onFocus,
-      onKeyDown: props.onKeyDown,
-      onEnter: props.onEnter,
-      inputRef: inputTextRef,
-    });
+  const {
+    handleChange,
+    handleBlur,
+    handleFocus,
+    handleKeyDown,
+    handleKeyUp,
+    handleClear,
+  } = useInputTextActions({
+    onChange: props.onChange,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+    onKeyDown: props.onKeyDown,
+    onKeyUp: props.onKeyUp,
+    onEnter: props.onEnter,
+    inputRef: inputTextRef,
+  });
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const descriptionVisible = props.description && !props.inline;
@@ -90,8 +98,8 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     onBlur: handleBlur,
     onFocus: handleFocus,
     onKeyDown: handleKeyDown,
-    onKeyUp: props.onKeyUp,
-    ref: mergeRefs([inputRefs, inputTextRef]),
+    onKeyUp: handleKeyUp,
+    ref: mergeRefs([inputRef, inputTextRef]),
     ...dataAttrs,
   };
 
@@ -101,7 +109,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       size={props.size}
       align={props.align}
       inline={props.inline}
-      autofocus={props.autoFocus}
       name={name}
       wrapperRef={wrapperRef}
       error={props.error ?? ""}
@@ -142,19 +149,16 @@ function useInputTextId(props: InputTextRebuiltProps) {
   return props.id || generatedId;
 }
 
-interface TextAreaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+const TextArea = forwardRef<
+  HTMLTextAreaElement,
+  TextareaHTMLAttributes<HTMLTextAreaElement>
+>(function TextArea(props, ref) {
+  return <textarea {...props} ref={ref} />;
+});
 
-const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  function TextArea(props, ref) {
-    return <textarea {...props} ref={ref} />;
-  },
-);
-
-interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
-
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  function TextInput(props, ref) {
-    return <input {...props} ref={ref} />;
-  },
-);
+const TextInput = forwardRef<
+  HTMLInputElement,
+  InputHTMLAttributes<HTMLInputElement>
+>(function TextInput(props, ref) {
+  return <input {...props} ref={ref} />;
+});

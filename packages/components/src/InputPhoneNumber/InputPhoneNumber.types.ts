@@ -56,11 +56,9 @@ export interface InputPhoneNumberRebuiltProps
   ) => void;
 
   /**
-   * A callback to handle "Enter" keypress. This will only run
-   * if Enter is the only key. Will not run if Shift or Control
-   * are being held.
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
    */
-  readonly onEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  readonly onEnter?: FormFieldProps["onEnter"];
 
   /**
    * A pattern to specify the format to display the phone number in.

@@ -26,7 +26,9 @@ export function DataListActions<T extends DataListObject>({
 
   return (
     <>
-      {exposedActions.map(({ props }) => {
+      {exposedActions.map(({ props: actionProps }) => {
+        const props = actionProps as DataListActionProps<T>;
+        // @ts-expect-error - TODO: fix activeItem might be undefined
         const isVisible = props.visible ? props.visible(activeItem) : true;
         const hasIconOrAlwaysVisible = props.icon || props.alwaysVisible;
 
@@ -51,10 +53,12 @@ export function DataListActions<T extends DataListObject>({
           return (
             <Button
               ariaLabel={actionLabel}
+              // @ts-expect-error - TODO: fix props.label might be a function
               key={props.label}
               icon={props.icon}
               label={actionLabel}
               onClick={() => {
+                // @ts-expect-error - TODO: fix activeItem might be undefined
                 props.onClick?.(activeItem);
               }}
               type="secondary"
@@ -64,7 +68,9 @@ export function DataListActions<T extends DataListObject>({
         }
 
         return (
+          // @ts-expect-error - TODO: fix actionLabel might be undefined
           <Tooltip key={actionLabel} message={actionLabel}>
+            {/* @ts-expect-error - TODO: fix Button requires children? */}
             <Button
               icon={props.icon}
               ariaLabel={actionLabel}

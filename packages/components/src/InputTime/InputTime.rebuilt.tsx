@@ -1,4 +1,4 @@
-import React, { forwardRef, useId, useRef } from "react";
+import React, { useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
 import { useInputTimeActions } from "./hooks/useInputTimeActions";
 import type { InputTimeRebuiltProps } from "./InputTime.types";
@@ -7,29 +7,17 @@ import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 import { mergeRefs } from "../utils/mergeRefs";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
-export const InputTimeRebuilt = forwardRef<
-  HTMLInputElement,
-  InputTimeRebuiltProps
->(function InputTimeRebuilt(
-  {
-    value,
-    onChange,
-    readOnly,
-    autoComplete,
-    // Deprecated props
-    inputRef: deprecatedInputRef,
-    ...props
-  },
-  forwardedRef,
-) {
-  const internalRef = useRef<HTMLInputElement>(null);
-  const mergedRef = mergeRefs<HTMLInputElement>([
-    internalRef,
-    deprecatedInputRef as React.RefObject<HTMLInputElement>,
-    forwardedRef,
-  ]);
-  const id = props.id || useId();
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+export function InputTimeRebuilt({
+  value,
+  onChange,
+  readOnly,
+  autoComplete,
+  inputRef,
+  ...props
+}: InputTimeRebuiltProps) {
+  const { internalRef, mergedRef, wrapperRef } = useInputTimeRefs(inputRef);
+  const generatedId = useId();
+  const id = props.id || generatedId;
   const { inputStyle } = useFormFieldWrapperStyles(props);
 
   const {
@@ -64,6 +52,8 @@ export const InputTimeRebuilt = forwardRef<
   }
 
   const dataAttrs = filterDataAttributes(props);
+  const descriptionIdentifier = `descriptionUUID--${id}`;
+  const descriptionVisible = props.description && !props.inline;
   const isInvalid = Boolean(props.error || props.invalid);
 
   return (
@@ -75,10 +65,9 @@ export const InputTimeRebuilt = forwardRef<
       name={props.name}
       error={props.error || ""}
       identifier={id}
-      descriptionIdentifier={`descriptionUUID--${id}`}
-      invalid={Boolean(props.invalid)}
+      descriptionIdentifier={descriptionIdentifier}
+      invalid={props.invalid}
       description={props.description}
-      maxLength={props.maxLength}
       clearable={props.clearable ?? "never"}
       onClear={handleClear}
       type="time"
@@ -96,7 +85,7 @@ export const InputTimeRebuilt = forwardRef<
         disabled={props.disabled}
         readOnly={readOnly}
         autoComplete={autoComplete}
-        maxLength={props.maxLength}
+        autoFocus={props.autoFocus}
         max={props.max}
         min={props.min}
         value={dateToTimeString(value)}
@@ -107,11 +96,28 @@ export const InputTimeRebuilt = forwardRef<
         onKeyUp={handleKeyUp}
         data-testid="ATL-InputTime-input"
         aria-label={props["aria-label"]}
-        aria-describedby={props["aria-describedby"]}
+        aria-describedby={
+          descriptionVisible ? descriptionIdentifier : props["aria-describedby"]
+        }
         aria-invalid={isInvalid ? true : undefined}
         aria-required={props["aria-required"]}
         {...dataAttrs}
       />
     </FormFieldWrapper>
   );
-});
+}
+
+function useInputTimeRefs(
+  inputRef?: React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null
+  >,
+) {
+  const internalRef = useRef<HTMLInputElement>(null);
+  const mergedRef = mergeRefs<HTMLInputElement>([
+    internalRef,
+    inputRef as React.RefObject<HTMLInputElement>,
+  ]);
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+
+  return { internalRef, mergedRef, wrapperRef };
+}

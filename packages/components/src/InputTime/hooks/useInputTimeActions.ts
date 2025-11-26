@@ -10,7 +10,7 @@ export interface UseInputTimeActionsProps
   readonly value?: Date;
   readonly readOnly?: boolean;
   readonly disabled?: boolean;
-  readonly inputRef?: React.RefObject<HTMLInputElement>;
+  readonly inputRef?: React.RefObject<HTMLInputElement | null>;
 }
 
 export function useInputTimeActions({
