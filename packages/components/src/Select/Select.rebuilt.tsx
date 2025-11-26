@@ -13,20 +13,13 @@ import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
 
 export function SelectRebuilt(props: SelectRebuiltProps) {
-  const { inputRef } = props;
-
-  const internalRef = useRef<HTMLSelectElement>(null);
-  const mergedRef = mergeRefs<HTMLSelectElement>([
-    internalRef,
-    inputRef as React.RefObject<HTMLSelectElement>,
-  ]);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
+  const { mergedRef, wrapperRef } = useSelectRefs(props.inputRef);
   const { inputStyle } = useFormFieldWrapperStyles({
     ...omit(props, ["version"]),
   });
 
-  const id = props.id || useId();
+  const generatedId = useId();
+  const id = props.id || generatedId;
   const descriptionIdentifier = `descriptionUUID--${id}`;
 
   const { name } = useAtlantisFormFieldName({
@@ -93,4 +86,19 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       </>
     </FormFieldWrapper>
   );
+}
+
+function useSelectRefs(
+  inputRef?: React.RefObject<
+    HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement | null
+  >,
+) {
+  const internalRef = useRef<HTMLSelectElement>(null);
+  const mergedRef = mergeRefs<HTMLSelectElement>([
+    internalRef,
+    inputRef as React.RefObject<HTMLSelectElement>,
+  ]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  return { mergedRef, wrapperRef };
 }

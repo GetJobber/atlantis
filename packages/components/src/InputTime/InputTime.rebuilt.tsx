@@ -14,13 +14,9 @@ export function InputTimeRebuilt({
   inputRef,
   ...props
 }: InputTimeRebuiltProps) {
-  const internalRef = useRef<HTMLInputElement>(null);
-  const mergedRef = mergeRefs<HTMLInputElement>([
-    internalRef,
-    inputRef as React.RefObject<HTMLInputElement>,
-  ]);
-  const id = props.id || useId();
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const { internalRef, mergedRef, wrapperRef } = useInputTimeRefs(inputRef);
+  const generatedId = useId();
+  const id = props.id || generatedId;
   const { inputStyle } = useFormFieldWrapperStyles(props);
 
   const {
@@ -106,4 +102,19 @@ export function InputTimeRebuilt({
       />
     </FormFieldWrapper>
   );
+}
+
+function useInputTimeRefs(
+  inputRef?: React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null
+  >,
+) {
+  const internalRef = useRef<HTMLInputElement>(null);
+  const mergedRef = mergeRefs<HTMLInputElement>([
+    internalRef,
+    inputRef as React.RefObject<HTMLInputElement>,
+  ]);
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+
+  return { internalRef, mergedRef, wrapperRef };
 }
