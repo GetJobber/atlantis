@@ -66,13 +66,15 @@ function AutocompleteRebuiltInternal<
     activeIndex,
     open,
     listRef,
-    isClickingWithinRef,
+    inputElementRef,
+    isHandlingMenuInteractionRef,
     onSelection,
     onAction,
     onInputChangeFromUser,
     onInputBlur,
     onInputFocus,
     onInputKeyDown,
+    onInputClick,
     setReferenceElement,
   } = useAutocomplete<Value, Multiple>(props);
   const listboxId = React.useId();
@@ -96,14 +98,17 @@ function AutocompleteRebuiltInternal<
     onKeyDown: onInputKeyDown,
     onFocus: onInputFocus,
     onBlur: onInputBlur,
+    onClick: onInputClick,
   });
 
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
     onChange: props.readOnly ? undefined : onInputChangeFromUser,
-    // Ensure focus/blur callbacks still fire in readOnly mode where we don't spread getReferenceProps
-    ...(props.readOnly ? { onFocus: onInputFocus, onBlur: onInputBlur } : {}),
+    // Ensure focus/blur/click callbacks still fire in readOnly mode where we don't spread getReferenceProps
+    ...(props.readOnly
+      ? { onFocus: onInputFocus, onBlur: onInputBlur, onClick: onInputClick }
+      : {}),
     placeholder,
     disabled,
     readOnly: props.readOnly,
@@ -129,6 +134,7 @@ function AutocompleteRebuiltInternal<
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
     node: HTMLInputElement | HTMLTextAreaElement | null,
   ) => {
+    inputElementRef.current = node;
     setReferenceElement(node);
 
     // Workaround to get the width of the visual InputText element, which is not the same as
@@ -195,12 +201,6 @@ function AutocompleteRebuiltInternal<
                     : {}),
                 },
               })}
-              onPointerDown={() => {
-                isClickingWithinRef.current = true;
-              }}
-              onPointerUp={() => {
-                isClickingWithinRef.current = false;
-              }}
             >
               {/* Header persistents */}
               <PersistentRegion<Value>
@@ -214,6 +214,8 @@ function AutocompleteRebuiltInternal<
                 customRenderHeader={props.customRenderHeader}
                 customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
+                inputElementRef={inputElementRef}
+                isHandlingMenuInteractionRef={isHandlingMenuInteractionRef}
                 className={classNames(
                   styles.persistentHeader,
                   props.UNSAFE_className?.header,
@@ -245,6 +247,10 @@ function AutocompleteRebuiltInternal<
                         onSelect={onSelection}
                         onAction={onAction}
                         isOptionSelected={isOptionSelected}
+                        inputElementRef={inputElementRef}
+                        isHandlingMenuInteractionRef={
+                          isHandlingMenuInteractionRef
+                        }
                         slotOverrides={{
                           option: {
                             className: props.UNSAFE_className?.option,
@@ -277,6 +283,8 @@ function AutocompleteRebuiltInternal<
                 customRenderHeader={props.customRenderHeader}
                 customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
+                inputElementRef={inputElementRef}
+                isHandlingMenuInteractionRef={isHandlingMenuInteractionRef}
                 className={classNames(
                   styles.persistentFooter,
                   props.UNSAFE_className?.footer,

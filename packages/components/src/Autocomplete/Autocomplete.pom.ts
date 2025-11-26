@@ -86,6 +86,18 @@ export function getSelectedOption() {
   ) as HTMLElement | null;
 }
 
+export function getInput() {
+  return screen.getByRole("combobox") as HTMLInputElement;
+}
+
+export async function clickOnElement(text: string) {
+  await user.click(screen.getByText(text));
+}
+
+export async function clickOnInput() {
+  await user.click(getInput());
+}
+
 /**
  * Wait until the Autocomplete menu is visible (accounts for transitions)
  */
