@@ -11,12 +11,14 @@ import {
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export function SelectRebuilt(props: SelectRebuiltProps) {
   const { mergedRef, wrapperRef } = useSelectRefs(props.inputRef);
   const { inputStyle } = useFormFieldWrapperStyles({
     ...omit(props, ["version"]),
   });
+  const dataAttrs = filterDataAttributes(props);
 
   const generatedId = useId();
   const id = props.id || generatedId;
@@ -79,6 +81,7 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
             inputStyle,
             props.UNSAFE_experimentalStyles && styles.select,
           )}
+          {...dataAttrs}
         >
           {props.children}
         </select>

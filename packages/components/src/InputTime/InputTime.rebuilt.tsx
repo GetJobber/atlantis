@@ -5,6 +5,7 @@ import type { InputTimeRebuiltProps } from "./InputTime.types";
 import { dateToTimeString } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 import { mergeRefs } from "../utils/mergeRefs";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export function InputTimeRebuilt({
   value,
@@ -50,6 +51,7 @@ export function InputTimeRebuilt({
     !isNaN(parseInt(event.key, 10)) && setTypedTime(prev => prev + event.key);
   }
 
+  const dataAttrs = filterDataAttributes(props);
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const descriptionVisible = props.description && !props.inline;
   const isInvalid = Boolean(props.error || props.invalid);
@@ -99,6 +101,7 @@ export function InputTimeRebuilt({
         }
         aria-invalid={isInvalid ? true : undefined}
         aria-required={props["aria-required"]}
+        {...dataAttrs}
       />
     </FormFieldWrapper>
   );

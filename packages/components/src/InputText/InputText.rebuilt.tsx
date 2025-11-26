@@ -10,16 +10,16 @@ import {
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
   inputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement>,
 ) {
   const inputTextRef = React.useRef<HTMLInputElement | HTMLTextAreaElement>(
-    null,
-  );
-
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+      null,
+    ),
+    wrapperRef = React.useRef<HTMLDivElement>(null);
 
   const id = useInputTextId(props);
 
@@ -68,6 +68,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const descriptionVisible = props.description && !props.inline;
   const isInvalid = Boolean(props.error || props.invalid);
+  const dataAttrs = filterDataAttributes(props);
 
   // Shared props for both TextArea and TextInput
   const commonInputProps = {
@@ -99,6 +100,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     onKeyDown: handleKeyDown,
     onKeyUp: handleKeyUp,
     ref: mergeRefs([inputRef, inputTextRef]),
+    ...dataAttrs,
   };
 
   return (
