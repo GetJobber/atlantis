@@ -1,5 +1,4 @@
-import type { ForwardedRef } from "react";
-import React, { forwardRef } from "react";
+import React from "react";
 import type {
   InputTimeLegacyProps,
   InputTimeRebuiltProps,
@@ -15,13 +14,10 @@ function isNewInputTimeProps(
   return props.version === 2;
 }
 
-export const InputTime = forwardRef(function InputTimeShim(
-  props: InputTimeShimProps,
-  ref: ForwardedRef<HTMLInputElement>,
-) {
+export function InputTime(props: InputTimeShimProps) {
   if (isNewInputTimeProps(props)) {
-    return <InputTimeRebuilt {...props} ref={ref} />;
+    return <InputTimeRebuilt {...props} />;
   } else {
     return <InputTimeLegacy {...props} />;
   }
-});
+}

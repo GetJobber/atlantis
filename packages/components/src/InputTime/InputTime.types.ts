@@ -71,9 +71,6 @@ export interface InputTimeRebuiltProps
    */
   readonly min?: number;
 
-  /**
-   * @deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.
-   */
   readonly inputRef?: FormFieldProps["inputRef"];
 
   /**

@@ -1,4 +1,4 @@
-import React, { forwardRef, useId, useRef } from "react";
+import React, { useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
 import { useInputTimeActions } from "./hooks/useInputTimeActions";
 import type { InputTimeRebuiltProps } from "./InputTime.types";
@@ -6,26 +6,18 @@ import { dateToTimeString } from "./utils/input-time-utils";
 import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
 import { mergeRefs } from "../utils/mergeRefs";
 
-export const InputTimeRebuilt = forwardRef<
-  HTMLInputElement,
-  InputTimeRebuiltProps
->(function InputTimeRebuilt(
-  {
-    value,
-    onChange,
-    readOnly,
-    autoComplete,
-    // Deprecated props
-    inputRef: deprecatedInputRef,
-    ...props
-  },
-  forwardedRef,
-) {
+export function InputTimeRebuilt({
+  value,
+  onChange,
+  readOnly,
+  autoComplete,
+  inputRef,
+  ...props
+}: InputTimeRebuiltProps) {
   const internalRef = useRef<HTMLInputElement>(null);
   const mergedRef = mergeRefs<HTMLInputElement>([
     internalRef,
-    deprecatedInputRef as React.RefObject<HTMLInputElement>,
-    forwardedRef,
+    inputRef as React.RefObject<HTMLInputElement>,
   ]);
   const id = props.id || useId();
   const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -110,4 +102,4 @@ export const InputTimeRebuilt = forwardRef<
       />
     </FormFieldWrapper>
   );
-});
+}

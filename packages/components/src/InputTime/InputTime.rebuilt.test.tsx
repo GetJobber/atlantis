@@ -94,31 +94,6 @@ describe("InputTimeRebuilt", () => {
     expect(document.activeElement).toBe(inputRef.current);
   });
 
-  it("forwards modern ref to the input element", () => {
-    const ref = React.createRef<HTMLInputElement>();
-
-    render(<InputTime version={2} ref={ref} />);
-
-    const input = screen.getByTestId("ATL-InputTime-input");
-    expect(ref.current).toBe(input);
-    expect(ref.current).toBeInstanceOf(HTMLInputElement);
-  });
-
-  it("can access native input methods through modern ref", () => {
-    const ref = React.createRef<HTMLInputElement>();
-
-    render(<InputTime version={2} ref={ref} />);
-
-    const input = screen.getByTestId("ATL-InputTime-input");
-    expect(ref.current).toBe(input);
-
-    ref.current?.focus();
-    expect(input).toHaveFocus();
-
-    ref.current?.blur();
-    expect(input).not.toHaveFocus();
-  });
-
   it("should display the error message when error prop is provided", () => {
     const errorMessage = "Please enter a valid time";
     render(<InputTime version={2} error={errorMessage} />);
