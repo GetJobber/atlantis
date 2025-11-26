@@ -34,39 +34,52 @@
       },
       "value": {
         "defaultValue": null,
-        "description": "The currently selected value of the Autocomplete.\nSingle-select: undefined indicates no selection",
+        "description": "The currently selected value of the Autocomplete (controlled mode).\nSingle-select: undefined indicates no selection.\nIf omitted, the component manages its own value state (uncontrolled mode).",
         "name": "value",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
-        "required": true,
+        "required": false,
+        "type": {
+          "name": "Value[] | OptionLike"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "The initial value for uncontrolled mode.\nOnly used when value is not provided.",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
         "type": {
           "name": "Value[] | OptionLike"
         }
       },
       "inputValue": {
         "defaultValue": null,
-        "description": "The current input value of the Autocomplete.",
+        "description": "The current input value of the Autocomplete (controlled mode).\nIf omitted, the component manages its own input state based on the selected value.",
         "name": "inputValue",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
-        "required": true,
+        "required": false,
         "type": {
           "name": "string"
         }
       },
       "onInputChange": {
         "defaultValue": null,
-        "description": "Callback invoked when the input value changes.",
+        "description": "Callback invoked when the input value changes.\nIf omitted, the component manages its own input state based on the selected value.",
         "name": "onInputChange",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "AutocompleteRebuiltBaseProps"
         },
-        "required": true,
+        "required": false,
         "type": {
           "name": "(value: string) => void"
         }
@@ -510,7 +523,7 @@
       },
       "allowFreeForm": {
         "defaultValue": null,
-        "description": "Whether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options * in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and\nWhether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.\nWhether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.",
+        "description": "Whether the autocomplete allows free-form input.\nWhen true, the input value is not restricted to the options in the menu. Input can be used to create a new value.\nWhen false, the input value must match an option in the menu.\nInput value will be cleared if no selection is made and focus is lost.",
         "name": "allowFreeForm",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
@@ -536,13 +549,13 @@
       },
       "onChange": {
         "defaultValue": null,
-        "description": "Callback invoked when the selection value changes.\nThis is called when we consider a selection \"committed\"\n- The user presses enter\n- The user clicks outside the menu with a selection typed\n- The user clicks the clear button\nThe user clears a previous selection by deleting the input value\n- The user selects an option with click or enter\n- The user types a value that matches an option\n- The user types a value that does not match an option and allowFreeForm is true\nCallback invoked when the selection value changes.",
+        "description": "Callback invoked when the selection value changes.\nThis is called when we consider a selection \"committed\"\n- The user presses enter\n- The user clicks outside the menu with a selection typed\n- The user clicks the clear button\nThe user clears a previous selection by deleting the input value\n- The user selects an option with click or enter\n- The user types a value that matches an option\n- The user types a value that does not match an option and allowFreeForm is true\nOptional when value is not provided (uncontrolled mode).\nCallback invoked when the selection value changes.\nOptional when value is not provided (uncontrolled mode).",
         "name": "onChange",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
           "name": "FreeFormOn"
         },
-        "required": true,
+        "required": false,
         "type": {
           "name": "((value: AutocompleteValue<Value, Multiple>) => void) | ((value: AutocompleteValue<Value, Multiple>) => void)"
         }

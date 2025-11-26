@@ -360,18 +360,26 @@ interface AutocompleteRebuiltBaseProps<
    */
   readonly multiple?: Multiple;
   /**
-   * The currently selected value of the Autocomplete.
-   * Single-select: undefined indicates no selection
+   * The currently selected value of the Autocomplete (controlled mode).
+   * Single-select: undefined indicates no selection.
+   * If omitted, the component manages its own value state (uncontrolled mode).
    */
-  readonly value: AutocompleteValue<Value, Multiple>;
+  readonly value?: AutocompleteValue<Value, Multiple>;
   /**
-   * The current input value of the Autocomplete.
+   * The initial value for uncontrolled mode.
+   * Only used when value is not provided.
    */
-  readonly inputValue: string;
+  readonly defaultValue?: AutocompleteValue<Value, Multiple>;
+  /**
+   * The current input value of the Autocomplete (controlled mode).
+   * If omitted, the component manages its own input state based on the selected value.
+   */
+  readonly inputValue?: string;
   /**
    * Callback invoked when the input value changes.
+   * If omitted, the component manages its own input state based on the selected value.
    */
-  readonly onInputChange: (value: string) => void;
+  readonly onInputChange?: (value: string) => void;
 
   /**
    * Callback invoked when the input is blurred.
@@ -608,21 +616,18 @@ interface FreeFormOff<Value extends OptionLike, Multiple extends boolean> {
   readonly allowFreeForm?: false;
   /**
    * Callback invoked when the selection value changes.
+   * Optional when value is not provided (uncontrolled mode).
    */
-  readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
+  readonly onChange?: (value: AutocompleteValue<Value, Multiple>) => void;
 }
 
 interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
   /**
    * Whether the autocomplete allows free-form input.
-   * When true, the input value is not restricted to the options * in the menu. Input can be used to create a new value.
-   * When false, the input value must match an option in the menu.
-   * Input value will be cleared if no selection is made and
-   * Whether the autocomplete allows free-form input.
    * When true, the input value is not restricted to the options in the menu. Input can be used to create a new value.
    * When false, the input value must match an option in the menu.
    * Input value will be cleared if no selection is made and focus is lost.
-   * */
+   */
   readonly allowFreeForm: true;
   /**
    * Factory used to create a Value from free-form input when committing. Necessary with complex option values. The only value the input can produce is a string.
@@ -639,8 +644,9 @@ interface FreeFormOn<Value extends OptionLike, Multiple extends boolean> {
    * - The user selects an option with click or enter
    * - The user types a value that matches an option
    * - The user types a value that does not match an option and allowFreeForm is true
+   * Optional when value is not provided (uncontrolled mode).
    */
-  readonly onChange: (value: AutocompleteValue<Value, Multiple>) => void;
+  readonly onChange?: (value: AutocompleteValue<Value, Multiple>) => void;
 }
 
 export type ActionOrigin = "menu" | "empty";

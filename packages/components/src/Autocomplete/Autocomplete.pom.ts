@@ -12,7 +12,7 @@ export async function openAutocomplete(
   method?: "arrowDown" | "arrowUp" | "type",
   text?: string,
 ) {
-  const input = screen.getByRole("combobox");
+  const input = getInput();
   await user.click(input);
 
   if (method === "arrowDown") {
@@ -41,7 +41,7 @@ export async function selectWithClick(value: string) {
 }
 
 export async function focusAutocomplete() {
-  await user.click(screen.getByRole("combobox"));
+  await user.click(getInput());
 }
 
 export async function closeAutocomplete() {
@@ -49,7 +49,7 @@ export async function closeAutocomplete() {
 }
 
 export async function typeInInput(text: string) {
-  await user.type(screen.getByRole("combobox"), text);
+  await user.type(getInput(), text);
 }
 
 export async function deleteInput(times: number) {
@@ -57,7 +57,7 @@ export async function deleteInput(times: number) {
 }
 
 export async function clearInput() {
-  await user.clear(screen.getByRole("combobox"));
+  await user.clear(getInput());
 }
 
 export async function blurAutocomplete() {
@@ -102,4 +102,25 @@ export async function expectMenuClosed() {
   await waitFor(() => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
+}
+
+/**
+ * Get the input element
+ */
+export function getInput() {
+  return screen.getByRole("combobox");
+}
+
+/**
+ * Get the current input value
+ */
+export function getInputValue() {
+  return (getInput() as HTMLInputElement).value;
+}
+
+/**
+ * Expect the input to have a specific value
+ */
+export function expectInputValue(expectedValue: string) {
+  expect(getInputValue()).toBe(expectedValue);
 }

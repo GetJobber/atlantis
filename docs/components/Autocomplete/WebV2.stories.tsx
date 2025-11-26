@@ -709,6 +709,57 @@ const TemplateEverythingCustomized: ComponentStory<
   );
 };
 
+const TemplateUncontrolled: ComponentStory<typeof Autocomplete> = () => {
+  return (
+    <Content>
+      <Heading level={4}>Fully Uncontrolled (No state management)</Heading>
+      <Text>
+        When <Emphasis variation="italic">value</Emphasis>,{" "}
+        <Emphasis variation="italic">onChange</Emphasis>,{" "}
+        <Emphasis variation="italic">inputValue</Emphasis>, and{" "}
+        <Emphasis variation="italic">onInputChange</Emphasis> are all omitted,
+        the component manages its own state internally. Use{" "}
+        <Emphasis variation="italic">defaultValue</Emphasis> to set an initial
+        selection.
+      </Text>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        defaultValue={{ label: "Drain Cleaning" }}
+        menu={[{ type: "options", options: flatOptions }]}
+      />
+    </Content>
+  );
+};
+
+const TemplateSemiControlled: ComponentStory<typeof Autocomplete> = () => {
+  const [value, setValue] = useState<OptionLike | undefined>({
+    label: "Pipe Replacement",
+  });
+
+  return (
+    <Content>
+      <Heading level={4}>
+        Semi-Controlled (value controlled, input uncontrolled)
+      </Heading>
+      <Text>
+        Control the selection with <Emphasis variation="italic">value</Emphasis>{" "}
+        and <Emphasis variation="italic">onChange</Emphasis>, while letting the
+        component manage the input text automatically. The input text will sync
+        with the selected value.
+      </Text>
+      <Autocomplete
+        version={2}
+        placeholder="Search for a service"
+        value={value}
+        onChange={setValue}
+        menu={[{ type: "options", options: flatOptions }]}
+      />
+      <Text>Current value: {value?.label ?? "None"}</Text>
+    </Content>
+  );
+};
+
 export const Flat = TemplateFlat.bind({});
 export const Sectioned = TemplateSectioned.bind({});
 export const WithActions = TemplateWithActions.bind({});
@@ -718,3 +769,5 @@ export const HeaderFooter = TemplateHeaderFooter.bind({});
 export const FreeForm = TemplateFreeForm.bind({});
 export const AsyncUserManaged = TemplateAsyncUserManaged.bind({});
 export const EverythingCustomized = TemplateEverythingCustomized.bind({});
+export const Uncontrolled = TemplateUncontrolled.bind({});
+export const SemiControlled = TemplateSemiControlled.bind({});
