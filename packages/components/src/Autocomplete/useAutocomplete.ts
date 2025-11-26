@@ -288,6 +288,7 @@ export function useAutocomplete<
     navigableCount: totalNavigableCount,
     shouldResetActiveIndexOnClose: () => !hasSelection,
     selectedIndex,
+    readOnly,
     onMenuClose: () => {
       if (props.allowFreeForm !== true) {
         const hasText = inputValue.trim().length > 0;
@@ -680,14 +681,6 @@ export function useAutocomplete<
     ],
   );
 
-  const onInputClick = useCallback(() => {
-    // Clicking the input should open the menu, even if already focused
-    // This is distinct from openOnFocus
-    if (!readOnly && !open) {
-      setOpen(true);
-    }
-  }, [readOnly, open, setOpen]);
-
   return {
     // rendering data
     renderable,
@@ -720,7 +713,6 @@ export function useAutocomplete<
     onInputBlur,
     onInputFocus,
     onInputKeyDown,
-    onInputClick,
     // ref attachment
     setReferenceElement,
   };

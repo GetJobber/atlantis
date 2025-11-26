@@ -73,7 +73,6 @@ function AutocompleteRebuiltInternal<
     onInputBlur,
     onInputFocus,
     onInputKeyDown,
-    onInputClick,
     setReferenceElement,
   } = useAutocomplete<Value, Multiple>(props);
   const listboxId = React.useId();
@@ -97,17 +96,14 @@ function AutocompleteRebuiltInternal<
     onKeyDown: onInputKeyDown,
     onFocus: onInputFocus,
     onBlur: onInputBlur,
-    onClick: onInputClick,
   });
 
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
     onChange: props.readOnly ? undefined : onInputChangeFromUser,
-    // Ensure focus/blur/click callbacks still fire in readOnly mode where we don't spread getReferenceProps
-    ...(props.readOnly
-      ? { onFocus: onInputFocus, onBlur: onInputBlur, onClick: onInputClick }
-      : {}),
+    // Ensure focus/blur callbacks still fire in readOnly mode where we don't spread getReferenceProps
+    ...(props.readOnly ? { onFocus: onInputFocus, onBlur: onInputBlur } : {}),
     placeholder,
     disabled,
     readOnly: props.readOnly,
