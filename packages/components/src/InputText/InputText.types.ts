@@ -74,9 +74,7 @@ export interface InputTextRebuiltProps
   ) => void;
 
   /**
-   * A callback to handle "Enter" keypress. This will only run
-   * if Enter is the only key. Will not run if Shift or Control
-   * are being held.
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
    */
   readonly onEnter?: FormFieldProps["onEnter"];
 }

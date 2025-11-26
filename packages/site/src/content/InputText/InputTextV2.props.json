@@ -86,7 +86,7 @@
       },
       "onEnter": {
         "defaultValue": null,
-        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
+        "description": "@deprecated Use `onKeyDown` or `onKeyUp` instead.",
         "name": "onEnter",
         "parent": {
           "fileName": "packages/components/src/InputText/InputText.types.ts",
