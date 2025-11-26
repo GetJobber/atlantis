@@ -120,7 +120,11 @@ export function Tabs({
       <section
         role="tabpanel"
         className={styles.tabContent}
-        aria-label={activeTabProps?.label}
+        aria-label={
+          typeof activeTabProps?.label === "string"
+            ? activeTabProps.label
+            : undefined
+        }
       >
         {activeTabProps?.children}
       </section>
@@ -180,7 +184,7 @@ const InternalTab = React.forwardRef<HTMLButtonElement, InternalTabProps>(
 InternalTab.displayName = "InternalTab";
 
 function getActiveTabs(children: TabsProps["children"]) {
-  const activeTabChildren: ReactElement[] = [];
+  const activeTabChildren: ReactElement<TabProps, typeof Tab>[] = [];
 
   React.Children.toArray(children).forEach(child => {
     if (isChildTab(child)) {

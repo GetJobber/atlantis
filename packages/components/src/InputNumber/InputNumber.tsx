@@ -40,7 +40,7 @@ function InputNumberInternal(
   props: InputNumberProps,
   ref: Ref<InputNumberRef>,
 ) {
-  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
+  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement | null>();
 
   useImperativeHandle(ref, () => ({
     blur: () => {
@@ -62,6 +62,7 @@ function InputNumberInternal(
   return (
     <FormField
       {...props}
+      clearable={"never"}
       type="number"
       inputRef={inputRef}
       onChange={handleChange}

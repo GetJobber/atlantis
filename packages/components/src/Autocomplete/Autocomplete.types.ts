@@ -1,6 +1,26 @@
 import type { CSSProperties, Key, Ref, RefObject } from "react";
+import type {
+  AriaInputProps,
+  FocusEvents,
+  HTMLInputBaseProps,
+  RebuiltInputCommonProps,
+} from "../sharedHelpers/types";
 import type { FormFieldProps } from "../FormField";
 import type { InputTextRebuiltProps, InputTextRef } from "../InputText";
+
+/**
+ * ARIA attributes for Autocomplete with managed/orchestrated behavior.
+ * Certain ARIA attributes are controlled internally by Autocomplete's
+ * state management and floating-ui integration and shouldn't be overridden.
+ */
+interface AriaInputPropsManaged
+  extends Omit<
+    AriaInputProps,
+    | "aria-controls"
+    | "aria-expanded"
+    | "aria-activedescendant"
+    | "aria-autocomplete"
+  > {}
 
 // Extra props shape used across action/section/header/footer generics
 export type ExtraProps = Record<string, unknown>;
@@ -350,9 +370,21 @@ interface AutocompleteRebuiltBaseProps<
   Multiple extends boolean,
   SectionExtra extends object,
   ActionExtra extends object,
-> {
-  version: 2;
-
+> extends AriaInputPropsManaged,
+    Pick<HTMLInputBaseProps, "name" | "disabled" | "readOnly" | "autoFocus">,
+    Pick<
+      RebuiltInputCommonProps,
+      | "placeholder"
+      | "error"
+      | "invalid"
+      | "loading"
+      | "description"
+      | "size"
+      | "prefix"
+      | "suffix"
+      | "version"
+    >,
+    FocusEvents<HTMLInputElement | HTMLTextAreaElement> {
   /**
    * Whether the autocomplete allows multiple selections.
    * WARNING: This is currently incomplete and will not display selections, only data is returned.
@@ -372,15 +404,6 @@ interface AutocompleteRebuiltBaseProps<
    * Callback invoked when the input value changes.
    */
   readonly onInputChange: (value: string) => void;
-
-  /**
-   * Callback invoked when the input is blurred.
-   */
-  readonly onBlur?: () => void;
-  /**
-   * Callback invoked when the input is focused.
-   */
-  readonly onFocus?: () => void;
 
   /**
    * Custom equality for input text to option mapping.
@@ -533,44 +556,6 @@ interface AutocompleteRebuiltBaseProps<
   readonly openOnFocus?: boolean;
 
   /**
-   * The placeholder text for the input.
-   */
-  readonly placeholder?: string;
-  /**
-   * Whether the input is disabled.
-   */
-  readonly disabled?: boolean;
-  /**
-   * Error message to display below the input
-   * When present, invalid appearance applied to the input
-   */
-  readonly error?: string;
-  /**
-   * Whether the input is invalid. Receives invalid appearance.
-   */
-  readonly invalid?: boolean;
-  /**
-   * Whether the input is read-only.
-   * @default false
-   */
-  readonly readOnly?: boolean;
-  /**
-   * Description to display below the input
-   */
-  readonly description?: string;
-  /**
-   * Name of the input for form submission
-   */
-  readonly name?: string;
-  /**
-   * Size of the input
-   */
-  readonly size?: InputTextRebuiltProps["size"];
-
-  readonly suffix?: InputTextRebuiltProps["suffix"];
-  readonly prefix?: InputTextRebuiltProps["prefix"];
-
-  /**
    * Callback invoked when the menu opens.
    *
    */
@@ -580,12 +565,6 @@ interface AutocompleteRebuiltBaseProps<
    *
    */
   readonly onClose?: () => void;
-
-  /**
-   * Whether the menu is loading.
-   * Displays glimmers in the menu
-   */
-  readonly loading?: boolean;
 
   /**
    * Custom render prop for content to render when `loading` is true.

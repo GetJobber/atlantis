@@ -43,7 +43,7 @@ export function ActionLabel({
   type = "default",
   disabled = false,
   align = "center",
-}: ActionLabelProps): JSX.Element {
+}: ActionLabelProps) {
   return (
     <Typography
       color={getColor(variation, disabled)}

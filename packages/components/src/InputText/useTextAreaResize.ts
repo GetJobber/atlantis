@@ -13,8 +13,8 @@ export function useTextAreaResize({
 }: {
   rows?: number | RowRange;
   value: string | number | Date | undefined;
-  inputRef: RefObject<HTMLTextAreaElement | HTMLInputElement>;
-  wrapperRef: RefObject<HTMLDivElement>;
+  inputRef: RefObject<HTMLTextAreaElement | HTMLInputElement | null>;
+  wrapperRef: RefObject<HTMLDivElement | null>;
 }) {
   const rowRange = getRowRange(rows);
 

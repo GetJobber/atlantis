@@ -1,10 +1,10 @@
-import type { MutableRefObject } from "react";
+import type { RefObject } from "react";
 import { useContext, useEffect, useRef } from "react";
 import { type ComboboxOption } from "../Combobox.types";
 import { ComboboxContext } from "../ComboboxProvider";
 
 interface useComboboxContent {
-  optionsListRef: React.RefObject<HTMLUListElement>;
+  optionsListRef: RefObject<HTMLUListElement | null>;
   onClear?: () => void;
   onSelectAll?: (selection: ComboboxOption[]) => void;
 }
@@ -39,7 +39,7 @@ export function useComboboxContent(
 
 function scrollToFirstSelected(
   firstSelected: Element | undefined,
-  shouldScroll: MutableRefObject<boolean>,
+  shouldScroll: RefObject<boolean>,
 ) {
   if (firstSelected) {
     firstSelected.scrollIntoView({

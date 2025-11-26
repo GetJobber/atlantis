@@ -159,7 +159,7 @@
         },
         "required": false,
         "type": {
-          "name": "MutableRefObject<UseFormReturn<T> & { scrollViewRef?: RefObject<KeyboardAwareScrollView>; saveButtonHeight?: number; messageBannerHeight?: number; }>"
+          "name": "RefObject<UseFormReturn<T> & { scrollViewRef?: RefObject<KeyboardAwareScrollView>; saveButtonHeight?: number; messageBannerHeight?: number; }>"
         }
       },
       "saveButtonLabel": {
@@ -185,7 +185,7 @@
         },
         "required": false,
         "type": {
-          "name": "(onSubmit: () => void, label: string, isSubmitting: boolean) => Element"
+          "name": "(onSubmit: () => void, label: string, isSubmitting: boolean) => ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "localCacheKey": {
@@ -225,6 +225,19 @@
         "required": false,
         "type": {
           "name": "string | string[]"
+        }
+      },
+      "UNSAFE_allowDiscardLocalCacheWhenOffline": {
+        "defaultValue": null,
+        "description": "If true, the local cache will be removed when the user navigates away from\nthe dirty form even when offline. By default, cache is only removed on back when online.\nDefaults to false.",
+        "name": "UNSAFE_allowDiscardLocalCacheWhenOffline",
+        "parent": {
+          "fileName": "packages/components-native/src/Form/types.ts",
+          "name": "FormProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "secondaryActions": {

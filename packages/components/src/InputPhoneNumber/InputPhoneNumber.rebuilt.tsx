@@ -6,13 +6,13 @@ import styles from "./InputMask.module.css";
 import type { InputPhoneNumberRebuiltProps } from "./InputPhoneNumber.types";
 import { DEFAULT_PATTERN } from "./InputPhoneNumber.types";
 import { useInputPhoneActions } from "./hooks/useInputPhoneActions";
-import { useInputPhoneFormField } from "./hooks/useInputPhoneFormField";
 import {
   FormFieldWrapper,
   useAtlantisFormFieldName,
   useFormFieldWrapperStyles,
 } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const InputPhoneNumberRebuilt = forwardRef(
   function InputPhoneNumberInternal(
@@ -24,7 +24,14 @@ export const InputPhoneNumberRebuilt = forwardRef(
       React.useRef<HTMLInputElement>(null);
     const wrapperRef = React.useRef<HTMLDivElement>(null);
     const { inputStyle } = useFormFieldWrapperStyles({
-      ...props,
+      size: props.size,
+      align: props.align,
+      placeholder: props.placeholder,
+      value: props.value,
+      invalid: props.invalid,
+      error: props.error,
+      disabled: props.disabled,
+      inline: props.inline,
       type: "tel",
     });
     const generatedId = useId();
@@ -62,21 +69,10 @@ export const InputPhoneNumberRebuilt = forwardRef(
       inputRef: inputPhoneNumberRef,
     });
 
-    const { fieldProps, descriptionIdentifier } = useInputPhoneFormField({
-      id,
-      name,
-      handleChange,
-      handleBlur,
-      handleFocus,
-      handleKeyDown,
-      autofocus: props.autoFocus,
-      disabled: props.disabled,
-      readonly: props.readonly,
-      invalid: props.invalid,
-      error: props.error,
-      description: props.description,
-      inline: props.inline,
-    });
+    const descriptionIdentifier = `descriptionUUID--${id}`,
+      descriptionVisible = props.description && !props.inline;
+    const isInvalid = Boolean(props.error || props.invalid);
+    const dataAttrs = filterDataAttributes(props);
 
     return (
       <FormFieldWrapper
@@ -96,17 +92,42 @@ export const InputPhoneNumberRebuilt = forwardRef(
         value={formattedValue}
         prefix={props.prefix}
         suffix={props.suffix}
-        readonly={props.readonly}
+        readonly={props.readOnly}
         loading={props.loading}
       >
         <input
+          id={id}
+          name={name}
           type="tel"
-          {...fieldProps}
           ref={inputPhoneNumberRef}
           className={classNames(inputStyle, {
             [styles.emptyValue]: inputValue.length === 0 && pattern[0] === "(",
           })}
           value={formattedValue}
+          disabled={props.disabled}
+          readOnly={props.readOnly}
+          autoFocus={props.autoFocus}
+          autoComplete={props.autoComplete}
+          inputMode={props.inputMode}
+          tabIndex={props.tabIndex}
+          role={props.role}
+          aria-label={props["aria-label"]}
+          aria-describedby={
+            descriptionVisible
+              ? descriptionIdentifier
+              : props["aria-describedby"]
+          }
+          aria-invalid={isInvalid ? true : undefined}
+          aria-controls={props["aria-controls"]}
+          aria-expanded={props["aria-expanded"]}
+          aria-activedescendant={props["aria-activedescendant"]}
+          aria-autocomplete={props["aria-autocomplete"]}
+          aria-required={props["aria-required"]}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onKeyDown={handleKeyDown}
+          {...dataAttrs}
         />
         <MaskElement
           isMasking={isMasking}

@@ -16,7 +16,7 @@
         },
         "required": true,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "header": {
@@ -29,7 +29,7 @@
         },
         "required": true,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "open": {

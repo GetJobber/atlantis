@@ -1,13 +1,24 @@
 import type { IconColorNames, IconNames } from "@jobber/design";
 import type React from "react";
-import type { CSSProperties, ReactElement, ReactNode } from "react";
+import type {
+  CSSProperties,
+  ComponentProps,
+  ReactElement,
+  ReactNode,
+} from "react";
+import type { Pressable as AriaPressable } from "react-aria-components";
 import type { IconProps } from "../Icon";
 
+type PressableChild = ComponentProps<typeof AriaPressable>["children"];
 export interface MenuLegacyProps extends MenuBaseProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
    */
-  readonly activator?: ReactElement;
+  readonly activator?: ReactElement<{
+    fullWidth?: boolean;
+    onClick?: (event?: React.MouseEvent) => void;
+    [key: string]: unknown;
+  }>;
   /**
    * Collection of action items.
    */
@@ -151,11 +162,13 @@ export interface MenuHeaderComposableProps extends UnsafeProps {
   readonly children: ReactNode;
 }
 
+type MenuItemVariants = "destructive";
+
 export interface MenuItemComposableProps extends UnsafeProps {
   /**
-   * Apply destructive styling to the item label and icon.
+   * Visual style variations for the MenuItem default content.
    */
-  readonly destructive?: boolean;
+  readonly variation?: MenuItemVariants;
 
   /**
    * Item content.
@@ -207,7 +220,7 @@ export interface MenuTriggerComposableProps {
    * If you want to access the open event, use the onOpenChange on the Menu component.
    * If it does not have an interactive role, or a focus style it will have issues.
    */
-  readonly children: ReactNode;
+  readonly children: PressableChild;
 }
 
 export interface MenuSeparatorComposableProps extends UnsafeProps {}
@@ -215,4 +228,14 @@ export interface MenuSeparatorComposableProps extends UnsafeProps {}
 export type AnimationState = "unmounted" | "hidden" | "visible";
 export interface MenuMobileUnderlayProps {
   readonly animation: AnimationState;
+}
+
+export interface MenuItemLabelComposableProps {
+  /**
+   * Item label content.
+   * This is rendered inside a Typography (span) component, so you MUST supply either
+   * a string or a fragment/utility component that renders down to a raw string (e.g.
+   * translation helpers).
+   */
+  readonly children: React.ReactNode;
 }

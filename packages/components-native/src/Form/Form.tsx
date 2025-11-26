@@ -34,7 +34,7 @@ import { ErrorMessageProvider } from "../ErrorMessageWrapper";
 export function Form<T extends FieldValues, S>({
   initialLoading,
   ...rest
-}: FormProps<T, S>): JSX.Element {
+}: FormProps<T, S>) {
   const child = initialLoading ? <FormMask /> : <InternalForm {...rest} />;
 
   return (
@@ -66,6 +66,7 @@ function InternalForm<T extends FieldValues, S>({
   saveButtonOffset,
   showStickySaveButton = false,
   renderFooter,
+  UNSAFE_allowDiscardLocalCacheWhenOffline,
 }: InternalFormProps<T, S>) {
   const { scrollViewRef, bottomViewRef, scrollToTop } = useFormViewRefs();
   const [saveButtonHeight, setSaveButtonHeight] = useState(0);
@@ -87,6 +88,7 @@ function InternalForm<T extends FieldValues, S>({
     scrollViewRef,
     saveButtonHeight,
     messageBannerHeight,
+    UNSAFE_allowDiscardLocalCacheWhenOffline,
   });
   const { windowHeight, headerHeight } = useScreenInformation();
   const [keyboardHeight, setKeyboardHeight] = useState(0);

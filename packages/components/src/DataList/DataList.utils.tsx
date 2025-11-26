@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import React, { Children, isValidElement } from "react";
 import isEmpty from "lodash/isEmpty";
 import type {
+  DataListActionProps,
   DataListHeader,
   DataListItemType,
   DataListItemTypeFromHeader,
@@ -103,8 +104,8 @@ export function sortBreakpoints(sizeProp: Breakpoints[]) {
   );
 }
 
-export function getExposedActions(
-  childrenArray: ReactElement[],
+export function getExposedActions<T extends DataListObject>(
+  childrenArray: ReactElement<DataListActionProps<T>>[],
   childCount = 2,
 ) {
   const firstNChildren = childrenArray.slice(0, childCount);

@@ -22,7 +22,7 @@ interface MenuListProps<T extends OptionLike> {
   readonly getItemProps: (
     userProps?: Record<string, unknown>,
   ) => Record<string, unknown>;
-  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly listRef: React.RefObject<Array<HTMLElement | null>>;
   readonly listboxId: string;
   readonly customRenderOption?: AutocompleteRebuiltProps<
     T,
@@ -169,7 +169,7 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   readonly getItemProps: (
     userProps?: Record<string, unknown>,
   ) => Record<string, unknown>;
-  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly listRef: React.RefObject<Array<HTMLElement | null>>;
   readonly listboxId: string;
   readonly isOptionSelected: (option: T) => boolean;
   readonly customRenderOption?: AutocompleteRebuiltProps<
@@ -269,7 +269,7 @@ interface HandleActionRenderingProps<T extends OptionLike> {
   readonly getItemProps: (
     userProps?: Record<string, unknown>,
   ) => Record<string, unknown>;
-  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly listRef: React.RefObject<Array<HTMLElement | null>>;
   readonly listboxId: string;
   readonly customRenderAction?: AutocompleteRebuiltProps<
     T,

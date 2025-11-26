@@ -3,6 +3,110 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.104.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.104.0...@jobber/components@6.104.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* **components:** Replace HTMLInput Type Extension ([#2805](https://github.com/GetJobber/atlantis/issues/2805)) ([82f5ec4](https://github.com/GetJobber/atlantis/commit/82f5ec49e96f1fa60c4168cde1067a641beb4297)), closes [#2810](https://github.com/GetJobber/atlantis/issues/2810) [#2833](https://github.com/GetJobber/atlantis/issues/2833)
+
+
+
+
+
+# [6.104.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.6...@jobber/components@6.104.0) (2025-11-26)
+
+
+### Features
+
+* **components:** Forward errors from getUploadParams to onUploadError in InputFile  ([#2832](https://github.com/GetJobber/atlantis/issues/2832)) ([42e8e16](https://github.com/GetJobber/atlantis/commit/42e8e16b5083188bb2dd64a465ca3a2e9f1d4c20))
+
+
+
+
+
+## [6.103.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.5...@jobber/components@6.103.6) (2025-11-24)
+
+
+### Bug Fixes
+
+* fix and improve TS types related to react 19 upgrade ([#2821](https://github.com/GetJobber/atlantis/issues/2821)) ([d37070d](https://github.com/GetJobber/atlantis/commit/d37070d0b5bd4a603008cb9905ee3ce981df102b)), closes [#2831](https://github.com/GetJobber/atlantis/issues/2831) [#2829](https://github.com/GetJobber/atlantis/issues/2829) [#2827](https://github.com/GetJobber/atlantis/issues/2827) [#2830](https://github.com/GetJobber/atlantis/issues/2830)
+
+
+
+
+
+## [6.103.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.4...@jobber/components@6.103.5) (2025-11-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.103.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.3...@jobber/components@6.103.4) (2025-11-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.103.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.2...@jobber/components@6.103.3) (2025-11-13)
+
+
+### Bug Fixes
+
+* **components:** Use symbol in Select css nested selectors ([#2812](https://github.com/GetJobber/atlantis/issues/2812)) ([66f1e29](https://github.com/GetJobber/atlantis/commit/66f1e295dfa8f2590dbf23096fdf55ab3e505aef))
+
+
+
+
+
+## [6.103.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.1...@jobber/components@6.103.2) (2025-11-07)
+
+
+### Bug Fixes
+
+* **components:** add clearable behavior to V1 inputs ([#2806](https://github.com/GetJobber/atlantis/issues/2806)) ([9a0f5c5](https://github.com/GetJobber/atlantis/commit/9a0f5c5ff14ae4e0e8bb193b3166150e20fa9ded))
+
+
+
+
+
+## [6.103.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.0...@jobber/components@6.103.1) (2025-10-31)
+
+
+### Bug Fixes
+
+* **components:** Prevent Card accent from causing overflow under certain conditions ([#2802](https://github.com/GetJobber/atlantis/issues/2802)) ([e76e743](https://github.com/GetJobber/atlantis/commit/e76e7432a1ef9b5f80564d31b8f90fa3f986757e))
+
+
+
+
+
+# [6.103.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.102.0...@jobber/components@6.103.0) (2025-10-30)
+
+
+### Features
+
+* **components:** Improve Composable Menu Types ([#2782](https://github.com/GetJobber/atlantis/issues/2782)) ([1623907](https://github.com/GetJobber/atlantis/commit/16239073d2143263eda07faf63b17c1429cbfaed))
+
+
+
+
+
+# [6.102.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.4...@jobber/components@6.102.0) (2025-10-30)
+
+
+### Features
+
+* **components:** Support any ReactNode in Menu.ItemLabel ([#2801](https://github.com/GetJobber/atlantis/issues/2801)) ([949d31c](https://github.com/GetJobber/atlantis/commit/949d31cc3bd55d2a9b3996f513e7bd5542e6660a))
+
+
+
+
+
 ## [6.101.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.101.3...@jobber/components@6.101.4) (2025-10-27)
 
 

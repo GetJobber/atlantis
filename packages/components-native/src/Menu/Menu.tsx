@@ -20,11 +20,11 @@ import { useAtlantisContext } from "../AtlantisContext";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
 
-export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
+export function Menu({ menuOptions, customActivator }: MenuProps) {
   const [open, setOpen] = useState<boolean>(false);
   const [menuPosition, setMenuPosition] = useState<object>();
-  const activatorLayout = useRef<LayoutRectangle>();
-  const menuButtonRef = useRef<View | null>();
+  const activatorLayout = useRef<LayoutRectangle>(null);
+  const menuButtonRef = useRef<View>(null);
   const screenInfo = useScreenInformation();
 
   const { t } = useAtlantisI18n();
