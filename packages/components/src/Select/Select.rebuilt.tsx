@@ -26,8 +26,7 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
     ...omit(props, ["version"]),
   });
 
-  const generatedId = useId();
-  const id = props.id || generatedId;
+  const id = props.id || useId();
   const descriptionIdentifier = `descriptionUUID--${id}`;
 
   const { name } = useAtlantisFormFieldName({
@@ -41,6 +40,7 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
     onFocus: props.onFocus,
   });
 
+  const descriptionVisible = props.description && !props.inline;
   const isInvalid = Boolean(props.error || props.invalid);
 
   return (
@@ -75,10 +75,9 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
           value={props.value}
           aria-label={props["aria-label"]}
           aria-describedby={
-            props["aria-describedby"] ||
-            (props.description && !props.inline
+            descriptionVisible
               ? descriptionIdentifier
-              : undefined)
+              : props["aria-describedby"]
           }
           aria-invalid={isInvalid ? true : undefined}
           aria-required={props["aria-required"]}

@@ -54,6 +54,8 @@ export function InputTimeRebuilt({
     !isNaN(parseInt(event.key, 10)) && setTypedTime(prev => prev + event.key);
   }
 
+  const descriptionIdentifier = `descriptionUUID--${id}`;
+  const descriptionVisible = props.description && !props.inline;
   const isInvalid = Boolean(props.error || props.invalid);
 
   return (
@@ -65,7 +67,7 @@ export function InputTimeRebuilt({
       name={props.name}
       error={props.error || ""}
       identifier={id}
-      descriptionIdentifier={`descriptionUUID--${id}`}
+      descriptionIdentifier={descriptionIdentifier}
       invalid={props.invalid}
       description={props.description}
       clearable={props.clearable ?? "never"}
@@ -96,7 +98,9 @@ export function InputTimeRebuilt({
         onKeyUp={handleKeyUp}
         data-testid="ATL-InputTime-input"
         aria-label={props["aria-label"]}
-        aria-describedby={props["aria-describedby"]}
+        aria-describedby={
+          descriptionVisible ? descriptionIdentifier : props["aria-describedby"]
+        }
         aria-invalid={isInvalid ? true : undefined}
         aria-required={props["aria-required"]}
       />
