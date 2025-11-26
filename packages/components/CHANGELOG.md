@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.104.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.6...@jobber/components@6.104.0) (2025-11-26)
+
+
+### Features
+
+* **components:** Forward errors from getUploadParams to onUploadError in InputFile  ([#2832](https://github.com/GetJobber/atlantis/issues/2832)) ([42e8e16](https://github.com/GetJobber/atlantis/commit/42e8e16b5083188bb2dd64a465ca3a2e9f1d4c20))
+
+
+
+
+
 ## [6.103.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.5...@jobber/components@6.103.6) (2025-11-24)
 
 
