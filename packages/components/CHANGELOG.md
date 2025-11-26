@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.104.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.104.0...@jobber/components@6.104.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* **components:** Replace HTMLInput Type Extension ([#2805](https://github.com/GetJobber/atlantis/issues/2805)) ([82f5ec4](https://github.com/GetJobber/atlantis/commit/82f5ec49e96f1fa60c4168cde1067a641beb4297)), closes [#2810](https://github.com/GetJobber/atlantis/issues/2810) [#2833](https://github.com/GetJobber/atlantis/issues/2833)
+
+
+
+
+
 # [6.104.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.103.6...@jobber/components@6.104.0) (2025-11-26)
 
 
