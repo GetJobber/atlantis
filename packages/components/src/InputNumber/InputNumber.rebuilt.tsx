@@ -13,6 +13,7 @@ import styles from "./InputNumber.rebuilt.module.css";
 import type { InputNumberRebuiltProps } from "./InputNumber.rebuilt.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 const defaultFormatOptions: Intl.NumberFormatOptions = {
   notation: "standard",
@@ -65,7 +66,7 @@ export const InputNumberRebuilt = forwardRef(
       inline,
       invalid,
       placeholder,
-      readonly,
+      readOnly,
       showMiniLabel = true,
       size,
       minValue,
@@ -73,6 +74,7 @@ export const InputNumberRebuilt = forwardRef(
       ...ariaNumberFieldProps
     } = props;
 
+    const dataAttrs = filterDataAttributes(props);
     const stringDescription = typeof description === "string";
 
     return (
@@ -82,7 +84,7 @@ export const InputNumberRebuilt = forwardRef(
         formatOptions={mergedFormatOptions}
         isDisabled={disabled}
         isInvalid={invalid}
-        isReadOnly={readonly}
+        isReadOnly={readOnly}
         minValue={minValue}
         maxValue={maxValue}
         onBlur={e => props.onBlur?.(e as FocusEvent<HTMLInputElement>)}
@@ -110,6 +112,7 @@ export const InputNumberRebuilt = forwardRef(
                 className={styles.input}
                 placeholder=" " // used for CSS minilabel
                 ref={inputRef}
+                {...dataAttrs}
               />
               <Label className={styles.label}>{placeholder}</Label>
             </div>

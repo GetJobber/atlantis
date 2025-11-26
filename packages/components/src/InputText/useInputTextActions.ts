@@ -4,7 +4,7 @@ import type { InputTextRebuiltProps } from "./InputText.types";
 export interface useInputTextActionsProps
   extends Pick<
     InputTextRebuiltProps,
-    "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown"
+    "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown" | "onKeyUp"
   > {
   inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
 }
@@ -20,9 +20,9 @@ export function useInputTextActions({
   onFocus,
   onBlur,
   onKeyDown,
+  onKeyUp,
 }: useInputTextActionsProps) {
   function handleClear() {
-    handleBlur();
     onChange && onChange("");
     inputRef?.current?.focus();
   }
@@ -46,13 +46,21 @@ export function useInputTextActions({
     onEnter && onEnter(event);
   }
 
+  function handleKeyUp(
+    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onKeyUp?.(event);
+  }
+
   function handleFocus(
     event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     onFocus?.(event);
   }
 
-  function handleBlur(event?: FocusEvent) {
+  function handleBlur(
+    event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
     onBlur?.(event);
   }
 
@@ -60,6 +68,7 @@ export function useInputTextActions({
     handleClear,
     handleChange,
     handleKeyDown,
+    handleKeyUp,
     handleFocus,
     handleBlur,
   };

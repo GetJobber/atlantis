@@ -67,7 +67,7 @@ describe("InputTimeRebuilt", () => {
     expect(blurHandler).toHaveBeenCalledTimes(1);
   });
 
-  it("should call onChange with undefined, call onBlur, and focus input when cleared", async () => {
+  it("should call onChange with undefined and focus input when cleared", async () => {
     const startDate = createDate(10, 15);
     const changeHandler = jest.fn();
     const blurHandler = jest.fn();
@@ -89,7 +89,7 @@ describe("InputTimeRebuilt", () => {
     await userEvent.click(clearButton);
 
     expect(changeHandler).toHaveBeenCalledWith(undefined);
-    expect(blurHandler).toHaveBeenCalledTimes(1);
+    expect(blurHandler).not.toHaveBeenCalled();
 
     expect(document.activeElement).toBe(inputRef.current);
   });
@@ -225,7 +225,7 @@ describe("InputTimeRebuilt", () => {
       expect(mockSetTypedTime).not.toHaveBeenCalled();
     });
 
-    it("should not call setTypedTime if the input is readonly", async () => {
+    it("should not call setTypedTime if the input is readOnly", async () => {
       const handleChange = jest.fn();
 
       render(
@@ -233,7 +233,7 @@ describe("InputTimeRebuilt", () => {
           version={2}
           value={initialValue}
           onChange={handleChange}
-          readonly
+          readOnly
         />,
       );
       const input = screen.getByTestId("ATL-InputTime-input");

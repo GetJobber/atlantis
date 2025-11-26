@@ -1,24 +1,37 @@
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
-import type { InputTextRebuiltProps } from "../InputText/InputText.types";
+import type {
+  FocusEvents,
+  HTMLInputBaseProps,
+  KeyboardEvents,
+  RebuiltInputCommonProps,
+} from "../sharedHelpers/types";
 
 export interface InputDateRebuiltProps
-  extends Omit<
-    InputTextRebuiltProps,
-    | "clearable"
-    | "onChange"
-    | "value"
-    | "prefix"
-    | "suffix"
-    | "multiline"
-    | "rows"
-    | "type"
-    | "version"
-  > {
+  extends HTMLInputBaseProps,
+    FocusEvents<HTMLInputElement | HTMLTextAreaElement>,
+    KeyboardEvents<HTMLInputElement | HTMLTextAreaElement>,
+    Omit<RebuiltInputCommonProps, "clearable" | "prefix" | "suffix"> {
   /**
    * A Date object value
    * (e.g., `new Date("11/11/2011")`)
    * */
   readonly value?: Date;
+
+  /**
+   * Callback for value changes.
+   * @param newValue - The new Date value
+   * @param event - Optional change event
+   */
+  readonly onChange: (
+    newValue: Date,
+    event?: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
+
+  /**
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
+   */
+  readonly onEnter?: FormFieldProps["onEnter"];
+
   /**
    * The maximum selectable date.
    */
@@ -39,16 +52,6 @@ export interface InputDateRebuiltProps
    * Text to display instead of a date value
    */
   readonly emptyValueLabel?: string;
-
-  /**
-   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
-   */
-  readonly version: 2;
-
-  readonly onChange: (
-    newValue: Date,
-    event?: React.ChangeEvent<HTMLInputElement>,
-  ) => void;
 }
 
 export interface InputDateProps
