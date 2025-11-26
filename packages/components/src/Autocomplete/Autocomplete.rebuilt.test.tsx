@@ -36,6 +36,7 @@ import {
   navigateDown,
   navigateUp,
   openAutocomplete,
+  reopenAutocomplete,
   selectAll,
   selectWithClick,
   selectWithKeyboard,
@@ -847,7 +848,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
       await blurAutocomplete();
-      await openAutocomplete("arrowDown");
+      await reopenAutocomplete();
 
       await waitFor(() => {
         const activeOption = getActiveOption();
@@ -861,7 +862,7 @@ describe("AutocompleteRebuilt", () => {
 
       await openAutocomplete();
       await closeAutocomplete();
-      await openAutocomplete("arrowDown");
+      await reopenAutocomplete();
 
       await waitFor(() => {
         const activeOption = getActiveOption();
@@ -1126,8 +1127,8 @@ describe("AutocompleteRebuilt", () => {
       await navigateDown(3);
       await selectWithKeyboard();
 
-      // selection closed the menu
-      await openAutocomplete("arrowDown");
+      // selection closed the menu, but input still has focus
+      await reopenAutocomplete("arrowDown");
 
       await waitFor(() => {
         const activeOption = getActiveOption();
@@ -1142,8 +1143,8 @@ describe("AutocompleteRebuilt", () => {
       await navigateDown(3);
       await selectWithKeyboard();
 
-      // selection closed the menu
-      await openAutocomplete("arrowDown");
+      // selection closed the menu, but input still has focus
+      await reopenAutocomplete("arrowDown");
 
       await waitFor(() => {
         const activeOption = getActiveOption();
@@ -1166,8 +1167,8 @@ describe("AutocompleteRebuilt", () => {
       await navigateDown(3);
       await selectWithKeyboard();
 
-      // selection closed the menu
-      await openAutocomplete("arrowDown");
+      // selection closed the menu, but input still has focus
+      await reopenAutocomplete("arrowDown");
 
       await waitFor(() => {
         const activeOption = getActiveOption();
@@ -1202,7 +1203,8 @@ describe("AutocompleteRebuilt", () => {
       // Closed, but not unfocused
       await closeAutocomplete();
 
-      await openAutocomplete("arrowDown");
+      // Reopen with click to avoid navigating (input still has focus)
+      await reopenAutocomplete("click");
 
       const activeOptionAfterReopen = getActiveOption();
 
@@ -1258,8 +1260,8 @@ describe("AutocompleteRebuilt", () => {
       expect(activeAction).not.toBeNull();
 
       await selectWithKeyboard();
-      // Closed, but not unfocused so re-open with arrow down
-      await openAutocomplete("arrowDown");
+      // Action closed menu, but input still has focus - reopen with click to avoid navigating
+      await reopenAutocomplete("click");
 
       const activeOptionAfterReopen = getActiveOption();
 
@@ -1284,9 +1286,9 @@ describe("AutocompleteRebuilt", () => {
 
       expect(firstActiveOption).not.toBeNull();
       expect(firstActiveOption?.textContent).toContain("One");
-      // Maybe rename to "dismiss" or "ESC-something"
+      // Blur loses focus, so we need to click to refocus and reopen
       await blurAutocomplete();
-      await openAutocomplete("arrowDown");
+      await openAutocomplete();
 
       const activeOptionAfterReopen = getActiveOption();
 

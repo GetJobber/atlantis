@@ -669,6 +669,7 @@ export function useAutocomplete<
 
   const onInputClick = useCallback(() => {
     // Clicking the input should open the menu, even if already focused
+    // This is distinct from openOnFocus
     if (!readOnly && !open) {
       setOpen(true);
     }

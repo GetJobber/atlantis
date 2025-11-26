@@ -65,6 +65,7 @@
 .section {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
+  cursor: default;
 }
 
 .emptyStateMessage {
@@ -92,4 +93,5 @@
 
 .textPersistent {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
+  cursor: default;
 }

@@ -304,21 +304,27 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
   return (
     <Content>
       <Heading level={4}>Persistent header/footer actions</Heading>
+      <input type="text" />
       <Autocomplete
         version={2}
         placeholder="Search"
         value={value}
+        openOnFocus={false}
         onChange={setValue}
         onBlur={() => console.log("blurred")}
         inputValue={inputValue}
         onInputChange={setInputValue}
         menu={defineMenu<OptionLike>([
-          { type: "header", label: "Pinned header", shouldClose: false },
+          {
+            type: "header",
+            label: "Pinned header",
+            shouldClose: false,
+            onClick: () => console.log("clicked"),
+          },
           { type: "options", options: simpleOptions },
           {
             type: "footer",
             label: "Pinned footer",
-            onClick: () => console.log("Footer"),
           },
         ])}
       />

@@ -192,7 +192,6 @@ function handleTextPersistentRendering<T extends OptionLike>({
       className={styles.textPersistent}
       onMouseDown={e => {
         e.preventDefault();
-        e.stopPropagation();
       }}
     >
       {content}
@@ -258,14 +257,10 @@ function handleActionPersistentRendering<T extends OptionLike>({
             });
             // Refocus the input after action execution
             inputElementRef.current?.focus();
-            // Reset the flag after focus has been handled
-            setTimeout(() => {
-              isHandlingMenuInteractionRef.current = false;
-            }, 0);
+            isHandlingMenuInteractionRef.current = false;
           },
           onMouseDown: (e: React.MouseEvent) => {
             e.preventDefault();
-            e.stopPropagation();
             // Set flag to prevent blur/focus handlers from interfering
             isHandlingMenuInteractionRef.current = true;
           },

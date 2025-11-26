@@ -24,6 +24,25 @@ export async function openAutocomplete(
   }
 }
 
+/**
+ * Reopen the Autocomplete menu when already focused (after selection/close)
+ * Use this instead of openAutocomplete when focus is already on the input
+ * @param method - The method to reopen: "click", "arrowDown", or "arrowUp"
+ */
+export async function reopenAutocomplete(
+  method: "click" | "arrowDown" | "arrowUp" = "click",
+) {
+  const input = screen.getByRole("combobox");
+
+  if (method === "click") {
+    await user.click(input);
+  } else if (method === "arrowDown") {
+    await user.keyboard("{ArrowDown}");
+  } else if (method === "arrowUp") {
+    await user.keyboard("{ArrowUp}");
+  }
+}
+
 export async function navigateDown(times: number) {
   await user.keyboard("{ArrowDown}".repeat(times));
 }
