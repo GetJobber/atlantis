@@ -91,10 +91,6 @@ export async function selectWithClick(value: string) {
   await user.click(screen.getByText(value));
 }
 
-export async function focusAutocomplete() {
-  await user.click(screen.getByRole("combobox"));
-}
-
 export async function closeAutocomplete() {
   await user.keyboard("{Escape}");
 }

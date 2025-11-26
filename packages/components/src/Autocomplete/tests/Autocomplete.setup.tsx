@@ -197,18 +197,22 @@ export function FreeFormWrapper({
 }
 
 /**
- * Wrapper for testing openOnFocus=false behavior
+ * Wrapper for testing openOnFocus=false and readOnly behavior
  * Includes tabbable elements before and after the autocomplete
  * so tests can use tab navigation to focus without clicking
  */
 export function FocusableSiblingsWrapper<T extends OptionLike>({
+  onFocus,
   onChange,
   onInputChange,
   menu,
+  readOnly,
 }: {
   readonly onChange?: (v: T | undefined) => void;
   readonly onInputChange?: (v: string) => void;
   readonly menu?: MenuItem<T>[];
+  readonly readOnly?: boolean;
+  readonly onFocus?: () => void;
 }) {
   const [value, setValue] = React.useState<T | undefined>(undefined);
   const [inputValue, setInputValue] = React.useState<string>("");
@@ -223,11 +227,13 @@ export function FocusableSiblingsWrapper<T extends OptionLike>({
         version={2}
         value={value}
         onChange={onChange ?? setValue}
+        onFocus={onFocus}
         inputValue={inputValue}
         onInputChange={onInputChange ?? setInputValue}
         menu={menu ?? (built.menu as MenuItem<T>[])}
         placeholder=""
         openOnFocus={false}
+        readOnly={readOnly}
       />
       <button type="button" data-testid="after-button">
         After

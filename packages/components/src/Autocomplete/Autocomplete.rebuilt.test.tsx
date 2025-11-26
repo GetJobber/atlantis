@@ -29,7 +29,6 @@ import {
   deleteInput,
   expectMenuClosed,
   expectMenuShown,
-  focusAutocomplete,
   getActiveAction,
   getActiveOption,
   getSelectedOption,
@@ -969,18 +968,21 @@ describe("AutocompleteRebuilt", () => {
   });
 
   describe("readOnly", () => {
-    it("does not open on focus, arrows, or typing when readOnly", async () => {
-      render(<Wrapper openOnFocus readOnly />);
+    it("does not open on tab focus, click, arrows, or typing when readOnly", async () => {
+      render(<FocusableSiblingsWrapper readOnly />);
 
-      await focusAutocomplete();
+      // Tab to focus (without clicking)
+      await tabToInput();
       await expectMenuClosed();
 
+      // Arrow keys don't open
       await navigateDown(1);
       await expectMenuClosed();
 
       await navigateUp(1);
       await expectMenuClosed();
 
+      // Typing doesn't work
       await typeInInput("This is ignored");
       await expectMenuClosed();
       await expect(
@@ -988,23 +990,30 @@ describe("AutocompleteRebuilt", () => {
       ).not.toBeInTheDocument();
     });
 
+    it("does not open on click when readOnly", async () => {
+      render(<Wrapper readOnly />);
+
+      await openAutocomplete();
+      await expectMenuClosed();
+    });
+
     it("still calls onBlur when readOnly", async () => {
       const onBlur = jest.fn();
 
       render(<Wrapper readOnly onBlur={onBlur} />);
 
-      await focusAutocomplete();
+      await openAutocomplete();
       await blurAutocomplete();
 
       expect(onBlur).toHaveBeenCalled();
     });
 
-    it("still calls onFocus when readOnly", async () => {
+    it("still calls onFocus when readOnly (via click)", async () => {
       const onFocus = jest.fn();
 
-      render(<Wrapper openOnFocus readOnly onFocus={onFocus} />);
+      render(<Wrapper readOnly onFocus={onFocus} />);
 
-      await focusAutocomplete();
+      await openAutocomplete();
 
       expect(onFocus).toHaveBeenCalled();
     });
@@ -2156,68 +2165,6 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  describe("onFocus/onBlur", () => {
-    it("calls onFocus when the input is focused", async () => {
-      const onFocus = jest.fn();
-
-      render(<Wrapper onFocus={onFocus} />);
-
-      await focusAutocomplete();
-
-      expect(onFocus).toHaveBeenCalled();
-    });
-
-    it("calls onBlur when the input is blurred", async () => {
-      const onBlur = jest.fn();
-
-      render(<Wrapper onBlur={onBlur} />);
-
-      await focusAutocomplete();
-      await blurAutocomplete();
-
-      expect(onBlur).toHaveBeenCalled();
-    });
-
-    it("does not call onBlur when clicking within the floating menu", async () => {
-      const onBlur = jest.fn();
-      const onHeaderClick = jest.fn();
-
-      render(
-        <Wrapper
-          onBlur={onBlur}
-          menu={[
-            {
-              type: "header",
-              label: "Interactive Header",
-              onClick: onHeaderClick,
-            },
-            menuOptions<OptionLike>(
-              [{ label: "First Option" }],
-              [
-                {
-                  type: "action",
-                  label: "First Action",
-                  onClick: jest.fn(),
-                },
-              ],
-            ),
-          ]}
-        />,
-      );
-
-      await openAutocomplete();
-
-      const headerButton = screen.getByRole("button", {
-        name: "Interactive Header",
-      });
-
-      await userEvent.click(headerButton);
-
-      expect(onBlur).not.toHaveBeenCalled();
-      expect(onHeaderClick).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe("ref", () => {
     it("forwards ref to the input element", () => {
       const ref = React.createRef<HTMLInputElement | HTMLTextAreaElement>();
@@ -2315,7 +2262,76 @@ describe("AutocompleteRebuilt", () => {
   });
 
   // eslint-disable-next-line max-statements
-  describe("advanced blur and focus management", () => {
+  describe("blur and focus management", () => {
+    it("calls onFocus when the input is clicked", async () => {
+      const onFocus = jest.fn();
+
+      render(<Wrapper onFocus={onFocus} />);
+
+      await openAutocomplete();
+
+      expect(onFocus).toHaveBeenCalled();
+    });
+
+    it("calls onFocus when the input is focused", async () => {
+      const onFocus = jest.fn();
+
+      render(<FocusableSiblingsWrapper onFocus={onFocus} />);
+
+      await tabToInput();
+
+      expect(onFocus).toHaveBeenCalled();
+    });
+
+    it("calls onBlur when the input is blurred", async () => {
+      const onBlur = jest.fn();
+
+      render(<Wrapper onBlur={onBlur} />);
+
+      await openAutocomplete();
+      await blurAutocomplete();
+
+      expect(onBlur).toHaveBeenCalled();
+    });
+
+    it("does not call onBlur when clicking within the floating menu", async () => {
+      const onBlur = jest.fn();
+      const onHeaderClick = jest.fn();
+
+      render(
+        <Wrapper
+          onBlur={onBlur}
+          menu={[
+            {
+              type: "header",
+              label: "Interactive Header",
+              onClick: onHeaderClick,
+            },
+            menuOptions<OptionLike>(
+              [{ label: "First Option" }],
+              [
+                {
+                  type: "action",
+                  label: "First Action",
+                  onClick: jest.fn(),
+                },
+              ],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+
+      const headerButton = screen.getByRole("button", {
+        name: "Interactive Header",
+      });
+
+      await userEvent.click(headerButton);
+
+      expect(onBlur).not.toHaveBeenCalled();
+      expect(onHeaderClick).toHaveBeenCalledTimes(1);
+    });
     it("prevents blur when clicking on a section header", async () => {
       const onBlur = jest.fn();
 
@@ -2552,7 +2568,7 @@ describe("AutocompleteRebuilt", () => {
       await selectWithClick("One");
       await expectMenuClosed();
 
-      await focusAutocomplete();
+      await reopenAutocomplete();
 
       await expectMenuShown();
       expect(screen.getByRole("listbox")).toBeVisible();
@@ -2584,7 +2600,7 @@ describe("AutocompleteRebuilt", () => {
         </div>,
       );
 
-      await focusAutocomplete();
+      await openAutocomplete();
       await blurAutocomplete();
 
       expect(onBlur).toHaveBeenCalled();
