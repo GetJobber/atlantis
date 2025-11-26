@@ -17,7 +17,9 @@ export interface useInputTextActionsProps
     | "onKeyDown"
     | "onKeyUp"
     | "onMouseDown"
+    | "onMouseUp"
     | "onPointerDown"
+    | "onPointerUp"
     | "onClick"
   > {
   inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
@@ -36,7 +38,9 @@ export function useInputTextActions({
   onKeyDown,
   onKeyUp,
   onMouseDown,
+  onMouseUp,
   onPointerDown,
+  onPointerUp,
   onClick,
 }: useInputTextActionsProps) {
   function handleClear() {
@@ -87,10 +91,22 @@ export function useInputTextActions({
     onMouseDown?.(event);
   }
 
+  function handleMouseUp(
+    event: MouseEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onMouseUp?.(event);
+  }
+
   function handlePointerDown(
     event: PointerEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     onPointerDown?.(event);
+  }
+
+  function handlePointerUp(
+    event: PointerEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onPointerUp?.(event);
   }
 
   function handleClick(
@@ -107,7 +123,9 @@ export function useInputTextActions({
     handleFocus,
     handleBlur,
     handleMouseDown,
+    handleMouseUp,
     handlePointerDown,
+    handlePointerUp,
     handleClick,
   };
 }
