@@ -125,10 +125,57 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOption).toBeNull();
     });
 
-    it("opens on tab", async () => {
+    it("opens on tab (default openOnFocus)", async () => {
       render(<Wrapper />);
 
       await userEvent.tab();
+
+      await expectMenuShown();
+    });
+
+    it("opens when tabbing from previous focusable element (default openOnFocus)", async () => {
+      render(<FocusableSiblingsWrapper openOnFocus />);
+
+      await tabToInput();
+
+      await expectMenuShown();
+    });
+
+    it("stays open when clicking while menu is already open", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+      await expectMenuShown();
+
+      await openAutocomplete();
+
+      await expectMenuShown();
+    });
+
+    it("reopens when tabbing back after blur (default openOnFocus)", async () => {
+      render(<FocusableSiblingsWrapper openOnFocus />);
+
+      await openAutocomplete();
+      await expectMenuShown();
+
+      await userEvent.tab();
+      expect(screen.getByTestId("after-button")).toHaveFocus();
+      await expectMenuClosed();
+
+      await userEvent.tab({ shift: true });
+
+      await expectMenuShown();
+    });
+
+    it("opens when shift-tabbing backwards into autocomplete (default openOnFocus)", async () => {
+      render(<FocusableSiblingsWrapper openOnFocus />);
+
+      await userEvent.tab();
+      await userEvent.tab();
+      await userEvent.tab();
+      expect(screen.getByTestId("after-button")).toHaveFocus();
+
+      await userEvent.tab({ shift: true });
 
       await expectMenuShown();
     });
@@ -188,6 +235,37 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
 
       await expectMenuShown();
+    });
+
+    it("does not reopen when tabbing back after blur (openOnFocus=false)", async () => {
+      render(<FocusableSiblingsWrapper />);
+
+      await tabToInput();
+      await openWithKeyboard("arrowDown");
+      await expectMenuShown();
+
+      await userEvent.tab();
+      expect(screen.getByTestId("after-button")).toHaveFocus();
+      await expectMenuClosed();
+
+      await userEvent.tab({ shift: true });
+      expect(screen.getByRole("combobox")).toHaveFocus();
+
+      await expectMenuClosed();
+    });
+
+    it("does not open when shift-tabbing backwards into autocomplete (openOnFocus=false)", async () => {
+      render(<FocusableSiblingsWrapper />);
+
+      await userEvent.tab();
+      await userEvent.tab();
+      await userEvent.tab();
+      expect(screen.getByTestId("after-button")).toHaveFocus();
+
+      await userEvent.tab({ shift: true });
+      expect(screen.getByRole("combobox")).toHaveFocus();
+
+      await expectMenuClosed();
     });
   });
 
