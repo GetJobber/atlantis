@@ -136,4 +136,45 @@ describe("Checkbox", () => {
       expect(handleBlur).toHaveBeenCalled();
     });
   });
+
+  describe("Shared HTMLInputBaseProps", () => {
+    it("should render with id attribute", () => {
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" id="checkbox-id" />,
+      );
+      expect(getByRole("checkbox")).toHaveAttribute("id", "checkbox-id");
+    });
+
+    it("should render with name attribute", () => {
+      const { getByRole } = render(
+        <Checkbox version={2} label="Test" name="checkbox-name" />,
+      );
+      expect(getByRole("checkbox")).toHaveAttribute("name", "checkbox-name");
+    });
+
+    it("should render with disabled attribute when disabled", () => {
+      const { getByRole } = render(
+        <Checkbox version={2} label="Disabled" disabled />,
+      );
+      expect(getByRole("checkbox")).toBeDisabled();
+    });
+  });
+
+  describe("Shared RebuiltInputCommonProps", () => {
+    it("should apply invalid styling when invalid prop is true", () => {
+      const { container } = render(
+        <Checkbox version={2} label="Test" invalid />,
+      );
+      const wrapper = container.querySelector('[class*="wrapper"]');
+      expect(wrapper).toHaveClass("invalid");
+    });
+
+    it("should render with both description and invalid state", () => {
+      const description = "Please check this box";
+      const { getByText } = render(
+        <Checkbox version={2} label="Test" description={description} invalid />,
+      );
+      expect(getByText(description)).toBeInTheDocument();
+    });
+  });
 });

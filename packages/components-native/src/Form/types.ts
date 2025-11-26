@@ -1,4 +1,4 @@
-import type { MutableRefObject, RefObject } from "react";
+import type { ReactElement, RefObject } from "react";
 import type {
   ControllerProps,
   DefaultValues,
@@ -54,7 +54,7 @@ interface FormNoticeMessage {
 
 export type FormRef<T extends FieldValues = FieldValues> =
   | (UseFormReturn<T> & {
-      scrollViewRef?: RefObject<KeyboardAwareScrollView>;
+      scrollViewRef?: RefObject<KeyboardAwareScrollView | null>;
       saveButtonHeight?: number;
       messageBannerHeight?: number;
     })
@@ -127,7 +127,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
   /**
    * ref object to access react hook form methods and state
    */
-  formRef?: MutableRefObject<FormRef<T> | undefined>;
+  formRef?: RefObject<FormRef<T> | undefined>;
 
   /**
    * Label to be displayed for the save button
@@ -142,7 +142,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => JSX.Element;
+  ) => ReactElement;
 
   /**
    * Adding a key will save a local copy of the form data that will be used to
@@ -170,6 +170,13 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * If a user opens the same form the data will only be loaded if the `localCacheId` matches
    */
   localCacheId?: string | string[];
+
+  /**
+   * If true, the local cache will be removed when the user navigates away from
+   * the dirty form even when offline. By default, cache is only removed on back when online.
+   * Defaults to false.
+   */
+  UNSAFE_allowDiscardLocalCacheWhenOffline?: boolean;
 
   /**
    * Secondary Action for ButtonGroup

@@ -332,5 +332,254 @@
         }
       }
     }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Button/Button.tsx",
+    "description": "",
+    "displayName": "Button.Label",
+    "methods": [],
+    "props": {
+      "id": {
+        "defaultValue": null,
+        "description": "",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "size": {
+        "defaultValue": null,
+        "description": "",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\" | \"extravagant\" | \"jumbo\" | \"largest\" | \"larger\" | \"smaller\""
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classNames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ textStyle?: CSSProperties; }"
+        }
+      },
+      "element": {
+        "defaultValue": {
+          "value": "span"
+        },
+        "description": "",
+        "name": "element",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"b\" | \"em\" | \"dd\" | \"dt\" | \"strong\" | \"span\""
+        }
+      },
+      "fontWeight": {
+        "defaultValue": {
+          "value": "semiBold"
+        },
+        "description": "Aside from changing the font weights, this also changes the font family.\nSource sans for `regular` and `bold`.\nPoppins for `extraBold` and `black`.",
+        "name": "fontWeight",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"regular\" | \"medium\" | \"semiBold\" | \"bold\" | \"extraBold\" | \"black\""
+        }
+      },
+      "textCase": {
+        "defaultValue": null,
+        "description": "",
+        "name": "textCase",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"uppercase\" | \"lowercase\" | \"capitalize\" | \"none\""
+        }
+      },
+      "emphasisType": {
+        "defaultValue": null,
+        "description": "",
+        "name": "emphasisType",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"italic\" | \"highlight\""
+        }
+      },
+      "align": {
+        "defaultValue": {
+          "value": "\"start\""
+        },
+        "description": "Sets the alignment to start, center, or end.\nIn LTR scripts this equates to left, center, or right.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
+        }
+      },
+      "fontFamily": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "",
+        "name": "fontFamily",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"base\" | \"display\""
+        }
+      },
+      "numberOfLines": {
+        "defaultValue": null,
+        "description": "",
+        "name": "numberOfLines",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "underline": {
+        "defaultValue": null,
+        "description": "The style (and optionally a color) of underline the text is decorated with.\nAll semantic color tokens (other than the base values) defined in tokens.web\nare valid values. If omitted, no underline is applied.\n@example \"solid\" for a non-dashed underline of the same color as `textColor`\n@example \"double color-invoice\" for a double underline in the specified color",
+        "name": "underline",
+        "parent": {
+          "fileName": "packages/components/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 642 more ... | \"dashed color-client--onSurface\""
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Button/Button.tsx",
+    "description": "",
+    "displayName": "Button.Icon",
+    "methods": [],
+    "props": {
+      "size": {
+        "defaultValue": {
+          "value": "base"
+        },
+        "description": "Changes the size to small or large.",
+        "name": "size",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"small\" | \"base\" | \"large\""
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom classnames for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ svg?: string; path?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ svg?: CSSProperties; path?: CSSProperties; }"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The icon to show.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": true,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "testID": {
+        "defaultValue": null,
+        "description": "Used to locate this view in end-to-end tests",
+        "name": "testID",
+        "parent": {
+          "fileName": "packages/components/src/Icon/Icon.tsx",
+          "name": "IconProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
   }
 ]

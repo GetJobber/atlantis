@@ -251,7 +251,7 @@ describe("SelectRebuilt", () => {
     });
   });
 
-  describe("inputRef", () => {
+  describe("inputRef (deprecated)", () => {
     it("forwards inputRef to the select element", () => {
       const ref = React.createRef<HTMLSelectElement>();
 

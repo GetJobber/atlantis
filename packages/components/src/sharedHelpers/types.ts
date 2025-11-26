@@ -1,3 +1,9 @@
+import type { AriaAttributes, ReactNode } from "react";
+import type React from "react";
+import type { XOR } from "ts-xor";
+import type { Clearable } from "@jobber/hooks";
+import type { IconNames } from "../Icon";
+
 export interface CommonAtlantisProps {
   /** Standard HTML data attributes. Accepts anything in a {{"data-key":"value"}} format. */
   dataAttributes?: { [key: `data-${string}`]: string };
@@ -7,6 +13,252 @@ export interface CommonAtlantisProps {
   role?: React.AriaRole;
   /** Standard HTML id attribute. */
   id?: string;
+}
+
+/**
+ * Core ARIA attributes for input elements.
+ * Uses hyphenated naming to match HTML standard syntax.
+ * Based on React's canonical ARIA type definitions.
+ */
+export interface AriaInputProps {
+  /**
+   * Defines a string value that labels the current element.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-label}
+   */
+  readonly "aria-label"?: AriaAttributes["aria-label"];
+
+  /**
+   * Identifies the element (or elements) that labels the current element.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-labelledby}
+   */
+  readonly "aria-labelledby"?: AriaAttributes["aria-labelledby"];
+
+  /**
+   * Identifies the element (or elements) that describes the object.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-describedby}
+   */
+  readonly "aria-describedby"?: AriaAttributes["aria-describedby"];
+
+  /**
+   * Identifies the element (or elements) that provide a detailed, extended description.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-details}
+   */
+  readonly "aria-details"?: AriaAttributes["aria-details"];
+
+  /**
+   * ID of the currently active descendant element.
+   * Used for composite widgets like combobox or listbox.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant}
+   */
+  readonly "aria-activedescendant"?: AriaAttributes["aria-activedescendant"];
+
+  /**
+   * Indicates the element that controls the current element.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}
+   */
+  readonly "aria-controls"?: AriaAttributes["aria-controls"];
+
+  /**
+   * Indicates whether the element is expanded or collapsed.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-expanded}
+   */
+  readonly "aria-expanded"?: AriaAttributes["aria-expanded"];
+
+  /**
+   * Indicates the type of autocomplete interaction.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}
+   */
+  readonly "aria-autocomplete"?: AriaAttributes["aria-autocomplete"];
+
+  /**
+   * Indicates that user input is required before form submission.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}
+   */
+  readonly "aria-required"?: AriaAttributes["aria-required"];
+}
+
+/**
+ * Focus event handlers for input elements.
+ * Generic interface that can be specialized for different element types.
+ */
+export interface FocusEvents<Target = HTMLElement> {
+  /**
+   * Focus event handler.
+   */
+  readonly onFocus?: (event: React.FocusEvent<Target>) => void;
+
+  /**
+   * Blur event handler.
+   */
+  readonly onBlur?: (event: React.FocusEvent<Target>) => void;
+}
+
+/**
+ * Keyboard event handlers for input elements.
+ * Generic interface that can be specialized for different element types.
+ */
+export interface KeyboardEvents<Target = HTMLElement> {
+  /**
+   * Key down event handler.
+   */
+  readonly onKeyDown?: (event: React.KeyboardEvent<Target>) => void;
+
+  /**
+   * Key up event handler.
+   */
+  readonly onKeyUp?: (event: React.KeyboardEvent<Target>) => void;
+}
+
+/**
+ * Curated set of HTML input attributes for rebuilt input components.
+ * This provides a whitelist of standard HTML/React props we want to support,
+ * avoiding the issues of extending React.InputHTMLAttributes directly.
+ * Note: Event handlers and ARIA attributes are separate - use FocusEvents, KeyboardEvents, and AriaInputProps.
+ */
+export interface HTMLInputBaseProps extends AriaInputProps {
+  /**
+   * The unique identifier for the input element.
+   */
+  readonly id?: string;
+
+  /**
+   * The name attribute for the input element.
+   */
+  readonly name?: string;
+
+  /**
+   * Whether the input is disabled.
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Whether the input is read-only (HTML standard casing).
+   */
+  readonly readOnly?: boolean;
+
+  /**
+   * Whether the input should be auto-focused (React casing).
+   */
+  readonly autoFocus?: boolean;
+
+  /**
+   * Autocomplete behavior for the input (React casing, string values only).
+   * Use standard HTML autocomplete values or "on"/"off".
+   */
+  readonly autoComplete?: string;
+
+  /**
+   * Validation pattern (regex) for the input.
+   */
+  readonly pattern?: string;
+
+  /**
+   * Input mode hint for virtual keyboards.
+   */
+  readonly inputMode?:
+    | "none"
+    | "text"
+    | "tel"
+    | "url"
+    | "email"
+    | "numeric"
+    | "decimal"
+    | "search";
+
+  /**
+   * Role attribute for accessibility.
+   */
+  readonly role?: string;
+
+  /**
+   * Tab index for keyboard navigation.
+   */
+  readonly tabIndex?: number;
+}
+
+export interface Affix {
+  readonly label?: string;
+  readonly icon?: IconNames;
+}
+
+interface BaseSuffix extends Affix {
+  readonly icon: IconNames;
+  onClick?(): void;
+}
+
+export interface Suffix extends BaseSuffix {
+  onClick(): void;
+  readonly ariaLabel: string;
+}
+
+/**
+ * Common props shared across all rebuilt input components.
+ * These are Atlantis-specific features not part of standard HTML inputs.
+ */
+export interface RebuiltInputCommonProps {
+  /**
+   * Text that appears inside the input when empty and floats above the value
+   * as a mini label once the user enters a value.
+   * When showMiniLabel is false, this text only serves as a standard placeholder and
+   * disappears when the user types.
+   */
+  readonly placeholder?: string;
+
+  /**
+   * Error message to display. This also highlights the field red.
+   */
+  readonly error?: string;
+
+  /**
+   * Highlights the field red to indicate an error.
+   */
+  readonly invalid?: boolean;
+
+  /**
+   * Show a spinner to indicate loading.
+   */
+  readonly loading?: boolean;
+
+  /**
+   * Add a clear action on the input that clears the value.
+   */
+  readonly clearable?: Clearable;
+
+  /**
+   * Adjusts the interface to either have small or large spacing.
+   */
+  readonly size?: "small" | "large";
+
+  /**
+   * Adjusts the form field to go inline with content.
+   */
+  readonly inline?: boolean;
+
+  // TODO: Offer an explicit left or "base" alignment option for better DX and control.
+  /**
+   * Determines the alignment of the text inside the input.
+   */
+  readonly align?: "center" | "right";
+
+  /**
+   * Adds a prefix label and icon to the field.
+   */
+  readonly prefix?: Affix;
+
+  /**
+   * Adds a suffix label and icon with an optional action to the field.
+   */
+  readonly suffix?: XOR<Affix, Suffix>;
+
+  /**
+   * Further description of the input, can be used for a hint.
+   */
+  readonly description?: ReactNode;
+
+  /**
+   * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
+   */
+  readonly version: 2;
 }
 
 /** Represents a day of the week as a number where 0 = Sunday, 1 = Monday, etc. */

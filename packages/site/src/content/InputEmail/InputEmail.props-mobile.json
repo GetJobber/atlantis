@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "toolbarVisibility": {
@@ -134,6 +134,21 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "value": {
@@ -445,7 +460,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<InputTextRef>"
+          "name": "Ref<InputTextRef>"
         }
       }
     }

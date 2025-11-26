@@ -1,6 +1,6 @@
 import React from "react";
 
-export function InlineCode(props: unknown): JSX.Element {
+export function InlineCode(props: unknown) {
   const styles = {
     display: "inline-block",
     borderRadius: "var(--radius--base)",

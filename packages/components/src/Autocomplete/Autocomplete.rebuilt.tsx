@@ -19,6 +19,7 @@ import { InputText } from "../InputText";
 import type { InputTextRebuiltProps } from "../InputText/InputText.types";
 import { Glimmer } from "../Glimmer";
 import { mergeRefs } from "../utils/mergeRefs";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   Value extends OptionLike = OptionLike,
@@ -97,6 +98,8 @@ function AutocompleteRebuiltInternal<
     onBlur: onInputBlur,
   });
 
+  const dataAttrs = filterDataAttributes(props);
+
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
@@ -110,6 +113,7 @@ function AutocompleteRebuiltInternal<
     name: props.name,
     invalid,
     autoComplete: "off",
+    autoFocus: props.autoFocus,
     description,
     size: sizeProp ? sizeProp : undefined,
     prefix: props.prefix,
@@ -123,6 +127,7 @@ function AutocompleteRebuiltInternal<
       open && activeIndex != null
         ? `${listboxId}-item-${activeIndex}`
         : undefined,
+    ...dataAttrs,
   };
 
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (

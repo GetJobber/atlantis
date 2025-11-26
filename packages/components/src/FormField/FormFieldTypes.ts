@@ -161,7 +161,7 @@ export interface CommonFormFieldProps {
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
-  actionsRef?: RefObject<FieldActionsRef>;
+  actionsRef?: RefObject<FieldActionsRef | null>;
 
   /**
    * Determines if the input should be auto-focused, using the HTML attribute
@@ -183,10 +183,10 @@ export interface FormFieldProps extends CommonFormFieldProps {
   readonly children?: ReactNode;
 
   inputRef?: RefObject<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null
   >;
 
-  wrapperRef?: RefObject<HTMLDivElement>;
+  wrapperRef?: RefObject<HTMLDivElement | null>;
 
   /**
    * Initial value of the input. Only use this when you need to pre-populate
@@ -224,8 +224,6 @@ export interface FormFieldProps extends CommonFormFieldProps {
   readonly suffix?: XOR<Affix, Suffix>;
 
   /**
-   * Simplified onChange handler that only provides the new value.
-   * @param newValue
    * Specifies the minimum numerical or date value that a user can type
    */
   readonly min?: number;

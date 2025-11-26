@@ -7,8 +7,6 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
  * accidental highlighting of text in Android devices
  * https://github.com/software-mansion/react-native-gesture-handler/issues/1372
  */
-export function TypographyGestureDetector(
-  props: PropsWithChildren<unknown>,
-): JSX.Element {
+export function TypographyGestureDetector(props: PropsWithChildren<unknown>) {
   return <GestureDetector {...props} gesture={Gesture.Native()} />;
 }

@@ -130,7 +130,7 @@ const computeDisplayFromNumericInput = (
   }
 };
 
-export function InputCurrency(props: InputCurrencyProps): JSX.Element {
+export function InputCurrency(props: InputCurrencyProps) {
   const {
     showCurrencySymbol = true,
     maxDecimalPlaces = 5,

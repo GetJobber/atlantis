@@ -244,7 +244,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<{ open?: (dest?: TOpen) => void; close?: (dest?: TClose) => void; }>"
+          "name": "Ref<{ open?: (dest?: TOpen) => void; close?: (dest?: TClose) => void; }>"
         }
       }
     }

@@ -1,4 +1,4 @@
-import type { MutableRefObject, PropsWithChildren, ReactNode } from "react";
+import type { PropsWithChildren, ReactNode, RefObject } from "react";
 import type {
   ExtendedRefs,
   FloatingContext,
@@ -26,7 +26,7 @@ export interface ModalContextType {
    * Ref to specify the activator element. Useful if the activator can unmount
    * and needs to be re-mounted.
    */
-  readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
+  readonly activatorRef?: RefObject<HTMLElement | null>;
   /**
    * Refs used by floating-ui to position the modal.
    */
@@ -69,7 +69,7 @@ export interface ModalContextType {
    * Tracks whether the current pointer interaction began inside the dialog.
    * Used to disambiguate outsidePress after nested overlay closes.
    */
-  readonly startedInsideRef?: MutableRefObject<boolean>;
+  readonly startedInsideRef?: RefObject<boolean>;
 }
 
 export interface ModalActionsProps {

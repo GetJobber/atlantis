@@ -22,7 +22,7 @@ export function CardClickable({
   children,
   UNSAFE_style = {},
 }: ClickableCardProps) {
-  const cardRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const cardRef = useRef<HTMLDivElement>(null);
 
   return (
     <div

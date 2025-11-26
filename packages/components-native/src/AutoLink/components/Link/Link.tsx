@@ -8,11 +8,7 @@ interface LinkProps {
   readonly onLongPress?: () => void;
 }
 
-export function Link({
-  children,
-  onPress,
-  onLongPress,
-}: LinkProps): JSX.Element {
+export function Link({ children, onPress, onLongPress }: LinkProps) {
   return (
     <RNText onPress={onPress} onLongPress={onLongPress}>
       <Text variation="interactive">{children}</Text>

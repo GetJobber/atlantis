@@ -80,7 +80,7 @@ export function Card({
   testID = "card",
   error,
   elevation = "none",
-}: CardProps): JSX.Element {
+}: CardProps) {
   const styles = useStyles();
 
   return (

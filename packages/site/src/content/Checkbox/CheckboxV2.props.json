@@ -6,6 +6,58 @@
     "displayName": "CheckboxRebuilt",
     "methods": [],
     "props": {
+      "id": {
+        "defaultValue": null,
+        "description": "The unique identifier for the input element.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The name attribute for the input element.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "checked": {
         "defaultValue": null,
         "description": "Determines if the checkbox is checked or not.",
@@ -32,22 +84,9 @@
           "name": "boolean"
         }
       },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Disables the checkbox.",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "indeterminate": {
         "defaultValue": {
-          "value": false
+          "value": "false"
         },
         "description": "When `true` the checkbox to appears in indeterminate.",
         "name": "indeterminate",
@@ -58,19 +97,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "Checkbox input name",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
         }
       },
       "value": {
@@ -86,26 +112,130 @@
           "name": "string"
         }
       },
-      "id": {
+      "aria-label": {
         "defaultValue": null,
-        "description": "ID for the checkbox input",
-        "name": "id",
+        "description": "Defines a string value that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-label}",
+        "name": "aria-label",
         "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
         },
         "required": false,
         "type": {
           "name": "string"
         }
       },
+      "aria-labelledby": {
+        "defaultValue": null,
+        "description": "Identifies the element (or elements) that labels the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-labelledby}",
+        "name": "aria-labelledby",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-describedby": {
+        "defaultValue": null,
+        "description": "Identifies the element (or elements) that describes the object.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-describedby}",
+        "name": "aria-describedby",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-details": {
+        "defaultValue": null,
+        "description": "Identifies the element (or elements) that provide a detailed, extended description.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-details}",
+        "name": "aria-details",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-activedescendant": {
+        "defaultValue": null,
+        "description": "ID of the currently active descendant element.\nUsed for composite widgets like combobox or listbox.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant}",
+        "name": "aria-activedescendant",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-controls": {
+        "defaultValue": null,
+        "description": "Indicates the element that controls the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}",
+        "name": "aria-controls",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "aria-expanded": {
+        "defaultValue": null,
+        "description": "Indicates whether the element is expanded or collapsed.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-expanded}",
+        "name": "aria-expanded",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Booleanish"
+        }
+      },
+      "aria-autocomplete": {
+        "defaultValue": null,
+        "description": "Indicates the type of autocomplete interaction.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}",
+        "name": "aria-autocomplete",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"none\" | \"inline\" | \"list\" | \"both\""
+        }
+      },
+      "aria-required": {
+        "defaultValue": null,
+        "description": "Indicates that user input is required before form submission.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}",
+        "name": "aria-required",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "AriaInputProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Booleanish"
+        }
+      },
       "onFocus": {
         "defaultValue": null,
-        "description": "Called when the checkbox is focused",
+        "description": "Focus event handler.",
         "name": "onFocus",
         "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "FocusEvents"
         },
         "required": false,
         "type": {
@@ -114,28 +244,28 @@
       },
       "onBlur": {
         "defaultValue": null,
-        "description": "Called when the checkbox loses focus",
+        "description": "Blur event handler.",
         "name": "onBlur",
         "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "FocusEvents"
         },
         "required": false,
         "type": {
           "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
-      "invalid": {
+      "version": {
         "defaultValue": null,
-        "description": "Whether the checkbox is invalid",
-        "name": "invalid",
+        "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
+        "name": "version",
         "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
         },
-        "required": false,
+        "required": true,
         "type": {
-          "name": "boolean"
+          "name": "2"
         }
       },
       "label": {
@@ -144,7 +274,7 @@
         "name": "label",
         "required": false,
         "type": {
-          "name": "string | ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "string | ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "description": {
@@ -165,15 +295,6 @@
           "name": "(newValue: boolean, event: ChangeEvent<HTMLInputElement>) => void"
         }
       },
-      "version": {
-        "defaultValue": null,
-        "description": "Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.",
-        "name": "version",
-        "required": true,
-        "type": {
-          "name": "2"
-        }
-      },
       "ref": {
         "defaultValue": null,
         "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
@@ -184,7 +305,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<unknown>"
+          "name": "Ref<HTMLInputElement>"
         }
       }
     }

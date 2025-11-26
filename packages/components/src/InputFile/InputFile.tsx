@@ -400,8 +400,13 @@ export function InputFile({
 
     try {
       params = await getUploadParams(file);
-    } catch {
-      onUploadError && onUploadError(new Error("Failed to get upload params"));
+    } catch (error) {
+      onUploadError &&
+        onUploadError(
+          error instanceof Error
+            ? error
+            : new Error("Failed to get upload params"),
+        );
 
       return;
     }
