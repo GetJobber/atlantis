@@ -66,7 +66,6 @@ function AutocompleteRebuiltInternal<
     activeIndex,
     open,
     listRef,
-    inputElementRef,
     onSelection,
     onAction,
     onInteractionMouseDown,
@@ -134,7 +133,6 @@ function AutocompleteRebuiltInternal<
   const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
     node: HTMLInputElement | HTMLTextAreaElement | null,
   ) => {
-    inputElementRef.current = node;
     setReferenceElement(node);
 
     // Workaround to get the width of the visual InputText element, which is not the same as

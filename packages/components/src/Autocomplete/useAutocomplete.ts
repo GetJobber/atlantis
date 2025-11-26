@@ -51,9 +51,6 @@ export function useAutocomplete<
     debounce: debounceMs = 300,
   } = props;
 
-  const inputElementRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(
-    null,
-  );
   const isHandlingMenuInteractionRef = useRef(false);
 
   // TODO: Clean up the types in these refs by enhancing the type system in useCallbackRef
@@ -420,10 +417,10 @@ export function useAutocomplete<
       // Might not always want to close on selection. Multi for example.
       setOpen(false);
 
-      inputElementRef.current?.focus();
+      (refs.domReference.current as HTMLElement | null)?.focus();
       isHandlingMenuInteractionRef.current = false;
     },
-    [selectOption, setOpen],
+    [selectOption, setOpen, refs.domReference],
   );
 
   const onAction = useCallback(
@@ -434,10 +431,10 @@ export function useAutocomplete<
 
       if (action.closeOnRun !== false) setOpen(false);
 
-      inputElementRef.current?.focus();
+      (refs.domReference.current as HTMLElement | null)?.focus();
       isHandlingMenuInteractionRef.current = false;
     },
-    [setOpen, setActiveIndex],
+    [setOpen, setActiveIndex, refs.domReference],
   );
 
   /**
@@ -714,7 +711,6 @@ export function useAutocomplete<
     activeIndex,
     setActiveIndex,
     listRef,
-    inputElementRef,
     // actions
     onSelection,
     onAction,
