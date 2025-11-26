@@ -51,10 +51,7 @@ export function useAutocomplete<
     debounce: debounceMs = 300,
   } = props;
 
-  const inputElementRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(
-    null,
-  );
-  const isHandlingMenuInteractionRef = useRef(false);
+  const isClickingWithinRef = useRef(false);
 
   // TODO: Clean up the types in these refs by enhancing the type system in useCallbackRef
   const getOptionLabelPropRef = useCallbackRef((opt: unknown) =>
@@ -484,22 +481,16 @@ export function useAutocomplete<
 
   const onInputFocus = useCallback(() => {
     setInputFocused(true);
-
-    // Don't open the menu if we're in the middle of a menu interaction
-    if (!readOnly && openOnFocus && !isHandlingMenuInteractionRef.current) {
-      setOpen(true);
-    }
-
+    if (!readOnly && openOnFocus) setOpen(true);
     props.onFocus?.();
   }, [props.onFocus, readOnly, openOnFocus, setOpen]);
 
   const onInputBlur = useCallback(() => {
-    // Skip blur logic if we're in the middle of a menu interaction
-    if (isHandlingMenuInteractionRef.current) {
+    setInputFocused(false);
+
+    if (isClickingWithinRef.current) {
       return;
     }
-
-    setInputFocused(false);
 
     if (readOnly) {
       props.onBlur?.();
@@ -644,7 +635,7 @@ export function useAutocomplete<
       }
 
       // Important: update open state before propagating the change so that downstream effects
-      // don't see an intermediate state where inputValue changed but open was stale
+      // don’t see an intermediate state where inputValue changed but open was stale
       if (!readOnly) {
         const hasText = val.trim().length > 0;
         const mustSelectFromOptions = hasText && !props.allowFreeForm;
@@ -666,13 +657,6 @@ export function useAutocomplete<
       setOpen,
     ],
   );
-
-  const onInputClick = useCallback(() => {
-    // Clicking the input should open the menu, even if already focused
-    if (!readOnly && !open) {
-      setOpen(true);
-    }
-  }, [readOnly, open, setOpen]);
 
   return {
     // rendering data
@@ -697,8 +681,7 @@ export function useAutocomplete<
     activeIndex,
     setActiveIndex,
     listRef,
-    inputElementRef,
-    isHandlingMenuInteractionRef,
+    isClickingWithinRef,
     // actions
     onSelection,
     onAction,
@@ -707,7 +690,6 @@ export function useAutocomplete<
     onInputBlur,
     onInputFocus,
     onInputKeyDown,
-    onInputClick,
     // ref attachment
     setReferenceElement,
   };

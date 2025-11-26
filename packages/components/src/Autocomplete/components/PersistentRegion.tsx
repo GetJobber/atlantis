@@ -34,10 +34,6 @@ interface PersistentRegionProps<T extends OptionLike> {
   readonly className?: string;
   readonly style?: React.CSSProperties;
   readonly onAction: (action: ActionConfig) => void;
-  readonly inputElementRef: React.MutableRefObject<
-    HTMLInputElement | HTMLTextAreaElement | null
-  >;
-  readonly isHandlingMenuInteractionRef: React.MutableRefObject<boolean>;
 }
 
 export function PersistentRegion<T extends OptionLike>({
@@ -52,8 +48,6 @@ export function PersistentRegion<T extends OptionLike>({
   className,
   style,
   onAction,
-  inputElementRef,
-  isHandlingMenuInteractionRef,
 }: PersistentRegionProps<T>) {
   if (!items || items.length === 0) return null;
 
@@ -77,8 +71,6 @@ export function PersistentRegion<T extends OptionLike>({
           customRenderFooter,
           listRef,
           onAction,
-          inputElementRef,
-          isHandlingMenuInteractionRef,
           navigableIndex,
         });
 
@@ -110,10 +102,6 @@ interface HandlePersistentRenderingProps<T extends OptionLike> {
     | MenuFooter<Record<string, unknown>>;
   readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
   readonly onAction: (action: ActionConfig) => void;
-  readonly inputElementRef: React.MutableRefObject<
-    HTMLInputElement | HTMLTextAreaElement | null
-  >;
-  readonly isHandlingMenuInteractionRef: React.MutableRefObject<boolean>;
   readonly navigableIndex: number;
 }
 
@@ -127,8 +115,6 @@ function handlePersistentRendering<T extends OptionLike>({
   customRenderFooter,
   listRef,
   onAction,
-  inputElementRef,
-  isHandlingMenuInteractionRef,
   navigableIndex,
 }: HandlePersistentRenderingProps<T>): {
   node: React.ReactNode;
@@ -157,8 +143,6 @@ function handlePersistentRendering<T extends OptionLike>({
     customRenderFooter,
     listRef,
     onAction,
-    inputElementRef,
-    isHandlingMenuInteractionRef,
     navigableIndex,
   });
 }
@@ -190,10 +174,6 @@ function handleTextPersistentRendering<T extends OptionLike>({
       role="presentation"
       tabIndex={-1}
       className={styles.textPersistent}
-      onMouseDown={e => {
-        e.preventDefault();
-        e.stopPropagation();
-      }}
     >
       {content}
     </div>
@@ -210,8 +190,6 @@ function handleActionPersistentRendering<T extends OptionLike>({
   customRenderFooter,
   listRef,
   onAction,
-  inputElementRef,
-  isHandlingMenuInteractionRef,
   navigableIndex,
 }: HandlePersistentRenderingProps<T>): {
   node: React.ReactNode;
@@ -249,26 +227,13 @@ function handleActionPersistentRendering<T extends OptionLike>({
             const idx = indexOffset + nextNavigableIndex;
             if (persistNode) listRef.current[idx] = persistNode;
           },
-          onClick: () => {
+          onClick: () =>
             onAction({
               run: () => {
                 persistent.onClick?.();
               },
               closeOnRun: persistent.shouldClose,
-            });
-            // Refocus the input after action execution
-            inputElementRef.current?.focus();
-            // Reset the flag after focus has been handled
-            setTimeout(() => {
-              isHandlingMenuInteractionRef.current = false;
-            }, 0);
-          },
-          onMouseDown: (e: React.MouseEvent) => {
-            e.preventDefault();
-            e.stopPropagation();
-            // Set flag to prevent blur/focus handlers from interfering
-            isHandlingMenuInteractionRef.current = true;
-          },
+            }),
           className: classNames(styles.action, isActive && styles.actionActive),
         })}
         role="button"
