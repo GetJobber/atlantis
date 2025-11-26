@@ -39,11 +39,8 @@ interface MenuListProps<T extends OptionLike> {
   readonly getOptionLabel: (option: T) => string;
   readonly onSelect: (option: T) => void;
   readonly onAction: (action: ActionConfig) => void;
+  readonly onInteractionMouseDown: (e: React.MouseEvent) => void;
   readonly isOptionSelected: (option: T) => boolean;
-  readonly inputElementRef: React.MutableRefObject<
-    HTMLInputElement | HTMLTextAreaElement | null
-  >;
-  readonly isHandlingMenuInteractionRef: React.MutableRefObject<boolean>;
   readonly slotOverrides?: {
     option?: { className?: string; style?: React.CSSProperties };
     action?: { className?: string; style?: React.CSSProperties };
@@ -64,9 +61,8 @@ export function MenuList<T extends OptionLike>({
   getOptionLabel,
   onSelect,
   onAction,
+  onInteractionMouseDown,
   isOptionSelected,
-  inputElementRef,
-  isHandlingMenuInteractionRef,
   slotOverrides,
 }: MenuListProps<T>) {
   let navigableIndex = -1;
@@ -93,9 +89,8 @@ export function MenuList<T extends OptionLike>({
         customRenderOption,
         getOptionLabel,
         onSelect,
+        onInteractionMouseDown,
         indexOffset,
-        inputElementRef,
-        isHandlingMenuInteractionRef,
         optionClassName: slotOverrides?.option?.className,
         optionStyle: slotOverrides?.option?.style,
       });
@@ -114,9 +109,8 @@ export function MenuList<T extends OptionLike>({
       listboxId,
       customRenderAction,
       onAction,
+      onInteractionMouseDown,
       indexOffset,
-      inputElementRef,
-      isHandlingMenuInteractionRef,
       actionClassName: slotOverrides?.action?.className,
       actionStyle: slotOverrides?.action?.style,
       origin: item.origin,
@@ -192,11 +186,8 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   readonly getOptionLabel: (option: T) => string;
   // no explicit key getter; derived from option.key/label where used
   readonly onSelect: (option: T) => void;
+  readonly onInteractionMouseDown: (e: React.MouseEvent) => void;
   readonly indexOffset?: number;
-  readonly inputElementRef: React.MutableRefObject<
-    HTMLInputElement | HTMLTextAreaElement | null
-  >;
-  readonly isHandlingMenuInteractionRef: React.MutableRefObject<boolean>;
   readonly optionClassName?: string;
   readonly optionStyle?: React.CSSProperties;
 }
@@ -212,9 +203,8 @@ function handleOptionRendering<T extends OptionLike>({
   customRenderOption,
   getOptionLabel,
   onSelect,
+  onInteractionMouseDown,
   indexOffset = 0,
-  inputElementRef,
-  isHandlingMenuInteractionRef,
   optionClassName,
   optionStyle,
 }: HandleOptionRenderingProps<T>): {
@@ -242,17 +232,8 @@ function handleOptionRendering<T extends OptionLike>({
             const idx = nextNavigableIndex + indexOffset;
             if (node) listRef.current[idx] = node;
           },
-          onClick: () => {
-            onSelect(option);
-            inputElementRef.current?.focus();
-            // Reset the flag after focus has been handled
-            isHandlingMenuInteractionRef.current = false;
-          },
-          onMouseDown: (e: React.MouseEvent) => {
-            e.preventDefault();
-            // Set flag to prevent blur/focus handlers from interfering
-            isHandlingMenuInteractionRef.current = true;
-          },
+          onClick: () => onSelect(option),
+          onMouseDown: onInteractionMouseDown,
           className: classNames(
             styles.option,
             isActive && styles.optionActive,
@@ -305,11 +286,8 @@ interface HandleActionRenderingProps<T extends OptionLike> {
     false
   >["customRenderAction"];
   readonly onAction: (action: ActionConfig) => void;
+  readonly onInteractionMouseDown: (e: React.MouseEvent) => void;
   readonly indexOffset?: number;
-  readonly inputElementRef: React.MutableRefObject<
-    HTMLInputElement | HTMLTextAreaElement | null
-  >;
-  readonly isHandlingMenuInteractionRef: React.MutableRefObject<boolean>;
   readonly actionClassName?: string;
   readonly actionStyle?: React.CSSProperties;
   readonly origin?: ActionOrigin;
@@ -324,9 +302,8 @@ function handleActionRendering<T extends OptionLike>({
   listboxId,
   customRenderAction,
   onAction,
+  onInteractionMouseDown,
   indexOffset = 0,
-  inputElementRef,
-  isHandlingMenuInteractionRef,
   actionClassName,
   actionStyle,
   origin,
@@ -354,16 +331,8 @@ function handleActionRendering<T extends OptionLike>({
         run: action.onClick,
         closeOnRun: action.shouldClose,
       });
-      // Refocus the input after action execution
-      inputElementRef.current?.focus();
-      // Reset the flag after focus has been handled
-      isHandlingMenuInteractionRef.current = false;
     },
-    onMouseDown: (e: React.MouseEvent) => {
-      e.preventDefault();
-      // Set flag to prevent blur/focus handlers from interfering
-      isHandlingMenuInteractionRef.current = true;
-    },
+    onMouseDown: onInteractionMouseDown,
     className: classNames(
       styles.action,
       isActive && styles.actionActive,

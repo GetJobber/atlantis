@@ -419,6 +419,9 @@ export function useAutocomplete<
       selectOption(option);
       // Might not always want to close on selection. Multi for example.
       setOpen(false);
+
+      inputElementRef.current?.focus();
+      isHandlingMenuInteractionRef.current = false;
     },
     [selectOption, setOpen],
   );
@@ -430,9 +433,22 @@ export function useAutocomplete<
       setActiveIndex(null);
 
       if (action.closeOnRun !== false) setOpen(false);
+
+      inputElementRef.current?.focus();
+      isHandlingMenuInteractionRef.current = false;
     },
     [setOpen, setActiveIndex],
   );
+
+  /**
+   * Handler for mousedown on interactive menu items (options/actions)
+   * Prevents default to avoid blur and sets flag for focus management
+   */
+  const onInteractionMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    // Set flag to prevent blur/focus handlers from interfering
+    isHandlingMenuInteractionRef.current = true;
+  }, []);
 
   function commitFromInputText(inputText: string): boolean {
     if (inputText.length === 0) return false;
@@ -699,10 +715,10 @@ export function useAutocomplete<
     setActiveIndex,
     listRef,
     inputElementRef,
-    isHandlingMenuInteractionRef,
     // actions
     onSelection,
     onAction,
+    onInteractionMouseDown,
     // input handlers
     onInputChangeFromUser,
     onInputBlur,

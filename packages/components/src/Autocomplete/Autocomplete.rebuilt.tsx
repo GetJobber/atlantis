@@ -67,9 +67,9 @@ function AutocompleteRebuiltInternal<
     open,
     listRef,
     inputElementRef,
-    isHandlingMenuInteractionRef,
     onSelection,
     onAction,
+    onInteractionMouseDown,
     onInputChangeFromUser,
     onInputBlur,
     onInputFocus,
@@ -214,8 +214,7 @@ function AutocompleteRebuiltInternal<
                 customRenderHeader={props.customRenderHeader}
                 customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
-                inputElementRef={inputElementRef}
-                isHandlingMenuInteractionRef={isHandlingMenuInteractionRef}
+                onInteractionMouseDown={onInteractionMouseDown}
                 className={classNames(
                   styles.persistentHeader,
                   props.UNSAFE_className?.header,
@@ -246,11 +245,8 @@ function AutocompleteRebuiltInternal<
                         getOptionLabel={getOptionLabel}
                         onSelect={onSelection}
                         onAction={onAction}
+                        onInteractionMouseDown={onInteractionMouseDown}
                         isOptionSelected={isOptionSelected}
-                        inputElementRef={inputElementRef}
-                        isHandlingMenuInteractionRef={
-                          isHandlingMenuInteractionRef
-                        }
                         slotOverrides={{
                           option: {
                             className: props.UNSAFE_className?.option,
@@ -283,8 +279,7 @@ function AutocompleteRebuiltInternal<
                 customRenderHeader={props.customRenderHeader}
                 customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
-                inputElementRef={inputElementRef}
-                isHandlingMenuInteractionRef={isHandlingMenuInteractionRef}
+                onInteractionMouseDown={onInteractionMouseDown}
                 className={classNames(
                   styles.persistentFooter,
                   props.UNSAFE_className?.footer,
