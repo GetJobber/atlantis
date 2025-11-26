@@ -371,7 +371,7 @@ interface AutocompleteRebuiltBaseProps<
   SectionExtra extends object,
   ActionExtra extends object,
 > extends AriaInputPropsManaged,
-    Pick<HTMLInputBaseProps, "name" | "disabled" | "readOnly">,
+    Pick<HTMLInputBaseProps, "name" | "disabled" | "readOnly" | "autoFocus">,
     Pick<
       RebuiltInputCommonProps,
       | "placeholder"

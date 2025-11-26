@@ -12,7 +12,7 @@ export interface InputNumberRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
-    Omit<RebuiltInputCommonProps, "clearable"> {
+    Omit<RebuiltInputCommonProps, "clearable" | "suffix" | "prefix"> {
   readonly defaultValue?: number;
   readonly formatOptions?: Intl.NumberFormatOptions;
 

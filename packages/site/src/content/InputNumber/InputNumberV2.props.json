@@ -487,32 +487,6 @@
           "name": "\"center\" | \"right\""
         }
       },
-      "prefix": {
-        "defaultValue": null,
-        "description": "Adds a prefix label and icon to the field.",
-        "name": "prefix",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "RebuiltInputCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Affix"
-        }
-      },
-      "suffix": {
-        "defaultValue": null,
-        "description": "Adds a suffix label and icon with an optional action to the field.",
-        "name": "suffix",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "RebuiltInputCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
-        }
-      },
       "description": {
         "defaultValue": null,
         "description": "Further description of the input, can be used for a hint.",
