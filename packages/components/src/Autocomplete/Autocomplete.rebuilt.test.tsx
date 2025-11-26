@@ -36,13 +36,19 @@ import {
   navigateDown,
   navigateUp,
   openAutocomplete,
+  openWithKeyboard,
   reopenAutocomplete,
   selectAll,
   selectWithClick,
   selectWithKeyboard,
+  tabToInput,
   typeInInput,
 } from "./Autocomplete.pom";
-import { FreeFormWrapper, Wrapper } from "./tests/Autocomplete.setup";
+import {
+  FocusableSiblingsWrapper,
+  FreeFormWrapper,
+  Wrapper,
+} from "./tests/Autocomplete.setup";
 import { InputText } from "../InputText";
 import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
@@ -130,26 +136,37 @@ describe("AutocompleteRebuilt", () => {
   });
 
   describe("openOnFocus=false", () => {
-    it("opens the menu when arrowUp is pressed", async () => {
-      render(<Wrapper openOnFocus={false} />);
+    it("does not open menu on tab focus, only on arrowDown", async () => {
+      render(<FocusableSiblingsWrapper />);
 
-      await openAutocomplete("arrowUp");
+      await tabToInput();
+      await expectMenuClosed();
 
-      await expectMenuShown();
-    });
-
-    it("opens the menu when arrowDown is pressed", async () => {
-      render(<Wrapper openOnFocus={false} />);
-
-      await openAutocomplete("arrowDown");
+      await openWithKeyboard("arrowDown");
 
       await expectMenuShown();
     });
 
-    it("opens the menu when user types", async () => {
-      render(<Wrapper openOnFocus={false} />);
+    it("does not open menu on tab focus, only on arrowUp", async () => {
+      render(<FocusableSiblingsWrapper />);
 
-      await openAutocomplete("type", "Two");
+      await tabToInput();
+
+      await expectMenuClosed();
+
+      await openWithKeyboard("arrowUp");
+
+      await expectMenuShown();
+    });
+
+    it("does not open menu on tab focus, only on typing", async () => {
+      render(<FocusableSiblingsWrapper />);
+
+      await tabToInput();
+
+      await expectMenuClosed();
+
+      await openWithKeyboard("type", "Two");
 
       await expectMenuShown();
     });
@@ -157,13 +174,21 @@ describe("AutocompleteRebuilt", () => {
     it("does not select on Enter when menu is closed and free-form is disabled", async () => {
       const onChange = jest.fn();
 
-      render(<Wrapper onChange={onChange} openOnFocus={false} />);
+      render(<FocusableSiblingsWrapper onChange={onChange} />);
 
-      await focusAutocomplete();
+      await tabToInput();
 
       await selectWithKeyboard();
 
       expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("should still open the menu on click, regardless of openOnFocus", async () => {
+      render(<FocusableSiblingsWrapper />);
+
+      await openAutocomplete();
+
+      await expectMenuShown();
     });
   });
 
