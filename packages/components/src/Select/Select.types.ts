@@ -2,6 +2,7 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
+  MouseEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
@@ -48,6 +49,7 @@ export interface SelectLegacyProps
 export interface SelectRebuiltProps
   extends Omit<HTMLInputBaseProps, "readOnly">,
     FocusEvents<HTMLSelectElement>,
+    MouseEvents<HTMLSelectElement>,
     Omit<RebuiltInputCommonProps, "clearable" | "prefix" | "suffix" | "align">,
     Pick<SelectLegacyProps, "prefix" | "suffix" | "align" | "children"> {
   defaultValue?: never;

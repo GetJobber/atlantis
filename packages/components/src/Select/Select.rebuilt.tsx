@@ -29,10 +29,24 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
     id: id,
   });
 
-  const { handleChange, handleBlur, handleFocus } = useSelectActions({
+  const {
+    handleChange,
+    handleBlur,
+    handleFocus,
+    handleClick,
+    handleMouseDown,
+    handleMouseUp,
+    handlePointerDown,
+    handlePointerUp,
+  } = useSelectActions({
     onChange: props.onChange,
     onBlur: props.onBlur,
     onFocus: props.onFocus,
+    onClick: props.onClick,
+    onMouseDown: props.onMouseDown,
+    onMouseUp: props.onMouseUp,
+    onPointerDown: props.onPointerDown,
+    onPointerUp: props.onPointerUp,
   });
 
   const descriptionVisible = props.description && !props.inline;
@@ -67,6 +81,11 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
           onChange={handleChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
+          onClick={handleClick}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
           value={props.value}
           aria-label={props["aria-label"]}
           aria-describedby={
