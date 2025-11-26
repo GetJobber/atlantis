@@ -93,7 +93,7 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
           Fragment,
           { key: "footer" },
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          footerComponent({} as any),
+          createElement(footerComponent as any, {} as any),
         ),
     ].filter(Boolean),
   );
