@@ -486,6 +486,126 @@ describe("InputText V2 (Rebuilt)", () => {
       await userEvent.type(input, "a");
       expect(keyUpHandler).toHaveBeenCalled();
     });
+
+    it("should call onClick when input is clicked", async () => {
+      const clickHandler = jest.fn();
+      render(
+        <InputText
+          version={2}
+          value={value}
+          placeholder="Text"
+          onClick={clickHandler}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+      expect(clickHandler).toHaveBeenCalledTimes(1);
+      expect(clickHandler).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: "click",
+          target: input,
+        }),
+      );
+    });
+
+    it("should call onMouseDown when mouse button is pressed", async () => {
+      const mouseDownHandler = jest.fn();
+      render(
+        <InputText
+          version={2}
+          value={value}
+          placeholder="Text"
+          onMouseDown={mouseDownHandler}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+      fireEvent.mouseDown(input);
+      expect(mouseDownHandler).toHaveBeenCalledTimes(1);
+      expect(mouseDownHandler).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: "mousedown",
+          target: input,
+        }),
+      );
+    });
+
+    it("should call onPointerDown when pointer is pressed", async () => {
+      const pointerDownHandler = jest.fn();
+      render(
+        <InputText
+          version={2}
+          value={value}
+          placeholder="Text"
+          onPointerDown={pointerDownHandler}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+      fireEvent.pointerDown(input);
+      expect(pointerDownHandler).toHaveBeenCalledTimes(1);
+      expect(pointerDownHandler).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: "pointerdown",
+          target: input,
+        }),
+      );
+    });
+
+    it("should call all mouse handlers in correct order during a click", async () => {
+      const handlers = {
+        onPointerDown: jest.fn(),
+        onMouseDown: jest.fn(),
+        onClick: jest.fn(),
+      };
+      render(
+        <InputText
+          version={2}
+          value={value}
+          placeholder="Text"
+          {...handlers}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+
+      const callOrder = [
+        handlers.onPointerDown.mock.invocationCallOrder[0],
+        handlers.onMouseDown.mock.invocationCallOrder[0],
+        handlers.onClick.mock.invocationCallOrder[0],
+      ];
+      expect(callOrder[0]).toBeLessThan(callOrder[1]);
+      expect(callOrder[1]).toBeLessThan(callOrder[2]);
+    });
+
+    it("should pass correct event types to mouse handlers with textarea", async () => {
+      const clickHandler = jest.fn();
+      const mouseDownHandler = jest.fn();
+      render(
+        <InputText
+          version={2}
+          value={value}
+          placeholder="Text"
+          multiline
+          onClick={clickHandler}
+          onMouseDown={mouseDownHandler}
+        />,
+      );
+      const textarea = screen.getByRole("textbox");
+      await userEvent.click(textarea);
+
+      expect(clickHandler).toHaveBeenCalledTimes(1);
+      expect(mouseDownHandler).toHaveBeenCalledTimes(1);
+
+      expect(clickHandler).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: "click",
+          target: textarea,
+        }),
+      );
+    });
   });
 
   describe("ARIA attributes", () => {
