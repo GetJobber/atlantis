@@ -32,6 +32,19 @@
           "name": "(newValue: Date, event?: ChangeEvent<HTMLInputElement>) => void"
         }
       },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "@deprecated Use `onKeyDown` or `onKeyUp` instead.",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: KeyboardEvent<Element>) => void"
+        }
+      },
       "maxDate": {
         "defaultValue": null,
         "description": "The maximum selectable date.",
@@ -383,19 +396,6 @@
         "required": false,
         "type": {
           "name": "(event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void"
-        }
-      },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "InputLengthConstraint"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
         }
       },
       "placeholder": {

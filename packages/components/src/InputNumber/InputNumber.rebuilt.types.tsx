@@ -2,7 +2,6 @@ import type React from "react";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
-  InputConstraintProps,
   KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
@@ -13,8 +12,7 @@ export interface InputNumberRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
-    InputConstraintProps,
-    Omit<RebuiltInputCommonProps, "clearable"> {
+    Omit<RebuiltInputCommonProps, "clearable" | "suffix" | "prefix"> {
   readonly defaultValue?: number;
   readonly formatOptions?: Intl.NumberFormatOptions;
 

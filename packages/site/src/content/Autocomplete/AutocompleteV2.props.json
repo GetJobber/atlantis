@@ -376,58 +376,6 @@
           "name": "string"
         }
       },
-      "aria-activedescendant": {
-        "defaultValue": null,
-        "description": "ID of the currently active descendant element.\nUsed for composite widgets like combobox or listbox.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-activedescendant}",
-        "name": "aria-activedescendant",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "AriaInputProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "aria-controls": {
-        "defaultValue": null,
-        "description": "Indicates the element that controls the current element.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-controls}",
-        "name": "aria-controls",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "AriaInputProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "aria-expanded": {
-        "defaultValue": null,
-        "description": "Indicates whether the element is expanded or collapsed.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-expanded}",
-        "name": "aria-expanded",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "AriaInputProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Booleanish"
-        }
-      },
-      "aria-autocomplete": {
-        "defaultValue": null,
-        "description": "Indicates the type of autocomplete interaction.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-autocomplete}",
-        "name": "aria-autocomplete",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "AriaInputProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"none\" | \"inline\" | \"list\" | \"both\""
-        }
-      },
       "aria-required": {
         "defaultValue": null,
         "description": "Indicates that user input is required before form submission.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-required}",
@@ -471,6 +419,19 @@
         "defaultValue": null,
         "description": "Whether the input is read-only (HTML standard casing).",
         "name": "readOnly",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "autoFocus": {
+        "defaultValue": null,
+        "description": "Whether the input should be auto-focused (React casing).",
+        "name": "autoFocus",
         "parent": {
           "fileName": "packages/components/src/sharedHelpers/types.ts",
           "name": "HTMLInputBaseProps"

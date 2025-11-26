@@ -2,7 +2,6 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
-  InputLengthConstraint,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
@@ -50,15 +49,11 @@ export interface SelectRebuiltProps
   extends Omit<HTMLInputBaseProps, "readOnly">,
     FocusEvents<HTMLSelectElement>,
     Omit<RebuiltInputCommonProps, "clearable" | "prefix" | "suffix" | "align">,
-    InputLengthConstraint,
     Pick<SelectLegacyProps, "prefix" | "suffix" | "align" | "children"> {
   defaultValue?: never;
   readonly value?: string | number;
   onChange?(newValue?: string | number): void;
 
-  /**
-   * @deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.
-   */
   readonly inputRef?: FormFieldProps["inputRef"];
 
   /**

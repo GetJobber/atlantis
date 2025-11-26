@@ -86,7 +86,7 @@
       },
       "onEnter": {
         "defaultValue": null,
-        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
+        "description": "@deprecated Use `onKeyDown` or `onKeyUp` instead.",
         "name": "onEnter",
         "parent": {
           "fileName": "packages/components/src/InputText/InputText.types.ts",
@@ -557,7 +557,7 @@
         "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
         "name": "maxLength",
         "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "fileName": "packages/components/src/InputText/InputText.types.ts",
           "name": "InputLengthConstraint"
         },
         "required": false,

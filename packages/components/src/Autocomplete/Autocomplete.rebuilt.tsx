@@ -110,6 +110,7 @@ function AutocompleteRebuiltInternal<
     name: props.name,
     invalid,
     autoComplete: "off",
+    autoFocus: props.autoFocus,
     description,
     size: sizeProp ? sizeProp : undefined,
     prefix: props.prefix,

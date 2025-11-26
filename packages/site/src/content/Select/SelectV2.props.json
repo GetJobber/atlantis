@@ -47,7 +47,7 @@
       },
       "inputRef": {
         "defaultValue": null,
-        "description": "@deprecated Use `ref` instead. Note: `ref` support requires React 18+ forwardRef.",
+        "description": "",
         "name": "inputRef",
         "parent": {
           "fileName": "packages/components/src/Select/Select.types.ts",
@@ -448,19 +448,6 @@
           "name": "2"
         }
       },
-      "maxLength": {
-        "defaultValue": null,
-        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
-        "name": "maxLength",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "InputLengthConstraint"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "prefix": {
         "defaultValue": null,
         "description": "Adds a prefix label and icon to the field",
@@ -511,19 +498,6 @@
         "required": false,
         "type": {
           "name": "ReactNode"
-        }
-      },
-      "ref": {
-        "defaultValue": null,
-        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
-        "name": "ref",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "RefAttributes"
-        },
-        "required": false,
-        "type": {
-          "name": "Ref<HTMLSelectElement>"
         }
       }
     }

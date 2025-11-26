@@ -176,35 +176,6 @@ export interface HTMLInputBaseProps extends AriaInputProps {
   readonly tabIndex?: number;
 }
 
-/**
- * Numeric/date constraint props for inputs that support min/max values.
- * Only extend this for input types where these make semantic sense (number, date, range, etc.).
- */
-export interface InputConstraintProps {
-  /**
-   * Maximum numerical or date value.
-   */
-  readonly max?: number | string;
-
-  /**
-   * Minimum numerical or date value.
-   */
-  readonly min?: number | string;
-}
-
-/**
- * Character length constraint for inputs.
- * Only extend this for text-based inputs where character limits make sense.
- */
-export interface InputLengthConstraint {
-  /**
-   * Maximum character length for the input.
-   * Note: This affects both HTML validation AND visual width of the component.
-   * Future work will separate these concerns.
-   */
-  readonly maxLength?: number;
-}
-
 export interface Affix {
   readonly label?: string;
   readonly icon?: IconNames;
@@ -263,6 +234,7 @@ export interface RebuiltInputCommonProps {
    */
   readonly inline?: boolean;
 
+  // TODO: Offer an explicit left or "base" alignment option for better DX and control.
   /**
    * Determines the alignment of the text inside the input.
    */

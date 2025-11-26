@@ -2,7 +2,6 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
-  InputLengthConstraint,
   KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
@@ -11,7 +10,6 @@ export interface InputDateRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement | HTMLTextAreaElement>,
     KeyboardEvents<HTMLInputElement | HTMLTextAreaElement>,
-    InputLengthConstraint,
     Omit<RebuiltInputCommonProps, "clearable" | "prefix" | "suffix"> {
   /**
    * A Date object value
@@ -28,6 +26,11 @@ export interface InputDateRebuiltProps
     newValue: Date,
     event?: React.ChangeEvent<HTMLInputElement>,
   ) => void;
+
+  /**
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
+   */
+  readonly onEnter?: FormFieldProps["onEnter"];
 
   /**
    * The maximum selectable date.

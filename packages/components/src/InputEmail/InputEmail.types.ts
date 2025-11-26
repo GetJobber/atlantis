@@ -2,7 +2,6 @@ import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
   HTMLInputBaseProps,
-  InputLengthConstraint,
   KeyboardEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
@@ -25,8 +24,7 @@ export interface InputEmailRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
-    RebuiltInputCommonProps,
-    InputLengthConstraint {
+    RebuiltInputCommonProps {
   /**
    * The current value of the input.
    */
@@ -41,9 +39,7 @@ export interface InputEmailRebuiltProps
   ) => void;
 
   /**
-   * A callback to handle "Enter" keypress. This will only run
-   * if Enter is the only key. Will not run if Shift or Control
-   * are being held.
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
    */
   readonly onEnter?: FormFieldProps["onEnter"];
 }

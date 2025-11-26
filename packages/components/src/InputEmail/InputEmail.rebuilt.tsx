@@ -27,7 +27,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     value: props.value,
     invalid: props.invalid,
     error: props.error,
-    maxLength: props.maxLength,
     disabled: props.disabled,
     placeholder: props.placeholder,
   });
@@ -37,15 +36,22 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     id,
   });
 
-  const { handleChange, handleBlur, handleFocus, handleKeyDown, handleClear } =
-    useInputEmailActions({
-      onChange: props.onChange,
-      onBlur: props.onBlur,
-      onFocus: props.onFocus,
-      onKeyDown: props.onKeyDown,
-      onEnter: props.onEnter,
-      inputRef,
-    });
+  const {
+    handleChange,
+    handleBlur,
+    handleFocus,
+    handleKeyDown,
+    handleKeyUp,
+    handleClear,
+  } = useInputEmailActions({
+    onChange: props.onChange,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+    onKeyDown: props.onKeyDown,
+    onKeyUp: props.onKeyUp,
+    onEnter: props.onEnter,
+    inputRef,
+  });
 
   const descriptionIdentifier = `descriptionUUID--${id}`;
   const descriptionVisible = props.description && !props.inline;
@@ -66,12 +72,10 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       clearable={props.clearable ?? "never"}
       onClear={handleClear}
       wrapperRef={wrapperRef}
-      maxLength={props.maxLength}
       disabled={props.disabled}
       type="email"
       value={props.value}
       placeholder={props.placeholder}
-      autofocus={props.autoFocus}
       name={name}
     >
       <input
@@ -85,7 +89,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         readOnly={props.readOnly}
         autoFocus={props.autoFocus}
         autoComplete={props.autoComplete}
-        maxLength={props.maxLength}
         pattern={props.pattern}
         inputMode={props.inputMode}
         tabIndex={props.tabIndex}
@@ -104,7 +107,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         onBlur={handleBlur}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
-        onKeyUp={props.onKeyUp}
+        onKeyUp={handleKeyUp}
         data-testid="ATL-InputEmail-input"
       />
       <FormFieldPostFix variation="spinner" visible={props.loading ?? false} />
