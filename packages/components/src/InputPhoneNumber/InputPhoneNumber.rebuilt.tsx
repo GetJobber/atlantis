@@ -61,11 +61,22 @@ export const InputPhoneNumberRebuilt = forwardRef(
       handleFocus,
       handleClear,
       handleKeyDown,
+      handleClick,
+      handleMouseDown,
+      handleMouseUp,
+      handlePointerDown,
+      handlePointerUp,
     } = useInputPhoneActions({
       onChange: maskedOnChange,
       onBlur: props.onBlur,
       onFocus: props.onFocus,
       onEnter: props.onEnter,
+      onKeyDown: props.onKeyDown,
+      onClick: props.onClick,
+      onMouseDown: props.onMouseDown,
+      onMouseUp: props.onMouseUp,
+      onPointerDown: props.onPointerDown,
+      onPointerUp: props.onPointerUp,
       inputRef: inputPhoneNumberRef,
     });
 
@@ -127,6 +138,11 @@ export const InputPhoneNumberRebuilt = forwardRef(
           onBlur={handleBlur}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
+          onClick={handleClick}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
           {...dataAttrs}
         />
         <MaskElement
