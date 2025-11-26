@@ -32,6 +32,19 @@
           "name": "(newValue: Date, event?: ChangeEvent<HTMLInputElement>) => void"
         }
       },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "@deprecated Use `onKeyDown` or `onKeyUp` instead.",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/InputDate/InputDate.types.ts",
+          "name": "InputDateRebuiltProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: KeyboardEvent<Element>) => void"
+        }
+      },
       "maxDate": {
         "defaultValue": null,
         "description": "The maximum selectable date.",

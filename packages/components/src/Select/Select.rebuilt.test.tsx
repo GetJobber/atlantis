@@ -5,8 +5,6 @@ import { Option } from "./Option";
 import { SelectRebuilt } from "./Select.rebuilt";
 import { OptionGroup } from "./OptionGroup";
 
-// Max statements isn't applicable. Test coverage is more valuable.
-// eslint-disable-next-line max-statements
 describe("SelectRebuilt", () => {
   it("renders a SelectRebuilt with no options", () => {
     const { container } = render(<SelectRebuilt version={2} />);

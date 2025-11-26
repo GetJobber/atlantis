@@ -28,6 +28,11 @@ export interface InputDateRebuiltProps
   ) => void;
 
   /**
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
+   */
+  readonly onEnter?: FormFieldProps["onEnter"];
+
+  /**
    * The maximum selectable date.
    */
   readonly maxDate?: Date;
