@@ -487,67 +487,31 @@ describe("InputText V2 (Rebuilt)", () => {
       expect(keyUpHandler).toHaveBeenCalled();
     });
 
-    it("should call onClick when input is clicked", async () => {
-      const clickHandler = jest.fn();
+    it("should call all mouse event handlers when input (textarea) is clicked", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
       render(
         <InputText
           version={2}
-          value={value}
           placeholder="Text"
-          onClick={clickHandler}
+          multiline
+          {...handlers}
+          value={"Gabagool"}
         />,
       );
-      const input = screen.getByRole("textbox");
+      const input = screen.getByRole("textbox", { name: "Text" });
       await userEvent.click(input);
-      expect(clickHandler).toHaveBeenCalledTimes(1);
-      expect(clickHandler).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: "click",
-          target: input,
-        }),
-      );
-    });
 
-    it("should call onMouseDown when mouse button is pressed", async () => {
-      const mouseDownHandler = jest.fn();
-      render(
-        <InputText
-          version={2}
-          value={value}
-          placeholder="Text"
-          onMouseDown={mouseDownHandler}
-        />,
-      );
-      const input = screen.getByRole("textbox");
-      fireEvent.mouseDown(input);
-      expect(mouseDownHandler).toHaveBeenCalledTimes(1);
-      expect(mouseDownHandler).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: "mousedown",
-          target: input,
-        }),
-      );
-    });
-
-    it("should call onPointerDown when pointer is pressed", async () => {
-      const pointerDownHandler = jest.fn();
-      render(
-        <InputText
-          version={2}
-          value={value}
-          placeholder="Text"
-          onPointerDown={pointerDownHandler}
-        />,
-      );
-      const input = screen.getByRole("textbox");
-      fireEvent.pointerDown(input);
-      expect(pointerDownHandler).toHaveBeenCalledTimes(1);
-      expect(pointerDownHandler).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: "pointerdown",
-          target: input,
-        }),
-      );
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
     });
 
     it("should call all mouse event handlers when input is clicked", async () => {
@@ -561,40 +525,13 @@ describe("InputText V2 (Rebuilt)", () => {
       render(
         <InputText
           version={2}
-          value={value}
           placeholder="Text"
           {...handlers}
+          value={"Gabagool"}
         />,
       );
       const input = screen.getByRole("textbox");
       await userEvent.click(input);
-
-      expect(handlers.onClick).toHaveBeenCalledTimes(1);
-      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
-      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
-      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
-      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
-    });
-
-    it("should call all mouse event handlers with textarea", async () => {
-      const handlers = {
-        onClick: jest.fn(),
-        onMouseDown: jest.fn(),
-        onMouseUp: jest.fn(),
-        onPointerDown: jest.fn(),
-        onPointerUp: jest.fn(),
-      };
-      render(
-        <InputText
-          version={2}
-          value={value}
-          placeholder="Text"
-          multiline
-          {...handlers}
-        />,
-      );
-      const textarea = screen.getByRole("textbox");
-      await userEvent.click(textarea);
 
       expect(handlers.onClick).toHaveBeenCalledTimes(1);
       expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
