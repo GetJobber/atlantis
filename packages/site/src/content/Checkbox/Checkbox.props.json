@@ -242,6 +242,71 @@
           "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "Mouse down event handler.",
+        "name": "onMouseDown",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement, MouseEvent>) => void"
+        }
+      },
+      "onMouseUp": {
+        "defaultValue": null,
+        "description": "Mouse up event handler.",
+        "name": "onMouseUp",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement, MouseEvent>) => void"
+        }
+      },
+      "onPointerDown": {
+        "defaultValue": null,
+        "description": "Pointer down event handler.",
+        "name": "onPointerDown",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: PointerEvent<HTMLInputElement>) => void"
+        }
+      },
+      "onPointerUp": {
+        "defaultValue": null,
+        "description": "Pointer up event handler.",
+        "name": "onPointerUp",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: PointerEvent<HTMLInputElement>) => void"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Click event handler.",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement, MouseEvent>) => void"
+        }
+      },
       "id": {
         "defaultValue": null,
         "description": "The unique identifier for the input element.",
