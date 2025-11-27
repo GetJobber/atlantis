@@ -94,6 +94,37 @@ export interface FocusEvents<Target = HTMLElement> {
 }
 
 /**
+ * Mouse event handlers for input elements.
+ * Generic interface that can be specialized for different element types.
+ */
+export interface MouseEvents<Target = HTMLElement> {
+  /**
+   * Mouse down event handler.
+   */
+  readonly onMouseDown?: (event: React.MouseEvent<Target>) => void;
+
+  /**
+   * Mouse up event handler.
+   */
+  readonly onMouseUp?: (event: React.MouseEvent<Target>) => void;
+
+  /**
+   * Pointer down event handler.
+   */
+  readonly onPointerDown?: (event: React.PointerEvent<Target>) => void;
+
+  /**
+   * Pointer up event handler.
+   */
+  readonly onPointerUp?: (event: React.PointerEvent<Target>) => void;
+
+  /**
+   * Click event handler.
+   */
+  readonly onClick?: (event: React.MouseEvent<Target>) => void;
+}
+
+/**
  * Keyboard event handlers for input elements.
  * Generic interface that can be specialized for different element types.
  */

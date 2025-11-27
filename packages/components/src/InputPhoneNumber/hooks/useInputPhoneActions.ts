@@ -1,10 +1,25 @@
-import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import type {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  PointerEvent,
+} from "react";
 import type { InputPhoneNumberRebuiltProps } from "../InputPhoneNumber.types";
 
 export interface useInputPhoneActionsProps
   extends Pick<
     InputPhoneNumberRebuiltProps,
-    "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown"
+    | "onChange"
+    | "onEnter"
+    | "onFocus"
+    | "onBlur"
+    | "onKeyDown"
+    | "onClick"
+    | "onMouseDown"
+    | "onMouseUp"
+    | "onPointerDown"
+    | "onPointerUp"
   > {
   inputRef?: React.RefObject<HTMLInputElement>;
 }
@@ -20,6 +35,11 @@ export function useInputPhoneActions({
   onBlur,
   onKeyDown,
   onEnter,
+  onClick,
+  onMouseDown,
+  onMouseUp,
+  onPointerDown,
+  onPointerUp,
 }: useInputPhoneActionsProps) {
   function handleClear() {
     onChange && onChange("");
@@ -49,11 +69,36 @@ export function useInputPhoneActions({
     onBlur?.(event);
   }
 
+  function handleClick(event: MouseEvent<HTMLInputElement>) {
+    onClick?.(event);
+  }
+
+  function handleMouseDown(event: MouseEvent<HTMLInputElement>) {
+    onMouseDown?.(event);
+  }
+
+  function handleMouseUp(event: MouseEvent<HTMLInputElement>) {
+    onMouseUp?.(event);
+  }
+
+  function handlePointerDown(event: PointerEvent<HTMLInputElement>) {
+    onPointerDown?.(event);
+  }
+
+  function handlePointerUp(event: PointerEvent<HTMLInputElement>) {
+    onPointerUp?.(event);
+  }
+
   return {
     handleClear,
     handleChange,
     handleFocus,
     handleBlur,
     handleKeyDown,
+    handleClick,
+    handleMouseDown,
+    handleMouseUp,
+    handlePointerDown,
+    handlePointerUp,
   };
 }
