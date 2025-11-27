@@ -320,19 +320,6 @@
           "name": "2"
         }
       },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Highlights the field red to indicate an error.",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "RebuiltInputCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "label": {
         "defaultValue": null,
         "description": "Label that shows up beside the checkbox.\nString will be rendered with the default markup.\nReactElement will be rendered with provided positionining.",
@@ -349,6 +336,15 @@
         "required": false,
         "type": {
           "name": "ReactNode"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Whether the checkbox is invalid",
+        "name": "invalid",
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "onChange": {

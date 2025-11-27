@@ -75,11 +75,6 @@ export interface BaseCheckboxProps extends CheckboxCoreProps {
    * Called when the checkbox loses focus
    */
   onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
-
-  /**
-   * Whether the checkbox is invalid
-   */
-  invalid?: boolean;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
@@ -101,7 +96,7 @@ export type CheckboxRebuiltProps = CheckboxCoreProps &
   FocusEvents<HTMLInputElement> &
   MouseEvents<HTMLInputElement> &
   Pick<HTMLInputBaseProps, "id" | "name" | "disabled"> &
-  Pick<RebuiltInputCommonProps, "version" | "invalid"> & {
+  Pick<RebuiltInputCommonProps, "version"> & {
     /**
      * Label that shows up beside the checkbox.
      * String will be rendered with the default markup.
@@ -115,6 +110,11 @@ export type CheckboxRebuiltProps = CheckboxCoreProps &
      * ReactElement will be rendered with provided positioning.
      */
     description?: ReactNode;
+
+    /**
+     * Whether the checkbox is invalid
+     */
+    invalid?: boolean;
 
     /**
      * Called when the checkbox value changes.
