@@ -152,6 +152,7 @@ const TemplateSectioned: ComponentStory<typeof Autocomplete> = () => {
 const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
+  const [lastAction, setLastAction] = useState("");
 
   return (
     <Content>
@@ -173,7 +174,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Service",
-                onClick: () => console.log("Add Service"),
+                onClick: () => setLastAction("Add Service clicked"),
               },
             ],
           },
@@ -185,7 +186,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Outdoor Service",
-                onClick: () => console.log("Add Outdoor Service"),
+                onClick: () => setLastAction("Add Outdoor Service clicked"),
               },
             ],
           },
@@ -197,12 +198,17 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Extras Service",
-                onClick: () => console.log("Add Extras Service"),
+                onClick: () => setLastAction("Add Extras Service clicked"),
               },
             ],
           },
         ])}
       />
+      {lastAction && (
+        <Text>
+          <Emphasis variation="bold">Last action:</Emphasis> {lastAction}
+        </Text>
+      )}
     </Content>
   );
 };
@@ -300,6 +306,7 @@ const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
 const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
+  const [lastAction, setLastAction] = useState("");
 
   return (
     <Content>
@@ -319,7 +326,7 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
             type: "header",
             label: "Pinned header",
             shouldClose: false,
-            onClick: () => console.log("clicked"),
+            onClick: () => setLastAction("Header clicked"),
           },
           { type: "options", options: simpleOptions },
           {
@@ -329,6 +336,11 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
         ])}
       />
       <input type="text" />
+      {lastAction && (
+        <Text>
+          <Emphasis variation="bold">Last action:</Emphasis> {lastAction}
+        </Text>
+      )}
     </Content>
   );
 };
@@ -545,77 +557,78 @@ const customOptions2: CustomOption[] = [
   },
 ];
 
-const customActions: MenuAction<ActionExtraProps>[] = [
-  {
-    type: "action",
-    label: "Add Service",
-    icon: "plus",
-    onClick: () => console.log("Add"),
-  },
-];
-
-const customActions2: MenuAction<ActionExtraProps>[] = [
-  {
-    type: "action",
-    label: "Add Other",
-    icon: "plus",
-    onClick: () => console.log("Add"),
-  },
-];
-
 const customHeader: MenuHeader<ActionExtraProps> = {
   type: "header",
   label: "The prices of each service is in CAD",
-};
-
-const emptyActions: MenuAction<ActionExtraProps>[] = [
-  {
-    type: "action",
-    label: "Favorite",
-    icon: "star",
-    onClick: () => console.log("Add"),
-  },
-];
-
-const customFooter: MenuFooter<ActionExtraProps> = {
-  type: "footer",
-  label: "Adjust prices",
-  icon: "edit",
-  onClick: () => console.log("Footer"),
 };
 
 interface SectionExtraProps {
   icon: IconNames;
 }
 
-const sectionedMenuCustomized = defineMenu<
-  CustomOption,
-  SectionExtraProps,
-  ActionExtraProps
->([
-  {
-    type: "section",
-    label: "Indoor",
-    icon: "home",
-    options: customOptions,
-    actions: customActions,
-  },
-  {
-    type: "section",
-    label: "Off-site",
-    icon: "fuel",
-    options: customOptions2,
-    actions: customActions2,
-  },
-  customHeader,
-  customFooter,
-]);
-
 const TemplateEverythingCustomized: ComponentStory<
   typeof Autocomplete
 > = () => {
   const [value, setValue] = useState<CustomOption | undefined>();
   const [inputValue, setInputValue] = useState("");
+  const [lastAction, setLastAction] = useState("");
+
+  const customActionsInline: MenuAction<ActionExtraProps>[] = [
+    {
+      type: "action",
+      label: "Add Service",
+      icon: "plus",
+      onClick: () => setLastAction("Add Service clicked"),
+    },
+  ];
+
+  const customActions2Inline: MenuAction<ActionExtraProps>[] = [
+    {
+      type: "action",
+      label: "Add Other",
+      icon: "plus",
+      onClick: () => setLastAction("Add Other clicked"),
+    },
+  ];
+
+  const emptyActionsInline: MenuAction<ActionExtraProps>[] = [
+    {
+      type: "action",
+      label: "Favorite",
+      icon: "star",
+      onClick: () => setLastAction("Favorite clicked"),
+    },
+  ];
+
+  const customFooterInline: MenuFooter<ActionExtraProps> = {
+    type: "footer",
+    label: "Adjust prices",
+    icon: "edit",
+    onClick: () => setLastAction("Footer clicked"),
+  };
+
+  const sectionedMenuCustomizedInline = defineMenu<
+    CustomOption,
+    SectionExtraProps,
+    ActionExtraProps
+  >([
+    {
+      type: "section",
+      label: "Indoor",
+      icon: "home",
+      options: customOptions,
+      actions: customActionsInline,
+    },
+    {
+      type: "section",
+      label: "Off-site",
+      icon: "fuel",
+      options: customOptions2,
+      actions: customActions2Inline,
+    },
+    customHeader,
+    customFooterInline,
+  ]);
 
   return (
     <Content>
@@ -627,8 +640,8 @@ const TemplateEverythingCustomized: ComponentStory<
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
-        menu={sectionedMenuCustomized}
-        emptyActions={emptyActions}
+        menu={sectionedMenuCustomizedInline}
+        emptyActions={emptyActionsInline}
         filterOptions={(options, searchTerm) => {
           return options.filter(option => {
             // Search both label and description
@@ -709,12 +722,17 @@ const TemplateEverythingCustomized: ComponentStory<
               suffix={{
                 icon: "search",
                 ariaLabel: "Search",
-                onClick: () => console.log("Search"),
+                onClick: () => setLastAction("Search icon clicked"),
               }}
             />
           );
         }}
       />
+      {lastAction && (
+        <Text>
+          <Emphasis variation="bold">Last action:</Emphasis> {lastAction}
+        </Text>
+      )}
     </Content>
   );
 };
