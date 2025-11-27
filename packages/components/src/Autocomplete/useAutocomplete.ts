@@ -136,7 +136,8 @@ export function useAutocomplete<
   const debouncedSetter = useDebounce(setDebouncedInputValue, debounceMs);
 
   useEffect(() => {
-    if (debounceMs === 0) {
+    // Skip debounce when clearing input for immediate feedback, preventing flickering of last selected item
+    if (debounceMs === 0 || inputValue === "") {
       setDebouncedInputValue(inputValue);
 
       return;
