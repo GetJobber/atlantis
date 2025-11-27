@@ -184,6 +184,32 @@
         "type": {
           "name": "(val: Date) => void"
         }
+      },
+      "onCalendarOpen": {
+        "defaultValue": null,
+        "description": "Callback when the calendar opens",
+        "name": "onCalendarOpen",
+        "parent": {
+          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "onCalendarClose": {
+        "defaultValue": null,
+        "description": "Callback when the calendar closes",
+        "name": "onCalendarClose",
+        "parent": {
+          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
       }
     }
   }
