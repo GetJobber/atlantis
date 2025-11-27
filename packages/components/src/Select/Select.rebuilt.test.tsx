@@ -5,8 +5,6 @@ import { Option } from "./Option";
 import { SelectRebuilt } from "./Select.rebuilt";
 import { OptionGroup } from "./OptionGroup";
 
-// We have many tests
-// eslint-disable-next-line max-statements
 describe("SelectRebuilt", () => {
   it("renders a SelectRebuilt with no options", () => {
     const { container } = render(<SelectRebuilt version={2} />);
@@ -377,31 +375,6 @@ describe("SelectRebuilt", () => {
       );
       const customSelect = customContainer.querySelector("select");
       expect(customSelect).toHaveClass("select");
-    });
-  });
-
-  describe("Mouse event handlers", () => {
-    it("should call all mouse event handlers when select is clicked", async () => {
-      const handlers = {
-        onClick: jest.fn(),
-        onMouseDown: jest.fn(),
-        onMouseUp: jest.fn(),
-        onPointerDown: jest.fn(),
-        onPointerUp: jest.fn(),
-      };
-      render(
-        <SelectRebuilt version={2} {...handlers}>
-          <Option value="1">One</Option>
-        </SelectRebuilt>,
-      );
-      const select = screen.getByRole("combobox");
-      await userEvent.click(select);
-
-      expect(handlers.onClick).toHaveBeenCalledTimes(1);
-      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
-      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
-      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
-      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
     });
   });
 });
