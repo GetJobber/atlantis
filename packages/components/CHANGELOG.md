@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.105.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.104.1...@jobber/components@6.105.0) (2025-11-27)
+
+
+### Features
+
+* **components:** Add MouseEvents to "Rebuilt" Inputs ([#2835](https://github.com/GetJobber/atlantis/issues/2835)) ([00977ea](https://github.com/GetJobber/atlantis/commit/00977ea583a3d8831c20c477d64e8503efd02d47))
+
+
+
+
+
 ## [6.104.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.104.0...@jobber/components@6.104.1) (2025-11-26)
 
 
