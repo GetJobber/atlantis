@@ -290,7 +290,7 @@ function AutocompleteRebuiltInternal<
 
 function LoadingContent() {
   return (
-    <div className={styles.loadingList}>
+    <div className={styles.loadingList} onMouseDown={e => e.preventDefault()}>
       <Glimmer shape="rectangle" size="base" />
       <Glimmer shape="rectangle" size="base" />
       <Glimmer shape="rectangle" size="base" />
@@ -306,5 +306,12 @@ function EmptyStateMessage({
   const emptyStateDefault = "No options";
   const emptyStateContent = emptyState ?? emptyStateDefault;
 
-  return <div className={styles.emptyStateMessage}>{emptyStateContent}</div>;
+  return (
+    <div
+      className={styles.emptyStateMessage}
+      onMouseDown={e => e.preventDefault()}
+    >
+      {emptyStateContent}
+    </div>
+  );
 }

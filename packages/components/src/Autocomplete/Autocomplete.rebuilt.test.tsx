@@ -2683,5 +2683,51 @@ describe("AutocompleteRebuilt", () => {
 
       expect(onBlur).toHaveBeenCalled();
     });
+
+    it("prevents blur when clicking on empty state message", async () => {
+      const onBlur = jest.fn();
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      render(<Wrapper onBlur={onBlur} menu={emptyMenu} />);
+
+      await openAutocomplete();
+      await selectWithClick("No options");
+
+      expect(onBlur).not.toHaveBeenCalled();
+      expect(document.activeElement).toBe(screen.getByRole("combobox"));
+    });
+
+    it("prevents blur when clicking on custom empty state message", async () => {
+      const onBlur = jest.fn();
+      const emptyMenu: MenuItem<OptionLike>[] = [menuOptions<OptionLike>([])];
+
+      render(
+        <Wrapper
+          onBlur={onBlur}
+          menu={emptyMenu}
+          emptyStateMessage="Custom empty message"
+        />,
+      );
+
+      await openAutocomplete();
+      await selectWithClick("Custom empty message");
+
+      expect(onBlur).not.toHaveBeenCalled();
+      expect(document.activeElement).toBe(screen.getByRole("combobox"));
+    });
+
+    it("prevents blur when clicking on loading content", async () => {
+      const onBlur = jest.fn();
+
+      render(<Wrapper onBlur={onBlur} loading />);
+
+      await openAutocomplete();
+
+      const loadingElement = screen.getAllByTestId(GLIMMER_TEST_ID)[0];
+      await userEvent.click(loadingElement);
+
+      expect(onBlur).not.toHaveBeenCalled();
+      expect(document.activeElement).toBe(screen.getByRole("combobox"));
+    });
   });
 });
