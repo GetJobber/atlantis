@@ -303,8 +303,6 @@ export function useAutocomplete<
     },
   });
 
-  const [inputFocused, setInputFocused] = useState(false);
-
   // Handles activeIndex reset and, in single-select mode only, clearing selection when input is empty
   useEffect(() => {
     const hasText = inputValue.trim().length > 0;
@@ -497,8 +495,6 @@ export function useAutocomplete<
   ]);
 
   const onInputFocus = useCallback(() => {
-    setInputFocused(true);
-
     // Don't open the menu if we're in the middle of a menu interaction
     if (!readOnly && openOnFocus && !isHandlingMenuInteractionRef.current) {
       setOpen(true);
@@ -512,8 +508,6 @@ export function useAutocomplete<
     if (isHandlingMenuInteractionRef.current) {
       return;
     }
-
-    setInputFocused(false);
 
     if (readOnly) {
       props.onBlur?.();
@@ -662,7 +656,7 @@ export function useAutocomplete<
       if (!readOnly) {
         const hasText = val.trim().length > 0;
         const mustSelectFromOptions = hasText && !props.allowFreeForm;
-        const keepOpenOnEmpty = openOnFocus && inputFocused;
+        const keepOpenOnEmpty = openOnFocus;
 
         setOpen(mustSelectFromOptions || keepOpenOnEmpty);
       }
@@ -676,7 +670,6 @@ export function useAutocomplete<
       readOnly,
       props.allowFreeForm,
       openOnFocus,
-      inputFocused,
       setOpen,
     ],
   );
