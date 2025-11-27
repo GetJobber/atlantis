@@ -1,4 +1,5 @@
 import React, { forwardRef, useRef } from "react";
+import type { FocusEvent } from "react";
 import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
 import type { InputDateRebuiltProps } from "./InputDate.types";
 import type { Suffix } from "../FormField";
@@ -14,7 +15,8 @@ export const InputDateRebuilt = forwardRef<
   const isCalendarOpenRef = useRef(false);
   const inputFocusedRef = useRef(false);
   const compositeFocusedRef = useRef(false);
-  const lastBlurEventRef = useRef<React.FocusEvent<HTMLInputElement>>(null);
+  const lastBlurEventRef =
+    useRef<FocusEvent<HTMLInputElement | HTMLTextAreaElement>>(null);
 
   return (
     <DatePicker
