@@ -313,14 +313,13 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
   return (
     <Content>
       <Heading level={4}>Persistent header/footer actions</Heading>
-      <input type="text" />
       <Autocomplete
         version={2}
         placeholder="Search"
         value={value}
-        openOnFocus={false}
         onChange={setValue}
         onBlur={() => console.log("blurred")}
+        onFocus={() => console.log("focused")}
         inputValue={inputValue}
         onInputChange={setInputValue}
         menu={defineMenu<OptionLike>([
@@ -337,7 +336,6 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
           },
         ])}
       />
-      <input type="text" />
       {lastAction && (
         <Text>
           <Emphasis variation="bold">Last action:</Emphasis> {lastAction}
@@ -739,6 +737,117 @@ const TemplateEverythingCustomized: ComponentStory<
   );
 };
 
+const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
+  const [value, setValue] = useState<OptionLike | undefined>();
+  const [inputValue, setInputValue] = useState("");
+
+  const [secondInputValue, setSecondInputValue] = useState("");
+  const [secondValue, setSecondValue] = useState<OptionLike | undefined>();
+
+  const [otherInputValue, setOtherInputValue] = useState("");
+  const [anotherInputValue, setAnotherInputValue] = useState("");
+
+  const [lastBlur, setLastBlur] = useState("");
+  const [lastFocus, setLastFocus] = useState("");
+
+  const [openCreatModal, setOpenCreatModal] = useState(false);
+
+  const emptyActions: {
+    type: "action";
+    label: string;
+    icon: string;
+    onClick: () => void;
+  }[] = [
+    {
+      type: "action",
+      label: "Add Service",
+      icon: "plus",
+      onClick: () => setOpenCreatModal(true),
+    },
+  ];
+
+  return (
+    <Content>
+      <Heading level={4}>Focus Behavior</Heading>
+      <Text>
+        Try tabbing through the inputs to see the difference between
+        openOnFocus=false and openOnFocus=true.
+      </Text>
+      <Text>
+        Both Autocomplete have empty state actions that launches a modal, moving
+        focus.
+      </Text>
+      <InputText
+        placeholder="Another Field to Tab From (Not an Autocomplete)"
+        version={2}
+        value={otherInputValue}
+        onChange={setOtherInputValue}
+        onBlur={() => setLastBlur("First InputText blurred")}
+        onFocus={() => setLastFocus("First InputText focused")}
+      />
+      <Autocomplete
+        version={2}
+        placeholder="openOnFocus=false"
+        value={value}
+        openOnFocus={false}
+        onChange={setValue}
+        onBlur={() => setLastBlur("First Autocomplete blurred")}
+        onFocus={() => setLastFocus("First Autocomplete focused")}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        emptyStateMessage={false}
+        emptyActions={emptyActions}
+        menu={defineMenu<OptionLike>([
+          { type: "section", label: "Services", options: serviceOptions },
+        ])}
+      />
+      <InputText
+        version={2}
+        placeholder="Another Field to Tab To and From (Not an Autocomplete)"
+        value={anotherInputValue}
+        onChange={setAnotherInputValue}
+        onBlur={() => setLastBlur("Second InputText blurred")}
+        onFocus={() => setLastFocus("Second InputText focused")}
+      />
+      <Autocomplete
+        version={2}
+        placeholder="openOnFocus=true"
+        openOnFocus
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        emptyActions={emptyActions}
+        value={secondValue}
+        onChange={setSecondValue}
+        inputValue={secondInputValue}
+        onInputChange={setSecondInputValue}
+        onBlur={() => setLastBlur("Second Autocomplete blurred")}
+        onFocus={() => setLastFocus("Second Autocomplete focused")}
+      />
+      <Modal
+        open={openCreatModal}
+        onRequestClose={() => setOpenCreatModal(false)}
+      >
+        <Content>
+          <Heading level={4}>Create service</Heading>
+          <InputText placeholder="Service name" />
+          <Button label="Create" onClick={() => setOpenCreatModal(false)} />
+        </Content>
+      </Modal>
+      {lastBlur && (
+        <Text>
+          <Emphasis variation="bold">Last blur:</Emphasis> {lastBlur}
+        </Text>
+      )}
+      {lastFocus && (
+        <Text>
+          <Emphasis variation="bold">Last focus:</Emphasis> {lastFocus}
+        </Text>
+      )}
+    </Content>
+  );
+};
+
 export const Flat = TemplateFlat.bind({});
 export const Sectioned = TemplateSectioned.bind({});
 export const WithActions = TemplateWithActions.bind({});
@@ -748,3 +857,4 @@ export const HeaderFooter = TemplateHeaderFooter.bind({});
 export const FreeForm = TemplateFreeForm.bind({});
 export const AsyncUserManaged = TemplateAsyncUserManaged.bind({});
 export const EverythingCustomized = TemplateEverythingCustomized.bind({});
+export const FocusBehavior = TemplateFocusBehavior.bind({});
