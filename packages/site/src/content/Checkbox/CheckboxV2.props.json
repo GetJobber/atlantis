@@ -6,65 +6,13 @@
     "displayName": "CheckboxRebuilt",
     "methods": [],
     "props": {
-      "id": {
-        "defaultValue": null,
-        "description": "The unique identifier for the input element.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "The name attribute for the input element.",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Whether the input is disabled.",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Highlights the field red to indicate an error.",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "RebuiltInputCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "checked": {
         "defaultValue": null,
         "description": "Determines if the checkbox is checked or not.",
         "name": "checked",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
@@ -77,7 +25,7 @@
         "name": "defaultChecked",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
@@ -92,7 +40,7 @@
         "name": "indeterminate",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
@@ -105,7 +53,7 @@
         "name": "value",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
@@ -320,6 +268,45 @@
           "name": "(event: MouseEvent<HTMLInputElement, MouseEvent>) => void"
         }
       },
+      "id": {
+        "defaultValue": null,
+        "description": "The unique identifier for the input element.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The name attribute for the input element.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "version": {
         "defaultValue": null,
         "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
@@ -331,6 +318,19 @@
         "required": true,
         "type": {
           "name": "2"
+        }
+      },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Highlights the field red to indicate an error.",
+        "name": "invalid",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       },
       "label": {
