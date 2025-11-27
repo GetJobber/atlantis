@@ -231,6 +231,8 @@ const TemplateEmptyStateAndActions: ComponentStory<
           value={value}
           onChange={setValue}
           inputValue={inputValue}
+          onBlur={() => console.log("blurred")}
+          onFocus={() => console.log("focused")}
           onInputChange={setInputValue}
           emptyStateMessage="No services found"
           emptyActions={[
