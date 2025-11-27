@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { StyleProp, ViewStyle } from "react-native";
 
 export interface ProgressBarProps {
   /**
@@ -44,4 +45,22 @@ export interface ProgressBarProps {
    * @default base
    */
   readonly size?: "smaller" | "small" | "base";
+
+  /** **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: ProgressBarUnsafeStyle;
+}
+
+export interface ProgressBarUnsafeStyle {
+  container?: StyleProp<ViewStyle>;
+  progressBarContainer?: StyleProp<ViewStyle>;
+  step?: StyleProp<ViewStyle>;
+  /** Track/background bar in 'progress' variation (full-width inner) */
+  track?: StyleProp<ViewStyle>;
+  /** Filled/completed portion in 'progress' variation */
+  fill?: StyleProp<ViewStyle>;
+  /** In-progress overlay portion in 'progress' variation */
+  inProgressFill?: StyleProp<ViewStyle>;
 }

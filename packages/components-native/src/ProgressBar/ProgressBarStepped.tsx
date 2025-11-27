@@ -1,13 +1,15 @@
 import React from "react";
 import { View } from "react-native";
 import { useStyles } from "./ProgressBar.style";
+import type { ProgressBarUnsafeStyle } from "./types";
 
-interface ProgressBarSteppedProps {
+export interface ProgressBarSteppedProps {
   readonly total: number;
   readonly current: number;
   readonly color?: string;
   readonly loading?: boolean;
   readonly inProgress?: number;
+  readonly UNSAFE_style?: ProgressBarUnsafeStyle;
 }
 
 export function ProgressBarStepped({
@@ -16,11 +18,19 @@ export function ProgressBarStepped({
   color,
   loading,
   inProgress,
+  UNSAFE_style,
 }: ProgressBarSteppedProps) {
   const styles = useStyles();
 
   return (
-    <View style={[styles.progressBarContainer, { height: 10 }]}>
+    <View
+      testID="progressbar-container"
+      style={[
+        styles.progressBarContainer,
+        { height: 10 },
+        UNSAFE_style?.progressBarContainer,
+      ]}
+    >
       {Array.from({ length: total }).map((_, index) => {
         const step = index + 1;
         const isCompleted = step <= current;
@@ -39,6 +49,7 @@ export function ProgressBarStepped({
                 step <= inProgressSteps &&
                 styles.inProgressStep,
               lastStep && { marginRight: 0 },
+              UNSAFE_style?.step,
             ]}
             testID={
               isCompleted
