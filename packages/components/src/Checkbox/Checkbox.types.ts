@@ -119,6 +119,7 @@ export type CheckboxRebuiltProps = CheckboxCoreProps &
     /**
      * Called when the checkbox value changes.
      * Includes the change event as a second argument.
+     * This is the recommended event handler to access the new value.
      */
     onChange?(
       newValue: boolean,
