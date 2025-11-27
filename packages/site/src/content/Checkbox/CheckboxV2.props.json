@@ -349,7 +349,7 @@
       },
       "onChange": {
         "defaultValue": null,
-        "description": "Called when the checkbox value changes.\nIncludes the change event as a second argument.",
+        "description": "Called when the checkbox value changes.\nIncludes the change event as a second argument.\nThis is the recommended event handler to access the new value.",
         "name": "onChange",
         "required": false,
         "type": {
