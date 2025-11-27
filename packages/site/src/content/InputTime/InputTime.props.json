@@ -255,7 +255,7 @@
       },
       "min": {
         "defaultValue": null,
-        "description": "Simplified onChange handler that only provides the new value.\n@param newValue Specifies the minimum numerical or date value that a user can type",
+        "description": "Specifies the minimum numerical or date value that a user can type",
         "name": "min",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
@@ -276,7 +276,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent) => void"
+          "name": "(event: KeyboardEvent<Element>) => void"
         }
       },
       "onFocus": {
@@ -289,7 +289,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "(event?: FocusEvent<Element, Element>) => void"
         }
       },
       "onBlur": {
@@ -302,7 +302,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "(event?: FocusEvent<Element, Element>) => void"
         }
       },
       "inputRef": {

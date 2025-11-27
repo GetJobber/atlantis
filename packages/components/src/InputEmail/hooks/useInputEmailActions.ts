@@ -1,10 +1,26 @@
-import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import type {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  PointerEvent,
+} from "react";
 import type { InputEmailRebuiltProps } from "../InputEmail.types";
 
 export interface UseInputEmailActionsProps
   extends Pick<
     InputEmailRebuiltProps,
-    "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown"
+    | "onChange"
+    | "onEnter"
+    | "onFocus"
+    | "onBlur"
+    | "onKeyDown"
+    | "onKeyUp"
+    | "onClick"
+    | "onMouseDown"
+    | "onMouseUp"
+    | "onPointerDown"
+    | "onPointerUp"
   > {
   inputRef?: React.RefObject<HTMLInputElement>;
 }
@@ -16,9 +32,14 @@ export function useInputEmailActions({
   onFocus,
   onBlur,
   onKeyDown,
+  onKeyUp,
+  onClick,
+  onMouseDown,
+  onMouseUp,
+  onPointerDown,
+  onPointerUp,
 }: UseInputEmailActionsProps) {
   function handleClear() {
-    handleBlur();
     onChange?.("");
     inputRef?.current?.focus();
   }
@@ -42,15 +63,45 @@ export function useInputEmailActions({
     onFocus?.(event);
   }
 
-  function handleBlur(event?: FocusEvent) {
+  function handleBlur(event: FocusEvent<HTMLInputElement>) {
     onBlur?.(event);
+  }
+
+  function handleKeyUp(event: KeyboardEvent<HTMLInputElement>) {
+    onKeyUp?.(event);
+  }
+
+  function handleClick(event: MouseEvent<HTMLInputElement>) {
+    onClick?.(event);
+  }
+
+  function handleMouseDown(event: MouseEvent<HTMLInputElement>) {
+    onMouseDown?.(event);
+  }
+
+  function handleMouseUp(event: MouseEvent<HTMLInputElement>) {
+    onMouseUp?.(event);
+  }
+
+  function handlePointerDown(event: PointerEvent<HTMLInputElement>) {
+    onPointerDown?.(event);
+  }
+
+  function handlePointerUp(event: PointerEvent<HTMLInputElement>) {
+    onPointerUp?.(event);
   }
 
   return {
     handleClear,
     handleChange,
     handleKeyDown,
+    handleKeyUp,
     handleFocus,
     handleBlur,
+    handleClick,
+    handleMouseDown,
+    handleMouseUp,
+    handlePointerDown,
+    handlePointerUp,
   };
 }

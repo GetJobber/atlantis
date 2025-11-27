@@ -87,7 +87,9 @@
         }
       },
       "as": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": "div"
+        },
         "description": "The HTML tag to render the cluster as.",
         "name": "as",
         "parent": {

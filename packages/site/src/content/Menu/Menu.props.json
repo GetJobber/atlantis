@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<{ [key: string]: unknown; fullWidth?: boolean; onClick?: (event?: MouseEvent<Element, MouseEvent>) => void; }, string | JSXElementConstructor<any>>"
         }
       },
       "items": {
@@ -345,7 +345,7 @@
         },
         "required": true,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       }
     }
@@ -375,7 +375,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "ReactElement<{ [key: string]: unknown; fullWidth?: boolean; onClick?: (event?: MouseEvent<Element, MouseEvent>) => void; }, string | JSXElementConstructor<any>>"
         }
       },
       "items": {

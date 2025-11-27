@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ImageBackground, View } from "react-native";
 import { useStyles } from "./MediaView.style";
 import type { FormattedFile } from "../../types";
@@ -27,11 +27,17 @@ export function MediaView({
   file,
   styleInGrid,
   onUploadComplete,
-}: MediaViewProps): JSX.Element {
+}: MediaViewProps) {
   const { t } = useAtlantisI18n();
   const { useCreateThumbnail } = useAtlantisFormatFileContext();
   const { thumbnail, error } = useCreateThumbnail(file);
   const [isLoading, setIsLoading] = useState(false);
+  /**
+   * Tracks whether onLoadEnd has fired to prevent race conditions.
+   * ImageBackground can fire onLoadEnd before onLoadStart when loading cached images,
+   * which would cause isLoading to get stuck at true, showing an infinite spinner.
+   */
+  const hasLoadedRef = useRef(false);
 
   const a11yLabel = computeA11yLabel({
     accessibilityLabel,
@@ -40,10 +46,25 @@ export function MediaView({
     t,
   });
 
-  const hasError = showError || error;
-  const uri = thumbnail || file.thumbnailUrl || file.source;
+  const hasError = showError || error,
+    uri = thumbnail || file.thumbnailUrl || file.source,
+    styles = useStyles();
 
-  const styles = useStyles();
+  const handleLoadStart = () => {
+    if (!hasLoadedRef.current) {
+      setIsLoading(true);
+    }
+  };
+
+  const handleLoadEnd = () => {
+    hasLoadedRef.current = true;
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    hasLoadedRef.current = false;
+    setIsLoading(false);
+  }, [uri]);
 
   return (
     <View accessible={true} accessibilityLabel={a11yLabel}>
@@ -55,8 +76,8 @@ export function MediaView({
         resizeMode={styleInGrid ? "cover" : "contain"}
         source={{ uri }}
         testID={"test-image"}
-        onLoadStart={() => setIsLoading(true)}
-        onLoadEnd={() => setIsLoading(false)}
+        onLoadStart={handleLoadStart}
+        onLoadEnd={handleLoadEnd}
       >
         <Overlay
           isLoading={isLoading}

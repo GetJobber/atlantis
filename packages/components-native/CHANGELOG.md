@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.4...@jobber/components-native@0.92.0) (2025-11-24)
+
+
+### Features
+
+* **components-native:** Improve Mobile Chip Consistency ([#2825](https://github.com/GetJobber/atlantis/issues/2825)) ([8dbdc7a](https://github.com/GetJobber/atlantis/commit/8dbdc7a879fd3b24d1c640d44314621b933173ef))
+
+
+
+
+
+## [0.91.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.3...@jobber/components-native@0.91.4) (2025-11-24)
+
+
+### Bug Fixes
+
+* fix and improve TS types related to react 19 upgrade ([#2821](https://github.com/GetJobber/atlantis/issues/2821)) ([d37070d](https://github.com/GetJobber/atlantis/commit/d37070d0b5bd4a603008cb9905ee3ce981df102b)), closes [#2831](https://github.com/GetJobber/atlantis/issues/2831) [#2829](https://github.com/GetJobber/atlantis/issues/2829) [#2827](https://github.com/GetJobber/atlantis/issues/2827) [#2830](https://github.com/GetJobber/atlantis/issues/2830)
+
+
+
+
+
+## [0.91.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.2...@jobber/components-native@0.91.3) (2025-11-21)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.91.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.1...@jobber/components-native@0.91.2) (2025-11-19)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.91.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.0...@jobber/components-native@0.91.1) (2025-11-18)
+
+
+### Bug Fixes
+
+* **components-native:** prevent infinite spinner on cached image loads in MediaView ([#2816](https://github.com/GetJobber/atlantis/issues/2816)) ([1560a63](https://github.com/GetJobber/atlantis/commit/1560a63e9ea932dc7f9936c712540639f51ca7ec))
+
+
+
+
+
+# [0.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.90.0...@jobber/components-native@0.91.0) (2025-11-18)
+
+
+### Features
+
+* **components-native:** Allow disabling mini placeholder label when input has a value ([#2804](https://github.com/GetJobber/atlantis/issues/2804)) ([de3e045](https://github.com/GetJobber/atlantis/commit/de3e0452b6f4b23d7cd870b0cca4b37c572d524a))
+
+
+
+
+
 # [0.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.89.4...@jobber/components-native@0.90.0) (2025-10-29)
 
 

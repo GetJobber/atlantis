@@ -50,7 +50,7 @@ type ElementID = Element["id"];
 export interface ErrorMessageContextRegisterParams {
   readonly id: ElementID;
   readonly hasErrorMessage: Methods["hasErrorMessage"];
-  readonly ref: RefObject<View>;
+  readonly ref: RefObject<View | null>;
 }
 
 export interface ErrorMessageContextProps {

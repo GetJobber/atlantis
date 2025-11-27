@@ -125,6 +125,21 @@
           "name": "{ icon?: IconNames; label?: string; }"
         }
       },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "ref": {
         "defaultValue": null,
         "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
@@ -135,7 +150,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<InputTextRef>"
+          "name": "Ref<InputTextRef>"
         }
       }
     }

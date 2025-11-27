@@ -493,48 +493,54 @@ export function useAutocomplete<
     value,
   ]);
 
-  const onInputFocus = useCallback(() => {
-    if (!readOnly && openOnFocus && !isHandlingMenuInteractionRef.current) {
-      setOpen(true);
-    }
+  const onInputFocus = useCallback(
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (!readOnly && openOnFocus && !isHandlingMenuInteractionRef.current) {
+        setOpen(true);
+      }
 
-    // Only call user's onFocus for genuine focus events, not programmatic restorations
-    if (!isHandlingMenuInteractionRef.current) {
-      props.onFocus?.();
-    }
+      // Only call user's onFocus for genuine focus events, not programmatic restorations
+      if (!isHandlingMenuInteractionRef.current) {
+        props.onFocus?.(event);
+      }
 
-    isHandlingMenuInteractionRef.current = false;
-  }, [props.onFocus, readOnly, openOnFocus, setOpen]);
+      isHandlingMenuInteractionRef.current = false;
+    },
+    [props.onFocus, readOnly, openOnFocus, setOpen],
+  );
 
-  const onInputBlur = useCallback(() => {
-    if (isHandlingMenuInteractionRef.current) {
-      return;
-    }
+  const onInputBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (isHandlingMenuInteractionRef.current) {
+        return;
+      }
 
-    if (readOnly) {
-      props.onBlur?.();
+      if (readOnly) {
+        props.onBlur?.(event);
 
-      return;
-    }
+        return;
+      }
 
-    if (props.allowFreeForm === true) {
-      const inputText = inputValue.trim();
-      if (inputText.length > 0) commitFromInputText(inputText);
-    } else {
-      tryRestoreInputToSelectedLabel();
-    }
+      if (props.allowFreeForm === true) {
+        const inputText = inputValue.trim();
+        if (inputText.length > 0) commitFromInputText(inputText);
+      } else {
+        tryRestoreInputToSelectedLabel();
+      }
 
-    lastInputWasUser.current = false;
+      lastInputWasUser.current = false;
 
-    props.onBlur?.();
-  }, [
-    readOnly,
-    props.allowFreeForm,
-    inputValue,
-    props.onBlur,
-    tryRestoreInputToSelectedLabel,
-    setOpen,
-  ]);
+      props.onBlur?.(event);
+    },
+    [
+      readOnly,
+      props.allowFreeForm,
+      inputValue,
+      props.onBlur,
+      tryRestoreInputToSelectedLabel,
+      setOpen,
+    ],
+  );
 
   function getRegionByActiveIndex(index: number): {
     region: "header" | "middle" | "footer";

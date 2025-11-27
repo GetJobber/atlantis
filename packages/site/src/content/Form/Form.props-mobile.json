@@ -159,7 +159,7 @@
         },
         "required": false,
         "type": {
-          "name": "MutableRefObject<UseFormReturn<T> & { scrollViewRef?: RefObject<KeyboardAwareScrollView>; saveButtonHeight?: number; messageBannerHeight?: number; }>"
+          "name": "RefObject<UseFormReturn<T> & { scrollViewRef?: RefObject<KeyboardAwareScrollView>; saveButtonHeight?: number; messageBannerHeight?: number; }>"
         }
       },
       "saveButtonLabel": {
@@ -185,7 +185,7 @@
         },
         "required": false,
         "type": {
-          "name": "(onSubmit: () => void, label: string, isSubmitting: boolean) => Element"
+          "name": "(onSubmit: () => void, label: string, isSubmitting: boolean) => ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "localCacheKey": {

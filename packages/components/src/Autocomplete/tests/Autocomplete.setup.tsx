@@ -66,6 +66,7 @@ export function Wrapper<T extends OptionLike>({
   UNSAFE_className,
   UNSAFE_styles,
   debounce = 0,
+  ...props
 }: {
   readonly initialValue?: T;
   readonly initialInputValue?: string;
@@ -147,6 +148,7 @@ export function Wrapper<T extends OptionLike>({
       readOnly={readOnly}
       customRenderHeader={customRenderHeader}
       customRenderFooter={customRenderFooter}
+      {...props}
     />
   );
 }

@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>> | ((props: DatePickerActivatorProps) => ReactElement<any, string | JSXElementConstructor<...>>)"
+          "name": "ReactElement<unknown, string | JSXElementConstructor<any>> | ((props: DatePickerActivatorProps) => ReactElement<unknown, string | JSXElementConstructor<...>>)"
         }
       },
       "disabled": {

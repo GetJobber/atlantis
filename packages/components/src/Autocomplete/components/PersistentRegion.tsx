@@ -21,7 +21,7 @@ interface PersistentRegionProps<T extends OptionLike> {
   readonly getItemProps: (
     args?: Record<string, unknown>,
   ) => Record<string, unknown>;
-  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly listRef: React.RefObject<Array<HTMLElement | null>>;
   readonly customRenderHeader?: AutocompleteRebuiltProps<
     T,
     false
@@ -103,7 +103,7 @@ interface HandlePersistentRenderingProps<T extends OptionLike> {
   readonly persistent:
     | MenuHeader<Record<string, unknown>>
     | MenuFooter<Record<string, unknown>>;
-  readonly listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+  readonly listRef: React.RefObject<Array<HTMLElement | null>>;
   readonly onAction: (action: ActionConfig) => void;
   readonly onInteractionMouseDown: (e: React.MouseEvent) => void;
   readonly navigableIndex: number;

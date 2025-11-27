@@ -65,6 +65,8 @@ module.exports = {
           "@jobber/design/*",
           "lodash/*",
           "utils/*",
+          "storybook/*",
+          "@storybook/*",
         ],
       },
     ],

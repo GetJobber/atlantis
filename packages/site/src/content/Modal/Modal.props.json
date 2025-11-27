@@ -46,7 +46,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"small\" | \"large\""
         }
       },
       "dismissible": {
