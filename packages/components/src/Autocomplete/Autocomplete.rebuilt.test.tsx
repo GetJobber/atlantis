@@ -2361,6 +2361,74 @@ describe("AutocompleteRebuilt", () => {
       expect(onFocus).toHaveBeenCalled();
     });
 
+    it("does not call onFocus again when selecting an option (internal programmatic focus restoration)", async () => {
+      const onFocus = jest.fn();
+
+      render(<Wrapper onFocus={onFocus} />);
+
+      await openAutocomplete();
+      expect(onFocus).toHaveBeenCalledTimes(1);
+
+      await selectWithClick("One");
+      expect(onFocus).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not call onFocus again when clicking an action (internal programmatic focus restoration)", async () => {
+      const onFocus = jest.fn();
+      const actionClick = jest.fn();
+
+      render(
+        <Wrapper
+          onFocus={onFocus}
+          menu={[
+            menuOptions<OptionLike>(
+              [{ label: "Option" }],
+              [
+                {
+                  type: "action",
+                  label: "Test Action",
+                  onClick: actionClick,
+                },
+              ],
+            ),
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      expect(onFocus).toHaveBeenCalledTimes(1);
+
+      await selectWithClick("Test Action");
+      expect(actionClick).toHaveBeenCalledTimes(1);
+      expect(onFocus).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not call onFocus again when clicking an interactive header (programmatic focus restoration)", async () => {
+      const onFocus = jest.fn();
+      const headerClick = jest.fn();
+
+      render(
+        <Wrapper
+          onFocus={onFocus}
+          menu={[
+            {
+              type: "header",
+              label: "Interactive Header",
+              onClick: headerClick,
+            },
+          ]}
+        />,
+      );
+
+      await openAutocomplete();
+      expect(onFocus).toHaveBeenCalledTimes(1);
+
+      await selectWithClick("Interactive Header");
+      expect(headerClick).toHaveBeenCalledTimes(1);
+      // Focus is restored programmatically but onFocus should not fire again
+      expect(onFocus).toHaveBeenCalledTimes(1);
+    });
+
     it("calls onBlur when the input is blurred", async () => {
       const onBlur = jest.fn();
 

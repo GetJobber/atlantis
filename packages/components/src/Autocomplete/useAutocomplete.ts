@@ -418,7 +418,6 @@ export function useAutocomplete<
       setOpen(false);
 
       (refs.domReference.current as HTMLElement | null)?.focus();
-      isHandlingMenuInteractionRef.current = false;
     },
     [selectOption, setOpen, refs.domReference],
   );
@@ -432,7 +431,6 @@ export function useAutocomplete<
       if (action.closeOnRun !== false) setOpen(false);
 
       (refs.domReference.current as HTMLElement | null)?.focus();
-      isHandlingMenuInteractionRef.current = false;
     },
     [setOpen, setActiveIndex, refs.domReference],
   );
@@ -496,16 +494,19 @@ export function useAutocomplete<
   ]);
 
   const onInputFocus = useCallback(() => {
-    // Don't open the menu if we're in the middle of a menu interaction
     if (!readOnly && openOnFocus && !isHandlingMenuInteractionRef.current) {
       setOpen(true);
     }
 
-    props.onFocus?.();
+    // Only call user's onFocus for genuine focus events, not programmatic restorations
+    if (!isHandlingMenuInteractionRef.current) {
+      props.onFocus?.();
+    }
+
+    isHandlingMenuInteractionRef.current = false;
   }, [props.onFocus, readOnly, openOnFocus, setOpen]);
 
   const onInputBlur = useCallback(() => {
-    // Skip blur logic if we're in the middle of a menu interaction
     if (isHandlingMenuInteractionRef.current) {
       return;
     }
