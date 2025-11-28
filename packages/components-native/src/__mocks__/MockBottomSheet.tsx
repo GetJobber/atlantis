@@ -10,7 +10,7 @@ import {
   useImperativeHandle,
   useState,
 } from "react";
-import { TextInput, View } from "react-native";
+import { View } from "react-native";
 import type { BottomSheetProps } from "@gorhom/bottom-sheet";
 import type RNBottomSheet from "@gorhom/bottom-sheet";
 
@@ -102,8 +102,6 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
 // eslint-disable-next-line import/no-default-export
 export default BottomSheet;
 export { BottomSheet, BottomSheetBackdrop, BottomSheetView, BottomSheetFooter };
-
-export const BottomSheetTextInput = TextInput;
 
 export const useBottomSheet = () => ({
   snapToIndex: NOOP,

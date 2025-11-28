@@ -1,4 +1,4 @@
-import type { ReactNode, Ref } from "react";
+import type { ReactNode } from "react";
 import React, { useCallback, useImperativeHandle, useRef } from "react";
 import { Keyboard, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -13,7 +13,6 @@ import type {
 } from "@gorhom/bottom-sheet";
 import { useStyles } from "./BottomSheet.style";
 import { BottomSheetOption } from "./components/BottomSheetOption";
-import { BottomSheetInputText } from "./components/BottomSheetInputText/BottomSheetInputText";
 import { useBottomSheetBackHandler } from "./hooks/useBottomSheetBackHandler";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
@@ -47,11 +46,6 @@ export interface BottomSheetProps {
    * Callback that is called when the overlay is closed.
    */
   readonly onClose?: () => void;
-
-  /**
-   * Ref to the bottom sheet component.
-   */
-  readonly ref?: Ref<BottomSheetRef>;
 }
 
 export interface BottomSheetRef {
@@ -67,7 +61,7 @@ export function BottomSheet({
   onOpen,
   onClose,
   ref,
-}: BottomSheetProps) {
+}: BottomSheetProps & { readonly ref?: React.Ref<BottomSheetRef> }) {
   const styles = useStyles();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
 
@@ -192,5 +186,3 @@ function Backdrop(bottomSheetBackdropProps: BottomSheetBackdropProps) {
     />
   );
 }
-
-BottomSheet.InputText = BottomSheetInputText;
