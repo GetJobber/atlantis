@@ -17,6 +17,7 @@ import {
   invokeActiveItemOnEnter,
 } from "./utils/menuModel";
 import { useAutocompleteListNav } from "./hooks/useAutocompleteListNav";
+import { createInteractionPointerDownHandler } from "./utils/interactionUtils";
 
 export type RenderItem<
   T extends OptionLike,
@@ -443,11 +444,10 @@ export function useAutocomplete<
    * Handler for mousedown on interactive menu items (options/actions)
    * Prevents default to avoid blur and sets flag for focus management
    */
-  const onInteractionPointerDown = useCallback((e: React.PointerEvent) => {
-    e.preventDefault();
-    // Set flag to prevent blur/focus handlers from interfering
-    isHandlingMenuInteractionRef.current = true;
-  }, []);
+  const onInteractionPointerDown = useMemo(
+    () => createInteractionPointerDownHandler(isHandlingMenuInteractionRef),
+    [],
+  );
 
   function commitFromInputText(inputText: string): boolean {
     if (inputText.length === 0) return false;

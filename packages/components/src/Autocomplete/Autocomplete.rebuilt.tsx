@@ -13,6 +13,7 @@ import type {
 } from "./Autocomplete.types";
 import styles from "./AutocompleteRebuilt.module.css";
 import { useAutocomplete } from "./useAutocomplete";
+import { preventDefaultPointerDown } from "./utils/interactionUtils";
 import { MenuList } from "./components/MenuList";
 import { PersistentRegion } from "./components/PersistentRegion";
 import { InputText } from "../InputText";
@@ -295,7 +296,10 @@ function AutocompleteRebuiltInternal<
 
 function LoadingContent() {
   return (
-    <div className={styles.loadingList} onPointerDown={e => e.preventDefault()}>
+    <div
+      className={styles.loadingList}
+      onPointerDown={preventDefaultPointerDown}
+    >
       <Glimmer shape="rectangle" size="base" />
       <Glimmer shape="rectangle" size="base" />
       <Glimmer shape="rectangle" size="base" />
@@ -314,7 +318,7 @@ function EmptyStateMessage({
   return (
     <div
       className={styles.emptyStateMessage}
-      onPointerDown={e => e.preventDefault()}
+      onPointerDown={preventDefaultPointerDown}
     >
       {emptyStateContent}
     </div>

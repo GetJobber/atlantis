@@ -8,6 +8,7 @@ import type {
   MenuHeader,
   OptionLike,
 } from "../Autocomplete.types";
+import { preventDefaultPointerDown } from "../utils/interactionUtils";
 import styles from "../AutocompleteRebuilt.module.css";
 
 interface PersistentRegionProps<T extends OptionLike> {
@@ -180,9 +181,7 @@ function handleTextPersistentRendering<T extends OptionLike>({
       role="presentation"
       tabIndex={-1}
       className={styles.textPersistent}
-      onPointerDown={e => {
-        e.preventDefault();
-      }}
+      onPointerDown={preventDefaultPointerDown}
     >
       {content}
     </div>

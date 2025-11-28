@@ -10,6 +10,7 @@ import type {
 } from "../Autocomplete.types";
 import styles from "../AutocompleteRebuilt.module.css";
 import type { RenderItem } from "../useAutocomplete";
+import { preventDefaultPointerDown } from "../utils/interactionUtils";
 import { Heading } from "../../Heading";
 import { Text } from "../../Text";
 import { Typography } from "../../Typography";
@@ -152,9 +153,7 @@ function handleSectionRendering<T extends OptionLike>({
       data-testid="ATL-AutocompleteRebuilt-Section"
       className={classNames(styles.section, styles.stickyTop, sectionClassName)}
       style={sectionStyle}
-      onPointerDown={e => {
-        e.preventDefault();
-      }}
+      onPointerDown={preventDefaultPointerDown}
     >
       {headerContent}
     </div>
