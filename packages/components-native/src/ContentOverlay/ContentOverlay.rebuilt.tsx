@@ -50,7 +50,7 @@ export function ContentOverlayRebuilt({
   onBeforeExit,
   loading = false,
   ref,
-}: ContentOverlayRebuiltProps): JSX.Element {
+}: ContentOverlayRebuiltProps) {
   const insets = useSafeAreaInsets();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
