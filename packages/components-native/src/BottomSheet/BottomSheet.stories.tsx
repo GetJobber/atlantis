@@ -100,7 +100,6 @@ const HeaderFooterInputTextTemplate = () => {
           text="Send message"
           onPress={() => alert("send message")}
         />
-        <BottomSheet.InputText placeholder="Enter your name" />
         <BottomSheetOption
           icon="phone"
           iconColor="greyBlue"

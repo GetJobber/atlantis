@@ -13,7 +13,6 @@ import type {
 } from "@gorhom/bottom-sheet";
 import { useStyles } from "./BottomSheet.style";
 import { BottomSheetOption } from "./components/BottomSheetOption";
-import { BottomSheetInputText } from "./components/BottomSheetInputText/BottomSheetInputText";
 import { useBottomSheetBackHandler } from "./hooks/useBottomSheetBackHandler";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
@@ -192,5 +191,3 @@ function Backdrop(bottomSheetBackdropProps: BottomSheetBackdropProps) {
     />
   );
 }
-
-BottomSheet.InputText = BottomSheetInputText;
