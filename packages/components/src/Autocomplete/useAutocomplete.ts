@@ -17,6 +17,7 @@ import {
   invokeActiveItemOnEnter,
 } from "./utils/menuModel";
 import { useAutocompleteListNav } from "./hooks/useAutocompleteListNav";
+import { createInteractionPointerDownHandler } from "./utils/interactionUtils";
 
 export type RenderItem<
   T extends OptionLike,
@@ -50,6 +51,8 @@ export function useAutocomplete<
     readOnly = false,
     debounce: debounceMs = 300,
   } = props;
+
+  const isHandlingMenuInteractionRef = useRef(false);
 
   // TODO: Clean up the types in these refs by enhancing the type system in useCallbackRef
   const getOptionLabelPropRef = useCallbackRef((opt: unknown) =>
@@ -134,7 +137,8 @@ export function useAutocomplete<
   const debouncedSetter = useDebounce(setDebouncedInputValue, debounceMs);
 
   useEffect(() => {
-    if (debounceMs === 0) {
+    // Skip debounce when clearing input for immediate feedback, preventing flickering of last selected item
+    if (debounceMs === 0 || inputValue === "") {
       setDebouncedInputValue(inputValue);
 
       return;
@@ -286,6 +290,7 @@ export function useAutocomplete<
     navigableCount: totalNavigableCount,
     shouldResetActiveIndexOnClose: () => !hasSelection,
     selectedIndex,
+    readOnly,
     onMenuClose: () => {
       if (props.allowFreeForm !== true) {
         const hasText = inputValue.trim().length > 0;
@@ -299,8 +304,6 @@ export function useAutocomplete<
       }
     },
   });
-
-  const [inputFocused, setInputFocused] = useState(false);
 
   // Handles activeIndex reset and, in single-select mode only, clearing selection when input is empty
   useEffect(() => {
@@ -414,6 +417,10 @@ export function useAutocomplete<
       selectOption(option);
       // Might not always want to close on selection. Multi for example.
       setOpen(false);
+
+      if (refs.domReference.current instanceof HTMLElement) {
+        refs.domReference.current.focus();
+      }
     },
     [selectOption, setOpen],
   );
@@ -425,8 +432,21 @@ export function useAutocomplete<
       setActiveIndex(null);
 
       if (action.closeOnRun !== false) setOpen(false);
+
+      if (refs.domReference.current instanceof HTMLElement) {
+        refs.domReference.current.focus();
+      }
     },
     [setOpen, setActiveIndex],
+  );
+
+  /**
+   * Handler for mousedown on interactive menu items (options/actions)
+   * Prevents default to avoid blur and sets flag for focus management
+   */
+  const onInteractionPointerDown = useMemo(
+    () => createInteractionPointerDownHandler(isHandlingMenuInteractionRef),
+    [],
   );
 
   function commitFromInputText(inputText: string): boolean {
@@ -479,16 +499,25 @@ export function useAutocomplete<
 
   const onInputFocus = useCallback(
     (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setInputFocused(true);
-      if (!readOnly && openOnFocus) setOpen(true);
-      props.onFocus?.(event);
+      if (!readOnly && openOnFocus && !isHandlingMenuInteractionRef.current) {
+        setOpen(true);
+      }
+
+      // Only call user's onFocus for genuine focus events, not programmatic restorations
+      if (!isHandlingMenuInteractionRef.current) {
+        props.onFocus?.(event);
+      }
+
+      isHandlingMenuInteractionRef.current = false;
     },
     [props.onFocus, readOnly, openOnFocus, setOpen],
   );
 
   const onInputBlur = useCallback(
     (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setInputFocused(false);
+      if (isHandlingMenuInteractionRef.current) {
+        return;
+      }
 
       if (readOnly) {
         props.onBlur?.(event);
@@ -635,11 +664,11 @@ export function useAutocomplete<
       }
 
       // Important: update open state before propagating the change so that downstream effects
-      // don’t see an intermediate state where inputValue changed but open was stale
+      // don't see an intermediate state where inputValue changed but open was stale
       if (!readOnly) {
         const hasText = val.trim().length > 0;
         const mustSelectFromOptions = hasText && !props.allowFreeForm;
-        const keepOpenOnEmpty = openOnFocus && inputFocused;
+        const keepOpenOnEmpty = openOnFocus;
 
         setOpen(mustSelectFromOptions || keepOpenOnEmpty);
       }
@@ -653,7 +682,6 @@ export function useAutocomplete<
       readOnly,
       props.allowFreeForm,
       openOnFocus,
-      inputFocused,
       setOpen,
     ],
   );
@@ -684,6 +712,7 @@ export function useAutocomplete<
     // actions
     onSelection,
     onAction,
+    onInteractionPointerDown,
     // input handlers
     onInputChangeFromUser,
     onInputBlur,
