@@ -83,6 +83,7 @@ jest.mock("react-native-keyboard-aware-scroll-view", () => {
   return { KeyboardAwareScrollView: mockRef };
 });
 
+// TODO: delete this dependency and all references to it
 jest.mock("react-native-modalize", () => {
   const {
     forwardRef,

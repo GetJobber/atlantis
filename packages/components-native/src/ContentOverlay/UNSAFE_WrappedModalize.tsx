@@ -9,6 +9,7 @@ import type { IHandles } from "react-native-modalize/lib/options";
 
 type Props = React.ComponentProps<typeof Modalize>;
 
+// TODO: delete this file
 export const UNSAFE_WrappedModalize = forwardRef<IHandles | undefined, Props>(
   (props, ref) => {
     const innerRef = useRef<IHandles | null>(null);

@@ -20,6 +20,7 @@ export default {
   },
 } as ComponentMeta<typeof ContentOverlay>;
 
+// TODO: move to storybook v9
 const BasicTemplate: ComponentStory<typeof ContentOverlay> = args => {
   const contentOverlayRef = useRef<ContentOverlayRef>(null);
 
