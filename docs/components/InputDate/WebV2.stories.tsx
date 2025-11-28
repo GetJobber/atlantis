@@ -12,6 +12,7 @@ const meta = {
     disabled: false,
     invalid: false,
     onChange: fn(),
+    onBlur: fn(),
   },
 } satisfies Meta<typeof InputDate>;
 
@@ -29,6 +30,9 @@ export const Basic: Story = {
         onChange={next => {
           setValue(next); // Controlled to reflect selection in the input while still logging actions
           args.onChange(next); // Log the action in the actions panel
+        }}
+        onBlur={() => {
+          args.onBlur?.();
         }}
       />
     );

@@ -1,4 +1,5 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
+import type { FocusEvent } from "react";
 import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
 import type { InputDateRebuiltProps } from "./InputDate.types";
 import type { Suffix } from "../FormField";
@@ -11,6 +12,11 @@ export const InputDateRebuilt = forwardRef<
   InputDateRebuiltProps
 >((props, forwardedRef) => {
   const { onChange } = props;
+  const isCalendarOpenRef = useRef(false);
+  const inputFocusedRef = useRef(false);
+  const compositeFocusedRef = useRef(false);
+  const lastBlurEventRef =
+    useRef<FocusEvent<HTMLInputElement | HTMLTextAreaElement>>(null);
 
   return (
     <DatePicker
@@ -25,6 +31,23 @@ export const InputDateRebuilt = forwardRef<
       maxDate={props.maxDate}
       smartAutofocus={false}
       activator={InputDateActivator}
+      onCalendarOpen={() => {
+        isCalendarOpenRef.current = true;
+      }}
+      onCalendarClose={() => {
+        isCalendarOpenRef.current = false;
+
+        // When calendar closes, fire onBlur if input is also not focused
+        // The entire composite component (input + calendar) has lost focus
+        if (
+          !inputFocusedRef.current &&
+          compositeFocusedRef.current &&
+          lastBlurEventRef.current
+        ) {
+          compositeFocusedRef.current = false;
+          props.onBlur?.(lastBlurEventRef.current);
+        }
+      }}
     />
   );
 
@@ -35,11 +58,26 @@ export const InputDateRebuilt = forwardRef<
       useInputDateActivatorActions({
         onChange: activatorProps.onChange,
         onFocus: event => {
-          props.onFocus?.(event);
+          inputFocusedRef.current = true;
+
+          // Fire parent's onFocus only when the composite component first receives focus
+          if (!compositeFocusedRef.current) {
+            compositeFocusedRef.current = true;
+            props.onFocus?.(event);
+          }
+
           activatorProps.onFocus?.();
         },
         onBlur: event => {
-          props.onBlur?.(event);
+          inputFocusedRef.current = false;
+          lastBlurEventRef.current = event;
+
+          // Only fire parent's onBlur if calendar is also closed
+          if (!isCalendarOpenRef.current && compositeFocusedRef.current) {
+            compositeFocusedRef.current = false;
+            props.onBlur?.(event);
+          }
+
           activatorProps.onBlur?.();
         },
       });

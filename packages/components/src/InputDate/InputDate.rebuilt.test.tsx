@@ -1,6 +1,7 @@
 /* eslint-disable max-statements */
 import React, { useState } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { InputDate } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
@@ -374,6 +375,188 @@ describe("InputDate V2", () => {
     expect(
       screen.queryByDisplayValue(expectedDisplayValue),
     ).toBeInTheDocument();
+  });
+
+  describe("focus and blur behavior", () => {
+    it("fires onBlur after onChange when user clicks to select a date", async () => {
+      const user = userEvent.setup();
+      const date = "11/11/2011";
+      const newDate = "11/15/2011";
+      const changeHandler = jest.fn();
+      const blurHandler = jest.fn();
+      const focusHandler = jest.fn();
+
+      render(
+        <InputDate
+          version={2}
+          value={new Date(date)}
+          onChange={changeHandler}
+          onBlur={blurHandler}
+          onFocus={focusHandler}
+        />,
+      );
+
+      const input = screen.getByDisplayValue(date);
+
+      // Click input to open calendar
+      await user.click(input);
+
+      // onFocus should fire when input is first clicked
+      expect(focusHandler).toHaveBeenCalledTimes(1);
+      expect(blurHandler).not.toHaveBeenCalled();
+
+      // Select a date
+      const selectDate = screen.getByText("15");
+      await user.click(selectDate);
+
+      expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
+      expect(blurHandler).toHaveBeenCalledTimes(1);
+
+      // Verify order: onFocus, then onChange, then onBlur
+      const focusCallOrder = focusHandler.mock.invocationCallOrder[0];
+      const changeCallOrder = changeHandler.mock.invocationCallOrder[0];
+      const blurCallOrder = blurHandler.mock.invocationCallOrder[0];
+
+      expect(focusCallOrder).toBeLessThan(changeCallOrder);
+      expect(changeCallOrder).toBeLessThan(blurCallOrder);
+    });
+
+    it("does not fire onBlur when calendar opens after clicking input", async () => {
+      const user = userEvent.setup();
+      const date = "11/11/2011";
+      const changeHandler = jest.fn();
+      const blurHandler = jest.fn();
+      const focusHandler = jest.fn();
+
+      render(
+        <InputDate
+          version={2}
+          value={new Date(date)}
+          onChange={changeHandler}
+          onBlur={blurHandler}
+          onFocus={focusHandler}
+        />,
+      );
+
+      const input = screen.getByDisplayValue(date);
+
+      // Click input to open calendar
+      await user.click(input);
+
+      // onFocus should fire, but not onBlur
+      expect(focusHandler).toHaveBeenCalledTimes(1);
+      expect(blurHandler).not.toHaveBeenCalled();
+
+      expect(screen.getByText("15")).toBeVisible();
+    });
+
+    it("fires onBlur when user types a date and clicks away", async () => {
+      const user = userEvent.setup();
+      const newDate = "11/15/2011";
+      const changeHandler = jest.fn();
+      const blurHandler = jest.fn();
+      const focusHandler = jest.fn();
+
+      render(
+        <div>
+          <InputDate
+            version={2}
+            onChange={changeHandler}
+            onBlur={blurHandler}
+            onFocus={focusHandler}
+            placeholder="Test Date"
+          />
+          <button type="button">Outside Button</button>
+        </div>,
+      );
+
+      const input = screen.getByLabelText("Test Date");
+
+      // Click input to focus
+      await user.click(input);
+      expect(focusHandler).toHaveBeenCalledTimes(1);
+
+      // Type the new date
+      await user.type(input, newDate);
+
+      expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
+      expect(blurHandler).not.toHaveBeenCalled();
+
+      // Click away from input
+      const outsideButton = screen.getByText("Outside Button");
+      await user.click(outsideButton);
+
+      // onBlur should now fire
+      expect(blurHandler).toHaveBeenCalledTimes(1);
+    });
+
+    it("only fires onFocus once when opening calendar, not multiple times", async () => {
+      const user = userEvent.setup();
+      const date = "11/11/2011";
+      const changeHandler = jest.fn();
+      const focusHandler = jest.fn();
+
+      render(
+        <InputDate
+          version={2}
+          value={new Date(date)}
+          onChange={changeHandler}
+          onFocus={focusHandler}
+        />,
+      );
+
+      const input = screen.getByDisplayValue(date);
+
+      // Click input to open calendar
+      await user.click(input);
+
+      // onFocus should only fire once
+      expect(focusHandler).toHaveBeenCalledTimes(1);
+
+      // Calendar is open
+      expect(screen.getByText("15")).toBeInTheDocument();
+
+      // Even if we interact with the calendar, onFocus shouldn't fire again
+      const selectDate = screen.getByText("15");
+      await user.click(selectDate);
+
+      expect(focusHandler).toHaveBeenCalledTimes(1);
+    });
+
+    it("fires onBlur when calendar closes after pressing Escape", async () => {
+      const user = userEvent.setup();
+      const date = "11/11/2011";
+      const changeHandler = jest.fn();
+      const blurHandler = jest.fn();
+      const focusHandler = jest.fn();
+
+      render(
+        <InputDate
+          version={2}
+          value={new Date(date)}
+          onChange={changeHandler}
+          onBlur={blurHandler}
+          onFocus={focusHandler}
+        />,
+      );
+
+      const input = screen.getByDisplayValue(date);
+
+      // Click input to open calendar
+      await user.click(input);
+      expect(focusHandler).toHaveBeenCalledTimes(1);
+      expect(blurHandler).not.toHaveBeenCalled();
+
+      // Press Escape to close calendar
+      await user.keyboard("{Escape}");
+
+      // Calendar should close
+      expect(screen.queryByText("15")).not.toBeInTheDocument();
+
+      // onBlur should NOT fire when calendar closes via Escape (focus remains on input)
+      expect(blurHandler).not.toHaveBeenCalled();
+      expect(input).toHaveFocus();
+    });
   });
 
   function NestedTestComponent(props: { readonly date: string }) {
