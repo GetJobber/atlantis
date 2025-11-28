@@ -69,7 +69,7 @@ function AutocompleteRebuiltInternal<
     listRef,
     onSelection,
     onAction,
-    onInteractionMouseDown,
+    onInteractionPointerDown,
     onInputChangeFromUser,
     onInputBlur,
     onInputFocus,
@@ -213,7 +213,7 @@ function AutocompleteRebuiltInternal<
                 customRenderHeader={props.customRenderHeader}
                 customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
-                onInteractionMouseDown={onInteractionMouseDown}
+                onInteractionPointerDown={onInteractionPointerDown}
                 className={classNames(
                   styles.persistentHeader,
                   props.UNSAFE_className?.header,
@@ -244,7 +244,7 @@ function AutocompleteRebuiltInternal<
                         getOptionLabel={getOptionLabel}
                         onSelect={onSelection}
                         onAction={onAction}
-                        onInteractionMouseDown={onInteractionMouseDown}
+                        onInteractionPointerDown={onInteractionPointerDown}
                         isOptionSelected={isOptionSelected}
                         slotOverrides={{
                           option: {
@@ -278,7 +278,7 @@ function AutocompleteRebuiltInternal<
                 customRenderHeader={props.customRenderHeader}
                 customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
-                onInteractionMouseDown={onInteractionMouseDown}
+                onInteractionPointerDown={onInteractionPointerDown}
                 className={classNames(
                   styles.persistentFooter,
                   props.UNSAFE_className?.footer,
@@ -295,7 +295,7 @@ function AutocompleteRebuiltInternal<
 
 function LoadingContent() {
   return (
-    <div className={styles.loadingList} onMouseDown={e => e.preventDefault()}>
+    <div className={styles.loadingList} onPointerDown={e => e.preventDefault()}>
       <Glimmer shape="rectangle" size="base" />
       <Glimmer shape="rectangle" size="base" />
       <Glimmer shape="rectangle" size="base" />
@@ -314,7 +314,7 @@ function EmptyStateMessage({
   return (
     <div
       className={styles.emptyStateMessage}
-      onMouseDown={e => e.preventDefault()}
+      onPointerDown={e => e.preventDefault()}
     >
       {emptyStateContent}
     </div>

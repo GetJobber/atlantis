@@ -34,7 +34,7 @@ interface PersistentRegionProps<T extends OptionLike> {
   readonly className?: string;
   readonly style?: React.CSSProperties;
   readonly onAction: (action: ActionConfig) => void;
-  readonly onInteractionMouseDown: (e: React.MouseEvent) => void;
+  readonly onInteractionPointerDown: (e: React.PointerEvent) => void;
 }
 
 export function PersistentRegion<T extends OptionLike>({
@@ -49,7 +49,7 @@ export function PersistentRegion<T extends OptionLike>({
   className,
   style,
   onAction,
-  onInteractionMouseDown,
+  onInteractionPointerDown,
 }: PersistentRegionProps<T>) {
   if (!items || items.length === 0) return null;
 
@@ -73,7 +73,7 @@ export function PersistentRegion<T extends OptionLike>({
           customRenderFooter,
           listRef,
           onAction,
-          onInteractionMouseDown,
+          onInteractionPointerDown,
           navigableIndex,
         });
 
@@ -105,7 +105,7 @@ interface HandlePersistentRenderingProps<T extends OptionLike> {
     | MenuFooter<Record<string, unknown>>;
   readonly listRef: React.RefObject<Array<HTMLElement | null>>;
   readonly onAction: (action: ActionConfig) => void;
-  readonly onInteractionMouseDown: (e: React.MouseEvent) => void;
+  readonly onInteractionPointerDown: (e: React.PointerEvent) => void;
   readonly navigableIndex: number;
 }
 
@@ -119,7 +119,7 @@ function handlePersistentRendering<T extends OptionLike>({
   customRenderFooter,
   listRef,
   onAction,
-  onInteractionMouseDown,
+  onInteractionPointerDown,
   navigableIndex,
 }: HandlePersistentRenderingProps<T>): {
   node: React.ReactNode;
@@ -148,7 +148,7 @@ function handlePersistentRendering<T extends OptionLike>({
     customRenderFooter,
     listRef,
     onAction,
-    onInteractionMouseDown,
+    onInteractionPointerDown,
     navigableIndex,
   });
 }
@@ -180,7 +180,7 @@ function handleTextPersistentRendering<T extends OptionLike>({
       role="presentation"
       tabIndex={-1}
       className={styles.textPersistent}
-      onMouseDown={e => {
+      onPointerDown={e => {
         e.preventDefault();
       }}
     >
@@ -199,7 +199,7 @@ function handleActionPersistentRendering<T extends OptionLike>({
   customRenderFooter,
   listRef,
   onAction,
-  onInteractionMouseDown,
+  onInteractionPointerDown,
   navigableIndex,
 }: HandlePersistentRenderingProps<T>): {
   node: React.ReactNode;
@@ -245,7 +245,7 @@ function handleActionPersistentRendering<T extends OptionLike>({
               closeOnRun: persistent.shouldClose,
             });
           },
-          onMouseDown: onInteractionMouseDown,
+          onPointerDown: onInteractionPointerDown,
           className: classNames(styles.action, isActive && styles.actionActive),
         })}
         role="button"

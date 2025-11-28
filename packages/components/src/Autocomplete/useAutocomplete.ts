@@ -439,7 +439,7 @@ export function useAutocomplete<
    * Handler for mousedown on interactive menu items (options/actions)
    * Prevents default to avoid blur and sets flag for focus management
    */
-  const onInteractionMouseDown = useCallback((e: React.MouseEvent) => {
+  const onInteractionPointerDown = useCallback((e: React.PointerEvent) => {
     e.preventDefault();
     // Set flag to prevent blur/focus handlers from interfering
     isHandlingMenuInteractionRef.current = true;
@@ -708,7 +708,7 @@ export function useAutocomplete<
     // actions
     onSelection,
     onAction,
-    onInteractionMouseDown,
+    onInteractionPointerDown,
     // input handlers
     onInputChangeFromUser,
     onInputBlur,
