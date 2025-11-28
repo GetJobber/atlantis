@@ -417,9 +417,11 @@ export function useAutocomplete<
       // Might not always want to close on selection. Multi for example.
       setOpen(false);
 
-      (refs.domReference.current as HTMLElement | null)?.focus();
+      if (refs.domReference.current instanceof HTMLElement) {
+        refs.domReference.current.focus();
+      }
     },
-    [selectOption, setOpen, refs.domReference],
+    [selectOption, setOpen],
   );
 
   const onAction = useCallback(
@@ -430,9 +432,11 @@ export function useAutocomplete<
 
       if (action.closeOnRun !== false) setOpen(false);
 
-      (refs.domReference.current as HTMLElement | null)?.focus();
+      if (refs.domReference.current instanceof HTMLElement) {
+        refs.domReference.current.focus();
+      }
     },
-    [setOpen, setActiveIndex, refs.domReference],
+    [setOpen, setActiveIndex],
   );
 
   /**
