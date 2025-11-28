@@ -75,12 +75,8 @@
       },
       "ref": {
         "defaultValue": null,
-        "description": "Ref to the bottom sheet component.",
+        "description": "",
         "name": "ref",
-        "parent": {
-          "fileName": "../components-native/src/BottomSheet/BottomSheet.tsx",
-          "name": "BottomSheetProps"
-        },
         "required": false,
         "type": {
           "name": "Ref<BottomSheetRef>"
