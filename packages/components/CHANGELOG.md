@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.105.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.0...@jobber/components@6.105.1) (2025-11-28)
+
+
+### Bug Fixes
+
+* **components:** Improve Focus and Blur Experience on Autocomplete v2 ([#2809](https://github.com/GetJobber/atlantis/issues/2809)) ([d4fd4c8](https://github.com/GetJobber/atlantis/commit/d4fd4c832ce5ac80488eca87b702dd460cdfe615))
+
+
+
+
+
 # [6.105.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.104.1...@jobber/components@6.105.0) (2025-11-27)
 
 
