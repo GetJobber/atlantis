@@ -774,8 +774,8 @@ const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
         openOnFocus=false and openOnFocus=true.
       </Text>
       <Text>
-        Both Autocomplete have empty state actions that launches a modal, moving
-        focus.
+        Both Autocompletes have empty state actions that launch a modal, moving
+        focus away from the Autocomplete.
       </Text>
       <InputText
         placeholder="Another Field to Tab From (Not an Autocomplete)"
@@ -787,9 +787,8 @@ const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
       />
       <Autocomplete
         version={2}
-        placeholder="openOnFocus=false"
+        placeholder="openOnFocus=true"
         value={value}
-        openOnFocus={false}
         onChange={setValue}
         onBlur={() => setLastBlur("First Autocomplete blurred")}
         onFocus={() => setLastFocus("First Autocomplete focused")}
@@ -811,10 +810,10 @@ const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
       />
       <Autocomplete
         version={2}
-        placeholder="openOnFocus=true"
-        openOnFocus
+        placeholder="openOnFocus=false"
+        openOnFocus={false}
         menu={defineMenu<OptionLike>([
-          { type: "options", options: simpleOptions },
+          { type: "options", options: simpleOptions.slice(0, 3) },
         ])}
         emptyActions={emptyActions}
         value={secondValue}
@@ -834,6 +833,7 @@ const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
           <Button label="Create" onClick={() => setOpenCreatModal(false)} />
         </Content>
       </Modal>
+      <div style={{ height: "200px" }} />
       {lastBlur && (
         <Text>
           <Emphasis variation="bold">Last blur:</Emphasis> {lastBlur}
