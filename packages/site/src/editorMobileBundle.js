@@ -1,7 +1,6 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { View } from "react-native-web";
-import { Modalize } from "react-native-modalize";
 import { IntlProvider } from "react-intl";
 
 window.React = React;
@@ -16,7 +15,6 @@ export {
   ReactDOM,
   forwardRef,
   React,
-  Modalize,
   useRef,
   useEffect,
   useState,

@@ -1,7 +1,6 @@
 import type { MissingTranslationError } from "react-intl";
 import * as ReactNative from "react-native";
 import React from "react";
-import type { Modalize, ModalizeProps } from "react-native-modalize";
 import type { Ref } from "react";
 import { MockModal } from "./MockModal";
 
@@ -81,64 +80,6 @@ const KeyboardAwareScrollView = ({ children }, _ref) => children;
 const mockRef = React.forwardRef(KeyboardAwareScrollView);
 jest.mock("react-native-keyboard-aware-scroll-view", () => {
   return { KeyboardAwareScrollView: mockRef };
-});
-
-// TODO: delete this dependency and all references to it
-jest.mock("react-native-modalize", () => {
-  const {
-    forwardRef,
-    useImperativeHandle,
-    useState,
-    createElement,
-    Fragment,
-  } = require("react");
-  const { View } = require("react-native");
-
-  return {
-    Modalize: forwardRef(function MockedModalize(
-      {
-        children,
-        HeaderComponent,
-        FooterComponent,
-        onOpen,
-        onClose,
-        ...props
-      }: ModalizeProps,
-      ref: Ref<Modalize>,
-    ) {
-      const [isVisible, setIsVisible] = useState(false);
-
-      useImperativeHandle(ref, () => ({
-        open: () => {
-          setIsVisible(true);
-          onOpen?.();
-        },
-        close: () => {
-          setIsVisible(false);
-          onClose?.();
-        },
-      }));
-
-      if (!isVisible) {
-        return null;
-      }
-
-      return createElement(
-        View,
-        {
-          testID: "modalize-mock",
-          ...props,
-        },
-        [
-          HeaderComponent &&
-            createElement(Fragment, { key: "header" }, HeaderComponent),
-          createElement(Fragment, { key: "children" }, children),
-          FooterComponent &&
-            createElement(Fragment, { key: "footer" }, FooterComponent),
-        ],
-      );
-    }),
-  };
 });
 
 jest.mock("@gorhom/bottom-sheet", () => require("./MockBottomSheet"));

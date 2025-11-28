@@ -34,10 +34,6 @@ export default {
       entries: [
         { find: "react-native", replacement: "./src/MobileOverrides.jsx" },
         {
-          find: "react-native-modalize",
-          replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
-        },
-        {
           find: "react-native-keyboard-aware-scroll-view",
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
         },
