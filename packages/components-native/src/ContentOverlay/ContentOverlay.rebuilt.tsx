@@ -12,7 +12,7 @@ import type {
   BottomSheetBackdropProps,
   BottomSheetModal as BottomSheetModalType,
 } from "@gorhom/bottom-sheet";
-import type { ContentOverlayRebuiltProps, ModalBackgroundColor } from "./types";
+import type { ContentOverlayProps, ModalBackgroundColor } from "./types";
 import { useStyles } from "./ContentOverlay.rebuilt.style";
 import { useBottomSheetModalBackHandler } from "./hooks/useBottomSheetModalBackHandler";
 import { useIsScreenReaderEnabled } from "../hooks";
@@ -50,7 +50,7 @@ export function ContentOverlayRebuilt({
   onBeforeExit,
   loading = false,
   ref,
-}: ContentOverlayRebuiltProps) {
+}: ContentOverlayProps) {
   const insets = useSafeAreaInsets();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
