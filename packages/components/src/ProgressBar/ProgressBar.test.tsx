@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import React from "react";
+import { render, screen } from "@testing-library/react";
 import { ProgressBar } from "./ProgressBar";
 
 describe("with props", () => {
@@ -42,6 +42,55 @@ describe("with props", () => {
         progress => progress.getAttribute("value") === "0",
       );
       expect(incompleteSteps).toHaveLength(1);
+    });
+  });
+});
+
+describe("ProgressBar UNSAFE props", () => {
+  describe("variation=progress", () => {
+    it("applies UNSAFE_className.container to the progress element", () => {
+      render(
+        <ProgressBar
+          currentStep={30}
+          totalSteps={100}
+          UNSAFE_className={{ container: "custom-progress" }}
+        />,
+      );
+
+      const el = screen.getByRole("progressbar");
+      expect(el).toHaveClass("custom-progress");
+    });
+
+    it("applies UNSAFE_style.container to the progress element", () => {
+      render(
+        <ProgressBar
+          currentStep={30}
+          totalSteps={100}
+          UNSAFE_style={{ container: { backgroundColor: "papayawhip" } }}
+        />,
+      );
+
+      const el = screen.getByRole("progressbar");
+      expect(el).toHaveStyle({ backgroundColor: "papayawhip" });
+    });
+  });
+
+  describe("variation=stepped", () => {
+    it("applies UNSAFE_className.container and UNSAFE_style.container to the wrapper", () => {
+      render(
+        <ProgressBar
+          currentStep={2}
+          totalSteps={5}
+          variation="stepped"
+          UNSAFE_className={{ container: "custom-stepped" }}
+          UNSAFE_style={{ container: { backgroundColor: "lavender" } }}
+        />,
+      );
+
+      const el = screen.getByTestId("progressbar-wrapper");
+      expect(el).toBeVisible();
+      expect(el).toHaveClass("custom-stepped");
+      expect(el).toHaveStyle({ backgroundColor: "lavender" });
     });
   });
 });

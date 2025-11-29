@@ -26,6 +26,21 @@ interface ProgressBarProps {
    * @default progress
    */
   readonly variation?: "progress" | "stepped";
+
+  /** **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+  };
+  /** **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: React.CSSProperties;
+  };
 }
 
 export function ProgressBar({
@@ -33,6 +48,8 @@ export function ProgressBar({
   totalSteps,
   size = "base",
   variation = "progress",
+  UNSAFE_className,
+  UNSAFE_style,
 }: ProgressBarProps) {
   const percentage = (currentStep / totalSteps) * 100;
   const progressBarClassName = classnames(styles.ProgressBar, sizes[size]);
@@ -44,13 +61,16 @@ export function ProgressBar({
         totalSteps={totalSteps}
         percentage={percentage}
         size={size}
+        UNSAFE_className={UNSAFE_className}
+        UNSAFE_style={UNSAFE_style}
       />
     );
   }
 
   return (
     <progress
-      className={progressBarClassName}
+      className={classnames(progressBarClassName, UNSAFE_className?.container)}
+      style={UNSAFE_style?.container}
       max={totalSteps}
       value={currentStep}
     >
