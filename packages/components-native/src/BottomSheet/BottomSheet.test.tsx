@@ -1,7 +1,6 @@
 import React, { createRef } from "react";
-import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
+import { act, render, userEvent, waitFor } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
-import { Host, Portal } from "react-native-portalize";
 import { BottomSheet } from ".";
 import type { BottomSheetRef } from "./BottomSheet";
 import { waitForUntestableRender } from "../utils/test/wait";
@@ -23,22 +22,18 @@ function setup({
   loading?: boolean;
 }) {
   return render(
-    <Host>
-      <Portal>
-        <BottomSheet
-          ref={ref}
-          heading={heading}
-          showCancel={showCancel}
-          loading={loading}
-          onClose={mockOnClose}
-          onOpen={mockOnOpen}
-        >
-          <View>
-            <Text>BottomSheet</Text>
-          </View>
-        </BottomSheet>
-      </Portal>
-    </Host>,
+    <BottomSheet
+      ref={ref}
+      heading={heading}
+      showCancel={showCancel}
+      loading={loading}
+      onClose={mockOnClose}
+      onOpen={mockOnOpen}
+    >
+      <View>
+        <Text>BottomSheet</Text>
+      </View>
+    </BottomSheet>,
   );
 }
 
@@ -78,7 +73,8 @@ it("BottomSheet can be closed with the cancel action", async () => {
     ref.current?.open();
   });
 
-  fireEvent.press(await findByLabelText("Cancel"));
+  const cancelButton = await findByLabelText("Cancel");
+  await userEvent.press(cancelButton);
 
   await waitFor(() => {
     expect(queryByText("BottomSheet")).toBeNull();
@@ -134,15 +130,14 @@ describe("when there is a screen reader enabled", () => {
 
     const { findByLabelText, queryByText } = setup({});
 
-    await waitForUntestableRender(
-      "Wait for AccessibilityInfo.isScreenReaderEnabled to resolve",
-    );
-
     await act(async () => {
       ref.current?.open();
     });
 
-    fireEvent.press(await findByLabelText("Cancel"));
+    const cancelButton = await findByLabelText("Cancel");
+    expect(cancelButton).toBeDefined();
+
+    await userEvent.press(cancelButton);
 
     await waitFor(() => {
       expect(queryByText("BottomSheet")).toBeNull();
