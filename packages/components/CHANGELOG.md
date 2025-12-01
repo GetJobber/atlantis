@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.105.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.1...@jobber/components@6.105.2) (2025-12-01)
+
+
+### Bug Fixes
+
+* **components:** ensure InputDate fires onBlur after onChange when selecting from calendar ([#2837](https://github.com/GetJobber/atlantis/issues/2837)) ([e537f0c](https://github.com/GetJobber/atlantis/commit/e537f0c338935058c6c7016d4f4026dc19bd6bfa))
+
+
+
+
+
 ## [6.105.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.0...@jobber/components@6.105.1) (2025-11-28)
 
 
