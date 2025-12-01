@@ -28,12 +28,28 @@ export const useVerticalStyles = buildThemedStyles(tokens => {
       paddingTop: tokens["space-small"],
     },
 
+    slimChildSpace: {
+      paddingTop: tokens["space-slim"],
+    },
+
     baseChildSpace: {
       paddingTop: tokens["space-base"],
     },
 
     largeChildSpace: {
       paddingTop: tokens["space-large"],
+    },
+
+    largerChildSpace: {
+      paddingTop: tokens["space-larger"],
+    },
+
+    largestChildSpace: {
+      paddingTop: tokens["space-largest"],
+    },
+
+    extravagantChildSpace: {
+      paddingTop: tokens["space-extravagant"],
     },
   };
 });

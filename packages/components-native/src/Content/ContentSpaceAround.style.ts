@@ -18,12 +18,28 @@ export const useSpaceAroundStyles = buildThemedStyles(tokens => {
       padding: tokens["space-small"],
     },
 
+    slimSpace: {
+      padding: tokens["space-slim"],
+    },
+
     baseSpace: {
       padding: tokens["space-base"],
     },
 
     largeSpace: {
       padding: tokens["space-large"],
+    },
+
+    largerSpace: {
+      padding: tokens["space-larger"],
+    },
+
+    largestSpace: {
+      padding: tokens["space-largest"],
+    },
+
+    extravagantSpace: {
+      padding: tokens["space-extravagant"],
     },
   };
 });
