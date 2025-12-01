@@ -1,0 +1,232 @@
+# StatusLabel
+
+# Status Label
+
+The StatusLabel component is a visual component that allows users to quickly
+determine the status of an item (e.g., "Active", "Overdue").
+
+## Design & usage guidelines
+
+StatusLabel is a more opinionated version of
+[InlineLabel](/components/InlineLabel) and offers only 5 possible status
+representations:
+
+### Success
+
+Convey that an item is in a successful state, such as approved or paid.
+
+### Critical
+
+Alert the user to a critically important issue such as a late appointment or an
+overdue payment.
+
+### Warning
+
+Warn the user of a potential forthcoming issue like an upcoming deadline or an
+item awaiting response.
+
+### Informative
+
+Inform the user about something that may not require action, such as a quote
+that has already been converted into a job.
+
+### Inactive
+
+Signify that an item has been archived, closed, or otherwise removed from an
+active workflow.
+
+<Canvas>
+  <Content>
+    <StatusLabel label="Success" status="success" alignment="start" />
+    <StatusLabel label="Critical" status="critical" alignment="start" />
+    <StatusLabel label="Informative" status="informative" alignment="start" />
+    <StatusLabel label="Warning" status="warning" alignment="start" />
+    <StatusLabel label="Inactive" status="inactive" alignment="start" />
+  </Content>
+</Canvas>
+
+### Alignment
+
+Align the color indicator with the start or end of a layout as needed.
+
+For example, in a [List](/components/List) where the StatusLabel is on the
+right, use the `end` alignment.
+
+<Canvas>
+  <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <StatusLabel label="Start" status="inactive" alignment="start" />
+    <StatusLabel label="End" status="inactive" alignment="end" />
+  </div>
+</Canvas>
+
+## Related components
+
+[InlineLabel](/components/InlineLabel) is a more generic badging element that
+can be used in non-"status"-y ways
+
+- counts
+- trends
+- tags
+- labels that need to be distinguished from other typographic content
+
+## Content guidelines
+
+StatusLabel does not accept any child content. It presents only a text-based
+label describing the status, and a visual color indicator to reinforce the
+status.
+
+The label should be short, ideally no longer than two words.
+
+## Accessibility
+
+The StatusLabel has a `role` of `status` which is communicated to assistive
+technology. It does not pull focus to itself but informs the user of its'
+purpose.
+
+The label portion of StatusLabel should be readable by assistive technology.
+
+The color indicator is always used with a text label so that color is not the
+only method of communicating status.
+
+## Responsiveness
+
+StatusLabel should "hug" it's contents, but otherwise grow as long as needed in
+the available space. If StatusLabel's label is longer than the space available,
+the label should wrap.
+
+## Web Component Code
+
+```tsx
+StatusLabel Badge Pill Tag InlineLabel Inline Label Web React import React from "react";
+import classnames from "classnames";
+import styles from "./StatusLabel.module.css";
+import type { StatusIndicatorType } from "../StatusIndicator/StatusIndicator.type";
+import { Typography } from "../Typography";
+import { StatusIndicator } from "../StatusIndicator/StatusIndicator";
+
+export interface StatusLabelType {
+  readonly statusLabel: string;
+  readonly statusType?: StatusIndicatorType;
+}
+
+interface StatusLabelProps {
+  /**
+   * Text to display
+   */
+  readonly label: string;
+
+  /**
+   * Alignment of label
+   *
+   * @default "start"
+   */
+  readonly alignment?: "start" | "end";
+
+  /**
+   * Status color of the indicator beside text
+   *
+   * @default "inactive"
+   */
+  readonly status: StatusIndicatorType;
+}
+
+export function StatusLabel({
+  label,
+  alignment = "start",
+  status = "inactive",
+}: StatusLabelProps): JSX.Element {
+  const containerClassNames = classnames(
+    styles.statusLabelRow,
+    styles[status],
+    alignment === "end" && styles.labelTextEndAligned,
+  );
+
+  return (
+    <div role="status" className={containerClassNames}>
+      <div className={styles.statusIndicatorWrapper}>
+        <StatusIndicator status={status} />
+      </div>
+
+      <Typography size="small" align={alignment}>
+        {label}
+      </Typography>
+    </div>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | ✅ | `_none_` | Text to display |
+| `alignment` | `"start" | "end"` | ❌ | `start` | Alignment of label |
+| `status` | `StatusIndicatorType` | ❌ | `inactive` | Status color of the indicator beside text |
+
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `text` | `string` | ✅ | `_none_` | Text to display. |
+| `alignment` | `"start" | "end"` | ❌ | `end` | Alignment of text |
+| `status` | `StatusType` | ❌ | `success` | Status color of the square beside text |
+
+
+## Categories
+
+- Status & Feedback
+
+## Web Test Code
+
+```typescript
+StatusLabel Badge Pill Tag InlineLabel Inline Label Web React Test Testing Jest import React from "react";
+import { render } from "@testing-library/react";
+import { StatusLabel } from ".";
+
+it("renders an inactive StatusLabel", () => {
+  const { container } = render(<StatusLabel label="Foo" status="inactive" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a successful StatusLabel", () => {
+  const { container } = render(<StatusLabel label="Foo" status="success" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a warning StatusLabel", () => {
+  const { container } = render(<StatusLabel label="Foo" status="warning" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a critical StatusLabel", () => {
+  const { container } = render(<StatusLabel label="Foo" status="critical" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders an informative StatusLabel", () => {
+  const { container } = render(
+    <StatusLabel label="Foo" status="informative" />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+it("renders an end-aligned StatusLabel", () => {
+  const { container } = render(
+    <StatusLabel label="Foo" status="informative" alignment="end" />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+```
+
+## Component Path
+
+`/components/StatusLabel`
+
+---
+
+_Generated on 2025-08-21T17:35:16.372Z_
