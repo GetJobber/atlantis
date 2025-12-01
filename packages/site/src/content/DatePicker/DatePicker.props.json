@@ -185,30 +185,17 @@
           "name": "(val: Date) => void"
         }
       },
-      "onCalendarOpen": {
+      "onOpenChange": {
         "defaultValue": null,
-        "description": "Callback when the calendar opens",
-        "name": "onCalendarOpen",
+        "description": "Callback when the calendar open state changes",
+        "name": "onOpenChange",
         "parent": {
           "fileName": "../components/src/DatePicker/DatePicker.tsx",
           "name": "BaseDatePickerProps"
         },
         "required": false,
         "type": {
-          "name": "() => void"
-        }
-      },
-      "onCalendarClose": {
-        "defaultValue": null,
-        "description": "Callback when the calendar closes",
-        "name": "onCalendarClose",
-        "parent": {
-          "fileName": "../components/src/DatePicker/DatePicker.tsx",
-          "name": "BaseDatePickerProps"
-        },
-        "required": false,
-        "type": {
-          "name": "() => void"
+          "name": "(open: boolean) => void"
         }
       }
     }
