@@ -397,22 +397,16 @@ describe("InputDate V2", () => {
       );
 
       const input = screen.getByDisplayValue(date);
-
-      // Click input to open calendar
       await user.click(input);
 
-      // onFocus should fire when input is first clicked
       expect(focusHandler).toHaveBeenCalledTimes(1);
       expect(blurHandler).not.toHaveBeenCalled();
 
-      // Select a date
-      const selectDate = screen.getByText("15");
-      await user.click(selectDate);
+      await user.click(screen.getByText("15"));
 
       expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
       expect(blurHandler).toHaveBeenCalledTimes(1);
 
-      // Verify order: onFocus, then onChange, then onBlur
       const focusCallOrder = focusHandler.mock.invocationCallOrder[0];
       const changeCallOrder = changeHandler.mock.invocationCallOrder[0];
       const blurCallOrder = blurHandler.mock.invocationCallOrder[0];
@@ -439,14 +433,10 @@ describe("InputDate V2", () => {
       );
 
       const input = screen.getByDisplayValue(date);
-
-      // Click input to open calendar
       await user.click(input);
 
-      // onFocus should fire, but not onBlur
       expect(focusHandler).toHaveBeenCalledTimes(1);
       expect(blurHandler).not.toHaveBeenCalled();
-
       expect(screen.getByText("15")).toBeVisible();
     });
 
@@ -471,22 +461,16 @@ describe("InputDate V2", () => {
       );
 
       const input = screen.getByLabelText("Test Date");
-
-      // Click input to focus
       await user.click(input);
       expect(focusHandler).toHaveBeenCalledTimes(1);
 
-      // Type the new date
       await user.type(input, newDate);
 
       expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
       expect(blurHandler).not.toHaveBeenCalled();
 
-      // Click away from input
-      const outsideButton = screen.getByText("Outside Button");
-      await user.click(outsideButton);
+      await user.click(screen.getByText("Outside Button"));
 
-      // onBlur should now fire
       expect(blurHandler).toHaveBeenCalledTimes(1);
     });
 
@@ -506,19 +490,13 @@ describe("InputDate V2", () => {
       );
 
       const input = screen.getByDisplayValue(date);
-
-      // Click input to open calendar
       await user.click(input);
 
-      // onFocus should only fire once
       expect(focusHandler).toHaveBeenCalledTimes(1);
-
-      // Calendar is open
       expect(screen.getByText("15")).toBeInTheDocument();
 
       // Even if we interact with the calendar, onFocus shouldn't fire again
-      const selectDate = screen.getByText("15");
-      await user.click(selectDate);
+      await user.click(screen.getByText("15"));
 
       expect(focusHandler).toHaveBeenCalledTimes(1);
     });
@@ -541,21 +519,44 @@ describe("InputDate V2", () => {
       );
 
       const input = screen.getByDisplayValue(date);
-
-      // Click input to open calendar
       await user.click(input);
       expect(focusHandler).toHaveBeenCalledTimes(1);
       expect(blurHandler).not.toHaveBeenCalled();
 
-      // Press Escape to close calendar
       await user.keyboard("{Escape}");
 
-      // Calendar should close
       expect(screen.queryByText("15")).not.toBeInTheDocument();
 
       // onBlur should NOT fire when calendar closes via Escape (focus remains on input)
       expect(blurHandler).not.toHaveBeenCalled();
       expect(input).toHaveFocus();
+    });
+
+    it("does not fire onBlur when tabbing into calendar", async () => {
+      const user = userEvent.setup();
+      const date = "11/11/2011";
+      const blurHandler = jest.fn();
+      const focusHandler = jest.fn();
+
+      render(
+        <InputDate
+          version={2}
+          value={new Date(date)}
+          onChange={jest.fn()}
+          onBlur={blurHandler}
+          onFocus={focusHandler}
+        />,
+      );
+
+      const input = screen.getByDisplayValue(date);
+      await user.click(input);
+
+      expect(focusHandler).toHaveBeenCalledTimes(1);
+      expect(blurHandler).not.toHaveBeenCalled();
+
+      await user.tab();
+
+      expect(blurHandler).not.toHaveBeenCalled();
     });
   });
 

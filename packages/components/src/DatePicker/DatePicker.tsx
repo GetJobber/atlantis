@@ -58,14 +58,9 @@ interface BaseDatePickerProps {
   onMonthChange?(val: Date): void;
 
   /**
-   * Callback when the calendar opens
+   * Callback when the calendar open state changes
    */
-  onCalendarOpen?(): void;
-
-  /**
-   * Callback when the calendar closes
-   */
-  onCalendarClose?(): void;
+  onOpenChange?(open: boolean): void;
 }
 
 interface DatePickerModalProps extends BaseDatePickerProps {
@@ -105,8 +100,7 @@ type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 export function DatePicker({
   onChange,
   onMonthChange,
-  onCalendarOpen,
-  onCalendarClose,
+  onOpenChange,
   activator,
   inline,
   selected,
@@ -197,12 +191,12 @@ export function DatePicker({
 
   function handleCalendarOpen() {
     setOpen(true);
-    onCalendarOpen?.();
+    onOpenChange?.(true);
   }
 
   function handleCalendarClose() {
     setOpen(false);
-    onCalendarClose?.();
+    onOpenChange?.(false);
   }
 }
 

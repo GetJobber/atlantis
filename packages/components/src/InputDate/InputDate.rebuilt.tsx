@@ -31,15 +31,12 @@ export const InputDateRebuilt = forwardRef<
       maxDate={props.maxDate}
       smartAutofocus={false}
       activator={InputDateActivator}
-      onCalendarOpen={() => {
-        isCalendarOpenRef.current = true;
-      }}
-      onCalendarClose={() => {
-        isCalendarOpenRef.current = false;
+      onOpenChange={open => {
+        isCalendarOpenRef.current = open;
 
         // When calendar closes, fire onBlur if input is also not focused
-        // The entire composite component (input + calendar) has lost focus
         if (
+          !open &&
           !inputFocusedRef.current &&
           compositeFocusedRef.current &&
           lastBlurEventRef.current
