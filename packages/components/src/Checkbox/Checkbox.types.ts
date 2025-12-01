@@ -4,14 +4,14 @@ import type {
   AriaInputProps,
   FocusEvents,
   HTMLInputBaseProps,
+  MouseEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
-export interface BaseCheckboxProps
-  extends AriaInputProps,
-    FocusEvents<HTMLInputElement>,
-    Pick<HTMLInputBaseProps, "id" | "name" | "disabled">,
-    Pick<RebuiltInputCommonProps, "description" | "invalid"> {
+/**
+ * Shared checkbox-specific props used by both legacy and rebuilt versions
+ */
+export interface CheckboxCoreProps {
   /**
    * Determines if the checkbox is checked or not.
    */
@@ -35,11 +35,46 @@ export interface BaseCheckboxProps
    * Value of the checkbox.
    */
   readonly value?: string;
+}
+
+/**
+ * Base props for legacy checkbox
+ */
+export interface BaseCheckboxProps extends CheckboxCoreProps {
+  /**
+   * Disables the checkbox.
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Checkbox input name
+   */
+  readonly name?: string;
+
+  /**
+   * Further description of the label
+   */
+  readonly description?: ReactNode;
+
+  /**
+   * ID for the checkbox input
+   */
+  readonly id?: string;
 
   /**
    * Called when the checkbox value changes
    */
   onChange?(newValue: boolean): void;
+
+  /**
+   * Called when the checkbox is focused
+   */
+  onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
+
+  /**
+   * Called when the checkbox loses focus
+   */
+  onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
@@ -56,10 +91,11 @@ interface CheckboxChildrenProps extends BaseCheckboxProps {
   readonly children?: ReactElement;
 }
 
-export type CheckboxRebuiltProps = Omit<
-  BaseCheckboxProps,
-  "label" | "description" | "children" | "onChange"
-> &
+export type CheckboxRebuiltProps = CheckboxCoreProps &
+  AriaInputProps &
+  FocusEvents<HTMLInputElement> &
+  MouseEvents<HTMLInputElement> &
+  Pick<HTMLInputBaseProps, "id" | "name" | "disabled"> &
   Pick<RebuiltInputCommonProps, "version"> & {
     /**
      * Label that shows up beside the checkbox.
@@ -76,8 +112,14 @@ export type CheckboxRebuiltProps = Omit<
     description?: ReactNode;
 
     /**
+     * Whether the checkbox is invalid
+     */
+    invalid?: boolean;
+
+    /**
      * Called when the checkbox value changes.
      * Includes the change event as a second argument.
+     * This is the recommended event handler to access the new value.
      */
     onChange?(
       newValue: boolean,

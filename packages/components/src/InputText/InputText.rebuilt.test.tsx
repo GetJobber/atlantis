@@ -486,6 +486,59 @@ describe("InputText V2 (Rebuilt)", () => {
       await userEvent.type(input, "a");
       expect(keyUpHandler).toHaveBeenCalled();
     });
+
+    it("should call all mouse event handlers when input (textarea) is clicked", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
+      render(
+        <InputText
+          version={2}
+          placeholder="Text"
+          multiline
+          {...handlers}
+          value={"Gabagool"}
+        />,
+      );
+      const input = screen.getByRole("textbox", { name: "Text" });
+      await userEvent.click(input);
+
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call all mouse event handlers when input is clicked", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
+      render(
+        <InputText
+          version={2}
+          placeholder="Text"
+          {...handlers}
+          value={"Gabagool"}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe("ARIA attributes", () => {

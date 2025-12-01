@@ -4,6 +4,7 @@ import type {
   FocusEvents,
   HTMLInputBaseProps,
   KeyboardEvents,
+  MouseEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
@@ -33,6 +34,7 @@ export type InputTextVersion = 1 | 2 | undefined;
  */
 export interface InputTextRebuiltProps
   extends HTMLInputBaseProps,
+    MouseEvents<HTMLInputElement | HTMLTextAreaElement>,
     FocusEvents<HTMLInputElement | HTMLTextAreaElement>,
     KeyboardEvents<HTMLInputElement | HTMLTextAreaElement>,
     RebuiltInputCommonProps,

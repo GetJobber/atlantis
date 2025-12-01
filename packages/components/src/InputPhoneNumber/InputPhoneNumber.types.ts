@@ -4,6 +4,7 @@ import type {
   FocusEvents,
   HTMLInputBaseProps,
   KeyboardEvents,
+  MouseEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
@@ -41,6 +42,7 @@ export interface InputPhoneNumberRebuiltProps
   extends Omit<HTMLInputBaseProps, "type" | "maxLength" | "minLength">,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
+    MouseEvents<HTMLInputElement>,
     RebuiltInputCommonProps {
   /**
    * The current value of the input.

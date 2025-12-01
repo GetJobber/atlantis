@@ -1,10 +1,26 @@
-import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import type {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  PointerEvent,
+} from "react";
 import type { InputEmailRebuiltProps } from "../InputEmail.types";
 
 export interface UseInputEmailActionsProps
   extends Pick<
     InputEmailRebuiltProps,
-    "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown" | "onKeyUp"
+    | "onChange"
+    | "onEnter"
+    | "onFocus"
+    | "onBlur"
+    | "onKeyDown"
+    | "onKeyUp"
+    | "onClick"
+    | "onMouseDown"
+    | "onMouseUp"
+    | "onPointerDown"
+    | "onPointerUp"
   > {
   inputRef?: React.RefObject<HTMLInputElement>;
 }
@@ -17,6 +33,11 @@ export function useInputEmailActions({
   onBlur,
   onKeyDown,
   onKeyUp,
+  onClick,
+  onMouseDown,
+  onMouseUp,
+  onPointerDown,
+  onPointerUp,
 }: UseInputEmailActionsProps) {
   function handleClear() {
     onChange?.("");
@@ -50,6 +71,26 @@ export function useInputEmailActions({
     onKeyUp?.(event);
   }
 
+  function handleClick(event: MouseEvent<HTMLInputElement>) {
+    onClick?.(event);
+  }
+
+  function handleMouseDown(event: MouseEvent<HTMLInputElement>) {
+    onMouseDown?.(event);
+  }
+
+  function handleMouseUp(event: MouseEvent<HTMLInputElement>) {
+    onMouseUp?.(event);
+  }
+
+  function handlePointerDown(event: PointerEvent<HTMLInputElement>) {
+    onPointerDown?.(event);
+  }
+
+  function handlePointerUp(event: PointerEvent<HTMLInputElement>) {
+    onPointerUp?.(event);
+  }
+
   return {
     handleClear,
     handleChange,
@@ -57,5 +98,10 @@ export function useInputEmailActions({
     handleKeyUp,
     handleFocus,
     handleBlur,
+    handleClick,
+    handleMouseDown,
+    handleMouseUp,
+    handlePointerDown,
+    handlePointerUp,
   };
 }

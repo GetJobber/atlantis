@@ -44,6 +44,11 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     handleKeyDown,
     handleKeyUp,
     handleClear,
+    handleClick,
+    handleMouseDown,
+    handleMouseUp,
+    handlePointerDown,
+    handlePointerUp,
   } = useInputEmailActions({
     onChange: props.onChange,
     onBlur: props.onBlur,
@@ -51,6 +56,11 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     onKeyDown: props.onKeyDown,
     onKeyUp: props.onKeyUp,
     onEnter: props.onEnter,
+    onClick: props.onClick,
+    onMouseDown: props.onMouseDown,
+    onMouseUp: props.onMouseUp,
+    onPointerDown: props.onPointerDown,
+    onPointerUp: props.onPointerUp,
     inputRef,
   });
 
@@ -110,6 +120,11 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
         data-testid="ATL-InputEmail-input"
         {...dataAttrs}
       />

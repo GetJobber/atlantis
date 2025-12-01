@@ -89,6 +89,11 @@ export const InputNumberRebuilt = forwardRef(
         maxValue={maxValue}
         onBlur={e => props.onBlur?.(e as FocusEvent<HTMLInputElement>)}
         onFocus={e => props.onFocus?.(e as FocusEvent<HTMLInputElement>)}
+        onClick={props.onClick}
+        onMouseDown={props.onMouseDown}
+        onMouseUp={props.onMouseUp}
+        onPointerDown={props.onPointerDown}
+        onPointerUp={props.onPointerUp}
         onChange={handleChange}
       >
         <Group

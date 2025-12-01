@@ -3,6 +3,7 @@ import type {
   FocusEvents,
   HTMLInputBaseProps,
   KeyboardEvents,
+  MouseEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
@@ -59,6 +60,7 @@ export interface InputTimeRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
+    MouseEvents<HTMLInputElement>,
     RebuiltInputCommonProps,
     Pick<InputTimeProps, "value" | "onChange"> {
   /**

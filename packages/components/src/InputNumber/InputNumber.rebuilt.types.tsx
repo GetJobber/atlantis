@@ -3,6 +3,7 @@ import type {
   FocusEvents,
   HTMLInputBaseProps,
   KeyboardEvents,
+  MouseEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
@@ -12,6 +13,7 @@ export interface InputNumberRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
+    MouseEvents<HTMLInputElement>,
     Omit<RebuiltInputCommonProps, "clearable" | "suffix" | "prefix"> {
   readonly defaultValue?: number;
   readonly formatOptions?: Intl.NumberFormatOptions;

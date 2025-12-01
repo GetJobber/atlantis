@@ -243,4 +243,25 @@ describe("InputTimeRebuilt", () => {
       expect(mockSetTypedTime).not.toHaveBeenCalled();
     });
   });
+
+  describe("Mouse event handlers", () => {
+    it("should call all mouse handlers during a click", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
+      render(<InputTime version={2} {...handlers} />);
+      const input = screen.getByTestId("ATL-InputTime-input");
+      await userEvent.click(input);
+
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
+    });
+  });
 });

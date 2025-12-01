@@ -550,6 +550,8 @@ interface AutocompleteRebuiltBaseProps<
 
   /**
    * Whether the menu should open when the input gains focus.
+   * Note: Clicking on the input will always open the menu.
+   * openOnFocus only determines the behavior of focus events such as tabs or programmatic focus.
    *
    * @default true
    */

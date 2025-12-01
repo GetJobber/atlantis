@@ -3,6 +3,7 @@ import type {
   FocusEvents,
   HTMLInputBaseProps,
   KeyboardEvents,
+  MouseEvents,
   RebuiltInputCommonProps,
 } from "../sharedHelpers/types";
 
@@ -24,6 +25,7 @@ export interface InputEmailRebuiltProps
   extends HTMLInputBaseProps,
     FocusEvents<HTMLInputElement>,
     KeyboardEvents<HTMLInputElement>,
+    MouseEvents<HTMLInputElement>,
     RebuiltInputCommonProps {
   /**
    * The current value of the input.
