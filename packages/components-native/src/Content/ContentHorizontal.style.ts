@@ -16,6 +16,10 @@ export const useHorizontalStyles = buildThemedStyles(tokens => {
       padding: 0,
     },
 
+    minusculeChildSpace: {
+      paddingLeft: tokens["space-minuscule"],
+    },
+
     smallestChildSpace: {
       paddingLeft: tokens["space-smallest"],
     },
@@ -28,12 +32,28 @@ export const useHorizontalStyles = buildThemedStyles(tokens => {
       paddingLeft: tokens["space-small"],
     },
 
+    slimChildSpace: {
+      paddingLeft: tokens["space-slim"],
+    },
+
     baseChildSpace: {
       paddingLeft: tokens["space-base"],
     },
 
     largeChildSpace: {
       paddingLeft: tokens["space-large"],
+    },
+
+    largerChildSpace: {
+      paddingLeft: tokens["space-larger"],
+    },
+
+    largestChildSpace: {
+      paddingLeft: tokens["space-largest"],
+    },
+
+    extravagantChildSpace: {
+      paddingLeft: tokens["space-extravagant"],
     },
   };
 });
