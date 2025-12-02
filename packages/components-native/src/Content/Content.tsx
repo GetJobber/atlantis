@@ -13,6 +13,7 @@ export type Spacing =
   | "small"
   | "smaller"
   | "smallest"
+  | "minuscule"
   | "large"
   | "larger"
   | "largest"

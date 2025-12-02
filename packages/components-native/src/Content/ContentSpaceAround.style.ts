@@ -6,6 +6,10 @@ export const useSpaceAroundStyles = buildThemedStyles(tokens => {
       padding: 0,
     },
 
+    minusculeSpace: {
+      padding: tokens["space-minuscule"],
+    },
+
     smallestSpace: {
       padding: tokens["space-smallest"],
     },

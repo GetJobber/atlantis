@@ -16,6 +16,10 @@ export const useVerticalStyles = buildThemedStyles(tokens => {
       padding: 0,
     },
 
+    minusculeChildSpace: {
+      paddingTop: tokens["space-minuscule"],
+    },
+
     smallestChildSpace: {
       paddingTop: tokens["space-smallest"],
     },

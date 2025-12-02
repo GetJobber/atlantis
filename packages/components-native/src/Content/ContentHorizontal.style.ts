@@ -16,6 +16,10 @@ export const useHorizontalStyles = buildThemedStyles(tokens => {
       padding: 0,
     },
 
+    minusculeChildSpace: {
+      paddingLeft: tokens["space-minuscule"],
+    },
+
     smallestChildSpace: {
       paddingLeft: tokens["space-smallest"],
     },
