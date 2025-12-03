@@ -14,7 +14,8 @@ import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
 import { useFormFieldWrapperStyles } from "./hooks/useFormFieldWrapperStyles";
 import { InputValidation } from "../InputValidation";
 
-export interface FormFieldWrapperProps extends FormFieldProps {
+export interface FormFieldWrapperProps
+  extends Omit<FormFieldProps, "maxLength"> {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
@@ -22,6 +23,10 @@ export interface FormFieldWrapperProps extends FormFieldProps {
   readonly onClear?: () => void;
   readonly showMiniLabel?: boolean;
   readonly readonly?: boolean;
+  /**
+   * @deprecated Avoid using FormFieldWrapper's maxLength implementation. It is flawed and only exists for backwards compatibility on v1 components.
+   */
+  readonly maxLength?: number;
 }
 
 export function FormFieldWrapper({
