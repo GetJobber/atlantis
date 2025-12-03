@@ -127,6 +127,13 @@ export function ContentOverlay({
     setShowHeaderShadow(nativeEvent.contentOffset.y > 0);
   };
 
+  const modalStyle = [
+    styles.background,
+    // TODO: Add large screen styles?
+    // windowWidth > 640 ? styles.modalForLargeScreens : undefined,
+    { backgroundColor: getModalBackgroundColor(modalBackgroundColor, tokens) },
+  ];
+
   const renderHeader = () => {
     const closeOverlayA11YLabel = t("ContentOverlay.close", {
       title: title,
@@ -135,9 +142,6 @@ export function ContentOverlay({
     const headerStyles = [
       styles.header,
       showHeaderShadow && styles.headerShadow,
-      {
-        backgroundColor: getModalBackgroundColor(modalBackgroundColor, tokens),
-      },
     ];
 
     return (
@@ -187,7 +191,8 @@ export function ContentOverlay({
     <BottomSheetModal
       ref={bottomSheetModalRef}
       onChange={handleChange}
-      backgroundStyle={styles.background}
+      backgroundStyle={modalStyle}
+      handleStyle={styles.handleWrapper}
       handleIndicatorStyle={styles.handle}
       handleComponent={draggable ? undefined : null}
       backdropComponent={props => (

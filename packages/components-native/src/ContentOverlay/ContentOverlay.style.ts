@@ -4,6 +4,11 @@ export const useStyles = buildThemedStyles(tokens => {
   const modalBorderRadius = tokens["radius-larger"];
 
   return {
+    handleWrapper: {
+      paddingBottom: tokens["space-smallest"],
+      paddingTop: tokens["space-small"],
+    },
+
     handle: {
       width: tokens["space-largest"],
       height: tokens["space-smaller"] + tokens["space-smallest"],
@@ -27,9 +32,8 @@ export const useStyles = buildThemedStyles(tokens => {
 
     header: {
       flexDirection: "row",
-      backgroundColor: tokens["color-surface"],
       zIndex: tokens["elevation-base"],
-      minHeight: tokens["space-extravagant"],
+      minHeight: tokens["space-extravagant"] - tokens["space-base"],
     },
 
     headerShadow: {
