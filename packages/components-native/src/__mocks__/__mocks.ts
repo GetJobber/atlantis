@@ -1,7 +1,6 @@
 import type { MissingTranslationError } from "react-intl";
 import * as ReactNative from "react-native";
 import React from "react";
-import type { Ref } from "react";
 import { MockModal } from "./MockModal";
 
 jest.mock("react-native/Libraries/Modal/Modal", () => ({
