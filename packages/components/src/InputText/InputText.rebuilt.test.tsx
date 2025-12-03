@@ -372,6 +372,36 @@ describe("InputText V2 (Rebuilt)", () => {
       expect(changeHandler).toHaveBeenCalledWith("");
     });
 
+    it("should not render clear button when readonly with clearable always", () => {
+      render(
+        <InputText
+          version={2}
+          value="some text"
+          placeholder="Text"
+          clearable="always"
+          readOnly
+        />,
+      );
+      expect(
+        screen.queryByTestId("ATL-FormField-clearButton"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not render clear button when disabled with clearable always", () => {
+      render(
+        <InputText
+          version={2}
+          value="some text"
+          placeholder="Text"
+          clearable="always"
+          disabled
+        />,
+      );
+      expect(
+        screen.queryByTestId("ATL-FormField-clearButton"),
+      ).not.toBeInTheDocument();
+    });
+
     it("should apply small size class", () => {
       const { container } = render(
         <InputText version={2} value={value} placeholder="Text" size="small" />,

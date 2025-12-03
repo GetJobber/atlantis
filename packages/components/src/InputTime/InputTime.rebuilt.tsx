@@ -3,9 +3,10 @@ import { useTimePredict } from "./hooks/useTimePredict";
 import { useInputTimeActions } from "./hooks/useInputTimeActions";
 import type { InputTimeRebuiltProps } from "./InputTime.types";
 import { dateToTimeString } from "./utils/input-time-utils";
-import { FormFieldWrapper, useFormFieldWrapperStyles } from "../FormField";
+import { FormFieldWrapper } from "../FormField";
 import { mergeRefs } from "../utils/mergeRefs";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import formFieldStyles from "../FormField/FormField.module.css";
 
 export function InputTimeRebuilt({
   value,
@@ -18,7 +19,6 @@ export function InputTimeRebuilt({
   const { internalRef, mergedRef, wrapperRef } = useInputTimeRefs(inputRef);
   const generatedId = useId();
   const id = props.id || generatedId;
-  const { inputStyle } = useFormFieldWrapperStyles(props);
 
   const {
     handleChangeEvent,
@@ -90,7 +90,7 @@ export function InputTimeRebuilt({
         ref={mergedRef}
         type="time"
         name={props.name}
-        className={inputStyle}
+        className={formFieldStyles.input}
         id={id}
         disabled={props.disabled}
         readOnly={readOnly}

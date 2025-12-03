@@ -1,13 +1,10 @@
 import React, { forwardRef, useId, useRef } from "react";
 import { useInputEmailActions } from "./hooks/useInputEmailActions";
 import type { InputEmailRebuiltProps } from "./InputEmail.types";
-import {
-  FormFieldWrapper,
-  useAtlantisFormFieldName,
-  useFormFieldWrapperStyles,
-} from "../FormField";
+import { FormFieldWrapper, useAtlantisFormFieldName } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import formFieldStyles from "../FormField/FormField.module.css";
 
 export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
   props: InputEmailRebuiltProps,
@@ -19,18 +16,6 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
     (ref as React.RefObject<HTMLInputElement>) ??
     useRef<HTMLInputElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-
-  const { inputStyle } = useFormFieldWrapperStyles({
-    size: props.size,
-    inline: props.inline,
-    align: props.align,
-    type: "email",
-    value: props.value,
-    invalid: props.invalid,
-    error: props.error,
-    disabled: props.disabled,
-    placeholder: props.placeholder,
-  });
 
   const { name } = useAtlantisFormFieldName({
     nameProp: props.name,
@@ -83,6 +68,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
       description={props.description}
       clearable={props.clearable ?? "never"}
       onClear={handleClear}
+      readonly={props.readOnly}
       wrapperRef={wrapperRef}
       disabled={props.disabled}
       type="email"
@@ -95,7 +81,7 @@ export const InputEmailRebuilt = forwardRef(function InputEmailInternal(
         name={name}
         type="email"
         ref={inputRef}
-        className={inputStyle}
+        className={formFieldStyles.input}
         value={props.value}
         disabled={props.disabled}
         readOnly={props.readOnly}

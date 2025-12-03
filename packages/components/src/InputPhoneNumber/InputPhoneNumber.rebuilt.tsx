@@ -6,13 +6,10 @@ import styles from "./InputMask.module.css";
 import type { InputPhoneNumberRebuiltProps } from "./InputPhoneNumber.types";
 import { DEFAULT_PATTERN } from "./InputPhoneNumber.types";
 import { useInputPhoneActions } from "./hooks/useInputPhoneActions";
-import {
-  FormFieldWrapper,
-  useAtlantisFormFieldName,
-  useFormFieldWrapperStyles,
-} from "../FormField";
+import { FormFieldWrapper, useAtlantisFormFieldName } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import formFieldStyles from "../FormField/FormField.module.css";
 
 export const InputPhoneNumberRebuilt = forwardRef(
   function InputPhoneNumberInternal(
@@ -23,17 +20,6 @@ export const InputPhoneNumberRebuilt = forwardRef(
       (ref as React.RefObject<HTMLInputElement>) ??
       React.useRef<HTMLInputElement>(null);
     const wrapperRef = React.useRef<HTMLDivElement>(null);
-    const { inputStyle } = useFormFieldWrapperStyles({
-      size: props.size,
-      align: props.align,
-      placeholder: props.placeholder,
-      value: props.value,
-      invalid: props.invalid,
-      error: props.error,
-      disabled: props.disabled,
-      inline: props.inline,
-      type: "tel",
-    });
     const generatedId = useId();
     const id = props.id || generatedId;
 
@@ -111,7 +97,7 @@ export const InputPhoneNumberRebuilt = forwardRef(
           name={name}
           type="tel"
           ref={inputPhoneNumberRef}
-          className={classNames(inputStyle, {
+          className={classNames(formFieldStyles.input, {
             [styles.emptyValue]: inputValue.length === 0 && pattern[0] === "(",
           })}
           value={formattedValue}
