@@ -19,11 +19,10 @@ export interface RowRange {
  */
 interface InputLengthConstraint {
   /**
-   * Maximum character length for the input.
-   * Note: This affects both HTML validation AND visual width of the component.
-   * Future work will separate these concerns.
+   * The maximum number of characters supported by the input.
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefmaxlength}
    */
-  readonly maxLength?: number;
+  maxLength?: number;
 }
 
 export type InputTextVersion = 1 | 2 | undefined;
