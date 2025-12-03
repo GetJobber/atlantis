@@ -22,7 +22,7 @@ interface InputLengthConstraint {
    * The maximum number of characters supported by the input.
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefmaxlength}
    */
-  maxLength?: number;
+  readonly maxLength?: number;
 }
 
 export type InputTextVersion = 1 | 2 | undefined;
