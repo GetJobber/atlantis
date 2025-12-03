@@ -198,7 +198,6 @@ export function ContentOverlay({
       backdropComponent={props => (
         <Backdrop {...props} pressBehavior={onBeforeExit ? "none" : "close"} />
       )}
-      name="content-overlay-rebuilt"
       snapPoints={snapPoints}
       enablePanDownToClose={draggable}
       enableContentPanningGesture={draggable}
