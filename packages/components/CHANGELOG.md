@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.105.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.2...@jobber/components@6.105.3) (2025-12-03)
+
+
+### Bug Fixes
+
+* **components:** Remove Legacy MaxLength Behavior ([#2840](https://github.com/GetJobber/atlantis/issues/2840)) ([2dc784f](https://github.com/GetJobber/atlantis/commit/2dc784f2baeabf7e9be4e10b4894c5ba3afaeba2))
+
+
+
+
+
 ## [6.105.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.1...@jobber/components@6.105.2) (2025-12-01)
 
 
