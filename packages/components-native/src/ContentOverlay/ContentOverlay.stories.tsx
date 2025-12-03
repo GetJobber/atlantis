@@ -4,19 +4,19 @@ import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Button, Heading, Text } from "@jobber/components-native";
-import { ContentOverlayRebuilt } from "./ContentOverlay.rebuilt";
-import type { ContentOverlayRebuiltRef } from "./types";
+import { ContentOverlay } from "./ContentOverlay";
+import type { ContentOverlayRef } from "./types";
 
 const meta = {
   title: "Components/Overlays/ContentOverlay",
-  component: ContentOverlayRebuilt,
-} satisfies Meta<typeof ContentOverlayRebuilt>;
+  component: ContentOverlay,
+} satisfies Meta<typeof ContentOverlay>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 const BasicTemplate = () => {
-  const contentOverlayRef = useRef<ContentOverlayRebuiltRef>(null);
+  const contentOverlayRef = useRef<ContentOverlayRef>(null);
 
   const openContentOverlay = () => {
     contentOverlayRef.current?.open?.();
@@ -38,7 +38,7 @@ const BasicTemplate = () => {
           <Button label="Open Content Overlay" onPress={openContentOverlay} />
           <Button label="Close Content Overlay" onPress={closeContentOverlay} />
         </View>
-        <ContentOverlayRebuilt
+        <ContentOverlay
           ref={contentOverlayRef}
           title="Content Overlay Title"
           onClose={() => console.log("closed content overlay")}
@@ -47,7 +47,7 @@ const BasicTemplate = () => {
           <View style={{ padding: 16 }}>
             <Text>This is the content inside the overlay.</Text>
           </View>
-        </ContentOverlayRebuilt>
+        </ContentOverlay>
       </BottomSheetModalProvider>
     </SafeAreaProvider>
   );

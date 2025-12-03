@@ -1,216 +1,133 @@
-import type { Ref } from "react";
-import React, {
-  forwardRef,
-  useCallback,
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import type { Modalize } from "react-native-modalize";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import React, { useImperativeHandle, useMemo, useRef, useState } from "react";
+import { AccessibilityInfo, View, findNodeHandle } from "react-native";
 import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
-  AccessibilityInfo,
-  Platform,
-  View,
-  findNodeHandle,
-  useWindowDimensions,
-} from "react-native";
-import { Portal } from "react-native-portalize";
-import { useKeyboardVisibility } from "./hooks/useKeyboardVisibility";
-import { useStyles } from "./ContentOverlay.style";
-import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
+  BottomSheetBackdrop,
+  BottomSheetModal,
+  BottomSheetScrollView,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
 import type {
-  ContentOverlayProps,
-  ContentOverlayRef,
-  ModalBackgroundColor,
-} from "./types";
-import { UNSAFE_WrappedModalize } from "./UNSAFE_WrappedModalize";
+  BottomSheetBackdropProps,
+  BottomSheetModal as BottomSheetModalType,
+} from "@gorhom/bottom-sheet";
+import type { ContentOverlayProps, ModalBackgroundColor } from "./types";
+import { useStyles } from "./ContentOverlay.style";
+import { useBottomSheetModalBackHandler } from "./hooks/useBottomSheetModalBackHandler";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
 
-export const ContentOverlay = forwardRef(ContentOverlayPortal);
-const ContentOverlayModal = forwardRef(ContentOverlayInternal);
+function getModalBackgroundColor(
+  variation: ModalBackgroundColor,
+  tokens: ReturnType<typeof useAtlantisTheme>["tokens"],
+) {
+  switch (variation) {
+    case "surface":
+      return tokens["color-surface"];
+    case "background":
+      return tokens["color-surface--background"];
+  }
+}
 
 // eslint-disable-next-line max-statements
-function ContentOverlayInternal(
-  {
-    children,
-    title,
-    accessibilityLabel,
-    fullScreen = false,
-    showDismiss = false,
-    isDraggable = true,
-    adjustToContentHeight = false,
-    keyboardShouldPersistTaps = false,
-    keyboardAvoidingBehavior,
-    scrollEnabled = false,
-    modalBackgroundColor = "surface",
-    onClose,
-    onOpen,
-    onBeforeExit,
-    loading = false,
-    avoidKeyboardLikeIOS,
-  }: ContentOverlayProps,
-  ref: Ref<ContentOverlayRef>,
-) {
-  isDraggable = onBeforeExit ? false : isDraggable;
-  const isCloseableOnOverlayTap = onBeforeExit ? false : true;
+export function ContentOverlay({
+  children,
+  title,
+  accessibilityLabel,
+  fullScreen = false,
+  showDismiss = false,
+  isDraggable = true,
+  adjustToContentHeight = false,
+  keyboardShouldPersistTaps = false,
+  scrollEnabled = false,
+  modalBackgroundColor = "surface",
+  onClose,
+  onOpen,
+  onBeforeExit,
+  loading = false,
+  ref,
+}: ContentOverlayProps) {
+  const insets = useSafeAreaInsets();
+  const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
+  const previousIndexRef = useRef(-1);
+  const [currentPosition, setCurrentPosition] = useState<number>(-1);
+
+  const styles = useStyles();
   const { t } = useAtlantisI18n();
   const { tokens } = useAtlantisTheme();
-  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
-  const [position, setPosition] = useState<"top" | "initial">("initial");
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
+
   const isFullScreenOrTopPosition =
-    fullScreen || (!adjustToContentHeight && position === "top");
+    fullScreen || (!adjustToContentHeight && currentPosition === 0);
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
+
+  const draggable = onBeforeExit ? false : isDraggable;
+
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
 
-  const internalRef = useRef<Modalize>(null);
-  const [modalizeMethods, setModalizeMethods] = useState<ContentOverlayRef>();
-  const callbackInternalRef = useCallback((instance: Modalize) => {
-    if (instance && !internalRef.current) {
-      internalRef.current = instance;
-      setModalizeMethods(instance);
-    }
-  }, []);
-
-  const refMethods = useMemo(() => {
-    if (!modalizeMethods?.open || !modalizeMethods?.close) {
-      return {};
-    }
-
-    return {
-      open: modalizeMethods?.open,
-      close: modalizeMethods?.close,
-    };
-  }, [modalizeMethods]);
-
-  const { keyboardHeight } = useKeyboardVisibility();
-  useImperativeHandle(ref, () => refMethods, [refMethods]);
-
-  const {
-    handleLayout: handleChildrenLayout,
-    height: childrenHeight,
-    heightKnown: childrenHeightKnown,
-  } = useViewLayoutHeight();
-  const {
-    handleLayout: handleHeaderLayout,
-    height: headerHeight,
-    heightKnown: headerHeightKnown,
-  } = useViewLayoutHeight();
-
-  const snapPoint = useMemo(() => {
-    if (fullScreen || !isDraggable || adjustToContentHeight) {
-      return undefined;
-    }
-    const overlayHeight = headerHeight + childrenHeight;
-
-    if (overlayHeight >= windowHeight) {
-      return undefined;
-    }
-
-    return overlayHeight;
-  }, [
-    fullScreen,
-    isDraggable,
-    adjustToContentHeight,
-    headerHeight,
-    childrenHeight,
-    windowHeight,
-  ]);
-
-  const styles = useStyles();
-
-  const modalStyle = [
-    styles.modal,
-    windowWidth > 640 ? styles.modalForLargeScreens : undefined,
-    { backgroundColor: getModalBackgroundColor(modalBackgroundColor) },
-    keyboardHeight > 0 && { marginBottom: 0 },
-  ];
-
-  const renderedChildren = renderChildren();
-  const renderedHeader = renderHeader();
+  // If isDraggable is true, we always want to have a snap point at 100%
+  // enableDynamicSizing will add another snap point of the content height
+  const snapPoints = useMemo(() => ["100%"], []);
 
   const onCloseController = () => {
     if (!onBeforeExit) {
-      internalRef.current?.close();
-
-      return true;
+      bottomSheetModalRef.current?.dismiss();
     } else {
       onBeforeExit();
-
-      return false;
     }
   };
 
-  return (
-    <>
-      {headerHeightKnown && childrenHeightKnown && (
-        <UNSAFE_WrappedModalize
-          ref={callbackInternalRef}
-          overlayStyle={styles.overlay}
-          handleStyle={styles.handle}
-          handlePosition="inside"
-          modalStyle={modalStyle}
-          modalTopOffset={tokens["space-larger"]}
-          snapPoint={snapPoint}
-          closeSnapPointStraightEnabled={false}
-          withHandle={isDraggable}
-          panGestureEnabled={isDraggable}
-          adjustToContentHeight={adjustToContentHeight}
-          disableScrollIfPossible={!adjustToContentHeight} // workaround for scroll not working on Android when content fills the screen with adjustToContentHeight
-          onClose={onClose}
-          onOpen={onOpen}
-          keyboardAvoidingBehavior={keyboardAvoidingBehavior}
-          avoidKeyboardLikeIOS={avoidKeyboardLikeIOS}
-          childrenStyle={styles.childrenStyle}
-          onBackButtonPress={onCloseController}
-          closeOnOverlayTap={isCloseableOnOverlayTap}
-          onOpened={() => {
-            if (overlayHeader.current) {
-              const reactTag = findNodeHandle(overlayHeader.current);
+  const { handleSheetPositionChange } =
+    useBottomSheetModalBackHandler(onCloseController);
 
-              if (reactTag) {
-                AccessibilityInfo.setAccessibilityFocus(reactTag);
-              }
-            }
-          }}
-          scrollViewProps={{
-            scrollEnabled,
-            showsVerticalScrollIndicator: false,
-            stickyHeaderIndices: Platform.OS === "android" ? [0] : undefined,
-            onScroll: handleOnScroll,
-            keyboardShouldPersistTaps: keyboardShouldPersistTaps
-              ? "handled"
-              : "never",
-          }}
-          HeaderComponent={Platform.OS === "ios" ? renderedHeader : undefined}
-          onPositionChange={setPosition}
-        >
-          {Platform.OS === "android" ? renderedHeader : undefined}
-          {renderedChildren}
-        </UNSAFE_WrappedModalize>
-      )}
-      {!childrenHeightKnown && (
-        <View style={[styles.hiddenContent, modalStyle]}>
-          {renderedChildren}
-        </View>
-      )}
-      {!headerHeightKnown && (
-        <View style={[styles.hiddenContent, modalStyle]}>{renderedHeader}</View>
-      )}
-    </>
-  );
+  useImperativeHandle(ref, () => ({
+    open: () => {
+      bottomSheetModalRef.current?.present();
+    },
+    close: () => {
+      bottomSheetModalRef.current?.dismiss();
+    },
+  }));
 
-  function renderHeader() {
+  const handleChange = (index: number, position: number) => {
+    const previousIndex = previousIndexRef.current;
+
+    setCurrentPosition(position);
+    handleSheetPositionChange(index);
+
+    if (previousIndex === -1 && index >= 0) {
+      // Transitioned from closed to open
+      onOpen?.();
+
+      // Set accessibility focus on header when opened
+      if (overlayHeader.current) {
+        const reactTag = findNodeHandle(overlayHeader.current);
+
+        if (reactTag) {
+          AccessibilityInfo.setAccessibilityFocus(reactTag);
+        }
+      }
+    } else if (previousIndex >= 0 && index === -1) {
+      // Transitioned from open to closed
+      onClose?.();
+    }
+
+    previousIndexRef.current = index;
+  };
+
+  const handleOnScroll = ({
+    nativeEvent,
+  }: NativeSyntheticEvent<NativeScrollEvent>) => {
+    setShowHeaderShadow(nativeEvent.contentOffset.y > 0);
+  };
+
+  const renderHeader = () => {
     const closeOverlayA11YLabel = t("ContentOverlay.close", {
       title: title,
     });
@@ -218,11 +135,13 @@ function ContentOverlayInternal(
     const headerStyles = [
       styles.header,
       showHeaderShadow && styles.headerShadow,
-      { backgroundColor: getModalBackgroundColor(modalBackgroundColor) },
+      {
+        backgroundColor: getModalBackgroundColor(modalBackgroundColor, tokens),
+      },
     ];
 
     return (
-      <View onLayout={handleHeaderLayout} testID="ATL-Overlay-Header">
+      <View testID="ATL-Overlay-Header">
         <View style={headerStyles}>
           <View
             style={[
@@ -262,43 +181,65 @@ function ContentOverlayInternal(
         </View>
       </View>
     );
-  }
+  };
 
-  function renderChildren() {
-    return (
-      <View
-        style={{ paddingBottom: insets.bottom }}
-        onLayout={handleChildrenLayout}
-        testID="ATL-Overlay-Children"
-      >
-        {children}
-      </View>
-    );
-  }
-
-  function handleOnScroll({
-    nativeEvent,
-  }: NativeSyntheticEvent<NativeScrollEvent>) {
-    setShowHeaderShadow(nativeEvent.contentOffset.y > 0);
-  }
-
-  function getModalBackgroundColor(variation: ModalBackgroundColor) {
-    switch (variation) {
-      case "surface":
-        return tokens["color-surface"];
-      case "background":
-        return tokens["color-surface--background"];
-    }
-  }
+  return (
+    <BottomSheetModal
+      ref={bottomSheetModalRef}
+      onChange={handleChange}
+      backgroundStyle={styles.background}
+      handleIndicatorStyle={styles.handle}
+      handleComponent={draggable ? undefined : null}
+      backdropComponent={props => (
+        <Backdrop {...props} pressBehavior={onBeforeExit ? "none" : "close"} />
+      )}
+      name="content-overlay-rebuilt"
+      snapPoints={snapPoints}
+      enablePanDownToClose={draggable}
+      enableContentPanningGesture={draggable}
+      enableDynamicSizing={!fullScreen}
+      topInset={insets.top}
+    >
+      {scrollEnabled ? (
+        <BottomSheetScrollView
+          style={styles.background}
+          contentContainerStyle={{ paddingBottom: insets.bottom }}
+          keyboardShouldPersistTaps={
+            keyboardShouldPersistTaps ? "handled" : "never"
+          }
+          showsVerticalScrollIndicator={false}
+          onScroll={handleOnScroll}
+          stickyHeaderIndices={[0]}
+        >
+          {renderHeader()}
+          {children}
+        </BottomSheetScrollView>
+      ) : (
+        <BottomSheetView style={styles.background}>
+          {renderHeader()}
+          <View style={{ paddingBottom: insets.bottom }}>{children}</View>
+        </BottomSheetView>
+      )}
+    </BottomSheetModal>
+  );
 }
 
-function ContentOverlayPortal(
-  modalProps: ContentOverlayProps,
-  ref: Ref<ContentOverlayRef>,
+function Backdrop(
+  bottomSheetBackdropProps: BottomSheetBackdropProps & {
+    pressBehavior: "none" | "close";
+  },
 ) {
+  const styles = useStyles();
+  const { pressBehavior, ...props } = bottomSheetBackdropProps;
+
   return (
-    <Portal>
-      <ContentOverlayModal ref={ref} {...modalProps} />
-    </Portal>
+    <BottomSheetBackdrop
+      {...props}
+      appearsOnIndex={0}
+      disappearsOnIndex={-1}
+      style={styles.backdrop}
+      opacity={1}
+      pressBehavior={pressBehavior}
+    />
   );
 }

@@ -2,22 +2,20 @@ import { buildThemedStyles } from "../AtlantisThemeContext";
 
 export const useStyles = buildThemedStyles(tokens => {
   const modalBorderRadius = tokens["radius-larger"];
-  const titleOffsetFromHandle = tokens["space-base"];
 
   return {
     handle: {
       width: tokens["space-largest"],
       height: tokens["space-smaller"] + tokens["space-smallest"],
       backgroundColor: tokens["color-border"],
-      top: tokens["space-small"],
       borderRadius: tokens["radius-circle"],
     },
 
-    overlay: {
+    backdrop: {
       backgroundColor: tokens["color-overlay"],
     },
 
-    modal: {
+    background: {
       borderTopLeftRadius: modalBorderRadius,
       borderTopRightRadius: modalBorderRadius,
     },
@@ -30,10 +28,7 @@ export const useStyles = buildThemedStyles(tokens => {
     header: {
       flexDirection: "row",
       backgroundColor: tokens["color-surface"],
-      paddingTop: titleOffsetFromHandle,
       zIndex: tokens["elevation-base"],
-      borderTopLeftRadius: modalBorderRadius,
-      borderTopRightRadius: modalBorderRadius,
       minHeight: tokens["space-extravagant"],
     },
 
