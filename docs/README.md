@@ -289,4 +289,4 @@ instead of sending them the file.**_
 lerna changed
 ```
 
-\*\* Note: Remove this Note.
+\*\* Note: Remove
