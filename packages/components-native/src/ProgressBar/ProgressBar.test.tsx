@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { render, screen } from "@testing-library/react-native";
 import type { ProgressBarProps } from ".";
 import { ProgressBar } from ".";
@@ -71,13 +70,11 @@ describe("ProgressBar (native) - UNSAFE_style", () => {
   it("applies UNSAFE_style.container to the outer wrapper", () => {
     const containerStyle = { padding: 12, backgroundColor: "papayawhip" };
     render(
-      <View accessibilityLabel="root">
-        <ProgressBar
-          total={100}
-          current={40}
-          UNSAFE_style={{ container: containerStyle }}
-        />
-      </View>,
+      <ProgressBar
+        total={100}
+        current={40}
+        UNSAFE_style={{ container: containerStyle }}
+      />,
     );
 
     const progressBar = screen.getByRole("progressbar");
@@ -92,16 +89,14 @@ describe("ProgressBar (native) - UNSAFE_style", () => {
     const track = { backgroundColor: "#eee" };
 
     render(
-      <View accessibilityLabel="root">
-        <ProgressBar
-          total={100}
-          current={30}
-          UNSAFE_style={{
-            progressBarContainer,
-            track,
-          }}
-        />
-      </View>,
+      <ProgressBar
+        total={100}
+        current={30}
+        UNSAFE_style={{
+          progressBarContainer,
+          track,
+        }}
+      />,
     );
 
     const progressContainer = screen.getByTestId("progressbar-container");
@@ -121,17 +116,15 @@ describe("ProgressBar (native) - UNSAFE_style", () => {
     const fill = { backgroundColor: "#10b981" };
 
     render(
-      <View accessibilityLabel="root">
-        <ProgressBar
-          total={100}
-          current={30}
-          inProgress={10}
-          UNSAFE_style={{
-            inProgressFill,
-            fill,
-          }}
-        />
-      </View>,
+      <ProgressBar
+        total={100}
+        current={30}
+        inProgress={10}
+        UNSAFE_style={{
+          inProgressFill,
+          fill,
+        }}
+      />,
     );
 
     const inProgressView = screen.getByTestId("progressbar-inprogress");
@@ -150,15 +143,13 @@ describe("ProgressBar (native) - UNSAFE_style", () => {
     const step = { backgroundColor: "#d1d5db" };
 
     render(
-      <View accessibilityLabel="root">
-        <ProgressBar
-          variation="stepped"
-          total={4}
-          current={2}
-          inProgress={1}
-          UNSAFE_style={{ progressBarContainer, step }}
-        />
-      </View>,
+      <ProgressBar
+        variation="stepped"
+        total={4}
+        current={2}
+        inProgress={1}
+        UNSAFE_style={{ progressBarContainer, step }}
+      />,
     );
 
     const steppedContainer = screen.getByTestId("progressbar-container");

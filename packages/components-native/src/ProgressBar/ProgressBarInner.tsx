@@ -1,8 +1,6 @@
 import React from "react";
 import { View } from "react-native";
 import type { StyleProp, ViewStyle } from "react-native";
-// import Reanimated from "react-native-reanimated";
-// import { useTiming } from "utils/reanimated";
 import { useStyles } from "./ProgressBar.style";
 
 interface ProgressBarInnerProps {
@@ -15,17 +13,10 @@ interface ProgressBarInnerProps {
 
 export function ProgressBarInner({
   width,
-  // animationDuration = 0,
   color,
   style,
   testID,
 }: ProgressBarInnerProps) {
-  // Animation breaking on Android
-  // const [animatedOpacity] = useTiming({
-  //   duration: animationDuration,
-  //   fromValue: 0,
-  //   toValue: 1,
-  // });
   const styles = useStyles();
 
   return (
@@ -35,7 +26,6 @@ export function ProgressBarInner({
         styles.progressBarInner,
         {
           width: `${width}%`,
-          // opacity: animatedOpacity,
           ...(color && { backgroundColor: color }),
         },
         style,

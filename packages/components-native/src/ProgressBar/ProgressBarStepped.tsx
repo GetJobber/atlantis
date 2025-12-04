@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { useStyles } from "./ProgressBar.style";
 import type { ProgressBarUnsafeStyle } from "./types";
 
-export interface ProgressBarSteppedProps {
+interface ProgressBarSteppedProps {
   readonly total: number;
   readonly current: number;
   readonly color?: string;
