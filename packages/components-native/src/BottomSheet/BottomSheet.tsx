@@ -82,7 +82,7 @@ export function BottomSheet({
 
   const close = useCallback(() => {
     bottomSheetRef.current?.close();
-  }, [bottomSheetRef]);
+  }, []);
 
   const handleChange = (index: number) => {
     // Handle Android back button
