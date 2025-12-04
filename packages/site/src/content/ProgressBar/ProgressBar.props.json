@@ -72,7 +72,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ container?: string; }"
+          "name": "string"
         }
       },
       "UNSAFE_style": {
@@ -85,7 +85,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ container?: CSSProperties; }"
+          "name": "CSSProperties"
         }
       }
     }
