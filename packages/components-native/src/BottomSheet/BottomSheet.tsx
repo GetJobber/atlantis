@@ -4,13 +4,10 @@ import { Keyboard, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import RNBottomSheet, {
   BottomSheetBackdrop,
-  BottomSheetFooter,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import type {
-  BottomSheetBackdropProps,
-  BottomSheetFooterProps,
-} from "@gorhom/bottom-sheet";
+import type { BottomSheetBackdropProps } from "@gorhom/bottom-sheet";
+import { tokens } from "@jobber/design";
 import { useStyles } from "./BottomSheet.style";
 import { BottomSheetOption } from "./components/BottomSheetOption";
 import { useBottomSheetBackHandler } from "./hooks/useBottomSheetBackHandler";
@@ -79,9 +76,13 @@ export function BottomSheet({
       bottomSheetRef.current?.expand();
     },
     close: () => {
-      bottomSheetRef.current?.close();
+      close();
     },
   }));
+
+  const close = useCallback(() => {
+    bottomSheetRef.current?.close();
+  }, [bottomSheetRef]);
 
   const handleChange = (index: number) => {
     // Handle Android back button
@@ -102,52 +103,28 @@ export function BottomSheet({
     previousIndexRef.current = index;
   };
 
-  const renderFooter = useCallback(
-    (bottomSheetFooterProps: BottomSheetFooterProps) => {
-      return (
-        <BottomSheetFooter {...bottomSheetFooterProps}>
-          <View
-            style={[styles.footerContainer, { paddingBottom: insets.bottom }]}
-          >
-            {cancellable && (
-              <View style={styles.footer}>
-                <View style={styles.footerDivider}>
-                  <Divider />
-                </View>
-                <BottomSheetOption
-                  text={t("cancel")}
-                  icon={"remove"}
-                  onPress={() => {
-                    bottomSheetRef.current?.close();
-                  }}
-                />
-              </View>
-            )}
-          </View>
-        </BottomSheetFooter>
-      );
-    },
-    [cancellable],
-  );
-
   return (
     <RNBottomSheet
       ref={bottomSheetRef}
       index={-1}
       backdropComponent={Backdrop}
       backgroundStyle={styles.background}
-      footerComponent={renderFooter}
       enablePanDownToClose={true}
       onChange={handleChange}
       keyboardBlurBehavior="restore"
       handleStyle={styles.handle}
     >
       <BottomSheetView
-        style={styles.content}
-        enableFooterMarginAdjustment={true}
+        style={[
+          styles.content,
+          { paddingBottom: insets.bottom + tokens["space-small"] },
+        ]}
       >
         {heading && <Header heading={heading} styles={styles} />}
         {children}
+        {cancellable && (
+          <Footer styles={styles} close={close} cancelLabel={t("cancel")} />
+        )}
       </BottomSheetView>
     </RNBottomSheet>
   );
@@ -163,6 +140,26 @@ function Header({
   return (
     <View style={styles.header}>
       <Heading level={"subtitle"}>{heading}</Heading>
+    </View>
+  );
+}
+
+function Footer({
+  styles,
+  close,
+  cancelLabel,
+}: {
+  readonly styles: ReturnType<typeof useStyles>;
+  readonly close: () => void;
+  readonly cancelLabel: string;
+}) {
+  return (
+    <View>
+      <View style={styles.footerDivider}>
+        <Divider />
+      </View>
+
+      <BottomSheetOption text={cancelLabel} icon="remove" onPress={close} />
     </View>
   );
 }
