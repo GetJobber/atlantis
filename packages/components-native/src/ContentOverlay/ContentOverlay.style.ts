@@ -40,6 +40,10 @@ export const useStyles = buildThemedStyles(tokens => {
 
     headerShadow: {
       ...tokens["shadow-base"],
+      position: "absolute",
+      top: -20,
+      height: 20,
+      width: "100%",
     },
 
     childrenStyle: {
