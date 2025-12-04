@@ -1,6 +1,5 @@
 import React, { useImperativeHandle, useMemo, useRef, useState } from "react";
 import { AccessibilityInfo, View, findNodeHandle } from "react-native";
-import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   BottomSheetBackdrop,
@@ -11,6 +10,7 @@ import {
 import type {
   BottomSheetBackdropProps,
   BottomSheetModal as BottomSheetModalType,
+  BottomSheetScrollViewMethods,
 } from "@gorhom/bottom-sheet";
 import type { ContentOverlayProps, ModalBackgroundColor } from "./types";
 import { useStyles } from "./ContentOverlay.style";
@@ -70,6 +70,9 @@ export function ContentOverlay({
 
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
+  const scrollViewRef = useRef<
+    BottomSheetScrollViewMethods & { scrollTop?: number }
+  >(null);
 
   // If isDraggable is true, we always want to have a snap point at 100%
   // enableDynamicSizing will add another snap point of the content height
@@ -121,13 +124,9 @@ export function ContentOverlay({
     previousIndexRef.current = index;
   };
 
-  const handleOnScroll = ({
-    nativeEvent,
-  }: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const isFullyOpen = currentPosition === 0;
-    // Threshold reduces a shadow flicker when scrolling upwards
-    const hasScrolledPastThreshold = nativeEvent.contentOffset.y > 5;
-    setShowHeaderShadow(hasScrolledPastThreshold && isFullyOpen);
+  const handleOnScroll = () => {
+    const scrollTop = scrollViewRef.current?.scrollTop || 0;
+    setShowHeaderShadow(scrollTop > 0);
   };
 
   const modalStyle = [
@@ -228,6 +227,7 @@ export function ContentOverlay({
     >
       {scrollEnabled ? (
         <BottomSheetScrollView
+          ref={scrollViewRef}
           contentContainerStyle={{ paddingBottom: insets.bottom }}
           keyboardShouldPersistTaps={
             keyboardShouldPersistTaps ? "handled" : "never"
