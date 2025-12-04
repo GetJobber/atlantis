@@ -134,6 +134,13 @@ export function ContentOverlay({
     { backgroundColor: getModalBackgroundColor(modalBackgroundColor, tokens) },
   ];
 
+  const handleIndicatorStyles = [
+    styles.handle,
+    !draggable && {
+      opacity: 0,
+    },
+  ];
+
   const renderHeader = () => {
     const closeOverlayA11YLabel = t("ContentOverlay.close", {
       title: title,
@@ -197,8 +204,7 @@ export function ContentOverlay({
       onChange={handleChange}
       backgroundStyle={modalStyle}
       handleStyle={styles.handleWrapper}
-      handleIndicatorStyle={styles.handle}
-      handleComponent={draggable ? undefined : null}
+      handleIndicatorStyle={handleIndicatorStyles}
       backdropComponent={props => (
         <Backdrop {...props} pressBehavior={onBeforeExit ? "none" : "close"} />
       )}
