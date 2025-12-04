@@ -124,7 +124,10 @@ export function ContentOverlay({
   const handleOnScroll = ({
     nativeEvent,
   }: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setShowHeaderShadow(nativeEvent.contentOffset.y > 0);
+    const isFullyOpen = currentPosition === 0;
+    // Threshold reduces a shadow flicker when scrolling upwards
+    const hasScrolledPastThreshold = nativeEvent.contentOffset.y > 5;
+    setShowHeaderShadow(hasScrolledPastThreshold && isFullyOpen);
   };
 
   const modalStyle = [
