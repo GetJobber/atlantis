@@ -34,6 +34,8 @@ export const useStyles = buildThemedStyles(tokens => {
       flexDirection: "row",
       zIndex: tokens["elevation-base"],
       minHeight: tokens["space-extravagant"] - tokens["space-base"],
+      borderTopLeftRadius: modalBorderRadius,
+      borderTopRightRadius: modalBorderRadius,
     },
 
     headerShadow: {

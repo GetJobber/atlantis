@@ -142,6 +142,10 @@ export function ContentOverlay({
     const headerStyles = [
       styles.header,
       showHeaderShadow && styles.headerShadow,
+      {
+        // Background color is necessary for scrollable modals as the content flows behind the header.
+        backgroundColor: getModalBackgroundColor(modalBackgroundColor, tokens),
+      },
     ];
 
     return (
