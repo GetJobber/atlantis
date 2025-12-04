@@ -48,12 +48,12 @@ describe("with props", () => {
 
 describe("ProgressBar UNSAFE props", () => {
   describe("variation=progress", () => {
-    it("applies UNSAFE_className.container to the progress element", () => {
+    it("applies UNSAFE_className to the progress element", () => {
       render(
         <ProgressBar
           currentStep={30}
           totalSteps={100}
-          UNSAFE_className={{ container: "custom-progress" }}
+          UNSAFE_className={"custom-progress"}
         />,
       );
 
@@ -61,12 +61,12 @@ describe("ProgressBar UNSAFE props", () => {
       expect(el).toHaveClass("custom-progress");
     });
 
-    it("applies UNSAFE_style.container to the progress element", () => {
+    it("applies UNSAFE_style to the progress element", () => {
       render(
         <ProgressBar
           currentStep={30}
           totalSteps={100}
-          UNSAFE_style={{ container: { backgroundColor: "papayawhip" } }}
+          UNSAFE_style={{ backgroundColor: "papayawhip" }}
         />,
       );
 
@@ -76,14 +76,14 @@ describe("ProgressBar UNSAFE props", () => {
   });
 
   describe("variation=stepped", () => {
-    it("applies UNSAFE_className.container and UNSAFE_style.container to the wrapper", () => {
+    it("applies UNSAFE_className and UNSAFE_style to the wrapper", () => {
       render(
         <ProgressBar
           currentStep={2}
           totalSteps={5}
           variation="stepped"
-          UNSAFE_className={{ container: "custom-stepped" }}
-          UNSAFE_style={{ container: { backgroundColor: "lavender" } }}
+          UNSAFE_className={"custom-stepped"}
+          UNSAFE_style={{ backgroundColor: "lavender" }}
         />,
       );
 

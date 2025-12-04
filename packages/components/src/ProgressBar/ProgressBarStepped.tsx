@@ -8,12 +8,8 @@ interface ProgressBarSteppedProps {
   readonly totalSteps: number;
   readonly percentage: number;
   readonly size?: keyof typeof sizes;
-  readonly UNSAFE_className?: {
-    container?: string;
-  };
-  readonly UNSAFE_style?: {
-    container?: React.CSSProperties;
-  };
+  readonly UNSAFE_className?: string;
+  readonly UNSAFE_style?: React.CSSProperties;
 }
 
 export function ProgressBarStepped({
@@ -34,9 +30,9 @@ export function ProgressBarStepped({
   return (
     <div
       role={"progressbar"}
-      className={classnames(styles.wrapper, UNSAFE_className?.container)}
+      className={classnames(styles.wrapper, UNSAFE_className)}
       data-testid="progressbar-wrapper"
-      style={UNSAFE_style?.container}
+      style={UNSAFE_style}
       aria-valuenow={percentage}
       aria-valuetext={ariaLabel}
     >

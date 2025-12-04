@@ -31,16 +31,13 @@ interface ProgressBarProps {
    * **last resort**. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
-  readonly UNSAFE_className?: {
-    container?: string;
-  };
+  readonly UNSAFE_className?: string;
+
   /** **Use at your own risk:** Custom style for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
    */
-  readonly UNSAFE_style?: {
-    container?: React.CSSProperties;
-  };
+  readonly UNSAFE_style?: React.CSSProperties;
 }
 
 export function ProgressBar({
@@ -69,8 +66,8 @@ export function ProgressBar({
 
   return (
     <progress
-      className={classnames(progressBarClassName, UNSAFE_className?.container)}
-      style={UNSAFE_style?.container}
+      className={classnames(progressBarClassName, UNSAFE_className)}
+      style={UNSAFE_style}
       max={totalSteps}
       value={currentStep}
     >
