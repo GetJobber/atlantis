@@ -152,20 +152,6 @@ exports[`renders a thumbnail component with attachments 1`] = `
     }
   >
     <View
-      backdropComponent={[Function]}
-      backgroundStyle={
-        {
-          "borderTopLeftRadius": 24,
-          "borderTopRightRadius": 24,
-        }
-      }
-      enablePanDownToClose={true}
-      handleStyle={
-        {
-          "display": "none",
-        }
-      }
-      keyboardBlurBehavior="restore"
       style={
         {
           "display": "none",
@@ -174,12 +160,6 @@ exports[`renders a thumbnail component with attachments 1`] = `
       testID="bottom-sheet-mock"
     >
       <View
-        enableFooterMarginAdjustment={true}
-        style={
-          {
-            "paddingVertical": 8,
-          }
-        }
         testID="bottom-sheet-view"
       >
         <View
