@@ -219,12 +219,17 @@ export function ContentOverlay({
           stickyHeaderIndices={[0]}
         >
           {renderHeader()}
-          {children}
+          <View testID="ATL-Overlay-Children">{children}</View>
         </BottomSheetScrollView>
       ) : (
         <BottomSheetView>
           {renderHeader()}
-          <View style={{ paddingBottom: insets.bottom }}>{children}</View>
+          <View
+            style={{ paddingBottom: insets.bottom }}
+            testID="ATL-Overlay-Children"
+          >
+            {children}
+          </View>
         </BottomSheetView>
       )}
     </BottomSheetModal>

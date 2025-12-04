@@ -4,39 +4,44 @@
  */
 import {
   Fragment,
+  type PropsWithChildren,
+  type ReactNode,
   type Ref,
+  createContext,
   createElement,
   forwardRef,
   useImperativeHandle,
   useState,
 } from "react";
 import { View } from "react-native";
-import type { BottomSheetProps } from "@gorhom/bottom-sheet";
+import type {
+  BottomSheetModalProps,
+  BottomSheetProps,
+  BottomSheetModal as RNBottomSheetModal,
+} from "@gorhom/bottom-sheet";
 import type RNBottomSheet from "@gorhom/bottom-sheet";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const NOOP = () => {};
 const NOOP_VALUE = { value: 0, set: NOOP, get: () => 0 };
+const BottomSheetModalContext = createContext<null>(null);
+export const BottomSheetBackdrop = NOOP;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const BottomSheetFooter = ({ children, ...props }: any) => {
+export function BottomSheetFooter({ children }: PropsWithChildren) {
+  return createElement(View, { testID: "bottom-sheet-footer" }, children);
+}
+
+export function BottomSheetModalProvider({ children }: PropsWithChildren) {
   return createElement(
-    View,
-    { testID: "bottom-sheet-footer", ...props },
+    BottomSheetModalContext.Provider,
+    { value: null },
     children,
   );
-};
+}
 
-const BottomSheetBackdrop = NOOP;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const BottomSheetView = ({ children, ...props }: any) => {
-  return createElement(
-    View,
-    { testID: "bottom-sheet-view", ...props },
-    children,
-  );
-};
+export function BottomSheetView({ children }: PropsWithChildren) {
+  return createElement(View, { testID: "bottom-sheet-view" }, children);
+}
 
 const BottomSheet = forwardRef(function MockedBottomSheet(
   {
@@ -44,7 +49,6 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
     footerComponent,
     onChange,
     index: initialIndex = -1,
-    ...props
   }: BottomSheetProps,
   ref: Ref<RNBottomSheet>,
 ) {
@@ -81,10 +85,7 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
     View,
     {
       testID: "bottom-sheet-mock",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      style: (isOpen ? undefined : { display: "none" }) as any,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ...(props as any),
+      style: isOpen ? undefined : { display: "none" },
     },
     [
       createElement(Fragment, { key: "children" }, children),
@@ -92,8 +93,67 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
         createElement(
           Fragment,
           { key: "footer" },
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          createElement(footerComponent as any, {} as any),
+          createElement(footerComponent),
+        ),
+    ].filter(Boolean),
+  );
+});
+
+export const BottomSheetModal = forwardRef(function MockedBottomSheetModal(
+  { children, footerComponent, onChange, onDismiss }: BottomSheetModalProps,
+  ref: Ref<RNBottomSheetModal>,
+) {
+  const [isPresented, setIsPresented] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    present: () => {
+      setIsPresented(true);
+      onChange?.(0, 0, 0);
+    },
+    dismiss: () => {
+      setIsPresented(false);
+      onChange?.(-1, 0, 0);
+      onDismiss?.();
+    },
+    snapToIndex: (index: number) => {
+      if (index >= 0) {
+        setIsPresented(true);
+      } else {
+        setIsPresented(false);
+      }
+      onChange?.(index, 0, 0);
+    },
+    snapToPosition: NOOP,
+    expand: () => {
+      setIsPresented(true);
+      onChange?.(0, 0, 0);
+    },
+    collapse: NOOP,
+    close: () => {
+      setIsPresented(false);
+      onChange?.(-1, 0, 0);
+      onDismiss?.();
+    },
+    forceClose: () => {
+      setIsPresented(false);
+      onChange?.(-1, 0, 0);
+      onDismiss?.();
+    },
+  }));
+
+  return createElement(
+    View,
+    {
+      testID: "bottom-sheet-modal-mock",
+      style: isPresented ? undefined : { display: "none" },
+    },
+    [
+      createElement(Fragment, { key: "children" }, children as ReactNode),
+      footerComponent &&
+        createElement(
+          Fragment,
+          { key: "footer" },
+          createElement(footerComponent),
         ),
     ].filter(Boolean),
   );
@@ -101,7 +161,6 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
 
 // eslint-disable-next-line import/no-default-export
 export default BottomSheet;
-export { BottomSheet, BottomSheetBackdrop, BottomSheetView, BottomSheetFooter };
 
 export const useBottomSheet = () => ({
   snapToIndex: NOOP,
@@ -117,4 +176,9 @@ export const useBottomSheet = () => ({
 export const useBottomSheetInternal = () => ({
   animatedKeyboardState: NOOP_VALUE,
   textInputNodesRef: { current: new Set() },
+});
+
+export const useBottomSheetModal = () => ({
+  dismiss: NOOP,
+  dismissAll: NOOP,
 });
