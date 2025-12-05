@@ -175,15 +175,10 @@ exports[`renders a thumbnail component with attachments 1`] = `
     >
       <View
         style={
-          [
-            {
-              "flex": 1,
-              "paddingVertical": 8,
-            },
-            {
-              "paddingBottom": 8,
-            },
-          ]
+          {
+            "paddingBottom": 8,
+            "paddingTop": 8,
+          }
         }
         testID="bottom-sheet-view"
       >
