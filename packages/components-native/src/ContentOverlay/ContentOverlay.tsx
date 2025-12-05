@@ -76,7 +76,16 @@ export function ContentOverlay({
 
   // If isDraggable is true, we always want to have a snap point at 100%
   // enableDynamicSizing will add another snap point of the content height
-  const snapPoints = useMemo(() => ["100%"], []);
+  const snapPoints = useMemo(() => {
+    // When this is enabled, it prevents the modal from being dragged to fullscreen. This is solely necessary
+    // to match the behaviour of the previous library. Ideally we should consider ripping this out, but there's
+    // a lot of surface area to test and verify.
+    if (adjustToContentHeight) {
+      return [];
+    }
+
+    return ["100%"];
+  }, [adjustToContentHeight]);
 
   const onCloseController = () => {
     if (!onBeforeExit) {
@@ -222,7 +231,7 @@ export function ContentOverlay({
       snapPoints={snapPoints}
       enablePanDownToClose={draggable}
       enableContentPanningGesture={draggable}
-      enableDynamicSizing={!fullScreen}
+      enableDynamicSizing={!fullScreen || adjustToContentHeight}
       topInset={insets.top}
     >
       {scrollEnabled ? (
