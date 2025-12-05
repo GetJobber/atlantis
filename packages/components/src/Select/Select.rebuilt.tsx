@@ -1,23 +1,16 @@
 import React, { useId, useRef } from "react";
-import omit from "lodash/omit";
 import classnames from "classnames";
 import type { SelectRebuiltProps } from "./Select.types";
 import { useSelectActions } from "./hooks/useSelectActions";
 import styles from "./Select.module.css";
-import {
-  FormFieldWrapper,
-  useAtlantisFormFieldName,
-  useFormFieldWrapperStyles,
-} from "../FormField";
+import { FormFieldWrapper, useAtlantisFormFieldName } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import formFieldStyles from "../FormField/FormField.module.css";
 
 export function SelectRebuilt(props: SelectRebuiltProps) {
   const { mergedRef, wrapperRef } = useSelectRefs(props.inputRef);
-  const { inputStyle } = useFormFieldWrapperStyles({
-    ...omit(props, ["version"]),
-  });
   const dataAttrs = filterDataAttributes(props);
 
   const generatedId = useId();
@@ -78,7 +71,7 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
           aria-required={props["aria-required"]}
           ref={mergedRef}
           className={classnames(
-            inputStyle,
+            formFieldStyles.input,
             props.UNSAFE_experimentalStyles && styles.select,
           )}
           {...dataAttrs}

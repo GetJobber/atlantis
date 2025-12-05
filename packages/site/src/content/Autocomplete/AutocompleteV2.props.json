@@ -261,7 +261,7 @@
         "defaultValue": {
           "value": "true"
         },
-        "description": "Whether the menu should open when the input gains focus.",
+        "description": "Whether the menu should open when the input gains focus.\nNote: Clicking on the input will always open the menu.\nopenOnFocus only determines the behavior of focus events such as tabs or programmatic focus.",
         "name": "openOnFocus",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",

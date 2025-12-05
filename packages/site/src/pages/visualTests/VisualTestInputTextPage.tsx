@@ -100,6 +100,63 @@ export const VisualTestInputTextPage = () => {
               </Grid.Cell>
             </Grid>
           </section>
+
+          <section>
+            <Text size="large">InputText v1 with maxLength</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <InputText
+                  value={value}
+                  onChange={newValue => setValue(newValue as string)}
+                  placeholder="With maxLength"
+                  maxLength={200}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+          <section>
+            <Text size="large">InputText v1 (multiline) with maxLength</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <InputText
+                  value={value}
+                  multiline={true}
+                  onChange={newValue => setValue(newValue as string)}
+                  placeholder="With maxLength"
+                  maxLength={200}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+          <section>
+            <Text size="large">InputText v2 with maxLength</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <InputText
+                  value={value}
+                  version={2}
+                  onChange={newValue => setValue(newValue as string)}
+                  placeholder="With maxLength"
+                  maxLength={200}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
+          <section>
+            <Text size="large">InputText v2 (multiline) with maxLength</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <InputText
+                  value={value}
+                  version={2}
+                  multiline={true}
+                  onChange={newValue => setValue(newValue as string)}
+                  placeholder="With maxLength"
+                  maxLength={200}
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
         </Stack>
       </Stack>
     </Box>

@@ -10,6 +10,7 @@ import type {
 } from "../Autocomplete.types";
 import styles from "../AutocompleteRebuilt.module.css";
 import type { RenderItem } from "../useAutocomplete";
+import { preventDefaultPointerDown } from "../utils/interactionUtils";
 import { Heading } from "../../Heading";
 import { Text } from "../../Text";
 import { Typography } from "../../Typography";
@@ -39,6 +40,7 @@ interface MenuListProps<T extends OptionLike> {
   readonly getOptionLabel: (option: T) => string;
   readonly onSelect: (option: T) => void;
   readonly onAction: (action: ActionConfig) => void;
+  readonly onInteractionPointerDown: (e: React.PointerEvent) => void;
   readonly isOptionSelected: (option: T) => boolean;
   readonly slotOverrides?: {
     option?: { className?: string; style?: React.CSSProperties };
@@ -60,6 +62,7 @@ export function MenuList<T extends OptionLike>({
   getOptionLabel,
   onSelect,
   onAction,
+  onInteractionPointerDown,
   isOptionSelected,
   slotOverrides,
 }: MenuListProps<T>) {
@@ -87,6 +90,7 @@ export function MenuList<T extends OptionLike>({
         customRenderOption,
         getOptionLabel,
         onSelect,
+        onInteractionPointerDown,
         indexOffset,
         optionClassName: slotOverrides?.option?.className,
         optionStyle: slotOverrides?.option?.style,
@@ -106,6 +110,7 @@ export function MenuList<T extends OptionLike>({
       listboxId,
       customRenderAction,
       onAction,
+      onInteractionPointerDown,
       indexOffset,
       actionClassName: slotOverrides?.action?.className,
       actionStyle: slotOverrides?.action?.style,
@@ -148,6 +153,7 @@ function handleSectionRendering<T extends OptionLike>({
       data-testid="ATL-AutocompleteRebuilt-Section"
       className={classNames(styles.section, styles.stickyTop, sectionClassName)}
       style={sectionStyle}
+      onPointerDown={preventDefaultPointerDown}
     >
       {headerContent}
     </div>
@@ -179,6 +185,7 @@ interface HandleOptionRenderingProps<T extends OptionLike> {
   readonly getOptionLabel: (option: T) => string;
   // no explicit key getter; derived from option.key/label where used
   readonly onSelect: (option: T) => void;
+  readonly onInteractionPointerDown: (e: React.PointerEvent) => void;
   readonly indexOffset?: number;
   readonly optionClassName?: string;
   readonly optionStyle?: React.CSSProperties;
@@ -195,6 +202,7 @@ function handleOptionRendering<T extends OptionLike>({
   customRenderOption,
   getOptionLabel,
   onSelect,
+  onInteractionPointerDown,
   indexOffset = 0,
   optionClassName,
   optionStyle,
@@ -224,6 +232,7 @@ function handleOptionRendering<T extends OptionLike>({
             if (node) listRef.current[idx] = node;
           },
           onClick: () => onSelect(option),
+          onPointerDown: onInteractionPointerDown,
           className: classNames(
             styles.option,
             isActive && styles.optionActive,
@@ -276,6 +285,7 @@ interface HandleActionRenderingProps<T extends OptionLike> {
     false
   >["customRenderAction"];
   readonly onAction: (action: ActionConfig) => void;
+  readonly onInteractionPointerDown: (e: React.PointerEvent) => void;
   readonly indexOffset?: number;
   readonly actionClassName?: string;
   readonly actionStyle?: React.CSSProperties;
@@ -291,6 +301,7 @@ function handleActionRendering<T extends OptionLike>({
   listboxId,
   customRenderAction,
   onAction,
+  onInteractionPointerDown,
   indexOffset = 0,
   actionClassName,
   actionStyle,
@@ -320,6 +331,7 @@ function handleActionRendering<T extends OptionLike>({
         closeOnRun: action.shouldClose,
       });
     },
+    onPointerDown: onInteractionPointerDown,
     className: classNames(
       styles.action,
       isActive && styles.actionActive,

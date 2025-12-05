@@ -91,7 +91,7 @@ jobs:
       - *restore_npm_cache
       - run:
           name: Authenticate with npm
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$JOBBER_NPM_PUBLISH_TOKEN" > ~/atlantis/.npmrc
       - *npm_install
       - *persist_to_workspace
 

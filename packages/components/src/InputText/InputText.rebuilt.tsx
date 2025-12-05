@@ -3,14 +3,11 @@ import React, { forwardRef, useId } from "react";
 import type { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { useInputTextActions } from "./useInputTextActions";
-import {
-  FormFieldWrapper,
-  useAtlantisFormFieldName,
-  useFormFieldWrapperStyles,
-} from "../FormField";
+import { FormFieldWrapper, useAtlantisFormFieldName } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
 import { mergeRefs } from "../utils/mergeRefs";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import formFieldStyles from "../FormField/FormField.module.css";
 
 export const InputTextSPAR = forwardRef(function InputTextInternal(
   props: InputTextRebuiltProps,
@@ -30,19 +27,6 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     wrapperRef: wrapperRef,
   });
 
-  const { inputStyle } = useFormFieldWrapperStyles({
-    size: props.size,
-    align: props.align,
-    placeholder: props.placeholder,
-    value: props.value,
-    invalid: props.invalid,
-    error: props.error,
-    maxLength: props.maxLength,
-    type: props.multiline ? "textarea" : "text",
-    disabled: props.disabled,
-    inline: props.inline,
-  });
-
   const { name } = useAtlantisFormFieldName({
     nameProp: props.name,
     id: id,
@@ -55,10 +39,20 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     handleKeyDown,
     handleKeyUp,
     handleClear,
+    handleMouseDown,
+    handleMouseUp,
+    handlePointerDown,
+    handlePointerUp,
+    handleClick,
   } = useInputTextActions({
     onChange: props.onChange,
     onBlur: props.onBlur,
     onFocus: props.onFocus,
+    onMouseDown: props.onMouseDown,
+    onMouseUp: props.onMouseUp,
+    onPointerDown: props.onPointerDown,
+    onPointerUp: props.onPointerUp,
+    onClick: props.onClick,
     onKeyDown: props.onKeyDown,
     onKeyUp: props.onKeyUp,
     onEnter: props.onEnter,
@@ -74,7 +68,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   const commonInputProps = {
     id,
     name,
-    className: inputStyle,
+    className: formFieldStyles.input,
     value: props.value,
     disabled: props.disabled,
     readOnly: props.readOnly,
@@ -99,6 +93,11 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     onFocus: handleFocus,
     onKeyDown: handleKeyDown,
     onKeyUp: handleKeyUp,
+    onMouseDown: handleMouseDown,
+    onMouseUp: handleMouseUp,
+    onPointerDown: handlePointerDown,
+    onPointerUp: handlePointerUp,
+    onClick: handleClick,
     ref: mergeRefs([inputRef, inputTextRef]),
     ...dataAttrs,
   };
@@ -117,13 +116,13 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
       descriptionIdentifier={descriptionIdentifier}
       description={props.description}
       clearable={props.clearable ?? "never"}
-      maxLength={props.maxLength}
       onClear={handleClear}
       type={props.multiline ? "textarea" : "text"}
       placeholder={props.placeholder}
       value={props.value}
       prefix={props.prefix}
       suffix={props.suffix}
+      readonly={props.readOnly}
       rows={rowRange.min}
       toolbar={props.toolbar}
       toolbarVisibility={props.toolbarVisibility}

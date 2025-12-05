@@ -184,6 +184,19 @@
         "type": {
           "name": "(val: Date) => void"
         }
+      },
+      "onOpenChange": {
+        "defaultValue": null,
+        "description": "Callback when the calendar open state changes",
+        "name": "onOpenChange",
+        "parent": {
+          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(open: boolean) => void"
+        }
       }
     }
   }

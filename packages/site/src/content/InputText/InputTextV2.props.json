@@ -344,6 +344,71 @@
           "name": "Booleanish"
         }
       },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "Mouse down event handler.",
+        "name": "onMouseDown",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement | HTMLTextAreaElement, MouseEvent>) => void"
+        }
+      },
+      "onMouseUp": {
+        "defaultValue": null,
+        "description": "Mouse up event handler.",
+        "name": "onMouseUp",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement | HTMLTextAreaElement, MouseEvent>) => void"
+        }
+      },
+      "onPointerDown": {
+        "defaultValue": null,
+        "description": "Pointer down event handler.",
+        "name": "onPointerDown",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: PointerEvent<HTMLInputElement | HTMLTextAreaElement>) => void"
+        }
+      },
+      "onPointerUp": {
+        "defaultValue": null,
+        "description": "Pointer up event handler.",
+        "name": "onPointerUp",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: PointerEvent<HTMLInputElement | HTMLTextAreaElement>) => void"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Click event handler.",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement | HTMLTextAreaElement, MouseEvent>) => void"
+        }
+      },
       "onFocus": {
         "defaultValue": null,
         "description": "Focus event handler.",
@@ -554,7 +619,7 @@
       },
       "maxLength": {
         "defaultValue": null,
-        "description": "Maximum character length for the input.\nNote: This affects both HTML validation AND visual width of the component.\nFuture work will separate these concerns.",
+        "description": "The maximum number of characters supported by the input.\n@see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefmaxlength}",
         "name": "maxLength",
         "parent": {
           "fileName": "packages/components/src/InputText/InputText.types.ts",

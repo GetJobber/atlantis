@@ -140,6 +140,7 @@ const TemplateSectioned: ComponentStory<typeof Autocomplete> = () => {
         placeholder="Search"
         value={value}
         onChange={setValue}
+        onBlur={() => console.log("blurred")}
         inputValue={inputValue}
         onInputChange={setInputValue}
         menu={sectionedMenu}
@@ -151,6 +152,7 @@ const TemplateSectioned: ComponentStory<typeof Autocomplete> = () => {
 const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
+  const [lastAction, setLastAction] = useState("");
 
   return (
     <Content>
@@ -160,6 +162,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
         placeholder="Search"
         value={value}
         onChange={setValue}
+        onBlur={() => console.log("blurred")}
         inputValue={inputValue}
         onInputChange={setInputValue}
         menu={defineMenu<OptionLike>([
@@ -171,7 +174,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Service",
-                onClick: () => alert("Add Service"),
+                onClick: () => setLastAction("Add Service clicked"),
               },
             ],
           },
@@ -183,7 +186,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Outdoor Service",
-                onClick: () => alert("Add Outdoor Service"),
+                onClick: () => setLastAction("Add Outdoor Service clicked"),
               },
             ],
           },
@@ -195,12 +198,17 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
               {
                 type: "action",
                 label: "Add Extras Service",
-                onClick: () => alert("Add Extras Service"),
+                onClick: () => setLastAction("Add Extras Service clicked"),
               },
             ],
           },
         ])}
       />
+      {lastAction && (
+        <Text>
+          <Emphasis variation="bold">Last action:</Emphasis> {lastAction}
+        </Text>
+      )}
     </Content>
   );
 };
@@ -223,6 +231,8 @@ const TemplateEmptyStateAndActions: ComponentStory<
           value={value}
           onChange={setValue}
           inputValue={inputValue}
+          onBlur={() => console.log("blurred")}
+          onFocus={() => console.log("focused")}
           onInputChange={setInputValue}
           emptyStateMessage="No services found"
           emptyActions={[
@@ -298,6 +308,7 @@ const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
 const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
+  const [lastAction, setLastAction] = useState("");
 
   return (
     <Content>
@@ -307,18 +318,29 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
         placeholder="Search"
         value={value}
         onChange={setValue}
+        onBlur={() => console.log("blurred")}
+        onFocus={() => console.log("focused")}
         inputValue={inputValue}
         onInputChange={setInputValue}
         menu={defineMenu<OptionLike>([
-          { type: "header", label: "Pinned header", shouldClose: false },
+          {
+            type: "header",
+            label: "Pinned header",
+            shouldClose: false,
+            onClick: () => setLastAction("Header clicked"),
+          },
           { type: "options", options: simpleOptions },
           {
             type: "footer",
             label: "Pinned footer",
-            onClick: () => alert("Footer"),
           },
         ])}
       />
+      {lastAction && (
+        <Text>
+          <Emphasis variation="bold">Last action:</Emphasis> {lastAction}
+        </Text>
+      )}
     </Content>
   );
 };
@@ -535,77 +557,78 @@ const customOptions2: CustomOption[] = [
   },
 ];
 
-const customActions: MenuAction<ActionExtraProps>[] = [
-  {
-    type: "action",
-    label: "Add Service",
-    icon: "plus",
-    onClick: () => alert("Add"),
-  },
-];
-
-const customActions2: MenuAction<ActionExtraProps>[] = [
-  {
-    type: "action",
-    label: "Add Other",
-    icon: "plus",
-    onClick: () => alert("Add"),
-  },
-];
-
 const customHeader: MenuHeader<ActionExtraProps> = {
   type: "header",
   label: "The prices of each service is in CAD",
-};
-
-const emptyActions: MenuAction<ActionExtraProps>[] = [
-  {
-    type: "action",
-    label: "Favorite",
-    icon: "star",
-    onClick: () => alert("Add"),
-  },
-];
-
-const customFooter: MenuFooter<ActionExtraProps> = {
-  type: "footer",
-  label: "Adjust prices",
-  icon: "edit",
-  onClick: () => alert("Footer"),
 };
 
 interface SectionExtraProps {
   icon: IconNames;
 }
 
-const sectionedMenuCustomized = defineMenu<
-  CustomOption,
-  SectionExtraProps,
-  ActionExtraProps
->([
-  {
-    type: "section",
-    label: "Indoor",
-    icon: "home",
-    options: customOptions,
-    actions: customActions,
-  },
-  {
-    type: "section",
-    label: "Off-site",
-    icon: "fuel",
-    options: customOptions2,
-    actions: customActions2,
-  },
-  customHeader,
-  customFooter,
-]);
-
 const TemplateEverythingCustomized: ComponentStory<
   typeof Autocomplete
 > = () => {
   const [value, setValue] = useState<CustomOption | undefined>();
   const [inputValue, setInputValue] = useState("");
+  const [lastAction, setLastAction] = useState("");
+
+  const customActionsInline: MenuAction<ActionExtraProps>[] = [
+    {
+      type: "action",
+      label: "Add Service",
+      icon: "plus",
+      onClick: () => setLastAction("Add Service clicked"),
+    },
+  ];
+
+  const customActions2Inline: MenuAction<ActionExtraProps>[] = [
+    {
+      type: "action",
+      label: "Add Other",
+      icon: "plus",
+      onClick: () => setLastAction("Add Other clicked"),
+    },
+  ];
+
+  const emptyActionsInline: MenuAction<ActionExtraProps>[] = [
+    {
+      type: "action",
+      label: "Favorite",
+      icon: "star",
+      onClick: () => setLastAction("Favorite clicked"),
+    },
+  ];
+
+  const customFooterInline: MenuFooter<ActionExtraProps> = {
+    type: "footer",
+    label: "Adjust prices",
+    icon: "edit",
+    onClick: () => setLastAction("Footer clicked"),
+  };
+
+  const sectionedMenuCustomizedInline = defineMenu<
+    CustomOption,
+    SectionExtraProps,
+    ActionExtraProps
+  >([
+    {
+      type: "section",
+      label: "Indoor",
+      icon: "home",
+      options: customOptions,
+      actions: customActionsInline,
+    },
+    {
+      type: "section",
+      label: "Off-site",
+      icon: "fuel",
+      options: customOptions2,
+      actions: customActions2Inline,
+    },
+    customHeader,
+    customFooterInline,
+  ]);
 
   return (
     <Content>
@@ -617,8 +640,8 @@ const TemplateEverythingCustomized: ComponentStory<
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
-        menu={sectionedMenuCustomized}
-        emptyActions={emptyActions}
+        menu={sectionedMenuCustomizedInline}
+        emptyActions={emptyActionsInline}
         filterOptions={(options, searchTerm) => {
           return options.filter(option => {
             // Search both label and description
@@ -699,12 +722,128 @@ const TemplateEverythingCustomized: ComponentStory<
               suffix={{
                 icon: "search",
                 ariaLabel: "Search",
-                onClick: () => alert("Search"),
+                onClick: () => setLastAction("Search icon clicked"),
               }}
             />
           );
         }}
       />
+      {lastAction && (
+        <Text>
+          <Emphasis variation="bold">Last action:</Emphasis> {lastAction}
+        </Text>
+      )}
+    </Content>
+  );
+};
+
+const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
+  const [value, setValue] = useState<OptionLike | undefined>();
+  const [inputValue, setInputValue] = useState("");
+
+  const [secondInputValue, setSecondInputValue] = useState("");
+  const [secondValue, setSecondValue] = useState<OptionLike | undefined>();
+
+  const [otherInputValue, setOtherInputValue] = useState("");
+  const [anotherInputValue, setAnotherInputValue] = useState("");
+
+  const [lastBlur, setLastBlur] = useState("");
+  const [lastFocus, setLastFocus] = useState("");
+
+  const [openCreatModal, setOpenCreatModal] = useState(false);
+
+  const emptyActions: {
+    type: "action";
+    label: string;
+    icon: string;
+    onClick: () => void;
+  }[] = [
+    {
+      type: "action",
+      label: "Add Service",
+      icon: "plus",
+      onClick: () => setOpenCreatModal(true),
+    },
+  ];
+
+  return (
+    <Content>
+      <Heading level={4}>Focus Behavior</Heading>
+      <Text>
+        Try tabbing through the inputs to see the difference between
+        openOnFocus=false and openOnFocus=true.
+      </Text>
+      <Text>
+        Both Autocompletes have empty state actions that launch a modal, moving
+        focus away from the Autocomplete.
+      </Text>
+      <InputText
+        placeholder="Another Field to Tab From (Not an Autocomplete)"
+        version={2}
+        value={otherInputValue}
+        onChange={setOtherInputValue}
+        onBlur={() => setLastBlur("First InputText blurred")}
+        onFocus={() => setLastFocus("First InputText focused")}
+      />
+      <Autocomplete
+        version={2}
+        placeholder="openOnFocus=true"
+        value={value}
+        onChange={setValue}
+        onBlur={() => setLastBlur("First Autocomplete blurred")}
+        onFocus={() => setLastFocus("First Autocomplete focused")}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        emptyStateMessage={false}
+        emptyActions={emptyActions}
+        menu={defineMenu<OptionLike>([
+          { type: "section", label: "Services", options: serviceOptions },
+        ])}
+      />
+      <InputText
+        version={2}
+        placeholder="Another Field to Tab To and From (Not an Autocomplete)"
+        value={anotherInputValue}
+        onChange={setAnotherInputValue}
+        onBlur={() => setLastBlur("Second InputText blurred")}
+        onFocus={() => setLastFocus("Second InputText focused")}
+      />
+      <Autocomplete
+        version={2}
+        placeholder="openOnFocus=false"
+        openOnFocus={false}
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions.slice(0, 3) },
+        ])}
+        emptyActions={emptyActions}
+        value={secondValue}
+        onChange={setSecondValue}
+        inputValue={secondInputValue}
+        onInputChange={setSecondInputValue}
+        onBlur={() => setLastBlur("Second Autocomplete blurred")}
+        onFocus={() => setLastFocus("Second Autocomplete focused")}
+      />
+      <Modal
+        open={openCreatModal}
+        onRequestClose={() => setOpenCreatModal(false)}
+      >
+        <Content>
+          <Heading level={4}>Create service</Heading>
+          <InputText placeholder="Service name" />
+          <Button label="Create" onClick={() => setOpenCreatModal(false)} />
+        </Content>
+      </Modal>
+      <div style={{ height: "200px" }} />
+      {lastBlur && (
+        <Text>
+          <Emphasis variation="bold">Last blur:</Emphasis> {lastBlur}
+        </Text>
+      )}
+      {lastFocus && (
+        <Text>
+          <Emphasis variation="bold">Last focus:</Emphasis> {lastFocus}
+        </Text>
+      )}
     </Content>
   );
 };
@@ -718,3 +857,4 @@ export const HeaderFooter = TemplateHeaderFooter.bind({});
 export const FreeForm = TemplateFreeForm.bind({});
 export const AsyncUserManaged = TemplateAsyncUserManaged.bind({});
 export const EverythingCustomized = TemplateEverythingCustomized.bind({});
+export const FocusBehavior = TemplateFocusBehavior.bind({});

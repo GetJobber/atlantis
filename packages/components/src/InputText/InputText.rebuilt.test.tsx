@@ -372,6 +372,36 @@ describe("InputText V2 (Rebuilt)", () => {
       expect(changeHandler).toHaveBeenCalledWith("");
     });
 
+    it("should not render clear button when readonly with clearable always", () => {
+      render(
+        <InputText
+          version={2}
+          value="some text"
+          placeholder="Text"
+          clearable="always"
+          readOnly
+        />,
+      );
+      expect(
+        screen.queryByTestId("ATL-FormField-clearButton"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not render clear button when disabled with clearable always", () => {
+      render(
+        <InputText
+          version={2}
+          value="some text"
+          placeholder="Text"
+          clearable="always"
+          disabled
+        />,
+      );
+      expect(
+        screen.queryByTestId("ATL-FormField-clearButton"),
+      ).not.toBeInTheDocument();
+    });
+
     it("should apply small size class", () => {
       const { container } = render(
         <InputText version={2} value={value} placeholder="Text" size="small" />,
@@ -485,6 +515,59 @@ describe("InputText V2 (Rebuilt)", () => {
       const input = screen.getByRole("textbox");
       await userEvent.type(input, "a");
       expect(keyUpHandler).toHaveBeenCalled();
+    });
+
+    it("should call all mouse event handlers when input (textarea) is clicked", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
+      render(
+        <InputText
+          version={2}
+          placeholder="Text"
+          multiline
+          {...handlers}
+          value={"Gabagool"}
+        />,
+      );
+      const input = screen.getByRole("textbox", { name: "Text" });
+      await userEvent.click(input);
+
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call all mouse event handlers when input is clicked", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
+      render(
+        <InputText
+          version={2}
+          placeholder="Text"
+          {...handlers}
+          value={"Gabagool"}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
     });
   });
 
