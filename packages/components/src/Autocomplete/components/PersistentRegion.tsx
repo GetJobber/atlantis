@@ -8,6 +8,7 @@ import type {
   MenuHeader,
   OptionLike,
 } from "../Autocomplete.types";
+import { preventDefaultPointerDown } from "../utils/interactionUtils";
 import styles from "../AutocompleteRebuilt.module.css";
 
 interface PersistentRegionProps<T extends OptionLike> {
@@ -34,6 +35,7 @@ interface PersistentRegionProps<T extends OptionLike> {
   readonly className?: string;
   readonly style?: React.CSSProperties;
   readonly onAction: (action: ActionConfig) => void;
+  readonly onInteractionPointerDown: (e: React.PointerEvent) => void;
 }
 
 export function PersistentRegion<T extends OptionLike>({
@@ -48,6 +50,7 @@ export function PersistentRegion<T extends OptionLike>({
   className,
   style,
   onAction,
+  onInteractionPointerDown,
 }: PersistentRegionProps<T>) {
   if (!items || items.length === 0) return null;
 
@@ -71,6 +74,7 @@ export function PersistentRegion<T extends OptionLike>({
           customRenderFooter,
           listRef,
           onAction,
+          onInteractionPointerDown,
           navigableIndex,
         });
 
@@ -102,6 +106,7 @@ interface HandlePersistentRenderingProps<T extends OptionLike> {
     | MenuFooter<Record<string, unknown>>;
   readonly listRef: React.RefObject<Array<HTMLElement | null>>;
   readonly onAction: (action: ActionConfig) => void;
+  readonly onInteractionPointerDown: (e: React.PointerEvent) => void;
   readonly navigableIndex: number;
 }
 
@@ -115,6 +120,7 @@ function handlePersistentRendering<T extends OptionLike>({
   customRenderFooter,
   listRef,
   onAction,
+  onInteractionPointerDown,
   navigableIndex,
 }: HandlePersistentRenderingProps<T>): {
   node: React.ReactNode;
@@ -143,6 +149,7 @@ function handlePersistentRendering<T extends OptionLike>({
     customRenderFooter,
     listRef,
     onAction,
+    onInteractionPointerDown,
     navigableIndex,
   });
 }
@@ -174,6 +181,7 @@ function handleTextPersistentRendering<T extends OptionLike>({
       role="presentation"
       tabIndex={-1}
       className={styles.textPersistent}
+      onPointerDown={preventDefaultPointerDown}
     >
       {content}
     </div>
@@ -190,6 +198,7 @@ function handleActionPersistentRendering<T extends OptionLike>({
   customRenderFooter,
   listRef,
   onAction,
+  onInteractionPointerDown,
   navigableIndex,
 }: HandlePersistentRenderingProps<T>): {
   node: React.ReactNode;
@@ -227,13 +236,15 @@ function handleActionPersistentRendering<T extends OptionLike>({
             const idx = indexOffset + nextNavigableIndex;
             if (persistNode) listRef.current[idx] = persistNode;
           },
-          onClick: () =>
+          onClick: () => {
             onAction({
               run: () => {
                 persistent.onClick?.();
               },
               closeOnRun: persistent.shouldClose,
-            }),
+            });
+          },
+          onPointerDown: onInteractionPointerDown,
           className: classNames(styles.action, isActive && styles.actionActive),
         })}
         role="button"

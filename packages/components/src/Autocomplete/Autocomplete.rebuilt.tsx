@@ -13,6 +13,7 @@ import type {
 } from "./Autocomplete.types";
 import styles from "./AutocompleteRebuilt.module.css";
 import { useAutocomplete } from "./useAutocomplete";
+import { preventDefaultPointerDown } from "./utils/interactionUtils";
 import { MenuList } from "./components/MenuList";
 import { PersistentRegion } from "./components/PersistentRegion";
 import { InputText } from "../InputText";
@@ -69,6 +70,7 @@ function AutocompleteRebuiltInternal<
     listRef,
     onSelection,
     onAction,
+    onInteractionPointerDown,
     onInputChangeFromUser,
     onInputBlur,
     onInputFocus,
@@ -212,6 +214,7 @@ function AutocompleteRebuiltInternal<
                 customRenderHeader={props.customRenderHeader}
                 customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
+                onInteractionPointerDown={onInteractionPointerDown}
                 className={classNames(
                   styles.persistentHeader,
                   props.UNSAFE_className?.header,
@@ -242,6 +245,7 @@ function AutocompleteRebuiltInternal<
                         getOptionLabel={getOptionLabel}
                         onSelect={onSelection}
                         onAction={onAction}
+                        onInteractionPointerDown={onInteractionPointerDown}
                         isOptionSelected={isOptionSelected}
                         slotOverrides={{
                           option: {
@@ -275,6 +279,7 @@ function AutocompleteRebuiltInternal<
                 customRenderHeader={props.customRenderHeader}
                 customRenderFooter={props.customRenderFooter}
                 onAction={onAction}
+                onInteractionPointerDown={onInteractionPointerDown}
                 className={classNames(
                   styles.persistentFooter,
                   props.UNSAFE_className?.footer,
@@ -291,7 +296,10 @@ function AutocompleteRebuiltInternal<
 
 function LoadingContent() {
   return (
-    <div className={styles.loadingList}>
+    <div
+      className={styles.loadingList}
+      onPointerDown={preventDefaultPointerDown}
+    >
       <Glimmer shape="rectangle" size="base" />
       <Glimmer shape="rectangle" size="base" />
       <Glimmer shape="rectangle" size="base" />
@@ -307,5 +315,12 @@ function EmptyStateMessage({
   const emptyStateDefault = "No options";
   const emptyStateContent = emptyState ?? emptyStateDefault;
 
-  return <div className={styles.emptyStateMessage}>{emptyStateContent}</div>;
+  return (
+    <div
+      className={styles.emptyStateMessage}
+      onPointerDown={preventDefaultPointerDown}
+    >
+      {emptyStateContent}
+    </div>
+  );
 }

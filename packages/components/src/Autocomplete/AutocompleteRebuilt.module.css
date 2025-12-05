@@ -65,10 +65,12 @@
 .section {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
+  cursor: default;
 }
 
 .emptyStateMessage {
   padding: var(--space-small) var(--space-base);
+  cursor: default;
 }
 
 .stickyTop {
@@ -92,4 +94,5 @@
 
 .textPersistent {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
+  cursor: default;
 }

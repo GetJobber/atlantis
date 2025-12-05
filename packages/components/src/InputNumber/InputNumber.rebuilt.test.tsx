@@ -233,4 +233,23 @@ describe("Event handlers", () => {
     await userEvent.type(input, "1");
     expect(keyUpHandler).toHaveBeenCalled();
   });
+
+  it("should call all mouse event handlers when input is clicked", async () => {
+    const handlers = {
+      onClick: jest.fn(),
+      onMouseDown: jest.fn(),
+      onMouseUp: jest.fn(),
+      onPointerDown: jest.fn(),
+      onPointerUp: jest.fn(),
+    };
+    render(<InputNumber version={2} placeholder="Number" {...handlers} />);
+    const input = screen.getByRole("textbox");
+    await userEvent.click(input);
+
+    expect(handlers.onClick).toHaveBeenCalledTimes(1);
+    expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+    expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+    expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+    expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
+  });
 });

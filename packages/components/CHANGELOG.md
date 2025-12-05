@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.105.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.3...@jobber/components@6.105.4) (2025-12-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.105.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.2...@jobber/components@6.105.3) (2025-12-03)
+
+
+### Bug Fixes
+
+* **components:** Remove Legacy MaxLength Behavior ([#2840](https://github.com/GetJobber/atlantis/issues/2840)) ([2dc784f](https://github.com/GetJobber/atlantis/commit/2dc784f2baeabf7e9be4e10b4894c5ba3afaeba2))
+
+
+
+
+
+## [6.105.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.1...@jobber/components@6.105.2) (2025-12-01)
+
+
+### Bug Fixes
+
+* **components:** ensure InputDate fires onBlur after onChange when selecting from calendar ([#2837](https://github.com/GetJobber/atlantis/issues/2837)) ([e537f0c](https://github.com/GetJobber/atlantis/commit/e537f0c338935058c6c7016d4f4026dc19bd6bfa))
+
+
+
+
+
+## [6.105.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.0...@jobber/components@6.105.1) (2025-11-28)
+
+
+### Bug Fixes
+
+* **components:** Improve Focus and Blur Experience on Autocomplete v2 ([#2809](https://github.com/GetJobber/atlantis/issues/2809)) ([d4fd4c8](https://github.com/GetJobber/atlantis/commit/d4fd4c832ce5ac80488eca87b702dd460cdfe615))
+
+
+
+
+
+# [6.105.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.104.1...@jobber/components@6.105.0) (2025-11-27)
+
+
+### Features
+
+* **components:** Add MouseEvents to "Rebuilt" Inputs ([#2835](https://github.com/GetJobber/atlantis/issues/2835)) ([00977ea](https://github.com/GetJobber/atlantis/commit/00977ea583a3d8831c20c477d64e8503efd02d47))
+
+
+
+
+
 ## [6.104.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.104.0...@jobber/components@6.104.1) (2025-11-26)
 
 

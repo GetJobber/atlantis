@@ -259,5 +259,24 @@ describe("InputEmailRebuilt", () => {
       await userEvent.type(input, "a");
       expect(keyUpHandler).toHaveBeenCalled();
     });
+
+    it("should call all mouse handlers during a click", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
+      render(<InputEmailRebuilt version={2} {...handlers} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
+    });
   });
 });

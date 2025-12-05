@@ -327,22 +327,6 @@ exports[`renders a thumbnail component with attachments 1`] = `
           </View>
         </View>
       </View>
-      <View
-        testID="bottom-sheet-footer"
-      >
-        <View
-          style={
-            [
-              {
-                "backgroundColor": "rgba(255, 255, 255, 1)",
-              },
-              {
-                "paddingBottom": 0,
-              },
-            ]
-          }
-        />
-      </View>
     </View>
   </View>,
 ]

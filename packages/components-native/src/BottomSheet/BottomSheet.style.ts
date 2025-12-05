@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import { buildThemedStyles } from "../AtlantisThemeContext";
 
 export const useStyles = buildThemedStyles(tokens => {
@@ -6,7 +5,6 @@ export const useStyles = buildThemedStyles(tokens => {
 
   return {
     backdrop: {
-      ...StyleSheet.absoluteFillObject,
       backgroundColor: tokens["color-overlay"],
     },
     background: {
@@ -15,9 +13,7 @@ export const useStyles = buildThemedStyles(tokens => {
     },
     content: {
       paddingVertical: tokens["space-small"],
-    },
-    footer: {
-      paddingBottom: tokens["space-small"],
+      flex: 1,
     },
     footerContainer: {
       backgroundColor: tokens["color-surface"],

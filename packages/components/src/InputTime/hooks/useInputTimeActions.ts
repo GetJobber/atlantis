@@ -1,11 +1,25 @@
-import type { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
+import type {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  PointerEvent,
+} from "react";
 import type { InputTimeRebuiltProps } from "../InputTime.types";
 import { timeStringToDate } from "../utils/input-time-utils";
 
 export interface UseInputTimeActionsProps
   extends Pick<
     InputTimeRebuiltProps,
-    "onChange" | "onFocus" | "onBlur" | "onKeyDown"
+    | "onChange"
+    | "onFocus"
+    | "onBlur"
+    | "onKeyDown"
+    | "onClick"
+    | "onMouseDown"
+    | "onMouseUp"
+    | "onPointerDown"
+    | "onPointerUp"
   > {
   readonly value?: Date;
   readonly readOnly?: boolean;
@@ -20,6 +34,11 @@ export function useInputTimeActions({
   onFocus,
   onBlur,
   onKeyDown,
+  onClick,
+  onMouseDown,
+  onMouseUp,
+  onPointerDown,
+  onPointerUp,
 }: UseInputTimeActionsProps) {
   function handleChangeEvent(event: ChangeEvent<HTMLInputElement>) {
     handleChange(event.target.value);
@@ -53,6 +72,26 @@ export function useInputTimeActions({
     onKeyDown?.(event);
   }
 
+  function handleClick(event: MouseEvent<HTMLInputElement>) {
+    onClick?.(event);
+  }
+
+  function handleMouseDown(event: MouseEvent<HTMLInputElement>) {
+    onMouseDown?.(event);
+  }
+
+  function handleMouseUp(event: MouseEvent<HTMLInputElement>) {
+    onMouseUp?.(event);
+  }
+
+  function handlePointerDown(event: PointerEvent<HTMLInputElement>) {
+    onPointerDown?.(event);
+  }
+
+  function handlePointerUp(event: PointerEvent<HTMLInputElement>) {
+    onPointerUp?.(event);
+  }
+
   return {
     handleChangeEvent,
     handleChange,
@@ -60,5 +99,10 @@ export function useInputTimeActions({
     handleClear,
     handleFocus,
     handleKeyDown,
+    handleClick,
+    handleMouseDown,
+    handleMouseUp,
+    handlePointerDown,
+    handlePointerUp,
   };
 }

@@ -42,7 +42,7 @@ jobs:
       - name: NPM Publish
         id: npmPublish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.JOBBER_NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.JOBBER_NPM_PUBLISH_TOKEN }}
           ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
           COMMIT_SHA: ${{ github.sha }}
           PUBLISH_SETTING: ${{ github.event.inputs.workflow }}

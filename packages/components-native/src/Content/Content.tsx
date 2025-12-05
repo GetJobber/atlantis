@@ -9,10 +9,15 @@ import { useSpaceAroundStyles } from "./ContentSpaceAround.style";
 export type Spacing =
   | "none"
   | "base"
+  | "slim"
   | "small"
   | "smaller"
   | "smallest"
-  | "large";
+  | "minuscule"
+  | "large"
+  | "larger"
+  | "largest"
+  | "extravagant";
 
 export interface ContentUnsafeStyle {
   container?: StyleProp<ViewStyle>;

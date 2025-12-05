@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.92.0...@jobber/components-native@0.93.0) (2025-12-02)
+
+
+### Features
+
+* **components-native:** add missing spacing values to Content ([#2839](https://github.com/GetJobber/atlantis/issues/2839)) ([c86c62f](https://github.com/GetJobber/atlantis/commit/c86c62f753bc3525b0f2d8517ef30ccadb7ff528))
+
+
+
+
+
 # [0.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.91.4...@jobber/components-native@0.92.0) (2025-11-24)
 
 

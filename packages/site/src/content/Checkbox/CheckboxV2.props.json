@@ -6,65 +6,13 @@
     "displayName": "CheckboxRebuilt",
     "methods": [],
     "props": {
-      "id": {
-        "defaultValue": null,
-        "description": "The unique identifier for the input element.",
-        "name": "id",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "name": {
-        "defaultValue": null,
-        "description": "The name attribute for the input element.",
-        "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "disabled": {
-        "defaultValue": null,
-        "description": "Whether the input is disabled.",
-        "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "HTMLInputBaseProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "invalid": {
-        "defaultValue": null,
-        "description": "Highlights the field red to indicate an error.",
-        "name": "invalid",
-        "parent": {
-          "fileName": "packages/components/src/sharedHelpers/types.ts",
-          "name": "RebuiltInputCommonProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "checked": {
         "defaultValue": null,
         "description": "Determines if the checkbox is checked or not.",
         "name": "checked",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
@@ -77,7 +25,7 @@
         "name": "defaultChecked",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
@@ -92,7 +40,7 @@
         "name": "indeterminate",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
@@ -105,7 +53,7 @@
         "name": "value",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
@@ -255,6 +203,110 @@
           "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
+      "onMouseDown": {
+        "defaultValue": null,
+        "description": "Mouse down event handler.",
+        "name": "onMouseDown",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement, MouseEvent>) => void"
+        }
+      },
+      "onMouseUp": {
+        "defaultValue": null,
+        "description": "Mouse up event handler.",
+        "name": "onMouseUp",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement, MouseEvent>) => void"
+        }
+      },
+      "onPointerDown": {
+        "defaultValue": null,
+        "description": "Pointer down event handler.",
+        "name": "onPointerDown",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: PointerEvent<HTMLInputElement>) => void"
+        }
+      },
+      "onPointerUp": {
+        "defaultValue": null,
+        "description": "Pointer up event handler.",
+        "name": "onPointerUp",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: PointerEvent<HTMLInputElement>) => void"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Click event handler.",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "MouseEvents"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: MouseEvent<HTMLInputElement, MouseEvent>) => void"
+        }
+      },
+      "id": {
+        "defaultValue": null,
+        "description": "The unique identifier for the input element.",
+        "name": "id",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "name": {
+        "defaultValue": null,
+        "description": "The name attribute for the input element.",
+        "name": "name",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "Whether the input is disabled.",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "HTMLInputBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "version": {
         "defaultValue": null,
         "description": "Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.",
@@ -286,9 +338,18 @@
           "name": "ReactNode"
         }
       },
+      "invalid": {
+        "defaultValue": null,
+        "description": "Whether the checkbox is invalid",
+        "name": "invalid",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "onChange": {
         "defaultValue": null,
-        "description": "Called when the checkbox value changes.\nIncludes the change event as a second argument.",
+        "description": "Called when the checkbox value changes.\nIncludes the change event as a second argument.\nThis is the recommended event handler to access the new value.",
         "name": "onChange",
         "required": false,
         "type": {

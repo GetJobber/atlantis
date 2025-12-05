@@ -8,6 +8,7 @@ import {
   flip,
   offset,
   size,
+  useClick,
   useDismiss,
   useFloating,
   useInteractions,
@@ -39,6 +40,7 @@ export interface UseAutocompleteListNavProps {
   shouldResetActiveIndexOnClose?: () => boolean;
   onMenuClose?: (reason?: string) => void;
   selectedIndex?: number | null;
+  readOnly?: boolean;
 }
 
 export function useAutocompleteListNav({
@@ -46,6 +48,7 @@ export function useAutocompleteListNav({
   shouldResetActiveIndexOnClose,
   onMenuClose,
   selectedIndex,
+  readOnly = false,
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -81,6 +84,11 @@ export function useAutocompleteListNav({
     ],
   });
 
+  const click = useClick(context, {
+    enabled: !readOnly,
+    toggle: false, // Only open, never close on click
+  });
+
   const listNav = useListNavigation(context, {
     listRef,
     activeIndex,
@@ -105,7 +113,7 @@ export function useAutocompleteListNav({
   });
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
-    [listNav, dismiss],
+    [click, listNav, dismiss],
   );
 
   useEffect(() => {
