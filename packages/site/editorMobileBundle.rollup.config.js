@@ -66,6 +66,10 @@ export default {
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
         },
         {
+          find: "@gorhom/bottom-sheet",
+          replacement: path.resolve(dirname, "./src/BottomSheetMock.jsx"),
+        },
+        {
           find: "@jobber/hooks",
           replacement: path.resolve(dirname, `../hooks/dist`),
         },
