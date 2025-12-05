@@ -115,10 +115,10 @@ export function BottomSheet({
       handleStyle={styles.handle}
     >
       <BottomSheetView
-        style={[
-          styles.content,
-          { paddingBottom: insets.bottom + tokens["space-small"] },
-        ]}
+        style={{
+          paddingBottom: insets.bottom + tokens["space-small"],
+          paddingTop: tokens["space-small"],
+        }}
       >
         {heading && <Header heading={heading} styles={styles} />}
         {children}
