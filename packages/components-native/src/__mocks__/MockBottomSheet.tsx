@@ -27,10 +27,6 @@ const NOOP_VALUE = { value: 0, set: NOOP, get: () => 0 };
 const BottomSheetModalContext = createContext<null>(null);
 export const BottomSheetBackdrop = NOOP;
 
-export function BottomSheetFooter({ children }: PropsWithChildren) {
-  return createElement(View, { testID: "bottom-sheet-footer" }, children);
-}
-
 export function BottomSheetModalProvider({ children }: PropsWithChildren) {
   return createElement(
     BottomSheetModalContext.Provider,

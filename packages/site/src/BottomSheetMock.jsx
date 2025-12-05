@@ -86,8 +86,6 @@ export const BottomSheetModal = forwardRef(function MockedBottomSheetModal(
 
 export const BottomSheetBackdrop = props => props.children || null;
 
-export const BottomSheetFooter = ({ children }) => children;
-
 export const BottomSheetView = ({ children }) => children;
 
 export const BottomSheetScrollView = ({ children }) => children;
