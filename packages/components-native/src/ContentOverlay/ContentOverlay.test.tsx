@@ -1,9 +1,8 @@
 import React, { createRef } from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react-native";
+import { render, userEvent, waitFor } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
-import { Host } from "react-native-portalize";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import type { ReactTestInstance } from "react-test-renderer";
-import { act } from "react-test-renderer";
 import type { ContentOverlayRef, ModalBackgroundColor } from "./types";
 import { ContentOverlay } from "./ContentOverlay";
 import { tokens } from "../utils/design";
@@ -11,17 +10,7 @@ import { Button } from "../Button";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
-jest.unmock("../hooks/useIsScreenReaderEnabled");
-
-function fireLayoutEvent(childrenContent: ReactTestInstance) {
-  fireEvent(childrenContent, "onLayout", {
-    nativeEvent: {
-      layout: {
-        height: 100,
-      },
-    },
-  });
-}
+const user = userEvent.setup();
 
 interface testRendererOptions {
   text: string;
@@ -70,7 +59,7 @@ function renderContentOverlay(
   const contentOverlayRef = createRef<ContentOverlayRef>();
 
   const renderResult = render(
-    <Host>
+    <BottomSheetModalProvider>
       <View>
         <Text>I am a bunch of text</Text>
         <Button
@@ -95,13 +84,8 @@ function renderContentOverlay(
           </Content>
         </ContentOverlay>
       </View>
-    </Host>,
+    </BottomSheetModalProvider>,
   );
-
-  const childrenView = renderResult.getByTestId("ATL-Overlay-Children");
-  fireLayoutEvent(childrenView);
-  const headerComponent = renderResult.getByTestId("ATL-Overlay-Header");
-  fireLayoutEvent(headerComponent);
 
   return renderResult;
 }
@@ -111,9 +95,7 @@ async function renderAndOpenContentOverlay(
 ) {
   const rendered = renderContentOverlay(defaultOptions);
 
-  await act(async () => {
-    fireEvent.press(rendered.getByLabelText(defaultOptions.buttonLabel));
-  });
+  await user.press(rendered.getByLabelText(defaultOptions.buttonLabel));
 
   // Wait for the modal to open asynchronously (due to requestAnimationFrame)
   await waitFor(() => {
@@ -144,11 +126,9 @@ describe("when the close button is clicked on an open content overlay", () => {
     };
     const contentOverlayScreen = await renderAndOpenContentOverlay(options);
 
-    await act(async () => {
-      fireEvent.press(
-        contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
-      );
-    });
+    await user.press(
+      contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
+    );
 
     await waitFor(() => {
       expect(contentOverlayScreen.queryByText(options.text)).toBeNull();
@@ -165,11 +145,9 @@ describe("when the close button is clicked on an open content overlay with a def
     };
     const contentOverlayScreen = await renderAndOpenContentOverlay(options);
 
-    await act(async () => {
-      fireEvent.press(
-        contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
-      );
-    });
+    await user.press(
+      contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
+    );
 
     await waitFor(() => {
       expect(options.onCloseCallback).toHaveBeenCalled();
@@ -301,11 +279,9 @@ describe("when the close button is clicked on an open content overlay with a def
     };
     const contentOverlayScreen = await renderAndOpenContentOverlay(options);
 
-    await act(async () => {
-      fireEvent.press(
-        contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
-      );
-    });
+    await user.press(
+      contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
+    );
 
     await waitFor(() => {
       expect(options.onBeforeExitCallback).toHaveBeenCalled();
