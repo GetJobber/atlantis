@@ -49,7 +49,7 @@
       },
       "fullScreen": {
         "defaultValue": {
-          "value": "false"
+          "value": false
         },
         "description": "Force overlay height to fill the screen.\nWidth not impacted.",
         "name": "fullScreen",
@@ -64,7 +64,7 @@
       },
       "showDismiss": {
         "defaultValue": {
-          "value": "false"
+          "value": false
         },
         "description": "Display the dismiss button in the header of the overlay.",
         "name": "showDismiss",
@@ -79,7 +79,7 @@
       },
       "isDraggable": {
         "defaultValue": {
-          "value": "true"
+          "value": true
         },
         "description": "If false, hides the handle and turns off dragging.",
         "name": "isDraggable",
@@ -94,7 +94,7 @@
       },
       "adjustToContentHeight": {
         "defaultValue": {
-          "value": "false"
+          "value": false
         },
         "description": "If true, automatically adjusts the overlay height to the content height.\nThis will disable the ability to drag the overlay to fullscreen when\n`isDraggable` is true.",
         "name": "adjustToContentHeight",
@@ -109,7 +109,7 @@
       },
       "keyboardShouldPersistTaps": {
         "defaultValue": {
-          "value": "false"
+          "value": false
         },
         "description": "Allows taps to be registered behind keyboard if enabled",
         "name": "keyboardShouldPersistTaps",
@@ -123,7 +123,9 @@
         }
       },
       "scrollEnabled": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": false
+        },
         "description": "Enables scrolling in the content body of overlay",
         "name": "scrollEnabled",
         "parent": {
@@ -137,7 +139,7 @@
       },
       "modalBackgroundColor": {
         "defaultValue": {
-          "value": "\"surface\""
+          "value": "surface"
         },
         "description": "Set the background color of the modal window",
         "name": "modalBackgroundColor",
@@ -206,7 +208,7 @@
       },
       "loading": {
         "defaultValue": {
-          "value": "false"
+          "value": false
         },
         "description": "Boolean to show a disabled state",
         "name": "loading",
@@ -236,15 +238,15 @@
       },
       "ref": {
         "defaultValue": null,
-        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
+        "description": "Ref to the content overlay component.",
         "name": "ref",
         "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "RefAttributes"
+          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
+          "name": "ContentOverlayProps"
         },
         "required": false,
         "type": {
-          "name": "Ref<{ open?: (dest?: TOpen) => void; close?: (dest?: TClose) => void; }>"
+          "name": "Ref<{ open?: () => void; close?: () => void; }>"
         }
       }
     }
