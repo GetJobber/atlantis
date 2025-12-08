@@ -1,5 +1,4 @@
-import type { ReactNode } from "react";
-import type { Modalize } from "react-native-modalize";
+import type { ReactNode, Ref } from "react";
 
 export interface ContentOverlayProps {
   /**
@@ -84,13 +83,18 @@ export interface ContentOverlayProps {
    * @default Platform.select({ ios: true, android: false })
    */
   readonly avoidKeyboardLikeIOS?: boolean;
+
+  /**
+   * Ref to the content overlay component.
+   */
+  readonly ref?: Ref<ContentOverlayRef>;
 }
 
 export type ModalBackgroundColor = "surface" | "background";
 
 export type ContentOverlayRef =
   | {
-      open?: Modalize["open"];
-      close?: Modalize["close"];
+      open?: () => void;
+      close?: () => void;
     }
   | undefined;
