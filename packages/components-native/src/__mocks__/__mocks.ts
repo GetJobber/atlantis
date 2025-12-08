@@ -139,3 +139,5 @@ jest.mock("react-native-modalize", () => {
     }),
   };
 });
+
+jest.mock("@gorhom/bottom-sheet", () => require("./MockBottomSheet"));

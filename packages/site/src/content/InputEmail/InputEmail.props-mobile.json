@@ -252,7 +252,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: FocusEvent) => void"
         }
       },
       "accessibilityLabel": {

@@ -126,7 +126,7 @@ export interface InputTextProps
   /**
    * Callback that is called when the text input is blurred
    */
-  readonly onBlur?: () => void;
+  readonly onBlur?: (event?: FocusEvent) => void;
 
   /**
    * VoiceOver will read this string when a user selects the associated element
@@ -436,10 +436,10 @@ function InputTextInternal(
           setFocused(true);
           onFocus?.(event);
         }}
-        onBlur={() => {
+        onBlur={event => {
           _name && setFocusedInput("");
           setFocused(false);
-          onBlur?.();
+          onBlur?.(event);
           field.onBlur();
           trimWhitespace(inputTransform(field.value), updateFormAndState);
         }}

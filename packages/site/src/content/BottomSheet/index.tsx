@@ -51,7 +51,8 @@ alert('will show bottom sheet in mobile');
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-bottomsheet--docs`,
+        `?path=/story/components-selections-bottomsheet--basic`,
+        "mobile",
       ),
     },
   ],
