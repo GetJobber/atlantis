@@ -117,7 +117,7 @@ async function renderAndOpenContentOverlay(
     ...defaultOptions,
   };
 
-  const rendered = renderContentOverlay(props);
+  renderContentOverlay(props);
 
   await user.press(screen.getByLabelText(defaultOptions.buttonLabel));
   await act(async () => {
@@ -128,8 +128,6 @@ async function renderAndOpenContentOverlay(
     expect(screen.getByTestId("ATL-Overlay-Header")).toBeDefined();
     expect(props.onOpenCallback).toHaveBeenCalledTimes(1);
   });
-
-  return rendered;
 }
 
 describe("when open is called on the content overlay ref", () => {
