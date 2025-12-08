@@ -10,6 +10,17 @@ import { Button } from "../Button";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
+jest.unmock("react-native-reanimated");
+jest.unmock("@gorhom/bottom-sheet");
+jest.mock(
+  "@gorhom/bottom-sheet/lib/commonjs/utilities/isFabricInstalled",
+  () => ({
+    // Fix to avoid this error: ref.current.unstable_getBoundingClientRect is not a function
+    // https://github.com/gorhom/react-native-bottom-sheet/issues/2581
+    isFabricInstalled: () => false,
+  }),
+);
+
 const user = userEvent.setup();
 
 interface testRendererOptions {

@@ -7,6 +7,8 @@ jest.mock("react-native/Libraries/Modal/Modal", () => ({
   default: MockModal,
 }));
 
+// NOTE: this is the old way we used to mock reanimated. We actually do not need to mock it anymore.
+// To ensure correct test behaviour, please add `jest.unmock("react-native-reanimated")` to your test suite.
 jest.mock("react-native-reanimated", () => {
   const reanimated = require("react-native-reanimated/mock");
   const timing = () => ({ start: () => undefined });
@@ -81,4 +83,15 @@ jest.mock("react-native-keyboard-aware-scroll-view", () => {
   return { KeyboardAwareScrollView: mockRef };
 });
 
+// NOTE: mocking bottom-sheet entirely is not necessary. To ensure correct test behaviour, please add
+// `jest.unmock("@gorhom/bottom-sheet")` to your test suite. You do need to mock a single function
+// (isFabricInstalled) due to a bug in this library. See ContentOverlay.test.tsx for a complete example.
+// jest.mock(
+//   "@gorhom/bottom-sheet/lib/commonjs/utilities/isFabricInstalled",
+//   () => ({
+//     // Fix to avoid this error: ref.current.unstable_getBoundingClientRect is not a function
+//     // https://github.com/gorhom/react-native-bottom-sheet/issues/2581
+//     isFabricInstalled: () => false,
+//   }),
+// );
 jest.mock("@gorhom/bottom-sheet", () => require("./MockBottomSheet"));
