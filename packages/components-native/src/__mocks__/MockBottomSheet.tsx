@@ -96,7 +96,7 @@ const BottomSheet = forwardRef(function MockedBottomSheet(
 });
 
 export const BottomSheetModal = forwardRef(function MockedBottomSheetModal(
-  { children, footerComponent, onChange, onDismiss }: BottomSheetModalProps,
+  { children, onChange, onDismiss }: BottomSheetModalProps,
   ref: Ref<RNBottomSheetModal>,
 ) {
   const [isPresented, setIsPresented] = useState(false);
@@ -145,12 +145,6 @@ export const BottomSheetModal = forwardRef(function MockedBottomSheetModal(
     },
     [
       createElement(Fragment, { key: "children" }, children as ReactNode),
-      footerComponent &&
-        createElement(
-          Fragment,
-          { key: "footer" },
-          createElement(footerComponent),
-        ),
     ].filter(Boolean),
   );
 });
