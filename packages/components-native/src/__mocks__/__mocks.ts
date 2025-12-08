@@ -84,14 +84,14 @@ jest.mock("react-native-keyboard-aware-scroll-view", () => {
 });
 
 // NOTE: mocking bottom-sheet entirely is not necessary. To ensure correct test behaviour, please add
-// `jest.unmock("@gorhom/bottom-sheet")` to your test suite. You do need to mock a single function
-// (isFabricInstalled) due to a bug in this library. See ContentOverlay.test.tsx for a complete example.
-// jest.mock(
-//   "@gorhom/bottom-sheet/lib/commonjs/utilities/isFabricInstalled",
-//   () => ({
-//     // Fix to avoid this error: ref.current.unstable_getBoundingClientRect is not a function
-//     // https://github.com/gorhom/react-native-bottom-sheet/issues/2581
-//     isFabricInstalled: () => false,
-//   }),
-// );
+// `jest.unmock("@gorhom/bottom-sheet")` to your test suite.
 jest.mock("@gorhom/bottom-sheet", () => require("./MockBottomSheet"));
+
+jest.mock(
+  "@gorhom/bottom-sheet/lib/commonjs/utilities/isFabricInstalled",
+  () => ({
+    // Fix to avoid this error: ref.current.getBoundingClientRect is not a function
+    // https://github.com/gorhom/react-native-bottom-sheet/issues/2581
+    isFabricInstalled: () => false,
+  }),
+);

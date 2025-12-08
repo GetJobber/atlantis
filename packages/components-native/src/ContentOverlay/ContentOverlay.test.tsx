@@ -1,5 +1,11 @@
 import React, { createRef } from "react";
-import { render, userEvent, waitFor } from "@testing-library/react-native";
+import {
+  act,
+  render,
+  screen,
+  userEvent,
+  waitFor,
+} from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import type { ReactTestInstance } from "react-test-renderer";
@@ -10,16 +16,24 @@ import { Button } from "../Button";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
+jest.unmock("../hooks/useIsScreenReaderEnabled");
 jest.unmock("react-native-reanimated");
 jest.unmock("@gorhom/bottom-sheet");
-jest.mock(
-  "@gorhom/bottom-sheet/lib/commonjs/utilities/isFabricInstalled",
-  () => ({
-    // Fix to avoid this error: ref.current.unstable_getBoundingClientRect is not a function
-    // https://github.com/gorhom/react-native-bottom-sheet/issues/2581
-    isFabricInstalled: () => false,
-  }),
-);
+jest.mock("@gorhom/bottom-sheet/lib/commonjs/hooks/useAnimatedLayout", () => ({
+  // Fix for reanimated not actually running in the test environment.
+  useAnimatedLayout: () => {
+    const value = {
+      containerHeight: 600,
+      rawContainerHeight: 600,
+      handleHeight: 24,
+      footerHeight: 0,
+      contentHeight: 400,
+      containerOffset: { top: 0, bottom: 0, left: 0, right: 0 },
+    };
+
+    return { value, get: () => value };
+  },
+}));
 
 const user = userEvent.setup();
 
@@ -44,12 +58,6 @@ function getDefaultOptions(): testRendererOptions {
     fullScreen: false,
     showDismiss: false,
     modalBackgroundColor: "surface",
-    onCloseCallback: () => {
-      return;
-    },
-    onOpenCallback: () => {
-      return;
-    },
   };
 }
 
@@ -69,7 +77,7 @@ function renderContentOverlay(
 ) {
   const contentOverlayRef = createRef<ContentOverlayRef>();
 
-  const renderResult = render(
+  render(
     <BottomSheetModalProvider>
       <View>
         <Text>I am a bunch of text</Text>
@@ -97,20 +105,28 @@ function renderContentOverlay(
       </View>
     </BottomSheetModalProvider>,
   );
-
-  return renderResult;
 }
 
 async function renderAndOpenContentOverlay(
   defaultOptions = getDefaultOptions(),
 ) {
-  const rendered = renderContentOverlay(defaultOptions);
+  jest.useFakeTimers();
+  const props = {
+    onOpenCallback: jest.fn(),
+    onCloseCallback: jest.fn(),
+    ...defaultOptions,
+  };
 
-  await user.press(rendered.getByLabelText(defaultOptions.buttonLabel));
+  const rendered = renderContentOverlay(props);
 
-  // Wait for the modal to open asynchronously (due to requestAnimationFrame)
+  await user.press(screen.getByLabelText(defaultOptions.buttonLabel));
+  await act(async () => {
+    jest.runAllTimers();
+  });
+
   await waitFor(() => {
-    expect(rendered.getByTestId("ATL-Overlay-Header")).toBeDefined();
+    expect(screen.getByTestId("ATL-Overlay-Header")).toBeDefined();
+    expect(props.onOpenCallback).toHaveBeenCalledTimes(1);
   });
 
   return rendered;
@@ -122,9 +138,9 @@ describe("when open is called on the content overlay ref", () => {
       ...getDefaultOptions(),
       text: "I am text within the content overlay",
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    await renderAndOpenContentOverlay(options);
 
-    expect(contentOverlayScreen.getByText(options.text)).toBeDefined();
+    expect(screen.getByText(options.text)).toBeDefined();
   });
 });
 
@@ -135,14 +151,16 @@ describe("when the close button is clicked on an open content overlay", () => {
       text: "I am text within the content overlay",
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    await renderAndOpenContentOverlay(options);
 
-    await user.press(
-      contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
-    );
+    const closeButton = await screen.findByTestId("ATL-Overlay-CloseButton");
+    await user.press(closeButton);
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     await waitFor(() => {
-      expect(contentOverlayScreen.queryByText(options.text)).toBeNull();
+      expect(screen.queryByText(options.text)).toBeNull();
     });
   });
 });
@@ -154,11 +172,13 @@ describe("when the close button is clicked on an open content overlay with a def
       onCloseCallback: jest.fn(),
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    await renderAndOpenContentOverlay(options);
 
-    await user.press(
-      contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
-    );
+    const closeButton = await screen.findByTestId("ATL-Overlay-CloseButton");
+    await user.press(closeButton);
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     await waitFor(() => {
       expect(options.onCloseCallback).toHaveBeenCalled();
@@ -202,9 +222,9 @@ describe("when title prop passed to content overlay", () => {
       ...getDefaultOptions(),
       title: "Awesome Title",
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    await renderAndOpenContentOverlay(options);
 
-    expect(contentOverlayScreen.getByText(options.title)).toBeDefined();
+    expect(screen.getByText(options.title)).toBeDefined();
   });
 });
 
@@ -215,11 +235,9 @@ describe("when accessibilityLabel prop passed to content overlay", () => {
       a11yLabel: "Awesome a11y Label",
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    await renderAndOpenContentOverlay(options);
 
-    expect(
-      contentOverlayScreen.getByLabelText(options.a11yLabel || "ohno"),
-    ).toBeDefined();
+    expect(screen.getByLabelText(options.a11yLabel || "ohno")).toBeDefined();
   });
 });
 
@@ -230,10 +248,10 @@ describe("when accessibilityLabel prop NOT passed to content overlay", () => {
       title: "Awesome Title",
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    await renderAndOpenContentOverlay(options);
 
     expect(
-      contentOverlayScreen.getAllByLabelText(`Close ${options.title} modal`),
+      screen.getAllByLabelText(`Close ${options.title} modal`),
     ).toHaveLength(2);
   });
 });
@@ -247,11 +265,9 @@ describe("when there is a screen reader enabled", () => {
     const options: testRendererOptions = {
       ...getDefaultOptions(),
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    await renderAndOpenContentOverlay(options);
 
-    expect(
-      await contentOverlayScreen.findByTestId("ATL-Overlay-CloseButton"),
-    ).toBeDefined();
+    expect(await screen.findByTestId("ATL-Overlay-CloseButton")).toBeDefined();
   });
 });
 
@@ -261,10 +277,8 @@ describe("when fullScreen is set to true", () => {
       ...getDefaultOptions(),
       fullScreen: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
-    expect(
-      contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
-    ).toBeDefined();
+    await renderAndOpenContentOverlay(options);
+    expect(screen.getByTestId("ATL-Overlay-CloseButton")).toBeDefined();
   });
 });
 
@@ -274,10 +288,8 @@ describe("when showDismiss is set to true", () => {
       ...getDefaultOptions(),
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
-    expect(
-      contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
-    ).toBeDefined();
+    await renderAndOpenContentOverlay(options);
+    expect(screen.getByTestId("ATL-Overlay-CloseButton")).toBeDefined();
   });
 });
 
@@ -288,11 +300,9 @@ describe("when the close button is clicked on an open content overlay with a def
       onBeforeExitCallback: jest.fn(),
       showDismiss: true,
     };
-    const contentOverlayScreen = await renderAndOpenContentOverlay(options);
+    await renderAndOpenContentOverlay(options);
 
-    await user.press(
-      contentOverlayScreen.getByTestId("ATL-Overlay-CloseButton"),
-    );
+    await user.press(screen.getByTestId("ATL-Overlay-CloseButton"));
 
     await waitFor(() => {
       expect(options.onBeforeExitCallback).toHaveBeenCalled();
@@ -306,10 +316,9 @@ describe("modalBackgroundColor prop", () => {
       const options: testRendererOptions = {
         ...getDefaultOptions(),
       };
-      const contentOverlayScreen = await renderAndOpenContentOverlay(options);
-      const OverlayHeader = contentOverlayScreen.getByTestId(
-        "ATL-Overlay-Header",
-      ).children[0] as ReactTestInstance;
+      await renderAndOpenContentOverlay(options);
+      const OverlayHeader = screen.getByTestId("ATL-Overlay-Header")
+        .children[0] as ReactTestInstance;
       const OverlayHeaderStyles = OverlayHeader.props.style;
 
       expect(OverlayHeaderStyles).toEqual(
@@ -336,10 +345,9 @@ describe("modalBackgroundColor prop", () => {
         ...getDefaultOptions(),
         modalBackgroundColor: "background",
       };
-      const contentOverlayScreen = await renderAndOpenContentOverlay(options);
-      const OverlayHeader = contentOverlayScreen.getByTestId(
-        "ATL-Overlay-Header",
-      ).children[0] as ReactTestInstance;
+      await renderAndOpenContentOverlay(options);
+      const OverlayHeader = screen.getByTestId("ATL-Overlay-Header")
+        .children[0] as ReactTestInstance;
       const OverlayHeaderStyles = OverlayHeader.props.style;
 
       expect(OverlayHeaderStyles).toEqual(
