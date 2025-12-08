@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.94.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.93.0...@jobber/components-native@0.94.0) (2025-12-08)
+
+
+### Features
+
+* **components-native:** Replace react-native-modalize with react-native-bottom-sheet ([#2803](https://github.com/GetJobber/atlantis/issues/2803)) ([c1cb478](https://github.com/GetJobber/atlantis/commit/c1cb4786dc6f121b63eabb1b39c2a54754d7426f))
+
+
+
+
+
 # [0.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.92.0...@jobber/components-native@0.93.0) (2025-12-02)
 
 
