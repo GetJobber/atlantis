@@ -53,7 +53,7 @@
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
-    "@gorhom/bottom-sheet": "^5.2.6",
+    "@gorhom/bottom-sheet": "^5.2.8",
     "@react-native-community/datetimepicker": "^8.4.5",
     "@react-native/babel-preset": "^0.82.1",
     "@storybook/addon-a11y": "^9.1.2",
@@ -79,7 +79,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",
-    "@gorhom/bottom-sheet": "^5.2.6",
+    "@gorhom/bottom-sheet": "^5.2.8",
     "@jobber/design": "*",
     "@react-native-community/datetimepicker": ">=6.7.0",
     "date-fns": "^2.30.0",
