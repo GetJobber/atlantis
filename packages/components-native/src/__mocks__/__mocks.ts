@@ -7,6 +7,7 @@ jest.mock("react-native/Libraries/Modal/Modal", () => ({
   default: MockModal,
 }));
 
+require("react-native-reanimated").setUpTests();
 // NOTE: this is the old way we used to mock reanimated. We actually do not need to mock it anymore.
 // To ensure correct test behaviour, please add `jest.unmock("react-native-reanimated")` to your test suite.
 jest.mock("react-native-reanimated", () => {
