@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.105.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.4...@jobber/components@6.105.5) (2025-12-10)
+
+
+### Bug Fixes
+
+* **components:** Disable scrollwheel updating InputNumber v2's value due to poor UX ([#2847](https://github.com/GetJobber/atlantis/issues/2847)) ([3c19398](https://github.com/GetJobber/atlantis/commit/3c19398ea42d4663e77469678e7adb064d75e54d))
+
+
+
+
+
 ## [6.105.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.3...@jobber/components@6.105.4) (2025-12-03)
 
 **Note:** Version bump only for package @jobber/components
