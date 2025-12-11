@@ -54,8 +54,11 @@ export interface ProgressBarProps {
 }
 
 export interface ProgressBarUnsafeStyle {
+  /** Styles applied to the outer accessible wrapper (role="progressbar"). */
   container?: StyleProp<ViewStyle>;
+  /** Styles applied to the inner bar container (track container) – controls bar height/rounding. */
   progressBarContainer?: StyleProp<ViewStyle>;
+  /** Styles applied to each step block in the stepped variation. */
   step?: StyleProp<ViewStyle>;
   /** Track/background bar in 'progress' variation (full-width inner) */
   track?: StyleProp<ViewStyle>;
