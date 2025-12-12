@@ -7,6 +7,7 @@ import GettingStartedWithReactComponent from "../content/guides/getting-started-
 import PullRequestTitleGeneratorComponent from "../content/guides/pull-request-title-generator.stories.mdx";
 import Figma101Component from "../content/guides/figma-101.mdx";
 import AtlantisOverviewComponent from "../content/guides/atlantis-overview.mdx";
+import AtlantisQuickstartComponent from "../content/guides/atlantis-quickstart.mdx";
 import ContributingComponent from "../content/guides/contributing.mdx";
 import PageLayoutsComponent from "../content/guides/page-layouts.stories.mdx";
 import ScaffoldingComponent from "../content/guides/scaffolding.stories.mdx";
@@ -18,6 +19,11 @@ export const guidesContentMap: ContentMapItems = {
     intro: "Atlantis overview",
     title: "Atlantis overview",
     content: () => <AtlantisOverviewComponent />,
+  },
+  "atlantis-quickstart": {
+    intro: "Atlantis quickstart",
+    title: "Atlantis quickstart",
+    content: () => <AtlantisQuickstartComponent />,
   },
   contributing: {
     intro: "Contributing",
