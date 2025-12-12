@@ -52,10 +52,19 @@ const PopoverTemplate: ComponentStory<typeof Page> = args => {
   return (
     <>
       <Page
+        dataAttributes={{
+          title: {
+            "data-test-id": "title-test",
+          },
+          intro: {
+            "data-test-id": "intro-test",
+          },
+        }}
         primaryAction={{
           label: "Trigger Food Popover",
           onClick: () => setShowPrimaryPopover(true),
           ref: primaryDivRef,
+          "data-test-id": "primary-action",
         }}
         secondaryAction={{
           label: "Trigger Drink Popover",
