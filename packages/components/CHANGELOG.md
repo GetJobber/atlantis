@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.106.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.5...@jobber/components@6.106.0) (2025-12-12)
+
+
+### Features
+
+* allow alternate colors on ProgressBar ([#2836](https://github.com/GetJobber/atlantis/issues/2836)) ([df6ac57](https://github.com/GetJobber/atlantis/commit/df6ac5723d79daa07b4d29473259f46ba45f2304))
+
+
+
+
+
 ## [6.105.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.4...@jobber/components@6.105.5) (2025-12-10)
 
 
