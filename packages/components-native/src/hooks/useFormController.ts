@@ -40,7 +40,7 @@ export function useFormController<T>({
     name: fieldName,
     control,
     rules: validations,
-    defaultValue: value || undefined,
+    defaultValue: value ?? undefined,
   });
 
   // The naming convention established by react-hook-form for arrays of fields is, for example, "emails.0.description".
