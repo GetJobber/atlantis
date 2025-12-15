@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.0...@jobber/components-native@0.95.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* **components-native:** Fix useFormController setting defaultValue false on checkbox and switches to undefined  ([#2849](https://github.com/GetJobber/atlantis/issues/2849)) ([01e5e41](https://github.com/GetJobber/atlantis/commit/01e5e41db36b62256ccc96a09bbcde3bc08079d4))
+
+
+
+
+
 # [0.95.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.94.0...@jobber/components-native@0.95.0) (2025-12-12)
 
 
