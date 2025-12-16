@@ -1,6 +1,11 @@
 import type { PropsWithChildren } from "react";
 import React, { Children, useEffect } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  MotionGlobalConfig,
+  motion,
+  useReducedMotion,
+} from "framer-motion";
 import {
   TIMING_BASE,
   TIMING_QUICK,
@@ -43,7 +48,7 @@ interface AnimatedPresenceProps extends Required<PropsWithChildren> {
 export function AnimatedPresence(props: AnimatedPresenceProps) {
   const shouldReduceMotion = useReducedMotion();
 
-  if (shouldReduceMotion) {
+  if (shouldReduceMotion || MotionGlobalConfig.skipAnimations) {
     return <>{props.children}</>;
   }
 
