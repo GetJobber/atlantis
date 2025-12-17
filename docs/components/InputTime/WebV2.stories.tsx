@@ -1,8 +1,7 @@
-import React, { useState } from "react";
 import { fn } from "storybook/test";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { InputTime } from "@jobber/components/InputTime";
-import { Content } from "@jobber/components/Content";
 
 const meta = {
   title: "Components/Forms and Inputs/InputTime/Web (v2)",
@@ -21,27 +20,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-  render: () => {
+  render: args => {
     const [value, setValue] = useState<Date>();
 
     return (
-      <Content>
-        <form>
-          <Content>
-            <InputTime
-              onChange={date => {
-                setValue(date);
-              }}
-              placeholder="Select a time time"
-              value={value}
-              version={2}
-            />
-            <input type="time" />
-
-            <button type="submit">Submit</button>
-          </Content>
-        </form>
-      </Content>
+      <InputTime
+        {...args}
+        value={value}
+        onChange={newDate => {
+          setValue(newDate);
+          args.onChange?.(newDate); // Log the action in the Storybook actions panel
+        }}
+      />
     );
   },
 };
