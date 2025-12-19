@@ -9,7 +9,7 @@ export const ChangelogDataTable = () => {
   const [filters, setFilters] = useState({
     packages: [] as string[],
     changeTypes: [] as string[],
-    excludeBumpOnly: false,
+    excludeBumpOnly: true,
     onlyBreakingChanges: false,
   });
 

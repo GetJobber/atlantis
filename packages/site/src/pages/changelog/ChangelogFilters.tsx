@@ -1,11 +1,5 @@
-import {
-  Button,
-  Cluster,
-  Heading,
-  MultiSelect,
-  Switch,
-  Text,
-} from "@jobber/components";
+import { Button, Cluster, Heading, Switch, Text } from "@jobber/components";
+import { TagCombobox } from "./TagCombobox";
 
 interface MultiSelectOption {
   label: string;
@@ -46,18 +40,34 @@ export const ChangelogFilters = ({
       <Heading level={3}>Filters</Heading>
       <Cluster>
         <Text variation="subdued">Packages</Text>
-        <MultiSelect
-          defaultLabel="Select packages"
-          allSelectedLabel="All packages"
-          options={packageMultiSelect.options}
-          onOptionsChange={packageMultiSelect.setOptions}
+        <TagCombobox
+          activatorIcon="add"
+          activatorLabel="Add package"
+          value={packageMultiSelect.options.map(option => option.label)}
+          onChange={newSelected =>
+            packageMultiSelect.setOptions(
+              newSelected.map(label => ({ label, checked: true })),
+            )
+          }
+          options={packageMultiSelect.options.map(option => ({
+            id: option.label,
+            label: option.label,
+          }))}
         />
         <Text variation="subdued">Change types</Text>
-        <MultiSelect
-          defaultLabel="Select change types"
-          allSelectedLabel="All change types"
-          options={changeTypeMultiSelect.options}
-          onOptionsChange={changeTypeMultiSelect.setOptions}
+        <TagCombobox
+          activatorIcon="add"
+          activatorLabel="Add change type"
+          value={changeTypeMultiSelect.options.map(option => option.label)}
+          onChange={newSelected => {
+            changeTypeMultiSelect.setOptions(
+              newSelected.map(label => ({ label, checked: true })),
+            );
+          }}
+          options={changeTypeMultiSelect.options.map(option => ({
+            id: option.label,
+            label: option.label,
+          }))}
         />
 
         <Text size="small">Exclude version bumps</Text>
