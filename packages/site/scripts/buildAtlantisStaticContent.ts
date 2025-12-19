@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { createRequire } from "module";
 import path, { dirname } from "path";
