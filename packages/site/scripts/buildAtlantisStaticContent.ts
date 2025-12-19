@@ -64,7 +64,7 @@ const componentWebProps = extractFiles(
   "/**/*.props.json",
 );
 writeFileSync(
-  path.join(OUTPUT_DIR, "componentProps.json"),
+  path.join(OUTPUT_DIR, "webProps.json"),
   JSON.stringify(componentWebProps),
 );
 
@@ -80,7 +80,7 @@ writeFileSync(
 
 const componentWeb = extractFiles(componentsDir, "componentWeb", "/**/*.tsx");
 writeFileSync(
-  path.join(OUTPUT_DIR, "componentsWeb.json"),
+  path.join(OUTPUT_DIR, "components.json"),
   JSON.stringify(componentWeb),
 );
 
@@ -90,7 +90,7 @@ const componentMobile = extractFiles(
   "/**/*.tsx",
 );
 writeFileSync(
-  path.join(OUTPUT_DIR, "componentsMobile.json"),
+  path.join(OUTPUT_DIR, "mobileComponents.json"),
   JSON.stringify(componentMobile),
 );
 
@@ -111,22 +111,15 @@ writeFileSync(
   JSON.stringify(mobileDocs),
 );
 
-const componentDocs = extractFiles(
-  componentDocsDir,
-  "componentDocs",
+const sharedDocs = extractFiles(
+  path.join(docsDir, "design"),
+  "sharedDocs",
   "/**/*.mdx",
 );
 writeFileSync(
-  path.join(OUTPUT_DIR, "componentDocs.json"),
-  JSON.stringify(componentDocs),
+  path.join(OUTPUT_DIR, "sharedDocs.json"),
+  JSON.stringify(sharedDocs),
 );
-
-const docsContent = extractFiles(
-  path.join(docsDir, "design"),
-  "docs",
-  "/**/*.mdx",
-);
-writeFileSync(path.join(OUTPUT_DIR, "docs.json"), JSON.stringify(docsContent));
 
 const designDocs: Record<string, { content: string }> = {};
 const designDocsDirs = [
