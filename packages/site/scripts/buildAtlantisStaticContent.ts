@@ -1,6 +1,7 @@
 /* eslint-disable max-statements */
 import {
   existsSync,
+  mkdirSync,
   readFileSync,
   readdirSync,
   statSync,
@@ -17,6 +18,9 @@ const __dirname = dirname(__filename);
 const SITE_ROOT = path.resolve(__dirname, "..");
 // Repo root is two levels up from site root
 const REPO_ROOT = path.resolve(SITE_ROOT, "..", "..");
+// Output directory for JSON files - files in public/ are copied to dist/ by Vite during build
+// This makes them accessible as static assets at /staticContent/xxx.json
+const OUTPUT_DIR = path.join(SITE_ROOT, "public", "staticContent");
 
 const buildStaticPropsAndCode = () => {
   const paths: Array<Record<string, unknown>> = [];
@@ -124,11 +128,12 @@ const buildStaticPropsAndCode = () => {
       mobileCode,
     });
   });
-  const outputPath = path.join(
-    SITE_ROOT,
-    "src",
-    "staticContent.generated.json",
-  );
+
+  // Ensure output directory exists
+  if (!existsSync(OUTPUT_DIR)) {
+    mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
+  const outputPath = path.join(OUTPUT_DIR, "staticContent.generated.json");
   writeFileSync(outputPath, JSON.stringify(paths));
 };
 
@@ -188,7 +193,12 @@ const buildStaticDocs = () => {
       }
     });
   });
-  const outputPath = path.join(SITE_ROOT, "src", "staticDocs.generated.json");
+
+  // Ensure output directory exists
+  if (!existsSync(OUTPUT_DIR)) {
+    mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
+  const outputPath = path.join(OUTPUT_DIR, "staticDocs.generated.json");
   writeFileSync(outputPath, JSON.stringify(content));
 };
 
@@ -232,9 +242,12 @@ const buildStaticComponentDocs = () => {
     }
   });
 
+  // Ensure output directory exists
+  if (!existsSync(OUTPUT_DIR)) {
+    mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
   const outputPath = path.join(
-    SITE_ROOT,
-    "src",
+    OUTPUT_DIR,
     "staticComponentDocs.generated.json",
   );
   writeFileSync(outputPath, JSON.stringify(componentDocs));
