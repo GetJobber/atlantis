@@ -1,3 +1,4 @@
+import type { RefObject } from "react";
 import React, { useId, useRef } from "react";
 import { useTimePredict } from "./hooks/useTimePredict";
 import { useInputTimeActions } from "./hooks/useInputTimeActions";
@@ -123,7 +124,7 @@ export function InputTimeRebuilt({
 }
 
 function useInputTimeRefs(
-  inputRef?: React.RefObject<
+  inputRef?: RefObject<
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null
   >,
 ) {
