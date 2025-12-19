@@ -1,260 +1,170 @@
 /* eslint-disable max-statements */
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  readdirSync,
-  statSync,
-  writeFileSync,
-} from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { createRequire } from "module";
 import path, { dirname } from "path";
+// eslint-disable-next-line import/order
 import { fileURLToPath } from "url";
-import { componentList } from "../src/componentList.js";
 
-// Get the directory of the current script file
+const require = createRequire(import.meta.url);
+const { sync: globSync } = require("glob");
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-// Script is in packages/site/scripts/, so we need to go up one level to packages/site/
 const SITE_ROOT = path.resolve(__dirname, "..");
-// Repo root is two levels up from site root
 const REPO_ROOT = path.resolve(SITE_ROOT, "..", "..");
-// Output directory for JSON files - files in public/ are copied to dist/ by Vite during build
-// This makes them accessible as static assets at /staticContent/xxx.json
 const OUTPUT_DIR = path.join(SITE_ROOT, "public", "staticContent");
 
-const buildStaticPropsAndCode = () => {
-  const paths: Array<Record<string, unknown>> = [];
-  console.log("building static props and code");
-  componentList.forEach(component => {
-    const { title, to, imageURL, sections, additionalMatches } = component;
-    const pathToContent = path.join(SITE_ROOT, "src", "content", title);
-    const pathToWebCode = path.join(
-      REPO_ROOT,
-      "packages",
-      "components",
-      "src",
-      title,
-    );
-    const pathToMobileCode = path.join(
-      REPO_ROOT,
-      "packages",
-      "components-native",
-      "src",
-      title,
-    );
-    const pathToWebProps = path.join(pathToContent, `${title}.props.json`);
-    const pathToMobileProps = path.join(
-      pathToContent,
-      `${title}.props-mobile.json`,
-    );
-    const webProps = existsSync(pathToWebProps)
-      ? readFileSync(pathToWebProps, "utf8")
-      : "";
-    const mobileProps = existsSync(pathToMobileProps)
-      ? readFileSync(pathToMobileProps, "utf8")
-      : "";
+// Function to extract content and create JSON objects
+const extractFiles = (
+  dir: string,
+  filename: string,
+  glob = "/**/*.{tsx,mdx,md,css,json}",
+): Record<string, { content: string }> => {
+  console.log(`Extracting content from files: ${dir}${glob} -> ${filename}`);
+  const files = globSync(`${dir}${glob}`);
+  const result: Record<string, { content: string }> = {};
 
-    let webCode = ``;
-    let mobileCode = ``;
-    let webTestCode = ``;
-    let mobileTestCode = ``;
-
-    if (existsSync(pathToWebCode)) {
-      readdirSync(pathToWebCode).forEach(file => {
-        if (file.endsWith(".tsx")) {
-          const filePath = path.join(pathToWebCode, file);
-          const content = readFileSync(filePath, "utf8");
-
-          if (file.includes(".test")) {
-            webTestCode += content.toString();
-          } else {
-            webCode += content.toString();
-          }
-        }
-      });
+  for (const file of files) {
+    try {
+      const content = readFileSync(file, "utf8");
+      const relativePath = path.relative(REPO_ROOT, file);
+      result[relativePath] = { content };
+      console.log(`  Added: ${relativePath}`);
+    } catch (e) {
+      console.error(`  Error reading file ${file}:`, e);
     }
-
-    if (existsSync(pathToMobileCode)) {
-      readdirSync(pathToMobileCode).forEach(file => {
-        if (file.endsWith(".tsx") && !file.includes(".test")) {
-          const filePath = path.join(pathToMobileCode, file);
-          const content = readFileSync(filePath, "utf8");
-
-          if (file.includes(".test")) {
-            mobileTestCode += content.toString();
-          } else {
-            mobileCode += content.toString();
-          }
-        }
-      });
-    }
-
-    if (webCode !== "") {
-      webCode =
-        `${title} ${additionalMatches?.join(" ") || ""} Web React ` + webCode;
-    }
-
-    if (mobileCode !== "") {
-      mobileCode =
-        `${title} ${
-          additionalMatches?.join(" ") || ""
-        } Mobile Native React-Native ` + mobileCode;
-    }
-
-    if (webTestCode !== "") {
-      webTestCode =
-        `${title} ${
-          additionalMatches?.join(" ") || ""
-        } Web React Test Testing Jest ` + webTestCode;
-    }
-
-    if (mobileTestCode !== "") {
-      mobileTestCode =
-        `${title} ${
-          additionalMatches?.join(" ") || ""
-        } Mobile Native React-Native Testing Test Jest ` + mobileTestCode;
-    }
-
-    paths.push({
-      title,
-      to,
-      imageURL,
-      sections,
-      webProps,
-      webTestCode,
-      mobileTestCode,
-      mobileProps,
-      webCode,
-      mobileCode,
-    });
-  });
-
-  // Ensure output directory exists
-  if (!existsSync(OUTPUT_DIR)) {
-    mkdirSync(OUTPUT_DIR, { recursive: true });
   }
-  const outputPath = path.join(OUTPUT_DIR, "staticContent.generated.json");
-  writeFileSync(outputPath, JSON.stringify(paths));
+
+  return result;
 };
 
-const staticMap = [
-  {
-    title: "Design",
-    dirs: [path.join(REPO_ROOT, "docs", "design")],
-  },
-  {
-    title: "Content",
-    dirs: [path.join(REPO_ROOT, "docs", "content")],
-  },
-  {
-    title: "Guides",
-    dirs: [path.join(REPO_ROOT, "docs", "introduction")],
-  },
-  {
-    title: "Hooks",
-    dirs: [path.join(REPO_ROOT, "docs", "hooks")],
-  },
-  {
-    title: "Patterns",
-    dirs: [path.join(REPO_ROOT, "docs", "patterns")],
-  },
+// Ensure output directory exists
+if (!existsSync(OUTPUT_DIR)) {
+  mkdirSync(OUTPUT_DIR, { recursive: true });
+}
+
+const componentsDir = path.join(REPO_ROOT, "packages", "components", "src");
+const mobileComponentsDir = path.join(
+  REPO_ROOT,
+  "packages",
+  "components-native",
+  "src",
+);
+const docsDir = path.join(REPO_ROOT, "docs");
+const componentDocsDir = path.join(REPO_ROOT, "docs", "components");
+const designDir = path.join(REPO_ROOT, "packages", "design");
+const siteContentDir = path.join(SITE_ROOT, "src", "content");
+
+console.log("Building static content JSON files");
+
+// Extract and write JSON files for each content type
+const componentWebProps = extractFiles(
+  siteContentDir,
+  "componentWebProps",
+  "/**/*.props.json",
+);
+writeFileSync(
+  path.join(OUTPUT_DIR, "componentProps.json"),
+  JSON.stringify(componentWebProps),
+);
+
+const componentMobileProps = extractFiles(
+  siteContentDir,
+  "componentMobileProps",
+  "/**/*.props-mobile.json",
+);
+writeFileSync(
+  path.join(OUTPUT_DIR, "mobileProps.json"),
+  JSON.stringify(componentMobileProps),
+);
+
+const componentWeb = extractFiles(componentsDir, "componentWeb", "/**/*.tsx");
+writeFileSync(
+  path.join(OUTPUT_DIR, "componentsWeb.json"),
+  JSON.stringify(componentWeb),
+);
+
+const componentMobile = extractFiles(
+  mobileComponentsDir,
+  "componentMobile",
+  "/**/*.tsx",
+);
+writeFileSync(
+  path.join(OUTPUT_DIR, "componentsMobile.json"),
+  JSON.stringify(componentMobile),
+);
+
+const webDocs = extractFiles(
+  componentDocsDir,
+  "webDocs",
+  "/**/Web.stories.tsx",
+);
+writeFileSync(path.join(OUTPUT_DIR, "webDocs.json"), JSON.stringify(webDocs));
+
+const mobileDocs = extractFiles(
+  componentDocsDir,
+  "mobileDocs",
+  "/**/Mobile.stories.tsx",
+);
+writeFileSync(
+  path.join(OUTPUT_DIR, "mobileDocs.json"),
+  JSON.stringify(mobileDocs),
+);
+
+const componentDocs = extractFiles(
+  componentDocsDir,
+  "componentDocs",
+  "/**/*.mdx",
+);
+writeFileSync(
+  path.join(OUTPUT_DIR, "componentDocs.json"),
+  JSON.stringify(componentDocs),
+);
+
+const docsContent = extractFiles(
+  path.join(docsDir, "design"),
+  "docs",
+  "/**/*.mdx",
+);
+writeFileSync(path.join(OUTPUT_DIR, "docs.json"), JSON.stringify(docsContent));
+
+const designDocs: Record<string, { content: string }> = {};
+const designDocsDirs = [
+  path.join(docsDir, "changelog"),
+  path.join(docsDir, "content"),
+  path.join(docsDir, "getting-started-with-react"),
+  path.join(docsDir, "guides"),
+  path.join(docsDir, "hooks"),
+  path.join(docsDir, "introduction"),
+  path.join(docsDir, "packages"),
+  path.join(docsDir, "patterns"),
+  path.join(docsDir, "proposals"),
 ];
 
-const content: Record<string, Array<Record<string, unknown>>> = {};
+const storiesDocs = extractFiles(docsDir, "designDocs", "/**/*.stories.mdx");
+Object.assign(designDocs, storiesDocs);
 
-const buildStaticDocs = () => {
-  console.log("building static docs");
-  staticMap.forEach(({ title, dirs }) => {
-    dirs.forEach(dir => {
-      try {
-        const dirup = readdirSync(dir);
-
-        if (dirup) {
-          for (let i = 0; i < dirup.length; i++) {
-            const fileName = dirup[i];
-            const filePath = path.join(dir, fileName);
-
-            if (statSync(filePath).isFile()) {
-              const mdxContent = readFileSync(filePath, "utf8");
-
-              if (!content[title]) {
-                content[title] = [];
-              }
-              content[title].push({
-                title: fileName,
-                category: title,
-                content: title + " " + mdxContent,
-              });
-            }
-          }
-        }
-      } catch (e) {
-        console.log("ERROR:", e, dir);
-      }
-    });
-  });
-
-  // Ensure output directory exists
-  if (!existsSync(OUTPUT_DIR)) {
-    mkdirSync(OUTPUT_DIR, { recursive: true });
+for (const dir of designDocsDirs) {
+  if (existsSync(dir)) {
+    const dirDocs = extractFiles(dir, "designDocs", "/**/*.mdx");
+    Object.assign(designDocs, dirDocs);
   }
-  const outputPath = path.join(OUTPUT_DIR, "staticDocs.generated.json");
-  writeFileSync(outputPath, JSON.stringify(content));
-};
+}
+writeFileSync(
+  path.join(OUTPUT_DIR, "designDocs.json"),
+  JSON.stringify(designDocs),
+);
 
-const buildStaticComponentDocs = () => {
-  console.log("building static component docs");
-  const componentDocs: Record<
-    string,
-    {
-      title: string;
-      mobileStories?: string;
-      webStories?: string;
-      content: string;
-    }
-  > = {};
+const componentCSS = extractFiles(componentsDir, "componentCSS", "/**/*.css");
+writeFileSync(
+  path.join(OUTPUT_DIR, "componentCSS.json"),
+  JSON.stringify(componentCSS),
+);
 
-  const directory = path.join(REPO_ROOT, "docs", "components");
-  const dirup = readdirSync(directory, { recursive: true });
-  dirup.forEach(file => {
-    const fullPath = path.join(directory, file as string);
-    const component = (file as string).split(path.sep)[0];
+const designCSS = extractFiles(designDir, "designCSS", "/**/*.css");
+writeFileSync(
+  path.join(OUTPUT_DIR, "designCSS.json"),
+  JSON.stringify(designCSS),
+);
 
-    if (statSync(fullPath).isFile()) {
-      if (!componentDocs[component]) {
-        componentDocs[component] = { title: component, content: "" };
-      }
-      const fileContent = readFileSync(fullPath, "utf8");
-
-      if ((file as string).endsWith(".mdx")) {
-        componentDocs[component].content = fileContent;
-      } else if (
-        (file as string).endsWith(".tsx") &&
-        (file as string).includes("Mobile.")
-      ) {
-        componentDocs[component].mobileStories = fileContent;
-      } else if (
-        (file as string).endsWith(".tsx") &&
-        (file as string).includes("Web.")
-      ) {
-        componentDocs[component].webStories = fileContent;
-      }
-    }
-  });
-
-  // Ensure output directory exists
-  if (!existsSync(OUTPUT_DIR)) {
-    mkdirSync(OUTPUT_DIR, { recursive: true });
-  }
-  const outputPath = path.join(
-    OUTPUT_DIR,
-    "staticComponentDocs.generated.json",
-  );
-  writeFileSync(outputPath, JSON.stringify(componentDocs));
-};
-
-buildStaticPropsAndCode();
-buildStaticDocs();
-buildStaticComponentDocs();
-
-console.log("Successfully Generated Atlantis Static Content");
+console.log("Successfully Generated Atlantis Static Content Files");
