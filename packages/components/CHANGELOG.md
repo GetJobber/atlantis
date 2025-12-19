@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.106.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.1...@jobber/components@6.106.2) (2025-12-19)
+
+
+### Bug Fixes
+
+* **components:** fix issue clearing time on safari ([#2851](https://github.com/GetJobber/atlantis/issues/2851)) ([42c0345](https://github.com/GetJobber/atlantis/commit/42c0345571da53f8b8f16936cf6d1789c8e5aa2d))
+
+
+
+
+
 ## [6.106.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.0...@jobber/components@6.106.1) (2025-12-15)
 
 
