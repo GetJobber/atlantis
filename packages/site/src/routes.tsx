@@ -8,13 +8,14 @@ import { PatternsPage } from "./pages/PatternsPage";
 import { ComponentView } from "./layout/ComponentView";
 import { componentList } from "./componentList";
 import { componentSections } from "./componentSections";
-import { ChangelogPage } from "./pages/ChangelogPage";
 import { HooksPage } from "./pages/HooksPage";
 import { hooksList } from "./hooksList";
 import { GuidesPage } from "./pages/GuidesPage";
 import { PackagesPage } from "./pages/PackagesPage";
 import { ComponentNotFound } from "./components/ComponentNotFound";
 import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
+import { ChangelogPage } from "./pages/ChangelogPage";
+import { ReleaseNotesPage } from "./pages/ReleaseNotesPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -300,64 +301,59 @@ export const routes: Array<AtlantisRoute> = [
       },
     ],
   },
-  {
-    path: "/changelog",
-    handle: "Changelog",
-    exact: true,
-    component: ChangelogPage,
-    children: [
-      {
-        path: "/changelog/breaking-changes",
-        handle: "Breaking Changes",
-        exact: true,
-      },
-      {
-        path: "/changelog/components",
-        handle: "Components",
-        exact: true,
-      },
-      {
-        path: "/changelog/components-native",
-        handle: "Components-Native",
-        exact: true,
-      },
-      {
-        path: "/changelog/design",
-        handle: "Design",
-        exact: true,
-      },
-      {
-        path: "/changelog/docx",
-        handle: "Docx",
-        exact: true,
-      },
-      {
-        path: "/changelog/eslint-config",
-        handle: "Eslint Config",
-        exact: true,
-      },
-      {
-        path: "/changelog/formatters",
-        handle: "Formatters",
-        exact: true,
-      },
-      {
-        path: "/changelog/generators",
-        handle: "Generators",
-        exact: true,
-      },
-      {
-        path: "/changelog/hooks",
-        handle: "Hooks",
-        exact: true,
-      },
-      {
-        path: "/changelog/stylelint-config",
-        handle: "Stylelint Config",
-        exact: true,
-      },
-    ],
-  },
+  // {
+  //   path: "/changelog",
+  //   handle: "Changelog",
+  //   exact: true,
+  //   component: ChangelogPage,
+  //   children: [
+  //     {
+  //       path: "/changelog/components",
+  //       handle: "Components",
+  //       exact: true,
+  //     },
+  //     {
+  //       path: "/changelog/components-native",
+  //       handle: "Components-Native",
+  //       exact: true,
+  //     },
+  //     {
+  //       path: "/changelog/design",
+  //       handle: "Design",
+  //       exact: true,
+  //     },
+  //     {
+  //       path: "/changelog/docx",
+  //       handle: "Docx",
+  //       exact: true,
+  //     },
+  //     {
+  //       path: "/changelog/eslint-config",
+  //       handle: "Eslint Config",
+  //       exact: true,
+  //     },
+  //     {
+  //       path: "/changelog/formatters",
+  //       handle: "Formatters",
+  //       exact: true,
+  //     },
+  //     {
+  //       path: "/changelog/generators",
+  //       handle: "Generators",
+  //       exact: true,
+  //     },
+  //     {
+  //       path: "/changelog/hooks",
+  //       handle: "Hooks",
+  //       exact: true,
+  //     },
+  //     {
+  //       path: "/changelog/stylelint-config",
+  //       handle: "Stylelint Config",
+  //       exact: true,
+  //     },
+  //   ],
+  // },
   {
     path: "/components/:name",
     component: ComponentView,
@@ -425,6 +421,27 @@ export const routes: Array<AtlantisRoute> = [
     path: "/welcome-guide",
     component: WelcomeGuidePage,
     handle: "WelcomeGuide",
+    inNav: false,
+    exact: true,
+  },
+  {
+    path: "/changelog",
+    component: ChangelogPage,
+    handle: "Changelog",
+    inNav: true,
+    exact: true,
+    // children: [
+    //   {
+    //     path: "/changelog/release-notes",
+    //     handle: "Release Notes",
+    //     exact: true,
+    //   },
+    // ],
+  },
+  {
+    path: "/changelog/release-notes",
+    component: ReleaseNotesPage,
+    handle: "ReleaseNotesContent",
     inNav: false,
     exact: true,
   },
