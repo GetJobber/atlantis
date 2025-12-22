@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.106.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.2...@jobber/components@6.106.3) (2025-12-22)
+
+
+### Bug Fixes
+
+* **components:** Fix InputText label having issues with Chrome's autocomplete ([#2854](https://github.com/GetJobber/atlantis/issues/2854)) ([93ea542](https://github.com/GetJobber/atlantis/commit/93ea54276e0a521ecc217dc2ad77088610d2d77b))
+* **components:** Provide the InputDateV2's autocomplete prop to the inputtext ([#2853](https://github.com/GetJobber/atlantis/issues/2853)) ([f17a6dc](https://github.com/GetJobber/atlantis/commit/f17a6dc1946d5d359dddcb00fb563b9923ac5cad))
+
+
+
+
+
 ## [6.106.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.1...@jobber/components@6.106.2) (2025-12-19)
 
 
