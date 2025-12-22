@@ -15,7 +15,6 @@ import { PackagesPage } from "./pages/PackagesPage";
 import { ComponentNotFound } from "./components/ComponentNotFound";
 import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
 import { ChangelogPage } from "./pages/ChangelogPage";
-import { ReleaseNotesPage } from "./pages/ReleaseNotesPage";
 
 export interface AtlantisRoute {
   path?: string;
@@ -301,59 +300,6 @@ export const routes: Array<AtlantisRoute> = [
       },
     ],
   },
-  // {
-  //   path: "/changelog",
-  //   handle: "Changelog",
-  //   exact: true,
-  //   component: ChangelogPage,
-  //   children: [
-  //     {
-  //       path: "/changelog/components",
-  //       handle: "Components",
-  //       exact: true,
-  //     },
-  //     {
-  //       path: "/changelog/components-native",
-  //       handle: "Components-Native",
-  //       exact: true,
-  //     },
-  //     {
-  //       path: "/changelog/design",
-  //       handle: "Design",
-  //       exact: true,
-  //     },
-  //     {
-  //       path: "/changelog/docx",
-  //       handle: "Docx",
-  //       exact: true,
-  //     },
-  //     {
-  //       path: "/changelog/eslint-config",
-  //       handle: "Eslint Config",
-  //       exact: true,
-  //     },
-  //     {
-  //       path: "/changelog/formatters",
-  //       handle: "Formatters",
-  //       exact: true,
-  //     },
-  //     {
-  //       path: "/changelog/generators",
-  //       handle: "Generators",
-  //       exact: true,
-  //     },
-  //     {
-  //       path: "/changelog/hooks",
-  //       handle: "Hooks",
-  //       exact: true,
-  //     },
-  //     {
-  //       path: "/changelog/stylelint-config",
-  //       handle: "Stylelint Config",
-  //       exact: true,
-  //     },
-  //   ],
-  // },
   {
     path: "/components/:name",
     component: ComponentView,
@@ -429,20 +375,6 @@ export const routes: Array<AtlantisRoute> = [
     component: ChangelogPage,
     handle: "Changelog",
     inNav: true,
-    exact: true,
-    // children: [
-    //   {
-    //     path: "/changelog/release-notes",
-    //     handle: "Release Notes",
-    //     exact: true,
-    //   },
-    // ],
-  },
-  {
-    path: "/changelog/release-notes",
-    component: ReleaseNotesPage,
-    handle: "ReleaseNotesContent",
-    inNav: false,
     exact: true,
   },
 ];
