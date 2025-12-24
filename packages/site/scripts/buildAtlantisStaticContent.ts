@@ -122,15 +122,12 @@ writeFileSync(
 
 const designDocs: Record<string, { content: string }> = {};
 const designDocsDirs = [
-  path.join(docsDir, "changelog"),
+  path.join(siteContentDir, "changelog"),
   path.join(docsDir, "content"),
-  path.join(docsDir, "getting-started-with-react"),
-  path.join(docsDir, "guides"),
-  path.join(docsDir, "hooks"),
-  path.join(docsDir, "introduction"),
-  path.join(docsDir, "packages"),
-  path.join(docsDir, "patterns"),
-  path.join(docsDir, "proposals"),
+  path.join(siteContentDir, "guides"),
+  path.join(siteContentDir, "hooks"),
+  path.join(siteContentDir, "packages"),
+  path.join(siteContentDir, "patterns"),
 ];
 
 const storiesDocs = extractFiles(docsDir, "designDocs", "/**/*.stories.mdx");
