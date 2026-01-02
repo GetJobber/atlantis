@@ -1,8 +1,9 @@
 import React from "react";
 import { View } from "react-native";
 import { useStyles } from "./StatusLabel.style";
-import { Text } from "../Text";
-import { useAtlantisTheme } from "../AtlantisThemeContext";
+import { Typography } from "../Typography";
+import { StatusIndicator } from "../StatusIndicator";
+import { tokens } from "../utils/design";
 
 export type StatusType =
   | "success"
@@ -18,23 +19,29 @@ export interface StatusLabelType {
 
 interface StatusLabelProps {
   /**
-   * Text to display.
+   * Text to display
    */
-  readonly text: string;
+  readonly text?: string;
 
   /**
-   * Alignment of text
+   * Optional children for the status label's label
+   */
+  readonly children?: React.ReactNode;
+
+  /**
+   * Alignment of text and StatusIndicator
    */
   readonly alignment?: "start" | "end";
 
   /**
-   * Status color of the square beside text
+   * Status color of label container, label, and StatusIndicator
    */
   readonly status?: StatusType;
 }
 
 export function StatusLabel({
   text,
+  children,
   alignment = "end",
   status = "success",
 }: StatusLabelProps) {
@@ -44,35 +51,24 @@ export function StatusLabel({
     <View
       style={[
         styles.statusLabelRow,
+        { backgroundColor: tokens[`color-${status}--surface`] },
         alignment === "start" && styles.labelTextStartAligned,
       ]}
     >
-      <View style={styles.statusLabelText}>
-        <Text align={alignment} level="textSupporting" variation="subdued">
-          {text}
-        </Text>
-      </View>
-      <View style={styles.innerPad} />
-      <StatusLabelIcon status={status} styles={styles} />
+      {children && <View>{children}</View>}
+      {text && (
+        <View style={styles.statusLabelText}>
+          <Typography
+            align={alignment}
+            size="smaller"
+            fontWeight="medium"
+            color={`${status}OnSurface`}
+          >
+            {text}
+          </Typography>
+        </View>
+      )}
+      <StatusIndicator status={status} />
     </View>
-  );
-}
-
-interface StatusLabelIconProps {
-  readonly status: StatusType;
-  readonly styles: ReturnType<typeof useStyles>;
-}
-
-function StatusLabelIcon({ status, styles }: StatusLabelIconProps) {
-  const { tokens } = useAtlantisTheme();
-
-  return (
-    <View
-      testID={`${status}LabelIcon`}
-      style={[
-        styles.statusLabelIcon,
-        { backgroundColor: tokens[`color-${status}`] },
-      ]}
-    />
   );
 }
