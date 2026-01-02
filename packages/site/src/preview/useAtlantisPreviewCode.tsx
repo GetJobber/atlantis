@@ -1,37 +1,37 @@
-import { RefObject, useCallback, useState } from "react";
+import { RefObject, useCallback, useRef, useState } from "react";
 import { transform } from "@babel/standalone";
 import { type Theme } from "@jobber/components";
 import { useAtlantisPreviewSkeleton } from "./useAtlantisPreviewSkeleton";
+import { ComponentType } from "../types/content";
 
 export const useAtlantisPreviewCode = ({
   iframe,
   iframeMobile,
+  getIframeRef,
   theme,
   type,
 }: {
-  iframe: RefObject<HTMLIFrameElement>;
-  iframeMobile: RefObject<HTMLIFrameElement>;
-  type: "web" | "mobile";
+  iframe: RefObject<HTMLIFrameElement | null>;
+  iframeMobile: RefObject<HTMLIFrameElement | null>;
+  getIframeRef: (type: ComponentType) => RefObject<HTMLIFrameElement | null>;
+  type: ComponentType;
   theme: Theme;
 }) => {
   const [code, setCode] = useState<string>("");
   const [error, setError] = useState<string>("");
   const { writeCodeToIFrame } = useAtlantisPreviewSkeleton(type);
+  const lastSignature = useRef<string>("");
 
   const updateCode = useCallback(
     (codeUp: string, forceUpdate?: boolean) => {
-      // Since we can update our code from the editor or from page updates (clicking tabs)
-      // We need a mechanism above to check for loops
-      if (codeUp === code && !forceUpdate) {
-        return;
-      }
+      // Skip redundant updates when both the code and the active preview type are unchanged.
+      const signature = `${type}:${codeUp}`;
+      if (!forceUpdate && signature === lastSignature.current) return;
+      lastSignature.current = signature;
       setCode(codeUp);
 
       try {
-        // If the provided code does not include a return statement, we have to provide one.
-        const preCode = !codeUp.includes("return ")
-          ? `return ${codeUp}`
-          : codeUp;
+        const preCode = getPreCode(codeUp);
 
         // Take the code, wrap it in a function named "App" which will be picked up within the iframe.
         // Transpile the code with Babel to be able to run it in the iframe.
@@ -45,8 +45,8 @@ export const useAtlantisPreviewCode = ({
         // Clear the error state
         setError("");
 
-        // Determine which iframe to use (this is a weak point for expansion, we only suport two iframes now)
-        const selectedFrame = type == "web" ? iframe : iframeMobile;
+        // Use the flexible iframe selection system
+        const selectedFrame = getIframeRef(type);
 
         const html =
           selectedFrame.current?.contentDocument?.documentElement.outerHTML;
@@ -56,8 +56,20 @@ export const useAtlantisPreviewCode = ({
         setError((e as { message: string }).message as string);
       }
     },
-    [iframe, iframeMobile, theme, type],
+    [iframe, iframeMobile, getIframeRef, theme, type],
   );
 
   return { updateCode, code, error };
+};
+
+/**
+ * If the provided code does not include a leading return statement,
+ * add one and wrap the JSX/expression to be resilient to formatting.
+ * @param codeUp - The code to get the pre code for.
+ * @returns The pre code.
+ */
+const getPreCode = (codeUp: string) => {
+  const hasLeadingReturn = /^\s*return\b/m.test(codeUp);
+
+  return hasLeadingReturn ? codeUp : `return (${codeUp.trim()})`;
 };

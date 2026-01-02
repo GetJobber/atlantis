@@ -81,7 +81,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "toolbarVisibility": {
@@ -201,6 +201,21 @@
           "name": "string"
         }
       },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "autoFocus": {
         "defaultValue": null,
         "description": "Automatically focus the input after it is rendered",
@@ -224,7 +239,7 @@
         },
         "required": false,
         "type": {
-          "name": "Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>"
+          "name": "RegisterOptions"
         }
       },
       "onSubmitEditing": {
@@ -250,7 +265,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: NativeSyntheticEvent<TextInputFocusEventData>) => void"
+          "name": "(event?: FocusEvent) => void"
         }
       },
       "onBlur": {
@@ -263,7 +278,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: FocusEvent) => void"
         }
       },
       "accessibilityLabel": {
@@ -458,20 +473,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<InputTextRef>"
-        }
-      },
-      "key": {
-        "defaultValue": null,
-        "description": "",
-        "name": "key",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "Attributes"
-        },
-        "required": false,
-        "type": {
-          "name": "Key"
+          "name": "Ref<InputTextRef>"
         }
       }
     }

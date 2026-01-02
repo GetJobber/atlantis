@@ -1,5 +1,4 @@
-import type { MutableRefObject, PropsWithChildren, ReactNode } from "react";
-import type React from "react";
+import type { PropsWithChildren, ReactNode, RefObject } from "react";
 import type {
   ExtendedRefs,
   FloatingContext,
@@ -9,28 +8,6 @@ import type {
 import type { XOR } from "ts-xor";
 import type sizes from "./ModalSizes.module.css";
 import type { ButtonProps } from "../Button";
-
-export interface ModalProviderProps {
-  readonly children: React.ReactNode;
-  /**
-   * Size of the modal.
-   */
-  readonly size?: keyof typeof sizes;
-  /**
-   * Whether the modal is open.
-   */
-  readonly open?: boolean;
-  /**
-   * Callback executed when the user wants to close/dismiss the Modal
-   */
-  readonly onRequestClose?: () => void;
-  /**
-   * Ref to specify the activator element. Useful if the activator can unmount
-   * and focus needs to be returned to the activator element.
-   */
-  readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
-  readonly dismissible?: boolean;
-}
 
 export type ModalContentProps = PropsWithChildren;
 
@@ -49,7 +26,7 @@ export interface ModalContextType {
    * Ref to specify the activator element. Useful if the activator can unmount
    * and needs to be re-mounted.
    */
-  readonly activatorRef?: MutableRefObject<HTMLElement | null> | null;
+  readonly activatorRef?: RefObject<HTMLElement | null>;
   /**
    * Refs used by floating-ui to position the modal.
    */
@@ -78,9 +55,21 @@ export interface ModalContextType {
   readonly modalLabelledBy?: string;
 
   /**
+   * Accessible name for the Modal.
+   * Intended for use when no Header/Title content is provided, as the Heading/title takes precedence over ariaLabel.
+   */
+  readonly ariaLabel?: string;
+
+  /**
    * Floating-ui props to position the modal.
    */
   readonly getFloatingProps: UseInteractionsReturn["getFloatingProps"];
+
+  /**
+   * Tracks whether the current pointer interaction began inside the dialog.
+   * Used to disambiguate outsidePress after nested overlay closes.
+   */
+  readonly startedInsideRef?: RefObject<boolean>;
 }
 
 export interface ModalActionsProps {
@@ -134,4 +123,9 @@ export interface ModalLegacyProps {
   readonly tertiaryAction?: ButtonProps;
   onRequestClose?(): void;
   readonly version?: 1;
+  /**
+   * Accessible name for the Modal.
+   * Only required if no title is provided. Title takes precedence over ariaLabel.
+   */
+  readonly ariaLabel?: string;
 }

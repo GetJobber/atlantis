@@ -6,13 +6,7 @@ module.exports = {
     "../../node_modules/react-native-gesture-handler/jestSetup.js",
     "./jestSafeAreaContext.js",
   ],
-  setupFilesAfterEnv: [
-    "./jestMobileSetupConfig.js",
-    "./src/__mocks__/__mocks.ts",
-  ],
-  moduleNameMapper: {
-    "^@jobber/hooks/(.*)$": "<rootDir>/../hooks/dist/$1",
-  },
+  setupFilesAfterEnv: ["./src/__mocks__/__mocks.ts"],
   testPathIgnorePatterns: ["/node_modules/"],
   transformIgnorePatterns: [
     "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-native)",

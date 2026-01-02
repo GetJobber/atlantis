@@ -1,4 +1,5 @@
-import { PropsWithChildren, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router";
 import { NavMenu } from "./NavMenu";
 import { routes } from "../routes";
@@ -79,7 +80,7 @@ const OutOfLayoutSwitch = () => {
 };
 
 const RoutesSwitch = () => {
-  const baseRoutes: JSX.Element[] = [];
+  const baseRoutes: ReactElement[] = [];
 
   routes?.forEach((route, routeIndex) => {
     // Top level items with children (Changelog)

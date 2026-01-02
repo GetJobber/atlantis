@@ -184,7 +184,7 @@ export type DataListSelectedType<
 
 export type LayoutRenderer<T extends DataListObject> = (
   item: DataListItemType<T[]>,
-) => JSX.Element;
+) => ReactElement;
 
 export interface DataListLayoutProps<T extends DataListObject> {
   readonly children: LayoutRenderer<T>;
@@ -369,7 +369,7 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * Determine if the action is visible for a given item.
    */
-  readonly visible?: (item: T) => boolean;
+  readonly visible?: (item?: T) => boolean;
 
   /**
    * The callback function when the action is clicked.

@@ -1,0 +1,45 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Navigation/Tabs" />
+
+# Tabs
+
+Tabs are used to alternate amongst related views within the same context.
+
+## Design & usage guidelines
+
+Use Tabs when you need to group related sub-groups of content and the user only
+needs to access one sub-group at a time.
+
+Do not use Tabs as a means of navigating the view or in lieu of a Table of
+Contents.
+
+## Content guidelines
+
+Tabs are a metaphor for physical tab folders, so think of the content of each
+Tab as its' own "sheet of paper". What the content is can be flexible, as long
+as each Tab has distinct content.
+
+Tab labels contain only text by default, but additional content can be added if
+needed. Typically this should be some metadata that helps the user understand or
+anticipate the contents of each Tab, such as an InlineLabel to badge a count of
+items in each Tab, or an Icon. Do not insert additional interactive elements
+such as Buttons into a Tab label as it will create a confusing interaction
+pattern for the user.
+
+## Related components
+
+To show multiple groupings of content at once, use [Card](/components/Card).
+
+To allow the user to select one-of-many options in a form, use
+[RadioGroup](/components/RadioGroup) or [Select](/components/Select).
+
+## Accessibility
+
+Tabs have known accessibility concerns, including:
+
+- the user cannot navigate between Tabs using the arrow keys
+  - this breaks a universal expectation for tabbed interfaces
+- the user cannot keyboard-navigate directly from the selected Tab into the
+  selected Tab content
+  - initial keypress of `tab` key or `command+option+right` focuses next Tab

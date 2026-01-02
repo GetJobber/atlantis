@@ -18,7 +18,7 @@ export function Banner({
   type,
   children,
   icon,
-}: BannerProps): JSX.Element {
+}: BannerProps) {
   const bannerIcon = icon || getBannerIcon(type);
 
   const shouldFlow =
@@ -60,7 +60,7 @@ export function Banner({
   );
 }
 
-function BannerChildren({ children }: PropsWithChildren): JSX.Element {
+function BannerChildren({ children }: PropsWithChildren) {
   if (!children) return <></>;
 
   if (children && typeof children === "string") {
@@ -97,5 +97,7 @@ function getBannerIcon(type: BannerTypes): IconNames | undefined {
       return "help";
     case "error":
       return "alert";
+    case "success":
+      return "checkmark";
   }
 }

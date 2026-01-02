@@ -14,6 +14,9 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof Banner> = () => (
   <Content>
+    <Banner type="success">
+      <Text>Your import is complete</Text>
+    </Banner>
     <Banner type="notice">
       <Text>Your import is in progress</Text>
     </Banner>

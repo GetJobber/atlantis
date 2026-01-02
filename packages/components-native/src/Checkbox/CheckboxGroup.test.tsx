@@ -66,7 +66,7 @@ function SetupWithForm({
 }: {
   readonly initialValues: CheckboxGroupFormData;
   readonly onChangeHandlers?: CheckboxGroupFormOnChangeHandlers;
-}): JSX.Element {
+}) {
   const formMethods = useForm({ defaultValues: initialValues });
 
   return (
@@ -172,12 +172,8 @@ describe("when the parent checkbox does not have a label", () => {
   it("does not render the parent checkbox", async () => {
     const { checkboxGroup } = setup(undefined);
 
-    const findParentCheckbox = () => {
-      checkboxGroup.getByLabelText(parentCheckboxLabel);
-    };
-    expect(findParentCheckbox).toThrow(
-      "Unable to find an element with accessibilityLabel: all condiments",
-    );
+    const parentCheckbox = checkboxGroup.queryByLabelText(parentCheckboxLabel);
+    expect(parentCheckbox).toBeNull();
   });
 });
 

@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { HomePage } from "./pages/HomePage";
 import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
@@ -17,7 +18,7 @@ import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
 
 export interface AtlantisRoute {
   path?: string;
-  component?: () => JSX.Element;
+  component?: () => ReactElement;
   exact?: boolean;
   children?: Array<AtlantisRoute>;
   inNav?: boolean;
@@ -259,6 +260,11 @@ export const routes: Array<AtlantisRoute> = [
         handle: "Scaffolding",
         exact: true,
       },
+      {
+        path: "/guides/component-support-levels",
+        handle: "Component support levels",
+        exact: true,
+      },
     ],
   },
   {
@@ -300,6 +306,11 @@ export const routes: Array<AtlantisRoute> = [
     exact: true,
     component: ChangelogPage,
     children: [
+      {
+        path: "/changelog/breaking-changes",
+        handle: "Breaking Changes",
+        exact: true,
+      },
       {
         path: "/changelog/components",
         handle: "Components",

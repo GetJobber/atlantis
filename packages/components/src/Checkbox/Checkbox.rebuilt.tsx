@@ -5,9 +5,13 @@ import styles from "./Checkbox.module.css";
 import type { CheckboxRebuiltProps } from "./Checkbox.types";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
-  {
+  props: CheckboxRebuiltProps,
+  ref: React.Ref<HTMLInputElement>,
+) {
+  const {
     checked,
     defaultChecked,
     disabled,
@@ -20,19 +24,26 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
     onBlur,
     onChange,
     onFocus,
+    onClick,
+    onMouseDown,
+    onMouseUp,
+    onPointerDown,
+    onPointerUp,
     invalid,
-  }: CheckboxRebuiltProps,
-  ref: React.Ref<HTMLInputElement>,
-) {
+  } = props;
+
   const descriptionIdentifier = useId();
+  const descriptionVisible = Boolean(description);
   const wrapperClassName = classnames(
     styles.wrapper,
     disabled && styles.disabled,
     invalid && styles.invalid,
   );
+  const isInvalid = Boolean(invalid);
   const inputClassName = classnames(styles.input, {
     [styles.indeterminate]: indeterminate,
   });
+  const dataAttrs = filterDataAttributes(props);
 
   const iconName = indeterminate ? "minus2" : "checkmark";
   const labelContent = typeof label === "string" ? <Text>{label}</Text> : label;
@@ -60,7 +71,14 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
             id={id}
             className={inputClassName}
             name={name}
-            aria-describedby={description ? descriptionIdentifier : undefined}
+            aria-label={props["aria-label"]}
+            aria-describedby={
+              descriptionVisible
+                ? descriptionIdentifier
+                : props["aria-describedby"]
+            }
+            aria-invalid={isInvalid ? true : undefined}
+            aria-required={props["aria-required"]}
             checked={checked}
             value={value}
             defaultChecked={defaultChecked}
@@ -68,6 +86,12 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
             onChange={handleChange}
             onFocus={onFocus}
             onBlur={onBlur}
+            onClick={onClick}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
+            onPointerDown={onPointerDown}
+            onPointerUp={onPointerUp}
+            {...dataAttrs}
           />
           <span className={styles.checkBox}>
             <Icon name={iconName} color="surface" />

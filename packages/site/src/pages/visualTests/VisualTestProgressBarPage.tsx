@@ -82,6 +82,57 @@ export const VisualTestProgressBarPage = () => {
               </Grid.Cell>
             </Grid>
           </section>
+
+          {/* UNSAFE custom colors (visual regression for web progress pseudo-elements) */}
+          <section>
+            <Text size="large">UNSAFE custom colors</Text>
+            <style>
+              {`
+                /* Progress (single bar) - attach class directly to <progress> */
+                progress.visualTestCustom[value]::-webkit-progress-value { background-color: teal; }
+                progress.visualTestCustom[value]::-webkit-progress-bar { background-color: #e5e7eb; }
+                progress.visualTestCustom[value]::-moz-progress-bar { background-color: teal; }
+                `}
+            </style>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Stack gap="small">
+                  <Text>Progress: teal fill, light gray track</Text>
+                  <ProgressBar
+                    currentStep={60}
+                    totalSteps={100}
+                    UNSAFE_className={"visualTestCustom"}
+                  />
+                </Stack>
+              </Grid.Cell>
+            </Grid>
+          </section>
+
+          <section>
+            <Text size="large">UNSAFE custom colors (stepped)</Text>
+            <style>
+              {`
+                /* Stepped: wrapper class targets child <progress> elements */
+                .visualTestCustomStepped progress[value]::-webkit-progress-value { background-color: teal; }
+                .visualTestCustomStepped progress[value]::-webkit-progress-bar { background-color: #e5e7eb; }
+                .visualTestCustomStepped progress[value]::-moz-progress-bar { background-color: teal; }
+              `}
+            </style>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Stack gap="small">
+                  <Text>Stepped: teal fill via wrapper class</Text>
+                  <ProgressBar
+                    currentStep={2}
+                    totalSteps={5}
+                    variation="stepped"
+                    UNSAFE_className={"visualTestCustomStepped"}
+                    UNSAFE_style={{ borderRadius: 6, padding: 4 }}
+                  />
+                </Stack>
+              </Grid.Cell>
+            </Grid>
+          </section>
         </Stack>
       </Stack>
     </Box>

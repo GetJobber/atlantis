@@ -53,9 +53,9 @@ export interface TextProps
   readonly align?: TextAlign;
 
   /**
-   * Text to display
+   * Text to display. Supports nesting text elements.
    */
-  readonly children?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * Reverse theme for better display on dark background
@@ -143,7 +143,7 @@ export function Text({
   underline,
   selectable,
   onTextLayout,
-}: TextProps): JSX.Element {
+}: TextProps) {
   const accessibilityRole: TextAccessibilityRole = "text";
 
   return (

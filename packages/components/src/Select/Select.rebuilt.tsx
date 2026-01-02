@@ -1,28 +1,21 @@
 import React, { useId, useRef } from "react";
-import omit from "lodash/omit";
 import classnames from "classnames";
 import type { SelectRebuiltProps } from "./Select.types";
 import { useSelectActions } from "./hooks/useSelectActions";
-import { useSelectFormField } from "./hooks/useSelectFormField";
 import styles from "./Select.module.css";
-import {
-  FormFieldWrapper,
-  useAtlantisFormFieldName,
-  useFormFieldWrapperStyles,
-} from "../FormField";
+import { FormFieldWrapper, useAtlantisFormFieldName } from "../FormField";
 import { FormFieldPostFix } from "../FormField/FormFieldPostFix";
+import { mergeRefs } from "../utils/mergeRefs";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import formFieldStyles from "../FormField/FormField.module.css";
 
 export function SelectRebuilt(props: SelectRebuiltProps) {
-  const selectRef =
-    (props.inputRef as React.RefObject<HTMLSelectElement>) ??
-    useRef<HTMLSelectElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const { mergedRef, wrapperRef } = useSelectRefs(props.inputRef);
+  const dataAttrs = filterDataAttributes(props);
 
-  const { inputStyle } = useFormFieldWrapperStyles({
-    ...omit(props, ["version"]),
-  });
-
-  const id = useSelectId(props);
+  const generatedId = useId();
+  const id = props.id || generatedId;
+  const descriptionIdentifier = `descriptionUUID--${id}`;
 
   const { name } = useAtlantisFormFieldName({
     nameProp: props.name,
@@ -35,23 +28,8 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
     onFocus: props.onFocus,
   });
 
-  const inputProps = omit(props, [
-    "onChange",
-    "onBlur",
-    "onFocus",
-    "size",
-    "placeholder",
-    "version",
-  ]);
-
-  const { fieldProps, descriptionIdentifier } = useSelectFormField({
-    ...inputProps,
-    id,
-    name,
-    handleChange,
-    handleBlur,
-    handleFocus,
-  });
+  const descriptionVisible = props.description && !props.inline;
+  const isInvalid = Boolean(props.error || props.invalid);
 
   return (
     <FormFieldWrapper
@@ -59,7 +37,6 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       size={props.size}
       align={props.align}
       inline={props.inline}
-      autofocus={props.autofocus}
       name={name}
       wrapperRef={wrapperRef}
       error={props.error ?? ""}
@@ -73,16 +50,31 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
       prefix={props.prefix}
       suffix={props.suffix}
       clearable="never"
-      maxLength={props.maxLength}
     >
       <>
         <select
-          {...fieldProps}
-          ref={selectRef}
+          id={id}
+          name={name}
+          disabled={props.disabled}
+          autoFocus={props.autoFocus}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          value={props.value}
+          aria-label={props["aria-label"]}
+          aria-describedby={
+            descriptionVisible
+              ? descriptionIdentifier
+              : props["aria-describedby"]
+          }
+          aria-invalid={isInvalid ? true : undefined}
+          aria-required={props["aria-required"]}
+          ref={mergedRef}
           className={classnames(
-            inputStyle,
+            formFieldStyles.input,
             props.UNSAFE_experimentalStyles && styles.select,
           )}
+          {...dataAttrs}
         >
           {props.children}
         </select>
@@ -92,8 +84,17 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
   );
 }
 
-function useSelectId(props: SelectRebuiltProps) {
-  const generatedId = useId();
+function useSelectRefs(
+  inputRef?: React.RefObject<
+    HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement | null
+  >,
+) {
+  const internalRef = useRef<HTMLSelectElement>(null);
+  const mergedRef = mergeRefs<HTMLSelectElement>([
+    internalRef,
+    inputRef as React.RefObject<HTMLSelectElement>,
+  ]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  return props.id || generatedId;
+  return { mergedRef, wrapperRef };
 }

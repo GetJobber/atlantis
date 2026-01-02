@@ -18,7 +18,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"base\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
         }
       },
       "type": {

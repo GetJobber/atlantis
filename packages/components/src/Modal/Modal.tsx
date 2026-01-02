@@ -2,12 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import {
+  useFocusTrap,
+  useOnKeyDown,
+  useRefocusOnActivator,
+} from "@jobber/hooks";
 import styles from "./Modal.module.css";
 import sizes from "./ModalSizes.module.css";
 import type { ModalLegacyProps } from "./Modal.types";
+import { MODAL_HEADER_ID } from "./constants";
 import { Heading } from "../Heading";
 import type { ButtonProps } from "../Button";
 import { Button } from "../Button";
@@ -23,6 +26,7 @@ export function ModalLegacy({
   secondaryAction,
   tertiaryAction,
   onRequestClose,
+  ariaLabel,
 }: ModalLegacyProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   useRefocusOnActivator(open);
@@ -37,6 +41,9 @@ export function ModalLegacy({
           role="dialog"
           className={styles.container}
           tabIndex={0}
+          aria-modal="true"
+          aria-labelledby={title ? MODAL_HEADER_ID : undefined}
+          aria-label={ariaLabel}
         >
           <motion.div
             key={styles.overlay}
@@ -98,7 +105,9 @@ interface HeaderProps {
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="modal-header">
-      <Heading level={2}>{title}</Heading>
+      <Heading level={2} id={MODAL_HEADER_ID}>
+        {title}
+      </Heading>
 
       {dismissible && (
         <div className={styles.closeButton}>

@@ -4,10 +4,11 @@ import {
   fireEvent,
   render,
   renderHook,
+  screen,
   waitFor,
 } from "@testing-library/react-native";
 import type { TextStyle } from "react-native";
-import { Platform } from "react-native";
+import { Button, Platform } from "react-native";
 import { FormProvider, useForm } from "react-hook-form";
 import type { InputTextProps } from "./InputText";
 import { InputText } from "./InputText";
@@ -546,6 +547,194 @@ describe("InputText", () => {
         flattenedStyle.letterSpacing,
       );
       expect(styleOverride.inputText.color).toEqual(flattenedStyle.color);
+    });
+  });
+
+  describe("showMiniLabel", () => {
+    it("defaults to true", () => {
+      const props = { placeholder: "placeholder", value: "value" };
+      renderInputText(props);
+      expect(
+        screen.getByText("placeholder", { includeHiddenElements: true }),
+      ).toBeDefined();
+      expect(MockInputFieldWrapper).toHaveBeenCalledWith(
+        expect.objectContaining({
+          placeholderMode: "mini",
+        }),
+      );
+    });
+
+    describe("when true", () => {
+      it("renders the placeholder in its normal position when the input has no value", () => {
+        const props = { showMiniLabel: true, placeholder: "placeholder" };
+        renderInputText(props);
+        expect(
+          screen.getByText("placeholder", { includeHiddenElements: true }),
+        ).toBeDefined();
+        expect(MockInputFieldWrapper).toHaveBeenCalledWith(
+          expect.objectContaining({
+            placeholderMode: "normal",
+          }),
+        );
+      });
+
+      it("renders the placeholder as a mini label when the input has a value", () => {
+        const props = {
+          showMiniLabel: true,
+          placeholder: "placeholder",
+          value: "value",
+        };
+        renderInputText(props);
+        expect(
+          screen.getByText("placeholder", { includeHiddenElements: true }),
+        ).toBeDefined();
+        expect(MockInputFieldWrapper).toHaveBeenCalledWith(
+          expect.objectContaining({
+            placeholderMode: "mini",
+          }),
+        );
+      });
+    });
+
+    describe("when false", () => {
+      it("renders the placeholder in its normal position when the input has no value", () => {
+        const props = { showMiniLabel: false, placeholder: "placeholder" };
+        renderInputText(props);
+        expect(
+          screen.getByText("placeholder", { includeHiddenElements: true }),
+        ).toBeDefined();
+        expect(MockInputFieldWrapper).toHaveBeenCalledWith(
+          expect.objectContaining({
+            placeholderMode: "normal",
+          }),
+        );
+      });
+
+      it("does not render the placeholder when the input has a value", () => {
+        const props = {
+          showMiniLabel: false,
+          placeholder: "placeholder",
+          value: "value",
+        };
+        renderInputText(props);
+        expect(
+          screen.queryByText("placeholder", { includeHiddenElements: true }),
+        ).toBeNull();
+      });
+    });
+  });
+
+  describe("with FormProvider", () => {
+    const mockOnSubmit = jest.fn();
+    const inputName = "testInput";
+    const inputAccessibilityLabel = "Test Input";
+    const saveButtonText = "Save";
+
+    function FormWithProvider({
+      defaultValue,
+    }: {
+      readonly defaultValue?: string;
+    }) {
+      const formMethods = useForm();
+
+      return (
+        <FormProvider {...formMethods}>
+          <InputText
+            name={inputName}
+            defaultValue={defaultValue}
+            accessibilityLabel={inputAccessibilityLabel}
+          />
+          <Button
+            onPress={formMethods.handleSubmit(values => mockOnSubmit(values))}
+            title={saveButtonText}
+            accessibilityLabel={saveButtonText}
+          />
+        </FormProvider>
+      );
+    }
+
+    beforeEach(() => {
+      mockOnSubmit.mockClear();
+    });
+
+    describe("defaultValue prop sets form value", () => {
+      it("sets form value to string when defaultValue is provided", async () => {
+        const testValue = "test value";
+        const { getByLabelText } = render(
+          <FormWithProvider defaultValue={testValue} />,
+        );
+
+        const saveButton = getByLabelText(saveButtonText);
+        await waitFor(() => {
+          fireEvent.press(saveButton);
+        });
+
+        expect(mockOnSubmit).toHaveBeenCalledWith({
+          [inputName]: testValue,
+        });
+      });
+
+      it("sets form value to undefined when defaultValue is undefined", async () => {
+        const { getByLabelText } = render(<FormWithProvider />);
+
+        const saveButton = getByLabelText(saveButtonText);
+        await waitFor(() => {
+          fireEvent.press(saveButton);
+        });
+
+        expect(mockOnSubmit).toHaveBeenCalledWith({
+          [inputName]: undefined,
+        });
+      });
+
+      it("sets form value to undefined when defaultValue is empty string", async () => {
+        const { getByLabelText } = render(<FormWithProvider defaultValue="" />);
+
+        const saveButton = getByLabelText(saveButtonText);
+        await waitFor(() => {
+          fireEvent.press(saveButton);
+        });
+
+        expect(mockOnSubmit).toHaveBeenCalledWith({
+          [inputName]: undefined,
+        });
+      });
+    });
+
+    describe("input value updates form value", () => {
+      it("updates form value when input text is changed", async () => {
+        const { getByLabelText } = render(
+          <FormWithProvider defaultValue="initial" />,
+        );
+
+        const input = getByLabelText(inputAccessibilityLabel);
+        fireEvent.changeText(input, "new value");
+
+        const saveButton = getByLabelText(saveButtonText);
+        await waitFor(() => {
+          fireEvent.press(saveButton);
+        });
+
+        expect(mockOnSubmit).toHaveBeenCalledWith({
+          [inputName]: "new value",
+        });
+      });
+
+      it("preserves defaultValue when input is not interacted with", async () => {
+        const testValue = "preserved value";
+        const { getByLabelText } = render(
+          <FormWithProvider defaultValue={testValue} />,
+        );
+
+        const saveButton = getByLabelText(saveButtonText);
+        await waitFor(() => {
+          fireEvent.press(saveButton);
+        });
+
+        expect(mockOnSubmit).toHaveBeenCalledWith({
+          [inputName]: testValue,
+        });
+      });
     });
   });
 });

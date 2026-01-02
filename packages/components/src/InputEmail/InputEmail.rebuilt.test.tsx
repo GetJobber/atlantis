@@ -97,8 +97,7 @@ describe("InputEmailRebuilt", () => {
       expect(blurHandler).toHaveBeenCalledTimes(1);
     });
 
-    it("should call onChange with undefined, call onBlur, and focus input when cleared", async () => {
-      const changeHandler = jest.fn();
+    it("should not call onBlur when cleared programmatically", async () => {
       const blurHandler = jest.fn();
       const ref = React.createRef<HTMLInputElement>();
       const initialValue = "test@example.com";
@@ -107,7 +106,6 @@ describe("InputEmailRebuilt", () => {
         <InputEmailRebuilt
           version={2}
           value={initialValue}
-          onChange={changeHandler}
           onBlur={blurHandler}
           clearable="always"
           ref={ref}
@@ -117,8 +115,29 @@ describe("InputEmailRebuilt", () => {
       const clearButton = screen.getByTestId("ATL-FormField-clearButton");
       await userEvent.click(clearButton);
 
+      expect(blurHandler).not.toHaveBeenCalled();
+    });
+
+    it("should call onChange with empty string, and focus input when cleared", async () => {
+      const changeHandler = jest.fn();
+      const ref = React.createRef<HTMLInputElement>();
+      const initialValue = "test@example.com";
+
+      render(
+        <InputEmailRebuilt
+          version={2}
+          value={initialValue}
+          onChange={changeHandler}
+          clearable="always"
+          ref={ref}
+        />,
+      );
+
+      const clearButton = screen.getByTestId("ATL-FormField-clearButton");
+      await userEvent.click(clearButton);
+
       expect(changeHandler).toHaveBeenCalledWith("");
-      expect(blurHandler).toHaveBeenCalledTimes(1);
+      expect(ref.current).toHaveFocus();
     });
   });
 
@@ -145,6 +164,119 @@ describe("InputEmailRebuilt", () => {
 
       ref.current?.blur();
       expect(blurSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe("Shared HTMLInputBaseProps", () => {
+    it("should render with id attribute", () => {
+      render(<InputEmailRebuilt version={2} id="email-id" />);
+      expect(screen.getByRole("textbox")).toHaveAttribute("id", "email-id");
+    });
+
+    it("should render with name attribute", () => {
+      render(<InputEmailRebuilt version={2} name="email-name" />);
+      expect(screen.getByRole("textbox")).toHaveAttribute("name", "email-name");
+    });
+
+    it("should be read-only when readOnly prop is true", () => {
+      render(
+        <InputEmailRebuilt version={2} value="test@example.com" readOnly />,
+      );
+      expect(screen.getByRole("textbox")).toHaveAttribute("readonly");
+    });
+
+    it("should not allow typing when readOnly", async () => {
+      const changeHandler = jest.fn();
+      render(
+        <InputEmailRebuilt
+          version={2}
+          value="test@example.com"
+          readOnly
+          onChange={changeHandler}
+        />,
+      );
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "new");
+      expect(changeHandler).not.toHaveBeenCalled();
+    });
+
+    it("should auto-focus when autoFocus prop is true", () => {
+      render(<InputEmailRebuilt version={2} autoFocus />);
+      expect(screen.getByRole("textbox")).toHaveFocus();
+    });
+  });
+
+  describe("Shared RebuiltInputCommonProps", () => {
+    it("should display error message", () => {
+      const errorMessage = "Invalid email address";
+      render(<InputEmailRebuilt version={2} error={errorMessage} />);
+      expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    });
+
+    it("should apply loading spinner class when loading prop is true", () => {
+      const { container } = render(<InputEmailRebuilt version={2} loading />);
+      expect(container.querySelector('[class*="spinner"]')).toBeTruthy();
+    });
+
+    it("should apply inline class", () => {
+      const { container } = render(<InputEmailRebuilt version={2} inline />);
+      const containerEl = container.querySelector('[class*="container"]');
+      expect(containerEl).toHaveClass("inline");
+    });
+
+    it("should render string description", () => {
+      const description = "We'll never share your email";
+      render(<InputEmailRebuilt version={2} description={description} />);
+      expect(screen.getByText(description)).toBeInTheDocument();
+    });
+
+    it("should render with prefix", () => {
+      render(<InputEmailRebuilt version={2} prefix={{ icon: "email" }} />);
+      expect(screen.getByTestId("email")).toBeInTheDocument();
+    });
+
+    it("should render with suffix", () => {
+      render(
+        <InputEmailRebuilt version={2} suffix={{ label: "@company.com" }} />,
+      );
+      expect(screen.getByText("@company.com")).toBeInTheDocument();
+    });
+  });
+
+  describe("Event handlers", () => {
+    it("should call onKeyDown when key is pressed", async () => {
+      const keyDownHandler = jest.fn();
+      render(<InputEmailRebuilt version={2} onKeyDown={keyDownHandler} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "a");
+      expect(keyDownHandler).toHaveBeenCalled();
+    });
+
+    it("should call onKeyUp when key is released", async () => {
+      const keyUpHandler = jest.fn();
+      render(<InputEmailRebuilt version={2} onKeyUp={keyUpHandler} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "a");
+      expect(keyUpHandler).toHaveBeenCalled();
+    });
+
+    it("should call all mouse handlers during a click", async () => {
+      const handlers = {
+        onClick: jest.fn(),
+        onMouseDown: jest.fn(),
+        onMouseUp: jest.fn(),
+        onPointerDown: jest.fn(),
+        onPointerUp: jest.fn(),
+      };
+      render(<InputEmailRebuilt version={2} {...handlers} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.click(input);
+
+      expect(handlers.onClick).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onMouseUp).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerDown).toHaveBeenCalledTimes(1);
+      expect(handlers.onPointerUp).toHaveBeenCalledTimes(1);
     });
   });
 });

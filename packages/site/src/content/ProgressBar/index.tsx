@@ -1,4 +1,4 @@
-import ProgressBarContent from "@atlantis/docs/components/ProgressBar/ProgressBar.stories.mdx";
+import ProgressBarContent from "./ProgressBar.stories.mdx";
 import Props from "./ProgressBar.props.json";
 import MobileProps from "./ProgressBar.props-mobile.json";
 import { ContentExport } from "../../types/content";

@@ -167,20 +167,7 @@
         },
         "required": false,
         "type": {
-          "name": "LegacyRef<ConfirmationModalRef>"
-        }
-      },
-      "key": {
-        "defaultValue": null,
-        "description": "",
-        "name": "key",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "Attributes"
-        },
-        "required": false,
-        "type": {
-          "name": "Key"
+          "name": "Ref<ConfirmationModalRef>"
         }
       }
     }

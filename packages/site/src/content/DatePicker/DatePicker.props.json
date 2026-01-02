@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>> | ((props: DatePickerActivatorProps) => ReactElement<any, string | JSXElementConstructor<...>>)"
+          "name": "ReactElement<unknown, string | JSXElementConstructor<any>> | ((props: DatePickerActivatorProps) => ReactElement<unknown, string | JSXElementConstructor<...>>)"
         }
       },
       "disabled": {
@@ -183,6 +183,19 @@
         "required": false,
         "type": {
           "name": "(val: Date) => void"
+        }
+      },
+      "onOpenChange": {
+        "defaultValue": null,
+        "description": "Callback when the calendar open state changes",
+        "name": "onOpenChange",
+        "parent": {
+          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(open: boolean) => void"
         }
       }
     }

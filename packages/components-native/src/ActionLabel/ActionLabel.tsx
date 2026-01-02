@@ -12,9 +12,9 @@ type ActionLabelType = "default" | "cardTitle";
 
 interface ActionLabelProps {
   /**
-   * Text to display
+   * Text to display. Supports nesting text elements.
    */
-  readonly children?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * Set the display text to disabled color
@@ -43,7 +43,7 @@ export function ActionLabel({
   type = "default",
   disabled = false,
   align = "center",
-}: ActionLabelProps): JSX.Element {
+}: ActionLabelProps) {
   return (
     <Typography
       color={getColor(variation, disabled)}

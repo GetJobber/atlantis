@@ -38,7 +38,7 @@ export function StatusLabel({
   text,
   alignment = "end",
   status = "success",
-}: StatusLabelProps): JSX.Element {
+}: StatusLabelProps) {
   const styles = useStyles();
 
   return (

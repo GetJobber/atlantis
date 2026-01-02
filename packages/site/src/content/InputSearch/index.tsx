@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/InputSearch/InputSearch.stories.mdx";
+import Content from "./InputSearch.stories.mdx";
 import MobileProps from "./InputSearch.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

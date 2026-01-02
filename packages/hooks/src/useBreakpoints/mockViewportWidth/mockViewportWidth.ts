@@ -1,8 +1,12 @@
-const defaultMatchMedia = window.matchMedia;
-const defaultResizeTo = window.resizeTo;
-const defaultInnerWidth = window.innerWidth;
+let defaultMatchMedia: typeof window.matchMedia;
+let defaultResizeTo: typeof window.resizeTo;
+let defaultInnerWidth: typeof window.innerWidth;
 
 export function mockViewportWidth() {
+  defaultMatchMedia = window.matchMedia;
+  defaultResizeTo = window.resizeTo;
+  defaultInnerWidth = window.innerWidth;
+
   return { cleanup, setViewportWidth };
 }
 

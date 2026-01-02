@@ -11,7 +11,7 @@ import { useStyles } from "../../InputFieldWrapper.style";
 export interface SuffixLabelProps {
   readonly focused: boolean;
   readonly disabled?: boolean;
-  readonly hasMiniLabel: boolean;
+  readonly miniLabelActive: boolean;
   readonly inputInvalid?: boolean;
   readonly label: string;
   readonly hasLeftMargin?: boolean;
@@ -24,12 +24,12 @@ export const suffixIconTestId = "ATL-InputFieldWrapper-SuffixIcon";
 export function SuffixLabel({
   focused,
   disabled,
-  hasMiniLabel,
+  miniLabelActive,
   inputInvalid,
   label,
   hasLeftMargin = true,
   styleOverride,
-}: SuffixLabelProps): JSX.Element {
+}: SuffixLabelProps) {
   const styles = useStyles();
   const typographyStyles = useTypographyStyles();
 
@@ -44,7 +44,10 @@ export function SuffixLabel({
       ]}
     >
       <View
-        style={[styles.suffixLabel, hasMiniLabel && styles.fieldAffixMiniLabel]}
+        style={[
+          styles.suffixLabel,
+          miniLabelActive && styles.fieldAffixMiniLabel,
+        ]}
       >
         {!styleOverride ? (
           <Text variation={disabled ? "disabled" : "base"}>{label}</Text>
@@ -70,7 +73,6 @@ export function SuffixLabel({
 export interface SuffixIconProps {
   readonly focused: boolean;
   readonly disabled?: boolean;
-  readonly hasMiniLabel: boolean;
   readonly inputInvalid?: boolean;
   readonly icon: IconNames;
   readonly hasLeftMargin?: boolean;
@@ -84,7 +86,7 @@ export function SuffixIcon({
   icon,
   hasLeftMargin = false,
   onPress,
-}: SuffixIconProps): JSX.Element {
+}: SuffixIconProps) {
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
 

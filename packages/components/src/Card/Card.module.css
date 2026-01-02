@@ -5,6 +5,7 @@
 
   display: block;
   width: 100%;
+  box-sizing: border-box;
   border: var(--card--border);
   border-radius: var(--radius-base);
   outline-color: var(--color-focus);
@@ -34,9 +35,13 @@
 .accent::before {
   content: " ";
   display: block;
-  margin: 0 calc(-1 * var(--border-base));
-  border-top: 0.375rem solid var(--card--accent-color);
+  position: relative;
+  top: var(--border-base);
+  height: calc(0.375rem - var(--border-base) * 2);
+  box-shadow: 0 0 0 var(--border-base) var(--card--accent-color);
+  margin: 0 0 calc(var(--border-base) * 2);
   border-radius: var(--radius-base) var(--radius-base) 0 0;
+  background-color: var(--card--accent-color);
 }
 
 .clickable {

@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/FormField/FormField.stories.mdx";
+import Content from "./FormField.stories.mdx";
 import Props from "./FormField.props.json";
 import MobileProps from "./FormField.props-mobile.json";
 import Notes from "./FormFieldNotes.mdx";

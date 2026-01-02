@@ -9,10 +9,15 @@ import { useSpaceAroundStyles } from "./ContentSpaceAround.style";
 export type Spacing =
   | "none"
   | "base"
+  | "slim"
   | "small"
   | "smaller"
   | "smallest"
-  | "large";
+  | "minuscule"
+  | "large"
+  | "larger"
+  | "largest"
+  | "extravagant";
 
 export interface ContentUnsafeStyle {
   container?: StyleProp<ViewStyle>;
@@ -51,7 +56,7 @@ export function Content({
   childSpacing = "base",
   direction = "vertical",
   UNSAFE_style,
-}: ContentProps): JSX.Element {
+}: ContentProps) {
   const horizontalStyles = useHorizontalStyles();
   const verticalStyles = useVerticalStyles();
   const spaceAroundStyles = useSpaceAroundStyles();

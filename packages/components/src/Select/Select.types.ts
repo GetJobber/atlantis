@@ -1,4 +1,9 @@
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type {
+  FocusEvents,
+  HTMLInputBaseProps,
+  RebuiltInputCommonProps,
+} from "../sharedHelpers/types";
 
 export interface SelectLegacyProps
   extends Pick<
@@ -41,20 +46,21 @@ export interface SelectLegacyProps
  * Rebuilt version of the Select component without React Hook Form dependency.
  */
 export interface SelectRebuiltProps
-  extends Omit<
-    SelectLegacyProps,
-    | "defaultValue"
-    | "version"
-    | "onChange"
-    | "value"
-    | "validations"
-    | "onValidation"
-  > {
+  extends Omit<HTMLInputBaseProps, "readOnly">,
+    FocusEvents<HTMLSelectElement>,
+    Omit<RebuiltInputCommonProps, "clearable" | "prefix" | "suffix" | "align">,
+    Pick<SelectLegacyProps, "prefix" | "suffix" | "align" | "children"> {
   defaultValue?: never;
   readonly value?: string | number;
   onChange?(newValue?: string | number): void;
-  version: 2;
-  error?: string;
+
+  readonly inputRef?: FormFieldProps["inputRef"];
+
+  /**
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
+   */
+  readonly onEnter?: FormFieldProps["onEnter"];
+
   /**
    * Opt-in to the customizable select UI (Chromium 123+).
    * When true, the component will apply the custom select styles

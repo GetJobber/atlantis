@@ -1,5 +1,5 @@
 import type { RefObject } from "react";
-import { useSafeLayoutEffect } from "@jobber/hooks/useSafeLayoutEffect";
+import { useSafeLayoutEffect } from "@jobber/hooks";
 import type { RowRange } from "./InputText.types";
 
 /**
@@ -13,8 +13,8 @@ export function useTextAreaResize({
 }: {
   rows?: number | RowRange;
   value: string | number | Date | undefined;
-  inputRef: RefObject<HTMLTextAreaElement | HTMLInputElement>;
-  wrapperRef: RefObject<HTMLDivElement>;
+  inputRef: RefObject<HTMLTextAreaElement | HTMLInputElement | null>;
+  wrapperRef: RefObject<HTMLDivElement | null>;
 }) {
   const rowRange = getRowRange(rows);
 

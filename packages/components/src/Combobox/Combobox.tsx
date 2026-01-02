@@ -10,7 +10,7 @@ import { useCombobox } from "./hooks/useCombobox";
 import { ComboboxActivator } from "./components/ComboboxActivator";
 import { useComboboxValidation } from "./hooks/useComboboxValidation";
 
-export function Combobox(props: ComboboxProps): JSX.Element {
+export function Combobox(props: ComboboxProps) {
   const { optionElements, triggerElement, actionElements } =
     useComboboxValidation(props.children);
 

@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import React, { Children, isValidElement } from "react";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Button } from "@jobber/components/Button";
+import type { IconNames } from "@jobber/components/Icon";
 import type {
   DataListActionProps,
   DataListActionsProps,
@@ -42,6 +43,8 @@ export function DataListActions<T extends DataListObject>({
           if (activeItem) {
             return props.label(activeItem);
           }
+
+          return "";
         }
 
         const actionLabel = getActionLabel();
@@ -51,11 +54,11 @@ export function DataListActions<T extends DataListObject>({
           return (
             <Button
               ariaLabel={actionLabel}
-              key={props.label}
+              key={actionLabel}
               icon={props.icon}
               label={actionLabel}
               onClick={() => {
-                props.onClick?.(activeItem);
+                if (activeItem) props.onClick?.(activeItem);
               }}
               type="secondary"
               variation="subtle"
@@ -66,7 +69,7 @@ export function DataListActions<T extends DataListObject>({
         return (
           <Tooltip key={actionLabel} message={actionLabel}>
             <Button
-              icon={props.icon}
+              icon={props.icon as IconNames}
               ariaLabel={actionLabel}
               onClick={() => {
                 if (activeItem) {

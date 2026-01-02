@@ -91,6 +91,52 @@ WithElevation.args = {
   elevation: "base",
 };
 
+const WithAccentTemplate: ComponentStory<typeof Card> = args => (
+  <div
+    style={{
+      maxWidth: "700px",
+      overflow: "auto",
+    }}
+  >
+    <Card {...args}>
+      <Content>
+        <Heading level={4}>Details</Heading>
+        <InputGroup>
+          <InputText defaultValue="Quest Provider" placeholder="Company name" />
+          <InputText placeholder="Years in business" />
+        </InputGroup>
+        <Heading level={4}>Contact</Heading>
+        <InputGroup>
+          <InputText
+            prefix={{
+              icon: "phone",
+            }}
+            placeholder="Phone number"
+          />
+          <InputText
+            prefix={{
+              icon: "presentation",
+            }}
+            placeholder="Website"
+          />
+          <InputText
+            prefix={{
+              icon: "email",
+            }}
+            placeholder="Email"
+          />
+        </InputGroup>
+      </Content>
+    </Card>
+  </div>
+);
+
+export const WithAccent = WithAccentTemplate.bind({});
+WithAccent.args = {
+  header: "Company settings",
+  accent: "indigoLight",
+};
+
 const CustomHeaderTemplate: ComponentStory<typeof Card> = args => (
   <Card
     header={

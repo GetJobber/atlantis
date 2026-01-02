@@ -12,7 +12,7 @@ import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import { VisibleWhenFocused } from "../components/VisibleWhenFocused";
 
 export interface NavMenuProps {
-  readonly mainContentRef: React.RefObject<HTMLDivElement>;
+  readonly mainContentRef: React.RefObject<HTMLDivElement | null>;
 }
 
 /**
@@ -158,7 +158,7 @@ export const StyledLink = ({
   selectedRef,
 }: PropsWithChildren<{
   readonly to: string;
-  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement | null>;
 }>) => {
   const { pathname } = useLocation();
   const isSelected = pathname === to;
@@ -188,7 +188,7 @@ export const StyledSubLink = ({
   selectedRef,
 }: PropsWithChildren<{
   readonly to: string;
-  readonly selectedRef: React.RefObject<HTMLAnchorElement>;
+  readonly selectedRef: React.RefObject<HTMLAnchorElement | null>;
 }>) => {
   const { pathname } = useLocation();
   const isSelected = pathname === to;

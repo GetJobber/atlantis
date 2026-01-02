@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ComponentMeta } from "@storybook/react";
 import {
   ColumnFiltersState,
   PaginationState,
@@ -13,6 +12,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { ComponentMeta } from "@storybook/react";
 import { DataTable, SortDirection } from "@jobber/components/DataTable";
 import { Button } from "@jobber/components/Button";
 import { Chip } from "@jobber/components/Chip";

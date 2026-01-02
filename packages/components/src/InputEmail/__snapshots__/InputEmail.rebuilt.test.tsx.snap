@@ -22,10 +22,9 @@ exports[`InputEmailRebuilt renders a basic InputEmailRebuilt 1`] = `
             <input
               class="input"
               data-testid="ATL-InputEmail-input"
-              id=":r0:"
-              name="generatedName--:r0:"
+              id="«r0»"
+              name="generatedName--«r0»"
               type="email"
-              value=""
             />
           </div>
         </div>
@@ -57,10 +56,9 @@ exports[`InputEmailRebuilt renders correctly as large 1`] = `
             <input
               class="input"
               data-testid="ATL-InputEmail-input"
-              id=":r3:"
-              name="generatedName--:r3:"
+              id="«r3»"
+              name="generatedName--«r3»"
               type="email"
-              value=""
             />
           </div>
         </div>
@@ -92,10 +90,9 @@ exports[`InputEmailRebuilt renders correctly as small 1`] = `
             <input
               class="input"
               data-testid="ATL-InputEmail-input"
-              id=":r2:"
-              name="generatedName--:r2:"
+              id="«r2»"
+              name="generatedName--«r2»"
               type="email"
-              value=""
             />
           </div>
         </div>
@@ -128,10 +125,9 @@ exports[`InputEmailRebuilt renders correctly when disabled 1`] = `
               class="input"
               data-testid="ATL-InputEmail-input"
               disabled=""
-              id=":r4:"
-              name="generatedName--:r4:"
+              id="«r4»"
+              name="generatedName--«r4»"
               type="email"
-              value=""
             />
           </div>
         </div>
@@ -161,13 +157,12 @@ exports[`InputEmailRebuilt renders correctly when invalid 1`] = `
             tabindex="-1"
           >
             <input
+              aria-invalid="true"
               class="input"
               data-testid="ATL-InputEmail-input"
-              id=":r5:"
-              invalid="true"
-              name="generatedName--:r5:"
+              id="«r5»"
+              name="generatedName--«r5»"
               type="email"
-              value=""
             />
           </div>
         </div>
@@ -194,7 +189,7 @@ exports[`InputEmailRebuilt renders correctly with placeholder 1`] = `
         >
           <label
             class="label"
-            for=":r1:"
+            for="«r1»"
           >
             Enter email
           </label>
@@ -205,10 +200,9 @@ exports[`InputEmailRebuilt renders correctly with placeholder 1`] = `
             <input
               class="input"
               data-testid="ATL-InputEmail-input"
-              id=":r1:"
-              name="generatedName--:r1:"
+              id="«r1»"
+              name="generatedName--«r1»"
               type="email"
-              value=""
             />
           </div>
         </div>

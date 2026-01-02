@@ -29,33 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>>"
-        }
-      },
-      "checked": {
-        "defaultValue": null,
-        "description": "Determines if the checkbox is checked or not.",
-        "name": "checked",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "defaultChecked": {
-        "defaultValue": null,
-        "description": "Initial checked value of the checkbox. Only use this when you need to\npre-populate the checked attribute that is not controlled by the component's\nstate. If a state is controlling it, use the `checked` prop instead.",
-        "name": "defaultChecked",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
+          "name": "ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "disabled": {
@@ -71,38 +45,10 @@
           "name": "boolean"
         }
       },
-      "indeterminate": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "When `true` the checkbox to appears in indeterminate.",
-        "name": "indeterminate",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "name": {
         "defaultValue": null,
         "description": "Checkbox input name",
         "name": "name",
-        "parent": {
-          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string"
-        }
-      },
-      "value": {
-        "defaultValue": null,
-        "description": "Value of the checkbox.",
-        "name": "value",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
           "name": "BaseCheckboxProps"
@@ -177,17 +123,58 @@
           "name": "(event: FocusEvent<HTMLInputElement, Element>) => void"
         }
       },
-      "invalid": {
+      "checked": {
         "defaultValue": null,
-        "description": "Whether the checkbox is invalid",
-        "name": "invalid",
+        "description": "Determines if the checkbox is checked or not.",
+        "name": "checked",
         "parent": {
           "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
-          "name": "BaseCheckboxProps"
+          "name": "CheckboxCoreProps"
         },
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "defaultChecked": {
+        "defaultValue": null,
+        "description": "Initial checked value of the checkbox. Only use this when you need to\npre-populate the checked attribute that is not controlled by the component's\nstate. If a state is controlling it, use the `checked` prop instead.",
+        "name": "defaultChecked",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "CheckboxCoreProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "indeterminate": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "When `true` the checkbox to appears in indeterminate.",
+        "name": "indeterminate",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "CheckboxCoreProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "value": {
+        "defaultValue": null,
+        "description": "Value of the checkbox.",
+        "name": "value",
+        "parent": {
+          "fileName": "packages/components/src/Checkbox/Checkbox.types.ts",
+          "name": "CheckboxCoreProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       },
       "version": {

@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Page/Page.stories.mdx";
+import Content from "./Page.stories.mdx";
 import Props from "./Page.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
@@ -7,7 +7,7 @@ export default {
   content: () => <Content />,
   props: Props,
   component: {
-    element: `(
+    element: `
     <Page
       title={"Notifications"}
       intro={
@@ -18,7 +18,7 @@ export default {
         <Text>Page content here</Text>
       </Content>
     </Page>
-  );`,
+  `,
     defaultProps: {},
   },
   title: "Page",

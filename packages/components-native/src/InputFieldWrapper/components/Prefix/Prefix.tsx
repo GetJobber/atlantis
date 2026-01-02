@@ -11,7 +11,7 @@ import { useStyles } from "../../InputFieldWrapper.style";
 export interface PrefixLabelProps {
   readonly focused: boolean;
   readonly disabled?: boolean;
-  readonly hasMiniLabel: boolean;
+  readonly miniLabelActive: boolean;
   readonly inputInvalid: boolean;
   readonly label: string;
   readonly styleOverride?: StyleProp<TextStyle>;
@@ -23,11 +23,11 @@ export const prefixIconTestId = "ATL-InputFieldWrapper-PrefixIcon";
 export function PrefixLabel({
   focused,
   disabled,
-  hasMiniLabel,
+  miniLabelActive,
   inputInvalid,
   label,
   styleOverride,
-}: PrefixLabelProps): JSX.Element {
+}: PrefixLabelProps) {
   const styles = useStyles();
   const typographyStyles = useTypographyStyles();
 
@@ -41,7 +41,10 @@ export function PrefixLabel({
       testID={prefixLabelTestId}
     >
       <View
-        style={[styles.prefixLabel, hasMiniLabel && styles.fieldAffixMiniLabel]}
+        style={[
+          styles.prefixLabel,
+          miniLabelActive && styles.fieldAffixMiniLabel,
+        ]}
       >
         {!styleOverride ? (
           <Text variation={disabled ? "disabled" : "base"}>{label}</Text>
@@ -67,7 +70,6 @@ export function PrefixLabel({
 export interface PrefixIconProps {
   readonly focused: boolean;
   readonly disabled?: boolean;
-  readonly hasMiniLabel: boolean;
   readonly inputInvalid?: boolean;
   readonly icon: IconNames;
   readonly styleOverride?: StyleProp<ViewStyle>;
@@ -78,7 +80,7 @@ export function PrefixIcon({
   disabled,
   inputInvalid,
   icon,
-}: PrefixIconProps): JSX.Element {
+}: PrefixIconProps) {
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
 

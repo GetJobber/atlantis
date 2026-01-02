@@ -21,8 +21,8 @@ exports[`SelectRebuilt renders a SelectRebuilt with many options 1`] = `
           >
             <select
               class="input"
-              id=":r2:"
-              name="generatedName--:r2:"
+              id="«r2»"
+              name="generatedName--«r2»"
             >
               <option>
                 Foo
@@ -80,8 +80,8 @@ exports[`SelectRebuilt renders a SelectRebuilt with no options 1`] = `
           >
             <select
               class="input"
-              id=":r0:"
-              name="generatedName--:r0:"
+              id="«r0»"
+              name="generatedName--«r0»"
             />
             <span
               class="postfix selectPostfix"
@@ -126,8 +126,8 @@ exports[`SelectRebuilt renders a SelectRebuilt with one option 1`] = `
           >
             <select
               class="input"
-              id=":r1:"
-              name="generatedName--:r1:"
+              id="«r1»"
+              name="generatedName--«r1»"
             >
               <option>
                 Foo
@@ -176,8 +176,8 @@ exports[`SelectRebuilt renders correctly as large 1`] = `
           >
             <select
               class="input"
-              id=":r4:"
-              name="generatedName--:r4:"
+              id="«r4»"
+              name="generatedName--«r4»"
             >
               <option>
                 Foo
@@ -226,8 +226,8 @@ exports[`SelectRebuilt renders correctly as small 1`] = `
           >
             <select
               class="input"
-              id=":r3:"
-              name="generatedName--:r3:"
+              id="«r3»"
+              name="generatedName--«r3»"
             >
               <option>
                 Foo
@@ -277,8 +277,8 @@ exports[`SelectRebuilt renders correctly when disabled 1`] = `
             <select
               class="input"
               disabled=""
-              id=":r5:"
-              name="generatedName--:r5:"
+              id="«r5»"
+              name="generatedName--«r5»"
             >
               <option>
                 Foo
@@ -326,9 +326,10 @@ exports[`SelectRebuilt renders correctly when invalid 1`] = `
             tabindex="-1"
           >
             <select
+              aria-invalid="true"
               class="input"
-              id=":r6:"
-              name="generatedName--:r6:"
+              id="«r6»"
+              name="generatedName--«r6»"
             >
               <option>
                 Foo

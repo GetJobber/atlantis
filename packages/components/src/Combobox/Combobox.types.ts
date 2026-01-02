@@ -143,8 +143,10 @@ export interface ComboboxOptionProps {
    * The function receives the option's props, and a boolean indicating if the option is selected.
    */
   readonly customRender?: (
-    option: Omit<ComboboxOptionProps, "customRender"> & {
+    option: Pick<ComboboxOptionProps, "id" | "label" | "prefix"> & {
       isSelected: boolean;
+      /** Render the default option content. */
+      defaultContent: ReactElement;
     },
   ) => React.ReactNode;
 
@@ -211,7 +213,7 @@ export interface ComboboxContentProps {
   /**
    * Reference to the wrapping div element of all the Combobox pieces
    */
-  readonly wrapperRef: React.RefObject<HTMLDivElement>;
+  readonly wrapperRef: React.RefObject<HTMLDivElement | null>;
 
   /**
    * Is the Combobox open
@@ -295,7 +297,7 @@ export interface ComboboxListProps {
   /**
    * A ref to the list element.
    */
-  readonly optionsListRef: React.RefObject<HTMLUListElement>;
+  readonly optionsListRef: React.RefObject<HTMLUListElement | null>;
 
   /**
    * The current search term. Used in the no results message.

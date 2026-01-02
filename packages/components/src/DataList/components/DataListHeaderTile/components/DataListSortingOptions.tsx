@@ -1,7 +1,6 @@
 import type { KeyboardEvent } from "react";
 import React, { useEffect } from "react";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import { Icon } from "@jobber/components/Icon";
 import styles from "./DataListSortingOptions.module.css";
 import type { DataListSorting, SortableOptions } from "../../../DataList.types";
@@ -11,8 +10,8 @@ interface DataListSortingOptionsProps {
   readonly selectedOption: DataListSorting | null;
   readonly onSelectChange: (selectedOption: SortableOptions) => void;
   readonly onClose: () => void;
-  readonly optionsListRef: React.RefObject<HTMLUListElement>;
-  readonly dataListHeaderTileRef: React.RefObject<HTMLElement>;
+  readonly optionsListRef: React.RefObject<HTMLUListElement | null>;
+  readonly dataListHeaderTileRef: React.RefObject<HTMLElement | null>;
 }
 
 export function DataListSortingOptions({

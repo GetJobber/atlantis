@@ -63,4 +63,10 @@ export const guidesList = [
     to: "/guides/scaffolding",
     sections: ["Building"],
   },
+  {
+    title: "Component support levels",
+    to: "/guides/component-support-levels",
+    sections: ["Building"],
+    additionalMatches: ["Supported", "Beta", "Legacy", "Deprecated"],
+  },
 ];

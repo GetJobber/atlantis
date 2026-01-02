@@ -1,7 +1,8 @@
 import React from "react";
-import { render, renderHook } from "@testing-library/react-native";
+import { render, renderHook, screen } from "@testing-library/react-native";
 import type { TextStyle } from "react-native";
 import type { ReactTestInstance } from "react-test-renderer";
+import { Path } from "react-native-svg";
 import type { PrefixIconProps, PrefixLabelProps } from "./Prefix";
 import {
   PrefixIcon,
@@ -12,9 +13,6 @@ import {
 import { useTypographyStyles } from "../../../Typography";
 import { useStyles } from "../../InputFieldWrapper.style";
 import { tokens } from "../../../utils/design";
-import * as IconComponent from "../../../Icon/Icon";
-
-const iconSpy = jest.spyOn(IconComponent, "Icon");
 
 const mockLabel = "$";
 
@@ -32,7 +30,7 @@ beforeAll(() => {
 function setupLabel({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
+  miniLabelActive = false,
   inputInvalid = false,
   label = mockLabel,
   styleOverride,
@@ -41,7 +39,7 @@ function setupLabel({
     <PrefixLabel
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
+      miniLabelActive={miniLabelActive}
       inputInvalid={inputInvalid}
       label={label}
       styleOverride={styleOverride}
@@ -52,7 +50,6 @@ function setupLabel({
 function setupIcon({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
   inputInvalid = false,
   icon = "invoice",
 }: Partial<PrefixIconProps>) {
@@ -60,7 +57,6 @@ function setupIcon({
     <PrefixIcon
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
       inputInvalid={inputInvalid}
       icon={icon}
     />,
@@ -152,7 +148,7 @@ describe("Prefix", () => {
 
   it("updates the position of the label when a value is entered", () => {
     const tree = setupLabel({
-      hasMiniLabel: true,
+      miniLabelActive: true,
     });
     const prefixLabel = tree.getByTestId(prefixLabelTestId);
     const labelWrapper = prefixLabel.children[0] as ReactTestInstance;
@@ -180,13 +176,9 @@ describe("Prefix", () => {
       setupIcon({
         disabled: true,
       });
-      expect(iconSpy).toHaveBeenCalledWith(
-        {
-          customColor: tokens["color-disabled"],
-          name: "invoice",
-        },
-        {},
-      );
+      const icon = screen.getByTestId("invoice");
+      const path = icon.findByType(Path);
+      expect(path.props.fill).toEqual(tokens["color-disabled"]);
     });
   });
 

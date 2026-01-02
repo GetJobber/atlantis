@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/BottomSheet/BottomSheet.stories.mdx";
+import Content from "./BottomSheet.stories.mdx";
 import MobileProps from "./BottomSheet.props-mobile.json";
 import Notes from "./BottomSheetNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -51,7 +51,8 @@ alert('will show bottom sheet in mobile');
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-bottomsheet--docs`,
+        `?path=/story/components-selections-bottomsheet--basic`,
+        "mobile",
       ),
     },
   ],

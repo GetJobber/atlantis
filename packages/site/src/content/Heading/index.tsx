@@ -1,4 +1,4 @@
-import HeadingContent from "@atlantis/docs/components/Heading/Heading.stories.mdx";
+import HeadingContent from "./Heading.stories.mdx";
 import Props from "./Heading.props.json";
 import MobileProps from "./Heading.props-mobile.json";
 import Notes from "./HeadingNotes.mdx";

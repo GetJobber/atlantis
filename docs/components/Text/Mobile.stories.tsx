@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Text } from "@jobber/components-native";
 
 export default {
@@ -42,3 +42,26 @@ ReverseTheme.args = {
 ReverseTheme.parameters = {
   backgrounds: { default: "dark" },
 };
+
+export const NestedBold = () => (
+  <Text>
+    This is <Text emphasis="strong">bold</Text> inside a sentence.
+  </Text>
+);
+
+export const NestedMixedStyles = () => (
+  <Text>
+    Start, <Text italic>italic segment</Text>, and a
+    <Text emphasis="strong"> bold segment</Text>.
+  </Text>
+);
+
+export const MultiLevelNesting = () => (
+  <Text>
+    Level 1{" "}
+    <Text>
+      contains <Text emphasis="strong">Level 2</Text>
+    </Text>{" "}
+    done.
+  </Text>
+);

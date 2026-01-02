@@ -23,13 +23,12 @@ const leftOffset = -1 * offset;
 
 // looks like deprecation for FlatList in reanimated is cascading down to other exports
 // This is not createAnimatedComponent(FlatList), we are fine
-// eslint-disable-next-line import/no-deprecated
 const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
 
 function InternalButtonLoadingInternal({
   variation,
   type,
-}: InternalButtonLoadingProps): JSX.Element {
+}: InternalButtonLoadingProps) {
   const translateX = useSharedValue(0);
   translateX.value = withRepeat(
     withTiming(offset, {

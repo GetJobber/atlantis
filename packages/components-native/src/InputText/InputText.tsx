@@ -8,10 +8,9 @@ import React, {
   useState,
 } from "react";
 import type {
-  NativeSyntheticEvent,
+  FocusEvent,
   ReturnKeyTypeOptions,
   StyleProp,
-  TextInputFocusEventData,
   TextInputProps,
   TextStyle,
 } from "react-native";
@@ -67,6 +66,15 @@ export interface InputTextProps
   readonly assistiveText?: string;
 
   /**
+   * Controls the visibility of the mini label that appears inside the input
+   * when a value is entered. By default, the placeholder text moves up to
+   * become a mini label. Set to false to disable this behavior.
+   *
+   * @default true
+   */
+  readonly showMiniLabel?: boolean;
+
+  /**
    * Determines what keyboard is shown
    */
   readonly keyboard?:
@@ -113,14 +121,12 @@ export interface InputTextProps
    * Callback that is called when the text input is focused
    * @param event
    */
-  readonly onFocus?: (
-    event?: NativeSyntheticEvent<TextInputFocusEventData>,
-  ) => void;
+  readonly onFocus?: (event?: FocusEvent) => void;
 
   /**
    * Callback that is called when the text input is blurred
    */
-  readonly onBlur?: () => void;
+  readonly onBlur?: (event?: FocusEvent) => void;
 
   /**
    * VoiceOver will read this string when a user selects the associated element
@@ -248,6 +254,7 @@ function InputTextInternal(
     name,
     placeholder,
     assistiveText,
+    showMiniLabel = true,
     keyboard,
     value: controlledValue,
     defaultValue,
@@ -295,7 +302,8 @@ function InputTextInternal(
 
   const hasValue = internalValue !== "" && internalValue !== undefined;
   const [focused, setFocused] = useState(false);
-  const { hasMiniLabel } = useMiniLabel(internalValue);
+  const placeholderMode = getPlaceholderMode(showMiniLabel, internalValue);
+  const miniLabelActive = placeholderMode === "mini";
 
   const textInputRef = useTextInputRef({ ref, onClear: handleClear });
 
@@ -370,7 +378,7 @@ function InputTextInternal(
       prefix={prefix}
       suffix={suffix}
       hasValue={hasValue}
-      hasMiniLabel={hasMiniLabel}
+      placeholderMode={placeholderMode}
       assistiveText={assistiveText}
       focused={focused}
       error={error}
@@ -394,11 +402,14 @@ function InputTextInternal(
         style={[
           commonInputStyles.input,
           styles.inputPaddingTop,
-          !hasMiniLabel && commonInputStyles.inputEmpty,
+          !miniLabelActive && commonInputStyles.inputEmpty,
           disabled && commonInputStyles.inputDisabled,
           multiline && styles.multiLineInput,
           multiline && Platform.OS === "ios" && styles.multilineInputiOS,
-          multiline && hasMiniLabel && styles.multiLineInputWithMini,
+          multiline && miniLabelActive && styles.multiLineInputWithMini,
+          multiline &&
+            placeholderMode === "hidden" &&
+            styles.multilineWithoutMiniLabel,
           styleOverride?.inputText,
           loading && loadingType === "glimmer" && { color: "transparent" },
         ]}
@@ -425,10 +436,10 @@ function InputTextInternal(
           setFocused(true);
           onFocus?.(event);
         }}
-        onBlur={() => {
+        onBlur={event => {
           _name && setFocusedInput("");
           setFocused(false);
-          onBlur?.();
+          onBlur?.(event);
           field.onBlur();
           trimWhitespace(inputTransform(field.value), updateFormAndState);
         }}
@@ -513,13 +524,19 @@ function useTextInputRef({ ref, onClear }: UseTextInputRefProps) {
   return textInputRef;
 }
 
-function useMiniLabel(internalValue: string): {
-  hasMiniLabel: boolean;
-} {
-  const [hasMiniLabel, setHasMiniLabel] = useState(Boolean(internalValue));
-  useEffect(() => {
-    setHasMiniLabel(Boolean(internalValue));
-  }, [internalValue]);
+function getPlaceholderMode(
+  isMiniLabelAllowed: boolean,
+  internalValue: string,
+): InputFieldWrapperProps["placeholderMode"] {
+  const hasValue = Boolean(internalValue);
 
-  return { hasMiniLabel };
+  if (hasValue) {
+    if (isMiniLabelAllowed) {
+      return "mini";
+    } else {
+      return "hidden";
+    }
+  } else {
+    return "normal";
+  }
 }

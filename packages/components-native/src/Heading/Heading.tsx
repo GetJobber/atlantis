@@ -19,9 +19,9 @@ export type HeadingLevel = "title" | "subtitle" | "heading" | "subHeading";
 interface HeadingProps<T extends HeadingLevel>
   extends Pick<TypographyProps<"base">, "selectable"> {
   /**
-   * Text to display.
+   * Text to display. Supports nesting text elements.
    */
-  readonly children: string;
+  readonly children: React.ReactNode;
 
   /**
    * The type of heading, e.g., "Title"
@@ -71,7 +71,7 @@ export function Heading<T extends HeadingLevel = "heading">({
   maxLines = "unlimited",
   allowFontScaling = true,
   selectable,
-}: HeadingProps<T>): JSX.Element {
+}: HeadingProps<T>) {
   const headingStyle = getHeadingStyle(level, variation);
   const accessibilityRole = "header";
 

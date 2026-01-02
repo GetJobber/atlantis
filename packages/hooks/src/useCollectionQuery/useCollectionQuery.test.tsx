@@ -1,6 +1,5 @@
 import { DocumentNode } from "@apollo/client";
-import { act, renderHook } from "@testing-library/react-hooks";
-import { waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import { useCollectionQuery } from "./useCollectionQuery";
 import {
   LIST_QUERY,
@@ -15,7 +14,6 @@ import {
   listQueryWithTotalCountResponseMock,
   setListQueryMockHasNextPage,
   subscriptionQueryMock,
-  wait,
   wrapper,
 } from "./test-utilities";
 
@@ -88,12 +86,13 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          act(() => {
+          await act(async () => {
             result.current.nextPage();
           });
 
-          await act(wait);
-          expect(responseMock).toHaveBeenCalledTimes(1);
+          await waitFor(() => {
+            expect(responseMock).toHaveBeenCalledTimes(1);
+          });
         });
       });
 
@@ -106,12 +105,13 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          act(() => {
+          await act(async () => {
             result.current.refresh();
           });
 
-          await act(wait);
-          expect(responseMock).toHaveBeenCalledTimes(1);
+          await waitFor(() => {
+            expect(responseMock).toHaveBeenCalledTimes(1);
+          });
         });
       });
 
@@ -121,11 +121,11 @@ describe("useCollectionQuery", () => {
             wrapper: wrapper([buildListRequestMock(query, responseMock)]),
           });
 
-          await act(wait);
-
-          expect(
-            result.current.data?.conversation?.smsMessages?.edges?.length,
-          ).toBe(1);
+          await waitFor(() => {
+            expect(
+              result.current.data?.conversation?.smsMessages?.edges?.length,
+            ).toBe(1);
+          });
         });
 
         it("should set initialLoading while loading data", async () => {
@@ -134,8 +134,6 @@ describe("useCollectionQuery", () => {
           });
 
           expect(result.current.loadingInitialContent).toBe(true);
-
-          await act(wait);
         });
       });
     });
@@ -151,16 +149,15 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
-          act(() => {
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
+          });
+          await act(async () => {
             result.current.nextPage();
           });
-
-          act(() => {
+          await act(async () => {
             result.current.nextPage();
           });
-
-          await act(wait);
 
           await waitFor(() => {
             expect(
@@ -180,19 +177,19 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
-
-          act(() => {
-            result.current.nextPage();
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
           });
-
-          act(() => {
+          await act(async () => {
+            // Call refresh immediately after nextPage to ensure it occurs
+            // while the next page request is in-flight.
+            result.current.nextPage();
             result.current.refresh();
           });
 
-          expect(result.current.loadingRefresh).toBe(true);
-
-          await act(wait);
+          await waitFor(() => {
+            expect(result.current.loadingRefresh).toBe(true);
+          });
         });
       });
 
@@ -207,14 +204,16 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
-          act(() => {
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
+          });
+          await act(async () => {
             result.current.nextPage();
           });
 
-          await act(wait);
-
-          expect(responseMock).toHaveBeenCalledTimes(1);
+          await waitFor(() => {
+            expect(responseMock).toHaveBeenCalledTimes(1);
+          });
         });
       });
 
@@ -227,12 +226,12 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
-          act(() => {
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
+          });
+          await act(async () => {
             result.current.nextPage();
           });
-
-          await act(wait);
 
           await waitFor(() => {
             expect(
@@ -249,15 +248,16 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
-
-          act(() => {
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
+          });
+          await act(async () => {
             result.current.nextPage();
           });
 
-          expect(result.current.loadingNextPage).toBe(true);
-
-          await act(wait);
+          await waitFor(() => {
+            expect(result.current.loadingNextPage).toBe(true);
+          });
         });
       });
 
@@ -278,24 +278,26 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
+          });
 
-          act(() => {
+          await act(async () => {
             result.current.nextPage();
           });
 
-          await act(wait);
-
-          expect(result.current.error).toEqual(mockError);
+          await waitFor(() => {
+            expect(result.current.error).toEqual(mockError);
+          });
 
           // should clear the error after a successful fetch
-          act(() => {
+          await act(async () => {
             result.current.nextPage();
           });
 
-          await act(wait);
-
-          expect(result.current.error).toBeUndefined();
+          await waitFor(() => {
+            expect(result.current.error).toBeUndefined();
+          });
         });
       });
     });
@@ -311,19 +313,17 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
-
-          act(() => {
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
+          });
+          await act(async () => {
+            result.current.refresh();
             result.current.refresh();
           });
 
-          act(() => {
-            result.current.refresh();
+          await waitFor(() => {
+            expect(responseMock).toHaveBeenCalledTimes(2);
           });
-
-          await act(wait);
-
-          expect(responseMock).toHaveBeenCalledTimes(2);
         });
       });
 
@@ -337,19 +337,20 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
-
-          act(() => {
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
+          });
+          await act(async () => {
             result.current.refresh();
           });
 
-          act(() => {
+          await act(async () => {
             result.current.nextPage();
           });
 
-          expect(result.current.loadingNextPage).toBe(false);
-
-          await act(wait);
+          await waitFor(() => {
+            expect(result.current.loadingNextPage).toBe(false);
+          });
         });
       });
 
@@ -362,15 +363,16 @@ describe("useCollectionQuery", () => {
             ]),
           });
 
-          await act(wait);
-
-          act(() => {
+          await waitFor(() => {
+            expect(result.current.loadingInitialContent).toBe(false);
+          });
+          await act(async () => {
             result.current.refresh();
           });
 
-          expect(result.current.loadingRefresh).toBe(true);
-
-          await act(wait);
+          await waitFor(() => {
+            expect(result.current.loadingRefresh).toBe(true);
+          });
         });
       });
     });
@@ -378,7 +380,7 @@ describe("useCollectionQuery", () => {
     describe("#subscribeToMore", () => {
       describe("when hook receives update from item not in collection", () => {
         it("should add new item to collection", async () => {
-          const { result, waitForNextUpdate } = renderHook(
+          const { result } = renderHook(
             () => useCollectionQueryHookWithSubscription(query),
             {
               wrapper: wrapper([
@@ -388,21 +390,17 @@ describe("useCollectionQuery", () => {
             },
           );
 
-          // Wait for initial load
-          await act(waitForNextUpdate);
-
-          // Wait for subscription
-          await act(waitForNextUpdate);
-
-          expect(
-            result?.current?.data?.conversation?.smsMessages?.edges?.length,
-          ).toBe(2);
+          await waitFor(() => {
+            expect(
+              result?.current?.data?.conversation?.smsMessages?.edges?.length,
+            ).toBe(2);
+          });
         });
       });
 
       describe("when hook receives update from item already in collection", () => {
         it("should return the existing collection", async () => {
-          const { result, waitForNextUpdate } = renderHook(
+          const { result } = renderHook(
             () => useCollectionQueryHookWithSubscription(query),
             {
               wrapper: wrapper([
@@ -412,22 +410,18 @@ describe("useCollectionQuery", () => {
             },
           );
 
-          // Wait for initial load
-          await act(waitForNextUpdate);
-
-          // Wait for subscription
-          await act(() => wait(200));
-
-          expect(
-            result?.current?.data?.conversation?.smsMessages?.edges?.length,
-          ).toBe(1);
+          await waitFor(() => {
+            expect(
+              result?.current?.data?.conversation?.smsMessages?.edges?.length,
+            ).toBe(1);
+          });
         });
       });
 
       describe("when hook receives `update` but is currently searching a collection", () => {
         it("should return the existing collection without adding the subscribed content", async () => {
           const searchTerm = "FooBar";
-          const { result, waitForNextUpdate } = renderHook(
+          const { result } = renderHook(
             () =>
               useCollectionQueryHookWithSubscriptionAndSearch(
                 query,
@@ -441,15 +435,11 @@ describe("useCollectionQuery", () => {
             },
           );
 
-          // Wait for initial load
-          await act(waitForNextUpdate);
-
-          // Wait for subscription
-          await act(() => wait(200));
-
-          expect(
-            result?.current?.data?.conversation?.smsMessages?.edges?.length,
-          ).toBe(1);
+          await waitFor(() => {
+            expect(
+              result?.current?.data?.conversation?.smsMessages?.edges?.length,
+            ).toBe(1);
+          });
         });
       });
     });

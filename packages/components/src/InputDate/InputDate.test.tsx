@@ -316,7 +316,7 @@ describe("InputDate V1", () => {
     ).toBeInTheDocument();
   });
 
-  function NestedTestComponent(props: { readonly date: string }): JSX.Element {
+  function NestedTestComponent(props: { readonly date: string }) {
     const [isOpen, setIsOpen] = useState(false);
     const changeHandler = jest.fn();
 
@@ -338,7 +338,7 @@ describe("InputDate V1", () => {
     props: {
       readonly initialValue: string;
     } & Partial<InputDateProps>,
-  ): JSX.Element {
+  ) {
     const [date, setDate] = useState(new Date(props.initialValue));
 
     return (
@@ -354,7 +354,7 @@ describe("InputDate V1", () => {
     );
   }
 
-  describe("when restoreLastValueOnBlur is true", () => {
+  describe("when onChange skips empty or invalid dates", () => {
     it("restores the last value when the input is empty", async () => {
       const originalValue = "11/11/2011";
       const placeholder = "placeholder";
@@ -362,7 +362,6 @@ describe("InputDate V1", () => {
         <>
           <textarea data-testid="textarea" />
           <InputDateWithStateTest
-            restoreLastValueOnBlur
             initialValue={originalValue}
             placeholder={placeholder}
           />
@@ -391,7 +390,6 @@ describe("InputDate V1", () => {
         <>
           <textarea data-testid="textarea" />
           <InputDateWithStateTest
-            restoreLastValueOnBlur
             initialValue={originalValue}
             placeholder={placeholder}
           />

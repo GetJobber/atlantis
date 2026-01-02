@@ -1,0 +1,21 @@
+import { Canvas } from "@storybook/addon-docs";
+import { UseOnKeyDown } from "./UseOnKeyDown";
+
+# useOnKeyDown
+
+`useOnKeyDown` is a simple hook that adds the `keydown` event handler when the
+component is mounted and removed when unmounted.
+
+`useOnKeyDown` should **only** be used when building keyboard shortcuts in a
+component.
+
+```tsx
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+```
+
+You can specify a list of keys to watch including a key modifier with the event
+handler.
+
+<Canvas>
+  <UseOnKeyDown />
+</Canvas>

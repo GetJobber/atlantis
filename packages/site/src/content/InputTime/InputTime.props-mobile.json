@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "Omit<Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>, \"disabled\" | ... 2 more ... | \"setValueAs\">"
+          "name": "Omit<RegisterOptions<FieldValues, string>, \"disabled\" | \"valueAsNumber\" | \"valueAsDate\" | \"setValueAs\">"
         }
       },
       "value": {
@@ -151,6 +151,21 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/InputPressable/InputPressable.tsx",
+          "name": "InputPressableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
         }
       }
     }

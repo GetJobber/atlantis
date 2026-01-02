@@ -46,7 +46,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"small\" | \"large\""
         }
       },
       "dismissible": {
@@ -127,6 +127,19 @@
         "required": false,
         "type": {
           "name": "1"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Accessible name for the Modal.\nOnly required if no title is provided. Title takes precedence over ariaLabel.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }

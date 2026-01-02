@@ -113,6 +113,11 @@ interface InputFileProps {
   readonly size?: "small" | "base";
 
   /**
+   * Sets the `name` attribute on the underlying `<input>` element.
+   */
+  readonly name?: string;
+
+  /**
    * Label for the InputFile's button.
    * @default Automatic
    */
@@ -225,6 +230,7 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
 export function InputFile({
   variation = "dropzone",
   size = "base",
+  name,
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
@@ -370,7 +376,11 @@ export function InputFile({
         {...getRootProps({ className: dropZone })}
         tabIndex={variation === "button" ? -1 : 0}
       >
-        <input {...getInputProps()} data-testid="input-file-input" />
+        <input
+          {...getInputProps()}
+          data-testid="input-file-input"
+          name={name}
+        />
         <InputFileContentContext.Provider value={contentContext}>
           {children || defaultContent}
         </InputFileContentContext.Provider>
@@ -390,8 +400,13 @@ export function InputFile({
 
     try {
       params = await getUploadParams(file);
-    } catch {
-      onUploadError && onUploadError(new Error("Failed to get upload params"));
+    } catch (error) {
+      onUploadError &&
+        onUploadError(
+          error instanceof Error
+            ? error
+            : new Error("Failed to get upload params"),
+        );
 
       return;
     }

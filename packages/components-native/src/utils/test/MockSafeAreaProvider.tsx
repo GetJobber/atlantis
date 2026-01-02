@@ -12,7 +12,7 @@ export function MockSafeAreaProvider({
   frame,
   insets,
   children,
-}: MockSafeAreaProviderProps): JSX.Element {
+}: MockSafeAreaProviderProps) {
   const initialFrame: Rect = { x: 0, y: 0, width: 0, height: 0 };
   const initialInsets: EdgeInsets = { bottom: 50, top: 50, left: 0, right: 0 };
 

@@ -7,11 +7,13 @@ import { ComboboxContext } from "../../ComboboxProvider";
 export function ComboboxAction(props: ComboboxActionProps) {
   const { searchValue, handleClose } = useContext(ComboboxContext);
 
-  if (props.visible) {
+  if (props.visible !== undefined) {
     const isVisible =
-      typeof props.visible === "function" && !props.visible({ searchValue });
+      typeof props.visible === "function"
+        ? props.visible({ searchValue })
+        : props.visible;
 
-    if (isVisible || !props.visible) {
+    if (!isVisible) {
       return null;
     }
   }

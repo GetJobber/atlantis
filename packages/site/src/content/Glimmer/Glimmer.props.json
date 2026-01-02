@@ -18,7 +18,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"base\" | \"small\" | \"large\" | \"larger\" | \"largest\" | \"auto\""
         }
       },
       "shape": {
@@ -33,7 +33,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"rectangle\" | \"rectangleShort\" | \"rectangleShorter\" | \"square\" | \"circle\""
         }
       },
       "timing": {
@@ -48,7 +48,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"base\" | \"fast\""
         }
       },
       "reverseTheme": {
@@ -113,7 +113,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"base\" | \"fast\""
         }
       },
       "reverseTheme": {
@@ -176,7 +176,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"base\" | \"fast\""
         }
       },
       "reverseTheme": {
@@ -239,7 +239,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"base\" | \"fast\""
         }
       },
       "reverseTheme": {
