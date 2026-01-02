@@ -21,7 +21,12 @@ interface StatusLabelProps {
   /**
    * Text to display
    */
-  readonly text: string;
+  readonly text?: string;
+
+  /**
+   * Optional children for the status label's label
+   */
+  readonly children?: React.ReactNode;
 
   /**
    * Alignment of text and StatusIndicator
@@ -36,6 +41,7 @@ interface StatusLabelProps {
 
 export function StatusLabel({
   text,
+  children,
   alignment = "end",
   status = "success",
 }: StatusLabelProps) {
@@ -49,16 +55,19 @@ export function StatusLabel({
         alignment === "start" && styles.labelTextStartAligned,
       ]}
     >
-      <View style={styles.statusLabelText}>
-        <Typography
-          align={alignment}
-          size="smaller"
-          fontWeight="medium"
-          color={`${status}OnSurface`}
-        >
-          {text}
-        </Typography>
-      </View>
+      {children && <View>{children}</View>}
+      {text && (
+        <View style={styles.statusLabelText}>
+          <Typography
+            align={alignment}
+            size="smaller"
+            fontWeight="medium"
+            color={`${status}OnSurface`}
+          >
+            {text}
+          </Typography>
+        </View>
+      )}
       <StatusIndicator status={status} />
     </View>
   );
