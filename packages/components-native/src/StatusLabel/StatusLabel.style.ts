@@ -6,6 +6,7 @@ export const useStyles = buildThemedStyles(tokens => {
       flexDirection: "row",
       justifyContent: "flex-end",
       alignItems: "center",
+      alignSelf: "flex-start",
       flexWrap: "nowrap",
       flexGrow: 0,
       flexShrink: 1,
