@@ -16,7 +16,7 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
         "gap": 4,
         "justifyContent": "flex-end",
         "paddingHorizontal": 8,
-        "paddingVertical": 4,
+        "paddingVertical": 3,
       },
       {
         "backgroundColor": "hsl(109, 28%, 92%)",
@@ -29,7 +29,6 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
     style={
       {
         "flexShrink": 1,
-        "marginBottom": -1,
       }
     }
   >
@@ -99,7 +98,7 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
         "gap": 4,
         "justifyContent": "flex-end",
         "paddingHorizontal": 8,
-        "paddingVertical": 4,
+        "paddingVertical": 3,
       },
       {
         "backgroundColor": "hsl(109, 28%, 92%)",
@@ -112,7 +111,6 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
     style={
       {
         "flexShrink": 1,
-        "marginBottom": -1,
       }
     }
   >
@@ -182,7 +180,7 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
         "gap": 4,
         "justifyContent": "flex-end",
         "paddingHorizontal": 8,
-        "paddingVertical": 4,
+        "paddingVertical": 3,
       },
       {
         "backgroundColor": "hsl(7, 63%, 95%)",
@@ -195,7 +193,6 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
     style={
       {
         "flexShrink": 1,
-        "marginBottom": -1,
       }
     }
   >
@@ -265,7 +262,7 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
         "gap": 4,
         "justifyContent": "flex-end",
         "paddingHorizontal": 8,
-        "paddingVertical": 4,
+        "paddingVertical": 3,
       },
       {
         "backgroundColor": "hsl(195, 12%, 94%)",
@@ -278,7 +275,6 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
     style={
       {
         "flexShrink": 1,
-        "marginBottom": -1,
       }
     }
   >
@@ -348,7 +344,7 @@ exports[`StatusLabel status when status prop set to "informative" should match s
         "gap": 4,
         "justifyContent": "flex-end",
         "paddingHorizontal": 8,
-        "paddingVertical": 4,
+        "paddingVertical": 3,
       },
       {
         "backgroundColor": "hsl(207, 87%, 94%)",
@@ -361,7 +357,6 @@ exports[`StatusLabel status when status prop set to "informative" should match s
     style={
       {
         "flexShrink": 1,
-        "marginBottom": -1,
       }
     }
   >
@@ -431,7 +426,7 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
         "gap": 4,
         "justifyContent": "flex-end",
         "paddingHorizontal": 8,
-        "paddingVertical": 4,
+        "paddingVertical": 3,
       },
       {
         "backgroundColor": "hsl(52, 64%, 89%)",
@@ -444,7 +439,6 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
     style={
       {
         "flexShrink": 1,
-        "marginBottom": -1,
       }
     }
   >
@@ -514,7 +508,7 @@ exports[`StatusLabel status when status prop set to default ("success") should m
         "gap": 4,
         "justifyContent": "flex-end",
         "paddingHorizontal": 8,
-        "paddingVertical": 4,
+        "paddingVertical": 3,
       },
       {
         "backgroundColor": "hsl(109, 28%, 92%)",
@@ -527,7 +521,6 @@ exports[`StatusLabel status when status prop set to default ("success") should m
     style={
       {
         "flexShrink": 1,
-        "marginBottom": -1,
       }
     }
   >

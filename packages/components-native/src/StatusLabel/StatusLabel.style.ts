@@ -13,12 +13,11 @@ export const useStyles = buildThemedStyles(tokens => {
       gap: tokens["space-smaller"],
       backgroundColor: tokens["color-success--surface"],
       borderRadius: tokens["radius-large"],
-      paddingVertical: tokens["space-smaller"],
+      paddingVertical: tokens["space-smallest"] + tokens["space-minuscule"],
       paddingHorizontal: tokens["space-small"],
     },
     statusLabelText: {
       flexShrink: 1,
-      marginBottom: -1,
     },
     labelTextStartAligned: {
       flexDirection: "row-reverse",
