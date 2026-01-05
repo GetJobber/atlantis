@@ -28,15 +28,11 @@ jobs:
             npm install
           }
 
-          commit_output_assets() {
-            local commit_msg="$1"
-
+          stage_built_assets() {
             git add --force **/dist/** \
               ":(exclude)**/node_modules/**/dist/**" \
               ":(exclude)**/.rollup.cache/**/dist/**" \
               ":(exclude)node_modules/**/dist/**"
-
-            git commit --no-verify -m "$commit_msg"
           }
 
           echo "Checking out master..."
@@ -51,17 +47,18 @@ jobs:
           git checkout -
 
           echo "Committing built assets from master..."
-          commit_output_assets "before (master)"
+          stage_built_assets
+          git commit --no-verify -m "before (master)"
 
           echo "Building this branch..."
           clean_everything
           install_and_build
 
-          echo "Committing built assets from this branch..."
-          commit_output_assets "after"
+          echo "Staging built assets from this branch..."
+          stage_built_assets
 
           echo "Checking for differences in built assets..."
-          if git diff HEAD~1 HEAD --exit-code; then
+          if git diff --cached --exit-code; then
             echo "✅ No differences found in built assets!"
           else
             echo "⚠️ Differences found in built assets! This indicates that the compiled outputs in this branch don't match what master produces."
