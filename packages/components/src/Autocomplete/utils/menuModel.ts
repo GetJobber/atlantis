@@ -7,6 +7,7 @@ import type {
   MenuOptions,
   MenuSection,
   OptionLike,
+  RenderItem,
 } from "../Autocomplete.types";
 
 export function flattenMenu<
