@@ -7,9 +7,9 @@ import type {
   MenuAction,
   MenuSection,
   OptionLike,
+  RenderItem,
 } from "../Autocomplete.types";
 import styles from "../AutocompleteRebuilt.module.css";
-import type { RenderItem } from "../useAutocomplete";
 import { preventDefaultPointerDown } from "../utils/interactionUtils";
 import { Heading } from "../../Heading";
 import { Text } from "../../Text";
