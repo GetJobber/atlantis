@@ -109,4 +109,4 @@ export const CheckboxRebuilt = forwardRef(function CheckboxRebuiltInternal(
   );
 });
 
-CheckboxRebuilt.displayName = "CheckboxRebuilt";
+CheckboxRebuilt.displayName = "CheckboxRebuiltTestDiff";
