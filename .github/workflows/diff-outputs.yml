@@ -57,7 +57,8 @@ jobs:
           echo "Staging built assets from this branch..."
           stage_built_assets
 
-          echo "Checking for differences in built assets..."
+          echo "------------------------------------------------------------------------"
+          echo "🔎 Checking for differences in built assets..."
           if git diff --cached --exit-code; then
             echo "✅ No differences found in built assets!"
           else
