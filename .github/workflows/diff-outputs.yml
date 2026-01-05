@@ -18,52 +18,50 @@ jobs:
           # Exit the script if any command fails
           set -e
 
-          clean_dist() {
-            echo "Deleting all dist/cache directories..."
-
-            # Find and delete all dist directories, except under node_modules
-            find . -path "*/node_modules" -prune -o \
-              -type d -name "dist" -prune \
-              -exec rm -rf {} \; \
-              -exec echo "Deleted: {}" \;
-
-            # Find and delete all rollup caches
-            find . -type d -name ".rollup.cache" -prune -exec rm -rf {} \; -exec echo "Deleted: {}" \;
+          clean_everything() {
+            echo "Deleting all dist/cache/ignored directories..."
+            git clean -Xfd
           }
 
-          clean_install_and_build() {
-            echo "Removing existing node_modules..."
-            find . -type d -name "node_modules" -prune -exec rm -rf {} \; -exec echo "Deleted: {}" \;
-
-            echo "Installing deps and building..."
+          install_and_build() {
+            echo "Clean installing dependencies..."
             npm install
           }
 
-          # Unignore dist directories and stage them to commit later
-          sed -i '/\<dist\>/d' .gitignore
-          git add -A
+          commit_output_assets() {
+            local commit_msg="$1"
+
+            git add --force **/dist/** \
+              ":(exclude)**/node_modules/**/dist/**" \
+              ":(exclude)**/.rollup.cache/**/dist/**" \
+              ":(exclude)node_modules/**/dist/**"
+
+            git commit --no-verify -m "$commit_msg"
+          }
 
           echo "Checking out master..."
           git fetch --depth=1 origin master
           git checkout master
-          clean_install_and_build
+
+          echo "Building master..."
+          clean_everything
+          install_and_build
 
           echo "Checking out the current branch..."
           git checkout -
 
-          # Commit the previously staged changes
-          git commit --no-verify -m "unignore dist directories"
-
           echo "Committing built assets from master..."
-          git add -A && git commit --no-verify -m "before (master)"
+          commit_output_assets "before (master)"
 
           echo "Building this branch..."
-          clean_dist
-          clean_install_and_build
-          git add -A
+          clean_everything
+          install_and_build
+
+          echo "Committing built assets from this branch..."
+          commit_output_assets "after"
 
           echo "Checking for differences in built assets..."
-          if git diff --cached --exit-code; then
+          if git diff HEAD~1 HEAD --exit-code; then
             echo "✅ No differences found in built assets!"
           else
             echo "⚠️ Differences found in built assets! This indicates that the compiled outputs in this branch don't match what master produces."
