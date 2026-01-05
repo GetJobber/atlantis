@@ -15,6 +15,9 @@ jobs:
 
       - name: Check for differences in built assets
         run: |
+          # Exit the script if any command fails
+          set -e
+
           clean_dist() {
             echo "Deleting all dist/cache directories..."
 
