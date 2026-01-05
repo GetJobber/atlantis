@@ -122,8 +122,8 @@ function InternalForm<T extends FieldValues, S>({
 
   const keyboardProps = Platform.select({
     ios: {
-      onKeyboardDidHide: handleKeyboardHide,
-      onKeyboardDidShow: handleKeyboardShow,
+      // onKeyboardDidHide: handleKeyboardHide,
+      // onKeyboardDidShow: handleKeyboardShow,
       onKeyboardDidChangeFrame: handleKeyboardDidChangeFrame,
     },
     android: {
