@@ -58,10 +58,12 @@ jobs:
           stage_built_assets
 
           echo "------------------------------------------------------------------------"
-          echo "🔎 Checking for differences in built assets..."
-          if git diff --cached --exit-code; then
+          echo "🧐 Checking for differences in built assets..."
+          echo "------------------------------------------------------------------------"
+          if git diff --cached --exit-code --color=always; then
             echo "✅ No differences found in built assets!"
           else
+            echo "------------------------------------------------------------------------"
             echo "⚠️ Differences found in built assets! This indicates that the compiled outputs in this branch don't match what master produces."
             echo "👉 Please investigate the differences above to see if they are expected."
             exit 1
