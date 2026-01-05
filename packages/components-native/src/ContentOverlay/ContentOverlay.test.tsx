@@ -130,6 +130,38 @@ async function renderAndOpenContentOverlay(
   });
 }
 
+// describe.only("when the close button is clicked on an open content overlay", () => {
+//   it("should close the content overlay", async () => {
+//     const options: testRendererOptions = {
+//       ...getDefaultOptions(),
+//       text: "I am text within the content overlay",
+//       showDismiss: true,
+//       onOpenCallback: () => {
+//         console.log("🔥 IT OPENED");
+//       },
+//       onCloseCallback: () => {
+//         console.log("🔥 IT CLOSED");
+//       },
+//     };
+//     await renderAndOpenContentOverlay(options);
+
+//     const closeButton = await screen.findByTestId("ATL-Overlay-CloseButton");
+//     await user.press(closeButton);
+//     await act(async () => {
+//       jest.runAllTimers();
+//     });
+
+//     // await act(async () => {
+//     //   await new Promise(resolve => setTimeout(resolve, 2000));
+//     // });
+//     // screen.debug();
+
+//     await waitFor(() => {
+//       expect(screen.queryByText(options.text)).toBeNull();
+//     });
+//   }, 7000);
+// });
+
 describe("when open is called on the content overlay ref", () => {
   it("should open the content overlay, exposing the content to the user", async () => {
     const options: testRendererOptions = {

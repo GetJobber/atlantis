@@ -43,12 +43,14 @@ export function ContentOverlay({
   isDraggable = true,
   adjustToContentHeight = false,
   keyboardShouldPersistTaps = false,
+  // keyboardAvoidingBehavior, // TODO: verify usages in JM if this is even needed
   scrollEnabled = false,
   modalBackgroundColor = "surface",
   onClose,
   onOpen,
   onBeforeExit,
   loading = false,
+  // avoidKeyboardLikeIOS, // TODO: verify usages in JM if this is even needed
   ref,
 }: ContentOverlayProps) {
   const insets = useSafeAreaInsets();
@@ -61,10 +63,22 @@ export function ContentOverlay({
   const { tokens } = useAtlantisTheme();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
 
+  console.log(`🔥 isScreenReaderEnabled`, isScreenReaderEnabled);
+
   const isFullScreenOrTopPosition =
     fullScreen || (!adjustToContentHeight && currentPosition === 0);
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
+
+  console.log(`🔥 shouldShowDismiss`, {
+    shouldShowDismiss,
+    showDismiss,
+    isScreenReaderEnabled,
+    isFullScreenOrTopPosition,
+    fullScreen,
+    adjustToContentHeight,
+    currentPosition,
+  });
 
   const draggable = onBeforeExit ? false : isDraggable;
 
@@ -89,6 +103,7 @@ export function ContentOverlay({
 
   const onCloseController = () => {
     if (!onBeforeExit) {
+      console.log(`🔥 onCloseController`, bottomSheetModalRef.current);
       bottomSheetModalRef.current?.dismiss();
     } else {
       onBeforeExit();
@@ -100,6 +115,7 @@ export function ContentOverlay({
 
   useImperativeHandle(ref, () => ({
     open: () => {
+      console.log(`🔥 OPEN`, bottomSheetModalRef.current);
       bottomSheetModalRef.current?.present();
     },
     close: () => {
@@ -109,6 +125,7 @@ export function ContentOverlay({
 
   const handleChange = (index: number, position: number) => {
     const previousIndex = previousIndexRef.current;
+    console.log(`🔥 handleChange`, index, position);
 
     setCurrentPosition(position);
     handleSheetPositionChange(index);
