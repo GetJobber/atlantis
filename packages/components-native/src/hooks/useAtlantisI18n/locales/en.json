@@ -18,6 +18,7 @@
   "goBack": "Go back",
   "InputFieldWrapper.clear": "Clear input",
   "InputPassword.enterPassword": "Enter a password",
+  "InputEmail.enterEmail": "Enter a valid email address (email@example.com)",
   "loading": "Loading",
   "menu": "Menu",
   "more": "More",

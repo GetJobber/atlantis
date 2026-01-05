@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import styles from "./Button.module.css";
-import { ButtonSize, ButtonType, ButtonVariation } from "./Button.types";
+import type { ButtonSize, ButtonType, ButtonVariation } from "./Button.types";
 import { useButtonContext } from "./ButtonProvider";
 
 /**

@@ -2,10 +2,11 @@ import React, { Fragment, useReducer } from "react";
 import { View } from "react-native";
 import isEmpty from "lodash/isEmpty";
 import reduce from "lodash/reduce";
-import { XOR } from "ts-xor";
+import type { XOR } from "ts-xor";
 import { useStyles } from "./CheckboxGroup.style";
-import { Checkbox, CheckboxProps } from "./Checkbox";
-import { CheckboxElement, CheckboxGroupState } from "./types";
+import type { CheckboxProps } from "./Checkbox";
+import { Checkbox } from "./Checkbox";
+import type { CheckboxElement, CheckboxGroupState } from "./types";
 import {
   checkboxGroupReducer,
   initCheckboxGroupState,
@@ -45,7 +46,7 @@ export function CheckboxGroup({
   onChange,
   name,
   ...rest
-}: CheckboxGroupProps): JSX.Element {
+}: CheckboxGroupProps) {
   if (state !== undefined && onChange !== undefined) {
     return (
       <CheckboxGroupInternal
@@ -91,7 +92,7 @@ function CheckboxGroupInternal({
   accessibilityLabel,
   onChange,
   name: parentName,
-}: ControlledCheckboxGroupProps): JSX.Element {
+}: ControlledCheckboxGroupProps) {
   const childrenNames = React.Children.map(children, child => {
     const name = throwErrorIfItHasNoName(child.props.name);
 

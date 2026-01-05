@@ -1,5 +1,5 @@
 import React from "react";
-import {
+import type {
   ControllerRenderProps,
   FieldError,
   FieldValues,
@@ -39,7 +39,7 @@ export function FormField<T>({
   children,
   defaultValue: value,
   validations,
-}: FormFieldProps<T>): JSX.Element {
+}: FormFieldProps<T>) {
   const { error, field } = useFormController({
     name,
     value,

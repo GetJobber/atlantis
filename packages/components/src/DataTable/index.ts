@@ -4,10 +4,12 @@ export * from "./types";
 
 export * from "./test-utilities/helpers";
 
-export {
+export { SortIcon, SortDirection } from "./SortIcon";
+
+export type {
   Row,
   ColumnDef,
-  createColumnHelper,
   PaginationState,
   SortingState,
 } from "@tanstack/react-table";
+export { createColumnHelper } from "@tanstack/react-table";

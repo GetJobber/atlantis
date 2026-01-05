@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "ReactElement<any, string | JSXElementConstructor<any>> | ((props: DatePickerActivatorProps) => ReactElement<any, string | JSXElementConstructor<...>>)"
+          "name": "ReactElement<unknown, string | JSXElementConstructor<any>> | ((props: DatePickerActivatorProps) => ReactElement<unknown, string | JSXElementConstructor<...>>)"
         }
       },
       "disabled": {
@@ -144,6 +144,21 @@
           "name": "Date[]"
         }
       },
+      "firstDayOfWeek": {
+        "defaultValue": {
+          "value": "0"
+        },
+        "description": "Sets which day is considered the first day of the week.\n0 = Sunday, 1 = Monday, etc.",
+        "name": "firstDayOfWeek",
+        "parent": {
+          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "DayOfWeek"
+        }
+      },
       "onChange": {
         "defaultValue": null,
         "description": "Change handler that will return the date selected.",
@@ -168,6 +183,19 @@
         "required": false,
         "type": {
           "name": "(val: Date) => void"
+        }
+      },
+      "onOpenChange": {
+        "defaultValue": null,
+        "description": "Callback when the calendar open state changes",
+        "name": "onOpenChange",
+        "parent": {
+          "fileName": "../components/src/DatePicker/DatePicker.tsx",
+          "name": "BaseDatePickerProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(open: boolean) => void"
         }
       }
     }

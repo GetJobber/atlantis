@@ -1,16 +1,15 @@
 import React from "react";
+import type { RenderAPI } from "@testing-library/react-native";
 import {
-  RenderAPI,
   fireEvent,
   render,
   renderHook,
+  screen,
 } from "@testing-library/react-native";
-import { Text, ViewStyle } from "react-native";
-import {
-  InputFieldWrapper,
-  InputFieldWrapperProps,
-  useCommonInputStyles,
-} from ".";
+import type { ViewStyle } from "react-native";
+import { Text } from "react-native";
+import type { InputFieldWrapperProps } from ".";
+import { InputFieldWrapper, useCommonInputStyles } from ".";
 import { useStyles } from "./InputFieldWrapper.style";
 import {
   INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID,
@@ -315,6 +314,48 @@ describe("InputFieldWrapper", () => {
       });
       expect(getByTestId(INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID)).toBeDefined();
       expect(queryByTestId(INPUT_FIELD_WRAPPER_SPINNER_TEST_ID)).toBeNull();
+    });
+  });
+
+  describe("placeholderMode", () => {
+    it("renders the placeholder in its normal position", () => {
+      renderInputFieldWrapper({
+        placeholder: "placeholder",
+        placeholderMode: "normal",
+      });
+      const placeholder = screen.getByText("placeholder", {
+        includeHiddenElements: true,
+      });
+      expect(placeholder).toBeDefined();
+      expect(placeholder.props.style).toContainEqual(
+        typographyStyles.defaultSize,
+      );
+    });
+
+    it("renders the placeholder in its mini label position", () => {
+      renderInputFieldWrapper({
+        placeholder: "placeholder",
+        placeholderMode: "mini",
+      });
+      const placeholder = screen.getByText("placeholder", {
+        includeHiddenElements: true,
+      });
+      expect(placeholder).toBeDefined();
+      expect(placeholder.props.style).toContainEqual(
+        typographyStyles.smallSize,
+      );
+    });
+
+    it("does not render the placeholder", () => {
+      renderInputFieldWrapper({
+        placeholder: "placeholder",
+        placeholderMode: "hidden",
+      });
+      expect(
+        screen.queryByText("placeholder", {
+          includeHiddenElements: true,
+        }),
+      ).toBeNull();
     });
   });
 });

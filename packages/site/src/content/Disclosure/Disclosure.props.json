@@ -29,7 +29,7 @@
         },
         "required": true,
         "type": {
-          "name": "string | ReactElement<any, string | JSXElementConstructor<any>> | ReactElement<any, string | JSXElementConstructor<any>>[]"
+          "name": "string | ReactElement<unknown, string | JSXElementConstructor<any>> | ReactElement<unknown, string | JSXElementConstructor<any>>[]"
         }
       },
       "defaultOpen": {

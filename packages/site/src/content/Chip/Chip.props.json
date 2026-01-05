@@ -152,7 +152,7 @@
         },
         "required": false,
         "type": {
-          "name": "(value: string | number, ev: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => void"
+          "name": "(value: string | number, ev: MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>) => void"
         }
       },
       "onKeyDown": {
@@ -165,12 +165,12 @@
         },
         "required": false,
         "type": {
-          "name": "(ev: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void"
+          "name": "(ev: KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => void"
         }
       },
       "ref": {
         "defaultValue": null,
-        "description": "",
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
         "name": "ref",
         "parent": {
           "fileName": "atlantis/node_modules/@types/react/index.d.ts",
@@ -179,19 +179,6 @@
         "required": false,
         "type": {
           "name": "Ref<HTMLButtonElement | HTMLDivElement>"
-        }
-      },
-      "key": {
-        "defaultValue": null,
-        "description": "",
-        "name": "key",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "Attributes"
-        },
-        "required": false,
-        "type": {
-          "name": "Key"
         }
       }
     }

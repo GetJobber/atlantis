@@ -52,7 +52,9 @@
         }
       },
       "as": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": "div"
+        },
         "description": "The HTML tag to render the container as. Defaults to `div`.",
         "name": "as",
         "parent": {
@@ -62,6 +64,21 @@
         "required": false,
         "type": {
           "name": "CommonAllowedElements"
+        }
+      },
+      "align": {
+        "defaultValue": {
+          "value": "start"
+        },
+        "description": "The vertical alignment  of the tiles within the container.",
+        "name": "align",
+        "parent": {
+          "fileName": "packages/components/src/Tiles/types.ts",
+          "name": "TilesProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"start\" | \"center\" | \"end\""
         }
       },
       "UNSAFE_className": {

@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { HomePage } from "./pages/HomePage";
 import { ComponentsPage } from "./pages/ComponentsPage";
 import { ContentLoader } from "./components/ContentLoader";
@@ -17,7 +18,7 @@ import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
 
 export interface AtlantisRoute {
   path?: string;
-  component?: () => JSX.Element;
+  component?: () => ReactElement;
   exact?: boolean;
   children?: Array<AtlantisRoute>;
   inNav?: boolean;
@@ -94,6 +95,11 @@ export const routes: Array<AtlantisRoute> = [
       {
         path: "/patterns/disabled-states",
         handle: "Disabled states",
+        exact: true,
+      },
+      {
+        path: "/patterns/settings",
+        handle: "Settings",
         exact: true,
       },
     ],
@@ -195,6 +201,16 @@ export const routes: Array<AtlantisRoute> = [
     component: GuidesPage,
     children: [
       {
+        path: "/guides/atlantis-overview",
+        handle: "Atlantis overview",
+        exact: true,
+      },
+      {
+        path: "/guides/contributing",
+        handle: "Contributing",
+        exact: true,
+      },
+      {
         path: "/guides/create-a-react-component",
         handle: "Create a React component",
         exact: true,
@@ -220,6 +236,11 @@ export const routes: Array<AtlantisRoute> = [
         exact: true,
       },
       {
+        path: "/guides/figma-101",
+        handle: "Figma 101",
+        exact: true,
+      },
+      {
         path: "/guides/getting-started-with-react",
         handle: "Getting started with React",
         exact: true,
@@ -231,12 +252,17 @@ export const routes: Array<AtlantisRoute> = [
       },
       {
         path: "/guides/page-layouts",
-        handle: "Page Layouts",
+        handle: "Page layouts",
         exact: true,
       },
       {
         path: "/guides/scaffolding",
         handle: "Scaffolding",
+        exact: true,
+      },
+      {
+        path: "/guides/component-support-levels",
+        handle: "Component support levels",
         exact: true,
       },
     ],
@@ -280,6 +306,11 @@ export const routes: Array<AtlantisRoute> = [
     exact: true,
     component: ChangelogPage,
     children: [
+      {
+        path: "/changelog/breaking-changes",
+        handle: "Breaking Changes",
+        exact: true,
+      },
       {
         path: "/changelog/components",
         handle: "Components",

@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 import { Pressable, View } from "react-native";
 import { useStyles } from "./ActionItemContainer.style";
 import { useStyles as useActionItemStyles } from "../ActionItem.style";
@@ -15,7 +16,7 @@ export function ActionItemContainer({
   title,
   children,
   testID,
-}: ActionItemContainerProps): JSX.Element {
+}: ActionItemContainerProps) {
   const styles = useStyles();
   const actionItemStyles = useActionItemStyles();
 

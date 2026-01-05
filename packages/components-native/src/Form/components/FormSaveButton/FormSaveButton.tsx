@@ -1,10 +1,8 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { FormSaveButtonProps, SecondaryActionProp } from "../../types";
-import {
-  ButtonGroup,
-  ButtonGroupSecondaryActionProps,
-} from "../../../ButtonGroup";
+import type { FormSaveButtonProps, SecondaryActionProp } from "../../types";
+import type { ButtonGroupSecondaryActionProps } from "../../../ButtonGroup";
+import { ButtonGroup } from "../../../ButtonGroup";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 export function FormSaveButton({
@@ -15,7 +13,7 @@ export function FormSaveButton({
   setSecondaryActionLoading,
   onOpenBottomSheet,
   onCloseBottomSheet,
-}: FormSaveButtonProps): JSX.Element {
+}: FormSaveButtonProps) {
   const { t } = useAtlantisI18n();
   const formContext = useFormContext();
   const buttonActions = useButtonGroupAction(secondaryActions);

@@ -1,4 +1,4 @@
-import { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
+import type { AtlantisBreakpoints } from "../sharedHelpers/getMappedBreakpointWidth";
 import {
   type CommonAllowedElements,
   type CommonAtlantisProps,
@@ -21,7 +21,7 @@ export interface ClusterProps extends CommonAtlantisProps {
   /**
    * The vertical alignment of the cluster elements.
    */
-  readonly align?: "start" | "end" | "center";
+  readonly align?: "start" | "end" | "center" | "stretch";
 
   /**
    * The amount of space between the cluster elements. Semantic tokens are available.

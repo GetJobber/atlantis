@@ -1,8 +1,9 @@
-import React, { ChangeEvent, ReactNode, RefObject } from "react";
-import { RegisterOptions } from "react-hook-form";
-import { XOR } from "ts-xor";
-import { Clearable } from "@jobber/hooks/src/useShowClear";
-import { IconNames } from "../Icon";
+import type { ChangeEvent, ReactNode, RefObject } from "react";
+import type React from "react";
+import type { RegisterOptions } from "react-hook-form";
+import type { XOR } from "ts-xor";
+import type { Clearable } from "@jobber/hooks";
+import type { IconNames } from "../Icon";
 
 export type FormFieldTypes =
   | "text"
@@ -66,7 +67,7 @@ export interface CommonFormFieldProps {
   /**
    * Further description of the input, can be used for a hint.
    */
-  readonly description?: string;
+  readonly description?: ReactNode;
 
   /**
    * Disable the input
@@ -160,7 +161,7 @@ export interface CommonFormFieldProps {
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
-  actionsRef?: RefObject<FieldActionsRef>;
+  actionsRef?: RefObject<FieldActionsRef | null>;
 
   /**
    * Determines if the input should be auto-focused, using the HTML attribute
@@ -182,10 +183,10 @@ export interface FormFieldProps extends CommonFormFieldProps {
   readonly children?: ReactNode;
 
   inputRef?: RefObject<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null
   >;
 
-  wrapperRef?: RefObject<HTMLDivElement>;
+  wrapperRef?: RefObject<HTMLDivElement | null>;
 
   /**
    * Initial value of the input. Only use this when you need to pre-populate
@@ -223,8 +224,6 @@ export interface FormFieldProps extends CommonFormFieldProps {
   readonly suffix?: XOR<Affix, Suffix>;
 
   /**
-   * Simplified onChange handler that only provides the new value.
-   * @param newValue
    * Specifies the minimum numerical or date value that a user can type
    */
   readonly min?: number;

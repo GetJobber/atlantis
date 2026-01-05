@@ -1,8 +1,9 @@
-import React, { Children, PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React, { Children } from "react";
 import { View } from "react-native";
 import chunk from "lodash/chunk";
 import { columnStyles, gapStyles, styles } from "./Flex.styles";
-import { FlexProps } from "./types";
+import type { FlexProps } from "./types";
 import { Content } from "../Content";
 
 export function Flex({
@@ -10,7 +11,7 @@ export function Flex({
   align = "center",
   gap = "base",
   children,
-}: PropsWithChildren<FlexProps>): JSX.Element {
+}: PropsWithChildren<FlexProps>) {
   if (template.length === 1) {
     console.warn("Please use <Content /> component for a stacked layout");
   }
@@ -53,7 +54,7 @@ function Row({
   align = "center",
   gap = "base",
   children,
-}: PropsWithChildren<FlexProps>): JSX.Element {
+}: PropsWithChildren<FlexProps>) {
   return (
     <View testID="ATL-Flex-Row" style={[styles.row, { alignItems: align }]}>
       {Children.map(children, (child, index) => (

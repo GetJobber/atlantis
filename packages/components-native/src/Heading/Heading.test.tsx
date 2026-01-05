@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
 import { Heading } from "./Heading";
+import { Text } from "../Text";
 
 describe("when Heading called with text as the only prop", () => {
   it("should match snapshot", () => {
@@ -76,6 +77,18 @@ describe("when Heading called with maxLines", () => {
   it("should match snapshot", () => {
     const view = render(
       <Heading maxLines="single">Text Aligned Right</Heading>,
+    ).toJSON();
+
+    expect(view).toMatchSnapshot();
+  });
+});
+
+describe("when Heading contains nested inline text", () => {
+  it("renders nested Text within Heading", () => {
+    const view = render(
+      <Heading>
+        Heading before <Text emphasis="strong">Inner</Text> after
+      </Heading>,
     ).toJSON();
 
     expect(view).toMatchSnapshot();

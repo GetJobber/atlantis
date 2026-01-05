@@ -1,21 +1,20 @@
-import React, {
-  Children,
-  PropsWithChildren,
-  ReactElement,
-  useEffect,
-} from "react";
+import type { PropsWithChildren, ReactElement } from "react";
+import React, { Children, useEffect } from "react";
 import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActionsOverflow";
 import { Glimmer } from "@jobber/components/Glimmer";
 import styles from "./DataListLayoutActions.module.css";
+import type { DataListActionProps, DataListObject } from "../../DataList.types";
 
 export function DataListLayoutActions() {
   const { itemActionComponent, loadingState } = useDataListContext();
   const { setHasInLayoutActions } = useDataListLayoutContext();
 
   const { children: actionsChildren } = itemActionComponent?.props || {};
-  const actions = Children.toArray(actionsChildren) as ReactElement[];
+  const actions = Children.toArray(actionsChildren) as ReactElement<
+    DataListActionProps<DataListObject>
+  >[];
   const hasActions = actions.length > 0;
 
   useEffect(() => {

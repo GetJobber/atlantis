@@ -1,12 +1,8 @@
 import React from "react";
 import { render, renderHook } from "@testing-library/react-native";
-import { TextStyle } from "react-native";
-import {
-  SuffixIcon,
-  SuffixIconProps,
-  SuffixLabel,
-  SuffixLabelProps,
-} from "./Suffix";
+import type { TextStyle } from "react-native";
+import type { SuffixIconProps, SuffixLabelProps } from "./Suffix";
+import { SuffixIcon, SuffixLabel } from "./Suffix";
 import { useTypographyStyles } from "../../../Typography";
 
 const mockLabel = "$";
@@ -14,7 +10,7 @@ const mockLabel = "$";
 function setupLabel({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
+  miniLabelActive = false,
   inputInvalid = false,
   label = mockLabel,
   styleOverride,
@@ -23,7 +19,7 @@ function setupLabel({
     <SuffixLabel
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
+      miniLabelActive={miniLabelActive}
       inputInvalid={inputInvalid}
       label={label}
       styleOverride={styleOverride}
@@ -34,7 +30,6 @@ function setupLabel({
 function setupIcon({
   disabled = false,
   focused = false,
-  hasMiniLabel = false,
   inputInvalid = false,
   icon = "invoice",
 }: Partial<SuffixIconProps>) {
@@ -42,7 +37,6 @@ function setupIcon({
     <SuffixIcon
       disabled={disabled}
       focused={focused}
-      hasMiniLabel={hasMiniLabel}
       inputInvalid={inputInvalid}
       icon={icon}
     />,

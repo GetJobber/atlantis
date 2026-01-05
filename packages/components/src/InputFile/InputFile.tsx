@@ -1,7 +1,10 @@
-import React, { SyntheticEvent, useCallback } from "react";
+import type { SyntheticEvent } from "react";
+import React, { useCallback } from "react";
 import classnames from "classnames";
-import { DropzoneOptions, FileError, useDropzone } from "react-dropzone";
-import axios, { AxiosRequestConfig } from "axios";
+import type { DropzoneOptions, FileError } from "react-dropzone";
+import { useDropzone } from "react-dropzone";
+import type { AxiosRequestConfig } from "axios";
+import axios from "axios";
 import styles from "./InputFile.module.css";
 import {
   BASIC_IMAGE_TYPES,
@@ -13,7 +16,7 @@ import { InputFileHintText } from "./InputFileHintText";
 import { InputFileDescription } from "./InputFileDescription";
 import { InputFileButton } from "./InputFileButton";
 import { InputFileDropzoneWrapper } from "./InputFileDropzoneWrapper";
-import { InputFileValidationError } from "./types";
+import type { InputFileValidationError } from "./types";
 import { InputFileValidationErrors } from "./InputFileValidationErrors";
 import { InputFileContentContext } from "./InputFileContentContext";
 import { Content } from "../Content";
@@ -108,6 +111,11 @@ interface InputFileProps {
    * @default "base"
    */
   readonly size?: "small" | "base";
+
+  /**
+   * Sets the `name` attribute on the underlying `<input>` element.
+   */
+  readonly name?: string;
 
   /**
    * Label for the InputFile's button.
@@ -222,6 +230,7 @@ interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
 export function InputFile({
   variation = "dropzone",
   size = "base",
+  name,
   buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
@@ -367,7 +376,11 @@ export function InputFile({
         {...getRootProps({ className: dropZone })}
         tabIndex={variation === "button" ? -1 : 0}
       >
-        <input {...getInputProps()} data-testid="input-file-input" />
+        <input
+          {...getInputProps()}
+          data-testid="input-file-input"
+          name={name}
+        />
         <InputFileContentContext.Provider value={contentContext}>
           {children || defaultContent}
         </InputFileContentContext.Provider>
@@ -387,8 +400,13 @@ export function InputFile({
 
     try {
       params = await getUploadParams(file);
-    } catch {
-      onUploadError && onUploadError(new Error("Failed to get upload params"));
+    } catch (error) {
+      onUploadError &&
+        onUploadError(
+          error instanceof Error
+            ? error
+            : new Error("Failed to get upload params"),
+        );
 
       return;
     }

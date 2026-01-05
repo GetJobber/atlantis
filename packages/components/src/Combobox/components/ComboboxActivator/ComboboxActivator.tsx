@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "@jobber/components/Button";
-import { Chip } from "@jobber/components/Chip";
+import { Button, type ButtonProps } from "@jobber/components/Button";
+import { Chip, type ChipProps } from "@jobber/components/Chip";
 import { ComboboxContext } from "../../ComboboxProvider";
-import { ComboboxActivatorProps } from "../../Combobox.types";
+import type { ComboboxActivatorProps } from "../../Combobox.types";
 import { useComboboxActivatorAccessibility } from "../../hooks/useComboboxActivatorAccessibility";
 
 export function ComboboxActivator(props: ComboboxActivatorProps) {
@@ -10,7 +10,7 @@ export function ComboboxActivator(props: ComboboxActivatorProps) {
   const accessibilityAttributes = useComboboxActivatorAccessibility();
 
   if (
-    typeof props.children !== "function" &&
+    React.isValidElement<ButtonProps | ChipProps>(props.children) &&
     (props.children.type === Button || props.children.type === Chip)
   ) {
     return React.cloneElement(props.children, {

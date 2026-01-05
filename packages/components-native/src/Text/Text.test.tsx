@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { fireEvent, render, screen } from "@testing-library/react-native";
 import { Text } from ".";
 import { tokens } from "../utils/design";
 
@@ -135,6 +135,7 @@ it("renders with italic styling", () => {
 
 it("renders text that is inaccessible", () => {
   const text = render(<Text hideFromScreenReader={true}>Test Text</Text>);
+
   expect(text.root.props).toEqual(
     expect.objectContaining({
       accessibilityRole: "none",
@@ -145,9 +146,19 @@ it("renders text that is inaccessible", () => {
 });
 
 it("renders text with underline styling", () => {
-  const text = render(<Text underline="dashed">Test Text</Text>);
+  const text = render(<Text underline="dotted">Test Text</Text>);
 
   expect(text.toJSON()).toMatchSnapshot();
+});
+
+it("supports nested Text children with mixed styles", () => {
+  const { getByText, toJSON } = render(
+    <Text>
+      Hello <Text emphasis="strong">World</Text>!
+    </Text>,
+  );
+  expect(getByText("World")).toBeDefined();
+  expect(toJSON()).toMatchSnapshot();
 });
 
 describe("UNSAFE_style", () => {
@@ -159,12 +170,62 @@ describe("UNSAFE_style", () => {
       },
     };
 
-    const { getByRole } = render(
-      <Text UNSAFE_style={customStyle}>Test Text</Text>,
-    );
-    const textElement = getByRole("text");
+    render(<Text UNSAFE_style={customStyle}>Test Text</Text>);
+    const textElement = screen.getByRole("text");
     expect(textElement.props.style).toContainEqual(
       expect.objectContaining(customStyle.textStyle),
     );
+  });
+});
+
+describe("onTextLayout", () => {
+  it("calls onTextLayout callback when text layout event occurs", () => {
+    const onTextLayoutMock = jest.fn();
+    render(<Text onTextLayout={onTextLayoutMock}>Test Text</Text>);
+
+    const textElement = screen.getByRole("text");
+    const mockEvent = {
+      nativeEvent: {
+        lines: [
+          {
+            text: "Test Text",
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 20,
+            ascender: 15,
+            descender: -5,
+            capHeight: 14,
+            xHeight: 10,
+          },
+        ],
+      },
+    };
+    fireEvent(textElement, "onTextLayout", mockEvent);
+    expect(onTextLayoutMock).toHaveBeenCalledTimes(1);
+    expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
+  });
+});
+
+describe("TypographyGestureDetector", () => {
+  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
+    const { getByRole } = render(<Text>Test Text</Text>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("wraps text with TypographyGestureDetector (collapsable=false) when selectable=true", () => {
+    const { getByRole } = render(<Text selectable={true}>Test Text</Text>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("does not wrap text with TypographyGestureDetector when selectable=false", () => {
+    const { getByRole } = render(<Text selectable={false}>Test Text</Text>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBeUndefined();
   });
 });

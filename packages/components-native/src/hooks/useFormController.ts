@@ -1,12 +1,10 @@
 import { v1 } from "react-native-uuid";
-import {
+import type {
   FieldError,
   RegisterOptions,
   UseControllerReturn,
-  useController,
-  useForm,
-  useFormContext,
 } from "react-hook-form";
+import { get, useController, useForm, useFormContext } from "react-hook-form";
 import { useState } from "react";
 
 interface UseFormControllerProps<T> {
@@ -42,22 +40,15 @@ export function useFormController<T>({
     name: fieldName,
     control,
     rules: validations,
-    defaultValue: value || undefined,
+    defaultValue: typeof value === "boolean" ? value : value || undefined,
   });
 
   // The naming convention established by react-hook-form for arrays of fields is, for example, "emails.0.description".
-  // This corresponds to the structure of the error object, e.g. { emails: { 0: { description: "foobar" } } }
-  // We assume here that fields will either follow this period-delimited three-part convention, or else that they are simple and indivisible (e.g. "city").
-  // TODO: Add support for two-part identifiers (e.g. "property.province")
-  const fieldIdentifiers = fieldName.split(".");
-  let error: FieldError | undefined;
-
-  if (fieldIdentifiers.length === 3) {
-    const [section, item, identifier] = fieldIdentifiers;
-    error = errors[section]?.[item]?.[identifier];
-  } else {
-    error = errors[fieldName];
-  }
+  // Preserve original behavior: only treat three-part names as nested paths.
+  // For anything else, perform a flat lookup to avoid behavioral changes.
+  const identifiers = fieldName.split(".");
+  const error =
+    identifiers.length === 3 ? get(errors, fieldName) : errors[fieldName];
 
   return { error, field };
 }

@@ -1,7 +1,8 @@
-import React, { PropsWithChildren, ReactElement } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
+import React from "react";
 import { Pressable, Text as RNText, View } from "react-native";
-import { IconNames } from "@jobber/design";
-import { BannerProps, BannerTypes } from "./types";
+import type { IconNames } from "@jobber/design";
+import type { BannerProps, BannerTypes } from "./types";
 import { useStyles } from "./Banner.style";
 import { BannerIcon } from "./components/BannerIcon/BannerIcon";
 import { Content } from "../Content";
@@ -17,7 +18,7 @@ export function Banner({
   type,
   children,
   icon,
-}: BannerProps): JSX.Element {
+}: BannerProps) {
   const bannerIcon = icon || getBannerIcon(type);
 
   const shouldFlow =
@@ -59,7 +60,7 @@ export function Banner({
   );
 }
 
-function BannerChildren({ children }: PropsWithChildren): JSX.Element {
+function BannerChildren({ children }: PropsWithChildren) {
   if (!children) return <></>;
 
   if (children && typeof children === "string") {
@@ -96,5 +97,7 @@ function getBannerIcon(type: BannerTypes): IconNames | undefined {
       return "help";
     case "error":
       return "alert";
+    case "success":
+      return "checkmark";
   }
 }

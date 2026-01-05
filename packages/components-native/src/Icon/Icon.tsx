@@ -1,6 +1,7 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
-import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
+import type { IconColorNames, IconNames, IconSizes } from "@jobber/design";
+import { getIcon } from "@jobber/design";
 
 export interface IconProps {
   /** The icon to show.  */
@@ -36,7 +37,7 @@ export function Icon({
   size = "base",
   customColor,
   testID,
-}: IconProps): JSX.Element {
+}: IconProps) {
   const { svgStyle, paths, viewBox } = getIcon({
     name,
     color,

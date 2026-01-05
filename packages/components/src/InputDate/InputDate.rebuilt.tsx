@@ -1,17 +1,22 @@
-import React, { forwardRef } from "react";
-import omit from "lodash/omit";
+import React, { forwardRef, useRef } from "react";
+import type { FocusEvent } from "react";
 import { useInputDateActivatorActions } from "./useInputDateActivatorActions";
-import { InputDateRebuiltProps } from "./InputDate.types";
-import { Suffix } from "../FormField";
+import type { InputDateRebuiltProps } from "./InputDate.types";
+import type { Suffix } from "../FormField";
 import { DatePicker } from "../DatePicker";
-import { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
+import type { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
 import { InputText } from "../InputText";
 
-export const InputDateRebuilt = forwardRef(function InputDateInternal(
-  props: InputDateRebuiltProps,
-  inputRefs: React.Ref<HTMLInputElement>,
-) {
+export const InputDateRebuilt = forwardRef<
+  HTMLInputElement,
+  InputDateRebuiltProps
+>((props, forwardedRef) => {
   const { onChange } = props;
+  const isCalendarOpenRef = useRef(false);
+  const inputFocusedRef = useRef(false);
+  const compositeFocusedRef = useRef(false);
+  const lastBlurEventRef =
+    useRef<FocusEvent<HTMLInputElement | HTMLTextAreaElement>>(null);
 
   return (
     <DatePicker
@@ -26,23 +31,51 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
       maxDate={props.maxDate}
       smartAutofocus={false}
       activator={InputDateActivator}
+      onOpenChange={open => {
+        isCalendarOpenRef.current = open;
+
+        // When calendar closes, fire onBlur if input is also not focused
+        if (
+          !open &&
+          !inputFocusedRef.current &&
+          compositeFocusedRef.current &&
+          lastBlurEventRef.current
+        ) {
+          compositeFocusedRef.current = false;
+          props.onBlur?.(lastBlurEventRef.current);
+        }
+      }}
     />
   );
 
   function InputDateActivator(activatorProps: DatePickerActivatorProps) {
     const { onClick, value } = activatorProps;
-    const newActivatorProps = omit(activatorProps, ["activator", "fullWidth"]);
 
     const { handleChange, handleFocus, handleBlur, isFocused } =
       useInputDateActivatorActions({
-        onChange: newActivatorProps.onChange,
+        onChange: activatorProps.onChange,
         onFocus: event => {
-          props.onFocus?.(event);
-          newActivatorProps.onFocus?.();
+          inputFocusedRef.current = true;
+
+          // Fire parent's onFocus only when the composite component first receives focus
+          if (!compositeFocusedRef.current) {
+            compositeFocusedRef.current = true;
+            props.onFocus?.(event);
+          }
+
+          activatorProps.onFocus?.();
         },
         onBlur: event => {
-          props.onBlur?.(event);
-          newActivatorProps.onBlur?.();
+          inputFocusedRef.current = false;
+          lastBlurEventRef.current = event;
+
+          // Only fire parent's onBlur if calendar is also closed
+          if (!isCalendarOpenRef.current && compositeFocusedRef.current) {
+            compositeFocusedRef.current = false;
+            props.onBlur?.(event);
+          }
+
+          activatorProps.onBlur?.();
         },
       });
 
@@ -51,7 +84,7 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
         ? ({
             icon: "calendar",
             ariaLabel: "Show calendar",
-            onClick: onClick && onClick,
+            onClick: !props.disabled && onClick && onClick,
           } as Suffix)
         : undefined;
 
@@ -61,13 +94,27 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
       // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
       <div onClick={onClick}>
         <InputText
-          {...newActivatorProps}
-          {...props}
+          aria-describedby={activatorProps.ariaDescribedBy}
+          aria-labelledby={activatorProps.ariaLabelledBy}
+          aria-required={activatorProps.ariaRequired === "true" ? true : false}
+          autoFocus={props.autoFocus}
+          id={activatorProps.id}
+          autoComplete={props.autoComplete}
+          disabled={props.disabled}
+          error={props.error}
+          readOnly={props.readOnly}
+          placeholder={props.placeholder}
+          size={props.size}
+          inline={props.inline}
+          align={props.align}
+          description={props.description}
+          invalid={props.invalid}
+          name={props.name}
           version={2}
           value={
             showEmptyValueLabel ? props.emptyValueLabel || "" : value || ""
           }
-          ref={inputRefs}
+          ref={forwardedRef}
           suffix={suffix}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -83,3 +130,5 @@ export const InputDateRebuilt = forwardRef(function InputDateInternal(
     );
   }
 });
+
+InputDateRebuilt.displayName = "InputDateRebuilt";

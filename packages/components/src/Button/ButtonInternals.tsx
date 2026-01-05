@@ -1,8 +1,8 @@
 import React from "react";
-import { ButtonProps } from "./Button.types";
+import { type ButtonProps } from "./Button.types";
 import { useButtonContext } from "./ButtonProvider";
-import { Icon, IconProps } from "../Icon";
-import { Typography, TypographyProps } from "../Typography";
+import { Icon, type IconProps } from "../Icon";
+import { Typography, type TypographyProps } from "../Typography";
 
 /**
  * For backwards compatibility with the legacy button

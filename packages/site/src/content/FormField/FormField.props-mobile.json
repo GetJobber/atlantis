@@ -42,7 +42,7 @@
         },
         "required": true,
         "type": {
-          "name": "(field: ControllerRenderProps<FieldValues, string>, error?: FieldError) => React.ReactNode"
+          "name": "(field: ControllerRenderProps<FieldValues, string>, error?: FieldError) => ReactNode"
         }
       },
       "validations": {
@@ -55,7 +55,7 @@
         },
         "required": false,
         "type": {
-          "name": "Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>"
+          "name": "RegisterOptions"
         }
       }
     }

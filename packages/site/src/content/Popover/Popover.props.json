@@ -110,7 +110,7 @@
     "props": {
       "preferredPlacement": {
         "defaultValue": {
-          "value": "'auto'"
+          "value": "auto"
         },
         "description": "Describes the preferred placement of the Popover.",
         "name": "preferredPlacement",
@@ -221,7 +221,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void"
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => void"
         }
       },
       "ariaLabel": {

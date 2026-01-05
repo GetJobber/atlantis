@@ -139,5 +139,212 @@
         }
       }
     }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Table",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Header",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.HeaderCell",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.RowActions",
+    "methods": [],
+    "props": {
+      "className": {
+        "defaultValue": null,
+        "description": "",
+        "name": "className",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Actions",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Body",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Container",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.SortableHeader",
+    "methods": [],
+    "props": {
+      "children": {
+        "defaultValue": null,
+        "description": "The header content to display (text, icons, etc.)",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "direction": {
+        "defaultValue": null,
+        "description": "The current sort direction for this column. When undefined, the header renders as non-interactive.",
+        "name": "direction",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "SortDirection"
+        }
+      },
+      "onSort": {
+        "defaultValue": null,
+        "description": "Callback function triggered when the sortable header is clicked.\nWhen undefined, the header renders as non-interactive.",
+        "name": "onSort",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableSortableHeader.tsx",
+          "name": "DataTableSortableHeaderProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Footer",
+    "methods": [],
+    "props": {
+      "colSpan": {
+        "defaultValue": null,
+        "description": "Number of columns to span across. This should match the number of columns in your table.",
+        "name": "colSpan",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableFooter.tsx",
+          "name": "DataTableFooterProps"
+        },
+        "required": true,
+        "type": {
+          "name": "number"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.Pagination",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/DataTable/DataTable.tsx",
+    "description": "",
+    "displayName": "DataTable.PaginationButton",
+    "methods": [],
+    "props": {
+      "direction": {
+        "defaultValue": null,
+        "description": "The direction of the pagination button",
+        "name": "direction",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "\"next\" | \"previous\""
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "Callback function when the pagination button is clicked",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "disabled": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether the pagination button is disabled",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Function that returns the aria-label for the button. Required for accessibility.\nShould return translated strings based on the direction parameter.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTablePaginationButton.tsx",
+          "name": "DataTablePaginationButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "(direction: \"next\" | \"previous\") => string"
+        }
+      }
+    }
   }
 ]

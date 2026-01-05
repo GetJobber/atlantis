@@ -1,11 +1,13 @@
 import React from "react";
-import { StyleProp, TouchableHighlight, View, ViewStyle } from "react-native";
-import { IconColorNames, IconNames } from "@jobber/design";
-import { XOR } from "ts-xor";
+import type { StyleProp, ViewStyle } from "react-native";
+import { TouchableHighlight, View } from "react-native";
+import type { IconColorNames, IconNames } from "@jobber/design";
+import type { XOR } from "ts-xor";
 import { useStyles } from "./Button.style";
 import { InternalButtonLoading } from "./components/InternalButtonLoading";
-import { ButtonSize, ButtonType, ButtonVariation } from "./types";
-import { ActionLabel, ActionLabelVariation } from "../ActionLabel";
+import type { ButtonSize, ButtonType, ButtonVariation } from "./types";
+import type { ActionLabelVariation } from "../ActionLabel";
+import { ActionLabel } from "../ActionLabel";
 import { Icon } from "../Icon";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
 
@@ -122,7 +124,7 @@ export function Button({
   icon,
   testID,
   UNSAFE_style,
-}: ButtonProps): JSX.Element {
+}: ButtonProps) {
   const { tokens } = useAtlantisTheme();
   const styles = useStyles();
 

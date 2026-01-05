@@ -1,2 +1,3 @@
 export { RecurringSelect } from "./RecurringSelect";
-export { DayOfMonth, DurationPeriod, RecurrenceRule, WeekDay } from "./types";
+export type { DayOfMonth, RecurrenceRule } from "./types";
+export { DurationPeriod, WeekDay } from "./types";

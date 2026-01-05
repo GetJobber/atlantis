@@ -1,8 +1,8 @@
-import { IconNames } from "@jobber/design";
-import { ReactElement } from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import type { IconNames } from "@jobber/design";
+import type { ReactElement } from "react";
+import type { StyleProp, ViewStyle } from "react-native";
 
-export type BannerTypes = "error" | "warning" | "notice";
+export type BannerTypes = "error" | "warning" | "notice" | "success";
 
 export interface BannerStyleProps {
   /**

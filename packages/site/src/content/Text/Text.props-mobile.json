@@ -109,7 +109,7 @@
       },
       "children": {
         "defaultValue": null,
-        "description": "Text to display",
+        "description": "Text to display. Supports nesting text elements.",
         "name": "children",
         "parent": {
           "fileName": "../components-native/src/Text/Text.tsx",
@@ -117,7 +117,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "ReactNode"
         }
       },
       "reverseTheme": {
@@ -206,6 +206,19 @@
           "name": "TypographyUnsafeStyle"
         }
       },
+      "onTextLayout": {
+        "defaultValue": null,
+        "description": "Callback that is called when the text is laid out.",
+        "name": "onTextLayout",
+        "parent": {
+          "fileName": "../components-native/src/Text/Text.tsx",
+          "name": "TextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: TextLayoutEvent) => void"
+        }
+      },
       "maxFontScaleSize": {
         "defaultValue": null,
         "description": "Set the maximum font the text can go to size when the user scales their\ndevice font size",
@@ -220,12 +233,14 @@
         }
       },
       "selectable": {
-        "defaultValue": null,
-        "description": "Lets the user select text, to use the native copy and paste functionality.",
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Lets the user select text, to use the native copy and paste functionality.\nWARNING: if true, this prevents ellipsis from being shown on Android.",
         "name": "selectable",
         "parent": {
-          "fileName": "atlantis/node_modules/react-native/Libraries/Text/Text.d.ts",
-          "name": "TextPropsAndroid"
+          "fileName": "packages/components-native/src/Typography/Typography.tsx",
+          "name": "TypographyProps"
         },
         "required": false,
         "type": {

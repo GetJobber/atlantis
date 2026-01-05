@@ -18,8 +18,10 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
         {
           "height": 16,
         },
+        undefined,
       ]
     }
+    testID="progressbar-container"
   >
     <View
       style={
@@ -34,11 +36,13 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
             "width": "100%",
           },
           {
-            "backgroundColor": "hsl(53, 21%, 93%)",
+            "backgroundColor": "hsl(51, 17%, 85%)",
             "width": "100%",
           },
+          undefined,
         ]
       }
+      testID="progressbar-track"
     />
     <View
       style={
@@ -56,8 +60,10 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
             "backgroundColor": "hsl(207, 79%, 57%)",
             "width": "0%",
           },
+          undefined,
         ]
       }
+      testID="progressbar-inprogress"
     />
     <View
       style={
@@ -75,8 +81,10 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
             "backgroundColor": "hsl(107, 58%, 33%)",
             "width": "0%",
           },
+          undefined,
         ]
       }
+      testID="progressbar-fill"
     />
   </View>
 </View>
@@ -100,8 +108,10 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
         {
           "height": 16,
         },
+        undefined,
       ]
     }
+    testID="progressbar-container"
   >
     <View
       style={
@@ -116,11 +126,13 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
             "width": "100%",
           },
           {
-            "backgroundColor": "hsl(53, 21%, 93%)",
+            "backgroundColor": "hsl(51, 17%, 85%)",
             "width": "100%",
           },
+          undefined,
         ]
       }
+      testID="progressbar-track"
     />
     <View
       style={
@@ -138,8 +150,10 @@ exports[`renders green CompletedProgress bar when 1 or more jobs is completed 1`
             "backgroundColor": "hsl(107, 58%, 33%)",
             "width": "50%",
           },
+          undefined,
         ]
       }
+      testID="progressbar-fill"
     />
   </View>
 </View>

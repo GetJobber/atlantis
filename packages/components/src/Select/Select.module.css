@@ -1,0 +1,115 @@
+/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable selector-pseudo-element-no-unknown */
+/**
+ * Chrome 123+ customizable select styling for option groups
+ * Based on: https://developer.chrome.com/blog/a-customizable-select
+ *
+ * IMPORTANT: All custom styling is gated behind a feature query so that
+ * unsupported browsers fall back to the native select without any layout
+ * regressions in our FormField wrapper.
+ */
+
+@supports (appearance: base-select) {
+  .select {
+    /* opt into customizing select */
+    &,
+    &::picker(select) {
+      appearance: base-select;
+
+      /* Dropdown styling */
+      &::picker(select) {
+        box-shadow: var(--shadow-base);
+        margin-top: var(--space-small);
+        padding: 0;
+        border: var(--border-base) solid var(--color-border);
+        border-radius: var(--radius-base);
+        background: var(--color-surface);
+      }
+    }
+
+    /* enable transitions in the drop down */
+    &::picker(select) {
+      transition:
+        opacity var(--timing-base) ease,
+        transform var(--timing-base) ease-out,
+        display var(--timing-base) allow-discrete,
+        overlay var(--timing-base) allow-discrete;
+    }
+
+    &::picker-icon {
+      display: none;
+    }
+
+    &:not(:open)::picker(select) {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    &:open::picker(select) {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* options */
+    & option {
+      padding: var(--space-smaller) 0;
+      color: var(--color-text);
+      text-indent: var(--space-small);
+      cursor: pointer;
+    }
+
+    & option:hover,
+    & option:focus,
+    & option:focus-visible,
+    & option:checked {
+      background-color: var(--color-surface--hover);
+    }
+
+    /* optgroup headers */
+    & optgroup {
+      padding: var(--space-small) 0 0 0;
+      color: var(--color-heading);
+      font-size: var(--typography--fontSize-base);
+      font-style: normal;
+      font-weight: 700;
+      text-indent: var(--space-small);
+      background-color: transparent;
+    }
+
+    /* Divider directly under the group label */
+    & optgroup option:first-child {
+      border-top: var(--border-base) solid var(--color-border);
+    }
+
+    /* Disabled groups and their options */
+    & optgroup[disabled] {
+      color: var(--color-disabled);
+    }
+    & optgroup[disabled] option,
+    & option[disabled] {
+      color: var(--color-disabled);
+      cursor: default;
+    }
+
+    & optgroup[disabled] option:focus,
+    & optgroup[disabled] option:focus-visible,
+    & optgroup[disabled] option:checked,
+    & optgroup[disabled] option:hover,
+    & option[disabled]:focus,
+    & option[disabled]:focus-visible,
+    & option[disabled]:checked,
+    & option[disabled]:hover {
+      background-color: transparent;
+    }
+
+    /* Animate the chevron rotation for the provided postfix class */
+    & + .selectPostfix svg {
+      transition: transform var(--timing-quick);
+      transform-origin: 50% 50%;
+    }
+    /* Rotate the postfix chevron when the select is open */
+    &:open + .selectPostfix svg {
+      transform: rotate(180deg);
+    }
+  }
+}

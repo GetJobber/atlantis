@@ -1,13 +1,15 @@
-import React, { RefObject } from "react";
+import type { RefObject } from "react";
+import React from "react";
 import { View } from "react-native";
 import { Portal } from "react-native-portalize";
-import { ButtonGroupSecondaryActionProps } from "../../types";
+import type { ButtonGroupSecondaryActionProps } from "../../types";
 import { BottomSheetOption } from "../../../BottomSheet/components/BottomSheetOption";
-import { BottomSheet, BottomSheetRef } from "../../../BottomSheet/BottomSheet";
+import type { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
+import { BottomSheet } from "../../../BottomSheet/BottomSheet";
 
 interface SecondaryActionSheetProps {
   readonly actions: ButtonGroupSecondaryActionProps[];
-  readonly secondaryActionsRef: RefObject<BottomSheetRef>;
+  readonly secondaryActionsRef: RefObject<BottomSheetRef | null>;
   readonly showCancel?: boolean;
   readonly heading?: string;
   readonly onOpenBottomSheet?: () => void;
@@ -21,7 +23,7 @@ export function SecondaryActionSheet({
   showCancel,
   onOpenBottomSheet,
   onCloseBottomSheet,
-}: SecondaryActionSheetProps): JSX.Element {
+}: SecondaryActionSheetProps) {
   return (
     <Portal>
       <BottomSheet

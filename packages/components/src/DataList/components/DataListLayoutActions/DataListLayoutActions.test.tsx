@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import { DataListLayoutActions } from "./DataListLayoutActions";
 import { DataListContext, defaultValues } from "../../context/DataListContext";
@@ -10,7 +11,7 @@ import {
 } from "../../context/DataListLayoutContext";
 
 const mockSetHasInLayoutActions = jest.fn();
-const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
+const mockItemActionComponent = jest.fn<ReactElement | undefined, []>(() => (
   <DataListItemActions>
     <DataListAction label="Edit" />
     <DataListAction label="Email" />

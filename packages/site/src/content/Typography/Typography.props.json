@@ -21,7 +21,7 @@
       },
       "element": {
         "defaultValue": {
-          "value": "\"p\""
+          "value": "p"
         },
         "description": "",
         "name": "element",
@@ -44,7 +44,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"extravagant\" | \"jumbo\" | \"largest\" | \"larger\" | \"large\" | \"base\" | \"small\" | \"smaller\""
         }
       },
       "fontWeight": {
@@ -59,7 +59,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"regular\" | \"medium\" | \"semiBold\" | \"bold\" | \"extraBold\" | \"black\""
         }
       },
       "textCase": {
@@ -72,7 +72,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"uppercase\" | \"lowercase\" | \"capitalize\" | \"none\""
         }
       },
       "textColor": {
@@ -85,7 +85,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"blue\" | \"grey\" | \"greyBlueDark\" | \"greyBlue\" | \"green\" | \"red\" | \"yellow\" | \"yellowDark\" | \"lightBlue\" | \"white\" | \"heading\" | \"text\" | \"textSecondary\" | \"textReverse\" | \"textReverseSecondary\" | ... 49 more ... | \"brand\""
         }
       },
       "emphasisType": {
@@ -98,7 +98,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"italic\" | \"highlight\""
         }
       },
       "align": {
@@ -113,7 +113,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"start\" | \"center\" | \"end\""
         }
       },
       "fontFamily": {
@@ -126,7 +126,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"base\" | \"display\""
         }
       },
       "numberOfLines": {
@@ -152,7 +152,7 @@
         },
         "required": false,
         "type": {
-          "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 634 more ... | \"dashed color-client\""
+          "name": "UnderlineStyle | \"solid color-indigo\" | \"solid color-indigo--light\" | \"solid color-indigo--lighter\" | \"solid color-indigo--lightest\" | \"solid color-indigo--dark\" | ... 642 more ... | \"dashed color-client--onSurface\""
         }
       },
       "UNSAFE_className": {

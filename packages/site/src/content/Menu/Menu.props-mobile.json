@@ -29,7 +29,7 @@
         },
         "required": false,
         "type": {
-          "name": "Element"
+          "name": "ReactElement<CustomActivatorProps, string | JSXElementConstructor<any>>"
         }
       }
     }

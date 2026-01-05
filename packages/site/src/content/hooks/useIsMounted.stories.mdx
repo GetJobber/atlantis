@@ -1,0 +1,19 @@
+import { Canvas } from "@storybook/addon-docs";
+import { UseIsMounted } from "./UseIsMounted";
+
+# UseIsMounted
+
+`useIsMounted` should be used on asynchronous calls to ensure the component is
+mounted before manipulating the state of that component. Manipulating the state
+of unmounted components can cause errors and memory leaks.
+
+If you want a function to be called one time after the component is mounted, you
+should use `useOnMount` instead.
+
+```tsx
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
+```
+
+<Canvas>
+  <UseIsMounted />
+</Canvas>

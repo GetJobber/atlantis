@@ -1,7 +1,8 @@
-import { Theme } from "@jobber/components";
-import { RefObject } from "react";
+import { type Theme } from "@jobber/components";
+import { RefObject, useCallback } from "react";
+import { ComponentType } from "../types/content";
 
-const skeletonHTML = (theme: Theme, type: "web" | "mobile") => {
+const skeletonHTML = (theme: Theme, type: ComponentType) => {
   const imports =
     type == "mobile"
       ? `
@@ -84,7 +85,7 @@ html,body,#root {
           }
       }
   @container wrapper-three (min-width:0px){
- 
+
         .item > *{
           width: 50%;
           background-color: var(--color-success);
@@ -116,7 +117,13 @@ html,body,#root {
           script.textContent = code;
           const root = document.getElementById('root');
           if (root) {
-            root.appendChild(script); // Inject new script
+             // remove old live scripts
+            root.querySelectorAll('script[data-atlantis="live"]').forEach(n => n.remove());
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.setAttribute('data-atlantis', 'live');
+            script.textContent = code;
+            root.appendChild(script);
           }
         } else if (type === 'updateTheme') {
           document.documentElement.dataset.theme = theme;
@@ -206,7 +213,7 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               RadioGroup,
               RadioOption,
               RecurringSelect,
-              ResponsiveSwitcher, 
+              ResponsiveSwitcher,
               SegmentedControl,
               Select,
               SideDrawer,
@@ -245,9 +252,6 @@ export const WebCodeWrapper = (transpiledCode: string | null | undefined) => `
               return React.createElement(AtlantisThemeContextProvider, null, React.createElement(App));
             }
 
-          if (rootElement) {
-              ReactDOM.unmountComponentAtNode(rootElement);
-            }
              if(!rootElement){
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
@@ -338,9 +342,6 @@ export const MobileCodeWrapper = (
               return React.createElement(IntlProvider, {locale: 'en'}, React.createElement(RootWrapper));
             }
 
-          if (rootElement) {
-            //  ReactDOM.unmountComponentAtNode(rootElement);
-            }
              if(!rootElement){
               rootElement = document.getElementById('root')
               root = ReactDOM.createRoot(rootElement);
@@ -348,58 +349,68 @@ export const MobileCodeWrapper = (
               root.render(React.createElement(IntlWrapper, null));
           `;
 
-export const useAtlantisPreviewSkeleton = (type: "web" | "mobile") => {
-  const writeSkeleton = (
-    doc: Document | null | undefined,
-    iframeTheme: Theme,
-  ) => {
-    if (doc) {
-      doc.open();
-      doc.write(skeletonHTML(iframeTheme, type));
-      doc.close();
-    }
-  };
+export const useAtlantisPreviewSkeleton = (type: ComponentType) => {
+  const writeSkeleton = useCallback(
+    (doc: Document | null | undefined, iframeTheme: Theme) => {
+      if (doc) {
+        doc.open();
+        doc.write(skeletonHTML(iframeTheme, type));
+        doc.close();
+      }
+    },
+    [type],
+  );
 
-  const updateIframeCode = (
-    currentFrame: HTMLIFrameElement,
-    transpiledCode: string | null | undefined,
-  ) => {
-    const iframeWindow = currentFrame.contentWindow;
+  const updateIframeCode = useCallback(
+    (
+      currentFrame: HTMLIFrameElement,
+      transpiledCode: string | null | undefined,
+    ) => {
+      const iframeWindow = currentFrame.contentWindow;
 
-    if (iframeWindow) {
-      const codeWrapper =
-        type == "web"
-          ? WebCodeWrapper(transpiledCode)
-          : MobileCodeWrapper(transpiledCode);
-      iframeWindow.postMessage({ type: "updateCode", code: codeWrapper }, "*");
-    }
-  };
+      if (iframeWindow) {
+        const codeWrapper =
+          type == "mobile"
+            ? MobileCodeWrapper(transpiledCode)
+            : WebCodeWrapper(transpiledCode); // Use WebCodeWrapper for both 'webSupported' and 'webLegacy'
+        iframeWindow.postMessage(
+          { type: "updateCode", code: codeWrapper },
+          "*",
+        );
+      }
+    },
+    [type],
+  );
 
-  const writeCodeToIFrame = (
-    html: string | undefined,
-    selectedFrame: RefObject<HTMLIFrameElement>,
-    theme: Theme,
-    transpiledCode: string | null | undefined,
-  ) => {
-    if (html === "<html><head></head><body></body></html>") {
-      selectedFrame?.current?.addEventListener("load", () => {
-        if (selectedFrame.current) {
-          const iframeDocument = selectedFrame.current.contentDocument;
+  const writeCodeToIFrame = useCallback(
+    (
+      html: string | undefined,
+      selectedFrame: RefObject<HTMLIFrameElement | null>,
+      theme: Theme,
+      transpiledCode: string | null | undefined,
+    ) => {
+      if (html === "<html><head></head><body></body></html>") {
+        selectedFrame?.current?.addEventListener("load", () => {
+          if (selectedFrame.current) {
+            const iframeDocument = selectedFrame.current.contentDocument;
 
-          if (iframeDocument) {
-            selectedFrame.current.style.height =
-              iframeDocument.body.scrollHeight + 60 + "px";
+            if (iframeDocument) {
+              selectedFrame.current.style.height =
+                iframeDocument.body.scrollHeight + 60 + "px";
+              selectedFrame.current.style.resize = "vertical";
+            }
+            updateIframeCode(selectedFrame.current, transpiledCode);
           }
-          updateIframeCode(selectedFrame.current, transpiledCode);
-        }
-      });
-      writeSkeleton(selectedFrame.current?.contentDocument, theme);
-    } else if (selectedFrame.current) {
-      updateIframeCode(selectedFrame.current, transpiledCode);
-    } else {
-      console.log("tried to update iframe");
-    }
-  };
+        });
+        writeSkeleton(selectedFrame.current?.contentDocument, theme);
+      } else if (selectedFrame.current) {
+        updateIframeCode(selectedFrame.current, transpiledCode);
+      } else {
+        console.log("tried to update iframe");
+      }
+    },
+    [updateIframeCode, writeSkeleton],
+  );
 
   return { writeCodeToIFrame };
 };

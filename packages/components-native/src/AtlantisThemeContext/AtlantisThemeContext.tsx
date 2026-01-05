@@ -2,7 +2,7 @@ import { androidTokens, darkTokens, iosTokens } from "@jobber/design";
 import React, { createContext, useContext, useState } from "react";
 import merge from "lodash/merge";
 import { Platform } from "react-native";
-import {
+import type {
   AtlantisThemeContextProviderProps,
   AtlantisThemeContextValue,
   Theme,

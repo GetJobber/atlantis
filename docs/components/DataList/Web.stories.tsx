@@ -16,10 +16,10 @@ import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
 import { Chip } from "@jobber/components/Chip";
 import { Icon } from "@jobber/components/Icon";
-import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
+import { Combobox, type ComboboxOption } from "@jobber/components/Combobox";
 import { Flex } from "@jobber/components/Flex";
-// eslint-disable-next-line import/no-internal-modules
-import { useDebounce } from "@jobber/components/utils/useDebounce";
+import { useDebounce } from "@jobber/hooks/useDebounce";
+import { isNormalClick } from "@jobber/components";
 
 const meta: Meta = {
   title: "Components/Lists and Tables/DataList/Web",
@@ -180,6 +180,7 @@ const DataListStory = (args: {
   title: string;
   headerVisibility?: { xs: boolean; md: boolean };
   loadingState?: "initial" | "filtering" | "loadingMore" | "none";
+  itemActions?: () => React.ReactElement;
 }) => {
   const items = mockedData;
   const totalCount = mockedData.length;
@@ -323,37 +324,41 @@ const DataListStory = (args: {
         placeholder="Search birds..."
       />
 
-      <DataList.ItemActions onClick={handleActionClick}>
-        <DataList.ItemAction
-          visible={item => item.species !== "Droid"}
-          icon="edit"
-          label="Edit"
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="sendMessage"
-          label={item => `Message ${item.label}`}
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Create new..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Add attribute..."
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          icon="trash"
-          label="Delete"
-          destructive={true}
-          onClick={handleActionClick}
-        />
-        <DataList.ItemAction
-          label="Go to Jobber.com"
-          actionUrl="https://www.jobber.com"
-        />
-      </DataList.ItemActions>
+      {args.itemActions ? (
+        args.itemActions()
+      ) : (
+        <DataList.ItemActions onClick={handleActionClick}>
+          <DataList.ItemAction
+            visible={item => item.species !== "Droid"}
+            icon="edit"
+            label="Edit"
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="sendMessage"
+            label={item => `Message ${item.label}`}
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Create new..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Add attribute..."
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            icon="trash"
+            label="Delete"
+            destructive={true}
+            onClick={handleActionClick}
+          />
+          <DataList.ItemAction
+            label="Go to Jobber.com"
+            actionUrl="https://www.jobber.com"
+          />
+        </DataList.ItemActions>
+      )}
 
       <DataList.BatchActions>
         <DataList.BatchAction
@@ -757,6 +762,27 @@ export const EmptyState: StoryObj<typeof DataList> = {
       data={[]}
       title="All birds"
       headerVisibility={{ xs: false, md: true }}
+    />
+  ),
+};
+
+export const CustomItemNavigation: StoryObj<typeof DataList> = {
+  render: () => (
+    <DataListStory
+      title="All birds"
+      headerVisibility={{ xs: false, md: true }}
+      itemActions={() => (
+        <DataList.ItemActions
+          onClick={(item, evt) => {
+            // Check for normal clicks to ensure we don't block command-click from opening the link in a new tab
+            if (evt && isNormalClick(evt)) {
+              evt.preventDefault();
+              alert("✅ Intercepted a normal left click for custom navigation");
+            }
+          }}
+          url="/?path=/story/components-lists-and-tables-datalist-web--custom-item-navigation"
+        />
+      )}
     />
   ),
 };

@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"requestColor\" | \"quoteColor\" | \"jobColor\" | \"invoiceColor\" | \"clientColor\" | \"blue\" | \"blueLight\" | \"blueLighter\" | \"blueLightest\" | \"blueDark\" | \"green\" | \"greenLight\" | \"greenLighter\" | ... 72 more ... | \"white\""
         }
       },
       "title": {
@@ -42,7 +42,7 @@
         },
         "required": false,
         "type": {
-          "name": "string | HeaderActionProps | ReactElement<any, string | JSXElementConstructor<any>>"
+          "name": "string | HeaderActionProps | ReactElement<unknown, string | JSXElementConstructor<any>>"
         }
       },
       "elevation": {
@@ -56,6 +56,32 @@
         "required": false,
         "type": {
           "name": "elevationProp"
+        }
+      },
+      "UNSAFE_className": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom class names for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_className",
+        "parent": {
+          "fileName": "packages/components/src/Card/types.ts",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: string; header?: string; }"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom style for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/Card/types.ts",
+          "name": "CardProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ container?: CSSProperties; header?: CSSProperties; }"
         }
       },
       "url": {
@@ -82,7 +108,7 @@
         "name": "onClick",
         "required": false,
         "type": {
-          "name": "(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => void"
+          "name": "(event: MouseEvent<HTMLAnchorElement | HTMLDivElement, MouseEvent>) => void"
         }
       }
     }

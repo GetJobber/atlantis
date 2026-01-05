@@ -1,7 +1,8 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react-native";
-import { EmptyState, EmptyStateProps } from "./EmptyState";
-import * as IconComponent from "../Icon/Icon";
+import { fireEvent, render, screen } from "@testing-library/react-native";
+import { Path } from "react-native-svg";
+import type { EmptyStateProps } from "./EmptyState";
+import { EmptyState } from "./EmptyState";
 
 const primaryOnPress = jest.fn();
 const secondaryOnPress = jest.fn();
@@ -26,83 +27,70 @@ const component = (overrideProps?: Partial<EmptyStateProps>) => {
     ...overrideProps,
   };
 
-  return render(<EmptyState {...props} />);
+  render(<EmptyState {...props} />);
 };
-
-const iconSpy = jest.spyOn(IconComponent, "Icon");
-
-afterEach(() => jest.clearAllMocks());
 
 describe("EmptyState", () => {
   it("renders the title", () => {
-    const { getByText } = component();
+    component();
 
-    expect(getByText(defaultProps.title)).toBeDefined();
+    expect(screen.getByText(defaultProps.title)).toBeDefined();
   });
 
   it("renders the description", () => {
-    const { getByText } = component();
-
-    expect(getByText(defaultProps.description)).toBeDefined();
-  });
-
-  it("renders the icon", () => {
-    const { getByTestId } = component();
-
-    expect(getByTestId(defaultProps.icon)).toBeDefined();
-  });
-
-  it("calls icon with correct default params", () => {
     component();
 
-    expect(iconSpy).toHaveBeenCalledWith(
-      {
-        color: "blue",
-        name: defaultProps.icon,
-        size: "large",
-      },
-      {},
+    expect(screen.getByText(defaultProps.description)).toBeDefined();
+  });
+
+  it("renders the icon with default color and large size", () => {
+    component();
+    const icon = screen.getByTestId(defaultProps.icon);
+    const path = icon.findByType(Path);
+    expect(path.props.fill).toBe("hsl(197, 90%, 12%)");
+    expect(icon.props.style).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          width: 32,
+          height: 32,
+        }),
+      ]),
     );
   });
 
-  it("calls icon with correct params", () => {
-    component({ iconColor: "greyBlue", icon: "link" });
+  it("renders the correct icon color when specified", async () => {
+    component({ iconColor: "warning" });
 
-    expect(iconSpy).toHaveBeenCalledWith(
-      {
-        color: "greyBlue",
-        name: "link",
-        size: "large",
-      },
-      {},
-    );
+    const icon = screen.getByTestId(defaultProps.icon);
+    const pathElement = icon.findByType(Path);
+    expect(pathElement.props.fill).toBe("hsl(51, 64%, 49%)");
   });
 
   it("renders the primary action and allows users to interact with it by clicking", () => {
-    const { getByLabelText } = component();
+    component();
 
-    const button = getByLabelText(defaultProps.primaryAction.label);
+    const button = screen.getByLabelText(defaultProps.primaryAction.label);
     expect(button).toBeDefined();
     fireEvent.press(button);
     expect(primaryOnPress).toHaveBeenCalledTimes(1);
   });
 
   it("renders the secondary action and allows users to interact with it by clicking", () => {
-    const { getByLabelText } = component();
+    component();
 
-    const button = getByLabelText(defaultProps.secondaryAction.label);
+    const button = screen.getByLabelText(defaultProps.secondaryAction.label);
     expect(button).toBeDefined();
     fireEvent.press(button);
     expect(secondaryOnPress).toHaveBeenCalledTimes(1);
   });
 
   it("does render buttons if neither primary nor secondary action is passed in", () => {
-    const { queryAllByRole } = component({
+    component({
       description: "No buttons",
       primaryAction: undefined,
       secondaryAction: undefined,
     });
 
-    expect(queryAllByRole("button")).toHaveLength(0);
+    expect(screen.queryAllByRole("button")).toHaveLength(0);
   });
 });

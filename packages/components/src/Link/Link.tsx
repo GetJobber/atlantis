@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import React from "react";
 import styles from "./Link.module.css";
 
 export interface LinkProps {
@@ -18,7 +19,10 @@ export function Link({
   return (
     <a
       href={url}
-      {...(external && { target: "_blank" })}
+      {...(external && {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      })}
       {...(ariaLabel && { "aria-label": ariaLabel })}
       {...(ariaExpanded && { "aria-expanded": ariaExpanded })}
       className={styles.link}

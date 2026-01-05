@@ -1,4 +1,4 @@
-import ButtonDismissContent from "@atlantis/docs/components/ButtonDismiss/ButtonDismiss.stories.mdx";
+import ButtonDismissContent from "./ButtonDismiss.stories.mdx";
 import Props from "./ButtonDismiss.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

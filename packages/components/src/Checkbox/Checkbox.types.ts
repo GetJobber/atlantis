@@ -1,7 +1,17 @@
-import { ReactElement } from "react";
-import { XOR } from "ts-xor";
+import type { ReactElement, ReactNode } from "react";
+import type { XOR } from "ts-xor";
+import type {
+  AriaInputProps,
+  FocusEvents,
+  HTMLInputBaseProps,
+  MouseEvents,
+  RebuiltInputCommonProps,
+} from "../sharedHelpers/types";
 
-export interface BaseCheckboxProps {
+/**
+ * Shared checkbox-specific props used by both legacy and rebuilt versions
+ */
+export interface CheckboxCoreProps {
   /**
    * Determines if the checkbox is checked or not.
    */
@@ -15,11 +25,6 @@ export interface BaseCheckboxProps {
   readonly defaultChecked?: boolean;
 
   /**
-   * Disables the checkbox.
-   */
-  readonly disabled?: boolean;
-
-  /**
    * When `true` the checkbox to appears in indeterminate.
    *
    * @default false
@@ -27,19 +32,29 @@ export interface BaseCheckboxProps {
   readonly indeterminate?: boolean;
 
   /**
+   * Value of the checkbox.
+   */
+  readonly value?: string;
+}
+
+/**
+ * Base props for legacy checkbox
+ */
+export interface BaseCheckboxProps extends CheckboxCoreProps {
+  /**
+   * Disables the checkbox.
+   */
+  readonly disabled?: boolean;
+
+  /**
    * Checkbox input name
    */
   readonly name?: string;
 
   /**
-   * Value of the checkbox.
-   */
-  readonly value?: string;
-
-  /**
    * Further description of the label
    */
-  readonly description?: string;
+  readonly description?: ReactNode;
 
   /**
    * ID for the checkbox input
@@ -76,38 +91,41 @@ interface CheckboxChildrenProps extends BaseCheckboxProps {
   readonly children?: ReactElement;
 }
 
-export type CheckboxRebuiltProps = Omit<
-  BaseCheckboxProps,
-  "label" | "description" | "children" | "onChange"
-> & {
-  /**
-   * Label that shows up beside the checkbox.
-   * String will be rendered with the default markup.
-   * ReactElement will be rendered with provided positionining.
-   */
-  label?: string | ReactElement;
+export type CheckboxRebuiltProps = CheckboxCoreProps &
+  AriaInputProps &
+  FocusEvents<HTMLInputElement> &
+  MouseEvents<HTMLInputElement> &
+  Pick<HTMLInputBaseProps, "id" | "name" | "disabled"> &
+  Pick<RebuiltInputCommonProps, "version"> & {
+    /**
+     * Label that shows up beside the checkbox.
+     * String will be rendered with the default markup.
+     * ReactElement will be rendered with provided positionining.
+     */
+    label?: string | ReactElement;
 
-  /**
-   * Additional description of the checkbox.
-   * String will be rendered with the default markup.
-   * ReactElement will be rendered with provided positioning.
-   */
-  description?: string | ReactElement;
+    /**
+     * Additional description of the checkbox.
+     * String will be rendered with the default markup.
+     * ReactElement will be rendered with provided positioning.
+     */
+    description?: ReactNode;
 
-  /**
-   * Called when the checkbox value changes.
-   * Includes the change event as a second argument.
-   */
-  onChange?(
-    newValue: boolean,
-    event: React.ChangeEvent<HTMLInputElement>,
-  ): void;
+    /**
+     * Whether the checkbox is invalid
+     */
+    invalid?: boolean;
 
-  /**
-   * Version 2 is highly experimental, avoid using it unless you have talked with Atlantis first.
-   */
-  version: 2;
-};
+    /**
+     * Called when the checkbox value changes.
+     * Includes the change event as a second argument.
+     * This is the recommended event handler to access the new value.
+     */
+    onChange?(
+      newValue: boolean,
+      event: React.ChangeEvent<HTMLInputElement>,
+    ): void;
+  };
 
 export type CheckboxLegacyProps = XOR<
   CheckboxLabelProps,

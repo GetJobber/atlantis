@@ -44,6 +44,7 @@ exports[`renders a Button with a link and opens in new tab 1`] = `
   <a
     class="button base work primary buttonChildren"
     href="💩.com"
+    rel="noopener noreferrer"
     target="_blank"
   >
     <span
@@ -58,6 +59,7 @@ exports[`renders a Button with a link and opens in new tab 1`] = `
 exports[`renders a Button with a loading state 1`] = `
 <div>
   <button
+    aria-busy="true"
     class="button base work primary loading buttonChildren"
     type="button"
   >

@@ -1,12 +1,11 @@
+import type { ReactNode, Ref } from "react";
 import React, {
-  ReactNode,
-  Ref,
   forwardRef,
   useEffect,
   useImperativeHandle,
   useReducer,
 } from "react";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useOnKeyDown } from "@jobber/hooks";
 import { Modal } from "../Modal";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
@@ -146,7 +145,6 @@ export interface SimpleConfirmationModalProps
 
 export interface ComplexConfirmationModalProps
   extends BaseConfirmationModalProps {
-  readonly ref: Ref<ConfirmationModalRef>;
   readonly open?: undefined;
 }
 

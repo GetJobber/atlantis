@@ -1,6 +1,7 @@
 import React from "react";
 import { tokens } from "../utils/design";
-import { TextAlign, TextColor, Typography } from "../Typography";
+import type { TextAlign, TextColor } from "../Typography";
+import { Typography } from "../Typography";
 
 export type ActionLabelVariation = Extract<
   TextColor,
@@ -11,9 +12,9 @@ type ActionLabelType = "default" | "cardTitle";
 
 interface ActionLabelProps {
   /**
-   * Text to display
+   * Text to display. Supports nesting text elements.
    */
-  readonly children?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * Set the display text to disabled color
@@ -42,7 +43,7 @@ export function ActionLabel({
   type = "default",
   disabled = false,
   align = "center",
-}: ActionLabelProps): JSX.Element {
+}: ActionLabelProps) {
   return (
     <Typography
       color={getColor(variation, disabled)}

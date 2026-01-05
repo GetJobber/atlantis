@@ -3,6 +3,7 @@ declare const styles: {
   readonly "smallest": string;
   readonly "smaller": string;
   readonly "small": string;
+  readonly "slim": string;
   readonly "base": string;
   readonly "large": string;
   readonly "larger": string;

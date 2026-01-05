@@ -3,6 +3,154 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.19.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.2...@jobber/hooks@2.19.3) (2025-11-21)
+
+
+### Bug Fixes
+
+* **hooks:** Make returned ref type compatible with react 18 ([#2831](https://github.com/GetJobber/atlantis/issues/2831)) ([3e08ef8](https://github.com/GetJobber/atlantis/commit/3e08ef8490f9bcda17b6b29b39417ab16e51ed42))
+
+
+
+
+
+## [2.19.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.1...@jobber/hooks@2.19.2) (2025-11-21)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.19.0...@jobber/hooks@2.19.1) (2025-10-27)
+
+
+### Bug Fixes
+
+* await act calls in tests ([#2793](https://github.com/GetJobber/atlantis/issues/2793)) ([a16009f](https://github.com/GetJobber/atlantis/commit/a16009f8e2d058771b50280bb0c3d209f8d41688))
+
+
+
+
+
+# [2.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.18.1...@jobber/hooks@2.19.0) (2025-10-15)
+
+
+### Features
+
+* **components:** React 19 support ([#2687](https://github.com/GetJobber/atlantis/issues/2687)) ([36e8563](https://github.com/GetJobber/atlantis/commit/36e8563e75500b7ce70a148eb44d97cceb101fe7)), closes [#2752](https://github.com/GetJobber/atlantis/issues/2752) [#2756](https://github.com/GetJobber/atlantis/issues/2756) [#2762](https://github.com/GetJobber/atlantis/issues/2762)
+
+
+
+
+
+## [2.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.18.0...@jobber/hooks@2.18.1) (2025-09-23)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.4...@jobber/hooks@2.18.0) (2025-09-16)
+
+
+### Features
+
+* **hooks:** Update hooks and formatters to build with rollup ([#2722](https://github.com/GetJobber/atlantis/issues/2722)) ([aa8a44c](https://github.com/GetJobber/atlantis/commit/aa8a44ce120c8f2d3e2f6a95bf3adda5d4867faf)), closes [#2700](https://github.com/GetJobber/atlantis/issues/2700) [#2698](https://github.com/GetJobber/atlantis/issues/2698)
+
+
+
+
+
+## [2.17.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.3...@jobber/hooks@2.17.4) (2025-09-02)
+
+
+### Bug Fixes
+
+* **hooks:** Prevent mockViewportWidth from accessing window until necessary ([#2707](https://github.com/GetJobber/atlantis/issues/2707)) ([c987e77](https://github.com/GetJobber/atlantis/commit/c987e77bfd390e31df837dfe8ff337aa4af75989))
+
+
+
+
+
+## [2.17.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.2...@jobber/hooks@2.17.3) (2025-08-28)
+
+
+### Bug Fixes
+
+* **hooks:** Revert ESM Update (Also Formatters) ([#2698](https://github.com/GetJobber/atlantis/issues/2698)) ([c95fe8e](https://github.com/GetJobber/atlantis/commit/c95fe8e8cf977381da7caf123256477b74859141)), closes [#2653](https://github.com/GetJobber/atlantis/issues/2653)
+
+
+
+
+
+## [2.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.1...@jobber/hooks@2.17.2) (2025-08-27)
+
+
+### Bug Fixes
+
+* **hooks:** ESM Update (Also Formatters) ([#2653](https://github.com/GetJobber/atlantis/issues/2653)) ([1a486ee](https://github.com/GetJobber/atlantis/commit/1a486eed319a1c6eda2da79e43f8d3ad1ca06020))
+
+
+
+
+
+## [2.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.17.0...@jobber/hooks@2.17.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **hooks:** Ignore invalid values coming from use-resize-observer  ([#2642](https://github.com/GetJobber/atlantis/issues/2642)) ([de804a5](https://github.com/GetJobber/atlantis/commit/de804a5a47d0a0b53dcd434f93ffb9e802efa294))
+
+
+
+
+
+# [2.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.16.0...@jobber/hooks@2.17.0) (2025-08-01)
+
+
+### Features
+
+* **hooks:** Add useDebounce Hook to Hooks ([#2561](https://github.com/GetJobber/atlantis/issues/2561)) ([a3e4009](https://github.com/GetJobber/atlantis/commit/a3e4009d861021e472e26726694fe53ea9fb1d30))
+
+
+
+
+
+# [2.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.15.0...@jobber/hooks@2.16.0) (2025-05-28)
+
+
+### Features
+
+* **hooks:** Adding useStepper hook [JOB-124608] ([#2567](https://github.com/GetJobber/atlantis/issues/2567)) ([843c863](https://github.com/GetJobber/atlantis/commit/843c863dabd2056a76a438d72c15258d0d3714e0))
+
+
+
+
+
+# [2.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.14.0...@jobber/hooks@2.15.0) (2025-04-22)
+
+
+### Features
+
+* **hooks:** BREAKING CHANGE: Remove useAssert ([#2495](https://github.com/GetJobber/atlantis/issues/2495)) ([3f9325a](https://github.com/GetJobber/atlantis/commit/3f9325ab2a671e1a2ee0a662551b0879322f00c6))
+
+
+
+
+
+# [2.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.13.1...@jobber/hooks@2.14.0) (2025-04-21)
+
+
+### Features
+
+* **components:** InputTime without RHF ([#2477](https://github.com/GetJobber/atlantis/issues/2477)) ([f58a91f](https://github.com/GetJobber/atlantis/commit/f58a91f7bee6b53ae80254531417fb4837b69afd))
+
+
+
+
+
 ## [2.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.13.0...@jobber/hooks@2.13.1) (2025-04-08)
 
 **Note:** Version bump only for package @jobber/hooks

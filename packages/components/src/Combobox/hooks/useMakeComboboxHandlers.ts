@@ -1,5 +1,6 @@
-import React, { useCallback } from "react";
-import { ComboboxOption } from "../Combobox.types";
+import type React from "react";
+import { useCallback } from "react";
+import { type ComboboxOption } from "../Combobox.types";
 
 export interface UseMakeComboboxHandlersReturn {
   handleClose: () => void;
@@ -12,7 +13,7 @@ export function useMakeComboboxHandlers(
   open: boolean,
   setSearchValue: (searchValue: string) => void,
   selectedOptions: ComboboxOption[],
-  shouldScroll: React.MutableRefObject<boolean>,
+  shouldScroll: React.RefObject<boolean>,
   selectedStateSetter: (selected: ComboboxOption[]) => void,
   multiSelect?: boolean,
   onClose?: () => void,

@@ -18,7 +18,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base\" | \"large\" | \"larger\""
+          "name": "\"small\" | \"base\" | \"large\" | \"larger\""
         }
       },
       "color": {

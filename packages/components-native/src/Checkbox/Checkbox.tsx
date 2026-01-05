@@ -1,6 +1,7 @@
 import React from "react";
-import { ColorValue, Pressable, View } from "react-native";
-import { XOR } from "ts-xor";
+import type { ColorValue } from "react-native";
+import { Pressable, View } from "react-native";
+import type { XOR } from "ts-xor";
 import { useStyles } from "./Checkbox.style";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
@@ -78,7 +79,7 @@ export type CheckboxProps = XOR<
   UncontrolledCheckboxProps
 >;
 
-export function Checkbox(props: CheckboxProps): JSX.Element {
+export function Checkbox(props: CheckboxProps) {
   if (props.checked !== undefined && props.onChange !== undefined) {
     return <CheckboxInternal {...props} />;
   } else if (props.name) {
@@ -112,7 +113,7 @@ function CheckboxInternal({
   assistiveText,
   onChange,
   accessibilityLabel,
-}: CheckboxProps): JSX.Element {
+}: CheckboxProps) {
   const internalValue = checked ?? !!defaultChecked;
 
   const iconName = indeterminate ? "minus2" : "checkmark";
@@ -152,6 +153,15 @@ function CheckboxInternal({
             <Text variation={textVariation} align="start">
               {label}
             </Text>
+            {assistiveText && (
+              <Text
+                level="textSupporting"
+                align="start"
+                variation={textVariation}
+              >
+                {assistiveText}
+              </Text>
+            )}
           </View>
         )}
         <View
@@ -168,11 +178,6 @@ function CheckboxInternal({
           )}
         </View>
       </View>
-      {assistiveText && (
-        <Text level="textSupporting" align="start" variation={textVariation}>
-          {assistiveText}
-        </Text>
-      )}
     </Pressable>
   );
 }

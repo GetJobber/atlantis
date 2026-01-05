@@ -1,5 +1,5 @@
 import { createContext, useContext, useRef } from "react";
-import { AtlantisFormContextProps } from "./types";
+import type { AtlantisFormContextProps } from "./types";
 
 export const atlantisFormContextDefaultValues = {
   useConfirmBeforeBack: () => {
@@ -11,6 +11,7 @@ export const atlantisFormContextDefaultValues = {
     setLocalCache: () => undefined,
     removeLocalCache: () => undefined,
   }),
+  edgeToEdgeEnabled: false,
 };
 
 export const AtlantisFormContext = createContext<AtlantisFormContextProps>(

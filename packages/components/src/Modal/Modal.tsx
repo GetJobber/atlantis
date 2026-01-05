@@ -1,35 +1,22 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
-import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import {
+  useFocusTrap,
+  useOnKeyDown,
+  useRefocusOnActivator,
+} from "@jobber/hooks";
 import styles from "./Modal.module.css";
 import sizes from "./ModalSizes.module.css";
+import type { ModalLegacyProps } from "./Modal.types";
+import { MODAL_HEADER_ID } from "./constants";
 import { Heading } from "../Heading";
-import { Button, ButtonProps } from "../Button";
+import type { ButtonProps } from "../Button";
+import { Button } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
 
-export interface ModalProps {
-  /**
-   * @default false
-   */
-  readonly title?: string;
-  readonly open?: boolean;
-  readonly size?: keyof typeof sizes;
-  /**
-   * @default true
-   */
-  readonly dismissible?: boolean;
-  readonly children: ReactNode;
-  readonly primaryAction?: ButtonProps;
-  readonly secondaryAction?: ButtonProps;
-  readonly tertiaryAction?: ButtonProps;
-  onRequestClose?(): void;
-}
-
-export function Modal({
+export function ModalLegacy({
   open = false,
   title,
   size,
@@ -39,7 +26,8 @@ export function Modal({
   secondaryAction,
   tertiaryAction,
   onRequestClose,
-}: ModalProps) {
+  ariaLabel,
+}: ModalLegacyProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
@@ -53,6 +41,9 @@ export function Modal({
           role="dialog"
           className={styles.container}
           tabIndex={0}
+          aria-modal="true"
+          aria-labelledby={title ? MODAL_HEADER_ID : undefined}
+          aria-label={ariaLabel}
         >
           <motion.div
             key={styles.overlay}
@@ -114,7 +105,9 @@ interface HeaderProps {
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="modal-header">
-      <Heading level={2}>{title}</Heading>
+      <Heading level={2} id={MODAL_HEADER_ID}>
+        {title}
+      </Heading>
 
       {dismissible && (
         <div className={styles.closeButton}>

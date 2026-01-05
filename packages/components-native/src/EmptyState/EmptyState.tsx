@@ -1,4 +1,4 @@
-import { IconColorNames, IconNames } from "@jobber/design";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import React from "react";
 import { View } from "react-native";
 import { useStyles } from "./EmptyState.style";
@@ -6,7 +6,8 @@ import { Text } from "../Text";
 import { Content } from "../Content";
 import { Icon } from "../Icon";
 import { Heading } from "../Heading";
-import { Button, ButtonType } from "../Button";
+import type { ButtonType } from "../Button";
+import { Button } from "../Button";
 
 interface Action {
   label: string;
@@ -64,7 +65,7 @@ export function EmptyState({
   primaryAction,
   secondaryAction,
   iconColor = "blue",
-}: EmptyStateProps): JSX.Element {
+}: EmptyStateProps) {
   const styles = useStyles();
 
   return (

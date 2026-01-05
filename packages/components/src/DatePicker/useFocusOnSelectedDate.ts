@@ -1,7 +1,7 @@
-import { MutableRefObject, useRef } from "react";
+import { useRef } from "react";
 
 export function useFocusOnSelectedDate() {
-  const ref = useRef() as MutableRefObject<HTMLDivElement>;
+  const ref = useRef<HTMLDivElement>(null);
 
   function focusOnSelectedDate() {
     const selectedDateClass = ".react-datepicker__day--selected";

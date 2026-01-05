@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/FormatFile/FormatFile.stories.mdx";
+import Content from "./FormatFile.stories.mdx";
 import Props from "./FormatFile.props.json";
 import MobileProps from "./FormatFile.props-mobile.json";
 import { ContentExport } from "../../types/content";

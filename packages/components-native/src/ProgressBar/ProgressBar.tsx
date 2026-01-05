@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { ProgressBarProps } from "./types";
+import type { ProgressBarProps } from "./types";
 import { useStyles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
 import { ProgressBarStepped } from "./ProgressBarStepped";
@@ -17,7 +17,8 @@ export function ProgressBar({
   header,
   variation = "progress",
   size = "base",
-}: ProgressBarProps): JSX.Element {
+  UNSAFE_style,
+}: ProgressBarProps) {
   const { t } = useAtlantisI18n();
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
@@ -27,40 +28,57 @@ export function ProgressBar({
       accessible
       accessibilityRole="progressbar"
       accessibilityLabel={getA11yLabel()}
+      style={UNSAFE_style?.container}
     >
       {header}
       {variation === "stepped" ? (
         <ProgressBarStepped
           total={total}
           current={current}
-          color={reverseTheme ? undefined : tokens["color-surface--background"]}
+          color={
+            reverseTheme ? undefined : tokens["color-interactive--background"]
+          }
           loading={loading}
           inProgress={inProgress}
+          UNSAFE_style={UNSAFE_style}
         />
       ) : (
-        <View style={[styles.progressBarContainer, sizeStyles[size]]}>
+        <View
+          testID="progressbar-container"
+          style={[
+            styles.progressBarContainer,
+            sizeStyles[size],
+            UNSAFE_style?.progressBarContainer,
+          ]}
+        >
           <ProgressBarInner
+            testID="progressbar-track"
             width={100}
             animationDuration={0}
             color={
-              reverseTheme ? undefined : tokens["color-surface--background"]
+              reverseTheme ? undefined : tokens["color-interactive--background"]
             }
+            style={UNSAFE_style?.track}
           />
           {!loading && (
             <>
               {inProgress && inProgress > 0 ? (
                 <ProgressBarInner
+                  testID="progressbar-inprogress"
                   width={calculateWidth(total, current + inProgress)}
                   color={tokens["color-informative"]}
                   animationDuration={800}
+                  style={UNSAFE_style?.inProgressFill}
                 />
               ) : (
                 <></>
               )}
               <ProgressBarInner
+                testID="progressbar-fill"
                 width={calculateWidth(total, current)}
                 color={tokens["color-interactive"]}
                 animationDuration={600}
+                style={UNSAFE_style?.fill}
               />
             </>
           )}

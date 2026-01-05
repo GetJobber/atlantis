@@ -7,7 +7,9 @@
     "methods": [],
     "props": {
       "as": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": "div"
+        },
         "description": "",
         "name": "as",
         "parent": {
@@ -29,7 +31,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 272 more ... | \"client\""
+          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 274 more ... | \"client--onSurface\""
         }
       },
       "border": {
@@ -55,7 +57,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 272 more ... | \"client\""
+          "name": "\"base-grey--100\" | \"base-grey--200\" | \"base-grey--300\" | \"base-grey--400\" | \"base-grey--500\" | \"base-grey--600\" | \"base-grey--700\" | \"base-grey--800\" | \"base-grey--900\" | ... 274 more ... | \"client--onSurface\""
         }
       },
       "direction": {
@@ -170,7 +172,7 @@
         "defaultValue": {
           "value": "relative"
         },
-        "description": "The **`position`** CSS property sets how an element is positioned in a document. The `top`, `right`, `bottom`, and `left` properties determine the final location of positioned elements.\n\n**Syntax**: `static | relative | absolute | sticky | fixed`\n\n**Initial value**: `static`\n\n| Chrome | Firefox | Safari |  Edge  |  IE   |\n| :----: | :-----: | :----: | :----: | :---: |\n| **1**  |  **1**  | **1**  | **12** | **4** |\n@see https://developer.mozilla.org/docs/Web/CSS/position",
+        "description": "This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015.\n\n**Syntax**: `static | relative | absolute | sticky | fixed`\n\n**Initial value**: `static`\n\n| Chrome | Firefox | Safari |  Edge  |  IE   |\n| :----: | :-----: | :----: | :----: | :---: |\n| **1**  |  **1**  | **1**  | **12** | **4** |\n@see https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/position",
         "name": "position",
         "parent": {
           "fileName": "atlantis/node_modules/csstype/index.d.ts",
@@ -183,7 +185,7 @@
       },
       "justifyContent": {
         "defaultValue": null,
-        "description": "The CSS **`justify-content`** property defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container.\n\n**Syntax**: `normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]`\n\n**Initial value**: `normal`\n\n|  Chrome  | Firefox | Safari  |  Edge  |   IE   |\n| :------: | :-----: | :-----: | :----: | :----: |\n|  **29**  | **20**  |  **9**  | **12** | **11** |\n| 21 _-x-_ |         | 7 _-x-_ |        |        |\n@see https://developer.mozilla.org/docs/Web/CSS/justify-content",
+        "description": "This feature is well established and works across many devices and browser versions. It’s been available across browsers since September 2015.\n\n**Syntax**: `normal | <content-distribution> | <overflow-position>? [ <content-position> | left | right ]`\n\n**Initial value**: `normal`\n\n|  Chrome  | Firefox | Safari  |  Edge  |   IE   |\n| :------: | :-----: | :-----: | :----: | :----: |\n|  **29**  | **20**  |  **9**  | **12** | **11** |\n| 21 _-x-_ |         | 7 _-x-_ |        |        |\n@see https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/justify-content",
         "name": "justifyContent",
         "parent": {
           "fileName": "atlantis/node_modules/csstype/index.d.ts",
@@ -196,7 +198,7 @@
       },
       "alignItems": {
         "defaultValue": null,
-        "description": "The CSS **`align-items`** property sets the `align-self` value on all direct children as a group. In Flexbox, it controls the alignment of items on the Cross Axis. In Grid Layout, it controls the alignment of items on the Block Axis within their grid area.\n\n**Syntax**: `normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ]`\n\n**Initial value**: `normal`\n\n|  Chrome  | Firefox | Safari  |  Edge  |   IE   |\n| :------: | :-----: | :-----: | :----: | :----: |\n|  **29**  | **20**  |  **9**  | **12** | **11** |\n| 21 _-x-_ |         | 7 _-x-_ |        |        |\n@see https://developer.mozilla.org/docs/Web/CSS/align-items",
+        "description": "This feature is well established and works across many devices and browser versions. It’s been available across browsers since September 2015.\n\n**Syntax**: `normal | stretch | <baseline-position> | [ <overflow-position>? <self-position> ] | anchor-center`\n\n**Initial value**: `normal`\n\n|  Chrome  | Firefox | Safari  |  Edge  |   IE   |\n| :------: | :-----: | :-----: | :----: | :----: |\n|  **29**  | **20**  |  **9**  | **12** | **11** |\n| 21 _-x-_ |         | 7 _-x-_ |        |        |\n@see https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/align-items",
         "name": "alignItems",
         "parent": {
           "fileName": "atlantis/node_modules/csstype/index.d.ts",
@@ -209,7 +211,7 @@
       },
       "alignSelf": {
         "defaultValue": null,
-        "description": "The **`align-self`** CSS property overrides a grid or flex item's `align-items` value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.\n\n**Syntax**: `auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position>`\n\n**Initial value**: `auto`\n\n|  Chrome  | Firefox | Safari  |  Edge  |   IE   |\n| :------: | :-----: | :-----: | :----: | :----: |\n|  **29**  | **20**  |  **9**  | **12** | **10** |\n| 21 _-x-_ |         | 7 _-x-_ |        |        |\n@see https://developer.mozilla.org/docs/Web/CSS/align-self",
+        "description": "This feature is well established and works across many devices and browser versions. It’s been available across browsers since September 2015.\n\n**Syntax**: `auto | normal | stretch | <baseline-position> | <overflow-position>? <self-position> | anchor-center`\n\n**Initial value**: `auto`\n\n|  Chrome  | Firefox | Safari  |  Edge  |   IE   |\n| :------: | :-----: | :-----: | :----: | :----: |\n|  **29**  | **20**  |  **9**  | **12** | **10** |\n| 21 _-x-_ |         | 7 _-x-_ |        |        |\n@see https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/align-self",
         "name": "alignSelf",
         "parent": {
           "fileName": "atlantis/node_modules/csstype/index.d.ts",
@@ -222,7 +224,7 @@
       },
       "overflow": {
         "defaultValue": null,
-        "description": "The **`overflow`** CSS shorthand property sets the desired behavior for an element's overflow — i.e. when an element's content is too big to fit in its block formatting context — in both directions.\n\n**Syntax**: `[ visible | hidden | clip | scroll | auto ]{1,2}`\n\n**Initial value**: `visible`\n\n| Chrome | Firefox | Safari |  Edge  |  IE   |\n| :----: | :-----: | :----: | :----: | :---: |\n| **1**  |  **1**  | **1**  | **12** | **4** |\n@see https://developer.mozilla.org/docs/Web/CSS/overflow",
+        "description": "This feature is well established and works across many devices and browser versions. It’s been available across browsers since July 2015.\n\n**Syntax**: `[ visible | hidden | clip | scroll | auto ]{1,2}`\n\n**Initial value**: `visible`\n\n| Chrome | Firefox | Safari |  Edge  |  IE   |\n| :----: | :-----: | :----: | :----: | :---: |\n| **1**  |  **1**  | **1**  | **12** | **4** |\n@see https://developer.mozilla.org/docs/Web/CSS/Reference/Properties/overflow",
         "name": "overflow",
         "parent": {
           "fileName": "atlantis/node_modules/csstype/index.d.ts",

@@ -1,12 +1,13 @@
-import React, { useMemo } from "react";
+import React, { type ReactElement, useMemo } from "react";
 import { View } from "react-native";
 import { useStyles } from "./FormBody.style";
 import { useScreenInformation } from "../../hooks/useScreenInformation";
-import { FormActionBar, FormActionBarProps } from "../FormActionBar";
+import type { FormActionBarProps } from "../FormActionBar";
+import { FormActionBar } from "../FormActionBar";
 import { tokens } from "../../../utils/design";
 
 interface FormBodyProps extends FormActionBarProps {
-  readonly children: JSX.Element;
+  readonly children: ReactElement;
   readonly shouldRenderActionBar?: boolean;
   readonly saveButtonOffset?: number;
 }
@@ -23,7 +24,7 @@ export function FormBody({
   setSecondaryActionLoading,
   setSaveButtonHeight,
   saveButtonOffset,
-}: FormBodyProps): JSX.Element {
+}: FormBodyProps) {
   const paddingBottom = useBottomPadding();
   const fullViewPadding = useMemo(() => ({ paddingBottom }), [paddingBottom]);
   const styles = useStyles();

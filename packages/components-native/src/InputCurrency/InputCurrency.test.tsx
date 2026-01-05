@@ -1,9 +1,9 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { InputCurrency } from "./InputCurrency";
+import type { AtlantisContextProps } from "../AtlantisContext";
 import {
   AtlantisContext,
-  AtlantisContextProps,
   atlantisContextDefaultValues,
 } from "../AtlantisContext";
 

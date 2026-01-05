@@ -23,7 +23,9 @@ export default {
     commonjs(),
     nodePolyfills({ util: true, process: true }),
     json(),
-    resolve(),
+    resolve({
+      dedupe: ["react", "react-dom"],
+    }),
     replace({
       "process.env.NODE_ENV": JSON.stringify("development"),
       preventAssignment: true,
@@ -62,6 +64,14 @@ export default {
         {
           find: "@react-native-picker/picker",
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
+        },
+        {
+          find: "@gorhom/bottom-sheet",
+          replacement: path.resolve(dirname, "./src/BottomSheetMock.jsx"),
+        },
+        {
+          find: "@jobber/hooks",
+          replacement: path.resolve(dirname, `../hooks/dist`),
         },
       ],
     }),

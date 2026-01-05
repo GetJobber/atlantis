@@ -1,9 +1,7 @@
-import React, { CSSProperties, ReactElement, ReactNode, useState } from "react";
+import type { CSSProperties, ReactElement, ReactNode } from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/useResizeObserver";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Disclosure.module.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";

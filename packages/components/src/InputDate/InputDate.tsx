@@ -1,7 +1,8 @@
 import omit from "lodash/omit";
 import React, { useEffect, useRef, useState } from "react";
-import { InputDateProps } from "./InputDate.types";
-import { FieldActionsRef, FormField, Suffix } from "../FormField";
+import type { InputDateProps } from "./InputDate.types";
+import type { FieldActionsRef, Suffix } from "../FormField";
+import { FormField } from "../FormField";
 import { DatePicker } from "../DatePicker";
 
 export function InputDate(inputProps: InputDateProps) {
@@ -26,7 +27,7 @@ export function InputDate(inputProps: InputDateProps) {
             ? ({
                 icon: "calendar",
                 ariaLabel: "Show calendar",
-                onClick: onClick && onClick,
+                onClick: !inputProps.disabled && onClick && onClick,
               } as Suffix)
             : undefined;
 

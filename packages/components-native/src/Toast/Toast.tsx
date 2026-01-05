@@ -1,9 +1,10 @@
 import React from "react";
-import Toast, {
+import type {
   ToastConfig,
   ToastConfigParams,
   ToastPosition,
 } from "react-native-toast-message";
+import Toast from "react-native-toast-message";
 import { AccessibilityInfo, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useStyles } from "./Toast.styles";
@@ -16,7 +17,7 @@ import { tokens as staticTokens } from "../utils/design";
 const MAX_TOAST_MESSAGE_LENGTH = 60;
 const ANNOUNCEMENT_DELAY = 100;
 
-function DefaultToast({ text1 }: ToastConfigParams<string>): JSX.Element {
+function DefaultToast({ text1 }: ToastConfigParams<string>) {
   const { bottom } = useSafeAreaInsets();
   const { t } = useAtlantisI18n();
   const styles = useStyles();
@@ -55,7 +56,7 @@ export interface JobberToastProps {
   readonly bottomOffset?: number;
 }
 
-export function JobberToast({ bottomOffset }: JobberToastProps): JSX.Element {
+export function JobberToast({ bottomOffset }: JobberToastProps) {
   return <Toast bottomOffset={bottomOffset} config={toastConfig} />;
 }
 

@@ -1,26 +1,22 @@
-import UseAssertDocs from "@atlantis/docs/hooks/useAssert.stories.mdx";
-import UseBoolDocs from "@atlantis/docs/hooks/useBool.stories.mdx";
-import UseBreakpointsDocs from "@atlantis/docs/hooks/useBreakpoints.stories.mdx";
-import UseCallbackRefDocs from "@atlantis/docs/hooks/useCallbackRef.stories.mdx";
-import UseCollectionQueryDocs from "@atlantis/docs/hooks/useCollectionQuery.stories.mdx";
-import UseFocusTrapDocs from "@atlantis/docs/hooks/useFocusTrap.stories.mdx";
-import UseFormStateDocs from "@atlantis/docs/hooks/useFormState.stories.mdx";
-import UseInViewDocs from "@atlantis/docs/hooks/useInView.stories.mdx";
-import UseIsMountedDocs from "@atlantis/docs/hooks/useIsMounted.stories.mdx";
-import UseLiveAnnounceDocs from "@atlantis/docs/hooks/useLiveAnnounce.stories.mdx";
-import UseOnKeyDownDocs from "@atlantis/docs/hooks/useOnKeyDown.stories.mdx";
-import UseOnMountDocs from "@atlantis/docs/hooks/useOnMount.stories.mdx";
-import UseRefocusOnActivatorDocs from "@atlantis/docs/hooks/useRefocusOnActivator.stories.mdx";
-import UseResizeObserverDocs from "@atlantis/docs/hooks/useResizeObserver.stories.mdx";
-import UseWindowDimensionsDocs from "@atlantis/docs/hooks/useWindowDimensions.stories.mdx";
+import UseBoolDocs from "../content/hooks/useBool.stories.mdx";
+import UseBreakpointsDocs from "../content/hooks/useBreakpoints.stories.mdx";
+import UseCallbackRefDocs from "../content/hooks/useCallbackRef.stories.mdx";
+import UseCollectionQueryDocs from "../content/hooks/useCollectionQuery.stories.mdx";
+import UseDebounceDocs from "../content/hooks/useDebounce.stories.mdx";
+import UseFocusTrapDocs from "../content/hooks/useFocusTrap.stories.mdx";
+import UseFormStateDocs from "../content/hooks/useFormState.stories.mdx";
+import UseInViewDocs from "../content/hooks/useInView.stories.mdx";
+import UseIsMountedDocs from "../content/hooks/useIsMounted.stories.mdx";
+import UseLiveAnnounceDocs from "../content/hooks/useLiveAnnounce.stories.mdx";
+import UseOnKeyDownDocs from "../content/hooks/useOnKeyDown.stories.mdx";
+import UseOnMountDocs from "../content/hooks/useOnMount.stories.mdx";
+import UseRefocusOnActivatorDocs from "../content/hooks/useRefocusOnActivator.stories.mdx";
+import UseResizeObserverDocs from "../content/hooks/useResizeObserver.stories.mdx";
+import UseStepperDocs from "../content/hooks/useStepper.stories.mdx";
+import UseWindowDimensionsDocs from "../content/hooks/useWindowDimensions.stories.mdx";
 import { ContentMapItems } from "../types/maps";
 
 export const hooksContentMap: ContentMapItems = {
-  useAssert: {
-    intro: "useAssert",
-    title: "useAssert",
-    content: () => <UseAssertDocs />,
-  },
   useBool: {
     intro: "useBool",
     title: "useBool",
@@ -40,6 +36,11 @@ export const hooksContentMap: ContentMapItems = {
     intro: "useCollectionQuery",
     title: "useCollectionQuery",
     content: () => <UseCollectionQueryDocs />,
+  },
+  useDebounce: {
+    intro: "useDebounce",
+    title: "useDebounce",
+    content: () => <UseDebounceDocs />,
   },
   useFocusTrap: {
     intro: "useFocusTrap",
@@ -85,6 +86,11 @@ export const hooksContentMap: ContentMapItems = {
     intro: "useResizeObserver",
     title: "useResizeObserver",
     content: () => <UseResizeObserverDocs />,
+  },
+  useStepper: {
+    intro: "useStepper",
+    title: "useStepper",
+    content: () => <UseStepperDocs />,
   },
   useWindowDimensions: {
     intro: "useWindowDimensions",

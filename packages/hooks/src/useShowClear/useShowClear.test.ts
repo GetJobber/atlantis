@@ -6,6 +6,7 @@ interface UseShowClearParameters {
   focused: boolean;
   multiline: boolean;
   disabled: boolean;
+  readonly?: boolean;
   expected: boolean;
 }
 
@@ -107,6 +108,61 @@ describe("useShowClear", () => {
       disabled: true,
       expected: false,
     },
+    // Readonly cases
+    {
+      clearable: "always",
+      hasValue: true,
+      focused: false,
+      multiline: false,
+      disabled: false,
+      readonly: true,
+      expected: false,
+    },
+    {
+      clearable: "always",
+      hasValue: true,
+      focused: true,
+      multiline: false,
+      disabled: false,
+      readonly: true,
+      expected: false,
+    },
+    {
+      clearable: "while-editing",
+      hasValue: true,
+      focused: false,
+      multiline: false,
+      disabled: false,
+      readonly: true,
+      expected: false,
+    },
+    {
+      clearable: "while-editing",
+      hasValue: true,
+      focused: true,
+      multiline: false,
+      disabled: false,
+      readonly: true,
+      expected: false,
+    },
+    {
+      clearable: "never",
+      hasValue: true,
+      focused: false,
+      multiline: false,
+      disabled: false,
+      readonly: true,
+      expected: false,
+    },
+    {
+      clearable: "never",
+      hasValue: true,
+      focused: true,
+      multiline: false,
+      disabled: false,
+      readonly: true,
+      expected: false,
+    },
   ])(
     "%j",
     ({
@@ -115,11 +171,19 @@ describe("useShowClear", () => {
       focused,
       multiline,
       disabled,
+      readonly,
       expected,
     }: UseShowClearParameters) => {
       it(`returns ${expected}`, () => {
         expect(
-          useShowClear({ clearable, multiline, focused, hasValue, disabled }),
+          useShowClear({
+            clearable,
+            multiline,
+            focused,
+            hasValue,
+            disabled,
+            readonly,
+          }),
         ).toEqual(expected);
       });
     },
@@ -151,6 +215,19 @@ describe("useShowClear", () => {
         focused: true,
         hasValue: true,
         disabled: false,
+      });
+    }).not.toThrow();
+  });
+
+  it("respects readonly in multiline inputs", () => {
+    expect(() => {
+      useShowClear({
+        clearable: "never",
+        multiline: true,
+        focused: true,
+        hasValue: true,
+        disabled: false,
+        readonly: true,
       });
     }).not.toThrow();
   });

@@ -2,9 +2,9 @@ import React from "react";
 import { Typography } from "@jobber/components/Typography";
 import { Button } from "@jobber/components/Button";
 import styles from "./ComboboxContentHeader.module.css";
-import { ComboboxHeaderProps } from "../../../Combobox.types";
+import type { ComboboxHeaderProps } from "../../../Combobox.types";
 
-export function ComboboxContentHeader(props: ComboboxHeaderProps): JSX.Element {
+export function ComboboxContentHeader(props: ComboboxHeaderProps) {
   const hasSelected = props.selectedCount > 0;
   const actionLabel = hasSelected ? "Clear" : "Select all";
   const label = getLabel(hasSelected, props.selectedCount, props.subjectNoun);

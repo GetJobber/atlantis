@@ -3,7 +3,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Modal, StatusBar, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useStyles } from "./InternalFormMessage.style";
-import { EmptyState, EmptyStateProps } from "../../../../../EmptyState";
+import type { EmptyStateProps } from "../../../../../EmptyState";
+import { EmptyState } from "../../../../../EmptyState";
 import { useAtlantisI18n } from "../../../../../hooks/useAtlantisI18n";
 
 interface FormMessageProps {
@@ -14,7 +15,7 @@ interface FormMessageProps {
 export function InternalFormMessage({
   data,
   onRequestClose,
-}: FormMessageProps): JSX.Element {
+}: FormMessageProps) {
   const { t } = useAtlantisI18n();
   const styles = useStyles();
   const emptyStateData: EmptyStateProps = useMemo(() => {

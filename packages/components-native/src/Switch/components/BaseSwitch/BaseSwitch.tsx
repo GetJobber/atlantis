@@ -43,7 +43,7 @@ export function BaseSwitch({
   disabled = false,
   accessibilityLabel,
   name,
-}: BaseSwitchProps): JSX.Element {
+}: BaseSwitchProps) {
   const { field } = useFormController({
     name,
     value: value ?? defaultValue,
@@ -60,7 +60,7 @@ export function BaseSwitch({
       } else if (internalValue) {
         return tokens["color-interactive"];
       } else {
-        return tokens["color-surface--background"];
+        return tokens["color-interactive--background"];
       }
     }
 
@@ -81,10 +81,16 @@ export function BaseSwitch({
       //iOS
       return {
         true: tokens["color-interactive"],
-        false: tokens["color-surface--background"],
+        false: tokens["color-interactive--background"],
       };
     }
   }
+  // Temporary fix for iOS 26. Remove when we upgrade to RN 0.81.
+  // https://github.com/facebook/react-native/pull/53389
+  const iOSBackgroundColor =
+    Platform.OS === "ios" && Platform.Version?.startsWith("26.")
+      ? undefined
+      : tokens["color-interactive--background"];
 
   return (
     <Switch
@@ -98,7 +104,7 @@ export function BaseSwitch({
       disabled={disabled}
       thumbColor={getThumbColor()}
       trackColor={getTrackColors()}
-      ios_backgroundColor={tokens["color-surface--background"]}
+      ios_backgroundColor={iOSBackgroundColor}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole={"switch"}
       accessibilityState={{

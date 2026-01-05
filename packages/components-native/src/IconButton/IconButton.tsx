@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
-import { IconColorNames, IconNames } from "@jobber/design";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import { useStyles } from "./IconButton.style";
 import { Icon } from "../Icon";
 
@@ -50,7 +50,7 @@ export function IconButton({
   onPress,
   accessibilityLabel,
   testID,
-}: IconButtonProps): JSX.Element {
+}: IconButtonProps) {
   const styles = useStyles();
 
   return (

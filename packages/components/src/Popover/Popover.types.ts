@@ -1,6 +1,6 @@
-import { CSSProperties, PropsWithChildren } from "react";
-import { XOR } from "ts-xor";
-import { ButtonDismissProps } from "../ButtonDismiss";
+import type { CSSProperties, PropsWithChildren } from "react";
+import type { XOR } from "ts-xor";
+import type { ButtonDismissProps } from "../ButtonDismiss";
 
 export interface PopoverProps {
   /**

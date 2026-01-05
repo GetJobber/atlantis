@@ -24,6 +24,7 @@
 
 :global(.react-datepicker__input-container),
 :global(.react-datepicker-wrapper) {
+  width: 100%;
   max-width: 100%;
 }
 
@@ -33,7 +34,7 @@
 
 .datePicker :global(.react-datepicker__header) {
   padding: 0;
-  border-bottom: var(--border-base) solid var(--color-border);
+  border-bottom: none;
   background: var(--color-surface);
 }
 
@@ -85,6 +86,7 @@
   display: flex;
   margin: 0;
   padding: var(--space-smallest) 0 0;
+  border-bottom: var(--border-base) solid var(--color-border);
   color: var(--color-text);
   font-size: var(--typography--fontSize-small);
   text-transform: uppercase;
@@ -99,11 +101,13 @@
 
 .datePicker :global(.react-datepicker__day):hover,
 .datePicker :global(.react-datepicker__day):focus {
+  border-radius: var(--radius-base);
   background: var(--color-surface--hover);
 }
 
 .datePicker :global(.react-datepicker__day--outside-month):hover,
 .datePicker :global(.react-datepicker__day--outside-month):focus {
+  border-radius: 0;
   background: var(--color-interactive--background--hover);
 }
 

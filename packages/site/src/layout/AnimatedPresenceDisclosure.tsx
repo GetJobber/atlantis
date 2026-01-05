@@ -4,6 +4,11 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./NavMenu.module.css";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 
+interface ChildProps {
+  readonly to?: string;
+  readonly selected?: boolean;
+}
+
 interface AnimatedPresenceDisclosureProps {
   readonly children: React.ReactNode;
   readonly title: React.ReactNode;
@@ -28,7 +33,8 @@ function AnimatedPresenceDisclosure({
 
   // Determine if any child is selected based on the current URL
   const hasSelectedChild = childrenArray.some(
-    child => React.isValidElement(child) && pathname === child.props.to,
+    child =>
+      React.isValidElement<ChildProps>(child) && pathname === child.props.to,
   );
 
   const [isOpen, setIsOpen] = useState(selected || hasSelectedChild);
@@ -85,7 +91,7 @@ function AnimatedPresenceDisclosure({
         {isOpen && (
           <ul style={{ padding: "0" }}>
             {childrenArray
-              .filter((child): child is React.ReactElement =>
+              .filter((child): child is React.ReactElement<ChildProps> =>
                 React.isValidElement(child),
               )
               .map(child =>

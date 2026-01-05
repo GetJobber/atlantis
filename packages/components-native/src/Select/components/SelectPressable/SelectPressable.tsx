@@ -1,7 +1,8 @@
 import React from "react";
-import { Keyboard, Pressable, PressableProps } from "react-native";
+import type { PressableProps } from "react-native";
+import { Keyboard, Pressable } from "react-native";
 import { useStyles } from "./SelectPressable.style";
-import { SelectInternalPickerProps } from "../../types";
+import type { SelectInternalPickerProps } from "../../types";
 import { useIsScreenReaderEnabled } from "../../../hooks";
 
 type SelectPressableProps = Pick<SelectInternalPickerProps, "children"> &
@@ -12,10 +13,7 @@ type SelectPressableProps = Pick<SelectInternalPickerProps, "children"> &
  * screen-reader is being used to avoid screen-readers from ignoring the press
  * on the MenuView
  */
-export function SelectPressable({
-  children,
-  onPress,
-}: SelectPressableProps): JSX.Element {
+export function SelectPressable({ children, onPress }: SelectPressableProps) {
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
   const styles = useStyles();
   if (isScreenReaderEnabled) return <>{children}</>;

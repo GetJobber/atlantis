@@ -1,20 +1,16 @@
 import React from "react";
-import {
-  Text as RNText,
-  StyleProp,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
-import { FieldError } from "react-hook-form";
-import { IconNames } from "@jobber/design";
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { Text as RNText, View } from "react-native";
+import type { FieldError } from "react-hook-form";
+import type { IconNames } from "@jobber/design";
 import { useStyles } from "./InputFieldWrapper.style";
 import { PrefixIcon, PrefixLabel } from "./components/Prefix/Prefix";
 import { SuffixIcon, SuffixLabel } from "./components/Suffix/Suffix";
 import { ClearAction } from "./components/ClearAction";
 import { Glimmer } from "../Glimmer/Glimmer";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
-import { TextVariation, useTypographyStyles } from "../Typography";
+import type { TextVariation } from "../Typography";
+import { useTypographyStyles } from "../Typography";
 import { Text } from "../Text";
 import { ActivityIndicator } from "../ActivityIndicator";
 
@@ -47,7 +43,14 @@ export interface InputFieldWrapperProps {
    */
   readonly assistiveText?: string;
 
-  readonly hasMiniLabel?: boolean;
+  /**
+   * Controls how the placeholder text is displayed.
+   * - normal: the placeholder text will be displayed in the normal placeholder position
+   * - mini: the placeholder text will float above the input value
+   * - hidden: the placeholder text will not be displayed
+   * @default "normal"
+   */
+  readonly placeholderMode?: "normal" | "mini" | "hidden";
 
   readonly hasValue?: boolean;
 
@@ -123,7 +126,7 @@ export function InputFieldWrapper({
   assistiveText,
   prefix,
   suffix,
-  hasMiniLabel = false,
+  placeholderMode = "normal",
   hasValue = false,
   error,
   focused = false,
@@ -135,7 +138,7 @@ export function InputFieldWrapper({
   toolbarVisibility = "while-editing",
   loading = false,
   loadingType = "spinner",
-}: InputFieldWrapperProps): JSX.Element {
+}: InputFieldWrapperProps) {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
   warnIfClearActionWithNoOnClear(onClear, showClearAction);
@@ -146,6 +149,9 @@ export function InputFieldWrapper({
   const showLoadingSpinner = loading && loadingType === "spinner";
   const showLoadingGlimmer = loading && loadingType === "glimmer";
   const styles = useStyles();
+
+  const placeholderVisible = placeholderMode !== "hidden";
+  const miniLabelActive = placeholderMode === "mini";
 
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
@@ -164,35 +170,36 @@ export function InputFieldWrapper({
             <PrefixIcon
               disabled={disabled}
               focused={focused}
-              hasMiniLabel={hasMiniLabel}
               inputInvalid={inputInvalid}
               icon={prefix.icon}
             />
           )}
           <View style={[styles.inputContainer]}>
-            <View
-              style={[
-                !!placeholder && styles.label,
-                hasMiniLabel && styles.miniLabel,
-                disabled && styles.disabled,
-                hasMiniLabel &&
-                  showClearAction &&
-                  styles.miniLabelShowClearAction,
-              ]}
-              pointerEvents="none"
-            >
-              <Placeholder
-                placeholder={placeholder}
-                labelVariation={getLabelVariation(error, invalid, disabled)}
-                hasMiniLabel={hasMiniLabel}
-                styleOverride={styleOverride?.placeholderText}
-              />
-            </View>
+            {placeholderVisible && (
+              <View
+                style={[
+                  !!placeholder && styles.label,
+                  miniLabelActive && styles.miniLabel,
+                  disabled && styles.disabled,
+                  miniLabelActive &&
+                    showClearAction &&
+                    styles.miniLabelShowClearAction,
+                ]}
+                pointerEvents="none"
+              >
+                <Placeholder
+                  placeholder={placeholder}
+                  labelVariation={getLabelVariation(error, invalid, disabled)}
+                  miniLabelActive={miniLabelActive}
+                  styleOverride={styleOverride?.placeholderText}
+                />
+              </View>
+            )}
             {prefix?.label && hasValue && (
               <PrefixLabel
                 disabled={disabled}
                 focused={focused}
-                hasMiniLabel={hasMiniLabel}
+                miniLabelActive={miniLabelActive}
                 inputInvalid={inputInvalid}
                 label={prefix.label}
                 styleOverride={styleOverride?.prefixLabel}
@@ -229,7 +236,7 @@ export function InputFieldWrapper({
                   <SuffixLabel
                     disabled={disabled}
                     focused={focused}
-                    hasMiniLabel={hasMiniLabel}
+                    miniLabelActive={miniLabelActive}
                     inputInvalid={inputInvalid}
                     label={suffix.label}
                     hasLeftMargin={!showClearAction}
@@ -249,7 +256,6 @@ export function InputFieldWrapper({
                   <SuffixIcon
                     disabled={disabled}
                     focused={focused}
-                    hasMiniLabel={hasMiniLabel}
                     hasLeftMargin={!!(!showClearAction || suffix?.label)}
                     inputInvalid={inputInvalid}
                     icon={suffix.icon}
@@ -336,12 +342,12 @@ function Placeholder({
   placeholder,
   styleOverride,
   labelVariation,
-  hasMiniLabel,
+  miniLabelActive,
 }: {
   readonly placeholder?: string;
   readonly styleOverride: StyleProp<TextStyle>;
   readonly labelVariation: TextVariation;
-  readonly hasMiniLabel: boolean;
+  readonly miniLabelActive: boolean;
 }) {
   const typographyStyles = useTypographyStyles();
 
@@ -352,7 +358,7 @@ function Placeholder({
           hideFromScreenReader={true}
           maxLines="single"
           variation={labelVariation}
-          level={hasMiniLabel ? "textSupporting" : "text"}
+          level={miniLabelActive ? "textSupporting" : "text"}
         >
           {placeholder}
         </Text>
@@ -365,7 +371,7 @@ function Placeholder({
           style={[
             typographyStyles[labelVariation],
             typographyStyles.baseRegularRegular,
-            hasMiniLabel
+            miniLabelActive
               ? typographyStyles.smallSize
               : typographyStyles.defaultSize,
             styleOverride,

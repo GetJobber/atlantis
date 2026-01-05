@@ -46,7 +46,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"none\" | \"smallest\" | \"smaller\" | \"small\" | \"base\" | \"large\""
+          "name": "\"none\" | \"minuscule\" | \"smallest\" | \"smaller\" | \"small\" | \"slim\" | \"base\" | \"large\" | \"larger\" | \"largest\" | \"extravagant\""
         }
       },
       "direction": {

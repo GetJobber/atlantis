@@ -62,7 +62,7 @@
   box-sizing: border-box;
 }
 
-.wrapper:focus-within {
+.wrapper:not(.disabled):focus-within {
   position: relative;
   z-index: var(--field--base-elevation);
   box-shadow: var(--shadow-focus);
@@ -78,12 +78,17 @@
   margin-right: var(--field--padding-right);
 }
 
+/* When there's placeholder text on an EMPTY time input
+  - we hide the field value when the input is:
+  - not focused or disabled
+*/
+.timeInputLabel input:disabled,
 .timeInputLabel:not(:focus-within) input {
   color: var(--field--background-color);
   -webkit-text-fill-color: var(--field--background-color);
 }
 
-.timeInputLabel:focus-within,
+.timeInputLabel:not(.disabled):focus-within,
 .miniLabel {
   --field--placeholder-color: var(--color-text--secondary);
   --field--placeholder-offset: var(--space-smallest);
@@ -92,7 +97,7 @@
   --field--padding-bottom: var(--space-small);
 }
 
-.timeInputLabel.large:focus-within,
+.timeInputLabel:not(.disabled).large:focus-within,
 .miniLabel.large {
   --field--padding-top: calc(var(--space-large) + var(--space-smaller));
 }
@@ -108,8 +113,8 @@
   overflow: auto;
 }
 
-.invalid,
-.invalid:focus-within {
+.invalid:not(.disabled),
+.invalid:not(.disabled):focus-within {
   --field--border-color: var(--color-critical);
   position: relative;
 }
@@ -128,8 +133,8 @@
 }
 
 .small {
-  --field--padding-left: calc(var(--space-base) - var(--space-smaller));
-  --field--padding-right: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-left: var(--space-slim);
+  --field--padding-right: var(--space-slim);
   --field--padding-top: var(--space-small);
   --field--padding-bottom: var(--space-small);
   --field--height: calc(var(--space-larger) + var(--space-smaller));
@@ -239,6 +244,21 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
+  -webkit-text-fill-color: var(--field--value-color);
+}
+
+/* Apply miniLabel styles when input has autofill (CSS-only solution) */
+/* Supports both -webkit-autofill (Chrome/Safari) and :autofill (Firefox) */
+.wrapper:has(.input:-webkit-autofill):not(.timeInputLabel) {
+  --field--placeholder-color: var(--color-text--secondary);
+  --field--placeholder-offset: var(--space-smallest);
+  --field--placeholder-transform: 0;
+  --field--padding-top: calc(var(--space-base) + var(--space-smaller));
+  --field--padding-bottom: var(--space-small);
+}
+
+.wrapper:has(.input:-webkit-autofill).large:not(.timeInputLabel) {
+  --field--padding-top: calc(var(--space-large) + var(--space-smaller));
 }
 
 .textarea:not(:has(.label)) {
@@ -298,9 +318,12 @@
   padding-right: var(--field--padding-right);
 }
 
-.miniLabel .label,
-.timeInputLabel:focus-within .label {
+.miniLabel .label {
   font-size: var(--typography--fontSize-small);
+}
+
+.small.miniLabel .label {
+  display: none;
 }
 
 .text.miniLabel .label {
@@ -311,15 +334,36 @@
   background-color: var(--field--background-color);
 }
 
-.small.miniLabel .label,
-.timeInputLabel.small.miniLabel:focus-within .label {
+.timeInputLabel:focus-within:not(.disabled) .label {
+  font-size: var(--typography--fontSize-small);
+}
+
+/* Apply miniLabel label styles when input has autofill */
+/* Supports both -webkit-autofill (Chrome/Safari) and :autofill (Firefox) */
+.wrapper:has(.input:-webkit-autofill) .label {
+  font-size: var(--typography--fontSize-small);
+}
+
+.wrapper:has(.input:-webkit-autofill).small .label {
+  display: none;
+}
+
+.wrapper:has(.input:-webkit-autofill).text .label {
+  padding-top: var(--space-smallest);
+}
+
+.wrapper:has(.input:-webkit-autofill).textarea .label {
+  background-color: var(--field--background-color);
+}
+
+.timeInputLabel.small.miniLabel:focus-within:not(.disabled) .label {
   display: none;
 }
 
 /**This is valid cascading order **/
 /* stylelint-disable-next-line no-descending-specificity */
 .large.miniLabel .label,
-.timeInputLabel.large.miniLabel:focus-within .label {
+.timeInputLabel.large.miniLabel:focus-within:not(.disabled) .label {
   padding-top: var(--space-small);
 }
 
@@ -351,11 +395,6 @@
   padding-left: var(--space-small);
 }
 
-.affixIcon.hasAction {
-  position: relative;
-  z-index: var(--field--postfix-action-elevation);
-}
-
 .affixLabel {
   display: flex;
   margin: 0 calc((var(--field--padding-left) - var(--space-smallest)) * -1) 0 0;
@@ -371,6 +410,13 @@
 }
 
 .miniLabel:not(.small) .affixLabel {
+  padding-top: var(--field--padding-top);
+  padding-bottom: var(--field--padding-bottom);
+}
+
+/* Apply affix label styles when input has autofill */
+/* Supports both -webkit-autofill (Chrome/Safari) and :autofill (Firefox) */
+.wrapper:has(.input:-webkit-autofill):not(.small) .affixLabel {
   padding-top: var(--field--padding-top);
   padding-bottom: var(--field--padding-bottom);
 }

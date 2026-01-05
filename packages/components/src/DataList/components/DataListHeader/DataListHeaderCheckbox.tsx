@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import React from "react";
-import { ReactElement } from "react-markdown/lib/react-markdown";
+import React, { type ReactElement } from "react";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
 import { Text } from "../../../Text";
 import { Button } from "../../../Button";
@@ -10,15 +9,21 @@ import styles from "../../DataList.module.css";
 import { InternalDataListBulkActions } from "../DataListBulkActions";
 import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
 import { useBatchSelect } from "../../hooks/useBatchSelect";
+import type { DataListSelectedType } from "../../DataList.types";
 
 interface DataListHeaderCheckbox {
   readonly children: ReactElement;
 }
 
+export const DATA_LIST_HEADER_CHECKBOX_TEST_ID = "ATL-DataList-header-checkbox";
+export const DATA_LIST_HEADER_BATCH_SELECT_TEST_ID =
+  "ATL-DataList-header-batch-select";
+
 export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   const { sm } = useResponsiveSizing();
   const { data, totalCount } = useDataListContext();
   const {
+    canSelect,
     canSelectAll,
     hasAtLeastOneSelected,
     isSelectAll,
@@ -29,8 +34,9 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
     onSelect,
   } = useBatchSelect();
 
-  // If there's no onSelectAll or onSelect, we don't need to render the checkbox.
-  if (!canSelectAll) return children;
+  // If there's no onSelect, we don't need to render the checkbox.
+  // We'll still render the (invisible) checkbox even if only onSelect is provided for alignment.
+  if (!canSelect) return children;
 
   const deselectText = sm ? "Deselect All" : "Deselect";
   const selectedLabel = selectedCount ? `${selectedCount} selected` : "";
@@ -38,9 +44,11 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   return (
     <div className={styles.selectable}>
       <div
-        className={classNames(styles.selectAllCheckbox, {
-          [styles.visible]: canSelectAll,
-        })}
+        data-testid={DATA_LIST_HEADER_CHECKBOX_TEST_ID}
+        style={{
+          visibility: canSelectAll ? "visible" : "hidden",
+        }}
+        className={classNames(styles.selectAllCheckbox)}
       >
         <Checkbox
           checked={isAllSelected()}
@@ -51,23 +59,15 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
         </Checkbox>
       </div>
 
-      <AnimatedSwitcher
-        switched={hasAtLeastOneSelected}
-        initialChild={children}
-        switchTo={
-          <div className={styles.batchSelectContainer}>
-            <div className={styles.headerBatchSelect}>
-              {Boolean(selectedCount) && <Text>{selectedCount} selected</Text>}
-              <Button
-                label={deselectText}
-                onClick={() => onSelect?.([])}
-                type="tertiary"
-              />
-            </div>
-            <InternalDataListBulkActions />
-          </div>
-        }
-      />
+      <ColumnHeaderContent
+        canSelectAll={canSelectAll}
+        hasAtLeastOneSelected={hasAtLeastOneSelected}
+        selectedCount={selectedCount}
+        deselectText={deselectText}
+        onSelect={onSelect}
+      >
+        {children}
+      </ColumnHeaderContent>
     </div>
   );
 
@@ -106,5 +106,48 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
     if (totalCount) return totalCount;
 
     return 0;
+  }
+}
+
+function ColumnHeaderContent({
+  canSelectAll,
+  children,
+  hasAtLeastOneSelected,
+  selectedCount,
+  deselectText,
+  onSelect,
+}: {
+  readonly canSelectAll: boolean;
+  readonly children: ReactElement;
+  readonly hasAtLeastOneSelected: boolean;
+  readonly selectedCount: number;
+  readonly deselectText: string;
+  readonly onSelect?: (selected: DataListSelectedType<string | number>) => void;
+}) {
+  if (canSelectAll) {
+    return (
+      <AnimatedSwitcher
+        switched={hasAtLeastOneSelected}
+        initialChild={children}
+        switchTo={
+          <div
+            data-testid={DATA_LIST_HEADER_BATCH_SELECT_TEST_ID}
+            className={styles.batchSelectContainer}
+          >
+            <div className={styles.headerBatchSelect}>
+              {Boolean(selectedCount) && <Text>{selectedCount} selected</Text>}
+              <Button
+                label={deselectText}
+                onClick={() => onSelect?.([])}
+                type="tertiary"
+              />
+            </div>
+            <InternalDataListBulkActions />
+          </div>
+        }
+      />
+    );
+  } else {
+    return children;
   }
 }

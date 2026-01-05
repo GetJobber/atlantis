@@ -1,9 +1,14 @@
-import React, { ReactElement, useId } from "react";
+import type { ReactElement } from "react";
+import React, { useId } from "react";
+import classnames from "classnames";
 import { InternalRadioOption } from "./RadioOption";
+import type { RadioOptionProps } from "./RadioOption";
 import styles from "./RadioGroup.module.css";
 
-interface RadioGroupProps {
-  readonly children: ReactElement | ReactElement[];
+export interface RadioGroupProps {
+  readonly children:
+    | ReactElement<RadioOptionProps>
+    | ReactElement<RadioOptionProps>[];
 
   /**
    * Defines the default value that will be pre-selected in the radio group.
@@ -29,6 +34,12 @@ interface RadioGroupProps {
    * @default useId()
    */
   readonly name?: string;
+
+  /**
+   * Layout direction for the options.
+   * @default "vertical"
+   */
+  readonly direction?: "vertical" | "horizontal";
 }
 
 export function RadioGroup({
@@ -37,9 +48,14 @@ export function RadioGroup({
   ariaLabel,
   onChange,
   name = useId(),
+  direction = "vertical",
 }: RadioGroupProps) {
+  const className = classnames(styles.radioGroup, {
+    [styles.directionHorizontal]: direction === "horizontal",
+  });
+
   return (
-    <div role="radiogroup" aria-label={ariaLabel} className={styles.radioGroup}>
+    <div role="radiogroup" aria-label={ariaLabel} className={className}>
       {React.Children.map(children, option => (
         <InternalRadioOption
           checked={value === option.props.value}

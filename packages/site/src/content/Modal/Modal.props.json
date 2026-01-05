@@ -3,7 +3,7 @@
     "tags": {},
     "filePath": "../components/src/Modal/Modal.tsx",
     "description": "",
-    "displayName": "Modal",
+    "displayName": "ModalLegacy",
     "methods": [],
     "props": {
       "title": {
@@ -13,8 +13,8 @@
         "description": "",
         "name": "title",
         "parent": {
-          "fileName": "../components/src/Modal/Modal.tsx",
-          "name": "ModalProps"
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -28,8 +28,8 @@
         "description": "",
         "name": "open",
         "parent": {
-          "fileName": "../components/src/Modal/Modal.tsx",
-          "name": "ModalProps"
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -41,12 +41,12 @@
         "description": "",
         "name": "size",
         "parent": {
-          "fileName": "../components/src/Modal/Modal.tsx",
-          "name": "ModalProps"
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
-          "name": "string | number | symbol"
+          "name": "\"small\" | \"large\""
         }
       },
       "dismissible": {
@@ -56,8 +56,8 @@
         "description": "",
         "name": "dismissible",
         "parent": {
-          "fileName": "../components/src/Modal/Modal.tsx",
-          "name": "ModalProps"
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -69,8 +69,8 @@
         "description": "",
         "name": "primaryAction",
         "parent": {
-          "fileName": "../components/src/Modal/Modal.tsx",
-          "name": "ModalProps"
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -82,8 +82,8 @@
         "description": "",
         "name": "secondaryAction",
         "parent": {
-          "fileName": "../components/src/Modal/Modal.tsx",
-          "name": "ModalProps"
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -95,8 +95,8 @@
         "description": "",
         "name": "tertiaryAction",
         "parent": {
-          "fileName": "../components/src/Modal/Modal.tsx",
-          "name": "ModalProps"
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
@@ -108,12 +108,38 @@
         "description": "",
         "name": "onRequestClose",
         "parent": {
-          "fileName": "../components/src/Modal/Modal.tsx",
-          "name": "ModalProps"
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
         },
         "required": false,
         "type": {
           "name": "() => void"
+        }
+      },
+      "version": {
+        "defaultValue": null,
+        "description": "",
+        "name": "version",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "1"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "Accessible name for the Modal.\nOnly required if no title is provided. Title takes precedence over ariaLabel.",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Modal/Modal.types.ts",
+          "name": "ModalLegacyProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
         }
       }
     }

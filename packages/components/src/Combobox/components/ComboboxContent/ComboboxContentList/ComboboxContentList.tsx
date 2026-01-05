@@ -5,14 +5,14 @@ import { Glimmer } from "@jobber/components/Glimmer";
 import { Spinner } from "@jobber/components/Spinner";
 import { AnimatedPresence } from "@jobber/components/AnimatedPresence";
 import styles from "./ComboboxContentList.module.css";
-import {
+import type {
   ComboboxListProps,
   ComboboxOptionProps,
 } from "../../../Combobox.types";
 import { ComboboxOption } from "../../ComboboxOption/ComboboxOption";
 import { ComboboxLoadMore } from "../ComboboxLoadMore";
 
-export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
+export function ComboboxContentList(props: ComboboxListProps) {
   const optionsExist = props.options.length > 0;
   const hasSearchTerm = props.searchValue.length > 0;
   const { listScrollState } = useScrollState(
@@ -42,6 +42,7 @@ export function ComboboxContentList(props: ComboboxListProps): JSX.Element {
                 label={option.label}
                 prefix={option.prefix}
                 customRender={option.customRender}
+                onClick={option.onClick}
               />
             );
           })}
@@ -99,7 +100,7 @@ function getZeroIndexStateText(subjectNoun?: string) {
 }
 
 function useScrollState(
-  optionsListRef: React.RefObject<HTMLUListElement>,
+  optionsListRef: React.RefObject<HTMLUListElement | null>,
   options: ComboboxOptionProps[],
 ) {
   const [listScrollState, setlistScrollState] = useState("");

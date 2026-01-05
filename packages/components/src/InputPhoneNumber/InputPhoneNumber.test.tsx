@@ -1,23 +1,10 @@
 import React, { useState } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { InputPhoneNumber } from "./InputPhoneNumber";
 
 const placeholder = "Phone";
 const validationMessage = "Phone number must contain 10 or more digits";
-
-jest.mock("framer-motion", () => ({
-  motion: {
-    div: require("react").forwardRef(({ children, ...rest }, ref) => (
-      <div {...rest} ref={ref}>
-        {children}
-      </div>
-    )),
-  },
-  AnimatePresence: jest
-    .fn()
-    .mockImplementation(({ children }) => <>{children}</>),
-  default: jest.fn(),
-}));
 
 describe("InputPhoneNumber", () => {
   it("should render a field", () => {
@@ -103,6 +90,18 @@ describe("InputPhoneNumber", () => {
         return <InputPhoneNumber value={value} onChange={setValue} />;
       }
     });
+    it("should call onChange with the correct value", async () => {
+      const mockOnChange = jest.fn();
+      render(<InputPhoneNumber value="123123" onChange={mockOnChange} />);
+      const input = screen.getByRole("textbox");
+      await userEvent.type(input, "123123");
+      await waitFor(() => {
+        expect(mockOnChange).toHaveBeenCalledWith(
+          "(123) 123-3",
+          expect.any(Object),
+        );
+      });
+    });
   });
 
   describe("pattern", () => {
@@ -186,5 +185,71 @@ describe("InputPhoneNumber", () => {
         await screen.findByText(customPatternValidationMessage),
       ).toBeInTheDocument();
     });
+  });
+
+  describe("clearable while-editing", () => {
+    it("shows clear when focused and has value; hides on blur", async () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value="(555) 123-4567"
+          onChange={jest.fn()}
+          clearable="while-editing"
+        />,
+      );
+      const input = screen.getByLabelText(placeholder);
+
+      await userEvent.click(input);
+      const clear = await screen.findByLabelText("Clear input");
+
+      expect(clear).toBeVisible();
+
+      await userEvent.tab(); // focus the clear button
+      await userEvent.tab(); // blur the clear button
+
+      expect(screen.queryByLabelText("Clear input")).not.toBeInTheDocument();
+    });
+
+    it("does not show clear when there is no value", async () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value=""
+          onChange={jest.fn()}
+          clearable="while-editing"
+        />,
+      );
+
+      const input = screen.getByLabelText(placeholder);
+
+      await userEvent.click(input);
+
+      expect(screen.queryByLabelText("Clear input")).not.toBeInTheDocument();
+    });
+  });
+});
+
+describe("clearable always", () => {
+  it("always shows when clearable=always and has value, even blurred", async () => {
+    render(
+      <InputPhoneNumber
+        placeholder={placeholder}
+        value="(555) 123-4567"
+        onChange={jest.fn()}
+        clearable="always"
+      />,
+    );
+    const input = screen.getByLabelText(placeholder);
+
+    await userEvent.click(input);
+
+    const clear = await screen.findByLabelText("Clear input");
+
+    expect(clear).toBeVisible();
+
+    await userEvent.tab(); // focus the clear button
+    await userEvent.tab(); // blur the clear button
+
+    expect(screen.getByLabelText("Clear input")).toBeVisible();
   });
 });

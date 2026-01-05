@@ -9,7 +9,7 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./SelectDefaultPicker.style";
-import { SelectInternalPickerProps } from "../../types";
+import type { SelectInternalPickerProps } from "../../types";
 import { SelectPressable } from "../SelectPressable/SelectPressable";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
@@ -19,7 +19,7 @@ export function SelectDefaultPicker({
   children,
   options,
   onChange,
-}: SelectDefaultPickerProps): JSX.Element {
+}: SelectDefaultPickerProps) {
   const [show, setShow] = useState(false);
   const { t } = useAtlantisI18n();
   const selectedLanguage = options.find(option => option.isActive);

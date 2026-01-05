@@ -1,14 +1,14 @@
 import React from "react";
-import { FormBannerMessage, FormBannerMessageType } from "../../types";
-import { Banner, BannerTypes } from "../../../Banner";
+import type { FormBannerMessage } from "../../types";
+import { FormBannerMessageType } from "../../types";
+import type { BannerTypes } from "../../../Banner";
+import { Banner } from "../../../Banner";
 
 interface FormMessageBannerProps {
   readonly bannerMessages?: FormBannerMessage[];
 }
 
-export function FormMessageBanner({
-  bannerMessages,
-}: FormMessageBannerProps): JSX.Element {
+export function FormMessageBanner({ bannerMessages }: FormMessageBannerProps) {
   return (
     <>
       {bannerMessages?.map((message, index) => (

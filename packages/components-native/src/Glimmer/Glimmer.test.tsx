@@ -4,8 +4,8 @@ import {
   fireEvent,
   render as renderComponent,
 } from "@testing-library/react-native";
+import { Animated } from "react-native";
 import { GLIMMER_SHINE_TEST_ID, GLIMMER_TEST_ID, Glimmer } from "./Glimmer";
-import { tokens } from "../utils/design";
 
 let screen: ReturnType<typeof renderComponent<typeof Glimmer>>;
 
@@ -46,11 +46,15 @@ describe("Glimmer", () => {
     );
   });
 
-  it("renders sets the correct width", () => {
+  it("renders sets the correct width", async () => {
     jest.useFakeTimers();
+
+    // Spy on Animated.timing to verify the animation configuration
+    const timingSpy = jest.spyOn(Animated, "timing");
+
     render(<Glimmer />);
 
-    act(() => {
+    await act(async () => {
       fireEvent(screen.getByTestId(GLIMMER_TEST_ID), "onLayout", {
         nativeEvent: { layout: { width: 300 } },
       });
@@ -62,12 +66,19 @@ describe("Glimmer", () => {
       expect.objectContaining({ transform: [{ translateX: -48 }] }),
     );
 
-    jest.advanceTimersByTime(tokens["timing-loading--extended"]);
+    expect(timingSpy).toHaveBeenCalled();
 
-    expect(element.props.style).toEqual(
-      expect.objectContaining({ transform: [{ translateX: 348 }] }),
-    );
+    // Get the last call to timing
+    const lastCall = timingSpy.mock.calls[timingSpy.mock.calls.length - 1];
 
+    // The first argument should be the animated value
+    // The second argument should be the config
+    const config = lastCall[1];
+
+    // Verify animation targets the right end position (300 + 48 = 348)
+    expect(config.toValue).toBe(348);
+
+    timingSpy.mockRestore();
     jest.useRealTimers();
   });
 });

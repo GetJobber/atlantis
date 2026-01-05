@@ -1,9 +1,11 @@
 import React, { useMemo } from "react";
-import { AccessibilityRole, Pressable, View } from "react-native";
-import { IconNames } from "@jobber/design";
+import type { AccessibilityRole } from "react-native";
+import { Pressable, View } from "react-native";
+import type { IconNames } from "@jobber/design";
 import { useStyles } from "./Chip.style";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
+import type { AtlantisThemeContextValue } from "../AtlantisThemeContext";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
 
 export type AccentType = "client" | "invoice" | "job" | "request" | "quote";
@@ -67,7 +69,7 @@ export function Chip({
   accessibilityLabel,
   accessibilityRole = "radio",
   accent,
-}: ChipProps): JSX.Element {
+}: ChipProps) {
   const styles = useStyles();
   const { tokens } = useAtlantisTheme();
   const defaultAccentColor = tokens["color-surface--reverse"];
@@ -82,9 +84,10 @@ export function Chip({
         backgroundColor:
           inactiveBackgroundColor === "surface"
             ? tokens["color-surface"]
-            : tokens["color-surface--background"],
+            : tokens["color-interactive--background"],
       },
       isActive && { backgroundColor: accentColor },
+      getBorderStyle(inactiveBackgroundColor, tokens),
     ];
     const dismiss =
       (isActive || inactiveBackgroundColor === "surface") &&
@@ -95,7 +98,7 @@ export function Chip({
       iconCustomColor: iconColor,
       dismissColor: dismiss,
     };
-  }, [accent, isActive, inactiveBackgroundColor]);
+  }, [accent, isActive, inactiveBackgroundColor, getBorderStyle, styles]);
 
   const accessibilityState = useMemo(() => {
     const checkableRoles = ["radio", "switch", "togglebutton", "checkbox"];
@@ -143,4 +146,20 @@ export function Chip({
       )}
     </Pressable>
   );
+}
+
+function getBorderStyle(
+  inactiveBackgroundColor: "surface" | "background",
+  tokens: AtlantisThemeContextValue["tokens"],
+) {
+  let borderColor = "transparent";
+
+  if (inactiveBackgroundColor === "surface") {
+    borderColor = tokens["color-border"];
+  }
+
+  return {
+    borderColor,
+    borderWidth: tokens["border-base"],
+  };
 }

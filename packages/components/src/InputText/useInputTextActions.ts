@@ -1,12 +1,28 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent } from "react";
-import { InputTextRebuiltProps } from "./InputText.types";
+import type {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  PointerEvent,
+} from "react";
+import type { InputTextRebuiltProps } from "./InputText.types";
 
 export interface useInputTextActionsProps
   extends Pick<
     InputTextRebuiltProps,
-    "onChange" | "onEnter" | "onFocus" | "onBlur" | "onKeyDown"
+    | "onChange"
+    | "onEnter"
+    | "onFocus"
+    | "onBlur"
+    | "onKeyDown"
+    | "onKeyUp"
+    | "onMouseDown"
+    | "onMouseUp"
+    | "onPointerDown"
+    | "onPointerUp"
+    | "onClick"
   > {
-  inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
+  inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
 }
 
 /**
@@ -20,9 +36,14 @@ export function useInputTextActions({
   onFocus,
   onBlur,
   onKeyDown,
+  onKeyUp,
+  onMouseDown,
+  onMouseUp,
+  onPointerDown,
+  onPointerUp,
+  onClick,
 }: useInputTextActionsProps) {
   function handleClear() {
-    handleBlur();
     onChange && onChange("");
     inputRef?.current?.focus();
   }
@@ -46,21 +67,65 @@ export function useInputTextActions({
     onEnter && onEnter(event);
   }
 
+  function handleKeyUp(
+    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onKeyUp?.(event);
+  }
+
   function handleFocus(
     event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     onFocus?.(event);
   }
 
-  function handleBlur(event?: FocusEvent) {
+  function handleBlur(
+    event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
     onBlur?.(event);
+  }
+
+  function handleMouseDown(
+    event: MouseEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onMouseDown?.(event);
+  }
+
+  function handleMouseUp(
+    event: MouseEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onMouseUp?.(event);
+  }
+
+  function handlePointerDown(
+    event: PointerEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onPointerDown?.(event);
+  }
+
+  function handlePointerUp(
+    event: PointerEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onPointerUp?.(event);
+  }
+
+  function handleClick(
+    event: MouseEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onClick?.(event);
   }
 
   return {
     handleClear,
     handleChange,
     handleKeyDown,
+    handleKeyUp,
     handleFocus,
     handleBlur,
+    handleMouseDown,
+    handleMouseUp,
+    handlePointerDown,
+    handlePointerUp,
+    handleClick,
   };
 }

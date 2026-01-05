@@ -1,5 +1,12 @@
-import React, { PropsWithChildren } from "react";
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import type { PropsWithChildren, ReactElement } from "react";
+import React from "react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   DataListContext,
@@ -20,7 +27,7 @@ const mockSelectedValue = jest.fn().mockReturnValue([]);
 const onSelectMock = jest.fn();
 const mockOnSelectValue = jest.fn().mockReturnValue(onSelectMock);
 
-const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
+const mockItemActionComponent = jest.fn<ReactElement | undefined, []>(() => (
   <DataListItemActions>
     <DataListAction label="Edit" onClick={mockEditClick} />
     <DataListAction label="Email" />
@@ -111,7 +118,69 @@ describe("DataListItems", () => {
 
       await userEvent.unhover(listItem);
 
+      const menu = await screen.findByRole("menu");
+
+      expect(menu).toBeInTheDocument();
+    });
+
+    it("should close the menu when pressing Escape", async () => {
+      renderComponent();
+      const listItem = screen.getByText(mockData[0].label);
+      await userEvent.hover(listItem);
+      fireEvent.contextMenu(listItem);
+
       expect(screen.getByRole("menu")).toBeInTheDocument();
+
+      await userEvent.keyboard("{Escape}");
+
+      await waitFor(() =>
+        expect(screen.queryByRole("menu")).not.toBeInTheDocument(),
+      );
+    });
+
+    it("should close the menu when clicking the overlay", async () => {
+      renderComponent();
+      const listItem = screen.getByText(mockData[0].label);
+      await userEvent.hover(listItem);
+      fireEvent.contextMenu(listItem);
+
+      expect(screen.getByRole("menu")).toBeInTheDocument();
+
+      await userEvent.click(screen.getByLabelText("Close menu"));
+
+      await waitFor(() =>
+        expect(screen.queryByRole("menu")).not.toBeInTheDocument(),
+      );
+    });
+
+    it("should close the menu after selecting an action", async () => {
+      renderComponent();
+      const listItem = screen.getByText(mockData[1].label);
+      await userEvent.hover(listItem);
+      fireEvent.contextMenu(listItem);
+
+      const menuElement = screen.getByRole("menu");
+      const editButton = within(menuElement).getByText("Edit");
+      await userEvent.click(editButton);
+
+      await waitFor(() =>
+        expect(screen.queryByRole("menu")).not.toBeInTheDocument(),
+      );
+    });
+
+    it("should not open the context menu when disableContextMenu is true", async () => {
+      mockItemActionComponent.mockReturnValueOnce(
+        <DataListItemActions disableContextMenu>
+          <DataListAction label="Edit" onClick={mockEditClick} />
+        </DataListItemActions>,
+      );
+
+      renderComponent();
+      const listItem = screen.getByText(mockData[0].label);
+      await userEvent.hover(listItem);
+      fireEvent.contextMenu(listItem);
+
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
   });
 });

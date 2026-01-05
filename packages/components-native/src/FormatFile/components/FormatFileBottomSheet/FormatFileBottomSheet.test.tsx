@@ -1,12 +1,11 @@
 import React, { createRef } from "react";
-import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
+import type { RenderAPI } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { act } from "react-test-renderer";
-import {
-  BottomSheetOptionsSuffix,
-  FormatFileBottomSheet,
-} from "./FormatFileBottomSheet";
-import { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
+import type { BottomSheetOptionsSuffix } from "./FormatFileBottomSheet";
+import { FormatFileBottomSheet } from "./FormatFileBottomSheet";
+import type { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
 
 let Platform: { OS: "ios" | "android" };
 const onRemove = jest.fn();
@@ -40,11 +39,11 @@ const basicRenderTestWithValue = () => {
       const removeLabel = `Remove ${bottomSheetOptionsSuffix}`;
       let tree: RenderAPI;
 
-      beforeEach(() => {
+      beforeEach(async () => {
         tree = renderBottomSheet(
           bottomSheetOptionsSuffix as BottomSheetOptionsSuffix,
         );
-        act(() => {
+        await act(async () => {
           bottomSheetRef.current?.open();
         });
       });
@@ -53,29 +52,29 @@ const basicRenderTestWithValue = () => {
       });
 
       describe("onPreviewPress", () => {
-        it("renders the preview option", () => {
-          const { getByLabelText } = tree;
+        it("renders the preview option", async () => {
+          const { findByLabelText } = tree;
 
-          expect(getByLabelText(previewLabel)).toBeDefined();
+          expect(await findByLabelText(previewLabel)).toBeDefined();
         });
 
-        it("is called when pressed", () => {
-          const { getByLabelText } = tree;
-          fireEvent.press(getByLabelText(previewLabel));
+        it("is called when pressed", async () => {
+          const { findByLabelText } = tree;
+          fireEvent.press(await findByLabelText(previewLabel));
           expect(onPreview).toHaveBeenCalledTimes(1);
         });
       });
 
       describe("onRemovePress", () => {
-        it("renders the remove option", () => {
-          const { getByLabelText } = tree;
+        it("renders the remove option", async () => {
+          const { findByLabelText } = tree;
 
-          expect(getByLabelText(removeLabel)).toBeDefined();
+          expect(await findByLabelText(removeLabel)).toBeDefined();
         });
 
-        it("is called when pressed", () => {
-          const { getByLabelText } = tree;
-          fireEvent.press(getByLabelText(removeLabel));
+        it("is called when pressed", async () => {
+          const { findByLabelText } = tree;
+          fireEvent.press(await findByLabelText(removeLabel));
 
           expect(onRemove).toHaveBeenCalledTimes(1);
         });

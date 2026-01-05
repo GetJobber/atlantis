@@ -6,7 +6,7 @@ import {
   AtlantisThemeContextProvider,
   useAtlantisTheme,
 } from "./AtlantisThemeContext";
-import { AtlantisThemeContextProviderProps, Theme } from "./types";
+import type { AtlantisThemeContextProviderProps, Theme } from "./types";
 import { updateTheme } from "./updateTheme";
 import { InlineLabel } from "../InlineLabel";
 
@@ -17,11 +17,13 @@ describe("ThemeContext", () => {
   function TestWrapper({
     children,
     dangerouslyOverrideTheme,
+    dangerouslyOverrideTokens,
   }: AtlantisThemeContextProviderProps) {
     return (
       <div data-testid="test-wrapper">
         <AtlantisThemeContextProvider
           dangerouslyOverrideTheme={dangerouslyOverrideTheme}
+          dangerouslyOverrideTokens={dangerouslyOverrideTokens}
         >
           <InlineLabel color="red">Past due</InlineLabel>
           {children}
@@ -48,6 +50,60 @@ describe("ThemeContext", () => {
     });
   });
 
+  describe("when dangerouslyOverrideTokens are provided", () => {
+    it("applies overridden tokens and CSS variables in dynamic provider", () => {
+      const tokenName = "color-text" as const;
+      const overrideValue = "hsl(198, 35%, 30%)";
+      const overrideTokens = { [tokenName]: overrideValue } as Record<
+        string,
+        string
+      >;
+
+      const results = renderHook(useAtlantisTheme, {
+        wrapper: (props: AtlantisThemeContextProviderProps) => (
+          <TestWrapper {...props} dangerouslyOverrideTokens={overrideTokens} />
+        ),
+      });
+
+      expect(results.result.current.tokens[tokenName]).toBe(overrideValue);
+
+      const wrapper = screen.getByTestId("test-wrapper");
+      const overrideWrapper = wrapper.firstElementChild as HTMLElement | null;
+      expect(
+        (overrideWrapper as HTMLElement).style.getPropertyValue(
+          `--${tokenName}`,
+        ),
+      ).toBe(String(overrideValue));
+    });
+
+    it("applies overridden tokens and CSS variables in static provider", () => {
+      const tokenName = "color-text" as const;
+      const overrideValue = "hsl(198, 35%, 30%)";
+      const overrideTokens = { [tokenName]: overrideValue } as Record<
+        string,
+        string
+      >;
+
+      const results = renderHook(useAtlantisTheme, {
+        wrapper: (props: AtlantisThemeContextProviderProps) => (
+          <TestWrapper
+            {...props}
+            dangerouslyOverrideTheme="dark"
+            dangerouslyOverrideTokens={overrideTokens}
+          />
+        ),
+      });
+
+      expect(results.result.current.tokens[tokenName]).toBe(overrideValue);
+
+      const wrapper = screen.getByTestId("test-wrapper");
+      const overrideWrapper = wrapper.firstElementChild as HTMLElement | null;
+      expect(overrideWrapper?.style.getPropertyValue(`--${tokenName}`)).toBe(
+        String(overrideValue),
+      );
+    });
+  });
+
   describe("when the theme is not set on the root element", () => {
     it("should use the light theme theme", () => {
       const results = renderHook(useAtlantisTheme, {
@@ -61,7 +117,7 @@ describe("ThemeContext", () => {
     });
   });
 
-  it("should update the theme and tokens", () => {
+  it("should update the theme and tokens", async () => {
     const results = renderHook(useAtlantisTheme, {
       wrapper: (props: AtlantisThemeContextProviderProps) => (
         <TestWrapper {...props} />
@@ -71,19 +127,19 @@ describe("ThemeContext", () => {
     const rootHTMLElement =
       screen.getByTestId("test-wrapper").ownerDocument?.documentElement;
 
-    act(() => updateTheme("dark"));
+    await act(async () => updateTheme("dark"));
 
     expect(results.result.current.theme).toBe("dark");
     expect(results.result.current.tokens).toEqual(expectedDarkTokens);
     expect(rootHTMLElement?.dataset.theme).toBe("dark");
 
-    act(() => updateTheme("light"));
+    await act(async () => updateTheme("light"));
     expect(results.result.current.theme).toBe("light");
     expect(results.result.current.tokens).toEqual(expectedLightTokens);
     expect(rootHTMLElement?.dataset.theme).toBe("light");
   });
 
-  it("should update the theme and tokens for all theme providers", () => {
+  it("should update the theme and tokens for all theme providers", async () => {
     const firstProvider = renderHook(useAtlantisTheme, {
       wrapper: (props: AtlantisThemeContextProviderProps) => (
         <TestWrapper {...props} />
@@ -95,7 +151,7 @@ describe("ThemeContext", () => {
       ),
     });
 
-    act(() => updateTheme("dark"));
+    await act(async () => updateTheme("dark"));
 
     expect(firstProvider.result.current.theme).toBe("dark");
     expect(firstProvider.result.current.tokens).toEqual(expectedDarkTokens);
@@ -104,7 +160,7 @@ describe("ThemeContext", () => {
   });
 
   describe("when theme is forced for provider", () => {
-    it("should add a data-theme attribute for the overriden theme to the wrapping element", () => {
+    it("should add a data-theme attribute for the overriden theme to the wrapping element", async () => {
       renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
           <TestWrapper {...props} dangerouslyOverrideTheme="dark" />
@@ -115,7 +171,7 @@ describe("ThemeContext", () => {
         "dark",
       );
 
-      act(() => updateTheme("light"));
+      await act(async () => updateTheme("light"));
 
       expect(wrapper.firstElementChild?.getAttribute("data-theme")).toEqual(
         "dark",
@@ -141,14 +197,14 @@ describe("ThemeContext", () => {
       expect(secondProvider.result.current.tokens).toEqual(expectedDarkTokens);
     });
 
-    it("should ignore updates to the theme", () => {
+    it("should ignore updates to the theme", async () => {
       const results = renderHook(useAtlantisTheme, {
         wrapper: (props: AtlantisThemeContextProviderProps) => (
           <TestWrapper {...props} dangerouslyOverrideTheme="light" />
         ),
       });
 
-      act(() => updateTheme("dark"));
+      await act(async () => updateTheme("dark"));
 
       expect(results.result.current.theme).toBe("light");
       expect(results.result.current.tokens).toEqual(expectedLightTokens);

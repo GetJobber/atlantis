@@ -35,6 +35,18 @@ describe("Banner", () => {
       expect(getByText("Notice me")).toBeDefined();
       expect(icon.props.children.props.name).toBe("starburst");
     });
+
+    it("renders a success Banner", () => {
+      const { getByText, getByTestId } = render(
+        <Banner type="success">
+          <Text>Your import is complete</Text>
+        </Banner>,
+      );
+
+      const icon = getByTestId("ATL-Banner-Icon");
+      expect(getByText("Your import is complete")).toBeDefined();
+      expect(icon.props.children.props.name).toBe("checkmark");
+    });
   });
 
   describe("Children", () => {

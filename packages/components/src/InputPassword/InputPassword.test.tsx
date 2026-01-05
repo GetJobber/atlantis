@@ -1,5 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { InputPassword } from ".";
 
 describe("<InputPassword />", () => {
@@ -57,5 +58,65 @@ describe("<InputPassword />", () => {
         container.querySelector("input[type='text']"),
       ).not.toBeInTheDocument();
     });
+  });
+});
+
+describe("clearable while-editing", () => {
+  it("shows clear when focused and has value; hides on blur", async () => {
+    const { getByLabelText, queryByLabelText, findByLabelText } = render(
+      <InputPassword
+        placeholder="Password"
+        value="secret"
+        clearable="while-editing"
+      />,
+    );
+    const input = getByLabelText("Password");
+
+    await userEvent.click(input);
+
+    const clear = await findByLabelText("Clear input");
+
+    expect(clear).toBeVisible();
+
+    await userEvent.tab(); // focus the clear button
+    await userEvent.tab(); // blur the clear button
+
+    expect(queryByLabelText("Clear input")).not.toBeInTheDocument();
+  });
+
+  it("does not show clear when there is no value", async () => {
+    const { getByLabelText, queryByLabelText } = render(
+      <InputPassword
+        placeholder="Password"
+        value=""
+        clearable="while-editing"
+      />,
+    );
+    const input = getByLabelText("Password");
+
+    await userEvent.click(input);
+
+    expect(queryByLabelText("Clear input")).not.toBeInTheDocument();
+  });
+});
+
+describe("clearable always", () => {
+  it("always shows when clearable=always and has value, even blurred", async () => {
+    const { getByLabelText } = render(
+      <InputPassword
+        placeholder="Password"
+        value="secret"
+        clearable="always"
+      />,
+    );
+    const input = getByLabelText("Password");
+
+    await userEvent.click(input);
+    await userEvent.tab(); // focus the clear button
+    await userEvent.tab(); // blur the clear button
+
+    const clear = getByLabelText("Clear input");
+
+    expect(clear).toBeVisible();
   });
 });

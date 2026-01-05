@@ -1,15 +1,15 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import type { ReactElement } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
-import { XOR } from "ts-xor";
-import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import type { XOR } from "ts-xor";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
-import {
-  DatePickerActivator,
-  DatePickerActivatorProps,
-} from "./DatePickerActivator";
+import type { DatePickerActivatorProps } from "./DatePickerActivator";
+import { DatePickerActivator } from "./DatePickerActivator";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
+import type { DayOfWeek } from "../sharedHelpers/types";
 import { useAtlantisContext } from "../AtlantisContext";
 
 interface BaseDatePickerProps {
@@ -40,6 +40,14 @@ interface BaseDatePickerProps {
   readonly highlightDates?: Date[];
 
   /**
+   * Sets which day is considered the first day of the week.
+   * 0 = Sunday, 1 = Monday, etc.
+   *
+   * @default 0
+   */
+  readonly firstDayOfWeek?: DayOfWeek;
+
+  /**
    * Change handler that will return the date selected.
    */
   onChange(val: Date): void;
@@ -48,6 +56,11 @@ interface BaseDatePickerProps {
    * Change handler when the selected month changes
    */
   onMonthChange?(val: Date): void;
+
+  /**
+   * Callback when the calendar open state changes
+   */
+  onOpenChange?(open: boolean): void;
 }
 
 interface DatePickerModalProps extends BaseDatePickerProps {
@@ -83,10 +96,11 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-/*eslint max-statements: ["error", 13]*/
+/*eslint max-statements: ["error", 14]*/
 export function DatePicker({
   onChange,
   onMonthChange,
+  onOpenChange,
   activator,
   inline,
   selected,
@@ -97,10 +111,13 @@ export function DatePicker({
   maxDate,
   minDate,
   highlightDates,
+  firstDayOfWeek,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
-  const { dateFormat } = useAtlantisContext();
+  const { dateFormat, firstDayOfWeek: contextFirstDayOfWeek } =
+    useAtlantisContext();
+  const effectiveFirstDayOfWeek = firstDayOfWeek ?? contextFirstDayOfWeek;
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -153,6 +170,8 @@ export function DatePicker({
         ]}
         highlightDates={highlightDates}
         onMonthChange={onMonthChange}
+        calendarStartDay={effectiveFirstDayOfWeek}
+        popperPlacement="bottom-start"
       />
     </div>
   );
@@ -165,23 +184,26 @@ export function DatePicker({
    * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
    * fail).
    */
-  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
-    onChange(value);
+  function handleChange(value: Date | null) {
+    // TODO: Ticket created to update all DatePicker and InputDate usages to accept Date | null
+    onChange(value as Date);
   }
 
   function handleCalendarOpen() {
     setOpen(true);
+    onOpenChange?.(true);
   }
 
   function handleCalendarClose() {
     setOpen(false);
+    onOpenChange?.(false);
   }
 }
 
 function useEscapeKeyToCloseDatePicker(
   open: boolean,
-  ref: React.RefObject<HTMLDivElement>,
-): { pickerRef: React.RefObject<ReactDatePicker> } {
+  ref: React.RefObject<HTMLDivElement | null>,
+): { pickerRef: React.RefObject<ReactDatePicker | null> } {
   const pickerRef = useRef<ReactDatePicker>(null);
 
   const escFunction = (event: KeyboardEvent) => {

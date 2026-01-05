@@ -1,16 +1,18 @@
 import React, { useMemo, useState } from "react";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Keyboard, Platform } from "react-native";
-import { FieldError, UseControllerProps } from "react-hook-form";
-import { XOR } from "ts-xor";
-import { Clearable } from "@jobber/hooks";
-import { InputFieldWrapperProps } from "../InputFieldWrapper";
+import type { FieldError, UseControllerProps } from "react-hook-form";
+import type { XOR } from "ts-xor";
+import type { Clearable } from "@jobber/hooks";
+import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { FormField } from "../FormField";
 import { InputPressable } from "../InputPressable";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import type { InputPressableProps } from "../InputPressable/InputPressable";
 
 interface BaseInputDateProps
-  extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder"> {
+  extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder">,
+    Pick<InputPressableProps, "showMiniLabel"> {
   /**
    * Defaulted to "always" so user can clear the dates whenever there's a value.
    */
@@ -109,7 +111,7 @@ const display = Platform.OS === "ios" ? "inline" : "default";
 /**
  * Allow users to select a date using the device date picker.
  */
-export function InputDate(props: InputDateProps): JSX.Element {
+export function InputDate(props: InputDateProps) {
   if (props.name) {
     return (
       <FormField<Date>
@@ -145,11 +147,12 @@ function InternalInputDate({
   minDate,
   placeholder,
   value,
+  showMiniLabel = true,
   name,
   onChange,
   accessibilityLabel,
   accessibilityHint,
-}: InputDateProps): JSX.Element {
+}: InputDateProps) {
   const [showPicker, setShowPicker] = useState(false);
   const { t, locale, formatDate } = useAtlantisI18n();
 
@@ -174,6 +177,7 @@ function InternalInputDate({
   return (
     <>
       <InputPressable
+        showMiniLabel={showMiniLabel}
         focused={showPicker}
         clearable={canClearDate}
         disabled={disabled}

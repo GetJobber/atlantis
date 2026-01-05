@@ -1,0 +1,545 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+
+<Meta title="Components/Actions/Button" />
+
+# Button
+
+## Summary
+
+Buttons are a core user interface component. They allow service providers (SPs)
+to initiate, complete, or reverse actions such as submitting forms, triggering
+workflows, or navigating between screens. At Jobber, Buttons empower SPs to
+complete work quickly and confidently, whether they're logging in, saving a job,
+or taking action from a modal.
+
+The right button to use depends on:
+
+- The type of action the SP is attempting to complete
+- The hierarchy of the interface the button lives in
+
+## Anatomy
+
+A Button typically includes:
+
+- Label (required): Clear, concise verb describing the action
+- Icon (optional): Reinforces meaning or improves scanability
+
+## Behaviour
+
+Buttons should be easy to find and easy to use. They should appear near the
+thing they affect, or in a place that makes sense for the next step.
+
+- In modals: Buttons usually sit at the bottom right. The main action comes
+  last, and cancel is placed before it. In some cases tertiary buttons can be
+  placed on the far left.
+
+- On pages: Buttons should line up with related content, like form fields or
+  cards. Avoid placing actions too far away from the thing they’re acting on.
+
+- When tapped or clicked: buttons should respond right away. Changing state to
+  show that something is happening. If an action takes time, use a loading state
+  so SPs know it’s in progress and don’t tap again by mistake.
+
+Buttons don’t dismiss things unless they’re meant to. If tapping a button closes
+a modal or banner, that should feel intentional rather than surprising. An
+example of this would be in confirmation modals. Secondary buttons that act as a
+way for the SP to reverse the action they've states they want to take, such as
+"Go Back", would dismiss the modal as this is the expected action.
+
+#### Sizes
+
+Buttons come in three sizes. `Base` is the default and should be used for almost
+every use case.
+
+Only use `large` for extremely spacious interfaces such as a login form, and
+`small` when the interface has extremely tight size constraints.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Button label="Small" size="small" />
+    </Content>
+    <Content>
+      <Button label="Base" />
+    </Content>
+    <Content>
+      <Button label="Large" size="large" />
+    </Content>
+  </Content>
+</Canvas>
+
+#### Disabled Buttons
+
+As a best practice, do not design with disabled button states. This has negative
+impacts on accessibility as well as an increase in complexity for users to
+understand why the interface is disabled and how to resolve it.
+
+Before progressing,
+[review Jobber's guidance on disabled states](/patterns/disabled-states) to
+ensure you can't design a flow without it.
+
+If, after reviewing the documentation, you still believe you can't design a flow
+without disabling a button, this is how you do it:
+
+<Canvas>
+  <Button label="Do the Thing" disabled />
+</Canvas>
+
+#### Use of icons
+
+You can use icons inside the buttons. They can stand-alone or appear alongside
+the button label.
+
+**Note:** If an icon is used in a stand-alone method, an `ariaLabel` must be
+present to describe the button.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Button type="secondary" icon="user" ariaLabel="I'm a person" />
+    </Content>
+    <Content>
+      <Button label="More" type="secondary" icon="more" />
+    </Content>
+    <Content>
+      <Button
+        label="Actions"
+        type="secondary"
+        icon="arrowDown"
+        iconOnRight={true}
+      />
+    </Content>
+  </Content>
+</Canvas>
+
+#### Loading states
+
+Use a loading state on a button when clicking it triggers a background action
+that takes more than a moment to complete. This helps SPs understand that
+something is happening, prevents them from clicking again, and avoids duplicated
+actions.
+
+Only show the loading state **after** the button is clicked, not pre-emptively
+or passively.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Button
+        label="Deleting..."
+        type="primary"
+        variation="destructive"
+        loading={true}
+      />
+    </Content>
+    <Content>
+      <Button
+        label="Loading..."
+        type="tertiary"
+        variation="learning"
+        loading={true}
+      />
+    </Content>
+    <Content>
+      <Button label="Canceling..." variation="subtle" loading={true} />
+    </Content>
+  </Content>
+</Canvas>
+
+## Variants
+
+### Work
+
+Work buttons help SPs move through their workflows with clarity and confidence.
+They can start or finish a task, go back, cancel, or confirm—depending on where
+the SP is and what they need to do next.
+
+All work buttons should feel purposeful, with labels that clearly communicate
+outcomes.
+
+Work buttons come in three visual variants:  
+**primary**, **secondary**, and **tertiary**.
+
+#### Primary
+
+The most important action in a view. Examples include the Save Job button, Log
+In, or the main action in a dialog. There should be one Primary action per view,
+at most.
+
+<Canvas>
+  <Button label="Do the Thing" />
+</Canvas>
+
+| ✅ Do                               | ❌ Don’t                             |
+| ----------------------------------- | ------------------------------------ |
+| Use for high-value, forward actions | Use to answer a question             |
+| Use a clear, verb-first label       | Use conversational labels like “Yes” |
+| Keep the label short and specific   | Use ellipses (e.g. “Save and...”)    |
+| Use one primary per view            | Stack multiple primary buttons       |
+
+**Please note:** At Jobber, we want to avoid use of elipsis in buttons. Going
+forward, buttons with grouped actions should be handled by Splitbutton.
+
+#### Secondary
+
+Use a secondary button when there are one or more alternate actions available
+that are less important than the primary one. Secondary buttons support the main
+task—they don’t compete with it.
+
+They’re used for actions like going back, or previewing before sending.
+
+<Canvas>
+  <Button label="Do the Thing" type="secondary" />
+</Canvas>
+
+| ✅ Do                                | ❌ Don’t                            |
+| ------------------------------------ | ----------------------------------- |
+| Use for optional or supporting steps | Use as a second primary             |
+| Pair with a primary button           | Stack multiple secondaries together |
+| Keep labels short and outcome-based  | Use vague text like “Maybe Later”   |
+
+#### Tertiary
+
+Use a tertiary button for low-emphasis actions that happen within a view—like
+editing a section, showing more details, or navigating between tabs or steps.
+
+These buttons are unobtrusive and helpful, but shouldn’t pull attention away
+from the task at hand.
+
+<Canvas>
+  <Button label="Do the Thing" type="tertiary" />
+</Canvas>
+
+| ✅ Do                            | ❌ Don’t                              |
+| -------------------------------- | ------------------------------------- |
+| Use for in-context interactions  | Use for key tasks or submissions      |
+| Pair with a primary or secondary | Use as a workaround for layout issues |
+| Reserve for non-critical actions | Make them the only path forward       |
+
+### Learning
+
+Use learning buttons to help SPs understand Jobber—whether that’s exploring a
+feature, discovering a workflow, or seeing how Jobber can support their
+business.
+
+These buttons are for education. They often appear in onboarding, product tours,
+or marketing surfaces.
+
+Learning buttons follow the same hierarchy as work buttons:  
+**primary**, **secondary**, and **tertiary**, depending on emphasis.
+
+#### Primary, Secondary, Tertiary
+
+The usage pattern for Learning Actions should follow the same logic as Work
+Actions for all three levels.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        type="secondary"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        type="tertiary"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+  </Content>
+</Canvas>
+
+| ✅ Do                               | ❌ Don’t                             |
+| ----------------------------------- | ------------------------------------ |
+| Use in onboarding or educational UI | Use in job, quote, or invoice flows  |
+| Use when the goal is understanding  | Use when the goal is completing work |
+| Pair with clear, relevant messaging | Drop into views without context      |
+
+**Please note:** "Learn More" is the most common CTA for learning buttons. It
+should be the default text. It's important to ensure that the accompanying
+content is clear enough so that it's obvious to SPs what they'll be learning
+about when they interact with learning button with a "Learn More" CTA.
+
+### Destructive
+
+Destructive buttons are used to remove something from Jobber. They should be
+clear, deliberate, and hard to activate by mistake.
+
+Destructive actions come in **primary**, **secondary**, and **tertiary** styles
+depending on impact and context.
+
+#### Primary
+
+A Primary destructive action will permanently destroy an object carrying
+significant data, such as a job, quote, or client. This destructive action
+should be contained in a [ConfirmationModal](/components/ConfirmationModal)
+triggered by clicking a secondary or tertiary destructive button.
+
+#### Secondary or Tertiary
+
+Use a secondary or tertiary destructive button when:
+
+- The deletion is low-stakes or easily reversible
+- The button is a trigger for a **confirmation modal** that holds the primary
+  destructive action
+
+In both cases, make sure it’s doesn’t compete with core workflow actions.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Button label="Delete" variation="destructive" />
+    </Content>
+    <Content>
+      <Button label="Delete" variation="destructive" type="secondary" />
+    </Content>
+    <Content>
+      <Button label="Delete" variation="destructive" type="tertiary" />
+    </Content>
+  </Content>
+</Canvas>
+
+### Subtle
+
+Use a "subtle" button when you want the visual appearance to be more _subtle._
+This variation of button uses subdued color, allowing it to sit comfortably
+alongside more prominent content.
+
+Subtle buttons are visually de-emphasized and designed for low-priority or
+non-blocking actions. They use minimal styling so they sit quietly next to more
+prominent content—ideal for secondary navigation, opt-outs, or dismissing
+lightweight UI.
+
+Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
+out of completing an action they have triggered.
+
+_Note: This is still known as "Cancel" on mobile. See
+[Mobile/Cancel example](../?path=/story/components-actions-button-mobile--cancel)._
+
+#### Primary, Secondary, and Tertiary
+
+A key distinction between subtle buttons and the other variations is that the
+primary/secondary/tertiary scale is styled differently, but the conceptual
+hierarchy is the same. Notably, the tertiary subtle button has a transparent
+background, allowing it to be _extra_ subtle when placed overtop
+`surface--background` elements such as a Modal header.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Content>
+        <Button label="Cancel" type="primary" variation="subtle" />
+      </Content>
+      <Content>
+        <Button label="Dismiss" type="secondary" variation="subtle" />
+      </Content>
+      <Content>
+        <Button label="Maybe Later" type="tertiary" variation="subtle" />
+      </Content>
+    </Content>
+    <div
+      style={{
+        backgroundColor: "var(--color-surface--background)",
+        padding: "var(--space-base)",
+      }}
+    >
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="search"
+        aria-label="search"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="cog"
+        aria-label="settings"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="help"
+        aria-label="help"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="more"
+        aria-label="more"
+      />
+    </div>
+  </Content>
+</Canvas>
+
+## Content guidelines
+
+Effective button labels are clear, concise, and action-driven. They help SPs
+feel confident about what will happen next. These guidelines are focused on text
+inside buttons, not hover labels or tooltip content.
+
+#### Mental model: What will happen when I click this
+
+Use **verb-first phrasing** to emphasize action and reduce hesitation.
+
+Button text should reflect the outcome of the action. Not necessarily the
+system's implementation.
+
+Remember that SPs are often working quickly; on mobile, between visits, or in
+the field. That means buttons should support fast, confident decision-making.
+
+| ✅ Do        | ❌ Don’t         |
+| ------------ | ---------------- |
+| Send Invoice | Continue to Send |
+| Save Job     | Click Here       |
+| Mark as Done | Done             |
+
+#### Reflect the outcome
+
+It's a good idea to focus on the outcome of the action with buttons, rather than
+exposing technical complexity (unless it's particularly meaningful to SPs).
+
+| ✅ Do           | ❌ Don’t                 |
+| --------------- | ------------------------ |
+| Download Report | Export to CSV            |
+| Send Quote      | Generate PDF             |
+| Schedule Visit  | Create Visit in Schedule |
+
+SPs think in terms of **visits, quotes, jobs, and invoices**. Not CSV files or
+data exports. At Jobber, we prefer terminology grounded in the workflow of
+running a service business.
+
+#### Keep it concise
+
+- Aim for **2–3 words**
+- Don’t abbreviate unless the meaning is universally known
+- Avoid truncation, ellipses, or filler words like “Please” or “Now”
+
+| ✅ Do      | ❌ Don’t           |
+| ---------- | ------------------ |
+| Add Client | Add a New Client   |
+| Delete     | Delete Permanently |
+| Sign Up    | Sign Up Now        |
+
+Try to default to being concise. It helps reduce visual noise, especially on
+mobile. Key for SPs using Jobber on the go.
+
+#### Use title case
+
+Capitalize all major words in button labels. Don't capitalize:
+
+- Articles: _a, an, the_
+- Coordinating conjunctions: _and, but, or_
+- Short prepositions: _to, by, at_
+
+| ✅ Do        | ❌ Don’t     |
+| ------------ | ------------ |
+| Go to Visits | Go To Visits |
+| Save Job     | SAVE JOB     |
+
+Title case supports scannability and will help us maintain visual consistency
+across SP workflows.
+
+#### Avoid ampersands
+
+Avoid using ampersands in buttons. They’re often introduced to save space, but
+they create inconsistency and visual clutter. Put simply, they draw attention to
+the most irrelevant part of the sentence.
+
+Use “and” unless there’s a strong reason not to—and even then, consider
+simplifying the label instead.
+
+| ✅ Do                | ❌ Don’t           |
+| -------------------- | ------------------ |
+| Review and Send      | Review & Send      |
+| Approve and Schedule | Approve & Schedule |
+
+#### Be specific
+
+Generic CTAs like “Submit” or “Continue” generally don’t give SPs confidence.
+That said, they are fine if there's another visual indicator of what comes next
+E.g. a stepper.
+
+When there's no other indication of what is coming next, try to be explicit
+about what the button does or what's to come.
+
+| ✅ Do            | ❌ Don’t |
+| ---------------- | -------- |
+| Book Appointment | Submit   |
+| Send Quote       | Continue |
+
+#### Buttons in confirmation modals
+
+In confirmation modals, button labels should reinforce the decision the SP is
+making—not just echo the UI element that triggered it.
+
+**Primary action buttons should restate the consequence of the action.** This
+helps avoid second-guessing and reduces accidental taps.
+
+| ✅ Do            | ❌ Don’t    |
+| ---------------- | ----------- |
+| Delete Visit     | Yes, Delete |
+| Delete Timesheet | Confirm     |
+| Send Invoice     | Submit      |
+| Remove Line Item | OK          |
+
+**Secondary buttons** should be clear but low-friction. Stick with **Go Back**,
+unless you need to clarify the context.
+
+We want to avoid questions as titles in confirmation modals, as this can add to
+visual clutter and increase the cognitive load. As a result, the button should
+reflect that. No answering a question, just confirming the action.
+
+## Do's and Don'ts
+
+In summary, here are some general rules to follow when working with the button
+component:
+
+#### Do:
+
+- ✅ Use clear, verb-first labels that describe the outcome
+- ✅ Keep button text short (1–3 words max)
+- ✅ Use title case for button labels
+- ✅ Show a loading state for async actions
+- ✅ Use one primary button per view
+- ✅ Use hierarchy (primary, secondary, tertiary) to guide attention
+- ✅ Use destructive styling only for real deletions
+- ✅ Place buttons near the content or object they act on
+- ✅ Pair “Learn More” learning buttons with clear supporting content
+- ✅ Ensure icon-only buttons have accessible labels
+
+#### Don't:
+
+- ❌ Use vague or conversational labels like “Yes” or “Okay”
+- ❌ Stack multiple primary buttons together
+- ❌ Style non-destructive actions (like “Archive”) as destructive
+- ❌ Position buttons too far away from the related content
+- ❌ Rely on the button label alone to explain what it does
+- ❌ Assume icons are self-explanatory without text or `aria-label`
+
+## Accessibility notes
+
+- Avoid using disabled buttons when possible—they increase complexity and make
+  it harder for SPs to understand what to do next
+
+- If a button uses only an icon, include an `aria-label` so screen readers can
+  describe the action
+
+- Show clear feedback when a button is tapped or clicked. Use a loading state
+  where applicable to prevent repeated taps

@@ -1,8 +1,10 @@
-import React, { PropsWithChildren, ReactNode, RefObject, useRef } from "react";
-import { Clearable, useShowClear } from "@jobber/hooks/useShowClear";
+import type { PropsWithChildren, ReactNode } from "react";
+import React, { useRef } from "react";
+import type { Clearable } from "@jobber/hooks";
+import { useShowClear } from "@jobber/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
-import { FormFieldProps } from "./FormFieldTypes";
+import type { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.module.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
@@ -12,13 +14,19 @@ import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
 import { useFormFieldWrapperStyles } from "./hooks/useFormFieldWrapperStyles";
 import { InputValidation } from "../InputValidation";
 
-export interface FormFieldWrapperProps extends FormFieldProps {
+export interface FormFieldWrapperProps
+  extends Omit<FormFieldProps, "maxLength"> {
   readonly error: string;
   readonly identifier: string;
   readonly descriptionIdentifier: string;
   readonly clearable: Clearable;
-  readonly onClear: () => void;
+  readonly onClear?: () => void;
   readonly showMiniLabel?: boolean;
+  readonly readonly?: boolean;
+  /**
+   * @deprecated Avoid using FormFieldWrapper's maxLength implementation. It is flawed and only exists for backwards compatibility on v1 components.
+   */
+  readonly maxLength?: number;
 }
 
 export function FormFieldWrapper({
@@ -41,13 +49,14 @@ export function FormFieldWrapper({
   identifier,
   clearable,
   onClear,
+  readonly,
   toolbar,
   toolbarVisibility = "while-editing",
   showMiniLabel = true,
   wrapperRef,
 }: PropsWithChildren<FormFieldWrapperProps>) {
-  const prefixRef = useRef() as RefObject<HTMLDivElement>;
-  const suffixRef = useRef() as RefObject<HTMLDivElement>;
+  const prefixRef = useRef<HTMLDivElement>(null);
+  const suffixRef = useRef<HTMLDivElement>(null);
 
   const { wrapperClasses, containerClasses, wrapperInlineStyle, labelStyle } =
     useFormFieldWrapperStyles({
@@ -75,6 +84,7 @@ export function FormFieldWrapper({
     focused,
     hasValue: Boolean(value),
     disabled,
+    readonly,
   });
 
   const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =

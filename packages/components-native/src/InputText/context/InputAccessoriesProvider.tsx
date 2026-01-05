@@ -1,4 +1,5 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   InputAccessoryView,
   Keyboard,
@@ -15,7 +16,7 @@ export function InputAccessoriesProvider({
   children,
 }: {
   readonly children: ReactNode;
-}): JSX.Element {
+}) {
   const inputAccessoryID = useRef(v4()).current;
   const {
     focusedInput,

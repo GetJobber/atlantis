@@ -1,6 +1,5 @@
+import type { Ref } from "react";
 import React, {
-  MutableRefObject,
-  Ref,
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -9,8 +8,10 @@ import React, {
 } from "react";
 // According to react, it's imported within the package
 // https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
-import { Root, createRoot } from "react-dom/client";
-import { Toast, ToastProps, ToastRef } from "./Toast";
+import type { Root } from "react-dom/client";
+import { createRoot } from "react-dom/client";
+import type { ToastProps, ToastRef } from "./Toast";
+import { Toast } from "./Toast";
 import styles from "./Toast.module.css";
 
 const targetId = "atlantis-toast-element";
@@ -42,8 +43,8 @@ export function showToast(props: ToastProps) {
 const ToastContainer = forwardRef(ToastInternal);
 
 function ToasterOven(props: ToastProps) {
-  const toastRef = useRef() as MutableRefObject<ToastRef>;
-  useEffect(() => toastRef.current.add(props));
+  const toastRef = useRef<ToastRef>(null);
+  useEffect(() => toastRef.current?.add(props));
 
   return <ToastContainer ref={toastRef} />;
 }

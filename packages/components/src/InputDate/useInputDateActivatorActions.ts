@@ -1,16 +1,13 @@
-import { ChangeEvent, FocusEvent, useState } from "react";
-import { InputDateRebuiltProps } from "./InputDate.types";
-import { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
+import type { ChangeEvent } from "react";
+import { useState } from "react";
+import type { InputDateRebuiltProps } from "./InputDate.types";
+import type { DatePickerActivatorProps } from "../DatePicker/DatePickerActivator";
 
 export interface useInputDateActivatorActionsProps
   extends Pick<InputDateRebuiltProps, "onFocus" | "onBlur"> {
   onChange: DatePickerActivatorProps["onChange"];
 }
 
-/**
- * Combines the actions on the InputDate such as onChange, onFocus, onBlur to forward event handler passed to the InputDate component to the DatePicker component.
- * DO not repeat this pattern. We are doing this as a proof of concept relating to the refactoring of Form inputs to see what can be removed.
- */
 export function useInputDateActivatorActions({
   onChange,
   onBlur,
@@ -19,20 +16,24 @@ export function useInputDateActivatorActions({
   const [isFocused, setIsFocused] = useState(false);
 
   function handleChange(
-    _: unknown,
+    _newValue: string,
     event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
-    onChange?.(event);
+    onChange?.(event as ChangeEvent<HTMLInputElement>);
   }
 
-  function handleFocus(event: FocusEvent<HTMLInputElement>) {
-    onFocus?.(event);
+  function handleFocus(
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onFocus?.(event as React.FocusEvent<HTMLInputElement>);
     setIsFocused(true);
   }
 
-  function handleBlur(event: FocusEvent<HTMLInputElement>) {
+  function handleBlur(
+    event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    onBlur?.(event as React.FocusEvent<HTMLInputElement>);
     setIsFocused(false);
-    onBlur?.(event);
   }
 
   return {

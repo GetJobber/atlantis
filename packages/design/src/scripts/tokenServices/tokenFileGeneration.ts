@@ -25,7 +25,7 @@ export const convertJSTokensToTheme = (
     rootCSS += `  --${i}: ${css[i]};\n`;
   }
   layers.forEach(layer => {
-    rootCSS += `[${layer.key}="${layer.value}"] {\n`;
+    rootCSS += `&:not(:has(div[data-theme]:not([data-theme="${theme}"]))) [${layer.key}="${layer.value}"] {\n`;
 
     for (const [i] of Object.entries(layer.tokens)) {
       rootCSS += `  --${i}: ${layer.tokens[i]};\n`;

@@ -1,24 +1,32 @@
-import { Children, ReactElement, isValidElement, useMemo } from "react";
+import { Children, isValidElement, useMemo } from "react";
+import type { ReactElement } from "react";
 import { useDataListContext } from "../context/DataListContext";
-import { DataListActionProps, DataListObject } from "../DataList.types";
+import type { DataListActionProps, DataListObject } from "../DataList.types";
 
 export function useGetItemActions<T extends DataListObject>(item: T) {
   const { itemActionComponent } = useDataListContext<T>();
-  const itemActions = itemActionComponent?.props.children || [];
-  const actionsArray = Children.toArray(itemActions);
+
+  const disableContextMenu =
+    itemActionComponent?.props.disableContextMenu ?? false;
 
   const actions = useMemo(() => {
-    return actionsArray.filter(action => {
-      if (isValidElement(action) && action.props.visible) {
-        return action.props.visible(item);
-      }
+    const children = itemActionComponent?.props.children ?? [];
+    const nodes = Children.toArray(children);
 
-      return true;
-    });
+    return nodes.filter(
+      (node): node is ReactElement<DataListActionProps<T>> => {
+        if (isValidElement<DataListActionProps<T>>(node)) {
+          return node.props.visible ? node.props.visible(item) : true;
+        }
+
+        return false;
+      },
+    );
   }, [itemActionComponent?.props.children, item]);
 
   return {
-    actions: actions as ReactElement<DataListActionProps<T>>[],
+    actions,
     hasActions: Boolean(actions.length),
+    disableContextMenu,
   };
 }

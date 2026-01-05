@@ -1,7 +1,7 @@
-import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { useIsMounted } from "@jobber/hooks";
 import { useCallback, useEffect, useState } from "react";
-import { UseCreateThumbnail } from "../context/types";
-import { CreateThumbnail, FormattedFile } from "../types";
+import type { UseCreateThumbnail } from "../context/types";
+import type { CreateThumbnail, FormattedFile } from "../types";
 
 export function createUseCreateThumbnail(createThumbnail: CreateThumbnail): {
   useCreateThumbnail: UseCreateThumbnail;

@@ -1,5 +1,5 @@
-import React, { useId } from "react";
-import { FormFieldProps } from "./FormFieldTypes";
+import React, { useId, useRef } from "react";
+import type { FormFieldProps } from "./FormFieldTypes";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 import { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";
@@ -117,6 +117,10 @@ function FormFieldInternal(props: FormFieldInternalProps) {
       handleKeyDown,
     });
 
+  // Ensure focus tracking works by providing a wrapperRef when none is passed
+  const internalWrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = props.wrapperRef ?? internalWrapperRef;
+
   return (
     <FormFieldWrapper
       {...props}
@@ -126,6 +130,7 @@ function FormFieldInternal(props: FormFieldInternalProps) {
       descriptionIdentifier={descriptionIdentifier}
       clearable={clearable}
       onClear={handleClear}
+      wrapperRef={wrapperRef}
     >
       {renderField()}
     </FormFieldWrapper>

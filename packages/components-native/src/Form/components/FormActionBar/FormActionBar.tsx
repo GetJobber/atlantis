@@ -1,8 +1,9 @@
-import React from "react";
-import { LayoutChangeEvent, StyleSheet } from "react-native";
+import React, { type ReactElement } from "react";
+import type { LayoutChangeEvent } from "react-native";
+import { StyleSheet } from "react-native";
 import Reanimated from "react-native-reanimated";
 import { useStyles } from "./FormActionBar.style";
-import { SecondaryActionProp } from "../../types";
+import type { SecondaryActionProp } from "../../types";
 import { FormSaveButton } from "../FormSaveButton";
 
 const ReanimatedView = Reanimated.View;
@@ -17,7 +18,7 @@ export interface FormActionBarProps {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => JSX.Element;
+  ) => ReactElement;
   readonly secondaryActions?: SecondaryActionProp[];
   readonly setSecondaryActionLoading?: (bool: boolean) => void;
 }
@@ -31,7 +32,7 @@ export function FormActionBar({
   setSaveButtonHeight,
   secondaryActions,
   setSecondaryActionLoading,
-}: FormActionBarProps): JSX.Element {
+}: FormActionBarProps) {
   const styles = useStyles();
 
   const buttonStyle = StyleSheet.flatten([

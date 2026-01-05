@@ -1,16 +1,16 @@
 import React from "react";
-import { IconNames } from "@jobber/design";
+import type { IconNames } from "@jobber/design";
 import { View } from "react-native";
 import { useStyles } from "./BannerIcon.style";
 import { Icon } from "../../../Icon";
-import { BannerTypes } from "../../types";
+import type { BannerTypes } from "../../types";
 
 export interface BannerIconProps {
   readonly icon: IconNames;
   readonly type: BannerTypes;
 }
 
-export function BannerIcon({ icon, type }: BannerIconProps): JSX.Element {
+export function BannerIcon({ icon, type }: BannerIconProps) {
   const styles = useStyles();
 
   return (

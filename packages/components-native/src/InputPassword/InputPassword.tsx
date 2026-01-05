@@ -1,6 +1,8 @@
-import React, { Ref, forwardRef, useState } from "react";
-import { IconNames } from "@jobber/design";
-import { InputText, InputTextProps, InputTextRef } from "../InputText";
+import type { Ref } from "react";
+import React, { forwardRef, useState } from "react";
+import type { IconNames } from "@jobber/design";
+import type { InputTextProps, InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export const InputPassword = forwardRef(InputPasswordInternal);
@@ -21,7 +23,7 @@ export interface InputPasswordProps
 function InputPasswordInternal(
   { usePrivacyEye = true, ...props }: InputPasswordProps,
   ref: Ref<InputTextRef>,
-): JSX.Element {
+) {
   const { t } = useAtlantisI18n();
   const [passwordHidden, setPasswordHidden] = useState(true);
   const [privacyEye, setPrivacyEye] = useState<IconNames>("eye");

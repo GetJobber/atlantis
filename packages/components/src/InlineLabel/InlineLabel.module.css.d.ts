@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "inlineLabel": string;
+  readonly "small": string;
   readonly "base": string;
   readonly "large": string;
   readonly "larger": string;

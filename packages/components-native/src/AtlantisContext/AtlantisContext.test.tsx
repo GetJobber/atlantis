@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { PropsWithChildren } from "react";
-import { renderHook } from "@testing-library/react-hooks";
+import type { PropsWithChildren } from "react";
+import React from "react";
+import { renderHook } from "@testing-library/react-native";
+import type { AtlantisContextProps } from "./AtlantisContext";
 import {
   AtlantisContext,
-  AtlantisContextProps,
   atlantisContextDefaultValues,
   useAtlantisContext,
 } from "./AtlantisContext";

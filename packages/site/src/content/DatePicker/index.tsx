@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Datepicker/Datepicker.stories.mdx";
+import Content from "./Datepicker.stories.mdx";
 import Props from "./DatePicker.props.json";
 import Notes from "./DatePickerNotes.mdx";
 import { ContentExport } from "../../types/content";

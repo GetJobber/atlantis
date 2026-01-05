@@ -1,10 +1,10 @@
-import { ReactElement, ReactNode } from "react";
-import { IconNames } from "@jobber/design";
-import { XOR } from "ts-xor";
-import { Breakpoints } from "./DataList.const";
-import { ButtonProps } from "../Button";
+import type { ReactElement, ReactNode } from "react";
+import type { IconNames } from "@jobber/design";
+import type { XOR } from "ts-xor";
+import { type Breakpoints } from "./DataList.const";
+import { type ButtonProps } from "../Button";
 
-export { Breakpoints } from "./DataList.const";
+export { type Breakpoints } from "./DataList.const";
 
 export type DataListItemType<T extends DataListObject[]> = Record<
   keyof T[number],
@@ -184,7 +184,7 @@ export type DataListSelectedType<
 
 export type LayoutRenderer<T extends DataListObject> = (
   item: DataListItemType<T[]>,
-) => JSX.Element;
+) => ReactElement;
 
 export interface DataListLayoutProps<T extends DataListObject> {
   readonly children: LayoutRenderer<T>;
@@ -310,7 +310,13 @@ interface BaseDataListItemActionsProps<T extends DataListObject> {
   /**
    * Callback when an item is clicked.
    */
-  readonly onClick?: (item: T) => void;
+  readonly onClick?: (item: T, event?: React.MouseEvent<HTMLElement>) => void;
+
+  /**
+   * Disable the custom context menu. This allows the browser's native context menu to be shown.
+   * @default false
+   */
+  readonly disableContextMenu?: boolean;
 }
 
 export interface DataListBulkActionsProps {
@@ -363,7 +369,7 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * Determine if the action is visible for a given item.
    */
-  readonly visible?: (item: T) => boolean;
+  readonly visible?: (item?: T) => boolean;
 
   /**
    * The callback function when the action is clicked.

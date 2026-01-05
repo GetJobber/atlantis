@@ -16,7 +16,7 @@
         },
         "required": false,
         "type": {
-          "name": "React.ReactNode"
+          "name": "ReactNode"
         }
       },
       "toolbarVisibility": {
@@ -136,6 +136,21 @@
           "name": "string"
         }
       },
+      "showMiniLabel": {
+        "defaultValue": {
+          "value": "true"
+        },
+        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
+        "name": "showMiniLabel",
+        "parent": {
+          "fileName": "packages/components-native/src/InputText/InputText.tsx",
+          "name": "InputTextProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "value": {
         "defaultValue": null,
         "description": "Set the component to a given value",
@@ -185,7 +200,7 @@
         },
         "required": false,
         "type": {
-          "name": "Partial<{ required: string | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>"
+          "name": "RegisterOptions"
         }
       },
       "onChangeText": {
@@ -224,7 +239,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: NativeSyntheticEvent<TextInputFocusEventData>) => void"
+          "name": "(event?: FocusEvent) => void"
         }
       },
       "onBlur": {
@@ -237,7 +252,7 @@
         },
         "required": false,
         "type": {
-          "name": "() => void"
+          "name": "(event?: FocusEvent) => void"
         }
       },
       "accessibilityLabel": {
@@ -315,7 +330,7 @@
         },
         "required": false,
         "type": {
-          "name": "\"name\" | \"none\" | \"nickname\" | \"password\" | \"username\" | \"URL\" | \"addressCity\" | \"addressCityAndState\" | \"addressState\" | \"countryName\" | \"creditCardNumber\" | \"creditCardExpiration\" | ... 28 more ... | \"birthdateYear\""
+          "name": "\"name\" | \"none\" | \"nickname\" | \"password\" | \"username\" | \"URL\" | \"addressCity\" | \"addressCityAndState\" | \"addressState\" | \"countryName\" | \"creditCardNumber\" | \"creditCardExpiration\" | ... 33 more ... | \"shipmentTrackingNumber\""
         }
       },
       "multiline": {
@@ -437,7 +452,7 @@
       },
       "ref": {
         "defaultValue": null,
-        "description": "",
+        "description": "Allows getting a ref to the component instance.\nOnce the component unmounts, React will set `ref.current` to `null`\n(or call the ref with `null` if you passed a callback ref).\n@see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}",
         "name": "ref",
         "parent": {
           "fileName": "atlantis/node_modules/@types/react/index.d.ts",
@@ -446,19 +461,6 @@
         "required": false,
         "type": {
           "name": "Ref<InputTextRef>"
-        }
-      },
-      "key": {
-        "defaultValue": null,
-        "description": "",
-        "name": "key",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "Attributes"
-        },
-        "required": false,
-        "type": {
-          "name": "Key"
         }
       }
     }

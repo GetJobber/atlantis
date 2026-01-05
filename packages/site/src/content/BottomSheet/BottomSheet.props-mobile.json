@@ -20,7 +20,9 @@
         }
       },
       "loading": {
-        "defaultValue": null,
+        "defaultValue": {
+          "value": false
+        },
         "description": "Hide or show the cancel button when loading state is provided.",
         "name": "loading",
         "parent": {
@@ -75,26 +77,9 @@
         "defaultValue": null,
         "description": "",
         "name": "ref",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "RefAttributes"
-        },
         "required": false,
         "type": {
-          "name": "Ref<IHandles>"
-        }
-      },
-      "key": {
-        "defaultValue": null,
-        "description": "",
-        "name": "key",
-        "parent": {
-          "fileName": "atlantis/node_modules/@types/react/index.d.ts",
-          "name": "Attributes"
-        },
-        "required": false,
-        "type": {
-          "name": "Key"
+          "name": "Ref<BottomSheetRef>"
         }
       }
     }

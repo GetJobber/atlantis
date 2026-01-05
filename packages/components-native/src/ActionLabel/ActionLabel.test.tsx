@@ -1,6 +1,7 @@
-import React, { CSSProperties } from "react";
+import type { CSSProperties } from "react";
+import React from "react";
 import { render } from "@testing-library/react-native";
-import { ReactTestInstance } from "react-test-renderer";
+import type { ReactTestInstance } from "react-test-renderer";
 import { ActionLabel } from "./ActionLabel";
 import { tokens } from "../utils/design";
 
@@ -115,6 +116,18 @@ describe("ActionLabel", () => {
         textAlign: "right",
       });
     });
+  });
+
+  it("supports nested inline content", () => {
+    const { Text } = require("../Text");
+    const { getByText, toJSON } = render(
+      <ActionLabel>
+        Before <Text variation="interactive">Inner</Text> After
+      </ActionLabel>,
+    );
+
+    expect(getByText("Inner")).toBeDefined();
+    expect(toJSON()).toMatchSnapshot();
   });
 });
 

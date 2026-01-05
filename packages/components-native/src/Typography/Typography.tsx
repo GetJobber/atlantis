@@ -1,21 +1,18 @@
 import React from "react";
-import {
+import type {
   AccessibilityProps,
-  I18nManager,
   StyleProp,
-  StyleSheet,
-  Text,
   TextProps,
   TextStyle,
   ViewStyle,
 } from "react-native";
+import { I18nManager, StyleSheet, Text } from "react-native";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
 import { useTypographyStyles } from "./Typography.style";
 import { capitalize } from "../utils/intl";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
 
-export interface TypographyProps<T extends FontFamily>
-  extends Pick<TextProps, "selectable"> {
+export interface TypographyProps<T extends FontFamily> {
   /**
    * Text capitalization
    */
@@ -32,18 +29,26 @@ export interface TypographyProps<T extends FontFamily>
   readonly align?: TextAlign;
 
   /**
+   * Lets the user select text, to use the native copy and paste functionality.
+   * WARNING: if true, this prevents ellipsis from being shown on Android.
+   * @default true
+   */
+  readonly selectable?: boolean;
+
+  /**
    * Font size
    */
   readonly size?: TextSize;
 
   /**
-   * Text to display
+   * Text to display. Supports nesting text elements.
    */
-  readonly children?: string;
+  readonly children?: React.ReactNode;
 
   /**
    * The maximum amount of lines the text can occupy before being truncated with "...".
    * Uses predefined string values that correspond to a doubling scale for the amount of lines.
+   * WARNING: if `selectable` is true, Android will not show an ellipsis.
    */
   readonly maxLines?: TruncateLength;
 
@@ -120,6 +125,14 @@ export interface TypographyProps<T extends FontFamily>
   readonly strikeThrough?: boolean;
 
   readonly UNSAFE_style?: TypographyUnsafeStyle;
+
+  /**
+   * Callback behaves differently on iOS and Android.
+   * On iOS, it is called when the text is laid out.
+   * On Android, it is called before the text is laid out.
+   * @see https://reactnative.dev/docs/text#ontextlayout
+   */
+  readonly onTextLayout?: OnTextLayoutEvent;
 }
 
 const maxNumberOfLines = {
@@ -160,7 +173,8 @@ function InternalTypography<T extends FontFamily = "base">({
   underline,
   UNSAFE_style,
   selectable = true,
-}: TypographyProps<T>): JSX.Element {
+  onTextLayout,
+}: TypographyProps<T>) {
   const styles = useTypographyStyles();
   const sizeAndHeight = getSizeAndHeightStyle(size, styles, lineHeight);
   const style: StyleProp<ViewStyle>[] = [
@@ -190,7 +204,7 @@ function InternalTypography<T extends FontFamily = "base">({
 
   const numberOfLinesForNativeText = maxNumberOfLines[maxLines];
 
-  const text = getTransformedText(children, transform);
+  const content = transformChildren(children, transform);
   const accessibilityProps: AccessibilityProps = hideFromScreenReader
     ? {
         accessibilityRole: "none",
@@ -201,27 +215,34 @@ function InternalTypography<T extends FontFamily = "base">({
 
   const { tokens } = useAtlantisTheme();
 
-  return (
-    <TypographyGestureDetector>
-      <Text
-        {...{
-          allowFontScaling,
-          adjustsFontSizeToFit,
-          style,
-          numberOfLines: numberOfLinesForNativeText,
-        }}
-        {...accessibilityProps}
-        maxFontSizeMultiplier={getScaleMultiplier(
-          maxFontScaleSize,
-          sizeAndHeight.fontSize,
-        )}
-        selectable={selectable}
-        selectionColor={tokens["color-brand--highlight"]}
-      >
-        {text}
-      </Text>
-    </TypographyGestureDetector>
+  const textComponent = (
+    <Text
+      {...{
+        allowFontScaling,
+        adjustsFontSizeToFit,
+        style,
+        numberOfLines: numberOfLinesForNativeText,
+      }}
+      {...accessibilityProps}
+      maxFontSizeMultiplier={getScaleMultiplier(
+        maxFontScaleSize,
+        sizeAndHeight.fontSize,
+      )}
+      selectable={selectable}
+      selectionColor={tokens["color-brand--highlight"]}
+      onTextLayout={onTextLayout}
+    >
+      {content}
+    </Text>
   );
+
+  // If text is not selectable, there's no need for TypographyGestureDetector
+  // since it only prevents accidental highlighting of selectable text
+  if (!selectable) {
+    return textComponent;
+  }
+
+  return <TypographyGestureDetector>{textComponent}</TypographyGestureDetector>;
 }
 
 function getScaleMultiplier(maxFontScaleSize = 0, size = 1) {
@@ -252,17 +273,33 @@ function getFontStyle(
   }
 }
 
-function getTransformedText(text?: string, transform?: TextTransform) {
+function getTransformedText(text: string, transform?: TextTransform) {
   switch (transform) {
     case "lowercase":
-      return text?.toLocaleLowerCase();
+      return text.toLocaleLowerCase();
     case "uppercase":
-      return text?.toLocaleUpperCase();
+      return text.toLocaleUpperCase();
     case "capitalize":
-      return capitalize(text || "");
+      return capitalize(text);
     default:
       return text;
   }
+}
+
+function transformChildren(
+  children: React.ReactNode,
+  transform?: TextTransform,
+): React.ReactNode {
+  if (children == null || !transform || transform === "none") return children;
+
+  return React.Children.map(children, child => {
+    if (typeof child === "string") {
+      return getTransformedText(child, transform);
+    }
+
+    // Keep non-string children (numbers, elements, fragments) unchanged
+    return child;
+  });
 }
 
 function getColorStyle(
@@ -477,3 +514,5 @@ export type TruncateLength =
   | "large"
   | "extraLarge"
   | "unlimited";
+
+export type OnTextLayoutEvent = Exclude<TextProps["onTextLayout"], undefined>;

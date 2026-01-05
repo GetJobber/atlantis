@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { LayoutChangeEvent, TouchableOpacity, View } from "react-native";
+import type { LayoutChangeEvent } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import Reanimated, {
   Easing,
   useAnimatedStyle,
@@ -60,7 +61,7 @@ export function Disclosure({
   onToggle,
   isEmpty,
   animationDuration = staticTokens["timing-slowest"],
-}: DisclosureProps): JSX.Element {
+}: DisclosureProps) {
   const styles = useStyles();
 
   return (

@@ -1,4 +1,4 @@
-import ButtonContent from "@atlantis/docs/components/Button/Button.stories.mdx";
+import ButtonContent from "./Button.stories.mdx";
 import Props from "./Button.props.json";
 import MobileProps from "./Button.props-mobile.json";
 import Notes from "./ButtonNotes.mdx";
@@ -16,8 +16,20 @@ export default {
   title: "Button",
   links: [
     {
-      label: "Storybook",
-      url: getStorybookUrl("?path=/docs/components-actions-button--docs"),
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-actions-button--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
+      type: "mobile",
+      url: getStorybookUrl(
+        "?path=/story/components-actions-button--basic",
+        "mobile",
+      ),
     },
   ],
   notes: () => <Notes />,

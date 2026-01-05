@@ -1,5 +1,7 @@
-import React, { ReactNode } from "react";
-import { Typography, TypographyOptions } from "../Typography";
+import type { ReactNode } from "react";
+import React from "react";
+import type { TypographyOptions } from "../Typography";
+import { Typography } from "../Typography";
 
 interface EmphasisProps {
   readonly variation: "bold" | "italic" | "highlight";

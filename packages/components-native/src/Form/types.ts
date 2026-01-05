@@ -1,17 +1,16 @@
-import { MutableRefObject, RefObject } from "react";
-import {
+import type { ReactElement, RefObject } from "react";
+import type {
   ControllerProps,
-  DeepPartial,
+  DefaultValues,
   FieldPath,
   FieldValues,
   Mode,
-  UnpackNestedValue,
   UseFormReturn,
 } from "react-hook-form";
-import { IconNames } from "@jobber/design";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import type { IconNames } from "@jobber/design";
+import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-export type FormValues<T> = UnpackNestedValue<T>;
+export type FormValues<T> = T;
 export type FormErrors = FormNetworkErrors | FormUserErrors;
 export type FormBannerMessage = FormWarningMessage | FormNoticeMessage;
 
@@ -55,7 +54,7 @@ interface FormNoticeMessage {
 
 export type FormRef<T extends FieldValues = FieldValues> =
   | (UseFormReturn<T> & {
-      scrollViewRef?: RefObject<KeyboardAwareScrollView>;
+      scrollViewRef?: RefObject<KeyboardAwareScrollView | null>;
       saveButtonHeight?: number;
       messageBannerHeight?: number;
     })
@@ -109,7 +108,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * The initial values of the form inputs
    * This should be available as soon as initialLoading is set to false
    */
-  initialValues?: FormValues<DeepPartial<T>>;
+  initialValues?: DefaultValues<T>;
 
   /**
    * When the validation should happen.
@@ -128,7 +127,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
   /**
    * ref object to access react hook form methods and state
    */
-  formRef?: MutableRefObject<FormRef<T> | undefined>;
+  formRef?: RefObject<FormRef<T> | undefined>;
 
   /**
    * Label to be displayed for the save button
@@ -143,7 +142,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
     onSubmit: () => void,
     label: string | undefined,
     isSubmitting: boolean,
-  ) => JSX.Element;
+  ) => ReactElement;
 
   /**
    * Adding a key will save a local copy of the form data that will be used to
@@ -171,6 +170,13 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * If a user opens the same form the data will only be loaded if the `localCacheId` matches
    */
   localCacheId?: string | string[];
+
+  /**
+   * If true, the local cache will be removed when the user navigates away from
+   * the dirty form even when offline. By default, cache is only removed on back when online.
+   * Defaults to false.
+   */
+  UNSAFE_allowDiscardLocalCacheWhenOffline?: boolean;
 
   /**
    * Secondary Action for ButtonGroup

@@ -10,7 +10,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { styles } from "./InternalButtonLoading.style";
 import { tokens } from "../../../utils/design";
-import { ButtonType, ButtonVariation } from "../../types";
+import type { ButtonType, ButtonVariation } from "../../types";
 
 interface InternalButtonLoadingProps {
   readonly variation: ButtonVariation;
@@ -23,13 +23,12 @@ const leftOffset = -1 * offset;
 
 // looks like deprecation for FlatList in reanimated is cascading down to other exports
 // This is not createAnimatedComponent(FlatList), we are fine
-// eslint-disable-next-line import/no-deprecated
 const AnimatedImage = Animated.createAnimatedComponent(ImageBackground);
 
 function InternalButtonLoadingInternal({
   variation,
   type,
-}: InternalButtonLoadingProps): JSX.Element {
+}: InternalButtonLoadingProps) {
   const translateX = useSharedValue(0);
   translateX.value = withRepeat(
     withTiming(offset, {

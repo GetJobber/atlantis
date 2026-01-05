@@ -1,5 +1,5 @@
+import type { Ref } from "react";
 import React, {
-  Ref,
   forwardRef,
   useCallback,
   useImperativeHandle,
@@ -7,12 +7,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Modalize } from "react-native-modalize";
+import type { Modalize } from "react-native-modalize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import {
   AccessibilityInfo,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
   Platform,
   View,
   findNodeHandle,
@@ -22,11 +21,12 @@ import { Portal } from "react-native-portalize";
 import { useKeyboardVisibility } from "./hooks/useKeyboardVisibility";
 import { useStyles } from "./ContentOverlay.style";
 import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
-import {
+import type {
   ContentOverlayProps,
   ContentOverlayRef,
   ModalBackgroundColor,
 } from "./types";
+import { UNSAFE_WrappedModalize } from "./UNSAFE_WrappedModalize";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
@@ -57,7 +57,7 @@ function ContentOverlayInternal(
     avoidKeyboardLikeIOS,
   }: ContentOverlayProps,
   ref: Ref<ContentOverlayRef>,
-): JSX.Element {
+) {
   isDraggable = onBeforeExit ? false : isDraggable;
   const isCloseableOnOverlayTap = onBeforeExit ? false : true;
   const { t } = useAtlantisI18n();
@@ -71,9 +71,9 @@ function ContentOverlayInternal(
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
-  const overlayHeader = useRef<View>();
+  const overlayHeader = useRef<View>(null);
 
-  const internalRef = useRef<Modalize>();
+  const internalRef = useRef<Modalize>(null);
   const [modalizeMethods, setModalizeMethods] = useState<ContentOverlayRef>();
   const callbackInternalRef = useCallback((instance: Modalize) => {
     if (instance && !internalRef.current) {
@@ -154,7 +154,7 @@ function ContentOverlayInternal(
   return (
     <>
       {headerHeightKnown && childrenHeightKnown && (
-        <Modalize
+        <UNSAFE_WrappedModalize
           ref={callbackInternalRef}
           overlayStyle={styles.overlay}
           handleStyle={styles.handle}
@@ -197,7 +197,7 @@ function ContentOverlayInternal(
         >
           {Platform.OS === "android" ? renderedHeader : undefined}
           {renderedChildren}
-        </Modalize>
+        </UNSAFE_WrappedModalize>
       )}
       {!childrenHeightKnown && (
         <View style={[styles.hiddenContent, modalStyle]}>
@@ -244,7 +244,6 @@ function ContentOverlayInternal(
           {shouldShowDismiss && (
             <View
               style={styles.dismissButton}
-              // @ts-expect-error tsc-ci
               ref={overlayHeader}
               accessibilityLabel={accessibilityLabel || closeOverlayA11YLabel}
               accessible={true}

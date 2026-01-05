@@ -1,4 +1,4 @@
-import { CreateThumbnail, File } from "../FormatFile";
+import type { CreateThumbnail, File } from "../FormatFile";
 
 export enum RowCount {
   TwoRows = 2,
@@ -17,5 +17,5 @@ export interface ThumbnailListProps {
     index: number;
     imageList: File[];
   }) => void;
-  createThumbnail: CreateThumbnail;
+  createThumbnail?: CreateThumbnail;
 }

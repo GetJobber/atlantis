@@ -1,7 +1,7 @@
-import { ReactElement, ReactNode } from "react";
-import colors from "./cardcolors.module.css";
-import { ButtonProps } from "../Button";
-import { MenuProps } from "../Menu";
+import type { CSSProperties, ReactElement, ReactNode } from "react";
+import type colors from "./cardcolors.module.css";
+import { type ButtonProps } from "../Button";
+import { type MenuProps } from "../Menu";
 
 export type ActionProps = ReactElement<
   Omit<ButtonProps, "size" | "fullWidth"> | MenuProps
@@ -38,6 +38,26 @@ export interface CardProps {
    */
   readonly header?: string | HeaderActionProps | ReactElement;
   readonly elevation?: elevationProp;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+    header?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+    header?: CSSProperties;
+  };
 }
 
 export interface CardHeaderProps {

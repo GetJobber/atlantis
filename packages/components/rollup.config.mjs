@@ -1,6 +1,4 @@
 /* eslint-disable import/no-default-export */
-import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "@rollup/plugin-commonjs";
@@ -12,23 +10,21 @@ import tools from "@csstools/postcss-global-data";
 import presetenv from "postcss-preset-env";
 import multiInput from "rollup-plugin-multi-input";
 import nodePolyfills from "rollup-plugin-polyfill-node";
-import alias from "@rollup/plugin-alias";
-// comments for manual release
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
+/**
+ * When PREBUILD_CSS is supplied, only build the main index.ts file.
+ * This ensures postcss maintains consistent ordering of styles across builds.
+ *
+ * Using multiInput (input with globs) produces inconsistent ordering within styles.css
+ * because files are loaded in a non-deterministic order, and postcss bundles them in
+ * that order.
+ */
+const PREBUILD_CSS = process.env.PREBUILD_CSS === "true";
+
 export default {
-  input: `src/**/index.{ts,tsx}`,
+  input: PREBUILD_CSS ? "src/index.ts" : `src/**/index.{ts,tsx}`,
   plugins: [
     nodePolyfills(),
-    alias({
-      entries: [
-        {
-          find: /@jobber\/hooks\/(.*)/,
-          replacement: (_, p1) =>
-            resolve(__dirname, `../hooks/dist/${p1}/${p1}.js`),
-        },
-      ],
-    }),
     nodeResolve(),
     multiInput.default(),
     typescript({
@@ -141,10 +137,10 @@ export default {
   ],
   external: [
     "react",
+    "react/jsx-runtime",
     "react-hook-form",
     "react-router-dom",
     "react-dom",
-    "react-popper",
     "react-dom/client",
     "axios",
     "lodash",

@@ -6,251 +6,17 @@
     "displayName": "Select",
     "methods": [],
     "props": {
-      "autofocus": {
-        "defaultValue": null,
-        "description": "Determines if the input should be auto-focused, using the HTML attribute",
-        "name": "autofocus",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "autocomplete": {
-        "defaultValue": null,
-        "description": "Determines if browser form autocomplete is enabled.\nNote that \"one-time-code\" is experimental and should not be used without\nconsultation. \"address-line1\" and \"address-line2\" are\nused for billing address information.",
-        "name": "autocomplete",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean | AutocompleteTypes"
-        }
-      },
-      "children": {
-        "defaultValue": null,
-        "description": "If you need to pass in a children. For example, `<options>` inside\n`<select>`.",
-        "name": "children",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "inputRef": {
-        "defaultValue": null,
-        "description": "",
-        "name": "inputRef",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
-        }
-      },
-      "wrapperRef": {
-        "defaultValue": null,
-        "description": "",
-        "name": "wrapperRef",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RefObject<HTMLDivElement>"
-        }
-      },
-      "defaultValue": {
-        "defaultValue": null,
-        "description": "Initial value of the input. Only use this when you need to pre-populate\nthe field with a data that is not controlled by the components state. If a\nstate is controlling the value, use the `value` prop instead.",
-        "name": "defaultValue",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "string | Date"
-        }
-      },
-      "max": {
-        "defaultValue": null,
-        "description": "Specifies the maximum numerical or date value that a user can type",
-        "name": "max",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
       "maxLength": {
         "defaultValue": null,
-        "description": "Maximum character length for an input. This also changes the width to\nroughly the same size as the max length. This is to communicate that the\nuser that on certain cases, they can only type a limited amount of\ncharacters.",
+        "description": "Changes the width to roughly the same size as the maximum character length",
         "name": "maxLength",
         "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
+          "fileName": "packages/components/src/Select/Select.types.ts",
+          "name": "SelectLegacyProps"
         },
         "required": false,
         "type": {
           "name": "number"
-        }
-      },
-      "prefix": {
-        "defaultValue": null,
-        "description": "Adds a prefix label and icon to the field",
-        "name": "prefix",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "Affix"
-        }
-      },
-      "suffix": {
-        "defaultValue": null,
-        "description": "Adds a suffix label and icon with an optional action to the field",
-        "name": "suffix",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
-        }
-      },
-      "min": {
-        "defaultValue": null,
-        "description": "Simplified onChange handler that only provides the new value.\n@param newValue Specifies the minimum numerical or date value that a user can type",
-        "name": "min",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      },
-      "onEnter": {
-        "defaultValue": null,
-        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
-        "name": "onEnter",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.KeyboardEvent) => void"
-        }
-      },
-      "onFocus": {
-        "defaultValue": null,
-        "description": "Focus callback.",
-        "name": "onFocus",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: React.FocusEvent) => void"
-        }
-      },
-      "onBlur": {
-        "defaultValue": null,
-        "description": "Blur callback.",
-        "name": "onBlur",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event?: React.FocusEvent) => void"
-        }
-      },
-      "onKeyUp": {
-        "defaultValue": null,
-        "description": "",
-        "name": "onKeyUp",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(event: React.KeyboardEvent<HTMLInputElement>) => void"
-        }
-      },
-      "readonly": {
-        "defaultValue": null,
-        "description": "Prevents users from editing the value.",
-        "name": "readonly",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "validations": {
-        "defaultValue": null,
-        "description": "Show an error message above the field. This also\nhighlights the the field red if an error message shows up.",
-        "name": "validations",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "RegisterOptions"
-        }
-      },
-      "toolbar": {
-        "defaultValue": null,
-        "description": "Toolbar to render content below the input.",
-        "name": "toolbar",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "React.ReactNode"
-        }
-      },
-      "toolbarVisibility": {
-        "defaultValue": null,
-        "description": "Determines the visibility of the toolbar.",
-        "name": "toolbarVisibility",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "FormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"always\" | \"while-editing\""
         }
       },
       "id": {
@@ -289,28 +55,13 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "ReactNode"
         }
       },
       "disabled": {
         "defaultValue": null,
         "description": "Disable the input",
         "name": "disabled",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "showMiniLabel": {
-        "defaultValue": {
-          "value": "true"
-        },
-        "description": "Controls the visibility of the mini label that appears inside the input\nwhen a value is entered. By default, the placeholder text moves up to\nbecome a mini label. Set to false to disable this behavior.",
-        "name": "showMiniLabel",
         "parent": {
           "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
           "name": "CommonFormFieldProps"
@@ -346,19 +97,6 @@
           "name": "boolean"
         }
       },
-      "loading": {
-        "defaultValue": null,
-        "description": "Show a spinner to indicate loading",
-        "name": "loading",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
       "name": {
         "defaultValue": null,
         "description": "Name of the input.",
@@ -370,19 +108,6 @@
         "required": false,
         "type": {
           "name": "string"
-        }
-      },
-      "onChange": {
-        "defaultValue": null,
-        "description": "onChange handler that provides the new value (or event)\n@param newValue\n@param event",
-        "name": "onChange",
-        "parent": {
-          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
-          "name": "CommonFormFieldProps"
-        },
-        "required": false,
-        "type": {
-          "name": "(newValue: string | number | boolean | Date, event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void"
         }
       },
       "onValidation": {
@@ -435,6 +160,162 @@
         "required": false,
         "type": {
           "name": "string | number | Date"
+        }
+      },
+      "onChange": {
+        "defaultValue": null,
+        "description": "onChange handler that provides the new value (or event)\n@param newValue\n@param event",
+        "name": "onChange",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "CommonFormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(newValue: string | number | boolean | Date, event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void"
+        }
+      },
+      "autofocus": {
+        "defaultValue": null,
+        "description": "Determines if the input should be auto-focused, using the HTML attribute",
+        "name": "autofocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onEnter": {
+        "defaultValue": null,
+        "description": "A callback to handle \"Enter\" keypress. This will only run\nif Enter is the only key. Will not run if Shift or Control\nare being held.",
+        "name": "onEnter",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event: KeyboardEvent<Element>) => void"
+        }
+      },
+      "onBlur": {
+        "defaultValue": null,
+        "description": "Blur callback.",
+        "name": "onBlur",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event?: FocusEvent<Element, Element>) => void"
+        }
+      },
+      "onFocus": {
+        "defaultValue": null,
+        "description": "Focus callback.",
+        "name": "onFocus",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(event?: FocusEvent<Element, Element>) => void"
+        }
+      },
+      "inputRef": {
+        "defaultValue": null,
+        "description": "",
+        "name": "inputRef",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>"
+        }
+      },
+      "wrapperRef": {
+        "defaultValue": null,
+        "description": "",
+        "name": "wrapperRef",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      },
+      "validations": {
+        "defaultValue": null,
+        "description": "Show an error message above the field. This also\nhighlights the the field red if an error message shows up.",
+        "name": "validations",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RegisterOptions"
+        }
+      },
+      "children": {
+        "defaultValue": null,
+        "description": "If you need to pass in a children. For example, `<options>` inside\n`<select>`.",
+        "name": "children",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ReactNode"
+        }
+      },
+      "prefix": {
+        "defaultValue": null,
+        "description": "Adds a prefix label and icon to the field",
+        "name": "prefix",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Affix"
+        }
+      },
+      "suffix": {
+        "defaultValue": null,
+        "description": "Adds a suffix label and icon with an optional action to the field",
+        "name": "suffix",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }"
+        }
+      },
+      "defaultValue": {
+        "defaultValue": null,
+        "description": "Initial value of the input. Only use this when you need to pre-populate\nthe field with a data that is not controlled by the components state. If a\nstate is controlling the value, use the `value` prop instead.",
+        "name": "defaultValue",
+        "parent": {
+          "fileName": "packages/components/src/FormField/FormFieldTypes.ts",
+          "name": "FormFieldProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string | Date"
         }
       },
       "version": {

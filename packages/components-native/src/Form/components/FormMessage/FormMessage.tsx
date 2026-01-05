@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { InternalFormMessage } from "./components/InternalFormMessage";
-import { EmptyStateProps } from "../../../EmptyState";
+import type { EmptyStateProps } from "../../../EmptyState";
 
 type FormMessageData = EmptyStateProps;
 
@@ -17,7 +17,7 @@ let close: (() => void) | undefined;
  * message to the user. Use `FormMessage.close()` to close the most
  * recent message.
  */
-export const FormMessage = (): JSX.Element => {
+export const FormMessage = () => {
   const [data, setData] = useState<FormMessageData[]>([]);
 
   open = useCallback(

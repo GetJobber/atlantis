@@ -1,15 +1,28 @@
-import { Clearable } from "@jobber/hooks";
-import { XOR } from "ts-xor";
-import {
-  AutocompleteTypes,
-  CommonFormFieldProps,
-  FormFieldProps,
-  FormFieldTypes,
-} from "../FormField";
+import type { XOR } from "ts-xor";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import type {
+  FocusEvents,
+  HTMLInputBaseProps,
+  KeyboardEvents,
+  MouseEvents,
+  RebuiltInputCommonProps,
+} from "../sharedHelpers/types";
 
 export interface RowRange {
   min: number;
   max: number;
+}
+
+/**
+ * Character length constraint for inputs.
+ * Only extend this for text-based inputs where character limits make sense.
+ */
+interface InputLengthConstraint {
+  /**
+   * The maximum number of characters supported by the input.
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdefmaxlength}
+   */
+  readonly maxLength?: number;
 }
 
 export type InputTextVersion = 1 | 2 | undefined;
@@ -19,29 +32,12 @@ export type InputTextVersion = 1 | 2 | undefined;
  * Do not use unless you have talked with Atlantis first.
  */
 export interface InputTextRebuiltProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
-    | "onChange"
-    | "onBlur"
-    | "maxLength"
-    | "rows"
-    | "size"
-    | "suffix"
-    | "prefix"
-    | "value"
-    | "max"
-    | "min"
-    | "defaultValue"
-  > {
-  readonly error?: string;
-
-  readonly invalid?: boolean;
-  readonly identifier?: string;
-  readonly autocomplete?: boolean | AutocompleteTypes;
-  readonly loading?: boolean;
-  readonly onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  readonly children?: React.ReactNode;
-  readonly clearable?: Clearable;
+  extends HTMLInputBaseProps,
+    MouseEvents<HTMLInputElement | HTMLTextAreaElement>,
+    FocusEvents<HTMLInputElement | HTMLTextAreaElement>,
+    KeyboardEvents<HTMLInputElement | HTMLTextAreaElement>,
+    RebuiltInputCommonProps,
+    InputLengthConstraint {
   /**
    * Use this when you're expecting a long answer.
    */
@@ -54,34 +50,34 @@ export interface InputTextRebuiltProps
    * maximum number of visible rows.
    */
   readonly rows?: number | RowRange;
-  readonly type?: FormFieldTypes;
 
   /**
-   * Version 2 is highly experimental. Avoid using it unless you have talked with Atlantis first.
+   * Toolbar to render content below the input.
    */
-  readonly version: 2;
+  readonly toolbar?: FormFieldProps["toolbar"];
 
+  /**
+   * Determines the visibility of the toolbar.
+   */
+  readonly toolbarVisibility?: FormFieldProps["toolbarVisibility"];
+
+  /**
+   * The current value of the input.
+   */
+  readonly value: string;
+
+  /**
+   * Custom onChange handler that provides the new value as the first argument.
+   */
   readonly onChange?: (
     newValue: string,
     event?: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
+
+  /**
+   * @deprecated Use `onKeyDown` or `onKeyUp` instead.
+   */
   readonly onEnter?: FormFieldProps["onEnter"];
-
-  readonly onBlur?: FormFieldProps["onBlur"];
-  readonly value: string;
-
-  readonly maxLength?: number;
-
-  readonly size?: FormFieldProps["size"];
-  readonly inline?: FormFieldProps["inline"];
-  readonly align?: FormFieldProps["align"];
-
-  readonly toolbar?: FormFieldProps["toolbar"];
-  readonly toolbarVisibility?: FormFieldProps["toolbarVisibility"];
-
-  readonly prefix?: FormFieldProps["prefix"];
-  readonly suffix?: FormFieldProps["suffix"];
-  readonly description?: FormFieldProps["description"];
 }
 
 interface BaseProps

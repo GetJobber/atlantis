@@ -1,4 +1,4 @@
-import SwitchContent from "@atlantis/docs/components/Switch/Switch.stories.mdx";
+import SwitchContent from "./Switch.stories.mdx";
 import Props from "./Switch.props.json";
 import MobileProps from "./Switch.props-mobile.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

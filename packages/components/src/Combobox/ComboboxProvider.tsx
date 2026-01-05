@@ -1,5 +1,6 @@
-import React, { MutableRefObject } from "react";
-import { ComboboxOption } from "./Combobox.types";
+import React from "react";
+import type { RefObject } from "react";
+import { type ComboboxOption } from "./Combobox.types";
 
 export interface ComboboxProviderProps {
   readonly children: React.ReactNode;
@@ -8,9 +9,11 @@ export interface ComboboxProviderProps {
   readonly open: boolean;
   readonly handleClose: () => void;
   readonly handleOpen: () => void;
-  readonly shouldScroll: MutableRefObject<boolean>;
+  readonly shouldScroll: RefObject<boolean>;
   readonly searchValue: string;
   readonly label?: string;
+  readonly onClear?: () => void;
+  readonly onSelectAll?: (selection: ComboboxOption[]) => void;
 }
 
 export const ComboboxContext = React.createContext(
@@ -20,7 +23,7 @@ export const ComboboxContext = React.createContext(
 export function ComboboxContextProvider({
   children,
   ...props
-}: ComboboxProviderProps): JSX.Element {
+}: ComboboxProviderProps) {
   return (
     <ComboboxContext.Provider value={props}>
       {children}

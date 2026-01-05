@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/InputAvatar/InputAvatar.stories.mdx";
+import Content from "./InputAvatar.stories.mdx";
 import Props from "./InputAvatar.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

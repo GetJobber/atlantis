@@ -1,5 +1,6 @@
-import { act, renderHook } from "@testing-library/react-hooks";
-import { DeviceEventEmitter, KeyboardEvent } from "react-native";
+import { act, renderHook } from "@testing-library/react-native";
+import type { KeyboardEvent } from "react-native";
+import { DeviceEventEmitter } from "react-native";
 import { useKeyboardVisibility } from "./useKeyboardVisibility";
 
 const keyboardEvent: Partial<KeyboardEvent> = {
@@ -7,19 +8,19 @@ const keyboardEvent: Partial<KeyboardEvent> = {
 };
 
 describe("when the user is typing", () => {
-  it("sets the isKeyboardVisible to true", () => {
+  it("sets the isKeyboardVisible to true", async () => {
     const { result } = renderHook(() => useKeyboardVisibility());
 
-    act(() => {
+    await act(async () => {
       DeviceEventEmitter.emit("keyboardDidShow", keyboardEvent);
     });
 
     expect(result.current.isKeyboardVisible).toBe(true);
   });
-  it("the keyboardDidShow event emits the keyboard height", () => {
+  it("the keyboardDidShow event emits the keyboard height", async () => {
     const { result } = renderHook(() => useKeyboardVisibility());
 
-    act(() => {
+    await act(async () => {
       DeviceEventEmitter.emit("keyboardDidShow", keyboardEvent);
     });
 
@@ -30,10 +31,10 @@ describe("when the user is typing", () => {
 });
 
 describe("when the user not typing", () => {
-  it("sets the isKeyboardVisible to false", () => {
+  it("sets the isKeyboardVisible to false", async () => {
     const { result } = renderHook(() => useKeyboardVisibility());
 
-    act(() => {
+    await act(async () => {
       DeviceEventEmitter.emit("keyboardDidHide");
     });
 

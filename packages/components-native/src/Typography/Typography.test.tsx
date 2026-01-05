@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { fireEvent, render } from "@testing-library/react-native";
 import { I18nManager } from "react-native";
 import { Typography } from "./Typography";
 
@@ -77,6 +77,67 @@ it("renders text with lowercase transform", () => {
     <Typography transform="lowercase">Test Text</Typography>,
   );
   expect(typography.toJSON()).toMatchSnapshot();
+});
+
+it("supports nested children and applies transform only to string children", () => {
+  const typography = render(
+    <Typography transform="uppercase">
+      before <Typography fontWeight="bold">Inner</Typography> after
+    </Typography>,
+  );
+  expect(typography.toJSON()).toMatchSnapshot();
+});
+
+it("allows child Typography to control its own transform", () => {
+  const view = render(
+    <Typography transform="uppercase">
+      {"before "}
+      <Typography fontWeight="bold" transform="lowercase">
+        Inner
+      </Typography>
+      {" after"}
+    </Typography>,
+  ).toJSON();
+
+  expect(view).toMatchSnapshot();
+});
+
+it("supports multi-level nesting across Typography and Text", () => {
+  const view = render(
+    <Typography transform="uppercase">
+      {"level1 "}
+      <Typography>
+        and <Typography transform="lowercase">INNER</Typography>
+      </Typography>
+      {" end"}
+    </Typography>,
+  ).toJSON();
+
+  expect(view).toMatchSnapshot();
+});
+
+it("applies transform to parent strings only", () => {
+  const { getByText } = render(
+    <Typography transform="uppercase">
+      {"test "}
+      <Typography>inner</Typography>
+    </Typography>,
+  );
+
+  expect(getByText(/TEST/)).toBeDefined();
+  expect(getByText("inner")).toBeDefined();
+});
+
+it("allows child transform to override parent transform", () => {
+  const { getByText } = render(
+    <Typography transform="uppercase">
+      before <Typography transform="lowercase">INNER</Typography> after
+    </Typography>,
+  );
+
+  expect(getByText(/BEFORE/)).toBeDefined();
+  expect(getByText("inner")).toBeDefined();
+  expect(getByText(/AFTER/)).toBeDefined();
 });
 
 it("renders text with white color", () => {
@@ -250,4 +311,62 @@ describe("underline", () => {
       expect(typography.toJSON()).toMatchSnapshot();
     },
   );
+});
+
+describe("onTextLayout", () => {
+  it("calls onTextLayout callback when text layout event occurs", () => {
+    const onTextLayoutMock = jest.fn();
+    const { getByRole } = render(
+      <Typography onTextLayout={onTextLayoutMock}>Test Text</Typography>,
+    );
+
+    const textElement = getByRole("text");
+    const mockEvent = {
+      nativeEvent: {
+        lines: [
+          {
+            text: "Test Text",
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 20,
+            ascender: 15,
+            descender: -5,
+            capHeight: 14,
+            xHeight: 10,
+          },
+        ],
+      },
+    };
+    fireEvent(textElement, "onTextLayout", mockEvent);
+    expect(onTextLayoutMock).toHaveBeenCalledTimes(1);
+    expect(onTextLayoutMock).toHaveBeenCalledWith(mockEvent);
+  });
+});
+
+describe("TypographyGestureDetector", () => {
+  it("wraps text with TypographyGestureDetector by default (collapsable=false)", () => {
+    const { getByRole } = render(<Typography>Test Text</Typography>);
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("wraps text with TypographyGestureDetector (collapsable=false) when selectable=true", () => {
+    const { getByRole } = render(
+      <Typography selectable={true}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBe(false);
+  });
+
+  it("does not wrap text with TypographyGestureDetector when selectable=false", () => {
+    const { getByRole } = render(
+      <Typography selectable={false}>Test Text</Typography>,
+    );
+    const textElement = getByRole("text");
+
+    expect(textElement.props.collapsable).toBeUndefined();
+  });
 });

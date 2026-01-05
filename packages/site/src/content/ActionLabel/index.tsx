@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/ActionLabel/ActionLabel.stories.mdx";
+import Content from "./ActionLabel.stories.mdx";
 import MobileProps from "./ActionLabel.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";

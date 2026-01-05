@@ -1,6 +1,7 @@
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 import { View } from "react-native";
-import { IconColorNames, IconNames } from "@jobber/design";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import { useStyles } from "./ActionItem.style";
 import { ActionItemContainer } from "./components/ActionItemContainer";
 import { Typography } from "../Typography";
@@ -60,7 +61,7 @@ export function ActionItem({
   actionIconAlignment = "center",
   onPress,
   testID = "actionItem",
-}: ActionItemProps): JSX.Element {
+}: ActionItemProps) {
   const actionIconStyle = {
     justifyContent: actionIconAlignment,
   };

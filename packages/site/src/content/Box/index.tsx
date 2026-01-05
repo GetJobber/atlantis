@@ -1,4 +1,4 @@
-import Content from "@atlantis/docs/components/Box/Box.stories.mdx";
+import Content from "./Box.stories.mdx";
 import Props from "./Box.props.json";
 import Notes from "./BoxNotes.mdx";
 import { ContentExport } from "../../types/content";

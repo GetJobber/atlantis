@@ -1,4 +1,4 @@
-import { Dispatch, ReactElement, SetStateAction } from "react";
+import type { Dispatch, ReactElement, SetStateAction } from "react";
 
 type ComboboxFragment = Iterable<ComboboxNode>;
 type ComboboxNode = ReactElement | ComboboxFragment;
@@ -30,6 +30,18 @@ export interface ComboboxProps {
   readonly onSelect: (selection: ComboboxOption[]) => void;
 
   /**
+   * Callback function invoked upon the selection of all options. Provides the selected option(s) as an argument.
+   * This is only available when `multiSelect` is `true`.
+   */
+  readonly onSelectAll?: (selection: ComboboxOption[]) => void;
+
+  /**
+   * Callback function invoked upon the clearing of all options.
+   * This is only available when `multiSelect` is `true`.
+   */
+  readonly onClear?: () => void;
+
+  /**
    * Callback function invoked upon the Combobox menu closing.
    */
   readonly onClose?: () => void;
@@ -58,6 +70,11 @@ export interface ComboboxProps {
    * Should the Combobox display the loading state.
    */
   readonly loading?: boolean;
+
+  /**
+   * A ref to the default activator button element.
+   */
+  readonly defaultActivatorRef?: React.Ref<HTMLButtonElement>;
 }
 
 export interface ComboboxCustomActivatorProps {
@@ -102,6 +119,7 @@ export interface ComboboxActivatorProps {
 export interface ComboboxTriggerProps
   extends Pick<ComboboxContentProps, "selected"> {
   readonly label?: string;
+  readonly activatorRef?: React.Ref<HTMLButtonElement>;
 }
 
 export interface ComboboxOptionProps {
@@ -125,10 +143,17 @@ export interface ComboboxOptionProps {
    * The function receives the option's props, and a boolean indicating if the option is selected.
    */
   readonly customRender?: (
-    option: Omit<ComboboxOptionProps, "customRender"> & {
+    option: Pick<ComboboxOptionProps, "id" | "label" | "prefix"> & {
       isSelected: boolean;
+      /** Render the default option content. */
+      defaultContent: ReactElement;
     },
   ) => React.ReactNode;
+
+  /**
+   * Callback function invoked when the option is clicked.
+   */
+  readonly onClick?: (option: ComboboxOption) => void;
 }
 
 export type ComboboxOption = ComboboxOptionProps;
@@ -188,7 +213,7 @@ export interface ComboboxContentProps {
   /**
    * Reference to the wrapping div element of all the Combobox pieces
    */
-  readonly wrapperRef: React.RefObject<HTMLDivElement>;
+  readonly wrapperRef: React.RefObject<HTMLDivElement | null>;
 
   /**
    * Is the Combobox open
@@ -272,7 +297,7 @@ export interface ComboboxListProps {
   /**
    * A ref to the list element.
    */
-  readonly optionsListRef: React.RefObject<HTMLUListElement>;
+  readonly optionsListRef: React.RefObject<HTMLUListElement | null>;
 
   /**
    * The current search term. Used in the no results message.

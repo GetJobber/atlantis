@@ -1,8 +1,9 @@
 import classnames from "classnames";
-import { RefObject, useEffect, useState } from "react";
+import type { RefObject } from "react";
+import { useEffect, useState } from "react";
 import { useIsSafari } from "./useIsSafari";
 import styles from "../FormField.module.css";
-import { FormFieldProps } from "../FormFieldTypes";
+import type { FormFieldProps } from "../FormFieldTypes";
 
 export interface useFormFieldWrapperStylesProps
   extends Pick<
@@ -12,15 +13,19 @@ export interface useFormFieldWrapperStylesProps
     | "placeholder"
     | "value"
     | "invalid"
-    | "max"
     | "maxLength"
     | "type"
     | "disabled"
     | "inline"
   > {
   readonly error?: string;
-  suffixRef?: RefObject<HTMLDivElement>;
-  prefixRef?: RefObject<HTMLDivElement>;
+  /**
+   * Maximum numerical or date value
+   * In v2 components, this is typically undefined.
+   */
+  readonly max?: number | string;
+  suffixRef?: RefObject<HTMLDivElement | null>;
+  prefixRef?: RefObject<HTMLDivElement | null>;
   showMiniLabel?: boolean;
 }
 

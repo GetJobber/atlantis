@@ -11,8 +11,8 @@
         "description": "Set the component to the given value.",
         "name": "value",
         "parent": {
-          "fileName": "../components/src/InputPhoneNumber/InputPhoneNumber.tsx",
-          "name": "InputPhoneNumberProps"
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberLegacyProps"
         },
         "required": true,
         "type": {
@@ -24,8 +24,8 @@
         "description": "onChange handler that provides the new value (or event)",
         "name": "onChange",
         "parent": {
-          "fileName": "../components/src/InputPhoneNumber/InputPhoneNumber.tsx",
-          "name": "InputPhoneNumberProps"
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberLegacyProps"
         },
         "required": true,
         "type": {
@@ -39,8 +39,8 @@
         "description": "A pattern to specify the format to display the phone number in.\nFor example if you want to display the format for [Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)\nyou could set it to `** ** ** **`",
         "name": "pattern",
         "parent": {
-          "fileName": "../components/src/InputPhoneNumber/InputPhoneNumber.tsx",
-          "name": "InputPhoneNumberProps"
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberLegacyProps"
         },
         "required": false,
         "type": {
@@ -52,8 +52,8 @@
         "description": "Shows a \"required\" validation message when the component is left empty.",
         "name": "required",
         "parent": {
-          "fileName": "../components/src/InputPhoneNumber/InputPhoneNumber.tsx",
-          "name": "InputPhoneNumberProps"
+          "fileName": "packages/components/src/InputPhoneNumber/InputPhoneNumber.types.ts",
+          "name": "InputPhoneNumberLegacyProps"
         },
         "required": false,
         "type": {
@@ -83,7 +83,7 @@
         },
         "required": false,
         "type": {
-          "name": "string"
+          "name": "ReactNode"
         }
       },
       "disabled": {
@@ -254,7 +254,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event: React.KeyboardEvent) => void"
+          "name": "(event: KeyboardEvent<Element>) => void"
         }
       },
       "onFocus": {
@@ -267,7 +267,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "(event?: FocusEvent<Element, Element>) => void"
         }
       },
       "onBlur": {
@@ -280,7 +280,7 @@
         },
         "required": false,
         "type": {
-          "name": "(event?: React.FocusEvent) => void"
+          "name": "(event?: FocusEvent<Element, Element>) => void"
         }
       },
       "validations": {

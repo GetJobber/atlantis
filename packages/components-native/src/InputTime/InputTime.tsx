@@ -1,19 +1,21 @@
 import React, { useMemo, useState } from "react";
-import { FieldError, UseControllerProps } from "react-hook-form";
-import { XOR } from "ts-xor";
+import type { FieldError, UseControllerProps } from "react-hook-form";
+import type { XOR } from "ts-xor";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Keyboard, View } from "react-native";
-import { Clearable } from "@jobber/hooks";
+import type { Clearable } from "@jobber/hooks";
 import { styles } from "./InputTime.style";
 import { getTimeZoneOffsetInMinutes, roundUpToNearestMinutes } from "./utils";
 import { useAtlantisContext } from "../AtlantisContext";
 import { InputPressable } from "../InputPressable";
 import { FormField } from "../FormField";
-import { InputFieldWrapperProps } from "../InputFieldWrapper";
+import type { InputFieldWrapperProps } from "../InputFieldWrapper";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
+import type { InputPressableProps } from "../InputPressable/InputPressable";
 
 interface InputTimeBaseProps
-  extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder"> {
+  extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder">,
+    Pick<InputPressableProps, "showMiniLabel"> {
   /**
    * Defaulted to "always" so user can clear the time whenever there's a value.
    */
@@ -97,7 +99,7 @@ function formatInvalidState(
   return Boolean(error);
 }
 
-export function InputTime(props: InputTimeProps): JSX.Element {
+export function InputTime(props: InputTimeProps) {
   if (props.name) {
     return (
       <FormField name={props.name} validations={props.validations}>
@@ -129,9 +131,10 @@ function InternalInputTime({
   value,
   name,
   type = "scheduling",
+  showMiniLabel = true,
   onChange,
   showIcon = true,
-}: InputTimeProps): JSX.Element {
+}: InputTimeProps) {
   const [showPicker, setShowPicker] = useState(false);
   const { t, formatTime } = useAtlantisI18n();
   const { timeZone, timeFormat } = useAtlantisContext();
@@ -156,6 +159,7 @@ function InternalInputTime({
   return (
     <View style={styles.container}>
       <InputPressable
+        showMiniLabel={showMiniLabel}
         clearable={canClearTime}
         disabled={disabled}
         invalid={invalid}

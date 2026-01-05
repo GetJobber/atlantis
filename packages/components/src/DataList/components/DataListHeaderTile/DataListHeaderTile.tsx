@@ -1,13 +1,13 @@
 /* eslint-disable max-statements */
 import React, { useRef, useState } from "react";
 import classnames from "classnames";
-import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { useFocusTrap } from "@jobber/hooks";
 import styles from "./DataListHeaderTile.module.css";
 import { DataListSortingArrows } from "./DataListSortingArrows";
 import { DataListSortingOptions } from "./components/DataListSortingOptions";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
-import {
+import type {
   DataListHeader,
   DataListObject,
   SortableOptions,
@@ -41,6 +41,7 @@ export function DataListHeaderTile<T extends DataListObject>({
       })}
       onClick={handleOnClick}
       ref={dataListHeaderTileRef}
+      type={isSortable ? "button" : undefined}
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {isSortable && sortableItem?.options && isDropDownOpen && (

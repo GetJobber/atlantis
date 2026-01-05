@@ -1,9 +1,11 @@
-import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
-import { RegisterOptions } from "react-hook-form";
-import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
+import type { Ref } from "react";
+import React, { createRef, forwardRef, useImperativeHandle } from "react";
+import type { RegisterOptions } from "react-hook-form";
+import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import { FormField } from "../FormField";
 
 export interface InputNumberProps
-  extends CommonFormFieldProps,
+  extends Omit<CommonFormFieldProps, "version">,
     Pick<
       FormFieldProps,
       | "maxLength"
@@ -22,6 +24,11 @@ export interface InputNumberProps
       | "suffix"
     > {
   readonly value?: number;
+  /**
+   * Experimental:
+   * Determine which version of the FormField to use.
+   */
+  readonly version?: 1;
 }
 
 export interface InputNumberRef {
@@ -33,7 +40,7 @@ function InputNumberInternal(
   props: InputNumberProps,
   ref: Ref<InputNumberRef>,
 ) {
-  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
+  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement | null>();
 
   useImperativeHandle(ref, () => ({
     blur: () => {
@@ -55,6 +62,7 @@ function InputNumberInternal(
   return (
     <FormField
       {...props}
+      clearable={"never"}
       type="number"
       inputRef={inputRef}
       onChange={handleChange}

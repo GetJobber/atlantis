@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { AtlantisThemeContextProvider } from "@jobber/components/AtlantisThemeContext";
+import {
+  AtlantisThemeContextProvider,
+  useAtlantisTheme,
+} from "@jobber/components/AtlantisThemeContext";
 import { Content } from "@jobber/components/Content";
 import { Popover } from "@jobber/components/Popover";
 import { Button } from "@jobber/components/Button";
@@ -18,17 +21,20 @@ export default {
 } as ComponentMeta<typeof Popover>;
 
 const BasicTemplate: ComponentStory<typeof Popover> = args => {
-  const divRef = useRef<HTMLSpanElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
   const [showPopover, setShowPopover] = useState(args.open);
 
   return (
     <>
-      <span ref={divRef}>
+      <div
+        ref={divRef}
+        style={{ display: "inline-block", width: "fit-content" }}
+      >
         <Button
           label="Toggle Popover"
           onClick={() => setShowPopover(!showPopover)}
         />
-      </span>
+      </div>
       <Popover
         {...args}
         attachTo={divRef}
@@ -44,17 +50,20 @@ const BasicTemplate: ComponentStory<typeof Popover> = args => {
 export const Basic = BasicTemplate.bind({});
 
 const InformationalTemplate: ComponentStory<typeof Popover> = args => {
-  const newFeatureButton = useRef<HTMLSpanElement>(null);
+  const newFeatureButton = useRef<HTMLDivElement>(null);
   const [showPopover, setShowPopover] = useState(true);
 
   return (
     <>
-      <span ref={newFeatureButton}>
+      <div
+        ref={newFeatureButton}
+        style={{ display: "inline-block", width: "fit-content" }}
+      >
         <Button
           label="New Feature"
           onClick={() => setShowPopover(!showPopover)}
         />
-      </span>
+      </div>
       <Popover
         {...args}
         attachTo={newFeatureButton}
@@ -149,10 +158,11 @@ const ComposedTemplate: ComponentStory<typeof Popover> = args => {
 
 export const Composed = ComposedTemplate.bind({});
 
-const ForceThemeTemplate: ComponentStory<typeof Popover> = args => {
+const ForceInverseThemeTemplate: ComponentStory<typeof Popover> = args => {
   const divRef1 = useRef<HTMLDivElement>(null);
   const [showPopover1, setShowPopover1] = useState(args.open);
   const buttonStyles = { width: "fit-content" };
+  const { theme } = useAtlantisTheme();
 
   return (
     <Box gap="base">
@@ -163,10 +173,13 @@ const ForceThemeTemplate: ComponentStory<typeof Popover> = args => {
           onClick={() => setShowPopover1(!showPopover1)}
         />
       </div>
-      <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+      <AtlantisThemeContextProvider
+        dangerouslyOverrideTheme={theme === "dark" ? "light" : "dark"}
+      >
         <Popover.Provider {...args} attachTo={divRef1} open={showPopover1}>
           <Popover.DismissButton onClick={() => setShowPopover1(false)} />
           <Content>
+            <Heading level={3}>Inverse Theme</Heading>
             <Text>This is a Popover built with composable subcomponents</Text>
           </Content>
           <Popover.Arrow />
@@ -176,4 +189,4 @@ const ForceThemeTemplate: ComponentStory<typeof Popover> = args => {
   );
 };
 
-export const ForceTheme = ForceThemeTemplate.bind({});
+export const ForceInverseTheme = ForceInverseThemeTemplate.bind({});

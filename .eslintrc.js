@@ -5,6 +5,23 @@ const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
   ["@jobber/components-native", "./packages/components-native/src"],
   ["@jobber/hooks", "./packages/hooks/src"],
+  ["@storybook/react", "./packages/storybook-v7/node_modules/@storybook/react"],
+  [
+    "@storybook/addon-docs",
+    "./packages/storybook-v7/node_modules/@storybook/addon-docs",
+  ],
+  [
+    "@storybook/blocks",
+    "./packages/storybook-v7/node_modules/@storybook/blocks",
+  ],
+  [
+    "@storybook/components",
+    "./packages/storybook-v7/node_modules/@storybook/components",
+  ],
+  [
+    "@storybook/react-native",
+    "./packages/storybook-v7/node_modules/@storybook/react-native",
+  ],
 ];
 
 module.exports = {
@@ -48,6 +65,8 @@ module.exports = {
           "@jobber/design/*",
           "lodash/*",
           "utils/*",
+          "storybook/*",
+          "@storybook/*",
         ],
       },
     ],
@@ -105,6 +124,51 @@ module.exports = {
                 message: "Use one of our `Input` components instead",
               },
             ],
+          },
+        ],
+      },
+    },
+    {
+      files: ["**/.storybook/**/*.ts", "**/.storybook/**/*.tsx"],
+      rules: {
+        "import/no-default-export": "off",
+        "monorepo-cop/no-relative-import-outside-package": "off",
+      },
+    },
+    {
+      // Enforce awaiting act(...) in tests (React + React Native)
+      files: [
+        "**/*.{test,spec}.{js,jsx,ts,tsx}",
+        "**/__tests__/**/*.{js,jsx,ts,tsx}",
+        "**/testUtils/**/*.{js,jsx,ts,tsx}",
+      ],
+      rules: {
+        // Enforce async callback passed to act (identifier like `wait` is allowed)
+        "no-restricted-syntax": [
+          "error",
+          // Calls to act must be awaited (handles both act(...) and obj.act(...))
+          {
+            selector:
+              "CallExpression[callee.name='act'] > :matches(ArrowFunctionExpression, FunctionExpression):not([async=true])",
+            message:
+              "act(...) callback must be async: use await act(async () => { ... }).",
+          },
+          {
+            selector:
+              "CallExpression[callee.property.name='act'] > :matches(ArrowFunctionExpression, FunctionExpression):not([async=true])",
+            message:
+              "act(...) callback must be async: use await obj.act(async () => { ... }).",
+          },
+          {
+            selector: "ExpressionStatement > CallExpression[callee.name='act']",
+            message:
+              "act(...) must be awaited or returned: use await act(async () => { ... }) or return act(async () => { ... }).",
+          },
+          {
+            selector:
+              "ExpressionStatement > CallExpression[callee.property.name='act']",
+            message:
+              "act(...) must be awaited or returned: use await obj.act(async () => { ... }) or return obj.act(async () => { ... }).",
           },
         ],
       },

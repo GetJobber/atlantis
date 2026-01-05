@@ -1,6 +1,8 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { InputNumber, InputNumberRef } from ".";
+import userEvent from "@testing-library/user-event";
+import type { InputNumberRef } from ".";
+import { InputNumber } from ".";
 
 it("renders an input type number", () => {
   const { container } = render(<InputNumber value={123} />);
@@ -25,8 +27,8 @@ it("renders an input type number", () => {
               >
                 <input
                   class="input"
-                  id=":r0:"
-                  name="generatedName--:r0:"
+                  id="«r0»"
+                  name="generatedName--«r0»"
                   type="number"
                   value="123"
                 />
@@ -327,7 +329,7 @@ test("it should handle focus", () => {
     <InputNumber placeholder={placeholder} ref={inputRef} />,
   );
 
-  inputRef.current.focus();
+  inputRef.current?.focus();
   expect(document.activeElement).toBe(getByLabelText(placeholder));
 });
 
@@ -337,8 +339,8 @@ test("it should handle blur", () => {
 
   render(<InputNumber ref={inputRef} onBlur={blurHandler} />);
 
-  inputRef.current.focus();
-  inputRef.current.blur();
+  inputRef.current?.focus();
+  inputRef.current?.blur();
   expect(blurHandler).toHaveBeenCalledTimes(1);
 });
 
@@ -365,4 +367,34 @@ it("should set not inputMode by default", () => {
   const input = getByLabelText("Unset");
 
   expect(input.inputMode).toBeFalsy();
+});
+
+describe("clearable behavior", () => {
+  it("never shows a clear button for InputNumber even when clearable is set", async () => {
+    const { getByLabelText, queryByLabelText } = render(
+      <InputNumber placeholder="Amount" value={123} clearable="always" />,
+    );
+    const input = getByLabelText("Amount");
+
+    await userEvent.click(input);
+
+    expect(queryByLabelText("Clear input")).not.toBeInTheDocument();
+
+    await userEvent.tab(); // focus the clear button
+    await userEvent.tab(); // blur the clear button
+
+    expect(queryByLabelText("Clear input")).not.toBeInTheDocument();
+  });
+
+  it("does not show a clear button when there is no value", async () => {
+    const { getByLabelText, queryByLabelText } = render(
+      <InputNumber placeholder="Amount" value={undefined} clearable="always" />,
+    );
+
+    const input = getByLabelText("Amount");
+
+    await userEvent.click(input);
+
+    expect(queryByLabelText("Clear input")).not.toBeInTheDocument();
+  });
 });

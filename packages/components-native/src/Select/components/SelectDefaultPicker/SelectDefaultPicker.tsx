@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { styles } from "./SelectDefaultPicker.style";
-import { SelectInternalPickerProps } from "../../types";
+import type { SelectInternalPickerProps } from "../../types";
 import { SelectPressable } from "../SelectPressable";
 import { useAtlantisTheme } from "../../../AtlantisThemeContext";
 
@@ -12,7 +12,7 @@ export function SelectDefaultPicker({
   options,
   disabled,
   onChange,
-}: SelectDefaultPickerProps): JSX.Element {
+}: SelectDefaultPickerProps) {
   const selectedItem = options.find(option => option.isActive);
   const pickerRef = useRef<Picker<string>>(null);
   const { tokens } = useAtlantisTheme();

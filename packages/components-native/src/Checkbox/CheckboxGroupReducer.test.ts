@@ -2,7 +2,7 @@ import {
   checkboxGroupReducer,
   initCheckboxGroupState,
 } from "./CheckboxGroupReducer";
-import { CheckboxGroupState } from "./types";
+import type { CheckboxGroupState } from "./types";
 
 let state: CheckboxGroupState;
 const checkbox1 = "checkbox1";

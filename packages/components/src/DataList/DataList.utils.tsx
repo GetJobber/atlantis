@@ -1,12 +1,15 @@
-import React, { Children, ReactElement, isValidElement } from "react";
+import type { ReactElement } from "react";
+import React, { Children, isValidElement } from "react";
 import isEmpty from "lodash/isEmpty";
-import {
+import type {
+  DataListActionProps,
   DataListHeader,
   DataListItemType,
   DataListItemTypeFromHeader,
   DataListObject,
 } from "./DataList.types";
-import { BREAKPOINTS, Breakpoints } from "./DataList.const";
+import type { Breakpoints } from "./DataList.const";
+import { BREAKPOINTS } from "./DataList.const";
 import { DataListTags } from "./components/DataListTags";
 import { DataListHeaderTile } from "./components/DataListHeaderTile/DataListHeaderTile";
 import { FormatDate } from "../FormatDate";
@@ -101,8 +104,8 @@ export function sortBreakpoints(sizeProp: Breakpoints[]) {
   );
 }
 
-export function getExposedActions(
-  childrenArray: ReactElement[],
+export function getExposedActions<T extends DataListObject>(
+  childrenArray: ReactElement<DataListActionProps<T>>[],
   childCount = 2,
 ) {
   const firstNChildren = childrenArray.slice(0, childCount);

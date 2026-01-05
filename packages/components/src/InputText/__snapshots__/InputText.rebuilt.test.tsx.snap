@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputText V2 (Rebuilt) renders a regular input for text and numbers 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper text textarea"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="«r0»"
+          >
+            Describe your favourite colour?
+          </label>
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <textarea
+              class="input"
+              id="«r0»"
+              name="generatedName--«r0»"
+              rows="3"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`InputText V2 (Rebuilt) renders a textarea with 4 rows 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="wrapper text textarea"
+      data-testid="Form-Field-Wrapper"
+    >
+      <div
+        class="horizontalWrapper"
+      >
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="«r1»"
+          >
+            Describe your favourite colour?
+          </label>
+          <div
+            class="childrenWrapper"
+            tabindex="-1"
+          >
+            <textarea
+              class="input"
+              id="«r1»"
+              name="generatedName--«r1»"
+              rows="4"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

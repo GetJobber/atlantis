@@ -1,8 +1,8 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render, screen } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { ThumbnailList } from "./ThumbnailList";
-import { File } from "../FormatFile/types";
+import type { File } from "../FormatFile/types";
 
 const snapshotFile: File[] = [
   {
@@ -61,15 +61,15 @@ beforeEach(() => {
 });
 
 it("renders a thumbnail component with attachments", () => {
-  const tree = setup(true);
-  expect(tree.toJSON()).toMatchSnapshot();
+  setup(true);
+  expect(screen.toJSON()).toMatchSnapshot();
 });
 
 describe("when a an array of files is provided", () => {
   it("calls the previewImages util on pressing a valid file", () => {
-    const { getByLabelText } = setup();
+    setup();
     fireEvent.press(
-      getByLabelText(files[0].fileName ? files[0].fileName : "file"),
+      screen.getByLabelText(files[0].fileName ? files[0].fileName : "file"),
     );
     expect(onOpenFile).toHaveBeenCalledTimes(1);
   });

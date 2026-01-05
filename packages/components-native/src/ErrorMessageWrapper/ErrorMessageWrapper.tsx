@@ -1,5 +1,7 @@
-import React, { ReactNode, useEffect, useRef } from "react";
-import { View, ViewStyle } from "react-native";
+import type { ReactNode } from "react";
+import React, { useEffect, useRef } from "react";
+import type { ViewStyle } from "react-native";
+import { View } from "react-native";
 import { v4 } from "react-native-uuid";
 import { useErrorMessageContext } from "./context";
 import { useStyles } from "./ErrorMessageWrapper.style";
@@ -32,7 +34,7 @@ export function ErrorMessageWrapper({
   message,
   wrapFor = "default",
   children,
-}: ErrorMessageWrapperProps): JSX.Element {
+}: ErrorMessageWrapperProps) {
   const errorMessageContext = useErrorMessageContext();
   const register = errorMessageContext?.register;
   const unregister = errorMessageContext?.unregister;

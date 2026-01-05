@@ -1,6 +1,8 @@
 import React from "react";
-import { CurrencyType, formatCurrency } from "@jobber/formatters";
-import { CellNumeric, CellNumericProps } from "./CellNumeric";
+import type { CurrencyType } from "@jobber/formatters";
+import { formatCurrency } from "@jobber/formatters";
+import type { CellNumericProps } from "./CellNumeric";
+import { CellNumeric } from "./CellNumeric";
 
 interface CellCurrencyProps extends CellNumericProps {
   readonly value: number;

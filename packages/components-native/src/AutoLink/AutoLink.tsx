@@ -1,6 +1,6 @@
 import React from "react";
 import { Text as RNText } from "react-native";
-import { AutoLinkProps } from "./types";
+import type { AutoLinkProps } from "./types";
 import { ComposeTextWithLinks } from "./components";
 import { useCreateLinkedText } from "./hooks/useCreateLinkedText";
 import { TypographyGestureDetector } from "../Typography";
@@ -11,7 +11,7 @@ export function AutoLink({
   bottomTabsVisible = true,
   selectable = true,
   ...rest
-}: AutoLinkProps): JSX.Element {
+}: AutoLinkProps) {
   const { splitText, matches } = useCreateLinkedText({ text, ...rest });
   const { tokens } = useAtlantisTheme();
 

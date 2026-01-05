@@ -1,8 +1,8 @@
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
-import { IconColorNames, IconNames } from "@jobber/design";
+import type { IconColorNames, IconNames } from "@jobber/design";
 import { useStyles } from "./BottomSheetOption.styles";
-import { TextAlign } from "../../../Typography";
+import type { TextAlign } from "../../../Typography";
 import { capitalize } from "../../../utils/intl";
 import { Text } from "../../../Text";
 import { Icon } from "../../../Icon";
@@ -25,7 +25,7 @@ export function BottomSheetOption({
   destructive,
   textTransform = "capitalize",
   onPress,
-}: BottomSheetOptionProps): JSX.Element {
+}: BottomSheetOptionProps) {
   const destructiveColor = "destructive";
   const textVariation = destructive ? destructiveColor : "subdued";
   const styles = useStyles();

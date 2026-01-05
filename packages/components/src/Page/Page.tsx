@@ -1,21 +1,19 @@
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
+import React from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/useResizeObserver";
+import type { XOR } from "ts-xor";
 import styles from "./Page.module.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
-import { Button, ButtonProps } from "../Button";
-import { Menu, SectionProps } from "../Menu";
+import { Button, type ButtonProps } from "../Button";
+import { Menu, type SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
+import { Container } from "../Container";
 
 export type ButtonActionProps = ButtonProps & {
-  ref?: React.RefObject<HTMLDivElement>;
+  ref?: React.RefObject<HTMLDivElement | null>;
 };
 
 interface PageFoundationProps {
@@ -23,12 +21,18 @@ interface PageFoundationProps {
 
   /**
    * Title of the page.
+   *
+   * Supports any React node. If a string is provided, it will be rendered as an H1 heading.
+   * Otherwise it will be rendered as is.
+   *
+   * **Important**: If you're passing a custom element, it must include an H1-level heading within it.
+   * Ideally <Heading level={1}> should be used here.
    */
-  readonly title: string;
+  readonly title: ReactNode;
 
   /**
    * TitleMetaData component to be displayed
-   * next to the title.
+   * next to the title. Only compatible with string titles.
    */
   readonly titleMetaData?: ReactNode;
 
@@ -99,14 +103,6 @@ export function Page({
   moreActionsMenu = [],
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
-  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
-    useResizeObserver<HTMLDivElement>();
-
-  const titleBarClasses = classnames(styles.titleBar, {
-    [styles.small]: titleBarWidth > Breakpoints.smaller,
-    [styles.medium]: titleBarWidth > Breakpoints.small,
-    [styles.large]: titleBarWidth > Breakpoints.base,
-  });
 
   const showMenu = moreActionsMenu.length > 0;
   const showActionGroup = showMenu || primaryAction || secondaryAction;
@@ -122,60 +118,62 @@ export function Page({
     );
   }
 
-  if (secondaryAction != undefined) {
-    secondaryAction = Object.assign(
-      { type: "secondary", fullWidth: true },
-      secondaryAction,
-    );
-  }
-
   return (
     <div className={pageStyles}>
       <Content>
         <Content>
-          <div className={titleBarClasses} ref={titleBarRef}>
-            <div>
-              {titleMetaData ? (
-                <div className={styles.titleRow}>
-                  <Heading level={1}>{title}</Heading>
-                  {titleMetaData}
+          <Container name="page-titlebar" autoWidth>
+            <Container.Apply autoWidth>
+              <div className={classnames(styles.titleBar)}>
+                <div>
+                  {typeof title === "string" && titleMetaData ? (
+                    <div className={styles.titleRow}>
+                      <Heading level={1}>{title}</Heading>
+                      {titleMetaData}
+                    </div>
+                  ) : typeof title === "string" ? (
+                    <Heading level={1}>{title}</Heading>
+                  ) : (
+                    title
+                  )}
+                  {subtitle && (
+                    <div className={styles.subtitle}>
+                      <Text size="large" variation="subdued">
+                        <Emphasis variation="bold">
+                          <Markdown content={subtitle} basicUsage={true} />
+                        </Emphasis>
+                      </Text>
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <Heading level={1}>{title}</Heading>
-              )}
-              {subtitle && (
-                <div className={styles.subtitle}>
-                  <Text size="large" variation="subdued">
-                    <Emphasis variation="bold">
-                      <Markdown content={subtitle} basicUsage={true} />
-                    </Emphasis>
-                  </Text>
-                </div>
-              )}
-            </div>
-            {showActionGroup && (
-              <div className={styles.actionGroup}>
-                {primaryAction && (
-                  <div className={styles.primaryAction} ref={primaryAction.ref}>
-                    <Button {...getActionProps(primaryAction)} />
-                  </div>
-                )}
-                {secondaryAction && (
-                  <div
-                    className={styles.actionButton}
-                    ref={secondaryAction.ref}
-                  >
-                    <Button {...getActionProps(secondaryAction)} />
-                  </div>
-                )}
-                {showMenu && (
-                  <div className={styles.actionButton}>
-                    <Menu items={moreActionsMenu}></Menu>
+                {showActionGroup && (
+                  <div className={styles.actionGroup}>
+                    {primaryAction && (
+                      <div
+                        className={styles.primaryAction}
+                        ref={primaryAction.ref}
+                      >
+                        <Button {...getActionProps(primaryAction)} />
+                      </div>
+                    )}
+                    {secondaryAction && (
+                      <div
+                        className={styles.actionButton}
+                        ref={secondaryAction.ref}
+                      >
+                        <Button {...getActionProps(secondaryAction)} />
+                      </div>
+                    )}
+                    {showMenu && (
+                      <div className={styles.actionButton}>
+                        <Menu items={moreActionsMenu}></Menu>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
-            )}
-          </div>
+            </Container.Apply>
+          </Container>
           {intro && (
             <Text size="large">
               <Markdown

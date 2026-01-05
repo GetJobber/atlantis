@@ -1,8 +1,9 @@
-import React, { MouseEvent, useMemo, useState } from "react";
+import type { MouseEvent } from "react";
+import React, { useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
-import {
+import type {
   DataListLayoutProps,
   DataListObject,
 } from "@jobber/components/DataList/DataList.types";
@@ -32,7 +33,8 @@ export function DataListItem<T extends DataListObject>({
 
   const generatedItem = useMemo(() => generateListItemElement(item), [item]);
 
-  const { actions, hasActions } = useGetItemActions<T>(item);
+  const { actions, hasActions, disableContextMenu } =
+    useGetItemActions<T>(item);
   const isContextMenuVisible = Boolean(contextPosition);
 
   const shouldShowContextMenu = showMenu && isContextMenuVisible && hasActions;
@@ -46,7 +48,7 @@ export function DataListItem<T extends DataListObject>({
         onMouseLeave={handleHideMenu}
         onFocus={handleShowMenu}
         onBlur={handleHideMenu}
-        onContextMenu={handleContextMenu}
+        onContextMenu={disableContextMenu ? undefined : handleContextMenu}
         className={classNames(styles.listItem, {
           [styles.active]: showMenu && isContextMenuVisible,
         })}
@@ -79,6 +81,7 @@ export function DataListItem<T extends DataListObject>({
   }
 
   function handleHideMenu() {
+    if (isContextMenuVisible) return;
     setShowMenu(false);
   }
 

@@ -1,0 +1,324 @@
+# Frontend Styleguide
+
+## Purpose
+
+Our goal with Typescript and React code is to automate as much style guidance as
+we can. To that end this guide serves to document conventions that we can't (or
+haven't yet been able to) automate. Automation is always preferred to adding a
+guidance here.
+
+## Property naming conventions
+
+Consider common terminology across components and design foundations when naming
+properties. As Atlantis is a system, end users should expect similar-behaving
+properties to have similar names across the system. For example...
+
+### Base vs "Default" or "Medium" for setting the default option in a range
+
+We use `base` as our default whenever possible when a property has a set range
+of outcomes. This can be seen in..
+
+- the `size` properties of [Button](/components/Button),
+  [Avatar](/components/Avatar), [InputText](/components/InputText),
+  [Text](/components/Text), [ProgressBar](/components/ProgressBar),
+  [Spinner](/components/Spinner), etc;
+- `maxLines` of [Text](/components/Text)
+- values of [Shadow](/design/elevationss), [Spacing](/design/spacing),
+  [Border Radius](/design/borders) design tokens
+
+This allows us to set an expectation of the base (or most common) use case when
+a prop is in action.
+
+### Open and closed states
+
+If a component has `open` and `closed` states, use a boolean property named
+`open`.
+
+This can be seen in [Modal](/components/Modal), [Drawer](/components/Drawer),
+and [Popover](/components/Popover).
+
+## Typescript
+
+### Linter Exceptions
+
+While we should strive to conform to our set linter rules, if for some reason
+you are unable to you should turn them off for the single line where the
+exception is required.
+
+You should also leave a comment immediately above the exception explaining why
+it is necessary.
+
+#### ✅ Do
+
+```ts
+// Pending: https://github.com/donavon/use-event-listener/pull/12
+// The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
+useEventListener<KeyboardEvent>("keydown", (event: KeyboardEvent) => {
+```
+
+```ts
+// Library requires fetching its CSS.
+// eslint-disable-next-line import/no-internal-modules
+import "react-image-lightbox/style.css";
+```
+
+#### ❌ Don't
+
+Missing rationale for disabling rule.
+
+```ts
+// eslint-disable-next-line max-statements
+function MyBigComponent() {
+```
+
+```ts
+const { given, expect: expectation, serverRates } = assertion;
+// eslint-disable-next-line jest/valid-describe
+describe(`given ${given}`, () => {
+```
+
+Missing rationale and disabling rules for a whole file.
+
+```ts
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable max-statements */
+import React, { ReactText, useState } from "react";
+```
+
+### Use XOR over Unions for conditional properties
+
+When creating props that will change from required to optional, we prefer to use
+[XOR](https://www.npmjs.com/package/ts-xor) over
+[Unions](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html).
+This allows us to be more secure with our `interface` by saying a type will
+either be `TypeA` or `TypeB` but never a combination of both.
+
+```tsx
+import { XOR } from "ts-xor";
+
+interface BaseComponentProps {
+  readonly label?: string;
+  readonly icon?: IconNames;
+}
+
+interface ComponentWithActionProps extends BaseComponentProps {
+  readonly icon: IconNames;
+  onClick?(): void;
+}
+
+type ComponentProps = XOR<BaseComponentProps, ComponentWithActionProps>;
+```
+
+In the example above, our `BaseComponentProps` tells us that the `label` and the
+`icon` are both optional properties. In `ComponentWithActionProps` we tell
+typscript that we are extending the `BaseComponentProps`, but the `icon` is now
+a required property, and we have added an additional `onClick` property. The
+result will look something like:
+
+```tsx
+✅
+<Component label="Atlantis" icon="gift" />
+✅
+<Component label="Atlantis" icon="gift" onClick={() => alert('Hello 👋')} />
+✅
+<Component icon="gift" onClick={() => alert('Hello 👋')} />
+❌
+<Component label="Atlantis" onClick={() => alert('Hello 👋')} />
+```
+
+The last example will cause a typescript error because we have now said that if
+an `onClick` is used, then the component must be using the
+`ComponentWithActionProps`. Since that is the case, the `icon` property is now
+required.
+
+### `function` vs arrow function
+
+In an effort to make our Typescript code a bit more accessible we are preferring
+the `function` keyword to define named functions.
+
+#### ✅ Do
+
+```ts
+function MyComponent() {
+  // ...
+}
+```
+
+```ts
+[1, 2, 3].map(num => num * 2);
+```
+
+#### ❌ Don't
+
+```ts
+const MyComponent = () => {
+  // ...
+};
+```
+
+### Interface Declaration
+
+#### ✅ Do
+
+```ts
+interface MyInterface {
+  foo: number;
+  bar: string;
+}
+```
+
+#### ❌ Don't
+
+```ts
+type MyInterface = {
+  foo: number;
+  bar: string;
+};
+```
+
+## CSS
+
+Wherever possible use Atlantis `design` tokens.
+
+### Spacing (margins and padding)
+
+Use the appropriate [Spacing](/design/spacing) values for spacing. Do not use
+rems, ems, or hard-coded pixel values.
+
+If you require a space that is larger than the Spacing values, or falls
+somewhere in between, use the CSS `calc` function with Atlantis spacing values
+in a custom property in your file.
+
+#### ✅ Do
+
+```css
+.myComponent {
+  padding: var(--space-small) var(--space-base);
+}
+
+.myComponent.large {
+  padding: calc(var(--space-small) + var(--space-smaller)) var(--space-large);
+}
+```
+
+#### ❌ Don't
+
+```css
+.myComponent {
+  padding: 0.5rem 1rem;
+}
+
+.myComponent.large {
+  padding: 0.75rem 2rem;
+}
+```
+
+### Size (width and height)
+
+In most cases, the size (width and height) of an individual component is
+implicitly determined by the content and spacing. However, sometimes you'll
+reasonably need to explicitly define rules like "this component should be a
+minimum of 280px wide".
+
+Do not use spacing tokens to define size - just provide the specific value. To
+reduce the "magic" of the number, you can declare this value in a CSS custom
+property to re-use and manipulate throughout the component.
+
+#### ✅ Do
+
+```css
+.drawerContainer {
+  --drawer-width: 280px;
+}
+
+.drawer {
+  width: var(--drawer-width);
+}
+
+.drawer.large {
+  --drawer-width: 400px;
+}
+```
+
+#### ❌ Don't
+
+```css
+.drawerContainer {
+  --drawer-width: calc(var(--space-base) * 17.5);
+}
+
+.drawer {
+  width: var(--drawer-width);
+}
+
+.drawer.large {
+  --drawer-width: calc(var(--space-base) * 25);
+}
+```
+
+### Targeting native HTML selectors
+
+Use a classname to select DOM elements for styling whenever possible.
+
+Scope CSS selectors that target native HTML elements with a classname if you
+cannot add a classname to the element directly. This keeps the styling
+encapsulated to the component and prevents styling from "leaking out" of the
+React component and into the rest of the project.
+
+#### ✅ Do
+
+```css
+a.myDestructiveComponent {
+  color: var(--color-destructive);
+}
+
+// this will only select `<a>` elements with the `myDestructiveComponent` classname
+```
+
+#### ❌ Don't
+
+```css
+a {
+  color: var(--color-destructive);
+}
+
+// this will select every `<a>` element in the project
+```
+
+### Component-level variables
+
+CSS custom properties can be used to define component-level variables. This
+allows you to define a value once and use it throughout the component. Consider
+the scope of these variables when you create and use one in your component.
+
+#### Private variables (most common)
+
+In most cases, you will want to define component variables on the parent of the
+component's DOM structure to prevent accidental styling leaks.
+
+```css
+.myComponent {
+  --myComponent--width: 72px;
+}
+```
+
+#### Public variables (⚠️ use with caution)
+
+If other Atlantis components, or consumers of Atlantis, shoud need to manipulate
+a value, then it should be set on `:root` and prefixed with `--public--`. These
+should represent relatively rare use cases, and should be used sparingly.
+
+```css
+.root {
+  --public--myComponent--width: 72px;
+}
+
+.myComponent {
+  width: var(--public--myComponent--width);
+}
+
+// this will allow anyone in a project consuming Atlantis to modify the width of the component
+// without needing to modify the component itself
+```

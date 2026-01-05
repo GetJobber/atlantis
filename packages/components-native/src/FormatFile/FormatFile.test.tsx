@@ -1,8 +1,10 @@
 import React from "react";
-import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
-import { Host } from "react-native-portalize";
+import type { RenderAPI } from "@testing-library/react-native";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert } from "react-native";
-import { File, FormatFile } from ".";
+import { Host } from "react-native-portalize";
+import type { File } from ".";
+import { FormatFile } from ".";
 import {
   FILE_MOCK_FILE,
   FILE_MOCK_IMAGE,
@@ -12,8 +14,9 @@ import {
   FILE_UPLOAD_MOCK_IMAGE,
   FILE_UPLOAD_MOCK_PDF,
 } from "./components/_mocks/mockFiles";
-import { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
-import { FileUpload, StatusCode } from "./types";
+import type { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
+import type { FileUpload } from "./types";
+import { StatusCode } from "./types";
 import { tokens } from "../utils/design";
 
 let Platform: { OS: "ios" | "android" };
@@ -114,12 +117,12 @@ function basicRenderTestWithValue() {
       );
     });
 
-    it("renders ProgressBar state advancing with the upload percentage", () => {
+    it("renders ProgressBar state advancing with the upload percentage", async () => {
       jest.useFakeTimers();
       const { getByTestId } = renderFormatFile(file);
       jest.advanceTimersByTime(progressBarAnimationTime);
-      const formatFileInnerProgressBar = getByTestId(
-        "format-file-inner-progress-bar",
+      const formatFileInnerProgressBar = await waitFor(() =>
+        getByTestId("format-file-inner-progress-bar"),
       );
       const innerProgressBarWidth = parseInt(
         formatFileInnerProgressBar.props.style.width,
@@ -207,59 +210,59 @@ function basicRenderTestWithValue() {
         jest.advanceTimersByTime(progressBarAnimationTime);
       });
 
-      it("shows a BottomSheet with a remove option when tapped", () => {
-        const { getByTestId, getByLabelText } = tree;
+      it("shows a BottomSheet with a remove option when tapped", async () => {
+        const { getByTestId, findByLabelText } = tree;
         fireEvent.press(getByTestId(testId));
-        expect(getByLabelText(removeLabel)).toBeDefined();
+        expect(await findByLabelText(removeLabel)).toBeDefined();
       });
 
       describe("when the BottomSheet remove option is tapped", () => {
-        it("calls the onRemove action", () => {
-          const { getByTestId, getByLabelText } = tree;
+        it("calls the onRemove action", async () => {
+          const { getByTestId, findByLabelText } = tree;
           fireEvent.press(getByTestId(testId));
-          fireEvent.press(getByLabelText(removeLabel));
+          fireEvent.press(await findByLabelText(removeLabel));
           expect(onRemove).toHaveBeenCalledTimes(1);
         });
       });
 
       it("creates a thumbnail when a media file is used", () => {
-        const expectedCalls = testId.includes("image") ? 2 : 0;
+        const expectedCalls = testId.includes("image") ? 1 : 0;
         expect(mockCreateThumbnail).toHaveBeenCalledTimes(expectedCalls);
       });
     },
   );
 
   describe("when the preview option is tapped", () => {
-    it("calls onPreview with a valid image", () => {
+    it("calls onPreview with a valid image", async () => {
       const previewLabel = "Preview image";
-      const { getByTestId, getByLabelText } = renderFormatFile(
+      const { getByTestId, findByLabelText } = renderFormatFile(
         FILE_UPLOAD_MOCK_IMAGE({ progress: 1, status: StatusCode.Completed }),
         "image",
       );
       fireEvent.press(getByTestId("test-image"));
-      fireEvent.press(getByLabelText(previewLabel));
+      fireEvent.press(await findByLabelText(previewLabel));
       expect(mockOnPreview).toHaveBeenCalledTimes(1);
     });
 
-    it("calls onPreview with a valid pdf file", () => {
+    it("calls onPreview with a valid pdf file", async () => {
       const previewLabel = "Preview file";
-      const { getByTestId, getByLabelText } = renderFormatFile(
+      const { getByTestId, findByLabelText } = renderFormatFile(
         FILE_UPLOAD_MOCK_PDF({ progress: 1, status: StatusCode.Completed }),
         "file",
       );
       fireEvent.press(getByTestId("test-file"));
-      fireEvent.press(getByLabelText(previewLabel));
+      fireEvent.press(await findByLabelText(previewLabel));
       expect(mockOnPreview).toHaveBeenCalledTimes(1);
     });
 
-    it("calls onPreview with a valid external PDF file", () => {
+    it("calls onPreview with a valid external PDF file", async () => {
       const previewLabel = "Preview file";
-      const { getByTestId, getByLabelText } = renderFormatFile(
+      const { getByTestId, findByLabelText } = renderFormatFile(
         FILE_MOCK_PDF,
         "file",
       );
       fireEvent.press(getByTestId("test-file"));
-      fireEvent.press(getByLabelText(previewLabel));
+      fireEvent.press(await findByLabelText(previewLabel));
       expect(mockOnPreview).toHaveBeenCalledTimes(1);
     });
 

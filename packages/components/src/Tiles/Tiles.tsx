@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import styles from "./Tiles.module.css";
-import { TilesProps } from "./types";
+import type { TilesProps } from "./types";
 import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
 
 export function Tiles({
@@ -16,6 +16,7 @@ export function Tiles({
   id,
   UNSAFE_className,
   UNSAFE_style,
+  align = "start",
 }: TilesProps) {
   return (
     <Tag
@@ -28,6 +29,7 @@ export function Tiles({
           "--public-tile-min-size": minSize,
           "--public-tile-space": getMappedAtlantisSpaceToken(gap),
           "--public-tiles-width": autoWidth ? "auto" : "100%",
+          "--public-tiles-align": align,
           ...UNSAFE_style?.container,
         } as React.CSSProperties
       }
