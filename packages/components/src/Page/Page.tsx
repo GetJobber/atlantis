@@ -1,94 +1,16 @@
-import type { ReactNode } from "react";
+import type { ReactNode, RefObject } from "react";
 import React from "react";
 import classnames from "classnames";
-import type { XOR } from "ts-xor";
 import styles from "./Page.module.css";
+import type { ButtonActionProps, PageProps } from "./types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
 import { Button, type ButtonProps } from "../Button";
-import { Menu, type SectionProps } from "../Menu";
+import { Menu } from "../Menu";
 import { Emphasis } from "../Emphasis";
 import { Container } from "../Container";
-
-export type ButtonActionProps = ButtonProps & {
-  ref?: React.RefObject<HTMLDivElement | null>;
-};
-
-interface PageFoundationProps {
-  readonly children: ReactNode | ReactNode[];
-
-  /**
-   * Title of the page.
-   *
-   * Supports any React node. If a string is provided, it will be rendered as an H1 heading.
-   * Otherwise it will be rendered as is.
-   *
-   * **Important**: If you're passing a custom element, it must include an H1-level heading within it.
-   * Ideally <Heading level={1}> should be used here.
-   */
-  readonly title: ReactNode;
-
-  /**
-   * TitleMetaData component to be displayed
-   * next to the title. Only compatible with string titles.
-   */
-  readonly titleMetaData?: ReactNode;
-
-  /**
-   * Subtitle of the page.
-   */
-  readonly subtitle?: string;
-
-  /**
-   * Determines the width of the page.
-   *
-   * Fill makes the width grow to 100%.
-   *
-   * Standard caps out at 1280px.
-   *
-   * Narrow caps out at 1024px.
-   *
-   * @default standard
-   */
-  readonly width?: "fill" | "standard" | "narrow";
-
-  /**
-   * Page title primary action button settings.
-   */
-  readonly primaryAction?: ButtonActionProps;
-
-  /**
-   * Page title secondary action button settings.
-   */
-  readonly secondaryAction?: ButtonActionProps;
-
-  /**
-   * Page title Action menu.
-   */
-  readonly moreActionsMenu?: SectionProps[];
-}
-
-interface PageWithIntroProps extends PageFoundationProps {
-  /**
-   * Content of the page. This supports basic markdown node types
-   * such as `_italic_`, `**bold**`, and `[link name](url)`.
-   */
-  readonly intro: string;
-
-  /**
-   * Causes any markdown links in the `intro` prop to open in a new
-   * tab, i.e. with `target="_blank"`.
-   *
-   * Can only be used if `intro` prop is also specified.
-   *
-   * Defaults to `false`.
-   */
-  readonly externalIntroLinks?: boolean;
-}
-
-export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
 
 export function Page({
   title,
@@ -102,9 +24,202 @@ export function Page({
   secondaryAction,
   moreActionsMenu = [],
 }: PageProps) {
-  const pageStyles = classnames(styles.page, styles[width]);
+  const { pageStyles, showActionGroup, showMenu } = usePage({
+    width,
+    moreActionsMenu,
+    primaryAction,
+    secondaryAction,
+  });
 
-  const showMenu = moreActionsMenu.length > 0;
+  return (
+    <PageWrapper pageStyles={pageStyles}>
+      <PageHeader>
+        <PageTitleBar>
+          <PageTitleMeta
+            title={title}
+            titleMetaData={titleMetaData}
+            subtitle={subtitle}
+          />
+          <PageActionGroup visible={!!showActionGroup}>
+            <PagePrimaryAction
+              ref={primaryAction?.ref}
+              visible={!!primaryAction}
+            >
+              <Button {...getActionProps(primaryAction)} />
+            </PagePrimaryAction>
+            <PageActionButton
+              ref={secondaryAction?.ref}
+              visible={!!secondaryAction}
+            >
+              <Button {...getActionProps(secondaryAction)} />
+            </PageActionButton>
+            <PageActionButton visible={!!showMenu}>
+              <Menu items={moreActionsMenu}></Menu>
+            </PageActionButton>
+          </PageActionGroup>
+        </PageTitleBar>
+        <PageIntro externalIntroLinks={externalIntroLinks}>{intro}</PageIntro>
+      </PageHeader>
+      <Content>{children}</Content>
+    </PageWrapper>
+  );
+}
+
+function PageWrapper({
+  children,
+  pageStyles,
+}: {
+  readonly children: ReactNode;
+  readonly pageStyles: string;
+}) {
+  return (
+    <div className={pageStyles}>
+      <Content>{children}</Content>
+    </div>
+  );
+}
+
+function PageIntro({
+  children,
+  externalIntroLinks,
+}: {
+  readonly children?: string;
+  readonly externalIntroLinks?: boolean;
+}) {
+  return (
+    children && (
+      <Text size="large">
+        <Markdown
+          content={children}
+          basicUsage={true}
+          externalLink={externalIntroLinks}
+        />
+      </Text>
+    )
+  );
+}
+
+function PageHeader({ children }: { readonly children: ReactNode }) {
+  return <Content>{children}</Content>;
+}
+
+function PageTitleBar({ children }: { readonly children: ReactNode }) {
+  return (
+    <Container name="page-titlebar" autoWidth>
+      <Container.Apply autoWidth>{children}</Container.Apply>
+    </Container>
+  );
+}
+
+function PageActionButton({
+  children,
+  ref,
+  visible,
+}: {
+  readonly children: ReactNode;
+  readonly ref?: RefObject<HTMLDivElement | null>;
+  readonly visible: boolean;
+}) {
+  return visible ? (
+    <div className={styles.actionButton} ref={ref}>
+      {children}
+    </div>
+  ) : null;
+}
+
+function PagePrimaryAction({
+  children,
+  ref,
+  visible,
+}: {
+  readonly children: ReactNode;
+  readonly ref?: RefObject<HTMLDivElement | null>;
+  readonly visible: boolean;
+}) {
+  return visible ? (
+    <div className={styles.primaryAction} ref={ref}>
+      {children}
+    </div>
+  ) : null;
+}
+
+function PageActionGroup({
+  children,
+  visible,
+}: {
+  readonly children: ReactNode;
+  readonly visible: boolean;
+}) {
+  return visible ? <div className={styles.actionGroup}>{children}</div> : null;
+}
+
+function PageTitleMeta({
+  title,
+  titleMetaData,
+  subtitle,
+}: {
+  readonly title: ReactNode;
+  readonly titleMetaData: ReactNode;
+  readonly subtitle?: string;
+}) {
+  return (
+    <div>
+      {typeof title === "string" && titleMetaData ? (
+        <PageTitleRow>
+          <Heading level={1}>{title}</Heading>
+          {titleMetaData}
+        </PageTitleRow>
+      ) : typeof title === "string" ? (
+        <Heading level={1}>{title}</Heading>
+      ) : (
+        title
+      )}
+      <PageSubtitle>{subtitle}</PageSubtitle>
+    </div>
+  );
+}
+
+function PageTitleRow({ children }: { readonly children: ReactNode }) {
+  return <div className={styles.titleRow}>{children}</div>;
+}
+
+function PageSubtitle({ children }: { readonly children?: string }) {
+  return (
+    children && (
+      <div className={styles.subtitle}>
+        <Text size="large" variation="subdued">
+          <Emphasis variation="bold">
+            <Markdown content={children} basicUsage={true} />
+          </Emphasis>
+        </Text>
+      </div>
+    )
+  );
+}
+
+export const getActionProps = (
+  actionProps?: ButtonActionProps,
+): ButtonProps => {
+  const buttonProps = (actionProps ?? {}) as ButtonProps & {
+    ref?: RefObject<HTMLDivElement | null>;
+  };
+  if (actionProps?.ref) delete buttonProps.ref;
+
+  return buttonProps;
+};
+
+function usePage({
+  width,
+  moreActionsMenu,
+  primaryAction,
+  secondaryAction,
+}: Pick<
+  PageProps,
+  "width" | "moreActionsMenu" | "primaryAction" | "secondaryAction"
+>) {
+  const pageStyles = classnames(styles.page, styles[width ?? "standard"]);
+
+  const showMenu = moreActionsMenu?.length ?? 0 > 0;
   const showActionGroup = showMenu || primaryAction || secondaryAction;
 
   if (primaryAction != undefined) {
@@ -118,81 +233,16 @@ export function Page({
     );
   }
 
-  return (
-    <div className={pageStyles}>
-      <Content>
-        <Content>
-          <Container name="page-titlebar" autoWidth>
-            <Container.Apply autoWidth>
-              <div className={classnames(styles.titleBar)}>
-                <div>
-                  {typeof title === "string" && titleMetaData ? (
-                    <div className={styles.titleRow}>
-                      <Heading level={1}>{title}</Heading>
-                      {titleMetaData}
-                    </div>
-                  ) : typeof title === "string" ? (
-                    <Heading level={1}>{title}</Heading>
-                  ) : (
-                    title
-                  )}
-                  {subtitle && (
-                    <div className={styles.subtitle}>
-                      <Text size="large" variation="subdued">
-                        <Emphasis variation="bold">
-                          <Markdown content={subtitle} basicUsage={true} />
-                        </Emphasis>
-                      </Text>
-                    </div>
-                  )}
-                </div>
-                {showActionGroup && (
-                  <div className={styles.actionGroup}>
-                    {primaryAction && (
-                      <div
-                        className={styles.primaryAction}
-                        ref={primaryAction.ref}
-                      >
-                        <Button {...getActionProps(primaryAction)} />
-                      </div>
-                    )}
-                    {secondaryAction && (
-                      <div
-                        className={styles.actionButton}
-                        ref={secondaryAction.ref}
-                      >
-                        <Button {...getActionProps(secondaryAction)} />
-                      </div>
-                    )}
-                    {showMenu && (
-                      <div className={styles.actionButton}>
-                        <Menu items={moreActionsMenu}></Menu>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            </Container.Apply>
-          </Container>
-          {intro && (
-            <Text size="large">
-              <Markdown
-                content={intro}
-                basicUsage={true}
-                externalLink={externalIntroLinks}
-              />
-            </Text>
-          )}
-        </Content>
-        <Content>{children}</Content>
-      </Content>
-    </div>
-  );
+  return { pageStyles, showActionGroup, showMenu };
 }
 
-export const getActionProps = (actionProps: ButtonActionProps): ButtonProps => {
-  const buttonProps = { ...actionProps };
-  if (actionProps.ref) delete buttonProps.ref;
-
-  return buttonProps;
-};
+Page.ActionButton = PageActionButton;
+Page.PrimaryAction = PagePrimaryAction;
+Page.ActionGroup = PageActionGroup;
+Page.TitleMeta = PageTitleMeta;
+Page.TitleRow = PageTitleRow;
+Page.Subtitle = PageSubtitle;
+Page.Intro = PageIntro;
+Page.Header = PageHeader;
+Page.TitleBar = PageTitleBar;
+Page.Wrapper = PageWrapper;
