@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import type { FieldValues } from "react-hook-form";
 import { FormProvider } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import type { LayoutChangeEvent } from "react-native";
-import { Keyboard, Platform, View, findNodeHandle } from "react-native";
+import {
+  Keyboard,
+  Platform,
+  TextInput as RNTextInput,
+  ScrollView,
+  View,
+  findNodeHandle,
+} from "react-native";
 import { useStyles } from "./Form.style";
 import { FormErrorBanner } from "./components/FormErrorBanner";
 import { KEYBOARD_SAVE_BUTTON_DISTANCE } from "./constants";
@@ -27,7 +41,10 @@ import { FormSaveButton } from "./components/FormSaveButton";
 import { useSaveButtonPosition } from "./hooks/useSaveButtonPosition";
 import { FormCache } from "./components/FormCache/FormCache";
 import { useAtlantisFormContext } from "./context/AtlantisFormContext";
-import { InputAccessoriesProvider } from "../InputText";
+import {
+  InputAccessoriesProvider,
+  useInputAccessoriesContext,
+} from "../InputText";
 import { tokens } from "../utils/design";
 import { ErrorMessageProvider } from "../ErrorMessageWrapper";
 
@@ -71,6 +88,7 @@ function InternalForm<T extends FieldValues, S>({
   const { scrollViewRef, bottomViewRef, scrollToTop } = useFormViewRefs();
   const [saveButtonHeight, setSaveButtonHeight] = useState(0);
   const [messageBannerHeight, setMessageBannerHeight] = useState(0);
+  const { setIsScrolling } = useInputAccessoriesContext();
   const {
     formMethods,
     handleSubmit,
@@ -108,8 +126,14 @@ function InternalForm<T extends FieldValues, S>({
   const [isSecondaryActionLoading, setIsSecondaryActionLoading] =
     useState<boolean>(false);
 
-  const extraViewHeight = paddingBottom + KEYBOARD_SAVE_BUTTON_DISTANCE;
-  const calculatedKeyboardHeight = keyboardHeight - extraViewHeight;
+  const extraViewHeight = useMemo(
+    () => paddingBottom + KEYBOARD_SAVE_BUTTON_DISTANCE,
+    [paddingBottom],
+  );
+  const calculatedKeyboardHeight = useMemo(
+    () => keyboardHeight - extraViewHeight,
+    [keyboardHeight, extraViewHeight],
+  );
 
   useScrollToError({
     formState: formMethods.formState,
@@ -122,9 +146,8 @@ function InternalForm<T extends FieldValues, S>({
 
   const keyboardProps = Platform.select({
     ios: {
-      // onKeyboardDidHide: handleKeyboardHide,
-      // onKeyboardDidShow: handleKeyboardShow,
-      onKeyboardDidChangeFrame: handleKeyboardDidChangeFrame,
+      onKeyboardWillHide: handleKeyboardHide,
+      onKeyboardWillShow: handleKeyboardShow,
     },
     android: {
       onKeyboardDidHide: handleKeyboardHide,
@@ -132,9 +155,9 @@ function InternalForm<T extends FieldValues, S>({
     },
   });
 
-  const onLayout = (event: LayoutChangeEvent) => {
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
     setMessageBannerHeight(event.nativeEvent.layout.height);
-  };
+  }, []);
 
   const styles = useStyles();
 
@@ -179,6 +202,12 @@ function InternalForm<T extends FieldValues, S>({
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
             }
+            onScrollBeginDrag={() => {
+              setIsScrolling(true);
+            }}
+            onScrollEndDrag={() => {
+              setIsScrolling(false);
+            }}
           >
             <View
               onLayout={({ nativeEvent }) => {
@@ -230,7 +259,7 @@ function InternalForm<T extends FieldValues, S>({
     </FormProvider>
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   function handleKeyboardDidChangeFrame(frames: Record<string, any>) {
     if (
       frames &&
@@ -258,6 +287,7 @@ function InternalForm<T extends FieldValues, S>({
         // This fixes extra whitespace below the form if it was scrolled down while the keyboard was open
         // i.e. a View below the form is higher than the bottom of the window
         if (y < windowHeight) {
+          console.log("scrollToEnd on hide");
           scrollViewRef?.current?.scrollToEnd();
         }
       },
