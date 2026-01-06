@@ -43,6 +43,7 @@
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   outline: none;
+  overflow-y: auto;
   background-color: var(--color-surface);
   flex: 0 0 auto;
 }
