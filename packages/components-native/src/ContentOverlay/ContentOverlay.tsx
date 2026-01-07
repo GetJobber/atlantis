@@ -84,7 +84,7 @@ export function ContentOverlay({
       return [];
     }
 
-    return ["100%"];
+    return ["75%", "95%"];
   }, [adjustToContentHeight]);
 
   const onCloseController = () => {
