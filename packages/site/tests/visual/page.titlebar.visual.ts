@@ -6,13 +6,17 @@ test.describe("Page TitleBar Responsive Visuals", () => {
     await page.goto("/visual-tests/page");
     // Allow any initial layout/render to settle
     await page.waitForTimeout(200);
-    await expect(page).toHaveScreenshot("page-titlebar-small.png");
+    await expect(page).toHaveScreenshot("page-titlebar-small.png", {
+      fullPage: true,
+    });
   });
 
   test("large viewport inlines actions", async ({ page }) => {
     await page.setViewportSize({ width: 1200, height: 6000 });
     await page.goto("/visual-tests/page");
     await page.waitForTimeout(200);
-    await expect(page).toHaveScreenshot("page-titlebar-large.png");
+    await expect(page).toHaveScreenshot("page-titlebar-large.png", {
+      fullPage: true,
+    });
   });
 });
