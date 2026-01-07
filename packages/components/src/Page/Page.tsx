@@ -36,22 +36,22 @@ export function Page({
   });
 
   return (
-    <PageWrapper pageStyles={pageStyles} {...dataAttrs}>
-      <PageHeader>
-        <PageTitleBar>
-          <PageTitleMeta
+    <Page.Wrapper pageStyles={pageStyles} {...dataAttrs}>
+      <Page.Header>
+        <Page.TitleBar>
+          <Page.TitleMeta
             title={title}
             titleMetaData={titleMetaData}
             subtitle={subtitle}
           />
-          <PageActionGroup visible={!!showActionGroup}>
-            <PagePrimaryAction
+          <Page.ActionGroup visible={!!showActionGroup}>
+            <Page.PrimaryAction
               ref={primaryAction?.ref}
               visible={!!primaryAction}
             >
               <Button {...getActionProps(primaryAction)} fullWidth />
-            </PagePrimaryAction>
-            <PageActionButton
+            </Page.PrimaryAction>
+            <Page.ActionButton
               ref={secondaryAction?.ref}
               visible={!!secondaryAction}
             >
@@ -60,16 +60,16 @@ export function Page({
                 fullWidth
                 type="secondary"
               />
-            </PageActionButton>
-            <PageActionButton visible={!!showMenu}>
+            </Page.ActionButton>
+            <Page.ActionButton visible={!!showMenu}>
               <Menu items={moreActionsMenu}></Menu>
-            </PageActionButton>
-          </PageActionGroup>
-        </PageTitleBar>
+            </Page.ActionButton>
+          </Page.ActionGroup>
+        </Page.TitleBar>
         <PageIntro externalIntroLinks={externalIntroLinks}>{intro}</PageIntro>
-      </PageHeader>
+      </Page.Header>
       <Content>{children}</Content>
-    </PageWrapper>
+    </Page.Wrapper>
   );
 }
 
