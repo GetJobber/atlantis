@@ -49,13 +49,17 @@ export function Page({
               ref={primaryAction?.ref}
               visible={!!primaryAction}
             >
-              <Button {...getActionProps(primaryAction)} />
+              <Button {...getActionProps(primaryAction)} fullWidth />
             </PagePrimaryAction>
             <PageActionButton
               ref={secondaryAction?.ref}
               visible={!!secondaryAction}
             >
-              <Button {...getActionProps(secondaryAction)} type="secondary" />
+              <Button
+                {...getActionProps(secondaryAction)}
+                fullWidth
+                type="secondary"
+              />
             </PageActionButton>
             <PageActionButton visible={!!showMenu}>
               <Menu items={moreActionsMenu}></Menu>
@@ -263,17 +267,6 @@ function usePage({
 
   const showMenu = moreActionsMenu?.length ?? 0 > 0;
   const showActionGroup = showMenu || primaryAction || secondaryAction;
-
-  if (primaryAction != undefined) {
-    primaryAction = Object.assign({ fullWidth: true }, primaryAction);
-  }
-
-  if (secondaryAction != undefined) {
-    secondaryAction = Object.assign(
-      { type: "secondary", fullWidth: true },
-      secondaryAction,
-    );
-  }
 
   return { pageStyles, showActionGroup, showMenu };
 }
