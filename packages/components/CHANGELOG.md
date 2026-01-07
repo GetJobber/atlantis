@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.106.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.2...@jobber/components@6.106.3) (2025-12-22)
+
+
+### Bug Fixes
+
+* **components:** Fix InputText label having issues with Chrome's autocomplete ([#2854](https://github.com/GetJobber/atlantis/issues/2854)) ([93ea542](https://github.com/GetJobber/atlantis/commit/93ea54276e0a521ecc217dc2ad77088610d2d77b))
+* **components:** Provide the InputDateV2's autocomplete prop to the inputtext ([#2853](https://github.com/GetJobber/atlantis/issues/2853)) ([f17a6dc](https://github.com/GetJobber/atlantis/commit/f17a6dc1946d5d359dddcb00fb563b9923ac5cad))
+
+
+
+
+
+## [6.106.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.1...@jobber/components@6.106.2) (2025-12-19)
+
+
+### Bug Fixes
+
+* **components:** fix issue clearing time on safari ([#2851](https://github.com/GetJobber/atlantis/issues/2851)) ([42c0345](https://github.com/GetJobber/atlantis/commit/42c0345571da53f8b8f16936cf6d1789c8e5aa2d))
+
+
+
+
+
+## [6.106.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.0...@jobber/components@6.106.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* **components:** Page's titlebar was resizing on small screen causing the flicker ([#2845](https://github.com/GetJobber/atlantis/issues/2845)) ([182836a](https://github.com/GetJobber/atlantis/commit/182836a164c66032e3c0fc3c533027d7ebe575d2))
+
+
+
+
+
+# [6.106.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.5...@jobber/components@6.106.0) (2025-12-12)
+
+
+### Features
+
+* allow alternate colors on ProgressBar ([#2836](https://github.com/GetJobber/atlantis/issues/2836)) ([df6ac57](https://github.com/GetJobber/atlantis/commit/df6ac5723d79daa07b4d29473259f46ba45f2304))
+
+
+
+
+
+## [6.105.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.4...@jobber/components@6.105.5) (2025-12-10)
+
+
+### Bug Fixes
+
+* **components:** Disable scrollwheel updating InputNumber v2's value due to poor UX ([#2847](https://github.com/GetJobber/atlantis/issues/2847)) ([3c19398](https://github.com/GetJobber/atlantis/commit/3c19398ea42d4663e77469678e7adb064d75e54d))
+
+
+
+
+
 ## [6.105.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.105.3...@jobber/components@6.105.4) (2025-12-03)
 
 **Note:** Version bump only for package @jobber/components

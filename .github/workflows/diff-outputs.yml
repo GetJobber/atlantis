@@ -1,0 +1,70 @@
+name: Diff Outputs
+
+on: workflow_dispatch
+
+jobs:
+  diff-outputs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure git author
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Check for differences in built assets
+        run: |
+          # Exit the script if any command fails
+          set -e
+
+          clean_everything() {
+            echo "Deleting all dist/cache/ignored directories..."
+            git clean -Xfd
+          }
+
+          install_and_build() {
+            echo "Clean installing dependencies..."
+            npm install
+          }
+
+          stage_built_assets() {
+            git add --force **/dist/** \
+              ":(exclude)**/node_modules/**/dist/**" \
+              ":(exclude)**/.rollup.cache/**/dist/**" \
+              ":(exclude)node_modules/**/dist/**"
+          }
+
+          echo "Checking out master..."
+          git fetch --depth=1 origin master
+          git checkout master
+
+          echo "Building master..."
+          clean_everything
+          install_and_build
+
+          echo "Checking out the current branch..."
+          git checkout -
+
+          echo "Committing built assets from master..."
+          stage_built_assets
+          git commit --no-verify -m "before (master)"
+
+          echo "Building this branch..."
+          clean_everything
+          install_and_build
+
+          echo "Staging built assets from this branch..."
+          stage_built_assets
+
+          echo "------------------------------------------------------------------------"
+          echo "🧐 Checking for differences in built assets..."
+          echo "------------------------------------------------------------------------"
+          if git diff --cached --exit-code --color=always; then
+            echo "✅ No differences found in built assets!"
+          else
+            echo "------------------------------------------------------------------------"
+            echo "⚠️ Differences found in built assets! This indicates that the compiled outputs in this branch don't match what master produces."
+            echo "👉 Please investigate the differences above to see if they are expected."
+            exit 1
+          fi

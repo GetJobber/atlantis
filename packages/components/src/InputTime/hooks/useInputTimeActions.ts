@@ -54,6 +54,9 @@ export function useInputTimeActions({
     if (inputRef?.current) {
       if (!inputRef.current.checkValidity()) {
         inputRef.current.value = "";
+        inputRef.current.valueAsDate = null;
+        // Remove validation error. This is mainly needed for Safari
+        inputRef.current.setCustomValidity("");
       }
     }
   }

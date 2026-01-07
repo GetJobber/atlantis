@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.0...@jobber/components-native@0.95.1) (2025-12-15)
+
+
+### Bug Fixes
+
+* **components-native:** Fix useFormController setting defaultValue false on checkbox and switches to undefined  ([#2849](https://github.com/GetJobber/atlantis/issues/2849)) ([01e5e41](https://github.com/GetJobber/atlantis/commit/01e5e41db36b62256ccc96a09bbcde3bc08079d4))
+
+
+
+
+
+# [0.95.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.94.0...@jobber/components-native@0.95.0) (2025-12-12)
+
+
+### Features
+
+* allow alternate colors on ProgressBar ([#2836](https://github.com/GetJobber/atlantis/issues/2836)) ([df6ac57](https://github.com/GetJobber/atlantis/commit/df6ac5723d79daa07b4d29473259f46ba45f2304))
+
+
+
+
+
+# [0.94.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.93.0...@jobber/components-native@0.94.0) (2025-12-08)
+
+
+### Features
+
+* **components-native:** Replace react-native-modalize with react-native-bottom-sheet ([#2803](https://github.com/GetJobber/atlantis/issues/2803)) ([c1cb478](https://github.com/GetJobber/atlantis/commit/c1cb4786dc6f121b63eabb1b39c2a54754d7426f))
+
+
+
+
+
 # [0.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.92.0...@jobber/components-native@0.93.0) (2025-12-02)
 
 

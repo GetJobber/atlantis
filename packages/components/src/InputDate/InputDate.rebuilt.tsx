@@ -99,6 +99,7 @@ export const InputDateRebuilt = forwardRef<
           aria-required={activatorProps.ariaRequired === "true" ? true : false}
           autoFocus={props.autoFocus}
           id={activatorProps.id}
+          autoComplete={props.autoComplete}
           disabled={props.disabled}
           error={props.error}
           readOnly={props.readOnly}
