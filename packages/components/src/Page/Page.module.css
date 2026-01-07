@@ -74,6 +74,7 @@
     margin: 0;
     flex: 0 auto;
   }
+
   .titleBar .actionButton {
     margin-left: var(--space-small);
   }
