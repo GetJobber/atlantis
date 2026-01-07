@@ -63,8 +63,7 @@
   flex: 1;
 }
 
-.actionButton > div,
-.actionButton > button {
+.actionButton > div {
   width: 100%;
 }
 

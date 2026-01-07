@@ -36,7 +36,7 @@ export default {
       extract: "styles.css",
       inject: false,
       modules: {
-        generateScopedName: "[name]__[local]__[hash:base64:5]",
+        generateScopedName: "[hash:base64]",
         globalModulePaths: [/node_modules/],
       },
       autoModules: false,
