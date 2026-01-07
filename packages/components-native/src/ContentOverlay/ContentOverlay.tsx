@@ -18,7 +18,6 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Portal } from "react-native-portalize";
-import { useKeyboardVisibility } from "./hooks/useKeyboardVisibility";
 import { useStyles } from "./ContentOverlay.style";
 import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
 import type {
@@ -27,7 +26,7 @@ import type {
   ModalBackgroundColor,
 } from "./types";
 import { UNSAFE_WrappedModalize } from "./UNSAFE_WrappedModalize";
-import { useIsScreenReaderEnabled } from "../hooks";
+import { useIsScreenReaderEnabled, useKeyboardVisibility } from "../hooks";
 import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
