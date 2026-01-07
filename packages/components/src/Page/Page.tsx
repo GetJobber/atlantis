@@ -11,6 +11,8 @@ import { Button, type ButtonProps } from "../Button";
 import { Menu } from "../Menu";
 import { Emphasis } from "../Emphasis";
 import { Container } from "../Container";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import type { CommonAtlantisProps } from "../sharedHelpers/types";
 
 export function Page({
   title,
@@ -23,7 +25,9 @@ export function Page({
   primaryAction,
   secondaryAction,
   moreActionsMenu = [],
+  ...rest
 }: PageProps) {
+  const dataAttrs = filterDataAttributes(rest);
   const { pageStyles, showActionGroup, showMenu } = usePage({
     width,
     moreActionsMenu,
@@ -32,7 +36,7 @@ export function Page({
   });
 
   return (
-    <PageWrapper pageStyles={pageStyles}>
+    <PageWrapper pageStyles={pageStyles} {...dataAttrs}>
       <PageHeader>
         <PageTitleBar>
           <PageTitleMeta
@@ -51,7 +55,7 @@ export function Page({
               ref={secondaryAction?.ref}
               visible={!!secondaryAction}
             >
-              <Button {...getActionProps(secondaryAction)} />
+              <Button {...getActionProps(secondaryAction)} type="secondary" />
             </PageActionButton>
             <PageActionButton visible={!!showMenu}>
               <Menu items={moreActionsMenu}></Menu>
@@ -68,12 +72,15 @@ export function Page({
 function PageWrapper({
   children,
   pageStyles,
+  ...rest
 }: {
   readonly children: ReactNode;
   readonly pageStyles: string;
 }) {
+  const dataAttrs = filterDataAttributes(rest);
+
   return (
-    <div className={pageStyles}>
+    <div className={pageStyles} {...dataAttrs}>
       <Content>{children}</Content>
     </div>
   );
@@ -103,10 +110,18 @@ function PageHeader({ children }: { readonly children: ReactNode }) {
   return <Content>{children}</Content>;
 }
 
-function PageTitleBar({ children }: { readonly children: ReactNode }) {
+function PageTitleBar({ children, ...rest }: { readonly children: ReactNode }) {
+  const dataAttrs = filterDataAttributes(rest);
+
   return (
-    <Container name="page-titlebar" autoWidth>
-      <Container.Apply autoWidth>{children}</Container.Apply>
+    <Container
+      name="page-titlebar"
+      autoWidth
+      dataAttributes={dataAttrs as CommonAtlantisProps["dataAttributes"]}
+    >
+      <Container.Apply autoWidth>
+        <div className={styles.titleBar}>{children}</div>
+      </Container.Apply>
     </Container>
   );
 }
@@ -115,13 +130,16 @@ function PageActionButton({
   children,
   ref,
   visible,
+  ...rest
 }: {
   readonly children: ReactNode;
   readonly ref?: RefObject<HTMLDivElement | null>;
   readonly visible: boolean;
 }) {
+  const dataAttrs = filterDataAttributes(rest);
+
   return visible ? (
-    <div className={styles.actionButton} ref={ref}>
+    <div className={styles.actionButton} ref={ref} {...dataAttrs}>
       {children}
     </div>
   ) : null;
@@ -131,13 +149,16 @@ function PagePrimaryAction({
   children,
   ref,
   visible,
+  ...rest
 }: {
   readonly children: ReactNode;
   readonly ref?: RefObject<HTMLDivElement | null>;
   readonly visible: boolean;
 }) {
+  const dataAttrs = filterDataAttributes(rest);
+
   return visible ? (
-    <div className={styles.primaryAction} ref={ref}>
+    <div className={styles.primaryAction} ref={ref} {...dataAttrs}>
       {children}
     </div>
   ) : null;
@@ -146,24 +167,37 @@ function PagePrimaryAction({
 function PageActionGroup({
   children,
   visible,
+  ...rest
 }: {
   readonly children: ReactNode;
   readonly visible: boolean;
 }) {
-  return visible ? <div className={styles.actionGroup}>{children}</div> : null;
+  const dataAttrs = filterDataAttributes(rest);
+
+  return visible ? (
+    <div className={styles.actionGroup} {...dataAttrs}>
+      {children}
+    </div>
+  ) : null;
 }
 
 function PageTitleMeta({
   title,
   titleMetaData,
   subtitle,
+  elem,
+  ...rest
 }: {
   readonly title: ReactNode;
   readonly titleMetaData: ReactNode;
   readonly subtitle?: string;
+  readonly elem?: React.ElementType;
 }) {
+  const dataAttrs = filterDataAttributes(rest);
+  const Tag = elem ?? "div";
+
   return (
-    <div>
+    <Tag {...dataAttrs}>
       {typeof title === "string" && titleMetaData ? (
         <PageTitleRow>
           <Heading level={1}>{title}</Heading>
@@ -175,18 +209,26 @@ function PageTitleMeta({
         title
       )}
       <PageSubtitle>{subtitle}</PageSubtitle>
+    </Tag>
+  );
+}
+
+function PageTitleRow({ children, ...rest }: { readonly children: ReactNode }) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.titleRow} {...dataAttrs}>
+      {children}
     </div>
   );
 }
 
-function PageTitleRow({ children }: { readonly children: ReactNode }) {
-  return <div className={styles.titleRow}>{children}</div>;
-}
+function PageSubtitle({ children, ...rest }: { readonly children?: string }) {
+  const dataAttrs = filterDataAttributes(rest);
 
-function PageSubtitle({ children }: { readonly children?: string }) {
   return (
     children && (
-      <div className={styles.subtitle}>
+      <div className={styles.subtitle} {...dataAttrs}>
         <Text size="large" variation="subdued">
           <Emphasis variation="bold">
             <Markdown content={children} basicUsage={true} />

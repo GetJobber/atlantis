@@ -63,7 +63,8 @@
   flex: 1;
 }
 
-.actionButton > div {
+.actionButton > div,
+.actionButton > button {
   width: 100%;
 }
 
@@ -74,6 +75,7 @@
     margin: 0;
     flex: 0 auto;
   }
+
   .titleBar .actionButton {
     margin-left: var(--space-small);
   }

@@ -15,6 +15,11 @@ const rewriteLink = (item: string) => {
   return newItem;
 };
 export default defineConfig({
+  css: {
+    modules: {
+      generateScopedName: "[name]__[local]__[hash:base64:5]",
+    },
+  },
   plugins: [
     react(),
     mdx({
