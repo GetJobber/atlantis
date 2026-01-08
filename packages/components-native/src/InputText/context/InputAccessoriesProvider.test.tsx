@@ -8,6 +8,7 @@ import { InputText } from "../InputText";
 const mockUseFormController = jest.fn();
 jest.mock("../../hooks", () => {
   return {
+    ...jest.requireActual("../../hooks"),
     useFormController: (
       ...args: [{ name: string; value: string; validations: unknown }]
     ) => mockUseFormController(...args),
