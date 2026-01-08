@@ -118,12 +118,6 @@ export interface InputFieldWrapperProps {
    */
   readonly loadingType?: "spinner" | "glimmer";
 
-  /**
-   * @internal DO NOT USE UNLESS YOU TALK TO MICHAEL PARADIS FIRST
-   * TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.
-   * This hack should be removed once we swap keyboard aware libraries in JOB-147156
-   *  If this is needed then we need to figure out a better solution.
-   */
   readonly scrollViewHackOnLayout?: (event: LayoutChangeEvent) => void;
 }
 
