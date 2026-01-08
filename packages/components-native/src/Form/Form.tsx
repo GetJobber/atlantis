@@ -65,6 +65,7 @@ function InternalForm<T extends FieldValues, S>({
   secondaryActions,
   saveButtonOffset,
   showStickySaveButton = false,
+  disableKeyboardAwareScroll = false,
   renderFooter,
   UNSAFE_allowDiscardLocalCacheWhenOffline,
 }: InternalFormProps<T, S>) {
@@ -165,7 +166,7 @@ function InternalForm<T extends FieldValues, S>({
         >
           <KeyboardAwareScrollView
             enableResetScrollToCoords={false}
-            enableAutomaticScroll={true}
+            enableAutomaticScroll={!disableKeyboardAwareScroll}
             enableOnAndroid={edgeToEdgeEnabled}
             keyboardOpeningTime={
               Platform.OS === "ios" ? tokens["timing-slowest"] : 0
