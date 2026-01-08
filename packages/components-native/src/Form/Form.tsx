@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import type { FieldValues } from "react-hook-form";
 import { FormProvider } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -26,7 +26,10 @@ import { FormSaveButton } from "./components/FormSaveButton";
 import { useSaveButtonPosition } from "./hooks/useSaveButtonPosition";
 import { FormCache } from "./components/FormCache/FormCache";
 import { useAtlantisFormContext } from "./context/AtlantisFormContext";
-import { InputAccessoriesProvider } from "../InputText";
+import {
+  InputAccessoriesProvider,
+  useInputAccessoriesContext,
+} from "../InputText";
 import { tokens } from "../utils/design";
 import { ErrorMessageProvider } from "../ErrorMessageWrapper";
 
@@ -70,7 +73,7 @@ function InternalForm<T extends FieldValues, S>({
   const { scrollViewRef, bottomViewRef, scrollToTop } = useFormViewRefs();
   const [saveButtonHeight, setSaveButtonHeight] = useState(0);
   const [messageBannerHeight, setMessageBannerHeight] = useState(0);
-  // const { setIsScrolling } = useInputAccessoriesContext();
+  const { setIsScrolling } = useInputAccessoriesContext();
   const {
     formMethods,
     handleSubmit,
@@ -108,12 +111,8 @@ function InternalForm<T extends FieldValues, S>({
   const [isSecondaryActionLoading, setIsSecondaryActionLoading] =
     useState<boolean>(false);
 
-  const { calculatedKeyboardHeight } = useMemo(() => {
-    return {
-      calculatedKeyboardHeight:
-        keyboardHeight - (paddingBottom + KEYBOARD_SAVE_BUTTON_DISTANCE),
-    };
-  }, [paddingBottom, keyboardHeight]);
+  const extraViewHeight = paddingBottom + KEYBOARD_SAVE_BUTTON_DISTANCE;
+  const calculatedKeyboardHeight = keyboardHeight - extraViewHeight;
 
   useScrollToError({
     formState: formMethods.formState,
@@ -178,12 +177,12 @@ function InternalForm<T extends FieldValues, S>({
             contentContainerStyle={
               !keyboardHeight && styles.scrollContentContainer
             }
-            // onScrollBeginDrag={() => {
-            //   setIsScrolling(true);
-            // }}
-            // onScrollEndDrag={() => {
-            //   setIsScrolling(false);
-            // }}
+            onScrollBeginDrag={() => {
+              setIsScrolling(true);
+            }}
+            onScrollEndDrag={() => {
+              setIsScrolling(false);
+            }}
           >
             <View
               onLayout={({ nativeEvent }) => {
