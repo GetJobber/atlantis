@@ -31,14 +31,15 @@ import type {
 import { InputFieldWrapper } from "../InputFieldWrapper";
 import { useCommonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
 import { useScreenInformation } from "../Form/hooks/useScreenInformation";
-// import { useScreenInformation } from "../Form/hooks/useScreenInformation";
 
 /**
+ * TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.
+ * This hack should be removed once we swap keyboard aware libraries in JOB-147156
+ * If this is needed then we need to figure out a better solution.
  * Buffer zone in pixels for offscreen detection.
  * This makes the detection more sensitive by marking the component as offscreen
  * even if it's technically still visible but within this buffer distance from the edge.
  */
-// 44 (accessory bar height) + 20 (buffer)
 const KEYBOARD_AWARE_DETECTION_BUFFER = 40;
 
 export interface InputTextProps
@@ -383,6 +384,10 @@ function InputTextInternal(
 
   const styles = useStyles();
   const commonInputStyles = useCommonInputStyles();
+
+  // TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.
+  // This hack should be removed once we swap keyboard aware libraries in JOB-147156
+  // If this is needed then we need to figure out a better solution.
   const { headerHeight, windowHeight } = useScreenInformation();
   const { keyboardHeight } = useKeyboardVisibility();
   const maxHeight = useDeferredValue(
@@ -392,11 +397,13 @@ function InputTextInternal(
       KEYBOARD_AWARE_DETECTION_BUFFER,
   );
   const [inputHeight, setInputHeight] = useState(0);
-
   const enableScroll = useDeferredValue(inputHeight > maxHeight);
 
   return (
     <InputFieldWrapper
+      // TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.
+      // This hack should be removed once we swap keyboard aware libraries in JOB-147156
+      // If this is needed then we need to figure out a better solution.
       scrollViewHackOnLayout={event => {
         event.target?.measureInWindow((_, y, __, height) => {
           setInputHeight(height);
@@ -447,8 +454,10 @@ function InputTextInternal(
         autoFocus={autoFocus}
         autoComplete={autoComplete}
         multiline={multiline}
+        // TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.
+        // This hack should be removed once we swap keyboard aware libraries in JOB-147156
+        // If this is needed then we need to figure out a better solution.
         // Makes sure it doesn't jump to the top of the screen when the keyboard is shown and a new line is added.
-        // State for tracking if the input should be scrollable.
         // This is tech debt related to an issue where keyboard aware scrollview doesn't work if `scrollEnabled` is true. However,
         // when `scrollEnabled` is false it causes an issue where super long text inputs will jump to the top when a new line is added to the bottom of the input.
         scrollEnabled={Platform.OS === "ios" && enableScroll}
