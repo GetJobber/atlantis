@@ -29,7 +29,7 @@ import type {
 } from "../InputFieldWrapper/InputFieldWrapper";
 import { InputFieldWrapper } from "../InputFieldWrapper";
 import { useCommonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
-// import { useScreenInformation } from "../Form/hooks/useScreenInformation";
+import { useScreenInformation } from "../Form/hooks/useScreenInformation";
 
 /**
  * Buffer zone in pixels for offscreen detection.
@@ -37,7 +37,7 @@ import { useCommonInputStyles } from "../InputFieldWrapper/CommonInputStyles.sty
  * even if it's technically still visible but within this buffer distance from the edge.
  */
 // 44 (accessory bar height) + 20 (buffer)
-// const KEYBOARD_AWARE_DETECTION_BUFFER = 64;
+const KEYBOARD_AWARE_DETECTION_BUFFER = 64;
 
 export interface InputTextProps
   extends Pick<
@@ -341,7 +341,6 @@ function InputTextInternal(
     unregister,
     setFocusedInput,
     canFocusNext,
-    isScrolling,
     onFocusNext,
   } = useInputAccessoriesContext();
   useEffect(() => {
@@ -443,8 +442,8 @@ function InputTextInternal(
         ]}
         // Prevent focus during scroll for multiline inputs to avoid
         // the input focusing when the user is trying to scroll the form
-        readOnly={readonly || (multiline && isScrolling && !focused)}
-        // readOnly={readonly}
+        // readOnly={readonly || (multiline && isScrolling && !focused)}
+        readOnly={readonly}
         editable={!disabled}
         keyboardType={keyboard}
         value={inputTransform(internalValue)}
