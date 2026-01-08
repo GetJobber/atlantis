@@ -7,6 +7,7 @@ declare const styles: {
   readonly "actionBar": string;
   readonly "leftAction": string;
   readonly "rightAction": string;
+  readonly "modalBody": string;
 };
 export = styles;
 

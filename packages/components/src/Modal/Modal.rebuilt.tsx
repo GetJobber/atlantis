@@ -73,6 +73,16 @@ export function ModalActions({
   );
 }
 
+export function ModalBody({ children }: PropsWithChildren) {
+  const { modalBody } = useModalStyles();
+
+  return (
+    <div className={modalBody} data-testid="ATL-Modal-Body">
+      {children}
+    </div>
+  );
+}
+
 export function ModalActivator({ children }: PropsWithChildren) {
   const { activatorRef } = useModalContext();
 

@@ -152,6 +152,7 @@
     "Modal",
     "Modal.Actions",
     "Modal.Activator",
+    "Modal.Body",
     "Modal.Content",
     "Modal.Header",
     "Modal.Provider",

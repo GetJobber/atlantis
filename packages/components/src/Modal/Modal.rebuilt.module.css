@@ -33,6 +33,8 @@
 }
 
 .modal {
+  display: flex;
+  flex-direction: column;
   position: relative;
   z-index: var(--elevation-modal);
   width: 100%;
@@ -43,7 +45,6 @@
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   outline: none;
-  overflow-y: auto;
   background-color: var(--color-surface);
   flex: 0 0 auto;
 }
@@ -120,4 +121,14 @@
 
 .rightAction > *:nth-child(2) {
   order: 1; /* 1 */
+}
+
+.modalBody {
+  min-height: 0;
+  padding: var(--modal--padding);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  flex: 1 1 auto;
+  --public-content--padding: 0;
 }

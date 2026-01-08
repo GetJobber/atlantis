@@ -12,5 +12,6 @@ export function useModalStyles(size?: keyof typeof sizes) {
     leftAction: styles.leftAction,
     rightAction: styles.rightAction,
     overlayBackground: styles.overlayBackground,
+    modalBody: styles.modalBody,
   };
 }
