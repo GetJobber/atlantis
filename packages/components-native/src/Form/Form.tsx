@@ -1,8 +1,23 @@
-import React, { useState } from "react";
+import React, {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import type { FieldValues } from "react-hook-form";
 import { FormProvider } from "react-hook-form";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Keyboard, Platform, View, findNodeHandle } from "react-native";
+import type { LayoutChangeEvent } from "react-native";
+import {
+  Keyboard,
+  Platform,
+  TextInput as RNTextInput,
+  ScrollView,
+  View,
+  findNodeHandle,
+} from "react-native";
 import { useStyles } from "./Form.style";
 import { FormErrorBanner } from "./components/FormErrorBanner";
 import { KEYBOARD_SAVE_BUTTON_DISTANCE } from "./constants";
@@ -111,8 +126,14 @@ function InternalForm<T extends FieldValues, S>({
   const [isSecondaryActionLoading, setIsSecondaryActionLoading] =
     useState<boolean>(false);
 
-  const extraViewHeight = paddingBottom + KEYBOARD_SAVE_BUTTON_DISTANCE;
-  const calculatedKeyboardHeight = keyboardHeight - extraViewHeight;
+  const extraViewHeight = useMemo(
+    () => paddingBottom + KEYBOARD_SAVE_BUTTON_DISTANCE,
+    [paddingBottom],
+  );
+  const calculatedKeyboardHeight = useMemo(
+    () => keyboardHeight - extraViewHeight,
+    [keyboardHeight, extraViewHeight],
+  );
 
   useScrollToError({
     formState: formMethods.formState,
@@ -133,6 +154,10 @@ function InternalForm<T extends FieldValues, S>({
       onKeyboardDidShow: handleKeyboardShow,
     },
   });
+
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
+    setMessageBannerHeight(event.nativeEvent.layout.height);
+  }, []);
 
   const styles = useStyles();
 
@@ -189,11 +214,7 @@ function InternalForm<T extends FieldValues, S>({
                 setFormContentHeight(nativeEvent.layout.height);
               }}
             >
-              <View
-                onLayout={({ nativeEvent }) => {
-                  setMessageBannerHeight(nativeEvent.layout.height);
-                }}
-              >
+              <View onLayout={onLayout}>
                 <FormMessageBanner bannerMessages={bannerMessages} />
                 <FormErrorBanner
                   networkError={bannerErrors?.networkError}
@@ -238,6 +259,21 @@ function InternalForm<T extends FieldValues, S>({
     </FormProvider>
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+  function handleKeyboardDidChangeFrame(frames: Record<string, any>) {
+    if (
+      frames &&
+      "endCoordinates" in frames &&
+      "height" in frames.endCoordinates &&
+      typeof frames.endCoordinates.height === "number" &&
+      frames.endCoordinates.height > keyboardHeight
+    ) {
+      handleKeyboardShow(frames);
+    } else {
+      handleKeyboardHide();
+    }
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleKeyboardShow(frames: Record<string, any>) {
     setKeyboardScreenY(frames.endCoordinates.screenY);
@@ -251,6 +287,7 @@ function InternalForm<T extends FieldValues, S>({
         // This fixes extra whitespace below the form if it was scrolled down while the keyboard was open
         // i.e. a View below the form is higher than the bottom of the window
         if (y < windowHeight) {
+          console.log("scrollToEnd on hide");
           scrollViewRef?.current?.scrollToEnd();
         }
       },
