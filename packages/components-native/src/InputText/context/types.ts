@@ -25,6 +25,4 @@ export interface InputAccessoriesContextProps {
   readonly onFocusNext: () => void;
   readonly onFocusPrevious: () => void;
   readonly setFocusedInput: (name: string) => void;
-  readonly isScrolling: boolean;
-  readonly setIsScrolling: (isScrolling: boolean) => void;
 }

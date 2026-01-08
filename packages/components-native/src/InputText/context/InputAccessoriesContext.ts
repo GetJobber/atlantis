@@ -12,8 +12,6 @@ const inputAccessoriesContextDefaultValues: InputAccessoriesContextProps = {
   onFocusNext: () => undefined,
   onFocusPrevious: () => undefined,
   setFocusedInput: () => undefined,
-  isScrolling: false,
-  setIsScrolling: () => undefined,
 };
 
 export const InputAccessoriesContext = createContext(

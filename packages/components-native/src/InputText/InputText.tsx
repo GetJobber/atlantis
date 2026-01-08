@@ -333,7 +333,6 @@ function InputTextInternal(
     setFocusedInput,
     canFocusNext,
     onFocusNext,
-    isScrolling,
   } = useInputAccessoriesContext();
   useEffect(() => {
     _name &&
@@ -414,16 +413,14 @@ function InputTextInternal(
           styleOverride?.inputText,
           loading && loadingType === "glimmer" && { color: "transparent" },
         ]}
-        // Prevent focus during scroll for multiline inputs to avoid
-        // the input focusing when the user is trying to scroll the form
-        readOnly={readonly || (multiline && isScrolling && !focused)}
+        readOnly={readonly}
         editable={!disabled}
         keyboardType={keyboard}
         value={inputTransform(internalValue)}
         autoFocus={autoFocus}
         autoComplete={autoComplete}
         multiline={multiline}
-        scrollEnabled={multiline}
+        scrollEnabled={false}
         textContentType={textContentType}
         onChangeText={handleChangeText}
         onSubmitEditing={handleOnSubmitEditing}
@@ -447,10 +444,6 @@ function InputTextInternal(
           trimWhitespace(inputTransform(field.value), updateFormAndState);
         }}
         ref={(instance: TextInput) => {
-          // if (autoFocus && instance) {
-          //   console.log("autoFocus", { ...instance });
-          //   instance.focus();
-          // }
           // RHF wants us to do it this way
           // https://react-hook-form.com/faqs#Howtosharerefusage
           textInputRef.current = instance;
