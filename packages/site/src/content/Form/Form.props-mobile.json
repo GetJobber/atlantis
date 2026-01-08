@@ -294,7 +294,7 @@
       },
       "disableKeyboardAwareScroll": {
         "defaultValue": null,
-        "description": "TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.\nDisables the keyboard aware scroll view.\nThis is useful when you want to disable the keyboard aware scroll view for a specific form.\nFor example, when you have a form with a lot of fields and you want to disable the keyboard aware scroll view.",
+        "description": "@internal Do not use this prop. It is a hack and will be removed.\nTODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.\nDisables the keyboard aware scroll view.\nThis is needed to fix issues with multiline inputs on iOS. DO NOT",
         "name": "disableKeyboardAwareScroll",
         "parent": {
           "fileName": "packages/components-native/src/Form/types.ts",
