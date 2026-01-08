@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.1...@jobber/components-native@0.95.2) (2026-01-08)
+
+
+### Bug Fixes
+
+* **components-native:** Improve scroll behaviour on multiline inputs ([#2868](https://github.com/GetJobber/atlantis/issues/2868)) ([f4f9ee2](https://github.com/GetJobber/atlantis/commit/f4f9ee2de70ca1e5fb2568385aa66ca2d2c65edf))
+
+
+
+
+
 ## [0.95.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.0...@jobber/components-native@0.95.1) (2025-12-15)
 
 
