@@ -67,6 +67,8 @@ export function ContentOverlay({
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
 
   const draggable = onBeforeExit ? false : isDraggable;
+  // Prevent the Overlay from being flush with the top of the screen, even if we are "100%" or "fullscreen"
+  const topInset = insets.top || tokens["space-larger"];
 
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
@@ -84,7 +86,7 @@ export function ContentOverlay({
       return [];
     }
 
-    return ["75%", "95%"];
+    return ["100%"];
   }, [adjustToContentHeight]);
 
   const onCloseController = () => {
@@ -232,7 +234,7 @@ export function ContentOverlay({
       enablePanDownToClose={draggable}
       enableContentPanningGesture={draggable}
       enableDynamicSizing={!fullScreen || adjustToContentHeight}
-      topInset={insets.top}
+      topInset={topInset}
     >
       {scrollEnabled ? (
         <BottomSheetScrollView
