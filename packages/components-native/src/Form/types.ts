@@ -201,6 +201,14 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * Renders a footer below the save button.
    */
   renderFooter?: React.ReactNode;
+
+  /**
+   * TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.
+   * Disables the keyboard aware scroll view.
+   * This is useful when you want to disable the keyboard aware scroll view for a specific form.
+   * For example, when you have a form with a lot of fields and you want to disable the keyboard aware scroll view.
+   */
+  disableKeyboardAwareScroll?: boolean;
 }
 
 export type InternalFormProps<T extends FieldValues, SubmitResponseType> = Omit<
