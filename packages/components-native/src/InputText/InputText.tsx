@@ -1,7 +1,6 @@
 import type { Ref, SyntheticEvent } from "react";
 import React, {
   forwardRef,
-  useDeferredValue,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -23,14 +22,13 @@ import type { Clearable } from "@jobber/hooks";
 import { useShowClear } from "@jobber/hooks";
 import { useStyles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
-import { useFormController, useKeyboardVisibility } from "../hooks";
+import { useFormController } from "../hooks";
 import type {
   InputFieldStyleOverride,
   InputFieldWrapperProps,
 } from "../InputFieldWrapper/InputFieldWrapper";
 import { InputFieldWrapper } from "../InputFieldWrapper";
 import { useCommonInputStyles } from "../InputFieldWrapper/CommonInputStyles.style";
-import { useScreenInformation } from "../Form/hooks/useScreenInformation";
 // import { useScreenInformation } from "../Form/hooks/useScreenInformation";
 
 /**
@@ -39,7 +37,7 @@ import { useScreenInformation } from "../Form/hooks/useScreenInformation";
  * even if it's technically still visible but within this buffer distance from the edge.
  */
 // 44 (accessory bar height) + 20 (buffer)
-const KEYBOARD_AWARE_DETECTION_BUFFER = 40;
+// const KEYBOARD_AWARE_DETECTION_BUFFER = 64;
 
 export interface InputTextProps
   extends Pick<
@@ -343,6 +341,7 @@ function InputTextInternal(
     unregister,
     setFocusedInput,
     canFocusNext,
+    isScrolling,
     onFocusNext,
   } = useInputAccessoriesContext();
   useEffect(() => {
@@ -383,25 +382,13 @@ function InputTextInternal(
 
   const styles = useStyles();
   const commonInputStyles = useCommonInputStyles();
-  const { headerHeight, windowHeight } = useScreenInformation();
-  const { keyboardHeight } = useKeyboardVisibility();
-  const maxHeight = useDeferredValue(
-    windowHeight -
-      headerHeight -
-      keyboardHeight -
-      KEYBOARD_AWARE_DETECTION_BUFFER,
-  );
-  const [inputHeight, setInputHeight] = useState(0);
-
-  const enableScroll = useDeferredValue(inputHeight > maxHeight);
+  // const { headerHeight, windowHeight } = useScreenInformation();
+  // State to track if the InputText component can fully fit on screen
+  // (i.e., it's completely visible). Use this state to handle visibility issues.
+  // const [canFullyFitOnScreen, setCanFullyFitOnScreen] = useState(true);
 
   return (
     <InputFieldWrapper
-      scrollViewHackOnLayout={event => {
-        event.target?.measureInWindow((_, y, __, height) => {
-          setInputHeight(height);
-        });
-      }}
       prefix={prefix}
       suffix={suffix}
       hasValue={hasValue}
@@ -421,6 +408,20 @@ function InputTextInternal(
       loadingType={loadingType}
     >
       <TextInput
+        // onLayout={(event: LayoutChangeEvent) => {
+        //   event.target?.measureInWindow((_, y, __, height) => {
+        //     // Check if component can't fully fit on screen (height only)
+        //     // Account for headerHeight at the top of the screen and buffer zone
+        //     const visibleTop = headerHeight + KEYBOARD_AWARE_DETECTION_BUFFER; // Top of visible area (below header) with buffer
+        //     const visibleBottom =
+        //       windowHeight - KEYBOARD_AWARE_DETECTION_BUFFER; // Bottom of visible area with buffer
+        //     const isOffScreen =
+        //       y < visibleTop || // Top edge is behind or above the header (with buffer)
+        //       y + height > visibleBottom; // Bottom edge is below the window (with buffer)
+
+        //     setCanFullyFitOnScreen(!isOffScreen);
+        //   });
+        // }}
         inputAccessoryViewID={inputAccessoryID || undefined}
         testID={testID}
         autoCapitalize={autoCapitalize}
@@ -440,7 +441,10 @@ function InputTextInternal(
           styleOverride?.inputText,
           loading && loadingType === "glimmer" && { color: "transparent" },
         ]}
-        readOnly={readonly}
+        // Prevent focus during scroll for multiline inputs to avoid
+        // the input focusing when the user is trying to scroll the form
+        readOnly={readonly || (multiline && isScrolling && !focused)}
+        // readOnly={readonly}
         editable={!disabled}
         keyboardType={keyboard}
         value={inputTransform(internalValue)}
@@ -451,7 +455,7 @@ function InputTextInternal(
         // State for tracking if the input should be scrollable.
         // This is tech debt related to an issue where keyboard aware scrollview doesn't work if `scrollEnabled` is true. However,
         // when `scrollEnabled` is false it causes an issue where super long text inputs will jump to the top when a new line is added to the bottom of the input.
-        scrollEnabled={Platform.OS === "ios" && enableScroll}
+        scrollEnabled={Platform.OS === "ios"}
         textContentType={textContentType}
         onChangeText={handleChangeText}
         onSubmitEditing={handleOnSubmitEditing}

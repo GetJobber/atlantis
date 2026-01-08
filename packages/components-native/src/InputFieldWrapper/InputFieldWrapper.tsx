@@ -1,10 +1,5 @@
 import React from "react";
-import type {
-  LayoutChangeEvent,
-  StyleProp,
-  TextStyle,
-  ViewStyle,
-} from "react-native";
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { Text as RNText, View } from "react-native";
 import type { FieldError } from "react-hook-form";
 import type { IconNames } from "@jobber/design";
@@ -117,8 +112,6 @@ export interface InputFieldWrapperProps {
    * Change the type of loading indicator to spinner or glimmer.
    */
   readonly loadingType?: "spinner" | "glimmer";
-
-  readonly scrollViewHackOnLayout?: (event: LayoutChangeEvent) => void;
 }
 
 export const INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID =
@@ -145,7 +138,6 @@ export function InputFieldWrapper({
   toolbarVisibility = "while-editing",
   loading = false,
   loadingType = "spinner",
-  scrollViewHackOnLayout,
 }: InputFieldWrapperProps) {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
@@ -172,7 +164,6 @@ export function InputFieldWrapper({
           disabled && styles.disabled,
           styleOverride?.container,
         ]}
-        onLayout={scrollViewHackOnLayout}
       >
         <View style={styles.field}>
           {prefix?.icon && (

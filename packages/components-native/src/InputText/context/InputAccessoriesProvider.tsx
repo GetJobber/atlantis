@@ -27,6 +27,8 @@ export function InputAccessoriesProvider({
     setElements,
     previousKey,
     nextKey,
+    isScrolling,
+    setIsScrolling,
   } = useInputAccessoriesProviderState();
 
   const colorScheme = useColorScheme();
@@ -46,6 +48,8 @@ export function InputAccessoriesProvider({
         onFocusNext,
         onFocusPrevious,
         setFocusedInput,
+        isScrolling,
+        setIsScrolling,
       }}
     >
       {children}
@@ -96,6 +100,7 @@ function useInputAccessoriesProviderState() {
   const [canFocusNext, setCanFocusNext] = useState(false);
   const [canFocusPrevious, setCanFocusPrevious] = useState(false);
   const [elements, setElements] = useState<Record<string, () => void>>({});
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const keys = Object.keys(elements);
   const selectedIndex = keys.findIndex(key => key === focusedInput);
@@ -119,5 +124,7 @@ function useInputAccessoriesProviderState() {
     setCanFocusPrevious,
     elements,
     setElements,
+    isScrolling,
+    setIsScrolling,
   };
 }
