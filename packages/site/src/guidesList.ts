@@ -6,6 +6,12 @@ export const guidesList = [
     imageURL: "/Overview.png",
   },
   {
+    title: "Atlantis quickstart",
+    to: "/guides/atlantis-quickstart",
+    sections: ["Getting started"],
+    imageURL: "/Atlantis.png",
+  },
+  {
     title: "Contributing to Atlantis",
     to: "/guides/contributing",
     sections: ["Contributing"],
