@@ -14,7 +14,8 @@ import type {
   TextInputProps,
   TextStyle,
 } from "react-native";
-import { Platform, TextInput } from "react-native";
+import { Platform, TextInput, findNodeHandle } from "react-native";
+import { useBottomSheetInternal } from "@gorhom/bottom-sheet";
 import type { RegisterOptions } from "react-hook-form";
 import type { IconNames } from "@jobber/design";
 import identity from "lodash/identity";
@@ -315,6 +316,11 @@ function InputTextInternal(
     disabled,
   });
 
+  // Bottom sheet keyboard handling - detect if we're inside a ContentOverlay
+  const bottomSheetContext = useBottomSheetInternal(true);
+  const animatedKeyboardState = bottomSheetContext?.animatedKeyboardState;
+  const textInputNodesRef = bottomSheetContext?.textInputNodesRef;
+
   // Android doesn't have an accessibility label like iOS does. By adding
   // it as a placeholder it readds it like a label. However we don't want to
   // add a placeholder on iOS.
@@ -344,6 +350,45 @@ function InputTextInternal(
       _name && unregister(_name);
     };
   }, [_name, register, textInputRef, unregister]);
+
+  // Bottom sheet keyboard handling - register/cleanup TextInput node
+  useEffect(() => {
+    if (!textInputNodesRef || !animatedKeyboardState) {
+      return;
+    }
+
+    const nodeHandle = findNodeHandle(textInputRef.current);
+
+    if (!nodeHandle) {
+      return;
+    }
+
+    if (!textInputNodesRef.current.has(nodeHandle)) {
+      textInputNodesRef.current.add(nodeHandle);
+    }
+
+    return () => {
+      const cleanupNodeHandle = findNodeHandle(textInputRef.current);
+
+      if (!cleanupNodeHandle) {
+        return;
+      }
+
+      const keyboardState = animatedKeyboardState.get();
+
+      // Remove the keyboard state target if it belongs to the current component
+      if (keyboardState.target === cleanupNodeHandle) {
+        animatedKeyboardState.set(state => ({
+          ...state,
+          target: undefined,
+        }));
+      }
+
+      if (textInputNodesRef.current.has(cleanupNodeHandle)) {
+        textInputNodesRef.current.delete(cleanupNodeHandle);
+      }
+    };
+  }, [textInputNodesRef, animatedKeyboardState, textInputRef]);
 
   const returnKeyType: ReturnKeyTypeOptions | undefined = useMemo(() => {
     if (!multiline) {
@@ -432,11 +477,13 @@ function InputTextInternal(
         secureTextEntry={secureTextEntry}
         {...androidA11yProps}
         onFocus={event => {
+          handleBottomSheetFocus(event);
           _name && setFocusedInput(_name);
           setFocused(true);
           onFocus?.(event);
         }}
         onBlur={event => {
+          handleBottomSheetBlur(event);
           _name && setFocusedInput("");
           setFocused(false);
           onBlur?.(event);
@@ -461,6 +508,43 @@ function InputTextInternal(
      */
     const removedIOSCharValue = isIOS ? value.replace(/\uFFFC/g, "") : value;
     updateFormAndState(removedIOSCharValue);
+  }
+
+  function handleBottomSheetFocus(event?: FocusEvent) {
+    if (!animatedKeyboardState || !textInputNodesRef || !event?.nativeEvent) {
+      return;
+    }
+
+    animatedKeyboardState.set(state => ({
+      ...state,
+      target: event.nativeEvent.target,
+    }));
+  }
+
+  function handleBottomSheetBlur(event?: FocusEvent) {
+    if (!animatedKeyboardState || !textInputNodesRef || !event?.nativeEvent) {
+      return;
+    }
+
+    const keyboardState = animatedKeyboardState.get();
+    const RNTextInput = require("react-native").TextInput;
+    const currentFocusedInput = findNodeHandle(
+      RNTextInput.State.currentlyFocusedInput(),
+    );
+
+    // Only remove the target if it belongs to the current component
+    // and if the currently focused input is not in the targets set
+    const shouldRemoveCurrentTarget =
+      keyboardState.target === event.nativeEvent.target;
+    const shouldIgnoreBlurEvent =
+      currentFocusedInput && textInputNodesRef.current.has(currentFocusedInput);
+
+    if (shouldRemoveCurrentTarget && !shouldIgnoreBlurEvent) {
+      animatedKeyboardState.set(state => ({
+        ...state,
+        target: undefined,
+      }));
+    }
   }
 
   function handleClear() {
@@ -509,7 +593,7 @@ interface UseTextInputRefProps {
 }
 
 function useTextInputRef({ ref, onClear }: UseTextInputRefProps) {
-  const textInputRef = useRef<InputTextRef | null>(null);
+  const textInputRef = useRef<TextInput | null>(null);
 
   useImperativeHandle(
     ref,

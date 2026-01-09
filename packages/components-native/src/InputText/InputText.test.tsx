@@ -836,4 +836,182 @@ describe("Transform", () => {
       });
     });
   });
+
+  describe("Bottom Sheet keyboard handling integration", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("works normally outside ContentOverlay (no bottom sheet context)", () => {
+      const focusCallback = jest.fn();
+      const blurCallback = jest.fn();
+      const a11yLabel = "Test InputText";
+
+      const { getByLabelText } = render(
+        <InputText
+          onFocus={focusCallback}
+          onBlur={blurCallback}
+          accessibilityLabel={a11yLabel}
+        />,
+      );
+
+      const input = getByLabelText(a11yLabel);
+
+      fireEvent(input, "onFocus");
+      expect(focusCallback).toHaveBeenCalled();
+
+      fireEvent(input, "onBlur");
+      expect(blurCallback).toHaveBeenCalled();
+    });
+
+    // eslint-disable-next-line max-statements
+    it("updates animatedKeyboardState on focus when inside ContentOverlay", () => {
+      const mockSet = jest.fn();
+      const mockGet = jest.fn(() => ({ target: undefined }));
+      const mockKeyboardState = {
+        value: { target: undefined },
+        set: mockSet,
+        get: mockGet,
+      };
+
+      const mockTextInputNodesRef = { current: new Set<number>() };
+
+      // Mock the useBottomSheetInternal hook to simulate being inside ContentOverlay
+      jest
+        .spyOn(require("@gorhom/bottom-sheet"), "useBottomSheetInternal")
+        .mockReturnValue({
+          animatedKeyboardState: mockKeyboardState,
+          textInputNodesRef: mockTextInputNodesRef,
+        });
+
+      const a11yLabel = "Test InputText";
+      const { getByLabelText } = render(
+        <InputText accessibilityLabel={a11yLabel} />,
+      );
+
+      const input = getByLabelText(a11yLabel);
+
+      fireEvent(input, "onFocus", {
+        nativeEvent: { target: 123 },
+      });
+
+      expect(mockSet).toHaveBeenCalledWith(expect.any(Function));
+      // Verify the set callback updates the state correctly
+      const setCallback = mockSet.mock.calls[0][0];
+      const newState = setCallback({ target: undefined });
+      expect(newState).toEqual({ target: 123 });
+    });
+
+    it("handles blur when inside ContentOverlay", () => {
+      const mockSet = jest.fn();
+      const mockGet = jest.fn(() => ({ target: 123 }));
+      const mockKeyboardState = {
+        value: { target: 123 },
+        set: mockSet,
+        get: mockGet,
+      };
+
+      const mockTextInputNodesRef = { current: new Set<number>() };
+      const blurCallback = jest.fn();
+
+      jest
+        .spyOn(require("@gorhom/bottom-sheet"), "useBottomSheetInternal")
+        .mockReturnValue({
+          animatedKeyboardState: mockKeyboardState,
+          textInputNodesRef: mockTextInputNodesRef,
+        });
+
+      const a11yLabel = "Test InputText";
+      const { getByLabelText } = render(
+        <InputText onBlur={blurCallback} accessibilityLabel={a11yLabel} />,
+      );
+
+      const input = getByLabelText(a11yLabel);
+
+      fireEvent(input, "onBlur", {
+        nativeEvent: { target: 123 },
+      });
+
+      // Consumer callback should still fire
+      expect(blurCallback).toHaveBeenCalled();
+    });
+
+    // eslint-disable-next-line max-statements
+    it("consumer onFocus and onBlur callbacks still fire when inside ContentOverlay", () => {
+      const focusCallback = jest.fn();
+      const blurCallback = jest.fn();
+      const mockSet = jest.fn();
+      const mockGet = jest.fn(() => ({ target: undefined }));
+      const mockKeyboardState = {
+        value: { target: undefined },
+        set: mockSet,
+        get: mockGet,
+      };
+
+      const mockTextInputNodesRef = { current: new Set<number>() };
+
+      jest
+        .spyOn(require("@gorhom/bottom-sheet"), "useBottomSheetInternal")
+        .mockReturnValue({
+          animatedKeyboardState: mockKeyboardState,
+          textInputNodesRef: mockTextInputNodesRef,
+        });
+
+      const a11yLabel = "Test InputText";
+      const { getByLabelText } = render(
+        <InputText
+          onFocus={focusCallback}
+          onBlur={blurCallback}
+          accessibilityLabel={a11yLabel}
+        />,
+      );
+
+      const input = getByLabelText(a11yLabel);
+
+      fireEvent(input, "onFocus", {
+        nativeEvent: { target: 123 },
+      });
+      expect(focusCallback).toHaveBeenCalled();
+
+      fireEvent(input, "onBlur", {
+        nativeEvent: { target: 123 },
+      });
+      expect(blurCallback).toHaveBeenCalled();
+    });
+
+    it("handles value changes when inside ContentOverlay", () => {
+      const mockSet = jest.fn();
+      const mockGet = jest.fn(() => ({ target: undefined }));
+      const mockKeyboardState = {
+        value: { target: undefined },
+        set: mockSet,
+        get: mockGet,
+      };
+
+      const mockTextInputNodesRef = { current: new Set<number>() };
+      const changeCallback = jest.fn();
+
+      jest
+        .spyOn(require("@gorhom/bottom-sheet"), "useBottomSheetInternal")
+        .mockReturnValue({
+          animatedKeyboardState: mockKeyboardState,
+          textInputNodesRef: mockTextInputNodesRef,
+        });
+
+      const a11yLabel = "Test InputText";
+      const { getByLabelText } = render(
+        <InputText
+          onChangeText={changeCallback}
+          accessibilityLabel={a11yLabel}
+        />,
+      );
+
+      const input = getByLabelText(a11yLabel);
+
+      fireEvent.changeText(input, "New value");
+
+      // Value changes should work normally
+      expect(changeCallback).toHaveBeenCalledWith("New value");
+    });
+  });
 });
