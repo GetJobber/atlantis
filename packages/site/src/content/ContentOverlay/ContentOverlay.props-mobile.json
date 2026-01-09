@@ -225,7 +225,7 @@
         "defaultValue": {
           "value": "Platform.select({ ios: true, android: false })"
         },
-        "description": "Define keyboard's Android behavior like iOS's one.",
+        "description": "Define keyboard's Android behavior like iOS's one.\n@deprecated This prop is no longer used and will be removed in the next major version.",
         "name": "avoidKeyboardLikeIOS",
         "parent": {
           "fileName": "packages/components-native/src/ContentOverlay/types.ts",
