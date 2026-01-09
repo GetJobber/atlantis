@@ -81,6 +81,7 @@ export interface ContentOverlayProps {
   /**
    * Define keyboard's Android behavior like iOS's one.
    * @default Platform.select({ ios: true, android: false })
+   * @deprecated This prop is no longer used and will be removed in the next major version.
    */
   readonly avoidKeyboardLikeIOS?: boolean;
 
