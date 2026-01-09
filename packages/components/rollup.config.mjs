@@ -21,6 +21,23 @@ import nodePolyfills from "rollup-plugin-polyfill-node";
  */
 const PREBUILD_CSS = process.env.PREBUILD_CSS === "true";
 
+/**
+ * PostCSS plugin to remove @charset declarations.
+ *
+ * The @charset rule (from react-datepicker) ends up in the middle of
+ * the bundled CSS when imported via postcss-import. Since @charset must be
+ * the first line of a CSS file to be valid, and it's unnecessary for
+ * HTTP-served content (Content-Type header takes precedence), we remove it.
+ */
+const removeCharset = {
+  postcssPlugin: "remove-charset",
+  AtRule: {
+    charset: atRule => {
+      atRule.remove();
+    },
+  },
+};
+
 export default {
   input: PREBUILD_CSS ? "src/index.ts" : `src/**/index.{ts,tsx}`,
   plugins: [
@@ -42,6 +59,7 @@ export default {
       autoModules: false,
       plugins: [
         postcssimport,
+        removeCharset,
         autoprefixer,
         tools({
           files: ["../design/dist/foundation.css"],
