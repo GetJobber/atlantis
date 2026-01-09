@@ -5,9 +5,21 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
   style={
     [
       {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 3,
+      },
+      {
+        "backgroundColor": "hsl(109, 28%, 92%)",
       },
       false,
     ]
@@ -25,7 +37,6 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
       style={
@@ -34,13 +45,13 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 15%, 43%)",
+            "color": "hsl(107, 64%, 16%)",
           },
           {
             "textAlign": "right",
           },
           {
-            "fontSize": 14,
+            "fontSize": 12,
             "lineHeight": 18,
           },
           {
@@ -54,27 +65,19 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
   </View>
   <View
     style={
-      {
-        "width": 8,
-      }
-    }
-  />
-  <View
-    style={
       [
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
+          "borderRadius": 100,
+          "height": 8,
+          "width": 8,
         },
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
         },
       ]
     }
-    testID="successLabelIcon"
+    testID="successIndicator"
   />
 </View>
 `;
@@ -84,9 +87,21 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
   style={
     [
       {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 3,
+      },
+      {
+        "backgroundColor": "hsl(109, 28%, 92%)",
       },
       false,
     ]
@@ -104,7 +119,6 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
       style={
@@ -113,13 +127,13 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 15%, 43%)",
+            "color": "hsl(107, 64%, 16%)",
           },
           {
             "textAlign": "right",
           },
           {
-            "fontSize": 14,
+            "fontSize": 12,
             "lineHeight": 18,
           },
           {
@@ -133,27 +147,19 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
   </View>
   <View
     style={
-      {
-        "width": 8,
-      }
-    }
-  />
-  <View
-    style={
       [
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
+          "borderRadius": 100,
+          "height": 8,
+          "width": 8,
         },
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
         },
       ]
     }
-    testID="successLabelIcon"
+    testID="successIndicator"
   />
 </View>
 `;
@@ -163,9 +169,21 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
   style={
     [
       {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 3,
+      },
+      {
+        "backgroundColor": "hsl(7, 63%, 95%)",
       },
       false,
     ]
@@ -183,7 +201,6 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
       style={
@@ -192,13 +209,13 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 15%, 43%)",
+            "color": "hsl(6, 100%, 24%)",
           },
           {
             "textAlign": "right",
           },
           {
-            "fontSize": 14,
+            "fontSize": 12,
             "lineHeight": 18,
           },
           {
@@ -212,27 +229,19 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
   </View>
   <View
     style={
-      {
-        "width": 8,
-      }
-    }
-  />
-  <View
-    style={
       [
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
+          "borderRadius": 100,
+          "height": 8,
+          "width": 8,
         },
         {
           "backgroundColor": "hsl(6, 64%, 51%)",
         },
       ]
     }
-    testID="criticalLabelIcon"
+    testID="criticalIndicator"
   />
 </View>
 `;
@@ -242,9 +251,21 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
   style={
     [
       {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 3,
+      },
+      {
+        "backgroundColor": "hsl(195, 12%, 94%)",
       },
       false,
     ]
@@ -262,7 +283,6 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
       style={
@@ -271,13 +291,13 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 15%, 43%)",
+            "color": "hsl(197, 90%, 12%)",
           },
           {
             "textAlign": "right",
           },
           {
-            "fontSize": 14,
+            "fontSize": 12,
             "lineHeight": 18,
           },
           {
@@ -291,27 +311,19 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
   </View>
   <View
     style={
-      {
-        "width": 8,
-      }
-    }
-  />
-  <View
-    style={
       [
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
+          "borderRadius": 100,
+          "height": 8,
+          "width": 8,
         },
         {
           "backgroundColor": "hsl(198, 25%, 33%)",
         },
       ]
     }
-    testID="inactiveLabelIcon"
+    testID="inactiveIndicator"
   />
 </View>
 `;
@@ -321,9 +333,21 @@ exports[`StatusLabel status when status prop set to "informative" should match s
   style={
     [
       {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 3,
+      },
+      {
+        "backgroundColor": "hsl(207, 87%, 94%)",
       },
       false,
     ]
@@ -341,7 +365,6 @@ exports[`StatusLabel status when status prop set to "informative" should match s
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
       style={
@@ -350,13 +373,13 @@ exports[`StatusLabel status when status prop set to "informative" should match s
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 15%, 43%)",
+            "color": "hsl(207, 61%, 34%)",
           },
           {
             "textAlign": "right",
           },
           {
-            "fontSize": 14,
+            "fontSize": 12,
             "lineHeight": 18,
           },
           {
@@ -370,27 +393,19 @@ exports[`StatusLabel status when status prop set to "informative" should match s
   </View>
   <View
     style={
-      {
-        "width": 8,
-      }
-    }
-  />
-  <View
-    style={
       [
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
+          "borderRadius": 100,
+          "height": 8,
+          "width": 8,
         },
         {
           "backgroundColor": "hsl(207, 79%, 57%)",
         },
       ]
     }
-    testID="informativeLabelIcon"
+    testID="informativeIndicator"
   />
 </View>
 `;
@@ -400,9 +415,21 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
   style={
     [
       {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 3,
+      },
+      {
+        "backgroundColor": "hsl(52, 64%, 89%)",
       },
       false,
     ]
@@ -420,7 +447,6 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
       style={
@@ -429,13 +455,13 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 15%, 43%)",
+            "color": "hsl(51, 64%, 24%)",
           },
           {
             "textAlign": "right",
           },
           {
-            "fontSize": 14,
+            "fontSize": 12,
             "lineHeight": 18,
           },
           {
@@ -449,27 +475,19 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
   </View>
   <View
     style={
-      {
-        "width": 8,
-      }
-    }
-  />
-  <View
-    style={
       [
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
+          "borderRadius": 100,
+          "height": 8,
+          "width": 8,
         },
         {
           "backgroundColor": "hsl(51, 64%, 49%)",
         },
       ]
     }
-    testID="warningLabelIcon"
+    testID="warningIndicator"
   />
 </View>
 `;
@@ -479,9 +497,21 @@ exports[`StatusLabel status when status prop set to default ("success") should m
   style={
     [
       {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "backgroundColor": "hsl(109, 28%, 92%)",
+        "borderRadius": 16,
         "flexDirection": "row",
+        "flexGrow": 0,
+        "flexShrink": 1,
         "flexWrap": "nowrap",
+        "gap": 4,
         "justifyContent": "flex-end",
+        "paddingHorizontal": 8,
+        "paddingVertical": 3,
+      },
+      {
+        "backgroundColor": "hsl(109, 28%, 92%)",
       },
       false,
     ]
@@ -499,7 +529,6 @@ exports[`StatusLabel status when status prop set to default ("success") should m
       adjustsFontSizeToFit={false}
       allowFontScaling={true}
       collapsable={false}
-      maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
       selectionColor="hsl(86, 100%, 46%)"
       style={
@@ -508,13 +537,13 @@ exports[`StatusLabel status when status prop set to default ("success") should m
             "fontFamily": "inter-medium",
           },
           {
-            "color": "hsl(197, 15%, 43%)",
+            "color": "hsl(107, 64%, 16%)",
           },
           {
             "textAlign": "right",
           },
           {
-            "fontSize": 14,
+            "fontSize": 12,
             "lineHeight": 18,
           },
           {
@@ -528,27 +557,19 @@ exports[`StatusLabel status when status prop set to default ("success") should m
   </View>
   <View
     style={
-      {
-        "width": 8,
-      }
-    }
-  />
-  <View
-    style={
       [
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
-          "borderRadius": 3,
-          "height": 12,
-          "marginTop": 3,
-          "width": 12,
+          "borderRadius": 100,
+          "height": 8,
+          "width": 8,
         },
         {
           "backgroundColor": "hsl(107, 58%, 33%)",
         },
       ]
     }
-    testID="successLabelIcon"
+    testID="successIndicator"
   />
 </View>
 `;
