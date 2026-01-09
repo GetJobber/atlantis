@@ -44,7 +44,10 @@ export function useModal({
             maxHeight: availableHeight,
           });
           Object.assign(elements.floating.style, {
-            maxHeight: `${maxHeight}px`,
+            maxHeight:
+              availableHeight >= elements.floating.scrollHeight
+                ? ""
+                : `${maxHeight}px`,
           });
         },
       }),
