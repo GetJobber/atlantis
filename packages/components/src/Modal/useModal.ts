@@ -40,6 +40,7 @@ export function useModal({
         apply({ availableHeight, elements }) {
           const maxHeight = calculateMaxHeight(availableHeight, {
             maxHeight: availableHeight,
+            edgePadding: 40,
           });
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
