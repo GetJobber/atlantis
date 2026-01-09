@@ -1,4 +1,5 @@
 import {
+  autoUpdate,
   size,
   useDismiss,
   useFloating,
@@ -35,12 +36,12 @@ export function useModal({
       if (!newOpen) onRequestClose?.();
     },
     open: open,
+    whileElementsMounted: autoUpdate,
     middleware: [
       size({
         apply({ availableHeight, elements }) {
           const maxHeight = calculateMaxHeight(availableHeight, {
             maxHeight: availableHeight,
-            edgePadding: 40,
           });
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
