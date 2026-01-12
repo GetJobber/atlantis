@@ -27,6 +27,7 @@ import { FormSaveButton } from "./components/FormSaveButton";
 import { useSaveButtonPosition } from "./hooks/useSaveButtonPosition";
 import { FormCache } from "./components/FormCache/FormCache";
 import { useAtlantisFormContext } from "./context/AtlantisFormContext";
+import { IOSKeyboardAwareScrollViewSpacer } from "./components/IOSKeyboardAwareScrollViewSpacer/IOSKeyboardAwareScrollViewSpacer";
 import { InputAccessoriesProvider } from "../InputText";
 import { tokens } from "../utils/design";
 import { ErrorMessageProvider } from "../ErrorMessageWrapper";
@@ -215,6 +216,9 @@ function InternalForm<T extends FieldValues, S>({
                           onOpenBottomSheet={() => setIsBottomSheetOpen(true)}
                           onCloseBottomSheet={() => setIsBottomSheetOpen(false)}
                         />
+                      )}
+                      {disableKeyboardAwareScroll && (
+                        <IOSKeyboardAwareScrollViewSpacer />
                       )}
                     </View>
                   )}
