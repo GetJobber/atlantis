@@ -234,7 +234,7 @@ export function ContentOverlay({
       enablePanDownToClose={draggable}
       enableContentPanningGesture={draggable}
       enableDynamicSizing={!fullScreen || adjustToContentHeight}
-      keyboardBehavior="extend"
+      keyboardBehavior="interactive"
       keyboardBlurBehavior="restore"
       enableBlurKeyboardOnGesture={true}
       topInset={topInset}
