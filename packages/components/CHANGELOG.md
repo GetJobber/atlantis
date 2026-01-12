@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.107.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.4...@jobber/components@6.107.0) (2026-01-12)
+
+
+### Features
+
+* **components:** Remove right padding on InputValidation ([#2870](https://github.com/GetJobber/atlantis/issues/2870)) ([11569c9](https://github.com/GetJobber/atlantis/commit/11569c966493de8c7b4e016612097caa317b9252))
+
+
+
+
+
 ## [6.106.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.3...@jobber/components@6.106.4) (2026-01-12)
 
 
