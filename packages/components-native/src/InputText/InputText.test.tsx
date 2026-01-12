@@ -902,40 +902,6 @@ describe("Transform", () => {
       expect(newState).toEqual({ target: 123 });
     });
 
-    it("handles blur when inside ContentOverlay", () => {
-      const mockSet = jest.fn();
-      const mockGet = jest.fn(() => ({ target: 123 }));
-      const mockKeyboardState = {
-        value: { target: 123 },
-        set: mockSet,
-        get: mockGet,
-      };
-
-      const mockTextInputNodesRef = { current: new Set<number>() };
-      const blurCallback = jest.fn();
-
-      jest
-        .spyOn(require("@gorhom/bottom-sheet"), "useBottomSheetInternal")
-        .mockReturnValue({
-          animatedKeyboardState: mockKeyboardState,
-          textInputNodesRef: mockTextInputNodesRef,
-        });
-
-      const a11yLabel = "Test InputText";
-      const { getByLabelText } = render(
-        <InputText onBlur={blurCallback} accessibilityLabel={a11yLabel} />,
-      );
-
-      const input = getByLabelText(a11yLabel);
-
-      fireEvent(input, "onBlur", {
-        nativeEvent: { target: 123 },
-      });
-
-      // Consumer callback should still fire
-      expect(blurCallback).toHaveBeenCalled();
-    });
-
     // eslint-disable-next-line max-statements
     it("consumer onFocus and onBlur callbacks still fire when inside ContentOverlay", () => {
       const focusCallback = jest.fn();
