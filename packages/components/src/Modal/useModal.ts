@@ -1,6 +1,4 @@
 import {
-  autoUpdate,
-  size,
   useDismiss,
   useFloating,
   useFloatingNodeId,
@@ -10,7 +8,6 @@ import {
 } from "@floating-ui/react";
 import type { MutableRefObject } from "react";
 import { useEffect, useRef } from "react";
-import { calculateMaxHeight } from "../utils/maxHeight";
 
 interface UseModalProps {
   open: boolean;
@@ -36,22 +33,6 @@ export function useModal({
       if (!newOpen) onRequestClose?.();
     },
     open: open,
-    whileElementsMounted: autoUpdate,
-    middleware: [
-      size({
-        apply({ availableHeight, elements }) {
-          const maxHeight = calculateMaxHeight(availableHeight, {
-            maxHeight: availableHeight,
-          });
-          Object.assign(elements.floating.style, {
-            maxHeight:
-              availableHeight >= elements.floating.scrollHeight
-                ? ""
-                : `${maxHeight}px`,
-          });
-        },
-      }),
-    ],
   });
 
   useEffect(() => {
