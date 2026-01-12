@@ -37,7 +37,6 @@
   z-index: var(--elevation-modal);
   width: 100%;
   max-width: var(--modal--width);
-  max-height: inherit;
   box-shadow: var(--modal--shadow);
   margin: auto;
   padding: var(--space-small);

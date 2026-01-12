@@ -142,33 +142,30 @@ export function ModalContent({ children }: ModalContainerProps) {
                   returnFocus={activatorRef?.current ? activatorRef : true}
                   order={["floating", "content"]}
                 >
-                  <div
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                    }}
                     ref={floatingRefs?.setFloating}
+                    data-modal-node-id={floatingNodeId}
                     {...getFloatingProps({
                       role: "dialog",
+                      className: modal,
                       "aria-labelledby": modalLabelledBy,
                       "aria-label": ariaLabel,
                       "aria-modal": true,
                     })}
-                    data-modal-node-id={floatingNodeId}
                     onPointerDownCapture={() => {
                       // Interaction began inside dialog
                       if (startedInsideRef) startedInsideRef.current = true;
                     }}
                   >
-                    <motion.div
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                      }}
-                      className={modal}
-                    >
-                      {children}
-                    </motion.div>
-                  </div>
+                    {children}
+                  </motion.div>
                 </FloatingFocusManager>
               </ModalOverlay>
             </AtlantisPortalContent>
