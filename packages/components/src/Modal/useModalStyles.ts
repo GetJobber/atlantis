@@ -5,6 +5,7 @@ import sizes from "./ModalSizes.module.css";
 export function useModalStyles(size?: keyof typeof sizes) {
   return {
     modal: classnames(styles.modal, size && sizes[size]),
+    modalBody: styles.modalBody,
     overlay: styles.overlay,
     header: styles.header,
     dismissButton: styles.closeButton,

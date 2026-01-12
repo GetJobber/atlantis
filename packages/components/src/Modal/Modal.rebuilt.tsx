@@ -128,7 +128,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     getFloatingProps,
     startedInsideRef,
   } = useModalContext();
-  const { modal } = useModalStyles(size);
+  const { modal, modalBody } = useModalStyles(size);
 
   return (
     <AnimatePresence>
@@ -164,7 +164,7 @@ export function ModalContent({ children }: ModalContainerProps) {
                       if (startedInsideRef) startedInsideRef.current = true;
                     }}
                   >
-                    {children}
+                    <div className={modalBody}>{children}</div>
                   </motion.div>
                 </FloatingFocusManager>
               </ModalOverlay>

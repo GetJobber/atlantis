@@ -33,6 +33,7 @@
 }
 
 .modal {
+  display: flex;
   position: relative;
   z-index: var(--elevation-modal);
   width: 100%;
@@ -40,28 +41,34 @@
   max-height: calc(100vh - 2 * var(--space-base));
   box-shadow: var(--modal--shadow);
   margin: auto;
-  padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   outline: none;
-  overflow-y: auto;
+  overflow: hidden;
   background-color: var(--color-surface);
   flex: 0 0 auto;
 }
-.modal:focus-visible {
+
+.modalBody {
+  min-height: 0;
+  padding: var(--space-small);
+  overflow-y: auto;
+}
+
+.modalBody:focus-visible {
   box-shadow: var(--shadow-focus);
 }
 
 /* Adjust `Content` and `Tab` components public padding to match the modal */
 
-.modal > * {
+.modalBody > * {
   --public-content--padding: var(--modal--padding);
   --public-tab--inset: var(--modal--padding-horizontal);
 }
 
 /* Remove the nested `Content` components public padding */
 
-.modal > * > * {
+.modalBody > * > * {
   --public-content--padding: 0;
 }
 
