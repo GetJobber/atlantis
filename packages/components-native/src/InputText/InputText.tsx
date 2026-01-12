@@ -353,7 +353,7 @@ function InputTextInternal(
 
   // Bottom sheet keyboard handling - register/cleanup TextInput node
   useEffect(() => {
-    if (!textInputNodesRef || !animatedKeyboardState) {
+    if (!textInputNodesRef?.current || !animatedKeyboardState) {
       return;
     }
 
@@ -525,12 +525,17 @@ function InputTextInternal(
     if (!animatedKeyboardState || !textInputNodesRef || !event?.nativeEvent) {
       return;
     }
-
     const keyboardState = animatedKeyboardState.get();
-    const RNTextInput = require("react-native").TextInput;
-    const currentFocusedInput = findNodeHandle(
-      RNTextInput.State.currentlyFocusedInput(),
-    );
+    const currentlyFocusedInput = TextInput.State.currentlyFocusedInput();
+    const currentFocusedInput =
+      currentlyFocusedInput !== null
+        ? findNodeHandle(
+            // @ts-expect-error - TextInput.State.currentlyFocusedInput() returns NativeMethods
+            // which is not directly assignable to findNodeHandle's expected type,
+            // but it works at runtime. This is a known type limitation in React Native.
+            currentlyFocusedInput,
+          )
+        : null;
 
     // Only remove the target if it belongs to the current component
     // and if the currently focused input is not in the targets set

@@ -90,6 +90,8 @@ export const BottomSheetView = ({ children }) => children;
 
 export const BottomSheetScrollView = ({ children }) => children;
 
+export const BottomSheetModalProvider = ({ children }) => children;
+
 export const useBottomSheetInternal = () => ({
   animatedKeyboardState: {
     get: () => ({ target: undefined }),
