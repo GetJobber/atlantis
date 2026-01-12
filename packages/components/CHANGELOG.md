@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.106.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.3...@jobber/components@6.106.4) (2026-01-12)
+
+
+### Bug Fixes
+
+* **components:** Remove invalid [@charset](https://github.com/charset) rule ([#2864](https://github.com/GetJobber/atlantis/issues/2864)) ([991a7dd](https://github.com/GetJobber/atlantis/commit/991a7ddbc579c59c791d37278d7227ccc8d77305))
+
+
+
+
+
 ## [6.106.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.2...@jobber/components@6.106.3) (2025-12-22)
 
 
