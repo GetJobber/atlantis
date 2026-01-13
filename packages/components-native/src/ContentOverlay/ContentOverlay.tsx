@@ -66,7 +66,12 @@ export function ContentOverlay({
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
 
-  const draggable = onBeforeExit ? false : isDraggable;
+  // When this is enabled, it prevents the modal from being dragged to fullscreen. This is solely necessary
+  // to match the behaviour of the previous library. Ideally we should consider ripping this out, but there's
+  // a lot of surface area to test and verify.
+  const draggable = onBeforeExit
+    ? false
+    : isDraggable && !adjustToContentHeight;
   // Prevent the Overlay from being flush with the top of the screen, even if we are "100%" or "fullscreen"
   const topInset = insets.top || tokens["space-larger"];
 
@@ -76,18 +81,10 @@ export function ContentOverlay({
     BottomSheetScrollViewMethods & { scrollTop?: number }
   >(null);
 
-  // If isDraggable is true, we always want to have a snap point at 100%
   // enableDynamicSizing will add another snap point of the content height
   const snapPoints = useMemo(() => {
-    // When this is enabled, it prevents the modal from being dragged to fullscreen. This is solely necessary
-    // to match the behaviour of the previous library. Ideally we should consider ripping this out, but there's
-    // a lot of surface area to test and verify.
-    if (adjustToContentHeight) {
-      return [];
-    }
-
     return ["100%"];
-  }, [adjustToContentHeight]);
+  }, []);
 
   const onCloseController = () => {
     if (!onBeforeExit) {
@@ -233,10 +230,10 @@ export function ContentOverlay({
       snapPoints={snapPoints}
       enablePanDownToClose={draggable}
       enableContentPanningGesture={draggable}
+      enableHandlePanningGesture={draggable}
       enableDynamicSizing={!fullScreen || adjustToContentHeight}
       keyboardBehavior="interactive"
       keyboardBlurBehavior="restore"
-      enableBlurKeyboardOnGesture={true}
       topInset={topInset}
     >
       {scrollEnabled ? (
