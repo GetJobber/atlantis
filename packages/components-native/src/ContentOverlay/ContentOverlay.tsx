@@ -128,9 +128,6 @@ export function ContentOverlay({
           AccessibilityInfo.setAccessibilityFocus(reactTag);
         }
       }
-    } else if (previousIndex >= 0 && index === -1) {
-      // Transitioned from open to closed
-      onClose?.();
     }
 
     previousIndexRef.current = index;
@@ -239,6 +236,7 @@ export function ContentOverlay({
       keyboardBehavior="interactive"
       keyboardBlurBehavior="restore"
       topInset={topInset}
+      onDismiss={() => onClose?.()}
     >
       {scrollEnabled ? (
         <BottomSheetScrollView
