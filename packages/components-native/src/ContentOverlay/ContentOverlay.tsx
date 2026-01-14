@@ -83,6 +83,10 @@ export function ContentOverlay({
 
   // enableDynamicSizing will add another snap point of the content height
   const snapPoints = useMemo(() => {
+    // There is a bug with "restore" behavior after keyboard is dismissed.
+    // https://github.com/gorhom/react-native-bottom-sheet/issues/2465
+    // providing a 100% snap point "fixes" it for now, but there is an approved PR to fix it
+    // that just needs to be merged and released: https://github.com/gorhom/react-native-bottom-sheet/pull/2511
     return ["100%"];
   }, []);
 
