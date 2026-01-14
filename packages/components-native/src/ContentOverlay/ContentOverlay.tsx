@@ -1,5 +1,10 @@
 import React, { useImperativeHandle, useMemo, useRef, useState } from "react";
-import { AccessibilityInfo, View, findNodeHandle } from "react-native";
+import {
+  AccessibilityInfo,
+  View,
+  findNodeHandle,
+  useWindowDimensions,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   BottomSheetBackdrop,
@@ -20,6 +25,8 @@ import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
+
+const LARGE_SCREEN_BREAKPOINT = 640;
 
 function getModalBackgroundColor(
   variation: ModalBackgroundColor,
@@ -52,6 +59,7 @@ export function ContentOverlay({
   ref,
 }: ContentOverlayProps) {
   const insets = useSafeAreaInsets();
+  const { width: windowWidth } = useWindowDimensions();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
   const [currentPosition, setCurrentPosition] = useState<number>(-1);
@@ -138,10 +146,19 @@ export function ContentOverlay({
     setShowHeaderShadow(scrollTop > 0);
   };
 
-  const modalStyle = [
+  const sheetStyle = useMemo(
+    () =>
+      windowWidth > LARGE_SCREEN_BREAKPOINT
+        ? {
+            width: LARGE_SCREEN_BREAKPOINT,
+            marginLeft: (windowWidth - LARGE_SCREEN_BREAKPOINT) / 2,
+          }
+        : undefined,
+    [windowWidth],
+  );
+
+  const backgroundStyle = [
     styles.background,
-    // TODO: Add large screen styles?
-    // windowWidth > 640 ? styles.modalForLargeScreens : undefined,
     { backgroundColor: getModalBackgroundColor(modalBackgroundColor, tokens) },
   ];
 
@@ -222,7 +239,8 @@ export function ContentOverlay({
     <BottomSheetModal
       ref={bottomSheetModalRef}
       onChange={handleChange}
-      backgroundStyle={modalStyle}
+      style={sheetStyle}
+      backgroundStyle={backgroundStyle}
       handleStyle={styles.handleWrapper}
       handleIndicatorStyle={handleIndicatorStyles}
       backdropComponent={props => (
