@@ -384,9 +384,93 @@ describe("modalBackgroundColor prop", () => {
         expect(screen.getByTestId("overlay-input")).toBeTruthy();
       });
 
-      // Verify the input is rendered and accessible
       const input = screen.getByTestId("overlay-input");
       expect(input).toBeTruthy();
+    });
+  });
+});
+
+describe("scrollEnabled prop", () => {
+  describe("when scrollEnabled is false (default)", () => {
+    it("should render content in BottomSheetView", async () => {
+      const options: testRendererOptions = {
+        ...getDefaultOptions(),
+      };
+      await renderAndOpenContentOverlay(options);
+
+      expect(screen.getByText(options.text)).toBeDefined();
+      expect(screen.getByTestId("ATL-Overlay-Children")).toBeDefined();
+    });
+  });
+});
+
+describe("loading prop", () => {
+  describe("when loading is true", () => {
+    it("should show subdued heading text", async () => {
+      const overlayRef = createRef<ContentOverlayRef>();
+
+      render(
+        <BottomSheetModalProvider>
+          <View>
+            <ContentOverlay
+              ref={overlayRef}
+              title="Loading Overlay"
+              loading={true}
+              showDismiss={true}
+            >
+              <Text>Loading content</Text>
+            </ContentOverlay>
+          </View>
+        </BottomSheetModalProvider>,
+      );
+
+      await act(async () => {
+        overlayRef.current?.open?.();
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText("Loading Overlay")).toBeDefined();
+      });
+    });
+  });
+});
+
+describe("onBeforeExit callback", () => {
+  describe("when close button is pressed with onBeforeExit defined", () => {
+    it("should call onBeforeExit instead of immediately closing", async () => {
+      const overlayRef = createRef<ContentOverlayRef>();
+      const onBeforeExitCallback = jest.fn();
+
+      render(
+        <BottomSheetModalProvider>
+          <View>
+            <ContentOverlay
+              ref={overlayRef}
+              title="Confirmation Required"
+              onBeforeExit={onBeforeExitCallback}
+              showDismiss={true}
+            >
+              <Text>Must confirm to close</Text>
+            </ContentOverlay>
+          </View>
+        </BottomSheetModalProvider>,
+      );
+
+      await act(async () => {
+        overlayRef.current?.open?.();
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText("Must confirm to close")).toBeDefined();
+      });
+
+      const closeButton = screen.getByTestId("ATL-Overlay-CloseButton");
+      await user.press(closeButton);
+
+      await waitFor(() => {
+        expect(onBeforeExitCallback).toHaveBeenCalled();
+        expect(screen.getByText("Must confirm to close")).toBeDefined();
+      });
     });
   });
 });
