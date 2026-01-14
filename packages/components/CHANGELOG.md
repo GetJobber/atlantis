@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.107.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.107.0...@jobber/components@6.107.1) (2026-01-14)
+
+
+### Bug Fixes
+
+* **components:** Revert: Page's titlebar was resizing on small screen causing the flicker ([#2875](https://github.com/GetJobber/atlantis/issues/2875)) ([862a32b](https://github.com/GetJobber/atlantis/commit/862a32b3b6c7cd5f82e0b4934cc4655fe8958e5b))
+
+
+
+
+
 # [6.107.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.4...@jobber/components@6.107.0) (2026-01-12)
 
 
