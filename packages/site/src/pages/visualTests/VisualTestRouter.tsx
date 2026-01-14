@@ -59,7 +59,6 @@ import { VisualTestTabsPage } from "./VisualTestTabsPage";
 import { VisualTestToastPage } from "./VisualTestToastPage";
 import { VisualTestBannerPage } from "./VisualTestBannerPage";
 import { VisualTestThemePage } from "./VisualTestThemePage";
-import { VisualTestPagePage } from "./VisualTestPagePage";
 
 export const VisualTestRouter = () => {
   return (
@@ -68,11 +67,6 @@ export const VisualTestRouter = () => {
         path="/visual-tests/components"
         exact={true}
         component={VisualTestComponentPage}
-      />
-      <Route
-        path="/visual-tests/page"
-        exact={true}
-        component={VisualTestPagePage}
       />
       <Route
         path="/visual-tests/layout"
