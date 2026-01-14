@@ -132,3 +132,9 @@
 .pagination {
   padding: var(--space-small) var(--space-base);
 }
+
+@media (--medium-screens-and-up) {
+  .pagination {
+    padding: var(--space-small) var(--space-large);
+  }
+}
