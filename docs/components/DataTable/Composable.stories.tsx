@@ -735,6 +735,7 @@ export const DoubleFooter = () => {
     pageIndex: 0,
     pageSize: 6,
   });
+  const { mediumAndUp } = useBreakpoints();
 
   const currentBalance = 2000;
 
@@ -802,7 +803,13 @@ export const DoubleFooter = () => {
 
           {/* Current balance footer */}
           <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
-            <div style={{ padding: "var(--space-base)", fontWeight: "bold" }}>
+            <div
+              style={{
+                padding: `var(--space-base) var(${
+                  mediumAndUp ? "--space-large" : "--space-base"
+                })`,
+              }}
+            >
               <Cluster justify="space-between" align="center">
                 <Typography fontWeight="bold">Current balance</Typography>
                 <Typography fontWeight="bold">
