@@ -1,5 +1,4 @@
 import {
-  Banner,
   Box,
   Button,
   Heading,
@@ -7,7 +6,6 @@ import {
   InputPassword,
   InputText,
   InputValidation,
-  Link,
   SegmentedControl,
   SideDrawer,
   Text,
@@ -176,21 +174,6 @@ export function TritonSideDrawer() {
           </SegmentedControl>
         </SideDrawer.Toolbar>
       )}
-      <Box padding={{ left: "base", right: "base", top: "base" }}>
-        <Banner type="warning" dismissible={false}>
-          <Text>
-            🚧 We&apos;re making improvements to Triton. You may experience
-            intermittent disruptions. If this is blocking you, reach out in{" "}
-            <Link
-              url="https://getjobber.slack.com/archives/C03BJHV3PMG"
-              external
-            >
-              #team-ux_foundations
-            </Link>
-            .
-          </Text>
-        </Banner>
-      </Box>
       <Box
         padding={{ left: "base", right: "base", bottom: "base" }}
         direction="column"
