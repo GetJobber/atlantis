@@ -351,45 +351,6 @@ function InputTextInternal(
     };
   }, [_name, register, textInputRef, unregister]);
 
-  // Bottom sheet keyboard handling - register/cleanup TextInput node
-  useEffect(() => {
-    if (!textInputNodesRef?.current || !animatedKeyboardState) {
-      return;
-    }
-
-    const nodeHandle = findNodeHandle(textInputRef.current);
-
-    if (!nodeHandle) {
-      return;
-    }
-
-    if (!textInputNodesRef.current.has(nodeHandle)) {
-      textInputNodesRef.current.add(nodeHandle);
-    }
-
-    return () => {
-      const cleanupNodeHandle = findNodeHandle(textInputRef.current);
-
-      if (!cleanupNodeHandle) {
-        return;
-      }
-
-      const keyboardState = animatedKeyboardState.get();
-
-      // Remove the keyboard state target if it belongs to the current component
-      if (keyboardState.target === cleanupNodeHandle) {
-        animatedKeyboardState.set(state => ({
-          ...state,
-          target: undefined,
-        }));
-      }
-
-      if (textInputNodesRef.current.has(cleanupNodeHandle)) {
-        textInputNodesRef.current.delete(cleanupNodeHandle);
-      }
-    };
-  }, [textInputNodesRef, animatedKeyboardState, textInputRef]);
-
   const returnKeyType: ReturnKeyTypeOptions | undefined = useMemo(() => {
     if (!multiline) {
       if (inputAccessoryID && isAndroid) {
