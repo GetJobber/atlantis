@@ -48,14 +48,14 @@
   flex: 0 0 auto;
 }
 
+.modal:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
 .modalBody {
   max-height: inherit;
   padding: var(--space-small);
   overflow-y: auto;
-}
-
-.modalBody:focus-visible {
-  box-shadow: var(--shadow-focus);
 }
 
 /* Adjust `Content` and `Tab` components public padding to match the modal */
