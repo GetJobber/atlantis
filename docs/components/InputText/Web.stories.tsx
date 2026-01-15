@@ -76,6 +76,22 @@ Toolbar.args = {
   ),
 };
 
+export const Autocomplete: ComponentStory<typeof InputText> = args => {
+  return (
+    <form onSubmit={event => event.preventDefault()}>
+      <Content spacing="base">
+        <InputText
+          name="atlantis-is-real"
+          autocomplete="on"
+          placeholder="Enter a value"
+          {...args}
+        />
+        <Button label="Submit" submit />
+      </Content>
+    </form>
+  );
+};
+
 export const Readonly = BasicTemplate.bind({});
 Readonly.args = {
   defaultValue: "Rocinante",
