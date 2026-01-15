@@ -15,6 +15,7 @@ import type {
 } from "./Modal.types";
 import { useModalStyles } from "./useModalStyles";
 import { MODAL_HEADER_ID } from "./constants";
+import styles from "./Modal.rebuilt.module.css";
 import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
@@ -128,7 +129,7 @@ export function ModalContent({ children }: ModalContainerProps) {
     getFloatingProps,
     startedInsideRef,
   } = useModalContext();
-  const { modal, modalBody } = useModalStyles(size);
+  const { modal } = useModalStyles(size);
 
   return (
     <AnimatePresence>
@@ -164,7 +165,7 @@ export function ModalContent({ children }: ModalContainerProps) {
                       if (startedInsideRef) startedInsideRef.current = true;
                     }}
                   >
-                    <div className={modalBody}>{children}</div>
+                    <div className={styles.modalBody}>{children}</div>
                   </motion.div>
                 </FloatingFocusManager>
               </ModalOverlay>
