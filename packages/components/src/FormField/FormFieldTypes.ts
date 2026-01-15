@@ -24,7 +24,12 @@ export type KeyBoardTypes =
   | "numeric"
   | "decimal";
 
+/**
+ * Use the **on** option to enable auto-completion.
+ * Prefer **on** over the boolean value **true** to explicitly indicate auto-completion behavior.
+ */
 export type AutocompleteTypes =
+  | "on"
   | "one-time-code"
   | "address-line1"
   | "address-line2";
