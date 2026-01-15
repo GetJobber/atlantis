@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.107.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.107.1...@jobber/components@6.107.2) (2026-01-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.107.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.107.0...@jobber/components@6.107.1) (2026-01-14)
+
+
+### Bug Fixes
+
+* **components:** Revert: Page's titlebar was resizing on small screen causing the flicker ([#2875](https://github.com/GetJobber/atlantis/issues/2875)) ([862a32b](https://github.com/GetJobber/atlantis/commit/862a32b3b6c7cd5f82e0b4934cc4655fe8958e5b))
+
+
+
+
+
+# [6.107.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.4...@jobber/components@6.107.0) (2026-01-12)
+
+
+### Features
+
+* **components:** Remove right padding on InputValidation ([#2870](https://github.com/GetJobber/atlantis/issues/2870)) ([11569c9](https://github.com/GetJobber/atlantis/commit/11569c966493de8c7b4e016612097caa317b9252))
+
+
+
+
+
+## [6.106.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.3...@jobber/components@6.106.4) (2026-01-12)
+
+
+### Bug Fixes
+
+* **components:** Remove invalid [@charset](https://github.com/charset) rule ([#2864](https://github.com/GetJobber/atlantis/issues/2864)) ([991a7dd](https://github.com/GetJobber/atlantis/commit/991a7ddbc579c59c791d37278d7227ccc8d77305))
+
+
+
+
+
 ## [6.106.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.106.2...@jobber/components@6.106.3) (2025-12-22)
 
 

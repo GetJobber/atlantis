@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.2...@jobber/components-native@0.95.3) (2026-01-12)
+
+
+### Bug Fixes
+
+* **components-native:** Fix issue with save button not being accessible on iOS forms ([#2872](https://github.com/GetJobber/atlantis/issues/2872)) ([e121a61](https://github.com/GetJobber/atlantis/commit/e121a61c23ea9b27e6eca2f2ea6b8f790bcbf588))
+
+
+
+
+
+## [0.95.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.1...@jobber/components-native@0.95.2) (2026-01-08)
+
+
+### Bug Fixes
+
+* **components-native:** Improve scroll behaviour on multiline inputs ([#2868](https://github.com/GetJobber/atlantis/issues/2868)) ([f4f9ee2](https://github.com/GetJobber/atlantis/commit/f4f9ee2de70ca1e5fb2568385aa66ca2d2c65edf))
+
+
+
+
+
 ## [0.95.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.0...@jobber/components-native@0.95.1) (2025-12-15)
 
 
