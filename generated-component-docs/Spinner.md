@@ -1,0 +1,128 @@
+# Spinner
+
+# Spinner
+
+Spinner is used to indicate the loading of content where the actual amount of
+loading time or progress is unknown.
+
+## Design & usage guidelines
+
+The default Spinner size is `base` and can be used in most cases. The `small`
+Spinner should be used on individual elements of an interface (e.g.
+[Button](/components/Button) or [Card](/components/Card) contents) or when
+[inline](../?path=/story/components-status-and-feedback-spinner-web--inline)
+with content.
+
+## Accessibility
+
+The Spinner should announce itself to users of assistive technology such as
+screenreaders.
+
+The following built-in properties help Spinner convey its role effectively:
+
+- `role="alert"` allows the Spinner to be announced as an alert feedback
+  element.
+- `aria-busy={true}` informs the user that the view is busy, setting the
+  expectation that they cannot interact for the time being.
+- `aria-label="loading"` reads out "Loading" to assistive tech, adding context
+  as to _why_ the view is busy.
+
+## Related components
+
+If the amount of progress or loading time is known, use
+[ProgressBar](/components/ProgressBar) to give better context around the
+process.
+
+To indicate loading content in mobile applications, refer to
+[ActivityIndicator](/components/ActivityIndicator).
+
+## Web Component Code
+
+```tsx
+Spinner Loader Loading Twirly Wait Busy ActivityIndicator Web React import React from "react";
+import classnames from "classnames";
+import styles from "./Spinner.module.css";
+
+interface SpinnerProps {
+  /**
+   * Specifies the size of the spinner
+   *
+   * @default "base"
+   */
+  readonly size?: "small" | "base";
+
+  /**
+   * Spinner becomes an inline element when true,
+   * otherwise it is a block element
+   */
+  readonly inline?: boolean;
+}
+
+export function Spinner({ size = "base", inline }: SpinnerProps) {
+  const spinnerStyles = classnames(styles.spinner, {
+    [styles.small]: size === "small",
+    [styles.inline]: inline,
+  });
+
+  return (
+    <div
+      className={spinnerStyles}
+      role="alert"
+      aria-busy={true}
+      aria-label="loading"
+    />
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop                            | Type      | Required | Default  | Description                                  |
+| ------------------------------- | --------- | -------- | -------- | -------------------------------------------- | --------------------------------- |
+| `size`                          | `"small"  | "base"`  | ❌       | `base`                                       | Specifies the size of the spinner |
+| `inline`                        | `boolean` | ❌       | `_none_` | Spinner becomes an inline element when true, |
+| otherwise it is a block element |
+
+## Categories
+
+- Status & Feedback
+
+## Web Test Code
+
+```typescript
+Spinner Loader Loading Twirly Wait Busy ActivityIndicator Web React Test Testing Jest import { render } from "@testing-library/react";
+import React from "react";
+import { Spinner } from ".";
+
+it("renders the spinner", () => {
+  const { container } = render(<Spinner />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders the small spinner", () => {
+  const { container } = render(<Spinner size="small" />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders the inline spinner", () => {
+  const { container } = render(<Spinner inline={true} />);
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a small inline spinner", () => {
+  const { container } = render(<Spinner inline={true} size="small" />);
+  expect(container).toMatchSnapshot();
+});
+
+```
+
+## Component Path
+
+`/components/Spinner`
+
+---
+
+_Generated on 2025-08-21T17:35:16.371Z_

@@ -1,0 +1,774 @@
+# LightBox
+
+# Light Box
+
+LightBox is a component designed to display an array of images to the user. A
+user clicks on a control and is shown a carousel style presentation of the
+defined images.
+
+## Design & usage guidelines
+
+The LightBox's primary goal is to allow users to see a high resolution view of
+images contained within the page they're viewing. The application of a LightBox
+facilitates smaller thumbnail images to be used in an interface without
+compromising the detail within.
+
+The LightBox should only be used when displaying an image at a greater scale is
+the primary function of opening it. Additional content types would be better
+suited by using a dialogue or alternative method.
+
+## Web Component Code
+
+```tsx
+LightBox Gallery Carousel Display Image Box Sizing Border Box Web React /* eslint-disable max-statements */
+import type { CSSProperties } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import type { PanInfo } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import ReactDOM from "react-dom";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
+import classNames from "classnames";
+import { useDebounce } from "@jobber/hooks/useDebounce";
+import styles from "./LightBox.module.css";
+import { ButtonDismiss } from "../ButtonDismiss";
+import { Text } from "../Text";
+import { Button } from "../Button";
+import { Heading } from "../Heading";
+import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
+
+interface PresentedImage {
+  title?: string;
+  caption?: string;
+  alt?: string;
+  url: string;
+}
+
+interface RequestCloseOptions {
+  lastPosition: number;
+}
+
+interface LightBoxProps {
+  /**
+   * Specify if the Lightbox is open or closed.
+   */
+  readonly open: boolean;
+  /**
+   * Images is an array of objects defining a LightBox image. This object consists of
+   * `title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is
+   * required, for each image.
+   */
+  readonly images: PresentedImage[];
+  /**
+   * Use this to specify which image in `images` to initialize the lightbox with.
+   * This is useful when you have a collection of thumbnails as you only need one
+   * collection of image urls, order doesn't matter.
+   */
+  readonly imageIndex?: number;
+  /**
+   * This function must set open to false in order to close the lightbox. Note there
+   * is a 300ms easing animation on lightbox close that occurs before this function
+   * is called.
+   * This function receives an object as an argument with the key `lastPosition`
+   * that has the index of the image the user was on when LightBox was closed.
+   */
+  onRequestClose(options: RequestCloseOptions): void;
+
+  /**
+   * Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where
+   * tailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.
+   * @default "content-box"
+   */
+  readonly boxSizing?: CSSProperties["boxSizing"];
+}
+
+const swipeConfidenceThreshold = 10000;
+
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
+
+const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? "150%" : "-150%",
+    };
+  },
+  center: {
+    x: 0,
+  },
+  exit: (direction: number) => {
+    return {
+      x: direction < 0 ? "150%" : "-150%",
+    };
+  },
+};
+
+const imageTransition = {
+  x: { duration: 0.65, ease: [0.42, 0, 0, 1.03] },
+};
+
+// A little bit more than the transition's duration
+// We're doing this to prevent a bug from framer-motion
+// https://github.com/framer/motion/issues/1769
+const BUTTON_DEBOUNCE_DELAY = 250;
+const MOVEMENT_DEBOUNCE_DELAY = 1000;
+
+export function LightBox({
+  boxSizing = "content-box",
+  open,
+  images,
+  imageIndex = 0,
+  onRequestClose,
+}: LightBoxProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
+  const [direction, setDirection] = useState(0);
+  const [mouseIsStationary, setMouseIsStationary] = useState(true);
+  const lightboxRef = useFocusTrap<HTMLDivElement>(open);
+  const selectedThumbnailRef = useRef<HTMLDivElement>(null);
+
+  const debouncedHandleNext = useDebounce(
+    handleMoveNext,
+    BUTTON_DEBOUNCE_DELAY,
+  );
+  const debouncedHandlePrevious = useDebounce(
+    handleMovePrevious,
+    BUTTON_DEBOUNCE_DELAY,
+  );
+  const mounted = useIsMounted();
+  const prevOpen = useRef(open);
+  useRefocusOnActivator(open);
+
+  const handleMouseMovement = useDebounce(() => {
+    setMouseIsStationary(true);
+  }, MOVEMENT_DEBOUNCE_DELAY);
+
+  useOnKeyDown(handleRequestClose, "Escape");
+
+  useOnKeyDown(debouncedHandlePrevious, {
+    key: "ArrowLeft",
+  });
+
+  useOnKeyDown(debouncedHandleNext, {
+    key: "ArrowRight",
+  });
+
+  useEffect(() => {
+    setCurrentImageIndex(imageIndex);
+  }, [imageIndex, open]);
+
+  if (prevOpen.current !== open) {
+    prevOpen.current = open;
+    togglePrintStyles(open);
+  }
+
+  useEffect(() => {
+    selectedThumbnailRef?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [currentImageIndex]);
+
+  const template = (
+    <>
+      {open && (
+        <div
+          className={styles.lightboxWrapper}
+          tabIndex={0}
+          aria-label="Lightbox"
+          key="Lightbox"
+          ref={lightboxRef}
+          onMouseMove={() => {
+            if (mouseIsStationary) {
+              setMouseIsStationary(false);
+            }
+            handleMouseMovement();
+          }}
+        >
+          <div
+            className={styles.backgroundImage}
+            style={{
+              backgroundImage: `url("${images[currentImageIndex].url}")`,
+            }}
+          />
+          <div className={styles.blurOverlay} onClick={handleRequestClose} />
+
+          <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+            <div className={styles.toolbar}>
+              <div className={styles.slideNumber}>
+                <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
+              </div>
+              <div className={styles.closeButton}>
+                <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+              </div>
+            </div>
+          </AtlantisThemeContextProvider>
+
+          <div className={styles.imageArea}>
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={currentImageIndex}
+                variants={variants}
+                src={images[currentImageIndex].url}
+                custom={direction}
+                className={styles.image}
+                initial="enter"
+                alt={
+                  images[currentImageIndex].alt ||
+                  images[currentImageIndex].title ||
+                  ""
+                }
+                animate="center"
+                exit="exit"
+                transition={imageTransition}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={handleOnDragEnd}
+              />
+            </AnimatePresence>
+          </div>
+
+          {images.length > 1 && (
+            <>
+              <PreviousButton
+                onClick={debouncedHandlePrevious}
+                hideButton={mouseIsStationary}
+              />
+              <NextButton
+                onClick={debouncedHandleNext}
+                hideButton={mouseIsStationary}
+              />
+            </>
+          )}
+
+          {(images[currentImageIndex].title ||
+            images[currentImageIndex].caption) && (
+            <div className={styles.captionWrapper}>
+              <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+                {images[currentImageIndex].title && (
+                  <div className={styles.title}>
+                    <Heading level={4}>
+                      {images[currentImageIndex].title}
+                    </Heading>
+                  </div>
+                )}
+                {images[currentImageIndex].caption && (
+                  <Text size="large">{images[currentImageIndex].caption}</Text>
+                )}
+              </AtlantisThemeContextProvider>
+            </div>
+          )}
+
+          {images.length > 1 && (
+            <div
+              className={styles.thumbnailBar}
+              style={
+                {
+                  "--lightbox--box-sizing": boxSizing,
+                } as React.CSSProperties
+              }
+              data-testid="ATL-Thumbnail-Bar"
+            >
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className={classNames(styles.thumbnail, {
+                    [styles.selected]: index === currentImageIndex,
+                  })}
+                  onClick={() => handleThumbnailClick(index)}
+                  ref={
+                    index === currentImageIndex ? selectedThumbnailRef : null
+                  }
+                >
+                  <img
+                    key={index}
+                    src={image.url}
+                    alt={image.alt || image.title || ""}
+                    className={styles.thumbnailImage}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+
+  return mounted.current
+    ? ReactDOM.createPortal(template, document.body)
+    : template;
+
+  function handleMovePrevious() {
+    setDirection(-1);
+    setCurrentImageIndex(
+      (currentImageIndex + images.length - 1) % images.length,
+    );
+  }
+
+  function handleMoveNext() {
+    setDirection(1);
+    setCurrentImageIndex((currentImageIndex + 1) % images.length);
+  }
+
+  function handleRequestClose() {
+    onRequestClose({ lastPosition: currentImageIndex });
+  }
+
+  function handleOnDragEnd(
+    event: MouseEvent | TouchEvent | PointerEvent,
+    { offset, velocity }: PanInfo,
+  ) {
+    const swipe = swipePower(offset.x, velocity.x);
+
+    if (swipe < -swipeConfidenceThreshold) {
+      handleMoveNext();
+    } else if (swipe > swipeConfidenceThreshold) {
+      handleMovePrevious();
+    }
+  }
+
+  function handleThumbnailClick(index: number) {
+    if (index < currentImageIndex) {
+      setDirection(-1);
+    } else {
+      setDirection(1);
+    }
+    setCurrentImageIndex(index);
+  }
+}
+interface NavButtonProps {
+  readonly onClick: () => void;
+  readonly hideButton: boolean;
+}
+
+function PreviousButton({ onClick, hideButton }: NavButtonProps) {
+  const { mediumAndUp } = useBreakpoints();
+
+  return (
+    <div
+      className={`${styles.prev} ${
+        hideButton ? styles.buttonHidden : styles.buttonVisible
+      }`}
+    >
+      <Button
+        size={mediumAndUp ? "large" : "small"}
+        variation="subtle"
+        type="secondary"
+        icon="arrowLeft"
+        ariaLabel="Previous image"
+        onClick={onClick}
+      />
+    </div>
+  );
+}
+
+function NextButton({ onClick, hideButton }: NavButtonProps) {
+  const { mediumAndUp } = useBreakpoints();
+
+  return (
+    <div
+      className={`${styles.next} ${
+        hideButton ? styles.buttonHidden : styles.buttonVisible
+      }`}
+    >
+      <Button
+        size={mediumAndUp ? "large" : "small"}
+        variation="subtle"
+        type="secondary"
+        icon="arrowRight"
+        ariaLabel="Next image"
+        onClick={onClick}
+      />
+    </div>
+  );
+}
+
+function togglePrintStyles(open: boolean) {
+  try {
+    if (open) {
+      document.documentElement.classList.add("atlantisLightBoxActive");
+    } else {
+      document.documentElement.classList.remove("atlantisLightBoxActive");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop     | Type               | Required | Default  | Description                                                                      |
+| -------- | ------------------ | -------- | -------- | -------------------------------------------------------------------------------- |
+| `open`   | `boolean`          | ✅       | `_none_` | Specify if the Lightbox is open or closed.                                       |
+| `images` | `PresentedImage[]` | ✅       | `_none_` | Images is an array of objects defining a LightBox image. This object consists of |
+
+`title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional,
+`url` is required, for each image. | | `imageIndex` | `number` | ❌ |
+`[object Object]` | Use this to specify which image in `images` to initialize
+the lightbox with. This is useful when you have a collection of thumbnails as
+you only need one collection of image urls, order doesn't matter. | |
+`onRequestClose` | `(options: RequestCloseOptions) => void` | ✅ | `_none_` |
+This function must set open to false in order to close the lightbox. Note there
+is a 300ms easing animation on lightbox close that occurs before this function
+is called. This function receives an object as an argument with the key
+`lastPosition` that has the index of the image the user was on when LightBox was
+closed. | | `boxSizing` | `BoxSizing` | ❌ | `content-box` | Sets the box-sizing
+for the thumbnails in the lightbox. This is a solution for a problem where
+tailwind was setting the box-sizing to `border-box` and causing issues with the
+lightbox. |
+
+## Categories
+
+- Images & Icons
+
+## Web Test Code
+
+```typescript
+LightBox Gallery Carousel Display Image Box Sizing Border Box Web React Test Testing Jest import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import {
+  BREAKPOINT_SIZES,
+  mockViewportWidth,
+} from "@jobber/hooks/useBreakpoints";
+import { LightBox } from ".";
+
+const { setViewportWidth } = mockViewportWidth();
+
+describe("LightBox", () => {
+  beforeEach(() => {
+    setViewportWidth(BREAKPOINT_SIZES.lg);
+    HTMLDivElement.prototype.scrollIntoView = jest.fn();
+  });
+  test("opens and shows the image", () => {
+    const title = "Dis be a title";
+    const caption = "Dis be a caption 🎉";
+    const handleClose = jest.fn();
+
+    const { queryByText } = render(
+      <LightBox
+        open={true}
+        images={[
+          {
+            title: title,
+            caption: caption,
+            url: "https://i.imgur.com/6Jcfgnp.jpg",
+          },
+        ]}
+        onRequestClose={handleClose}
+      />,
+    );
+
+    expect(queryByText(title)).toBeInstanceOf(HTMLElement);
+    expect(queryByText(caption)).toBeInstanceOf(HTMLElement);
+  });
+
+  test("doesn't display when the open prop is false", () => {
+    const title = "Dis be a title";
+    const caption = "Dis be a caption 🎉";
+    const handleClose = jest.fn();
+
+    const { queryByText } = render(
+      <LightBox
+        open={false}
+        images={[
+          {
+            title: title,
+            caption: caption,
+            url: "https://i.imgur.com/6Jcfgnp.jpg",
+          },
+        ]}
+        onRequestClose={handleClose}
+      />,
+    );
+
+    expect(queryByText(title)).toBeNull();
+    expect(queryByText(caption)).toBeNull();
+  });
+
+  test("closes when user clicks close", () => {
+    const title = "Dis be a title";
+    const caption = "Dis be a caption 🎉";
+
+    //This expect is called from the close function as the react-image-lightbox
+    //library has an easing animation that occurs before the close function is
+    //called. This avoids an arbitrary setTimeout in our test.
+    const handleClose = jest.fn(() => {
+      expect(handleClose).toHaveBeenCalledTimes(1);
+    });
+
+    const { getByLabelText } = render(
+      <LightBox
+        open={true}
+        images={[
+          {
+            title: title,
+            caption: caption,
+            url: "https://i.imgur.com/6Jcfgnp.jpg",
+          },
+        ]}
+        onRequestClose={handleClose}
+      />,
+    );
+
+    fireEvent.click(getByLabelText("Close"));
+  });
+
+  test("displays the image title of the selected imageIndex", () => {
+    const title = "Dis be a title";
+    const caption = "Dis be a caption 🎉";
+    const titleTwo = "FirstOne";
+    const captionTwo = "This is the one we should find";
+
+    const handleClose = jest.fn();
+
+    const { queryByText } = render(
+      <LightBox
+        open={true}
+        images={[
+          {
+            title: title,
+            caption: caption,
+            url: "https://i.imgur.com/6Jcfgnp.jpg",
+          },
+          {
+            title: titleTwo,
+            caption: captionTwo,
+            url: "https://i.imgur.com/6Jcfgnp.jpg",
+          },
+        ]}
+        imageIndex={1}
+        onRequestClose={handleClose}
+      />,
+    );
+
+    expect(queryByText(titleTwo)).toBeInTheDocument();
+    expect(queryByText(title)).toBeNull();
+  });
+
+  describe("print styles", () => {
+    test("toggles the atlantisLightBoxActive class on the html element", () => {
+      const props = {
+        images: [
+          {
+            title: "title",
+            caption: "caption",
+            url: "",
+          },
+        ],
+        onRequestClose: jest.fn(),
+      };
+
+      const { rerender } = render(<LightBox open={false} {...props} />);
+
+      rerender(<LightBox open={true} {...props} />);
+      expect(document.documentElement.classList).toContain(
+        "atlantisLightBoxActive",
+      );
+
+      rerender(<LightBox open={false} {...props} />);
+      expect(document.documentElement.classList).not.toContain(
+        "atlantisLightBoxActive",
+      );
+    });
+  });
+
+  describe("navigation buttons", () => {
+    test("displays the next and previous buttons when more than one image", () => {
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "Dis be a title",
+              caption: "Dis be a caption 🎉",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+            {
+              title: "Title two",
+              caption: "This is the one we should find",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={1}
+          onRequestClose={jest.fn()}
+        />,
+      );
+      expect(screen.queryByLabelText("Previous image")).toBeInTheDocument();
+      expect(screen.queryByLabelText("Next image")).toBeInTheDocument();
+    });
+
+    test("doesn't display the next and previous buttons when only one image", () => {
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "Dis be a title",
+              caption: "Dis be a caption 🎉",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={0}
+          onRequestClose={jest.fn()}
+        />,
+      );
+      expect(screen.queryByLabelText("Previous image")).toBeNull();
+      expect(screen.queryByLabelText("Next image")).toBeNull();
+    });
+  });
+
+  describe("thumbnail bar", () => {
+    test("displays with images when more than one image", () => {
+      const handleClose = jest.fn();
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "title of unselected image",
+              alt: "alt of unselected image",
+              caption: "caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+            {
+              title: "titleTwo",
+              alt: "alt 1",
+              caption: "captionTwo",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={1}
+          onRequestClose={handleClose}
+        />,
+      );
+      expect(
+        screen.queryByAltText("alt of unselected image"),
+      ).toBeInTheDocument();
+      expect(screen.queryByTestId("ATL-Thumbnail-Bar")).toBeInTheDocument();
+    });
+
+    test("doesn't display when there is only one image", () => {
+      const handleClose = jest.fn();
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "title",
+              caption: "caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={0}
+          onRequestClose={handleClose}
+        />,
+      );
+      expect(screen.queryByTestId("thumbnail-bar")).not.toBeInTheDocument();
+    });
+
+    test("displays the selected image thumbnail and caption when imageclicked", () => {
+      const handleClose = jest.fn();
+      const destinationImageCaption = "caption of destination image";
+      const destinationImageAlt = "alt of destination image";
+
+      render(
+        <LightBox
+          open={true}
+          images={[
+            {
+              title: "title of destination image",
+              caption: destinationImageCaption,
+              alt: destinationImageAlt,
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+            {
+              title: "initially selected image title",
+              caption: "initially selected image caption",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+            },
+          ]}
+          imageIndex={1}
+          onRequestClose={handleClose}
+        />,
+      );
+
+      expect(
+        screen.queryByText(destinationImageCaption),
+      ).not.toBeInTheDocument();
+
+      const destinationImage = screen.getByAltText(destinationImageAlt);
+      fireEvent.click(destinationImage);
+
+      const imagesWithAlt = screen.getAllByAltText(destinationImageAlt);
+      expect(imagesWithAlt).toHaveLength(2);
+
+      expect(screen.queryByText(destinationImageCaption)).toBeInTheDocument();
+    });
+  });
+});
+import { render } from "@testing-library/react";
+import type { ReactPortal } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
+import {
+  BREAKPOINT_SIZES,
+  mockViewportWidth,
+} from "@jobber/hooks/useBreakpoints";
+import { LightBox } from ".";
+
+const { setViewportWidth } = mockViewportWidth();
+
+describe("Images", () => {
+  beforeAll(() => {
+    ReactDOM.createPortal = jest.fn(element => {
+      return element as ReactPortal;
+    });
+    setViewportWidth(BREAKPOINT_SIZES.lg);
+  });
+
+  afterEach(() => {
+    (ReactDOM.createPortal as jest.Mock).mockClear();
+  });
+
+  test("renders an image", () => {
+    const title = "Dis be a title";
+    const caption = "Dis be a caption 🎉";
+    const handleClose = jest.fn();
+    const { container } = render(
+      <LightBox
+        open={true}
+        images={[
+          {
+            title: title,
+            caption: caption,
+            url: "https://i.imgur.com/6Jcfgnp.jpg",
+          },
+        ]}
+        onRequestClose={handleClose}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+});
+
+```
+
+## Component Path
+
+`/components/LightBox`
+
+---
+
+_Generated on 2025-08-21T17:35:16.368Z_
