@@ -74,12 +74,7 @@ export function ContentOverlay({
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
 
-  // When this is enabled, it prevents the modal from being dragged to fullscreen. This is solely necessary
-  // to match the behaviour of the previous library. Ideally we should consider ripping this out, but there's
-  // a lot of surface area to test and verify.
-  const draggable = onBeforeExit
-    ? false
-    : isDraggable && !adjustToContentHeight;
+  const draggable = determineDraggable(isDraggable, onBeforeExit);
   // Prevent the Overlay from being flush with the top of the screen, even if we are "100%" or "fullscreen"
   const topInset = insets.top || tokens["space-larger"];
 
@@ -303,4 +298,16 @@ function Backdrop(
       pressBehavior={pressBehavior}
     />
   );
+}
+
+function determineDraggable(isDraggable: boolean, onBeforeExit?: () => void) {
+  // If onBeforeExit is provided, we don't want to allow the modal to be dragged to fullscreen.
+  // This appears to be because previously we could only reliably get a callback when the overlay was closed
+  // via the dismiss button. Furthermore, the dismiss button would only be present if it was not draggable.
+  // While we no longer need to adhere to this somewhat awkward behavior, we will leave it as is until a larger refactor.
+  if (onBeforeExit) {
+    return false;
+  }
+
+  return isDraggable;
 }
