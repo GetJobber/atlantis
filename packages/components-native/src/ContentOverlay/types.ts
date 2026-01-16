@@ -67,23 +67,10 @@ export interface ContentOverlayProps {
   readonly onBeforeExit?: () => void;
 
   /**
-   * Define the behavior of the keyboard when having inputs inside the modal.
-   * @default padding
-   */
-  readonly keyboardAvoidingBehavior?: "height" | "padding" | "position";
-
-  /**
    * Boolean to show a disabled state
    * @default false
    */
   readonly loading?: boolean;
-
-  /**
-   * Define keyboard's Android behavior like iOS's one.
-   * @default Platform.select({ ios: true, android: false })
-   * @deprecated This prop is no longer used and will be removed in the next major version.
-   */
-  readonly avoidKeyboardLikeIOS?: boolean;
 
   /**
    * Ref to the content overlay component.

@@ -191,42 +191,12 @@
           "name": "() => void"
         }
       },
-      "keyboardAvoidingBehavior": {
-        "defaultValue": {
-          "value": "padding"
-        },
-        "description": "Define the behavior of the keyboard when having inputs inside the modal.",
-        "name": "keyboardAvoidingBehavior",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "\"height\" | \"padding\" | \"position\""
-        }
-      },
       "loading": {
         "defaultValue": {
           "value": false
         },
         "description": "Boolean to show a disabled state",
         "name": "loading",
-        "parent": {
-          "fileName": "packages/components-native/src/ContentOverlay/types.ts",
-          "name": "ContentOverlayProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      },
-      "avoidKeyboardLikeIOS": {
-        "defaultValue": {
-          "value": "Platform.select({ ios: true, android: false })"
-        },
-        "description": "Define keyboard's Android behavior like iOS's one.\n@deprecated This prop is no longer used and will be removed in the next major version.",
-        "name": "avoidKeyboardLikeIOS",
         "parent": {
           "fileName": "packages/components-native/src/ContentOverlay/types.ts",
           "name": "ContentOverlayProps"
