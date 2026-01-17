@@ -7,10 +7,10 @@ import {
   waitFor,
 } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
-import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import type { ReactTestInstance } from "react-test-renderer";
 import type { ContentOverlayRef, ModalBackgroundColor } from "./types";
 import { ContentOverlay } from "./ContentOverlay";
+import { ContentOverlayProvider } from "./ContentOverlayProvider";
 import { tokens } from "../utils/design";
 import { Button } from "../Button";
 import { Content } from "../Content";
@@ -78,7 +78,7 @@ function renderContentOverlay(
   const contentOverlayRef = createRef<ContentOverlayRef>();
 
   render(
-    <BottomSheetModalProvider>
+    <ContentOverlayProvider>
       <View>
         <Text>I am a bunch of text</Text>
         <Button
@@ -103,7 +103,7 @@ function renderContentOverlay(
           </Content>
         </ContentOverlay>
       </View>
-    </BottomSheetModalProvider>,
+    </ContentOverlayProvider>,
   );
 }
 
@@ -364,7 +364,7 @@ describe("modalBackgroundColor prop", () => {
       const { InputText } = require("../InputText");
 
       render(
-        <BottomSheetModalProvider>
+        <ContentOverlayProvider>
           <View>
             <ContentOverlay ref={overlayRef} title="Test Overlay">
               <InputText
@@ -373,7 +373,7 @@ describe("modalBackgroundColor prop", () => {
               />
             </ContentOverlay>
           </View>
-        </BottomSheetModalProvider>,
+        </ContentOverlayProvider>,
       );
 
       await act(async () => {
@@ -410,7 +410,7 @@ describe("loading prop", () => {
       const overlayRef = createRef<ContentOverlayRef>();
 
       render(
-        <BottomSheetModalProvider>
+        <ContentOverlayProvider>
           <View>
             <ContentOverlay
               ref={overlayRef}
@@ -421,7 +421,7 @@ describe("loading prop", () => {
               <Text>Loading content</Text>
             </ContentOverlay>
           </View>
-        </BottomSheetModalProvider>,
+        </ContentOverlayProvider>,
       );
 
       await act(async () => {
@@ -442,7 +442,7 @@ describe("onBeforeExit callback", () => {
       const onBeforeExitCallback = jest.fn();
 
       render(
-        <BottomSheetModalProvider>
+        <ContentOverlayProvider>
           <View>
             <ContentOverlay
               ref={overlayRef}
@@ -453,7 +453,7 @@ describe("onBeforeExit callback", () => {
               <Text>Must confirm to close</Text>
             </ContentOverlay>
           </View>
-        </BottomSheetModalProvider>,
+        </ContentOverlayProvider>,
       );
 
       await act(async () => {
