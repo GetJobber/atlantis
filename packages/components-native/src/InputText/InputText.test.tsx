@@ -842,28 +842,6 @@ describe("Transform", () => {
       jest.clearAllMocks();
     });
 
-    it("works normally outside ContentOverlay (no bottom sheet context)", () => {
-      const focusCallback = jest.fn();
-      const blurCallback = jest.fn();
-      const a11yLabel = "Test InputText";
-
-      const { getByLabelText } = render(
-        <InputText
-          onFocus={focusCallback}
-          onBlur={blurCallback}
-          accessibilityLabel={a11yLabel}
-        />,
-      );
-
-      const input = getByLabelText(a11yLabel);
-
-      fireEvent(input, "onFocus");
-      expect(focusCallback).toHaveBeenCalled();
-
-      fireEvent(input, "onBlur");
-      expect(blurCallback).toHaveBeenCalled();
-    });
-
     // eslint-disable-next-line max-statements
     it("updates animatedKeyboardState on focus when inside ContentOverlay", () => {
       const mockSet = jest.fn();

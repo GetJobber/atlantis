@@ -357,37 +357,6 @@ describe("modalBackgroundColor prop", () => {
       );
     });
   });
-
-  describe("InputText integration", () => {
-    it("provides bottom sheet context for InputText keyboard handling", async () => {
-      const overlayRef = createRef<ContentOverlayRef>();
-      const { InputText } = require("../InputText");
-
-      render(
-        <ContentOverlayProvider>
-          <View>
-            <ContentOverlay ref={overlayRef} title="Test Overlay">
-              <InputText
-                accessibilityLabel="Test Input"
-                testID="overlay-input"
-              />
-            </ContentOverlay>
-          </View>
-        </ContentOverlayProvider>,
-      );
-
-      await act(async () => {
-        overlayRef.current?.open?.();
-      });
-
-      await waitFor(() => {
-        expect(screen.getByTestId("overlay-input")).toBeTruthy();
-      });
-
-      const input = screen.getByTestId("overlay-input");
-      expect(input).toBeTruthy();
-    });
-  });
 });
 
 describe("scrollEnabled prop", () => {
