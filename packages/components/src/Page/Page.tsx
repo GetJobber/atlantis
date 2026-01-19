@@ -13,7 +13,7 @@ import { Menu, type SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 
 export type ButtonActionProps = ButtonProps & {
-  ref?: React.RefObject<HTMLDivElement>;
+  ref?: React.RefObject<HTMLDivElement | null>;
 };
 
 interface PageFoundationProps {
