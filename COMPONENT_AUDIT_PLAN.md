@@ -574,7 +574,19 @@ Before proceeding, document:
 **Automated Testing with Pa11y** (Recommended):
 
 [Pa11y](https://pa11y.org/) is a free, open-source accessibility testing tool
-that can automatically check contrast ratios and text size compliance.
+that runs **comprehensive WCAG 2.1 compliance checks**, including but not
+limited to:
+
+- Color contrast ratios
+- Missing alt text and form labels
+- ARIA attribute validity
+- Heading hierarchy
+- Link text quality
+- Focus management issues
+- And 50+ additional accessibility rules
+
+While this criterion focuses on contrast/text size, Pa11y results provide
+broader accessibility insights that may inform other criteria (4.1, 4.4, 4.6).
 
 ---
 
@@ -641,8 +653,13 @@ This is a Storybook analytics tracking pixel - ignore it.
 
 Include in the notes column:
 
-- Pass: `Pa11y verified (0 errors)`
+- Pass: `Pa11y verified (0 errors across all WCAG checks)`
 - Fail: `Pa11y: [specific error description]`
+
+> **Note**: When documenting Pa11y results, be clear that it tests comprehensive
+> WCAG compliance (not just contrast). Saying "Pa11y passes for contrast" is
+> misleading - instead say "Pa11y verified (0 errors)" or "Pa11y passed all WCAG
+> 2.1 checks".
 
 ---
 
@@ -671,7 +688,21 @@ If Pa11y is not installed or CLI access is unavailable:
 
 ---
 
-**LLM Code Review** (in addition to Pa11y):
+##### React Native / Mobile Contrast Verification
+
+Pa11y is web-only. For mobile components, manually verify contrast:
+
+1. Find background/text colors in the component's style file (e.g.,
+   `tokens["color-blue"]`)
+2. Trace token values in `packages/design/src/tokens/baseColor.tokens.json`
+3. Use [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
+   to verify WCAG AA (4.5:1+)
+4. Document: token names → resolved hex values → contrast ratio
+
+---
+
+**LLM Code Review** (in addition to Pa11y for web, manual verification for
+mobile):
 
 - Check CSS for semantic color tokens (`--color-text`,
   `--color-text--secondary`, etc.)
@@ -680,13 +711,13 @@ If Pa11y is not installed or CLI access is unavailable:
 
 **Scoring**:
 
-- **3**: Pa11y passes (0 real errors) + uses semantic color and typography
-  tokens
-- **2**: Pa11y warnings, or mostly uses tokens with some concerns
-- **1**: Pa11y fails with contrast errors, or hardcoded colors
+- **3**: Passes WCAG AA (4.5:1+) — Web: Pa11y (0 errors); Mobile: manual token
+  verification
+- **2**: Warnings or borderline contrast (3:1-4.5:1)
+- **1**: Fails WCAG AA or uses hardcoded colors
 - **N/A**: Component has no text
 
-**Evidence to cite**: Pa11y CLI output + color/typography token usage from CSS
+**Evidence to cite**: Verification method used + contrast ratio (if manual)
 
 ---
 
@@ -760,6 +791,14 @@ If Pa11y is not installed or CLI access is unavailable:
 > particular state (e.g., a `Heading` doesn't need hover), mark as N/A. Only
 > score 1 if the state is expected but missing.
 
+> **Important - Component Composition**: If a component delegates interaction
+> states to child components (e.g., Toast delegates focus/keyboard to its
+> Button, Modal delegates to its close button), this is **correct component
+> composition**, not a deficiency. Score as **N/A** for states the parent
+> component doesn't need to handle directly, or **3** if the delegation is
+> working correctly. Only score low if the composed behavior is broken or
+> missing.
+
 #### 5.1 Hover
 
 **Trades**: Design, Dev | **Environments**: Web, Mobile
@@ -790,18 +829,19 @@ If Pa11y is not installed or CLI access is unavailable:
 
 ---
 
-#### 5.3 Active
+#### 5.3 Default
 
 **Trades**: Design, Dev | **Environments**: Web, Mobile
 
-**What to check**: CSS `:active` styles
+**What to check**: The component's resting/default visual state (how it appears
+before any user interaction)
 
 **Scoring**:
 
-- **3**: Supports active state
-- **2**: Active exists but needs improvement
-- **1**: No active but should have
-- **N/A**: Component doesn't need active state
+- **3**: Default state is well-defined and aligned with patterns
+- **2**: Default state exists but needs improvement
+- **1**: Default state is missing or poorly defined
+- **N/A**: Component doesn't have a meaningful default state
 
 ---
 
@@ -1000,14 +1040,22 @@ If Pa11y is not installed or CLI access is unavailable:
 - How many variants are supported?
 - Are variants documented?
 
+> **Important - Platform-Specific Features**: Before flagging a missing feature
+> on one platform as an issue, check the documentation for explicit callouts
+> like "Web only" or "Mobile only". Some features are intentionally
+> platform-specific by design. If documentation states a feature is
+> platform-specific, score the other platform as **N/A**, not as a deficiency.
+
 **Scoring**:
 
 - **3**: All documented variants supported
 - **2**: Some documented variants missing
 - **1**: No variants where expected
-- **N/A**: Component doesn't need variants
+- **N/A**: Component doesn't need variants OR feature is explicitly
+  platform-specific per docs
 
-**Evidence to cite**: List of supported variants
+**Evidence to cite**: List of supported variants; note any documented platform
+restrictions
 
 ---
 
@@ -1089,7 +1137,7 @@ wrapper)
 
 **Description**: Uses motion appropriately and consistently.
 
-#### 8.1 Hover/press animations implemented correctly
+#### 8.1 Interaction state animations
 
 **Trades**: Design, Dev | **Environments**: Web, Mobile
 
@@ -1136,8 +1184,24 @@ wrapper)
 
 **What to check**:
 
-- `--timing-*` tokens in CSS
+- `--timing-*` tokens in CSS (e.g., `--timing-quick`, `--timing-base`,
+  `--timing-slow`)
 - `prefers-reduced-motion` media query support
+
+> **Why `prefers-reduced-motion` matters**: This CSS media query respects user
+> system preferences for reduced motion. Some users have vestibular disorders or
+> motion sensitivity where animations can cause nausea, dizziness, or
+> discomfort. WCAG 2.1 guideline 2.3.3 recommends respecting this preference.
+> Example:
+>
+> ```css
+> @media (prefers-reduced-motion: reduce) {
+>   .animated-element {
+>     transition: none;
+>     animation: none;
+>   }
+> }
+> ```
 
 **Scoring**:
 
@@ -1394,6 +1458,16 @@ performance differences make local testing unreliable"
 Use this exact format for the audit report. Copy the template and fill in scores
 and notes.
 
+> **Notes Quality Guidance**: Notes should be **actionable and self-contained**.
+> Someone reading the report months later (without context) should understand:
+>
+> - **Where**: File and line number for issues (e.g., `Toast.tsx:88`)
+> - **What**: The specific problem or finding
+> - **How to fix**: For scores of 1-2, what change is needed
+> - **Why N/A**: When the reason isn't obvious from the criterion
+>
+> Short notes are fine when there's nothing notable. Expand when context helps.
+
 ```markdown
 # [COMPONENT_NAME] Audit Report
 
@@ -1487,7 +1561,7 @@ exists]
 | --- | --------- | ----------- | ---------- | ----------- | ---------- |
 | 5.1 | Hover     | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 5.2 | Focus     | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
-| 5.3 | Active    | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
+| 5.3 | Default   | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 5.4 | Disabled  | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 5.5 | Selected  | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 5.6 | Pressed   | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
@@ -1515,11 +1589,11 @@ exists]
 
 ### 8. Motion / Transitions / Haptic
 
-| ID  | Criterion                 | Web Dev     | Notes      | Mobile Dev  | Notes      |
-| --- | ------------------------- | ----------- | ---------- | ----------- | ---------- |
-| 8.1 | Hover/press animations    | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
-| 8.2 | Transitions accounted for | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
-| 8.3 | Use of Motion tokens      | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
+| ID  | Criterion                    | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| --- | ---------------------------- | ----------- | ---------- | ----------- | ---------- |
+| 8.1 | Interaction state animations | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
+| 8.2 | Transitions accounted for    | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
+| 8.3 | Use of Motion tokens         | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 
 ### 9. Code Quality & Performance
 
@@ -1589,9 +1663,12 @@ The LLM **MUST** verify these items before finalizing the report:
       sentence?
 - [ ] **Evidence-Based**: Does every score have supporting evidence from the
       code?
-- [ ] **Specific Notes**: Are my notes specific and unambiguous? Avoid vague
-      terms like "tested" - instead say "unit tested", "covered by tests in
-      lines X-Y", or "visually verified in Storybook"
+- [ ] **Specific Notes**: Are my notes specific enough for someone with no prior
+      context to understand and act on? Include: - **File locations** for issues
+      (e.g., `Toast.tsx:88`) - **What to fix** for scores of 1-2 (e.g., "should
+      use `--timing-base`") - **Why N/A** when not obvious (e.g., "Variations
+      are 'Web only' per docs") - Avoid vague terms like "tested" - say "8 unit
+      tests covering X, Y, Z"
 - [ ] **N/A Consistency**: Did I use N/A only when the criterion genuinely
       doesn't apply?
 - [ ] **Mobile Check**: Did I check if a mobile version exists?
@@ -1644,6 +1721,28 @@ After receiving the LLM audit report, developers should complete these items:
 
 6. **Test Coverage Guessing**: Don't guess coverage percentages. Count test
    cases and describe what's tested.
+
+7. **Penalizing Correct Composition**: If a parent component delegates
+   interaction states to child components (e.g., Toast → Button for focus), this
+   is correct component composition. Don't score it as "incomplete" or "relies
+   on X" negatively. Score the composed behavior, not the implementation
+   details.
+
+8. **Missing Platform-Specific Documentation Check**: Before flagging a feature
+   as missing on one platform, check documentation for "Web only" or "Mobile
+   only" callouts. Intentional platform differences are not deficiencies.
+
+9. **Misrepresenting Pa11y Scope**: Pa11y tests comprehensive WCAG 2.1
+   compliance (50+ rules), not just contrast. Don't say "Pa11y passes for
+   contrast" - say "Pa11y verified (0 errors)" to accurately represent the
+   breadth of checks performed.
+
+10. **Vague or Jargon-Heavy Notes**: Notes like "Same", "Handled by Button", or
+    "focus ring" are unclear to someone without context. Instead:
+    - ❌ "Same" → ✅ "Same—notifications don't have disabled state"
+    - ❌ "Handled by Button" → ✅ "Delegates to `Button` which handles keyboard
+      focus with visible focus indicator (outline)"
+    - Include file:line references for issues (e.g., `Toast.tsx:88`)
 
 ---
 
@@ -1772,11 +1871,24 @@ After receiving the LLM audit report, developers should complete these items:
 
 ---
 
-_Document Version: 1.1_ _Last Updated: January 2026_ _For use with Atlantis
+_Document Version: 1.5_ _Last Updated: January 2026_ _For use with Atlantis
 Design System component audits_
 
 **Changelog:**
 
+- v1.5: Added common pitfall #10 "Vague or Jargon-Heavy Notes" with concrete
+  examples of unclear notes (e.g., "Same", "focus ring") and how to improve them
+- v1.4: Synced criterion names with latest atlantis-portal template: 5.3
+  "Active" → "Default", 8.1 "Hover/press animations" → "Interaction state
+  animations"; updated 7.2 Composition scoring to use behavior-based criteria
+  (compound/content container/behavior wrapper) instead of TypeScript types
+- v1.3: Added brief React Native/mobile contrast verification note (Pa11y is
+  web-only; use manual token lookup + WebAIM for mobile)
+- v1.2: Clarified Pa11y tests comprehensive WCAG compliance (not just contrast),
+  added guidance on component composition/delegation patterns, added platform-
+  specific feature documentation checks, expanded `prefers-reduced-motion`
+  explanation, added 3 new common pitfalls, added notes quality guidance for
+  actionable/self-contained audit notes
 - v1.1: Added Step-by-Step Execution Mode, Visual UI manual review guidance,
   Pa11y integration for accessibility testing, Performance testing paused
 - v1.0: Initial release
