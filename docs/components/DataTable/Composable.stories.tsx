@@ -1856,3 +1856,212 @@ export const Loading = () => {
     </StorybookTableProvider>
   );
 };
+
+const invoiceData = [
+  {
+    id: "234",
+    invoiceNumber: "#234",
+    dueDate: "Sep 16, 2025",
+    status: "Paid",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 0.0,
+  },
+  {
+    id: "196",
+    invoiceNumber: "#196",
+    dueDate: "Oct 16, 2025",
+    status: "Paid",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 0.0,
+  },
+  {
+    id: "195",
+    invoiceNumber: "#195",
+    dueDate: "Oct 16, 2025",
+    status: "Paid",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 0.0,
+  },
+  {
+    id: "194",
+    invoiceNumber: "#194",
+    dueDate: "Oct 16, 2025",
+    status: "Paid",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 0.0,
+  },
+  {
+    id: "193",
+    invoiceNumber: "#193",
+    dueDate: "Oct 16, 2025",
+    status: "Pending",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 750.0,
+  },
+];
+
+export const WithTotalsFooter = () => {
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 4,
+  });
+
+  const table = useReactTable({
+    data: invoiceData,
+    columns: [
+      {
+        accessorKey: "invoiceNumber",
+        header: "Invoice",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold" textColor="interactiveSubtle">
+            {row.original.invoiceNumber}
+          </Typography>
+        ),
+      },
+      {
+        accessorKey: "dueDate",
+        header: "Due Date",
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => (
+          <StatusLabel
+            status={row.original.status === "Paid" ? "success" : "warning"}
+            label={row.original.status}
+          />
+        ),
+      },
+      {
+        accessorKey: "subject",
+        header: "Subject",
+      },
+      {
+        accessorKey: "total",
+        header: "Total",
+        cell: ({ row }) => (
+          <Text align="end">
+            $
+            {row.original.total.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+            })}
+          </Text>
+        ),
+      },
+      {
+        accessorKey: "balance",
+        header: "Balance",
+        cell: ({ row }) => (
+          <Text align="end">
+            $
+            {row.original.balance.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+            })}
+          </Text>
+        ),
+      },
+    ],
+    state: {
+      pagination,
+    },
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
+  // Calculate totals across all data (not just current page)
+  const totalAmount = invoiceData.reduce((sum, inv) => sum + inv.total, 0);
+  const totalBalance = invoiceData.reduce((sum, inv) => sum + inv.balance, 0);
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Container>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Invoice</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Due Date</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Status</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Subject</DataTable.HeaderCell>
+            <DataTable.HeaderCell>
+              <Text align="end">Total</Text>
+            </DataTable.HeaderCell>
+            <DataTable.HeaderCell>
+              <Text align="end">Balance</Text>
+            </DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+
+          {/* Pagination footer - uses colSpan for full-width content */}
+          <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
+            <DataTable.Pagination>
+              <Cluster justify="space-between" align="center">
+                <Text>
+                  Showing {table.getRowModel().rows.length} of{" "}
+                  {invoiceData.length} invoices
+                </Text>
+                <Cluster gap="small">
+                  <DataTable.PaginationButton
+                    direction="previous"
+                    disabled={!table.getCanPreviousPage()}
+                    onClick={() => table.previousPage()}
+                    ariaLabel={direction =>
+                      direction === "next" ? "Next page" : "Previous page"
+                    }
+                  />
+                  <DataTable.PaginationButton
+                    direction="next"
+                    disabled={!table.getCanNextPage()}
+                    onClick={() => table.nextPage()}
+                    ariaLabel={direction =>
+                      direction === "next" ? "Next page" : "Previous page"
+                    }
+                  />
+                </Cluster>
+              </Cluster>
+            </DataTable.Pagination>
+          </DataTable.Footer>
+
+          {/* Totals footer - omits colSpan for column-aligned content */}
+          <DataTable.Footer>
+            <DataTable.Row>
+              <DataTable.Cell colSpan={4}>
+                <Typography fontWeight="bold">Total</Typography>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold" align="end">
+                  $
+                  {totalAmount.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </Typography>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold" align="end">
+                  $
+                  {totalBalance.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </Typography>
+              </DataTable.Cell>
+            </DataTable.Row>
+          </DataTable.Footer>
+        </DataTable.Table>
+      </DataTable.Container>
+    </StorybookTableProvider>
+  );
+};

@@ -6,9 +6,11 @@ export interface DataTableFooterProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {
   readonly children: React.ReactNode;
   /**
-   * Number of columns to span across. This should match the number of columns in your table.
+   * Number of columns to span across. When provided, children are wrapped in a
+   * single cell that spans all columns. When omitted, children are rendered
+   * directly, allowing custom row/cell structures.
    */
-  readonly colSpan: number;
+  readonly colSpan?: number;
 }
 
 export function DataTableFooter({
@@ -19,9 +21,13 @@ export function DataTableFooter({
 }: DataTableFooterProps) {
   return (
     <tfoot {...props} className={classNames(styles.footer, className)}>
-      <tr>
-        <td colSpan={colSpan}>{children}</td>
-      </tr>
+      {colSpan !== undefined ? (
+        <tr>
+          <td colSpan={colSpan}>{children}</td>
+        </tr>
+      ) : (
+        children
+      )}
     </tfoot>
   );
 }

@@ -39,14 +39,14 @@ The DataTable uses a compound component pattern with these atomic components:
         <DataTable.Cell>Admin</DataTable.Cell>
       </DataTable.Row>
     </DataTable.Body>
-  </DataTable.Table>
 
-  <DataTable.Footer>
-    <DataTable.Pagination>
-      <DataTable.PaginationButton direction="previous" />
-      <DataTable.PaginationButton direction="next" />
-    </DataTable.Pagination>
-  </DataTable.Footer>
+    <DataTable.Footer colSpan={3}>
+      <DataTable.Pagination>
+        <DataTable.PaginationButton direction="previous" />
+        <DataTable.PaginationButton direction="next" />
+      </DataTable.Pagination>
+    </DataTable.Footer>
+  </DataTable.Table>
 </DataTable.Container>
 ```
 
@@ -206,6 +206,38 @@ The `direction` prop represents the current sort state of the column. Your
 `onSort` callback should handle the state transitions (ascending → descending →
 equilibrium) based on your application's logic.
 
+### Footer
+
+The `DataTable.Footer` component supports two usage patterns depending on your
+needs.
+
+**Full-width content (e.g., pagination):** Pass `colSpan` to wrap children in a
+single cell spanning all columns.
+
+```tsx
+<DataTable.Footer colSpan={6}>
+  <DataTable.Pagination>
+    <DataTable.PaginationButton direction="previous" />
+    <DataTable.PaginationButton direction="next" />
+  </DataTable.Pagination>
+</DataTable.Footer>
+```
+
+**Column-aligned content (e.g., totals):** Omit `colSpan` to render custom
+row/cell structures that align with specific columns.
+
+```tsx
+<DataTable.Footer>
+  <DataTable.Row>
+    <DataTable.Cell colSpan={4}>
+      <Typography fontWeight="bold">Total</Typography>
+    </DataTable.Cell>
+    <DataTable.Cell>$3,750.00</DataTable.Cell>
+    <DataTable.Cell>$750.00</DataTable.Cell>
+  </DataTable.Row>
+</DataTable.Footer>
+```
+
 ### Pagination
 
 For
@@ -213,7 +245,7 @@ For
 use DataTable.Pagination and DataTable.PaginationButton:
 
 ```tsx
-<DataTable.Footer>
+<DataTable.Footer colSpan={columnCount}>
   <DataTable.Pagination>
     <DataTable.PaginationButton
       direction="previous"
