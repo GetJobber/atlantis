@@ -6,6 +6,7 @@ import { useButtonStyles } from "./useButtonStyles";
 // eslint-disable-next-line import/no-deprecated
 import { ButtonContent, ButtonIcon, ButtonLabel } from "./ButtonInternals";
 import { ButtonProvider } from "./ButtonProvider";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 function Button(props: ButtonProps) {
   const { size } = props;
@@ -38,6 +39,7 @@ function ButtonWrapper(props: ButtonProps) {
     UNSAFE_className = {},
     UNSAFE_style = {},
     children,
+    ...rest
   } = props;
 
   const { combined } = useButtonStyles(props);
@@ -45,6 +47,7 @@ function ButtonWrapper(props: ButtonProps) {
   const buttonType: HTMLButtonType = submit ? "submit" : "button";
 
   const buttonClassNames = classnames(combined, UNSAFE_className.container);
+  const dataAttributes = filterDataAttributes(rest);
 
   const tagProps = {
     className: buttonClassNames,
@@ -66,6 +69,7 @@ function ButtonWrapper(props: ButtonProps) {
     "aria-expanded": ariaExpanded,
     "aria-label": ariaLabel,
     role: role,
+    ...dataAttributes,
   };
 
   const buttonInternals = children || <ButtonContent {...props} />;

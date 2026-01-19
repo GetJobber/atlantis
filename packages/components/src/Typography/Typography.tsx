@@ -12,6 +12,7 @@ import alignment from "./css/TextAlignment.module.css";
 import fontFamilies from "./css/FontFamilies.module.css";
 import underlineStyles from "./css/Underline.module.css";
 import type { UnderlineStyle, UnderlineStyleWithColor } from "./types";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 export interface TypographyProps {
   readonly id?: string;
@@ -94,7 +95,9 @@ export function Typography({
   underline,
   UNSAFE_className,
   UNSAFE_style,
+  ...rest
 }: TypographyProps) {
+  const dataAttributes = filterDataAttributes(rest);
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
     styles.base,
@@ -130,6 +133,7 @@ export function Typography({
         ...underlineInlineStyles,
         ...UNSAFE_style?.textStyle,
       }}
+      {...dataAttributes}
     >
       {children}
     </Tag>

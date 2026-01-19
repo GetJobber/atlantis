@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import React from "react";
 import type { TypographyOptions, TypographyProps } from "../Typography";
 import { Typography } from "../Typography";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -59,7 +60,9 @@ export function Heading({
   maxLines = "unlimited",
   UNSAFE_className,
   UNSAFE_style,
+  ...rest
 }: HeadingProps) {
+  const dataAttributes = filterDataAttributes(rest);
   const levelMap: LevelMap = {
     1: {
       element: "h1",
@@ -117,6 +120,7 @@ export function Heading({
       numberOfLines={maxLineToNumber[maxLines]}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_style={UNSAFE_style}
+      {...dataAttributes}
     >
       {children}
     </Typography>

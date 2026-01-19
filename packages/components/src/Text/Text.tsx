@@ -2,6 +2,7 @@ import type { PropsWithChildren } from "react";
 import React from "react";
 import type { TypographyOptions, TypographyProps } from "../Typography";
 import { Typography } from "../Typography";
+import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 
 type TextElement = Extract<
   TypographyProps["element"],
@@ -62,7 +63,9 @@ export function Text({
   maxLines = "unlimited",
   UNSAFE_className,
   UNSAFE_style,
+  ...rest
 }: PropsWithChildren<TextProps>) {
+  const dataAttributes = filterDataAttributes(rest);
   const textColors = {
     default: "text",
     subdued: "textSecondary",
@@ -91,6 +94,7 @@ export function Text({
       align={align}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_style={UNSAFE_style}
+      {...dataAttributes}
     >
       {children}
     </Typography>

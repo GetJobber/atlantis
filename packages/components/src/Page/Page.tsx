@@ -11,6 +11,7 @@ import { Markdown } from "../Markdown";
 import { Button, type ButtonProps } from "../Button";
 import { Menu, type SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
+import type { CommonAtlantisProps } from "../sharedHelpers/types";
 
 export type ButtonActionProps = ButtonProps & {
   ref?: React.RefObject<HTMLDivElement>;
@@ -68,6 +69,11 @@ interface PageFoundationProps {
    * Page title Action menu.
    */
   readonly moreActionsMenu?: SectionProps[];
+
+  readonly dataAttributes?: {
+    title: CommonAtlantisProps["dataAttributes"];
+    intro: CommonAtlantisProps["dataAttributes"];
+  };
 }
 
 interface PageWithIntroProps extends PageFoundationProps {
@@ -101,6 +107,7 @@ export function Page({
   primaryAction,
   secondaryAction,
   moreActionsMenu = [],
+  dataAttributes,
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
   const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
@@ -141,11 +148,15 @@ export function Page({
             <div>
               {typeof title === "string" && titleMetaData ? (
                 <div className={styles.titleRow}>
-                  <Heading level={1}>{title}</Heading>
+                  <Heading level={1} {...dataAttributes?.title}>
+                    {title}
+                  </Heading>
                   {titleMetaData}
                 </div>
               ) : typeof title === "string" ? (
-                <Heading level={1}>{title}</Heading>
+                <Heading level={1} {...dataAttributes?.title}>
+                  {title}
+                </Heading>
               ) : (
                 title
               )}
@@ -183,7 +194,7 @@ export function Page({
             )}
           </div>
           {intro && (
-            <Text size="large">
+            <Text size="large" {...dataAttributes?.intro}>
               <Markdown
                 content={intro}
                 basicUsage={true}
