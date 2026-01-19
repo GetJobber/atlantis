@@ -25,11 +25,6 @@ export const useStyles = buildThemedStyles(tokens => {
       borderTopRightRadius: modalBorderRadius,
     },
 
-    modalForLargeScreens: {
-      width: 640,
-      alignSelf: "center",
-    },
-
     header: {
       flexDirection: "row",
       zIndex: tokens["elevation-base"],

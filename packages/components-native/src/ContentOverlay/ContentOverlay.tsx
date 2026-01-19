@@ -1,5 +1,10 @@
 import React, { useImperativeHandle, useMemo, useRef, useState } from "react";
-import { AccessibilityInfo, View, findNodeHandle } from "react-native";
+import {
+  AccessibilityInfo,
+  View,
+  findNodeHandle,
+  useWindowDimensions,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   BottomSheetBackdrop,
@@ -20,6 +25,8 @@ import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 import { useAtlantisTheme } from "../AtlantisThemeContext";
+
+const LARGE_SCREEN_BREAKPOINT = 640;
 
 function getModalBackgroundColor(
   variation: ModalBackgroundColor,
@@ -52,6 +59,7 @@ export function ContentOverlay({
   ref,
 }: ContentOverlayProps) {
   const insets = useSafeAreaInsets();
+  const { width: windowWidth } = useWindowDimensions();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
   const [currentPosition, setCurrentPosition] = useState<number>(-1);
@@ -66,7 +74,7 @@ export function ContentOverlay({
   const shouldShowDismiss =
     showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
 
-  const draggable = onBeforeExit ? false : isDraggable;
+  const draggable = determineDraggable(isDraggable, onBeforeExit);
   // Prevent the Overlay from being flush with the top of the screen, even if we are "100%" or "fullscreen"
   const topInset = insets.top || tokens["space-larger"];
 
@@ -76,18 +84,14 @@ export function ContentOverlay({
     BottomSheetScrollViewMethods & { scrollTop?: number }
   >(null);
 
-  // If isDraggable is true, we always want to have a snap point at 100%
   // enableDynamicSizing will add another snap point of the content height
   const snapPoints = useMemo(() => {
-    // When this is enabled, it prevents the modal from being dragged to fullscreen. This is solely necessary
-    // to match the behaviour of the previous library. Ideally we should consider ripping this out, but there's
-    // a lot of surface area to test and verify.
-    if (adjustToContentHeight) {
-      return [];
-    }
-
+    // There is a bug with "restore" behavior after keyboard is dismissed.
+    // https://github.com/gorhom/react-native-bottom-sheet/issues/2465
+    // providing a 100% snap point "fixes" it for now, but there is an approved PR to fix it
+    // that just needs to be merged and released: https://github.com/gorhom/react-native-bottom-sheet/pull/2511
     return ["100%"];
-  }, [adjustToContentHeight]);
+  }, []);
 
   const onCloseController = () => {
     if (!onBeforeExit) {
@@ -127,9 +131,6 @@ export function ContentOverlay({
           AccessibilityInfo.setAccessibilityFocus(reactTag);
         }
       }
-    } else if (previousIndex >= 0 && index === -1) {
-      // Transitioned from open to closed
-      onClose?.();
     }
 
     previousIndexRef.current = index;
@@ -140,10 +141,19 @@ export function ContentOverlay({
     setShowHeaderShadow(scrollTop > 0);
   };
 
-  const modalStyle = [
+  const sheetStyle = useMemo(
+    () =>
+      windowWidth > LARGE_SCREEN_BREAKPOINT
+        ? {
+            width: LARGE_SCREEN_BREAKPOINT,
+            marginLeft: (windowWidth - LARGE_SCREEN_BREAKPOINT) / 2,
+          }
+        : undefined,
+    [windowWidth],
+  );
+
+  const backgroundStyle = [
     styles.background,
-    // TODO: Add large screen styles?
-    // windowWidth > 640 ? styles.modalForLargeScreens : undefined,
     { backgroundColor: getModalBackgroundColor(modalBackgroundColor, tokens) },
   ];
 
@@ -224,7 +234,8 @@ export function ContentOverlay({
     <BottomSheetModal
       ref={bottomSheetModalRef}
       onChange={handleChange}
-      backgroundStyle={modalStyle}
+      style={sheetStyle}
+      backgroundStyle={backgroundStyle}
       handleStyle={styles.handleWrapper}
       handleIndicatorStyle={handleIndicatorStyles}
       backdropComponent={props => (
@@ -233,8 +244,12 @@ export function ContentOverlay({
       snapPoints={snapPoints}
       enablePanDownToClose={draggable}
       enableContentPanningGesture={draggable}
+      enableHandlePanningGesture={draggable}
       enableDynamicSizing={!fullScreen || adjustToContentHeight}
+      keyboardBehavior="interactive"
+      keyboardBlurBehavior="restore"
       topInset={topInset}
+      onDismiss={() => onClose?.()}
     >
       {scrollEnabled ? (
         <BottomSheetScrollView
@@ -283,4 +298,16 @@ function Backdrop(
       pressBehavior={pressBehavior}
     />
   );
+}
+
+function determineDraggable(isDraggable: boolean, onBeforeExit?: () => void) {
+  // If onBeforeExit is provided, we don't want to allow the modal to be dragged to fullscreen.
+  // This appears to be because previously we could only reliably get a callback when the overlay was closed
+  // via the dismiss button. Furthermore, the dismiss button would only be present if it was not draggable.
+  // While we no longer need to adhere to this somewhat awkward behavior, we will leave it as is until a larger refactor.
+  if (onBeforeExit) {
+    return false;
+  }
+
+  return isDraggable;
 }
