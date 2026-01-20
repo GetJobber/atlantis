@@ -1351,6 +1351,7 @@ export const BulkSelection = () => {
                   style={{
                     padding: "var(--space-smallest) var(--space-base)",
                     paddingRight: 0,
+                    width: "5%",
                   }}
                 >
                   <div
@@ -1400,6 +1401,7 @@ export const BulkSelection = () => {
                   <DataTable.HeaderCell
                     key={header.id}
                     style={{
+                      width: header.id === "select" ? "5%" : undefined,
                       paddingRight: header.id === "select" ? 0 : undefined,
                       paddingLeft:
                         header.id === "name"
@@ -1822,6 +1824,209 @@ export const Loading = () => {
   );
 };
 
+const columnWidthData = [
+  {
+    id: "1",
+    status: "scheduled",
+    client: "Sarah Mitchell",
+    service: "AC Installation",
+    scheduledDate: "Jan 22, 2026",
+    amount: 4850,
+  },
+  {
+    id: "2",
+    status: "in_progress",
+    client: "Marcus Chen",
+    service: "Furnace Repair",
+    scheduledDate: "Jan 21, 2026",
+    amount: 650,
+  },
+  {
+    id: "3",
+    status: "completed",
+    client: "Emily Rodriguez",
+    service: "Duct Cleaning",
+    scheduledDate: "Jan 20, 2026",
+    amount: 425,
+  },
+  {
+    id: "4",
+    status: "scheduled",
+    client: "David Thompson",
+    service: "Heat Pump Maintenance",
+    scheduledDate: "Jan 23, 2026",
+    amount: 275,
+  },
+  {
+    id: "5",
+    status: "completed",
+    client: "Lisa Patel",
+    service: "Thermostat Installation",
+    scheduledDate: "Jan 19, 2026",
+    amount: 350,
+  },
+];
+
+/**
+ * With `table-layout: fixed`, you can control column widths using percentages.
+ * Columns without explicit widths share the remaining space equally.
+ *
+ * Set widths on `DataTable.HeaderCell` via the `style` prop.
+ */
+export const ColumnWidths = () => {
+  const { mediumAndUp } = useBreakpoints();
+  const isDesktop = mediumAndUp;
+  const isMobile = !isDesktop;
+
+  const columnVisibility = React.useMemo<VisibilityState>(
+    () => ({
+      mobileContent: isMobile,
+      status: isDesktop,
+      client: isDesktop,
+      service: isDesktop,
+      scheduledDate: isDesktop,
+      amount: isDesktop,
+    }),
+    [isDesktop],
+  );
+
+  const table = useReactTable({
+    data: columnWidthData,
+    columns: [
+      {
+        id: "mobileContent",
+        header: "Appointment",
+        cell: ({ row }) => (
+          <Stack gap="small">
+            <Cluster gap="small" align="center">
+              <StatusLabel
+                status={
+                  row.original.status === "in_progress"
+                    ? "informative"
+                    : row.original.status === "completed"
+                    ? "success"
+                    : "inactive"
+                }
+                label={
+                  row.original.status === "in_progress"
+                    ? "In Progress"
+                    : row.original.status === "completed"
+                    ? "Completed"
+                    : "Scheduled"
+                }
+              />
+              <Typography fontWeight="bold">{row.original.client}</Typography>
+            </Cluster>
+            <Text variation="subdued">{row.original.service}</Text>
+            <Cluster justify="space-between" align="center">
+              <Text variation="subdued">{row.original.scheduledDate}</Text>
+              <Text>${row.original.amount.toLocaleString()}</Text>
+            </Cluster>
+          </Stack>
+        ),
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => (
+          <StatusLabel
+            status={
+              row.original.status === "in_progress"
+                ? "informative"
+                : row.original.status === "completed"
+                ? "success"
+                : "inactive"
+            }
+            label={
+              row.original.status === "in_progress"
+                ? "In Progress"
+                : row.original.status === "completed"
+                ? "Completed"
+                : "Scheduled"
+            }
+          />
+        ),
+      },
+      {
+        accessorKey: "client",
+        header: "Client",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.client}</Typography>
+        ),
+      },
+      {
+        accessorKey: "service",
+        header: "Service",
+        cell: ({ row }) => <>{row.original.service}</>,
+      },
+      {
+        accessorKey: "scheduledDate",
+        header: "Date",
+        cell: ({ row }) => <>{row.original.scheduledDate}</>,
+      },
+      {
+        accessorKey: "amount",
+        header: "Amount",
+        cell: ({ row }) => `$${row.original.amount.toLocaleString()}`,
+      },
+    ],
+    state: {
+      columnVisibility,
+    },
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Container>
+        <DataTable.Table>
+          <DataTable.Header>
+            {isDesktop ? (
+              <>
+                <DataTable.HeaderCell style={{ width: "12%" }}>
+                  Status
+                </DataTable.HeaderCell>
+                <DataTable.HeaderCell style={{ width: "12%" }}>
+                  Client
+                </DataTable.HeaderCell>
+                <DataTable.HeaderCell>Service</DataTable.HeaderCell>
+                <DataTable.HeaderCell style={{ width: "15%" }}>
+                  Date
+                </DataTable.HeaderCell>
+                <DataTable.HeaderCell
+                  style={{ width: "12%", textAlign: "end" }}
+                >
+                  Amount
+                </DataTable.HeaderCell>
+              </>
+            ) : (
+              <DataTable.HeaderCell>Appointment</DataTable.HeaderCell>
+            )}
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell
+                    key={cell.id}
+                    style={
+                      cell.column.id === "amount" && isDesktop
+                        ? { textAlign: "end" }
+                        : undefined
+                    }
+                  >
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+        </DataTable.Table>
+      </DataTable.Container>
+    </StorybookTableProvider>
+  );
+};
+
 const invoiceData = [
   {
     id: "234",
@@ -1939,7 +2144,6 @@ export const FooterWithPagination = () => {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  // Calculate totals across all data (not just current page)
   const totalAmount = invoiceData.reduce((sum, inv) => sum + inv.total, 0);
   const totalBalance = invoiceData.reduce((sum, inv) => sum + inv.balance, 0);
 
@@ -1995,7 +2199,6 @@ export const FooterWithPagination = () => {
             </DataTable.Row>
           </DataTable.Footer>
         </DataTable.Table>
-        {/* Pagination outside table, within the container */}
         <DataTable.Pagination>
           <Cluster justify="space-between" align="center">
             <Text>
@@ -2084,12 +2287,9 @@ export const FooterWithPageTotals = () => {
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  // Page-level subtotal (only visible rows)
   const pageSubtotal = table
     .getRowModel()
     .rows.reduce((sum, row) => sum + row.original.total, 0);
-
-  // Grand total (all data)
   const grandTotal = invoiceData.reduce((sum, inv) => sum + inv.total, 0);
 
   return (
@@ -2117,9 +2317,7 @@ export const FooterWithPageTotals = () => {
             ))}
           </DataTable.Body>
 
-          {/* Footer with page subtotal and grand total */}
           <DataTable.Footer>
-            {/* Page subtotal row */}
             <DataTable.Row>
               <DataTable.Cell colSpan={4}>
                 <Text>Subtotal</Text>
@@ -2133,7 +2331,6 @@ export const FooterWithPageTotals = () => {
                 </Text>
               </DataTable.Cell>
             </DataTable.Row>
-            {/* Grand total row */}
             <DataTable.Row>
               <DataTable.Cell colSpan={4}>
                 <Typography fontWeight="bold">Total</Typography>
@@ -2150,7 +2347,6 @@ export const FooterWithPageTotals = () => {
           </DataTable.Footer>
         </DataTable.Table>
 
-        {/* Pagination */}
         <DataTable.Pagination>
           <Cluster justify="space-between" align="center">
             <Text>
