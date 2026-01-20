@@ -37,7 +37,7 @@
   z-index: var(--elevation-modal);
   width: 100%;
   max-width: var(--modal--width);
-  max-height: calc(100vh - 2 * var(--space-base));
+  max-height: calc(100dvh - 2 * var(--space-base));
   box-shadow: var(--modal--shadow);
   margin: auto;
   border: var(--border-base) solid var(--color-border);
