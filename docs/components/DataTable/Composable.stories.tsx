@@ -1386,6 +1386,7 @@ export const BulkSelection = () => {
                   style={{
                     padding: "var(--space-smallest) var(--space-base)",
                     paddingRight: 0,
+                    width: "5%",
                   }}
                 >
                   <div
@@ -1435,6 +1436,7 @@ export const BulkSelection = () => {
                   <DataTable.HeaderCell
                     key={header.id}
                     style={{
+                      width: header.id === "select" ? "5%" : undefined,
                       paddingRight: header.id === "select" ? 0 : undefined,
                       paddingLeft:
                         header.id === "name"
@@ -1848,6 +1850,144 @@ export const Loading = () => {
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </DataTable.Cell>
                 ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+        </DataTable.Table>
+      </DataTable.Container>
+    </StorybookTableProvider>
+  );
+};
+
+const columnWidthData = [
+  {
+    id: "1",
+    status: "scheduled",
+    client: "Sarah Mitchell",
+    service: "AC Installation",
+    scheduledDate: "Jan 22, 2026",
+    amount: 4850,
+  },
+  {
+    id: "2",
+    status: "in_progress",
+    client: "Marcus Chen",
+    service: "Furnace Repair",
+    scheduledDate: "Jan 21, 2026",
+    amount: 650,
+  },
+  {
+    id: "3",
+    status: "completed",
+    client: "Emily Rodriguez",
+    service: "Duct Cleaning",
+    scheduledDate: "Jan 20, 2026",
+    amount: 425,
+  },
+  {
+    id: "4",
+    status: "scheduled",
+    client: "David Thompson",
+    service: "Heat Pump Maintenance",
+    scheduledDate: "Jan 23, 2026",
+    amount: 275,
+  },
+  {
+    id: "5",
+    status: "completed",
+    client: "Lisa Patel",
+    service: "Thermostat Installation",
+    scheduledDate: "Jan 19, 2026",
+    amount: 350,
+  },
+];
+
+/**
+ * With `table-layout: fixed`, you can control column widths using percentages.
+ * Columns without explicit widths share the remaining space equally.
+ *
+ * Set widths on `DataTable.HeaderCell` via the `style` prop.
+ */
+export const ColumnWidths = () => {
+  const table = useReactTable({
+    data: columnWidthData,
+    columns: [
+      {
+        accessorKey: "status",
+        header: "Status",
+      },
+      {
+        accessorKey: "client",
+        header: "Client",
+      },
+      {
+        accessorKey: "service",
+        header: "Service",
+      },
+      {
+        accessorKey: "scheduledDate",
+        header: "Date",
+      },
+      {
+        accessorKey: "amount",
+        header: "Amount",
+        cell: ({ row }) => `$${row.original.amount.toLocaleString()}`,
+      },
+    ],
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Container>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell style={{ width: "12%" }}>
+              Status
+            </DataTable.HeaderCell>
+            <DataTable.HeaderCell style={{ width: "12%" }}>
+              Client
+            </DataTable.HeaderCell>
+            {/* No width - takes remaining space */}
+            <DataTable.HeaderCell>Service</DataTable.HeaderCell>
+            <DataTable.HeaderCell style={{ width: "15%" }}>
+              Date
+            </DataTable.HeaderCell>
+            <DataTable.HeaderCell style={{ width: "12%", textAlign: "end" }}>
+              Amount
+            </DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                <DataTable.Cell>
+                  <StatusLabel
+                    status={
+                      row.original.status === "in_progress"
+                        ? "informative"
+                        : row.original.status === "completed"
+                        ? "success"
+                        : "inactive"
+                    }
+                    label={
+                      row.original.status === "in_progress"
+                        ? "In Progress"
+                        : row.original.status === "completed"
+                        ? "Completed"
+                        : "Scheduled"
+                    }
+                  />
+                </DataTable.Cell>
+                <DataTable.Cell>
+                  <Typography fontWeight="bold">
+                    {row.original.client}
+                  </Typography>
+                </DataTable.Cell>
+                <DataTable.Cell>{row.original.service}</DataTable.Cell>
+                <DataTable.Cell>{row.original.scheduledDate}</DataTable.Cell>
+                <DataTable.Cell style={{ textAlign: "end" }}>
+                  ${row.original.amount.toLocaleString()}
+                </DataTable.Cell>
               </DataTable.Row>
             ))}
           </DataTable.Body>
