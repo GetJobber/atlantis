@@ -165,7 +165,9 @@ export function ModalContent({ children }: ModalContainerProps) {
                       if (startedInsideRef) startedInsideRef.current = true;
                     }}
                   >
-                    <div className={styles.modalBody}>{children}</div>
+                    <div className={styles.modalBody} tabIndex={-1}>
+                      {children}
+                    </div>
                   </motion.div>
                 </FloatingFocusManager>
               </ModalOverlay>
