@@ -642,7 +642,7 @@ export const Sortable = () => {
   );
 };
 
-export const WithPagination = () => {
+export const Pagination = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 4,
@@ -695,42 +695,40 @@ export const WithPagination = () => {
               </DataTable.Row>
             ))}
           </DataTable.Body>
-          <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
-            <DataTable.Pagination>
-              <Cluster justify="space-between" align="center">
-                <Text>
-                  Showing {table.getRowModel().rows.length} of{" "}
-                  {exampleData.length} items
-                </Text>
-
-                <Cluster gap="small">
-                  <DataTable.PaginationButton
-                    direction="previous"
-                    disabled={!table.getCanPreviousPage()}
-                    onClick={() => table.previousPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                  <DataTable.PaginationButton
-                    direction="next"
-                    disabled={!table.getCanNextPage()}
-                    onClick={() => table.nextPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                </Cluster>
-              </Cluster>
-            </DataTable.Pagination>
-          </DataTable.Footer>
         </DataTable.Table>
+        <DataTable.Pagination>
+          <Cluster justify="space-between" align="center">
+            <Text>
+              Showing {table.getRowModel().rows.length} of {exampleData.length}{" "}
+              items
+            </Text>
+
+            <Cluster gap="small">
+              <DataTable.PaginationButton
+                direction="previous"
+                disabled={!table.getCanPreviousPage()}
+                onClick={() => table.previousPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+              <DataTable.PaginationButton
+                direction="next"
+                disabled={!table.getCanNextPage()}
+                onClick={() => table.nextPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+            </Cluster>
+          </Cluster>
+        </DataTable.Pagination>
       </DataTable.Container>
     </StorybookTableProvider>
   );
 };
 
-export const DoubleFooter = () => {
+export const WithFooter = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 6,
@@ -799,51 +797,18 @@ export const DoubleFooter = () => {
               </DataTable.Row>
             ))}
           </DataTable.Body>
-
           {/* Current balance footer */}
-          <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
-            <div style={{ padding: "var(--space-base)", fontWeight: "bold" }}>
-              <Cluster justify="space-between" align="center">
+          <DataTable.Footer>
+            <DataTable.Row>
+              <DataTable.Cell colSpan={3}>
                 <Typography fontWeight="bold">Current balance</Typography>
-                <Typography fontWeight="bold">
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold" align="end">
                   ${currentBalance.toLocaleString()}.00
                 </Typography>
-              </Cluster>
-            </div>
-          </DataTable.Footer>
-
-          {/* Pagination footer */}
-          <DataTable.Footer
-            colSpan={table.getAllLeafColumns().length}
-            style={{ borderTopWidth: "var(--border-thick)" }}
-          >
-            <DataTable.Pagination>
-              <Cluster justify="space-between" align="center">
-                <Text>
-                  Showing {table.getRowModel().rows.length} of{" "}
-                  {transactionData.length} items
-                </Text>
-
-                <Cluster gap="small">
-                  <DataTable.PaginationButton
-                    direction="previous"
-                    disabled={!table.getCanPreviousPage()}
-                    onClick={() => table.previousPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                  <DataTable.PaginationButton
-                    direction="next"
-                    disabled={!table.getCanNextPage()}
-                    onClick={() => table.nextPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                </Cluster>
-              </Cluster>
-            </DataTable.Pagination>
+              </DataTable.Cell>
+            </DataTable.Row>
           </DataTable.Footer>
         </DataTable.Table>
       </DataTable.Container>
@@ -1905,7 +1870,7 @@ const invoiceData = [
   },
 ];
 
-export const WithTotalsFooter = () => {
+export const FooterWithPagination = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 4,
@@ -2006,37 +1971,6 @@ export const WithTotalsFooter = () => {
             ))}
           </DataTable.Body>
 
-          {/* Pagination footer - uses colSpan for full-width content */}
-          <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
-            <DataTable.Pagination>
-              <Cluster justify="space-between" align="center">
-                <Text>
-                  Showing {table.getRowModel().rows.length} of{" "}
-                  {invoiceData.length} invoices
-                </Text>
-                <Cluster gap="small">
-                  <DataTable.PaginationButton
-                    direction="previous"
-                    disabled={!table.getCanPreviousPage()}
-                    onClick={() => table.previousPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                  <DataTable.PaginationButton
-                    direction="next"
-                    disabled={!table.getCanNextPage()}
-                    onClick={() => table.nextPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                </Cluster>
-              </Cluster>
-            </DataTable.Pagination>
-          </DataTable.Footer>
-
-          {/* Totals footer - omits colSpan for column-aligned content */}
           <DataTable.Footer>
             <DataTable.Row>
               <DataTable.Cell colSpan={4}>
@@ -2061,6 +1995,33 @@ export const WithTotalsFooter = () => {
             </DataTable.Row>
           </DataTable.Footer>
         </DataTable.Table>
+        {/* Pagination outside table, within the container */}
+        <DataTable.Pagination>
+          <Cluster justify="space-between" align="center">
+            <Text>
+              Showing {table.getRowModel().rows.length} of {invoiceData.length}{" "}
+              invoices
+            </Text>
+            <Cluster gap="small">
+              <DataTable.PaginationButton
+                direction="previous"
+                disabled={!table.getCanPreviousPage()}
+                onClick={() => table.previousPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+              <DataTable.PaginationButton
+                direction="next"
+                disabled={!table.getCanNextPage()}
+                onClick={() => table.nextPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+            </Cluster>
+          </Cluster>
+        </DataTable.Pagination>
       </DataTable.Container>
     </StorybookTableProvider>
   );

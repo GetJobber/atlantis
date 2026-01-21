@@ -16,18 +16,11 @@ export interface DataTableFooterProps
 export function DataTableFooter({
   children,
   className,
-  colSpan,
   ...props
 }: DataTableFooterProps) {
   return (
     <tfoot {...props} className={classNames(styles.footer, className)}>
-      {colSpan !== undefined ? (
-        <tr>
-          <td colSpan={colSpan}>{children}</td>
-        </tr>
-      ) : (
-        children
-      )}
+      {children}
     </tfoot>
   );
 }
