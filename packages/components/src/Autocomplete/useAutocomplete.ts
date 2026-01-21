@@ -91,9 +91,8 @@ export function useAutocomplete<
 
         return (current as Value[]).some(v => equals(v, opt));
       }
-      const current = value as Value | undefined;
 
-      return current != null ? equals(current, opt) : false;
+      return isValidSingleSelection<Value>(value) ? equals(value, opt) : false;
     },
     [multiple, value, equals],
   );
@@ -228,7 +227,7 @@ export function useAutocomplete<
       return Array.isArray(current) && current.length > 0;
     }
 
-    return (value as Value | undefined) != null;
+    return isValidSingleSelection(value);
   }, [multiple, value]);
 
   const headerInteractivePersistents = persistentsHeaders.filter(p =>
@@ -251,8 +250,8 @@ export function useAutocomplete<
   // Compute the currently selected index in the global navigable list (header -> middle -> footer)
   const selectedIndex: number | null = useMemo(() => {
     const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
+      ? getFirstItemFromMultiSelection<Value>(value)
+      : getSingleSelection<Value>(value);
 
     if (!selectedValue) return null;
 
@@ -367,8 +366,8 @@ export function useAutocomplete<
     if (!hasSelection) return;
 
     const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
+      ? getFirstItemFromMultiSelection<Value>(value)
+      : getSingleSelection<Value>(value);
 
     if (!selectedValue) return;
 
@@ -392,8 +391,8 @@ export function useAutocomplete<
     // - If there is a current selection, highlight that option
     // - Otherwise, leave the highlight unset (null)
     const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
+      ? getFirstItemFromMultiSelection<Value>(value)
+      : getSingleSelection<Value>(value);
 
     if (selectedValue) {
       const selectedNavigableIndex = findNavigableIndexForValue(
@@ -477,8 +476,8 @@ export function useAutocomplete<
     if (props.allowFreeForm === true) return;
 
     const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
+      ? getFirstItemFromMultiSelection<Value>(value)
+      : getSingleSelection<Value>(value);
     if (!selectedValue) return;
 
     const selectedLabel = getOptionLabel(selectedValue);
@@ -721,4 +720,34 @@ export function useAutocomplete<
     // ref attachment
     setReferenceElement,
   };
+}
+
+function isValidSingleSelection<Value extends OptionLike>(
+  value: unknown,
+): value is Value {
+  if (value && typeof value === "object" && "label" in value && value.label) {
+    return true;
+  }
+
+  return false;
+}
+
+function getSingleSelection<Value extends OptionLike>(
+  value: unknown,
+): Value | undefined {
+  if (isValidSingleSelection(value)) {
+    return value as Value;
+  }
+
+  return undefined;
+}
+
+function getFirstItemFromMultiSelection<Value extends OptionLike>(
+  value: unknown,
+): Value | undefined {
+  if (value && Array.isArray(value)) {
+    return value[0] as Value | undefined;
+  }
+
+  return undefined;
 }
