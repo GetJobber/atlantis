@@ -27,6 +27,7 @@ import type {
   ModalBackgroundColor,
 } from "./types";
 import { UNSAFE_WrappedModalize } from "./UNSAFE_WrappedModalize";
+import { computeContentOverlayBehaviour } from "./computeContentOverlayBehaviour";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
@@ -58,18 +59,31 @@ function ContentOverlayInternal(
   }: ContentOverlayProps,
   ref: Ref<ContentOverlayRef>,
 ) {
-  isDraggable = onBeforeExit ? false : isDraggable;
-  const isCloseableOnOverlayTap = onBeforeExit ? false : true;
   const { t } = useAtlantisI18n();
   const { tokens } = useAtlantisTheme();
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const [position, setPosition] = useState<"top" | "initial">("initial");
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
-  const isFullScreenOrTopPosition =
-    fullScreen || (!adjustToContentHeight && position === "top");
-  const shouldShowDismiss =
-    showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
+
+  const behavior = computeContentOverlayBehaviour(
+    {
+      fullScreen,
+      adjustToContentHeight,
+      isDraggable,
+      hasOnBeforeExit: onBeforeExit !== undefined,
+      showDismiss,
+    },
+    {
+      isScreenReaderEnabled,
+      position,
+    },
+  );
+
+  const effectiveIsDraggable = behavior.isDraggable;
+  const shouldShowDismiss = behavior.showDismiss;
+  const isCloseableOnOverlayTap = onBeforeExit === undefined;
+
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>(null);
 
@@ -108,7 +122,7 @@ function ContentOverlayInternal(
   } = useViewLayoutHeight();
 
   const snapPoint = useMemo(() => {
-    if (fullScreen || !isDraggable || adjustToContentHeight) {
+    if (fullScreen || !effectiveIsDraggable || adjustToContentHeight) {
       return undefined;
     }
     const overlayHeight = headerHeight + childrenHeight;
@@ -120,7 +134,7 @@ function ContentOverlayInternal(
     return overlayHeight;
   }, [
     fullScreen,
-    isDraggable,
+    effectiveIsDraggable,
     adjustToContentHeight,
     headerHeight,
     childrenHeight,
@@ -163,8 +177,8 @@ function ContentOverlayInternal(
           modalTopOffset={tokens["space-larger"]}
           snapPoint={snapPoint}
           closeSnapPointStraightEnabled={false}
-          withHandle={isDraggable}
-          panGestureEnabled={isDraggable}
+          withHandle={effectiveIsDraggable}
+          panGestureEnabled={effectiveIsDraggable}
           adjustToContentHeight={adjustToContentHeight}
           disableScrollIfPossible={!adjustToContentHeight} // workaround for scroll not working on Android when content fills the screen with adjustToContentHeight
           onClose={onClose}
