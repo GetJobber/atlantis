@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.109.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.108.0...@jobber/components@6.109.0) (2026-01-21)
+
+
+### Features
+
+* **components:** Modal set max height and allow scrolling ([#2865](https://github.com/GetJobber/atlantis/issues/2865)) ([1b0b048](https://github.com/GetJobber/atlantis/commit/1b0b0486722964c757e35ce87224cbbe5473faf2))
+
+
+
+
+
 # [6.108.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.107.2...@jobber/components@6.108.0) (2026-01-19)
 
 
