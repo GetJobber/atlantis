@@ -9,6 +9,7 @@ node_modules.e2e/
 .idea
 storybook-static
 .rollup.cache
+.turbo
 jobber-*.tgz
 .npmrc
 styles.css.backup
