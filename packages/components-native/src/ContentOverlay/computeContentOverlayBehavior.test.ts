@@ -1,8 +1,8 @@
 import type {
   ContentOverlayConfig,
   ContentOverlayState,
-} from "./computeContentOverlayBehaviour";
-import { computeContentOverlayBehaviour } from "./computeContentOverlayBehaviour";
+} from "./computeContentOverlayBehavior";
+import { computeContentOverlayBehavior } from "./computeContentOverlayBehavior";
 
 const defaultConfig: ContentOverlayConfig = {
   fullScreen: false,
@@ -35,13 +35,13 @@ function aState(
   };
 }
 
-describe("computeContentOverlayBehaviour", () => {
+describe("computeContentOverlayBehavior", () => {
   describe("initialHeight", () => {
     it("returns fullScreen when fullScreen=true", () => {
       const config = aConfig({ fullScreen: true });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.initialHeight).toBe("fullScreen");
     });
@@ -50,7 +50,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ adjustToContentHeight: true });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.initialHeight).toBe("contentHeight");
     });
@@ -59,7 +59,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig();
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.initialHeight).toBe("contentHeight");
     });
@@ -68,7 +68,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ fullScreen: true, adjustToContentHeight: true });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.initialHeight).toBe("fullScreen");
     });
@@ -79,7 +79,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ isDraggable: true, hasOnBeforeExit: true });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.isDraggable).toBe(false);
     });
@@ -88,7 +88,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ isDraggable: false, hasOnBeforeExit: true });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.isDraggable).toBe(false);
     });
@@ -97,7 +97,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ isDraggable: true, hasOnBeforeExit: false });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.isDraggable).toBe(true);
     });
@@ -106,7 +106,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ isDraggable: false, hasOnBeforeExit: false });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.isDraggable).toBe(false);
     });
@@ -117,7 +117,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ showDismiss: true });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.showDismiss).toBe(true);
     });
@@ -126,7 +126,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ showDismiss: false });
       const state = aState({ isScreenReaderEnabled: true });
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.showDismiss).toBe(true);
     });
@@ -135,7 +135,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig({ fullScreen: true, showDismiss: false });
       const state = aState({ isScreenReaderEnabled: false });
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.showDismiss).toBe(true);
     });
@@ -147,7 +147,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
       const state = aState({ position: "top", isScreenReaderEnabled: false });
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.showDismiss).toBe(true);
     });
@@ -159,7 +159,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
       const state = aState({ position: "top", isScreenReaderEnabled: false });
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.showDismiss).toBe(false);
     });
@@ -175,7 +175,7 @@ describe("computeContentOverlayBehaviour", () => {
         isScreenReaderEnabled: false,
       });
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.showDismiss).toBe(false);
     });
@@ -184,7 +184,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig();
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result.showDismiss).toBe(false);
     });
@@ -199,7 +199,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result).toEqual({
         initialHeight: "fullScreen",
@@ -215,7 +215,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result).toEqual({
         initialHeight: "contentHeight",
@@ -233,7 +233,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result).toEqual({
         initialHeight: "contentHeight",
@@ -246,7 +246,7 @@ describe("computeContentOverlayBehaviour", () => {
       const config = aConfig();
       const state = aState();
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result).toEqual({
         initialHeight: "contentHeight",
@@ -262,7 +262,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
       const state = aState({ isScreenReaderEnabled: true });
 
-      const result = computeContentOverlayBehaviour(config, state);
+      const result = computeContentOverlayBehavior(config, state);
 
       expect(result).toEqual({
         initialHeight: "contentHeight",

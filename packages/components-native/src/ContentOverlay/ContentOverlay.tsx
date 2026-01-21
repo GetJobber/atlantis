@@ -21,7 +21,7 @@ import type {
 import type { ContentOverlayProps, ModalBackgroundColor } from "./types";
 import { useStyles } from "./ContentOverlay.style";
 import { useBottomSheetModalBackHandler } from "./hooks/useBottomSheetModalBackHandler";
-import { computeContentOverlayBehaviour } from "./computeContentOverlayBehaviour";
+import { computeContentOverlayBehavior } from "./computeContentOverlayBehavior";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
@@ -73,7 +73,7 @@ export function ContentOverlay({
   const { tokens } = useAtlantisTheme();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
 
-  const behavior = computeContentOverlayBehaviour(
+  const behavior = computeContentOverlayBehavior(
     {
       fullScreen,
       adjustToContentHeight,

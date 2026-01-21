@@ -33,7 +33,7 @@ export interface ContentOverlayBehavior {
  *   as contentHeight for the new implementation
  * - Dismiss button visibility depends on multiple factors including position state
  */
-export function computeContentOverlayBehaviour(
+export function computeContentOverlayBehavior(
   config: ContentOverlayConfig,
   state: ContentOverlayState,
 ): ContentOverlayBehavior {
