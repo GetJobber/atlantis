@@ -4,15 +4,24 @@ import type {
 } from "./computeContentOverlayBehaviour";
 import { computeContentOverlayBehaviour } from "./computeContentOverlayBehaviour";
 
+const defaultConfig: ContentOverlayConfig = {
+  fullScreen: false,
+  adjustToContentHeight: false,
+  isDraggable: true,
+  hasOnBeforeExit: false,
+  showDismiss: false,
+};
+
+const defaultState: ContentOverlayState = {
+  isScreenReaderEnabled: false,
+  position: "initial",
+};
+
 function aConfig(
   overrides: Partial<ContentOverlayConfig> = {},
 ): ContentOverlayConfig {
   return {
-    fullScreen: false,
-    adjustToContentHeight: false,
-    isDraggable: true,
-    hasOnBeforeExit: false,
-    showDismiss: false,
+    ...defaultConfig,
     ...overrides,
   };
 }
@@ -21,8 +30,7 @@ function aState(
   overrides: Partial<ContentOverlayState> = {},
 ): ContentOverlayState {
   return {
-    isScreenReaderEnabled: false,
-    position: "initial",
+    ...defaultState,
     ...overrides,
   };
 }
@@ -183,7 +191,7 @@ describe("computeContentOverlayBehaviour", () => {
   });
 
   describe("combined behaviors", () => {
-    it("handles typical fullScreen overlay", () => {
+    it("returns expected behavior for fullScreen overlay", () => {
       const config = aConfig({
         fullScreen: true,
         isDraggable: false,
@@ -200,7 +208,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
     });
 
-    it("handles typical content-height overlay with adjustToContentHeight", () => {
+    it("returns expected behavior for content-height overlay with adjustToContentHeight", () => {
       const config = aConfig({
         adjustToContentHeight: true,
         showDismiss: true,
@@ -216,7 +224,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
     });
 
-    it("handles overlay with onBeforeExit (confirmation flow)", () => {
+    it("returns expected behavior for overlay with onBeforeExit (confirmation flow)", () => {
       const config = aConfig({
         adjustToContentHeight: true,
         hasOnBeforeExit: true,
@@ -234,7 +242,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
     });
 
-    it("handles default props (legacy behavior)", () => {
+    it("returns expected behavior for default props (legacy behavior)", () => {
       const config = aConfig();
       const state = aState();
 
@@ -247,7 +255,7 @@ describe("computeContentOverlayBehaviour", () => {
       });
     });
 
-    it("handles accessibility case where screen reader forces dismiss button", () => {
+    it("returns expected behavior for accessibility case where screen reader forces dismiss button", () => {
       const config = aConfig({
         adjustToContentHeight: true,
         showDismiss: false,
