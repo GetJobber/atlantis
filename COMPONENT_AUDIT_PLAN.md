@@ -119,12 +119,12 @@ Each criterion is scored on a 4-point scale:
 While most criteria can be audited by an LLM through code analysis, some areas
 require human intervention:
 
-| Area                                  | Reason                        | Recommended Action                                                                        |
-| ------------------------------------- | ----------------------------- | ----------------------------------------------------------------------------------------- |
-| **Category 2: Visual UI**             | Requires Figma access         | **Optional** - Designers already reviewed. Use LLM observations or defer to design scores |
-| **Criterion 3.2: Tone & Voice**       | Content/design judgment       | Mark as N/A or defer to content designer                                                  |
-| **Criterion 4.3: Contrast/Text Size** | Automated testing recommended | Use [Pa11y](https://pa11y.org/) against docs site or Storybook                            |
-| **Criterion 9.3: Performance**        | Dev/prod build differences    | Mark as N/A (see note below)                                                              |
+| Area                                    | Reason                        | Recommended Action                                                                        |
+| --------------------------------------- | ----------------------------- | ----------------------------------------------------------------------------------------- |
+| **Category 2: Visual UI**               | Requires Figma access         | **Optional** - Designers already reviewed. Use LLM observations or defer to design scores |
+| **Criterion 3.2: Design documentation** | Design judgment               | Mark as N/A or defer to designer                                                          |
+| **Criterion 4.3: Contrast/Text Size**   | Automated testing recommended | Use [Pa11y](https://pa11y.org/) against docs site or Storybook                            |
+| **Criterion 9.3: Performance**          | Dev/prod build differences    | Mark as N/A (see note below)                                                              |
 
 ---
 
@@ -486,11 +486,26 @@ Before proceeding, document:
 
 ---
 
-#### 3.2 Correct Tone & Voice
+#### 3.2 Design documentation
 
 **Trades**: Design, Dev | **Environments**: Web, Mobile
 
-- **Developer action**: Mark as **N/A** (Design/content criterion)
+**What to check**:
+
+- Does the component have design docs on the Atlantis site?
+- Do the docs align with overall content documentation?
+- Do the docs follow the new design docs template?
+
+**Scoring**:
+
+- **3**: Component has content guidelines following design docs template
+- **2**: Docs exist but lacking or don't follow template
+- **1**: No content guidelines on docs site
+- **N/A**: Developer can defer to designer score
+
+**Note**: This criterion is primarily evaluated by designers. Developers can
+check if documentation exists at `docs/components/[ComponentName]/` but should
+defer to designers for quality assessment.
 
 ---
 
@@ -1072,22 +1087,34 @@ restrictions
 **Scoring**:
 
 - **3**: Compound component pattern (e.g., `Modal.Header`, `Modal.Content`,
-  `Menu.Item`) OR content container (children become the component's content)
+  `Menu.Item`) OR content container (accepts `children` that become the
+  component's content)
 - **2**: Behavior wrapper - wraps child to add behavior without composing
   content (e.g., Tooltip adds hover behavior, Link adds navigation)
 - **1**: No composition where expected (component should accept children but
   doesn't)
-- **N/A**: Component is atomic/leaf (e.g., Icon, Spinner - no children expected)
+- **N/A**: Component is atomic/leaf (e.g., Icon, Spinner) OR data-driven (see
+  note below)
+
+> **Data-driven vs. Composition**: Some components accept **data arrays** (e.g.,
+> `files`, `items`, `options`) instead of `children` and internally render their
+> own child elements. This is a **data-driven pattern**, not React composition.
+> Examples: `ThumbnailList` (accepts `files` array), `Select` (accepts
+> `options`). Score these as **N/A** — they use a valid alternative pattern, not
+> a composition deficiency. Only score **1** if a component _should_ accept
+> children for flexibility but doesn't.
 
 **Examples**:
 
-- Score 3: Modal (compound: Header/Content/Footer), Card (content container)
+- Score 3: Modal (compound: Header/Content/Footer), Card (content container
+  accepting `children`), Tiles (layout accepting `children`)
 - Score 2: Tooltip (behavior wrapper: adds hover), Link (behavior wrapper: adds
   navigation)
-- Score N/A: Icon, Spinner, ProgressBar (no children expected)
+- Score N/A: Icon, Spinner, ProgressBar (atomic/leaf); ThumbnailList,
+  DescriptionList (data-driven)
 
 **Evidence to cite**: Composition pattern (compound/content container/behavior
-wrapper)
+wrapper/data-driven)
 
 ---
 
@@ -1535,11 +1562,11 @@ exists]
 
 ### 3. Content Design
 
-| ID  | Criterion                            | Web Dev     | Notes            | Mobile Dev  | Notes            |
-| --- | ------------------------------------ | ----------- | ---------------- | ----------- | ---------------- |
-| 3.1 | Clear naming                         | [3/2/1/N/A] | [Evidence]       | [3/2/1/N/A] | [Evidence]       |
-| 3.2 | Correct Tone & Voice                 | N/A         | Design criterion | N/A         | Design criterion |
-| 3.3 | Clear examples and do/don't guidance | [3/2/1/N/A] | [Evidence]       | [3/2/1/N/A] | [Evidence]       |
+| ID  | Criterion                            | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| --- | ------------------------------------ | ----------- | ---------- | ----------- | ---------- |
+| 3.1 | Clear naming                         | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
+| 3.2 | Design documentation                 | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
+| 3.3 | Clear examples and do/don't guidance | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 
 ### 4. Accessibility (A11y)
 
@@ -1847,7 +1874,7 @@ After receiving the LLM audit report, developers should complete these items:
 | 1.5       | Tokens overridable       | ✅            | Check CSS variables                                                                      |
 | 2.1-2.5   | Visual parity            | ⚠️ Partial    | LLM provides observations; manual Figma review **optional** (designers already reviewed) |
 | 3.1       | Clear naming             | ✅            | Check props/types                                                                        |
-| 3.2       | Tone & Voice             | ❌            | Design only                                                                              |
+| 3.2       | Design documentation     | ⚠️ Partial    | Check if docs exist; defer quality assessment to designers                               |
 | 3.3       | Examples/guidance        | ✅            | Check docs                                                                               |
 | 4.1       | ARIA Roles               | ✅            | Check JSX                                                                                |
 | 4.2       | Keyboard support         | ✅            | Check handlers                                                                           |
@@ -1871,11 +1898,13 @@ After receiving the LLM audit report, developers should complete these items:
 
 ---
 
-_Document Version: 1.5_ _Last Updated: January 2026_ _For use with Atlantis
+_Document Version: 1.6_ _Last Updated: January 2026_ _For use with Atlantis
 Design System component audits_
 
 **Changelog:**
 
+- v1.6: Fixed criterion 3.2 "Correct Tone & Voice" → "Design documentation" to
+  match current template; added scoring guidance for developers
 - v1.5: Added common pitfall #10 "Vague or Jargon-Heavy Notes" with concrete
   examples of unclear notes (e.g., "Same", "focus ring") and how to improve them
 - v1.4: Synced criterion names with latest atlantis-portal template: 5.3
