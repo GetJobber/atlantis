@@ -4,6 +4,8 @@ import type {
 } from "./computeContentOverlayBehavior";
 import { computeContentOverlayBehavior } from "./computeContentOverlayBehavior";
 
+const arbitraryClosedPositionValue = 768;
+
 const defaultConfig: ContentOverlayConfig = {
   fullScreen: false,
   adjustToContentHeight: false,
@@ -14,7 +16,7 @@ const defaultConfig: ContentOverlayConfig = {
 
 const defaultState: ContentOverlayState = {
   isScreenReaderEnabled: false,
-  position: "initial",
+  position: arbitraryClosedPositionValue,
 };
 
 function aConfig(
@@ -145,7 +147,7 @@ describe("computeContentOverlayBehavior", () => {
         adjustToContentHeight: false,
         showDismiss: false,
       });
-      const state = aState({ position: "top", isScreenReaderEnabled: false });
+      const state = aState({ position: 0, isScreenReaderEnabled: false });
 
       const result = computeContentOverlayBehavior(config, state);
 
@@ -157,7 +159,7 @@ describe("computeContentOverlayBehavior", () => {
         adjustToContentHeight: true,
         showDismiss: false,
       });
-      const state = aState({ position: "top", isScreenReaderEnabled: false });
+      const state = aState({ position: 0, isScreenReaderEnabled: false });
 
       const result = computeContentOverlayBehavior(config, state);
 
@@ -171,7 +173,7 @@ describe("computeContentOverlayBehavior", () => {
         adjustToContentHeight: false,
       });
       const state = aState({
-        position: "initial",
+        position: arbitraryClosedPositionValue,
         isScreenReaderEnabled: false,
       });
 

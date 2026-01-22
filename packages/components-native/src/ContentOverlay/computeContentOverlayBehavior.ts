@@ -8,7 +8,8 @@ export interface ContentOverlayConfig {
 
 export interface ContentOverlayState {
   isScreenReaderEnabled: boolean;
-  position: "top" | "initial";
+  // Pixel value of delta to the 100% position
+  position: number;
 }
 
 export type InitialHeight = "fullScreen" | "contentHeight";
@@ -110,7 +111,7 @@ function computeShowDismiss(
     return true;
   }
 
-  if (!config.adjustToContentHeight && state.position === "top") {
+  if (!config.adjustToContentHeight && state.position === 0) {
     return true;
   }
 

@@ -16,7 +16,6 @@ import type {
   BottomSheetBackdropProps,
   BottomSheetModal as BottomSheetModalType,
   BottomSheetScrollViewMethods,
-  SNAP_POINT_TYPE,
 } from "@gorhom/bottom-sheet";
 import type { ContentOverlayProps, ModalBackgroundColor } from "./types";
 import { useStyles } from "./ContentOverlay.style";
@@ -64,9 +63,7 @@ export function ContentOverlay({
   const { width: windowWidth } = useWindowDimensions();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
-  const [currentPosition, setCurrentPosition] = useState<"top" | "initial">(
-    "initial",
-  );
+  const [currentPosition, setCurrentPosition] = useState<number>(-1);
 
   const styles = useStyles();
   const { t } = useAtlantisI18n();
@@ -129,14 +126,10 @@ export function ContentOverlay({
     },
   }));
 
-  const handleChange = (
-    index: number,
-    _position: number,
-    type: SNAP_POINT_TYPE,
-  ) => {
+  const handleChange = (index: number, position: number) => {
     const previousIndex = previousIndexRef.current;
 
-    setCurrentPosition(mapIndexToPosition(index, type, snapPoints));
+    setCurrentPosition(position);
     handleSheetPositionChange(index);
 
     if (previousIndex === -1 && index >= 0) {
@@ -322,30 +315,3 @@ function Backdrop(
     />
   );
 }
-
-const mapIndexToPosition = (
-  index: number,
-  type: SNAP_POINT_TYPE,
-  snapPoints: string[],
-) => {
-  const providedSnapPoint = 0;
-  const dynamicSnapPoint = 1;
-  const isLargestProvidedSnapPoint = index === snapPoints.length - 1;
-  // EnableDynamicSizing will add another snap point of the content height
-  const isLargestIncludingDynamicSnapPoint = index > snapPoints.length;
-
-  if (
-    (type === providedSnapPoint && isLargestProvidedSnapPoint) ||
-    isLargestIncludingDynamicSnapPoint
-  ) {
-    return "top";
-  }
-
-  // This assumes that the current state of our provided snap points is ["100%"]
-  // Therefore, this can never be greater than the provided snap point.
-  if (type === dynamicSnapPoint) {
-    return "initial";
-  }
-
-  return "initial";
-};
