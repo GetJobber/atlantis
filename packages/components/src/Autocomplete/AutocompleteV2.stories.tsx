@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useDebounce } from "@jobber/hooks";
 import {
   Autocomplete,
@@ -21,10 +21,12 @@ import { Flex } from "@jobber/components/Flex";
 import { Typography } from "@jobber/components/Typography";
 import { AutocompleteV2Docgen } from "./V2.docgen";
 
-export default {
-  title: "Components/Forms and Inputs/Autocomplete/Web (v2)",
+const meta = {
+  title: "Components/Forms and Inputs/Autocomplete/V2",
   component: AutocompleteV2Docgen,
-} as ComponentMeta<typeof AutocompleteV2Docgen>;
+} satisfies Meta<typeof AutocompleteV2Docgen>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 // Larger demo data (migrated from v1 file)
 const simpleOptions: OptionLike[] = [
@@ -108,7 +110,7 @@ const sectionedMenu = defineMenu<OptionLike>([
   },
 ]);
 
-const TemplateFlat: ComponentStory<typeof Autocomplete> = () => {
+const TemplateFlat = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -128,7 +130,7 @@ const TemplateFlat: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateSectioned: ComponentStory<typeof Autocomplete> = () => {
+const TemplateSectioned = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -149,7 +151,7 @@ const TemplateSectioned: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
+const TemplateWithActions = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [lastAction, setLastAction] = useState("");
@@ -213,9 +215,7 @@ const TemplateWithActions: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateEmptyStateAndActions: ComponentStory<
-  typeof Autocomplete
-> = () => {
+const TemplateEmptyStateAndActions = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -259,7 +259,7 @@ const TemplateEmptyStateAndActions: ComponentStory<
   );
 };
 
-const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
+const TemplateCustomRenderOption = () => {
   const [value, setValue] = useState<ServiceOption | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -305,7 +305,7 @@ const TemplateCustomRenderOption: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
+const TemplateHeaderFooter = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [lastAction, setLastAction] = useState("");
@@ -345,7 +345,7 @@ const TemplateHeaderFooter: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-const TemplateFreeForm: ComponentStory<typeof Autocomplete> = () => {
+const TemplateFreeForm = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -429,7 +429,7 @@ const fakeFetch = (query: string): Promise<OptionLike[]> => {
   });
 };
 
-const TemplateAsyncUserManaged: ComponentStory<typeof Autocomplete> = () => {
+const TemplateAsyncUserManaged = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState<OptionLike[]>(INITIAL_OPTIONS);
@@ -566,9 +566,7 @@ interface SectionExtraProps {
   icon: IconNames;
 }
 
-const TemplateEverythingCustomized: ComponentStory<
-  typeof Autocomplete
-> = () => {
+const TemplateEverythingCustomized = () => {
   const [value, setValue] = useState<CustomOption | undefined>();
   const [inputValue, setInputValue] = useState("");
   const [lastAction, setLastAction] = useState("");
@@ -737,7 +735,7 @@ const TemplateEverythingCustomized: ComponentStory<
   );
 };
 
-const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
+const TemplateFocusBehavior = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
 
@@ -848,13 +846,42 @@ const TemplateFocusBehavior: ComponentStory<typeof Autocomplete> = () => {
   );
 };
 
-export const Flat = TemplateFlat.bind({});
-export const Sectioned = TemplateSectioned.bind({});
-export const WithActions = TemplateWithActions.bind({});
-export const EmptyStateAndActions = TemplateEmptyStateAndActions.bind({});
-export const CustomRenderOption = TemplateCustomRenderOption.bind({});
-export const HeaderFooter = TemplateHeaderFooter.bind({});
-export const FreeForm = TemplateFreeForm.bind({});
-export const AsyncUserManaged = TemplateAsyncUserManaged.bind({});
-export const EverythingCustomized = TemplateEverythingCustomized.bind({});
-export const FocusBehavior = TemplateFocusBehavior.bind({});
+export const Flat: Story = {
+  render: TemplateFlat,
+};
+
+export const Sectioned: Story = {
+  render: TemplateSectioned,
+};
+
+export const WithActions: Story = {
+  render: TemplateWithActions,
+};
+
+export const EmptyStateAndActions: Story = {
+  render: TemplateEmptyStateAndActions,
+};
+
+export const CustomRenderOption: Story = {
+  render: TemplateCustomRenderOption,
+};
+
+export const HeaderFooter: Story = {
+  render: TemplateHeaderFooter,
+};
+
+export const FreeForm: Story = {
+  render: TemplateFreeForm,
+};
+
+export const AsyncUserManaged: Story = {
+  render: TemplateAsyncUserManaged,
+};
+
+export const EverythingCustomized: Story = {
+  render: TemplateEverythingCustomized,
+};
+
+export const FocusBehavior: Story = {
+  render: TemplateFocusBehavior,
+};

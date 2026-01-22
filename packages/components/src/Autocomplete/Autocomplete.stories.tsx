@@ -1,6 +1,7 @@
 /* eslint-disable max-statements */
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
 import {
   Autocomplete,
   BaseMenuGroupOption,
@@ -23,30 +24,24 @@ import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 import { Flex } from "@jobber/components/Flex";
 import { StatusLabel } from "@jobber/components/StatusLabel";
-import { Icon, IconNames } from "@jobber/components/Icon";
+import type { IconNames } from "@jobber/components/Icon";
+import { Icon } from "@jobber/components/Icon";
 import { Grid } from "@jobber/components/Grid";
 import { Heading } from "@jobber/components/Heading";
-import { useCallbackRef } from "@jobber/hooks/useCallbackRef";
-import { StatusIndicatorType } from "@jobber/components/StatusIndicator";
+import type { StatusIndicatorType } from "@jobber/components/StatusIndicator";
 import { Modal } from "@jobber/components/Modal";
 import { AutocompleteV1Docgen } from "./V1.docgen";
 
 // ----- V1 Meta (docgen from v1 props) -----
-export default {
-  title: "Components/Forms and Inputs/Autocomplete/Web",
+const meta = {
+  title: "Components/Forms and Inputs/Autocomplete",
   component: AutocompleteV1Docgen,
   parameters: {
     viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-        extraImports: {
-          "@jobber/components/Autocomplete": ["Autocomplete", "Option"],
-        },
-      },
-    },
   },
-} as ComponentMeta<typeof AutocompleteV1Docgen>;
+} satisfies Meta<typeof AutocompleteV1Docgen>;
+export default meta;
+type Story = StoryObj<typeof Autocomplete>;
 
 // Seed v1 Controls minimally so SB recognizes legacy surface without overriding defaults
 const v1ControlsArgs = {
@@ -65,7 +60,7 @@ const defaultOptions = [
 // Each template calls args.initialOptions so that the options
 // are not undefined in the code preview
 
-const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
+const BasicTemplate = args => {
   const basicOptions = args.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>();
 
@@ -114,7 +109,7 @@ const withDetailsOptions = [
   },
 ];
 
-const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
+const WithDetailsTemplate = args => {
   const detailsOptions = args.initialOptions ?? withDetailsOptions;
   const [value, setValue] = useState<Option | undefined>();
 
@@ -160,7 +155,7 @@ const SectionHeadingOptions = [
   },
 ];
 
-const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
+const SectionHeadingTemplate = args => {
   const headingOptionsAll = args.initialOptions ?? SectionHeadingOptions;
   const headingOptions = headingOptionsAll.filter(isOptionGroup);
   const [value, setValue] = useState<Option | undefined>();
@@ -189,7 +184,7 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
   }
 };
 
-const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
+const SetAValueTemplate = args => {
   const valueOptions = args.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
 
@@ -227,32 +222,40 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
   }
 };
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  ...v1ControlsArgs,
-  initialOptions: defaultOptions,
-  placeholder: "Search for something",
+export const Basic: Story = {
+  render: BasicTemplate,
+  args: {
+    ...v1ControlsArgs,
+    initialOptions: defaultOptions,
+    placeholder: "Search for something",
+  },
 };
 
-export const WithDetails = WithDetailsTemplate.bind({});
-WithDetails.args = {
-  ...v1ControlsArgs,
-  initialOptions: withDetailsOptions,
-  placeholder: "Search for something with details",
+export const WithDetails: Story = {
+  render: WithDetailsTemplate,
+  args: {
+    ...v1ControlsArgs,
+    initialOptions: withDetailsOptions,
+    placeholder: "Search for something with details",
+  },
 };
 
-export const SectionHeading = SectionHeadingTemplate.bind({});
-SectionHeading.args = {
-  ...v1ControlsArgs,
-  initialOptions: SectionHeadingOptions,
-  placeholder: "Search for something under a section heading",
+export const SectionHeading: Story = {
+  render: SectionHeadingTemplate,
+  args: {
+    ...v1ControlsArgs,
+    initialOptions: SectionHeadingOptions,
+    placeholder: "Search for something under a section heading",
+  },
 };
 
-export const SetAValue = SetAValueTemplate.bind({});
-SetAValue.args = {
-  ...v1ControlsArgs,
-  initialOptions: defaultOptions,
-  placeholder: "Search for something",
+export const SetAValue: Story = {
+  render: SetAValueTemplate,
+  args: {
+    ...v1ControlsArgs,
+    initialOptions: defaultOptions,
+    placeholder: "Search for something",
+  },
 };
 
 interface CustomOption {
@@ -691,7 +694,9 @@ const CustomRenderingTemplate = () => {
     </Grid>
   );
 };
-export const CustomRendering = CustomRenderingTemplate.bind({});
+export const CustomRendering: Story = {
+  render: CustomRenderingTemplate,
+};
 
 interface CustomOptionForGroup {
   value: number;
@@ -1111,7 +1116,7 @@ function isExtraElement(option: object): option is CustomElementOption {
   return option && "sectionLabel" in option && "indexToInsertAfter" in option;
 }
 
-const WithinModalTemplate: ComponentStory<typeof Modal> = () => {
+const WithinModalTemplate = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [value1, setValue1] = useState<Option | undefined>();
 
@@ -1555,4 +1560,6 @@ const WithinModalTemplate: ComponentStory<typeof Modal> = () => {
   }
 };
 
-export const WithinModal = WithinModalTemplate.bind({});
+export const WithinModal: StoryObj<typeof Modal> = {
+  render: WithinModalTemplate,
+};
