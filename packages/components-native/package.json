@@ -38,6 +38,8 @@
     "storybook:build": "storybook build --disable-telemetry"
   },
   "dependencies": {
+    "@jobber/design": "*",
+    "@jobber/hooks": "*",
     "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-native-picker/picker": "^2.4.10",
     "autolinker": "^4.0.0",
