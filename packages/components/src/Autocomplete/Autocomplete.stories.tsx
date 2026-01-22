@@ -21,6 +21,7 @@ import type {
 } from "@jobber/components/Autocomplete";
 import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
+import { Cluster } from "@jobber/components/Cluster";
 import { Content } from "@jobber/components/Content";
 import { Flex } from "@jobber/components/Flex";
 import { StatusLabel } from "@jobber/components/StatusLabel";
@@ -189,7 +190,7 @@ const SetAValueTemplate = args => {
   const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
 
   return (
-    <>
+    <Content>
       <pre>{JSON.stringify(value, undefined, 2)}</pre>
       <Autocomplete
         {...args}
@@ -197,19 +198,21 @@ const SetAValueTemplate = args => {
         onChange={newValue => setValue(newValue)}
         getOptions={getOptions}
       />
-      <Button
-        label="Choose Enterprise"
-        onClick={() => {
-          setValue(valueOptions[4]);
-        }}
-      />
-      <Button
-        label="Reset"
-        onClick={() => {
-          setValue(undefined);
-        }}
-      />
-    </>
+      <Cluster>
+        <Button
+          label="Choose Enterprise"
+          onClick={() => {
+            setValue(valueOptions[4]);
+          }}
+        />
+        <Button
+          label="Reset"
+          onClick={() => {
+            setValue(undefined);
+          }}
+        />
+      </Cluster>
+    </Content>
   );
 
   function getOptions(text: string) {
