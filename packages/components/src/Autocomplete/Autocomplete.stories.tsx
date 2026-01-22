@@ -37,9 +37,6 @@ import { AutocompleteV1Docgen } from "./V1.docgen";
 const meta = {
   title: "Components/Forms and Inputs/Autocomplete",
   component: AutocompleteV1Docgen,
-  parameters: {
-    viewMode: "story",
-  },
 } satisfies Meta<typeof AutocompleteV1Docgen>;
 export default meta;
 type Story = StoryObj<typeof Autocomplete>;
@@ -61,14 +58,15 @@ const defaultOptions = [
 // Each template calls args.initialOptions so that the options
 // are not undefined in the code preview
 
-const BasicTemplate = args => {
-  const basicOptions = args.initialOptions ?? defaultOptions;
+const BasicTemplate = (args: Story["args"]) => {
+  const basicOptions = args?.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>();
 
   return (
     <Autocomplete
       {...args}
       value={value}
+      placeholder={args?.placeholder ?? ""}
       onChange={newValue => setValue(newValue)}
       getOptions={getOptions}
       validations={{
@@ -110,14 +108,15 @@ const withDetailsOptions = [
   },
 ];
 
-const WithDetailsTemplate = args => {
-  const detailsOptions = args.initialOptions ?? withDetailsOptions;
+const WithDetailsTemplate = (args: Story["args"]) => {
+  const detailsOptions = args?.initialOptions ?? withDetailsOptions;
   const [value, setValue] = useState<Option | undefined>();
 
   return (
     <Autocomplete
       {...args}
       value={value}
+      placeholder={args?.placeholder ?? ""}
       onChange={newValue => setValue(newValue)}
       getOptions={getOptions}
     />
@@ -156,8 +155,8 @@ const SectionHeadingOptions = [
   },
 ];
 
-const SectionHeadingTemplate = args => {
-  const headingOptionsAll = args.initialOptions ?? SectionHeadingOptions;
+const SectionHeadingTemplate = (args: Story["args"]) => {
+  const headingOptionsAll = args?.initialOptions ?? SectionHeadingOptions;
   const headingOptions = headingOptionsAll.filter(isOptionGroup);
   const [value, setValue] = useState<Option | undefined>();
 
@@ -165,6 +164,7 @@ const SectionHeadingTemplate = args => {
     <Autocomplete
       {...args}
       value={value}
+      placeholder={args?.placeholder ?? ""}
       onChange={newValue => setValue(newValue)}
       getOptions={getOptions}
     />
@@ -185,8 +185,8 @@ const SectionHeadingTemplate = args => {
   }
 };
 
-const SetAValueTemplate = args => {
-  const valueOptions = args.initialOptions ?? defaultOptions;
+const SetAValueTemplate = (args: Story["args"]) => {
+  const valueOptions = args?.initialOptions ?? defaultOptions;
   const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
 
   return (
@@ -194,6 +194,7 @@ const SetAValueTemplate = args => {
       <pre>{JSON.stringify(value, undefined, 2)}</pre>
       <Autocomplete
         {...args}
+        placeholder={args?.placeholder ?? ""}
         value={value}
         onChange={newValue => setValue(newValue)}
         getOptions={getOptions}

@@ -26,7 +26,7 @@ const meta = {
   component: AutocompleteV2Docgen,
 } satisfies Meta<typeof AutocompleteV2Docgen>;
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Autocomplete>;
 
 // Larger demo data (migrated from v1 file)
 const simpleOptions: OptionLike[] = [
