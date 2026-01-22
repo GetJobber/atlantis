@@ -5,15 +5,8 @@
   "license": "MIT",
   "workspaces": [
     "packages/formatters",
-    "packages/design",
     "packages/hooks",
-    "packages/components",
-    "packages/components-native",
-    "packages/docx",
-    "packages/eslint-config",
-    "packages/generators",
-    "packages/stylelint-config",
-    "packages/site"
+    "packages/components"
   ],
   "scripts": {
     "bootstrap": "turbo run bootstrap",
