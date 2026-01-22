@@ -20,6 +20,7 @@ import type {
 import type { ContentOverlayProps, ModalBackgroundColor } from "./types";
 import { useStyles } from "./ContentOverlay.style";
 import { useBottomSheetModalBackHandler } from "./hooks/useBottomSheetModalBackHandler";
+import { computeContentOverlayBehavior } from "./computeContentOverlayBehavior";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
 import { Heading } from "../Heading";
@@ -69,12 +70,24 @@ export function ContentOverlay({
   const { tokens } = useAtlantisTheme();
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
 
-  const isFullScreenOrTopPosition =
-    fullScreen || (!adjustToContentHeight && currentPosition === 0);
-  const shouldShowDismiss =
-    showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
+  const behavior = computeContentOverlayBehavior(
+    {
+      fullScreen,
+      adjustToContentHeight,
+      isDraggable,
+      hasOnBeforeExit: onBeforeExit !== undefined,
+      showDismiss,
+    },
+    {
+      isScreenReaderEnabled,
+      position: currentPosition,
+    },
+  );
 
-  const draggable = determineDraggable(isDraggable, onBeforeExit);
+  const effectiveIsDraggable = behavior.isDraggable;
+  const shouldShowDismiss = behavior.showDismiss;
+  const isCloseableOnOverlayTap = onBeforeExit === undefined;
+
   // Prevent the Overlay from being flush with the top of the screen, even if we are "100%" or "fullscreen"
   const topInset = insets.top || tokens["space-larger"];
 
@@ -159,7 +172,7 @@ export function ContentOverlay({
 
   const handleIndicatorStyles = [
     styles.handle,
-    !draggable && {
+    !effectiveIsDraggable && {
       opacity: 0,
     },
   ];
@@ -239,13 +252,16 @@ export function ContentOverlay({
       handleStyle={styles.handleWrapper}
       handleIndicatorStyle={handleIndicatorStyles}
       backdropComponent={props => (
-        <Backdrop {...props} pressBehavior={onBeforeExit ? "none" : "close"} />
+        <Backdrop
+          {...props}
+          pressBehavior={isCloseableOnOverlayTap ? "close" : "none"}
+        />
       )}
       snapPoints={snapPoints}
-      enablePanDownToClose={draggable}
-      enableContentPanningGesture={draggable}
-      enableHandlePanningGesture={draggable}
-      enableDynamicSizing={!fullScreen || adjustToContentHeight}
+      enablePanDownToClose={effectiveIsDraggable}
+      enableContentPanningGesture={effectiveIsDraggable}
+      enableHandlePanningGesture={effectiveIsDraggable}
+      enableDynamicSizing={behavior.initialHeight === "contentHeight"}
       keyboardBehavior="interactive"
       keyboardBlurBehavior="restore"
       topInset={topInset}
@@ -298,16 +314,4 @@ function Backdrop(
       pressBehavior={pressBehavior}
     />
   );
-}
-
-function determineDraggable(isDraggable: boolean, onBeforeExit?: () => void) {
-  // If onBeforeExit is provided, we don't want to allow the modal to be dragged to fullscreen.
-  // This appears to be because previously we could only reliably get a callback when the overlay was closed
-  // via the dismiss button. Furthermore, the dismiss button would only be present if it was not draggable.
-  // While we no longer need to adhere to this somewhat awkward behavior, we will leave it as is until a larger refactor.
-  if (onBeforeExit) {
-    return false;
-  }
-
-  return isDraggable;
 }
