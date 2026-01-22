@@ -260,21 +260,7 @@
     "description": "",
     "displayName": "DataTable.Footer",
     "methods": [],
-    "props": {
-      "colSpan": {
-        "defaultValue": null,
-        "description": "Number of columns to span across. When provided, children are wrapped in a\nsingle cell that spans all columns. When omitted, children are rendered\ndirectly, allowing custom row/cell structures.",
-        "name": "colSpan",
-        "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTableFooter.tsx",
-          "name": "DataTableFooterProps"
-        },
-        "required": false,
-        "type": {
-          "name": "number"
-        }
-      }
-    }
+    "props": {}
   },
   {
     "tags": {},
