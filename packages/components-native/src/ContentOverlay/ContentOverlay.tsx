@@ -268,7 +268,7 @@ export function ContentOverlay({
       enablePanDownToClose={effectiveIsDraggable}
       enableContentPanningGesture={effectiveIsDraggable}
       enableHandlePanningGesture={effectiveIsDraggable}
-      enableDynamicSizing={!fullScreen || adjustToContentHeight}
+      enableDynamicSizing={behavior.initialHeight === "contentHeight"}
       keyboardBehavior="interactive"
       keyboardBlurBehavior="restore"
       topInset={topInset}
@@ -330,8 +330,14 @@ const mapIndexToPosition = (
 ) => {
   const providedSnapPoint = 0;
   const dynamicSnapPoint = 1;
+  const isLargestProvidedSnapPoint = index === snapPoints.length - 1;
+  // EnableDynamicSizing will add another snap point of the content height
+  const isLargestIncludingDynamicSnapPoint = index > snapPoints.length;
 
-  if (type === providedSnapPoint && index >= snapPoints.length) {
+  if (
+    (type === providedSnapPoint && isLargestProvidedSnapPoint) ||
+    isLargestIncludingDynamicSnapPoint
+  ) {
     return "top";
   }
 

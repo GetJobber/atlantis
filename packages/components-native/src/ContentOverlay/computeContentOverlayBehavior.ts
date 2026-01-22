@@ -37,8 +37,8 @@ export function computeContentOverlayBehavior(
   config: ContentOverlayConfig,
   state: ContentOverlayState,
 ): ContentOverlayBehavior {
-  const initialHeight = computeInitialHeight(config);
   const isDraggable = computeIsDraggable(config);
+  const initialHeight = computeInitialHeight(config, isDraggable);
   const showDismiss = computeShowDismiss(config, state);
 
   return {
@@ -49,15 +49,24 @@ export function computeContentOverlayBehavior(
 }
 
 /**
- * Height determination:
- * - fullScreen: true → "fullScreen"
- * - Otherwise → "contentHeight" (default and adjustToContentHeight treated the same)
- *
- * Note: The legacy snapPoint calculation for the default case is obsolete.
- * adjustToContentHeight was added later and made it redundant.
+ * Order is important to maintain legacy behavior, despite the questionable logic.
+ * A non draggable overlay wants to be fullscreen, so as to have the dismiss button be visible.
+ * There is an invalid combination here with adjustToContentHeight and onBeforeExit which in turn overrides isDraggable to false.
+ * This requires an explicit showDismiss=true or else it will not be possible to dismiss the overlay.
  */
-function computeInitialHeight(config: ContentOverlayConfig): InitialHeight {
+function computeInitialHeight(
+  config: ContentOverlayConfig,
+  isDraggable: boolean,
+): InitialHeight {
+  if (config.adjustToContentHeight) {
+    return "contentHeight";
+  }
+
   if (config.fullScreen) {
+    return "fullScreen";
+  }
+
+  if (!isDraggable) {
     return "fullScreen";
   }
 
@@ -82,15 +91,8 @@ function computeIsDraggable(config: ContentOverlayConfig): boolean {
 
 /**
  * Dismiss button visibility:
- * - showDismiss: true → show (explicit prop takes priority)
- * - isScreenReaderEnabled: true → show (accessibility requirement)
- * - fullScreen: true → show (no other way to close)
- * - !adjustToContentHeight && position === "top" → show (legacy behavior for drag-to-top)
- * - Otherwise → hide
- *
- * Note: The position-based logic only triggers when the overlay has been dragged to the top,
- * which requires isDraggable to be true. Position starts as "initial" and can only become
- * "top" through user interaction.
+ * The idea behind fullscreen having it is that there may be little room to tap the background to dismiss.
+ * While this logic is redundant with the position, it's a relic of the legacy behavior where position didn't update in time.
  */
 function computeShowDismiss(
   config: ContentOverlayConfig,

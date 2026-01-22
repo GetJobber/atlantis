@@ -64,13 +64,13 @@ describe("computeContentOverlayBehavior", () => {
       expect(result.initialHeight).toBe("contentHeight");
     });
 
-    it("returns fullScreen when fullScreen=true even if adjustToContentHeight is also true", () => {
+    it("returns adjustToContentHeight when adjustToContentHeight=true even if fullScreen=true", () => {
       const config = aConfig({ fullScreen: true, adjustToContentHeight: true });
       const state = aState();
 
       const result = computeContentOverlayBehavior(config, state);
 
-      expect(result.initialHeight).toBe("fullScreen");
+      expect(result.initialHeight).toBe("contentHeight");
     });
   });
 
