@@ -60,7 +60,7 @@ export function ContentOverlay({
   ref,
 }: ContentOverlayProps) {
   const insets = useSafeAreaInsets();
-  const { width: windowWidth } = useWindowDimensions();
+  const { height: windowHeight, width: windowWidth } = useWindowDimensions();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
   const [currentPosition, setCurrentPosition] = useState<number>(-1);
@@ -268,19 +268,21 @@ export function ContentOverlay({
       onDismiss={() => onClose?.()}
     >
       {scrollEnabled ? (
-        <BottomSheetScrollView
-          ref={scrollViewRef}
-          contentContainerStyle={{ paddingBottom: insets.bottom }}
-          keyboardShouldPersistTaps={
-            keyboardShouldPersistTaps ? "handled" : "never"
-          }
-          showsVerticalScrollIndicator={false}
-          onScroll={handleOnScroll}
-          stickyHeaderIndices={[0]}
-        >
-          {renderHeader()}
-          <View testID="ATL-Overlay-Children">{children}</View>
-        </BottomSheetScrollView>
+        <BottomSheetView style={{ height: windowHeight }}>
+          <BottomSheetScrollView
+            ref={scrollViewRef}
+            contentContainerStyle={{ paddingBottom: insets.bottom }}
+            keyboardShouldPersistTaps={
+              keyboardShouldPersistTaps ? "handled" : "never"
+            }
+            showsVerticalScrollIndicator={false}
+            onScroll={handleOnScroll}
+            stickyHeaderIndices={[0]}
+          >
+            {renderHeader()}
+            <View testID="ATL-Overlay-Children">{children}</View>
+          </BottomSheetScrollView>
+        </BottomSheetView>
       ) : (
         <BottomSheetView>
           {renderHeader()}
