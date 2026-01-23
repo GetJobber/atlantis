@@ -186,10 +186,12 @@ export const createBottomSheetScrollableComponent = <T, P>(
   _type: string,
   ScrollableComponent: React.ComponentType<P>,
 ) => {
+  // @ts-expect-error - mock implementation, exact types not critical
   return forwardRef(function MockScrollableComponent(
     props: P & { readonly children?: ReactNode },
     ref: Ref<T>,
   ) {
+    // @ts-expect-error - passing ref through to underlying component
     return createElement(ScrollableComponent, { ...props, ref } as P);
   });
 };
