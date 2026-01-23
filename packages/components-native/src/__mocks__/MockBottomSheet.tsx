@@ -172,3 +172,24 @@ export const useBottomSheetModal = () => ({
   dismiss: NOOP,
   dismissAll: NOOP,
 });
+
+// Constants needed for createBottomSheetScrollableComponent
+export const SCROLLABLE_TYPE = {
+  SCROLLVIEW: "ScrollView",
+  FLATLIST: "FlatList",
+  SECTIONLIST: "SectionList",
+  VIRTUALIZED_LIST: "VirtualizedList",
+} as const;
+
+// Mock createBottomSheetScrollableComponent - returns a component that just renders children
+export const createBottomSheetScrollableComponent = <T, P>(
+  _type: string,
+  ScrollableComponent: React.ComponentType<P>,
+) => {
+  return forwardRef(function MockScrollableComponent(
+    props: P & { readonly children?: ReactNode },
+    ref: Ref<T>,
+  ) {
+    return createElement(ScrollableComponent, { ...props, ref } as P);
+  });
+};
