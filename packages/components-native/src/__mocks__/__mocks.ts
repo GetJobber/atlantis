@@ -84,6 +84,12 @@ jest.mock("react-native-keyboard-aware-scroll-view", () => {
   return { KeyboardAwareScrollView: mockRef };
 });
 
+// Mock for react-native-keyboard-controller used in ContentOverlay's BottomSheetKeyboardAwareScrollView
+// https://kirillzyusko.github.io/react-native-keyboard-controller/docs/recipes/jest-testing-guide
+jest.mock("react-native-keyboard-controller", () =>
+  require("react-native-keyboard-controller/jest"),
+);
+
 // NOTE: mocking bottom-sheet entirely is not necessary. To ensure correct test behaviour, please add
 // `jest.unmock("@gorhom/bottom-sheet")` to your test suite.
 jest.mock("@gorhom/bottom-sheet", () => require("./MockBottomSheet"));
