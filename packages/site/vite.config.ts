@@ -54,6 +54,9 @@ export default defineConfig({
   ],
   build: {
     minify: false,
+    rollupOptions: {
+      external: ["react-native-keyboard-controller", "react-native-reanimated"],
+    },
   },
   optimizeDeps: {
     include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
@@ -85,14 +88,6 @@ export default defineConfig({
       "@jobber/docx": path.resolve(__dirname, "../docx/src"),
       "@atlantis/docs": path.resolve(__dirname, "../../docs"),
       "@atlantis/packages": path.resolve(__dirname, "../../packages"),
-      "react-native-keyboard-controller": path.resolve(
-        __dirname,
-        "./src/MobileOverrides.jsx",
-      ),
-      "react-native-reanimated": path.resolve(
-        __dirname,
-        "./src/MobileOverrides.jsx",
-      ),
     },
   },
   define: {
