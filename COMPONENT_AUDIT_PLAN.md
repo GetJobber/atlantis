@@ -252,35 +252,42 @@ Before proceeding, document:
 
 **What to check**:
 
-- Are visual tokens exposed as CSS custom properties that can be overridden?
-- Does the component define component-level CSS variables (e.g.,
-  `--tooltip--surface`)?
-- Check for `UNSAFE_className` or `UNSAFE_style` props for style overrides
+1. **Extends from Context Provider**: Does the component use semantic CSS tokens
+   (`--color-*`, `--space-*`, etc.) that can be overridden via
+   `AtlantisThemeContextProvider`'s `dangerouslyOverrideTokens` prop?
+2. **All visual tokens public**: Are all visual properties using tokens that can
+   be overridden, or are some hardcoded/internal?
 
-> **Important Clarification**: A component does NOT need to explicitly consume
-> `AtlantisThemeContext` (via `useAtlantisTheme()`) to support theming. If the
-> component uses semantic CSS tokens (`--color-*`, `--space-*`, etc.), it
-> automatically gets theme support because these tokens are set at the document
-> level by `AtlantisThemeContextProvider`.
+> **How theming works in Atlantis**: Components do NOT need to explicitly
+> consume `AtlantisThemeContext` (via `useAtlantisTheme()`) to support theming.
+> If the component uses semantic CSS tokens, it automatically extends from the
+> Context Provider because these tokens are set at the document level by
+> `AtlantisThemeContextProvider`.
 >
-> A component only needs to explicitly consume the context if it needs:
+> Example: A component using `var(--color-success)` automatically supports theme
+> customization because consumers can override `color-success` via:
 >
-> - Access to the current theme value in JavaScript
-> - Programmatic access to token values
-> - Component-specific token overrides
->
-> **This criterion is about customization capability**, not theme compatibility
-> (which is covered in 1.4 Dark/Light Mode).
+> ```tsx
+> <AtlantisThemeContextProvider
+>   dangerouslyOverrideTokens={{ "color-success": "#custom-color" }}
+> >
+>   <MyComponent />
+> </AtlantisThemeContextProvider>
+> ```
 
 **Scoring**:
 
-- **3**: Defines component-level CSS variables that can be overridden + supports
-  `UNSAFE_className`/`UNSAFE_style` for full customization
-- **2**: Some CSS variables defined OR supports UNSAFE\_\* props, but not both
-- **1**: No CSS variables exposed, no UNSAFE\_\* props, hardcoded styles
+- **3 (Up-to-date)**: Extends from Context Provider (uses semantic tokens) + all
+  visual tokens are public/overridable
+- **2 (Needs minor improvements)**: Some tokens are extendable via Context
+  Provider, but some visual properties use hardcoded values or internal-only CSS
+  variables
+- **1 (Needs major improvements)**: No tokens are extendable; does not use
+  semantic tokens; all styles hardcoded
 - **N/A**: Component is purely structural with no visual styling
 
-**Evidence to cite**: Component-level CSS variables, UNSAFE\_\* prop support
+**Evidence to cite**: List semantic tokens used; note any hardcoded values or
+internal CSS variables that cannot be overridden via Context Provider
 
 ---
 
@@ -311,18 +318,37 @@ Before proceeding, document:
 
 **What to check**:
 
-- Are CSS custom properties defined at the component level?
-- Look for pattern: `--component-name--property: var(--token);`
-- Check for `UNSAFE_className` prop support
+Tokens can be overridden through multiple mechanisms:
+
+1. **Context Provider**: Semantic tokens (`--color-*`, `--space-*`, etc.) can be
+   overridden via `AtlantisThemeContextProvider`'s `dangerouslyOverrideTokens`
+2. **Component-level CSS variables**: Pattern like `--component-name--property`
+   allows targeted overrides
+3. **UNSAFE_className prop**: Allows consumers to add custom CSS classes
+
+> **Note**: This criterion overlaps with 1.3 (Theme capability). The
+> distinction:
+>
+> - 1.3 asks "Does theming work?" (extends from Context Provider)
+> - 1.5 asks "Can all visual properties be customized?" (no hardcoded values)
+>
+> A component using all semantic tokens scores well on both. A component with
+> hardcoded values (like `rgba(...)` or `8px`) loses points here even if theming
+> otherwise works.
 
 **Scoring**:
 
-- **3**: All visual tokens can be overridden
-- **2**: Some tokens can be overridden
-- **1**: No tokens can be overridden
+- **3 (Up-to-date)**: All tokens can be overridden (via Context Provider,
+  component CSS vars, or UNSAFE_className); no hardcoded values blocking
+  customization
+- **2 (Needs minor improvements)**: Most tokens can be overridden; some
+  hardcoded values exist but don't significantly limit customization
+- **1 (Needs major improvements)**: No tokens can be overridden; all styles
+  hardcoded
 - **N/A**: Component has no visual styling
 
-**Evidence to cite**: CSS custom property patterns
+**Evidence to cite**: List override mechanisms available; note any hardcoded
+values that cannot be overridden
 
 ---
 
@@ -1869,9 +1895,9 @@ After receiving the LLM audit report, developers should complete these items:
 | --------- | ------------------------ | ------------- | ---------------------------------------------------------------------------------------- |
 | 1.1       | Semantic tokens          | ✅            | Check CSS                                                                                |
 | 1.2       | Tokens applied correctly | ✅            | Check CSS                                                                                |
-| 1.3       | Theme capability         | ✅            | Check context/props                                                                      |
+| 1.3       | Theme capability         | ✅            | Check semantic token usage; verify extends from Context Provider                         |
 | 1.4       | Dark/light mode          | ✅            | Check tokens                                                                             |
-| 1.5       | Tokens overridable       | ✅            | Check CSS variables                                                                      |
+| 1.5       | Tokens overridable       | ✅            | Check for hardcoded values; verify tokens overridable via Context/CSS vars               |
 | 2.1-2.5   | Visual parity            | ⚠️ Partial    | LLM provides observations; manual Figma review **optional** (designers already reviewed) |
 | 3.1       | Clear naming             | ✅            | Check props/types                                                                        |
 | 3.2       | Design documentation     | ⚠️ Partial    | Check if docs exist; defer quality assessment to designers                               |
