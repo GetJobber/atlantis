@@ -284,6 +284,21 @@ test.describe("Atlantis Visual Tests", () => {
       });
     });
 
+    test(
+      "data table atoms components",
+      { tag: "@DataTableAtoms" },
+      async ({ page }) => {
+        await page.goto("/visual-tests/data-table-atoms");
+        await page.waitForTimeout(500);
+        await expect(page).toHaveScreenshot(
+          "visual-test-data-table-atoms-page.png",
+          {
+            fullPage: true,
+          },
+        );
+      },
+    );
+
     test("tabs components", { tag: "@Tabs" }, async ({ page }) => {
       await page.goto("/visual-tests/tabs");
       await page.waitForTimeout(500);

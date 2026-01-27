@@ -51,6 +51,7 @@ export const VisualTestCatchAll = () => {
     { path: "switch", label: "Switch" },
     { path: "table", label: "Table" },
     { path: "data-table", label: "Data Table" },
+    { path: "data-table-atoms", label: "Data Table Atoms" },
     { path: "tabs", label: "Tabs" },
     { path: "toast", label: "Toast" },
     { path: "tooltip", label: "Tooltip" },
