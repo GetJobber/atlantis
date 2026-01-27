@@ -1,6 +1,6 @@
 import React from "react";
 import type { StyleProp, TextStyle, ViewStyle } from "react-native";
-import { Text as RNText, View } from "react-native";
+import { PixelRatio, Platform, Text as RNText, View } from "react-native";
 import type { FieldError } from "react-hook-form";
 import type { IconNames } from "@jobber/design";
 import { useStyles } from "./InputFieldWrapper.style";
@@ -112,6 +112,11 @@ export interface InputFieldWrapperProps {
    * Change the type of loading indicator to spinner or glimmer.
    */
   readonly loadingType?: "spinner" | "glimmer";
+
+  /**
+   * Whether the input is a multiline input.
+   */
+  readonly multiline?: boolean;
 }
 
 export const INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID =
@@ -138,6 +143,7 @@ export function InputFieldWrapper({
   toolbarVisibility = "while-editing",
   loading = false,
   loadingType = "spinner",
+  multiline = false,
 }: InputFieldWrapperProps) {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
@@ -163,6 +169,9 @@ export function InputFieldWrapper({
           (Boolean(invalid) || error) && styles.inputInvalid,
           disabled && styles.disabled,
           styleOverride?.container,
+          shouldApplyScrollTrapWorkaround(multiline) && {
+            maxWidth: "90%",
+          },
         ]}
       >
         <View style={styles.field}>
@@ -281,6 +290,15 @@ export function InputFieldWrapper({
       )}
     </ErrorMessageWrapper>
   );
+}
+
+function shouldApplyScrollTrapWorkaround(isMultiline: boolean): boolean {
+  const isCustomFontScale = PixelRatio.getFontScale() !== 1;
+
+  // On iOS, when the OS font scale is not default, it causes multiline inputs to become scroll-trapped
+  // which prevents the user from scrolling the parent form view. For now, we're working around this
+  // by limiting the width of the input field, thus providing a gap so the user can scroll more easily.
+  return isMultiline && Platform.OS === "ios" && isCustomFontScale;
 }
 
 function getLabelVariation(
