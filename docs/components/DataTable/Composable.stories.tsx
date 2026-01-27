@@ -2026,3 +2026,158 @@ export const FooterWithPagination = () => {
     </StorybookTableProvider>
   );
 };
+
+export const FooterWithPageTotals = () => {
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 3,
+  });
+
+  const table = useReactTable({
+    data: invoiceData,
+    columns: [
+      {
+        accessorKey: "invoiceNumber",
+        header: "Invoice",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold" textColor="interactiveSubtle">
+            {row.original.invoiceNumber}
+          </Typography>
+        ),
+      },
+      {
+        accessorKey: "dueDate",
+        header: "Due Date",
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => (
+          <StatusLabel
+            status={row.original.status === "Paid" ? "success" : "warning"}
+            label={row.original.status}
+          />
+        ),
+      },
+      {
+        accessorKey: "subject",
+        header: "Subject",
+      },
+      {
+        accessorKey: "total",
+        header: "Total",
+        cell: ({ row }) => (
+          <Text align="end">
+            $
+            {row.original.total.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+            })}
+          </Text>
+        ),
+      },
+    ],
+    state: {
+      pagination,
+    },
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
+  // Page-level subtotal (only visible rows)
+  const pageSubtotal = table
+    .getRowModel()
+    .rows.reduce((sum, row) => sum + row.original.total, 0);
+
+  // Grand total (all data)
+  const grandTotal = invoiceData.reduce((sum, inv) => sum + inv.total, 0);
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Container>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Invoice</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Due Date</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Status</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Subject</DataTable.HeaderCell>
+            <DataTable.HeaderCell>
+              <Text align="end">Total</Text>
+            </DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+
+          {/* Footer with page subtotal and grand total */}
+          <DataTable.Footer>
+            {/* Page subtotal row */}
+            <DataTable.Row>
+              <DataTable.Cell colSpan={4}>
+                <Text>Subtotal</Text>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Text align="end">
+                  $
+                  {pageSubtotal.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </Text>
+              </DataTable.Cell>
+            </DataTable.Row>
+            {/* Grand total row */}
+            <DataTable.Row>
+              <DataTable.Cell colSpan={4}>
+                <Typography fontWeight="bold">Total</Typography>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold" align="end">
+                  $
+                  {grandTotal.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </Typography>
+              </DataTable.Cell>
+            </DataTable.Row>
+          </DataTable.Footer>
+        </DataTable.Table>
+
+        {/* Pagination */}
+        <DataTable.Pagination>
+          <Cluster justify="space-between" align="center">
+            <Text>
+              Page {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getPageCount()}
+            </Text>
+            <Cluster gap="small">
+              <DataTable.PaginationButton
+                direction="previous"
+                disabled={!table.getCanPreviousPage()}
+                onClick={() => table.previousPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+              <DataTable.PaginationButton
+                direction="next"
+                disabled={!table.getCanNextPage()}
+                onClick={() => table.nextPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+            </Cluster>
+          </Cluster>
+        </DataTable.Pagination>
+      </DataTable.Container>
+    </StorybookTableProvider>
+  );
+};
