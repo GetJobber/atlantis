@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.95.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.3...@jobber/components-native@0.95.4) (2026-01-27)
+
+
+### Bug Fixes
+
+* **components-native:** Provide way for users to escape react native multiline input scroll trap ([#2891](https://github.com/GetJobber/atlantis/issues/2891)) ([9c68197](https://github.com/GetJobber/atlantis/commit/9c68197c5d804ac682efb79147422c35d9a69b0b))
+
+
+
+
+
 ## [0.95.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.2...@jobber/components-native@0.95.3) (2026-01-12)
 
 
