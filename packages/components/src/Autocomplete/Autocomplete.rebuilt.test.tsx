@@ -1,3 +1,5 @@
+/* eslint-disable max-statements */
+
 // Locally mock timing tokens to 0ms to avoid transition waits in this file
 jest.mock("@jobber/design", () => {
   const actual = jest.requireActual("@jobber/design");
@@ -51,8 +53,6 @@ import {
 import { InputText } from "../InputText";
 import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
-// They're tests, limit isn't helpful here
-// eslint-disable-next-line max-statements
 describe("AutocompleteRebuilt", () => {
   it("renders", () => {
     render(<Wrapper />);
@@ -377,9 +377,7 @@ describe("AutocompleteRebuilt", () => {
         expect(screen.getByText("Experience the high tide")).toBeVisible();
       });
     });
-    // Many interactions in the test
-    // This is verifying both the order and arrow navigation/activeIndex
-    // eslint-disable-next-line max-statements
+
     it("renders sections actions in the expected order", async () => {
       render(
         <Wrapper
@@ -1219,7 +1217,6 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  // eslint-disable-next-line max-statements
   describe("highlighting", () => {
     it("does not highlight an option or action when the menu is opened for the first time", async () => {
       render(<Wrapper />);
@@ -1300,8 +1297,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOption).toBeNull();
     });
 
-    // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state when the menu is closed without a selection", async () => {
       render(<Wrapper />);
 
@@ -1331,8 +1326,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNavigation?.textContent).toContain("One");
     });
 
-    // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state when the input is cleared with backspaces", async () => {
       render(<Wrapper />);
 
@@ -1359,8 +1352,6 @@ describe("AutocompleteRebuilt", () => {
       expect(thirdActiveOption?.textContent).toContain("One");
     });
 
-    // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state after using an action", async () => {
       render(<Wrapper />);
 
@@ -1386,8 +1377,7 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav).not.toBeNull();
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
-    // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
+
     it("resets the highlight to initial, not visible state when the autocomplete loses focus (blur)", async () => {
       render(<Wrapper />);
 
@@ -1437,8 +1427,7 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav).not.toBeNull();
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
-    // Test requires elaborate amount of interactions
-    // eslint-disable-next-line max-statements
+
     it("resets the highlight to initial, not visible state after making a selection, select-all + delete and reopening the menu", async () => {
       render(<Wrapper />);
 
@@ -2339,7 +2328,6 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  // eslint-disable-next-line max-statements
   describe("blur and focus management", () => {
     it("calls onFocus when the input is clicked", async () => {
       const onFocus = jest.fn();
@@ -2805,6 +2793,42 @@ describe("AutocompleteRebuilt", () => {
 
       const input = screen.getByRole("combobox");
       expect(input).toHaveAttribute("data-test", "autocomplete-input");
+    });
+  });
+
+  describe("invalid value handling", () => {
+    describe("when inputValue is empty and value has empty label", () => {
+      it("does not call onChange", async () => {
+        const onChange = jest.fn();
+
+        render(
+          <Wrapper
+            initialValue={{ label: "" }}
+            initialInputValue=""
+            onChange={onChange}
+          />,
+        );
+
+        // The useAutocomplete hook has an effect that clears the selection when the inputValue is empty
+        // thus causing onChange to be called if there's currently a selection (hasSelection).
+        // An empty label is not considered a valid selection.
+        expect(onChange).not.toHaveBeenCalled();
+      });
+
+      it("no option should be selected", async () => {
+        render(
+          <Wrapper
+            initialValue={{ label: "" }}
+            initialInputValue=""
+            onChange={jest.fn()}
+          />,
+        );
+
+        await openAutocomplete();
+
+        const activeOption = getActiveOption();
+        expect(activeOption).toBeNull();
+      });
     });
   });
 });
