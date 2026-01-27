@@ -124,7 +124,6 @@ export const INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID =
 export const INPUT_FIELD_WRAPPER_SPINNER_TEST_ID =
   "ATL-InputFieldWrapper-Spinner";
 
-// eslint-disable-next-line max-statements
 export function InputFieldWrapper({
   invalid,
   disabled,
@@ -160,13 +159,6 @@ export function InputFieldWrapper({
   const placeholderVisible = placeholderMode !== "hidden";
   const miniLabelActive = placeholderMode === "mini";
 
-  const isCustomFontScale = PixelRatio.getFontScale() !== 1;
-  // On iOS, when the OS font scale is not default, it causes multiline inputs to become scroll-trapped
-  // which prevents the user from scrolling the parent form view. For now, we're working around this
-  // by limiting the width of the input field, thus providing a gap so the user can scroll more easily.
-  const extraScrollSpace =
-    multiline && Platform.OS === "ios" && isCustomFontScale;
-
   return (
     <ErrorMessageWrapper message={getMessage({ invalid, error })}>
       <View
@@ -177,7 +169,7 @@ export function InputFieldWrapper({
           (Boolean(invalid) || error) && styles.inputInvalid,
           disabled && styles.disabled,
           styleOverride?.container,
-          extraScrollSpace && {
+          shouldApplyScrollTrapWorkaround(multiline) && {
             maxWidth: "90%",
           },
         ]}
@@ -298,6 +290,15 @@ export function InputFieldWrapper({
       )}
     </ErrorMessageWrapper>
   );
+}
+
+function shouldApplyScrollTrapWorkaround(isMultiline: boolean): boolean {
+  const isCustomFontScale = PixelRatio.getFontScale() !== 1;
+
+  // On iOS, when the OS font scale is not default, it causes multiline inputs to become scroll-trapped
+  // which prevents the user from scrolling the parent form view. For now, we're working around this
+  // by limiting the width of the input field, thus providing a gap so the user can scroll more easily.
+  return isMultiline && Platform.OS === "ios" && isCustomFontScale;
 }
 
 function getLabelVariation(
