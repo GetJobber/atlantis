@@ -389,6 +389,50 @@ export const VisualTestDataTableAtomsPage = () => {
               </DataTable.Table>
             </DataTable.Container>
           </section>
+
+          {/* Pagination Only */}
+          <section>
+            <Text size="large">Pagination Only (Border Top Test)</Text>
+            <DataTable.Container>
+              <DataTable.Table>
+                <DataTable.Header>
+                  <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+                  <DataTable.HeaderCell>Role</DataTable.HeaderCell>
+                  <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+                </DataTable.Header>
+                <DataTable.Body>
+                  {exampleData.map(row => (
+                    <DataTable.Row key={row.id}>
+                      <DataTable.Cell>
+                        <Typography fontWeight="bold">{row.name}</Typography>
+                      </DataTable.Cell>
+                      <DataTable.Cell>{row.role}</DataTable.Cell>
+                      <DataTable.Cell>{row.email}</DataTable.Cell>
+                    </DataTable.Row>
+                  ))}
+                </DataTable.Body>
+              </DataTable.Table>
+              <DataTable.Pagination>
+                <Cluster justify="space-between" align="center">
+                  <Text>Showing 4 of 4 items</Text>
+                  <Cluster gap="small">
+                    <DataTable.PaginationButton
+                      direction="previous"
+                      disabled={true}
+                      onClick={() => undefined}
+                      ariaLabel={() => "Previous page"}
+                    />
+                    <DataTable.PaginationButton
+                      direction="next"
+                      disabled={true}
+                      onClick={() => undefined}
+                      ariaLabel={() => "Next page"}
+                    />
+                  </Cluster>
+                </Cluster>
+              </DataTable.Pagination>
+            </DataTable.Container>
+          </section>
         </Stack>
       </Stack>
     </Box>
