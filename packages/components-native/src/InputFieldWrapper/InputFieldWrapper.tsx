@@ -112,6 +112,11 @@ export interface InputFieldWrapperProps {
    * Change the type of loading indicator to spinner or glimmer.
    */
   readonly loadingType?: "spinner" | "glimmer";
+
+  /**
+   * Whether the input is a multiline input.
+   */
+  readonly multiline?: boolean;
 }
 
 export const INPUT_FIELD_WRAPPER_GLIMMERS_TEST_ID =
@@ -138,6 +143,7 @@ export function InputFieldWrapper({
   toolbarVisibility = "while-editing",
   loading = false,
   loadingType = "spinner",
+  multiline = false,
 }: InputFieldWrapperProps) {
   fieldAffixRequiredPropsCheck([prefix, suffix]);
   const handleClear = onClear ?? noopClear;
@@ -163,6 +169,9 @@ export function InputFieldWrapper({
           (Boolean(invalid) || error) && styles.inputInvalid,
           disabled && styles.disabled,
           styleOverride?.container,
+          multiline && {
+            maxWidth: "90%",
+          },
         ]}
       >
         <View style={styles.field}>
