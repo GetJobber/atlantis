@@ -55,7 +55,7 @@ export interface SelectRebuiltProps
   readonly value?: string | number;
   onChange?(newValue?: string | number): void;
 
-  readonly inputRef?: Ref<HTMLSelectElement>;
+  readonly inputRef?: Ref<HTMLSelectElement | null>;
 
   /**
    * @deprecated Use `onKeyDown` or `onKeyUp` instead.
