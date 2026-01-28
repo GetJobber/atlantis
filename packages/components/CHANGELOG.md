@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.109.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.2...@jobber/components@6.109.3) (2026-01-28)
+
+
+### Bug Fixes
+
+* **components:** Refactor DataTable.Footer  ([#2882](https://github.com/GetJobber/atlantis/issues/2882)) ([a4a485f](https://github.com/GetJobber/atlantis/commit/a4a485f2d2a11a72d788485790cc9f83cfb12190))
+
+
+
+
+
 ## [6.109.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.1...@jobber/components@6.109.2) (2026-01-28)
 
 
