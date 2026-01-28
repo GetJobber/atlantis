@@ -155,7 +155,6 @@ const config: StorybookConfig = {
       "react-native-keyboard-aware-scroll-view": path.resolve(__dirname, "../node_modules/react-native-keyboard-aware-scroll-view"),
       "react-native-portalize": path.resolve(__dirname, "../node_modules/react-native-portalize"),
       "react-native-modal-datetime-picker": path.resolve(__dirname, "../node_modules/react-native-modal-datetime-picker"),
-      "react-native-modalize": path.resolve(__dirname, "../node_modules/react-native-modalize"),
       "react-native-svg": path.resolve(__dirname, "../node_modules/react-native-svg"),
       "@atlantis": path.resolve(__dirname, "../../../"),
       'react-native-web/dist/exports/findNodeHandle': path.resolve(__dirname, "__mocks__/react-native-web-findNodeHandle.ts"),
