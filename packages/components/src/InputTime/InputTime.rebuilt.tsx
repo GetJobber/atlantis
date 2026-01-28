@@ -125,11 +125,8 @@ export function InputTimeRebuilt({
 
 function useInputTimeRefs(inputRef?: Ref<HTMLInputElement>) {
   const internalRef = useRef<HTMLInputElement>(null);
-  const mergedRef = mergeRefs<HTMLInputElement>([
-    internalRef,
-    inputRef as React.RefObject<HTMLInputElement>,
-  ]);
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const mergedRef = mergeRefs([internalRef, inputRef]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   return { internalRef, mergedRef, wrapperRef };
 }
