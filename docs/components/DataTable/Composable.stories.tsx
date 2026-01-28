@@ -642,7 +642,7 @@ export const Sortable = () => {
   );
 };
 
-export const WithPagination = () => {
+export const Pagination = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 4,
@@ -695,42 +695,40 @@ export const WithPagination = () => {
               </DataTable.Row>
             ))}
           </DataTable.Body>
-          <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
-            <DataTable.Pagination>
-              <Cluster justify="space-between" align="center">
-                <Text>
-                  Showing {table.getRowModel().rows.length} of{" "}
-                  {exampleData.length} items
-                </Text>
-
-                <Cluster gap="small">
-                  <DataTable.PaginationButton
-                    direction="previous"
-                    disabled={!table.getCanPreviousPage()}
-                    onClick={() => table.previousPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                  <DataTable.PaginationButton
-                    direction="next"
-                    disabled={!table.getCanNextPage()}
-                    onClick={() => table.nextPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                </Cluster>
-              </Cluster>
-            </DataTable.Pagination>
-          </DataTable.Footer>
         </DataTable.Table>
+        <DataTable.Pagination>
+          <Cluster justify="space-between" align="center">
+            <Text>
+              Showing {table.getRowModel().rows.length} of {exampleData.length}{" "}
+              items
+            </Text>
+
+            <Cluster gap="small">
+              <DataTable.PaginationButton
+                direction="previous"
+                disabled={!table.getCanPreviousPage()}
+                onClick={() => table.previousPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+              <DataTable.PaginationButton
+                direction="next"
+                disabled={!table.getCanNextPage()}
+                onClick={() => table.nextPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+            </Cluster>
+          </Cluster>
+        </DataTable.Pagination>
       </DataTable.Container>
     </StorybookTableProvider>
   );
 };
 
-export const DoubleFooter = () => {
+export const WithFooter = () => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: 6,
@@ -799,51 +797,18 @@ export const DoubleFooter = () => {
               </DataTable.Row>
             ))}
           </DataTable.Body>
-
           {/* Current balance footer */}
-          <DataTable.Footer colSpan={table.getAllLeafColumns().length}>
-            <div style={{ padding: "var(--space-base)", fontWeight: "bold" }}>
-              <Cluster justify="space-between" align="center">
+          <DataTable.Footer>
+            <DataTable.Row>
+              <DataTable.Cell colSpan={3}>
                 <Typography fontWeight="bold">Current balance</Typography>
-                <Typography fontWeight="bold">
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold" align="end">
                   ${currentBalance.toLocaleString()}.00
                 </Typography>
-              </Cluster>
-            </div>
-          </DataTable.Footer>
-
-          {/* Pagination footer */}
-          <DataTable.Footer
-            colSpan={table.getAllLeafColumns().length}
-            style={{ borderTopWidth: "var(--border-thick)" }}
-          >
-            <DataTable.Pagination>
-              <Cluster justify="space-between" align="center">
-                <Text>
-                  Showing {table.getRowModel().rows.length} of{" "}
-                  {transactionData.length} items
-                </Text>
-
-                <Cluster gap="small">
-                  <DataTable.PaginationButton
-                    direction="previous"
-                    disabled={!table.getCanPreviousPage()}
-                    onClick={() => table.previousPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                  <DataTable.PaginationButton
-                    direction="next"
-                    disabled={!table.getCanNextPage()}
-                    onClick={() => table.nextPage()}
-                    ariaLabel={direction =>
-                      direction === "next" ? "Next page" : "Previous page"
-                    }
-                  />
-                </Cluster>
-              </Cluster>
-            </DataTable.Pagination>
+              </DataTable.Cell>
+            </DataTable.Row>
           </DataTable.Footer>
         </DataTable.Table>
       </DataTable.Container>
@@ -1852,6 +1817,366 @@ export const Loading = () => {
             ))}
           </DataTable.Body>
         </DataTable.Table>
+      </DataTable.Container>
+    </StorybookTableProvider>
+  );
+};
+
+const invoiceData = [
+  {
+    id: "234",
+    invoiceNumber: "#234",
+    dueDate: "Sep 16, 2025",
+    status: "Paid",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 0.0,
+  },
+  {
+    id: "196",
+    invoiceNumber: "#196",
+    dueDate: "Oct 16, 2025",
+    status: "Paid",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 0.0,
+  },
+  {
+    id: "195",
+    invoiceNumber: "#195",
+    dueDate: "Oct 16, 2025",
+    status: "Paid",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 0.0,
+  },
+  {
+    id: "194",
+    invoiceNumber: "#194",
+    dueDate: "Oct 16, 2025",
+    status: "Paid",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 0.0,
+  },
+  {
+    id: "193",
+    invoiceNumber: "#193",
+    dueDate: "Oct 16, 2025",
+    status: "Pending",
+    subject: "For service rendered",
+    total: 750.0,
+    balance: 750.0,
+  },
+];
+
+export const FooterWithPagination = () => {
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 4,
+  });
+
+  const table = useReactTable({
+    data: invoiceData,
+    columns: [
+      {
+        accessorKey: "invoiceNumber",
+        header: "Invoice",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold" textColor="interactiveSubtle">
+            {row.original.invoiceNumber}
+          </Typography>
+        ),
+      },
+      {
+        accessorKey: "dueDate",
+        header: "Due Date",
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => (
+          <StatusLabel
+            status={row.original.status === "Paid" ? "success" : "warning"}
+            label={row.original.status}
+          />
+        ),
+      },
+      {
+        accessorKey: "subject",
+        header: "Subject",
+      },
+      {
+        accessorKey: "total",
+        header: "Total",
+        cell: ({ row }) => (
+          <Text align="end">
+            $
+            {row.original.total.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+            })}
+          </Text>
+        ),
+      },
+      {
+        accessorKey: "balance",
+        header: "Balance",
+        cell: ({ row }) => (
+          <Text align="end">
+            $
+            {row.original.balance.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+            })}
+          </Text>
+        ),
+      },
+    ],
+    state: {
+      pagination,
+    },
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
+  // Calculate totals across all data (not just current page)
+  const totalAmount = invoiceData.reduce((sum, inv) => sum + inv.total, 0);
+  const totalBalance = invoiceData.reduce((sum, inv) => sum + inv.balance, 0);
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Container>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Invoice</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Due Date</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Status</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Subject</DataTable.HeaderCell>
+            <DataTable.HeaderCell>
+              <Text align="end">Total</Text>
+            </DataTable.HeaderCell>
+            <DataTable.HeaderCell>
+              <Text align="end">Balance</Text>
+            </DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+
+          <DataTable.Footer>
+            <DataTable.Row>
+              <DataTable.Cell colSpan={4}>
+                <Typography fontWeight="bold">Total</Typography>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold" align="end">
+                  $
+                  {totalAmount.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </Typography>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold" align="end">
+                  $
+                  {totalBalance.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </Typography>
+              </DataTable.Cell>
+            </DataTable.Row>
+          </DataTable.Footer>
+        </DataTable.Table>
+        {/* Pagination outside table, within the container */}
+        <DataTable.Pagination>
+          <Cluster justify="space-between" align="center">
+            <Text>
+              Showing {table.getRowModel().rows.length} of {invoiceData.length}{" "}
+              invoices
+            </Text>
+            <Cluster gap="small">
+              <DataTable.PaginationButton
+                direction="previous"
+                disabled={!table.getCanPreviousPage()}
+                onClick={() => table.previousPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+              <DataTable.PaginationButton
+                direction="next"
+                disabled={!table.getCanNextPage()}
+                onClick={() => table.nextPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+            </Cluster>
+          </Cluster>
+        </DataTable.Pagination>
+      </DataTable.Container>
+    </StorybookTableProvider>
+  );
+};
+
+export const FooterWithPageTotals = () => {
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 3,
+  });
+
+  const table = useReactTable({
+    data: invoiceData,
+    columns: [
+      {
+        accessorKey: "invoiceNumber",
+        header: "Invoice",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold" textColor="interactiveSubtle">
+            {row.original.invoiceNumber}
+          </Typography>
+        ),
+      },
+      {
+        accessorKey: "dueDate",
+        header: "Due Date",
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => (
+          <StatusLabel
+            status={row.original.status === "Paid" ? "success" : "warning"}
+            label={row.original.status}
+          />
+        ),
+      },
+      {
+        accessorKey: "subject",
+        header: "Subject",
+      },
+      {
+        accessorKey: "total",
+        header: "Total",
+        cell: ({ row }) => (
+          <Text align="end">
+            $
+            {row.original.total.toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+            })}
+          </Text>
+        ),
+      },
+    ],
+    state: {
+      pagination,
+    },
+    onPaginationChange: setPagination,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+  });
+
+  // Page-level subtotal (only visible rows)
+  const pageSubtotal = table
+    .getRowModel()
+    .rows.reduce((sum, row) => sum + row.original.total, 0);
+
+  // Grand total (all data)
+  const grandTotal = invoiceData.reduce((sum, inv) => sum + inv.total, 0);
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Container>
+        <DataTable.Table>
+          <DataTable.Header>
+            <DataTable.HeaderCell>Invoice</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Due Date</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Status</DataTable.HeaderCell>
+            <DataTable.HeaderCell>Subject</DataTable.HeaderCell>
+            <DataTable.HeaderCell>
+              <Text align="end">Total</Text>
+            </DataTable.HeaderCell>
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+
+          {/* Footer with page subtotal and grand total */}
+          <DataTable.Footer>
+            {/* Page subtotal row */}
+            <DataTable.Row>
+              <DataTable.Cell colSpan={4}>
+                <Text>Subtotal</Text>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Text align="end">
+                  $
+                  {pageSubtotal.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </Text>
+              </DataTable.Cell>
+            </DataTable.Row>
+            {/* Grand total row */}
+            <DataTable.Row>
+              <DataTable.Cell colSpan={4}>
+                <Typography fontWeight="bold">Total</Typography>
+              </DataTable.Cell>
+              <DataTable.Cell>
+                <Typography fontWeight="bold" align="end">
+                  $
+                  {grandTotal.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </Typography>
+              </DataTable.Cell>
+            </DataTable.Row>
+          </DataTable.Footer>
+        </DataTable.Table>
+
+        {/* Pagination */}
+        <DataTable.Pagination>
+          <Cluster justify="space-between" align="center">
+            <Text>
+              Page {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getPageCount()}
+            </Text>
+            <Cluster gap="small">
+              <DataTable.PaginationButton
+                direction="previous"
+                disabled={!table.getCanPreviousPage()}
+                onClick={() => table.previousPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+              <DataTable.PaginationButton
+                direction="next"
+                disabled={!table.getCanNextPage()}
+                onClick={() => table.nextPage()}
+                ariaLabel={direction =>
+                  direction === "next" ? "Next page" : "Previous page"
+                }
+              />
+            </Cluster>
+          </Cluster>
+        </DataTable.Pagination>
       </DataTable.Container>
     </StorybookTableProvider>
   );

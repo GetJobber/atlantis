@@ -53,6 +53,7 @@ import { VisualTestSpinnerPage } from "./VisualTestSpinnerPage";
 import { VisualTestSwitchPage } from "./VisualTestSwitchPage";
 import { VisualTestTablePage } from "./VisualTestTablePage";
 import { VisualTestDataTablePage } from "./VisualTestDataTablePage";
+import { VisualTestDataTableAtomsPage } from "./VisualTestDataTableAtomsPage";
 import { VisualTestTooltipPage } from "./VisualTestTooltipPage";
 import { VisualTestTypographyPage } from "./VisualTestTypographyPage";
 import { VisualTestTabsPage } from "./VisualTestTabsPage";
@@ -327,6 +328,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/data-table"
         exact={true}
         component={VisualTestDataTablePage}
+      />
+      <Route
+        path="/visual-tests/data-table-atoms"
+        exact={true}
+        component={VisualTestDataTableAtomsPage}
       />
       <Route
         path="/visual-tests/tabs"

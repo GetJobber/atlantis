@@ -95,4 +95,5 @@
 
 .pagination {
   padding: var(--space-small) var(--space-base);
+  border-top: var(--border-base) solid var(--color-border);
 }
