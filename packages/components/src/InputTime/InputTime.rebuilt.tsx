@@ -123,7 +123,7 @@ export function InputTimeRebuilt({
   );
 }
 
-function useInputTimeRefs(inputRef?: Ref<HTMLInputElement | null>) {
+function useInputTimeRefs(inputRef?: Ref<HTMLInputElement>) {
   const internalRef = useRef<HTMLInputElement>(null);
   const mergedRef = mergeRefs<HTMLInputElement>([
     internalRef,

@@ -74,7 +74,7 @@ export interface InputTimeRebuiltProps
    */
   readonly min?: number;
 
-  readonly inputRef?: Ref<HTMLInputElement | null>;
+  readonly inputRef?: Ref<HTMLInputElement>;
 
   /**
    * @deprecated Use `onKeyDown` or `onKeyUp` instead.
