@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.109.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.1...@jobber/components@6.109.2) (2026-01-28)
+
+
+### Bug Fixes
+
+* **components:** Support ref callbacks with InputTime and Select ([#2892](https://github.com/GetJobber/atlantis/issues/2892)) ([ae1e36b](https://github.com/GetJobber/atlantis/commit/ae1e36b9ce0643df7c63ce4be4d9488f3864821e))
+
+
+
+
+
 ## [6.109.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.0...@jobber/components@6.109.1) (2026-01-27)
 
 **Note:** Version bump only for package @jobber/components
