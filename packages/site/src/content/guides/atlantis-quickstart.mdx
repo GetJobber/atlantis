@@ -1,0 +1,147 @@
+# Atlantis Quick Start
+
+Getting up and running with Atlantis in web or mobile is simple. The same
+general steps apply to both platforms, but the details are slightly different
+and covered in individual sections below.
+
+In genera, you will need to:
+
+1. Install the required dependencies.
+2. Setup styling via CSS on web or theme provider on mobile.
+3. Setup root level providers.
+4. Start developing!
+
+## Web
+
+#### Pre-requisite
+
+You should have a React application already scaffolded. We recommend
+[Vite](https://vite.dev/) for its simplicity, but any React application will
+work.
+
+### Building Atlantis for the web (in detail):
+
+1. Install the web dependencies:
+
+```javascript
+    npm install @jobber/components @jobber/design
+```
+
+2. Import the styles at the root of your application:
+
+```javascript
+// Base tokens
+import "@jobber/design/foundation.css";
+
+// Component styles
+import "@jobber/components/styles";
+```
+
+3. Import the AtlantisContext and AtlantisProvider at the root of your
+   application:
+
+```javascript
+import {
+  AtlantisContext,
+  AtlantisThemeContextProvider,
+} from "@jobber/components";
+
+// Base tokens
+import "@jobber/design/foundation.css";
+
+// Component styles
+import "@jobber/components/styles";
+
+function App() {
+  return (
+    <AtlantisContext
+      value={{
+        dateFormat: "MM/DD/YYYY",
+        timeFormat: "HH:mm",
+        timeZone: "America/New_York",
+        floatSeparators: { decimal: ".", group: "," },
+        currencySymbol: "$",
+        locale: "en-US",
+        firstDayOfWeek: 0,
+      }}
+    >
+      <AtlantisThemeContextProvider>
+        {/* Your app content */}
+      </AtlantisThemeContextProvider>
+    </AtlantisContext>
+  );
+}
+```
+
+4. Depending on your setup, you may have to instruct Typescript that
+   `@jobber/components/styles` is a css file (since it lacks a .css extension).
+   You can do that by adding the following to a d.ts file in your project:
+
+```javascript
+declare module "@jobber/components/styles" {
+}
+```
+
+## Mobile
+
+#### Pre-requisite
+
+You should have a React Native application already scaffolded. We recommend
+[Expo](https://expo.dev/) for its simplicity, but any React Native application
+will work.
+
+### Building Atlantis for react-native (in detail):
+
+1. Install the dependencies:
+   `npm install @jobber/components-native @jobber/hooks @jobber/formatters @jobber/design @react-native-clipboard/clipboard @apollo/client @gorhom/bottom-sheet react-native-modal-datetime-picker react-native-reanimated react-native-svg date-fns-tz @apollo/client`
+1. You may need to use `--legacy-peer-deps` appended to the command above to
+   install the dependencies if you are using a slightly older version of React
+   Native.
+1. Import the AtlantisContext at the root of your application:
+
+```javascript
+import { AtlantisContext } from "@jobber/components";
+import {
+  AtlantisContext,
+  AtlantisThemeContextProvider,
+} from "@jobber/components-native";
+import { IntlProvider } from "react-intl";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Host } from "react-native-portalize";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+
+function App() {
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Host>
+            <IntlProvider locale="en-US">
+              <AtlantisContext
+                value={{
+                  dateFormat: "MM/DD/YYYY",
+                  timeFormat: "HH:mm",
+                  timeZone: "America/New_York",
+                  isOnline: true,
+                  onLogError: () => {},
+                  floatSeparators: { decimal: ".", group: "," },
+                  currencySymbol: "$",
+                  headerHeight: 0,
+                  locale: "en-US",
+                  setHeaderHeight: () => {},
+                }}
+              >
+                <AtlantisThemeContextProvider>
+                  {/* Your app content */}
+                </AtlantisThemeContextProvider>
+              </AtlantisContext>
+            </IntlProvider>
+          </Host>
+        </GestureHandlerRootView>
+      </SafeAreaView>
+    </SafeAreaProvider>
+  );
+}
+```
+
+3. Make sure to rebuild the application to pick up the native modules.
