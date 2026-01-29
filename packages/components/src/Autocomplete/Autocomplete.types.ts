@@ -124,6 +124,13 @@ export interface AutocompleteBaseProps<
       GenericOptionValue
     >,
   ) => React.ReactElement;
+
+  /**
+   * The version of the autocomplete.
+   *
+   * @default 1
+   */
+  version?: 1 | 2;
 }
 
 export interface AutocompleteLegacyProps<
