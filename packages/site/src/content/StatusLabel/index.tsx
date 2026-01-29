@@ -10,7 +10,7 @@ export default {
   mobileProps: MobileProps,
   component: {
     element: `<StatusLabel label="StatusLabel!" />`,
-    mobileElement: `<StatusLabel label="StatusLabel!" />`,
+    mobileElement: `<StatusLabel text="StatusLabel!" />`,
   },
   title: "StatusLabel",
   links: [
