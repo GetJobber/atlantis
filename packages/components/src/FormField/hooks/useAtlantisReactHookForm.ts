@@ -44,7 +44,7 @@ export function useAtlantisReactHookForm({
 
   useEffect(() => {
     if (value != undefined) {
-      setValue(name, value);
+      setValue(name, value, { shouldValidate: true });
     }
   }, [value, watch(name)]);
 
