@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { type ButtonProps, type HTMLButtonType } from "./Button.types";
@@ -7,17 +7,10 @@ import { useButtonStyles } from "./useButtonStyles";
 import { ButtonContent, ButtonIcon, ButtonLabel } from "./ButtonInternals";
 import { ButtonProvider } from "./ButtonProvider";
 
-function Button(props: ButtonProps) {
-  const { size } = props;
-
-  return (
-    <ButtonProvider size={size}>
-      <ButtonWrapper {...props} />
-    </ButtonProvider>
-  );
-}
-
-function ButtonWrapper(props: ButtonProps) {
+const ButtonWrapper = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>((props, ref) => {
   const {
     ariaControls,
     ariaHaspopup,
@@ -72,7 +65,7 @@ function ButtonWrapper(props: ButtonProps) {
 
   if (to) {
     return (
-      <Link {...tagProps} to={to}>
+      <Link {...tagProps} to={to} ref={ref as React.Ref<HTMLAnchorElement>}>
         {buttonInternals}
       </Link>
     );
@@ -80,10 +73,65 @@ function ButtonWrapper(props: ButtonProps) {
 
   const Tag = url ? "a" : "button";
 
-  return <Tag {...tagProps}>{buttonInternals}</Tag>;
-}
+  // Use createElement for proper ref typing (similar to Chip component)
+  return React.createElement(Tag, { ...tagProps, ref }, buttonInternals);
+});
 
+ButtonWrapper.displayName = "ButtonWrapper";
+
+const ButtonForwarded = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>((props, ref) => {
+  const { size } = props;
+
+  return (
+    <ButtonProvider size={size}>
+      <ButtonWrapper {...props} ref={ref} />
+    </ButtonProvider>
+  );
+});
+
+ButtonForwarded.displayName = "Button";
+
+// Add function overloads for type-safe refs
+export const Button = ButtonForwarded as unknown as {
+  // Overload for button (no url, no to)
+  (
+    props: ButtonProps & {
+      url?: never;
+      to?: never;
+      ref?: React.Ref<HTMLButtonElement>;
+    },
+  ): ReturnType<typeof ButtonForwarded>;
+
+  // Overload for anchor (with url, no to)
+  (
+    props: ButtonProps & {
+      url: string;
+      to?: never;
+      ref?: React.Ref<HTMLAnchorElement>;
+    },
+  ): ReturnType<typeof ButtonForwarded>;
+
+  // Overload for Link (with to, no url)
+  (
+    props: ButtonProps & {
+      to: string;
+      url?: never;
+      ref?: React.Ref<HTMLAnchorElement>;
+    },
+  ): ReturnType<typeof ButtonForwarded>;
+
+  // Fallback for when ref is not provided (union type)
+  (props: ButtonProps): ReturnType<typeof ButtonForwarded>;
+} & {
+  Label: typeof ButtonLabel;
+  Icon: typeof ButtonIcon;
+};
+
+// Attach namespace components (preserving existing API)
 Button.Label = ButtonLabel;
 Button.Icon = ButtonIcon;
+
 export type { ButtonProps };
-export { Button };
