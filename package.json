@@ -11,6 +11,7 @@
     "packages/components-native",
     "packages/docx",
     "packages/eslint-config",
+    "packages/eslint-plugin-jobber",
     "packages/generators",
     "packages/stylelint-config",
     "packages/site"

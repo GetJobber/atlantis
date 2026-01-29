@@ -168,6 +168,18 @@ If you want to troubleshoot linting errors in CI, try running locally first to
 find the error. If that doesn't work you can open the artifacts for the linting
 step. To find the errors causing the failure, search for `Error - `.
 
+### Custom ESLint Rules
+
+The project includes custom ESLint rules to ensure code quality and prevent
+common issues:
+
+- **no-src-imports**: Warns about imports from `@jobber/*/src/*` paths, which
+  won't work when packages are bundled and used in other repos.
+
+  ❌ Invalid: `import { Clearable } from "@jobber/hooks/src/useShowClear";`
+
+  ✅ Valid: `import { Clearable } from "@jobber/hooks";`
+
 ## Repo structure
 
 The `atlantis` repo is a monorepo consisting of a few different packages all
