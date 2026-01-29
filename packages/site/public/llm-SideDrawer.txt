@@ -1,0 +1,676 @@
+# SideDrawer
+
+# Side Drawer
+
+SideDrawers are overlays that allow users to view or edit information while
+maintaining visibilisty of the page's primary contents. Users cannot interact
+with the page's contents while the SideDrawer overlay is open.
+
+## Related components
+
+Use [Drawer](/components/Drawer) if you need to allow users to view
+supplementary content while still allowing users to interact with the main
+contents of the page.
+
+Use [Modal](/components/Modal) if you need to overlay the page's content and
+block user interaction with the page, and do not need the user to have visibilty
+of the page's primary contents.
+
+## Web Component Code
+
+```tsx
+SideDrawer Drawer Panel Sidebar Flyout Web React import React, { useId, useState } from "react";
+import type { CSSProperties, KeyboardEvent, PropsWithChildren } from "react";
+import { createPortal } from "react-dom";
+import type { Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import classNames from "classnames";
+import { useInView } from "@jobber/hooks/useInView";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
+import { tokens } from "@jobber/design";
+import { SideDrawerActions } from "./SideDrawerActions";
+import type { RegisteredComponents } from "./SideDrawerContext";
+import { SideDrawerContext } from "./SideDrawerContext";
+import { SideDrawerTitle } from "./SideDrawerTitle";
+import { SideDrawerToolbar } from "./SideDrawerToolbar";
+import styles from "./SideDrawer.module.css";
+import { SideDrawerBackButton } from "./SideDrawerBackButton";
+import { SideDrawerFooter } from "./SideDrawerFooter";
+import { Button } from "../Button";
+import { Flex } from "../Flex";
+
+interface SideDrawerProps extends PropsWithChildren {
+  /**
+   * Whether or not the drawer is open.
+   */
+  readonly open: boolean;
+
+  /**
+   * Callback function to close the drawer.
+   */
+  readonly onRequestClose: () => void;
+
+  /**
+   * Change the appearance of the drawer.
+   */
+  readonly variation?: "base" | "subtle";
+
+  /**
+   * Change the scrolling direction of the drawer. Useful for chat-like interfaces.
+   */
+  readonly scrollDirection?: "normal" | "reverse";
+
+  /**
+   * Changes whether the SideDrawer is positioned to the side of the viewport or inline with the content.
+   * @default false
+   */
+  readonly inline?: boolean;
+
+  /**
+   * **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: {
+    container?: string;
+  };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: {
+    container?: CSSProperties;
+  };
+}
+
+const variants: Variants = {
+  initial: { x: "100%" },
+  visible: { x: 0, transitionEnd: { x: 0 } },
+  hidden: { x: "100%" },
+};
+const inlineVariants: Variants = {
+  initial: { x: "25%", opacity: 0 },
+  visible: { x: 0, opacity: 1, transitionEnd: { x: 0 } },
+  hidden: { x: "25%", opacity: 0 },
+};
+
+const useSideDrawerState = (open: boolean) => {
+  const [ref, setRef] = useState<HTMLDivElement | null>(null);
+  const [components, setComponents] = useState<RegisteredComponents>({
+    backButton: false,
+  });
+  const { toolbar, title, actions, backButton, footer } = useSlotIDs();
+
+  useRefocusOnActivator(open);
+  const sideDrawerRef = useFocusTrap<HTMLDivElement>(open);
+  const [headerShadowRef, noHeaderShadow] = useInView<HTMLDivElement>();
+  const [footerShadowRef, noFooterShadow] = useInView<HTMLDivElement>();
+
+  return {
+    ref,
+    setRef,
+    components,
+    setComponents,
+    slots: { toolbar, title, actions, backButton, footer },
+    sideDrawerRef,
+    headerShadowRef,
+    noHeaderShadow,
+    footerShadowRef,
+    noFooterShadow,
+  };
+};
+
+export function SideDrawer({
+  children,
+  onRequestClose,
+  open,
+  variation = "base",
+  scrollDirection,
+  inline = false,
+  UNSAFE_className,
+  UNSAFE_style,
+}: SideDrawerProps) {
+  const {
+    ref,
+    setRef,
+    components,
+    setComponents,
+    slots,
+    sideDrawerRef,
+    headerShadowRef,
+    noHeaderShadow,
+    footerShadowRef,
+    noFooterShadow,
+  } = useSideDrawerState(open);
+
+  useRefocusOnActivator(open);
+
+  const container = globalThis.document?.body || null;
+  const isMounted = useIsMounted();
+
+  if (!isMounted.current && !container) return null;
+
+  const SideDrawerRender = (
+    <SideDrawerContext.Provider
+      value={{
+        actionPortal: ref?.querySelector(slots.actions.selector),
+        titlePortal: ref?.querySelector(slots.title.selector),
+        toolbarPortal: ref?.querySelector(slots.toolbar.selector),
+        backPortal: ref?.querySelector(slots.backButton.selector),
+        footerPortal: ref?.querySelector(slots.footer.selector),
+        components,
+        registerComponent: key =>
+          setComponents(prev => ({ ...prev, [key]: true })),
+        unRegisterComponent: key =>
+          setComponents(prev => ({ ...prev, [key]: false })),
+      }}
+    >
+      {open && !inline && (
+        <button
+          className={styles.overlay}
+          aria-label="Close"
+          onClick={onRequestClose}
+          type="button"
+        />
+      )}
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            className={classNames(
+              styles.drawer,
+              {
+                [styles.reverseScroll]: scrollDirection === "reverse",
+                [styles.inline]: inline,
+              },
+              UNSAFE_className?.container,
+            )}
+            ref={setRef}
+            data-elevation={"elevated"}
+            variants={inline ? inlineVariants : variants}
+            initial="initial"
+            animate="visible"
+            exit="hidden"
+            transition={{
+              duration: tokens["timing-base"] / 1000,
+            }}
+            style={UNSAFE_style?.container}
+          >
+            <div
+              ref={sideDrawerRef}
+              role="dialog"
+              className={classNames(styles.container, styles.hasShadow, {
+                [styles.subtle]: variation === "subtle",
+              })}
+              tabIndex={0}
+              onKeyUp={handleKeyUp}
+            >
+              <div
+                className={classNames(styles.header, {
+                  [styles.hasShadow]:
+                    headerShadowRef.current && !noHeaderShadow,
+                })}
+              >
+                <Flex template={["grow", "shrink"]} align="start">
+                  <Flex template={["shrink", "grow"]} align="start" gap="none">
+                    <div
+                      className={classNames(styles.backButton, {
+                        [styles.backButtonVisible]: components.backButton,
+                      })}
+                      {...slots.backButton.attr}
+                    />
+                    <div
+                      className={classNames(styles.heading)}
+                      {...slots.title.attr}
+                    />
+                  </Flex>
+
+                  <div className={styles.headerActions}>
+                    <div
+                      className={styles.hideWhenEmpty}
+                      {...slots.actions.attr}
+                    />
+                    <Button
+                      ariaLabel="Close"
+                      icon="cross"
+                      onClick={onRequestClose}
+                      type={"tertiary"}
+                      variation="subtle"
+                    />
+                  </div>
+                </Flex>
+
+                <div className={styles.hideWhenEmpty} {...slots.toolbar.attr} />
+              </div>
+
+              <div className={styles.content}>
+                <div
+                  className={styles.headerShadowListener}
+                  ref={headerShadowRef}
+                />
+
+                {children}
+
+                <div
+                  className={styles.footerShadowListener}
+                  ref={footerShadowRef}
+                />
+              </div>
+
+              <div
+                className={classNames(styles.footer, styles.hideWhenEmpty, {
+                  [styles.hasShadow]:
+                    footerShadowRef.current && !noFooterShadow,
+                })}
+                {...slots.footer.attr}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </SideDrawerContext.Provider>
+  );
+
+  if (inline) {
+    return SideDrawerRender;
+  }
+
+  return createPortal(SideDrawerRender, container);
+
+  function handleKeyUp(event: KeyboardEvent<HTMLDivElement>): void {
+    if (event.key === "Escape") {
+      onRequestClose();
+    }
+  }
+}
+
+function useSlotIDs() {
+  const toolbar = useSlotID();
+  const title = useSlotID("title");
+  const actions = useSlotID();
+  const backButton = useSlotID("back");
+  const footer = useSlotID();
+
+  return { toolbar, title, actions, backButton, footer };
+}
+
+function useSlotID(prefix?: string) {
+  const id = useId();
+  const prefixedId = prefix ? `${prefix}-${id}` : id;
+  const attrKey = "data-side-drawer-slot";
+  const selector = `[${attrKey}="${prefixedId}"]`;
+  const attr = { [attrKey]: prefixedId };
+
+  return { id: prefixedId, selector, attr };
+}
+
+SideDrawer.Title = SideDrawerTitle;
+SideDrawer.Toolbar = SideDrawerToolbar;
+SideDrawer.Actions = SideDrawerActions;
+SideDrawer.BackButton = SideDrawerBackButton;
+SideDrawer.Footer = SideDrawerFooter;
+import type { PropsWithChildren } from "react";
+import React from "react";
+import { createPortal } from "react-dom";
+import { useSideDrawerContext } from "./SideDrawerContext";
+
+export function SideDrawerActions({ children }: PropsWithChildren) {
+  const { actionPortal } = useSideDrawerContext();
+
+  if (!actionPortal) return null;
+
+  return createPortal(<>{children}</>, actionPortal);
+}
+import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
+import { useSideDrawerContext } from "./SideDrawerContext";
+import type { ButtonProps } from "../Button";
+import { Button } from "../Button";
+
+export function SideDrawerBackButton({
+  onClick,
+}: Pick<ButtonProps, "onClick">) {
+  const { backPortal, registerComponent, unRegisterComponent } =
+    useSideDrawerContext();
+
+  useEffect(() => {
+    registerComponent("backButton");
+
+    return () => {
+      unRegisterComponent("backButton");
+    };
+  }, []);
+
+  if (!backPortal) return null;
+
+  return createPortal(
+    <Button
+      ariaLabel="Back"
+      icon="longArrowLeft"
+      variation="subtle"
+      type="tertiary"
+      onClick={onClick}
+    />,
+    backPortal,
+  );
+}
+import { createContext, useContext } from "react";
+
+export interface RegisteredComponents {
+  backButton: boolean;
+}
+
+interface SideDrawerContextValue {
+  readonly actionPortal?: HTMLElement | null;
+  readonly titlePortal?: HTMLElement | null;
+  readonly toolbarPortal?: HTMLElement | null;
+  readonly backPortal?: HTMLElement | null;
+  readonly footerPortal?: HTMLElement | null;
+  readonly components: RegisteredComponents;
+  readonly registerComponent: (key: keyof RegisteredComponents) => void;
+  readonly unRegisterComponent: (key: keyof RegisteredComponents) => void;
+}
+
+const SideDrawerContext = createContext<SideDrawerContextValue>({
+  components: {
+    backButton: false,
+  },
+  registerComponent: () => undefined,
+  unRegisterComponent: () => undefined,
+});
+
+function useSideDrawerContext(): SideDrawerContextValue {
+  const context = useContext(SideDrawerContext);
+
+  return context;
+}
+
+export { SideDrawerContext, useSideDrawerContext };
+import type { PropsWithChildren } from "react";
+import React from "react";
+import { createPortal } from "react-dom";
+import { useSideDrawerContext } from "./SideDrawerContext";
+
+export function SideDrawerFooter({ children }: PropsWithChildren) {
+  const { footerPortal } = useSideDrawerContext();
+
+  if (!footerPortal) return null;
+
+  return createPortal(<>{children}</>, footerPortal);
+}
+import React from "react";
+import type { PropsWithChildren } from "react";
+import { createPortal } from "react-dom";
+import { useSideDrawerContext } from "./SideDrawerContext";
+import { Heading } from "../Heading";
+
+export function SideDrawerTitle({ children }: Required<PropsWithChildren>) {
+  const { titlePortal } = useSideDrawerContext();
+
+  if (!titlePortal) return null;
+
+  if (typeof children === "string") {
+    return createPortal(<Heading level={2}>{children}</Heading>, titlePortal);
+  }
+
+  return createPortal(children, titlePortal);
+}
+import type { PropsWithChildren } from "react";
+import { createPortal } from "react-dom";
+import { useSideDrawerContext } from "./SideDrawerContext";
+
+export function SideDrawerToolbar({ children }: PropsWithChildren) {
+  const { toolbarPortal } = useSideDrawerContext();
+
+  if (!toolbarPortal) return null;
+
+  return createPortal(children, toolbarPortal);
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `open` | `boolean` | ✅ | `_none_` | Whether or not the drawer is open. |
+| `onRequestClose` | `() => void` | ✅ | `_none_` | Callback function to close the drawer. |
+| `variation` | `"base" | "subtle"` | ❌ | `base` | Change the appearance of the drawer. |
+| `scrollDirection` | `"normal" | "reverse"` | ❌ | `_none_` | Change the scrolling direction of the drawer. Useful for chat-like interfaces. |
+| `inline` | `boolean` | ❌ | `[object Object]` | Changes whether the SideDrawer is positioned to the side of the viewport or inline with the content. |
+| `UNSAFE_className` | `{ container?: string; }` | ❌ | `_none_` | **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+| `UNSAFE_style` | `{ container?: CSSProperties; }` | ❌ | `_none_` | **Use at your own risk:** Custom style for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+
+
+## Categories
+
+- Overlays
+
+## Web Test Code
+
+```typescript
+SideDrawer Drawer Panel Sidebar Flyout Web React Test Testing Jest import React from "react";
+import { render, screen, within } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import { SideDrawer } from "./SideDrawer";
+
+describe("SideDrawer", () => {
+  describe.each([
+    { inline: true, name: "inline" },
+    { inline: false, name: "not inline" },
+    // eslint-disable-next-line max-statements
+  ])("$name", ({ inline }) => {
+    it("should not render", () => {
+      render(
+        <SideDrawer open={false} onRequestClose={jest.fn()} inline={inline} />,
+      );
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    it("should render when open", () => {
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline} />,
+      );
+      expect(screen.getByRole("dialog")).toBeInTheDocument();
+    });
+
+    it("should render with a white background", () => {
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline} />,
+      );
+      const drawer = screen.getByRole("dialog");
+      expect(drawer).toHaveClass("container");
+      expect(drawer).not.toHaveClass("subtle");
+    });
+
+    it("should render with a subtle background", () => {
+      render(
+        <SideDrawer
+          open={true}
+          onRequestClose={jest.fn()}
+          variation="subtle"
+          inline={inline}
+        />,
+      );
+      expect(screen.getByRole("dialog")).toHaveClass("subtle");
+    });
+
+    it("should render a string title", () => {
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline}>
+          <SideDrawer.Title>Title</SideDrawer.Title>
+        </SideDrawer>,
+      );
+      expect(screen.getByText("Title")).toBeInTheDocument();
+    });
+
+    it("should render a custom title", () => {
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline}>
+          <SideDrawer.Title>
+            <pre>Title</pre>
+          </SideDrawer.Title>
+        </SideDrawer>,
+      );
+      expect(screen.getByText("Title")).toBeInstanceOf(HTMLPreElement);
+    });
+
+    it("should render the actions", () => {
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline}>
+          <SideDrawer.Actions>
+            <button type="button">Button1</button>
+            <button type="button">Button2</button>
+          </SideDrawer.Actions>
+        </SideDrawer>,
+      );
+
+      expect(screen.getByText("Button1")).toBeInTheDocument();
+      expect(screen.getByText("Button2")).toBeInTheDocument();
+    });
+
+    it("should render a toolbar", () => {
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline}>
+          <SideDrawer.Toolbar>
+            <input type="text" placeholder="Input" />
+          </SideDrawer.Toolbar>
+        </SideDrawer>,
+      );
+
+      expect(screen.getByPlaceholderText("Input")).toBeInTheDocument();
+    });
+
+    it("should render the back button", async () => {
+      const handleClick = jest.fn();
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline}>
+          <SideDrawer.BackButton onClick={handleClick} />
+        </SideDrawer>,
+      );
+
+      const backButton = screen.getByRole("button", { name: "Back" });
+      expect(backButton).toBeInTheDocument();
+
+      await userEvent.click(backButton);
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
+
+    it("should render the footer", () => {
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline}>
+          <SideDrawer.Footer>Footer</SideDrawer.Footer>
+        </SideDrawer>,
+      );
+
+      const footer = screen.getByText("Footer");
+      expect(footer).toBeInTheDocument();
+      expect(footer).toHaveAttribute("data-side-drawer-slot");
+    });
+
+    describe("When closed", () => {
+      const onRequestClose = jest.fn();
+
+      beforeEach(() => {
+        render(
+          <SideDrawer
+            open={true}
+            onRequestClose={onRequestClose}
+            inline={inline}
+          />,
+        );
+      });
+
+      afterEach(() => {
+        onRequestClose.mockClear();
+      });
+
+      it("should call onRequestClose when clicking the close button", async () => {
+        const dialog = screen.getByRole("dialog");
+        const closeButton = within(dialog).getByLabelText("Close");
+        await userEvent.click(closeButton);
+
+        expect(onRequestClose).toHaveBeenCalledTimes(1);
+      });
+
+      it("should call onRequestClose when pressing the escape key", async () => {
+        await userEvent.keyboard("{Escape}");
+
+        expect(onRequestClose).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    /**
+     * This test ensures that the aria label for Close and Back are present as
+     * we're using them to style the button directly when the title is not present.
+     *
+     * If we couldn't find both buttons, that means the UI will be broken when
+     * scrolling down.
+     */
+    it("should have an aria label for Close and Back", () => {
+      render(
+        <SideDrawer open={true} onRequestClose={jest.fn()} inline={inline}>
+          <SideDrawer.BackButton />
+        </SideDrawer>,
+      );
+
+      const drawer = within(screen.getByRole("dialog"));
+
+      expect(drawer.getByRole("button", { name: "Close" })).toBeInTheDocument();
+      expect(drawer.getByRole("button", { name: "Back" })).toBeInTheDocument();
+    });
+
+    describe("UNSAFE_PROPS", () => {
+      describe("When using UNSAFE_className", () => {
+        it("should apply custom class to the container", () => {
+          render(
+            <SideDrawer
+              inline={inline}
+              open={true}
+              onRequestClose={jest.fn()}
+              UNSAFE_className={{ container: "custom-class" }}
+            />,
+          );
+
+          const drawer = screen.getByRole("dialog").parentElement;
+          expect(drawer).toHaveClass("custom-class");
+        });
+      });
+      describe("When using UNSAFE_style", () => {
+        it("should apply custom styles to the container", () => {
+          render(
+            <SideDrawer
+              inline={inline}
+              open={true}
+              onRequestClose={jest.fn()}
+              UNSAFE_style={{ container: { width: "250px" } }}
+            />,
+          );
+
+          const drawer = screen.getByRole("dialog").parentElement;
+          expect(drawer).toHaveStyle({ width: "250px" });
+        });
+      });
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/SideDrawer`
+
+---
+
+_Generated on 2025-08-21T17:35:16.371Z_

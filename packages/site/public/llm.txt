@@ -1,0 +1,360 @@
+# Atlantis Design System - LLM Context
+
+## Project Overview
+
+Atlantis is Jobber's comprehensive design system that provides foundational design tokens, reusable React components, and development patterns for both web and mobile platforms. It enables teams to build consistent, accessible, and beautiful user interfaces faster by providing a shared language between designers and developers.
+
+**Primary Goals:**
+- Provide reusable components with consistent design and behavior
+- Enable rapid development while maintaining design consistency  
+- Establish shared design tokens and patterns across platforms
+- Maintain high accessibility and usability standards
+- Support both web (React) and mobile (React Native) development
+
+## Architecture
+
+### Monorepo Structure
+Atlantis is organized as a monorepo with multiple specialized packages:
+
+**Core Packages:**
+- `@jobber/components` - Web React components library
+- `@jobber/components-native` - Mobile React Native components
+- `@jobber/design` - Design tokens, CSS foundations, and icons
+- `@jobber/hooks` - Shared React hooks and utilities
+- `@jobber/formatters` - Data formatting utilities
+
+**Supporting Packages:**
+- `@jobber/eslint-config` - ESLint configuration for Atlantis projects
+- `@jobber/stylelint-config` - Stylelint configuration for CSS standards
+- `@jobber/generators` - Code generation tools for new components
+- `@jobber/docx` - Documentation generation utilities
+- `@jobber/atlantis-site` - Documentation website (this site)
+
+### Technology Stack
+
+**Core Technologies:**
+- React 18.2.0 - Component framework
+- TypeScript - Type safety and development experience
+- CSS with PostCSS - Styling with design tokens
+- Framer Motion - Animations and micro-interactions
+
+**Development & Build:**
+- Vite - Fast development and building
+- Rollup - Package bundling for distribution
+- Storybook 9.x - Component development and documentation
+- Jest - Unit testing framework
+- Playwright - Visual regression testing
+
+**Documentation:**
+- MDX - Documentation with interactive examples
+- React Router 5.x - Site navigation
+- Prism.js - Syntax highlighting
+
+## Component Architecture
+
+### Detailed Component Documentation
+**IMPORTANT FOR LLMs**: Comprehensive documentation for each component is available as individual text files in the same directory as this llm.txt file. These files contain:
+
+- Complete prop interfaces with TypeScript definitions
+- Usage examples and code snippets
+- Design guidelines and best practices
+- Accessibility information
+- Related components and patterns
+- Platform-specific considerations (web vs mobile)
+
+**To access detailed component information:**
+1. For any component mentioned below, look for a corresponding `.txt` file with the `llm-` prefix (e.g., `llm-Button.txt`, `llm-Card.txt`, `llm-InputText.txt`)
+2. These files are located in the same public directory as this llm.txt file
+3. Read these files to answer specific questions about component APIs, props, usage patterns, and implementation details
+
+**Example component documentation files available:**
+- `llm-ActionItem.txt` - Action item component with layout and interaction patterns
+- `llm-Button.txt` - Primary action component with all button types and variations
+- `llm-Card.txt` - Container component for grouping related content
+- `llm-InputText.txt` - Text input component with validation and formatting
+- `llm-DataTable.txt` - Complex data display component with sorting, filtering
+- `llm-Form.txt` - Form management and validation patterns
+- And 95+ more component documentation files
+
+### Component Organization
+Components are categorized into logical groups:
+
+**Layouts & Structure:**
+- ActionItem, ActionItemGroup, Box, Card, Cluster, Container, Content, ContentBlock, Cover, Disclosure, Divider, Drawer, Flex, Frame, Grid, Page, ResponsiveSwitcher, SideKick, Stack, Tiles
+
+**Actions:**
+- ActionLabel, Button, ButtonGroup, IconButton
+
+**Status & Feedback:**
+- ActivityIndicator, Banner, EmptyState, Glimmer, InlineLabel, ProgressBar, Spinner, StatusIndicator, StatusLabel, Toast
+
+**Utilities:**
+- AnimatedPresence, AnimatedSwitcher, Countdown, DataDump, FormatDate, FormatEmail, FormatRelativeDateTime, FormatTime
+
+**Themes:**
+- AtlantisThemeContext
+
+**Text & Typography:**
+- AutoLink, Emphasis, Heading, Link, Markdown, Text, Typography
+
+**Forms & Inputs:**
+- Autocomplete, Form, InputAvatar, InputCurrency, InputDate, InputEmail, InputFile, InputGroup, InputNumber, InputPassword, InputPhoneNumber, InputPressable, InputSearch, InputText, InputTime, InputValidation, RadioGroup
+
+**Images & Icons:**
+- Avatar, FormatFile, Gallery, Icon, LightBox, ThumbnailList
+
+**Selections:**
+- BottomSheet, Checkbox, Chip, Chips, Combobox, DatePicker, FeatureSwitch, MultiSelect, SegmentedControl, Select, Switch
+
+**Private:**
+- ButtonDismiss, FormField, InputFieldWrapper
+
+**Overlays:**
+- ConfirmationModal, ContentOverlay, Modal, Popover, SideDrawer, Tooltip
+
+**Lists & Tables:**
+- DataList, DataTable, DescriptionList, List, Table, TextList
+
+**Uncategorized:**
+- Datepicker
+
+**Navigation:**
+- Menu, Tabs
+
+**Deprecated:**
+- RecurringSelect
+
+### Component Patterns
+
+**Props and API Design:**
+- Use semantic props over descriptive ones (e.g., `type="dangerous"` not `color="red"`)
+- Follow TypeScript interfaces for all props
+- Support both controlled and uncontrolled patterns where applicable
+- Provide sensible defaults for all optional props
+
+**Common Prop Patterns:**
+- `type` - Semantic component variants (primary, secondary, tertiary)
+- `variation` - Context-specific styling (work, learning, etc.)
+- `size` - Component sizing (small, medium, large, or responsive objects)
+- `disabled` - Consistent disabled state handling
+- `loading` - Loading states where applicable
+- `onClick`, `onChange` - Standard event handlers
+- `children` - React children for content composition
+
+**Styling Approach:**
+- CSS modules with BEM-style naming conventions
+- Design tokens from `@jobber/design` for consistent values
+- Responsive design using breakpoint tokens
+- Dark mode support through CSS custom properties
+- Component-specific CSS files co-located with TypeScript
+
+## Design Tokens
+
+The `@jobber/design` package provides foundational design tokens:
+
+**Color System:**
+- Semantic color tokens (primary, secondary, success, error, warning, etc.)
+- Surface colors for backgrounds and containers
+- Text colors with proper contrast ratios
+- Dark mode variants for all colors
+
+**Typography:**
+- Type scale with consistent sizing and line heights
+- Font family tokens
+- Font weight tokens (normal, bold, etc.)
+- Text formatting utilities
+
+**Spacing & Layout:**
+- Consistent spacing scale (base, small, smaller, large, larger, etc.)
+- Layout tokens for margins, padding, gaps
+- Grid system tokens and breakpoints
+
+**Visual Design:**
+- Border radius tokens
+- Elevation/shadow tokens
+- Opacity tokens
+- Border tokens (width, style, color)
+
+## Development Conventions
+
+### File Structure
+```
+packages/
+├── components/
+│   └── src/
+│       └── ComponentName/
+│           ├── ComponentName.tsx          # Main component
+│           ├── ComponentName.test.tsx     # Unit tests
+│           ├── ComponentName.css          # Component styles
+│           ├── index.ts                   # Export file
+│           └── types.ts                   # TypeScript interfaces
+├── design/
+│   ├── src/tokens/                        # Design token definitions
+│   └── dist/                              # Generated CSS and JS
+└── site/
+    ├── src/content/                       # Documentation content
+    └── generated-component-docs/          # Auto-generated component docs
+```
+
+### Documentation Patterns
+- Every component has comprehensive MDX documentation
+- Documentation includes: Design guidelines, usage examples, accessibility notes, related components
+- Interactive examples with code snippets
+- Props tables auto-generated from TypeScript interfaces
+- Visual examples showing component variations
+
+### Testing Approach
+- Unit tests with Jest and React Testing Library
+- Visual regression testing with Playwright
+- Accessibility testing integrated into component development
+- Storybook stories serve as component contracts and testing scenarios
+
+### Code Style
+- TypeScript strict mode enabled
+- ESLint with custom Atlantis configuration
+- Stylelint for CSS consistency
+- Prettier for code formatting
+- Conventional Commits for semantic versioning
+
+## Component Usage Patterns
+
+### Import Patterns
+```typescript
+// Individual component imports (preferred for tree-shaking)
+import { Button } from "@jobber/components/Button";
+import { Card } from "@jobber/components/Card";
+
+// Batch imports (convenient but larger bundle)
+import { Button, Card, Text } from "@jobber/components";
+```
+
+### Common Component Compositions
+- **Form layouts**: `<Form>` + `<Content>` + input components + `<Button>`
+- **Card-based layouts**: `<Card>` + `<Content>` or `<Flex>` for internal layout
+- **Data display**: `<DataTable>` or `<DataList>` for structured data
+- **Modal patterns**: `<Modal>` or `<ConfirmationModal>` for overlays
+- **Status communication**: `<Banner>`, `<Toast>`, or `<StatusLabel>`
+
+### Responsive Design
+- Use responsive prop objects: `size={{ xs: 12, md: 6, lg: 4 }}`
+- Breakpoints: xs (mobile), sm (small tablet), md (tablet), lg (desktop), xl (large desktop)
+- Components handle responsive behavior internally where appropriate
+
+### Theming and Customization
+- Use `AtlantisThemeContext` for theme customization
+- Design tokens automatically adapt to theme context
+- Dark mode support through CSS custom properties
+- Avoid custom CSS; use Box component or design tokens for customization
+
+## Accessibility Standards
+
+### Built-in Accessibility
+- WCAG 2.1 AA compliance as baseline
+- Semantic HTML elements used throughout
+- Proper ARIA labels and descriptions
+- Focus management for interactive elements
+- Screen reader testing and optimization
+
+### Developer Responsibilities
+- Use semantic components over generic divs/spans
+- Provide meaningful labels for form inputs
+- Ensure proper heading hierarchy
+- Test with keyboard navigation
+- Verify color contrast ratios
+
+## Platform Considerations
+
+### Web vs Mobile Components
+- Web components: Full React DOM feature set, CSS-based styling
+- Mobile components: React Native optimized, platform-specific behaviors
+- Shared design tokens and prop APIs where possible
+- Platform-specific optimizations (touch targets, gestures, etc.)
+
+### Performance Considerations
+- Tree-shaking friendly exports
+- Lazy loading for complex components
+- Optimized re-renders with React.memo where beneficial
+- Minimal runtime dependencies
+
+## Development Workflow
+
+### Contributing Process
+1. **Documentation First**: All components start with design and usage documentation
+2. **Proposal Phase**: New components require proposal and approval process
+3. **Implementation**: Follow TypeScript patterns, write tests, create stories
+4. **Review**: Code review with Atlantis maintainers required
+5. **Testing**: Visual regression tests and unit tests must pass
+
+### Local Development
+```bash
+# Install dependencies
+npm install
+
+# Start Storybook development server  
+npm start
+
+# Build all packages
+npm run bootstrap
+
+# Run tests
+npm test
+```
+
+### Versioning
+- Semantic versioning with Conventional Commits
+- Automated changelogs and releases
+- Breaking changes clearly documented and communicated
+
+## Using Component Documentation Files
+
+### How to Answer Specific Component Questions
+When users ask about specific components, always:
+
+1. **First check if a dedicated `.txt` file exists** for that component in this directory with the `llm-` prefix
+2. **Read the entire component documentation file** to understand:
+   - Props interface and TypeScript definitions
+   - Usage examples and code patterns
+   - Design guidelines and content recommendations
+   - Accessibility considerations
+   - Related components and when to use alternatives
+
+3. **Common component documentation sections include:**
+   - Design & usage guidelines
+   - Props tables with TypeScript interfaces
+   - Code examples and usage patterns
+   - Content guidelines (typography, imagery, etc.)
+   - Related components and alternatives
+   - Accessibility information
+   - Platform considerations (web vs mobile differences)
+
+### Example Questions and Documentation Sources
+- "How do I use Button component?" → Read `llm-Button.txt`
+- "What props does InputText accept?" → Read `llm-InputText.txt` 
+- "How to implement a data table?" → Read `llm-DataTable.txt`
+- "Form validation patterns?" → Read `llm-Form.txt` and `llm-FormField.txt`
+- "Modal vs Drawer - when to use?" → Read both `llm-Modal.txt` and `llm-Drawer.txt`
+
+**Always provide specific, accurate information from these documentation files rather than making assumptions about component APIs or usage patterns.**
+
+## Support and Resources
+
+### For Jobber Teams
+- UX Foundations team provides weekly office hours
+- Dedicated Slack channel for support
+- Figma components match React components for design-dev handoff
+
+### For External Contributors
+- GitHub Issues board for bug reports and feature requests
+- Comprehensive documentation on this site
+- Open source community contributions welcome
+
+## Key Design System Principles
+
+1. **Documentation First**: Every component starts with solid documentation describing the problem it solves
+2. **Encapsulation**: Components should be self-contained with minimal API surface area
+3. **Semantic APIs**: Use meaningful property names rather than descriptive ones
+4. **Consistency**: Shared patterns and behaviors across all components  
+5. **Accessibility**: WCAG compliance built in, not bolted on
+6. **Performance**: Fast loading and runtime performance by default
+
+This design system enables teams to build cohesive, accessible, and performant user interfaces while maintaining consistency across Jobber's product ecosystem.

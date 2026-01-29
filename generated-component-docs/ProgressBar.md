@@ -1,0 +1,231 @@
+# ProgressBar
+
+# Progress Bar
+
+A ProgressBar is a visual indicator of how close something is to completion.
+
+## Design & usage guidelines
+
+The ProgressBar should be used to show "definite" progress; we know exactly how
+close the process is to completion. For "indefinite" progress, where we may not
+know exactly how much longer something might take, use a
+[Spinner](/components/Spinner).
+
+Some great use cases for a ProgressBar include:
+
+- Setup wizard, where we know how many steps the user has completed and how many
+  steps remain.
+- File uploads, where we know the total file size and how much data has already
+  been sent.
+
+An example where you might be better served using a Spinner:
+
+- Loading a calendar within a view, where we do not know it's "complete" until
+  there's no more data left to load.
+
+## Web Component Code
+
+```tsx
+ProgressBar Progress Loader Stepper Web React import React from "react";
+import classnames from "classnames";
+import styles from "./ProgressBar.module.css";
+import sizes from "./ProgressBarSizes.module.css";
+import { ProgressBarStepped } from "./ProgressBarStepped";
+
+interface ProgressBarProps {
+  /**
+   * The current step that the progress bar is on.
+   */
+  readonly currentStep: number;
+
+  /**
+   * The total steps to use. For percentages you can set this to 100.
+   */
+  readonly totalSteps: number;
+
+  /**
+   * Set the size of the progress bar
+   * @default base
+   */
+  readonly size?: keyof typeof sizes;
+
+  /**
+   * Set the variation of the progress bar
+   * @default progress
+   */
+  readonly variation?: "progress" | "stepped";
+}
+
+export function ProgressBar({
+  currentStep,
+  totalSteps,
+  size = "base",
+  variation = "progress",
+}: ProgressBarProps) {
+  const percentage = (currentStep / totalSteps) * 100;
+  const progressBarClassName = classnames(styles.ProgressBar, sizes[size]);
+
+  if (variation === "stepped") {
+    return (
+      <ProgressBarStepped
+        currentStep={currentStep}
+        totalSteps={totalSteps}
+        percentage={percentage}
+        size={size}
+      />
+    );
+  }
+
+  return (
+    <progress
+      className={progressBarClassName}
+      max={totalSteps}
+      value={currentStep}
+    >
+      {percentage}%
+    </progress>
+  );
+}
+import React from "react";
+import classnames from "classnames";
+import styles from "./ProgressBar.module.css";
+import sizes from "./ProgressBarSizes.module.css";
+
+interface ProgressBarSteppedProps {
+  readonly currentStep: number;
+  readonly totalSteps: number;
+  readonly percentage: number;
+  readonly size?: keyof typeof sizes;
+}
+
+export function ProgressBarStepped({
+  currentStep,
+  totalSteps,
+  percentage,
+  size = "base",
+}: ProgressBarSteppedProps) {
+  const steppedProgressBarClassName = classnames(
+    styles.ProgressBar,
+    styles.SteppedProgressBar,
+    sizes[size],
+  );
+  const ariaLabel = `progress, ${currentStep} out of ${totalSteps}`;
+
+  return (
+    <div
+      role={"progressbar"}
+      className={styles.wrapper}
+      aria-valuenow={percentage}
+      aria-valuetext={ariaLabel}
+    >
+      {Array.from({ length: totalSteps }).map((_, index) => {
+        const step = index + 1;
+        const value = step <= currentStep ? 100 : 0;
+
+        return (
+          <progress
+            key={step}
+            className={steppedProgressBarClassName}
+            value={value}
+            data-testid={"progress-step"}
+          >
+            {value}%
+          </progress>
+        );
+      })}
+    </div>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop          | Type        | Required   | Default  | Description                                                      |
+| ------------- | ----------- | ---------- | -------- | ---------------------------------------------------------------- | ------------------------------------- | -------------------------------- |
+| `currentStep` | `number`    | ✅         | `_none_` | The current step that the progress bar is on.                    |
+| `totalSteps`  | `number`    | ✅         | `_none_` | The total steps to use. For percentages you can set this to 100. |
+| `size`        | `string     | number     | symbol`  | ❌                                                               | `base`                                | Set the size of the progress bar |
+| `variation`   | `"progress" | "stepped"` | ❌       | `progress`                                                       | Set the variation of the progress bar |
+
+### Mobile Props
+
+| Prop                                  | Type        | Required   | Default           | Description                                                                                       |
+| ------------------------------------- | ----------- | ---------- | ----------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------- | -------------------------------- |
+| `total`                               | `number`    | ✅         | `_none_`          | The total number of items to be completed                                                         |
+| `current`                             | `number`    | ✅         | `_none_`          | The number of items that are currently completed                                                  |
+| `inProgress`                          | `number`    | ❌         | `[object Object]` | The number of items in progress (not completed, but to be less than the total);                   |
+| not applicable with stepped variation |
+| `loading`                             | `boolean`   | ❌         | `_none_`          | If the progress bar is loading, the progress indicators aren't rendered on the screen             |
+| `reverseTheme`                        | `boolean`   | ❌         | `[object Object]` | If the amountFormatted and totalAmountFormatted text needs to appear more visibile because of the |
+| background, for example               |
+| `header`                              | `ReactNode` | ❌         | `_none_`          | Component to render above the progress bar.                                                       |
+| `variation`                           | `"progress" | "stepped"` | ❌                | `progress`                                                                                        | Set the variation of the progress bar |
+| `size`                                | `"smaller"  | "small"    | "base"`           | ❌                                                                                                | `base`                                | Set the size of the progress bar |
+
+## Categories
+
+- Status & Feedback
+
+## Web Test Code
+
+```typescript
+ProgressBar Progress Loader Stepper Web React Test Testing Jest import { render, screen } from "@testing-library/react";
+import React from "react";
+import { ProgressBar } from "./ProgressBar";
+
+describe("with props", () => {
+  it("renders correctly", () => {
+    const { container } = render(
+      <ProgressBar currentStep={2} totalSteps={10} />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  it("accepts small size", () => {
+    const { container } = render(
+      <ProgressBar currentStep={2} totalSteps={3} size={"small"} />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  describe("with stepped variation", () => {
+    beforeEach(() => {
+      render(
+        <ProgressBar currentStep={2} totalSteps={3} variation={"stepped"} />,
+      );
+    });
+    it("renders the correct number of steps", () => {
+      const progressElements = screen.getAllByTestId("progress-step");
+      expect(progressElements).toHaveLength(3);
+    });
+
+    it("renders the correct number of completed steps", () => {
+      const progressElements = screen.getAllByTestId("progress-step");
+      const completedSteps = progressElements.filter(
+        progress => progress.getAttribute("value") === "100",
+      );
+      expect(completedSteps).toHaveLength(2);
+    });
+
+    it("renders the correct number of incomplete steps", () => {
+      const progressElements = screen.getAllByTestId("progress-step");
+      const incompleteSteps = progressElements.filter(
+        progress => progress.getAttribute("value") === "0",
+      );
+      expect(incompleteSteps).toHaveLength(1);
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/ProgressBar`
+
+---
+
+_Generated on 2025-08-21T17:35:16.370Z_
