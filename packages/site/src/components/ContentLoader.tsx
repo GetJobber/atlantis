@@ -1,16 +1,16 @@
-import { useLocation, useParams } from "react-router";
+import { useLocation, useParams } from "@tanstack/react-router";
 import { ContentView } from "../layout/ContentView";
 import { contentMap } from "../maps";
 import { NotFoundPage } from "../pages/NotFoundPage";
 
 /**
- * Pulls information from the URL and uses it to load the correct content
- *
- * @returns ReadNode
+ * Pulls information from the URL and uses it to load the correct content.
+ * Used by multiple param routes (content/$name, design/$name, hooks/$name, etc.),
+ * so we read params from the current matched route (strict: false).
  */
 export const ContentLoader = () => {
   let type = "content";
-  const { name } = useParams<{ name: string }>();
+  const { name } = useParams({ strict: false });
   const location = useLocation();
 
   switch (true) {

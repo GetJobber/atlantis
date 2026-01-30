@@ -4,13 +4,12 @@ import "@jobber/design/dist/foundation.css";
 import "@jobber/design/dist/dark.mode.css";
 import "@jobber/components/styles";
 import "./main.css";
-import { BrowserRouter } from "react-router-dom";
+import { RouterProvider } from "@tanstack/react-router";
 import { AtlantisThemeContextProvider } from "@jobber/components";
-import { Layout } from "./layout/Layout";
+import { router } from "./router"; // Loads router + global type registration (declare module)
 import { AtlantisPreviewProvider } from "./preview/AtlantisPreviewProvider";
 import { AtlantisSiteProvider } from "./providers/AtlantisSiteProvider";
 import { initAtlantisTheme } from "./utils/theme";
-import { Analytics } from "./components/Analytics";
 import { handleStorybookRedirect } from "./utils/storybook";
 import { TritonProvider } from "./providers/TritonProvider";
 
@@ -27,20 +26,17 @@ function renderApp() {
   if (root) {
     ReactDOM.createRoot(root).render(
       <React.StrictMode>
-        <BrowserRouter>
-          <AtlantisThemeContextProvider>
-            <AtlantisSiteProvider
-              minimal={{ requested: minimalMode, enabled: false }}
-            >
-              <Analytics />
-              <AtlantisPreviewProvider>
-                <TritonProvider>
-                  <Layout />
-                </TritonProvider>
-              </AtlantisPreviewProvider>
-            </AtlantisSiteProvider>
-          </AtlantisThemeContextProvider>
-        </BrowserRouter>
+        <AtlantisThemeContextProvider>
+          <AtlantisSiteProvider
+            minimal={{ requested: minimalMode, enabled: false }}
+          >
+            <AtlantisPreviewProvider>
+              <TritonProvider>
+                <RouterProvider router={router} />
+              </TritonProvider>
+            </AtlantisPreviewProvider>
+          </AtlantisSiteProvider>
+        </AtlantisThemeContextProvider>
       </React.StrictMode>,
     );
   }

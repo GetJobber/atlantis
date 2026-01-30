@@ -27,13 +27,12 @@
     "@codemirror/view": "^6.14.1",
     "@jobber/components": "file:../components",
     "@jobber/hooks": "file:../hooks",
+    "@tanstack/react-router": "^1.157.16",
     "axios": "^1.11.0",
     "prismjs": "^1.29.0",
     "react-element-to-jsx-string": "^15.0.0",
     "react-markdown": "^10.1.0",
-    "react-native-svg-web": "^1.0.9",
-    "react-router": "5.3.4",
-    "react-router-dom": "5.3.4"
+    "react-native-svg-web": "^1.0.9"
   },
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^7.25.9",
@@ -47,7 +46,6 @@
     "@types/babel__standalone": "^7.1.9",
     "@types/node": "^22.10.1",
     "@types/prismjs": "^1.26.4",
-    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.3.1",

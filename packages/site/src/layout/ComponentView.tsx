@@ -7,7 +7,7 @@ import {
   Tab,
   Tabs,
 } from "@jobber/components";
-import { useParams } from "react-router";
+import { useParams } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
@@ -45,7 +45,7 @@ import { VersionSelector } from "../components/VersionSelector";
  */
 // eslint-disable-next-line max-statements
 export const ComponentView = () => {
-  const { name = "" } = useParams<{ name: string }>();
+  const { name = "" } = useParams({ from: "/components/$name" });
   const { updateCode, type, updateType } = useAtlantisPreview();
   const PageMeta = SiteContent[name];
   useErrorCatcher();
