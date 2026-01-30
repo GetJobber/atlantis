@@ -31,6 +31,8 @@ export const Path = props => {
 export const useSafeAreaInsets = () => "";
 export const useSharedValue = () => ({ value: 0 });
 export const useAnimatedStyle = () => "";
+export const useEvent = () => ({ current: null });
+export const useHandler = () => ({});
 export const withRepeat = () => "";
 export const withTiming = () => 0;
 export const withDelay = () => 0;

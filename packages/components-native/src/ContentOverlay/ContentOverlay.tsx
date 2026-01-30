@@ -9,7 +9,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
-  BottomSheetScrollView,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import type {
@@ -17,6 +16,7 @@ import type {
   BottomSheetModal as BottomSheetModalType,
   BottomSheetScrollViewMethods,
 } from "@gorhom/bottom-sheet";
+import { BottomSheetKeyboardAwareScrollView } from "./BottomSheetKeyboardAwareScrollView";
 import type { ContentOverlayProps, ModalBackgroundColor } from "./types";
 import { useStyles } from "./ContentOverlay.style";
 import { useBottomSheetModalBackHandler } from "./hooks/useBottomSheetModalBackHandler";
@@ -60,7 +60,7 @@ export function ContentOverlay({
   ref,
 }: ContentOverlayProps) {
   const insets = useSafeAreaInsets();
-  const { height: windowHeight, width: windowWidth } = useWindowDimensions();
+  const { width: windowWidth } = useWindowDimensions();
   const bottomSheetModalRef = useRef<BottomSheetModalType>(null);
   const previousIndexRef = useRef(-1);
   const [currentPosition, setCurrentPosition] = useState<number>(-1);
@@ -268,21 +268,19 @@ export function ContentOverlay({
       onDismiss={() => onClose?.()}
     >
       {scrollEnabled ? (
-        <BottomSheetView style={{ height: windowHeight }}>
-          <BottomSheetScrollView
-            ref={scrollViewRef}
-            contentContainerStyle={{ paddingBottom: insets.bottom }}
-            keyboardShouldPersistTaps={
-              keyboardShouldPersistTaps ? "handled" : "never"
-            }
-            showsVerticalScrollIndicator={false}
-            onScroll={handleOnScroll}
-            stickyHeaderIndices={[0]}
-          >
-            {renderHeader()}
-            <View testID="ATL-Overlay-Children">{children}</View>
-          </BottomSheetScrollView>
-        </BottomSheetView>
+        <BottomSheetKeyboardAwareScrollView
+          ref={scrollViewRef}
+          contentContainerStyle={{ paddingBottom: insets.bottom }}
+          keyboardShouldPersistTaps={
+            keyboardShouldPersistTaps ? "handled" : "never"
+          }
+          showsVerticalScrollIndicator={false}
+          onScroll={handleOnScroll}
+          stickyHeaderIndices={[0]}
+        >
+          {renderHeader()}
+          <View testID="ATL-Overlay-Children">{children}</View>
+        </BottomSheetKeyboardAwareScrollView>
       ) : (
         <BottomSheetView>
           {renderHeader()}
