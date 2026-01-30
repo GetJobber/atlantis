@@ -81,6 +81,7 @@ export function Tooltip({
             style={floatingStyles.float}
             ref={setTooltipRef}
             role="tooltip"
+            hidden={isHidden}
             data-placement={placement}
           >
             <motion.div
