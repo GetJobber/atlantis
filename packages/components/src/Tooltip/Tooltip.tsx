@@ -42,6 +42,7 @@ export function Tooltip({
     styles: floatingStyles,
     setArrowRef,
     setTooltipRef,
+    isHidden,
   } = useTooltipPositioning({ preferredPlacement: preferredPlacement });
 
   initializeListeners();
@@ -52,6 +53,7 @@ export function Tooltip({
     placement === "top" && styles.top,
     placement === "left" && styles.left,
     placement === "right" && styles.right,
+    isHidden && styles.hidden,
   );
 
   const arrowX = floatingStyles.arrow?.x;
