@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.109.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.3...@jobber/components@6.109.4) (2026-01-30)
+
+
+### Bug Fixes
+
+* **components:** Prevent invalid label from causing infinite loop with Autocomplete ([#2885](https://github.com/GetJobber/atlantis/issues/2885)) ([048b8c4](https://github.com/GetJobber/atlantis/commit/048b8c43b82990f885c77bb45ba7477de8b7adae))
+
+
+
+
+
 ## [6.109.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.2...@jobber/components@6.109.3) (2026-01-28)
 
 
