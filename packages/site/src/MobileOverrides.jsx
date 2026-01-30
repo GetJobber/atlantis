@@ -6,7 +6,7 @@
 // dig into the source code of the original component to see what it's doing and
 // try to replicate (or stub out) that behavior here.
 
-import React, { forwardRef, useEffect } from "react";
+import React, { forwardRef } from "react";
 
 export const MobileOverrides = () => {
   return {
@@ -31,6 +31,8 @@ export const Path = props => {
 export const useSafeAreaInsets = () => "";
 export const useSharedValue = () => ({ value: 0 });
 export const useAnimatedStyle = () => "";
+export const useEvent = () => ({ current: null });
+export const useHandler = () => ({});
 export const withRepeat = () => "";
 export const withTiming = () => 0;
 export const withDelay = () => 0;
@@ -130,23 +132,6 @@ export default class extends React.Component {
 
 export * from "react-native-web";
 export { forwardRef };
-// eslint-disable-next-line react/display-name
-export const Modalize = forwardRef((props, ref) => {
-  const [open, setOpen] = React.useState(false);
-
-  const updateOpen = () => {
-    setOpen(o => !o);
-  };
-  useEffect(() => {
-    ref.current = { ...ref.current, open: updateOpen };
-  }, []);
-
-  return (
-    <div style={{ display: open ? "block" : "none" }} ref={ref}>
-      {props.children}
-    </div>
-  );
-});
 
 export const ReanimatedView = props => {
   return props.children;

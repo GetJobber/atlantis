@@ -42,9 +42,11 @@ export default {
   title: "ContentOverlay",
   links: [
     {
-      label: "Storybook",
+      label: "Mobile Storybook",
+      type: "mobile",
       url: getStorybookUrl(
-        `?path=/docs/components-overlays-contentoverlay--docs`,
+        `?path=/story/components-overlays-contentoverlay--basic`,
+        "mobile",
       ),
     },
   ],

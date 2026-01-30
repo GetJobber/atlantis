@@ -23,6 +23,7 @@
     "Chip",
     "Content",
     "ContentOverlay",
+    "ContentOverlayProvider",
     "Disclosure",
     "Divider",
     "EmptyState",
