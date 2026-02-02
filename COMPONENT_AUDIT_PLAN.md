@@ -122,7 +122,7 @@ require human intervention:
 | Area                                    | Reason                        | Recommended Action                                                                        |
 | --------------------------------------- | ----------------------------- | ----------------------------------------------------------------------------------------- |
 | **Category 2: Visual UI**               | Requires Figma access         | **Optional** - Designers already reviewed. Use LLM observations or defer to design scores |
-| **Criterion 3.2: Design documentation** | Design judgment               | Mark as N/A or defer to designer                                                          |
+| **Criterion 3.2: Design documentation** | Design-only criterion         | Mark as N/A (designers evaluate this)                                                     |
 | **Criterion 4.3: Contrast/Text Size**   | Automated testing recommended | Use [Pa11y](https://pa11y.org/) against docs site or Storybook                            |
 | **Criterion 9.3: Performance**          | Dev/prod build differences    | Mark as N/A (see note below)                                                              |
 
@@ -514,7 +514,7 @@ values that cannot be overridden
 
 #### 3.2 Design documentation
 
-**Trades**: Design, Dev | **Environments**: Web, Mobile
+**Trades**: Design only | **Environments**: Web, Mobile
 
 **What to check**:
 
@@ -527,11 +527,11 @@ values that cannot be overridden
 - **3**: Component has content guidelines following design docs template
 - **2**: Docs exist but lacking or don't follow template
 - **1**: No content guidelines on docs site
-- **N/A**: Developer can defer to designer score
+- **N/A**: For developers - this is a design criterion
 
-**Note**: This criterion is primarily evaluated by designers. Developers can
-check if documentation exists at `docs/components/[ComponentName]/` but should
-defer to designers for quality assessment.
+**Note**: This criterion is **design-only**. Developers should mark as **N/A**.
+Designers evaluate whether documentation exists and follows the design docs
+template.
 
 ---
 
@@ -1165,24 +1165,39 @@ wrapper/data-driven)
 
 ---
 
-#### 7.4 Headless
+#### 7.4 Headless / Atomic Design
 
 **Trades**: Dev only | **Environments**: Web, Mobile
 
 **What to check**:
 
-- Does component use headless UI library patterns?
-- Are logic and presentation separated?
-- Can the component be used without default styling?
+- Does the component follow **atomic design patterns**?
+- Is it built by composing smaller Atlantis components?
+- Does it reuse existing components rather than reimplementing functionality?
+
+> **Important Context**: Atlantis ships with styles, so we're NOT "headless" in
+> the traditional sense (style-less UI primitives). This criterion asks: **Does
+> the component follow atomic/compositional patterns by building with smaller
+> pieces?**
+
+**Examples**:
+
+- **Good (atomic)**: `Modal` composes `Button`, `Heading`, `Text` components
+- **Good (atomic)**: `DataTable` composes `Box`, `Stack`, smaller table
+  primitives
+- **Poor (non-atomic)**: Component reimplements button styles instead of using
+  `Button`
 
 **Scoring**:
 
-- **3**: Uses headless pattern or can be used headlessly
-- **2**: Partially headless
-- **1**: Not headless but should be
-- **N/A**: Component doesn't need headless pattern
+- **3**: Follows atomic pattern - built from smaller Atlantis components
+- **2**: Partially atomic - some reuse, some custom implementation
+- **1**: Not atomic - reimplements functionality that exists in other components
+- **N/A**: Component IS atomic/primitive (e.g., Icon, Text, Box - nothing to
+  compose from)
 
-**Evidence to cite**: Headless patterns or lack thereof
+**Evidence to cite**: List which Atlantis components it imports and uses, or
+note if it's a primitive component
 
 ---
 
@@ -1565,7 +1580,7 @@ exists]
 
 ### 1. Tokens & Theming
 
-| ID  | Criterion                            | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| ID  | Criterion                            | Mobile Dev  | Notes      | Web Dev     | Notes      |
 | --- | ------------------------------------ | ----------- | ---------- | ----------- | ---------- |
 | 1.1 | Proper use of semantic design tokens | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 1.2 | Tokens applied correctly             | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
@@ -1578,39 +1593,39 @@ exists]
 > **⚠️ MANUAL REVIEW REQUIRED**: LLM provides partial observations below.
 > Complete scoring requires visual comparison with Figma.
 
-| ID  | Criterion                         | Web Dev      | Notes                                       | Mobile Dev   | Notes          |
-| --- | --------------------------------- | ------------ | ------------------------------------------- | ------------ | -------------- |
-| 2.1 | Icons have visual parity          | [TBD-Manual] | LLM observations: [List icons found]        | [TBD-Manual] | [observations] |
-| 2.2 | Color tokens have visual parity   | [TBD-Manual] | LLM observations: [Token patterns found]    | [TBD-Manual] | [observations] |
-| 2.3 | Typography has visual parity      | [TBD-Manual] | LLM observations: [Typography tokens found] | [TBD-Manual] | [observations] |
-| 2.4 | Spacing has visual parity         | [TBD-Manual] | LLM observations: [Spacing tokens found]    | [TBD-Manual] | [observations] |
-| 2.5 | Visual assets formatted correctly | [TBD-Manual] | LLM observations: [Asset handling notes]    | [TBD-Manual] | [observations] |
+| ID  | Criterion                         | Mobile Dev   | Notes          | Web Dev      | Notes                                       |
+| --- | --------------------------------- | ------------ | -------------- | ------------ | ------------------------------------------- |
+| 2.1 | Icons have visual parity          | [TBD-Manual] | [observations] | [TBD-Manual] | LLM observations: [List icons found]        |
+| 2.2 | Color tokens have visual parity   | [TBD-Manual] | [observations] | [TBD-Manual] | LLM observations: [Token patterns found]    |
+| 2.3 | Typography has visual parity      | [TBD-Manual] | [observations] | [TBD-Manual] | LLM observations: [Typography tokens found] |
+| 2.4 | Spacing has visual parity         | [TBD-Manual] | [observations] | [TBD-Manual] | LLM observations: [Spacing tokens found]    |
+| 2.5 | Visual assets formatted correctly | [TBD-Manual] | [observations] | [TBD-Manual] | LLM observations: [Asset handling notes]    |
 
 ### 3. Content Design
 
-| ID  | Criterion                            | Web Dev     | Notes      | Mobile Dev  | Notes      |
-| --- | ------------------------------------ | ----------- | ---------- | ----------- | ---------- |
-| 3.1 | Clear naming                         | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
-| 3.2 | Design documentation                 | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
-| 3.3 | Clear examples and do/don't guidance | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
+| ID  | Criterion                            | Mobile Dev  | Notes       | Web Dev     | Notes       |
+| --- | ------------------------------------ | ----------- | ----------- | ----------- | ----------- |
+| 3.1 | Clear naming                         | [3/2/1/N/A] | [Evidence]  | [3/2/1/N/A] | [Evidence]  |
+| 3.2 | Design documentation                 | N/A         | Design-only | N/A         | Design-only |
+| 3.3 | Clear examples and do/don't guidance | [3/2/1/N/A] | [Evidence]  | [3/2/1/N/A] | [Evidence]  |
 
 ### 4. Accessibility (A11y)
 
 > **💡 TIP**: Use [Pa11y](https://pa11y.org/) for automated accessibility
 > testing. Run against docs visual testing page or Storybook.
 
-| ID  | Criterion                     | Web Dev     | Notes                                             | Mobile Dev  | Notes      |
-| --- | ----------------------------- | ----------- | ------------------------------------------------- | ----------- | ---------- |
-| 4.1 | ARIA Roles                    | [3/2/1/N/A] | [Evidence]                                        | N/A         | Web only   |
-| 4.2 | Keyboard Support              | [3/2/1/N/A] | [Evidence]                                        | N/A         | Web only   |
-| 4.3 | Proper Contrast and Text Size | [3/2/1/N/A] | Pa11y result: [pass/warn/fail] + [token evidence] | [3/2/1/N/A] | [Evidence] |
-| 4.4 | Focus States                  | [3/2/1/N/A] | [Evidence]                                        | [3/2/1/N/A] | [Evidence] |
-| 4.5 | Tab Order                     | [3/2/1/N/A] | [Evidence]                                        | [3/2/1/N/A] | [Evidence] |
-| 4.6 | Semantic Markup               | [3/2/1/N/A] | [Evidence]                                        | [3/2/1/N/A] | [Evidence] |
+| ID  | Criterion                     | Mobile Dev  | Notes      | Web Dev     | Notes                                             |
+| --- | ----------------------------- | ----------- | ---------- | ----------- | ------------------------------------------------- |
+| 4.1 | ARIA Roles                    | N/A         | Web only   | [3/2/1/N/A] | [Evidence]                                        |
+| 4.2 | Keyboard Support              | N/A         | Web only   | [3/2/1/N/A] | [Evidence]                                        |
+| 4.3 | Proper Contrast and Text Size | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | Pa11y result: [pass/warn/fail] + [token evidence] |
+| 4.4 | Focus States                  | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence]                                        |
+| 4.5 | Tab Order                     | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence]                                        |
+| 4.6 | Semantic Markup               | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence]                                        |
 
 ### 5. Interaction States
 
-| ID  | Criterion | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| ID  | Criterion | Mobile Dev  | Notes      | Web Dev     | Notes      |
 | --- | --------- | ----------- | ---------- | ----------- | ---------- |
 | 5.1 | Hover     | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 5.2 | Focus     | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
@@ -1623,7 +1638,7 @@ exists]
 
 ### 6. Behavioral States
 
-| ID  | Criterion | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| ID  | Criterion | Mobile Dev  | Notes      | Web Dev     | Notes      |
 | --- | --------- | ----------- | ---------- | ----------- | ---------- |
 | 6.1 | Read-Only | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 6.2 | Empty     | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
@@ -1633,16 +1648,16 @@ exists]
 
 ### 7. Flexibility / Composition
 
-| ID  | Criterion          | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| ID  | Criterion          | Mobile Dev  | Notes      | Web Dev     | Notes      |
 | --- | ------------------ | ----------- | ---------- | ----------- | ---------- |
 | 7.1 | Cases and variants | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 7.2 | Composition        | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 7.3 | Flexibility        | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
-| 7.4 | Headless           | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
+| 7.4 | Headless / Atomic  | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 
 ### 8. Motion / Transitions / Haptic
 
-| ID  | Criterion                    | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| ID  | Criterion                    | Mobile Dev  | Notes      | Web Dev     | Notes      |
 | --- | ---------------------------- | ----------- | ---------- | ----------- | ---------- |
 | 8.1 | Interaction state animations | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 8.2 | Transitions accounted for    | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
@@ -1650,25 +1665,25 @@ exists]
 
 ### 9. Code Quality & Performance
 
-| ID  | Criterion           | Web Dev     | Notes                                | Mobile Dev  | Notes      |
-| --- | ------------------- | ----------- | ------------------------------------ | ----------- | ---------- |
-| 9.1 | Test Coverage       | [3/2/1/N/A] | [Evidence]                           | [3/2/1/N/A] | [Evidence] |
-| 9.2 | Linting & Standards | [3/2/1/N/A] | [Evidence]                           | [3/2/1/N/A] | [Evidence] |
-| 9.3 | Performance         | N/A         | Skipped - dev/prod build differences | N/A         | Skipped    |
-| 9.4 | Documentation       | [3/2/1/N/A] | [Evidence]                           | [3/2/1/N/A] | [Evidence] |
+| ID  | Criterion           | Mobile Dev  | Notes      | Web Dev     | Notes                                |
+| --- | ------------------- | ----------- | ---------- | ----------- | ------------------------------------ |
+| 9.1 | Test Coverage       | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence]                           |
+| 9.2 | Linting & Standards | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence]                           |
+| 9.3 | Performance         | N/A         | Skipped    | N/A         | Skipped - dev/prod build differences |
+| 9.4 | Documentation       | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence]                           |
 
 ### 10. Cross Platform
 
-| ID   | Criterion      | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| ID   | Criterion      | Mobile Dev  | Notes      | Web Dev     | Notes      |
 | ---- | -------------- | ----------- | ---------- | ----------- | ---------- |
-| 10.1 | Desktop        | [3/2/1/N/A] | [Evidence] | N/A         | N/A        |
-| 10.2 | Mobile Web     | [3/2/1/N/A] | [Evidence] | N/A         | N/A        |
-| 10.3 | Native iOS     | N/A         | N/A        | [3/2/1/N/A] | [Evidence] |
-| 10.4 | Native Android | N/A         | N/A        | [3/2/1/N/A] | [Evidence] |
+| 10.1 | Desktop        | N/A         | N/A        | [3/2/1/N/A] | [Evidence] |
+| 10.2 | Mobile Web     | N/A         | N/A        | [3/2/1/N/A] | [Evidence] |
+| 10.3 | Native iOS     | [3/2/1/N/A] | [Evidence] | N/A         | N/A        |
+| 10.4 | Native Android | [3/2/1/N/A] | [Evidence] | N/A         | N/A        |
 
 ### 11. Localization + Internationalization
 
-| ID   | Criterion                      | Web Dev     | Notes      | Mobile Dev  | Notes      |
+| ID   | Criterion                      | Mobile Dev  | Notes      | Web Dev     | Notes      |
 | ---- | ------------------------------ | ----------- | ---------- | ----------- | ---------- |
 | 11.1 | No hardcoded English text      | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
 | 11.2 | Uses account settings fallback | [3/2/1/N/A] | [Evidence] | [3/2/1/N/A] | [Evidence] |
@@ -1900,7 +1915,7 @@ After receiving the LLM audit report, developers should complete these items:
 | 1.5       | Tokens overridable       | ✅            | Check for hardcoded values; verify tokens overridable via Context/CSS vars               |
 | 2.1-2.5   | Visual parity            | ⚠️ Partial    | LLM provides observations; manual Figma review **optional** (designers already reviewed) |
 | 3.1       | Clear naming             | ✅            | Check props/types                                                                        |
-| 3.2       | Design documentation     | ⚠️ Partial    | Check if docs exist; defer quality assessment to designers                               |
+| 3.2       | Design documentation     | ❌ N/A        | Design-only criterion - mark as N/A                                                      |
 | 3.3       | Examples/guidance        | ✅            | Check docs                                                                               |
 | 4.1       | ARIA Roles               | ✅            | Check JSX                                                                                |
 | 4.2       | Keyboard support         | ✅            | Check handlers                                                                           |
@@ -1913,7 +1928,7 @@ After receiving the LLM audit report, developers should complete these items:
 | 7.1       | Variants                 | ✅            | Check props                                                                              |
 | 7.2       | Composition              | ✅            | Check children/compound                                                                  |
 | 7.3       | Flexibility              | ✅            | Check UNSAFE\_\* props                                                                   |
-| 7.4       | Headless                 | ✅            | Check architecture                                                                       |
+| 7.4       | Headless / Atomic        | ✅            | Check if built from smaller Atlantis components (atomic pattern)                         |
 | 8.1-8.3   | Motion                   | ✅            | Check CSS/framer                                                                         |
 | 9.1       | Test coverage            | ✅            | Check test files                                                                         |
 | 9.2       | Linting                  | ✅            | Check eslint-disable                                                                     |
@@ -1924,11 +1939,17 @@ After receiving the LLM audit report, developers should complete these items:
 
 ---
 
-_Document Version: 1.6_ _Last Updated: January 2026_ _For use with Atlantis
+_Document Version: 1.8_ _Last Updated: January 2026_ _For use with Atlantis
 Design System component audits_
 
 **Changelog:**
 
+- v1.8: Clarified 7.4 "Headless" → "Headless / Atomic Design" - focuses on
+  atomic design patterns (building with smaller components) rather than
+  "headless" in the traditional style-less sense (Atlantis ships with styles)
+- v1.7: Updated 3.2 to reflect design-only criterion (developers mark as N/A);
+  swapped all output template column order: Mobile before Web (to match website
+  UI)
 - v1.6: Fixed criterion 3.2 "Correct Tone & Voice" → "Design documentation" to
   match current template; added scoring guidance for developers
 - v1.5: Added common pitfall #10 "Vague or Jargon-Heavy Notes" with concrete
