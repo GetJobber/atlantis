@@ -4,9 +4,11 @@
   "version": "0.0.1",
   "license": "MIT",
   "workspaces": [
+    "packages/design",
     "packages/formatters",
     "packages/hooks",
-    "packages/components"
+    "packages/components",
+    "packages/components-native"
   ],
   "scripts": {
     "bootstrap": "turbo run bootstrap",
@@ -103,7 +105,7 @@
     "stylelint-junit-formatter": "^0.2.1",
     "subscriptions-transport-ws": "^0.11.0",
     "ts-node": "^10.9.1",
-    "turbo": "^2.7.5",
+    "turbo": "^2.5.6",
     "typescript": "^5.6.3"
   },
   "husky": {

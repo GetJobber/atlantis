@@ -475,7 +475,7 @@
     "@floating-ui/react": "^0.27.5",
     "@jobber/design": "*",
     "@jobber/formatters": "^0.5.0",
-    "@jobber/hooks": "*",
+    "@jobber/hooks": ">=2",
     "@tanstack/react-table": "8.5.13",
     "@types/color": "^3.0.1",
     "@types/lodash": "^4.14.136",
@@ -521,8 +521,6 @@
   },
   "peerDependencies": {
     "@apollo/client": "^3",
-    "@jobber/design": "*",
-    "@jobber/hooks": ">=2",
     "@tanstack/react-table": "^8",
     "axios": "^1.11.0",
     "classnames": "^2",

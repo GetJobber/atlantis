@@ -1,0 +1,14 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "extends": ["//"],
+    "tasks": {
+      "bootstrap": {
+        "inputs": [
+          "$TURBO_DEFAULT$",
+          "!tsconfig.rollup.tsbuildinfo"
+        ],
+        "outputs": ["dist/**"]
+      }
+    }
+  }
+  

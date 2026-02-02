@@ -82,7 +82,6 @@
   "peerDependencies": {
     "@babel/core": "^7.4.5",
     "@gorhom/bottom-sheet": "^5.2.8",
-    "@jobber/design": "*",
     "@react-native-community/datetimepicker": ">=6.7.0",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
