@@ -58,16 +58,24 @@ const componentsRoute = createRoute({
   component: ComponentsPage,
 });
 
+const componentViewSearchSchema = (search: Record<string, unknown>) => ({
+  isLegacy:
+    search?.isLegacy === true ||
+    String(search?.isLegacy).toLowerCase() === "true",
+});
+
 const componentsNameRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "components/$name",
   component: ComponentView,
+  validateSearch: componentViewSearchSchema,
 });
 
 const componentsNameTabRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "components/$name/$tab",
   component: ComponentView,
+  validateSearch: componentViewSearchSchema,
 });
 
 const contentRoute = createRoute({

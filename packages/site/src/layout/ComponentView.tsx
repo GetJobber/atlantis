@@ -8,7 +8,7 @@ import {
   Tab,
   Tabs,
 } from "@jobber/components";
-import { useNavigate, useParams } from "@tanstack/react-router";
+import { useNavigate, useParams, useSearch } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
@@ -49,9 +49,12 @@ const DESIGN_TAB_INDEX = 0;
 // eslint-disable-next-line max-statements
 export const ComponentView = () => {
   const params = useParams({ strict: false });
+  const search = useSearch({ strict: false });
+  const isLegacy = search?.isLegacy === true;
   const name = params.name ?? "";
   const { updateCode, type, updateType } = useAtlantisPreview();
   const tabFromUrl = params.tab?.toLowerCase().trim() ?? "";
+
   const PageMeta = SiteContent[name];
   const availablePlatforms = useMemo(
     () => (PageMeta ? getAvailablePlatformTypes(PageMeta) : []),
@@ -76,15 +79,18 @@ export const ComponentView = () => {
     PageMeta,
     updateType,
     tabFromUrl,
-    currentPlatform,
-    availablePlatforms,
-    availableTypes: getAvailableComponentTypes(PageMeta),
+    isLegacy,
   });
 
   useErrorCatcher();
   const { stateValues } = usePropsAsDataList(PageMeta, type);
-  const { enableMinimal, minimal, disableMinimal, isMinimal } =
-    useAtlantisSite();
+  const {
+    enableMinimal,
+    minimal,
+    disableMinimal,
+    isMinimal,
+    setComponentTypeInUrl,
+  } = useAtlantisSite();
 
   usePageTitle({ title: PageMeta?.title });
 
@@ -104,6 +110,7 @@ export const ComponentView = () => {
 
   useEffect(() => {
     if (code) {
+      console.log("updating code");
       setTimeout(() => updateCode(code as string, true), 100);
     }
   }, [code, type, updateCode]);
@@ -216,7 +223,10 @@ export const ComponentView = () => {
               <VersionSelector
                 availableVersions={availableVersionsForCurrentPlatform}
                 currentVersion={type}
-                onVersionChange={updateType}
+                onVersionChange={newType => {
+                  updateType(newType);
+                  setComponentTypeInUrl(newType);
+                }}
               />
             </Box>
           }
@@ -306,15 +316,19 @@ const getTabFromUrl = ({
   availableTypes,
   defaultType,
   updateType,
+  isLegacy,
 }: {
   tabFromUrl: string;
   availablePlatforms: PlatformType[];
   availableTypes: ComponentType[];
   defaultType: ComponentType;
   updateType: (type: ComponentType) => void;
+  isLegacy: boolean;
 }): number => {
   if (!tabFromUrl || tabFromUrl.trim() === "") {
-    updateType(defaultType);
+    const typeForPlatform =
+      defaultType === "webSupported" && isLegacy ? "web" : defaultType;
+    updateType(typeForPlatform);
 
     return DESIGN_TAB_INDEX;
   }
@@ -325,13 +339,17 @@ const getTabFromUrl = ({
 
     return availablePlatforms.length + 1;
   } else if (platformIndex !== -1) {
-    const typeForPlatform = availableTypes[platformIndex];
+    const typeForPlatform =
+      tabFromUrl === "web" &&
+      !isLegacy &&
+      availableTypes.includes("webSupported")
+        ? "webSupported"
+        : (tabFromUrl as ComponentType);
+
     updateType(typeForPlatform);
 
     return platformIndex + 1;
   } else {
-    updateType(defaultType);
-
     return DESIGN_TAB_INDEX;
   }
 };
@@ -340,21 +358,33 @@ const useComponentViewTabs = ({
   PageMeta,
   updateType,
   tabFromUrl,
-  currentPlatform,
-  availablePlatforms,
-  availableTypes,
+  isLegacy,
 }: {
   PageMeta: ContentExport;
-  availablePlatforms: PlatformType[];
-  availableTypes: ComponentType[];
+
   updateType: (type: ComponentType) => void;
   tabFromUrl: string;
-  currentPlatform: PlatformType;
+  isLegacy: boolean;
 }) => {
   const navigate = useNavigate();
   const { name = "" } = useParams({ strict: false });
   const { updateStyles } = useStyleUpdater();
-  const defaultType = getDefaultComponentType(PageMeta);
+  const defaultType = useMemo(
+    () => getDefaultComponentType(PageMeta),
+    [PageMeta],
+  );
+  const currentPlatform = useMemo(
+    () => getPlatformForComponentType(defaultType),
+    [defaultType],
+  );
+  const availablePlatforms = useMemo(
+    () => getAvailablePlatformTypes(PageMeta),
+    [PageMeta],
+  );
+  const availableTypes = useMemo(
+    () => getAvailableComponentTypes(PageMeta),
+    [PageMeta],
+  );
 
   const [tab, setTab] = useState(() =>
     getTabFromUrl({
@@ -363,6 +393,7 @@ const useComponentViewTabs = ({
       availableTypes,
       defaultType,
       updateType,
+      isLegacy,
     }),
   );
 
@@ -375,15 +406,16 @@ const useComponentViewTabs = ({
         availableTypes,
         defaultType,
         updateType,
+        isLegacy,
       }),
     );
   }, [
-    PageMeta,
     tabFromUrl,
     availablePlatforms,
     availableTypes,
     defaultType,
     updateType,
+    isLegacy,
   ]);
 
   const handleTabChange = (tabIn: number) => {
@@ -418,6 +450,7 @@ const useComponentViewTabs = ({
     updateStyles();
 
     // Sync URL path with tab: Design = /components/name, platform = /components/name/tab, Implement = /components/name/implement
+    // Preserve isLegacy query param when switching tabs (does not affect tab/component name)
     const urlForTab = getComponentUrlForTab({
       name,
       availablePlatforms,
@@ -425,7 +458,10 @@ const useComponentViewTabs = ({
     });
 
     if (urlForTab) {
-      navigate({ to: urlForTab });
+      navigate({
+        to: urlForTab,
+        ...(isLegacy && { search: { isLegacy: true } }),
+      });
     }
   };
 
