@@ -64,6 +64,12 @@ const componentsNameRoute = createRoute({
   component: ComponentView,
 });
 
+const componentsNameTabRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "components/$name/$tab",
+  component: ComponentView,
+});
+
 const contentRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "content",
@@ -172,6 +178,7 @@ const routeTree = rootRoute.addChildren([
   patternsRoute,
   patternsNameRoute,
   componentsRoute,
+  componentsNameTabRoute,
   componentsNameRoute,
   contentRoute,
   contentNameRoute,
@@ -196,6 +203,7 @@ export {
   routeTree,
   indexRoute,
   componentsNameRoute,
+  componentsNameTabRoute,
   contentNameRoute,
   designNameRoute,
   hooksNameRoute,

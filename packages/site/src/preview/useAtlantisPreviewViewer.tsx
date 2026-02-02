@@ -1,16 +1,18 @@
 import { useCallback, useRef, useState } from "react";
+import { useParams } from "@tanstack/react-router";
 import { ComponentType } from "../types/content";
 import { getPlatformForComponentType } from "../utils/componentTypeUtils";
 
 export const useAtlantisPreviewViewer = () => {
   const iframe = useRef<HTMLIFrameElement>(null);
   const iframeMobile = useRef<HTMLIFrameElement>(null);
+  const params = useParams({ strict: false });
+  const tab = params.tab; // present on /components/$name/$tab, undefined on /components/$name
 
   // Parse the current type from URL parameters
   const getInitialType = (): ComponentType => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.has("mobile")) return "mobile";
-    if (params.has("webLegacy")) return "web";
+    if (tab === "mobile") return "mobile";
+    if (tab === "web") return "web";
 
     return "webSupported"; // Default to supported version
   };
@@ -19,24 +21,6 @@ export const useAtlantisPreviewViewer = () => {
 
   const updateType = (value: ComponentType) => {
     setType(value);
-
-    // Update URL parameters
-    const params = new URLSearchParams();
-
-    if (value === "mobile") {
-      params.set("mobile", "");
-    } else if (value === "web") {
-      params.set("webLegacy", "");
-    }
-    // For "webSupported", we don't add any parameters (default)
-
-    window.history.replaceState(
-      null,
-      "",
-      `${window.location.pathname}${
-        params.toString() ? `?${params.toString()}` : ""
-      }`,
-    );
   };
 
   // Get the appropriate iframe ref for a given type based on platform
