@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import {
   Banner,
   Box,
@@ -418,43 +417,12 @@ const useComponentViewTabs = ({
     isLegacy,
   ]);
 
-  const handleTabChange = (tabIn: number) => {
-    if (tabIn === 0) {
-      // Design tab - no type change needed
-      setTab(tabIn);
-    } else if (tabIn <= availablePlatforms.length) {
-      // Platform implementation tabs (Web, Mobile)
-      const platformTabIndex = tabIn - 1; // Adjust for design tab being first
-      const targetPlatform = availablePlatforms[platformTabIndex];
-
-      if (targetPlatform) {
-        // Only change the component type if we're switching to a different platform
-        if (currentPlatform !== targetPlatform) {
-          // Find the first available version for this platform
-          const versionsForPlatform = getAvailableVersionsForPlatform(
-            PageMeta,
-            targetPlatform,
-          );
-
-          if (versionsForPlatform.length > 0) {
-            updateType(versionsForPlatform[0]);
-          }
-        }
-        // Always set the tab regardless of whether we changed the type
-        setTab(tabIn);
-      }
-    } else {
-      // Implement tab or other tabs - just switch without changing type
-      setTab(tabIn);
-    }
-    updateStyles();
-
-    // Sync URL path with tab: Design = /components/name, platform = /components/name/tab, Implement = /components/name/implement
-    // Preserve isLegacy query param when switching tabs (does not affect tab/component name)
+  const setAndNavigateTab = (tabIndex: number) => {
+    setTab(tabIndex);
     const urlForTab = getComponentUrlForTab({
       name,
       availablePlatforms,
-      tabIndex: tabIn,
+      tabIndex,
     });
 
     if (urlForTab) {
@@ -462,6 +430,30 @@ const useComponentViewTabs = ({
         to: urlForTab,
         ...(isLegacy && { search: { isLegacy: true } }),
       });
+    }
+    updateStyles();
+  };
+
+  const handleTabChange = (tabIn: number) => {
+    if (tabIn === 0) {
+      setAndNavigateTab(0);
+    } else if (tabIn <= availablePlatforms.length) {
+      const platformTabIndex = tabIn - 1;
+      const targetPlatform = availablePlatforms[platformTabIndex];
+
+      if (targetPlatform && currentPlatform !== targetPlatform) {
+        const versionsForPlatform = getAvailableVersionsForPlatform(
+          PageMeta,
+          targetPlatform,
+        );
+
+        if (versionsForPlatform.length > 0) {
+          updateType(versionsForPlatform[0]);
+        }
+      }
+      setAndNavigateTab(tabIn);
+    } else {
+      setAndNavigateTab(tabIn);
     }
   };
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import type { PropsWithChildren } from "react";
-import { Outlet, useLocation, useNavigate } from "@tanstack/react-router";
+import { Outlet, useNavigate, useSearch } from "@tanstack/react-router";
 import { AtlantisThemeContextProvider } from "@jobber/components";
 import { NavMenu } from "./NavMenu";
 import { Analytics } from "../components/Analytics";
@@ -17,8 +17,8 @@ import { TritonProvider } from "../providers/TritonProvider";
  */
 
 export const Layout = () => {
-  const location = useLocation();
   const scrollPane = useRef<HTMLDivElement>(null);
+  const search = useSearch({ strict: false });
 
   useEffect(() => {
     if (scrollPane?.current) {
@@ -28,7 +28,7 @@ export const Layout = () => {
 
   useHookRedirect();
 
-  const minimalMode = new URLSearchParams(location.search).has("minimal");
+  const minimalMode = search?.minimal === true;
 
   if (location.pathname.includes("visual-tests")) {
     return (

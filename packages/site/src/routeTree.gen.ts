@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * TanStack Router route tree - code-based routes for Atlantis site.
  *
@@ -38,6 +37,14 @@ import { VisualTestCatchAll } from "./pages/visualTests/VisualTestCatchAll";
 const rootRoute = createRootRoute({
   component: Layout,
   notFoundComponent: NotFoundPage,
+  validateSearch: (search: Record<string, unknown>) => ({
+    isLegacy:
+      search?.isLegacy === true ||
+      String(search?.isLegacy).toLowerCase() === "true",
+    minimal:
+      search?.minimal === true ||
+      String(search?.minimal).toLowerCase() === "true",
+  }),
 });
 
 const indexRoute = createRoute({
