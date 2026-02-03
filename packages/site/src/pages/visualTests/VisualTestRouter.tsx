@@ -74,7 +74,7 @@ const visualTestPages: Record<string, () => ReactElement> = {
   chip: VisualTestChipPage,
   chips: VisualTestChipsPage,
   combobox: VisualTestComboboxPage,
-  "date-picker": VisualTestDatePickerPage,
+  datepicker: VisualTestDatePickerPage,
   "description-list": VisualTestDescriptionListPage,
   disclosure: VisualTestDisclosurePage,
   divider: VisualTestDividerPage,
