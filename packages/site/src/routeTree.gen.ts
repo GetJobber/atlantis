@@ -34,17 +34,29 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { VisualTestRouter } from "./pages/visualTests/VisualTestRouter";
 import { VisualTestCatchAll } from "./pages/visualTests/VisualTestCatchAll";
 
+export interface RootSearchInput {
+  isLegacy?: boolean;
+  minimal?: boolean;
+}
+
+export interface RootSearchOutput {
+  isLegacy?: boolean;
+  minimal?: boolean;
+}
+
+const validateSearch = (search?: RootSearchInput): RootSearchOutput => ({
+  isLegacy:
+    search?.isLegacy === true ||
+    String(search?.isLegacy).toLowerCase() === "true",
+  minimal:
+    search?.minimal === true ||
+    String(search?.minimal).toLowerCase() === "true",
+});
+
 const rootRoute = createRootRoute({
   component: Layout,
   notFoundComponent: NotFoundPage,
-  validateSearch: (search: Record<string, unknown>) => ({
-    isLegacy:
-      search?.isLegacy === true ||
-      String(search?.isLegacy).toLowerCase() === "true",
-    minimal:
-      search?.minimal === true ||
-      String(search?.minimal).toLowerCase() === "true",
-  }),
+  validateSearch,
 });
 
 const indexRoute = createRoute({
@@ -65,24 +77,18 @@ const componentsRoute = createRoute({
   component: ComponentsPage,
 });
 
-const componentViewSearchSchema = (search: Record<string, unknown>) => ({
-  isLegacy:
-    search?.isLegacy === true ||
-    String(search?.isLegacy).toLowerCase() === "true",
-});
-
 const componentsNameRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "components/$name",
   component: ComponentView,
-  validateSearch: componentViewSearchSchema,
+  validateSearch,
 });
 
 const componentsNameTabRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "components/$name/$tab",
   component: ComponentView,
-  validateSearch: componentViewSearchSchema,
+  validateSearch,
 });
 
 const contentRoute = createRoute({

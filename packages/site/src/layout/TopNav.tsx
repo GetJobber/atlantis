@@ -41,7 +41,7 @@ export const TopNav = () => {
             icon="menu"
           />
           <Box padding={{ top: "smaller" }}>
-            <Link to="/">
+            <Link to="/" search={{}}>
               <JobberLogo />
             </Link>
           </Box>
