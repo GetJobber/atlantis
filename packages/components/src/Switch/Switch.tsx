@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classnames from "classnames";
 import styles from "./Switch.module.css";
 import { Typography } from "../Typography";
+import { Icon } from "../Icon";
 
 interface SwitchProps {
   readonly value?: boolean;
@@ -56,6 +57,13 @@ export function Switch({
         onClick={toggleSwitch}
         disabled={disabled}
       >
+        <span className={styles.icon}>
+          <Icon
+            size="small"
+            name={value ? "checkmark" : "cross"}
+            {...getIconColor(value, disabled ?? false)}
+          />
+        </span>
         <span className={styles.toggle}>
           <Label as="On" disabled={disabled} />
           <span className={styles.pip} />
@@ -96,4 +104,18 @@ function Label({ as, disabled }: LabelProps) {
       </Typography>
     </span>
   );
+}
+
+function getIconColor(isChecked: boolean, isDisabled: boolean) {
+  const checkedColor = {
+    color: "surface",
+  } as const;
+
+  const uncheckedColor = {
+    customColor: isDisabled
+      ? "var(--color-disabled)"
+      : "var(--color-inactive--onSurface)",
+  } as const;
+
+  return isChecked ? checkedColor : uncheckedColor;
 }

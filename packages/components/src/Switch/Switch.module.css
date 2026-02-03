@@ -16,11 +16,11 @@
   width: var(--switch--width);
   height: calc(var(--switch--width) / 2);
   padding: 0;
-  border: var(--border-thick) solid var(--color-border--interactive);
+  border: var(--border-thick) solid var(--color-border);
   border-radius: var(--switch--pipSize);
   overflow: hidden;
   line-height: normal;
-  background-color: var(--color-surface);
+  background-color: var(--color-inactive--surface);
   cursor: pointer;
   appearance: none;
   align-items: center;
@@ -39,6 +39,11 @@
 .isChecked {
   border-color: var(--color-interactive);
   background-color: var(--color-interactive);
+}
+
+.isChecked:hover {
+  border-color: var(--color-interactive--hover);
+  background-color: var(--color-interactive--hover);
 }
 
 .toggle {
@@ -80,7 +85,7 @@
   height: var(--switch--pipSize);
   border: none;
   border-radius: var(--radius-circle);
-  background-color: var(--color-interactive--subtle);
+  background-color: var(--color-inactive--onSurface);
   transition: all var(--timing-quick) ease-out;
 }
 
@@ -110,4 +115,13 @@
 
 .disabled:hover {
   border-color: var(--color-disabled);
+}
+
+.icon {
+  position: absolute;
+  left: calc(var(--switch--pipSize) + var(--space-small));
+}
+
+.isChecked .icon {
+  left: calc((var(--switch--width) / 2) - var(--switch--pipSize));
 }
