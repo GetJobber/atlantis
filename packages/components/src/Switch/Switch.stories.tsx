@@ -1,28 +1,24 @@
 import React, { useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Switch } from "@jobber/components/Switch";
 import { Button } from "@jobber/components/Button";
 
-export default {
-  title: "Components/Selections/Switch/Web",
+const meta = {
+  title: "Components/Selections/Switch",
   component: Switch,
-  parameters: {
-    viewMode: "story",
-    previewTabs: {
-      code: {
-        hidden: false,
-      },
-    },
-  },
-} as ComponentMeta<typeof Switch>;
+} satisfies Meta<typeof Switch>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-const BasicTemplate: ComponentStory<typeof Switch> = args => {
+const BasicTemplate = (args: Story["args"]) => {
   return <Switch {...args} />;
 };
 
-export const Basic = BasicTemplate.bind({});
+export const Basic: Story = {
+  render: BasicTemplate,
+};
 
-const ControlledTemplate: ComponentStory<typeof Switch> = args => {
+const ControlledTemplate = (args: Story["args"]) => {
   const [value, setValue] = useState(false);
 
   return (
@@ -34,4 +30,6 @@ const ControlledTemplate: ComponentStory<typeof Switch> = args => {
   );
 };
 
-export const Controlled = ControlledTemplate.bind({});
+export const Controlled: Story = {
+  render: ControlledTemplate,
+};
