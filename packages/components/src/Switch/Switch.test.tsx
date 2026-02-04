@@ -15,6 +15,7 @@ it("renders a Switch", () => {
         type="button"
       >
         <span
+          aria-hidden="true"
           class="icon"
         >
           <svg
@@ -53,6 +54,7 @@ it("renders a Switch that is turned ON", () => {
         type="button"
       >
         <span
+          aria-hidden="true"
           class="icon"
         >
           <svg
@@ -94,6 +96,7 @@ it("renders a disabled Switch", () => {
         type="button"
       >
         <span
+          aria-hidden="true"
           class="icon"
         >
           <svg
@@ -139,6 +142,14 @@ test("it should not change the input value on click", async () => {
 
   await userEvent.click(element);
   expect(element).toHaveAttribute("aria-checked", "true");
+});
+
+describe("Switch accessibility", () => {
+  it("hides the icon from screen readers", () => {
+    render(<Switch ariaLabel="Toggle me" />);
+    const iconContainer = screen.getByTestId("cross").parentElement;
+    expect(iconContainer).toHaveAttribute("aria-hidden", "true");
+  });
 });
 
 describe("Switch icons", () => {

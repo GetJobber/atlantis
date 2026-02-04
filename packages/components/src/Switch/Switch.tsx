@@ -56,7 +56,7 @@ export function Switch({
         onClick={toggleSwitch}
         disabled={disabled}
       >
-        <span className={styles.icon}>
+        <span className={styles.icon} aria-hidden="true">
           <Icon
             size="small"
             name={value ? "checkmark" : "cross"}

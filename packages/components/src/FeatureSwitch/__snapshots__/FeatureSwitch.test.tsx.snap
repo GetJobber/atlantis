@@ -121,6 +121,7 @@ exports[`renders a full FeatureSwitch 1`] = `
           type="button"
         >
           <span
+            aria-hidden="true"
             class="icon"
           >
             <svg
