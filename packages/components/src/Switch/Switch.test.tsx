@@ -15,30 +15,23 @@ it("renders a Switch", () => {
         type="button"
       >
         <span
-          class="toggle"
+          class="icon"
         >
-          <span
-            class="label"
+          <svg
+            data-testid="cross"
+            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="base bold small uppercase white"
-            >
-              On
-            </span>
-          </span>
-          <span
-            class="pip"
-          />
-          <span
-            class="label"
-          >
-            <span
-              class="base bold small uppercase greyBlue"
-            >
-              Off
-            </span>
-          </span>
+            <path
+              d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+              fill="var(--color-inactive--onSurface)"
+            />
+          </svg>
         </span>
+        <span
+          class="toggle"
+        />
       </button>
       <input
         type="hidden"
@@ -60,30 +53,23 @@ it("renders a Switch that is turned ON", () => {
         type="button"
       >
         <span
-          class="toggle"
+          class="icon"
         >
-          <span
-            class="label"
+          <svg
+            data-testid="checkmark"
+            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="base bold small uppercase white"
-            >
-              On
-            </span>
-          </span>
-          <span
-            class="pip"
-          />
-          <span
-            class="label"
-          >
-            <span
-              class="base bold small uppercase greyBlue"
-            >
-              Off
-            </span>
-          </span>
+            <path
+              d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+              style="fill: var(--color-surface);"
+            />
+          </svg>
         </span>
+        <span
+          class="toggle"
+        />
       </button>
       <input
         type="hidden"
@@ -95,7 +81,7 @@ it("renders a Switch that is turned ON", () => {
 
 it("renders a disabled Switch", () => {
   const { container } = render(
-    <Switch ariaLabel="Can't touch this" disabled={true} />,
+    <Switch ariaLabel="Can't touch this" disabled={true} />
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -108,30 +94,23 @@ it("renders a disabled Switch", () => {
         type="button"
       >
         <span
-          class="toggle"
+          class="icon"
         >
-          <span
-            class="label"
+          <svg
+            data-testid="cross"
+            style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="base bold small uppercase grey"
-            >
-              On
-            </span>
-          </span>
-          <span
-            class="pip"
-          />
-          <span
-            class="label"
-          >
-            <span
-              class="base bold small uppercase grey"
-            >
-              Off
-            </span>
-          </span>
+            <path
+              d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+              fill="var(--color-disabled)"
+            />
+          </svg>
         </span>
+        <span
+          class="toggle"
+        />
       </button>
       <input
         type="hidden"
@@ -154,7 +133,7 @@ test("it should change the input value on click", async () => {
 
 test("it should not change the input value on click", async () => {
   const { getByRole } = render(
-    <Switch ariaLabel="Can't touch this" value={true} disabled={true} />,
+    <Switch ariaLabel="Can't touch this" value={true} disabled={true} />
   );
   const element = getByRole("switch");
 

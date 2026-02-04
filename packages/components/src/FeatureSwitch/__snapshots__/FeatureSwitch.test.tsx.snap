@@ -121,30 +121,23 @@ exports[`renders a full FeatureSwitch 1`] = `
           type="button"
         >
           <span
-            class="toggle"
+            class="icon"
           >
-            <span
-              class="label"
+            <svg
+              data-testid="checkmark"
+              style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 16px; height: 16px;"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="base bold small uppercase white"
-              >
-                On
-              </span>
-            </span>
-            <span
-              class="pip"
-            />
-            <span
-              class="label"
-            >
-              <span
-                class="base bold small uppercase greyBlue"
-              >
-                Off
-              </span>
-            </span>
+              <path
+                d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
+                style="fill: var(--color-surface);"
+              />
+            </svg>
           </span>
+          <span
+            class="toggle"
+          />
         </button>
         <input
           type="hidden"
