@@ -2,7 +2,10 @@
   --switch--width: 48px;
   --switch--pipSize: 16px;
   --switch--borderOffset: var(--border-thick);
-  --switch-pipOnPosition: calc(var(--switch--width) - var(--switch--pipSize) - (var(--switch--borderOffset) * 2) - var(--space-smallest));
+  --switch-pipOnPosition: calc(
+    var(--switch--width) - var(--switch--pipSize) -
+      (var(--switch--borderOffset) * 2) - var(--space-smallest)
+  );
   --switch-pipOffPosition: var(--space-smallest);
 }
 
@@ -90,11 +93,21 @@
 }
 
 .icon {
-  position: absolute;
   display: flex;
-  transform: translateX(calc(var(--switch-pipOffPosition) + var(--switch--pipSize) + var(--space-smaller)));
+  position: absolute;
+  transform: translateX(
+    calc(
+      var(--switch-pipOffPosition) + var(--switch--pipSize) +
+        var(--space-smaller)
+    )
+  );
 }
 
 .isChecked .icon {
-  transform: translateX(calc(var(--switch-pipOnPosition) - var(--switch--pipSize) - var(--space-smaller)));
+  transform: translateX(
+    calc(
+      var(--switch-pipOnPosition) - var(--switch--pipSize) -
+        var(--space-smaller)
+    )
+  );
 }
