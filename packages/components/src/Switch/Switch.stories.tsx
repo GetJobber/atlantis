@@ -12,14 +12,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const BasicTemplate = (args: Story["args"]) => {
-  return <Switch {...args} />;
-};
-
-export const Basic: Story = {
-  render: BasicTemplate,
-};
-
-const ControlledTemplate = (args: Story["args"]) => {
   const [value, setValue] = useState(false);
 
   return (
@@ -30,6 +22,6 @@ const ControlledTemplate = (args: Story["args"]) => {
   );
 };
 
-export const Controlled: Story = {
-  render: ControlledTemplate,
+export const Basic: Story = {
+  render: BasicTemplate,
 };
