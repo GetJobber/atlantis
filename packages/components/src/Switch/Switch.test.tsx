@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Switch } from ".";
 
@@ -81,7 +81,7 @@ it("renders a Switch that is turned ON", () => {
 
 it("renders a disabled Switch", () => {
   const { container } = render(
-    <Switch ariaLabel="Can't touch this" disabled={true} />
+    <Switch ariaLabel="Can't touch this" disabled={true} />,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -133,10 +133,40 @@ test("it should change the input value on click", async () => {
 
 test("it should not change the input value on click", async () => {
   const { getByRole } = render(
-    <Switch ariaLabel="Can't touch this" value={true} disabled={true} />
+    <Switch ariaLabel="Can't touch this" value={true} disabled={true} />,
   );
   const element = getByRole("switch");
 
   await userEvent.click(element);
   expect(element).toHaveAttribute("aria-checked", "true");
+});
+
+describe("Switch icons", () => {
+  it("displays cross icon when OFF", () => {
+    render(<Switch ariaLabel="Toggle me" value={false} />);
+    expect(screen.getByTestId("cross")).toBeVisible();
+    expect(screen.queryByTestId("checkmark")).not.toBeInTheDocument();
+  });
+
+  it("displays checkmark icon when ON", () => {
+    render(<Switch ariaLabel="Toggle me" value={true} />);
+    expect(screen.getByTestId("checkmark")).toBeVisible();
+    expect(screen.queryByTestId("cross")).not.toBeInTheDocument();
+  });
+
+  it("toggles icon from cross to checkmark on click", async () => {
+    render(<Switch ariaLabel="Toggle me" />);
+    const element = screen.getByRole("switch");
+
+    expect(screen.getByTestId("cross")).toBeVisible();
+    expect(screen.queryByTestId("checkmark")).not.toBeInTheDocument();
+
+    await userEvent.click(element);
+    expect(screen.getByTestId("checkmark")).toBeVisible();
+    expect(screen.queryByTestId("cross")).not.toBeInTheDocument();
+
+    await userEvent.click(element);
+    expect(screen.getByTestId("cross")).toBeVisible();
+    expect(screen.queryByTestId("checkmark")).not.toBeInTheDocument();
+  });
 });
