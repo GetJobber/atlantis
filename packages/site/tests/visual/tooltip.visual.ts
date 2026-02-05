@@ -15,8 +15,8 @@ test.describe("Tooltip Visual Tests", () => {
 
   test.describe("tooltip positions", () => {
     test("top", async ({ page }) => {
-      const tooltip = await page.getByRole("button", { name: "Top" });
-      await tooltip.hover();
+      const tooltipTrigger = await page.getByRole("button", { name: "Top" });
+      await tooltipTrigger.hover();
       await expect(page.getByRole("tooltip")).toBeVisible();
       await expect(page).toHaveScreenshot("top-tooltip.png", {
         fullPage: true,
@@ -24,8 +24,8 @@ test.describe("Tooltip Visual Tests", () => {
     });
 
     test("bottom", async ({ page }) => {
-      const tooltip = await page.getByRole("button", { name: "Bottom" });
-      await tooltip.hover();
+      const tooltipTrigger = await page.getByRole("button", { name: "Bottom" });
+      await tooltipTrigger.hover();
       await expect(page.getByRole("tooltip")).toBeVisible();
       await expect(page).toHaveScreenshot("bottom-tooltip.png", {
         fullPage: true,
@@ -33,8 +33,8 @@ test.describe("Tooltip Visual Tests", () => {
     });
 
     test("right", async ({ page }) => {
-      const tooltip = await page.getByRole("button", { name: "Right" });
-      await tooltip.hover();
+      const tooltipTrigger = await page.getByRole("button", { name: "Right" });
+      await tooltipTrigger.hover();
       await expect(page.getByRole("tooltip")).toBeVisible();
       await expect(page).toHaveScreenshot("right-tooltip.png", {
         fullPage: true,
@@ -42,8 +42,8 @@ test.describe("Tooltip Visual Tests", () => {
     });
 
     test("left", async ({ page }) => {
-      const tooltip = await page.getByRole("button", { name: "Left" });
-      await tooltip.hover();
+      const tooltipTrigger = await page.getByRole("button", { name: "Left" });
+      await tooltipTrigger.hover();
       await expect(page.getByRole("tooltip")).toBeVisible();
       await expect(page).toHaveScreenshot("left-tooltip.png", {
         fullPage: true,
@@ -52,8 +52,10 @@ test.describe("Tooltip Visual Tests", () => {
   });
 
   test("large text", async ({ page }) => {
-    const tooltip = await page.getByRole("button", { name: "Long Message" });
-    await tooltip.hover();
+    const tooltipTrigger = await page.getByRole("button", {
+      name: "Long Message",
+    });
+    await tooltipTrigger.hover();
     await expect(page.getByRole("tooltip")).toBeVisible();
     await expect(page).toHaveScreenshot("large-text-tooltip.png", {
       fullPage: true,
@@ -62,14 +64,21 @@ test.describe("Tooltip Visual Tests", () => {
 
   test.describe("offscreen and within a scrollable container", () => {
     test("tooltip should not be visible", async ({ page }) => {
-      const tooltip = await page.getByRole("button", { name: "Offscreen" });
+      const tooltipTrigger = await page.getByRole("button", {
+        name: "Offscreen",
+      });
       const scrollableContainer = page.getByTestId("scrollable-container");
-      await tooltip.focus();
+
+      // Focusing the button brings the tooltip into view
+      await tooltipTrigger.focus();
+      await expect(page.getByRole("tooltip")).toBeVisible();
+
+      // Scrolling the button out of view should hide the tooltip
       await scrollableContainer.evaluate(el => {
         el.scrollTop = 0;
       });
+      await expect(page.getByRole("tooltip")).not.toBeVisible();
 
-      await expect(page.getByRole("tooltip")).toBeVisible();
       await expect(page).toHaveScreenshot("offscreen-tooltip.png", {
         fullPage: true,
       });
