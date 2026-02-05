@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.110.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.5...@jobber/components@6.110.0) (2026-02-05)
+
+
+### Features
+
+* **components:** Update Switch component design ([#2897](https://github.com/GetJobber/atlantis/issues/2897)) ([d71cc1c](https://github.com/GetJobber/atlantis/commit/d71cc1cfc32df0eb390155a2bfdeb99c0d6ab3bb))
+
+
+
+
+
 ## [6.109.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.4...@jobber/components@6.109.5) (2026-02-02)
 
 
