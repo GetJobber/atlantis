@@ -1,14 +1,18 @@
 .switch {
   --switch--width: 48px;
   --switch--pipSize: 16px;
-  --switch--labelWidth: calc(var(--switch--pipSize) * 1.3);
   --switch--borderOffset: var(--border-thick);
+  --switch-pipOnPosition: calc(
+    var(--switch--width) - var(--switch--pipSize) -
+      (var(--switch--borderOffset) * 2) - var(--space-smallest)
+  );
+  --switch-pipOffPosition: var(--space-smallest);
 }
 
 .track,
 .track * {
   box-sizing: border-box;
-  transition: all var(--timing-base);
+  transition: all var(--timing-base) ease-in-out;
 }
 
 .track {
@@ -20,7 +24,7 @@
   border-radius: var(--switch--pipSize);
   overflow: hidden;
   line-height: normal;
-  background-color: var(--color-surface);
+  background-color: var(--color-inactive--surface);
   cursor: pointer;
   appearance: none;
   align-items: center;
@@ -41,57 +45,33 @@
   background-color: var(--color-interactive);
 }
 
+.isChecked:hover {
+  border-color: var(--color-interactive--hover);
+  background-color: var(--color-interactive--hover);
+}
+
 .toggle {
-  display: flex;
-  position: relative;
-  margin-left: calc(var(--switch--width) / -2);
-  pointer-events: none;
-  flex: 1 1 100%;
-  align-items: center;
-}
-
-.isChecked .toggle {
-  margin-left: 0;
-}
-
-.label {
-  display: flex;
-  position: relative;
-  min-width: var(--switch--labelWidth);
-  margin-top: var(--space-minuscule);
-  user-select: none;
-  pointer-events: none;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-}
-
-.label:first-of-type {
-  padding-left: var(--space-small);
-}
-
-.label:last-of-type {
-  padding-right: var(--space-small);
-}
-
-.pip {
-  flex: 0 0 auto;
   width: var(--switch--pipSize);
   height: var(--switch--pipSize);
   border: none;
   border-radius: var(--radius-circle);
-  background-color: var(--color-interactive--subtle);
-  transition: all var(--timing-quick) ease-out;
+  background-color: var(--color-inactive--onSurface);
+  transform: translateX(var(--switch-pipOffPosition));
 }
 
-.isChecked .pip {
+.isChecked .toggle {
   border-color: var(--color-interactive);
   background-color: var(--color-surface);
+  transform: translateX(var(--switch-pipOnPosition));
 }
 
-.disabled .pip {
+.disabled .toggle {
   border-color: var(--color-disabled--secondary);
   background-color: var(--color-disabled);
+}
+
+.disabled.isChecked .toggle {
+  background-color: var(--color-surface);
 }
 
 .disabled {
@@ -110,4 +90,24 @@
 
 .disabled:hover {
   border-color: var(--color-disabled);
+}
+
+.icon {
+  display: flex;
+  position: absolute;
+  transform: translateX(
+    calc(
+      var(--switch-pipOffPosition) + var(--switch--pipSize) +
+        var(--space-smaller)
+    )
+  );
+}
+
+.isChecked .icon {
+  transform: translateX(
+    calc(
+      var(--switch-pipOnPosition) - var(--switch--pipSize) -
+        var(--space-smaller)
+    )
+  );
 }
