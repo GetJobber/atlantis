@@ -53,7 +53,7 @@ export function Tooltip({
     placement === "top" && styles.top,
     placement === "left" && styles.left,
     placement === "right" && styles.right,
-    isHidden && styles.hidden,
+    // isHidden && styles.hidden,
   );
 
   const arrowX = floatingStyles.arrow?.x;
@@ -81,7 +81,7 @@ export function Tooltip({
             style={floatingStyles.float}
             ref={setTooltipRef}
             role="tooltip"
-            hidden={isHidden}
+            // hidden={isHidden}
             data-placement={placement}
           >
             <motion.div
