@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.110.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.0...@jobber/components@6.110.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* **components:** Hide tooltips when out of view ([#2894](https://github.com/GetJobber/atlantis/issues/2894)) ([0299b36](https://github.com/GetJobber/atlantis/commit/0299b366eaefc8b7e00093b6259628d6869f0b07))
+
+
+
+
+
 # [6.110.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.5...@jobber/components@6.110.0) (2026-02-05)
 
 
