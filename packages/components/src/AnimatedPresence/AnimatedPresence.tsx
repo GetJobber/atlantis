@@ -1,9 +1,15 @@
 import type { PropsWithChildren } from "react";
 import React, { Children, useEffect } from "react";
+import type { tokens } from "@jobber/design";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   TIMING_BASE,
+  TIMING_LOADING,
+  TIMING_LOADING_EXTENDED,
   TIMING_QUICK,
+  TIMING_SLOW,
+  TIMING_SLOWER,
+  TIMING_SLOWEST,
   fade,
   fromBottom,
   fromLeft,
@@ -14,6 +20,16 @@ import {
   popIn,
 } from "./AnimatedPresence.transitions";
 import { usePreviousValue } from "./hooks/usePreviousValue";
+
+const timingMap = {
+  "timing-base": TIMING_BASE,
+  "timing-quick": TIMING_QUICK,
+  "timing-slow": TIMING_SLOW,
+  "timing-slower": TIMING_SLOWER,
+  "timing-slowest": TIMING_SLOWEST,
+  "timing-loading": TIMING_LOADING,
+  "timing-loading--extended": TIMING_LOADING_EXTENDED,
+};
 
 const transitions = {
   fromBottom,
@@ -26,13 +42,36 @@ const transitions = {
   fade,
 };
 
+const exitBehaviorMap: Record<ExitBehavior, "wait" | "sync" | "popLayout"> = {
+  overlap: "sync",
+  replace: "popLayout",
+  sequential: "wait",
+};
+
+type Timing = {
+  [K in keyof typeof tokens]: K extends `timing-${string}` ? K : never;
+}[keyof typeof tokens];
+
 export type AnimatedPresenceTransitions = keyof typeof transitions;
+
+type ExitBehavior = "overlap" | "replace" | "sequential";
 
 interface AnimatedPresenceProps extends Required<PropsWithChildren> {
   /**
    * The type of transition you can use.
    */
   readonly transition?: AnimatedPresenceTransitions;
+  /**
+   * The timing of the animation.
+   */
+  readonly timing?: Timing;
+
+  /**
+   * The mode of the animation.
+   *
+   * @default "popLayout"
+   */
+  readonly exitBehavior?: ExitBehavior;
 
   /**
    * Whether or not to animate the children on mount. By default it's set to false.
@@ -53,7 +92,9 @@ export function AnimatedPresence(props: AnimatedPresenceProps) {
 function InternalAnimatedPresence({
   transition = "fromTop",
   initial = false,
+  exitBehavior = "replace",
   children,
+  timing = "timing-base",
 }: AnimatedPresenceProps) {
   const transitionVariation = transitions[transition];
   const hasInitialTransition = "initial" in transitionVariation;
@@ -69,7 +110,7 @@ function InternalAnimatedPresence({
   }, [childCount]);
 
   return (
-    <AnimatePresence initial={initial} mode="popLayout">
+    <AnimatePresence initial={initial} mode={exitBehaviorMap[exitBehavior]}>
       {Children.map(
         children,
         (child, i) =>
@@ -81,7 +122,7 @@ function InternalAnimatedPresence({
               animate="visible"
               exit="hidden"
               transition={{
-                duration: TIMING_BASE,
+                duration: timingMap[timing],
                 delay: generateDelayTime(i),
               }}
             >

@@ -3,6 +3,13 @@ import type { Variants } from "framer-motion";
 
 export const TIMING_QUICK = toSeconds(tokens["timing-quick"]);
 export const TIMING_BASE = toSeconds(tokens["timing-base"]);
+export const TIMING_SLOW = toSeconds(tokens["timing-slow"]);
+export const TIMING_SLOWER = toSeconds(tokens["timing-slower"]);
+export const TIMING_SLOWEST = toSeconds(tokens["timing-slowest"]);
+export const TIMING_LOADING = toSeconds(tokens["timing-loading"]);
+export const TIMING_LOADING_EXTENDED = toSeconds(
+  tokens["timing-loading--extended"],
+);
 
 const baseTransition: Variants = {
   visible: { opacity: 1 },
