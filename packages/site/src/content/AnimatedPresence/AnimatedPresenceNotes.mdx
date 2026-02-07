@@ -1,5 +1,31 @@
 ## Configuration
 
+### Timing
+
+The default timing value for the animation is "timing-base"; however if you wish
+to speed it up or slow it down all valid timing token values are accepted via
+the `timing` prop.
+
+### Exit Behavior
+
+#### Overlay
+
+Elements animate in and out as they are added or removed.
+
+Note that this can cause visible and possibly undesirable shifts in the layout
+eg. double height because both elements will be present as one animates out and
+the other animates in.
+
+#### Replace
+
+The exiting element is immediately removed, allowing sibling elements to occupy
+the new layout.
+
+#### Sequential
+
+One component is rendered at a time. The entering component will wait for the
+exiting component to animate out.
+
 ### Conditional rendering
 
 Hide and show elements with a transition to add emphasis on the change. This is
