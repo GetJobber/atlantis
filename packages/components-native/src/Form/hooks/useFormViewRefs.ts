@@ -1,19 +1,19 @@
 import type { RefObject } from "react";
 import { useCallback, useRef } from "react";
 import type { View } from "react-native";
-import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import type { KeyboardAwareScrollViewRef } from "react-native-keyboard-controller";
 
 interface UseFormViewRefsReturn {
-  readonly scrollViewRef: RefObject<KeyboardAwareScrollView | null>;
+  readonly scrollViewRef: RefObject<KeyboardAwareScrollViewRef | null>;
   readonly bottomViewRef: RefObject<View | null>;
   readonly scrollToTop: () => void;
 }
 
 export function useFormViewRefs(): UseFormViewRefsReturn {
-  const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
+  const scrollViewRef = useRef<KeyboardAwareScrollViewRef>(null);
   const bottomViewRef = useRef<View>(null);
   const scrollToTop = useCallback(() => {
-    scrollViewRef.current?.scrollToPosition(0, 0);
+    scrollViewRef.current?.scrollTo({ x: 0, y: 0, animated: true });
   }, [scrollViewRef]);
 
   return {
