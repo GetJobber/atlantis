@@ -77,6 +77,11 @@ interface AnimatedPresenceProps extends Required<PropsWithChildren> {
    * Whether or not to animate the children on mount. By default it's set to false.
    */
   readonly initial?: boolean;
+
+  /**
+   * Callback called when all exiting elements have completed their animation.
+   */
+  readonly onExitComplete?: () => void;
 }
 
 export function AnimatedPresence(props: AnimatedPresenceProps) {
@@ -95,6 +100,7 @@ function InternalAnimatedPresence({
   exitBehavior = "replace",
   children,
   timing = "timing-base",
+  onExitComplete,
 }: AnimatedPresenceProps) {
   const transitionVariation = transitions[transition];
   const hasInitialTransition = "initial" in transitionVariation;
@@ -110,7 +116,11 @@ function InternalAnimatedPresence({
   }, [childCount]);
 
   return (
-    <AnimatePresence initial={initial} mode={exitBehaviorMap[exitBehavior]}>
+    <AnimatePresence
+      initial={initial}
+      mode={exitBehaviorMap[exitBehavior]}
+      onExitComplete={onExitComplete}
+    >
       {Children.map(
         children,
         (child, i) =>

@@ -59,6 +59,19 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "onExitComplete": {
+        "defaultValue": null,
+        "description": "Callback called when all exiting elements have completed their animation.",
+        "name": "onExitComplete",
+        "parent": {
+          "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
+          "name": "AnimatedPresenceProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
       }
     }
   }
