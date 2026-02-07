@@ -19,6 +19,34 @@
           "name": "\"fromBottom\" | \"fromTop\" | \"fromLeft\" | \"fromRight\" | \"popIn\" | \"fromLeftToRight\" | \"fromRightToLeft\" | \"fade\""
         }
       },
+      "timing": {
+        "defaultValue": null,
+        "description": "The timing of the animation.",
+        "name": "timing",
+        "parent": {
+          "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
+          "name": "AnimatedPresenceProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Timing"
+        }
+      },
+      "exitBehavior": {
+        "defaultValue": {
+          "value": "\"popLayout\""
+        },
+        "description": "The mode of the animation.",
+        "name": "exitBehavior",
+        "parent": {
+          "fileName": "../components/src/AnimatedPresence/AnimatedPresence.tsx",
+          "name": "AnimatedPresenceProps"
+        },
+        "required": false,
+        "type": {
+          "name": "ExitBehavior"
+        }
+      },
       "initial": {
         "defaultValue": null,
         "description": "Whether or not to animate the children on mount. By default it's set to false.",
