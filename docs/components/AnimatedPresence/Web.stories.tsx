@@ -196,3 +196,149 @@ Stepper.parameters = {
     },
   },
 };
+
+const ExitBehaviorTemplate: ComponentStory<typeof AnimatedPresence> = () => {
+  const [activeTab, setActiveTab] = useState<"red" | "green" | "blue">("red");
+
+  const tabs = [
+    { id: "red" as const, label: "Red", color: "#fee2e2" },
+    { id: "green" as const, label: "Green", color: "#dcfce7" },
+    { id: "blue" as const, label: "Blue", color: "#dbeafe" },
+  ];
+
+  const tabContent = {
+    red: (
+      <div
+        key="red"
+        style={{
+          backgroundColor: "#fee2e2",
+          padding: 24,
+          borderRadius: 8,
+          minHeight: 150,
+        }}
+      >
+        <Heading level={3}>Red Panel</Heading>
+        <Text>
+          This is the red content panel with some text to give it height.
+        </Text>
+      </div>
+    ),
+    green: (
+      <div
+        key="green"
+        style={{
+          backgroundColor: "#dcfce7",
+          padding: 24,
+          borderRadius: 8,
+          minHeight: 200,
+        }}
+      >
+        <Heading level={3}>Green Panel</Heading>
+        <Text>
+          This is the green content panel. It&apos;s intentionally taller to
+          show how different exit behaviors handle height changes during
+          transitions.
+        </Text>
+        <Text>Extra line for more height.</Text>
+      </div>
+    ),
+    blue: (
+      <div
+        key="blue"
+        style={{
+          backgroundColor: "#dbeafe",
+          padding: 24,
+          borderRadius: 8,
+          minHeight: 120,
+        }}
+      >
+        <Heading level={3}>Blue Panel</Heading>
+        <Text>This is the blue content panel. It&apos;s the shortest one.</Text>
+      </div>
+    ),
+  };
+
+  return (
+    <Content>
+      <Text>
+        Compare how the three exit behaviors handle the same tab switch. Watch
+        for layout shifts, overlap, and timing differences.
+      </Text>
+
+      <Flex template={["shrink", "shrink", "shrink"]} gap="small">
+        {tabs.map(tab => (
+          <Button
+            key={tab.id}
+            label={tab.label}
+            type={activeTab === tab.id ? "primary" : "secondary"}
+            onClick={() => setActiveTab(tab.id)}
+          />
+        ))}
+      </Flex>
+
+      <Divider size="large" />
+
+      <Flex template={["grow", "grow", "grow"]} align="start" gap="base">
+        <Content>
+          <Heading level={4}>overlap</Heading>
+          <Text size="small" variation="subdued">
+            Both visible during transition, both in layout flow
+          </Text>
+          <div style={{ position: "relative", minHeight: 200 }}>
+            <AnimatedPresence
+              timing="timing-slowest"
+              transition="fromBottom"
+              exitBehavior="overlap"
+              initial={false}
+            >
+              {tabContent[activeTab]}
+            </AnimatedPresence>
+          </div>
+        </Content>
+
+        <Content>
+          <Heading level={4}>replace</Heading>
+          <Text size="small" variation="subdued">
+            Exit removed from flow, enter takes its place immediately
+          </Text>
+          <div style={{ position: "relative", minHeight: 200 }}>
+            <AnimatedPresence
+              timing="timing-slowest"
+              transition="fromBottom"
+              exitBehavior="replace"
+              initial={false}
+            >
+              {tabContent[activeTab]}
+            </AnimatedPresence>
+          </div>
+        </Content>
+
+        <Content>
+          <Heading level={4}>sequential</Heading>
+          <Text size="small" variation="subdued">
+            Exit completes before enter begins
+          </Text>
+          <div style={{ position: "relative", minHeight: 200 }}>
+            <AnimatedPresence
+              timing="timing-slowest"
+              transition="fromBottom"
+              exitBehavior="sequential"
+              initial={false}
+            >
+              {tabContent[activeTab]}
+            </AnimatedPresence>
+          </div>
+        </Content>
+      </Flex>
+    </Content>
+  );
+};
+
+export const ExitBehavior = ExitBehaviorTemplate.bind({});
+ExitBehavior.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+    },
+  },
+};
