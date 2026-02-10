@@ -45,13 +45,17 @@
   --avatar-initials-size: 9px;
 }
 
+/* isDark is dynamic and applies only when background is dark */
+.isDark {
+  color: var(--color-base-white);
+}
+
 .initials {
   color: var(--color-text);
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--avatar-initials-size);
   text-transform: uppercase;
 }
-
 .smallInitials {
   font-size: calc(var(--avatar-initials-size) * 0.83);
 }
