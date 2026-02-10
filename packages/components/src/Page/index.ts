@@ -1,2 +1,7 @@
 export { Page } from "./Page";
-export type { ButtonActionProps, PageProps } from "./types";
+export type {
+  ButtonActionProps,
+  PageLegacyProps,
+  PageComposableProps,
+  PageProps,
+} from "./types";

@@ -1,11 +1,12 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { StatusLabel } from "@jobber/components/StatusLabel";
-import { Page } from ".";
+import { type ButtonActionProps, Page } from ".";
 import { getActionProps } from "./Page";
-import type { ButtonActionProps } from "./Page";
 import type { SectionProps } from "../Menu";
 import { Heading } from "../Heading";
+import { Menu } from "../Menu";
 
 describe("Page", () => {
   it("renders Page", () => {
@@ -249,5 +250,175 @@ describe("when title is a React node", () => {
     );
 
     expect(screen.queryByText("Success")).not.toBeInTheDocument();
+  });
+});
+
+describe("Composable Page", () => {
+  it("renders a page with title and body content", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Composable Title</Page.Title>
+        </Page.Header>
+        <Page.Body>Body content</Page.Body>
+      </Page>,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Composable Title", level: 1 }),
+    ).toBeVisible();
+    expect(screen.getByText("Body content")).toBeVisible();
+  });
+
+  it("renders title with metadata alongside", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title
+            metadata={<StatusLabel label="Active" status="success" />}
+          >
+            Title With Badge
+          </Page.Title>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Title With Badge", level: 1 }),
+    ).toBeVisible();
+    expect(screen.getByText("Active")).toBeVisible();
+  });
+
+  it("renders subtitle with default markdown styling", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Title</Page.Title>
+          <Page.Subtitle>A **bold** subtitle</Page.Subtitle>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText(/bold/)).toBeVisible();
+  });
+
+  it("renders primary and secondary actions with defaults", async () => {
+    const handlePrimary = jest.fn();
+    const handleSecondary = jest.fn();
+
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Actions</Page.Title>
+          <Page.Actions>
+            <Page.PrimaryAction label="Create" onClick={handlePrimary} />
+            <Page.SecondaryAction label="Cancel" onClick={handleSecondary} />
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("Create")).toBeVisible();
+    expect(screen.getByText("Cancel")).toBeVisible();
+
+    await userEvent.click(screen.getByText("Create"));
+    expect(handlePrimary).toHaveBeenCalledTimes(1);
+
+    await userEvent.click(screen.getByText("Cancel"));
+    expect(handleSecondary).toHaveBeenCalledTimes(1);
+  });
+
+  it("allows custom children as a slot in PrimaryAction", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Slot Test</Page.Title>
+          <Page.Actions>
+            <Page.PrimaryAction>
+              <button type="button">My Custom Button</button>
+            </Page.PrimaryAction>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("My Custom Button")).toBeVisible();
+  });
+
+  it("renders Page.Menu with default trigger", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Menu Test</Page.Title>
+          <Page.Actions>
+            <Page.Menu>
+              <Menu.Item textValue="Export" onClick={jest.fn()}>
+                <Menu.ItemLabel>Export</Menu.ItemLabel>
+              </Menu.Item>
+            </Page.Menu>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("More Actions")).toBeVisible();
+  });
+
+  it("renders Page.Menu with custom trigger label", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Menu Test</Page.Title>
+          <Page.Actions>
+            <Page.Menu triggerLabel="Options">
+              <Menu.Item textValue="Settings" onClick={jest.fn()}>
+                <Menu.ItemLabel>Settings</Menu.ItemLabel>
+              </Menu.Item>
+            </Page.Menu>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("Options")).toBeVisible();
+  });
+
+  it("renders a complete page with all composable pieces", () => {
+    render(
+      <Page width="fill">
+        <Page.Header>
+          <Page.Title metadata={<StatusLabel label="Draft" status="warning" />}>
+            Full Example
+          </Page.Title>
+          <Page.Subtitle>A subtitle here</Page.Subtitle>
+          <Page.Actions>
+            <Page.PrimaryAction label="Create" onClick={jest.fn()} />
+            <Page.SecondaryAction label="Export" onClick={jest.fn()} />
+            <Page.Menu>
+              <Menu.Item textValue="Import" onClick={jest.fn()}>
+                <Menu.ItemLabel>Import</Menu.ItemLabel>
+              </Menu.Item>
+            </Page.Menu>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Main content</Page.Body>
+      </Page>,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Full Example", level: 1 }),
+    ).toBeVisible();
+    expect(screen.getByText("Draft")).toBeVisible();
+    expect(screen.getByText("A subtitle here")).toBeVisible();
+    expect(screen.getByText("Create")).toBeVisible();
+    expect(screen.getByText("Export")).toBeVisible();
+    expect(screen.getByText("More Actions")).toBeVisible();
+    expect(screen.getByText("Main content")).toBeVisible();
   });
 });

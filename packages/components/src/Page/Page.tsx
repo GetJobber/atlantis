@@ -1,8 +1,13 @@
-import type { ReactNode, RefObject } from "react";
-import React from "react";
+import type { ReactElement, ReactNode, RefObject } from "react";
+import React, { Children, isValidElement } from "react";
 import classnames from "classnames";
 import styles from "./Page.module.css";
-import type { ButtonActionProps, PageProps } from "./types";
+import type {
+  ButtonActionProps,
+  PageComposableProps,
+  PageLegacyProps,
+  PageProps,
+} from "./types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
@@ -14,224 +19,190 @@ import { Container } from "../Container";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 import type { CommonAtlantisProps } from "../sharedHelpers/types";
 
-export function Page({
+/** Discriminates between the props-based API and the composable children API. */
+function isLegacy(props: PageProps): props is PageLegacyProps {
+  return "title" in props;
+}
+
+export function Page(props: PageLegacyProps): ReactElement;
+export function Page(props: PageComposableProps): ReactElement;
+
+export function Page(props: PageProps): ReactElement {
+  const pageStyles = classnames(styles.page, styles[props.width ?? "standard"]);
+
+  if (isLegacy(props)) {
+    return <PageLegacy {...props} pageStyles={pageStyles} />;
+  }
+
+  return (
+    <div className={pageStyles}>
+      <Content>{props.children}</Content>
+    </div>
+  );
+}
+
+/** Props-based renderer. Preserves the original Page behavior for existing consumers. */
+function PageLegacy({
   title,
   titleMetaData,
   intro,
   externalIntroLinks,
   subtitle,
   children,
-  width = "standard",
   primaryAction,
   secondaryAction,
   moreActionsMenu = [],
-  ...rest
-}: PageProps) {
-  const dataAttrs = filterDataAttributes(rest);
-  const { pageStyles, showActionGroup, showMenu } = usePage({
-    width,
-    moreActionsMenu,
-    primaryAction,
-    secondaryAction,
-  });
-
-  return (
-    <Page.Wrapper pageStyles={pageStyles} {...dataAttrs}>
-      <Page.Header>
-        <Page.TitleBar>
-          <Page.TitleMeta
-            title={title}
-            titleMetaData={titleMetaData}
-            subtitle={subtitle}
-          />
-          <Page.ActionGroup visible={!!showActionGroup}>
-            <Page.PrimaryAction
-              ref={primaryAction?.ref}
-              visible={!!primaryAction}
-            >
-              <Button {...getActionProps(primaryAction)} fullWidth />
-            </Page.PrimaryAction>
-            <Page.ActionButton
-              ref={secondaryAction?.ref}
-              visible={!!secondaryAction}
-            >
-              <Button
-                {...getActionProps(secondaryAction)}
-                fullWidth
-                type="secondary"
-              />
-            </Page.ActionButton>
-            <Page.ActionButton visible={!!showMenu}>
-              <Menu items={moreActionsMenu}></Menu>
-            </Page.ActionButton>
-          </Page.ActionGroup>
-        </Page.TitleBar>
-        <PageIntro externalIntroLinks={externalIntroLinks}>{intro}</PageIntro>
-      </Page.Header>
-      <Content>{children}</Content>
-    </Page.Wrapper>
-  );
-}
-
-function PageWrapper({
-  children,
   pageStyles,
   ...rest
-}: {
-  readonly children: ReactNode;
-  readonly pageStyles: string;
-}) {
+}: PageLegacyProps & { readonly pageStyles: string }) {
   const dataAttrs = filterDataAttributes(rest);
+  const showMenu = moreActionsMenu.length > 0;
+  const showActionGroup = showMenu || primaryAction || secondaryAction;
 
   return (
     <div className={pageStyles} {...dataAttrs}>
-      <Content>{children}</Content>
+      <Content>
+        <Content>
+          <Container name="page-titlebar" autoWidth>
+            <Container.Apply autoWidth>
+              <div className={styles.titleBar}>
+                <div>
+                  {typeof title === "string" && titleMetaData ? (
+                    <div className={styles.titleRow}>
+                      <Heading level={1}>{title}</Heading>
+                      {titleMetaData}
+                    </div>
+                  ) : typeof title === "string" ? (
+                    <Heading level={1}>{title}</Heading>
+                  ) : (
+                    title
+                  )}
+                  {subtitle && (
+                    <div className={styles.subtitle}>
+                      <Text size="large" variation="subdued">
+                        <Emphasis variation="bold">
+                          <Markdown content={subtitle} basicUsage={true} />
+                        </Emphasis>
+                      </Text>
+                    </div>
+                  )}
+                </div>
+                {showActionGroup && (
+                  <div className={styles.actionGroup}>
+                    {primaryAction && (
+                      <div
+                        className={styles.primaryAction}
+                        ref={primaryAction.ref}
+                      >
+                        <Button
+                          {...getActionProps(primaryAction)}
+                          fullWidth={true}
+                        />
+                      </div>
+                    )}
+                    {secondaryAction && (
+                      <div
+                        className={styles.actionButton}
+                        ref={secondaryAction.ref}
+                      >
+                        <Button
+                          {...getActionProps(secondaryAction)}
+                          fullWidth={true}
+                          type="secondary"
+                        />
+                      </div>
+                    )}
+                    {showMenu && (
+                      <div className={styles.actionButton}>
+                        <Menu items={moreActionsMenu}></Menu>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </Container.Apply>
+          </Container>
+          {intro && (
+            <Text size="large">
+              <Markdown
+                content={intro}
+                basicUsage={true}
+                externalLink={externalIntroLinks}
+              />
+            </Text>
+          )}
+        </Content>
+        <Content>{children}</Content>
+      </Content>
     </div>
   );
 }
 
-function PageIntro({
-  children,
-  externalIntroLinks,
-}: {
-  readonly children?: string;
-  readonly externalIntroLinks?: boolean;
-}) {
-  return (
-    children && (
-      <Text size="large">
-        <Markdown
-          content={children}
-          basicUsage={true}
-          externalLink={externalIntroLinks}
-        />
-      </Text>
-    )
-  );
-}
-
-function PageHeader({ children }: { readonly children: ReactNode }) {
-  return <Content>{children}</Content>;
-}
-
-function PageTitleBar({ children, ...rest }: { readonly children: ReactNode }) {
+/** Groups title, subtitle, and actions. Separates Page.Actions for layout positioning. */
+function PageHeader({ children, ...rest }: { readonly children: ReactNode }) {
   const dataAttrs = filterDataAttributes(rest);
+  let actionsElement: ReactNode = null;
+  const otherChildren: ReactNode[] = [];
+
+  Children.forEach(children, child => {
+    if (isValidElement(child) && child.type === PageActions) {
+      actionsElement = child;
+    } else {
+      otherChildren.push(child);
+    }
+  });
 
   return (
-    <Container
-      name="page-titlebar"
-      autoWidth
-      dataAttributes={dataAttrs as CommonAtlantisProps["dataAttributes"]}
-    >
-      <Container.Apply autoWidth>
-        <div className={styles.titleBar}>{children}</div>
-      </Container.Apply>
-    </Container>
+    <Content>
+      <Container
+        name="page-titlebar"
+        autoWidth
+        dataAttributes={dataAttrs as CommonAtlantisProps["dataAttributes"]}
+      >
+        <Container.Apply autoWidth>
+          <div className={styles.titleBar}>
+            <div>{otherChildren}</div>
+            {actionsElement}
+          </div>
+        </Container.Apply>
+      </Container>
+    </Content>
   );
 }
 
-function PageActionButton({
+/** Renders the page heading (H1). Accepts optional `metadata` displayed alongside (e.g. status badges). */
+function PageTitle({
   children,
-  ref,
-  visible,
+  metadata,
   ...rest
 }: {
   readonly children: ReactNode;
-  readonly ref?: RefObject<HTMLDivElement | null>;
-  readonly visible: boolean;
+  readonly metadata?: ReactNode;
 }) {
   const dataAttrs = filterDataAttributes(rest);
 
-  return visible ? (
-    <div className={styles.actionButton} ref={ref} {...dataAttrs}>
-      {children}
-    </div>
-  ) : null;
-}
-
-function PagePrimaryAction({
-  children,
-  ref,
-  visible,
-  ...rest
-}: {
-  readonly children: ReactNode;
-  readonly ref?: RefObject<HTMLDivElement | null>;
-  readonly visible: boolean;
-}) {
-  const dataAttrs = filterDataAttributes(rest);
-
-  return visible ? (
-    <div className={styles.primaryAction} ref={ref} {...dataAttrs}>
-      {children}
-    </div>
-  ) : null;
-}
-
-function PageActionGroup({
-  children,
-  visible,
-  ...rest
-}: {
-  readonly children: ReactNode;
-  readonly visible: boolean;
-}) {
-  const dataAttrs = filterDataAttributes(rest);
-
-  return visible ? (
-    <div className={styles.actionGroup} {...dataAttrs}>
-      {children}
-    </div>
-  ) : null;
-}
-
-function PageTitleMeta({
-  title,
-  titleMetaData,
-  subtitle,
-  elem,
-  ...rest
-}: {
-  readonly title: ReactNode;
-  readonly titleMetaData: ReactNode;
-  readonly subtitle?: string;
-  readonly elem?: React.ElementType;
-}) {
-  const dataAttrs = filterDataAttributes(rest);
-  const Tag = elem ?? "div";
+  if (metadata) {
+    return (
+      <div className={styles.titleRow} {...dataAttrs}>
+        <Heading level={1}>{children}</Heading>
+        {metadata}
+      </div>
+    );
+  }
 
   return (
-    <Tag {...dataAttrs}>
-      {typeof title === "string" && titleMetaData ? (
-        <PageTitleRow>
-          <Heading level={1}>{title}</Heading>
-          {titleMetaData}
-        </PageTitleRow>
-      ) : typeof title === "string" ? (
-        <Heading level={1}>{title}</Heading>
-      ) : (
-        title
-      )}
-      <PageSubtitle>{subtitle}</PageSubtitle>
-    </Tag>
-  );
-}
-
-function PageTitleRow({ children, ...rest }: { readonly children: ReactNode }) {
-  const dataAttrs = filterDataAttributes(rest);
-
-  return (
-    <div className={styles.titleRow} {...dataAttrs}>
-      {children}
+    <div {...dataAttrs}>
+      <Heading level={1}>{children}</Heading>
     </div>
   );
 }
 
-function PageSubtitle({ children, ...rest }: { readonly children?: string }) {
+/** Secondary text below the title. Strings get default Text/Emphasis/Markdown treatment; ReactNodes render as-is. */
+function PageSubtitle({ children, ...rest }: { readonly children: ReactNode }) {
   const dataAttrs = filterDataAttributes(rest);
 
-  return (
-    children && (
+  if (typeof children === "string") {
+    return (
       <div className={styles.subtitle} {...dataAttrs}>
         <Text size="large" variation="subdued">
           <Emphasis variation="bold">
@@ -239,8 +210,161 @@ function PageSubtitle({ children, ...rest }: { readonly children?: string }) {
           </Emphasis>
         </Text>
       </div>
-    )
+    );
+  }
+
+  return (
+    <div className={styles.subtitle} {...dataAttrs}>
+      {children}
+    </div>
   );
+}
+
+/** Introduction text between the header and body. Strings get Text/Markdown treatment; ReactNodes render as-is. */
+function PageIntro({
+  children,
+  externalLinks = false,
+}: {
+  readonly children: ReactNode;
+  readonly externalLinks?: boolean;
+}) {
+  if (typeof children === "string") {
+    return (
+      <Text size="large">
+        <Markdown
+          content={children}
+          basicUsage={true}
+          externalLink={externalLinks}
+        />
+      </Text>
+    );
+  }
+
+  return <>{children}</>;
+}
+
+/** Container for action buttons and menu. Applies responsive actionGroup layout. */
+function PageActions({ children, ...rest }: { readonly children: ReactNode }) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.actionGroup} {...dataAttrs}>
+      {children}
+    </div>
+  );
+}
+
+/** Primary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element. */
+function PagePrimaryAction({
+  children,
+  ref,
+  label,
+  onClick,
+  icon,
+  disabled,
+  loading,
+  ariaLabel,
+  ...rest
+}: {
+  readonly children?: ReactNode;
+  readonly ref?: RefObject<HTMLDivElement | null>;
+  readonly label?: string;
+  readonly onClick?: () => void;
+  readonly icon?: ButtonProps["icon"];
+  readonly disabled?: boolean;
+  readonly loading?: boolean;
+  readonly ariaLabel?: string;
+}) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.primaryAction} ref={ref} {...dataAttrs}>
+      {children ?? (
+        <Button
+          label={label ?? ""}
+          onClick={onClick}
+          icon={icon}
+          disabled={disabled}
+          loading={loading}
+          ariaLabel={ariaLabel}
+          fullWidth={true}
+        />
+      )}
+    </div>
+  );
+}
+
+/** Secondary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element. */
+function PageSecondaryAction({
+  children,
+  ref,
+  label,
+  onClick,
+  icon,
+  disabled,
+  loading,
+  ariaLabel,
+  ...rest
+}: {
+  readonly children?: ReactNode;
+  readonly ref?: RefObject<HTMLDivElement | null>;
+  readonly label?: string;
+  readonly onClick?: () => void;
+  readonly icon?: ButtonProps["icon"];
+  readonly disabled?: boolean;
+  readonly loading?: boolean;
+  readonly ariaLabel?: string;
+}) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.actionButton} ref={ref} {...dataAttrs}>
+      {children ?? (
+        <Button
+          label={label ?? ""}
+          onClick={onClick}
+          icon={icon}
+          disabled={disabled}
+          loading={loading}
+          ariaLabel={ariaLabel}
+          fullWidth={true}
+          type="secondary"
+        />
+      )}
+    </div>
+  );
+}
+
+/**
+ * "More Actions" menu with a default trigger button.
+ * Consumers supply Menu.Item children (in case custom routing is needed,
+ * e.g. wrapping Menu.Item with createLink() from TanStack Router).
+ */
+function PageMenu({
+  children,
+  triggerLabel = "More Actions",
+  ...rest
+}: {
+  readonly children: ReactNode;
+  readonly triggerLabel?: string;
+}) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.actionButton} {...dataAttrs}>
+      <Menu>
+        <Menu.Trigger>
+          <Button icon="more" label={triggerLabel} type="secondary" />
+        </Menu.Trigger>
+        <Menu.Content>{children}</Menu.Content>
+      </Menu>
+    </div>
+  );
+}
+
+/** Main content area of the page. */
+function PageBody({ children }: { readonly children: ReactNode }) {
+  return <Content>{children}</Content>;
 }
 
 export const getActionProps = (
@@ -254,30 +378,12 @@ export const getActionProps = (
   return buttonProps;
 };
 
-function usePage({
-  width,
-  moreActionsMenu,
-  primaryAction,
-  secondaryAction,
-}: Pick<
-  PageProps,
-  "width" | "moreActionsMenu" | "primaryAction" | "secondaryAction"
->) {
-  const pageStyles = classnames(styles.page, styles[width ?? "standard"]);
-
-  const showMenu = moreActionsMenu?.length ?? 0 > 0;
-  const showActionGroup = showMenu || primaryAction || secondaryAction;
-
-  return { pageStyles, showActionGroup, showMenu };
-}
-
-Page.ActionButton = PageActionButton;
-Page.PrimaryAction = PagePrimaryAction;
-Page.ActionGroup = PageActionGroup;
-Page.TitleMeta = PageTitleMeta;
-Page.TitleRow = PageTitleRow;
+Page.Header = PageHeader;
+Page.Title = PageTitle;
 Page.Subtitle = PageSubtitle;
 Page.Intro = PageIntro;
-Page.Header = PageHeader;
-Page.TitleBar = PageTitleBar;
-Page.Wrapper = PageWrapper;
+Page.Actions = PageActions;
+Page.PrimaryAction = PagePrimaryAction;
+Page.SecondaryAction = PageSecondaryAction;
+Page.Menu = PageMenu;
+Page.Body = PageBody;

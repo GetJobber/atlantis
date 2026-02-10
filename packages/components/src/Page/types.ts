@@ -1,4 +1,3 @@
-import type { XOR } from "ts-xor";
 import type { ReactNode } from "react";
 import { type ButtonProps } from "../Button";
 import { type SectionProps } from "../Menu";
@@ -7,7 +6,7 @@ export type ButtonActionProps = ButtonProps & {
   ref?: React.RefObject<HTMLDivElement | null>;
 };
 
-interface PageFoundationProps {
+interface PageBaseProps {
   readonly children: ReactNode | ReactNode[];
 
   /**
@@ -61,7 +60,7 @@ interface PageFoundationProps {
   readonly moreActionsMenu?: SectionProps[];
 }
 
-interface PageWithIntroProps extends PageFoundationProps {
+interface PageWithIntroProps extends PageBaseProps {
   /**
    * Content of the page. This supports basic markdown node types
    * such as `_italic_`, `**bold**`, and `[link name](url)`.
@@ -79,4 +78,16 @@ interface PageWithIntroProps extends PageFoundationProps {
   readonly externalIntroLinks?: boolean;
 }
 
-export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
+interface PageWithoutIntroProps extends PageBaseProps {
+  readonly intro?: never;
+  readonly externalIntroLinks?: never;
+}
+
+export type PageLegacyProps = PageWithIntroProps | PageWithoutIntroProps;
+
+export interface PageComposableProps {
+  readonly children: ReactNode;
+  readonly width?: "fill" | "standard" | "narrow";
+}
+
+export type PageProps = PageLegacyProps | PageComposableProps;
