@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.110.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.1...@jobber/components@6.110.2) (2026-02-10)
+
+
+### Bug Fixes
+
+* **components:** Fix Switch icon position ([#2905](https://github.com/GetJobber/atlantis/issues/2905)) ([54c4c66](https://github.com/GetJobber/atlantis/commit/54c4c66ebdbdd12250e2ec2607fc4ce634713ab8))
+
+
+
+
+
 ## [6.110.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.0...@jobber/components@6.110.1) (2026-02-06)
 
 
