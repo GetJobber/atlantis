@@ -38,7 +38,7 @@
         "name": "title",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageFoundationProps"
+          "name": "PageBaseProps"
         },
         "required": true,
         "type": {
@@ -51,7 +51,7 @@
         "name": "titleMetaData",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageFoundationProps"
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -64,7 +64,7 @@
         "name": "subtitle",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageFoundationProps"
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -79,7 +79,7 @@
         "name": "width",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageFoundationProps"
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -92,7 +92,7 @@
         "name": "primaryAction",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageFoundationProps"
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -105,7 +105,7 @@
         "name": "secondaryAction",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageFoundationProps"
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -113,14 +113,12 @@
         }
       },
       "moreActionsMenu": {
-        "defaultValue": {
-          "value": "[]"
-        },
+        "defaultValue": null,
         "description": "Page title Action menu.",
         "name": "moreActionsMenu",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageFoundationProps"
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -132,24 +130,51 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.ActionButton",
+    "description": "Groups title, subtitle, and actions. Separates Page.Actions for layout positioning.",
+    "displayName": "Page.Header",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Renders the page heading (H1). Accepts optional `metadata` displayed alongside (e.g. status badges).",
+    "displayName": "Page.Title",
     "methods": [],
     "props": {
-      "ref": {
+      "metadata": {
         "defaultValue": null,
         "description": "",
-        "name": "ref",
+        "name": "metadata",
         "required": false,
         "type": {
-          "name": "RefObject<HTMLDivElement>"
+          "name": "ReactNode"
         }
-      },
-      "visible": {
-        "defaultValue": null,
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Secondary text below the title. Strings get default Text/Emphasis/Markdown treatment; ReactNodes render as-is.",
+    "displayName": "Page.Subtitle",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Introduction text between the header and body. Strings get Text/Markdown treatment; ReactNodes render as-is.",
+    "displayName": "Page.Intro",
+    "methods": [],
+    "props": {
+      "externalLinks": {
+        "defaultValue": {
+          "value": false
+        },
         "description": "",
-        "name": "visible",
-        "required": true,
+        "name": "externalLinks",
+        "required": false,
         "type": {
           "name": "boolean"
         }
@@ -159,7 +184,15 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
+    "description": "Container for action buttons and menu. Applies responsive actionGroup layout.",
+    "displayName": "Page.Actions",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Primary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element.",
     "displayName": "Page.PrimaryAction",
     "methods": [],
     "props": {
@@ -172,146 +205,160 @@
           "name": "RefObject<HTMLDivElement>"
         }
       },
-      "visible": {
+      "label": {
         "defaultValue": null,
         "description": "",
-        "name": "visible",
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.ActionGroup",
-    "methods": [],
-    "props": {
-      "visible": {
-        "defaultValue": null,
-        "description": "",
-        "name": "visible",
-        "required": true,
-        "type": {
-          "name": "boolean"
-        }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.TitleMeta",
-    "methods": [],
-    "props": {
-      "title": {
-        "defaultValue": null,
-        "description": "",
-        "name": "title",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "titleMetaData": {
-        "defaultValue": null,
-        "description": "",
-        "name": "titleMetaData",
-        "required": true,
-        "type": {
-          "name": "ReactNode"
-        }
-      },
-      "subtitle": {
-        "defaultValue": null,
-        "description": "",
-        "name": "subtitle",
+        "name": "label",
         "required": false,
         "type": {
           "name": "string"
         }
       },
-      "elem": {
+      "onClick": {
         "defaultValue": null,
         "description": "",
-        "name": "elem",
+        "name": "onClick",
         "required": false,
         "type": {
-          "name": "ElementType<any, keyof IntrinsicElements>"
+          "name": "() => void"
         }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.TitleRow",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.Subtitle",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.Intro",
-    "methods": [],
-    "props": {
-      "externalIntroLinks": {
+      },
+      "icon": {
         "defaultValue": null,
         "description": "",
-        "name": "externalIntroLinks",
+        "name": "icon",
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
         "required": false,
         "type": {
           "name": "boolean"
         }
-      }
-    }
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.Header",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.TitleBar",
-    "methods": [],
-    "props": {}
-  },
-  {
-    "tags": {},
-    "filePath": "../components/src/Page/Page.tsx",
-    "description": "",
-    "displayName": "Page.Wrapper",
-    "methods": [],
-    "props": {
-      "pageStyles": {
+      },
+      "loading": {
         "defaultValue": null,
         "description": "",
-        "name": "pageStyles",
-        "required": true,
+        "name": "loading",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "required": false,
         "type": {
           "name": "string"
         }
       }
     }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Secondary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element.",
+    "displayName": "Page.SecondaryAction",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "\"More Actions\" menu with a default trigger button.\nConsumers supply Menu.Item children (in case custom routing is needed,\ne.g. wrapping Menu.Item with createLink() from TanStack Router).",
+    "displayName": "Page.Menu",
+    "methods": [],
+    "props": {
+      "triggerLabel": {
+        "defaultValue": {
+          "value": "More Actions"
+        },
+        "description": "",
+        "name": "triggerLabel",
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Main content area of the page.",
+    "displayName": "Page.Body",
+    "methods": [],
+    "props": {}
   }
 ]
