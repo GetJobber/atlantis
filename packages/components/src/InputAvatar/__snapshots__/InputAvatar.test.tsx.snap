@@ -9,7 +9,7 @@ exports[`renders 1`] = `
       class="preview"
     >
       <div
-        class="avatar large isDark"
+        class="avatar large"
       >
         <svg
           data-testid="person"
@@ -61,7 +61,7 @@ exports[`renders with a provided image 1`] = `
       class="preview"
     >
       <div
-        class="avatar large isDark"
+        class="avatar large"
         role="img"
         style="background-image: url(https://api.adorable.io/avatars/150/jobbler);"
       />

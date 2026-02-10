@@ -85,7 +85,6 @@ export function Avatar({
   const shouldBeDark = color == undefined || isDark(color);
   const className = classnames(styles.avatar, size !== "base" && styles[size], {
     [styles.hasBorder]: imageUrl && color,
-    [styles.isDark]: shouldBeDark,
   });
 
   const containerClassNames = classnames(

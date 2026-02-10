@@ -34,11 +34,6 @@ it("displays an icon if no image and no initials are set", () => {
   expect(container).toMatchSnapshot();
 });
 
-it("Renders light text color if `color` is dark", () => {
-  const { container } = render(<Avatar initials="JB" color="black" />);
-  expect(container.firstChild).toHaveClass("isDark");
-});
-
 describe("UNSAFE props", () => {
   describe("UNSAFE_className", () => {
     it("applies to Avatar container", () => {
