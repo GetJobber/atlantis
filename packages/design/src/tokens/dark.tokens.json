@@ -35,6 +35,16 @@
                 "hover": {
                     "$value": "{color.base.blue-.100}",
                     "$description": "Hover state for interactive--subtle."
+                },
+                "reverse": {
+                    "$value": "{color.base.blue-.800}",
+                    "$description": "Use for the background of subtle interactive elements, such as avatars."
+                },
+                "reverse-": {
+                    "hover": {
+                        "$value": "{color.base.blue-.700}",
+                        "$description": "Hover state for interactive--subtle--reverse."
+                    }
                 }
             },
             "background": {
