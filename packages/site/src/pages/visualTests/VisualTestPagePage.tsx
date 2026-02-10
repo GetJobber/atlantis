@@ -4,7 +4,9 @@ import {
   Glimmer,
   Heading,
   Icon,
+  Menu,
   Page,
+  StatusLabel,
   Text,
 } from "@jobber/components";
 
@@ -335,6 +337,117 @@ export const VisualTestPagePage = () => {
           </Text>
         </Content>
       </Page>
+      <Box padding="largest" />
+
+      {/* Composable: Basic */}
+      <Page>
+        <Page.Header>
+          <Page.Title>Composable - Basic</Page.Title>
+        </Page.Header>
+        <Page.Body>
+          <Content>
+            <Text>Composable page with just a title and body content.</Text>
+          </Content>
+        </Page.Body>
+      </Page>
+
+      <Box padding="largest" />
+
+      {/* Composable: With Actions and Menu */}
+      <Page width="fill">
+        <Page.Header>
+          <Page.Title>Composable - With Actions</Page.Title>
+          <Page.Actions>
+            <Page.PrimaryAction label="New Client" onClick={() => null} />
+            <Page.SecondaryAction label="Export" onClick={() => null} />
+            <Page.Menu>
+              <Menu.Item textValue="Import" onClick={() => null}>
+                <Menu.ItemIcon name="import" />
+                <Menu.ItemLabel>Import</Menu.ItemLabel>
+              </Menu.Item>
+              <Menu.Item textValue="Archive" onClick={() => null}>
+                <Menu.ItemIcon name="archive" />
+                <Menu.ItemLabel>Archive</Menu.ItemLabel>
+              </Menu.Item>
+            </Page.Menu>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>
+          <Content>
+            <Text>
+              Composable page with primary action, secondary action, and a menu.
+            </Text>
+          </Content>
+        </Page.Body>
+      </Page>
+
+      <Box padding="largest" />
+
+      {/* Composable: Subtitle and Intro */}
+      <Page>
+        <Page.Header>
+          <Page.Title>Composable - Subtitle and Intro</Page.Title>
+          <Page.Subtitle>A subtitle with **markdown** support</Page.Subtitle>
+        </Page.Header>
+        <Page.Intro externalLinks={true}>
+          This is an **intro** section that supports _markdown_ formatting and
+          [external links](https://example.com).
+        </Page.Intro>
+        <Page.Body>
+          <Content>
+            <Text>
+              Composable page with subtitle and intro text between header and
+              body.
+            </Text>
+          </Content>
+        </Page.Body>
+      </Page>
+
+      <Box padding="largest" />
+
+      {/* Composable: All Pieces */}
+      <Page width="standard">
+        <Page.Header>
+          <Page.Title
+            metadata={
+              <StatusLabel
+                label="In Progress"
+                alignment="start"
+                status="warning"
+              />
+            }
+          >
+            Composable - All Pieces
+          </Page.Title>
+          <Page.Subtitle>A subtitle with **markdown** support</Page.Subtitle>
+          <Page.Actions>
+            <Page.PrimaryAction
+              label="Create"
+              icon="add"
+              onClick={() => null}
+            />
+            <Page.SecondaryAction label="Export" onClick={() => null} />
+            <Page.Menu>
+              <Menu.Item textValue="Import" onClick={() => null}>
+                <Menu.ItemIcon name="import" />
+                <Menu.ItemLabel>Import</Menu.ItemLabel>
+              </Menu.Item>
+              <Menu.Item textValue="Settings" onClick={() => null}>
+                <Menu.ItemIcon name="settings" />
+                <Menu.ItemLabel>Settings</Menu.ItemLabel>
+              </Menu.Item>
+            </Page.Menu>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>
+          <Content>
+            <Text>
+              Composable page showing all available sub-components together.
+            </Text>
+          </Content>
+        </Page.Body>
+      </Page>
+
       <Box padding="largest" />
     </Box>
   );
