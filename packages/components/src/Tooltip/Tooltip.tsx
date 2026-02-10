@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from "react";
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import classnames from "classnames";
 import { FloatingPortal } from "@floating-ui/react";
 import { motion } from "framer-motion";
@@ -68,6 +68,8 @@ export function Tooltip({
         : "",
   };
 
+  const tooltipId = useId();
+
   return (
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
@@ -93,7 +95,9 @@ export function Tooltip({
                 delay: 0.3,
               }}
             >
-              <p className={styles.tooltipMessage}>{message}</p>
+              <p className={styles.tooltipMessage} id={tooltipId}>
+                {message}
+              </p>
               <div
                 ref={setArrowRef}
                 style={arrowStyles}
@@ -118,11 +122,15 @@ export function Tooltip({
     const injectAttributes = () => {
       if (shadowRef?.current?.nextElementSibling) {
         const activator = shadowRef.current.nextElementSibling;
-        // Manually inject "aria-description" and "tabindex" to let the screen
+        // Manually inject "aria-labelledby" and "tabindex" to let the screen
         // readers read the tooltip message.
         // This is to avoid having to add those attribute as a prop on every
         // component we have.
-        activator.setAttribute("aria-description", message);
+
+        // WARNING: This is an anti pattern that should be removed in the future.
+        // for now, we will leverage the fact that aria-labelledby overrides aria-label, avoiding
+        // double announcements of the same element assuming it uses "aria-label" as its mechanism.
+        activator.setAttribute("aria-labelledby", tooltipId);
 
         if (setTabIndex) {
           activator.setAttribute("tabindex", "0"); // enable focus
