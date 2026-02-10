@@ -1,90 +1,71 @@
-import {
-  AtlantisThemeContextProvider,
-  Box,
-  Cluster,
-  Heading,
-  Stack,
-  Switch,
-  Text,
-  useAtlantisTheme,
-} from "@jobber/components";
+import { Box, Grid, Heading, Stack, Switch, Text } from "@jobber/components";
 import { useState } from "react";
 
 export const VisualTestSwitchPage = () => {
+  const [basicValue, setBasicValue] = useState(false);
   const [namedValue, setNamedValue] = useState(false);
-
-  const { theme } = useAtlantisTheme();
-  const inverseTheme = theme === "light" ? "dark" : "light";
 
   return (
     <Box padding="large">
       <Stack gap="extravagant">
-        <Heading level={1}>Switch Examples</Heading>
+        <Heading level={3}>Switch Examples</Heading>
 
-        <Stack gap="larger">
-          <Heading level={2}>States</Heading>
-          <Cluster>
-            <Text>On</Text>
-            <Switch value={true} ariaLabel="Toggle notifications" />
-          </Cluster>
-          <Cluster>
-            <Text>Off</Text>
-            <Switch value={false} ariaLabel="Toggle notifications" />
-          </Cluster>
-          <Cluster>
-            <Text>On & disabled</Text>
-            <Switch disabled value={true} ariaLabel="Toggle notifications" />
-          </Cluster>
-          <Cluster>
-            <Text>Off & disabled</Text>
-            <Switch disabled value={false} ariaLabel="Toggle notifications" />
-          </Cluster>
+        <Stack gap="large">
+          {/* Basic Switch */}
+          <section>
+            <Text size="large">Basic Switch</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Switch
+                  value={basicValue}
+                  onChange={setBasicValue}
+                  ariaLabel="Toggle notifications"
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
 
-          <Heading level={2}>Inverse theme</Heading>
-          <div>
-            <AtlantisThemeContextProvider
-              dangerouslyOverrideTheme={inverseTheme}
-            >
-              <Box background="surface" gap="larger" padding="large">
-                <Cluster>
-                  <Text>On</Text>
-                  <Switch value={true} ariaLabel="Toggle notifications" />
-                </Cluster>
-                <Cluster>
-                  <Text>Off</Text>
-                  <Switch value={false} ariaLabel="Toggle notifications" />
-                </Cluster>
-                <Cluster>
-                  <Text>On & disabled</Text>
-                  <Switch
-                    disabled
-                    value={true}
-                    ariaLabel="Toggle notifications"
-                  />
-                </Cluster>
-                <Cluster>
-                  <Text>Off & disabled</Text>
-                  <Switch
-                    disabled
-                    value={false}
-                    ariaLabel="Toggle notifications"
-                  />
-                </Cluster>
-              </Box>
-            </AtlantisThemeContextProvider>
-          </div>
+          {/* Switch with Name */}
+          <section>
+            <Text size="large">Switch with Name</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <label htmlFor="namedSwitch">Enable notifications</label>
+                <Switch
+                  value={namedValue}
+                  onChange={setNamedValue}
+                  name="namedSwitch"
+                />
+              </Grid.Cell>
+            </Grid>
+          </section>
 
-          <Heading level={2}>With named label</Heading>
-          <Cluster>
-            <div>
-              <label htmlFor="namedSwitch">Enable notifications</label>
-            </div>
-            <Switch
-              value={namedValue}
-              onChange={setNamedValue}
-              name="namedSwitch"
-            />
-          </Cluster>
+          {/* Switch States */}
+          <section>
+            <Text size="large">Switch States</Text>
+            <Grid>
+              <Grid.Cell size={{ xs: 12, md: 6 }}>
+                <Stack gap="base">
+                  <Box>
+                    <Text>Disabled (Off):</Text>
+                    <Switch
+                      value={false}
+                      disabled={true}
+                      ariaLabel="Disabled switch off"
+                    />
+                  </Box>
+                  <Box>
+                    <Text>Disabled (On):</Text>
+                    <Switch
+                      value={true}
+                      disabled={true}
+                      ariaLabel="Disabled switch on"
+                    />
+                  </Box>
+                </Stack>
+              </Grid.Cell>
+            </Grid>
+          </section>
         </Stack>
       </Stack>
     </Box>
