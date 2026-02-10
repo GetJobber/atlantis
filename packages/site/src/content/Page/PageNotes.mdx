@@ -1,0 +1,148 @@
+## Composable Version (Web Only)
+
+Page may be invoked with a subcomponent structure enabling a declarative style,
+greater customization, and composability with other components. This is
+particularly useful when you need real links in the "More Actions" menu (e.g.
+for client-side router integration) or custom action elements.
+
+```
+<Page width="fill">
+  <Page.Header>
+    <Page.Title metadata={<StatusLabel label="Draft" status="warning" />}>
+      Clients
+    </Page.Title>
+    <Page.Subtitle>Manage your client list</Page.Subtitle>
+    <Page.Actions>
+      <Page.PrimaryAction label="New Client" onClick={handleCreate} />
+      <Page.SecondaryAction label="Export" onClick={handleExport} />
+      <Page.Menu>
+        <Menu.Item textValue="Import" onClick={handleImport}>
+          <Menu.ItemIcon name="import" />
+          <Menu.ItemLabel>Import</Menu.ItemLabel>
+        </Menu.Item>
+        <Menu.Item textValue="Archive" onClick={handleArchive}>
+          <Menu.ItemIcon name="archive" />
+          <Menu.ItemLabel>Archive</Menu.ItemLabel>
+        </Menu.Item>
+      </Page.Menu>
+    </Page.Actions>
+  </Page.Header>
+  <Page.Body>
+    <Content>Page content here</Content>
+  </Page.Body>
+</Page>
+```
+
+#### Sub Components
+
+**_Page.Header (Required)_**
+
+Groups the title area and actions into the page header. Automatically positions
+`Page.Actions` alongside the title content using the responsive titlebar layout.
+
+All other children (e.g. `Page.Title`, `Page.Subtitle`) render in the title area
+on the left.
+
+**_Page.Title (Required)_**
+
+Renders the page heading as an H1. Accepts an optional `metadata` prop for
+elements displayed alongside the title, such as status badges.
+
+```
+<Page.Title metadata={<StatusLabel label="Active" status="success" />}>
+  My Page Title
+</Page.Title>
+```
+
+**_Page.Subtitle (Optional)_**
+
+Secondary text below the title. When given a string, renders with the default
+Text/Emphasis/Markdown treatment matching the props-based API. When given a
+ReactNode, renders it as-is for full customization.
+
+**_Page.Intro (Optional)_**
+
+Introduction text between the header and body. Like `Page.Subtitle`, strings get
+default Text/Markdown treatment. ReactNodes render as-is. Accepts an
+`externalLinks` prop to open markdown links in a new tab.
+
+**_Page.Actions (Optional)_**
+
+Container for the action buttons and menu. Applies the responsive action group
+layout that stacks on small viewports and inlines on larger ones.
+
+**_Page.PrimaryAction (Optional)_**
+
+The primary action button. Provide `label` and `onClick` to use the built-in
+Button with primary styling and `fullWidth`, or provide `children` for a fully
+custom element.
+
+```
+{/* Using defaults */}
+<Page.PrimaryAction label="Create" onClick={handleCreate} icon="add" />
+
+{/* Using a custom element */}
+<Page.PrimaryAction>
+  <MyCustomButton />
+</Page.PrimaryAction>
+```
+
+**_Page.SecondaryAction (Optional)_**
+
+The secondary action button. Same API as `Page.PrimaryAction` but renders with
+secondary button styling by default.
+
+**_Page.Menu (Optional)_**
+
+The "More Actions" menu. Provides the default trigger button (kebab icon +
+label) so consumers only need to supply `Menu.Item` children.
+
+This is the primary integration point for client-side routers. For example, if
+you are using TanStack Router in the consumer app, you can wrap `Menu.Item` with
+TanStack Router's `createLink()` to get right-click and ctrl-click support on
+menu links:
+
+```
+// Create once in the consumer app
+const TSRMenuItem = createLink(Menu.Item);
+
+// Use inside Page.Menu
+<Page.Menu>
+  <TSRMenuItem to="/clients/export" textValue="Export">
+    <Menu.ItemIcon name="export" />
+    <Menu.ItemLabel>Export</Menu.ItemLabel>
+  </TSRMenuItem>
+</Page.Menu>
+```
+
+The trigger label defaults to "More Actions" and can be customized via the
+`triggerLabel` prop.
+
+**_Page.Body (Required)_**
+
+Main content area of the page. Wraps children in a `Content` component.
+
+## Props-based Version
+
+The original props-based API remains fully supported. If you don't need
+composable actions, this is the simplest way to use Page:
+
+```
+<Page
+  title="Clients"
+  subtitle="Manage your client list"
+  primaryAction={{ label: "New Client", onClick: handleCreate }}
+  secondaryAction={{ label: "Export", onClick: handleExport }}
+  moreActionsMenu={[
+    {
+      actions: [
+        { label: "Import", icon: "import", onClick: handleImport },
+        { label: "Archive", icon: "archive", onClick: handleArchive },
+      ],
+    },
+  ]}
+  width="fill"
+>
+  <Content>Page content here</Content>
+</Page>
+```
