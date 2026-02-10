@@ -45,11 +45,6 @@
   --avatar-initials-size: 9px;
 }
 
-/* isDark is dynamic and applies only when background is dark */
-.isDark {
-  color: var(--color-base-white);
-}
-
 .initials {
   color: var(--color-text);
   font-family: var(--typography--fontFamily-normal);
