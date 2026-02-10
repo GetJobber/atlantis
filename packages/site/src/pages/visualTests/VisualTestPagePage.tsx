@@ -433,7 +433,7 @@ export const VisualTestPagePage = () => {
                 <Menu.ItemLabel>Import</Menu.ItemLabel>
               </Menu.Item>
               <Menu.Item textValue="Settings" onClick={() => null}>
-                <Menu.ItemIcon name="settings" />
+                <Menu.ItemIcon name="cog" />
                 <Menu.ItemLabel>Settings</Menu.ItemLabel>
               </Menu.Item>
             </Page.Menu>
