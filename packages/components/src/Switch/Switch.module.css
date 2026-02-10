@@ -17,6 +17,7 @@
 
 .track {
   display: inline-flex;
+  position: relative;
   width: var(--switch--width);
   height: calc(var(--switch--width) / 2);
   padding: 0;
