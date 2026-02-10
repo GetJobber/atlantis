@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classnames from "classnames";
 import styles from "./Switch.module.css";
-import { Icon } from "../Icon";
+import { Typography } from "../Typography";
 
 interface SwitchProps {
   readonly value?: boolean;
@@ -56,30 +56,44 @@ export function Switch({
         onClick={toggleSwitch}
         disabled={disabled}
       >
-        <span className={styles.icon} aria-hidden="true">
-          <Icon
-            size="small"
-            name={value ? "checkmark" : "cross"}
-            {...getIconColor(value, disabled ?? false)}
-          />
+        <span className={styles.toggle}>
+          <Label as="On" disabled={disabled} />
+          <span className={styles.pip} />
+          <Label as="Off" disabled={disabled} />
         </span>
-        <span className={styles.toggle} />
       </button>
       <input name={name} type="hidden" value={String(value)} />
     </>
   );
 }
 
-function getIconColor(isChecked: boolean, isDisabled: boolean) {
-  const checkedColor = {
-    color: "surface",
-  } as const;
+interface LabelProps {
+  readonly as: "On" | "Off";
+  readonly disabled?: boolean;
+}
 
-  const uncheckedColor = {
-    customColor: isDisabled
-      ? "var(--color-disabled)"
-      : "var(--color-inactive--onSurface)",
-  } as const;
+function Label({ as, disabled }: LabelProps) {
+  const getTextColor = () => {
+    if (disabled) {
+      return "grey";
+    } else if (as === "On") {
+      return "white";
+    }
 
-  return isChecked ? checkedColor : uncheckedColor;
+    return "greyBlue";
+  };
+
+  return (
+    <span className={styles.label}>
+      <Typography
+        element="span"
+        textColor={getTextColor()}
+        size="small"
+        fontWeight="bold"
+        textCase="uppercase"
+      >
+        {as}
+      </Typography>
+    </span>
+  );
 }

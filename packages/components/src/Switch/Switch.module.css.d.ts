@@ -3,9 +3,9 @@ declare const styles: {
   readonly "track": string;
   readonly "isChecked": string;
   readonly "toggle": string;
-  readonly "disabled": string;
+  readonly "label": string;
   readonly "pip": string;
-  readonly "icon": string;
+  readonly "disabled": string;
 };
 export = styles;
 
