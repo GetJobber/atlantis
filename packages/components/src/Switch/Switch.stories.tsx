@@ -17,12 +17,7 @@ const BasicTemplate = (args: Story["args"]) => {
   return (
     <Stack>
       <Button onClick={() => setValue(!value)} label="Controlled Example" />
-      <div style={{ height: "100px", overflow: "scroll", background: "#eee" }}>
-        <Switch {...args} value={value} onChange={setValue} />
-        <div style={{ height: "50px" }}></div>
-        <div style={{ height: "50px" }}></div>
-        <div style={{ height: "50px" }}></div>
-      </div>
+      <Switch {...args} value={value} onChange={setValue} />
     </Stack>
   );
 };
