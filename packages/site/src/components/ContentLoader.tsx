@@ -48,6 +48,7 @@ export const ContentLoader = () => {
       title={content.title}
       content={content.content}
       noMaxWidth={content.noMaxWidth}
+      toc={content.toc}
     />
   ) : (
     <NotFoundPage />

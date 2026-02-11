@@ -109,7 +109,6 @@ export const ComponentView = () => {
 
   useEffect(() => {
     if (code) {
-      console.log("updating code");
       setTimeout(() => updateCode(code as string, true), 100);
     }
   }, [code, type, updateCode]);
@@ -250,10 +249,12 @@ export const ComponentView = () => {
           </Box>
         </Page>
       </BaseView.Main>
+
       <BaseView.Siderail visible={!isMinimal}>
         <ComponentLinks
           key={`component-${name}`}
           links={getComponentLinks(PageMeta, type)}
+          toc={PageMeta.toc}
           availablePlatforms={availablePlatforms}
           availableVersionsForCurrentPlatform={
             availableVersionsForCurrentPlatform

@@ -91,6 +91,8 @@ export interface ContentExport {
   webNotes?: () => ReactElement;
   webSupportedNotes?: () => ReactElement;
   mobileNotes?: () => ReactElement;
+  /** Table of contents (H2 headings) for sidebar; from virtual:content-toc */
+  toc?: TocItem[];
 }
 interface GeneratedTag {
   name: string;
@@ -108,4 +110,10 @@ export interface ContentExportLinks {
   label: string;
   url: string;
   type?: "web" | "mobile";
+}
+
+/** Table-of-contents item for sidebar (from MDX H2 headings) */
+export interface TocItem {
+  id: string;
+  label: string;
 }
