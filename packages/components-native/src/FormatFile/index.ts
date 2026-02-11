@@ -1,5 +1,7 @@
 export type { FormatFileProps } from "./FormatFile";
 export { FormatFile } from "./FormatFile";
+export type { FormatFileThumbnailProps } from "./FormatFileThumbnail";
+export { FormatFileThumbnail } from "./FormatFileThumbnail";
 export type {
   FormattedFile,
   File,
