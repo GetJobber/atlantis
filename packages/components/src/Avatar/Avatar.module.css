@@ -56,6 +56,11 @@
   font-size: var(--avatar-initials-size);
   text-transform: uppercase;
 }
+
+.isDark .initials {
+  color: var(--color-base-white);
+}
+
 .smallInitials {
   font-size: calc(var(--avatar-initials-size) * 0.83);
 }

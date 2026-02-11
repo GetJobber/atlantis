@@ -35,5 +35,4 @@ Basic.args = {
 export const WithTooltip = TooltipTemplate.bind({});
 WithTooltip.args = {
   size: "large",
-  initials: "JBLR",
 };

@@ -4,7 +4,7 @@ import classnames from "classnames";
 import type { XOR } from "ts-xor";
 import styles from "./Avatar.module.css";
 import { isDark } from "./utilities";
-import type { IconProps } from "../Icon";
+import type { IconColorNames, IconProps } from "../Icon";
 import { Icon } from "../Icon";
 
 type AvatarSize = "base" | "large" | "small";
@@ -82,10 +82,17 @@ export function Avatar({
     style.backgroundImage = `url(${imageUrl})`;
   }
 
-  const shouldBeDark = color == undefined || isDark(color);
+  const shouldBeDark = color != undefined && isDark(color);
   const className = classnames(styles.avatar, size !== "base" && styles[size], {
     [styles.hasBorder]: imageUrl && color,
+    [styles.isDark]: shouldBeDark,
   });
+
+  let iconColor: IconColorNames = "text";
+
+  if (color && shouldBeDark) {
+    iconColor = "white";
+  }
 
   const containerClassNames = classnames(
     className,
@@ -102,7 +109,7 @@ export function Avatar({
       {!imageUrl && (
         <Initials
           initials={initials}
-          dark={shouldBeDark}
+          iconColor={iconColor}
           iconSize={size}
           UNSAFE_className={{
             initials: UNSAFE_className.initials,
@@ -129,7 +136,7 @@ interface InitialsUnsafeStyleProps {
 }
 
 interface InitialsProps {
-  readonly dark?: boolean;
+  readonly iconColor?: IconColorNames;
   readonly iconSize?: AvatarSize;
   readonly initials?: string;
 
@@ -140,7 +147,7 @@ interface InitialsProps {
 
 function Initials({
   initials,
-  dark = false,
+  iconColor = "text",
   iconSize = "base",
   UNSAFE_className,
   UNSAFE_style,
@@ -149,7 +156,7 @@ function Initials({
     return (
       <Icon
         name="person"
-        color={dark ? "white" : "blue"}
+        color={iconColor}
         size={iconSize}
         UNSAFE_className={UNSAFE_className?.fallbackIcon}
         UNSAFE_style={UNSAFE_style?.fallbackIcon}
