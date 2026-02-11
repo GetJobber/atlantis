@@ -1868,10 +1868,9 @@ const columnWidthData = [
 ];
 
 /**
- * With `table-layout: fixed`, you can control column widths using percentages.
+ * With `layout="fixed"` (default), you can control column widths using percentages.
  * Columns without explicit widths share the remaining space equally.
  *
- * Set widths on `DataTable.HeaderCell` via the `style` prop.
  */
 export const ColumnWidths = () => {
   const { mediumAndUp } = useBreakpoints();
