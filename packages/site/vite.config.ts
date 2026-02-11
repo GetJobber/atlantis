@@ -21,6 +21,7 @@ export default defineConfig({
     mdx({
       remarkPlugins: [remarkGfm, remarkExtractToc],
       recmaPlugins: [recmaInjectToc],
+      providerImportSource: "@mdx-js/react",
       rehypePlugins: [
         [
           rehypeRewrite,

@@ -9,6 +9,7 @@ import {
 } from "@jobber/components";
 import { useNavigate, useParams, useSearch } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
+import { MDXProvider } from "@mdx-js/react";
 import { BaseView } from "./BaseView";
 import { PropsList } from "../components/PropsList";
 import { NotFoundPage } from "../pages/NotFoundPage";
@@ -37,6 +38,7 @@ import {
   getPlatformForComponentType,
 } from "../utils/componentTypeUtils";
 import { VersionSelector } from "../components/VersionSelector";
+import { LinkableHeading } from "../components/LinkableHeading";
 
 const DESIGN_TAB_INDEX = 0;
 
@@ -119,9 +121,19 @@ export const ComponentView = () => {
       {
         label: "Design",
         children: (
-          <Content spacing="large">
-            {ComponentContent && <ComponentContent />}
-          </Content>
+          <MDXProvider
+            components={{
+              h2: ({ children, ...props }) => (
+                <LinkableHeading element="h2" {...props}>
+                  {children}
+                </LinkableHeading>
+              ),
+            }}
+          >
+            <Content spacing="large">
+              {ComponentContent && <ComponentContent />}
+            </Content>
+          </MDXProvider>
         ),
       },
     ];

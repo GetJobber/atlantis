@@ -1,0 +1,16 @@
+.linkableHeading {
+  position: relative;
+}
+
+.linkableHeading:hover {
+  .copyButton {
+    opacity: 1;
+  }
+}
+
+.copyButton {
+  position: relative;
+  left: var(--space-small);
+  opacity: 0;
+  transition: opacity var(--timing-base) ease-in-out;
+}
