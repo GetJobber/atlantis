@@ -44,6 +44,8 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-replace": "^6.0.1",
     "@types/babel__standalone": "^7.1.9",
+    "@types/estree-jsx": "^1.0.5",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^22.10.1",
     "@types/prismjs": "^1.26.4",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
@@ -51,9 +53,14 @@
     "@vitejs/plugin-react": "^4.3.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "estree-jsx": "^0.0.1",
+    "mdast": "^2.3.2",
+    "mdast-util-to-string": "^4.0.0",
     "rehype-rewrite": "^4.0.2",
     "remark-gfm": "^4.0.0",
     "typescript": "^5.6.3",
+    "unist-util-visit": "^5.0.0",
+    "vfile": "^6.0.3",
     "vite": "^5.3.1"
   }
 }

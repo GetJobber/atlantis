@@ -9,5 +9,8 @@
     "strict": true,
     "noEmit": true
   },
-  "include": ["vite.config.ts"]
+  "include": [
+    "vite.config.ts",
+    "scripts/mdx-extract-toc.ts"
+  ]
 }
