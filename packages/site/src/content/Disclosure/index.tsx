@@ -1,4 +1,4 @@
-import DisclosureContent from "./Disclosure.stories.mdx";
+import DisclosureContent, { toc } from "./Disclosure.stories.mdx";
 import Props from "./Disclosure.props.json";
 import MobileProps from "./Disclosure.props-mobile.json";
 import Notes from "./DisclosureNotes.mdx";
@@ -7,6 +7,7 @@ import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <DisclosureContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

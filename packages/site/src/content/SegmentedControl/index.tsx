@@ -1,4 +1,4 @@
-import Content from "./SegmentedControl.stories.mdx";
+import Content, { toc } from "./SegmentedControl.stories.mdx";
 import Props from "./SegmentedControl.props.json";
 import Notes from "./SegmentedControlNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [activeOption, setActiveOption] = useState("week");

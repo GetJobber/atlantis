@@ -1,4 +1,4 @@
-import Content from "./InputText.stories.mdx";
+import Content, { toc } from "./InputText.stories.mdx";
 import Props from "./InputText.props.json";
 import MobileProps from "./InputText.props-mobile.json";
 import RebuiltProps from "./InputTextV2.props.json";
@@ -10,6 +10,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   webSupportedProps: RebuiltProps,

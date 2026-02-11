@@ -1,4 +1,4 @@
-import InputEmailContent from "./InputEmail.stories.mdx";
+import InputEmailContent, { toc } from "./InputEmail.stories.mdx";
 import Props from "./InputEmail.props.json";
 import MobileProps from "./InputEmail.props-mobile.json";
 import RebuiltProps from "./InputEmailV2.props.json";
@@ -9,6 +9,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InputEmailContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   webSupportedProps: RebuiltProps,

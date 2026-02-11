@@ -1,4 +1,4 @@
-import Content from "./Datepicker.stories.mdx";
+import Content, { toc } from "./Datepicker.stories.mdx";
 import Props from "./DatePicker.props.json";
 import Notes from "./DatePickerNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [date, setDate] = useState(new Date());

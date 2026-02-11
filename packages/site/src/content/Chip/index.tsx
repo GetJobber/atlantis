@@ -1,4 +1,4 @@
-import ChipContent from "./Chip.stories.mdx";
+import ChipContent, { toc } from "./Chip.stories.mdx";
 import Props from "./Chip.props.json";
 import Notes from "./ChipNotes.mdx";
 import MobileProps from "./Chip.props-mobile.json";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ChipContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

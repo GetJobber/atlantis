@@ -1,4 +1,4 @@
-import GlimmerContent from "./Glimmer.stories.mdx";
+import GlimmerContent, { toc } from "./Glimmer.stories.mdx";
 import Props from "./Glimmer.props.json";
 import MobileProps from "./Glimmer.props-mobile.json";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <GlimmerContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {
