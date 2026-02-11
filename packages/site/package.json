@@ -27,6 +27,7 @@
     "@codemirror/view": "^6.14.1",
     "@jobber/components": "file:../components",
     "@jobber/hooks": "file:../hooks",
+    "@mdx-js/react": "^3.0.1",
     "@tanstack/react-router": "^1.157.16",
     "axios": "^1.11.0",
     "prismjs": "^1.29.0",
@@ -37,7 +38,6 @@
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^7.25.9",
     "@babel/preset-react": "^7.26.3",
-    "@mdx-js/react": "^3.0.1",
     "@mdx-js/rollup": "^3.0.1",
     "@playwright/test": "^1.52.0",
     "@react-native/babel-preset": "^0.82.1",
