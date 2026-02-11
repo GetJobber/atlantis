@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.110.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.1...@jobber/components@6.110.2) (2026-02-10)
+
+
+### Bug Fixes
+
+* **components:** Fix Switch icon position ([#2905](https://github.com/GetJobber/atlantis/issues/2905)) ([54c4c66](https://github.com/GetJobber/atlantis/commit/54c4c66ebdbdd12250e2ec2607fc4ce634713ab8))
+
+
+
+
+
+## [6.110.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.0...@jobber/components@6.110.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* **components:** Hide tooltips when out of view ([#2894](https://github.com/GetJobber/atlantis/issues/2894)) ([0299b36](https://github.com/GetJobber/atlantis/commit/0299b366eaefc8b7e00093b6259628d6869f0b07))
+
+
+
+
+
+# [6.110.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.5...@jobber/components@6.110.0) (2026-02-05)
+
+
+### Features
+
+* **components:** Update Switch component design ([#2897](https://github.com/GetJobber/atlantis/issues/2897)) ([d71cc1c](https://github.com/GetJobber/atlantis/commit/d71cc1cfc32df0eb390155a2bfdeb99c0d6ab3bb))
+
+
+
+
+
+## [6.109.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.4...@jobber/components@6.109.5) (2026-02-02)
+
+
+### Bug Fixes
+
+* **components:** REVERT Prevent invalid label from causing infinite loop with Autocomplete ([#2896](https://github.com/GetJobber/atlantis/issues/2896)) ([f7e0850](https://github.com/GetJobber/atlantis/commit/f7e08500e539b42532d9790dd330b88c7bacb2f2))
+
+
+
+
+
+## [6.109.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.3...@jobber/components@6.109.4) (2026-01-30)
+
+
+### Bug Fixes
+
+* **components:** Prevent invalid label from causing infinite loop with Autocomplete ([#2885](https://github.com/GetJobber/atlantis/issues/2885)) ([048b8c4](https://github.com/GetJobber/atlantis/commit/048b8c43b82990f885c77bb45ba7477de8b7adae))
+
+
+
+
+
 ## [6.109.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.109.2...@jobber/components@6.109.3) (2026-01-28)
 
 

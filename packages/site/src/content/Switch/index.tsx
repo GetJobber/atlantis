@@ -16,7 +16,15 @@ export default {
   title: "Switch",
   links: [
     {
-      label: "Switch Storybook",
+      label: "Web Storybook",
+      type: "web",
+      url: getStorybookUrl(
+        "?path=/story/components-selections-switch--basic",
+        "web",
+      ),
+    },
+    {
+      label: "Mobile Storybook",
       url: getStorybookUrl("?path=/docs/components-selections-switch--docs"),
     },
   ],

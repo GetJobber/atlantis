@@ -1,3 +1,5 @@
+import { Banner } from "@jobber/components/Banner";
+
 ## Configuration
 
 ### Conditional rendering
@@ -13,6 +15,17 @@ an action to show them.
 See the
 [Basic](../?path=/story/components-utilities-animatedpresence-web--basic)
 example for a live demo.
+
+<Banner type="warning" dismissible={false}>
+When using AnimatedPresence with conditional rendering, elements will be added
+and removed from the DOM causing shifts in the layout, with the potential for frames where neither the entering nor exiting element is yet present.
+
+This can create undesirable visual jumps in some scenarios, such as when the
+element's height is what creates enough vertical space to require scrolling. The
+layout will have to be stabilized with something such as a min-height to avoid
+this.
+
+</Banner>
 
 ### List rendering
 

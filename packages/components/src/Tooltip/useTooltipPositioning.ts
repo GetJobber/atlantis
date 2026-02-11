@@ -3,6 +3,7 @@ import {
   arrow,
   autoUpdate,
   flip,
+  hide,
   limitShift,
   shift,
   useFloating,
@@ -39,6 +40,7 @@ export function useTooltipPositioning({
         element: arrowElement || null,
         padding: TOOLTIP_ARROW_PADDING,
       }),
+      hide(),
     ],
     elements: {
       reference: referenceElement || null,
@@ -46,11 +48,14 @@ export function useTooltipPositioning({
     whileElementsMounted: autoUpdate,
   });
 
+  const isHidden = middlewareData.hide?.referenceHidden ?? false;
+
   return {
     styles: {
       float: floatingStyles,
       arrow: middlewareData.arrow,
     },
+    isHidden,
     placement: placement,
     shadowRef,
     setArrowRef,
