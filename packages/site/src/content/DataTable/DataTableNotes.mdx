@@ -65,19 +65,23 @@ more.
 
 ### Column Widths
 
-The DataTable uses `table-layout: fixed`, which allows you to control column
-widths using percentages. Columns without explicit widths share the remaining
-space equally.
+`DataTable.Table` supports an optional `layout` prop:
 
-Set widths on `DataTable.HeaderCell` via the `style` prop:
+- **`fixed`** (default): Column widths can be set explicitly on
+  `DataTable.HeaderCell`. Columns without explicit widths share the remaining
+  space equally.
+- **`auto`**: Columns size to their content. Use when you prefer content-driven
+  sizing over explicit proportions.
+
+Set widths on `DataTable.HeaderCell` via the `style` prop when using
+`layout="fixed"` (or omit `layout` to use the default):
 
 ```tsx
 <DataTable.Header>
   <DataTable.HeaderCell style={{ width: "10%" }}>Status</DataTable.HeaderCell>
   <DataTable.HeaderCell style={{ width: "25%" }}>Name</DataTable.HeaderCell>
-  <DataTable.HeaderCell>Description</DataTable.HeaderCell>{" "}
   {/* Takes remaining space */}
-  <DataTable.HeaderCell style={{ width: "15%" }}>Amount</DataTable.HeaderCell>
+  <DataTable.HeaderCell>Description</DataTable.HeaderCell> <DataTable.HeaderCell style={{ width: "15%" }}>Amount</DataTable.HeaderCell>
 </DataTable.Header>
 ```
 
