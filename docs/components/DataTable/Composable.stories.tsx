@@ -1893,40 +1893,6 @@ export const ColumnWidths = () => {
   const table = useReactTable({
     data: columnWidthData,
     columns: [
-      // Mobile: combined cell
-      {
-        id: "mobileContent",
-        header: "Appointment",
-        cell: ({ row }) => (
-          <Stack gap="small">
-            <Cluster gap="small" align="center">
-              <StatusLabel
-                status={
-                  row.original.status === "in_progress"
-                    ? "informative"
-                    : row.original.status === "completed"
-                    ? "success"
-                    : "inactive"
-                }
-                label={
-                  row.original.status === "in_progress"
-                    ? "In Progress"
-                    : row.original.status === "completed"
-                    ? "Completed"
-                    : "Scheduled"
-                }
-              />
-              <Typography fontWeight="bold">{row.original.client}</Typography>
-            </Cluster>
-            <Text variation="subdued">{row.original.service}</Text>
-            <Cluster justify="space-between" align="center">
-              <Text variation="subdued">{row.original.scheduledDate}</Text>
-              <Text>${row.original.amount.toLocaleString()}</Text>
-            </Cluster>
-          </Stack>
-        ),
-      },
-      // Desktop: individual columns
       {
         id: "mobileContent",
         header: "Appointment",
