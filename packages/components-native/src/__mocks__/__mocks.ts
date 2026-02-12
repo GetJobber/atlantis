@@ -79,8 +79,11 @@ jest.doMock("react-native", () => {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const KeyboardAwareScrollView = ({ children }, _ref) => children;
 const mockRef = React.forwardRef(KeyboardAwareScrollView);
-jest.mock("react-native-keyboard-aware-scroll-view", () => {
-  return { KeyboardAwareScrollView: mockRef };
+jest.mock("react-native-keyboard-controller", () => {
+  const KeyboardProvider = ({ children }: { children: React.ReactNode }) =>
+    children;
+
+  return { KeyboardAwareScrollView: mockRef, KeyboardProvider };
 });
 
 jest.mock("react-native-modalize", () => {

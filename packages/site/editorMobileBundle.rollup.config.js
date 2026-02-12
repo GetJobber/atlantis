@@ -42,6 +42,10 @@ export default {
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
         },
         {
+          find: "react-native-keyboard-controller",
+          replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
+        },
+        {
           find: "react-native-toast-message",
           replacement: path.resolve(dirname, "./src/MobileOverrides.jsx"),
         },

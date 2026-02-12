@@ -8,7 +8,7 @@ import type {
   UseFormReturn,
 } from "react-hook-form";
 import type { IconNames } from "@jobber/design";
-import type { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import type { KeyboardAwareScrollViewRef } from "react-native-keyboard-controller";
 
 export type FormValues<T> = T;
 export type FormErrors = FormNetworkErrors | FormUserErrors;
@@ -54,7 +54,7 @@ interface FormNoticeMessage {
 
 export type FormRef<T extends FieldValues = FieldValues> =
   | (UseFormReturn<T> & {
-      scrollViewRef?: RefObject<KeyboardAwareScrollView | null>;
+      scrollViewRef?: RefObject<KeyboardAwareScrollViewRef | null>;
       saveButtonHeight?: number;
       messageBannerHeight?: number;
     })
