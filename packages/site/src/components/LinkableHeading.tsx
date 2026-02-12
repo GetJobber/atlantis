@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Button } from "@jobber/components/Button";
 import { showToast } from "@jobber/components/Toast";
+import { useLocation } from "@tanstack/react-router";
 import styles from "./LinkableHeading.module.css";
 
 interface LinkableHeadingProps
@@ -16,7 +17,9 @@ export const LinkableHeading = ({
   ...props
 }: LinkableHeadingProps) => {
   const isLinkable = props.id?.startsWith("component-view-");
-  const urlToCopy = document.location.href + "#" + props.id;
+  const location = useLocation();
+
+  const urlToCopy = `${window.location.origin}${location.pathname}#${props.id}`;
 
   return (
     <Tag
