@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.110.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.2...@jobber/components@6.110.3) (2026-02-12)
+
+
+### Bug Fixes
+
+* **components:** DataTable has layout prop for fixed or auto ([#2883](https://github.com/GetJobber/atlantis/issues/2883)) ([07f110c](https://github.com/GetJobber/atlantis/commit/07f110cd2105b40cb0125834513914a91461a035))
+
+
+
+
+
 ## [6.110.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.1...@jobber/components@6.110.2) (2026-02-10)
 
 
