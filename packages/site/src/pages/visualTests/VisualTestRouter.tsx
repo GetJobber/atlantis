@@ -42,6 +42,7 @@ import {
   VisualTestMenuSmallStickyPage,
 } from "./VisualTestMenuSmallPage";
 import { VisualTestModalPage } from "./VisualTestModalPage";
+import { VisualTestPagePage } from "./VisualTestPagePage";
 import { VisualTestPopoverPage } from "./VisualTestPopoverPage";
 import { VisualTestProgressBarPage } from "./VisualTestProgressBarPage";
 import { VisualTestRadioGroupPage } from "./VisualTestRadioGroupPage";
@@ -273,6 +274,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/menu-small-sticky"
         exact={true}
         component={VisualTestMenuSmallStickyPage}
+      />
+      <Route
+        path="/visual-tests/page"
+        exact={true}
+        component={VisualTestPagePage}
       />
       <Route
         path="/visual-tests/popover"
