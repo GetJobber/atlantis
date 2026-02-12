@@ -22,3 +22,11 @@ declare module "*.stories.mdx" {
   export default Component;
   export const toc: Array<{ id: string; label: string }>;
 }
+
+declare module "*.md" {
+  import type { ComponentType } from "react";
+
+  const Component: ComponentType;
+  export default Component;
+  export const toc: Array<{ id: string; label: string }>;
+}
