@@ -6,6 +6,9 @@ declare const styles: {
   readonly "titleBar": string;
   readonly "titleRow": string;
   readonly "actionGroup": string;
+  readonly "large": string;
+  readonly "medium": string;
+  readonly "small": string;
   readonly "primaryAction": string;
   readonly "actionButton": string;
   readonly "subtitle": string;

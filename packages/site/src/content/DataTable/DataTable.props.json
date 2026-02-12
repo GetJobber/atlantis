@@ -260,21 +260,7 @@
     "description": "",
     "displayName": "DataTable.Footer",
     "methods": [],
-    "props": {
-      "colSpan": {
-        "defaultValue": null,
-        "description": "Number of columns to span across. This should match the number of columns in your table.",
-        "name": "colSpan",
-        "parent": {
-          "fileName": "packages/components/src/DataTable/components/DataTableFooter.tsx",
-          "name": "DataTableFooterProps"
-        },
-        "required": true,
-        "type": {
-          "name": "number"
-        }
-      }
-    }
+    "props": {}
   },
   {
     "tags": {},

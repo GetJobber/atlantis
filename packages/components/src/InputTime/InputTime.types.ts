@@ -1,3 +1,4 @@
+import type { Ref } from "react";
 import type { CommonFormFieldProps, FormFieldProps } from "../FormField";
 import type {
   FocusEvents,
@@ -73,7 +74,7 @@ export interface InputTimeRebuiltProps
    */
   readonly min?: number;
 
-  readonly inputRef?: FormFieldProps["inputRef"];
+  readonly inputRef?: Ref<HTMLInputElement>;
 
   /**
    * @deprecated Use `onKeyDown` or `onKeyUp` instead.

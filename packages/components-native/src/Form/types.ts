@@ -201,6 +201,14 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * Renders a footer below the save button.
    */
   renderFooter?: React.ReactNode;
+
+  /**
+   * @internal Do not use this prop. It is a hack and will be removed.
+   * TODO: JOB-147156 This is a HACK for multiline inputs on iOS scrolling issue.
+   * Disables the keyboard aware scroll view.
+   * This is needed to fix issues with multiline inputs on iOS. DO NOT
+   */
+  disableKeyboardAwareScroll?: boolean;
 }
 
 export type InternalFormProps<T extends FieldValues, SubmitResponseType> = Omit<

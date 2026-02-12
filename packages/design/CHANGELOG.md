@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.89.1...@jobber/design@0.90.0) (2026-02-12)
+
+
+### Bug Fixes
+
+* **design:** Add missing dark mode token ([#2900](https://github.com/GetJobber/atlantis/issues/2900)) ([b11cfd6](https://github.com/GetJobber/atlantis/commit/b11cfd62acfa685a4f45eb8a9e87e892a0e065a0))
+
+
+### Features
+
+* **components:** React 19 support ([#2687](https://github.com/GetJobber/atlantis/issues/2687)) ([36e8563](https://github.com/GetJobber/atlantis/commit/36e8563e75500b7ce70a148eb44d97cceb101fe7)), closes [#2752](https://github.com/GetJobber/atlantis/issues/2752) [#2756](https://github.com/GetJobber/atlantis/issues/2756) [#2762](https://github.com/GetJobber/atlantis/issues/2762)
+
+
+
+
+
 ## [0.89.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.89.0...@jobber/design@0.89.1) (2025-10-06)
 
 **Note:** Version bump only for package @jobber/design

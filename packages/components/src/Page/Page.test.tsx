@@ -3,40 +3,38 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Page } from ".";
 import { getActionProps } from "./Page";
-import type { ButtonActionProps } from "./Page";
 import type { SectionProps } from "../Menu";
 import { Heading } from "../Heading";
 
-describe("Page", () => {
-  it("renders Page", () => {
-    const { container } = render(
-      <Page
-        title="Notifications"
-        intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
-      >
-        Sup
-      </Page>,
-    );
+jest.mock("@jobber/hooks", () => {
+  return {
+    ...(jest.requireActual("@jobber/hooks") as Record<string, unknown>),
+    useResizeObserver: () => [
+      { current: undefined },
+      { width: 1000, height: 100 },
+    ],
 
-    expect(container).toMatchSnapshot();
-  });
-  it("renders heading and intro text", () => {
-    render(
-      <Page
-        title="Notifications"
-        intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
-      >
-        Sup
-      </Page>,
-    );
+    Breakpoints: {
+      base: 640,
+      small: 500,
+      smaller: 265,
+      large: 750,
+      larger: 1024,
+    },
+  };
+});
 
-    expect(
-      screen.getByRole("heading", { name: "Notifications", level: 1 }),
-    ).toBeVisible();
-    expect(
-      screen.getByText(/Improve job completion rates/i),
-    ).toBeInTheDocument();
-  });
+it("renders a Page", () => {
+  const { container } = render(
+    <Page
+      title="Notifications"
+      intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
+    >
+      Sup
+    </Page>,
+  );
+
+  expect(container).toMatchSnapshot();
 });
 
 describe("When actions are provided", () => {
@@ -45,28 +43,45 @@ describe("When actions are provided", () => {
       {
         header: "Send as...",
         actions: [
-          { label: "Text Message", icon: "sms", onClick: jest.fn() },
-          { label: "Email", icon: "email", onClick: jest.fn() },
+          {
+            label: "Text Message",
+            icon: "sms",
+            onClick: jest.fn(),
+          },
+          {
+            label: "Email",
+            icon: "email",
+            onClick: jest.fn(),
+          },
         ],
       },
-      { actions: [{ label: "Edit", icon: "edit", onClick: jest.fn() }] },
+      {
+        actions: [
+          {
+            label: "Edit",
+            icon: "edit",
+            onClick: jest.fn(),
+          },
+        ],
+      },
     ];
 
-    render(
+    const { container } = render(
       <Page
         title="Notifications"
         intro="Improve job completion rates."
         primaryAction={{ label: "Send Food", onClick: jest.fn() }}
-        secondaryAction={{ label: "Send Drink", onClick: jest.fn() }}
+        secondaryAction={{
+          label: "Send Drink",
+          onClick: jest.fn(),
+        }}
         moreActionsMenu={sampleActionMenu}
       >
         Sup
       </Page>,
     );
 
-    expect(screen.getByText("Send Food")).toBeVisible();
-    expect(screen.getByText("Send Drink")).toBeVisible();
-    expect(screen.getByText("More Actions")).toBeVisible();
+    expect(container).toMatchSnapshot();
   });
 
   it("triggers the correct primary action on click", () => {
@@ -78,7 +93,10 @@ describe("When actions are provided", () => {
         title="Always Watching"
         intro="This be an intro."
         primaryAction={{ label: "First Do", onClick: handlePrimaryAction }}
-        secondaryAction={{ label: "Second Do", onClick: handleSecondaryAction }}
+        secondaryAction={{
+          label: "Second Do",
+          onClick: handleSecondaryAction,
+        }}
       >
         Sup
       </Page>,
@@ -113,11 +131,12 @@ describe("When actions are provided", () => {
 
   describe("getActionProps", () => {
     it("given action props, it returns the correct props", () => {
-      const buttonActionProps = { label: "Label" };
-      const divRef = React.createRef<HTMLDivElement>();
-      const buttonActionWithRefProps: ButtonActionProps = {
+      const buttonActionProps = {
         label: "Label",
-        ref: divRef,
+      };
+      const buttonActionWithRefProps = {
+        label: "Label",
+        ref: { current: null },
       };
 
       expect(getActionProps(buttonActionProps)).toEqual(buttonActionProps);
@@ -133,7 +152,14 @@ describe("When moreActions are provided", () => {
     const handleMenuAction = jest.fn();
 
     const simpleActionMenu: SectionProps[] = [
-      { actions: [{ label: "Text Message", onClick: handleMenuAction }] },
+      {
+        actions: [
+          {
+            label: "Text Message",
+            onClick: handleMenuAction,
+          },
+        ],
+      },
     ];
     const { getByText } = render(
       <Page
