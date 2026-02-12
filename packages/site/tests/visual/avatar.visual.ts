@@ -20,9 +20,10 @@ test.describe("Avatar Visual Tests", () => {
       const defaultAvatarSection = page
         .locator("section")
         .filter({ hasText: "Default (no color)" });
-      const iconAvatar = defaultAvatarSection.locator(
-        '[aria-label="Icon fallback"]',
-      );
+      // Use .first() to target the Light mode avatar
+      const iconAvatar = defaultAvatarSection
+        .locator('[aria-label="Icon fallback"]')
+        .first();
 
       await defaultAvatarSection.scrollIntoViewIfNeeded();
       await page.waitForTimeout(300);
