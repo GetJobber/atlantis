@@ -5,14 +5,14 @@ import styles from "./DataTableStyles.module.css";
 interface DataTableTableProps extends React.HTMLAttributes<HTMLTableElement> {
   /**
    * Controls the table layout.
+   * - `auto` (default): Columns size to content.
    * - `fixed`: Column widths can be set explicitly; columns without widths share remaining space.
-   * - `auto`: Columns size to content.
    */
   readonly layout?: "auto" | "fixed";
 }
 
 export function DataTableTable(props: PropsWithChildren<DataTableTableProps>) {
-  const { layout = "fixed", className, style, ...rest } = props;
+  const { layout = "auto", className, style, ...rest } = props;
 
   return (
     <table

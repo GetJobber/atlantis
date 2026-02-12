@@ -1868,7 +1868,7 @@ const columnWidthData = [
 ];
 
 /**
- * With `layout="fixed"` (default), you can control column widths using percentages.
+ * With `layout="fixed"`, you can control column widths using percentages.
  * Columns without explicit widths share the remaining space equally.
  *
  */
@@ -1978,7 +1978,7 @@ export const ColumnWidths = () => {
   return (
     <StorybookTableProvider table={table}>
       <DataTable.Container>
-        <DataTable.Table>
+        <DataTable.Table layout="fixed">
           <DataTable.Header>
             {isDesktop ? (
               <>
