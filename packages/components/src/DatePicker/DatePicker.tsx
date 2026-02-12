@@ -1,9 +1,15 @@
 import type { ReactElement } from "react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import type { XOR } from "ts-xor";
 import { useRefocusOnActivator } from "@jobber/hooks";
+import {
+  FloatingNode,
+  FloatingPortal,
+  FloatingTree,
+  useFloatingNodeId,
+} from "@floating-ui/react";
 import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import type { DatePickerActivatorProps } from "./DatePickerActivator";
@@ -96,7 +102,7 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-/*eslint max-statements: ["error", 14]*/
+// eslint-disable-next-line max-statements
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -118,6 +124,9 @@ export function DatePicker({
   const { dateFormat, firstDayOfWeek: contextFirstDayOfWeek } =
     useAtlantisContext();
   const effectiveFirstDayOfWeek = firstDayOfWeek ?? contextFirstDayOfWeek;
+  const renderInsidePortal = !inline;
+  const uniquePortalId = useId();
+
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -172,7 +181,10 @@ export function DatePicker({
         onMonthChange={onMonthChange}
         calendarStartDay={effectiveFirstDayOfWeek}
         popperPlacement="bottom-start"
+        // This tells RDP to render the popper inside a portal we control.
+        {...(renderInsidePortal && { portalId: uniquePortalId })}
       />
+      {renderInsidePortal && <DatePickerPortal portalId={uniquePortalId} />}
     </div>
   );
 
@@ -225,4 +237,45 @@ function useEscapeKeyToCloseDatePicker(
   return {
     pickerRef,
   };
+}
+
+/**
+ * This is one approach, continuing to allow ReactDatePicker to handle its open/close state and the activator/positioning behaviour.
+ *
+ * However, we don't have full control and it's making certain things difficult, like this portal behaviour and focus management.
+ * What if instead of RDP controlling the activator (customInput), we instead manage it ourselves? We could render RDP (with inline=true)
+ * inside our own Popover component which gives us a lot more control over positioning, open/close state, focus/blur/dismiss management,
+ * and more. Unclear if this is a better approach or if it would introduce more problems, but worth considering.
+ */
+function DatePickerPortal({
+  // isOpen,
+  portalId,
+}: {
+  // readonly isOpen?: boolean;
+  readonly portalId: string;
+}) {
+  // TODO: ideally we don't always render this. However, it needs to be rendered BEFORE DatePicker tries to portal into it.
+  // if (!isOpen) return null;
+
+  const nodeId = useFloatingNodeId();
+
+  // TODO: do we need to check parentNodeId and conditionally render this inside a FloatingTree only in that case?
+  // See ComboboxContent.tsx for example of this pattern.
+  // const parentNodeId = useFloatingParentNodeId();
+
+  return (
+    <FloatingTree>
+      <FloatingNode id={nodeId}>
+        <FloatingPortal>
+          <div
+            id={portalId}
+            style={{
+              position: "absolute",
+              zIndex: "var(--elevation-modal)",
+            }}
+          />
+        </FloatingPortal>
+      </FloatingNode>
+    </FloatingTree>
+  );
 }
