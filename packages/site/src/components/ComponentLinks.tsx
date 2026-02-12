@@ -11,6 +11,7 @@ import {
   ComponentType,
   ContentExportLinks,
   PlatformType,
+  TocItem,
 } from "../types/content";
 import { useAtlantisSite } from "../providers/AtlantisSiteProvider";
 import { getComponentTypeConfig } from "../utils/componentTypeUtils";
@@ -22,6 +23,7 @@ import { getComponentTypeConfig } from "../utils/componentTypeUtils";
  */
 export const ComponentLinks = ({
   links,
+  toc,
   goToProps,
   goToUsage,
   goToDesign,
@@ -29,6 +31,7 @@ export const ComponentLinks = ({
   currentType,
 }: {
   readonly links?: ContentExportLinks[];
+  readonly toc?: TocItem[];
   readonly goToProps: (type: ComponentType) => void;
   readonly goToUsage: (type: ComponentType) => void;
   readonly goToDesign: () => void;
@@ -44,6 +47,7 @@ export const ComponentLinks = ({
       <AnchorLinks
         id="design"
         header="Design"
+        toc={toc}
         additionalOnClickAction={goToDesign}
       />
       {availablePlatforms.map(platform => {

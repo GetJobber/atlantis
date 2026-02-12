@@ -1,10 +1,11 @@
-import Content from "./InputValidation.stories.mdx";
+import Content, { toc } from "./InputValidation.stories.mdx";
 import Props from "./InputValidation.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [validationMessages, setValidationMessages] = useState("");

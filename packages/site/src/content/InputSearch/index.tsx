@@ -1,10 +1,11 @@
-import Content from "./InputSearch.stories.mdx";
+import Content, { toc } from "./InputSearch.stories.mdx";
 import MobileProps from "./InputSearch.props-mobile.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   mobileProps: MobileProps,
   component: {
     mobileElement: `

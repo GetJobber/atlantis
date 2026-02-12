@@ -1,4 +1,4 @@
-import BannerContent from "./Banner.stories.mdx";
+import BannerContent, { toc } from "./Banner.stories.mdx";
 import Props from "./Banner.props.json";
 import MobileProps from "./Banner.props-mobile.json";
 import Notes from "./BannerNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <BannerContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

@@ -1,4 +1,4 @@
-import Content from "./Combobox.stories.mdx";
+import Content, { toc } from "./Combobox.stories.mdx";
 import Props from "./Combobox.props.json";
 import Notes from "./ComboboxNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `const [selected, setSelected] = useState([

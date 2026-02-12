@@ -1,4 +1,4 @@
-import Content from "./BottomSheet.stories.mdx";
+import Content, { toc } from "./BottomSheet.stories.mdx";
 import MobileProps from "./BottomSheet.props-mobile.json";
 import Notes from "./BottomSheetNotes.mdx";
 import { ContentExport } from "../../types/content";
@@ -6,6 +6,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   mobileProps: MobileProps,
   component: {
     mobileElement: `const bottomSheetRef = useRef<BottomSheetRef>(null);

@@ -1,5 +1,6 @@
 import { Box, Content, Typography } from "@jobber/components";
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent } from "react";
+import type { TocItem } from "../types/content";
 
 interface AnchorLinksProps {
   /**
@@ -16,23 +17,19 @@ interface AnchorLinksProps {
    * An additional action to perform along with scrolling to the selected anchor
    */
   readonly additionalOnClickAction?: () => void;
+
+  /**
+   * Pre-extracted TOC (e.g. from virtual:content-toc). When provided, used for
+   * sidebar links instead of querying the DOM.
+   */
+  readonly toc?: TocItem[];
 }
 
 export function AnchorLinks({
   header,
-  id,
   additionalOnClickAction,
+  toc: tocProp,
 }: AnchorLinksProps) {
-  const [hlinks, setHlinks] = useState<Element[] | null>(null);
-
-  useEffect(() => {
-    const hdd = document.querySelectorAll("[data-heading-link]");
-
-    if (hdd.length > 0) {
-      setHlinks(Array.from(hdd));
-    }
-  }, [id]);
-
   const click = (e: MouseEvent) => {
     e.preventDefault();
     const anchorId = e.currentTarget?.getAttribute("href")?.replace("#", "");
@@ -49,9 +46,11 @@ export function AnchorLinks({
     }
   };
 
+  const links = tocProp ?? [];
+
   return (
     <>
-      {hlinks && hlinks.length > 0 && (
+      {links.length > 0 && (
         <Content>
           <Typography
             element={"h3"}
@@ -63,10 +62,10 @@ export function AnchorLinks({
             {header}
           </Typography>
           <Content spacing="small">
-            {hlinks?.map((link, index) => (
-              <Box key={index}>
+            {links.map((link, index) => (
+              <Box key={link.id ?? index}>
                 <a onClick={click} href={`#${link.id}`}>
-                  {link.textContent}
+                  {link.label}
                 </a>
               </Box>
             ))}

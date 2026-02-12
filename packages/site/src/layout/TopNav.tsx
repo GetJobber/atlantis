@@ -1,6 +1,6 @@
 import { Box, Button, Tooltip } from "@jobber/components";
 import { useBreakpoints } from "@jobber/hooks";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { SearchButton } from "./SearchButton";
 import { ToggleThemeButton } from "../components/ToggleThemeButton";
 import { useTritonChat } from "../providers/TritonProvider";
@@ -41,7 +41,7 @@ export const TopNav = () => {
             icon="menu"
           />
           <Box padding={{ top: "smaller" }}>
-            <Link to="/">
+            <Link to="/" search={{}}>
               <JobberLogo />
             </Link>
           </Box>

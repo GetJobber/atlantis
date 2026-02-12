@@ -1,4 +1,4 @@
-import InputDateContent from "./InputDate.stories.mdx";
+import InputDateContent, { toc } from "./InputDate.stories.mdx";
 import Props from "./InputDate.props.json";
 import MobileProps from "./InputDate.props-mobile.json";
 import RebuiltProps from "./InputDateV2.props.json";
@@ -10,6 +10,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <InputDateContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   webSupportedProps: RebuiltProps,

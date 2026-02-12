@@ -1,4 +1,4 @@
-import StatusLabelContent from "./StatusLabel.stories.mdx";
+import StatusLabelContent, { toc } from "./StatusLabel.stories.mdx";
 import Props from "./StatusLabel.props.json";
 import MobileProps from "./StatusLabel.props-mobile.json";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
@@ -6,6 +6,7 @@ import { ContentExport } from "../../types/content";
 
 export default {
   content: () => <StatusLabelContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

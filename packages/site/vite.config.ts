@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import rehypeRewrite from "rehype-rewrite";
+import { recmaInjectToc, remarkExtractToc } from "./scripts/mdx-extract-toc";
 
 const rewriteLink = (item: string) => {
   let newItem = item;
@@ -18,7 +19,9 @@ export default defineConfig({
   plugins: [
     react(),
     mdx({
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, remarkExtractToc],
+      recmaPlugins: [recmaInjectToc],
+      providerImportSource: "@mdx-js/react",
       rehypePlugins: [
         [
           rehypeRewrite,

@@ -16,6 +16,11 @@ import { PackagesPage } from "./pages/PackagesPage";
 import { ComponentNotFound } from "./components/ComponentNotFound";
 import { WelcomeGuidePage } from "./pages/WelcomeGuidePage";
 
+/**
+ * Nav/sidebar route config. Used by NavMenu for the left menu structure (handle, path, inNav, children).
+ * Actual routing is handled by TanStack Router in routeTree.gen.ts — keep paths and components in sync
+ * when adding or changing routes.
+ */
 export interface AtlantisRoute {
   path?: string;
   component?: () => ReactElement;
@@ -37,7 +42,7 @@ const generateComponentSidebar = () => {
     filteredComponents.map(component => {
       if (!sectionRoutes.children) return;
       sectionRoutes.children.push({
-        path: "/components/:name",
+        path: "/components/$name",
         component: ComponentView,
         handle: component.title,
         inNav: true,
@@ -359,56 +364,56 @@ export const routes: Array<AtlantisRoute> = [
     ],
   },
   {
-    path: "/components/:name",
+    path: "/components/$name",
     component: ComponentView,
     handle: "Web",
     inNav: false,
     exact: true,
   },
   {
-    path: "/design/:name",
+    path: "/design/$name",
     component: ContentLoader,
     handle: "DesignContent",
     inNav: false,
     exact: true,
   },
   {
-    path: "/content/:name",
+    path: "/content/$name",
     component: ContentLoader,
     handle: "GeneralContent",
     inNav: false,
     exact: true,
   },
   {
-    path: "/hooks/:name",
+    path: "/hooks/$name",
     component: ContentLoader,
     handle: "HooksContent",
     inNav: false,
     exact: true,
   },
   {
-    path: "/guides/:name",
+    path: "/guides/$name",
     component: ContentLoader,
     handle: "GuidesContent",
     inNav: false,
     exact: true,
   },
   {
-    path: "/packages/:name",
+    path: "/packages/$name",
     component: ContentLoader,
     handle: "PackagesContent",
     inNav: false,
     exact: true,
   },
   {
-    path: "/patterns/:name",
+    path: "/patterns/$name",
     component: ContentLoader,
     handle: "PatternsContent",
     inNav: false,
     exact: true,
   },
   {
-    path: "/changelog/:name",
+    path: "/changelog/$name",
     component: ContentLoader,
     handle: "ChangelogContent",
     inNav: false,

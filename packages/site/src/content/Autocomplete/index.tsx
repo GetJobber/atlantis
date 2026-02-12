@@ -1,4 +1,4 @@
-import AutocompleteContent from "./Autocomplete.stories.mdx";
+import AutocompleteContent, { toc } from "./Autocomplete.stories.mdx";
 import Props from "./Autocomplete.props.json";
 import RebuiltContent from "./AutocompleteV2.stories.mdx";
 import Notes from "./AutocompleteNotes.mdx";
@@ -11,6 +11,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <AutocompleteContent />,
+  toc,
   webSupportedContent: () => <RebuiltContent />,
   props: Props,
   webSupportedProps: RebuiltProps,

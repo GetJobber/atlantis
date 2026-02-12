@@ -1,4 +1,4 @@
-import ButtonContent from "./Button.stories.mdx";
+import ButtonContent, { toc } from "./Button.stories.mdx";
 import Props from "./Button.props.json";
 import MobileProps from "./Button.props-mobile.json";
 import Notes from "./ButtonNotes.mdx";
@@ -7,6 +7,7 @@ import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <ButtonContent />,
+  toc,
   props: Props,
   mobileProps: MobileProps,
   component: {

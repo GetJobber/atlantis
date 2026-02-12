@@ -1,10 +1,11 @@
-import Content from "./DescriptionList.stories.mdx";
+import Content, { toc } from "./DescriptionList.stories.mdx";
 import Props from "./DescriptionList.props.json";
 import { ContentExport } from "../../types/content";
 import { getStorybookUrl } from "../../layout/getStorybookUrl";
 
 export default {
   content: () => <Content />,
+  toc,
   props: Props,
   component: {
     element: `<DescriptionList

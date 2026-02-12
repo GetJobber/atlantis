@@ -1,4 +1,5 @@
-import { Route, Switch } from "react-router";
+import type { ReactElement } from "react";
+import { useParams } from "@tanstack/react-router";
 import { VisualTestAutocompletePage } from "./VisualTestAutocompletePage";
 import { VisualTestCardPage } from "./VisualTestCardPage";
 import { VisualTestAutocompleteV2Page } from "./VisualTestAutocompleteV2Page";
@@ -61,304 +62,71 @@ import { VisualTestToastPage } from "./VisualTestToastPage";
 import { VisualTestBannerPage } from "./VisualTestBannerPage";
 import { VisualTestThemePage } from "./VisualTestThemePage";
 
+const visualTestPages: Record<string, () => ReactElement> = {
+  components: VisualTestComponentPage,
+  layout: VisualTestLayoutPage,
+  modal: VisualTestModalPage,
+  datalist: VisualTestDataListPage,
+  autocomplete: VisualTestAutocompletePage,
+  "autocomplete-v2": VisualTestAutocompleteV2Page,
+  banner: VisualTestBannerPage,
+  card: VisualTestCardPage,
+  chip: VisualTestChipPage,
+  chips: VisualTestChipsPage,
+  combobox: VisualTestComboboxPage,
+  datepicker: VisualTestDatePickerPage,
+  "description-list": VisualTestDescriptionListPage,
+  disclosure: VisualTestDisclosurePage,
+  divider: VisualTestDividerPage,
+  drawer: VisualTestDrawerPage,
+  emphasis: VisualTestEmphasisPage,
+  "feature-switch": VisualTestFeatureSwitchPage,
+  "form-field": VisualTestFormFieldPage,
+  gallery: VisualTestGalleryPage,
+  glimmer: VisualTestGlimmerPage,
+  grid: VisualTestGridPage,
+  heading: VisualTestHeadingPage,
+  icon: VisualTestIconPage,
+  "inline-label": VisualTestInlineLabelPage,
+  "input-date": VisualTestInputDatePage,
+  "input-email": VisualTestInputEmailPage,
+  "input-file": VisualTestInputFilePage,
+  "input-group": VisualTestInputGroupPage,
+  "input-number": VisualTestInputNumberPage,
+  "input-password": VisualTestInputPasswordPage,
+  "input-phone-number": VisualTestInputPhoneNumberPage,
+  "input-text": VisualTestInputTextPage,
+  "input-time": VisualTestInputTimePage,
+  "input-validation": VisualTestInputValidationPage,
+  lightbox: VisualTestLightBoxPage,
+  link: VisualTestLinkPage,
+  list: VisualTestListPage,
+  markdown: VisualTestMarkdownPage,
+  menu: VisualTestMenuPage,
+  "menu-small": VisualTestMenuSmallPage,
+  "menu-small-sticky": VisualTestMenuSmallStickyPage,
+  popover: VisualTestPopoverPage,
+  "progress-bar": VisualTestProgressBarPage,
+  "radio-group": VisualTestRadioGroupPage,
+  "segmented-control": VisualTestSegmentedControlPage,
+  select: VisualTestSelectPage,
+  "select-v2": VisualTestSelectV2Page,
+  "side-drawer": VisualTestSideDrawerPage,
+  spinner: VisualTestSpinnerPage,
+  switch: VisualTestSwitchPage,
+  table: VisualTestTablePage,
+  "data-table": VisualTestDataTablePage,
+  "data-table-atoms": VisualTestDataTableAtomsPage,
+  tabs: VisualTestTabsPage,
+  toast: VisualTestToastPage,
+  tooltip: VisualTestTooltipPage,
+  typography: VisualTestTypographyPage,
+  theme: VisualTestThemePage,
+};
+
 export const VisualTestRouter = () => {
-  return (
-    <Switch>
-      <Route
-        path="/visual-tests/components"
-        exact={true}
-        component={VisualTestComponentPage}
-      />
-      <Route
-        path="/visual-tests/layout"
-        exact={true}
-        component={VisualTestLayoutPage}
-      />
-      <Route
-        path="/visual-tests/modal"
-        exact={true}
-        component={VisualTestModalPage}
-      />
-      <Route
-        path="/visual-tests/datalist"
-        exact={true}
-        component={VisualTestDataListPage}
-      />
-      <Route
-        path="/visual-tests/autocomplete"
-        exact={true}
-        component={VisualTestAutocompletePage}
-      />
-      <Route
-        path="/visual-tests/autocomplete-v2"
-        exact={true}
-        component={VisualTestAutocompleteV2Page}
-      />
-      <Route
-        path="/visual-tests/banner"
-        exact={true}
-        component={VisualTestBannerPage}
-      />
-      <Route
-        path="/visual-tests/card"
-        exact={true}
-        component={VisualTestCardPage}
-      />
-      <Route
-        path="/visual-tests/chip"
-        exact={true}
-        component={VisualTestChipPage}
-      />
-      <Route
-        path="/visual-tests/chips"
-        exact={true}
-        component={VisualTestChipsPage}
-      />
-      <Route
-        path="/visual-tests/combobox"
-        exact={true}
-        component={VisualTestComboboxPage}
-      />
-      <Route
-        path="/visual-tests/datepicker"
-        exact={true}
-        component={VisualTestDatePickerPage}
-      />
-      <Route
-        path="/visual-tests/description-list"
-        exact={true}
-        component={VisualTestDescriptionListPage}
-      />
-      <Route
-        path="/visual-tests/disclosure"
-        exact={true}
-        component={VisualTestDisclosurePage}
-      />
-      <Route
-        path="/visual-tests/divider"
-        exact={true}
-        component={VisualTestDividerPage}
-      />
-      <Route
-        path="/visual-tests/emphasis"
-        exact={true}
-        component={VisualTestEmphasisPage}
-      />
-      <Route
-        path="/visual-tests/drawer"
-        exact={true}
-        component={VisualTestDrawerPage}
-      />
-      <Route
-        path="/visual-tests/feature-switch"
-        exact={true}
-        component={VisualTestFeatureSwitchPage}
-      />
-      <Route
-        path="/visual-tests/form-field"
-        exact={true}
-        component={VisualTestFormFieldPage}
-      />
-      <Route
-        path="/visual-tests/gallery"
-        exact={true}
-        component={VisualTestGalleryPage}
-      />
-      <Route
-        path="/visual-tests/glimmer"
-        exact={true}
-        component={VisualTestGlimmerPage}
-      />
-      <Route
-        path="/visual-tests/grid"
-        exact={true}
-        component={VisualTestGridPage}
-      />
-      <Route
-        path="/visual-tests/heading"
-        exact={true}
-        component={VisualTestHeadingPage}
-      />
-      <Route
-        path="/visual-tests/icon"
-        exact={true}
-        component={VisualTestIconPage}
-      />
-      <Route
-        path="/visual-tests/inline-label"
-        exact={true}
-        component={VisualTestInlineLabelPage}
-      />
-      <Route
-        path="/visual-tests/input-date"
-        exact={true}
-        component={VisualTestInputDatePage}
-      />
-      <Route
-        path="/visual-tests/input-email"
-        exact={true}
-        component={VisualTestInputEmailPage}
-      />
-      <Route
-        path="/visual-tests/input-file"
-        exact={true}
-        component={VisualTestInputFilePage}
-      />
-      <Route
-        path="/visual-tests/input-group"
-        exact={true}
-        component={VisualTestInputGroupPage}
-      />
-      <Route
-        path="/visual-tests/input-number"
-        exact={true}
-        component={VisualTestInputNumberPage}
-      />
-      <Route
-        path="/visual-tests/input-password"
-        exact={true}
-        component={VisualTestInputPasswordPage}
-      />
-      <Route
-        path="/visual-tests/input-phone-number"
-        exact={true}
-        component={VisualTestInputPhoneNumberPage}
-      />
-      <Route
-        path="/visual-tests/input-text"
-        exact={true}
-        component={VisualTestInputTextPage}
-      />
-      <Route
-        path="/visual-tests/input-time"
-        exact={true}
-        component={VisualTestInputTimePage}
-      />
-      <Route
-        path="/visual-tests/input-validation"
-        exact={true}
-        component={VisualTestInputValidationPage}
-      />
-      <Route
-        path="/visual-tests/lightbox"
-        exact={true}
-        component={VisualTestLightBoxPage}
-      />
-      <Route
-        path="/visual-tests/link"
-        exact={true}
-        component={VisualTestLinkPage}
-      />
-      <Route
-        path="/visual-tests/list"
-        exact={true}
-        component={VisualTestListPage}
-      />
-      <Route
-        path="/visual-tests/markdown"
-        exact={true}
-        component={VisualTestMarkdownPage}
-      />
-      <Route
-        path="/visual-tests/menu"
-        exact={true}
-        component={VisualTestMenuPage}
-      />
-      <Route
-        path="/visual-tests/menu-small"
-        exact={true}
-        component={VisualTestMenuSmallPage}
-      />
-      <Route
-        path="/visual-tests/menu-small-sticky"
-        exact={true}
-        component={VisualTestMenuSmallStickyPage}
-      />
-      <Route
-        path="/visual-tests/popover"
-        exact={true}
-        component={VisualTestPopoverPage}
-      />
-      <Route
-        path="/visual-tests/progress-bar"
-        exact={true}
-        component={VisualTestProgressBarPage}
-      />
-      <Route
-        path="/visual-tests/radio-group"
-        exact={true}
-        component={VisualTestRadioGroupPage}
-      />
-      <Route
-        path="/visual-tests/segmented-control"
-        exact={true}
-        component={VisualTestSegmentedControlPage}
-      />
-      <Route
-        path="/visual-tests/select"
-        exact={true}
-        component={VisualTestSelectPage}
-      />
-      <Route
-        path="/visual-tests/select-v2"
-        exact={true}
-        component={VisualTestSelectV2Page}
-      />
-      <Route
-        path="/visual-tests/side-drawer"
-        exact={true}
-        component={VisualTestSideDrawerPage}
-      />
-      <Route
-        path="/visual-tests/spinner"
-        exact={true}
-        component={VisualTestSpinnerPage}
-      />
-      <Route
-        path="/visual-tests/switch"
-        exact={true}
-        component={VisualTestSwitchPage}
-      />
-      <Route
-        path="/visual-tests/table"
-        exact={true}
-        component={VisualTestTablePage}
-      />
-      <Route
-        path="/visual-tests/data-table"
-        exact={true}
-        component={VisualTestDataTablePage}
-      />
-      <Route
-        path="/visual-tests/data-table-atoms"
-        exact={true}
-        component={VisualTestDataTableAtomsPage}
-      />
-      <Route
-        path="/visual-tests/tabs"
-        exact={true}
-        component={VisualTestTabsPage}
-      />
-      <Route
-        path="/visual-tests/toast"
-        exact={true}
-        component={VisualTestToastPage}
-      />
-      <Route
-        path="/visual-tests/tooltip"
-        exact={true}
-        component={VisualTestTooltipPage}
-      />
-      <Route
-        path="/visual-tests/typography"
-        exact={true}
-        component={VisualTestTypographyPage}
-      />
-      <Route
-        path="/visual-tests/theme"
-        exact={true}
-        component={VisualTestThemePage}
-      />
-    </Switch>
-  );
+  const { path } = useParams({ from: "/visual-tests/$path" });
+  const PageComponent = path ? visualTestPages[path] : null;
+
+  return PageComponent ? <PageComponent /> : <VisualTestLinkPage />;
 };
