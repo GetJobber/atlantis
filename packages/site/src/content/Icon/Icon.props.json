@@ -75,7 +75,7 @@
       },
       "aria-hidden": {
         "defaultValue": null,
-        "description": "",
+        "description": "Indicates whether the element is exposed to an accessibility API.\n@see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-hidden}",
         "name": "aria-hidden",
         "parent": {
           "fileName": "../components/src/Icon/Icon.tsx",

@@ -32,6 +32,10 @@ export interface IconProps {
    */
   readonly testID?: string;
 
+  /**
+   * Indicates whether the element is exposed to an accessibility API.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-hidden}
+   */
   readonly "aria-hidden"?: AriaAttributes["aria-hidden"];
 
   /**
