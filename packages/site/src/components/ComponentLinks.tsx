@@ -26,7 +26,6 @@ export const ComponentLinks = ({
   toc,
   goToProps,
   goToUsage,
-  goToDesign,
   availablePlatforms,
   currentType,
 }: {
@@ -34,7 +33,6 @@ export const ComponentLinks = ({
   readonly toc?: TocItem[];
   readonly goToProps: (type: ComponentType) => void;
   readonly goToUsage: (type: ComponentType) => void;
-  readonly goToDesign: () => void;
   readonly availablePlatforms: PlatformType[];
   readonly availableVersionsForCurrentPlatform: ComponentType[];
   readonly currentType: ComponentType;
@@ -44,12 +42,7 @@ export const ComponentLinks = ({
 
   return (
     <Content spacing={"larger"}>
-      <AnchorLinks
-        id="design"
-        header="Design"
-        toc={toc}
-        additionalOnClickAction={goToDesign}
-      />
+      <AnchorLinks header="Design" toc={toc} />
       {availablePlatforms.map(platform => {
         const config = getComponentTypeConfig(
           platform === "web" ? "web" : "mobile",

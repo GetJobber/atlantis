@@ -1,5 +1,6 @@
 import { Box, Content, Typography } from "@jobber/components";
-import { MouseEvent } from "react";
+import { Link, useMatches, useParams } from "@tanstack/react-router";
+import omit from "lodash/omit";
 import type { TocItem } from "../types/content";
 
 interface AnchorLinksProps {
@@ -9,48 +10,26 @@ interface AnchorLinksProps {
   readonly header: string;
 
   /**
-   * A unique identifier for the component
-   */
-  readonly id: string;
-
-  /**
-   * An additional action to perform along with scrolling to the selected anchor
-   */
-  readonly additionalOnClickAction?: () => void;
-
-  /**
    * Pre-extracted TOC (e.g. from virtual:content-toc). When provided, used for
    * sidebar links instead of querying the DOM.
    */
   readonly toc?: TocItem[];
 }
 
-export function AnchorLinks({
-  header,
-  additionalOnClickAction,
-  toc: tocProp,
-}: AnchorLinksProps) {
-  const click = (e: MouseEvent) => {
-    e.preventDefault();
-    const anchorId = e.currentTarget?.getAttribute("href")?.replace("#", "");
+export function AnchorLinks({ header, toc: tocProp }: AnchorLinksProps) {
+  const matches = useMatches();
+  const params = useParams({ strict: false });
+  const currentRoute = matches[matches.length - 1];
+  // Fix for typescript issues. Want to clean this up when we use file based routing.
+  if (!currentRoute || currentRoute.routeId === "__root__") return null;
 
-    if (anchorId) {
-      additionalOnClickAction?.();
-      setTimeout(() => {
-        const element = document.getElementById(anchorId);
-
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    }
-  };
-
-  const links = tocProp ?? [];
+  const newParams = omit(params, "tab");
+  // Remove the tab because the table of contents is not on a tab in the components route
+  const newPath = currentRoute.routeId.replace("/$tab", "");
 
   return (
     <>
-      {links.length > 0 && (
+      {tocProp && tocProp.length > 0 && (
         <Content>
           <Typography
             element={"h3"}
@@ -62,11 +41,16 @@ export function AnchorLinks({
             {header}
           </Typography>
           <Content spacing="small">
-            {links.map((link, index) => (
+            {tocProp.map((link, index) => (
               <Box key={link.id ?? index}>
-                <a onClick={click} href={`#${link.id}`}>
+                <Link
+                  params={newParams}
+                  to={newPath}
+                  hash={`${link.id}`}
+                  hashScrollIntoView={{ behavior: "smooth" }}
+                >
                   {link.label}
-                </a>
+                </Link>
               </Box>
             ))}
           </Content>

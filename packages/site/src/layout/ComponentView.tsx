@@ -218,10 +218,6 @@ export const ComponentView = () => {
     }
   };
 
-  const goToDesign = () => {
-    handleTabChange(DESIGN_TAB_INDEX);
-  };
-
   return PageMeta ? (
     <BaseView>
       <BaseView.Main>
@@ -272,7 +268,6 @@ export const ComponentView = () => {
             availableVersionsForCurrentPlatform
           }
           currentType={type}
-          goToDesign={goToDesign}
           goToProps={goToProps}
           goToUsage={goToUsage}
         />

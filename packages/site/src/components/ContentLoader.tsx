@@ -44,7 +44,6 @@ export const ContentLoader = () => {
 
   return content ? (
     <ContentView
-      key={`${type}-${name}`}
       title={content.title}
       content={content.content}
       noMaxWidth={content.noMaxWidth}
