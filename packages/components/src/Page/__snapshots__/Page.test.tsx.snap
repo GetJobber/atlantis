@@ -68,6 +68,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                     type="button"
                   >
                     <svg
+                      aria-hidden="true"
                       data-testid="more"
                       style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
                       viewBox="0 0 24 24"
