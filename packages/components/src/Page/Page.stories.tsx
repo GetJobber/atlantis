@@ -1,7 +1,13 @@
 import React, { useRef, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
+import { action } from "storybook/actions";
 import { Heading, StatusLabel, Tooltip } from "@jobber/components";
-import { Page } from "@jobber/components/Page";
+import {
+  Page,
+  type PageComposableProps,
+  type PageLegacyProps,
+} from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Menu } from "@jobber/components/Menu";
@@ -11,11 +17,12 @@ import { Popover } from "@jobber/components/Popover";
 const meta = {
   title: "Components/Layouts and Structure/Page",
   component: Page,
-} satisfies Meta<typeof Page>;
+} satisfies Meta;
 export default meta;
-type Story = StoryObj<typeof meta>;
+type PropsBasedStory = StoryObj<React.FC<PageLegacyProps>>;
+type ComposableStory = StoryObj<React.FC<PageComposableProps>>;
 
-const BasicTemplate = (args: Story["args"]) => (
+const BasicTemplate = (args: PropsBasedStory["args"]) => (
   <Page {...args}>
     <Content>
       <Text>Page content here</Text>
@@ -23,8 +30,8 @@ const BasicTemplate = (args: Story["args"]) => (
   </Page>
 );
 
-const CustomTitleTemplate = (args: Story["args"]) => {
-  const props = { ...args, titleMetaData: undefined };
+const CustomTitleTemplate = (args: PropsBasedStory["args"]) => {
+  const props = { ...args, titleMetaData: undefined } as PageLegacyProps;
 
   return (
     <Page
@@ -42,16 +49,19 @@ const CustomTitleTemplate = (args: Story["args"]) => {
   );
 };
 
-const PopoverTemplate = (args: Story["args"]) => {
+const PopoverTemplate = (args: PropsBasedStory["args"]) => {
   const primaryDivRef = useRef(null);
   const [showPrimaryPopover, setShowPrimaryPopover] = useState(false);
 
   const secondaryDivRef = useRef(null);
   const [showSecondaryPopover, setShowSecondaryPopover] = useState(false);
 
+  const pageProps = args as PageLegacyProps;
+
   return (
     <>
       <Page
+        {...pageProps}
         primaryAction={{
           label: "Trigger Food Popover",
           onClick: () => setShowPrimaryPopover(true),
@@ -62,7 +72,6 @@ const PopoverTemplate = (args: Story["args"]) => {
           onClick: () => setShowSecondaryPopover(true),
           ref: secondaryDivRef,
         }}
-        {...args}
       >
         <Content>
           <Text>Page content here</Text>
@@ -92,7 +101,7 @@ const titleMetaData = (
   <StatusLabel label={"In Progress"} alignment={"start"} status={"warning"} />
 );
 
-export const Basic: Story = {
+export const Basic: PropsBasedStory = {
   render: BasicTemplate,
   args: {
     title: "Notifications",
@@ -101,11 +110,11 @@ export const Basic: Story = {
   },
 };
 
-export const CustomTitle: Story = {
+export const CustomTitle: PropsBasedStory = {
   render: CustomTitleTemplate,
 };
 
-export const WithActions: Story = {
+export const WithActions: PropsBasedStory = {
   render: PopoverTemplate,
   args: {
     title: "Notification Settings",
@@ -116,9 +125,7 @@ export const WithActions: Story = {
           {
             label: "Edit",
             icon: "edit",
-            onClick: () => {
-              alert("✏️");
-            },
+            onClick: fn(),
           },
         ],
       },
@@ -128,16 +135,12 @@ export const WithActions: Story = {
           {
             label: "Text Message",
             icon: "sms",
-            onClick: () => {
-              alert("📱");
-            },
+            onClick: fn(),
           },
           {
             label: "Email",
             icon: "email",
-            onClick: () => {
-              alert("📨");
-            },
+            onClick: fn(),
           },
         ],
       },
@@ -145,20 +148,18 @@ export const WithActions: Story = {
   },
 };
 
-export const SecondaryActionOnly: Story = {
+export const SecondaryActionOnly: PropsBasedStory = {
   render: BasicTemplate,
   args: {
     title: "Settings",
     secondaryAction: {
       label: "View Documentation",
-      onClick: () => {
-        alert("View Documentation!");
-      },
+      onClick: fn(),
     },
   },
 };
 
-export const WithIntro: Story = {
+export const WithIntro: PropsBasedStory = {
   render: BasicTemplate,
   args: {
     title: "Notifications",
@@ -169,7 +170,7 @@ export const WithIntro: Story = {
   },
 };
 
-export const WithAdditionalTitleFields: Story = {
+export const WithAdditionalTitleFields: PropsBasedStory = {
   render: BasicTemplate,
   args: {
     title: "Kitchen Renovation Project",
@@ -180,7 +181,7 @@ export const WithAdditionalTitleFields: Story = {
   },
 };
 
-export const ComposableBasic: Story = {
+export const ComposableBasic: ComposableStory = {
   render: () => (
     <Page>
       <Page.Header>
@@ -195,7 +196,7 @@ export const ComposableBasic: Story = {
   ),
 };
 
-export const ComposableWithActions: Story = {
+export const ComposableWithActions: ComposableStory = {
   render: () => (
     <Page width="fill">
       <Page.Header>
@@ -203,18 +204,21 @@ export const ComposableWithActions: Story = {
         <Page.Actions>
           <Page.PrimaryAction
             label="New Client"
-            onClick={() => alert("New Client")}
+            onClick={action("primary-click")}
           />
           <Page.SecondaryAction
             label="Export"
-            onClick={() => alert("Export")}
+            onClick={action("secondary-click")}
           />
           <Page.Menu>
-            <Menu.Item textValue="Import" onClick={() => alert("Import")}>
+            <Menu.Item textValue="Import" onClick={action("menu-import-click")}>
               <Menu.ItemIcon name="import" />
               <Menu.ItemLabel>Import</Menu.ItemLabel>
             </Menu.Item>
-            <Menu.Item textValue="Archive" onClick={() => alert("Archive")}>
+            <Menu.Item
+              textValue="Archive"
+              onClick={action("menu-archive-click")}
+            >
               <Menu.ItemIcon name="archive" />
               <Menu.ItemLabel>Archive</Menu.ItemLabel>
             </Menu.Item>
@@ -230,7 +234,7 @@ export const ComposableWithActions: Story = {
   ),
 };
 
-export const ComposableWithSubtitleAndIntro: Story = {
+export const ComposableWithSubtitleAndIntro: ComposableStory = {
   render: () => (
     <Page>
       <Page.Header>
@@ -252,7 +256,7 @@ export const ComposableWithSubtitleAndIntro: Story = {
   ),
 };
 
-export const ComposableWithAllPieces: Story = {
+export const ComposableWithAllPieces: ComposableStory = {
   render: () => (
     <Page width="fill">
       <Page.Header>
@@ -272,21 +276,21 @@ export const ComposableWithAllPieces: Story = {
           <Page.PrimaryAction
             label="Create Invoice"
             icon="add"
-            onClick={() => alert("Create")}
+            onClick={action("primary-click")}
           />
           <Page.SecondaryAction
             label="Send Quote"
-            onClick={() => alert("Send")}
+            onClick={action("secondary-click")}
           />
           <Page.Menu>
-            <Menu.Item textValue="Edit" onClick={() => alert("Edit")}>
+            <Menu.Item textValue="Edit" onClick={action("menu-edit-click")}>
               <Menu.ItemIcon name="edit" />
               <Menu.ItemLabel>Edit</Menu.ItemLabel>
             </Menu.Item>
             <Menu.Item
               textValue="Delete"
               variation="destructive"
-              onClick={() => alert("Delete")}
+              onClick={action("menu-delete-click")}
             >
               <Menu.ItemIcon name="trash" />
               <Menu.ItemLabel>Delete</Menu.ItemLabel>
@@ -306,7 +310,7 @@ export const ComposableWithAllPieces: Story = {
   ),
 };
 
-export const ComposableCustomSlot: Story = {
+export const ComposableCustomSlot: ComposableStory = {
   render: () => (
     <Page>
       <Page.Header>
@@ -316,7 +320,7 @@ export const ComposableCustomSlot: Story = {
             <Button
               label="Custom Primary"
               icon="add"
-              onClick={() => alert("Custom primary")}
+              onClick={action("custom-primary-click")}
               fullWidth
             />
           </Page.PrimaryAction>
@@ -324,7 +328,7 @@ export const ComposableCustomSlot: Story = {
             <Button
               label="Custom Secondary"
               type="secondary"
-              onClick={() => alert("Custom secondary")}
+              onClick={action("custom-secondary-click")}
               fullWidth
             />
           </Page.SecondaryAction>
