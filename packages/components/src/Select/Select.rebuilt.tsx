@@ -84,16 +84,9 @@ export function SelectRebuilt(props: SelectRebuiltProps) {
   );
 }
 
-function useSelectRefs(
-  inputRef?: React.RefObject<
-    HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement | null
-  >,
-) {
+function useSelectRefs(inputRef?: React.Ref<HTMLSelectElement>) {
   const internalRef = useRef<HTMLSelectElement>(null);
-  const mergedRef = mergeRefs<HTMLSelectElement>([
-    internalRef,
-    inputRef as React.RefObject<HTMLSelectElement>,
-  ]);
+  const mergedRef = mergeRefs([internalRef, inputRef]);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   return { mergedRef, wrapperRef };

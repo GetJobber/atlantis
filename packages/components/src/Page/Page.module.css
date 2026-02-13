@@ -40,17 +40,28 @@
 .titleBar > .actionGroup {
   flex: 1 0 auto;
   align-self: baseline;
+}
+
+.titleBar.large,
+.titleBar.medium {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-/* Medium and up: inline actions (no wrap) */
-@container page-titlebar (min-width: 500px) {
-  .titleBar > .actionGroup {
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-  }
+.titleBar.small .actionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.titleBar.medium .actionGroup,
+.titleBar.large .actionGroup {
+  flex-wrap: nowrap;
+}
+
+.titleBar.medium .actionGroup {
+  justify-content: flex-end;
 }
 
 .primaryAction {
@@ -67,8 +78,52 @@
   width: 100%;
 }
 
-/* Medium and up: inline spacing */
+.titleBar.small .actionButton {
+  margin-top: 0;
+}
+
+.titleBar.medium .primaryAction,
+.titleBar.medium .actionButton {
+  margin: 0;
+  flex: 0 auto;
+}
+
+.titleBar.medium .actionButton {
+  margin-left: var(--space-small);
+}
+
+.titleBar.small .actionButton + .actionButton {
+  margin-left: var(--space-small);
+}
+
+.titleBar .subtitle {
+  margin-bottom: var(--space-base);
+}
+
+/* Composable Page API: responsive layout via CSS Container Queries */
+
+/* Base composable behavior (always active inside Container) */
+@container page-titlebar (min-width: 0) {
+  .titleBar > .actionGroup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+/* Composable: wider viewports — inline title + actions */
 @container page-titlebar (min-width: 500px) {
+  .titleBar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .titleBar > .actionGroup {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+
   .titleBar .primaryAction,
   .titleBar .actionButton {
     margin: 0;
@@ -78,13 +133,4 @@
   .titleBar .actionButton {
     margin-left: var(--space-small);
   }
-}
-
-/* Small: reduce top margin between stacked buttons */
-.titleBar .actionButton + .actionButton {
-  margin-left: var(--space-small);
-}
-
-.titleBar .subtitle {
-  margin-bottom: var(--space-base);
 }

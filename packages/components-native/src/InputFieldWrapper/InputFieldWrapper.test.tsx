@@ -358,4 +358,51 @@ describe("InputFieldWrapper", () => {
       ).toBeNull();
     });
   });
+
+  describe("multiline", () => {
+    it("applies maxWidth of 90% when multiline is true", () => {
+      const { getByTestId } = renderInputFieldWrapper({ multiline: true });
+      const container = getByTestId("ATL-InputFieldWrapper");
+
+      const flattenedStyle = container.props.style.reduce(
+        (style: ViewStyle, additionalStyles: ViewStyle) => ({
+          ...style,
+          ...additionalStyles,
+        }),
+        {},
+      );
+
+      expect(flattenedStyle.maxWidth).toEqual("90%");
+    });
+
+    it("does not apply maxWidth when multiline is false", () => {
+      const { getByTestId } = renderInputFieldWrapper({ multiline: false });
+      const container = getByTestId("ATL-InputFieldWrapper");
+
+      const flattenedStyle = container.props.style.reduce(
+        (style: ViewStyle, additionalStyles: ViewStyle) => ({
+          ...style,
+          ...additionalStyles,
+        }),
+        {},
+      );
+
+      expect(flattenedStyle.maxWidth).toBeUndefined();
+    });
+
+    it("does not apply maxWidth when multiline is not provided", () => {
+      const { getByTestId } = renderInputFieldWrapper({});
+      const container = getByTestId("ATL-InputFieldWrapper");
+
+      const flattenedStyle = container.props.style.reduce(
+        (style: ViewStyle, additionalStyles: ViewStyle) => ({
+          ...style,
+          ...additionalStyles,
+        }),
+        {},
+      );
+
+      expect(flattenedStyle.maxWidth).toBeUndefined();
+    });
+  });
 });

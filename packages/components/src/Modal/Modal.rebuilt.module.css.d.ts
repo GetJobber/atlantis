@@ -2,6 +2,7 @@ declare const styles: {
   readonly "overlay": string;
   readonly "overlayBackground": string;
   readonly "modal": string;
+  readonly "modalBody": string;
   readonly "header": string;
   readonly "closeButton": string;
   readonly "actionBar": string;

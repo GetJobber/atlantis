@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode, RefObject } from "react";
 import React, { Children, isValidElement } from "react";
 import classnames from "classnames";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.module.css";
 import type {
   ButtonActionProps,
@@ -56,6 +57,15 @@ function PageLegacy({
   ...rest
 }: PageLegacyProps & { readonly pageStyles: string }) {
   const dataAttrs = filterDataAttributes(rest);
+  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
+    useResizeObserver<HTMLDivElement>();
+
+  const titleBarClasses = classnames(styles.titleBar, {
+    [styles.small]: titleBarWidth > Breakpoints.smaller,
+    [styles.medium]: titleBarWidth > Breakpoints.small,
+    [styles.large]: titleBarWidth > Breakpoints.base,
+  });
+
   const showMenu = moreActionsMenu.length > 0;
   const showActionGroup = showMenu || primaryAction || secondaryAction;
 
@@ -63,65 +73,58 @@ function PageLegacy({
     <div className={pageStyles} {...dataAttrs}>
       <Content>
         <Content>
-          <Container name="page-titlebar" autoWidth>
-            <Container.Apply autoWidth>
-              <div className={styles.titleBar}>
-                <div>
-                  {typeof title === "string" && titleMetaData ? (
-                    <div className={styles.titleRow}>
-                      <Heading level={1}>{title}</Heading>
-                      {titleMetaData}
-                    </div>
-                  ) : typeof title === "string" ? (
-                    <Heading level={1}>{title}</Heading>
-                  ) : (
-                    title
-                  )}
-                  {subtitle && (
-                    <div className={styles.subtitle}>
-                      <Text size="large" variation="subdued">
-                        <Emphasis variation="bold">
-                          <Markdown content={subtitle} basicUsage={true} />
-                        </Emphasis>
-                      </Text>
-                    </div>
-                  )}
+          <div className={titleBarClasses} ref={titleBarRef}>
+            <div>
+              {typeof title === "string" && titleMetaData ? (
+                <div className={styles.titleRow}>
+                  <Heading level={1}>{title}</Heading>
+                  {titleMetaData}
                 </div>
-                {showActionGroup && (
-                  <div className={styles.actionGroup}>
-                    {primaryAction && (
-                      <div
-                        className={styles.primaryAction}
-                        ref={primaryAction.ref}
-                      >
-                        <Button
-                          {...getActionProps(primaryAction)}
-                          fullWidth={true}
-                        />
-                      </div>
-                    )}
-                    {secondaryAction && (
-                      <div
-                        className={styles.actionButton}
-                        ref={secondaryAction.ref}
-                      >
-                        <Button
-                          {...getActionProps(secondaryAction)}
-                          fullWidth={true}
-                          type="secondary"
-                        />
-                      </div>
-                    )}
-                    {showMenu && (
-                      <div className={styles.actionButton}>
-                        <Menu items={moreActionsMenu}></Menu>
-                      </div>
-                    )}
+              ) : typeof title === "string" ? (
+                <Heading level={1}>{title}</Heading>
+              ) : (
+                title
+              )}
+              {subtitle && (
+                <div className={styles.subtitle}>
+                  <Text size="large" variation="subdued">
+                    <Emphasis variation="bold">
+                      <Markdown content={subtitle} basicUsage={true} />
+                    </Emphasis>
+                  </Text>
+                </div>
+              )}
+            </div>
+            {showActionGroup && (
+              <div className={styles.actionGroup}>
+                {primaryAction && (
+                  <div className={styles.primaryAction} ref={primaryAction.ref}>
+                    <Button
+                      {...getActionProps(primaryAction)}
+                      fullWidth={true}
+                    />
+                  </div>
+                )}
+                {secondaryAction && (
+                  <div
+                    className={styles.actionButton}
+                    ref={secondaryAction.ref}
+                  >
+                    <Button
+                      {...getActionProps(secondaryAction)}
+                      fullWidth={true}
+                      type="secondary"
+                    />
+                  </div>
+                )}
+                {showMenu && (
+                  <div className={styles.actionButton}>
+                    <Menu items={moreActionsMenu}></Menu>
                   </div>
                 )}
               </div>
-            </Container.Apply>
-          </Container>
+            )}
+          </div>
           {intro && (
             <Text size="large">
               <Markdown

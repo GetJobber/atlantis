@@ -21,9 +21,11 @@ export default {
   title: "Autocomplete",
   links: [
     {
-      label: "Storybook",
+      label: "Web Storybook",
+      type: "web",
       url: getStorybookUrl(
-        "?path=/docs/components-forms-and-inputs-autocomplete--docs",
+        "?path=/story/components-forms-and-inputs-autocomplete--basic",
+        "web",
       ),
     },
   ],
@@ -31,7 +33,8 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        "?path=/story/components-forms-and-inputs-autocomplete-web-v2--flat",
+        "?path=/story/components-forms-and-inputs-autocomplete-v2--flat",
+        "web",
       ),
     },
   ],

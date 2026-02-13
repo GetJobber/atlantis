@@ -190,6 +190,12 @@
                 "subtle": {
                     "$value": "{color.base.blue-.800}",
                     "$description": "Use when a subtler distinction than the standard surface--background is needed."
+                },
+                "subtle-": {
+                    "hover": {
+                        "$value": "{color.base.blue-.600}",
+                        "$description": "Hover state for surface--background--subtle."
+                    }
                 }
             },
             "reverse": {
