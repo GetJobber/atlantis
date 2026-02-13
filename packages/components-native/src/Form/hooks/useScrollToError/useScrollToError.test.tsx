@@ -1,8 +1,14 @@
 import { renderHook } from "@testing-library/react-native";
+import type { FieldValues, FormState } from "react-hook-form";
 import { useScrollToError } from "./useScrollToError";
+import type { UseScrollToErrorParams } from "./useScrollToError";
 
-const mockFormState = {
+const mockFormState: FormState<FieldValues> = {
   isDirty: true,
+  isLoading: false,
+  isReady: true,
+  disabled: false,
+  validatingFields: {},
   dirtyFields: {},
   isSubmitted: false,
   isSubmitSuccessful: false,
@@ -33,38 +39,47 @@ jest.mock("../../../ErrorMessageWrapper", () => ({
   }),
 }));
 
-const handleScrollToPosition = jest.fn();
+const handleScrollTo = jest.fn();
 const handleSetFocus = jest.fn();
 
-const initialProps = {
+type UseScrollToErrorProps = UseScrollToErrorParams<FieldValues>;
+
+const initialProps: UseScrollToErrorProps = {
   formState: mockFormState,
   refNode: 1,
-  scrollToPosition: handleScrollToPosition,
+  scrollTo: handleScrollTo,
   setFocus: handleSetFocus,
 };
 
 afterEach(() => {
-  handleScrollToPosition.mockClear();
+  handleScrollTo.mockClear();
   handleSetFocus.mockClear();
 });
 
 describe("useScrollToError", () => {
   it("should do nothing if everything is valid", () => {
-    renderHook(useScrollToError, { initialProps });
+    renderHook((props: UseScrollToErrorProps) => useScrollToError(props), {
+      initialProps,
+    });
 
     expect(handleSetFocus).not.toHaveBeenCalled();
-    expect(handleScrollToPosition).not.toHaveBeenCalled();
+    expect(handleScrollTo).not.toHaveBeenCalled();
   });
 
   it("should focus with RHF if it can", () => {
-    const { rerender } = renderHook(useScrollToError, { initialProps });
+    const { rerender } = renderHook(
+      (props: UseScrollToErrorProps) => useScrollToError(props),
+      {
+        initialProps,
+      },
+    );
     rerender({
       ...initialProps,
       formState: { ...mockFormState, isValid: false, submitCount: 1 },
     });
 
     expect(handleSetFocus).toHaveBeenCalled();
-    expect(handleScrollToPosition).not.toHaveBeenCalled();
+    expect(handleScrollTo).not.toHaveBeenCalled();
   });
 
   it("should manually scroll", () => {
@@ -74,9 +89,12 @@ describe("useScrollToError", () => {
     const failedSetFocus = jest.fn(() => failingFn());
     const manualScrollProps = { ...initialProps, setFocus: failedSetFocus };
 
-    const { rerender } = renderHook(useScrollToError, {
-      initialProps: manualScrollProps,
-    });
+    const { rerender } = renderHook(
+      (props: UseScrollToErrorProps) => useScrollToError(props),
+      {
+        initialProps: manualScrollProps,
+      },
+    );
     rerender({
       ...manualScrollProps,
       formState: { ...mockFormState, isValid: false, submitCount: 1 },
@@ -84,21 +102,26 @@ describe("useScrollToError", () => {
 
     expect(failedSetFocus).toHaveBeenCalled();
     expect(failedSetFocus).toThrow();
-    expect(handleScrollToPosition).toHaveBeenCalled();
+    expect(handleScrollTo).toHaveBeenCalled();
   });
 
   describe("With screen readers", () => {
     it("should not fire the setFocus", () => {
       mockScreenReaderEnabled.mockReturnValue(true);
 
-      const { rerender } = renderHook(useScrollToError, { initialProps });
+      const { rerender } = renderHook(
+        (props: UseScrollToErrorProps) => useScrollToError(props),
+        {
+          initialProps,
+        },
+      );
       rerender({
         ...initialProps,
         formState: { ...mockFormState, isValid: false, submitCount: 1 },
       });
 
       expect(handleSetFocus).not.toHaveBeenCalled();
-      expect(handleScrollToPosition).toHaveBeenCalled();
+      expect(handleScrollTo).toHaveBeenCalled();
     });
   });
 });
