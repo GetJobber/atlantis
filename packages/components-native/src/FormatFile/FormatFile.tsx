@@ -72,7 +72,7 @@ type FormatFileInternalProps = Omit<
   readonly onTap: () => void;
 };
 
-export interface FormatFileContentProps {
+interface FormatFileContentProps {
   readonly accessibilityLabel?: string;
   readonly file: FormattedFile;
   readonly showOverlay: boolean;
