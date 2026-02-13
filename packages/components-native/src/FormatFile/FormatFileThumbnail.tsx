@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import type { DimensionValue } from "react-native";
 import { View } from "react-native";
 import { useStyles } from "./FormatFile.style";
 import { FormatFileContent } from "./FormatFile";
@@ -30,13 +31,11 @@ export interface FormatFileThumbnailProps<T> {
   readonly createThumbnail?: CreateThumbnail;
 
   /**
-   * The dimensions of the thumbnail container. The consumer controls
-   * width and height to fit their layout (e.g. a grid computed from
-   * screen width and column count).
+   * The dimensions of the thumbnail container.
    */
-  readonly size?: {
-    readonly width: number;
-    readonly height: number;
+  readonly size: {
+    readonly width: DimensionValue;
+    readonly height: DimensionValue;
   };
 
   /**

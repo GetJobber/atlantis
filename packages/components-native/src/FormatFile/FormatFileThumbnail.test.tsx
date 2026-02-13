@@ -257,6 +257,7 @@ describe("FormatFileThumbnail", () => {
           accessibilityLabel="Custom Label"
           createThumbnail={mockCreateThumbnail}
           showFileTypeIndicator={false}
+          size={{ width: 100, height: 100 }}
         />,
       );
 
@@ -285,6 +286,7 @@ function renderThumbnail(file: FileUpload | File) {
       file={file}
       accessibilityLabel="Custom Label"
       createThumbnail={mockCreateThumbnail}
+      size={{ width: 100, height: 100 }}
     />,
   );
 }
