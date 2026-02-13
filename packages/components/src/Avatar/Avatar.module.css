@@ -5,6 +5,7 @@
 .avatar {
   --avatar-size: var(--public--avatar-size);
   --avatar-border-size: var(--border-base);
+  --avatar-initials-size: var(--typography--fontSize-small);
 
   display: flex;
   align-items: center;
@@ -17,8 +18,15 @@
   color: var(--color-heading);
   font-size: var(--avatar-size);
   -webkit-font-smoothing: antialiased;
-  background: no-repeat center center var(--color-base-blue--600);
+  background: no-repeat center center var(--color-interactive--subtle);
   background-size: cover;
+  transition: box-shadow var(--timing-quick) ease-out;
+}
+
+.avatar:hover {
+  box-shadow: var(--shadow-base);
+  background-color: var(--color-interactive--subtle--hover);
+  transition: box-shadow var(--timing-quick) ease-in;
 }
 
 .avatar:focus {
@@ -29,10 +37,12 @@
 .large {
   --avatar-size: 72px;
   --avatar-border-size: var(--border-thick);
+  --avatar-initials-size: 28px;
 }
 
 .small {
   --avatar-size: 24px;
+  --avatar-initials-size: 9px;
 }
 
 /* isDark is dynamic and applies only when background is dark */
@@ -41,12 +51,21 @@
 }
 
 .initials {
-  font-size: calc(var(--avatar-size) / 2);
+  color: var(--color-text--reverse);
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--avatar-initials-size);
   text-transform: uppercase;
 }
 
+.avatar.hasCustomColor.isDark .initials {
+  color: var(--color-base-white);
+}
+.avatar.hasCustomColor:not(.isDark) .initials {
+  color: var(--color-text);
+}
+
 .smallInitials {
-  font-size: calc(var(--avatar-size) / 2.25);
+  font-size: calc(var(--avatar-initials-size) * 0.83);
 }
 
 .hasBorder {
