@@ -9,7 +9,6 @@ export default {
   props: Props,
   component: {
     element: `<Avatar
-      color={"var(--color-indigo)"}
       initials={"JBLR"}
       name={"The Jobbler"}
       size={"large"}
