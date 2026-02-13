@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Heading, StatusLabel, Tooltip } from "@jobber/components";
 import { Page } from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
