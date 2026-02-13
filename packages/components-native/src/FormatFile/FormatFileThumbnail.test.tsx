@@ -119,6 +119,8 @@ describe("FormatFileThumbnail", () => {
       const width = parseInt(innerProgressBar.props.style.width, 10);
 
       expect(width).toBeGreaterThan(20);
+
+      jest.useRealTimers();
     });
   });
 
@@ -129,7 +131,6 @@ describe("FormatFileThumbnail", () => {
           progress: 0.9,
           status: StatusCode.Failed,
         }),
-        status: StatusCode.Failed,
       };
       const { getByTestId } = renderThumbnail(file);
 
@@ -142,7 +143,6 @@ describe("FormatFileThumbnail", () => {
           progress: 0.9,
           status: StatusCode.Failed,
         }),
-        status: StatusCode.Failed,
       };
       const tree = renderThumbnail(file);
 
