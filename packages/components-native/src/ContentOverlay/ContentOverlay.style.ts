@@ -2,43 +2,43 @@ import { buildThemedStyles } from "../AtlantisThemeContext";
 
 export const useStyles = buildThemedStyles(tokens => {
   const modalBorderRadius = tokens["radius-larger"];
-  const titleOffsetFromHandle = tokens["space-base"];
 
   return {
+    handleWrapper: {
+      paddingBottom: tokens["space-smallest"],
+      paddingTop: tokens["space-small"],
+    },
+
     handle: {
       width: tokens["space-largest"],
       height: tokens["space-smaller"] + tokens["space-smallest"],
       backgroundColor: tokens["color-border"],
-      top: tokens["space-small"],
       borderRadius: tokens["radius-circle"],
     },
 
-    overlay: {
+    backdrop: {
       backgroundColor: tokens["color-overlay"],
     },
 
-    modal: {
+    background: {
       borderTopLeftRadius: modalBorderRadius,
       borderTopRightRadius: modalBorderRadius,
-    },
-
-    modalForLargeScreens: {
-      width: 640,
-      alignSelf: "center",
     },
 
     header: {
       flexDirection: "row",
-      backgroundColor: tokens["color-surface"],
-      paddingTop: titleOffsetFromHandle,
       zIndex: tokens["elevation-base"],
+      minHeight: tokens["space-extravagant"] - tokens["space-base"],
       borderTopLeftRadius: modalBorderRadius,
       borderTopRightRadius: modalBorderRadius,
-      minHeight: tokens["space-extravagant"],
     },
 
     headerShadow: {
       ...tokens["shadow-base"],
+      position: "absolute",
+      top: -20,
+      height: 20,
+      width: "100%",
     },
 
     childrenStyle: {

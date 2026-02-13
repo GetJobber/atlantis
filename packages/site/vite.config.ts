@@ -54,6 +54,9 @@ export default defineConfig({
   ],
   build: {
     minify: false,
+    rollupOptions: {
+      external: ["react-native-keyboard-controller", "react-native-reanimated"],
+    },
   },
   optimizeDeps: {
     include: ["@jobber/formatters", "@jobber/hooks", "@jobber/components"],
