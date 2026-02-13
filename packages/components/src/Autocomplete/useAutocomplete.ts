@@ -3,12 +3,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useCallbackRef, useDebounce } from "@jobber/hooks";
 import type {
   ActionConfig,
-  ActionOrigin,
   AutocompleteRebuiltProps,
   AutocompleteValue,
   MenuAction,
-  MenuSection,
   OptionLike,
+  RenderItem,
 } from "./Autocomplete.types";
 import {
   buildRenderableList,
@@ -18,15 +17,6 @@ import {
 } from "./utils/menuModel";
 import { useAutocompleteListNav } from "./hooks/useAutocompleteListNav";
 import { createInteractionPointerDownHandler } from "./utils/interactionUtils";
-
-export type RenderItem<
-  T extends OptionLike,
-  S extends object = Record<string, unknown>,
-  A extends object = Record<string, unknown>,
-> =
-  | { kind: "option"; value: T }
-  | { kind: "action"; action: MenuAction<A>; origin?: ActionOrigin }
-  | { kind: "section"; section: MenuSection<T, S, A> };
 
 // Keeping this hook cohesive improves readability by centralizing related
 // interactions and state transitions.
