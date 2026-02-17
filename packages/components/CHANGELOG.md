@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.111.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.0...@jobber/components@6.111.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* **components:** DataTableRow interactivity updates ([#2913](https://github.com/GetJobber/atlantis/issues/2913)) ([525c11e](https://github.com/GetJobber/atlantis/commit/525c11e052a4c255081d5b858c42d7ade432d51e))
+
+
+
+
+
 # [6.111.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.4...@jobber/components@6.111.0) (2026-02-17)
 
 
