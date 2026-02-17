@@ -25,6 +25,7 @@ import { Typography } from "@jobber/components/Typography";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
 import { Modal } from "@jobber/components/Modal";
+import { Menu } from "@jobber/components/Menu";
 import { useBreakpoints } from "@jobber/hooks/useBreakpoints";
 import { Content } from "@jobber/components/Content";
 import { Cluster } from "@jobber/components/Cluster";
@@ -1638,6 +1639,176 @@ export const MobileResponsive = () => {
   );
 };
 
+export const KebabColumn = () => {
+  const { mediumAndUp } = useBreakpoints();
+  const isDesktop = mediumAndUp;
+  const isMobile = !isDesktop;
+
+  const ActionsMenu = ({
+    row,
+  }: {
+    readonly row: { original: { name: string } };
+  }) => (
+    <Menu
+      activator={
+        <Button
+          variation="subtle"
+          type="secondary"
+          icon="more"
+          size="small"
+          ariaLabel="More actions"
+        />
+      }
+      items={[
+        {
+          actions: [
+            {
+              label: "View Details",
+              // icon: "alert",
+              onClick: () => {
+                alert(`Viewing details for ${row.original.name}`);
+              },
+            },
+            {
+              label: "Edit",
+              // icon: "edit",
+              onClick: () => {
+                alert(`Editing ${row.original.name}`);
+              },
+            },
+            {
+              label: "Delete",
+              // icon: "trash",
+              onClick: () => {
+                alert(`Deleting ${row.original.name}`);
+              },
+            },
+          ],
+        },
+      ]}
+    />
+  );
+
+  const columnVisibility = React.useMemo(
+    () => ({
+      // Mobile: Only show the combined cell
+      mobileContent: isMobile,
+
+      // Desktop: Show individual columns, hide combined cell
+      name: isDesktop,
+      role: isDesktop,
+      email: isDesktop,
+      actions: isDesktop,
+    }),
+    [isDesktop],
+  );
+
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      // Mobile: Combined cell with all information
+      {
+        id: "mobileContent",
+        header: "Contact Information",
+        cell: ({ row }) => (
+          <div style={{ position: "relative" }}>
+            <Stack gap="small">
+              <Typography fontWeight="bold">{row.original.name}</Typography>
+              <Text variation="subdued">{row.original.role}</Text>
+              <Text variation="subdued">{row.original.email}</Text>
+            </Stack>
+            <div style={{ position: "absolute", bottom: 0, right: 0 }}>
+              <ActionsMenu row={row} />
+            </div>
+          </div>
+        ),
+      },
+      // Desktop: Individual columns
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+        cell: ({ row }) => <Text>{row.original.role}</Text>,
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+        cell: ({ row }) => <Text>{row.original.email}</Text>,
+      },
+      {
+        id: "actions",
+        header: "",
+        cell: ({ row }) => (
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <ActionsMenu row={row} />
+          </div>
+        ),
+      },
+    ],
+    state: {
+      columnVisibility,
+    },
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Actions>
+        <Cluster gap="base" align="center">
+          <Typography fontWeight="bold">
+            {isMobile ? "Mobile Layout" : "Desktop Layout"}
+          </Typography>
+          <Text variation="subdued" size="small">
+            Resize window to see responsive behavior
+          </Text>
+        </Cluster>
+      </DataTable.Actions>
+
+      <DataTable.Container>
+        <DataTable.Table>
+          <DataTable.Header>
+            {table.getHeaderGroups().map(headerGroup =>
+              headerGroup.headers.map(header => {
+                if (header.column.getIsVisible()) {
+                  return (
+                    <DataTable.HeaderCell key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </DataTable.HeaderCell>
+                  );
+                }
+
+                return null;
+              }),
+            )}
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getFilteredRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+        </DataTable.Table>
+      </DataTable.Container>
+    </StorybookTableProvider>
+  );
+};
+
 export const RowSelection = () => {
   const [selectedRow, setSelectedRow] = useState<
     (typeof exampleData)[0] | null
@@ -1753,6 +1924,166 @@ export const RowSelection = () => {
         )}
       </Modal>
     </>
+  );
+};
+
+export const VisibleRowActions = () => {
+  const { mediumAndUp } = useBreakpoints();
+  const isDesktop = mediumAndUp;
+  const isMobile = !isDesktop;
+
+  const ActionButtons = ({
+    row,
+  }: {
+    readonly row: { original: { name: string } };
+  }) => (
+    <div style={{ display: "flex", justifyContent: "flex-end", gap: "8px" }}>
+      <Button
+        icon="checkmark"
+        size="small"
+        ariaLabel="Complete"
+        variation="subtle"
+        type="secondary"
+        onClick={() => alert(`Completed ${row.original.name}`)}
+        UNSAFE_style={{
+          buttonIcon: {
+            path: {
+              fill: "var(--color-text--secondary) !important",
+            },
+          },
+        }}
+      />
+      <Button
+        icon="edit"
+        size="small"
+        ariaLabel="Edit"
+        variation="subtle"
+        type="secondary"
+        onClick={() => alert(`Editing ${row.original.name}`)}
+        UNSAFE_style={{
+          buttonIcon: {
+            path: {
+              fill: "var(--color-text--secondary) !important",
+            },
+          },
+        }}
+      />
+    </div>
+  );
+
+  const columnVisibility = React.useMemo(
+    () => ({
+      // Mobile: Only show the combined cell
+      mobileContent: isMobile,
+
+      // Desktop: Show individual columns, hide combined cell
+      name: isDesktop,
+      role: isDesktop,
+      email: isDesktop,
+      actions: isDesktop,
+    }),
+    [isDesktop],
+  );
+
+  const table = useReactTable({
+    data: exampleData,
+    columns: [
+      // Mobile: Combined cell with all information and actions
+      {
+        id: "mobileContent",
+        header: "Contact Information",
+        cell: ({ row }) => (
+          <div style={{ position: "relative" }}>
+            <Stack gap="small">
+              <Typography fontWeight="bold">{row.original.name}</Typography>
+              <Text variation="subdued">{row.original.role}</Text>
+              <Text variation="subdued">{row.original.email}</Text>
+            </Stack>
+            <div style={{ position: "absolute", bottom: 0, right: 0 }}>
+              <ActionButtons row={row} />
+            </div>
+          </div>
+        ),
+      },
+      // Desktop: Individual columns
+      {
+        accessorKey: "name",
+        header: "Name",
+        cell: ({ row }) => (
+          <Typography fontWeight="bold">{row.original.name}</Typography>
+        ),
+      },
+      {
+        accessorKey: "role",
+        header: "Role",
+        cell: ({ row }) => <Text>{row.original.role}</Text>,
+      },
+      {
+        accessorKey: "email",
+        header: "Email",
+        cell: ({ row }) => <Text>{row.original.email}</Text>,
+      },
+      {
+        id: "actions",
+        header: "",
+        cell: ({ row }) => <ActionButtons row={row} />,
+      },
+    ],
+    state: {
+      columnVisibility,
+    },
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <StorybookTableProvider table={table}>
+      <DataTable.Actions>
+        <Cluster gap="base" align="center">
+          <Typography fontWeight="bold">
+            {isMobile ? "Mobile Layout" : "Desktop Layout"}
+          </Typography>
+          <Text variation="subdued" size="small">
+            Resize window to see responsive behavior
+          </Text>
+        </Cluster>
+      </DataTable.Actions>
+
+      <DataTable.Container>
+        <DataTable.Table>
+          <DataTable.Header>
+            {table.getHeaderGroups().map(headerGroup =>
+              headerGroup.headers.map(header => {
+                if (header.column.getIsVisible()) {
+                  return (
+                    <DataTable.HeaderCell key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </DataTable.HeaderCell>
+                  );
+                }
+
+                return null;
+              }),
+            )}
+          </DataTable.Header>
+          <DataTable.Body>
+            {table.getFilteredRowModel().rows.map(row => (
+              <DataTable.Row key={row.id}>
+                {row.getVisibleCells().map(cell => (
+                  <DataTable.Cell key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </DataTable.Cell>
+                ))}
+              </DataTable.Row>
+            ))}
+          </DataTable.Body>
+        </DataTable.Table>
+      </DataTable.Container>
+    </StorybookTableProvider>
   );
 };
 
