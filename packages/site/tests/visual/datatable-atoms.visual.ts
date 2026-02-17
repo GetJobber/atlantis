@@ -51,28 +51,21 @@ test.describe("DataTable Atoms Row Interactivity", () => {
     expect(cursor).toBe("pointer");
   });
 
-  test("interactive row has hover background color on hover", async ({
-    page,
-  }) => {
+  test("interactive row has hover background", async ({ page }) => {
     const interactiveRow = page
       .getByTestId("datatable-atoms-interactive")
       .locator("tbody tr")
       .first();
 
-    const backgroundColorBeforeHover = await interactiveRow.evaluate(
-      el => getComputedStyle(el).backgroundColor,
-    );
-
+    await interactiveRow.scrollIntoViewIfNeeded();
     await interactiveRow.hover();
+    await page.waitForTimeout(200);
 
-    const backgroundColorOnHover = await interactiveRow.evaluate(
-      el => getComputedStyle(el).backgroundColor,
+    // Screenshot validates hover appearance including correct token color
+    await expect(page).toHaveScreenshot(
+      "datatable-atoms-interactive-row-hover.png",
+      { fullPage: true },
     );
-
-    // Background color should change on hover (var(--color-surface--hover) applies)
-    expect(backgroundColorOnHover).not.toBe(backgroundColorBeforeHover);
-    expect(backgroundColorOnHover).not.toBe("transparent");
-    expect(backgroundColorOnHover).not.toBe("rgba(0, 0, 0, 0)");
   });
 
   test("footer row has default cursor on hover", async ({ page }) => {
