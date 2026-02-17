@@ -36,6 +36,7 @@
     "FormField",
     "FormMessage",
     "FormatFile",
+    "FormatFileThumbnail",
     "Glimmer",
     "Heading",
     "Icon",

@@ -1,15 +1,15 @@
-import React, { createRef, useCallback, useState } from "react";
+import React, { createRef, useCallback, useMemo, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useStyles } from "./FormatFile.style";
 import { MediaView } from "./components/MediaView";
 import type { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
 import { FormatFileBottomSheet } from "./components/FormatFileBottomSheet";
 import { FileView } from "./components/FileView";
-import { acceptedExtensions, videoExtensions } from "./constants";
 import type { CreateThumbnail, File, FileUpload, FormattedFile } from "./types";
 import { StatusCode } from "./types";
 import { AtlantisFormatFileContext } from "./context/FormatFileContext";
 import { createUseCreateThumbnail } from "./utils/createUseCreateThumbnail";
+import { parseFile } from "./utils/parseFile";
 import type { BottomSheetRef } from "../BottomSheet/BottomSheet";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
@@ -79,17 +79,51 @@ interface FormatFileContentProps {
   readonly styleInGrid: boolean;
   readonly onUploadComplete: () => void;
   readonly isMedia: boolean;
+
+  /**
+   * @internal
+   * When true, the component skips its container wrapper entirely
+   * (no border, background, or dimension styles). Use this when the
+   * parent component handles container styling directly, such as in
+   * FormatFileThumbnail.
+   */
+  readonly skipContainerStyles?: boolean;
 }
 
-function FormatFileContent({
+export function FormatFileContent({
   accessibilityLabel,
   file,
   showOverlay,
   styleInGrid,
   onUploadComplete,
   isMedia,
+  skipContainerStyles = false,
 }: FormatFileContentProps) {
   const styles = useStyles();
+
+  const content = isMedia ? (
+    <MediaView
+      accessibilityLabel={accessibilityLabel}
+      file={file}
+      showOverlay={showOverlay}
+      showError={file.error}
+      styleInGrid={styleInGrid}
+      onUploadComplete={onUploadComplete}
+    />
+  ) : (
+    <FileView
+      accessibilityLabel={accessibilityLabel}
+      file={file}
+      showOverlay={showOverlay}
+      showError={file.error}
+      styleInGrid={styleInGrid}
+      onUploadComplete={onUploadComplete}
+    />
+  );
+
+  if (skipContainerStyles) {
+    return content;
+  }
 
   return (
     <View
@@ -98,99 +132,12 @@ function FormatFileContent({
         styleInGrid && styles.thumbnailContainerGrid,
       ]}
     >
-      {isMedia ? (
-        <MediaView
-          accessibilityLabel={accessibilityLabel}
-          file={file}
-          showOverlay={showOverlay}
-          showError={file.error}
-          styleInGrid={styleInGrid}
-          onUploadComplete={onUploadComplete}
-        />
-      ) : (
-        <FileView
-          accessibilityLabel={accessibilityLabel}
-          file={file}
-          showOverlay={showOverlay}
-          showError={file.error}
-          styleInGrid={styleInGrid}
-          onUploadComplete={onUploadComplete}
-        />
-      )}
+      {content}
     </View>
   );
 }
 
 const FormatFileInternalMemoized = React.memo(FormatFileInternal);
-
-function isMediaFile(fileType: string): boolean {
-  return fileType.includes("image") || fileType.includes("video");
-}
-
-function isVideo(fileName: string): boolean {
-  const extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-
-  return videoExtensions.some(({ type }) => type === extension.toLowerCase());
-}
-
-function getContentType(fileName = "", fileType = "unknown"): string {
-  if (isVideo(fileName)) {
-    return "video";
-  }
-
-  return fileType;
-}
-
-function isAcceptedExtension(file: FormattedFile): boolean {
-  return acceptedExtensions.some(extension =>
-    // type property may return undefined on M1 Systems running iOS Simulator
-    (file.type || "").includes(extension.name),
-  );
-}
-
-function parseFile(
-  file: File | FileUpload,
-  showFileTypeIndicator: boolean,
-): FormattedFile {
-  let formattedFile: FormattedFile;
-
-  if ("progress" in file) {
-    formattedFile = {
-      source: file.sourcePath,
-      name: file.name,
-      size: file.size,
-      external: false,
-      progress: file.progress,
-      status: file.status,
-      error: file.status === StatusCode.Failed,
-      type: file.type || file.key,
-      isMedia: false,
-      showPreview: false,
-      showFileTypeIndicator: showFileTypeIndicator,
-    };
-  } else {
-    formattedFile = {
-      source: file.url,
-      thumbnailUrl: file.thumbnailUrl,
-      name: file.fileName,
-      size: file.fileSize,
-      external: true,
-      progress: 1,
-      status: StatusCode.Completed,
-      error: false,
-      type: getContentType(file.fileName, file.contentType),
-      isMedia: false,
-      showPreview: false,
-      showFileTypeIndicator: showFileTypeIndicator,
-    };
-  }
-
-  formattedFile.isMedia = isMediaFile(formattedFile.type || "");
-  formattedFile.showPreview =
-    formattedFile.isMedia || isAcceptedExtension(formattedFile);
-
-  return formattedFile;
-}
 
 export function FormatFile<T extends File | FileUpload>({
   file,
@@ -207,7 +154,10 @@ export function FormatFile<T extends File | FileUpload>({
 }: FormatFileProps<T>) {
   const onTapModified = onTap ? () => onTap(file) : () => undefined;
 
-  const formattedFile = parseFile(file, showFileTypeIndicator);
+  const formattedFile = useMemo(
+    () => parseFile(file, showFileTypeIndicator),
+    [file, showFileTypeIndicator],
+  );
 
   return (
     <FormatFileInternalMemoized

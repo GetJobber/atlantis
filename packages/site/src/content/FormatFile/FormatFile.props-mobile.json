@@ -3,6 +3,108 @@
     "tags": {},
     "filePath": "../components-native/src/FormatFile/FormatFile.tsx",
     "description": "",
+    "displayName": "FormatFileContent",
+    "methods": [],
+    "props": {
+      "accessibilityLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "accessibilityLabel",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      },
+      "file": {
+        "defaultValue": null,
+        "description": "",
+        "name": "file",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": true,
+        "type": {
+          "name": "FormattedFile"
+        }
+      },
+      "showOverlay": {
+        "defaultValue": null,
+        "description": "",
+        "name": "showOverlay",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "styleInGrid": {
+        "defaultValue": null,
+        "description": "",
+        "name": "styleInGrid",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "onUploadComplete": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onUploadComplete",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": true,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "isMedia": {
+        "defaultValue": null,
+        "description": "",
+        "name": "isMedia",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": true,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "skipContainerStyles": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "@internal When true, the component skips its container wrapper entirely\n(no border, background, or dimension styles). Use this when the\nparent component handles container styling directly, such as in\nFormatFileThumbnail.",
+        "name": "skipContainerStyles",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components-native/src/FormatFile/FormatFile.tsx",
+    "description": "",
     "displayName": "FormatFile",
     "methods": [],
     "props": {
