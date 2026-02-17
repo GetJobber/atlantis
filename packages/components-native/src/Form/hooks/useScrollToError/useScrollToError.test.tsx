@@ -33,18 +33,18 @@ jest.mock("../../../ErrorMessageWrapper", () => ({
   }),
 }));
 
-const handleScrollToPosition = jest.fn();
+const handleScrollTo = jest.fn();
 const handleSetFocus = jest.fn();
 
 const initialProps = {
   formState: mockFormState,
   refNode: 1,
-  scrollToPosition: handleScrollToPosition,
+  scrollTo: handleScrollTo,
   setFocus: handleSetFocus,
 };
 
 afterEach(() => {
-  handleScrollToPosition.mockClear();
+  handleScrollTo.mockClear();
   handleSetFocus.mockClear();
 });
 
@@ -53,7 +53,7 @@ describe("useScrollToError", () => {
     renderHook(useScrollToError, { initialProps });
 
     expect(handleSetFocus).not.toHaveBeenCalled();
-    expect(handleScrollToPosition).not.toHaveBeenCalled();
+    expect(handleScrollTo).not.toHaveBeenCalled();
   });
 
   it("should focus with RHF if it can", () => {
@@ -64,13 +64,14 @@ describe("useScrollToError", () => {
     });
 
     expect(handleSetFocus).toHaveBeenCalled();
-    expect(handleScrollToPosition).not.toHaveBeenCalled();
+    expect(handleScrollTo).not.toHaveBeenCalled();
   });
 
   it("should manually scroll", () => {
-    // @ts-expect-error - making this fail when it gets called since you can't
-    // call undefined as a function. This mimic's RHF not being able to focus on
-    // non-input fields
+    const failingFn = () => {
+      throw new Error("setFocus failed");
+    };
+    // Mimics RHF not being able to focus on non-input fields
     const failedSetFocus = jest.fn(() => failingFn());
     const manualScrollProps = { ...initialProps, setFocus: failedSetFocus };
 
@@ -83,8 +84,8 @@ describe("useScrollToError", () => {
     });
 
     expect(failedSetFocus).toHaveBeenCalled();
-    expect(failedSetFocus).toThrow();
-    expect(handleScrollToPosition).toHaveBeenCalled();
+    expect(() => failedSetFocus()).toThrow("setFocus failed");
+    expect(handleScrollTo).toHaveBeenCalled();
   });
 
   describe("With screen readers", () => {
@@ -98,7 +99,7 @@ describe("useScrollToError", () => {
       });
 
       expect(handleSetFocus).not.toHaveBeenCalled();
-      expect(handleScrollToPosition).toHaveBeenCalled();
+      expect(handleScrollTo).toHaveBeenCalled();
     });
   });
 });
