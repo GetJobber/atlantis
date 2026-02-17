@@ -1,4 +1,4 @@
-import React, { createRef, useCallback, useState } from "react";
+import React, { createRef, useCallback, useMemo, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useStyles } from "./FormatFile.style";
 import { MediaView } from "./components/MediaView";
@@ -154,7 +154,10 @@ export function FormatFile<T extends File | FileUpload>({
 }: FormatFileProps<T>) {
   const onTapModified = onTap ? () => onTap(file) : () => undefined;
 
-  const formattedFile = parseFile(file, showFileTypeIndicator);
+  const formattedFile = useMemo(
+    () => parseFile(file, showFileTypeIndicator),
+    [file, showFileTypeIndicator],
+  );
 
   return (
     <FormatFileInternalMemoized

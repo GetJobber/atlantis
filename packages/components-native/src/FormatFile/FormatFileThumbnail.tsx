@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import type { DimensionValue } from "react-native";
 import { View } from "react-native";
 import { useStyles } from "./FormatFile.style";
@@ -63,7 +63,10 @@ export function FormatFileThumbnail<T extends File | FileUpload>({
   size,
   testID,
 }: FormatFileThumbnailProps<T>) {
-  const formattedFile = parseFile(file, showFileTypeIndicator);
+  const formattedFile = useMemo(
+    () => parseFile(file, showFileTypeIndicator),
+    [file, showFileTypeIndicator],
+  );
   const styles = useStyles();
 
   const [showOverlay, setShowOverlay] = useState<boolean>(
