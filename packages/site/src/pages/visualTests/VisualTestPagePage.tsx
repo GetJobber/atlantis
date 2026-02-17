@@ -345,9 +345,7 @@ export const VisualTestPagePage = () => {
           <Page.Title>Composable - Basic</Page.Title>
         </Page.Header>
         <Page.Body>
-          <Content>
-            <Text>Composable page with just a title and body content.</Text>
-          </Content>
+          <Text>Composable page with just a title and body content.</Text>
         </Page.Body>
       </Page>
 
@@ -373,11 +371,9 @@ export const VisualTestPagePage = () => {
           </Page.Actions>
         </Page.Header>
         <Page.Body>
-          <Content>
-            <Text>
-              Composable page with primary action, secondary action, and a menu.
-            </Text>
-          </Content>
+          <Text>
+            Composable page with primary action, secondary action, and a menu.
+          </Text>
         </Page.Body>
       </Page>
 
@@ -394,12 +390,10 @@ export const VisualTestPagePage = () => {
           [external links](https://example.com).
         </Page.Intro>
         <Page.Body>
-          <Content>
-            <Text>
-              Composable page with subtitle and intro text between header and
-              body.
-            </Text>
-          </Content>
+          <Text>
+            Composable page with subtitle and intro text between header and
+            body.
+          </Text>
         </Page.Body>
       </Page>
 
@@ -440,11 +434,9 @@ export const VisualTestPagePage = () => {
           </Page.Actions>
         </Page.Header>
         <Page.Body>
-          <Content>
-            <Text>
-              Composable page showing all available sub-components together.
-            </Text>
-          </Content>
+          <Text>
+            Composable page showing all available sub-components together.
+          </Text>
         </Page.Body>
       </Page>
 

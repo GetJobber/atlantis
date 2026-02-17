@@ -188,9 +188,7 @@ export const ComposableBasic: ComposableStory = {
         <Page.Title>Notifications</Page.Title>
       </Page.Header>
       <Page.Body>
-        <Content>
-          <Text>Page content here</Text>
-        </Content>
+        <Text>Page content here</Text>
       </Page.Body>
     </Page>
   ),
@@ -226,9 +224,7 @@ export const ComposableWithActions: ComposableStory = {
         </Page.Actions>
       </Page.Header>
       <Page.Body>
-        <Content>
-          <Text>Page content here</Text>
-        </Content>
+        <Text>Page content here</Text>
       </Page.Body>
     </Page>
   ),
@@ -248,9 +244,7 @@ export const ComposableWithSubtitleAndIntro: ComposableStory = {
         visiting our [Help Center](https://help.getjobber.com/hc/en-us).
       </Page.Intro>
       <Page.Body>
-        <Content>
-          <Text>Page content here</Text>
-        </Content>
+        <Text>Page content here</Text>
       </Page.Body>
     </Page>
   ),
@@ -299,12 +293,10 @@ export const ComposableWithAllPieces: ComposableStory = {
         </Page.Actions>
       </Page.Header>
       <Page.Body>
-        <Content>
-          <Text>
-            Building the greatest kitchen one will ever see. The entire kitchen
-            will be redone for this renovation.
-          </Text>
-        </Content>
+        <Text>
+          Building the greatest kitchen one will ever see. The entire kitchen
+          will be redone for this renovation.
+        </Text>
       </Page.Body>
     </Page>
   ),
@@ -335,12 +327,10 @@ export const ComposableCustomSlot: ComposableStory = {
         </Page.Actions>
       </Page.Header>
       <Page.Body>
-        <Content>
-          <Text>
-            This example uses custom Button elements via the children slot
-            instead of the default label/onClick props.
-          </Text>
-        </Content>
+        <Text>
+          This example uses custom Button elements via the children slot instead
+          of the default label/onClick props.
+        </Text>
       </Page.Body>
     </Page>
   ),
