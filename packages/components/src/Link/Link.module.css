@@ -2,3 +2,14 @@
   color: var(--color-interactive);
   text-decoration: underline;
 }
+
+.link:hover,
+.link:focus {
+  color: var(--color-interactive--hover);
+  text-decoration-color: var(--color-interactive--hover);
+}
+
+.link:focus,
+.link:focus-visible {
+  outline-color: var(--color-focus);
+}
