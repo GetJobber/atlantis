@@ -8,7 +8,7 @@
     "props": {
       "text": {
         "defaultValue": null,
-        "description": "Text to display.",
+        "description": "Text to display",
         "name": "text",
         "parent": {
           "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
@@ -23,7 +23,7 @@
         "defaultValue": {
           "value": "end"
         },
-        "description": "Alignment of text",
+        "description": "Alignment of text and StatusIndicator",
         "name": "alignment",
         "parent": {
           "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
@@ -38,7 +38,7 @@
         "defaultValue": {
           "value": "success"
         },
-        "description": "Status color of the square beside text",
+        "description": "Status color of label container, label, and StatusIndicator",
         "name": "status",
         "parent": {
           "fileName": "../components-native/src/StatusLabel/StatusLabel.tsx",
