@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.96.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.4...@jobber/components-native@0.96.0) (2026-02-17)
+
+
+### Features
+
+* **components-native:** Expose Isolated Aspects of FormatFile ([#2908](https://github.com/GetJobber/atlantis/issues/2908)) ([ac1cd1e](https://github.com/GetJobber/atlantis/commit/ac1cd1eb61206e97e3d24ff1d36559d3e9af1c1b))
+
+
+
+
+
 ## [0.95.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.3...@jobber/components-native@0.95.4) (2026-01-27)
 
 
