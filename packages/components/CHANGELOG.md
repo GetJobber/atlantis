@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.111.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.1...@jobber/components@6.111.2) (2026-02-18)
+
+
+### Bug Fixes
+
+* **components:** Stabilize Autocomplete Internal References ([#2914](https://github.com/GetJobber/atlantis/issues/2914)) ([e4b29af](https://github.com/GetJobber/atlantis/commit/e4b29aff84e61cb3f996f2876f65c6e04279f18c))
+
+
+
+
+
 ## [6.111.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.0...@jobber/components@6.111.1) (2026-02-17)
 
 
