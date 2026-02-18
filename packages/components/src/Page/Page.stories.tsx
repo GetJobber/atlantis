@@ -171,14 +171,16 @@ export const WithIntro: PropsBasedStory = {
 };
 
 export const WithAdditionalTitleFields: PropsBasedStory = {
-  render: BasicTemplate,
-  args: {
-    title: "Kitchen Renovation Project",
-    subtitle: "Everything but the Kitchen Sink",
-    titleMetaData: titleMetaData,
-    intro:
-      "**Building the greatest kitchen one will ever see**. The _entire_ kitchen will be redone for this renovation.",
-  },
+  render: () => (
+    <Page
+      title="Kitchen Renovation Project"
+      subtitle="Everything but the Kitchen Sink"
+      titleMetaData={titleMetaData}
+      intro="**Building the greatest kitchen one will ever see**. The _entire_ kitchen will be redone for this renovation."
+    >
+      <Text>Page content here</Text>
+    </Page>
+  ),
 };
 
 export const ComposableBasic: ComposableStory = {
