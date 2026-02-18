@@ -13,15 +13,17 @@ test.describe("Link Visual Tests", () => {
     });
   });
 
-  test("link components focus and hover", async ({ page }) => {
+  test("link components focus hover", async ({ page }) => {
     const link = page.getByRole("link", { name: "link", exact: true });
     await link.focus();
     await page.waitForTimeout(200);
     await expect(page).toHaveScreenshot("link-focus.png", {
       fullPage: true,
     });
+  });
 
-    await link.blur();
+  test("link components hover", async ({ page }) => {
+    const link = page.getByRole("link", { name: "link", exact: true });
 
     await link.hover();
     await page.waitForTimeout(200);
