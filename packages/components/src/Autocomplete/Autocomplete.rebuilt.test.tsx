@@ -26,6 +26,7 @@ import {
 import {
   blurAutocomplete,
   closeAutocomplete,
+  configureUser,
   deleteInput,
   expectMenuClosed,
   expectMenuShown,
@@ -1013,6 +1014,44 @@ describe("AutocompleteRebuilt", () => {
 
       expect(activeOption).not.toBeNull();
       expect(activeOption?.textContent).toContain("Two");
+    });
+
+    it("shows full list of items after input is cleared with multiple backspaces when not debounced", async () => {
+      render(<Wrapper initialValue={{ label: "Two" }} />);
+
+      await openAutocomplete();
+      await deleteInput(4);
+
+      await waitFor(() => {
+        expect(screen.getByText("One")).toBeVisible();
+        expect(screen.getByText("Two")).toBeVisible();
+        expect(screen.getByText("Three")).toBeVisible();
+      });
+    });
+
+    it("shows full list of items after input is cleared with multiple backspaces when debounced", async () => {
+      jest.useFakeTimers();
+      configureUser({ advanceTimers: jest.advanceTimersByTime });
+
+      render(<Wrapper initialValue={{ label: "Two" }} debounce={300} />);
+
+      await openAutocomplete();
+      await deleteInput(3);
+
+      // Advance past the debounce window so any stale pending call would fire
+      await act(async () => {
+        jest.advanceTimersByTime(500);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText("One")).toBeVisible();
+        expect(screen.getByText("Two")).toBeVisible();
+        expect(screen.getByText("Three")).toBeVisible();
+      });
+
+      // cleanup
+      jest.useRealTimers();
+      configureUser();
     });
 
     it("highlights selected item on reopen when input exactly matches that option", async () => {
