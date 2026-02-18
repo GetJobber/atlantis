@@ -668,3 +668,12 @@ export function defineMenu<
 >(menu: MenuItem<T, S, A>[]): MenuItem<T, S, A>[] {
   return menu;
 }
+
+export type RenderItem<
+  T extends OptionLike,
+  S extends object = Record<string, unknown>,
+  A extends object = Record<string, unknown>,
+> =
+  | { kind: "option"; value: T }
+  | { kind: "action"; action: MenuAction<A>; origin?: ActionOrigin }
+  | { kind: "section"; section: MenuSection<T, S, A> };
