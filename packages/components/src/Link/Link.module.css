@@ -1,4 +1,5 @@
 .link {
+  outline: transparent;
   color: var(--color-interactive);
   text-decoration: underline;
 }
@@ -9,7 +10,6 @@
   text-decoration-color: var(--color-interactive--hover);
 }
 
-.link:focus,
 .link:focus-visible {
-  outline-color: var(--color-focus);
+  box-shadow: var(--shadow-focus);
 }
