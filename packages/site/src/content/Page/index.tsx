@@ -25,11 +25,9 @@ export default {
   title: "Page",
   links: [
     {
-      label: "Web Storybook",
-      type: "web",
+      label: "Storybook",
       url: getStorybookUrl(
-        "?path=/story/components-layouts-and-structure-page--basic",
-        "web",
+        `?path=/docs/components-layouts-and-structure-page--docs`,
       ),
     },
   ],
