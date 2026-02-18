@@ -1,0 +1,127 @@
+# ActionItemGroup
+
+# Action Item Group
+
+ActionItemGroup is used to group related ActionItem components together with
+consistent spacing and visual hierarchy.
+
+## Design & usage guidelines
+
+Use ActionItemGroup to organize related actions into logical groups. This
+component provides consistent spacing and visual separation between groups
+of action items.
+
+### Basic usage
+
+Group related action items together:
+
+```tsx
+<ActionItemGroup>
+  <ActionItem label="Edit" onClick={() => {}} />
+  <ActionItem label="Delete" onClick={() => {}} />
+  <ActionItem label="Share" onClick={() => {}} />
+</ActionItemGroup>
+```
+
+### With section headers
+
+Add headers to provide context for each group:
+
+```tsx
+<ActionItemGroup title="Account Actions">
+  <ActionItem label="Edit Profile" onClick={() => {}} />
+  <ActionItem label="Change Password" onClick={() => {}} />
+</ActionItemGroup>
+
+<ActionItemGroup title="Data Actions">
+  <ActionItem label="Export Data" onClick={() => {}} />
+  <ActionItem label="Import Data" onClick={() => {}} />
+</ActionItemGroup>
+```
+
+## Content guidelines
+
+### Group titles
+- Use clear, descriptive titles for groups
+- Keep titles concise and meaningful
+- Use sentence case for titles
+
+### Organization
+- Group related actions together logically
+- Limit the number of items per group for better usability
+- Order items by frequency of use or logical flow
+
+## Related components
+
+- [ActionItem](/components/ActionItem) - Individual action items within the group
+- [Menu](/components/Menu) - For dropdown-style action groupings
+- [List](/components/List) - For general list organization
+
+## Accessibility
+
+The ActionItemGroup component includes:
+- Proper semantic HTML structure with grouping elements
+- ARIA labels for screen readers when titles are provided
+- Keyboard navigation support
+- Focus management within groups
+
+## Web Component Code
+
+```tsx
+ActionItemGroup Action Web React import React from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { ActionItemGroup } from "@jobber/components/ActionItemGroup";
+import { ActionItem } from "@jobber/components/ActionItem";
+
+const meta = {
+  title: "Components/Actions/ActionItemGroup",
+  component: ActionItemGroup,
+  parameters: {
+    previewTabs: { code: { hidden: false } },
+  },
+} satisfies Meta<typeof ActionItemGroup>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {
+  render: () => (
+    <ActionItemGroup>
+      <ActionItem label="Edit" onClick={() => console.log("Edit")} />
+      <ActionItem label="Delete" onClick={() => console.log("Delete")} />
+      <ActionItem label="Share" onClick={() => console.log("Share")} />
+    </ActionItemGroup>
+  ),
+};
+
+export const WithTitle: Story = {
+  render: () => (
+    <ActionItemGroup title="Account Actions">
+      <ActionItem label="Edit Profile" onClick={() => console.log("Edit Profile")} />
+      <ActionItem label="Change Password" onClick={() => console.log("Change Password")} />
+      <ActionItem label="Privacy Settings" onClick={() => console.log("Privacy Settings")} />
+    </ActionItemGroup>
+  ),
+};
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `title` | `string` | ❌ | `_none_` | Optional title for the group |
+| `children` | `ReactNode` | ✅ | `_none_` | ActionItem components to group together |
+
+## Categories
+
+- Actions
+
+## Component Path
+
+`/components/ActionItemGroup`
+
+---
+
+_Generated on 2025-08-21T17:35:16.374Z_

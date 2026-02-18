@@ -1,0 +1,259 @@
+# Button
+
+{<a href="https://atlantis.getjobber.com/components/Button">Button docs</a>} have moved to the new site.
+
+## Web Component Code
+
+```tsx
+Button Action Web React import React, { useState } from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import classnames from "classnames";
+import { fn } from "storybook/test";
+import type { ButtonType, ButtonVariation } from "@jobber/components/Button";
+import { Button, useButtonStyles } from "@jobber/components/Button";
+import { Form } from "@jobber/components/Form";
+import { InputNumber } from "@jobber/components/InputNumber";
+import { Content } from "@jobber/components/Content";
+import { Grid } from "@jobber/components/Grid";
+import { Heading } from "@jobber/components/Heading";
+
+const meta = {
+  title: "Components/Actions/Button",
+  component: Button,
+  args: {
+    label: "New Job",
+    onClick: fn(),
+  },
+} satisfies Meta<typeof Button>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {
+  args: {
+    type: "primary",
+  },
+};
+
+const RoutingTemplate = () => (
+  <Router basename="/components/button">
+    <Button label="Home" to="/" />
+    <Button label="Office" to="/office" />
+    <Button label="Dentist" to="/dentist" />
+    <hr />
+    <Switch>
+      <Route exact path="/">
+        This is my home, time to get cozy.
+      </Route>
+      <Route exact path="/office">
+        This is my office, time to get to work.
+      </Route>
+      <Route exact path="/dentist">
+        This is the dentist, time to get my teeth fixed.
+      </Route>
+    </Switch>
+  </Router>
+);
+
+export const ClientSideRouting: Story = {
+  render: RoutingTemplate,
+};
+
+const FormTemplate = () => (
+  <Form onSubmit={() => alert("Wow, what a number")}>
+    <Content>
+      <InputNumber placeholder="Pick a number" />
+      <Button label="Submit" submit={true} />
+    </Content>
+  </Form>
+);
+
+const ComparisonTemplate = () => {
+  const [type, setType] = useState<ButtonType>("primary");
+  const [variation, setVariation] = useState<ButtonVariation>("work");
+
+  return (
+    <Grid>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button label="Set type primary" onClick={() => setType("primary")} />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set type secondary"
+          onClick={() => setType("secondary")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button label="Set type tertiary" onClick={() => setType("tertiary")} />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}></Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set variation work"
+          onClick={() => setVariation("work")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set variation learning"
+          onClick={() => setVariation("learning")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}>
+        <Button
+          label="Set variation destructive"
+          onClick={() => setVariation("destructive")}
+        />
+      </Grid.Cell>
+      <Grid.Cell size={{ xs: 3 }}></Grid.Cell>
+      <Grid.Cell size={{ xs: 12 }}>
+        <Button
+          label={`${type} ${variation}`}
+          type={type}
+          variation={variation}
+        />
+      </Grid.Cell>
+    </Grid>
+  );
+};
+
+export const Comparison: Story = {
+  render: ComparisonTemplate,
+};
+
+export const Form: Story = {
+  render: FormTemplate,
+};
+
+const IconTemplate = () => (
+  <Content>
+    <Button label="Add" icon="add" />
+    <Button label="Add" icon="add" iconOnlyLabel="Add" />
+    <Button label="Add" icon="add" iconPosition="end" />
+  </Content>
+);
+
+export const Icon: Story = {
+  render: IconTemplate,
+};
+
+const TypeTemplate = () => (
+  <Content>
+    <Button label="Primary" type="primary" />
+    <Button label="Secondary" type="secondary" />
+    <Button label="Tertiary" type="tertiary" />
+  </Content>
+);
+
+export const Type: Story = {
+  render: TypeTemplate,
+};
+
+const VariationTemplate = () => (
+  <Content>
+    <Button label="Work" variation="work" />
+    <Button label="Learning" variation="learning" />
+    <Button label="Destructive" variation="destructive" />
+  </Content>
+);
+
+export const Variation: Story = {
+  render: VariationTemplate,
+};
+
+const SizeTemplate = () => (
+  <Content>
+    <Button label="Small" size="small" />
+    <Button label="Base" size="base" />
+    <Button label="Large" size="large" />
+  </Content>
+);
+
+export const Size: Story = {
+  render: SizeTemplate,
+};
+
+const StateTemplate = () => (
+  <Content>
+    <Button label="Default" />
+    <Button label="Loading" loading={true} />
+    <Button label="Disabled" disabled={true} />
+  </Content>
+);
+
+export const State: Story = {
+  render: StateTemplate,
+};
+
+const FullWidthTemplate = () => (
+  <Content>
+    <Button label="Full Width" fullWidth={true} />
+    <Button label="Not Full Width" />
+  </Content>
+);
+
+export const FullWidth: Story = {
+  render: FullWidthTemplate,
+};
+
+const AriaLabelTemplate = () => (
+  <Content>
+    <Button label="Save" ariaLabel="Save document" />
+    <Button icon="add" iconOnlyLabel="Add item" ariaLabel="Add new item to list" />
+  </Content>
+);
+
+export const AriaLabel: Story = {
+  render: AriaLabelTemplate,
+};
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | ✅ | `_none_` | The text content of the button |
+| `type` | `"primary" \| "secondary" \| "tertiary"` | ❌ | `"primary"` | The visual style of the button |
+| `variation` | `"work" \| "learning" \| "destructive"` | ❌ | `"work"` | The contextual variation of the button |
+| `size` | `"small" \| "base" \| "large"` | ❌ | `"base"` | The size of the button |
+| `icon` | `IconNames` | ❌ | `_none_` | Icon to display in the button |
+| `iconPosition` | `"start" \| "end"` | ❌ | `"start"` | Position of the icon relative to the label |
+| `iconOnlyLabel` | `string` | ❌ | `_none_` | Accessible label when only icon is shown |
+| `loading` | `boolean` | ❌ | `false` | Shows loading spinner and disables interaction |
+| `disabled` | `boolean` | ❌ | `false` | Disables the button |
+| `fullWidth` | `boolean` | ❌ | `false` | Makes button take full width of container |
+| `submit` | `boolean` | ❌ | `false` | Makes button submit a form |
+| `ariaLabel` | `string` | ❌ | `_none_` | Accessible label for screen readers |
+| `to` | `string` | ❌ | `_none_` | URL for navigation (renders as link) |
+| `external` | `boolean` | ❌ | `false` | Opens link in new tab when using `to` prop |
+| `onClick` | `(event: MouseEvent) => void` | ❌ | `_none_` | Click event handler |
+
+### Mobile Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | ✅ | `_none_` | The text content of the button |
+| `type` | `"primary" \| "secondary" \| "tertiary"` | ❌ | `"primary"` | The visual style of the button |
+| `variation` | `"work" \| "learning" \| "destructive"` | ❌ | `"work"` | The contextual variation of the button |
+| `size` | `"small" \| "base" \| "large"` | ❌ | `"base"` | The size of the button |
+| `icon` | `IconNames` | ❌ | `_none_` | Icon to display in the button |
+| `iconPosition` | `"start" \| "end"` | ❌ | `"start"` | Position of the icon relative to the label |
+| `loading` | `boolean` | ❌ | `false` | Shows loading spinner and disables interaction |
+| `disabled` | `boolean` | ❌ | `false` | Disables the button |
+| `fullWidth` | `boolean` | ❌ | `false` | Makes button take full width of container |
+| `onPress` | `() => void` | ❌ | `_none_` | Press event handler for mobile |
+
+## Categories
+
+- Actions
+
+## Component Path
+
+`/components/Button`
+
+---
+
+_Generated on 2025-08-21T17:35:16.374Z_

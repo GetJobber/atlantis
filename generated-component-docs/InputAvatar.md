@@ -1,0 +1,252 @@
+# InputAvatar
+
+# Input Avatar
+
+The InputAvatar component is used to allow users to change their Avatar. This is
+an **experimental** component and should be used with careful consideration.
+
+## Design & usage guidelines
+
+InputAvatar requires a `getUploadParams` telling it where and how to upload the
+avatar. You can read more about `getUploadParams` in the
+[InputFile](../?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams)
+component.
+
+## Web Component Code
+
+```tsx
+InputAvatar  Web React import type { PropsWithChildren } from "react";
+import React, { useState } from "react";
+import styles from "./InputAvatar.module.css";
+import { Avatar, type AvatarProps } from "../Avatar";
+import type { FileUpload, UploadParams } from "../InputFile";
+import { InputFile } from "../InputFile";
+import { ProgressBar } from "../ProgressBar";
+import { Button } from "../Button";
+
+interface InputAvatarProps
+  extends Omit<AvatarProps, "size" | "UNSAFE_className" | "UNSAFE_style"> {
+  /**
+   * A callback that receives a file object and returns a `UploadParams` needed
+   * to upload the file.
+   *
+   * More info is available at:
+   * https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams
+   */
+  getUploadParams(file: File): UploadParams | Promise<UploadParams>;
+
+  /**
+   * Triggered when an image is changed.
+   */
+  onChange?(file?: FileUpload): void;
+
+  /**
+   * Triggered when an image upload has completed.
+   */
+  onUploadComplete?(file?: FileUpload): void;
+}
+
+export function InputAvatar({
+  getUploadParams,
+  onUploadComplete,
+  onChange,
+  ...avatarProps
+}: InputAvatarProps) {
+  const [progress, setProgress] = useState(1);
+
+  return (
+    <div className={styles.inputAvatar}>
+      <div className={styles.preview}>
+        <Avatar size="large" {...(avatarProps as AvatarProps)} />
+        {progress < 1 && (
+          <Overlay>
+            <Centered>
+              <ProgressBar
+                size="small"
+                currentStep={progress * 100}
+                totalSteps={100}
+              />
+            </Centered>
+          </Overlay>
+        )}
+      </div>
+      <InputFile
+        variation="button"
+        buttonLabel={avatarProps.imageUrl ? "Change Image" : undefined}
+        size="small"
+        allowedTypes="images"
+        getUploadParams={getUploadParams}
+        onUploadStart={handleChange}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUploadComplete}
+      />
+      {avatarProps.imageUrl != undefined && progress === 1 && (
+        <Button
+          label="Remove"
+          size="small"
+          type="secondary"
+          variation="destructive"
+          onClick={clearAvatar}
+        />
+      )}
+    </div>
+  );
+
+  function handleChange(newFile: FileUpload) {
+    onChange && onChange(newFile);
+    handleUpload(newFile);
+  }
+
+  function handleUploadComplete(newFile: FileUpload) {
+    onUploadComplete && onUploadComplete(newFile);
+    handleUpload(newFile);
+  }
+
+  async function handleUpload(newFile: FileUpload) {
+    setProgress(newFile.progress);
+  }
+
+  function clearAvatar() {
+    onChange && onChange(undefined);
+    setProgress(1);
+  }
+}
+
+function Overlay({ children }: PropsWithChildren) {
+  return <div className={styles.overlay}>{children}</div>;
+}
+
+function Centered({ children }: PropsWithChildren) {
+  // Note: this HIGHLY experimental Centered component is applying margin.
+  return <div className={styles.centered}>{children}</div>;
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop              | Type                          | Required               | Default | Description |
+| ----------------- | ----------------------------- | ---------------------- | ------- | ----------- | -------------------------------------------------------------------------- |
+| `getUploadParams` | `(file: File) => UploadParams | Promise<UploadParams>` | ✅      | `_none_`    | A callback that receives a file object and returns a `UploadParams` needed |
+
+to upload the file.
+
+More info is available at:
+https://atlantis.getjobber.com/?path=/docs/components-forms-and-inputs-inputfile--docs#getuploadparams
+| | `onChange` | `(file?: FileUpload) => void` | ❌ | `_none_` | Triggered when
+an image is changed. | | `onUploadComplete` | `(file?: FileUpload) => void` | ❌
+| `_none_` | Triggered when an image upload has completed. | | `imageUrl` |
+`string` | ❌ | `_none_` | A url for the image that will be displayed | | `name`
+| `string` | ❌ | `_none_` | A users name to be used for assistive technology |
+| `initials` | `string` | ❌ | `_none_` | The initials that will be displayed if
+no image is set.\ | | `color` | `string` | ❌ | `_none_` | The background and
+border color that represents the user. This should be represented as a value
+that can be read by CSS |
+
+## Categories
+
+- Forms & Inputs
+
+## Web Test Code
+
+```typescript
+InputAvatar  Web React Test Testing Jest import React from "react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import { InputAvatar } from ".";
+
+const testFile = new File(["🔱 Atlantis"], "atlantis.png", {
+  type: "image/png",
+});
+
+function fetchUploadParams(file: File) {
+  return Promise.resolve({
+    key: file.name,
+    url: "https://httpbin.org/post",
+    fields: { secret: "🤫" },
+  });
+}
+
+it("renders", () => {
+  const { container } = render(
+    <InputAvatar getUploadParams={fetchUploadParams} />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+it("renders with a provided image", () => {
+  const { container } = render(
+    <InputAvatar
+      getUploadParams={fetchUploadParams}
+      imageUrl="https://api.adorable.io/avatars/150/jobbler"
+    />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+it.skip("properly notifies upload callbacks", async () => {
+  const changeHandler = jest.fn();
+  const completionHandler = jest.fn();
+  const { container } = render(
+    <InputAvatar
+      getUploadParams={fetchUploadParams}
+      onChange={changeHandler}
+      onUploadComplete={completionHandler}
+    />,
+  );
+
+  const input = container.querySelector("input[type=file]");
+
+  fireEvent.change(input, { target: { files: [testFile] } });
+
+  await waitFor(() => {
+    expect(changeHandler).toHaveBeenCalledTimes(1);
+    expect(changeHandler).toHaveBeenCalledWith({
+      key: "atlantis.png",
+      name: "atlantis.png",
+      size: expect.any(Number),
+      progress: expect.any(Number),
+      src: expect.any(Function),
+      type: "image/png",
+    });
+
+    expect(completionHandler).toHaveBeenCalledTimes(1);
+    expect(completionHandler).toHaveBeenCalledWith({
+      key: "atlantis.png",
+      name: "atlantis.png",
+      size: expect.any(Number),
+      progress: 1,
+      src: expect.any(Function),
+      type: "image/png",
+    });
+  });
+});
+
+it("should allow for avatar removal", async () => {
+  const changeHandler = jest.fn();
+  const { getByText } = render(
+    <InputAvatar
+      getUploadParams={fetchUploadParams}
+      onChange={changeHandler}
+      imageUrl="https://api.adorable.io/avatars/150/jobbler"
+    />,
+  );
+
+  fireEvent.click(getByText("Remove"));
+
+  await waitFor(() => {
+    expect(changeHandler).toHaveBeenCalledTimes(1);
+    expect(changeHandler).toHaveBeenCalledWith(undefined);
+  });
+});
+
+```
+
+## Component Path
+
+`/components/InputAvatar`
+
+---
+
+_Generated on 2025-08-21T17:35:16.363Z_

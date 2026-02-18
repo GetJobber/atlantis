@@ -1,0 +1,144 @@
+# ActionItem
+
+# Action Item
+
+Action items are used to display a single action that a user can take. They
+are commonly used in lists to show a collection of actions.
+
+## Design & usage guidelines
+
+Action items are designed to be used in lists or collections where each item
+represents a single action that can be taken by the user. They provide a
+consistent way to display actionable content with optional icons, descriptions,
+and interactive states.
+
+### Basic usage
+
+Use action items to create lists of actions or options that users can select
+from:
+
+```tsx
+<ActionItem
+  label="Edit profile"
+  onClick={() => console.log('Edit profile clicked')}
+/>
+```
+
+### With icons
+
+Add icons to provide visual context for the action:
+
+```tsx
+<ActionItem
+  label="Settings"
+  icon="settings"
+  onClick={() => console.log('Settings clicked')}
+/>
+```
+
+### With descriptions
+
+Include additional context with a description:
+
+```tsx
+<ActionItem
+  label="Export data"
+  description="Download your data as a CSV file"
+  icon="download"
+  onClick={() => console.log('Export clicked')}
+/>
+```
+
+## Content guidelines
+
+### Labels
+- Use clear, action-oriented language
+- Keep labels concise and descriptive
+- Use sentence case for labels
+
+### Descriptions
+- Provide helpful context when needed
+- Keep descriptions brief and informative
+- Use sentence case for descriptions
+
+## Related components
+
+- [ActionItemGroup](/components/ActionItemGroup) - For grouping related action items
+- [Menu](/components/Menu) - For dropdown menus with actions
+- [List](/components/List) - For general list display
+
+## Accessibility
+
+The ActionItem component includes:
+- Proper semantic HTML structure
+- ARIA labels for screen readers
+- Keyboard navigation support
+- Focus management
+
+## Web Component Code
+
+```tsx
+ActionItem Action Web React import React from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { ActionItem } from "@jobber/components/ActionItem";
+import { Content } from "@jobber/components/Content";
+
+const meta = {
+  title: "Components/Actions/ActionItem",
+  component: ActionItem,
+  parameters: {
+    previewTabs: { code: { hidden: false } },
+  },
+} satisfies Meta<typeof ActionItem>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Basic: Story = {
+  args: {
+    label: "Edit profile",
+    onClick: () => console.log("Action item clicked"),
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    label: "Settings",
+    icon: "settings",
+    onClick: () => console.log("Settings clicked"),
+  },
+};
+
+export const WithDescription: Story = {
+  args: {
+    label: "Export data",
+    description: "Download your data as a CSV file",
+    icon: "download",
+    onClick: () => console.log("Export clicked"),
+  },
+};
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `label` | `string` | ✅ | `_none_` | The main text content of the action item |
+| `description` | `string` | ❌ | `_none_` | Additional descriptive text |
+| `icon` | `IconNames` | ❌ | `_none_` | Icon to display alongside the label |
+| `onClick` | `() => void` | ❌ | `_none_` | Click event handler |
+| `disabled` | `boolean` | ❌ | `false` | Whether the action item is disabled |
+
+## Categories
+
+- Actions
+
+## Component Path
+
+`/components/ActionItem`
+
+---
+
+_Generated on 2025-08-21T17:35:16.374Z_

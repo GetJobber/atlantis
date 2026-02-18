@@ -1,0 +1,91 @@
+# ContentBlock
+
+## Web Component Code
+
+```tsx
+ContentBlock Layout Container Stack Wrapper Web React import React from "react";
+import classNames from "classnames";
+import { Breakpoints } from "@jobber/hooks/useResizeObserver";
+import styles from "./ContentBlock.module.css";
+import type { ContentBlockProps } from "./types";
+import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
+import { getMappedBreakpointWidth } from "../sharedHelpers/getMappedBreakpointWidth";
+
+export function ContentBlock({
+  children,
+  maxWidth = Breakpoints.smaller,
+  andText,
+  gutters,
+  justify = "left",
+  as: Tag = "div",
+  dataAttributes,
+  ariaAttributes,
+  role,
+  id,
+  UNSAFE_className,
+  UNSAFE_style,
+}: ContentBlockProps) {
+  return (
+    <Tag
+      role={role}
+      id={id}
+      {...dataAttributes}
+      {...ariaAttributes}
+      style={
+        {
+          "--content-block-max-width": getMappedBreakpointWidth(maxWidth),
+          "--content-block-gutters": getMappedAtlantisSpaceToken(gutters),
+          ...UNSAFE_style?.container,
+        } as React.CSSProperties
+      }
+      className={classNames(
+        styles.contentBlock,
+        andText && styles.andText,
+        gutters && styles.gutters,
+        justify === "left" && styles.left,
+        justify === "right" && styles.right,
+        justify === "center" && styles.center,
+        UNSAFE_className?.container,
+      )}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `justify` | `"left" | "center" | "right"` | ❌ | `left` | The justification of the content. |
+| `maxWidth` | `number | "xs" | "sm" | "md" | "lg" | "xl" | (string & {})` | ❌ | `Breakpoints.smaller` | The maximum width of the centered content. |
+| `andText` | `boolean` | ❌ | `_none_` | Whether to also center the text. |
+| `gutters` | `GapSpacing` | ❌ | `_none_` | The amount of space between the content and the edges of the container. |
+| `as` | `CommonAllowedElements` | ❌ | `_none_` | The HTML tag to render the container as. Defaults to `div`. |
+| `UNSAFE_className` | `{ container?: string; }` | ❌ | `_none_` | **Use at your own risk:** Custom class names for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+| `UNSAFE_style` | `{ container?: CSSProperties; }` | ❌ | `_none_` | **Use at your own risk:** Custom style for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+| `dataAttributes` | `{ [key: `data-${string}`]: string; }` | ❌ | `_none_` | Standard HTML data attributes. Accepts anything in a {{"data-key":"value"}} format. |
+| `ariaAttributes` | `AriaAttributes` | ❌ | `_none_` | Standard HTML aria attributes. Accepts all standard HTML aria attributes. |
+| `role` | `AriaRole` | ❌ | `_none_` | Standard HTML role attribute. |
+| `id` | `string` | ❌ | `_none_` | Standard HTML id attribute. |
+
+
+## Categories
+
+- Layouts & Structure
+
+## Component Path
+
+`/components/ContentBlock`
+
+---
+
+_Generated on 2025-08-21T17:35:16.357Z_

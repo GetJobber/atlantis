@@ -1,0 +1,1424 @@
+# DataList
+
+<Meta
+  title="Components/Lists and Tables/DataList"
+  parameters={{ alpha: true }}
+/>
+
+# DataList
+
+<Banner type="notice" dismissible={false}>
+  Consider using the atomic [DataTable](/components/DataTable) components before
+  reaching for the DataList component.
+</Banner>
+
+DataList is used to show a collection list of similar items in a simpler manner
+than [DataTable](/components/DataTable).
+
+It allows more control over the layout of the list items. It can also add
+different layouts depending on the size of the screen that we support.
+
+## Design & usage guidelines
+
+While it's tempting to add a large amount of information to the DataList's
+layout, it's important to keep in mind that the DataList is meant to be a simple
+list of important items. We recommend not going over more than 5 data points per
+item.
+
+If you need to add more information, consider using the
+[DataTable](/components/DataTable) component instead.
+
+## Web Component Code
+
+```tsx
+DataList Thicklist Table Web React import React, { useMemo, useRef, useState } from "react";
+import styles from "./DataList.module.css";
+import { DataListTotalCount } from "./components/DataListTotalCount";
+import { DataListLoadingState } from "./components/DataListLoadingState";
+import { DataListLayout } from "./components/DataListLayout";
+import { DataListHeader } from "./components/DataListHeader";
+import {
+  DataListFilters,
+  InternalDataListFilters,
+} from "./components/DataListFilters";
+import { DataListStickyHeader } from "./components/DataListStickyHeader";
+import {
+  DataListSearch,
+  InternalDataListSearch,
+} from "./components/DataListSearch";
+import {
+  DataListEmptyState,
+  InternalDataListEmptyState,
+} from "./components/DataListEmptyState";
+import { DataListLoadMore } from "./components/DataListLoadMore";
+import { DataListItemActions } from "./components/DataListItemActions";
+import { DataListAction } from "./components/DataListAction";
+import { DataListLayoutActions } from "./components/DataListLayoutActions";
+import { DataListContext, useDataListContext } from "./context/DataListContext";
+import type {
+  DataListBulkActionProps,
+  DataListBulkActionsProps,
+  DataListEmptyStateProps,
+  DataListFiltersProps,
+  DataListItemActionsProps,
+  DataListLayoutProps,
+  DataListObject,
+  DataListProps,
+  DataListSearchProps,
+  LayoutRenderer,
+} from "./DataList.types";
+import {
+  getCompoundComponent,
+  getCompoundComponents,
+  sortBreakpoints,
+} from "./DataList.utils";
+import type { Breakpoints } from "./DataList.const";
+import {
+  DATA_LIST_FILTERING_SPINNER_TEST_ID,
+  DATA_LIST_TITLE_CONTAINER_TEST_ID,
+} from "./DataList.const";
+import { DataListBulkActions } from "./components/DataListBulkActions";
+import {
+  DataListStatusBar,
+  InternalDataListStatusBar,
+} from "./components/DataListStatusBar";
+import { Heading } from "../Heading";
+import { Spinner } from "../Spinner";
+
+export function DataList<T extends DataListObject>({
+  selected = [],
+  sorting,
+  ...props
+}: DataListProps<T>) {
+  const [layouts, setLayouts] = useState<{
+    [Breakpoint in Breakpoints]?: LayoutRenderer<DataListObject>;
+  }>({});
+
+  const layoutBreakpoints = useMemo(
+    () => sortBreakpoints(Object.keys(layouts) as Breakpoints[]),
+    [layouts],
+  );
+
+  const searchComponent = getCompoundComponent<DataListSearchProps>(
+    props.children,
+    DataListSearch,
+  );
+  const filterComponent = getCompoundComponent<DataListFiltersProps>(
+    props.children,
+    DataListFilters,
+  );
+  const layoutComponents = getCompoundComponents<
+    DataListLayoutProps<DataListObject>
+  >(props.children, DataListLayout);
+  const emptyStateComponents = getCompoundComponents<DataListEmptyStateProps>(
+    props.children,
+    DataListEmptyState,
+  );
+  const itemActionComponent = getCompoundComponent<
+    DataListItemActionsProps<DataListObject>
+  >(props.children, DataListItemActions);
+  const bulkActionsComponent = getCompoundComponent<DataListBulkActionsProps>(
+    props.children,
+    DataListBulkActions,
+  );
+  const headerCount = Object.keys(props.headers).length;
+
+  const shouldRenderStickyHeader =
+    !!filterComponent || !!searchComponent || headerCount > 0;
+
+  return (
+    <DataListContext.Provider
+      value={{
+        searchComponent,
+        filterComponent,
+        layoutComponents,
+        emptyStateComponents,
+        itemActionComponent,
+        bulkActionsComponent,
+        layoutBreakpoints,
+        layouts,
+        registerLayout,
+        ...props,
+        selected,
+        // T !== DataListObject
+        sorting: sorting as DataListProps<DataListObject>["sorting"],
+      }}
+    >
+      <InternalDataList shouldRenderStickyHeader={shouldRenderStickyHeader} />
+    </DataListContext.Provider>
+  );
+
+  function registerLayout(
+    size: Breakpoints,
+    children: LayoutRenderer<DataListObject>,
+  ) {
+    setLayouts(prev => ({
+      ...prev,
+      [size]: children,
+    }));
+  }
+}
+
+function InternalDataList({
+  shouldRenderStickyHeader,
+}: {
+  readonly shouldRenderStickyHeader: boolean;
+}) {
+  const {
+    data,
+    title,
+    totalCount,
+    loadingState = "none",
+    layoutComponents,
+  } = useDataListContext();
+
+  const backToTopRef = useRef<HTMLDivElement>(null);
+
+  const initialLoading = loadingState === "initial";
+  const showEmptyState = !initialLoading && data.length === 0;
+
+  const shouldRenderLoadMoreTrigger = !initialLoading && !showEmptyState;
+
+  const shouldRenderTitleContainer =
+    initialLoading || title !== undefined || totalCount !== undefined;
+
+  return (
+    <div className={styles.wrapper}>
+      {shouldRenderTitleContainer && (
+        <div
+          className={styles.titleContainer}
+          data-testid={DATA_LIST_TITLE_CONTAINER_TEST_ID}
+        >
+          {title && <Heading level={3}>{title}</Heading>}
+          {totalCount !== undefined && (
+            <DataListTotalCount
+              totalCount={totalCount}
+              loading={initialLoading}
+            />
+          )}
+        </div>
+      )}
+
+      {/* We need to know where the top of the list is but not necessarily the
+      heading as per the design requirements */}
+      <div ref={backToTopRef} />
+
+      {shouldRenderStickyHeader && (
+        <DataListStickyHeader>
+          <div className={styles.headerFilters}>
+            <InternalDataListFilters />
+            <InternalDataListSearch />
+          </div>
+
+          <InternalDataListStatusBar />
+          <DataListHeader />
+        </DataListStickyHeader>
+      )}
+
+      {initialLoading && <DataListLoadingState />}
+
+      {showEmptyState && <InternalDataListEmptyState />}
+
+      {layoutComponents}
+
+      {loadingState === "filtering" && (
+        <div
+          data-testid={DATA_LIST_FILTERING_SPINNER_TEST_ID}
+          className={styles.filtering}
+        >
+          <div className={styles.filteringSpinner}>
+            <Spinner size="small" />
+          </div>
+        </div>
+      )}
+
+      {shouldRenderLoadMoreTrigger && (
+        <DataListLoadMore onBackToTop={handleBackToTop} />
+      )}
+    </div>
+  );
+
+  function handleBackToTop() {
+    // For testing purposes since jest doesn't know scrollIntoView.
+    // This prevents consumer's tests from needing to mock scrollIntoView.
+    if (!window.HTMLElement.prototype.scrollIntoView) return;
+
+    backToTopRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  }
+}
+
+/**
+ * Sets the layout that the DataList item and header will use.
+ */
+DataList.Layout = DataListLayout;
+
+/**
+ * By using this component, we can render the actions anywhere in the layout
+ * instead of being added automatically on hover.
+ */
+DataList.LayoutActions = DataListLayoutActions;
+
+/**
+ * When the DataList is either empty and/or filtered, this component will be
+ * rendered.
+ */
+DataList.EmptyState = DataListEmptyState;
+
+/**
+ * Adds the filter components of your choosing to the DataList.
+ */
+DataList.Filters = DataListFilters;
+
+/**
+ * Enables the search functionality of the DataList.
+ */
+DataList.Search = DataListSearch;
+
+/**
+ * Defines the group actions you could do on a single DataList item.
+ */
+DataList.ItemActions = DataListItemActions;
+
+/**
+ * Defines the action in a DataList. This should be used inside the
+ * DataListItemActions component.
+ */
+DataList.ItemAction = DataListAction;
+
+/**
+ * Defines the group actions you could do on multiple DataList items.
+ */
+DataList.BatchActions = DataListBulkActions;
+
+/**
+ * Defines the batch action in a DataList. This should be used inside the
+ * DataListBatchActions component.
+ */
+DataList.BatchAction = function DataListBatchAction(
+  props: DataListBulkActionProps,
+) {
+  return <DataListAction {...props} />;
+};
+
+/**
+ * Defines a status bar that is rendered between the filters and the header.
+ */
+DataList.StatusBar = DataListStatusBar;
+import type { ReactElement } from "react";
+import React, { Children, isValidElement } from "react";
+import isEmpty from "lodash/isEmpty";
+import type {
+  DataListHeader,
+  DataListItemType,
+  DataListItemTypeFromHeader,
+  DataListObject,
+} from "./DataList.types";
+import type { Breakpoints } from "./DataList.const";
+import { BREAKPOINTS } from "./DataList.const";
+import { DataListTags } from "./components/DataListTags";
+import { DataListHeaderTile } from "./components/DataListHeaderTile/DataListHeaderTile";
+import { FormatDate } from "../FormatDate";
+import { Text } from "../Text";
+import { Heading } from "../Heading";
+
+/**
+ * Return the child component that matches the `type` provided
+ */
+export function getCompoundComponent<T>(
+  children: ReactElement | ReactElement[],
+  type: ReactElement<T>["type"],
+): ReactElement<T> | undefined {
+  const childrenArray = Children.toArray(children);
+  const element = childrenArray.find(
+    child => isValidElement<T>(child) && child.type === type,
+  );
+
+  // Comply with the return type without casting it
+  return isValidElement<T>(element) ? element : undefined;
+}
+
+/**
+ * Return all instances child component that matches the `type` provided
+ */
+export function getCompoundComponents<T>(
+  children: ReactElement | ReactElement[],
+  type: ReactElement<T>["type"],
+): ReactElement<T>[] {
+  const childrenArray = Children.toArray(children);
+  const elements = childrenArray.filter(
+    (child): child is ReactElement<T> =>
+      isValidElement<T>(child) && child.type === type,
+  );
+
+  return elements;
+}
+
+/**
+ * Generate the default element the DataList would use on the data provided.
+ */
+export function generateListItemElement<T extends DataListObject>(item: T) {
+  type DataListElements = DataListItemType<T[]>;
+
+  return Object.keys(item).reduce((acc, key: keyof DataListElements) => {
+    const currentItem = item[key];
+
+    if (!currentItem) {
+      return acc;
+    }
+
+    if (key === "tags" && Array.isArray(currentItem)) {
+      acc[key] = <DataListTags items={currentItem} />;
+    } else if (key === "label" && typeof currentItem === "string") {
+      acc[key] = <Heading level={5}>{currentItem}</Heading>;
+    } else if (isValidElement(currentItem)) {
+      acc[key] = currentItem;
+    } else if (currentItem instanceof Date) {
+      acc[key] = (
+        <Text>
+          <FormatDate date={currentItem} />
+        </Text>
+      );
+    } else {
+      acc[key] = <Text>{currentItem}</Text>;
+    }
+
+    return acc;
+  }, {} as DataListElements);
+}
+
+/**
+ * Generate the header elements with the default styling
+ */
+export function generateHeaderElements<T extends DataListObject>(
+  headers: DataListHeader<T>,
+) {
+  const headerElements = Object.keys(headers).reduce(
+    (acc, key) => ({
+      ...acc,
+      [key]: <DataListHeaderTile headers={headers} headerKey={key} />,
+    }),
+    {} as DataListItemTypeFromHeader<T, typeof headers>,
+  );
+
+  return isEmpty(headerElements) ? undefined : headerElements;
+}
+
+export function sortBreakpoints(sizeProp: Breakpoints[]) {
+  return sizeProp.sort(
+    (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
+  );
+}
+
+export function getExposedActions(
+  childrenArray: ReactElement[],
+  childCount = 2,
+) {
+  const firstNChildren = childrenArray.slice(0, childCount);
+
+  return firstNChildren.reduce((result: typeof childrenArray, child, i) => {
+    const hasIcon = Boolean(child.props.icon);
+    const isAlwaysVisible = child.props.alwaysVisible; // If true, the child action will always be visible and not nested in the dropdown.
+
+    if (
+      isAlwaysVisible === false ||
+      (isAlwaysVisible === undefined && !hasIcon)
+    ) {
+      return result;
+    }
+
+    const isLastChildAdded = result.length === i;
+
+    // If it's the first child or if the previous child was added, then add this child.
+    if (i === 0 || (i < childCount && isLastChildAdded)) {
+      return [...result, child];
+    }
+
+    return result;
+  }, []);
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `data` | `T[]` | ✅ | `_none_` | The data to render in the DataList. |
+| `headers` | `DataListHeader<T>` | ✅ | `_none_` | The header of the DataList. The object keys are determined by the
+keys in the data. |
+| `loadingState` | `"initial" | "filtering" | "loadingMore" | "none"` | ❌ | `_none_` | Set the loading state of the DataList. There are a few guidelines on when to use what.
+
+- `"initial"` - loading the first set of data
+- `"filtering"` - loading after a filter is applied
+- `"loadingMore"` - loading more data after the user scrolls to the bottom |
+| `filtered` | `boolean` | ❌ | `_none_` | Adjusts the DataList to show the UX when it is filtered. |
+| `title` | `string` | ❌ | `_none_` | The title of the DataList. |
+| `totalCount` | `number` | ❌ | `_none_` | Total number of items in the DataList.
+
+This renders an "N results" text with the DataList
+that helps users know how many items they have
+in the list |
+| `headerVisibility` | `{ xs?: boolean; sm?: boolean; md?: boolean; lg?: boolean; xl?: boolean; }` | ❌ | `{ xs: true, sm: true, md: true, lg: true, xl: true }` | Determine if the header is visible at a given breakpoint. If one isn't provided,
+it will use the value from the next smallest breakpoint that has a value. |
+| `onLoadMore` | `() => void` | ❌ | `_none_` | The callback function when the user scrolls to the bottom of the list. |
+| `sorting` | `{ readonly sortable: DataListSortable[]; readonly state: DataListSorting; readonly onSort: (sorting?: DataListSorting) => void; }` | ❌ | `_none_` | `sortable`: List of keys that are sortable.
+`state`: The state of the sorting.
+`onSort`: The callback function when the user sorting a column. |
+| `selected` | `DataListSelectedType<T["id"]>` | ❌ | `[]` | The list of Selected Item ids |
+| `onSelect` | `(selected: DataListSelectedType<T["id"]>) => void` | ❌ | `_none_` | Callback when an item checkbox is clicked. |
+| `onSelectAll` | `(selected: DataListSelectedType<T["id"]>) => void` | ❌ | `_none_` | Callback when the select all checkbox is clicked. |
+
+
+## Categories
+
+- Lists & Tables
+
+## Web Test Code
+
+```typescript
+DataList Thicklist Table Web React Test Testing Jest /* eslint-disable max-statements */
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import type { ReactElement } from "react";
+import React from "react";
+import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
+import userEvent from "@testing-library/user-event";
+import { Banner } from "@jobber/components/Banner";
+import { DataList } from "./DataList";
+import type { Breakpoints } from "./DataList.const";
+import {
+  BREAKPOINT_SIZES,
+  DATA_LIST_FILTERING_SPINNER_TEST_ID,
+  DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
+  DATA_LIST_STICKY_HEADER_TEST_ID,
+  DATA_LIST_TITLE_CONTAINER_TEST_ID,
+  DATA_LOAD_MORE_TEST_ID,
+  EMPTY_FILTER_RESULTS_MESSAGE,
+} from "./DataList.const";
+import type {
+  DataListItemType,
+  DataListProps,
+  DataListSortable,
+} from "./DataList.types";
+import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
+import {
+  DATALIST_LOADINGSTATE_ROW_TEST_ID,
+  LOADING_STATE_LIMIT_ITEMS,
+} from "./components/DataListLoadingState";
+import { MAX_DATA_COUNT } from "./components/DataListLoadMore";
+import { SORTING_ICON_TEST_ID } from "./components/DataListHeaderTile/DataListSortingArrows";
+import {
+  DATA_LIST_HEADER_BATCH_SELECT_TEST_ID,
+  DATA_LIST_HEADER_CHECKBOX_TEST_ID,
+} from "./components/DataListHeader/DataListHeaderCheckbox";
+import { GLIMMER_TEST_ID } from "../Glimmer";
+import { Button } from "../Button";
+
+configMocks({ act });
+const observer = mockIntersectionObserver();
+
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: true,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(), // deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
+describe("DataList", () => {
+  const mockTitle = "All people";
+
+  describe("Title and results counter", () => {
+    const mockData = [{ id: 1, label: "Luke Skywalker" }];
+    const mockHeader = { label: "Name" };
+
+    it("should render the title if defined", () => {
+      render(
+        <DataList
+          title="Mock title"
+          totalCount={10}
+          data={mockData}
+          headers={mockHeader}
+        >
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText("Mock title")).toBeInTheDocument();
+    });
+
+    it("should not render the title container if title or totalCount is undefined", () => {
+      render(
+        <DataList data={mockData} headers={mockHeader}>
+          <></>
+        </DataList>,
+      );
+
+      expect(
+        screen.queryByTestId(DATA_LIST_TITLE_CONTAINER_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should render the total count", () => {
+      render(
+        <DataList totalCount={10} data={mockData} headers={mockHeader}>
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText("(10 results)")).toBeInTheDocument();
+    });
+
+    it("should not render the total count if the totalCount is null", () => {
+      render(
+        <DataList
+          totalCount={null}
+          data={mockData}
+          headers={mockHeader}
+          title={mockTitle}
+        >
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText(mockTitle)).toBeInTheDocument();
+      expect(screen.queryByText("(10 results)")).not.toBeInTheDocument();
+    });
+
+    it("should render the Glimmer on total count when loading", () => {
+      render(
+        <DataList
+          loadingState="initial"
+          totalCount={null}
+          data={mockData}
+          headers={mockHeader}
+          title={mockTitle}
+        >
+          <></>
+        </DataList>,
+      );
+      const results = screen.getByTestId(DATALIST_TOTALCOUNT_TEST_ID);
+      expect(within(results).getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
+    });
+
+    it("should not render the total count if the totalCount is undefined", () => {
+      render(
+        <DataList data={mockData} headers={mockHeader} title={mockTitle}>
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText(mockTitle)).toBeInTheDocument();
+      expect(
+        screen.queryByTestId(DATALIST_TOTALCOUNT_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  const mockData = [
+    { id: 1, name: "John", email: "john@doe.com" },
+    { id: 2, name: "Jane", email: "jane@doe.com" },
+  ];
+  const emptyMockData = [] as typeof mockData;
+  const mockHeaders = {
+    name: "Name",
+    email: "Email",
+  };
+
+  describe("Loading State", () => {
+    it("should render 10 rows of placeholder items when the list is in initial loading state", () => {
+      render(
+        <DataList
+          loadingState="initial"
+          data={mockData}
+          headers={mockHeaders}
+          title="All Clients"
+        >
+          <DataList.Layout size="lg">
+            {(item: DataListItemType<typeof mockData>) => (
+              <div>
+                <div>{item.name}</div>
+                <div>{item.email}</div>
+              </div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      expect(
+        screen.getAllByTestId(DATALIST_LOADINGSTATE_ROW_TEST_ID).length,
+      ).toBe(10);
+
+      const numberOfColumns = Object.keys(mockHeaders).length;
+
+      expect(screen.getAllByTestId(GLIMMER_TEST_ID)).toHaveLength(
+        numberOfColumns * LOADING_STATE_LIMIT_ITEMS,
+      );
+    });
+
+    it("should render a spinner when the loading state is filtering", () => {
+      render(
+        <DataList
+          loadingState="filtering"
+          data={mockData}
+          headers={mockHeaders}
+        >
+          <></>
+        </DataList>,
+      );
+
+      expect(
+        screen.getByTestId(DATA_LIST_FILTERING_SPINNER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should render a spinner when the loading state is loadingMore", () => {
+      render(
+        <DataList
+          loadingState="loadingMore"
+          data={mockData}
+          headers={mockHeaders}
+        >
+          <></>
+        </DataList>,
+      );
+
+      expect(
+        screen.getByTestId(DATA_LIST_LOADING_MORE_SPINNER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe("Layout", () => {
+    const layoutWrapper = "layout-wrapper";
+    const layoutItem = "layout-item";
+    const mockOnSearch = jest.fn();
+
+    beforeEach(() => {
+      render(
+        <DataList data={mockData} headers={mockHeaders}>
+          <DataList.Search onSearch={mockOnSearch} />
+          <DataList.Layout>
+            {(item: DataListItemType<typeof mockData>) => (
+              <div data-testid={layoutWrapper}>
+                <div data-testid={layoutItem}>{item.name}</div>
+                <div data-testid={layoutItem}>{item.email}</div>
+              </div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+    });
+
+    it("should render the specified layout", () => {
+      expect(screen.getAllByTestId(layoutWrapper)).toHaveLength(3);
+      expect(screen.getAllByTestId(layoutItem)).toHaveLength(6);
+    });
+
+    it("should render the data with the default paragraph element", () => {
+      const data = mockData[0];
+      expect(screen.getByText(data.name)).toBeInstanceOf(HTMLParagraphElement);
+      expect(screen.getByText(data.email)).toBeInstanceOf(HTMLParagraphElement);
+    });
+  });
+
+  describe("Layout Breakpoints", () => {
+    const layoutItem = "layout-item";
+
+    function setUpMediaQueries(expectedValues: Record<Breakpoints, boolean>) {
+      Object.defineProperty(window, "matchMedia", {
+        writable: true,
+        value: jest.fn().mockImplementation((query: string) => {
+          const queryValue = parseInt(query.match(/(\d+)/)?.[0] || "0", 10);
+          const queryBreakpoint = Object.entries(BREAKPOINT_SIZES).find(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            ([_, value]) => {
+              return value === queryValue;
+            },
+          )?.[0];
+          const expectedValue = expectedValues[queryBreakpoint as Breakpoints];
+
+          return {
+            matches: expectedValue,
+            media: query,
+            onchange: null,
+            addListener: jest.fn(), // deprecated
+            removeListener: jest.fn(), // deprecated
+            addEventListener: jest.fn(),
+            removeEventListener: jest.fn(),
+            dispatchEvent: jest.fn(),
+          };
+        }),
+      });
+    }
+
+    it.each<{
+      layoutSize1: Breakpoints;
+      mockedQueries: Record<Breakpoints, boolean>;
+      layoutSize2: Breakpoints;
+    }>([
+      {
+        layoutSize1: "xs",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        layoutSize2: "sm",
+      },
+      {
+        layoutSize1: "sm",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        layoutSize2: "md",
+      },
+      {
+        layoutSize1: "md",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        layoutSize2: "lg",
+      },
+      {
+        layoutSize1: "lg",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        layoutSize2: "xl",
+      },
+    ])(
+      "when multiple layouts are specified it should render the larger layout",
+      ({ layoutSize1, layoutSize2, mockedQueries }) => {
+        const layout1Wrapper = "layout1-wrapper";
+        const layout2Wrapper = "layout2-wrapper";
+        setUpMediaQueries(mockedQueries);
+        render(
+          <DataList data={mockData} headers={mockHeaders}>
+            <DataList.Layout size={layoutSize1}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout1Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+            <DataList.Layout size={layoutSize2}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout2Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+          </DataList>,
+        );
+
+        expect(screen.queryAllByTestId(layout1Wrapper)).toHaveLength(0);
+        expect(screen.queryAllByTestId(layout2Wrapper)).not.toHaveLength(0);
+      },
+    );
+
+    it.each<{
+      layoutSize1: Breakpoints;
+      mockedQueries: Record<Breakpoints, boolean>;
+      headerVisibility: { [Breakpoint in Breakpoints]?: boolean };
+      isHeaderVisible: boolean;
+      layoutSize2: Breakpoints;
+    }>([
+      {
+        layoutSize1: "xs",
+        mockedQueries: { xs: true, sm: true, md: false, lg: false, xl: false },
+        headerVisibility: { xs: false },
+        isHeaderVisible: false,
+        layoutSize2: "md",
+      },
+      {
+        layoutSize1: "sm",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        headerVisibility: { xs: true },
+        isHeaderVisible: true,
+        layoutSize2: "md",
+      },
+    ])(
+      "should use the header visibility from the smaller layout is not specified",
+      ({
+        layoutSize1,
+        layoutSize2,
+        mockedQueries,
+        headerVisibility,
+        isHeaderVisible,
+      }) => {
+        const layout1Wrapper = "layout1-wrapper";
+        const layout2Wrapper = "layout2-wrapper";
+        const mockOnSearch = jest.fn();
+        setUpMediaQueries(mockedQueries);
+        render(
+          <DataList
+            data={mockData}
+            headers={mockHeaders}
+            headerVisibility={headerVisibility}
+          >
+            <DataList.Search onSearch={mockOnSearch} />
+            <DataList.Layout size={layoutSize1}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout1Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+            <DataList.Layout size={layoutSize2}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout2Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+          </DataList>,
+        );
+        expect(screen.queryAllByText(mockHeaders.name).length > 0).toBe(
+          isHeaderVisible,
+        );
+      },
+    );
+  });
+
+  describe("Header", () => {
+    const mockOnSearch = jest.fn();
+
+    function renderLayout(
+      headerVisibility?: DataListProps<
+        (typeof mockData)[0]
+      >["headerVisibility"],
+      sorting?: DataListProps<(typeof mockData)[0]>["sorting"],
+    ) {
+      render(
+        <DataList
+          data={mockData}
+          headers={mockHeaders}
+          headerVisibility={headerVisibility}
+          sorting={sorting}
+        >
+          <DataList.Search onSearch={mockOnSearch} />
+          <DataList.Layout>
+            {(item: DataListItemType<typeof mockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+    }
+
+    it("should only render the header that's specified on the layout", () => {
+      renderLayout();
+      expect(screen.getByText(mockHeaders.name)).toBeInTheDocument();
+      expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
+    });
+
+    it("should render the header with the correct element", () => {
+      renderLayout();
+      expect(screen.getByText(mockHeaders.name)).toBeInstanceOf(
+        HTMLParagraphElement,
+      );
+    });
+
+    it("should hide the header if specified on the layout", () => {
+      renderLayout({ xs: false });
+      expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
+      expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
+    });
+
+    it("should render the sorting arrows when sorting is specified", () => {
+      renderLayout(undefined, {
+        sortable: [
+          {
+            key: "name",
+            sortType: "toggle",
+            options: [
+              { id: "nameAsc", label: "Ascending", order: "asc" },
+              { id: "nameDesc", label: "Descending", order: "desc" },
+            ],
+          },
+        ],
+        onSort: jest.fn(),
+        state: undefined,
+      });
+      expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
+    });
+
+    it("should not render the sorting arrows when sorting is not specified", () => {
+      renderLayout();
+      expect(
+        screen.queryByTestId(SORTING_ICON_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should trigger the onSort when the header is clicked", () => {
+      const mockOnSort = jest.fn();
+      const mockSortDefinition: DataListSortable = {
+        key: "name",
+        sortType: "toggle",
+        options: [
+          { id: "nameAsc", label: "Ascending", order: "asc" },
+          { id: "nameDesc", label: "Descending", order: "desc" },
+        ],
+      };
+      const expectedOnSortArgument = {
+        key: mockSortDefinition.key,
+        id: mockSortDefinition.options[0].id,
+        label: mockSortDefinition.options[0].label,
+        order: mockSortDefinition.options[0].order,
+      };
+      renderLayout(undefined, {
+        sortable: [mockSortDefinition],
+        onSort: mockOnSort,
+        state: undefined,
+      });
+
+      fireEvent.click(screen.getByText(mockHeaders.name));
+      expect(mockOnSort).toHaveBeenCalledWith(expectedOnSortArgument);
+    });
+
+    it("should render custom options when sorting is specified", () => {
+      const mockOnSort = jest.fn();
+
+      renderLayout(undefined, {
+        sortable: [
+          {
+            key: "name",
+            sortType: "dropdown",
+            options: [
+              { id: "name", label: "Ascending", order: "asc" },
+              { id: "name", label: "Descending", order: "desc" },
+            ],
+          },
+        ],
+        onSort: mockOnSort,
+        state: undefined,
+      });
+
+      fireEvent.click(screen.getByText(mockHeaders.name));
+      expect(screen.getByText("Ascending")).toBeInTheDocument();
+      expect(screen.getByText("Descending")).toBeInTheDocument();
+
+      fireEvent.click(screen.getByText("Ascending"));
+
+      expect(mockOnSort).toHaveBeenCalledWith({
+        key: "name",
+        id: "name",
+        label: "Ascending",
+        order: "asc",
+      });
+    });
+  });
+
+  describe("DataListStickyHeader", () => {
+    const mockOnSearch = jest.fn();
+
+    const renderDataList = (children: ReactElement) => {
+      render(
+        <DataList data={mockData} headers={{}}>
+          {children}
+        </DataList>,
+      );
+    };
+
+    const renderDataListWithHeaders = (children: ReactElement) => {
+      render(
+        <DataList data={mockData} headers={mockHeaders}>
+          {children}
+        </DataList>,
+      );
+    };
+
+    it("should render the Sticky Header if DataList.Search is provided", () => {
+      renderDataList(<DataList.Search onSearch={mockOnSearch} />);
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should render the Sticky Header if DataList.Filters is provided", () => {
+      renderDataList(
+        <DataList.Filters>
+          <div>Filters</div>
+        </DataList.Filters>,
+      );
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should render the Sticky Header when Headers are provided", () => {
+      renderDataListWithHeaders(<></>);
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should not render Sticky Header when DataList.Search, DataList.Filters or no Headers are not provided", () => {
+      renderDataList(<></>);
+      expect(
+        screen.queryByTestId(DATA_LIST_STICKY_HEADER_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  describe("EmptyState", () => {
+    const emptyStateMessage = "No items to display";
+    const emptyStateActionLabel = "Create new item";
+    const emptyStateAction = jest.fn();
+    const emptyStateButton = (
+      <Button label={emptyStateActionLabel} onClick={emptyStateAction} />
+    );
+
+    function renderEmptyState(
+      props?: Partial<DataListProps<(typeof mockData)[number]>>,
+    ) {
+      render(
+        <DataList data={emptyMockData} headers={{}} {...props}>
+          <DataList.EmptyState
+            message={emptyStateMessage}
+            action={emptyStateButton}
+          />
+        </DataList>,
+      );
+    }
+
+    it("should render the empty state when there are no items and not loading", () => {
+      renderEmptyState();
+
+      expect(screen.getByText(emptyStateMessage)).toBeInTheDocument();
+      expect(screen.getByText(emptyStateActionLabel)).toBeInTheDocument();
+    });
+
+    it("should not render when there are items", () => {
+      renderEmptyState({ data: mockData });
+      expect(screen.queryByText(emptyStateMessage)).not.toBeInTheDocument();
+    });
+
+    it("should not render when loading", () => {
+      renderEmptyState({ loadingState: "initial" });
+      expect(screen.queryByText(emptyStateMessage)).not.toBeInTheDocument();
+    });
+
+    it("should call the action when the button is clicked", () => {
+      renderEmptyState();
+
+      fireEvent.click(screen.getByText(emptyStateActionLabel));
+      expect(emptyStateAction).toHaveBeenCalled();
+    });
+
+    it("should display the default filters empty state when the data list is filtered", () => {
+      renderEmptyState({ filtered: true });
+
+      expect(
+        screen.getByText(EMPTY_FILTER_RESULTS_MESSAGE),
+      ).toBeInTheDocument();
+      expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    });
+  });
+
+  describe("Load More", () => {
+    it("should trigger the load more callback", () => {
+      const handleLoadMore = jest.fn();
+      render(
+        <DataList
+          data={mockData}
+          headers={mockHeaders}
+          onLoadMore={handleLoadMore}
+        >
+          <></>
+        </DataList>,
+      );
+      expect(handleLoadMore).not.toHaveBeenCalled();
+
+      observer.enterNode(screen.getByTestId(DATA_LOAD_MORE_TEST_ID));
+      expect(handleLoadMore).toHaveBeenCalled();
+    });
+
+    it("should not have the trigger element", () => {
+      function getElement(
+        props?: Partial<DataListProps<(typeof mockData)[0]>>,
+      ) {
+        return (
+          <DataList
+            {...props}
+            data={props?.data || mockData}
+            headers={mockHeaders}
+          >
+            <></>
+          </DataList>
+        );
+      }
+
+      const { rerender } = render(getElement());
+
+      // Control test: render trigger element first
+      expect(screen.queryByTestId(DATA_LOAD_MORE_TEST_ID)).toBeInTheDocument();
+
+      // If the data is empty, the load more trigger should not be rendered
+      rerender(getElement({ data: [] }));
+      expect(
+        screen.queryByTestId(DATA_LOAD_MORE_TEST_ID),
+      ).not.toBeInTheDocument();
+
+      // If the data is loading, the load more trigger should not be rendered
+      rerender(getElement({ loadingState: "initial" }));
+      expect(
+        screen.queryByTestId(DATA_LOAD_MORE_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should call the scrollIntoView on the target element", async () => {
+      const scrollIntoViewMock = jest.fn();
+      window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+      render(
+        <DataList
+          data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+            id,
+          }))}
+          headers={{ id: "ID" }}
+        >
+          <></>
+        </DataList>,
+      );
+
+      expect(scrollIntoViewMock).not.toHaveBeenCalled();
+
+      await userEvent.click(
+        screen.getByRole("button", { name: "Back to top" }),
+      );
+      expect(scrollIntoViewMock).toHaveBeenCalledWith({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+  });
+
+  describe("StatusBar", () => {
+    it("should show the StatusBar when it's provided", () => {
+      const bannerText =
+        "Something went wrong. Refresh or check your internet connection.";
+      const mockOnSearch = jest.fn();
+      render(
+        <DataList
+          data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+            id,
+          }))}
+          headers={{ id: "ID" }}
+        >
+          <DataList.Search onSearch={mockOnSearch} />
+          <DataList.StatusBar>
+            <Banner type="error" icon="alert">
+              {bannerText}
+            </Banner>
+          </DataList.StatusBar>
+        </DataList>,
+      );
+
+      expect(screen.getByText(bannerText)).toBeInTheDocument();
+    });
+  });
+
+  describe("Header Checkbox", () => {
+    const checkboxMockData = [
+      { id: 1, name: "John", email: "john@doe.com" },
+      { id: 2, name: "Jane", email: "jane@doe.com" },
+    ];
+    const checkboxMockHeaders = {
+      name: "Name",
+      email: "Email",
+    };
+
+    it("should render checkbox for layout but not be visible when onSelectAll is absent", () => {
+      const mockOnSelect = jest.fn();
+      render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          selected={[]}
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      const checkboxContainer = screen.getByTestId(
+        DATA_LIST_HEADER_CHECKBOX_TEST_ID,
+      );
+      const headerCheckbox = within(checkboxContainer).getByRole("checkbox", {
+        hidden: true,
+      });
+      expect(headerCheckbox).toBeInTheDocument();
+      expect(headerCheckbox).not.toBeVisible();
+    });
+
+    it("should not show checkbox or select-all UI when item is selected and onSelectAll is absent", () => {
+      const mockOnSelect = jest.fn();
+      render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          selected={[checkboxMockData[0].id]}
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      expect(screen.getByText(checkboxMockHeaders.name)).toBeInTheDocument();
+
+      expect(
+        screen.queryByTestId(DATA_LIST_HEADER_BATCH_SELECT_TEST_ID),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not show headers or checkbox on small screens when onSelectAll is absent", () => {
+      // Override the media query mock to simulate small screens
+      // The headerVisibility prop defaulting to visible might override our media query
+      Object.defineProperty(window, "matchMedia", {
+        writable: true,
+        value: jest.fn().mockImplementation((query: string) => ({
+          matches: query.includes("(min-width: 0px)"), // Only match xs breakpoint
+          media: query,
+          onchange: null,
+          addListener: jest.fn(),
+          removeListener: jest.fn(),
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn(),
+          dispatchEvent: jest.fn(),
+        })),
+      });
+
+      const mockOnSelect = jest.fn();
+      render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          selected={[checkboxMockData[0].id]}
+          headerVisibility={{ xs: false }}
+        >
+          <DataList.Layout size="xs">
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      expect(
+        screen.queryByText(checkboxMockHeaders.name),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should show select-all UI when items are selected and onSelectAll is provided", async () => {
+      const mockOnSelect = jest.fn();
+      const mockOnSelectAll = jest.fn();
+
+      const { rerender } = render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          onSelectAll={mockOnSelectAll}
+          selected={[]}
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+      const checkboxContainer = screen.getByTestId(
+        DATA_LIST_HEADER_CHECKBOX_TEST_ID,
+      );
+      const headerCheckbox = within(checkboxContainer).getByRole("checkbox");
+      expect(headerCheckbox).toBeInTheDocument();
+      expect(headerCheckbox).toBeVisible();
+
+      // Rerender with a selected item
+      rerender(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          onSelectAll={mockOnSelectAll}
+          selected={[checkboxMockData[0].id]}
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      const batchSelectUI = await screen.findByTestId(
+        DATA_LIST_HEADER_BATCH_SELECT_TEST_ID,
+      );
+      expect(batchSelectUI).toBeInTheDocument();
+    });
+
+    it("should show select-all UI on small screens when item is selected and onSelectAll is present", async () => {
+      // Override media query to ensure small screen
+      Object.defineProperty(window, "matchMedia", {
+        writable: true,
+        value: jest.fn().mockImplementation((query: string) => ({
+          matches: query.includes("(min-width: 0px)"), // Only match xs breakpoint
+          media: query,
+          onchange: null,
+          addListener: jest.fn(),
+          removeListener: jest.fn(),
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn(),
+          dispatchEvent: jest.fn(),
+        })),
+      });
+
+      const mockOnSelect = jest.fn();
+      const mockOnSelectAll = jest.fn();
+
+      render(
+        <DataList
+          data={checkboxMockData}
+          headers={checkboxMockHeaders}
+          onSelect={mockOnSelect}
+          onSelectAll={mockOnSelectAll}
+          selected={[checkboxMockData[0].id]}
+          headerVisibility={{ xs: false }}
+        >
+          <DataList.Layout size="xs">
+            {(item: DataListItemType<typeof checkboxMockData>) => (
+              <div data-testid={`item-${item.id}`}>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      expect(
+        screen.queryByText(checkboxMockHeaders.name),
+      ).not.toBeInTheDocument();
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/DataList`
+
+---
+
+_Generated on 2025-08-21T17:35:16.358Z_

@@ -1,0 +1,88 @@
+# Tiles
+
+## Web Component Code
+
+```tsx
+Tiles Layout Container Stack Wrapper Web React import React from "react";
+import classNames from "classnames";
+import styles from "./Tiles.module.css";
+import type { TilesProps } from "./types";
+import { getMappedAtlantisSpaceToken } from "../sharedHelpers/getMappedAtlantisSpaceToken";
+
+export function Tiles({
+  children,
+  minSize = "30ch",
+  gap = "base",
+  autoWidth = false,
+  as: Tag = "div",
+  dataAttributes,
+  ariaAttributes,
+  role,
+  id,
+  UNSAFE_className,
+  UNSAFE_style,
+  align = "start",
+}: TilesProps) {
+  return (
+    <Tag
+      role={role}
+      id={id}
+      {...dataAttributes}
+      {...ariaAttributes}
+      style={
+        {
+          "--public-tile-min-size": minSize,
+          "--public-tile-space": getMappedAtlantisSpaceToken(gap),
+          "--public-tiles-width": autoWidth ? "auto" : "100%",
+          "--public-tiles-align": align,
+          ...UNSAFE_style?.container,
+        } as React.CSSProperties
+      }
+      className={classNames(styles.tiles, UNSAFE_className?.container)}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop               | Type                      | Required | Default           | Description                                                                                       |
+| ------------------ | ------------------------- | -------- | ----------------- | ------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------- |
+| `minSize`          | `string`                  | ❌       | `30ch`            | The minimum size of the tiles.                                                                    |
+| `gap`              | `GapSpacing`              | ❌       | `base`            | The amount of space between the tiles. Semantic tokens are available.                             |
+| `autoWidth`        | `boolean`                 | ❌       | `[object Object]` | Whether to allow the tiles to take the width of the content. Defaults to 100%                     |
+| `as`               | `CommonAllowedElements`   | ❌       | `_none_`          | The HTML tag to render the container as. Defaults to `div`.                                       |
+| `align`            | `"start"                  | "center" | "end"`            | ❌                                                                                                | `start` | The vertical alignment of the tiles within the container. |
+| `UNSAFE_className` | `{ container?: string; }` | ❌       | `_none_`          | **Use at your own risk:** Custom class names for specific elements. This should only be used as a |
+
+**last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `UNSAFE_style` | `{ container?: CSSProperties; }` | ❌ | `_none_` | **Use at
+your own risk:** Custom style for specific elements. This should only be used as
+a **last resort**. Using this may result in unexpected side effects. More
+information in the
+[Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+| | `dataAttributes` | `{ [key: `data-${string}`]: string; }` | ❌ | `_none_` |
+Standard HTML data attributes. Accepts anything in a {{"data-key":"value"}}
+format. | | `ariaAttributes` | `AriaAttributes` | ❌ | `_none_` | Standard HTML
+aria attributes. Accepts all standard HTML aria attributes. | | `role` |
+`AriaRole` | ❌ | `_none_` | Standard HTML role attribute. | | `id` | `string` |
+❌ | `_none_` | Standard HTML id attribute. |
+
+## Categories
+
+- Layouts & Structure
+
+## Component Path
+
+`/components/Tiles`
+
+---
+
+_Generated on 2025-08-21T17:35:16.373Z_

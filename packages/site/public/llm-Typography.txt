@@ -1,0 +1,601 @@
+# Typography
+
+# Typography
+
+Base component that defines typographic standards across Jobber.
+
+<Banner type="notice" dismissible={false}>
+
+Typography is the component that powers our Heading and Text components "under
+the hood". You should first look to use [Heading](/components/Heading) and
+[Text](/components/Text) before you reach for Typography.
+
+</Banner>
+
+## Font size
+
+You can refer to the font sizes in our
+[Design/Typography page](../?path=/docs/design-typography--docs#font-size).
+
+<Canvas isColumn>
+  <Typography size="smaller">smaller</Typography>
+  <Typography size="small">small</Typography>
+  <Typography size="base">base</Typography>
+  <Typography size="large">large</Typography>
+  <Typography size="larger">larger</Typography>
+  <Typography size="largest">largest</Typography>
+  <Typography size="jumbo">jumbo</Typography>
+  <Typography size="extravagant">extravagant</Typography>
+</Canvas>
+
+## Font weight
+
+<Canvas>
+  <Typography fontWeight="black">Shout</Typography>
+</Canvas>
+
+## Alignment
+
+Uses start and end instead of left and right to allow for resiliency in both LTR
+and RTL applications.
+
+<Canvas isColumn>
+  <Typography align="start">Start</Typography>
+  <Typography align="center">Center</Typography>
+  <Typography align="end">End</Typography>
+</Canvas>
+
+## Web Component Code
+
+```tsx
+Typography  Web React import type { CSSProperties, ReactNode } from "react";
+import React from "react";
+import classnames from "classnames";
+import styles from "./css/Typography.module.css";
+import fontSizes from "./css/FontSizes.module.css";
+import fontWeights from "./css/FontWeights.module.css";
+import textCases from "./css/TextCases.module.css";
+import textColors from "./css/TextColors.module.css";
+import emphasis from "./css/Emphasis.module.css";
+import truncate from "./css/Truncate.module.css";
+import alignment from "./css/TextAlignment.module.css";
+import fontFamilies from "./css/FontFamilies.module.css";
+import underlineStyles from "./css/Underline.module.css";
+import type { UnderlineStyle, UnderlineStyleWithColor } from "./types";
+
+export interface TypographyProps {
+  readonly id?: string;
+  /**
+   * @default "p"
+   */
+  readonly element?:
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "p"
+    | "b"
+    | "em"
+    | "dd"
+    | "dt"
+    | "strong"
+    | "span";
+  readonly size?: keyof typeof fontSizes;
+  /**
+   * Aside from changing the font weights, this also changes the font family.
+   * Source sans for `regular` and `bold`.
+   * Poppins for `extraBold` and `black`.
+   * @default "regular"
+   */
+  readonly fontWeight?: keyof typeof fontWeights;
+  readonly textCase?: keyof typeof textCases;
+  readonly textColor?: keyof typeof textColors;
+  readonly emphasisType?: keyof typeof emphasis;
+  /**
+   * Sets the alignment to start, center, or end.
+   * In LTR scripts this equates to left, center, or right.
+   * @default "start"
+   */
+  readonly align?: keyof typeof alignment;
+  readonly fontFamily?: keyof typeof fontFamilies;
+  readonly children: ReactNode;
+  readonly numberOfLines?: number;
+
+  /**
+   * The style (and optionally a color) of underline the text is decorated with.
+   * All semantic color tokens (other than the base values) defined in tokens.web
+   * are valid values. If omitted, no underline is applied.
+   *
+   * @example "solid" for a non-dashed underline of the same color as `textColor`
+   * @example "double color-invoice" for a double underline in the specified color
+   */
+  readonly underline?: UnderlineStyle | UnderlineStyleWithColor | undefined;
+
+  /**
+   * **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_className?: { textStyle?: string };
+
+  /**
+   * **Use at your own risk:** Custom style for specific elements. This should only be used as a
+   * **last resort**. Using this may result in unexpected side effects.
+   * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
+   */
+  readonly UNSAFE_style?: { textStyle?: CSSProperties };
+}
+export type TypographyOptions = Omit<TypographyProps, "children">;
+
+export function Typography({
+  id,
+  children,
+  element: Tag = "p",
+  size,
+  align,
+  fontWeight = "regular",
+  textCase,
+  textColor,
+  emphasisType,
+  numberOfLines,
+  fontFamily,
+  underline,
+  UNSAFE_className,
+  UNSAFE_style,
+}: TypographyProps) {
+  const shouldTruncateText = numberOfLines && numberOfLines > 0;
+  const className = classnames(
+    styles.base,
+    fontWeights[fontWeight],
+    size && fontSizes[size],
+    textCase && textCases[textCase],
+    textColor && textColors[textColor],
+    emphasisType && emphasis[emphasisType],
+    fontFamily && fontFamilies[fontFamily],
+    shouldTruncateText && truncate.textTruncate,
+    underline && underlineStyles.basicUnderline,
+    {
+      ...(align && { [alignment[align]]: align !== `start` }),
+    },
+    UNSAFE_className?.textStyle,
+  );
+
+  const truncateStyles: CSSProperties = shouldTruncateText
+    ? {
+        WebkitLineClamp: numberOfLines,
+        WebkitBoxOrient: "vertical",
+      }
+    : {};
+
+  const underlineInlineStyles = computeUnderlineStyles(underline, textColor);
+
+  return (
+    <Tag
+      id={id}
+      className={className}
+      style={{
+        ...truncateStyles,
+        ...underlineInlineStyles,
+        ...UNSAFE_style?.textStyle,
+      }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+function computeUnderlineStyles(
+  underline?: UnderlineStyle | UnderlineStyleWithColor,
+  textColor?: keyof typeof textColors,
+): CSSProperties {
+  if (!underline) {
+    return {};
+  }
+
+  const [underlineStyle, underlineColor] = underline.split(" ");
+  const underlineInlineStyles: CSSProperties = {
+    textDecorationStyle: underlineStyle as UnderlineStyle,
+  };
+
+  if (underlineColor) {
+    underlineInlineStyles.textDecorationColor = `var(--${underlineColor})`;
+  } else if (textColor) {
+    underlineInlineStyles.textDecorationColor = textColors[textColor];
+  }
+
+  return underlineInlineStyles;
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `id` | `string` | ❌ | `_none_` | _No description_ |
+| `element` | `"h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "b" | "em" | "dd" | "dt" | "strong" | "span"` | ❌ | `"p"` | _No description_ |
+| `size` | `string | number | symbol` | ❌ | `_none_` | _No description_ |
+| `fontWeight` | `string | number | symbol` | ❌ | `regular` | Aside from changing the font weights, this also changes the font family.
+Source sans for `regular` and `bold`.
+Poppins for `extraBold` and `black`. |
+| `textCase` | `string | number | symbol` | ❌ | `_none_` | _No description_ |
+| `textColor` | `string | number | symbol` | ❌ | `_none_` | _No description_ |
+| `emphasisType` | `string | number | symbol` | ❌ | `_none_` | _No description_ |
+| `align` | `string | number | symbol` | ❌ | `"start"` | Sets the alignment to start, center, or end.
+In LTR scripts this equates to left, center, or right. |
+| `fontFamily` | `string | number | symbol` | ❌ | `_none_` | _No description_ |
+| `numberOfLines` | `number` | ❌ | `_none_` | _No description_ |
+| `underline` | `UnderlineStyle | "solid color-indigo" | "solid color-indigo--light" | "solid color-indigo--lighter" | "solid color-indigo--lightest" | "solid color-indigo--dark" | ... 642 more ... | "dashed color-client--onSurface"` | ❌ | `_none_` | The style (and optionally a color) of underline the text is decorated with.
+All semantic color tokens (other than the base values) defined in tokens.web
+are valid values. If omitted, no underline is applied.
+@example "solid" for a non-dashed underline of the same color as `textColor`
+@example "double color-invoice" for a double underline in the specified color |
+| `UNSAFE_className` | `{ textStyle?: string; }` | ❌ | `_none_` | **Use at your own risk:** Custom classNames for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+| `UNSAFE_style` | `{ textStyle?: CSSProperties; }` | ❌ | `_none_` | **Use at your own risk:** Custom style for specific elements. This should only be used as a
+**last resort**. Using this may result in unexpected side effects.
+More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components). |
+
+
+### Mobile Props
+
+_No props documented._
+
+## Categories
+
+- Text & Typography
+
+## Web Test Code
+
+```typescript
+Typography  Web React Test Testing Jest import { render, screen } from "@testing-library/react";
+import React from "react";
+import { Typography } from ".";
+
+it("renders an H1 title", () => {
+  const { container } = render(
+    <Typography
+      element="h1"
+      size="jumbo"
+      textCase="uppercase"
+      fontWeight="black"
+    >
+      Page title
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h1
+        class="base black jumbo uppercase"
+      >
+        Page title
+      </h1>
+    </div>
+  `);
+});
+
+it("renders an H2 title", () => {
+  const { container } = render(
+    <Typography
+      element="h2"
+      size="largest"
+      textCase="uppercase"
+      fontWeight="black"
+    >
+      Subtitle
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h2
+        class="base black largest uppercase"
+      >
+        Subtitle
+      </h2>
+    </div>
+  `);
+});
+
+it("renders an H3 title", () => {
+  const { container } = render(
+    <Typography element="h3" size="larger" fontWeight="bold">
+      Content Group
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h3
+        class="base bold larger"
+      >
+        Content Group
+      </h3>
+    </div>
+  `);
+});
+
+it("renders an H4 title", () => {
+  const { container } = render(
+    <Typography element="h4" size="large" fontWeight="bold">
+      Section
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h4
+        class="base bold large"
+      >
+        Section
+      </h4>
+    </div>
+  `);
+});
+
+it("renders an H5 title", () => {
+  const { container } = render(
+    <Typography element="h5" size="base" fontWeight="bold">
+      Subsection
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h5
+        class="base bold base"
+      >
+        Subsection
+      </h5>
+    </div>
+  `);
+});
+
+it("renders an H6 title", () => {
+  const { container } = render(
+    <Typography
+      element="h6"
+      size="small"
+      textCase="uppercase"
+      fontWeight="bold"
+    >
+      Overline
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h6
+        class="base bold small uppercase"
+      >
+        Overline
+      </h6>
+    </div>
+  `);
+});
+
+it("renders a paragraph", () => {
+  const { container } = render(
+    <Typography>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae
+      architecto accusamus cumque voluptate aspernatur repellendus natus, quo
+      veniam illum.
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae architecto accusamus cumque voluptate aspernatur repellendus natus, quo veniam illum.
+      </p>
+    </div>
+  `);
+});
+
+it("renders a span", () => {
+  const { container } = render(<Typography element="span">SHOUT!</Typography>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <span
+        class="base regular"
+      >
+        SHOUT!
+      </span>
+    </div>
+  `);
+});
+
+it("renders an uppercased span", () => {
+  const { container } = render(
+    <Typography textCase="uppercase">uppercase</Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular uppercase"
+      >
+        uppercase
+      </p>
+    </div>
+  `);
+});
+
+it("renders a lowercased text", () => {
+  const { container } = render(
+    <Typography textCase="lowercase">LOWERCASE</Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular lowercase"
+      >
+        LOWERCASE
+      </p>
+    </div>
+  `);
+});
+
+it("renders a capitalized text", () => {
+  const { container } = render(
+    <Typography textCase="capitalize">wElL tHiS iS hArD tO tYpE</Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular capitalize"
+      >
+        wElL tHiS iS hArD tO tYpE
+      </p>
+    </div>
+  `);
+});
+
+it("renders text with no text-transform applied", () => {
+  const { container } = render(
+    <Typography textCase="none">wElL tHiS iS hArD tO tYpE</Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular none"
+      >
+        wElL tHiS iS hArD tO tYpE
+      </p>
+    </div>
+  `);
+});
+
+it("should add textTruncate class when numberOfLines property is passed", () => {
+  const { container } = render(
+    <Typography numberOfLines={3}>Pretend this is a multiline text</Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular textTruncate"
+      >
+        Pretend this is a multiline text
+      </p>
+    </div>
+  `);
+});
+
+it("renders a end-aligned text", () => {
+  const { container } = render(
+    <Typography align="end">End align me</Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular end"
+      >
+        End align me
+      </p>
+    </div>
+  `);
+});
+
+it("renders a center-aligned text", () => {
+  const { container } = render(
+    <Typography align="center">Center align me</Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular center"
+      >
+        Center align me
+      </p>
+    </div>
+  `);
+});
+
+it("renders text in a semantic color", () => {
+  const { container } = render(
+    <Typography textColor="interactiveSubtle">
+      Text in a semantic color
+    </Typography>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular interactiveSubtle"
+      >
+        Text in a semantic color
+      </p>
+    </div>
+  `);
+});
+
+describe("underlining", () => {
+  it("renders an underline when a style is specified", () => {
+    const { container } = render(
+      <Typography underline={"dashed"}>Underline me</Typography>,
+    );
+
+    const snapshot = `
+        <div>
+          <p
+            class="base regular basicUnderline"
+            style="text-decoration-style: dashed;"
+          >
+            Underline me
+          </p>
+        </div>
+      `;
+
+    expect(container).toMatchInlineSnapshot(snapshot);
+  });
+
+  it("renders an underline with a customizable color", () => {
+    const { container } = render(
+      <Typography underline={"solid color-border"}>Underline me</Typography>,
+    );
+
+    const snapshot = `
+        <div>
+          <p
+            class="base regular basicUnderline"
+            style="text-decoration-style: solid; text-decoration-color: var(--color-border);"
+          >
+            Underline me
+          </p>
+        </div>
+      `;
+
+    expect(container).toMatchInlineSnapshot(snapshot);
+  });
+});
+
+describe("UNSAFE props", () => {
+  it("should apply the UNSAFE_className to the element", () => {
+    render(
+      <Typography UNSAFE_className={{ textStyle: "custom-class" }}>
+        Text with custom class
+      </Typography>,
+    );
+    const element = screen.getByText("Text with custom class");
+    expect(element).toHaveClass("custom-class");
+  });
+
+  it("should apply the UNSAFE_style to the element", () => {
+    render(
+      <Typography UNSAFE_style={{ textStyle: { color: "#0066CC" } }}>
+        Text with custom style
+      </Typography>,
+    );
+    const element = screen.getByText("Text with custom style");
+    expect(element).toHaveStyle({ color: "#0066CC" });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/Typography`
+
+---
+
+_Generated on 2025-08-21T17:35:16.373Z_

@@ -1,0 +1,1191 @@
+# FormField
+
+# Form Field
+
+FormField is a helper component that allows other components to use form logic.
+Interacting with a component wrapped in a FormField will automatically update
+the form value for the field used by the component.
+
+## Related components
+
+Refer to the [Form](/components/Form) documentation to learn more about inputs
+within a form.
+
+## Web Component Code
+
+```tsx
+FormField  Web React import React, { useId } from "react";
+import type { FormFieldProps } from "./FormFieldTypes";
+import { FormFieldWrapper } from "./FormFieldWrapper";
+import { FormFieldPostFix } from "./FormFieldPostFix";
+import { useAtlantisFormFieldActions } from "./hooks/useAtlantisFormFieldActions";
+import { useAtlantisFormField } from "./hooks/useAtlantisFormField";
+import { useAtlantisFormFieldName } from "./hooks/useAtlantisFormFieldName";
+import { useAtlantisReactHookForm } from "./hooks/useAtlantisReactHookForm";
+
+export function FormField(props: FormFieldProps) {
+  // Warning: do not move useId into FormFieldInternal. This must be here to avoid
+  // a problem where useId isn't stable across multiple StrictMode renders.
+  // https://github.com/facebook/react/issues/27103
+  const generatedId = useId();
+  const id = props.id || generatedId;
+
+  return <FormFieldInternal {...props} id={id} />;
+}
+
+type FormFieldInternalProps = FormFieldProps & {
+  readonly id: string;
+};
+
+function FormFieldInternal(props: FormFieldInternalProps) {
+  const {
+    actionsRef,
+    autocomplete = true,
+    children,
+    defaultValue,
+    description,
+    disabled,
+    id,
+    inputRef,
+    inline,
+    keyboard,
+    max,
+    maxLength,
+    min,
+    name: nameProp,
+    pattern,
+    readonly,
+    rows,
+    loading,
+    type = "text",
+    validations,
+    value,
+    onChange,
+    onEnter,
+    onFocus,
+    onBlur,
+    onValidation,
+    onKeyUp,
+    clearable = "never",
+    autofocus,
+  } = props;
+
+  const { name } = useAtlantisFormFieldName({ id, nameProp });
+
+  const {
+    errorMessage,
+    inputRefs,
+    useControllerField,
+    setValue,
+    onControllerBlur,
+    onControllerChange,
+  } = useAtlantisReactHookForm({
+    actionsRef,
+    name,
+    defaultValue,
+    value,
+    validations,
+    inputRef,
+  });
+  const {
+    handleValidation,
+    handleBlur,
+    handleChange,
+    handleClear,
+    handleFocus,
+    handleKeyDown,
+  } = useAtlantisFormFieldActions({
+    inputRef,
+    onChange,
+    onEnter,
+    readonly,
+    type,
+    onFocus,
+    setValue,
+    onBlur,
+    onValidation,
+    onControllerBlur,
+    onControllerChange,
+    name,
+  });
+
+  const { textFieldProps, fieldProps, descriptionIdentifier } =
+    useAtlantisFormField({
+      id,
+      useControllerField,
+      name,
+      nameProp,
+      description,
+      validations: !!validations,
+      disabled,
+      readonly,
+      keyboard,
+      autofocus,
+      value,
+      type,
+      pattern,
+      handleChange,
+      handleBlur,
+      handleFocus,
+      inline,
+      errorMessage,
+      handleValidation,
+      handleKeyDown,
+    });
+
+  return (
+    <FormFieldWrapper
+      {...props}
+      value={useControllerField.value}
+      error={errorMessage}
+      identifier={id}
+      descriptionIdentifier={descriptionIdentifier}
+      clearable={clearable}
+      onClear={handleClear}
+    >
+      {renderField()}
+    </FormFieldWrapper>
+  );
+
+  function renderField() {
+    switch (type) {
+      case "select":
+        return (
+          <>
+            <select {...fieldProps}>{children}</select>
+            <FormFieldPostFix variation="select" />
+          </>
+        );
+      case "textarea":
+        return <textarea {...textFieldProps} rows={rows} ref={inputRefs} />;
+      default:
+        return (
+          <>
+            <input
+              {...textFieldProps}
+              autoComplete={setAutocomplete(autocomplete)}
+              type={type}
+              maxLength={maxLength}
+              max={max}
+              min={min}
+              ref={inputRefs}
+              onKeyUp={onKeyUp}
+            />
+            {loading && <FormFieldPostFix variation="spinner" />}
+            {children}
+          </>
+        );
+    }
+  }
+}
+
+function setAutocomplete(
+  autocompleteSetting: boolean | FormFieldProps["autocomplete"],
+) {
+  if (autocompleteSetting === true) {
+    return undefined;
+  } else if (autocompleteSetting === false) {
+    return "off";
+  }
+
+  return autocompleteSetting;
+}
+import classnames from "classnames";
+import type { RefObject } from "react";
+import React from "react";
+import type { XOR } from "ts-xor";
+import type { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
+import styles from "./FormField.module.css";
+import { Button } from "../Button";
+import { Icon } from "../Icon";
+
+interface AffixLabelProps extends Affix {
+  readonly labelRef: RefObject<HTMLDivElement>;
+  readonly variation?: "prefix" | "suffix";
+}
+
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
+export function AffixLabel({
+  label,
+  variation = "prefix",
+  labelRef,
+}: AffixLabelProps) {
+  const affixLabelClass = classnames(styles.affixLabel, {
+    [styles.suffix]: variation === "suffix",
+  });
+  if (!label) return null;
+
+  return (
+    <div ref={labelRef} className={affixLabelClass}>
+      {label}
+    </div>
+  );
+}
+
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
+interface AffixIconProps extends Pick<FormFieldProps, "size"> {
+  readonly variation?: "prefix" | "suffix";
+}
+
+export function AffixIcon({
+  icon,
+  onClick,
+  ariaLabel,
+  variation = "prefix",
+  size,
+}: AffixIconProps & XOR<Affix, Suffix>) {
+  const affixIconClass = classnames(styles.affixIcon, {
+    [styles.suffix]: variation === "suffix",
+  });
+
+  const iconSize = size === "small" ? "small" : "base";
+
+  if (!icon) return null;
+
+  return (
+    <div className={affixIconClass}>
+      {onClick ? (
+        <Button
+          /**
+           * We can cast the ariaLabel here as a `Suffix`
+           * requires an ariaLabel if there is an action
+           */
+          ariaLabel={ariaLabel as string}
+          icon={icon}
+          onClick={onClick}
+          variation="subtle"
+          type="tertiary"
+          size={iconSize}
+        />
+      ) : (
+        <Icon name={icon} size={iconSize} color="greyBlue" />
+      )}
+    </div>
+  );
+}
+import type { ReactNode } from "react";
+import React from "react";
+import styles from "./FormField.module.css";
+import { Text } from "../Text";
+
+interface FormFieldDescriptionProps {
+  readonly id: string;
+  readonly description?: ReactNode;
+  readonly visible?: boolean;
+}
+
+export function FormFieldDescription({
+  id,
+  description,
+  visible = true,
+}: FormFieldDescriptionProps) {
+  if (!visible) return null;
+
+  const useStringFormat = !description || typeof description === "string";
+
+  return (
+    <div id={id} className={styles.description}>
+      {useStringFormat ? (
+        <Text size="small" variation="subdued">
+          {description}
+        </Text>
+      ) : (
+        description
+      )}
+    </div>
+  );
+}
+import React from "react";
+import classnames from "classnames";
+import styles from "./FormField.module.css";
+import { Icon } from "../Icon";
+import { Spinner } from "../Spinner";
+
+interface FormFieldPostFixProps {
+  readonly variation: "select" | "spinner";
+  readonly visible?: boolean;
+  readonly className?: string;
+}
+
+export function FormFieldPostFix({
+  variation,
+  visible = true,
+  className,
+}: FormFieldPostFixProps) {
+  if (!visible) return null;
+
+  return (
+    <span className={classnames(styles.postfix, className)}>
+      {variation === "select" ? (
+        <Icon name="arrowDown" />
+      ) : (
+        <Spinner size="small" />
+      )}
+    </span>
+  );
+}
+import type { PropsWithChildren, ReactNode, RefObject } from "react";
+import React, { useRef } from "react";
+import type { Clearable } from "@jobber/hooks/useShowClear";
+import { useShowClear } from "@jobber/hooks/useShowClear";
+import { AnimatePresence, motion } from "framer-motion";
+import { tokens } from "@jobber/design";
+import type { FormFieldProps } from "./FormFieldTypes";
+import styles from "./FormField.module.css";
+import { AffixIcon, AffixLabel } from "./FormFieldAffix";
+import { FormFieldDescription } from "./FormFieldDescription";
+import { ClearAction } from "./components/ClearAction";
+import { useToolbar } from "./hooks/useToolbar";
+import { useFormFieldFocus } from "./hooks/useFormFieldFocus";
+import { useFormFieldWrapperStyles } from "./hooks/useFormFieldWrapperStyles";
+import { InputValidation } from "../InputValidation";
+
+export interface FormFieldWrapperProps extends FormFieldProps {
+  readonly error: string;
+  readonly identifier: string;
+  readonly descriptionIdentifier: string;
+  readonly clearable: Clearable;
+  readonly onClear?: () => void;
+  readonly showMiniLabel?: boolean;
+  readonly readonly?: boolean;
+}
+
+export function FormFieldWrapper({
+  align,
+  description,
+  descriptionIdentifier,
+  placeholder,
+  value,
+  children,
+  invalid,
+  error,
+  size,
+  prefix,
+  suffix,
+  max,
+  maxLength,
+  type,
+  disabled,
+  inline,
+  identifier,
+  clearable,
+  onClear,
+  readonly,
+  toolbar,
+  toolbarVisibility = "while-editing",
+  showMiniLabel = true,
+  wrapperRef,
+}: PropsWithChildren<FormFieldWrapperProps>) {
+  const prefixRef = useRef() as RefObject<HTMLDivElement>;
+  const suffixRef = useRef() as RefObject<HTMLDivElement>;
+
+  const { wrapperClasses, containerClasses, wrapperInlineStyle, labelStyle } =
+    useFormFieldWrapperStyles({
+      align,
+      max,
+      maxLength,
+      prefixRef,
+      suffixRef,
+      placeholder,
+      value,
+      invalid,
+      error,
+      type,
+      disabled,
+      inline,
+      size,
+      showMiniLabel,
+    });
+
+  const { focused } = useFormFieldFocus({ wrapperRef });
+
+  const showClear = useShowClear({
+    clearable,
+    multiline: type === "textarea",
+    focused,
+    hasValue: Boolean(value),
+    disabled,
+    readonly,
+  });
+
+  const { isToolbarVisible, toolbarAnimationEnd, toolbarAnimationStart } =
+    useToolbar({
+      focused,
+      toolbar,
+      toolbarVisibility,
+    });
+
+  return (
+    <div className={containerClasses}>
+      <div
+        className={wrapperClasses}
+        style={wrapperInlineStyle}
+        data-testid="Form-Field-Wrapper"
+        ref={wrapperRef}
+      >
+        <FormFieldInputHorizontalWrapper>
+          <AffixIcon {...prefix} size={size} />
+          <FormFieldInputWrapperStyles>
+            {(showMiniLabel || !value) && (
+              <FormFieldLabel
+                htmlFor={identifier}
+                style={
+                  prefixRef?.current || suffixRef?.current
+                    ? labelStyle
+                    : undefined
+                }
+              >
+                {placeholder}
+              </FormFieldLabel>
+            )}
+            <AffixLabel {...prefix} labelRef={prefixRef} />
+
+            <FormFieldWrapperMain>{children}</FormFieldWrapperMain>
+
+            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+          </FormFieldInputWrapperStyles>
+          <ClearAction onClick={onClear} visible={showClear} />
+          <AffixIcon {...suffix} variation="suffix" size={size} />
+        </FormFieldInputHorizontalWrapper>
+        <FormFieldWrapperToolbar
+          toolbarVisibility={toolbarVisibility}
+          isToolbarVisible={isToolbarVisible}
+          toolbarAnimationEnd={toolbarAnimationEnd}
+          toolbarAnimationStart={toolbarAnimationStart}
+          toolbar={toolbar}
+        />
+      </div>
+      <FormFieldDescription
+        visible={!!description && !inline}
+        id={descriptionIdentifier}
+        description={description}
+      />
+      <InputValidation message={error} visible={!!error && !inline} />
+    </div>
+  );
+}
+
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
+export function FormFieldInputHorizontalWrapper({
+  children,
+}: PropsWithChildren) {
+  return <div className={styles.horizontalWrapper}>{children}</div>;
+}
+
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
+export function FormFieldInputWrapperStyles({
+  children,
+}: {
+  readonly children: React.ReactNode;
+}) {
+  return <div className={styles.inputWrapper}>{children}</div>;
+}
+
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
+export function FormFieldWrapperMain({
+  children,
+  tabIndex = -1,
+}: {
+  readonly children: React.ReactNode;
+  readonly tabIndex?: number;
+}) {
+  return (
+    <div className={styles.childrenWrapper} tabIndex={tabIndex}>
+      {children}
+    </div>
+  );
+}
+
+export function FormFieldLabel({
+  children,
+  htmlFor,
+  style,
+  external = false,
+}: {
+  readonly children?: ReactNode;
+  readonly htmlFor?: string;
+  readonly style?: React.CSSProperties;
+  readonly external?: boolean;
+}) {
+  if (!children) return null;
+
+  return (
+    <label
+      className={external ? styles.externalLabel : styles.label}
+      htmlFor={htmlFor}
+      style={style}
+    >
+      {children}
+    </label>
+  );
+}
+
+/**
+ * @internal Reach out to UX Foundations if using this component since it is possible it might change
+ */
+export function FormFieldWrapperToolbar({
+  toolbar,
+  isToolbarVisible,
+  toolbarAnimationEnd,
+  toolbarAnimationStart,
+  toolbarVisibility,
+}: {
+  readonly toolbarVisibility: string;
+  readonly isToolbarVisible: boolean;
+  readonly toolbarAnimationEnd: { opacity: number; height: number };
+  readonly toolbarAnimationStart: { opacity: number; height: string | number };
+  readonly toolbar: ReactNode;
+}) {
+  return (
+    <AnimatePresence initial={toolbarVisibility === "always" ? false : true}>
+      {isToolbarVisible && (
+        <motion.div
+          key="toolbar"
+          initial={toolbarAnimationEnd}
+          animate={toolbarAnimationStart}
+          exit={toolbarAnimationEnd}
+          transition={{
+            duration: tokens["timing-base"] / 1000,
+            ease: "easeInOut",
+          }}
+          tabIndex={-1}
+        >
+          <div className={styles.toolbar} data-testid="ATL-InputText-Toolbar">
+            {toolbar}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop           | Type                         | Required           | Default  | Description                                                              |
+| -------------- | ---------------------------- | ------------------ | -------- | ------------------------------------------------------------------------ | --------------------------------------------------- |
+| `actionsRef`   | `RefObject<FieldActionsRef>` | ❌                 | `_none_` | _No description_                                                         |
+| `autofocus`    | `boolean`                    | ❌                 | `_none_` | Determines if the input should be auto-focused, using the HTML attribute |
+| `autocomplete` | `boolean                     | AutocompleteTypes` | ❌       | `_none_`                                                                 | Determines if browser form autocomplete is enabled. |
+
+Note that "one-time-code" is experimental and should not be used without
+consultation. "address-line1" and "address-line2" are used for billing address
+information. | | `children` | `ReactNode` | ❌ | `_none_` | If you need to pass
+in a children. For example, `<options>` inside `<select>`. | | `inputRef` |
+`RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>` | ❌ |
+`_none_` | _No description_ | | `wrapperRef` | `RefObject<HTMLDivElement>` | ❌
+| `_none_` | _No description_ | | `defaultValue` | `string | Date` | ❌ |
+`_none_` | Initial value of the input. Only use this when you need to
+pre-populate the field with a data that is not controlled by the components
+state. If a state is controlling the value, use the `value` prop instead. | |
+`keyboard` | `"numeric" | "decimal"` | ❌ | `_none_` | Determines what kind of
+keyboard appears on mobile web. | | `max` | `number` | ❌ | `_none_` | Specifies
+the maximum numerical or date value that a user can type | | `maxLength` |
+`number` | ❌ | `_none_` | Maximum character length for an input. This also
+changes the width to roughly the same size as the max length. This is to
+communicate that the user that on certain cases, they can only type a limited
+amount of characters. | | `prefix` | `Affix` | ❌ | `_none_` | Adds a prefix
+label and icon to the field | | `suffix` |
+`{ onClick: () => void; readonly ariaLabel: string; readonly icon: IconNames; readonly label?: string; } | { onClick?: never; ariaLabel?: never; readonly label?: string; readonly icon?: IconNames; }`
+| ❌ | `_none_` | Adds a suffix label and icon with an optional action to the
+field | | `min` | `number` | ❌ | `_none_` | Simplified onChange handler that
+only provides the new value. @param newValue Specifies the minimum numerical or
+date value that a user can type | | `onEnter` |
+`(event: React.KeyboardEvent) => void` | ❌ | `_none_` | A callback to handle
+"Enter" keypress. This will only run if Enter is the only key. Will not run if
+Shift or Control are being held. | | `onFocus` |
+`(event?: React.FocusEvent) => void` | ❌ | `_none_` | Focus callback. | |
+`onBlur` | `(event?: React.FocusEvent) => void` | ❌ | `_none_` | Blur callback.
+| | `onKeyUp` | `(event: React.KeyboardEvent<HTMLInputElement>) => void` | ❌ |
+`_none_` | _No description_ | | `rows` | `number` | ❌ | `_none_` | Exclusively
+for textareas. Specifies the visible height of a textarea. | | `readonly` |
+`boolean` | ❌ | `_none_` | Prevents users from editing the value. | | `type` |
+`FormFieldTypes` | ❌ | `_none_` | Determines what kind of form field should the
+component give you. | | `validations` | `RegisterOptions` | ❌ | `_none_` | Show
+an error message above the field. This also highlights the the field red if an
+error message shows up. | | `toolbar` | `React.ReactNode` | ❌ | `_none_` |
+Toolbar to render content below the input. | | `toolbarVisibility` |
+`"always" | "while-editing"` | ❌ | `_none_` | Determines the visibility of the
+toolbar. | | `pattern` | `string` | ❌ | `_none_` | Pattern is currently only
+used for the InputPhone type it is used to determine the format of the phone
+number and the number of digits to expect. | | `id` | `string` | ❌ | `_none_` |
+A unique identifier for the input. | | `align` | `"center" | "right"` | ❌ |
+`_none_` | Determines the alignment of the text inside the input. | |
+`description` | `ReactNode` | ❌ | `_none_` | Further description of the input,
+can be used for a hint. | | `disabled` | `boolean` | ❌ | `_none_` | Disable the
+input | | `showMiniLabel` | `boolean` | ❌ | `true` | Controls the visibility of
+the mini label that appears inside the input when a value is entered. By
+default, the placeholder text moves up to become a mini label. Set to false to
+disable this behavior. | | `invalid` | `boolean` | ❌ | `_none_` | Highlights
+the field red to indicate an error. | | `inline` | `boolean` | ❌ | `_none_` |
+Adjusts the form field to go inline with a content. This also silences the given
+`validations` prop. You'd have to used the `onValidate` prop to capture the
+message and render it somewhere else using the `InputValidation` component. | |
+`loading` | `boolean` | ❌ | `_none_` | Show a spinner to indicate loading | |
+`name` | `string` | ❌ | `_none_` | Name of the input. | | `onChange` |
+`(newValue: string | number | boolean | Date, event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void`
+| ❌ | `_none_` | onChange handler that provides the new value (or event) @param
+newValue @param event | | `onValidation` | `(message: string) => void` | ❌ |
+`_none_` | Callback to get the the status and message when validating a field
+@param message | | `placeholder` | `string` | ❌ | `_none_` | Text that appears
+inside the input when empty and floats above the value as a mini label once the
+user enters a value. When showMiniLabel is false, this text only serves as a
+standard placeholder and disappears when the user types. | | `size` |
+`"small" | "large"` | ❌ | `_none_` | Adjusts the interface to either have small
+or large spacing. | | `value` | `string | number | Date` | ❌ | `_none_` | Set
+the component to the given value. | | `clearable` | `Clearable` | ❌ | `_none_`
+| Add a clear action on the input that clears the value.
+
+You should always use `while-editing` if you want the input to be clearable. if
+the input value isn't editable (i.e. `InputTime`) you can set it to `always`. |
+| `version` | `1` | ❌ | `_none_` | Experimental: Determine which version of the
+FormField to use. Right now this isn't used but it will be used in the future to
+allow us to release new versions of our form inputs without breaking existing
+functionality. |
+
+### Mobile Props
+
+| Prop           | Type                                                                                         | Required                                            | Default                             | Description                            |
+| -------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------- | -------------------------------------- | ------------- | --- | -------- | ----------------------------------------------------------- |
+| `name`         | `string`                                                                                     | ✅                                                  | `_none_`                            | Name of the field.                     |
+| `defaultValue` | `T`                                                                                          | ❌                                                  | `_none_`                            | The initial value of the form field.   |
+| `children`     | `(field: ControllerRenderProps<FieldValues, string>, error?: FieldError) => React.ReactNode` | ✅                                                  | `_none_`                            | Children to render.                    |
+| `validations`  | `Partial<{ required: string                                                                  | ValidationRule<boolean>; min: ValidationRule<string | number>; max: ValidationRule<string | number>; ... 12 more ...; deps: string | string[]; }>` | ❌  | `_none_` | Rules for returning an error when validations are violated. |
+
+WARNING: This component needs to be nested inside a FormProvider for validations
+to work. |
+
+## Categories
+
+- Private
+
+## Web Test Code
+
+```typescript
+FormField  Web React Test Testing Jest import React, { createRef } from "react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { FormField } from ".";
+import { Form } from "../Form/Form";
+
+// eslint-disable-next-line max-statements
+describe("FormField", () => {
+  describe("with no props", () => {
+    it("renders", () => {
+      const { container } = render(<FormField />);
+      expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe("with a placeholder", () => {
+    it("renders", () => {
+      const placeholder = "The best placeholder!";
+      const { getByLabelText } = render(
+        <FormField placeholder={placeholder} />,
+      );
+      expect(getByLabelText(placeholder)).toBeInTheDocument();
+    });
+
+    describe("with type", () => {
+      it("should render input with  timeInputLabel when type = 'time'", () => {
+        const FORM_FIELD_TEST_ID = "Form-Field-Wrapper";
+        const placeholder = "The best placeholder!";
+        render(<FormField placeholder={placeholder} type="time" />);
+        expect(screen.getByLabelText(placeholder)).toBeInTheDocument();
+        expect(screen.getByTestId(FORM_FIELD_TEST_ID)).toHaveClass(
+          "timeInputLabel",
+        );
+      });
+
+      it("should render input without timeInputLabel style when type != 'time'", () => {
+        const FORM_FIELD_TEST_ID = "Form-Field-Wrapper";
+        const placeholder = "The best placeholder!";
+        render(<FormField placeholder={placeholder} type="text" />);
+        expect(screen.getByLabelText(placeholder)).toBeInTheDocument();
+        expect(screen.getByTestId(FORM_FIELD_TEST_ID)).not.toHaveClass(
+          "timeInputLabel",
+        );
+      });
+    });
+    describe("with showMiniLabel set to false", () => {
+      it("should still render placeholder if there is no value", () => {
+        const FORM_FIELD_TEST_ID = "Form-Field-Wrapper";
+        const placeholder = "The best placeholder!";
+        render(<FormField placeholder={placeholder} showMiniLabel={false} />);
+        expect(screen.getByLabelText(placeholder)).toBeInTheDocument();
+        expect(screen.getByTestId(FORM_FIELD_TEST_ID)).not.toHaveClass(
+          "miniLabel",
+        );
+      });
+      it("should hide the mini label", () => {
+        const FORM_FIELD_TEST_ID = "Form-Field-Wrapper";
+        const placeholder = "The best placeholder!";
+        render(
+          <FormField
+            placeholder={placeholder}
+            showMiniLabel={false}
+            value="Foo"
+          />,
+        );
+        expect(screen.queryByLabelText(placeholder)).not.toBeInTheDocument();
+        expect(screen.getByTestId(FORM_FIELD_TEST_ID)).not.toHaveClass(
+          "miniLabel",
+        );
+      });
+    });
+  });
+
+  describe("when small", () => {
+    it("renders", () => {
+      const { container } = render(<FormField size="small" />);
+      expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe("when readonly", () => {
+    it("renders", () => {
+      const { getByRole } = render(<FormField readonly />);
+      expect(getByRole("textbox")).toHaveAttribute("readonly");
+    });
+  });
+
+  describe("when disabled", () => {
+    it("renders", () => {
+      const { getByRole } = render(<FormField disabled />);
+      expect(getByRole("textbox")).toHaveAttribute("disabled");
+    });
+  });
+
+  describe("with a description", () => {
+    const label = "This is a hint!";
+
+    const elementTestId = "i-am-a-description";
+    const element = <div data-testid={elementTestId} />;
+
+    it("renders text description", () => {
+      const { getByText } = render(<FormField description={label} />);
+      const textElement = getByText(label);
+      expect(textElement).toBeInstanceOf(HTMLParagraphElement);
+      expect(textElement).toBeInTheDocument();
+    });
+
+    it("renders element description", () => {
+      render(<FormField description={element} />);
+      expect(screen.getByTestId(elementTestId)).toBeInTheDocument();
+    });
+
+    it("should have assistive descriptor `aria-describedby`", () => {
+      const { getByRole } = render(<FormField description={label} />);
+      expect(getByRole("textbox")).toHaveAttribute("aria-describedby");
+    });
+
+    describe("and inline", () => {
+      it("shouldn't display text description", () => {
+        const { queryByText } = render(
+          <FormField description={label} inline />,
+        );
+        expect(queryByText(label)).not.toBeInTheDocument();
+      });
+
+      it("shouldn't display element description", () => {
+        const { queryByTestId } = render(
+          <FormField description={element} inline />,
+        );
+        expect(queryByTestId(elementTestId)).not.toBeInTheDocument();
+      });
+
+      it("shouldn't have assistive descriptor `aria-describedby`", () => {
+        const { getByRole } = render(<FormField description={label} inline />);
+        expect(getByRole("textbox")).not.toHaveAttribute("aria-describedby");
+      });
+    });
+  });
+
+  it("should call onFocus and onBlur", async () => {
+    const focusHandler = jest.fn();
+    const blurHandler = jest.fn();
+    const { getByLabelText } = render(
+      <FormField
+        placeholder="foo"
+        onBlur={blurHandler}
+        onFocus={focusHandler}
+      />,
+    );
+
+    await userEvent.click(getByLabelText("foo"));
+    await userEvent.tab();
+    expect(focusHandler).toHaveBeenCalledTimes(1);
+    expect(blurHandler).toHaveBeenCalledTimes(1);
+  });
+
+  describe("with a controlled value", () => {
+    it("should set the value", () => {
+      const value = "Look, some words!";
+      const { getByDisplayValue } = render(<FormField value={value} />);
+
+      expect(getByDisplayValue(value)).toBeDefined();
+    });
+  });
+
+  describe("on keystroke", () => {
+    describe("enter key", () => {
+      it("should trigger onEnter", () => {
+        const enterHandler = jest.fn();
+        const placeholder = "Milk heals bones";
+
+        const { getByLabelText } = render(
+          <FormField
+            name="Enter the milk house"
+            onEnter={enterHandler}
+            placeholder={placeholder}
+          />,
+        );
+
+        fireEvent.keyDown(getByLabelText(placeholder), {
+          key: "Enter",
+          code: "Enter",
+        });
+
+        expect(enterHandler).toHaveBeenCalledTimes(1);
+
+        fireEvent.keyDown(getByLabelText(placeholder), {
+          key: "Enter",
+          code: "Enter",
+        });
+
+        expect(enterHandler).toHaveBeenCalledTimes(2);
+      });
+    });
+
+    describe("enter key + shift key", () => {
+      it("should not trigger onEnter", () => {
+        const enterHandler = jest.fn();
+        const placeholder = "Milk heals bones";
+
+        const { getByLabelText } = render(
+          <FormField
+            name="Enter the milk house"
+            onEnter={enterHandler}
+            placeholder={placeholder}
+          />,
+        );
+
+        fireEvent.keyDown(getByLabelText(placeholder), {
+          key: "Enter",
+          code: "Enter",
+          shiftKey: true,
+        });
+
+        expect(enterHandler).toHaveBeenCalledTimes(0);
+      });
+    });
+
+    describe("enter key + ctrl key", () => {
+      it("should not trigger onEnter", () => {
+        const enterHandler = jest.fn();
+        const placeholder = "Milk heals bones";
+
+        const { getByLabelText } = render(
+          <FormField
+            name="Enter the milk house"
+            onEnter={enterHandler}
+            placeholder={placeholder}
+          />,
+        );
+
+        fireEvent.keyDown(getByLabelText(placeholder), {
+          key: "Enter",
+          code: "Enter",
+          ctrlKey: true,
+        });
+
+        expect(enterHandler).toHaveBeenCalledTimes(0);
+      });
+    });
+  });
+
+  describe("when triggering change", () => {
+    it("should trigger onChange", () => {
+      const placeholder = "I hold places.";
+      const newValue =
+        "The snake which cannot cast its skin has to die. As well the minds which are prevented from changing their opinions; they cease to be mind.";
+      const newerValue =
+        "They always say time changes things, but you actually have to change them yourself.";
+      const changeHandler = jest.fn();
+      const { getByLabelText } = render(
+        <FormField
+          name="Got milk?"
+          onChange={changeHandler}
+          placeholder={placeholder}
+        />,
+      );
+
+      fireEvent.change(getByLabelText(placeholder), {
+        target: { value: newValue },
+      });
+      expect(changeHandler).toHaveBeenCalledWith(newValue, expect.any(Object));
+
+      fireEvent.change(getByLabelText(placeholder), {
+        target: { value: newerValue },
+      });
+      expect(changeHandler).toHaveBeenCalledWith(
+        newerValue,
+        expect.any(Object),
+      );
+    });
+
+    describe("without validation errors", () => {
+      it("should trigger onValidation with an empty string", () => {
+        const validationHandler = jest.fn();
+
+        render(
+          <FormField
+            name="Got milk?"
+            onValidation={validationHandler}
+            placeholder="I hold places."
+          />,
+        );
+
+        expect(validationHandler).toHaveBeenCalled();
+        expect(validationHandler).toHaveBeenCalledWith("");
+      });
+    });
+
+    describe("with validation errors", () => {
+      it("should trigger onValidation with error message", async () => {
+        const validationHandler = jest.fn();
+        const validate = (val: string) => (val == "Bob" ? "message" : "foo");
+
+        const { getByLabelText } = render(
+          <FormField
+            type="text"
+            name="Got milk?"
+            onValidation={validationHandler}
+            placeholder="I hold places"
+            validations={{
+              validate,
+            }}
+          />,
+        );
+
+        getByLabelText("I hold places").focus();
+        fireEvent.change(getByLabelText("I hold places"), {
+          target: { value: "Bob" },
+        });
+        getByLabelText("I hold places").blur();
+
+        await waitFor(() => {
+          expect(validationHandler).toHaveBeenCalledWith("message");
+        });
+      });
+    });
+  });
+
+  describe("name attribute", () => {
+    it("should not have one by default", () => {
+      const { getByLabelText } = render(<FormField placeholder="foo" />);
+      expect(getByLabelText("foo")).not.toHaveAttribute("name");
+    });
+
+    describe("when set", () => {
+      it("should set the name", () => {
+        const { getByLabelText } = render(
+          <FormField placeholder="foo" name="dillan" />,
+        );
+        expect(getByLabelText("foo")).toHaveAttribute("name", "dillan");
+      });
+    });
+
+    describe("when nested/structured", () => {
+      it("should display errors", async () => {
+        const { findByText, getByText } = render(
+          <Form onSubmit={jest.fn()}>
+            <FormField
+              name="parent.0.child"
+              placeholder="foo"
+              validations={{
+                required: {
+                  value: true,
+                  message: "field foo is required",
+                },
+              }}
+            />
+            <button type="submit">Submit</button>,
+          </Form>,
+        );
+
+        fireEvent.click(getByText("Submit"));
+
+        expect(await findByText("field foo is required")).toBeInTheDocument();
+      });
+    });
+
+    describe("with validations enabled", () => {
+      it("should set the name", () => {
+        const { getByLabelText } = render(
+          <FormField placeholder="foo" validations={{ required: true }} />,
+        );
+        const input = getByLabelText("foo");
+        const name = input.getAttribute("name");
+        expect(name).toContain("generatedName--");
+      });
+    });
+  });
+
+  describe("with keyboard mode", () => {
+    it("should set the keyboard inputMode", () => {
+      const keyboardMode = "numeric";
+      const { getByLabelText } = render(
+        <FormField placeholder="foo" keyboard={keyboardMode} />,
+      );
+      const input = getByLabelText("foo");
+      const name = input.getAttribute("inputMode");
+      expect(name).toContain(keyboardMode);
+    });
+  });
+
+  describe("when loading", () => {
+    it("should render the spinner", () => {
+      const { getByLabelText } = render(
+        <FormField placeholder="foo" type="text" loading={true} />,
+      );
+      const spinner = getByLabelText("loading");
+
+      expect(spinner).toBeInTheDocument();
+    });
+  });
+
+  describe("when autocomplete", () => {
+    describe("when one-time-code", () => {
+      it("should set the autocomplete type", () => {
+        const { getByLabelText } = render(
+          <FormField placeholder="foo" autocomplete={"one-time-code"} />,
+        );
+        const input = getByLabelText("foo");
+        expect(input).toHaveAttribute("autocomplete", "one-time-code");
+      });
+    });
+    describe("when address-line1", () => {
+      it("should set the autocomplete type", () => {
+        const { getByLabelText } = render(
+          <FormField placeholder="foo" autocomplete={"address-line1"} />,
+        );
+        const input = getByLabelText("foo");
+        expect(input).toHaveAttribute("autocomplete", "address-line1");
+      });
+    });
+    describe("when address-line2", () => {
+      it("should set the autocomplete type", () => {
+        const { getByLabelText } = render(
+          <FormField placeholder="foo" autocomplete={"address-line2"} />,
+        );
+        const input = getByLabelText("foo");
+        expect(input).toHaveAttribute("autocomplete", "address-line2");
+      });
+    });
+
+    describe("when off", () => {
+      it("should set the autocomplete type", () => {
+        const { getByLabelText } = render(
+          <FormField placeholder="foo" autocomplete={false} />,
+        );
+        const input = getByLabelText("foo");
+        expect(input).toHaveAttribute("autocomplete", "off");
+      });
+    });
+  });
+
+  describe("with a prefix", () => {
+    it("should render the icon", () => {
+      const { getByTestId } = render(<FormField prefix={{ icon: "home" }} />);
+
+      expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+    });
+  });
+
+  describe("with a suffix", () => {
+    it("should render the icon", () => {
+      const { getByTestId } = render(<FormField suffix={{ icon: "home" }} />);
+
+      expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+    });
+
+    describe("with an onClick", () => {
+      it("should trigger", () => {
+        const clickHandler = jest.fn();
+        const { getByTestId } = render(
+          <FormField
+            suffix={{
+              ariaLabel: "Go home",
+              icon: "home",
+              onClick: clickHandler,
+            }}
+          />,
+        );
+
+        const icon = getByTestId("home");
+        fireEvent.click(icon);
+
+        expect(clickHandler).toHaveBeenCalledTimes(1);
+      });
+    });
+  });
+
+  describe("when clearable", () => {
+    it("should clear the search when the clear is used", () => {
+      const setValue = jest.fn();
+
+      const { getByLabelText } = render(
+        <FormField
+          placeholder={"I am a placeholder"}
+          value={"I am a value"}
+          clearable="always"
+          onChange={setValue}
+        />,
+      );
+      const clearButton = getByLabelText("Clear input");
+      fireEvent.click(clearButton);
+      expect(setValue).toHaveBeenCalledWith("");
+    });
+
+    describe("when inputRef provided", () => {
+      it("should focus the input when the clear is used", async () => {
+        const mockRef = createRef<HTMLInputElement>();
+        const { getByRole, getByLabelText } = render(
+          <FormField
+            placeholder={"I am a placeholder"}
+            value={"I am a value"}
+            clearable="always"
+            inputRef={mockRef}
+          />,
+        );
+        const clearButton = getByLabelText("Clear input");
+        await userEvent.click(clearButton);
+        expect(getByRole("textbox")).toHaveFocus();
+      });
+    });
+  });
+});
+
+```
+
+## Component Path
+
+`/components/FormField`
+
+---
+
+_Generated on 2025-08-21T17:35:16.361Z_

@@ -1,0 +1,140 @@
+# DescriptionList
+
+# Description List
+
+Description Lists are used to display a list of terms and descriptions.
+
+## Design & usage guidelines
+
+The Description List is a great solution when you have a small list of
+information with a 1:1 label-to-data relationship. For example, the issued and
+due dates on an invoice, or the job type, billing type and duration of a job.
+
+## Related components
+
+- To list more complex collections of related information, consider using a
+  [List](/components/List).
+- To display structured data for comparison, consider using a
+  [Table](/components/Table).
+
+## Web Component Code
+
+```tsx
+DescriptionList Simple List Key Value Pair Definition List Web React import type { ReactNode } from "react";
+import React from "react";
+import styles from "./DescriptionList.module.css";
+import { Typography } from "../Typography";
+
+interface DescriptionListProps {
+  /**
+   * A tuple where the first item is the string to display as the term
+   * and the second value is the string to display as the definition
+   */
+  readonly data: [string, string | ReactNode][];
+}
+
+export function DescriptionList({ data }: DescriptionListProps) {
+  return (
+    <dl className={styles.descriptionList}>
+      {data.map(([term, description], i) => (
+        <div key={`${term}-${i}`} className={styles.termGroup}>
+          <Typography element="dt" textColor="heading" size="base">
+            {term}
+          </Typography>
+
+          <Typography element="dd" textColor="text" size="base">
+            {description}
+          </Typography>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+```
+
+## Props
+
+### Web Props
+
+| Prop                                                            | Type                    | Required | Default  | Description                                                       |
+| --------------------------------------------------------------- | ----------------------- | -------- | -------- | ----------------------------------------------------------------- |
+| `data`                                                          | `[string, ReactNode][]` | ✅       | `_none_` | A tuple where the first item is the string to display as the term |
+| and the second value is the string to display as the definition |
+
+## Categories
+
+- Lists & Tables
+
+## Web Test Code
+
+```typescript
+DescriptionList Simple List Key Value Pair Definition List Web React Test Testing Jest import { render } from "@testing-library/react";
+import React from "react";
+import { DescriptionList } from ".";
+
+it("renders an object as a list of key value pairs", () => {
+  const { container } = render(
+    <DescriptionList
+      data={[
+        ["Issued", "2018-12-08"],
+        ["Due", "2019-01-06"],
+      ]}
+    />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+it("allows duplicate terms", () => {
+  const { getAllByText } = render(
+    <DescriptionList
+      data={[
+        ["Issued", "2018-12-08"],
+        ["Issued", "2019-01-06"],
+      ]}
+    />,
+  );
+  expect(getAllByText("Issued")).toHaveLength(2);
+});
+
+it("does not throw a key error when duplicate terms are used", () => {
+  const logSpy = jest.spyOn(global.console, "error");
+
+  render(
+    <DescriptionList
+      data={[
+        ["Issued", "2018-12-08"],
+        ["Issued", "2019-01-06"],
+      ]}
+    />,
+  );
+  expect(logSpy).not.toHaveBeenCalledWith(
+    expect.stringContaining(
+      "Warning: Encountered two children with the same key",
+    ),
+    expect.anything(),
+    expect.anything(),
+  );
+});
+
+it("renders an object as a list of key value pairs with an element", () => {
+  const { container } = render(
+    <DescriptionList
+      data={[
+        ["Foo", <>Foo</>],
+        ["Bar", <>Bar</>],
+      ]}
+    />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+```
+
+## Component Path
+
+`/components/DescriptionList`
+
+---
+
+_Generated on 2025-08-21T17:35:16.359Z_
