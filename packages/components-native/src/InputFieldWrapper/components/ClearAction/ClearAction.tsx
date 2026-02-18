@@ -4,7 +4,7 @@ import { useStyles } from "./ClearAction.style";
 import { Icon } from "../../../Icon";
 import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
-interface ClearActionProps {
+export interface ClearActionProps {
   /**
    * Press handler
    */
