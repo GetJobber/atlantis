@@ -5,9 +5,17 @@ import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.module.css";
 import type {
   ButtonActionProps,
+  PageActionProps,
+  PageActionsProps,
+  PageBodyProps,
   PageComposableProps,
+  PageHeaderProps,
+  PageIntroProps,
   PageLegacyProps,
+  PageMenuProps,
   PageProps,
+  PageSubtitleProps,
+  PageTitleProps,
 } from "./types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
@@ -142,7 +150,7 @@ function PageLegacy({
 }
 
 /** Groups title, subtitle, and actions. Separates Page.Actions for layout positioning. */
-function PageHeader({ children, ...rest }: { readonly children: ReactNode }) {
+function PageHeader({ children, ...rest }: PageHeaderProps) {
   const dataAttrs = filterDataAttributes(rest);
   let actionsElement: ReactNode = null;
   const otherChildren: ReactNode[] = [];
@@ -174,14 +182,7 @@ function PageHeader({ children, ...rest }: { readonly children: ReactNode }) {
 }
 
 /** Renders the page heading (H1). Accepts optional `metadata` displayed alongside (e.g. status badges). */
-function PageTitle({
-  children,
-  metadata,
-  ...rest
-}: {
-  readonly children: ReactNode;
-  readonly metadata?: ReactNode;
-}) {
+function PageTitle({ children, metadata, ...rest }: PageTitleProps) {
   const dataAttrs = filterDataAttributes(rest);
 
   if (metadata) {
@@ -201,7 +202,7 @@ function PageTitle({
 }
 
 /** Secondary text below the title. Strings get default Text/Emphasis/Markdown treatment; ReactNodes render as-is. */
-function PageSubtitle({ children, ...rest }: { readonly children: ReactNode }) {
+function PageSubtitle({ children, ...rest }: PageSubtitleProps) {
   const dataAttrs = filterDataAttributes(rest);
 
   if (typeof children === "string") {
@@ -224,13 +225,7 @@ function PageSubtitle({ children, ...rest }: { readonly children: ReactNode }) {
 }
 
 /** Introduction text between the header and body. Strings get Text/Markdown treatment; ReactNodes render as-is. */
-function PageIntro({
-  children,
-  externalLinks = false,
-}: {
-  readonly children: ReactNode;
-  readonly externalLinks?: boolean;
-}) {
+function PageIntro({ children, externalLinks = false }: PageIntroProps) {
   if (typeof children === "string") {
     return (
       <Text size="large">
@@ -247,7 +242,7 @@ function PageIntro({
 }
 
 /** Container for action buttons and menu. Applies responsive actionGroup layout. */
-function PageActions({ children, ...rest }: { readonly children: ReactNode }) {
+function PageActions({ children, ...rest }: PageActionsProps) {
   const dataAttrs = filterDataAttributes(rest);
 
   return (
@@ -268,16 +263,7 @@ function PagePrimaryAction({
   loading,
   ariaLabel,
   ...rest
-}: {
-  readonly children?: ReactNode;
-  readonly ref?: RefObject<HTMLDivElement | null>;
-  readonly label?: string;
-  readonly onClick?: () => void;
-  readonly icon?: ButtonProps["icon"];
-  readonly disabled?: boolean;
-  readonly loading?: boolean;
-  readonly ariaLabel?: string;
-}) {
+}: PageActionProps) {
   const dataAttrs = filterDataAttributes(rest);
 
   return (
@@ -308,16 +294,7 @@ function PageSecondaryAction({
   loading,
   ariaLabel,
   ...rest
-}: {
-  readonly children?: ReactNode;
-  readonly ref?: RefObject<HTMLDivElement | null>;
-  readonly label?: string;
-  readonly onClick?: () => void;
-  readonly icon?: ButtonProps["icon"];
-  readonly disabled?: boolean;
-  readonly loading?: boolean;
-  readonly ariaLabel?: string;
-}) {
+}: PageActionProps) {
   const dataAttrs = filterDataAttributes(rest);
 
   return (
@@ -347,10 +324,7 @@ function PageMenu({
   children,
   triggerLabel = "More Actions",
   ...rest
-}: {
-  readonly children: ReactNode;
-  readonly triggerLabel?: string;
-}) {
+}: PageMenuProps) {
   const dataAttrs = filterDataAttributes(rest);
 
   return (
@@ -366,7 +340,7 @@ function PageMenu({
 }
 
 /** Main content area of the page. */
-function PageBody({ children }: { readonly children: ReactNode }) {
+function PageBody({ children }: PageBodyProps) {
   return <Content>{children}</Content>;
 }
 

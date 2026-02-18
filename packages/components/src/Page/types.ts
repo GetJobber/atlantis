@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, RefObject } from "react";
 import { type ButtonProps } from "../Button";
 import { type SectionProps } from "../Menu";
 
@@ -91,3 +91,45 @@ export interface PageComposableProps {
 }
 
 export type PageProps = PageLegacyProps | PageComposableProps;
+
+export interface PageHeaderProps {
+  readonly children: ReactNode;
+}
+
+export interface PageTitleProps {
+  readonly children: ReactNode;
+  readonly metadata?: ReactNode;
+}
+
+export interface PageSubtitleProps {
+  readonly children: ReactNode;
+}
+
+export interface PageIntroProps {
+  readonly children: ReactNode;
+  readonly externalLinks?: boolean;
+}
+
+export interface PageActionsProps {
+  readonly children: ReactNode;
+}
+
+export interface PageActionProps {
+  readonly children?: ReactNode;
+  readonly ref?: RefObject<HTMLDivElement | null>;
+  readonly label?: string;
+  readonly onClick?: () => void;
+  readonly icon?: ButtonProps["icon"];
+  readonly disabled?: boolean;
+  readonly loading?: boolean;
+  readonly ariaLabel?: string;
+}
+
+export interface PageMenuProps {
+  readonly children: ReactNode;
+  readonly triggerLabel?: string;
+}
+
+export interface PageBodyProps {
+  readonly children: ReactNode;
+}
