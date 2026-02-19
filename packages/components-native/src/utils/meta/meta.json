@@ -35,6 +35,7 @@
     "Form",
     "FormField",
     "FormMessage",
+    "FormSaveButton",
     "FormatFile",
     "FormatFileThumbnail",
     "Glimmer",

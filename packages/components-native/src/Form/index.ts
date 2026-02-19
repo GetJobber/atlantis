@@ -8,6 +8,8 @@ export type {
   FormValues,
   SecondaryActionProp,
   ValidationRulesByFieldPath,
+  FormSaveButtonProps,
 } from "./types";
 export { FormSubmitErrorType, FormBannerMessageType } from "./types";
 export * from "./context";
+export { FormSaveButton } from "./components/FormSaveButton";
