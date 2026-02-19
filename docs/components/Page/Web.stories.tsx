@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 import { Heading, StatusLabel, Tooltip } from "@jobber/components";
-import { Page } from "@jobber/components/Page";
+import {
+  Page,
+  type PageComposableProps,
+  type PageLegacyProps,
+} from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Menu } from "@jobber/components/Menu";
@@ -15,9 +19,9 @@ export default {
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
   },
-} as ComponentMeta<typeof Page>;
+} satisfies Meta<typeof Page>;
 
-const BasicTemplate: ComponentStory<typeof Page> = args => (
+const BasicTemplate: StoryFn<PageLegacyProps> = args => (
   <Page {...args}>
     <Content>
       <Text>Page content here</Text>
@@ -25,7 +29,7 @@ const BasicTemplate: ComponentStory<typeof Page> = args => (
   </Page>
 );
 
-const CustomTitleTemplate: ComponentStory<typeof Page> = args => {
+const CustomTitleTemplate: StoryFn<PageLegacyProps> = args => {
   const props = { ...args, titleMetaData: undefined };
 
   return (
@@ -44,7 +48,7 @@ const CustomTitleTemplate: ComponentStory<typeof Page> = args => {
   );
 };
 
-const PopoverTemplate: ComponentStory<typeof Page> = args => {
+const PopoverTemplate: StoryFn<PageLegacyProps> = args => {
   const primaryDivRef = useRef(null);
   const [showPrimaryPopover, setShowPrimaryPopover] = useState(false);
 
@@ -179,8 +183,8 @@ WithAdditionalTitleFields.parameters = {
   },
 };
 
-export const ComposableBasic = () => (
-  <Page>
+export const ComposableBasic: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
     <Page.Header>
       <Page.Title>Notifications</Page.Title>
     </Page.Header>
@@ -190,8 +194,8 @@ export const ComposableBasic = () => (
   </Page>
 );
 
-export const ComposableWithActions = () => (
-  <Page width="fill">
+export const ComposableWithActions: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
     <Page.Header>
       <Page.Title>Clients</Page.Title>
       <Page.Actions>
@@ -217,9 +221,14 @@ export const ComposableWithActions = () => (
     </Page.Body>
   </Page>
 );
+ComposableWithActions.args = {
+  width: "fill",
+};
 
-export const ComposableWithSubtitleAndIntro = () => (
-  <Page>
+export const ComposableWithSubtitleAndIntro: StoryFn<
+  PageComposableProps
+> = args => (
+  <Page {...args}>
     <Page.Header>
       <Page.Title>Notifications</Page.Title>
       <Page.Subtitle>Notify me of all the work</Page.Subtitle>
@@ -236,8 +245,8 @@ export const ComposableWithSubtitleAndIntro = () => (
   </Page>
 );
 
-export const ComposableWithAllPieces = () => (
-  <Page width="fill">
+export const ComposableWithAllPieces: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
     <Page.Header>
       <Page.Title
         metadata={
@@ -281,9 +290,12 @@ export const ComposableWithAllPieces = () => (
     </Page.Body>
   </Page>
 );
+ComposableWithAllPieces.args = {
+  width: "fill",
+};
 
-export const ComposableCustomSlot = () => (
-  <Page>
+export const ComposableCustomSlot: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
     <Page.Header>
       <Page.Title>Custom Action Elements</Page.Title>
       <Page.Actions>
