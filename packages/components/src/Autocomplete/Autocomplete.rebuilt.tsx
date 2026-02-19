@@ -71,6 +71,7 @@ function AutocompleteRebuiltInternal<
     onSelection,
     onAction,
     onInteractionPointerDown,
+    removeSelection,
     onInputChangeFromUser,
     onInputBlur,
     onInputFocus,
@@ -136,11 +137,16 @@ function AutocompleteRebuiltInternal<
     (node: HTMLInputElement | HTMLTextAreaElement | null) => {
       setReferenceElement(node);
 
+      // In multiple mode, prefer the multi-select container for width/positioning
+      // so the menu aligns with the full chip + input area.
+      const multiContainer = node?.closest(
+        "[data-testid='ATL-AutocompleteRebuilt-multiSelectContainer']",
+      );
+
       // Workaround to get the width of the visual InputText element, which is not the same as
       // the literal input reference element when props like suffix/prefix/clearable are present.
-      const visualInputTextElement = node?.closest(
-        "[data-testid='Form-Field-Wrapper']",
-      );
+      const visualInputTextElement =
+        multiContainer ?? node?.closest("[data-testid='Form-Field-Wrapper']");
 
       if (visualInputTextElement) {
         setMenuWidth(visualInputTextElement.clientWidth);
@@ -173,12 +179,54 @@ function AutocompleteRebuiltInternal<
   const activeIndexForMiddle =
     activeIndex != null ? activeIndex - headerInteractiveCount : null;
 
+  const selectedValues: Value[] = props.multiple
+    ? ((props.value ?? []) as Value[])
+    : [];
+
+  const inputElement = props.customRenderInput ? (
+    props.customRenderInput({ inputRef: mergedInputRef, inputProps })
+  ) : (
+    <InputText ref={mergedInputRef} {...inputProps} />
+  );
+
+  const chips = selectedValues.length > 0 && (
+    <div className={styles.chipContainer}>
+      {selectedValues.map(v => (
+        <span
+          key={v.key ?? getOptionLabel(v)}
+          className={styles.selectionChip}
+          data-testid="ATL-AutocompleteRebuilt-chip"
+        >
+          {getOptionLabel(v)}
+          <button
+            type="button"
+            className={styles.chipDismiss}
+            onClick={() => removeSelection(v)}
+            onPointerDown={preventDefaultPointerDown}
+            aria-label={`Remove ${getOptionLabel(v)}`}
+            tabIndex={-1}
+          >
+            {"\u00D7"}
+          </button>
+        </span>
+      ))}
+    </div>
+  );
+
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
-      {props.customRenderInput ? (
-        props.customRenderInput({ inputRef: mergedInputRef, inputProps })
+      {props.multiple ? (
+        <div
+          className={classNames(styles.multiSelectContainer, {
+            [styles.multiSelectContainerInvalid]: invalid || error,
+          })}
+          data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
+        >
+          {chips}
+          {inputElement}
+        </div>
       ) : (
-        <InputText ref={mergedInputRef} {...inputProps} />
+        inputElement
       )}
       {isMounted && !props.readOnly && (
         <FloatingPortal>

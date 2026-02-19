@@ -199,6 +199,49 @@ export function FreeFormWrapper({
 }
 
 /**
+ * Stateful wrapper for testing multiple-selection behavior.
+ * Manages both value (array) and inputValue internally so tests
+ * can perform multiple interactions that build on each other.
+ */
+export function MultipleWrapper<T extends OptionLike>({
+  initialValue = [],
+  onChange,
+  onInputChange,
+  menu,
+  debounce = 0,
+}: {
+  readonly initialValue?: T[];
+  readonly onChange?: (v: T[]) => void;
+  readonly onInputChange?: (v: string) => void;
+  readonly menu?: MenuItem<T>[];
+  readonly debounce?: number;
+}) {
+  const [value, setValue] = React.useState<T[]>(initialValue);
+  const [inputValue, setInputValue] = React.useState<string>("");
+  const built = React.useMemo(() => buildMenu(), []);
+
+  return (
+    <AutocompleteRebuilt
+      version={2}
+      multiple
+      value={value}
+      onChange={(v: T[]) => {
+        setValue(v);
+        onChange?.(v);
+      }}
+      inputValue={inputValue}
+      onInputChange={(v: string) => {
+        setInputValue(v);
+        onInputChange?.(v);
+      }}
+      menu={menu ?? (built.menu as MenuItem<T>[])}
+      placeholder=""
+      debounce={debounce}
+    />
+  );
+}
+
+/**
  * Wrapper for testing focus and blur behavior with tabbable siblings
  * Includes tabbable elements before and after the autocomplete
  * so tests can use tab navigation to focus without clicking

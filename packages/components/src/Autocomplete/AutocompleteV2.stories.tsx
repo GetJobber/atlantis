@@ -846,6 +846,33 @@ const TemplateFocusBehavior = () => {
   );
 };
 
+const TemplateMultiple = () => {
+  const [value, setValue] = useState<OptionLike[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <Content>
+      <Heading level={4}>Multiple</Heading>
+      <Autocomplete
+        version={2}
+        placeholder="Search"
+        value={value}
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        multiple
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+      />
+    </Content>
+  );
+};
+
+export const Multiple: Story = {
+  render: TemplateMultiple,
+};
+
 export const Flat: Story = {
   render: TemplateFlat,
 };

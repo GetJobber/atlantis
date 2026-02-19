@@ -96,3 +96,60 @@
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   cursor: default;
 }
+
+.multiSelectContainer {
+  border: var(--border-base) solid var(--color-border--interactive);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+}
+
+.multiSelectContainer:focus-within {
+  box-shadow: var(--shadow-focus);
+}
+
+.multiSelectContainerInvalid {
+  border-color: var(--color-critical);
+}
+
+/* Suppress the InputText's own border/shadow inside the multi-select container */
+.multiSelectContainer [data-testid="Form-Field-Wrapper"] {
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+.chipContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-smaller);
+  padding: var(--space-small) var(--space-base) 0;
+}
+
+.selectionChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-smaller);
+  padding: var(--space-minuscule) var(--space-small);
+  border-radius: var(--radius-base);
+  color: var(--color-heading);
+  background-color: var(--color-interactive--background);
+}
+
+.chipDismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-base);
+  height: var(--space-base);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-circle);
+  color: var(--color-text--secondary);
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.chipDismiss:hover {
+  color: var(--color-heading);
+  background-color: var(--color-surface--hover);
+}

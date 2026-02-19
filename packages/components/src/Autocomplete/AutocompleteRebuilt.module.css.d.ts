@@ -14,6 +14,11 @@ declare const styles: {
   readonly "persistentHeader": string;
   readonly "persistentFooter": string;
   readonly "textPersistent": string;
+  readonly "multiSelectContainer": string;
+  readonly "multiSelectContainerInvalid": string;
+  readonly "chipContainer": string;
+  readonly "selectionChip": string;
+  readonly "chipDismiss": string;
 };
 export = styles;
 

@@ -387,8 +387,9 @@ interface AutocompleteRebuiltBaseProps<
     FocusEvents<HTMLInputElement | HTMLTextAreaElement> {
   /**
    * Whether the autocomplete allows multiple selections.
-   * WARNING: This is currently incomplete and will not display selections, only data is returned.
-   * Do not use this prop unless you are sure you know what you are doing.
+   * When true, selected values are displayed as dismissible chips above the input.
+   * The menu stays open after each selection so the user can pick additional options.
+   * Pressing Backspace on an empty input removes the most recently added selection.
    */
   readonly multiple?: Multiple;
   /**
