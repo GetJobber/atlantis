@@ -2,6 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BREAKPOINT_SIZES, mockViewportWidth } from "@jobber/hooks";
 import { LightBox } from ".";
+import * as POM from "./LightBox.pom";
 
 const { setViewportWidth } = mockViewportWidth();
 
@@ -67,7 +68,7 @@ describe("LightBox", () => {
       expect(handleClose).toHaveBeenCalledTimes(1);
     });
 
-    const { getByLabelText } = render(
+    render(
       <LightBox
         open={true}
         images={[
@@ -81,7 +82,7 @@ describe("LightBox", () => {
       />,
     );
 
-    fireEvent.click(getByLabelText("Close"));
+    fireEvent.click(POM.getCloseButton());
   });
 
   test("displays the image title of the selected imageIndex", () => {
@@ -123,7 +124,7 @@ describe("LightBox", () => {
           {
             title: "title",
             caption: "caption",
-            url: "",
+            url: "https://example.com/photo.jpg",
           },
         ],
         onRequestClose: jest.fn(),
@@ -164,8 +165,8 @@ describe("LightBox", () => {
           onRequestClose={jest.fn()}
         />,
       );
-      expect(screen.queryByLabelText("Previous image")).toBeInTheDocument();
-      expect(screen.queryByLabelText("Next image")).toBeInTheDocument();
+      expect(POM.getPreviousButton()).toBeInTheDocument();
+      expect(POM.getNextButton()).toBeInTheDocument();
     });
 
     test("doesn't display the next and previous buttons when only one image", () => {
@@ -183,8 +184,42 @@ describe("LightBox", () => {
           onRequestClose={jest.fn()}
         />,
       );
-      expect(screen.queryByLabelText("Previous image")).toBeNull();
-      expect(screen.queryByLabelText("Next image")).toBeNull();
+      expect(POM.getPreviousButton()).toBeNull();
+      expect(POM.getNextButton()).toBeNull();
+    });
+
+    test("applies correct slide direction when changing from next to previous", async () => {
+      const images = [
+        { title: "Title 0", alt: "alt-0", url: "https://example.com/0.jpg" },
+        { title: "Title 1", alt: "alt-1", url: "https://example.com/1.jpg" },
+      ];
+
+      render(
+        <LightBox
+          open={true}
+          images={images}
+          imageIndex={0}
+          onRequestClose={jest.fn()}
+        />,
+      );
+
+      await POM.goNextThenPreviousWithRealTimers(250);
+
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      const { enteringImg, exitingImg } = POM.getSlideImagesByAlt(
+        "alt-0",
+        "alt-1",
+      );
+      expect(enteringImg).toBeDefined();
+      expect(exitingImg).toBeDefined();
+
+      const { enteringTransform, exitingTransform } = POM.getSlideTransforms(
+        enteringImg as HTMLElement,
+        exitingImg as HTMLElement,
+      );
+      expect(enteringTransform).toMatch(/translateX\(-/);
+      expect(exitingTransform).toMatch(/translateX\(\d/);
     });
   });
 
@@ -216,7 +251,7 @@ describe("LightBox", () => {
       expect(
         screen.queryByAltText("alt of unselected image"),
       ).toBeInTheDocument();
-      expect(screen.queryByTestId("ATL-Thumbnail-Bar")).toBeInTheDocument();
+      expect(POM.getThumbnailBar()).toBeInTheDocument();
     });
 
     test("doesn't display when there is only one image", () => {
@@ -236,7 +271,7 @@ describe("LightBox", () => {
           onRequestClose={handleClose}
         />,
       );
-      expect(screen.queryByTestId("thumbnail-bar")).not.toBeInTheDocument();
+      expect(POM.getThumbnailBar()).not.toBeInTheDocument();
     });
 
     test("displays the selected image thumbnail and caption when imageclicked", () => {
@@ -269,8 +304,7 @@ describe("LightBox", () => {
         screen.queryByText(destinationImageCaption),
       ).not.toBeInTheDocument();
 
-      const destinationImage = screen.getByAltText(destinationImageAlt);
-      fireEvent.click(destinationImage);
+      fireEvent.click(POM.getThumbnailByAlt(destinationImageAlt));
 
       const imagesWithAlt = screen.getAllByAltText(destinationImageAlt);
       expect(imagesWithAlt).toHaveLength(2);
