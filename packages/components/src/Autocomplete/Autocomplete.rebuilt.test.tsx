@@ -13,7 +13,7 @@ jest.mock("@jobber/design", () => {
   };
 });
 
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
@@ -812,7 +812,7 @@ describe("AutocompleteRebuilt", () => {
 
       await waitFor(() => {
         expect(screen.getByText("One")).toBeVisible();
-        expect(screen.queryByTestId("checkmark")).not.toBeInTheDocument();
+        expect(screen.getAllByTestId("checkmark")[0]).not.toBeVisible();
       });
     });
 
@@ -822,8 +822,15 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
 
       await waitFor(() => {
+        let checkmark: HTMLElement | null = null;
         expect(screen.getByText("Two")).toBeVisible();
-        expect(screen.getByTestId("checkmark")).toBeVisible();
+
+        const twoOption = screen.getByText("Two").closest("[role='option']");
+
+        if (twoOption) {
+          checkmark = within(twoOption as HTMLElement).getByTestId("checkmark");
+        }
+        expect(checkmark).toBeVisible();
       });
     });
   });
