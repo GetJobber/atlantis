@@ -72,19 +72,15 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 const variants = {
-  enter: (direction: number) => {
-    return {
-      x: direction > 0 ? "150%" : "-150%",
-    };
-  },
+  enter: (directionRef: React.RefObject<number>) => ({
+    x: directionRef.current > 0 ? "150%" : "-150%",
+  }),
   center: {
     x: 0,
   },
-  exit: (direction: number) => {
-    return {
-      x: direction < 0 ? "150%" : "-150%",
-    };
-  },
+  exit: (directionRef: React.RefObject<number>) => ({
+    x: directionRef.current < 0 ? "150%" : "-150%",
+  }),
 };
 
 const imageTransition = {
@@ -105,7 +101,7 @@ export function LightBox({
   onRequestClose,
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
-  const [direction, setDirection] = useState(0);
+  const directionRef = useRef(0);
   const [mouseIsStationary, setMouseIsStationary] = useState(true);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
   const selectedThumbnailRef = useRef<HTMLDivElement>(null);
@@ -194,7 +190,7 @@ export function LightBox({
                 key={currentImageIndex}
                 variants={variants}
                 src={images[currentImageIndex].url}
-                custom={direction}
+                custom={directionRef}
                 className={styles.image}
                 initial="enter"
                 alt={
@@ -285,14 +281,14 @@ export function LightBox({
     : template;
 
   function handleMovePrevious() {
-    setDirection(-1);
+    directionRef.current = -1;
     setCurrentImageIndex(
       (currentImageIndex + images.length - 1) % images.length,
     );
   }
 
   function handleMoveNext() {
-    setDirection(1);
+    directionRef.current = 1;
     setCurrentImageIndex((currentImageIndex + 1) % images.length);
   }
 
@@ -315,9 +311,9 @@ export function LightBox({
 
   function handleThumbnailClick(index: number) {
     if (index < currentImageIndex) {
-      setDirection(-1);
+      directionRef.current = -1;
     } else {
-      setDirection(1);
+      directionRef.current = 1;
     }
     setCurrentImageIndex(index);
   }
