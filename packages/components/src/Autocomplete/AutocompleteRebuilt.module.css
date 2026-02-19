@@ -114,7 +114,7 @@
 /* Suppress the InputText's own border/shadow inside the multi-select container */
 .multiSelectContainer [data-testid="Form-Field-Wrapper"] {
   box-shadow: none !important;
-  border-color: transparent !important;
+  border: none !important;
 }
 
 .chipContainer {
