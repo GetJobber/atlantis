@@ -114,15 +114,28 @@ export interface PageActionsProps {
   readonly children: ReactNode;
 }
 
-export interface PageActionProps {
-  readonly children?: ReactNode;
+export interface PageActionWithChildren {
+  readonly children: ReactNode;
   readonly ref?: RefObject<HTMLDivElement | null>;
-  readonly label?: string;
+}
+
+export interface PageActionWithDefaults {
+  readonly children?: never;
+  readonly ref?: RefObject<HTMLDivElement | null>;
+  readonly label: string;
   readonly onClick?: () => void;
   readonly icon?: ButtonProps["icon"];
   readonly disabled?: boolean;
   readonly loading?: boolean;
   readonly ariaLabel?: string;
+}
+
+export type PageActionProps = PageActionWithChildren | PageActionWithDefaults;
+
+export function hasCustomChildren(
+  props: PageActionProps,
+): props is PageActionWithChildren {
+  return "children" in props && props.children != null;
 }
 
 export interface PageMenuProps {

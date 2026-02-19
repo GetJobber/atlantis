@@ -17,6 +17,7 @@ import type {
   PageSubtitleProps,
   PageTitleProps,
 } from "./types";
+import { hasCustomChildren } from "./types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
@@ -253,64 +254,62 @@ function PageActions({ children, ...rest }: PageActionsProps) {
 }
 
 /** Primary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element. */
-function PagePrimaryAction({
-  children,
-  ref,
-  label,
-  onClick,
-  icon,
-  disabled,
-  loading,
-  ariaLabel,
-  ...rest
-}: PageActionProps) {
+function PagePrimaryAction(props: PageActionProps) {
+  const { ref, ...rest } = props;
   const dataAttrs = filterDataAttributes(rest);
+
+  if (hasCustomChildren(props)) {
+    return (
+      <div className={styles.primaryAction} ref={ref} {...dataAttrs}>
+        {props.children}
+      </div>
+    );
+  }
+
+  const { label, onClick, icon, disabled, loading, ariaLabel } = props;
 
   return (
     <div className={styles.primaryAction} ref={ref} {...dataAttrs}>
-      {children ?? (
-        <Button
-          label={label ?? ""}
-          onClick={onClick}
-          icon={icon}
-          disabled={disabled}
-          loading={loading}
-          ariaLabel={ariaLabel}
-          fullWidth={true}
-        />
-      )}
+      <Button
+        label={label}
+        onClick={onClick}
+        icon={icon}
+        disabled={disabled}
+        loading={loading}
+        ariaLabel={ariaLabel}
+        fullWidth={true}
+      />
     </div>
   );
 }
 
 /** Secondary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element. */
-function PageSecondaryAction({
-  children,
-  ref,
-  label,
-  onClick,
-  icon,
-  disabled,
-  loading,
-  ariaLabel,
-  ...rest
-}: PageActionProps) {
+function PageSecondaryAction(props: PageActionProps) {
+  const { ref, ...rest } = props;
   const dataAttrs = filterDataAttributes(rest);
+
+  if (hasCustomChildren(props)) {
+    return (
+      <div className={styles.actionButton} ref={ref} {...dataAttrs}>
+        {props.children}
+      </div>
+    );
+  }
+
+  const { label, onClick, icon, disabled, loading, ariaLabel } = props;
 
   return (
     <div className={styles.actionButton} ref={ref} {...dataAttrs}>
-      {children ?? (
-        <Button
-          label={label ?? ""}
-          onClick={onClick}
-          icon={icon}
-          disabled={disabled}
-          loading={loading}
-          ariaLabel={ariaLabel}
-          fullWidth={true}
-          type="secondary"
-        />
-      )}
+      <Button
+        label={label}
+        onClick={onClick}
+        icon={icon}
+        disabled={disabled}
+        loading={loading}
+        ariaLabel={ariaLabel}
+        fullWidth={true}
+        type="secondary"
+      />
     </div>
   );
 }
