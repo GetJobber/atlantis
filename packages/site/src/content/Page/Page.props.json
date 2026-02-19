@@ -146,6 +146,10 @@
         "defaultValue": null,
         "description": "",
         "name": "metadata",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageTitleProps"
+        },
         "required": false,
         "type": {
           "name": "ReactNode"
@@ -174,6 +178,10 @@
         },
         "description": "",
         "name": "externalLinks",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageIntroProps"
+        },
         "required": false,
         "type": {
           "name": "boolean"
@@ -200,6 +208,10 @@
         "defaultValue": null,
         "description": "",
         "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithChildren"
+        },
         "required": false,
         "type": {
           "name": "RefObject<HTMLDivElement>"
@@ -209,7 +221,11 @@
         "defaultValue": null,
         "description": "",
         "name": "label",
-        "required": false,
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
+        "required": true,
         "type": {
           "name": "string"
         }
@@ -218,6 +234,10 @@
         "defaultValue": null,
         "description": "",
         "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "() => void"
@@ -227,6 +247,10 @@
         "defaultValue": null,
         "description": "",
         "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "IconNames"
@@ -236,6 +260,10 @@
         "defaultValue": null,
         "description": "",
         "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "boolean"
@@ -245,6 +273,10 @@
         "defaultValue": null,
         "description": "",
         "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "boolean"
@@ -254,6 +286,10 @@
         "defaultValue": null,
         "description": "",
         "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -272,6 +308,10 @@
         "defaultValue": null,
         "description": "",
         "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithChildren"
+        },
         "required": false,
         "type": {
           "name": "RefObject<HTMLDivElement>"
@@ -281,7 +321,11 @@
         "defaultValue": null,
         "description": "",
         "name": "label",
-        "required": false,
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
+        "required": true,
         "type": {
           "name": "string"
         }
@@ -290,6 +334,10 @@
         "defaultValue": null,
         "description": "",
         "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "() => void"
@@ -299,6 +347,10 @@
         "defaultValue": null,
         "description": "",
         "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "IconNames"
@@ -308,6 +360,10 @@
         "defaultValue": null,
         "description": "",
         "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "boolean"
@@ -317,6 +373,10 @@
         "defaultValue": null,
         "description": "",
         "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "boolean"
@@ -326,6 +386,10 @@
         "defaultValue": null,
         "description": "",
         "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionWithDefaults"
+        },
         "required": false,
         "type": {
           "name": "string"
@@ -346,6 +410,10 @@
         },
         "description": "",
         "name": "triggerLabel",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageMenuProps"
+        },
         "required": false,
         "type": {
           "name": "string"
