@@ -3,13 +3,13 @@
 
   display: grid;
   grid-template-columns: repeat(var(--segmentedControl--option-count), 1fr);
-  align-items: center;
+  align-items: stretch;
   position: relative;
   min-height: var(--segmentedControl--size);
   box-sizing: border-box;
-  border: var(--border-base) solid var(--color-border--interactive);
+  border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  background-color: var(--color-interactive--background);
+  background-color: var(--color-surface);
 }
 
 .small {
@@ -30,13 +30,28 @@
   display: flex;
   z-index: 1;
   padding: 0 var(--space-slim);
+  border-radius: var(--radius-base);
   overflow: hidden;
+  color: var(--color-text--secondary);
   font-size: var(--typography--fontSize-base);
   font-weight: 600;
   text-align: center;
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  transition:
+    background-color var(--timing-slow) ease-out,
+    color var(--timing-slow) ease-out;
+}
+
+.container input[type="radio"]:checked + label {
+  color: var(--color-interactive);
+}
+
+/* Hover only on unselected options; selected already has a green border. */
+.container input[type="radio"]:not(:checked) + label:hover {
+  color: var(--color-interactive--hover);
+  background-color: var(--color-interactive--background--subtle--hover);
 }
 
 .container span {
@@ -44,13 +59,24 @@
   left: 0;
   width: calc(100% / var(--segmentedControl--option-count));
   height: 100%;
+  box-sizing: border-box;
+  border: var(--border-base) solid var(--color-interactive);
   border-radius: var(--radius-base);
-  outline: var(--border-base) solid var(--color-border--interactive);
   background-color: var(--color-surface);
-  transition: var(--timing-base) left ease;
+  transition: var(--timing-slow) left ease-out;
 }
 
-.container input[type="radio"]:focus-visible ~ span {
+/* Focus ring at z-index: 2 so hover backgrounds (z-index: 1) can't cover it. */
+.container span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.container input[type="radio"]:focus-visible ~ span::after {
   box-shadow: var(--shadow-focus);
 }
 
