@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.111.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.2...@jobber/components@6.111.3) (2026-02-18)
+
+
+### Bug Fixes
+
+* **components:** Added Link interaction styling ([#2916](https://github.com/GetJobber/atlantis/issues/2916)) ([b27c440](https://github.com/GetJobber/atlantis/commit/b27c440f076fec04b090058f303dab0b8cae1cc2))
+
+
+
+
+
+## [6.111.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.1...@jobber/components@6.111.2) (2026-02-18)
+
+
+### Bug Fixes
+
+* **components:** Stabilize Autocomplete Internal References ([#2914](https://github.com/GetJobber/atlantis/issues/2914)) ([e4b29af](https://github.com/GetJobber/atlantis/commit/e4b29aff84e61cb3f996f2876f65c6e04279f18c))
+
+
+
+
+
+## [6.111.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.0...@jobber/components@6.111.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* **components:** DataTableRow interactivity updates ([#2913](https://github.com/GetJobber/atlantis/issues/2913)) ([525c11e](https://github.com/GetJobber/atlantis/commit/525c11e052a4c255081d5b858c42d7ade432d51e))
+
+
+
+
+
+# [6.111.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.4...@jobber/components@6.111.0) (2026-02-17)
+
+
+### Features
+
+* **components:** Improve Tooltip + Icon Button Accessibility ([#2907](https://github.com/GetJobber/atlantis/issues/2907)) ([ea7a5a1](https://github.com/GetJobber/atlantis/commit/ea7a5a158db93346994bdb3eb7e5968fec26f0f9))
+
+
+
+
+
+## [6.110.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.3...@jobber/components@6.110.4) (2026-02-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.110.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.2...@jobber/components@6.110.3) (2026-02-12)
+
+
+### Bug Fixes
+
+* **components:** DataTable has layout prop for fixed or auto ([#2883](https://github.com/GetJobber/atlantis/issues/2883)) ([07f110c](https://github.com/GetJobber/atlantis/commit/07f110cd2105b40cb0125834513914a91461a035))
+
+
+
+
+
 ## [6.110.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.1...@jobber/components@6.110.2) (2026-02-10)
 
 

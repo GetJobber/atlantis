@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { AriaAttributes, CSSProperties } from "react";
 import React from "react";
 import type { IconColorNames, IconNames, IconSizes } from "@jobber/design";
 import { getIcon } from "@jobber/design";
@@ -33,6 +33,12 @@ export interface IconProps {
   readonly testID?: string;
 
   /**
+   * Indicates whether the element is exposed to an accessibility API.
+   * @see {@link https://www.w3.org/TR/wai-aria-1.2/#aria-hidden}
+   */
+  readonly "aria-hidden"?: AriaAttributes["aria-hidden"];
+
+  /**
    * **Use at your own risk:** Custom classnames for specific elements. This should only be used as a
    * **last resort**. Using this may result in unexpected side effects.
    * More information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).
@@ -61,6 +67,7 @@ export function Icon({
   testID,
   UNSAFE_className,
   UNSAFE_style,
+  "aria-hidden": ariaHidden,
 }: IconProps) {
   let icon;
   const { svgStyle, pathStyle, paths, viewBox } = getIcon({
@@ -86,6 +93,7 @@ export function Icon({
 
   return (
     <svg
+      aria-hidden={ariaHidden}
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
       style={{ ...svgStyle, ...UNSAFE_style?.svg }}

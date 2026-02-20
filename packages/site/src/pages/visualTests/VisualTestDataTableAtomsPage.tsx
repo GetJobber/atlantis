@@ -113,6 +113,66 @@ export const VisualTestDataTableAtomsPage = () => {
         <Heading level={3}>DataTable Atoms Visual Tests</Heading>
 
         <Stack gap="large">
+          {/* Row Interactivity */}
+          <section>
+            <Text size="large">Row Interactivity</Text>
+            <Stack gap="base">
+              <Text size="small">
+                Non-interactive rows (no onClick): no hover. Interactive rows
+                (with onClick): hover background and pointer cursor.
+              </Text>
+              <DataTable.Container>
+                <DataTable.Table data-testid="datatable-atoms-non-interactive">
+                  <DataTable.Header>
+                    <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+                    <DataTable.HeaderCell>Role</DataTable.HeaderCell>
+                    <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+                  </DataTable.Header>
+                  <DataTable.Body>
+                    {exampleData.slice(0, 2).map(row => (
+                      <DataTable.Row key={row.id}>
+                        <DataTable.Cell>{row.name}</DataTable.Cell>
+                        <DataTable.Cell>{row.role}</DataTable.Cell>
+                        <DataTable.Cell>{row.email}</DataTable.Cell>
+                      </DataTable.Row>
+                    ))}
+                  </DataTable.Body>
+                </DataTable.Table>
+              </DataTable.Container>
+              <Text size="small">Interactive rows (click to select):</Text>
+              <DataTable.Container>
+                <DataTable.Table data-testid="datatable-atoms-interactive">
+                  <DataTable.Header>
+                    <DataTable.HeaderCell>Name</DataTable.HeaderCell>
+                    <DataTable.HeaderCell>Role</DataTable.HeaderCell>
+                    <DataTable.HeaderCell>Email</DataTable.HeaderCell>
+                  </DataTable.Header>
+                  <DataTable.Body>
+                    {exampleData.slice(0, 3).map(row => (
+                      <DataTable.Row
+                        key={row.id}
+                        onClick={() => console.log("Row clicked:", row.name)}
+                      >
+                        <DataTable.Cell>
+                          <Typography fontWeight="bold">{row.name}</Typography>
+                        </DataTable.Cell>
+                        <DataTable.Cell>{row.role}</DataTable.Cell>
+                        <DataTable.Cell>{row.email}</DataTable.Cell>
+                      </DataTable.Row>
+                    ))}
+                  </DataTable.Body>
+                  <DataTable.Footer>
+                    <DataTable.Row>
+                      <DataTable.Cell colSpan={3}>
+                        <Text>(Footer: no hover)</Text>
+                      </DataTable.Cell>
+                    </DataTable.Row>
+                  </DataTable.Footer>
+                </DataTable.Table>
+              </DataTable.Container>
+            </Stack>
+          </section>
+
           {/* Basic Structure */}
           <section>
             <Text size="large">Basic Structure</Text>

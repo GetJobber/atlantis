@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type {
   UseFloatingReturn,
   UseInteractionsReturn,
@@ -127,6 +127,11 @@ export function useAutocompleteListNav({
     });
   }, [navigableCount, setActiveIndex, listRef]);
 
+  const setReferenceElement = useCallback(
+    (el: HTMLElement | null) => refs.setReference(el),
+    [refs],
+  );
+
   return {
     refs,
     floatingStyles,
@@ -139,6 +144,6 @@ export function useAutocompleteListNav({
     listRef,
     open,
     setOpen,
-    setReferenceElement: (el: HTMLElement | null) => refs.setReference(el),
+    setReferenceElement,
   };
 }

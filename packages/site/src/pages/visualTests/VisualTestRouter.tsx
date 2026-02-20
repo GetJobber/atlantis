@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router";
 import { VisualTestAutocompletePage } from "./VisualTestAutocompletePage";
 import { VisualTestCardPage } from "./VisualTestCardPage";
 import { VisualTestAutocompleteV2Page } from "./VisualTestAutocompleteV2Page";
+import { VisualTestAvatarPage } from "./VisualTestAvatarPage";
 import { VisualTestChipPage } from "./VisualTestChipPage";
 import { VisualTestChipsPage } from "./VisualTestChipsPage";
 import { VisualTestComboboxPage } from "./VisualTestComboboxPage";
@@ -42,6 +43,7 @@ import {
   VisualTestMenuSmallStickyPage,
 } from "./VisualTestMenuSmallPage";
 import { VisualTestModalPage } from "./VisualTestModalPage";
+import { VisualTestPagePage } from "./VisualTestPagePage";
 import { VisualTestPopoverPage } from "./VisualTestPopoverPage";
 import { VisualTestProgressBarPage } from "./VisualTestProgressBarPage";
 import { VisualTestRadioGroupPage } from "./VisualTestRadioGroupPage";
@@ -93,6 +95,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/autocomplete-v2"
         exact={true}
         component={VisualTestAutocompleteV2Page}
+      />
+      <Route
+        path="/visual-tests/avatar"
+        exact={true}
+        component={VisualTestAvatarPage}
       />
       <Route
         path="/visual-tests/banner"
@@ -273,6 +280,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/menu-small-sticky"
         exact={true}
         component={VisualTestMenuSmallStickyPage}
+      />
+      <Route
+        path="/visual-tests/page"
+        exact={true}
+        component={VisualTestPagePage}
       />
       <Route
         path="/visual-tests/popover"

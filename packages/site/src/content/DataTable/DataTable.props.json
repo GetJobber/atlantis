@@ -146,7 +146,21 @@
     "description": "",
     "displayName": "DataTable.Table",
     "methods": [],
-    "props": {}
+    "props": {
+      "layout": {
+        "defaultValue": null,
+        "description": "Controls the table layout.\n- `auto` (default): Columns size to content.\n- `fixed`: Column widths can be set explicitly; columns without widths share remaining space.",
+        "name": "layout",
+        "parent": {
+          "fileName": "packages/components/src/DataTable/components/DataTableTable.tsx",
+          "name": "DataTableTableProps"
+        },
+        "required": false,
+        "type": {
+          "name": "\"auto\" | \"fixed\""
+        }
+      }
+    }
   },
   {
     "tags": {},

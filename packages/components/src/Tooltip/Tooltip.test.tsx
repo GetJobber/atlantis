@@ -95,7 +95,7 @@ it("should disappear on blur", async () => {
   });
 });
 
-it("should have aria-description and tabindex", () => {
+it("should have aria-labelledby and tabindex", () => {
   const message = "Screen readers read me out loud!";
   const content = "Browsers focus on me";
   const contentID = "focus-on-me";
@@ -106,7 +106,7 @@ it("should have aria-description and tabindex", () => {
     </Tooltip>,
   );
 
-  expect(getByTestId(contentID)).toHaveAttribute("aria-description", message);
+  expect(getByTestId(contentID)).toHaveAttribute("aria-labelledby");
   expect(getByTestId(contentID)).toHaveAttribute("tabindex", "0");
 });
 

@@ -37,6 +37,18 @@ it("displays an icon if no image and no initials are set", () => {
 it("Renders light text color if `color` is dark", () => {
   const { container } = render(<Avatar initials="JB" color="black" />);
   expect(container.firstChild).toHaveClass("isDark");
+  expect(container.firstChild).toHaveClass("hasCustomColor");
+});
+
+it("Renders dark text color if `color` is light", () => {
+  const { container } = render(<Avatar initials="JB" color="yellow" />);
+  expect(container.firstChild).not.toHaveClass("isDark");
+  expect(container.firstChild).toHaveClass("hasCustomColor");
+});
+
+it("does not apply hasCustomColor when color prop is omitted", () => {
+  const { container } = render(<Avatar initials="JB" />);
+  expect(container.firstChild).not.toHaveClass("hasCustomColor");
 });
 
 describe("UNSAFE props", () => {
