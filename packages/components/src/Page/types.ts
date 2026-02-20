@@ -98,7 +98,10 @@ export interface PageHeaderProps {
 
 export interface PageTitleProps {
   readonly children: ReactNode;
-  readonly metadata?: ReactNode;
+}
+
+export interface PageTitleMetaDataProps {
+  readonly children: ReactNode;
 }
 
 export interface PageSubtitleProps {
@@ -107,20 +110,18 @@ export interface PageSubtitleProps {
 
 export interface PageIntroProps {
   readonly children: ReactNode;
-  readonly externalLinks?: boolean;
 }
 
 export interface PageActionsProps {
   readonly children: ReactNode;
 }
 
-export interface PageActionWithChildren {
+export interface PageSlotProps {
   readonly children: ReactNode;
   readonly ref?: RefObject<HTMLDivElement | null>;
 }
 
-export interface PageActionWithDefaults {
-  readonly children?: never;
+export interface PageActionButtonProps {
   readonly ref?: RefObject<HTMLDivElement | null>;
   readonly label: string;
   readonly onClick?: () => void;
@@ -128,14 +129,6 @@ export interface PageActionWithDefaults {
   readonly disabled?: boolean;
   readonly loading?: boolean;
   readonly ariaLabel?: string;
-}
-
-export type PageActionProps = PageActionWithChildren | PageActionWithDefaults;
-
-export function hasCustomChildren(
-  props: PageActionProps,
-): props is PageActionWithChildren {
-  return "children" in props && props.children != null;
 }
 
 export interface PageMenuProps {

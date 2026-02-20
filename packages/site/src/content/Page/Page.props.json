@@ -138,29 +138,23 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Renders the page heading (H1). Accepts optional `metadata` displayed alongside (e.g. status badges).",
+    "description": "Renders the page heading (H1). Extracts Page.TitleMetaData from children for layout.",
     "displayName": "Page.Title",
     "methods": [],
-    "props": {
-      "metadata": {
-        "defaultValue": null,
-        "description": "",
-        "name": "metadata",
-        "parent": {
-          "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageTitleProps"
-        },
-        "required": false,
-        "type": {
-          "name": "ReactNode"
-        }
-      }
-    }
+    "props": {}
   },
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Secondary text below the title. Strings get default Text/Emphasis/Markdown treatment; ReactNodes render as-is.",
+    "description": "Metadata displayed alongside the page title (e.g. status badges). Use inside Page.Title.",
+    "displayName": "Page.TitleMetaData",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Secondary text below the title. Always applies default Text/Emphasis styling.",
     "displayName": "Page.Subtitle",
     "methods": [],
     "props": {}
@@ -168,26 +162,10 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Introduction text between the header and body. Strings get Text/Markdown treatment; ReactNodes render as-is.",
+    "description": "Introduction text between the header and body. Always applies default Text styling.",
     "displayName": "Page.Intro",
     "methods": [],
-    "props": {
-      "externalLinks": {
-        "defaultValue": {
-          "value": false
-        },
-        "description": "",
-        "name": "externalLinks",
-        "parent": {
-          "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageIntroProps"
-        },
-        "required": false,
-        "type": {
-          "name": "boolean"
-        }
-      }
-    }
+    "props": {}
   },
   {
     "tags": {},
@@ -200,7 +178,73 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Primary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element.",
+    "description": "Positional slot for the primary action. Renders children in the primary action position.",
+    "displayName": "Page.PrimarySlot",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageSlotProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Positional slot for the secondary action. Renders children in the secondary action position.",
+    "displayName": "Page.SecondarySlot",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageSlotProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Positional slot for the tertiary action (typically the menu).",
+    "displayName": "Page.TertiarySlot",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageSlotProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Primary action button with default styling. Use inside Page.PrimarySlot or Page.Actions.",
     "displayName": "Page.PrimaryAction",
     "methods": [],
     "props": {
@@ -210,7 +254,7 @@
         "name": "ref",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithChildren"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -223,7 +267,7 @@
         "name": "label",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": true,
         "type": {
@@ -236,7 +280,7 @@
         "name": "onClick",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -249,7 +293,7 @@
         "name": "icon",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -262,7 +306,7 @@
         "name": "disabled",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -275,7 +319,7 @@
         "name": "loading",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -288,7 +332,7 @@
         "name": "ariaLabel",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -300,7 +344,7 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Secondary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element.",
+    "description": "Secondary action button with default styling. Use inside Page.SecondarySlot or Page.Actions.",
     "displayName": "Page.SecondaryAction",
     "methods": [],
     "props": {
@@ -310,7 +354,7 @@
         "name": "ref",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithChildren"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -323,7 +367,7 @@
         "name": "label",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": true,
         "type": {
@@ -336,7 +380,7 @@
         "name": "onClick",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -349,7 +393,7 @@
         "name": "icon",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -362,7 +406,7 @@
         "name": "disabled",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -375,7 +419,7 @@
         "name": "loading",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {
@@ -388,7 +432,7 @@
         "name": "ariaLabel",
         "parent": {
           "fileName": "packages/components/src/Page/types.ts",
-          "name": "PageActionWithDefaults"
+          "name": "PageActionButtonProps"
         },
         "required": false,
         "type": {

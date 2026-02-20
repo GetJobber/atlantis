@@ -5,7 +5,7 @@ import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.module.css";
 import type {
   ButtonActionProps,
-  PageActionProps,
+  PageActionButtonProps,
   PageActionsProps,
   PageBodyProps,
   PageComposableProps,
@@ -14,10 +14,11 @@ import type {
   PageLegacyProps,
   PageMenuProps,
   PageProps,
+  PageSlotProps,
   PageSubtitleProps,
+  PageTitleMetaDataProps,
   PageTitleProps,
 } from "./types";
-import { hasCustomChildren } from "./types";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
@@ -182,64 +183,53 @@ function PageHeader({ children, ...rest }: PageHeaderProps) {
   );
 }
 
-/** Renders the page heading (H1). Accepts optional `metadata` displayed alongside (e.g. status badges). */
-function PageTitle({ children, metadata, ...rest }: PageTitleProps) {
+/** Renders the page heading (H1). Extracts Page.TitleMetaData from children for layout. */
+function PageTitle({ children, ...rest }: PageTitleProps) {
   const dataAttrs = filterDataAttributes(rest);
+  let metaDataElement: ReactNode = null;
+  const otherChildren: ReactNode[] = [];
 
-  if (metadata) {
+  Children.forEach(children, child => {
+    if (isValidElement(child) && child.type === PageTitleMetaData) {
+      metaDataElement = child;
+    } else {
+      otherChildren.push(child);
+    }
+  });
+
+  if (metaDataElement) {
     return (
       <div className={styles.titleRow} {...dataAttrs}>
-        <Heading level={1}>{children}</Heading>
-        {metadata}
+        <Heading level={1}>{otherChildren}</Heading>
+        {metaDataElement}
       </div>
     );
   }
 
-  return (
-    <div {...dataAttrs}>
-      <Heading level={1}>{children}</Heading>
-    </div>
-  );
+  return <Heading level={1}>{otherChildren}</Heading>;
 }
 
-/** Secondary text below the title. Strings get default Text/Emphasis/Markdown treatment; ReactNodes render as-is. */
+/** Metadata displayed alongside the page title (e.g. status badges). Use inside Page.Title. */
+function PageTitleMetaData({ children }: PageTitleMetaDataProps) {
+  return <>{children}</>;
+}
+
+/** Secondary text below the title. Always applies default Text/Emphasis styling. */
 function PageSubtitle({ children, ...rest }: PageSubtitleProps) {
   const dataAttrs = filterDataAttributes(rest);
 
-  if (typeof children === "string") {
-    return (
-      <div className={styles.subtitle} {...dataAttrs}>
-        <Text size="large" variation="subdued">
-          <Emphasis variation="bold">
-            <Markdown content={children} basicUsage={true} />
-          </Emphasis>
-        </Text>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.subtitle} {...dataAttrs}>
-      {children}
+      <Text size="large" variation="subdued">
+        <Emphasis variation="bold">{children}</Emphasis>
+      </Text>
     </div>
   );
 }
 
-/** Introduction text between the header and body. Strings get Text/Markdown treatment; ReactNodes render as-is. */
-function PageIntro({ children, externalLinks = false }: PageIntroProps) {
-  if (typeof children === "string") {
-    return (
-      <Text size="large">
-        <Markdown
-          content={children}
-          basicUsage={true}
-          externalLink={externalLinks}
-        />
-      </Text>
-    );
-  }
-
-  return <>{children}</>;
+/** Introduction text between the header and body. Always applies default Text styling. */
+function PageIntro({ children }: PageIntroProps) {
+  return <Text size="large">{children}</Text>;
 }
 
 /** Container for action buttons and menu. Applies responsive actionGroup layout. */
@@ -253,23 +243,48 @@ function PageActions({ children, ...rest }: PageActionsProps) {
   );
 }
 
-/** Primary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element. */
-function PagePrimaryAction(props: PageActionProps) {
-  const { ref, ...rest } = props;
+/** Positional slot for the primary action. Renders children in the primary action position. */
+function PagePrimarySlot({ children, ref }: PageSlotProps) {
+  return (
+    <div className={styles.primaryAction} ref={ref}>
+      {children}
+    </div>
+  );
+}
+
+/** Positional slot for the secondary action. Renders children in the secondary action position. */
+function PageSecondarySlot({ children, ref }: PageSlotProps) {
+  return (
+    <div className={styles.actionButton} ref={ref}>
+      {children}
+    </div>
+  );
+}
+
+/** Positional slot for the tertiary action (typically the menu). */
+function PageTertiarySlot({ children, ref }: PageSlotProps) {
+  return (
+    <div className={styles.actionButton} ref={ref}>
+      {children}
+    </div>
+  );
+}
+
+/** Primary action button with default styling. Use inside Page.PrimarySlot or Page.Actions. */
+function PagePrimaryAction({
+  ref,
+  label,
+  onClick,
+  icon,
+  disabled,
+  loading,
+  ariaLabel,
+  ...rest
+}: PageActionButtonProps) {
   const dataAttrs = filterDataAttributes(rest);
 
-  if (hasCustomChildren(props)) {
-    return (
-      <div className={styles.primaryAction} ref={ref} {...dataAttrs}>
-        {props.children}
-      </div>
-    );
-  }
-
-  const { label, onClick, icon, disabled, loading, ariaLabel } = props;
-
   return (
-    <div className={styles.primaryAction} ref={ref} {...dataAttrs}>
+    <div ref={ref} {...dataAttrs}>
       <Button
         label={label}
         onClick={onClick}
@@ -283,23 +298,21 @@ function PagePrimaryAction(props: PageActionProps) {
   );
 }
 
-/** Secondary action button. Pass `label`/`onClick` for defaults, or `children` for a custom element. */
-function PageSecondaryAction(props: PageActionProps) {
-  const { ref, ...rest } = props;
+/** Secondary action button with default styling. Use inside Page.SecondarySlot or Page.Actions. */
+function PageSecondaryAction({
+  ref,
+  label,
+  onClick,
+  icon,
+  disabled,
+  loading,
+  ariaLabel,
+  ...rest
+}: PageActionButtonProps) {
   const dataAttrs = filterDataAttributes(rest);
 
-  if (hasCustomChildren(props)) {
-    return (
-      <div className={styles.actionButton} ref={ref} {...dataAttrs}>
-        {props.children}
-      </div>
-    );
-  }
-
-  const { label, onClick, icon, disabled, loading, ariaLabel } = props;
-
   return (
-    <div className={styles.actionButton} ref={ref} {...dataAttrs}>
+    <div ref={ref} {...dataAttrs}>
       <Button
         label={label}
         onClick={onClick}
@@ -327,7 +340,7 @@ function PageMenu({
   const dataAttrs = filterDataAttributes(rest);
 
   return (
-    <div className={styles.actionButton} {...dataAttrs}>
+    <div {...dataAttrs}>
       <Menu>
         <Menu.Trigger>
           <Button icon="more" label={triggerLabel} type="secondary" />
@@ -356,9 +369,13 @@ export const getActionProps = (
 
 Page.Header = PageHeader;
 Page.Title = PageTitle;
+Page.TitleMetaData = PageTitleMetaData;
 Page.Subtitle = PageSubtitle;
 Page.Intro = PageIntro;
 Page.Actions = PageActions;
+Page.PrimarySlot = PagePrimarySlot;
+Page.SecondarySlot = PageSecondarySlot;
+Page.TertiarySlot = PageTertiarySlot;
 Page.PrimaryAction = PagePrimaryAction;
 Page.SecondaryAction = PageSecondaryAction;
 Page.Menu = PageMenu;

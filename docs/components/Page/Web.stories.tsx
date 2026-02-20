@@ -199,21 +199,30 @@ export const ComposableWithActions: StoryFn<PageComposableProps> = args => (
     <Page.Header>
       <Page.Title>Clients</Page.Title>
       <Page.Actions>
-        <Page.PrimaryAction
-          label="New Client"
-          onClick={() => alert("New Client")}
-        />
-        <Page.SecondaryAction label="Export" onClick={() => alert("Export")} />
-        <Page.Menu>
-          <Menu.Item textValue="Import" onClick={() => alert("Import")}>
-            <Menu.ItemIcon name="import" />
-            <Menu.ItemLabel>Import</Menu.ItemLabel>
-          </Menu.Item>
-          <Menu.Item textValue="Archive" onClick={() => alert("Archive")}>
-            <Menu.ItemIcon name="archive" />
-            <Menu.ItemLabel>Archive</Menu.ItemLabel>
-          </Menu.Item>
-        </Page.Menu>
+        <Page.PrimarySlot>
+          <Page.PrimaryAction
+            label="New Client"
+            onClick={() => alert("New Client")}
+          />
+        </Page.PrimarySlot>
+        <Page.SecondarySlot>
+          <Page.SecondaryAction
+            label="Export"
+            onClick={() => alert("Export")}
+          />
+        </Page.SecondarySlot>
+        <Page.TertiarySlot>
+          <Page.Menu>
+            <Menu.Item textValue="Import" onClick={() => alert("Import")}>
+              <Menu.ItemIcon name="import" />
+              <Menu.ItemLabel>Import</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Item textValue="Archive" onClick={() => alert("Archive")}>
+              <Menu.ItemIcon name="archive" />
+              <Menu.ItemLabel>Archive</Menu.ItemLabel>
+            </Menu.Item>
+          </Page.Menu>
+        </Page.TertiarySlot>
       </Page.Actions>
     </Page.Header>
     <Page.Body>
@@ -233,11 +242,10 @@ export const ComposableWithSubtitleAndIntro: StoryFn<
       <Page.Title>Notifications</Page.Title>
       <Page.Subtitle>Notify me of all the work</Page.Subtitle>
     </Page.Header>
-    <Page.Intro externalLinks={true}>
+    <Page.Intro>
       Improve job completion rates, stop chasing payments, and boost your
       customer service by automatically communicating with your clients at key
-      points before, during, and after a job. Read more about Notifications by
-      visiting our [Help Center](https://help.getjobber.com/hc/en-us).
+      points before, during, and after a job.
     </Page.Intro>
     <Page.Body>
       <Text>Page content here</Text>
@@ -248,38 +256,43 @@ export const ComposableWithSubtitleAndIntro: StoryFn<
 export const ComposableWithAllPieces: StoryFn<PageComposableProps> = args => (
   <Page {...args}>
     <Page.Header>
-      <Page.Title
-        metadata={
-          <StatusLabel label="In Progress" alignment="start" status="warning" />
-        }
-      >
+      <Page.Title>
         Kitchen Renovation Project
+        <Page.TitleMetaData>
+          <StatusLabel label="In Progress" alignment="start" status="warning" />
+        </Page.TitleMetaData>
       </Page.Title>
       <Page.Subtitle>Everything but the Kitchen Sink</Page.Subtitle>
       <Page.Actions>
-        <Page.PrimaryAction
-          label="Create Invoice"
-          icon="add"
-          onClick={() => alert("Create")}
-        />
-        <Page.SecondaryAction
-          label="Send Quote"
-          onClick={() => alert("Send")}
-        />
-        <Page.Menu>
-          <Menu.Item textValue="Edit" onClick={() => alert("Edit")}>
-            <Menu.ItemIcon name="edit" />
-            <Menu.ItemLabel>Edit</Menu.ItemLabel>
-          </Menu.Item>
-          <Menu.Item
-            textValue="Delete"
-            variation="destructive"
-            onClick={() => alert("Delete")}
-          >
-            <Menu.ItemIcon name="trash" />
-            <Menu.ItemLabel>Delete</Menu.ItemLabel>
-          </Menu.Item>
-        </Page.Menu>
+        <Page.PrimarySlot>
+          <Page.PrimaryAction
+            label="Create Invoice"
+            icon="add"
+            onClick={() => alert("Create")}
+          />
+        </Page.PrimarySlot>
+        <Page.SecondarySlot>
+          <Page.SecondaryAction
+            label="Send Quote"
+            onClick={() => alert("Send")}
+          />
+        </Page.SecondarySlot>
+        <Page.TertiarySlot>
+          <Page.Menu>
+            <Menu.Item textValue="Edit" onClick={() => alert("Edit")}>
+              <Menu.ItemIcon name="edit" />
+              <Menu.ItemLabel>Edit</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Item
+              textValue="Delete"
+              variation="destructive"
+              onClick={() => alert("Delete")}
+            >
+              <Menu.ItemIcon name="trash" />
+              <Menu.ItemLabel>Delete</Menu.ItemLabel>
+            </Menu.Item>
+          </Page.Menu>
+        </Page.TertiarySlot>
       </Page.Actions>
     </Page.Header>
     <Page.Body>
@@ -299,28 +312,28 @@ export const ComposableCustomSlot: StoryFn<PageComposableProps> = args => (
     <Page.Header>
       <Page.Title>Custom Action Elements</Page.Title>
       <Page.Actions>
-        <Page.PrimaryAction>
+        <Page.PrimarySlot>
           <Button
             label="Custom Primary"
             icon="add"
             onClick={() => alert("Custom primary")}
             fullWidth
           />
-        </Page.PrimaryAction>
-        <Page.SecondaryAction>
+        </Page.PrimarySlot>
+        <Page.SecondarySlot>
           <Button
             label="Custom Secondary"
             type="secondary"
             onClick={() => alert("Custom secondary")}
             fullWidth
           />
-        </Page.SecondaryAction>
+        </Page.SecondarySlot>
       </Page.Actions>
     </Page.Header>
     <Page.Body>
       <Text>
-        This example uses custom Button elements via the children slot instead
-        of the default label/onClick props.
+        This example uses custom Button elements via the slots instead of the
+        default Page.PrimaryAction/Page.SecondaryAction components.
       </Text>
     </Page.Body>
   </Page>

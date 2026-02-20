@@ -1,7 +1,10 @@
 export { Page } from "./Page";
 export type {
   ButtonActionProps,
-  PageLegacyProps,
+  PageActionButtonProps,
   PageComposableProps,
+  PageLegacyProps,
+  PageMenuProps,
   PageProps,
+  PageSlotProps,
 } from "./types";
