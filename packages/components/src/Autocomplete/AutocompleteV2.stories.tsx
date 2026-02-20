@@ -110,6 +110,16 @@ const sectionedMenu = defineMenu<OptionLike>([
   },
 ]);
 
+const sectionedWithHeaderFooterMenu = defineMenu<OptionLike>([
+  { type: "section", label: "Indoor", options: simpleOptions },
+  { type: "section", label: "Outdoor", options: simpleOptionsSecondSection },
+  {
+    type: "footer",
+    label: "Pinned footer",
+    onClick: () => console.log("Footer clicked"),
+  },
+]);
+
 const TemplateFlat = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
@@ -850,6 +860,12 @@ const TemplateMultiple = () => {
   const [value, setValue] = useState<OptionLike[]>([]);
   const [inputValue, setInputValue] = useState("");
 
+  const [otherValue, setOtherValue] = useState<OptionLike[]>([]);
+  const [otherInputValue, setOtherInputValue] = useState("");
+
+  const [headerFooterValue, setHeaderFooterValue] = useState<OptionLike[]>([]);
+  const [headerFooterInputValue, setHeaderFooterInputValue] = useState("");
+
   return (
     <Content>
       <Heading level={4}>Multiple</Heading>
@@ -866,6 +882,7 @@ const TemplateMultiple = () => {
         inputValue={inputValue}
         onInputChange={setInputValue}
       />
+
       <Heading level={4}>With customRenderValue</Heading>
       <Autocomplete
         version={2}
@@ -879,6 +896,9 @@ const TemplateMultiple = () => {
         ])}
         inputValue={inputValue}
         onInputChange={setInputValue}
+        suffix={{
+          icon: "arrowDown",
+        }}
         customRenderValue={({
           value: selectedValue,
           getOptionLabel,
@@ -897,6 +917,32 @@ const TemplateMultiple = () => {
             ))}
           </div>
         )}
+      />
+
+      <Heading level={4}>Sectioned</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={otherValue}
+        onChange={setOtherValue}
+        multiple
+        inputValue={otherInputValue}
+        onInputChange={setOtherInputValue}
+        menu={sectionedMenu}
+      />
+
+      <Heading level={4}>Header and footer</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={headerFooterValue}
+        onChange={setHeaderFooterValue}
+        multiple
+        inputValue={headerFooterInputValue}
+        onInputChange={setHeaderFooterInputValue}
+        menu={sectionedWithHeaderFooterMenu}
       />
     </Content>
   );
