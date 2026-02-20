@@ -1,10 +1,12 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { StatusLabel } from "@jobber/components/StatusLabel";
 import { Page } from ".";
 import { getActionProps } from "./Page";
 import type { SectionProps } from "../Menu";
 import { Heading } from "../Heading";
+import { Menu } from "../Menu";
 
 jest.mock("@jobber/hooks", () => {
   return {
@@ -275,5 +277,225 @@ describe("when title is a React node", () => {
     );
 
     expect(screen.queryByText("Success")).not.toBeInTheDocument();
+  });
+});
+
+describe("Composable Page", () => {
+  it("renders a page with title and body content", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Composable Title</Page.Title>
+        </Page.Header>
+        <Page.Body>Body content</Page.Body>
+      </Page>,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Composable Title", level: 1 }),
+    ).toBeVisible();
+    expect(screen.getByText("Body content")).toBeVisible();
+  });
+
+  it("renders title with metadata as a sub-component", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>
+            Title With Badge
+            <Page.TitleMetaData>
+              <StatusLabel label="Active" status="success" />
+            </Page.TitleMetaData>
+          </Page.Title>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Title With Badge", level: 1 }),
+    ).toBeVisible();
+    expect(screen.getByText("Active")).toBeVisible();
+  });
+
+  it("renders subtitle with default styling for any children type", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Title</Page.Title>
+          <Page.Subtitle>A subtitle</Page.Subtitle>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("A subtitle")).toBeVisible();
+  });
+
+  it("renders subtitle with ReactNode children using default styling", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Title</Page.Title>
+          <Page.Subtitle>
+            <span>Translated subtitle</span>
+          </Page.Subtitle>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("Translated subtitle")).toBeVisible();
+  });
+
+  it("renders intro with default styling for any children type", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Title</Page.Title>
+        </Page.Header>
+        <Page.Intro>
+          <span>Translated intro</span>
+        </Page.Intro>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("Translated intro")).toBeVisible();
+  });
+
+  it("renders actions with slots and default buttons", async () => {
+    const handlePrimary = jest.fn();
+    const handleSecondary = jest.fn();
+
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Actions</Page.Title>
+          <Page.Actions>
+            <Page.PrimarySlot>
+              <Page.PrimaryAction label="Create" onClick={handlePrimary} />
+            </Page.PrimarySlot>
+            <Page.SecondarySlot>
+              <Page.SecondaryAction label="Cancel" onClick={handleSecondary} />
+            </Page.SecondarySlot>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("Create")).toBeVisible();
+    expect(screen.getByText("Cancel")).toBeVisible();
+
+    await userEvent.click(screen.getByText("Create"));
+    expect(handlePrimary).toHaveBeenCalledTimes(1);
+
+    await userEvent.click(screen.getByText("Cancel"));
+    expect(handleSecondary).toHaveBeenCalledTimes(1);
+  });
+
+  it("allows custom children in slots", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Slot Test</Page.Title>
+          <Page.Actions>
+            <Page.PrimarySlot>
+              <button type="button">My Custom Button</button>
+            </Page.PrimarySlot>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("My Custom Button")).toBeVisible();
+  });
+
+  it("renders Page.Menu inside TertiarySlot", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Menu Test</Page.Title>
+          <Page.Actions>
+            <Page.TertiarySlot>
+              <Page.Menu>
+                <Menu.Item textValue="Export" onClick={jest.fn()}>
+                  <Menu.ItemLabel>Export</Menu.ItemLabel>
+                </Menu.Item>
+              </Page.Menu>
+            </Page.TertiarySlot>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("More Actions")).toBeVisible();
+  });
+
+  it("renders Page.Menu with custom trigger label", () => {
+    render(
+      <Page>
+        <Page.Header>
+          <Page.Title>Menu Test</Page.Title>
+          <Page.Actions>
+            <Page.TertiarySlot>
+              <Page.Menu triggerLabel="Options">
+                <Menu.Item textValue="Settings" onClick={jest.fn()}>
+                  <Menu.ItemLabel>Settings</Menu.ItemLabel>
+                </Menu.Item>
+              </Page.Menu>
+            </Page.TertiarySlot>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Content</Page.Body>
+      </Page>,
+    );
+
+    expect(screen.getByText("Options")).toBeVisible();
+  });
+
+  it("renders a complete page with all composable pieces", () => {
+    render(
+      <Page width="fill">
+        <Page.Header>
+          <Page.Title>
+            Full Example
+            <Page.TitleMetaData>
+              <StatusLabel label="Draft" status="warning" />
+            </Page.TitleMetaData>
+          </Page.Title>
+          <Page.Subtitle>A subtitle here</Page.Subtitle>
+          <Page.Actions>
+            <Page.PrimarySlot>
+              <Page.PrimaryAction label="Create" onClick={jest.fn()} />
+            </Page.PrimarySlot>
+            <Page.SecondarySlot>
+              <Page.SecondaryAction label="Export" onClick={jest.fn()} />
+            </Page.SecondarySlot>
+            <Page.TertiarySlot>
+              <Page.Menu>
+                <Menu.Item textValue="Import" onClick={jest.fn()}>
+                  <Menu.ItemLabel>Import</Menu.ItemLabel>
+                </Menu.Item>
+              </Page.Menu>
+            </Page.TertiarySlot>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>Main content</Page.Body>
+      </Page>,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: "Full Example", level: 1 }),
+    ).toBeVisible();
+    expect(screen.getByText("Draft")).toBeVisible();
+    expect(screen.getByText("A subtitle here")).toBeVisible();
+    expect(screen.getByText("Create")).toBeVisible();
+    expect(screen.getByText("Export")).toBeVisible();
+    expect(screen.getByText("More Actions")).toBeVisible();
+    expect(screen.getByText("Main content")).toBeVisible();
   });
 });

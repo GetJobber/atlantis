@@ -4,7 +4,9 @@ import {
   Glimmer,
   Heading,
   Icon,
+  Menu,
   Page,
+  StatusLabel,
   Text,
 } from "@jobber/components";
 
@@ -335,6 +337,119 @@ export const VisualTestPagePage = () => {
           </Text>
         </Content>
       </Page>
+      <Box padding="largest" />
+
+      {/* Composable: Basic */}
+      <Page>
+        <Page.Header>
+          <Page.Title>Composable - Basic</Page.Title>
+        </Page.Header>
+        <Page.Body>
+          <Text>Composable page with just a title and body content.</Text>
+        </Page.Body>
+      </Page>
+
+      <Box padding="largest" />
+
+      {/* Composable: With Actions and Menu */}
+      <Page width="fill">
+        <Page.Header>
+          <Page.Title>Composable - With Actions</Page.Title>
+          <Page.Actions>
+            <Page.PrimarySlot>
+              <Page.PrimaryAction label="New Client" onClick={() => null} />
+            </Page.PrimarySlot>
+            <Page.SecondarySlot>
+              <Page.SecondaryAction label="Export" onClick={() => null} />
+            </Page.SecondarySlot>
+            <Page.TertiarySlot>
+              <Page.Menu>
+                <Menu.Item textValue="Import" onClick={() => null}>
+                  <Menu.ItemIcon name="import" />
+                  <Menu.ItemLabel>Import</Menu.ItemLabel>
+                </Menu.Item>
+                <Menu.Item textValue="Archive" onClick={() => null}>
+                  <Menu.ItemIcon name="archive" />
+                  <Menu.ItemLabel>Archive</Menu.ItemLabel>
+                </Menu.Item>
+              </Page.Menu>
+            </Page.TertiarySlot>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>
+          <Text>
+            Composable page with primary action, secondary action, and a menu.
+          </Text>
+        </Page.Body>
+      </Page>
+
+      <Box padding="largest" />
+
+      {/* Composable: Subtitle and Intro */}
+      <Page>
+        <Page.Header>
+          <Page.Title>Composable - Subtitle and Intro</Page.Title>
+          <Page.Subtitle>A subtitle with **markdown** support</Page.Subtitle>
+        </Page.Header>
+        <Page.Intro>
+          This is an intro section that always applies the default Text styling.
+        </Page.Intro>
+        <Page.Body>
+          <Text>
+            Composable page with subtitle and intro text between header and
+            body.
+          </Text>
+        </Page.Body>
+      </Page>
+
+      <Box padding="largest" />
+
+      {/* Composable: All Pieces */}
+      <Page width="standard">
+        <Page.Header>
+          <Page.Title>
+            Composable - All Pieces
+            <Page.TitleMetaData>
+              <StatusLabel
+                label="In Progress"
+                alignment="start"
+                status="warning"
+              />
+            </Page.TitleMetaData>
+          </Page.Title>
+          <Page.Subtitle>A subtitle with default styling</Page.Subtitle>
+          <Page.Actions>
+            <Page.PrimarySlot>
+              <Page.PrimaryAction
+                label="Create"
+                icon="add"
+                onClick={() => null}
+              />
+            </Page.PrimarySlot>
+            <Page.SecondarySlot>
+              <Page.SecondaryAction label="Export" onClick={() => null} />
+            </Page.SecondarySlot>
+            <Page.TertiarySlot>
+              <Page.Menu>
+                <Menu.Item textValue="Import" onClick={() => null}>
+                  <Menu.ItemIcon name="import" />
+                  <Menu.ItemLabel>Import</Menu.ItemLabel>
+                </Menu.Item>
+                <Menu.Item textValue="Settings" onClick={() => null}>
+                  <Menu.ItemIcon name="cog" />
+                  <Menu.ItemLabel>Settings</Menu.ItemLabel>
+                </Menu.Item>
+              </Page.Menu>
+            </Page.TertiarySlot>
+          </Page.Actions>
+        </Page.Header>
+        <Page.Body>
+          <Text>
+            Composable page showing all available sub-components together.
+          </Text>
+        </Page.Body>
+      </Page>
+
       <Box padding="largest" />
     </Box>
   );

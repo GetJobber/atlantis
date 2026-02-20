@@ -1,0 +1,242 @@
+## Composable Version (Web Only)
+
+Page may be invoked with a subcomponent structure enabling a declarative style,
+greater customization, and composability with other components. This is
+particularly useful when you need real links in the "More Actions" menu (e.g.
+for client-side router integration) or custom action elements.
+
+```
+<Page width="fill">
+  <Page.Header>
+    <Page.Title>
+      Clients
+      <Page.TitleMetaData>
+        <StatusLabel label="Draft" status="warning" />
+      </Page.TitleMetaData>
+    </Page.Title>
+    <Page.Subtitle>Manage your client list</Page.Subtitle>
+    <Page.Actions>
+      <Page.PrimarySlot>
+        <Page.PrimaryAction label="New Client" onClick={handleCreate} />
+      </Page.PrimarySlot>
+      <Page.SecondarySlot>
+        <Page.SecondaryAction label="Export" onClick={handleExport} />
+      </Page.SecondarySlot>
+      <Page.TertiarySlot>
+        <Page.Menu>
+          <Menu.Item textValue="Import" onClick={handleImport}>
+            <Menu.ItemIcon name="import" />
+            <Menu.ItemLabel>Import</Menu.ItemLabel>
+          </Menu.Item>
+        </Page.Menu>
+      </Page.TertiarySlot>
+    </Page.Actions>
+  </Page.Header>
+  <Page.Body>
+    Page content here
+  </Page.Body>
+</Page>
+```
+
+#### Sub Components
+
+**_Page.Header (Required)_**
+
+Groups the title area and actions into the page header. Automatically positions
+`Page.Actions` alongside the title content using the responsive titlebar layout.
+
+**_Page.Title (Required)_**
+
+Renders the page heading as an H1. Can contain `Page.TitleMetaData` as a child
+for elements displayed alongside the title.
+
+**_Page.TitleMetaData (Optional)_**
+
+Metadata displayed alongside the page title, such as status badges. Use inside
+`Page.Title`.
+
+```
+<Page.Title>
+  My Page Title
+  <Page.TitleMetaData>
+    <StatusLabel label="Active" status="success" />
+  </Page.TitleMetaData>
+</Page.Title>
+```
+
+**_Page.Subtitle (Optional)_**
+
+Secondary text below the title. Always applies the default Text/Emphasis
+styling. Works with any children type including translation components like
+`<Trans>`.
+
+For markdown formatting, provide `<Markdown>` explicitly:
+
+```
+<Page.Subtitle>
+  <Markdown content="Everything but the **Kitchen Sink**" basicUsage />
+</Page.Subtitle>
+```
+
+**_Page.Intro (Optional)_**
+
+Introduction text between the header and body. Always applies the default Text
+styling. Works with any children type including translation components.
+
+For markdown formatting with links, provide `<Markdown>` explicitly:
+
+```
+<Page.Intro>
+  <Markdown
+    content="Read more at our [Help Center](https://help.getjobber.com)."
+    basicUsage
+    externalLink
+  />
+</Page.Intro>
+```
+
+**_Page.Actions (Optional)_**
+
+Container for the action slots and menu. Applies the responsive action group
+layout that stacks on small viewports and inlines on larger ones.
+
+**_Page.PrimarySlot / Page.SecondarySlot / Page.TertiarySlot (Optional)_**
+
+Positional slots that control where action elements appear. Use these to wrap
+either the default action buttons or fully custom elements.
+
+```
+{/* Default button via slot */}
+<Page.PrimarySlot>
+  <Page.PrimaryAction label="Create" onClick={handleCreate} />
+</Page.PrimarySlot>
+
+{/* Custom element via slot */}
+<Page.PrimarySlot>
+  <MyCustomButton />
+</Page.PrimarySlot>
+```
+
+**_Page.PrimaryAction / Page.SecondaryAction (Optional)_**
+
+Default action buttons with opinionated styling (`fullWidth`, primary or
+secondary type). Use inside their respective slots.
+
+**_Page.Menu (Optional)_**
+
+The "More Actions" menu. Provides the default trigger button (kebab icon +
+label) so consumers only need to supply `Menu.Item` children. Use inside
+`Page.TertiarySlot`.
+
+This is the primary integration point for client-side routers. For example, if
+you are using TanStack Router in the consumer app, you can wrap `Menu.Item` with
+TanStack Router's `createLink()` to get right-click and ctrl-click support on
+menu links:
+
+```
+// Create once in the consumer app
+const TSRMenuItem = createLink(Menu.Item);
+
+// Use inside Page.Menu
+<Page.TertiarySlot>
+  <Page.Menu>
+    <TSRMenuItem to="/clients/export" textValue="Export">
+      <Menu.ItemIcon name="export" />
+      <Menu.ItemLabel>Export</Menu.ItemLabel>
+    </TSRMenuItem>
+  </Page.Menu>
+</Page.TertiarySlot>
+```
+
+The trigger label defaults to "More Actions" and can be customized via the
+`triggerLabel` prop.
+
+**_Page.Body (Required)_**
+
+Main content area of the page. Wraps children in a `Content` component.
+
+## Migrating from Props-based to Composable
+
+The props-based API remains fully supported. You only need to migrate if you
+need composable actions (e.g. for client-side router links in the menu).
+
+| Props-based                            | Composable                                                                                          |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `title="Clients"`                      | `<Page.Title>Clients</Page.Title>`                                                                  |
+| `titleMetaData={<Badge />}`            | `<Page.TitleMetaData><Badge /></Page.TitleMetaData>` inside `Page.Title`                            |
+| `subtitle="Text"`                      | `<Page.Subtitle>Text</Page.Subtitle>`                                                               |
+| `intro="Markdown **text**"`            | `<Page.Intro><Markdown content="Markdown **text**" basicUsage /></Page.Intro>`                      |
+| `externalIntroLinks={true}`            | Pass `externalLink` to `<Markdown>` directly                                                        |
+| `primaryAction={{ label, onClick }}`   | `<Page.PrimarySlot><Page.PrimaryAction label={label} onClick={onClick} /></Page.PrimarySlot>`       |
+| `secondaryAction={{ label, onClick }}` | `<Page.SecondarySlot><Page.SecondaryAction label={label} onClick={onClick} /></Page.SecondarySlot>` |
+| `moreActionsMenu={[...]}`              | `<Page.TertiarySlot><Page.Menu>...</Page.Menu></Page.TertiarySlot>`                                 |
+
+### Example migration
+
+Before:
+
+```
+<Page
+  title="Clients"
+  subtitle="Manage your client list"
+  primaryAction={{ label: "New Client", onClick: handleCreate }}
+  moreActionsMenu={[
+    { actions: [{ label: "Import", icon: "import", onClick: handleImport }] },
+  ]}
+  width="fill"
+>
+  <Content>Page content here</Content>
+</Page>
+```
+
+After:
+
+```
+<Page width="fill">
+  <Page.Header>
+    <Page.Title>Clients</Page.Title>
+    <Page.Subtitle>Manage your client list</Page.Subtitle>
+    <Page.Actions>
+      <Page.PrimarySlot>
+        <Page.PrimaryAction label="New Client" onClick={handleCreate} />
+      </Page.PrimarySlot>
+      <Page.TertiarySlot>
+        <Page.Menu>
+          <Menu.Item textValue="Import" onClick={handleImport}>
+            <Menu.ItemIcon name="import" />
+            <Menu.ItemLabel>Import</Menu.ItemLabel>
+          </Menu.Item>
+        </Page.Menu>
+      </Page.TertiarySlot>
+    </Page.Actions>
+  </Page.Header>
+  <Page.Body>
+    Page content here
+  </Page.Body>
+</Page>
+```
+
+## Props-based Version
+
+The original props-based API remains fully supported. If you don't need
+composable actions, this is the simplest way to use Page:
+
+```
+<Page
+  title="Clients"
+  subtitle="Manage your client list"
+  primaryAction={{ label: "New Client", onClick: handleCreate }}
+  secondaryAction={{ label: "Export", onClick: handleExport }}
+  moreActionsMenu={[
+    {
+      actions: [
+        { label: "Import", icon: "import", onClick: handleImport },
+        { label: "Archive", icon: "archive", onClick: handleArchive },
+      ],
+    },
+  ]}
+  width="fill"
+>
+  <Content>Page content here</Content>
+</Page>
+```

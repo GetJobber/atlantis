@@ -11,7 +11,7 @@
         "description": "Content of the page. This supports basic markdown node types\nsuch as `_italic_`, `**bold**`, and `[link name](url)`.",
         "name": "intro",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
+          "fileName": "packages/components/src/Page/types.ts",
           "name": "PageWithIntroProps"
         },
         "required": false,
@@ -24,7 +24,7 @@
         "description": "Causes any markdown links in the `intro` prop to open in a new\ntab, i.e. with `target=\"_blank\"`.\n\nCan only be used if `intro` prop is also specified.\n\nDefaults to `false`.",
         "name": "externalIntroLinks",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
+          "fileName": "packages/components/src/Page/types.ts",
           "name": "PageWithIntroProps"
         },
         "required": false,
@@ -37,8 +37,8 @@
         "description": "Title of the page.\n\nSupports any React node. If a string is provided, it will be rendered as an H1 heading.\nOtherwise it will be rendered as is.\n\n**Important**: If you're passing a custom element, it must include an H1-level heading within it.\nIdeally <Heading level={1}> should be used here.",
         "name": "title",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageBaseProps"
         },
         "required": true,
         "type": {
@@ -50,8 +50,8 @@
         "description": "TitleMetaData component to be displayed\nnext to the title. Only compatible with string titles.",
         "name": "titleMetaData",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -63,8 +63,8 @@
         "description": "Subtitle of the page.",
         "name": "subtitle",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -78,8 +78,8 @@
         "description": "Determines the width of the page.\n\nFill makes the width grow to 100%.\n\nStandard caps out at 1280px.\n\nNarrow caps out at 1024px.",
         "name": "width",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -91,8 +91,8 @@
         "description": "Page title primary action button settings.",
         "name": "primaryAction",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -104,8 +104,8 @@
         "description": "Page title secondary action button settings.",
         "name": "secondaryAction",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -113,14 +113,12 @@
         }
       },
       "moreActionsMenu": {
-        "defaultValue": {
-          "value": "[]"
-        },
+        "defaultValue": null,
         "description": "Page title Action menu.",
         "name": "moreActionsMenu",
         "parent": {
-          "fileName": "../components/src/Page/Page.tsx",
-          "name": "PageFoundationProps"
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageBaseProps"
         },
         "required": false,
         "type": {
@@ -128,5 +126,351 @@
         }
       }
     }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Groups title, subtitle, and actions. Separates Page.Actions for layout positioning.",
+    "displayName": "Page.Header",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Renders the page heading (H1). Extracts Page.TitleMetaData from children for layout.",
+    "displayName": "Page.Title",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Metadata displayed alongside the page title (e.g. status badges). Use inside Page.Title.",
+    "displayName": "Page.TitleMetaData",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Secondary text below the title. Always applies default Text/Emphasis styling.",
+    "displayName": "Page.Subtitle",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Introduction text between the header and body. Always applies default Text styling.",
+    "displayName": "Page.Intro",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Container for action buttons and menu. Applies responsive actionGroup layout.",
+    "displayName": "Page.Actions",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Positional slot for the primary action. Renders children in the primary action position.",
+    "displayName": "Page.PrimarySlot",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageSlotProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Positional slot for the secondary action. Renders children in the secondary action position.",
+    "displayName": "Page.SecondarySlot",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageSlotProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Positional slot for the tertiary action (typically the menu).",
+    "displayName": "Page.TertiarySlot",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageSlotProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Primary action button with default styling. Use inside Page.PrimarySlot or Page.Actions.",
+    "displayName": "Page.PrimaryAction",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Secondary action button with default styling. Use inside Page.SecondarySlot or Page.Actions.",
+    "displayName": "Page.SecondaryAction",
+    "methods": [],
+    "props": {
+      "ref": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ref",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "RefObject<HTMLDivElement>"
+        }
+      },
+      "label": {
+        "defaultValue": null,
+        "description": "",
+        "name": "label",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": true,
+        "type": {
+          "name": "string"
+        }
+      },
+      "onClick": {
+        "defaultValue": null,
+        "description": "",
+        "name": "onClick",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
+      },
+      "icon": {
+        "defaultValue": null,
+        "description": "",
+        "name": "icon",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "IconNames"
+        }
+      },
+      "disabled": {
+        "defaultValue": null,
+        "description": "",
+        "name": "disabled",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "loading": {
+        "defaultValue": null,
+        "description": "",
+        "name": "loading",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
+      "ariaLabel": {
+        "defaultValue": null,
+        "description": "",
+        "name": "ariaLabel",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageActionButtonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "\"More Actions\" menu with a default trigger button.\nConsumers supply Menu.Item children (in case custom routing is needed,\ne.g. wrapping Menu.Item with createLink() from TanStack Router).",
+    "displayName": "Page.Menu",
+    "methods": [],
+    "props": {
+      "triggerLabel": {
+        "defaultValue": {
+          "value": "More Actions"
+        },
+        "description": "",
+        "name": "triggerLabel",
+        "parent": {
+          "fileName": "packages/components/src/Page/types.ts",
+          "name": "PageMenuProps"
+        },
+        "required": false,
+        "type": {
+          "name": "string"
+        }
+      }
+    }
+  },
+  {
+    "tags": {},
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Main content area of the page.",
+    "displayName": "Page.Body",
+    "methods": [],
+    "props": {}
   }
 ]

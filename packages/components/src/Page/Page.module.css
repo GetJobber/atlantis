@@ -99,3 +99,38 @@
 .titleBar .subtitle {
   margin-bottom: var(--space-base);
 }
+
+/* Composable Page API: responsive layout via CSS Container Queries */
+
+/* Base composable behavior (always active inside Container) */
+@container page-titlebar (min-width: 0) {
+  .titleBar > .actionGroup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+/* Composable: wider viewports — inline title + actions */
+@container page-titlebar (min-width: 500px) {
+  .titleBar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .titleBar > .actionGroup {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+
+  .titleBar .primaryAction,
+  .titleBar .actionButton {
+    margin: 0;
+    flex: 0 auto;
+  }
+
+  .titleBar .actionButton {
+    margin-left: var(--space-small);
+  }
+}

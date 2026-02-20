@@ -1,9 +1,16 @@
 import React, { useRef, useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 import { Heading, StatusLabel, Tooltip } from "@jobber/components";
-import { Page } from "@jobber/components/Page";
+import {
+  Page,
+  type PageComposableProps,
+  type PageLegacyProps,
+} from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
+import { Markdown } from "@jobber/components/Markdown";
 import { Text } from "@jobber/components/Text";
+import { Menu } from "@jobber/components/Menu";
+import { Button } from "@jobber/components/Button";
 import { Popover } from "@jobber/components/Popover";
 
 export default {
@@ -13,9 +20,9 @@ export default {
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
   },
-} as ComponentMeta<typeof Page>;
+} satisfies Meta<typeof Page>;
 
-const BasicTemplate: ComponentStory<typeof Page> = args => (
+const BasicTemplate: StoryFn<PageLegacyProps> = args => (
   <Page {...args}>
     <Content>
       <Text>Page content here</Text>
@@ -23,7 +30,7 @@ const BasicTemplate: ComponentStory<typeof Page> = args => (
   </Page>
 );
 
-const CustomTitleTemplate: ComponentStory<typeof Page> = args => {
+const CustomTitleTemplate: StoryFn<PageLegacyProps> = args => {
   const props = { ...args, titleMetaData: undefined };
 
   return (
@@ -42,7 +49,7 @@ const CustomTitleTemplate: ComponentStory<typeof Page> = args => {
   );
 };
 
-const PopoverTemplate: ComponentStory<typeof Page> = args => {
+const PopoverTemplate: StoryFn<PageLegacyProps> = args => {
   const primaryDivRef = useRef(null);
   const [showPrimaryPopover, setShowPrimaryPopover] = useState(false);
 
@@ -176,3 +183,183 @@ WithAdditionalTitleFields.parameters = {
     },
   },
 };
+
+export const ComposableBasic: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
+    <Page.Header>
+      <Page.Title>Notifications</Page.Title>
+    </Page.Header>
+    <Page.Body>
+      <Text>Page content here</Text>
+    </Page.Body>
+  </Page>
+);
+
+export const ComposableWithActions: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
+    <Page.Header>
+      <Page.Title>Clients</Page.Title>
+      <Page.Actions>
+        <Page.PrimarySlot>
+          <Page.PrimaryAction
+            label="New Client"
+            onClick={() => alert("New Client")}
+          />
+        </Page.PrimarySlot>
+        <Page.SecondarySlot>
+          <Page.SecondaryAction
+            label="Export"
+            onClick={() => alert("Export")}
+          />
+        </Page.SecondarySlot>
+        <Page.TertiarySlot>
+          <Page.Menu>
+            <Menu.Item textValue="Import" onClick={() => alert("Import")}>
+              <Menu.ItemIcon name="import" />
+              <Menu.ItemLabel>Import</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Item textValue="Archive" onClick={() => alert("Archive")}>
+              <Menu.ItemIcon name="archive" />
+              <Menu.ItemLabel>Archive</Menu.ItemLabel>
+            </Menu.Item>
+          </Page.Menu>
+        </Page.TertiarySlot>
+      </Page.Actions>
+    </Page.Header>
+    <Page.Body>
+      <Text>Page content here</Text>
+    </Page.Body>
+  </Page>
+);
+ComposableWithActions.args = {
+  width: "fill",
+};
+
+export const ComposableWithSubtitleAndIntro: StoryFn<
+  PageComposableProps
+> = args => (
+  <Page {...args}>
+    <Page.Header>
+      <Page.Title>Notifications</Page.Title>
+      <Page.Subtitle>Notify me of all the work</Page.Subtitle>
+    </Page.Header>
+    <Page.Intro>
+      Improve job completion rates, stop chasing payments, and boost your
+      customer service by automatically communicating with your clients at key
+      points before, during, and after a job.
+    </Page.Intro>
+    <Page.Body>
+      <Text>Page content here</Text>
+    </Page.Body>
+  </Page>
+);
+
+export const ComposableWithAllPieces: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
+    <Page.Header>
+      <Page.Title>
+        Kitchen Renovation Project
+        <Page.TitleMetaData>
+          <StatusLabel label="In Progress" alignment="start" status="warning" />
+        </Page.TitleMetaData>
+      </Page.Title>
+      <Page.Subtitle>Everything but the Kitchen Sink</Page.Subtitle>
+      <Page.Actions>
+        <Page.PrimarySlot>
+          <Page.PrimaryAction
+            label="Create Invoice"
+            icon="add"
+            onClick={() => alert("Create")}
+          />
+        </Page.PrimarySlot>
+        <Page.SecondarySlot>
+          <Page.SecondaryAction
+            label="Send Quote"
+            onClick={() => alert("Send")}
+          />
+        </Page.SecondarySlot>
+        <Page.TertiarySlot>
+          <Page.Menu>
+            <Menu.Item textValue="Edit" onClick={() => alert("Edit")}>
+              <Menu.ItemIcon name="edit" />
+              <Menu.ItemLabel>Edit</Menu.ItemLabel>
+            </Menu.Item>
+            <Menu.Item
+              textValue="Delete"
+              variation="destructive"
+              onClick={() => alert("Delete")}
+            >
+              <Menu.ItemIcon name="trash" />
+              <Menu.ItemLabel>Delete</Menu.ItemLabel>
+            </Menu.Item>
+          </Page.Menu>
+        </Page.TertiarySlot>
+      </Page.Actions>
+    </Page.Header>
+    <Page.Body>
+      <Text>
+        Building the greatest kitchen one will ever see. The entire kitchen will
+        be redone for this renovation.
+      </Text>
+    </Page.Body>
+  </Page>
+);
+ComposableWithAllPieces.args = {
+  width: "fill",
+};
+
+export const ComposableCustomSlot: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
+    <Page.Header>
+      <Page.Title>Custom Action Elements</Page.Title>
+      <Page.Actions>
+        <Page.PrimarySlot>
+          <Button
+            label="Custom Primary"
+            icon="add"
+            onClick={() => alert("Custom primary")}
+            fullWidth
+          />
+        </Page.PrimarySlot>
+        <Page.SecondarySlot>
+          <Button
+            label="Custom Secondary"
+            type="secondary"
+            onClick={() => alert("Custom secondary")}
+            fullWidth
+          />
+        </Page.SecondarySlot>
+      </Page.Actions>
+    </Page.Header>
+    <Page.Body>
+      <Text>
+        This example uses custom Button elements via the slots instead of the
+        default Page.PrimaryAction/Page.SecondaryAction components.
+      </Text>
+    </Page.Body>
+  </Page>
+);
+
+export const ComposableWithMarkdown: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
+    <Page.Header>
+      <Page.Title>Notifications</Page.Title>
+      <Page.Subtitle>
+        <Markdown content="Everything but the **_Kitchen Sink_**" basicUsage />
+      </Page.Subtitle>
+    </Page.Header>
+    <Page.Intro>
+      <Markdown
+        content="Improve job completion rates, stop chasing payments, and boost your customer service. Read more by visiting our [Help Center](https://help.getjobber.com/hc/en-us)."
+        basicUsage
+        externalLink
+      />
+    </Page.Intro>
+    <Page.Body>
+      <Text>
+        This example shows how to use Markdown inside Page.Subtitle and
+        Page.Intro for parity with the props-based API.
+      </Text>
+    </Page.Body>
+  </Page>
+);
