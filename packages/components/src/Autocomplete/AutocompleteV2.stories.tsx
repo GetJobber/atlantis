@@ -110,6 +110,16 @@ const sectionedMenu = defineMenu<OptionLike>([
   },
 ]);
 
+const sectionedWithHeaderFooterMenu = defineMenu<OptionLike>([
+  { type: "section", label: "Indoor", options: simpleOptions },
+  { type: "section", label: "Outdoor", options: simpleOptionsSecondSection },
+  {
+    type: "footer",
+    label: "Pinned footer",
+    onClick: () => console.log("Footer clicked"),
+  },
+]);
+
 const TemplateFlat = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
@@ -844,6 +854,119 @@ const TemplateFocusBehavior = () => {
       )}
     </Content>
   );
+};
+
+const TemplateMultiple = () => {
+  const [value, setValue] = useState<OptionLike[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const [otherValue, setOtherValue] = useState<OptionLike[]>([]);
+  const [otherInputValue, setOtherInputValue] = useState("");
+
+  const [headerFooterValue, setHeaderFooterValue] = useState<OptionLike[]>([]);
+  const [headerFooterInputValue, setHeaderFooterInputValue] = useState("");
+
+  const [disabledValue, setDisabledValue] = useState<OptionLike[]>([
+    { label: "Drain Cleaning" },
+  ]);
+  const [disabledInputValue, setDisabledInputValue] = useState("");
+
+  return (
+    <Content>
+      <Heading level={4}>Multiple</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={value}
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        multiple
+        onChange={setValue}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+      />
+
+      <Heading level={4}>With customRenderValue</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={value}
+        multiple
+        onChange={setValue}
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        suffix={{
+          icon: "arrowDown",
+        }}
+        customRenderValue={({ value: v, getOptionLabel }) => (
+          <span style={{ fontWeight: "bold" }}>🏷 {getOptionLabel(v)}</span>
+        )}
+      />
+
+      <Heading level={4}>Sectioned</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={otherValue}
+        onChange={setOtherValue}
+        multiple
+        inputValue={otherInputValue}
+        onInputChange={setOtherInputValue}
+        menu={sectionedMenu}
+      />
+
+      <Heading level={4}>Header and footer</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={headerFooterValue}
+        onChange={setHeaderFooterValue}
+        multiple
+        inputValue={headerFooterInputValue}
+        onInputChange={setHeaderFooterInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+
+      <Heading level={4}>Disabled with selections</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        disabled
+        value={disabledValue}
+        onChange={setDisabledValue}
+        multiple
+        inputValue={disabledInputValue}
+        onInputChange={setDisabledInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+      <Heading level={4}>Readonly with selections</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        readOnly
+        value={disabledValue}
+        onChange={setDisabledValue}
+        multiple
+        inputValue={disabledInputValue}
+        onInputChange={setDisabledInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+    </Content>
+  );
+};
+
+export const Multiple: Story = {
+  render: TemplateMultiple,
 };
 
 export const Flat: Story = {

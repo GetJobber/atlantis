@@ -96,3 +96,79 @@
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   cursor: default;
 }
+
+/* Multiple mode: FormFieldWrapper-based container */
+.multiSelectField [data-testid="Form-Field-Wrapper"] > div:first-child {
+  height: auto;
+  min-height: var(--field--height);
+}
+
+.chipArea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-smaller);
+  padding: var(--field--padding-top) var(--field--padding-right)
+    var(--field--padding-bottom) var(--field--padding-left);
+}
+
+.inlineInput {
+  min-width: 80px;
+  padding: var(--space-minuscule) 0;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  background: transparent;
+  flex: 1 1 auto;
+}
+
+.inlineInput:focus {
+  outline: none;
+}
+
+.inlineInput:disabled {
+  color: var(--color-disabled);
+}
+
+.selectionChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-smaller);
+  padding: var(--space-minuscule) var(--space-small);
+  border-radius: var(--radius-base);
+  outline: 2px solid transparent;
+  color: var(--color-heading);
+  background-color: var(--color-interactive--background);
+}
+
+.selectionChipActive {
+  outline-color: var(--color-interactive);
+}
+
+.selectionChipDisabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.chipDismiss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-base);
+  height: var(--space-base);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-circle);
+  color: var(--color-text--secondary);
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.chipDismiss:hover {
+  color: var(--color-heading);
+  background-color: var(--color-surface--hover);
+}

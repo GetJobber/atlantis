@@ -248,11 +248,13 @@ export function useAutocomplete<
     mainNavigableCount +
     footerInteractivePersistents.length;
 
-  // Compute the currently selected index in the global navigable list (header -> middle -> footer)
+  // Compute the currently selected index in the global navigable list (header -> middle -> footer).
+  // In multiple mode this is always null — there is no single "selected" index, and
+  // floating-ui would otherwise jump the highlight whenever the value array changes.
   const selectedIndex: number | null = useMemo(() => {
-    const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
+    if (multiple) return null;
+
+    const selectedValue = value as Value | undefined;
 
     if (!selectedValue) return null;
 
@@ -311,8 +313,11 @@ export function useAutocomplete<
 
     if (hasText) return;
 
-    // Always reset highlight when input is empty
-    setActiveIndex(null);
+    // In multiple mode, preserve highlight after programmatic clears (e.g. after selection).
+    // Only reset when the user manually clears the search text.
+    if (!multiple || lastInputWasUser.current) {
+      setActiveIndex(null);
+    }
 
     // In multiple mode, clearing the input should NOT clear the selection
     if (multiple) return;
@@ -332,6 +337,9 @@ export function useAutocomplete<
         : [...(current as Value[]), option];
 
       onChange(next as AutocompleteValue<Value, Multiple>);
+
+      lastInputWasUser.current = false;
+      onInputChange?.("");
     } else {
       onChange(option as AutocompleteValue<Value, Multiple>);
 
@@ -354,7 +362,8 @@ export function useAutocomplete<
     return true;
   }
 
-  // Keep the selected item highlighted when deleting characters from the input
+  // Keep the selected item highlighted when deleting characters from the input.
+  // Only meaningful for single-select where the input mirrors the selected label.
   const prevInputLengthRef = useRef(inputValue.length);
 
   useEffect(() => {
@@ -362,13 +371,12 @@ export function useAutocomplete<
     prevInputLengthRef.current = inputValue.length;
 
     if (!open) return;
+    if (multiple) return;
     if (!lastInputWasUser.current) return;
     if (previousLength <= inputValue.length) return; // only on deletion
     if (!hasSelection) return;
 
-    const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
+    const selectedValue = value as Value | undefined;
 
     if (!selectedValue) return;
 
@@ -388,12 +396,14 @@ export function useAutocomplete<
   useEffect(() => {
     if (!open) return;
 
+    // In multiple mode, selections are indicated by checkmarks, not highlighting.
+    // Don't jump the highlight when the value array changes while the menu is open.
+    if (multiple) return;
+
     // When opening the menu, initialize the highlight consistently:
     // - If there is a current selection, highlight that option
     // - Otherwise, leave the highlight unset (null)
-    const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
+    const selectedValue = value as Value | undefined;
 
     if (selectedValue) {
       const selectedNavigableIndex = findNavigableIndexForValue(
@@ -415,14 +425,16 @@ export function useAutocomplete<
   const onSelection = useCallback(
     (option: Value) => {
       selectOption(option);
-      // Might not always want to close on selection. Multi for example.
-      setOpen(false);
+
+      if (!multiple) {
+        setOpen(false);
+      }
 
       if (refs.domReference.current instanceof HTMLElement) {
         refs.domReference.current.focus();
       }
     },
-    [selectOption, setOpen],
+    [selectOption, setOpen, multiple],
   );
 
   const onAction = useCallback(
@@ -476,9 +488,16 @@ export function useAutocomplete<
   const tryRestoreInputToSelectedLabel = useCallback(() => {
     if (props.allowFreeForm === true) return;
 
-    const selectedValue = multiple
-      ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
-      : (value as Value | undefined);
+    if (multiple) {
+      if (inputValue.trim().length > 0) {
+        lastInputWasUser.current = false;
+        onInputChange?.("");
+      }
+
+      return;
+    }
+
+    const selectedValue = value as Value | undefined;
     if (!selectedValue) return;
 
     const selectedLabel = getOptionLabel(selectedValue);
@@ -639,9 +658,46 @@ export function useAutocomplete<
     }
   }
 
+  const removeLastSelection = useCallback(() => {
+    if (!multiple || readOnly) return;
+
+    const current = (value as AutocompleteValue<Value, true>) ?? [];
+
+    if ((current as Value[]).length > 0) {
+      const next = (current as Value[]).slice(0, -1);
+      onChange(next as AutocompleteValue<Value, Multiple>);
+    }
+  }, [multiple, readOnly, value, onChange]);
+
+  const removeSelection = useCallback(
+    (option: Value) => {
+      if (readOnly) return;
+
+      if (multiple) {
+        const current = (value as AutocompleteValue<Value, true>) ?? [];
+        const next = (current as Value[]).filter(v => !equals(v, option));
+        onChange(next as AutocompleteValue<Value, Multiple>);
+      } else {
+        const current = value as Value | undefined;
+
+        if (current && equals(current, option)) {
+          onChange(undefined as AutocompleteValue<Value, Multiple>);
+        }
+      }
+    },
+    [readOnly, multiple, value, equals, onChange],
+  );
+
   const onInputKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       const key = event.key;
+
+      if (key === "Backspace" && multiple && inputValue === "") {
+        removeLastSelection();
+
+        return;
+      }
+
       if (key !== "ArrowDown" && key !== "ArrowUp" && key !== "Enter") return;
 
       if (key === "ArrowDown" || key === "ArrowUp") {
@@ -651,7 +707,7 @@ export function useAutocomplete<
       }
       handleEnterKey(event);
     },
-    [open, onSelection, onAction],
+    [open, onSelection, onAction, multiple, inputValue, removeLastSelection],
   );
 
   const onInputChangeFromUser = useCallback(
@@ -713,6 +769,7 @@ export function useAutocomplete<
     onSelection,
     onAction,
     onInteractionPointerDown,
+    removeSelection,
     // input handlers
     onInputChangeFromUser,
     onInputBlur,

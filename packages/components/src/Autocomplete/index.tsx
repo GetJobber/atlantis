@@ -93,23 +93,11 @@ AutocompleteForwarded.displayName = "Autocomplete";
 export const Autocomplete = AutocompleteForwarded as {
   <
     T extends OptionLike = OptionLike,
+    Multiple extends boolean = false,
     S extends object = ExtraProps,
     A extends object = ExtraProps,
   >(
-    props: AutocompleteRebuiltProps<T, false, S, A> & {
-      version: 2;
-      ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
-      // Disallow legacy-only props for clearer DX
-      initialOptions?: never;
-      getOptions?: never;
-    },
-  ): ReturnType<typeof AutocompleteShim>;
-  <
-    T extends OptionLike = OptionLike,
-    S extends object = ExtraProps,
-    A extends object = ExtraProps,
-  >(
-    props: AutocompleteRebuiltProps<T, true, S, A> & {
+    props: AutocompleteRebuiltProps<T, Multiple, S, A> & {
       version: 2;
       ref?: React.Ref<HTMLInputElement | HTMLTextAreaElement>;
       // Disallow legacy-only props for clearer DX

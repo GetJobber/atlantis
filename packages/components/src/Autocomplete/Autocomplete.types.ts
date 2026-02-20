@@ -387,8 +387,9 @@ interface AutocompleteRebuiltBaseProps<
     FocusEvents<HTMLInputElement | HTMLTextAreaElement> {
   /**
    * Whether the autocomplete allows multiple selections.
-   * WARNING: This is currently incomplete and will not display selections, only data is returned.
-   * Do not use this prop unless you are sure you know what you are doing.
+   * When true, selected values are displayed as dismissible chips above the input.
+   * The menu stays open after each selection so the user can pick additional options.
+   * Pressing Backspace on an empty input removes the most recently added selection.
    */
   readonly multiple?: Multiple;
   /**
@@ -489,6 +490,22 @@ interface AutocompleteRebuiltBaseProps<
   }) => React.ReactNode;
 
   /**
+   * Render prop to customize the content inside each selection chip.
+   * Only applicable in `multiple` mode. The Autocomplete handles the chip container,
+   * padding, dismiss button, hover/focus states, and disabled/readOnly behavior.
+   * You only provide the content that appears to the left of the dismiss button.
+   *
+   * When not provided, the chip content defaults to `getOptionLabel(option)`.
+   *
+   * @param args.value - The selected option this chip represents
+   * @param args.getOptionLabel - Function to get the display text for an option
+   */
+  readonly customRenderValue?: (args: {
+    value: Value;
+    getOptionLabel: (option: Value) => string;
+  }) => React.ReactNode;
+
+  /**
    * Render prop to customize the rendering of the input.
    * @param props.inputRef - The ref to the input element
    * @param props.inputProps - The props to pass to the input element
@@ -512,6 +529,7 @@ interface AutocompleteRebuiltBaseProps<
     input?: string;
     header?: string;
     footer?: string;
+    selection?: string;
   };
 
   /**
@@ -527,6 +545,7 @@ interface AutocompleteRebuiltBaseProps<
     input?: CSSProperties;
     header?: CSSProperties;
     footer?: CSSProperties;
+    selection?: CSSProperties;
   };
 
   /**

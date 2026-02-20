@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 // Locally mock timing tokens to 0ms to avoid transition waits in this file
 jest.mock("@jobber/design", () => {
   const actual = jest.requireActual("@jobber/design");
@@ -11,7 +12,7 @@ jest.mock("@jobber/design", () => {
   };
 });
 
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
@@ -46,13 +47,13 @@ import {
 import {
   FocusableSiblingsWrapper,
   FreeFormWrapper,
+  MultipleWrapper,
   Wrapper,
 } from "./tests/Autocomplete.setup";
 import { InputText } from "../InputText";
 import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
 // They're tests, limit isn't helpful here
-// eslint-disable-next-line max-statements
 describe("AutocompleteRebuilt", () => {
   it("renders", () => {
     render(<Wrapper />);
@@ -379,7 +380,6 @@ describe("AutocompleteRebuilt", () => {
     });
     // Many interactions in the test
     // This is verifying both the order and arrow navigation/activeIndex
-    // eslint-disable-next-line max-statements
     it("renders sections actions in the expected order", async () => {
       render(
         <Wrapper
@@ -809,7 +809,7 @@ describe("AutocompleteRebuilt", () => {
 
       await waitFor(() => {
         expect(screen.getByText("One")).toBeVisible();
-        expect(screen.queryByTestId("checkmark")).not.toBeInTheDocument();
+        expect(screen.getAllByTestId("checkmark")[0]).not.toBeVisible();
       });
     });
 
@@ -819,8 +819,15 @@ describe("AutocompleteRebuilt", () => {
       await openAutocomplete();
 
       await waitFor(() => {
+        let checkmark: HTMLElement | null = null;
         expect(screen.getByText("Two")).toBeVisible();
-        expect(screen.getByTestId("checkmark")).toBeVisible();
+
+        const twoOption = screen.getByText("Two").closest("[role='option']");
+
+        if (twoOption) {
+          checkmark = within(twoOption as HTMLElement).getByTestId("checkmark");
+        }
+        expect(checkmark).toBeVisible();
       });
     });
   });
@@ -1219,7 +1226,6 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  // eslint-disable-next-line max-statements
   describe("highlighting", () => {
     it("does not highlight an option or action when the menu is opened for the first time", async () => {
       render(<Wrapper />);
@@ -1301,7 +1307,6 @@ describe("AutocompleteRebuilt", () => {
     });
 
     // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state when the menu is closed without a selection", async () => {
       render(<Wrapper />);
 
@@ -1332,7 +1337,6 @@ describe("AutocompleteRebuilt", () => {
     });
 
     // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state when the input is cleared with backspaces", async () => {
       render(<Wrapper />);
 
@@ -1360,7 +1364,6 @@ describe("AutocompleteRebuilt", () => {
     });
 
     // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state after using an action", async () => {
       render(<Wrapper />);
 
@@ -1387,7 +1390,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
     // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state when the autocomplete loses focus (blur)", async () => {
       render(<Wrapper />);
 
@@ -1438,7 +1440,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
     // Test requires elaborate amount of interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state after making a selection, select-all + delete and reopening the menu", async () => {
       render(<Wrapper />);
 
@@ -2096,6 +2097,191 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
+  describe("customRenderValue", () => {
+    it("renders custom content inside each chip", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[
+            menuOptions<OptionLike>([
+              { label: "One" },
+              { label: "Two" },
+              { label: "Three" },
+            ]),
+          ]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }, { label: "Two" }]}
+          onChange={jest.fn()}
+          placeholder=""
+          customRenderValue={({ value, getOptionLabel }) => (
+            <span data-testid="custom-chip-content">
+              🏷 {getOptionLabel(value)}
+            </span>
+          )}
+        />,
+      );
+
+      const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chips).toHaveLength(2);
+
+      const customContent = screen.getAllByTestId("custom-chip-content");
+      expect(customContent).toHaveLength(2);
+      expect(customContent[0]).toHaveTextContent("🏷 One");
+      expect(customContent[1]).toHaveTextContent("🏷 Two");
+    });
+
+    it("still renders dismiss button alongside custom content", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
+          placeholder=""
+          customRenderValue={({ value, getOptionLabel }) => (
+            <span>{getOptionLabel(value)}</span>
+          )}
+        />,
+      );
+
+      expect(
+        screen.getByRole("button", { name: "Remove One" }),
+      ).toBeInTheDocument();
+    });
+
+    it("dismiss button removes chip when clicked with custom content", async () => {
+      const onChange = jest.fn();
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }, { label: "Two" }]}
+          onChange={onChange}
+          placeholder=""
+          customRenderValue={({ value, getOptionLabel }) => (
+            <span>{getOptionLabel(value)}</span>
+          )}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button", { name: "Remove One" }));
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith([{ label: "Two" }]);
+    });
+
+    it("uses default label content when customRenderValue is not provided", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
+          placeholder=""
+        />,
+      );
+
+      const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chip).toHaveTextContent("One×");
+    });
+  });
+
+  describe("chip disabled and readOnly behavior", () => {
+    it("hides dismiss button when disabled", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
+          placeholder=""
+          disabled
+        />,
+      );
+
+      expect(screen.getByTestId("ATL-AutocompleteRebuilt-chip")).toBeVisible();
+      expect(
+        screen.queryByRole("button", { name: "Remove One" }),
+      ).not.toBeInTheDocument();
+    });
+
+    it("hides dismiss button when readOnly", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
+          placeholder=""
+          readOnly
+        />,
+      );
+
+      expect(screen.getByTestId("ATL-AutocompleteRebuilt-chip")).toBeVisible();
+      expect(
+        screen.queryByRole("button", { name: "Remove One" }),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  describe("UNSAFE chip props", () => {
+    it("applies UNSAFE_className.selection to selection chips", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
+          placeholder=""
+          UNSAFE_className={{ selection: "my-custom-chip-class" }}
+        />,
+      );
+
+      const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chip.className).toContain("my-custom-chip-class");
+    });
+
+    it("applies UNSAFE_styles.selection to selection chips", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
+          placeholder=""
+          UNSAFE_styles={{ selection: { backgroundColor: "red" } }}
+        />,
+      );
+
+      const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chip).toHaveStyle({ backgroundColor: "red" });
+    });
+  });
+
   describe("a11y", () => {
     it("wires autocomplete ARIA correctly and toggles aria-expanded", async () => {
       render(<Wrapper />);
@@ -2327,19 +2513,532 @@ describe("AutocompleteRebuilt", () => {
       );
 
       await openAutocomplete();
-      await waitFor(() => {
-        const active = getActiveOption();
-        expect(active).not.toBeNull();
-        expect(active?.textContent).toContain("One");
-      });
+      await navigateDown(1);
       await selectWithKeyboard();
 
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange).toHaveBeenCalledWith([]);
     });
+
+    it("renders chips for selected values", () => {
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "One" },
+          { label: "Two" },
+          { label: "Three" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }, { label: "Two" }]}
+          onChange={jest.fn()}
+          placeholder=""
+        />,
+      );
+
+      const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chips).toHaveLength(2);
+      expect(chips[0]).toHaveTextContent("One");
+      expect(chips[1]).toHaveTextContent("Two");
+    });
+
+    it("does not render chips when there are no selected values", () => {
+      const menu = [menuOptions<OptionLike>([{ label: "One" }])];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[]}
+          onChange={jest.fn()}
+          placeholder=""
+        />,
+      );
+
+      expect(
+        screen.queryByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("removes a selection when clicking a chip dismiss button", () => {
+      const onChange = jest.fn();
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "One" },
+          { label: "Two" },
+          { label: "Three" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }, { label: "Two" }]}
+          onChange={onChange}
+          placeholder=""
+        />,
+      );
+
+      const dismissButton = screen.getByLabelText("Remove One");
+      dismissButton.click();
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith([{ label: "Two" }]);
+    });
+
+    it("keeps the menu open after selecting an option", async () => {
+      render(<MultipleWrapper />);
+
+      await openAutocomplete();
+      await navigateDown(1);
+      await selectWithKeyboard();
+
+      await expectMenuShown();
+    });
+
+    it("preserves the active highlight position after making a selection", async () => {
+      render(<MultipleWrapper />);
+
+      await openAutocomplete();
+      await navigateDown(2);
+
+      const activeBefore = getActiveOption();
+      expect(activeBefore?.textContent).toContain("Two");
+
+      await selectWithKeyboard();
+
+      await waitFor(() => {
+        const activeAfter = getActiveOption();
+        expect(activeAfter).not.toBeNull();
+        expect(activeAfter?.textContent).toContain("Two");
+      });
+    });
+
+    it("clears input text after selecting an option", async () => {
+      const onInputChange = jest.fn();
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "One" },
+          { label: "Two" },
+          { label: "Three" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue="On"
+          onInputChange={onInputChange}
+          value={[]}
+          onChange={jest.fn()}
+          placeholder=""
+        />,
+      );
+
+      await openAutocomplete();
+      await navigateDown(1);
+      await selectWithKeyboard();
+
+      expect(onInputChange).toHaveBeenCalledWith("");
+    });
+
+    it("removes the last selection when pressing backspace on empty input", async () => {
+      const onChange = jest.fn();
+      const menu = [
+        menuOptions<OptionLike>([
+          { label: "One" },
+          { label: "Two" },
+          { label: "Three" },
+        ]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }, { label: "Two" }]}
+          onChange={onChange}
+          placeholder=""
+        />,
+      );
+
+      await openAutocomplete();
+      await deleteInput(1);
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith([{ label: "One" }]);
+    });
+
+    it("does not remove selections when pressing backspace with text in input", async () => {
+      const onChange = jest.fn();
+      const menu = [
+        menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue="search"
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={onChange}
+          placeholder=""
+        />,
+      );
+
+      await openAutocomplete();
+      await deleteInput(1);
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("can select multiple options sequentially (stateful)", async () => {
+      render(<MultipleWrapper />);
+
+      await openAutocomplete();
+      await navigateDown(1);
+      await selectWithKeyboard();
+
+      const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chips).toHaveLength(1);
+      expect(chips[0]).toHaveTextContent("One");
+
+      await navigateDown(1);
+      await selectWithKeyboard();
+
+      const updatedChips = screen.getAllByTestId(
+        "ATL-AutocompleteRebuilt-chip",
+      );
+      expect(updatedChips).toHaveLength(2);
+    });
+
+    it("removes selection via chip dismiss and updates chips (stateful)", async () => {
+      render(
+        <MultipleWrapper initialValue={[{ label: "One" }, { label: "Two" }]} />,
+      );
+
+      expect(
+        screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveLength(2);
+
+      const dismiss = screen.getByLabelText("Remove One");
+      dismiss.click();
+
+      await waitFor(() => {
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(1);
+        expect(
+          screen.getByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveTextContent("Two");
+      });
+    });
+
+    it("removes last selection with backspace on empty input (stateful)", async () => {
+      render(
+        <MultipleWrapper initialValue={[{ label: "One" }, { label: "Two" }]} />,
+      );
+
+      expect(
+        screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveLength(2);
+
+      await openAutocomplete();
+      await deleteInput(1);
+
+      await waitFor(() => {
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(1);
+        expect(
+          screen.getByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveTextContent("One");
+      });
+    });
+
+    it("does not blur input when clicking chip dismiss button", async () => {
+      const onBlur = jest.fn();
+      const menu = [
+        menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }]),
+      ];
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={menu}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
+          onBlur={onBlur}
+          placeholder=""
+        />,
+      );
+
+      await openAutocomplete();
+
+      const dismiss = screen.getByLabelText("Remove One");
+      await userEvent.click(dismiss);
+
+      expect(onBlur).not.toHaveBeenCalled();
+      expect(document.activeElement).toBe(screen.getByRole("combobox"));
+    });
+
+    describe("chip keyboard navigation", () => {
+      it("activates the last chip when pressing ArrowLeft on empty input", async () => {
+        render(
+          <MultipleWrapper
+            initialValue={[{ label: "One" }, { label: "Two" }]}
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}");
+
+        const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+        expect(chips[1].className).toContain("selectionChipActive");
+        expect(chips[0].className).not.toContain("selectionChipActive");
+      });
+
+      it("does not activate chip navigation when input has text", async () => {
+        const menu = [
+          menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }]),
+        ];
+
+        render(
+          <AutocompleteRebuilt
+            version={2}
+            multiple
+            menu={menu}
+            inputValue="search"
+            onInputChange={jest.fn()}
+            value={[{ label: "One" }]}
+            onChange={jest.fn()}
+            placeholder=""
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}");
+
+        const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
+        expect(chip.className).not.toContain("selectionChipActive");
+      });
+
+      it("navigates left through chips with ArrowLeft", async () => {
+        render(
+          <MultipleWrapper
+            initialValue={[
+              { label: "One" },
+              { label: "Two" },
+              { label: "Three" },
+            ]}
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}");
+
+        const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+        expect(chips[2].className).toContain("selectionChipActive");
+
+        await userEvent.keyboard("{ArrowLeft}");
+        expect(chips[1].className).toContain("selectionChipActive");
+        expect(chips[2].className).not.toContain("selectionChipActive");
+
+        await userEvent.keyboard("{ArrowLeft}");
+        expect(chips[0].className).toContain("selectionChipActive");
+      });
+
+      it("clamps at the first chip when pressing ArrowLeft at the beginning", async () => {
+        render(
+          <MultipleWrapper
+            initialValue={[{ label: "One" }, { label: "Two" }]}
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard(
+          "{ArrowLeft}{ArrowLeft}{ArrowLeft}{ArrowLeft}",
+        );
+
+        const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+        expect(chips[0].className).toContain("selectionChipActive");
+      });
+
+      it("deactivates chips and returns focus to input when pressing ArrowRight past the last chip", async () => {
+        render(<MultipleWrapper initialValue={[{ label: "One" }]} />);
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}");
+
+        const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
+        expect(chip.className).toContain("selectionChipActive");
+
+        await userEvent.keyboard("{ArrowRight}");
+        expect(chip.className).not.toContain("selectionChipActive");
+      });
+
+      it("removes the active chip when pressing Backspace", async () => {
+        const onChange = jest.fn();
+
+        render(
+          <MultipleWrapper
+            initialValue={[
+              { label: "One" },
+              { label: "Two" },
+              { label: "Three" },
+            ]}
+            onChange={onChange}
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}{ArrowLeft}");
+        await userEvent.keyboard("{Backspace}");
+
+        expect(onChange).toHaveBeenCalledWith([
+          { label: "One" },
+          { label: "Three" },
+        ]);
+      });
+
+      it("removes the active chip when pressing Delete", async () => {
+        const onChange = jest.fn();
+
+        render(
+          <MultipleWrapper
+            initialValue={[{ label: "One" }, { label: "Two" }]}
+            onChange={onChange}
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}{ArrowLeft}");
+        await userEvent.keyboard("{Delete}");
+
+        expect(onChange).toHaveBeenCalledWith([{ label: "Two" }]);
+      });
+
+      it("moves active index to the previous chip when deleting the last chip", async () => {
+        render(
+          <MultipleWrapper
+            initialValue={[{ label: "One" }, { label: "Two" }]}
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}");
+        await userEvent.keyboard("{Backspace}");
+
+        await waitFor(() => {
+          const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+          expect(chips).toHaveLength(1);
+          expect(chips[0].className).toContain("selectionChipActive");
+        });
+      });
+
+      it("deactivates chip navigation when all chips are deleted", async () => {
+        render(<MultipleWrapper initialValue={[{ label: "One" }]} />);
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}");
+        await userEvent.keyboard("{Backspace}");
+
+        await waitFor(() => {
+          expect(
+            screen.queryByTestId("ATL-AutocompleteRebuilt-chip"),
+          ).not.toBeInTheDocument();
+        });
+      });
+
+      it("deactivates chip navigation when Escape is pressed", async () => {
+        render(
+          <MultipleWrapper
+            initialValue={[{ label: "One" }, { label: "Two" }]}
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}");
+
+        const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+        expect(chips[1].className).toContain("selectionChipActive");
+
+        await userEvent.keyboard("{Escape}");
+        expect(chips[1].className).not.toContain("selectionChipActive");
+      });
+
+      it("deactivates chip navigation when the user starts typing", async () => {
+        render(
+          <MultipleWrapper
+            initialValue={[{ label: "One" }, { label: "Two" }]}
+          />,
+        );
+
+        await openAutocomplete();
+        await userEvent.keyboard("{ArrowLeft}");
+
+        const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+        expect(chips[1].className).toContain("selectionChipActive");
+
+        await typeInInput("a");
+
+        await waitFor(() => {
+          expect(chips[1].className).not.toContain("selectionChipActive");
+        });
+      });
+
+      it("does not activate chip navigation in readOnly mode", async () => {
+        const menu = [
+          menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }]),
+        ];
+
+        render(
+          <AutocompleteRebuilt
+            version={2}
+            multiple
+            readOnly
+            menu={menu}
+            inputValue=""
+            onInputChange={jest.fn()}
+            value={[{ label: "One" }, { label: "Two" }]}
+            onChange={jest.fn()}
+            placeholder=""
+          />,
+        );
+
+        const input = screen.getByRole("combobox");
+        await userEvent.click(input);
+        await userEvent.keyboard("{ArrowLeft}");
+
+        const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+        expect(chips[1].className).not.toContain("selectionChipActive");
+      });
+    });
   });
 
-  // eslint-disable-next-line max-statements
   describe("blur and focus management", () => {
     it("calls onFocus when the input is clicked", async () => {
       const onFocus = jest.fn();
