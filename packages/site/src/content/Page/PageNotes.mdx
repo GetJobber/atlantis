@@ -67,12 +67,33 @@ Metadata displayed alongside the page title, such as status badges. Use inside
 **_Page.Subtitle (Optional)_**
 
 Secondary text below the title. Always applies the default Text/Emphasis
-styling. Works with any children type including translation components.
+styling. Works with any children type including translation components like
+`<Trans>`.
+
+For markdown formatting, provide `<Markdown>` explicitly:
+
+```
+<Page.Subtitle>
+  <Markdown content="Everything but the **Kitchen Sink**" basicUsage />
+</Page.Subtitle>
+```
 
 **_Page.Intro (Optional)_**
 
 Introduction text between the header and body. Always applies the default Text
 styling. Works with any children type including translation components.
+
+For markdown formatting with links, provide `<Markdown>` explicitly:
+
+```
+<Page.Intro>
+  <Markdown
+    content="Read more at our [Help Center](https://help.getjobber.com)."
+    basicUsage
+    externalLink
+  />
+</Page.Intro>
+```
 
 **_Page.Actions (Optional)_**
 
@@ -133,6 +154,67 @@ The trigger label defaults to "More Actions" and can be customized via the
 **_Page.Body (Required)_**
 
 Main content area of the page. Wraps children in a `Content` component.
+
+## Migrating from Props-based to Composable
+
+The props-based API remains fully supported. You only need to migrate if you
+need composable actions (e.g. for client-side router links in the menu).
+
+| Props-based                            | Composable                                                                                          |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `title="Clients"`                      | `<Page.Title>Clients</Page.Title>`                                                                  |
+| `titleMetaData={<Badge />}`            | `<Page.TitleMetaData><Badge /></Page.TitleMetaData>` inside `Page.Title`                            |
+| `subtitle="Text"`                      | `<Page.Subtitle>Text</Page.Subtitle>`                                                               |
+| `intro="Markdown **text**"`            | `<Page.Intro><Markdown content="Markdown **text**" basicUsage /></Page.Intro>`                      |
+| `externalIntroLinks={true}`            | Pass `externalLink` to `<Markdown>` directly                                                        |
+| `primaryAction={{ label, onClick }}`   | `<Page.PrimarySlot><Page.PrimaryAction label={label} onClick={onClick} /></Page.PrimarySlot>`       |
+| `secondaryAction={{ label, onClick }}` | `<Page.SecondarySlot><Page.SecondaryAction label={label} onClick={onClick} /></Page.SecondarySlot>` |
+| `moreActionsMenu={[...]}`              | `<Page.TertiarySlot><Page.Menu>...</Page.Menu></Page.TertiarySlot>`                                 |
+
+### Example migration
+
+Before:
+
+```
+<Page
+  title="Clients"
+  subtitle="Manage your client list"
+  primaryAction={{ label: "New Client", onClick: handleCreate }}
+  moreActionsMenu={[
+    { actions: [{ label: "Import", icon: "import", onClick: handleImport }] },
+  ]}
+  width="fill"
+>
+  <Content>Page content here</Content>
+</Page>
+```
+
+After:
+
+```
+<Page width="fill">
+  <Page.Header>
+    <Page.Title>Clients</Page.Title>
+    <Page.Subtitle>Manage your client list</Page.Subtitle>
+    <Page.Actions>
+      <Page.PrimarySlot>
+        <Page.PrimaryAction label="New Client" onClick={handleCreate} />
+      </Page.PrimarySlot>
+      <Page.TertiarySlot>
+        <Page.Menu>
+          <Menu.Item textValue="Import" onClick={handleImport}>
+            <Menu.ItemIcon name="import" />
+            <Menu.ItemLabel>Import</Menu.ItemLabel>
+          </Menu.Item>
+        </Page.Menu>
+      </Page.TertiarySlot>
+    </Page.Actions>
+  </Page.Header>
+  <Page.Body>
+    Page content here
+  </Page.Body>
+</Page>
+```
 
 ## Props-based Version
 

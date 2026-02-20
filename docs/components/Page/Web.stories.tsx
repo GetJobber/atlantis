@@ -7,6 +7,7 @@ import {
   type PageLegacyProps,
 } from "@jobber/components/Page";
 import { Content } from "@jobber/components/Content";
+import { Markdown } from "@jobber/components/Markdown";
 import { Text } from "@jobber/components/Text";
 import { Menu } from "@jobber/components/Menu";
 import { Button } from "@jobber/components/Button";
@@ -334,6 +335,30 @@ export const ComposableCustomSlot: StoryFn<PageComposableProps> = args => (
       <Text>
         This example uses custom Button elements via the slots instead of the
         default Page.PrimaryAction/Page.SecondaryAction components.
+      </Text>
+    </Page.Body>
+  </Page>
+);
+
+export const ComposableWithMarkdown: StoryFn<PageComposableProps> = args => (
+  <Page {...args}>
+    <Page.Header>
+      <Page.Title>Notifications</Page.Title>
+      <Page.Subtitle>
+        <Markdown content="Everything but the **_Kitchen Sink_**" basicUsage />
+      </Page.Subtitle>
+    </Page.Header>
+    <Page.Intro>
+      <Markdown
+        content="Improve job completion rates, stop chasing payments, and boost your customer service. Read more by visiting our [Help Center](https://help.getjobber.com/hc/en-us)."
+        basicUsage
+        externalLink
+      />
+    </Page.Intro>
+    <Page.Body>
+      <Text>
+        This example shows how to use Markdown inside Page.Subtitle and
+        Page.Intro for parity with the props-based API.
       </Text>
     </Page.Body>
   </Page>
