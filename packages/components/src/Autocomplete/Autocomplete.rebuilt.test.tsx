@@ -1,6 +1,5 @@
 /* eslint-disable max-statements */
 // Locally mock timing tokens to 0ms to avoid transition waits in this file
-// eslint-disable-next-line max-statements
 jest.mock("@jobber/design", () => {
   const actual = jest.requireActual("@jobber/design");
 
@@ -55,7 +54,6 @@ import { InputText } from "../InputText";
 import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
 // They're tests, limit isn't helpful here
-// eslint-disable-next-line max-statements
 describe("AutocompleteRebuilt", () => {
   it("renders", () => {
     render(<Wrapper />);
@@ -382,7 +380,6 @@ describe("AutocompleteRebuilt", () => {
     });
     // Many interactions in the test
     // This is verifying both the order and arrow navigation/activeIndex
-    // eslint-disable-next-line max-statements
     it("renders sections actions in the expected order", async () => {
       render(
         <Wrapper
@@ -1229,7 +1226,6 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  // eslint-disable-next-line max-statements
   describe("highlighting", () => {
     it("does not highlight an option or action when the menu is opened for the first time", async () => {
       render(<Wrapper />);
@@ -1311,7 +1307,6 @@ describe("AutocompleteRebuilt", () => {
     });
 
     // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state when the menu is closed without a selection", async () => {
       render(<Wrapper />);
 
@@ -1342,7 +1337,6 @@ describe("AutocompleteRebuilt", () => {
     });
 
     // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state when the input is cleared with backspaces", async () => {
       render(<Wrapper />);
 
@@ -1370,7 +1364,6 @@ describe("AutocompleteRebuilt", () => {
     });
 
     // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state after using an action", async () => {
       render(<Wrapper />);
 
@@ -1397,7 +1390,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
     // Test requires multiple interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state when the autocomplete loses focus (blur)", async () => {
       render(<Wrapper />);
 
@@ -1448,7 +1440,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
     // Test requires elaborate amount of interactions
-    // eslint-disable-next-line max-statements
     it("resets the highlight to initial, not visible state after making a selection, select-all + delete and reopening the menu", async () => {
       render(<Wrapper />);
 
@@ -3253,7 +3244,6 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
-  // eslint-disable-next-line max-statements
   describe("blur and focus management", () => {
     it("calls onFocus when the input is clicked", async () => {
       const onFocus = jest.fn();
