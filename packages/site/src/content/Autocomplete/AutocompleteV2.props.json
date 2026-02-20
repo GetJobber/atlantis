@@ -257,6 +257,21 @@
           "name": "MenuAction<ExtraProps>[] | ((args: { inputValue: string; }) => MenuAction<ExtraProps>[])"
         }
       },
+      "autoHighlight": {
+        "defaultValue": {
+          "value": "false"
+        },
+        "description": "If `true`, the first option is automatically highlighted when the menu\nopens and as the available options change (e.g. while the user types).",
+        "name": "autoHighlight",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "openOnFocus": {
         "defaultValue": {
           "value": "true"
