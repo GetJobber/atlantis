@@ -14,6 +14,8 @@ declare const styles: {
   readonly "persistentHeader": string;
   readonly "persistentFooter": string;
   readonly "textPersistent": string;
+  readonly "multiSelectField": string;
+  readonly "chipArea": string;
   readonly "multiSelectContainer": string;
   readonly "multiSelectContainerInvalid": string;
   readonly "inlineInput": string;

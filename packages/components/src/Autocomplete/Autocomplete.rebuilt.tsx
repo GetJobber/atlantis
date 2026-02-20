@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import {
@@ -24,6 +25,7 @@ import { MenuList } from "./components/MenuList";
 import { PersistentRegion } from "./components/PersistentRegion";
 import { InputText } from "../InputText";
 import type { InputTextRebuiltProps } from "../InputText/InputText.types";
+import { FormFieldWrapper } from "../FormField";
 import { Glimmer } from "../Glimmer";
 import { mergeRefs } from "../utils/mergeRefs";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
@@ -100,6 +102,10 @@ function AutocompleteRebuiltInternal<
   const [positionRefEl, setPositionRefEl] = React.useState<Element | null>(
     null,
   );
+
+  const formFieldRef = useRef<HTMLDivElement>(null);
+  const inputId = React.useId();
+  const descriptionId = `descriptionUUID--${inputId}`;
 
   const selectedValues: Value[] = props.multiple
     ? ((props.value ?? []) as Value[])
@@ -312,13 +318,13 @@ function AutocompleteRebuiltInternal<
       <input
         ref={mergedInputRef}
         className={styles.inlineInput}
+        id={inputId}
         value={inputValue}
         onChange={
           props.readOnly
             ? undefined
             : e => onInputChangeFromUser(e.target.value)
         }
-        placeholder={placeholder}
         disabled={disabled}
         readOnly={props.readOnly}
         name={props.name}
@@ -372,25 +378,62 @@ function AutocompleteRebuiltInternal<
       </span>
     ));
 
-  const needsContainer =
-    props.multiple || (props.customRenderValue && props.value != null);
+  const needsSingleCustomContainer =
+    !props.multiple && props.customRenderValue && props.value != null;
+
+  let fieldContent: React.ReactNode;
+
+  if (props.multiple) {
+    const hasValue = selectedValues.length > 0 || inputValue;
+
+    fieldContent = (
+      <div
+        className={styles.multiSelectField}
+        data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
+      >
+        <FormFieldWrapper
+          disabled={disabled}
+          size={sizeProp ? sizeProp : undefined}
+          error={error ?? ""}
+          invalid={Boolean(error || invalid)}
+          identifier={inputId}
+          descriptionIdentifier={descriptionId}
+          description={description}
+          clearable="never"
+          type="text"
+          placeholder={placeholder}
+          value={hasValue ? "has-value" : ""}
+          prefix={props.prefix}
+          suffix={props.suffix}
+          wrapperRef={formFieldRef}
+        >
+          <div className={styles.chipArea}>
+            {customValueContent}
+            {defaultChips}
+            {inputElement}
+          </div>
+        </FormFieldWrapper>
+      </div>
+    );
+  } else if (needsSingleCustomContainer) {
+    fieldContent = (
+      <div
+        className={classNames(styles.multiSelectContainer, {
+          [styles.multiSelectContainerInvalid]: invalid || error,
+        })}
+        data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
+      >
+        {customValueContent}
+        {inputElement}
+      </div>
+    );
+  } else {
+    fieldContent = inputElement;
+  }
 
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
-      {needsContainer ? (
-        <div
-          className={classNames(styles.multiSelectContainer, {
-            [styles.multiSelectContainerInvalid]: invalid || error,
-          })}
-          data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
-        >
-          {customValueContent}
-          {defaultChips}
-          {inputElement}
-        </div>
-      ) : (
-        inputElement
-      )}
+      {fieldContent}
       {isMounted && !props.readOnly && (
         <FloatingPortal>
           <FloatingFocusManager

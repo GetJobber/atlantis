@@ -97,6 +97,22 @@
   cursor: default;
 }
 
+/* Multiple mode: FormFieldWrapper-based container */
+.multiSelectField [data-testid="Form-Field-Wrapper"] > div:first-child {
+  height: auto;
+  min-height: var(--field--height);
+}
+
+.chipArea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-smaller);
+  padding: var(--field--padding-top) var(--field--padding-right)
+    var(--field--padding-bottom) var(--field--padding-left);
+}
+
+/* Single-select customRenderValue container (no FormFieldWrapper) */
 .multiSelectContainer {
   display: flex;
   flex-wrap: wrap;
@@ -117,7 +133,7 @@
   border-color: var(--color-critical);
 }
 
-/* Let the InputText fill remaining space inline with chips */
+/* Let the InputText fill remaining space inline with custom value */
 .multiSelectContainer [data-testid="Form-Field-Wrapper"] {
   min-width: 80px;
   box-shadow: none !important;
@@ -127,19 +143,19 @@
 
 .inlineInput {
   min-width: 80px;
-  padding: var(--space-smaller) var(--space-small);
+  padding: var(--space-minuscule) 0;
   border: none;
   outline: none;
-  color: var(--color-heading);
+  color: inherit;
   font-family: inherit;
-  font-size: var(--typography--fontSize-base);
-  line-height: var(--typography--lineHeight-base);
+  font-size: inherit;
+  line-height: inherit;
   background: transparent;
   flex: 1 1 auto;
 }
 
-.inlineInput::placeholder {
-  color: var(--color-text--secondary);
+.inlineInput:focus {
+  outline: none;
 }
 
 .inlineInput:disabled {
