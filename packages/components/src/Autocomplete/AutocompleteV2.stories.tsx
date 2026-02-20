@@ -866,6 +866,11 @@ const TemplateMultiple = () => {
   const [headerFooterValue, setHeaderFooterValue] = useState<OptionLike[]>([]);
   const [headerFooterInputValue, setHeaderFooterInputValue] = useState("");
 
+  const [disabledValue, setDisabledValue] = useState<OptionLike[]>([
+    { label: "Drain Cleaning" },
+  ]);
+  const [disabledInputValue, setDisabledInputValue] = useState("");
+
   return (
     <Content>
       <Heading level={4}>Multiple</Heading>
@@ -942,6 +947,20 @@ const TemplateMultiple = () => {
         multiple
         inputValue={headerFooterInputValue}
         onInputChange={setHeaderFooterInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+
+      <Heading level={4}>Disabled with selections</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        disabled
+        value={disabledValue}
+        onChange={setDisabledValue}
+        multiple
+        inputValue={disabledInputValue}
+        onInputChange={setDisabledInputValue}
         menu={sectionedWithHeaderFooterMenu}
       />
     </Content>
