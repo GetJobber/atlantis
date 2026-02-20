@@ -98,6 +98,12 @@
 }
 
 .multiSelectContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-smaller);
+  padding: var(--space-smaller) var(--space-smaller) var(--space-smaller)
+    var(--space-small);
   border: var(--border-base) solid var(--color-border--interactive);
   border-radius: var(--radius-base);
   background-color: var(--color-surface);
@@ -111,17 +117,33 @@
   border-color: var(--color-critical);
 }
 
-/* Suppress the InputText's own border/shadow inside the multi-select container */
+/* Let the InputText fill remaining space inline with chips */
 .multiSelectContainer [data-testid="Form-Field-Wrapper"] {
+  min-width: 80px;
   box-shadow: none !important;
   border: none !important;
+  flex: 1 1 auto;
 }
 
-.chipContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-smaller);
-  padding: var(--space-small) var(--space-base) 0;
+.inlineInput {
+  min-width: 80px;
+  padding: var(--space-smaller) var(--space-small);
+  border: none;
+  outline: none;
+  color: var(--color-heading);
+  font-family: inherit;
+  font-size: var(--typography--fontSize-base);
+  line-height: var(--typography--lineHeight-base);
+  background: transparent;
+  flex: 1 1 auto;
+}
+
+.inlineInput::placeholder {
+  color: var(--color-text--secondary);
+}
+
+.inlineInput:disabled {
+  color: var(--color-disabled);
 }
 
 .selectionChip {

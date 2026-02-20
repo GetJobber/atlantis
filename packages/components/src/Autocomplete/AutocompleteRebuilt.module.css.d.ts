@@ -16,7 +16,7 @@ declare const styles: {
   readonly "textPersistent": string;
   readonly "multiSelectContainer": string;
   readonly "multiSelectContainerInvalid": string;
-  readonly "chipContainer": string;
+  readonly "inlineInput": string;
   readonly "selectionChip": string;
   readonly "chipDismiss": string;
 };

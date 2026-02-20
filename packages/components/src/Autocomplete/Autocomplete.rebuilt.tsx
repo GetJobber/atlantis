@@ -103,6 +103,17 @@ function AutocompleteRebuiltInternal<
 
   const dataAttrs = filterDataAttributes(props);
 
+  const ariaProps = {
+    role: "combobox" as const,
+    "aria-autocomplete": "list" as const,
+    "aria-expanded": open ? true : false,
+    "aria-controls": listboxId,
+    "aria-activedescendant":
+      open && activeIndex != null
+        ? `${listboxId}-item-${activeIndex}`
+        : undefined,
+  };
+
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
     value: inputValue,
@@ -122,14 +133,7 @@ function AutocompleteRebuiltInternal<
     prefix: props.prefix,
     suffix: props.suffix,
     ...(props.readOnly ? {} : composedReferenceProps),
-    role: "combobox",
-    "aria-autocomplete": "list",
-    "aria-expanded": open ? true : false,
-    "aria-controls": listboxId,
-    "aria-activedescendant":
-      open && activeIndex != null
-        ? `${listboxId}-item-${activeIndex}`
-        : undefined,
+    ...ariaProps,
     ...dataAttrs,
   };
 
@@ -183,11 +187,40 @@ function AutocompleteRebuiltInternal<
     ? ((props.value ?? []) as Value[])
     : [];
 
-  const inputElement = props.customRenderInput ? (
-    props.customRenderInput({ inputRef: mergedInputRef, inputProps })
-  ) : (
-    <InputText ref={mergedInputRef} {...inputProps} />
-  );
+  let inputElement: React.ReactNode;
+
+  if (props.customRenderInput) {
+    inputElement = props.customRenderInput({
+      inputRef: mergedInputRef,
+      inputProps,
+    });
+  } else if (props.multiple) {
+    inputElement = (
+      <input
+        ref={mergedInputRef}
+        className={styles.inlineInput}
+        value={inputValue}
+        onChange={
+          props.readOnly
+            ? undefined
+            : e => onInputChangeFromUser(e.target.value)
+        }
+        placeholder={placeholder}
+        disabled={disabled}
+        readOnly={props.readOnly}
+        name={props.name}
+        autoComplete="off"
+        autoFocus={props.autoFocus}
+        {...(props.readOnly
+          ? { onFocus: onInputFocus, onBlur: onInputBlur }
+          : composedReferenceProps)}
+        {...ariaProps}
+        {...dataAttrs}
+      />
+    );
+  } else {
+    inputElement = <InputText ref={mergedInputRef} {...inputProps} />;
+  }
 
   const customValueContent = props.customRenderValue
     ? props.customRenderValue({
@@ -200,36 +233,28 @@ function AutocompleteRebuiltInternal<
       })
     : undefined;
 
-  const defaultChips = !props.customRenderValue &&
-    selectedValues.length > 0 && (
-      <div
-        className={styles.chipContainer}
+  const defaultChips =
+    !props.customRenderValue &&
+    selectedValues.map(v => (
+      <span
+        key={v.key ?? getOptionLabel(v)}
+        className={styles.selectionChip}
+        data-testid="ATL-AutocompleteRebuilt-chip"
         onPointerDown={preventDefaultPointerDown}
       >
-        {selectedValues.map(v => (
-          <span
-            key={v.key ?? getOptionLabel(v)}
-            className={styles.selectionChip}
-            data-testid="ATL-AutocompleteRebuilt-chip"
-            onPointerDown={preventDefaultPointerDown}
-          >
-            {getOptionLabel(v)}
-            <button
-              type="button"
-              className={styles.chipDismiss}
-              onClick={() => removeSelection(v)}
-              onPointerDown={preventDefaultPointerDown}
-              aria-label={`Remove ${getOptionLabel(v)}`}
-              tabIndex={-1}
-            >
-              {"\u00D7"}
-            </button>
-          </span>
-        ))}
-      </div>
-    );
-
-  const valueDisplay = customValueContent || defaultChips;
+        {getOptionLabel(v)}
+        <button
+          type="button"
+          className={styles.chipDismiss}
+          onClick={() => removeSelection(v)}
+          onPointerDown={preventDefaultPointerDown}
+          aria-label={`Remove ${getOptionLabel(v)}`}
+          tabIndex={-1}
+        >
+          {"\u00D7"}
+        </button>
+      </span>
+    ));
 
   const needsContainer =
     props.multiple || (props.customRenderValue && props.value != null);
@@ -243,7 +268,8 @@ function AutocompleteRebuiltInternal<
           })}
           data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
         >
-          {valueDisplay}
+          {customValueContent}
+          {defaultChips}
           {inputElement}
         </div>
       ) : (
