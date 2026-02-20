@@ -490,27 +490,19 @@ interface AutocompleteRebuiltBaseProps<
   }) => React.ReactNode;
 
   /**
-   * Render prop to customize how the selected value is displayed inside the input container.
-   * Replaces the default chips (multiple) or renders rich content for the selected value (single).
+   * Render prop to customize the content inside each selection chip.
+   * Only applicable in `multiple` mode. The Autocomplete handles the chip container,
+   * padding, dismiss button, hover/focus states, and disabled/readOnly behavior.
+   * You only provide the content that appears to the left of the dismiss button.
    *
-   * @param args.value - The current selection value (array for multiple, Value | undefined for single)
+   * When not provided, the chip content defaults to `getOptionLabel(option)`.
+   *
+   * @param args.value - The selected option this chip represents
    * @param args.getOptionLabel - Function to get the display text for an option
-   * @param args.removeValue - Remove a specific option from the selection
-   * @param args.preventBlur - Attach to onPointerDown on interactive elements to prevent input blur
-   * @param args.disabled - Whether the autocomplete is disabled
-   * @param args.readOnly - Whether the autocomplete is read-only (value cannot be changed)
-   * @param args.activeValueIndex - Index of the virtually-focused value for keyboard navigation
-   *   (null when no value is focused). Use this to render a visual focus indicator on the
-   *   corresponding element. The Autocomplete handles all navigation and removal logic internally.
    */
   readonly customRenderValue?: (args: {
-    value: AutocompleteValue<Value, Multiple>;
+    value: Value;
     getOptionLabel: (option: Value) => string;
-    removeValue: (option: Value) => void;
-    preventBlur: (e: React.PointerEvent) => void;
-    disabled?: boolean;
-    readOnly?: boolean;
-    activeValueIndex: number | null;
   }) => React.ReactNode;
 
   /**
@@ -537,6 +529,7 @@ interface AutocompleteRebuiltBaseProps<
     input?: string;
     header?: string;
     footer?: string;
+    selection?: string;
   };
 
   /**
@@ -552,6 +545,7 @@ interface AutocompleteRebuiltBaseProps<
     input?: CSSProperties;
     header?: CSSProperties;
     footer?: CSSProperties;
+    selection?: CSSProperties;
   };
 
   /**

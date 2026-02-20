@@ -904,23 +904,8 @@ const TemplateMultiple = () => {
         suffix={{
           icon: "arrowDown",
         }}
-        customRenderValue={({
-          value: selectedValue,
-          getOptionLabel,
-          removeValue,
-        }) => (
-          <div>
-            {selectedValue.map(v => (
-              <button
-                type="button"
-                key={getOptionLabel(v)}
-                onClick={() => removeValue(v)}
-                style={{ background: "#29d" }}
-              >
-                <span key={getOptionLabel(v)}>{getOptionLabel(v)}</span>
-              </button>
-            ))}
-          </div>
+        customRenderValue={({ value: v, getOptionLabel }) => (
+          <span style={{ fontWeight: "bold" }}>🏷 {getOptionLabel(v)}</span>
         )}
       />
 
@@ -956,6 +941,19 @@ const TemplateMultiple = () => {
         onBlur={() => console.log("blurred")}
         placeholder="Search"
         disabled
+        value={disabledValue}
+        onChange={setDisabledValue}
+        multiple
+        inputValue={disabledInputValue}
+        onInputChange={setDisabledInputValue}
+        menu={sectionedWithHeaderFooterMenu}
+      />
+      <Heading level={4}>Readonly with selections</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        readOnly
         value={disabledValue}
         onChange={setDisabledValue}
         multiple

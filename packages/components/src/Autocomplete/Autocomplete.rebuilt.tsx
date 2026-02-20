@@ -341,35 +341,27 @@ function AutocompleteRebuiltInternal<
     inputElement = <InputText ref={mergedInputRef} {...inputProps} />;
   }
 
-  const hasValueToRender = props.multiple
-    ? selectedValues.length > 0
-    : props.value != null;
+  const canDismissChip = !disabled && !props.readOnly;
 
-  const customValueContent =
-    props.customRenderValue && hasValueToRender
-      ? props.customRenderValue({
-          value: props.value,
-          getOptionLabel,
-          removeValue: removeSelection,
-          preventBlur: preventDefaultPointerDown,
-          disabled,
-          readOnly: props.readOnly,
-          activeValueIndex: activeChipIndex,
-        })
-      : undefined;
-
-  const defaultChips =
-    !props.customRenderValue &&
-    selectedValues.map((v, i) => (
-      <span
-        key={v.key ?? getOptionLabel(v)}
-        className={classNames(styles.selectionChip, {
+  const chips = selectedValues.map((v, i) => (
+    <span
+      key={v.key ?? getOptionLabel(v)}
+      className={classNames(
+        styles.selectionChip,
+        {
           [styles.selectionChipActive]: activeChipIndex === i,
-        })}
-        data-testid="ATL-AutocompleteRebuilt-chip"
-        onPointerDown={preventDefaultPointerDown}
-      >
-        {getOptionLabel(v)}
+          [styles.selectionChipDisabled]: disabled,
+        },
+        props.UNSAFE_className?.selection,
+      )}
+      style={props.UNSAFE_styles?.selection}
+      data-testid="ATL-AutocompleteRebuilt-chip"
+      onPointerDown={preventDefaultPointerDown}
+    >
+      {props.customRenderValue
+        ? props.customRenderValue({ value: v, getOptionLabel })
+        : getOptionLabel(v)}
+      {canDismissChip && (
         <button
           type="button"
           className={styles.chipDismiss}
@@ -380,11 +372,9 @@ function AutocompleteRebuiltInternal<
         >
           {"\u00D7"}
         </button>
-      </span>
-    ));
-
-  const needsSingleCustomContainer =
-    !props.multiple && props.customRenderValue && props.value != null;
+      )}
+    </span>
+  ));
 
   let fieldContent: React.ReactNode;
 
@@ -413,23 +403,10 @@ function AutocompleteRebuiltInternal<
           wrapperRef={formFieldRef}
         >
           <div className={styles.chipArea}>
-            {customValueContent}
-            {defaultChips}
+            {chips}
             {inputElement}
           </div>
         </FormFieldWrapper>
-      </div>
-    );
-  } else if (needsSingleCustomContainer) {
-    fieldContent = (
-      <div
-        className={classNames(styles.multiSelectContainer, {
-          [styles.multiSelectContainerInvalid]: invalid || error,
-        })}
-        data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
-      >
-        {customValueContent}
-        {inputElement}
       </div>
     );
   } else {

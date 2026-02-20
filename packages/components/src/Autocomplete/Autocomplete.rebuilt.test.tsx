@@ -2098,233 +2098,108 @@ describe("AutocompleteRebuilt", () => {
   });
 
   describe("customRenderValue", () => {
-    it("renders custom value content for multiple mode", async () => {
-      const onChange = jest.fn();
-
-      const menu = [
-        menuOptions<OptionLike>([
-          { label: "One" },
-          { label: "Two" },
-          { label: "Three" },
-        ]),
-      ];
-
+    it("renders custom content inside each chip", () => {
       render(
         <AutocompleteRebuilt
           version={2}
           multiple
-          menu={menu}
+          menu={[
+            menuOptions<OptionLike>([
+              { label: "One" },
+              { label: "Two" },
+              { label: "Three" },
+            ]),
+          ]}
           inputValue=""
           onInputChange={jest.fn()}
           value={[{ label: "One" }, { label: "Two" }]}
-          onChange={onChange}
+          onChange={jest.fn()}
           placeholder=""
-          customRenderValue={({ value, getOptionLabel, removeValue }) => (
-            <div data-testid="custom-value-container">
-              {(value as OptionLike[]).map(v => (
-                <span key={getOptionLabel(v)} data-testid="custom-tag">
-                  {getOptionLabel(v)}
-                  <button
-                    type="button"
-                    onClick={() => removeValue(v)}
-                    data-testid={`remove-${getOptionLabel(v)}`}
-                  >
-                    x
-                  </button>
-                </span>
-              ))}
-            </div>
+          customRenderValue={({ value, getOptionLabel }) => (
+            <span data-testid="custom-chip-content">
+              🏷 {getOptionLabel(value)}
+            </span>
           )}
         />,
       );
 
-      expect(screen.getByTestId("custom-value-container")).toBeVisible();
-      expect(screen.getAllByTestId("custom-tag")).toHaveLength(2);
-      expect(screen.queryByTestId("ATL-AutocompleteRebuilt-chip")).toBeNull();
+      const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chips).toHaveLength(2);
+
+      const customContent = screen.getAllByTestId("custom-chip-content");
+      expect(customContent).toHaveLength(2);
+      expect(customContent[0]).toHaveTextContent("🏷 One");
+      expect(customContent[1]).toHaveTextContent("🏷 Two");
     });
 
-    it("calls removeValue correctly from custom render in multiple mode", async () => {
-      const onChange = jest.fn();
-
-      const menu = [
-        menuOptions<OptionLike>([
-          { label: "One" },
-          { label: "Two" },
-          { label: "Three" },
-        ]),
-      ];
-
+    it("still renders dismiss button alongside custom content", () => {
       render(
         <AutocompleteRebuilt
           version={2}
           multiple
-          menu={menu}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }, { label: "Two" }]}
-          onChange={onChange}
-          placeholder=""
-          customRenderValue={({ value, getOptionLabel, removeValue }) => (
-            <div data-testid="custom-value-container">
-              {(value as OptionLike[]).map(v => (
-                <button
-                  key={getOptionLabel(v)}
-                  type="button"
-                  onClick={() => removeValue(v)}
-                  data-testid={`remove-${getOptionLabel(v)}`}
-                >
-                  {getOptionLabel(v)}
-                </button>
-              ))}
-            </div>
-          )}
-        />,
-      );
-
-      await userEvent.click(screen.getByTestId("remove-One"));
-
-      expect(onChange).toHaveBeenCalledTimes(1);
-      expect(onChange).toHaveBeenCalledWith([{ label: "Two" }]);
-    });
-
-    it("renders custom value content for single mode when a value is selected", () => {
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
-          inputValue="One"
-          onInputChange={jest.fn()}
-          value={{ label: "One" }}
-          onChange={jest.fn()}
-          placeholder=""
-          customRenderValue={({ value, getOptionLabel }) => {
-            const v = value as OptionLike | undefined;
-
-            return v ? (
-              <div data-testid="custom-single-value">{getOptionLabel(v)}</div>
-            ) : null;
-          }}
-        />,
-      );
-
-      expect(screen.getByTestId("custom-single-value")).toBeVisible();
-      expect(screen.getByTestId("custom-single-value")).toHaveTextContent(
-        "One",
-      );
-      expect(
-        screen.getByTestId("ATL-AutocompleteRebuilt-multiSelectContainer"),
-      ).toBeInTheDocument();
-    });
-
-    it("does not wrap single mode in container when customRenderValue is not provided", () => {
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
-          inputValue="One"
-          onInputChange={jest.fn()}
-          value={{ label: "One" }}
-          onChange={jest.fn()}
-          placeholder=""
-        />,
-      );
-
-      expect(
-        screen.queryByTestId("ATL-AutocompleteRebuilt-multiSelectContainer"),
-      ).toBeNull();
-    });
-
-    it("does not render container for single mode when value is undefined", () => {
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={undefined}
-          onChange={jest.fn()}
-          placeholder=""
-          customRenderValue={({ value }) => {
-            const v = value as OptionLike | undefined;
-
-            return v ? (
-              <div data-testid="custom-single-value">{v.label}</div>
-            ) : null;
-          }}
-        />,
-      );
-
-      expect(
-        screen.queryByTestId("custom-single-value"),
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByTestId("ATL-AutocompleteRebuilt-multiSelectContainer"),
-      ).toBeNull();
-    });
-
-    it("calls removeValue correctly from custom render in single mode", async () => {
-      const onChange = jest.fn();
-
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
-          inputValue="One"
-          onInputChange={jest.fn()}
-          value={{ label: "One" }}
-          onChange={onChange}
-          placeholder=""
-          customRenderValue={({ value, getOptionLabel, removeValue }) => {
-            const v = value as OptionLike | undefined;
-
-            return v ? (
-              <div data-testid="custom-single-value">
-                {getOptionLabel(v)}
-                <button
-                  type="button"
-                  onClick={() => removeValue(v)}
-                  data-testid="remove-value"
-                >
-                  x
-                </button>
-              </div>
-            ) : null;
-          }}
-        />,
-      );
-
-      await userEvent.click(screen.getByTestId("remove-value"));
-
-      expect(onChange).toHaveBeenCalledTimes(1);
-      expect(onChange).toHaveBeenCalledWith(undefined);
-    });
-
-    it("suppresses default chips when customRenderValue is provided", () => {
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
           inputValue=""
           onInputChange={jest.fn()}
           value={[{ label: "One" }]}
           onChange={jest.fn()}
           placeholder=""
-          customRenderValue={() => (
-            <div data-testid="custom-replacement">Custom</div>
+          customRenderValue={({ value, getOptionLabel }) => (
+            <span>{getOptionLabel(value)}</span>
           )}
         />,
       );
 
-      expect(screen.getByTestId("custom-replacement")).toBeVisible();
       expect(
-        screen.queryByTestId("ATL-AutocompleteRebuilt-chip"),
-      ).not.toBeInTheDocument();
+        screen.getByRole("button", { name: "Remove One" }),
+      ).toBeInTheDocument();
     });
 
-    it("passes disabled state to customRenderValue", () => {
-      const renderValue = jest.fn(() => null);
+    it("dismiss button removes chip when clicked with custom content", async () => {
+      const onChange = jest.fn();
 
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }, { label: "Two" }]}
+          onChange={onChange}
+          placeholder=""
+          customRenderValue={({ value, getOptionLabel }) => (
+            <span>{getOptionLabel(value)}</span>
+          )}
+        />,
+      );
+
+      await userEvent.click(screen.getByRole("button", { name: "Remove One" }));
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith([{ label: "Two" }]);
+    });
+
+    it("uses default label content when customRenderValue is not provided", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue=""
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
+          placeholder=""
+        />,
+      );
+
+      const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chip).toHaveTextContent("One×");
+    });
+  });
+
+  describe("chip disabled and readOnly behavior", () => {
+    it("hides dismiss button when disabled", () => {
       render(
         <AutocompleteRebuilt
           version={2}
@@ -2336,18 +2211,16 @@ describe("AutocompleteRebuilt", () => {
           onChange={jest.fn()}
           placeholder=""
           disabled
-          customRenderValue={renderValue}
         />,
       );
 
-      expect(renderValue).toHaveBeenCalledWith(
-        expect.objectContaining({ disabled: true }),
-      );
+      expect(screen.getByTestId("ATL-AutocompleteRebuilt-chip")).toBeVisible();
+      expect(
+        screen.queryByRole("button", { name: "Remove One" }),
+      ).not.toBeInTheDocument();
     });
 
-    it("passes readOnly state to customRenderValue", () => {
-      const renderValue = jest.fn(() => null);
-
+    it("hides dismiss button when readOnly", () => {
       render(
         <AutocompleteRebuilt
           version={2}
@@ -2359,18 +2232,18 @@ describe("AutocompleteRebuilt", () => {
           onChange={jest.fn()}
           placeholder=""
           readOnly
-          customRenderValue={renderValue}
         />,
       );
 
-      expect(renderValue).toHaveBeenCalledWith(
-        expect.objectContaining({ readOnly: true }),
-      );
+      expect(screen.getByTestId("ATL-AutocompleteRebuilt-chip")).toBeVisible();
+      expect(
+        screen.queryByRole("button", { name: "Remove One" }),
+      ).not.toBeInTheDocument();
     });
+  });
 
-    it("passes activeValueIndex as null initially", () => {
-      const renderValue = jest.fn(() => null);
-
+  describe("UNSAFE chip props", () => {
+    it("applies UNSAFE_className.selection to selection chips", () => {
       render(
         <AutocompleteRebuilt
           version={2}
@@ -2381,109 +2254,31 @@ describe("AutocompleteRebuilt", () => {
           value={[{ label: "One" }]}
           onChange={jest.fn()}
           placeholder=""
-          customRenderValue={renderValue}
+          UNSAFE_className={{ selection: "my-custom-chip-class" }}
         />,
       );
 
-      expect(renderValue).toHaveBeenCalledWith(
-        expect.objectContaining({ activeValueIndex: null }),
-      );
+      const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chip.className).toContain("my-custom-chip-class");
     });
 
-    it("passes updated activeValueIndex during chip keyboard navigation", async () => {
-      const renderValue = jest.fn(
-        ({
-          value,
-          getOptionLabel,
-          activeValueIndex,
-        }: {
-          value: OptionLike[];
-          getOptionLabel: (o: OptionLike) => string;
-          activeValueIndex: number | null;
-        }) => (
-          <div data-testid="custom-value-container">
-            {(value as OptionLike[]).map((v, i) => (
-              <span
-                key={getOptionLabel(v)}
-                data-testid={`custom-tag-${i}`}
-                data-active={activeValueIndex === i}
-              >
-                {getOptionLabel(v)}
-              </span>
-            ))}
-          </div>
-        ),
-      );
-
-      render(
-        <MultipleWrapper
-          initialValue={[{ label: "One" }, { label: "Two" }]}
-          customRenderValue={renderValue}
-        />,
-      );
-
-      await openAutocomplete();
-      await userEvent.keyboard("{ArrowLeft}");
-
-      await waitFor(() => {
-        expect(screen.getByTestId("custom-tag-1")).toHaveAttribute(
-          "data-active",
-          "true",
-        );
-        expect(screen.getByTestId("custom-tag-0")).toHaveAttribute(
-          "data-active",
-          "false",
-        );
-      });
-
-      await userEvent.keyboard("{ArrowLeft}");
-
-      await waitFor(() => {
-        expect(screen.getByTestId("custom-tag-0")).toHaveAttribute(
-          "data-active",
-          "true",
-        );
-        expect(screen.getByTestId("custom-tag-1")).toHaveAttribute(
-          "data-active",
-          "false",
-        );
-      });
-    });
-
-    it("removeValue is a no-op when readOnly is true", async () => {
-      const onChange = jest.fn();
-
+    it("applies UNSAFE_styles.selection to selection chips", () => {
       render(
         <AutocompleteRebuilt
           version={2}
           multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
           inputValue=""
           onInputChange={jest.fn()}
-          value={[{ label: "One" }, { label: "Two" }]}
-          onChange={onChange}
+          value={[{ label: "One" }]}
+          onChange={jest.fn()}
           placeholder=""
-          readOnly
-          customRenderValue={({ value, getOptionLabel, removeValue }) => (
-            <div>
-              {(value as OptionLike[]).map(v => (
-                <button
-                  key={getOptionLabel(v)}
-                  type="button"
-                  onClick={() => removeValue(v)}
-                  data-testid={`remove-${getOptionLabel(v)}`}
-                >
-                  {getOptionLabel(v)}
-                </button>
-              ))}
-            </div>
-          )}
+          UNSAFE_styles={{ selection: { backgroundColor: "red" } }}
         />,
       );
 
-      await userEvent.click(screen.getByTestId("remove-One"));
-
-      expect(onChange).not.toHaveBeenCalled();
+      const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
+      expect(chip).toHaveStyle({ backgroundColor: "red" });
     });
   });
 

@@ -16,11 +16,10 @@ declare const styles: {
   readonly "textPersistent": string;
   readonly "multiSelectField": string;
   readonly "chipArea": string;
-  readonly "multiSelectContainer": string;
-  readonly "multiSelectContainerInvalid": string;
   readonly "inlineInput": string;
   readonly "selectionChip": string;
   readonly "selectionChipActive": string;
+  readonly "selectionChipDisabled": string;
   readonly "chipDismiss": string;
 };
 export = styles;

@@ -112,35 +112,6 @@
     var(--field--padding-bottom) var(--field--padding-left);
 }
 
-/* Single-select customRenderValue container (no FormFieldWrapper) */
-.multiSelectContainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-smaller);
-  padding: var(--space-smaller) var(--space-smaller) var(--space-smaller)
-    var(--space-small);
-  border: var(--border-base) solid var(--color-border--interactive);
-  border-radius: var(--radius-base);
-  background-color: var(--color-surface);
-}
-
-.multiSelectContainer:focus-within {
-  box-shadow: var(--shadow-focus);
-}
-
-.multiSelectContainerInvalid {
-  border-color: var(--color-critical);
-}
-
-/* Let the InputText fill remaining space inline with custom value */
-.multiSelectContainer [data-testid="Form-Field-Wrapper"] {
-  min-width: 80px;
-  box-shadow: none !important;
-  border: none !important;
-  flex: 1 1 auto;
-}
-
 .inlineInput {
   min-width: 80px;
   padding: var(--space-minuscule) 0;
@@ -175,6 +146,11 @@
 
 .selectionChipActive {
   outline-color: var(--color-interactive);
+}
+
+.selectionChipDisabled {
+  cursor: default;
+  opacity: 0.6;
 }
 
 .chipDismiss {
