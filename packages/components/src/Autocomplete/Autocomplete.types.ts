@@ -490,6 +490,26 @@ interface AutocompleteRebuiltBaseProps<
   }) => React.ReactNode;
 
   /**
+   * Render prop to customize how the selected value is displayed inside the input container.
+   * Replaces the default chips (multiple) or renders rich content for the selected value (single).
+   *
+   * @param args.value - The current selection value (array for multiple, Value | undefined for single)
+   * @param args.getOptionLabel - Function to get the display text for an option
+   * @param args.removeValue - Remove a specific option from the selection
+   * @param args.preventBlur - Attach to onPointerDown on interactive elements to prevent input blur
+   * @param args.disabled - Whether the autocomplete is disabled
+   * @param args.readOnly - Whether the autocomplete is read-only (value cannot be changed)
+   */
+  readonly customRenderValue?: (args: {
+    value: AutocompleteValue<Value, Multiple>;
+    getOptionLabel: (option: Value) => string;
+    removeValue: (option: Value) => void;
+    preventBlur: (e: React.PointerEvent) => void;
+    disabled?: boolean;
+    readOnly?: boolean;
+  }) => React.ReactNode;
+
+  /**
    * Render prop to customize the rendering of the input.
    * @param props.inputRef - The ref to the input element
    * @param props.inputProps - The props to pass to the input element

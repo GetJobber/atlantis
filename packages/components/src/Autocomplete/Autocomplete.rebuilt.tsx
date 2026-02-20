@@ -189,40 +189,61 @@ function AutocompleteRebuiltInternal<
     <InputText ref={mergedInputRef} {...inputProps} />
   );
 
-  const chips = selectedValues.length > 0 && (
-    <div className={styles.chipContainer}>
-      {selectedValues.map(v => (
-        <span
-          key={v.key ?? getOptionLabel(v)}
-          className={styles.selectionChip}
-          data-testid="ATL-AutocompleteRebuilt-chip"
-        >
-          {getOptionLabel(v)}
-          <button
-            type="button"
-            className={styles.chipDismiss}
-            onClick={() => removeSelection(v)}
+  const customValueContent = props.customRenderValue
+    ? props.customRenderValue({
+        value: props.value,
+        getOptionLabel,
+        removeValue: removeSelection,
+        preventBlur: preventDefaultPointerDown,
+        disabled,
+        readOnly: props.readOnly,
+      })
+    : undefined;
+
+  const defaultChips = !props.customRenderValue &&
+    selectedValues.length > 0 && (
+      <div
+        className={styles.chipContainer}
+        onPointerDown={preventDefaultPointerDown}
+      >
+        {selectedValues.map(v => (
+          <span
+            key={v.key ?? getOptionLabel(v)}
+            className={styles.selectionChip}
+            data-testid="ATL-AutocompleteRebuilt-chip"
             onPointerDown={preventDefaultPointerDown}
-            aria-label={`Remove ${getOptionLabel(v)}`}
-            tabIndex={-1}
           >
-            {"\u00D7"}
-          </button>
-        </span>
-      ))}
-    </div>
-  );
+            {getOptionLabel(v)}
+            <button
+              type="button"
+              className={styles.chipDismiss}
+              onClick={() => removeSelection(v)}
+              onPointerDown={preventDefaultPointerDown}
+              aria-label={`Remove ${getOptionLabel(v)}`}
+              tabIndex={-1}
+            >
+              {"\u00D7"}
+            </button>
+          </span>
+        ))}
+      </div>
+    );
+
+  const valueDisplay = customValueContent || defaultChips;
+
+  const needsContainer =
+    props.multiple || (props.customRenderValue && props.value != null);
 
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
-      {props.multiple ? (
+      {needsContainer ? (
         <div
           className={classNames(styles.multiSelectContainer, {
             [styles.multiSelectContainerInvalid]: invalid || error,
           })}
           data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
         >
-          {chips}
+          {valueDisplay}
           {inputElement}
         </div>
       ) : (

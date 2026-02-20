@@ -855,6 +855,7 @@ const TemplateMultiple = () => {
       <Heading level={4}>Multiple</Heading>
       <Autocomplete
         version={2}
+        onBlur={() => console.log("blurred")}
         placeholder="Search"
         value={value}
         menu={defineMenu<OptionLike>([
@@ -864,6 +865,38 @@ const TemplateMultiple = () => {
         onChange={setValue}
         inputValue={inputValue}
         onInputChange={setInputValue}
+      />
+      <Heading level={4}>With customRenderValue</Heading>
+      <Autocomplete
+        version={2}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={value}
+        multiple
+        onChange={setValue}
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions },
+        ])}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        customRenderValue={({
+          value: selectedValue,
+          getOptionLabel,
+          removeValue,
+        }) => (
+          <div>
+            {selectedValue.map(v => (
+              <button
+                type="button"
+                key={getOptionLabel(v)}
+                onClick={() => removeValue(v)}
+                style={{ background: "#29d" }}
+              >
+                <span key={getOptionLabel(v)}>{getOptionLabel(v)}</span>
+              </button>
+            ))}
+          </div>
+        )}
       />
     </Content>
   );

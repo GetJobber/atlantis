@@ -659,7 +659,7 @@ export function useAutocomplete<
   }
 
   const removeLastSelection = useCallback(() => {
-    if (!multiple) return;
+    if (!multiple || readOnly) return;
 
     const current = (value as AutocompleteValue<Value, true>) ?? [];
 
@@ -667,17 +667,25 @@ export function useAutocomplete<
       const next = (current as Value[]).slice(0, -1);
       onChange(next as AutocompleteValue<Value, Multiple>);
     }
-  }, [multiple, value, onChange]);
+  }, [multiple, readOnly, value, onChange]);
 
   const removeSelection = useCallback(
     (option: Value) => {
-      if (!multiple) return;
+      if (readOnly) return;
 
-      const current = (value as AutocompleteValue<Value, true>) ?? [];
-      const next = (current as Value[]).filter(v => !equals(v, option));
-      onChange(next as AutocompleteValue<Value, Multiple>);
+      if (multiple) {
+        const current = (value as AutocompleteValue<Value, true>) ?? [];
+        const next = (current as Value[]).filter(v => !equals(v, option));
+        onChange(next as AutocompleteValue<Value, Multiple>);
+      } else {
+        const current = value as Value | undefined;
+
+        if (current && equals(current, option)) {
+          onChange(undefined as AutocompleteValue<Value, Multiple>);
+        }
+      }
     },
-    [multiple, value, equals, onChange],
+    [readOnly, multiple, value, equals, onChange],
   );
 
   const onInputKeyDown = useCallback(
