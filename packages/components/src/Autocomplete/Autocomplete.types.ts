@@ -499,6 +499,9 @@ interface AutocompleteRebuiltBaseProps<
    * @param args.preventBlur - Attach to onPointerDown on interactive elements to prevent input blur
    * @param args.disabled - Whether the autocomplete is disabled
    * @param args.readOnly - Whether the autocomplete is read-only (value cannot be changed)
+   * @param args.activeValueIndex - Index of the virtually-focused value for keyboard navigation
+   *   (null when no value is focused). Use this to render a visual focus indicator on the
+   *   corresponding element. The Autocomplete handles all navigation and removal logic internally.
    */
   readonly customRenderValue?: (args: {
     value: AutocompleteValue<Value, Multiple>;
@@ -507,6 +510,7 @@ interface AutocompleteRebuiltBaseProps<
     preventBlur: (e: React.PointerEvent) => void;
     disabled?: boolean;
     readOnly?: boolean;
+    activeValueIndex: number | null;
   }) => React.ReactNode;
 
   /**

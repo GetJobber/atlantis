@@ -152,8 +152,13 @@
   gap: var(--space-smaller);
   padding: var(--space-minuscule) var(--space-small);
   border-radius: var(--radius-base);
+  outline: 2px solid transparent;
   color: var(--color-heading);
   background-color: var(--color-interactive--background);
+}
+
+.selectionChipActive {
+  outline-color: var(--color-interactive);
 }
 
 .chipDismiss {

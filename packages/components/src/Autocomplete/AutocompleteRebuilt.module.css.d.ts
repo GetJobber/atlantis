@@ -18,6 +18,7 @@ declare const styles: {
   readonly "multiSelectContainerInvalid": string;
   readonly "inlineInput": string;
   readonly "selectionChip": string;
+  readonly "selectionChipActive": string;
   readonly "chipDismiss": string;
 };
 export = styles;

@@ -209,12 +209,17 @@ export function MultipleWrapper<T extends OptionLike>({
   onInputChange,
   menu,
   debounce = 0,
+  customRenderValue,
 }: {
   readonly initialValue?: T[];
   readonly onChange?: (v: T[]) => void;
   readonly onInputChange?: (v: string) => void;
   readonly menu?: MenuItem<T>[];
   readonly debounce?: number;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    T,
+    true
+  >["customRenderValue"];
 }) {
   const [value, setValue] = React.useState<T[]>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>("");
@@ -237,6 +242,7 @@ export function MultipleWrapper<T extends OptionLike>({
       menu={menu ?? (built.menu as MenuItem<T>[])}
       placeholder=""
       debounce={debounce}
+      customRenderValue={customRenderValue}
     />
   );
 }
