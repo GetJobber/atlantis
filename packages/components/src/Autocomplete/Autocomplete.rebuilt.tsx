@@ -341,17 +341,22 @@ function AutocompleteRebuiltInternal<
     inputElement = <InputText ref={mergedInputRef} {...inputProps} />;
   }
 
-  const customValueContent = props.customRenderValue
-    ? props.customRenderValue({
-        value: props.value,
-        getOptionLabel,
-        removeValue: removeSelection,
-        preventBlur: preventDefaultPointerDown,
-        disabled,
-        readOnly: props.readOnly,
-        activeValueIndex: activeChipIndex,
-      })
-    : undefined;
+  const hasValueToRender = props.multiple
+    ? selectedValues.length > 0
+    : props.value != null;
+
+  const customValueContent =
+    props.customRenderValue && hasValueToRender
+      ? props.customRenderValue({
+          value: props.value,
+          getOptionLabel,
+          removeValue: removeSelection,
+          preventBlur: preventDefaultPointerDown,
+          disabled,
+          readOnly: props.readOnly,
+          activeValueIndex: activeChipIndex,
+        })
+      : undefined;
 
   const defaultChips =
     !props.customRenderValue &&
