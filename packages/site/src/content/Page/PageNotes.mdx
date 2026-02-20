@@ -8,23 +8,28 @@ for client-side router integration) or custom action elements.
 ```
 <Page width="fill">
   <Page.Header>
-    <Page.Title metadata={<StatusLabel label="Draft" status="warning" />}>
+    <Page.Title>
       Clients
+      <Page.TitleMetaData>
+        <StatusLabel label="Draft" status="warning" />
+      </Page.TitleMetaData>
     </Page.Title>
     <Page.Subtitle>Manage your client list</Page.Subtitle>
     <Page.Actions>
-      <Page.PrimaryAction label="New Client" onClick={handleCreate} />
-      <Page.SecondaryAction label="Export" onClick={handleExport} />
-      <Page.Menu>
-        <Menu.Item textValue="Import" onClick={handleImport}>
-          <Menu.ItemIcon name="import" />
-          <Menu.ItemLabel>Import</Menu.ItemLabel>
-        </Menu.Item>
-        <Menu.Item textValue="Archive" onClick={handleArchive}>
-          <Menu.ItemIcon name="archive" />
-          <Menu.ItemLabel>Archive</Menu.ItemLabel>
-        </Menu.Item>
-      </Page.Menu>
+      <Page.PrimarySlot>
+        <Page.PrimaryAction label="New Client" onClick={handleCreate} />
+      </Page.PrimarySlot>
+      <Page.SecondarySlot>
+        <Page.SecondaryAction label="Export" onClick={handleExport} />
+      </Page.SecondarySlot>
+      <Page.TertiarySlot>
+        <Page.Menu>
+          <Menu.Item textValue="Import" onClick={handleImport}>
+            <Menu.ItemIcon name="import" />
+            <Menu.ItemLabel>Import</Menu.ItemLabel>
+          </Menu.Item>
+        </Page.Menu>
+      </Page.TertiarySlot>
     </Page.Actions>
   </Page.Header>
   <Page.Body>
@@ -40,62 +45,67 @@ for client-side router integration) or custom action elements.
 Groups the title area and actions into the page header. Automatically positions
 `Page.Actions` alongside the title content using the responsive titlebar layout.
 
-All other children (e.g. `Page.Title`, `Page.Subtitle`) render in the title area
-on the left.
-
 **_Page.Title (Required)_**
 
-Renders the page heading as an H1. Accepts an optional `metadata` prop for
-elements displayed alongside the title, such as status badges.
+Renders the page heading as an H1. Can contain `Page.TitleMetaData` as a child
+for elements displayed alongside the title.
+
+**_Page.TitleMetaData (Optional)_**
+
+Metadata displayed alongside the page title, such as status badges. Use inside
+`Page.Title`.
 
 ```
-<Page.Title metadata={<StatusLabel label="Active" status="success" />}>
+<Page.Title>
   My Page Title
+  <Page.TitleMetaData>
+    <StatusLabel label="Active" status="success" />
+  </Page.TitleMetaData>
 </Page.Title>
 ```
 
 **_Page.Subtitle (Optional)_**
 
-Secondary text below the title. When given a string, renders with the default
-Text/Emphasis/Markdown treatment matching the props-based API. When given a
-ReactNode, renders it as-is for full customization.
+Secondary text below the title. Always applies the default Text/Emphasis
+styling. Works with any children type including translation components.
 
 **_Page.Intro (Optional)_**
 
-Introduction text between the header and body. Like `Page.Subtitle`, strings get
-default Text/Markdown treatment. ReactNodes render as-is. Accepts an
-`externalLinks` prop to open markdown links in a new tab.
+Introduction text between the header and body. Always applies the default Text
+styling. Works with any children type including translation components.
 
 **_Page.Actions (Optional)_**
 
-Container for the action buttons and menu. Applies the responsive action group
+Container for the action slots and menu. Applies the responsive action group
 layout that stacks on small viewports and inlines on larger ones.
 
-**_Page.PrimaryAction (Optional)_**
+**_Page.PrimarySlot / Page.SecondarySlot / Page.TertiarySlot (Optional)_**
 
-The primary action button. Provide `label` and `onClick` to use the built-in
-Button with primary styling and `fullWidth`, or provide `children` for a fully
-custom element.
+Positional slots that control where action elements appear. Use these to wrap
+either the default action buttons or fully custom elements.
 
 ```
-{/* Using defaults */}
-<Page.PrimaryAction label="Create" onClick={handleCreate} icon="add" />
+{/* Default button via slot */}
+<Page.PrimarySlot>
+  <Page.PrimaryAction label="Create" onClick={handleCreate} />
+</Page.PrimarySlot>
 
-{/* Using a custom element */}
-<Page.PrimaryAction>
+{/* Custom element via slot */}
+<Page.PrimarySlot>
   <MyCustomButton />
-</Page.PrimaryAction>
+</Page.PrimarySlot>
 ```
 
-**_Page.SecondaryAction (Optional)_**
+**_Page.PrimaryAction / Page.SecondaryAction (Optional)_**
 
-The secondary action button. Same API as `Page.PrimaryAction` but renders with
-secondary button styling by default.
+Default action buttons with opinionated styling (`fullWidth`, primary or
+secondary type). Use inside their respective slots.
 
 **_Page.Menu (Optional)_**
 
 The "More Actions" menu. Provides the default trigger button (kebab icon +
-label) so consumers only need to supply `Menu.Item` children.
+label) so consumers only need to supply `Menu.Item` children. Use inside
+`Page.TertiarySlot`.
 
 This is the primary integration point for client-side routers. For example, if
 you are using TanStack Router in the consumer app, you can wrap `Menu.Item` with
@@ -107,12 +117,14 @@ menu links:
 const TSRMenuItem = createLink(Menu.Item);
 
 // Use inside Page.Menu
-<Page.Menu>
-  <TSRMenuItem to="/clients/export" textValue="Export">
-    <Menu.ItemIcon name="export" />
-    <Menu.ItemLabel>Export</Menu.ItemLabel>
-  </TSRMenuItem>
-</Page.Menu>
+<Page.TertiarySlot>
+  <Page.Menu>
+    <TSRMenuItem to="/clients/export" textValue="Export">
+      <Menu.ItemIcon name="export" />
+      <Menu.ItemLabel>Export</Menu.ItemLabel>
+    </TSRMenuItem>
+  </Page.Menu>
+</Page.TertiarySlot>
 ```
 
 The trigger label defaults to "More Actions" and can be customized via the
