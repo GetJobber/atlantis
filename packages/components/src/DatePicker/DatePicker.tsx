@@ -9,6 +9,7 @@ import {
   FloatingPortal,
   FloatingTree,
   useFloatingNodeId,
+  useFloatingParentNodeId,
 } from "@floating-ui/react";
 import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
@@ -119,13 +120,13 @@ export function DatePicker({
   highlightDates,
   firstDayOfWeek,
 }: DatePickerProps) {
-  const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
   const { dateFormat, firstDayOfWeek: contextFirstDayOfWeek } =
     useAtlantisContext();
   const effectiveFirstDayOfWeek = firstDayOfWeek ?? contextFirstDayOfWeek;
   const renderInsidePortal = !inline;
   const uniquePortalId = useId();
+  const { ref, focusOnSelectedDate } = useFocusOnSelectedDate(uniquePortalId);
 
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
@@ -141,15 +142,35 @@ export function DatePicker({
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
   });
-  const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
+  const { pickerRef } = useEscapeKeyToCloseDatePicker(
+    open,
+    ref,
+    focusOnSelectedDate,
+    renderInsidePortal,
+  );
 
   if (smartAutofocus) {
     useRefocusOnActivator(open);
-    useEffect(focusOnSelectedDate, [open]);
+    useEffect(() => {
+      focusOnSelectedDate();
+    }, [open]);
   }
 
   return (
-    <div className={wrapperClassName} ref={ref} data-elevation={"elevated"}>
+    <div
+      className={wrapperClassName}
+      ref={ref}
+      data-elevation={"elevated"}
+      onKeyDown={event => {
+        // React synthetic events propagate through the React component tree
+        // regardless of DOM structure, so Escape from the portalled calendar
+        // bubbles up here and would reach any parent floating element's dismiss
+        // handler (e.g. a Modal). Stop it here so only the calendar closes.
+        if (event.key === "Escape" && open) {
+          event.stopPropagation();
+        }
+      }}
+    >
       <ReactDatePicker
         ref={pickerRef}
         calendarClassName={datePickerClassNames}
@@ -215,24 +236,38 @@ export function DatePicker({
 function useEscapeKeyToCloseDatePicker(
   open: boolean,
   ref: React.RefObject<HTMLDivElement | null>,
+  focusOnSelectedDate: () => boolean,
+  isPortalled: boolean,
 ): { pickerRef: React.RefObject<ReactDatePicker | null> } {
   const pickerRef = useRef<ReactDatePicker>(null);
 
-  const escFunction = (event: KeyboardEvent) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape" && open) {
       // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
       // do not close parent elements that may also be listening for ESC presses such as Modals
       pickerRef.current?.setOpen(false);
       event.stopPropagation();
     }
+
+    if (event.key === "Tab" && open && isPortalled) {
+      // When the calendar is portalled outside the modal DOM, Tab no longer
+      // naturally reaches the calendar. Intercept Tab and move focus to the
+      // calendar ourselves to restore the pre-portal keyboard behaviour.
+      const focused = focusOnSelectedDate();
+
+      if (focused) {
+        event.preventDefault();
+      }
+    }
   };
+
   useEffect(() => {
-    ref.current?.addEventListener("keydown", escFunction);
+    ref.current?.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      ref.current?.removeEventListener("keydown", escFunction);
+      ref.current?.removeEventListener("keydown", handleKeyDown);
     };
-  }, [open, ref, pickerRef]);
+  }, [open, ref, pickerRef, isPortalled]);
 
   return {
     pickerRef,
@@ -247,35 +282,31 @@ function useEscapeKeyToCloseDatePicker(
  * inside our own Popover component which gives us a lot more control over positioning, open/close state, focus/blur/dismiss management,
  * and more. Unclear if this is a better approach or if it would introduce more problems, but worth considering.
  */
-function DatePickerPortal({
-  // isOpen,
-  portalId,
-}: {
-  // readonly isOpen?: boolean;
-  readonly portalId: string;
-}) {
+function DatePickerPortal({ portalId }: { readonly portalId: string }) {
   // TODO: ideally we don't always render this. However, it needs to be rendered BEFORE DatePicker tries to portal into it.
-  // if (!isOpen) return null;
 
   const nodeId = useFloatingNodeId();
+  const parentNodeId = useFloatingParentNodeId();
 
-  // TODO: do we need to check parentNodeId and conditionally render this inside a FloatingTree only in that case?
-  // See ComboboxContent.tsx for example of this pattern.
-  // const parentNodeId = useFloatingParentNodeId();
-
-  return (
-    <FloatingTree>
-      <FloatingNode id={nodeId}>
-        <FloatingPortal>
-          <div
-            id={portalId}
-            style={{
-              position: "absolute",
-              zIndex: "var(--elevation-modal)",
-            }}
-          />
-        </FloatingPortal>
-      </FloatingNode>
-    </FloatingTree>
+  const portalDiv = (
+    <div
+      id={portalId}
+      style={{
+        position: "absolute",
+        zIndex: "var(--elevation-modal)",
+      }}
+    />
   );
+
+  if (parentNodeId) {
+    return (
+      <FloatingTree>
+        <FloatingNode id={nodeId}>
+          <FloatingPortal>{portalDiv}</FloatingPortal>
+        </FloatingNode>
+      </FloatingTree>
+    );
+  }
+
+  return <FloatingPortal>{portalDiv}</FloatingPortal>;
 }
