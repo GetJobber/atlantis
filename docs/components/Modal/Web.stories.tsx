@@ -265,6 +265,69 @@ export const ModalWithProviderExample = ModalWithProviderExampleTemplate.bind(
   {},
 );
 
+const ModalWithDatePickerTestTemplate: ComponentStory<typeof Modal> = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [inputDateValue, setInputDateValue] = useState<Date | undefined>();
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const buttonPopoverRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <Content>
+      <Button
+        label="Open Modal with Custom Focus"
+        onClick={() => setModalOpen(true)}
+      />
+      <Modal.Provider
+        open={modalOpen}
+        onRequestClose={() => {
+          setModalOpen(false);
+          setPopoverOpen(false);
+        }}
+      >
+        <Modal.Content>
+          <Modal.Header>
+            <CustomHeader />
+          </Modal.Header>
+          <Content>
+            <div ref={buttonPopoverRef}>
+              <Button
+                label="Show Information"
+                onClick={() => setPopoverOpen(!popoverOpen)}
+                type="secondary"
+                fullWidth
+              />
+            </div>
+            <Popover
+              open={popoverOpen}
+              attachTo={buttonPopoverRef}
+              onRequestClose={() => setPopoverOpen(false)}
+              preferredPlacement="right"
+            >
+              <Box padding="base">
+                <Text>This is a popover that floats in the UI.</Text>
+                <Text>
+                  Popovers are useful for displaying context-specific
+                  information without cluttering the interface.
+                </Text>
+              </Box>
+            </Popover>
+
+            <InputDate
+              onChange={setInputDateValue}
+              value={inputDateValue}
+              placeholder="Enter your date"
+            />
+          </Content>
+        </Modal.Content>
+        <Modal.Activator>
+          <InputText placeholder="Modal will return focus here" />
+        </Modal.Activator>
+      </Modal.Provider>
+    </Content>
+  );
+};
+export const ModalWithDatePickerTest = ModalWithDatePickerTestTemplate.bind({});
+
 const NestedExampleTemplate: ComponentStory<typeof Modal> = args => {
   const [outerModalOpen, setOuterModalOpen] = useState(false);
   const [innerModalOpen, setInnerModalOpen] = useState(false);
