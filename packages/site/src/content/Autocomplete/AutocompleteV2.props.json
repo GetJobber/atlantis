@@ -192,7 +192,7 @@
       },
       "customRenderValue": {
         "defaultValue": null,
-        "description": "Render prop to customize how the selected value is displayed inside the input container.\nReplaces the default chips (multiple) or renders rich content for the selected value (single).\n@param args.value - The current selection value (array for multiple, Value | undefined for single)\n@param args.getOptionLabel - Function to get the display text for an option\n@param args.removeValue - Remove a specific option from the selection\n@param args.preventBlur - Attach to onPointerDown on interactive elements to prevent input blur\n@param args.disabled - Whether the autocomplete is disabled\n@param args.readOnly - Whether the autocomplete is read-only (value cannot be changed)\n@param args.activeValueIndex - Index of the virtually-focused value for keyboard navigation\n(null when no value is focused). Use this to render a visual focus indicator on the\ncorresponding element. The Autocomplete handles all navigation and removal logic internally.",
+        "description": "Render prop to customize the content inside each selection chip.\nOnly applicable in `multiple` mode. The Autocomplete handles the chip container,\npadding, dismiss button, hover/focus states, and disabled/readOnly behavior.\nYou only provide the content that appears to the left of the dismiss button.\n\nWhen not provided, the chip content defaults to `getOptionLabel(option)`.\n@param args.value - The selected option this chip represents\n@param args.getOptionLabel - Function to get the display text for an option",
         "name": "customRenderValue",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
@@ -200,7 +200,7 @@
         },
         "required": false,
         "type": {
-          "name": "(args: { value: AutocompleteValue<Value, Multiple>; getOptionLabel: (option: Value) => string; removeValue: (option: Value) => void; preventBlur: (e: PointerEvent<...>) => void; disabled?: boolean; readOnly?: boolean; activeValueIndex: number; }) => ReactNode"
+          "name": "(args: { value: Value; getOptionLabel: (option: Value) => string; }) => ReactNode"
         }
       },
       "customRenderInput": {
@@ -226,7 +226,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ menu?: string; option?: string; section?: string; action?: string; input?: string; header?: string; footer?: string; }"
+          "name": "{ menu?: string; option?: string; section?: string; action?: string; input?: string; header?: string; footer?: string; selection?: string; }"
         }
       },
       "UNSAFE_styles": {
@@ -239,7 +239,7 @@
         },
         "required": false,
         "type": {
-          "name": "{ menu?: CSSProperties; option?: CSSProperties; section?: CSSProperties; action?: CSSProperties; input?: CSSProperties; header?: CSSProperties; footer?: CSSProperties; }"
+          "name": "{ menu?: CSSProperties; option?: CSSProperties; section?: CSSProperties; action?: CSSProperties; input?: CSSProperties; header?: CSSProperties; footer?: CSSProperties; selection?: CSSProperties; }"
         }
       },
       "emptyStateMessage": {
@@ -504,6 +504,19 @@
         "required": false,
         "type": {
           "name": "boolean"
+        }
+      },
+      "clearable": {
+        "defaultValue": null,
+        "description": "Add a clear action on the input that clears the value.",
+        "name": "clearable",
+        "parent": {
+          "fileName": "packages/components/src/sharedHelpers/types.ts",
+          "name": "RebuiltInputCommonProps"
+        },
+        "required": false,
+        "type": {
+          "name": "Clearable"
         }
       },
       "description": {
