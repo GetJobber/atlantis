@@ -66,11 +66,13 @@
   transition: var(--timing-slow) left ease-out;
 }
 
-/* Focus ring at z-index: 2 so hover backgrounds (z-index: 1) can't cover it. */
+/* Focus ring at z-index: 2 so hover backgrounds (z-index: 1) can't cover it.
+   Negative inset aligns with the span's outer edge so the green border stays
+   visible inside the focus ring. */
 .container span::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: calc(-1 * var(--border-base));
   z-index: 2;
   border-radius: inherit;
   pointer-events: none;
