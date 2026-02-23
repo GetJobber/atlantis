@@ -135,17 +135,18 @@
 
 .selectionChip {
   display: inline-flex;
-  align-items: center;
-  gap: var(--space-smaller);
   padding: var(--space-smallest) var(--space-small);
   border-radius: var(--radius-large);
-  outline: 2px solid transparent;
+  outline: none;
   color: var(--color-heading);
   background-color: var(--color-interactive--background);
+  transition: var(--timing-base);
+  align-items: center;
+  gap: var(--space-smaller);
 }
 
 .selectionChipActive {
-  outline-color: var(--color-interactive);
+  background-color: var(--color-interactive--background--hover);
 }
 
 .selectionChipDisabled {
