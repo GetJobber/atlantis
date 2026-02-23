@@ -29,6 +29,8 @@ import { FormFieldWrapper } from "../FormField";
 import { Glimmer } from "../Glimmer";
 import { mergeRefs } from "../utils/mergeRefs";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import { Icon } from "../Icon";
+import { Typography } from "../Typography";
 
 export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   Value extends OptionLike = OptionLike,
@@ -358,19 +360,22 @@ function AutocompleteRebuiltInternal<
       data-testid="ATL-AutocompleteRebuilt-chip"
       onPointerDown={preventDefaultPointerDown}
     >
-      {props.customRenderValue
-        ? props.customRenderValue({ value: v, getOptionLabel })
-        : getOptionLabel(v)}
+      {props.customRenderValue ? (
+        props.customRenderValue({ value: v, getOptionLabel })
+      ) : (
+        <Typography size="small">{getOptionLabel(v)}</Typography>
+      )}
       {canDismissChip && (
         <button
           type="button"
           className={styles.chipDismiss}
           onClick={() => removeSelection(v)}
           onPointerDown={preventDefaultPointerDown}
+          // TODO avoid hardcoding english
           aria-label={`Remove ${getOptionLabel(v)}`}
           tabIndex={-1}
         >
-          {"\u00D7"}
+          <Icon size="small" name="remove" />
         </button>
       )}
     </span>

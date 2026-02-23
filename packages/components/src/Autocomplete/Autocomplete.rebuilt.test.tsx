@@ -2194,7 +2194,7 @@ describe("AutocompleteRebuilt", () => {
       );
 
       const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
-      expect(chip).toHaveTextContent("One×");
+      expect(chip).toHaveTextContent("One");
     });
   });
 

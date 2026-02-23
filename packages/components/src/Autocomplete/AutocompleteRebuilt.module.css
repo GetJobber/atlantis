@@ -137,8 +137,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-smaller);
-  padding: var(--space-minuscule) var(--space-small);
-  border-radius: var(--radius-base);
+  padding: var(--space-smallest) var(--space-small);
+  border-radius: var(--radius-large);
   outline: 2px solid transparent;
   color: var(--color-heading);
   background-color: var(--color-interactive--background);
@@ -157,18 +157,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--space-base);
-  height: var(--space-base);
   padding: 0;
   border: none;
   border-radius: var(--radius-circle);
-  color: var(--color-text--secondary);
   background: transparent;
   cursor: pointer;
   flex-shrink: 0;
 }
 
 .chipDismiss:hover {
-  color: var(--color-heading);
   background-color: var(--color-surface--hover);
 }

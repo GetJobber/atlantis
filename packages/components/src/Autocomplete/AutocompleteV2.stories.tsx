@@ -20,6 +20,7 @@ import { Emphasis } from "@jobber/components/Emphasis";
 import { Flex } from "@jobber/components/Flex";
 import { Typography } from "@jobber/components/Typography";
 import { AutocompleteV2Docgen } from "./V2.docgen";
+import { Avatar } from "../Avatar";
 
 const meta = {
   title: "Components/Forms and Inputs/Autocomplete/V2",
@@ -860,6 +861,9 @@ const TemplateMultiple = () => {
   const [value, setValue] = useState<OptionLike[]>([]);
   const [inputValue, setInputValue] = useState("");
 
+  const [customRenderValue, setCustomRenderValue] = useState<OptionLike[]>([]);
+  const [customRenderInputValue, setCustomRenderInputValue] = useState("");
+
   const [otherValue, setOtherValue] = useState<OptionLike[]>([]);
   const [otherInputValue, setOtherInputValue] = useState("");
 
@@ -893,19 +897,23 @@ const TemplateMultiple = () => {
         version={2}
         onBlur={() => console.log("blurred")}
         placeholder="Search"
-        value={value}
+        value={customRenderValue}
         multiple
-        onChange={setValue}
+        onChange={setCustomRenderValue}
         menu={defineMenu<OptionLike>([
           { type: "options", options: simpleOptions },
         ])}
-        inputValue={inputValue}
-        onInputChange={setInputValue}
+        inputValue={customRenderInputValue}
+        onInputChange={setCustomRenderInputValue}
         suffix={{
           icon: "arrowDown",
         }}
+        UNSAFE_styles={{ selection: { padding: 4 } }}
         customRenderValue={({ value: v, getOptionLabel }) => (
-          <span style={{ fontWeight: "bold" }}>🏷 {getOptionLabel(v)}</span>
+          <>
+            <Avatar size="small" initials={getOptionLabel(v)} />
+            <span style={{ fontWeight: "bold" }}>{getOptionLabel(v)}</span>
+          </>
         )}
       />
 
