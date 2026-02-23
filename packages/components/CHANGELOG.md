@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.111.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.3...@jobber/components@6.111.4) (2026-02-23)
+
+
+### Reverts
+
+* **components:** Improve Tooltip + Icon Button Accessibility ([#2923](https://github.com/GetJobber/atlantis/issues/2923)) ([7a01788](https://github.com/GetJobber/atlantis/commit/7a017884ba576567877f215c77509d9b5139cde5)), closes [#2907](https://github.com/GetJobber/atlantis/issues/2907)
+
+
+
+
+
 ## [6.111.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.2...@jobber/components@6.111.3) (2026-02-18)
 
 
