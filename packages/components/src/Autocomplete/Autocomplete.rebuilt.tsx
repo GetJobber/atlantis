@@ -106,6 +106,7 @@ function AutocompleteRebuiltInternal<
   );
 
   const formFieldRef = useRef<HTMLDivElement>(null);
+  const internalInputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const inputId = React.useId();
   const descriptionId = `descriptionUUID--${inputId}`;
 
@@ -251,6 +252,7 @@ function AutocompleteRebuiltInternal<
     error: error ?? undefined,
     name: props.name,
     invalid,
+    clearable: props.clearable,
     autoComplete: "off",
     autoFocus: props.autoFocus,
     description,
@@ -289,6 +291,7 @@ function AutocompleteRebuiltInternal<
     () =>
       mergeRefs<HTMLInputElement | HTMLTextAreaElement>([
         referenceInputRef,
+        internalInputRef,
         forwardedRef,
       ]),
     [referenceInputRef, forwardedRef],
@@ -342,6 +345,17 @@ function AutocompleteRebuiltInternal<
   } else {
     inputElement = <InputText ref={mergedInputRef} {...inputProps} />;
   }
+
+  const handleClear = useCallback(() => {
+    if (props.multiple) {
+      (props.onChange as (v: Value[]) => void)([]);
+    } else {
+      (props.onChange as (v: Value | undefined) => void)(undefined);
+    }
+
+    onInputChangeFromUser("");
+    internalInputRef.current?.focus();
+  }, [props.multiple, props.onChange, onInputChangeFromUser]);
 
   const canDismissChip = !disabled && !props.readOnly;
 
@@ -399,7 +413,8 @@ function AutocompleteRebuiltInternal<
           identifier={inputId}
           descriptionIdentifier={descriptionId}
           description={description}
-          clearable="never"
+          clearable={props.clearable ?? "never"}
+          onClear={handleClear}
           type="text"
           placeholder={placeholder}
           value={hasValue ? "has-value" : ""}

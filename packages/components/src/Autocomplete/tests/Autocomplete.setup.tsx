@@ -112,6 +112,7 @@ export function Wrapper<T extends OptionLike>({
   >["UNSAFE_className"];
   readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, false>["UNSAFE_styles"];
   readonly readOnly?: boolean;
+  readonly clearable?: AutocompleteRebuiltProps<T, false>["clearable"];
   readonly debounce?: number;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
@@ -210,6 +211,7 @@ export function MultipleWrapper<T extends OptionLike>({
   menu,
   debounce = 0,
   customRenderValue,
+  clearable,
 }: {
   readonly initialValue?: T[];
   readonly onChange?: (v: T[]) => void;
@@ -220,6 +222,7 @@ export function MultipleWrapper<T extends OptionLike>({
     T,
     true
   >["customRenderValue"];
+  readonly clearable?: AutocompleteRebuiltProps<T, true>["clearable"];
 }) {
   const [value, setValue] = React.useState<T[]>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>("");
@@ -243,6 +246,7 @@ export function MultipleWrapper<T extends OptionLike>({
       placeholder=""
       debounce={debounce}
       customRenderValue={customRenderValue}
+      clearable={clearable}
     />
   );
 }

@@ -378,6 +378,7 @@ interface AutocompleteRebuiltBaseProps<
       | "error"
       | "invalid"
       | "loading"
+      | "clearable"
       | "description"
       | "size"
       | "prefix"

@@ -883,6 +883,7 @@ const TemplateMultiple = () => {
         onBlur={() => console.log("blurred")}
         placeholder="Search"
         value={value}
+        clearable="always"
         menu={defineMenu<OptionLike>([
           { type: "options", options: simpleOptions },
         ])}
@@ -897,6 +898,7 @@ const TemplateMultiple = () => {
         version={2}
         onBlur={() => console.log("blurred")}
         placeholder="Search"
+        clearable="always"
         value={customRenderValue}
         multiple
         onChange={setCustomRenderValue}

@@ -2282,6 +2282,146 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
+  describe("clearable", () => {
+    it("renders a clear button for single select with clearable='always' when value exists", async () => {
+      render(<Wrapper initialValue={{ label: "One" }} clearable="always" />);
+
+      expect(
+        screen.getByTestId("ATL-FormField-clearButton"),
+      ).toBeInTheDocument();
+    });
+
+    it("does not render a clear button for single select when clearable is not set", () => {
+      render(<Wrapper initialValue={{ label: "One" }} />);
+
+      expect(
+        screen.queryByTestId("ATL-FormField-clearButton"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("clears input text when clicking clear for single select", async () => {
+      render(<Wrapper initialValue={{ label: "One" }} clearable="always" />);
+
+      const input = screen.getByRole("combobox");
+      expect(input).toHaveValue("One");
+
+      await userEvent.click(screen.getByTestId("ATL-FormField-clearButton"));
+
+      expect(input).toHaveValue("");
+    });
+
+    it("clears the selection value when clear button is clicked for single select", async () => {
+      const onChange = jest.fn();
+
+      render(
+        <Wrapper
+          initialValue={{ label: "One" }}
+          clearable="always"
+          onChange={onChange}
+        />,
+      );
+
+      await userEvent.click(screen.getByTestId("ATL-FormField-clearButton"));
+
+      await waitFor(() => {
+        expect(onChange).toHaveBeenCalledWith(undefined);
+      });
+    });
+
+    it("renders a clear button for multiple select with clearable='always' when values exist", async () => {
+      render(
+        <MultipleWrapper initialValue={[{ label: "One" }, { label: "Two" }]} />,
+      );
+
+      expect(
+        screen.queryByTestId("ATL-FormField-clearButton"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("clears all selections and input when clicking clear for multiple select", async () => {
+      const onChange = jest.fn();
+
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          multiple
+          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
+          inputValue="search"
+          onInputChange={jest.fn()}
+          value={[{ label: "One" }, { label: "Two" }]}
+          onChange={onChange}
+          placeholder=""
+          clearable="always"
+        />,
+      );
+
+      expect(
+        screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveLength(2);
+
+      await userEvent.click(screen.getByTestId("ATL-FormField-clearButton"));
+
+      expect(onChange).toHaveBeenCalledWith([]);
+    });
+
+    it("refocuses the input after clearing in multiple select", async () => {
+      render(
+        <MultipleWrapper
+          initialValue={[{ label: "One" }, { label: "Two" }]}
+          clearable="always"
+        />,
+      );
+
+      await openAutocomplete();
+      await userEvent.click(screen.getByTestId("ATL-FormField-clearButton"));
+
+      expect(screen.getByRole("combobox")).toHaveFocus();
+      expect(
+        screen.queryByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("does not render clear button when disabled", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue="One"
+          onInputChange={jest.fn()}
+          value={{ label: "One" }}
+          onChange={jest.fn()}
+          placeholder=""
+          clearable="always"
+          disabled
+        />,
+      );
+
+      expect(
+        screen.queryByTestId("ATL-FormField-clearButton"),
+      ).not.toBeInTheDocument();
+    });
+
+    it("does not render clear button when readOnly", () => {
+      render(
+        <AutocompleteRebuilt
+          version={2}
+          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
+          inputValue="One"
+          onInputChange={jest.fn()}
+          value={{ label: "One" }}
+          onChange={jest.fn()}
+          placeholder=""
+          clearable="always"
+          readOnly
+        />,
+      );
+
+      expect(
+        screen.queryByTestId("ATL-FormField-clearButton"),
+      ).not.toBeInTheDocument();
+    });
+  });
+
   describe("a11y", () => {
     it("wires autocomplete ARIA correctly and toggles aria-expanded", async () => {
       render(<Wrapper />);
