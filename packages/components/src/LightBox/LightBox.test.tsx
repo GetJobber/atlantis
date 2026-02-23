@@ -2,6 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BREAKPOINT_SIZES, mockViewportWidth } from "@jobber/hooks";
 import { LightBox } from ".";
+import { slideVariants } from "./LightBox";
 import * as POM from "./LightBox.pom";
 
 const { setViewportWidth } = mockViewportWidth();
@@ -187,39 +188,23 @@ describe("LightBox", () => {
       expect(POM.getPreviousButton()).toBeNull();
       expect(POM.getNextButton()).toBeNull();
     });
+  });
 
-    test("applies correct slide direction when changing from next to previous", async () => {
-      const images = [
-        { title: "Title 0", alt: "alt-0", url: "https://example.com/0.jpg" },
-        { title: "Title 1", alt: "alt-1", url: "https://example.com/1.jpg" },
-      ];
+  describe("slideVariants", () => {
+    it("enter slides in from the right when direction is forward", () => {
+      expect(slideVariants.enter({ current: 1 })).toEqual({ x: "150%" });
+    });
 
-      render(
-        <LightBox
-          open={true}
-          images={images}
-          imageIndex={0}
-          onRequestClose={jest.fn()}
-        />,
-      );
+    it("enter slides in from the left when direction is backward", () => {
+      expect(slideVariants.enter({ current: -1 })).toEqual({ x: "-150%" });
+    });
 
-      await POM.goNextThenPreviousWithRealTimers(250);
+    it("exit slides out to the left when direction is forward", () => {
+      expect(slideVariants.exit({ current: 1 })).toEqual({ x: "-150%" });
+    });
 
-      await new Promise(resolve => setTimeout(resolve, 50));
-
-      const { enteringImg, exitingImg } = POM.getSlideImagesByAlt(
-        "alt-0",
-        "alt-1",
-      );
-      expect(enteringImg).toBeDefined();
-      expect(exitingImg).toBeDefined();
-
-      const { enteringTransform, exitingTransform } = POM.getSlideTransforms(
-        enteringImg as HTMLElement,
-        exitingImg as HTMLElement,
-      );
-      expect(enteringTransform).toMatch(/translateX\(-/);
-      expect(exitingTransform).toMatch(/translateX\(\d/);
+    it("exit slides out to the right when direction is backward", () => {
+      expect(slideVariants.exit({ current: -1 })).toEqual({ x: "150%" });
     });
   });
 

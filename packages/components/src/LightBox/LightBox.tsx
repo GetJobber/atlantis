@@ -71,7 +71,7 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-const variants = {
+export const slideVariants = {
   enter: (directionRef: React.RefObject<number>) => ({
     x: directionRef.current > 0 ? "150%" : "-150%",
   }),
@@ -188,7 +188,7 @@ export function LightBox({
             <AnimatePresence initial={false}>
               <motion.img
                 key={currentImageIndex}
-                variants={variants}
+                variants={slideVariants}
                 src={images[currentImageIndex].url}
                 custom={directionRef}
                 className={styles.image}
