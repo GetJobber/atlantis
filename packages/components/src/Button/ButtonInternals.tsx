@@ -76,7 +76,7 @@ export function ButtonIcon({
   const { size: contextSize } = useButtonContext();
   const size = sizeProp || contextSize;
 
-  return <Icon {...props} size={size} aria-hidden={"true"} />;
+  return <Icon {...props} size={size} />;
 }
 
 export function ButtonLabel({

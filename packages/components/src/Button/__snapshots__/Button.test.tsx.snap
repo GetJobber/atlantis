@@ -23,7 +23,6 @@ exports[`renders a Button that is just an icon 1`] = `
     type="button"
   >
     <svg
-      aria-hidden="true"
       data-testid="user"
       style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
       viewBox="0 0 24 24"
@@ -80,7 +79,6 @@ exports[`renders a Button with an icon 1`] = `
     type="button"
   >
     <svg
-      aria-hidden="true"
       data-testid="add"
       style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
       viewBox="0 0 24 24"
@@ -111,7 +109,6 @@ exports[`renders a Button with an icon on the right 1`] = `
       Add
     </span>
     <svg
-      aria-hidden="true"
       data-testid="add"
       style="fill: var(--color-icon); display: inline-block; vertical-align: middle; width: 24px; height: 24px;"
       viewBox="0 0 24 24"
