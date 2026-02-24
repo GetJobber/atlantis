@@ -203,17 +203,17 @@ function AutocompleteRebuiltInternal<
       // In multiple mode, the chipArea is the reference element for floating-ui
       if (!props.multiple) {
         setReferenceElement(node);
-      }
 
-      // Workaround to get the width of the visual InputText element, which is not the same as
-      // the literal input reference element when props like suffix/prefix/clearable are present.
-      const visualInputTextElement = node?.closest(
-        "[data-testid='Form-Field-Wrapper']",
-      );
+        // Workaround to get the width of the visual InputText element, which is not the same as
+        // the literal input reference element.
+        const visualInputTextElement = node?.closest(
+          "[data-testid='Form-Field-Wrapper']",
+        );
 
-      if (!props.multiple && visualInputTextElement) {
-        setMenuWidth(visualInputTextElement.clientWidth);
-        setPositionRefEl(visualInputTextElement);
+        if (visualInputTextElement) {
+          setMenuWidth(visualInputTextElement.clientWidth);
+          setPositionRefEl(visualInputTextElement);
+        }
       }
     },
     [setReferenceElement, props.multiple],
@@ -231,7 +231,6 @@ function AutocompleteRebuiltInternal<
 
   useEffect(() => {
     if (!positionRefEl) return;
-    // Set the reference element to the visual InputText element so the menu aligns with the input.
     refs.setPositionReference(positionRefEl);
   }, [positionRefEl, refs]);
 
