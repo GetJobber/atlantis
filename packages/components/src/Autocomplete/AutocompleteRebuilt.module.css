@@ -110,6 +110,7 @@
   gap: var(--space-smaller);
   padding: var(--field--padding-top) var(--field--padding-right)
     var(--field--padding-bottom) var(--field--padding-left);
+  cursor: text;
 }
 
 .inlineInput {
@@ -140,6 +141,7 @@
   outline: none;
   color: var(--color-heading);
   background-color: var(--color-interactive--background);
+  cursor: default;
   transition: var(--timing-base);
   align-items: center;
   gap: var(--space-smaller);

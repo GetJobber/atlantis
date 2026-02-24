@@ -221,10 +221,20 @@ function AutocompleteRebuiltInternal<
     [onInputBlur],
   );
 
+  const focusInputOnPointerDown = useCallback((e: React.PointerEvent) => {
+    const target = e.target as HTMLElement;
+
+    if (target.closest("input, button")) return;
+
+    e.preventDefault();
+    internalInputRef.current?.focus();
+  }, []);
+
   const composedReferenceProps = getReferenceProps({
     onKeyDown: props.multiple ? handleMultipleKeyDown : onInputKeyDown,
     onFocus: onInputFocus,
     onBlur: props.multiple ? handleBlur : onInputBlur,
+    ...(props.multiple ? { onPointerDown: focusInputOnPointerDown } : {}),
   });
 
   const dataAttrs = filterDataAttributes(props);
@@ -264,27 +274,43 @@ function AutocompleteRebuiltInternal<
     ...dataAttrs,
   };
 
-  const referenceInputRef = useCallback(
-    (node: HTMLInputElement | HTMLTextAreaElement | null) => {
+  const chipAreaRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (!node) return;
+
       setReferenceElement(node);
 
-      // In multiple mode, prefer the multi-select container for width/positioning
-      // so the menu aligns with the full chip + input area.
-      const multiContainer = node?.closest(
+      const multiContainer = node.closest(
         "[data-testid='ATL-AutocompleteRebuilt-multiSelectContainer']",
       );
 
+      if (multiContainer) {
+        setMenuWidth(multiContainer.clientWidth);
+        setPositionRefEl(multiContainer);
+      }
+    },
+    [setReferenceElement],
+  );
+
+  const referenceInputRef = useCallback(
+    (node: HTMLInputElement | HTMLTextAreaElement | null) => {
+      // In multiple mode, the chipArea is the reference element for floating-ui
+      if (!props.multiple) {
+        setReferenceElement(node);
+      }
+
       // Workaround to get the width of the visual InputText element, which is not the same as
       // the literal input reference element when props like suffix/prefix/clearable are present.
-      const visualInputTextElement =
-        multiContainer ?? node?.closest("[data-testid='Form-Field-Wrapper']");
+      const visualInputTextElement = node?.closest(
+        "[data-testid='Form-Field-Wrapper']",
+      );
 
-      if (visualInputTextElement) {
+      if (!props.multiple && visualInputTextElement) {
         setMenuWidth(visualInputTextElement.clientWidth);
         setPositionRefEl(visualInputTextElement);
       }
     },
-    [setReferenceElement],
+    [setReferenceElement, props.multiple],
   );
 
   const mergedInputRef = useMemo(
@@ -335,9 +361,6 @@ function AutocompleteRebuiltInternal<
         name={props.name}
         autoComplete="off"
         autoFocus={props.autoFocus}
-        {...(props.readOnly
-          ? { onFocus: onInputFocus, onBlur: onInputBlur }
-          : composedReferenceProps)}
         {...ariaProps}
         {...dataAttrs}
       />
@@ -422,7 +445,13 @@ function AutocompleteRebuiltInternal<
           suffix={props.suffix}
           wrapperRef={formFieldRef}
         >
-          <div className={styles.chipArea}>
+          <div
+            ref={chipAreaRef}
+            className={styles.chipArea}
+            {...(props.readOnly
+              ? { onFocus: onInputFocus, onBlur: handleBlur }
+              : composedReferenceProps)}
+          >
             {chips}
             {inputElement}
           </div>
