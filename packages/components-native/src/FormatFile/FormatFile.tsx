@@ -88,6 +88,11 @@ interface FormatFileContentProps {
    * FormatFileThumbnail.
    */
   readonly skipContainerStyles?: boolean;
+
+  /**
+   * A function to be called when the image has loaded.
+   */
+  readonly onLoadEnd?: () => void;
 }
 
 export function FormatFileContent({
@@ -98,6 +103,7 @@ export function FormatFileContent({
   onUploadComplete,
   isMedia,
   skipContainerStyles = false,
+  onLoadEnd,
 }: FormatFileContentProps) {
   const styles = useStyles();
 
@@ -109,6 +115,7 @@ export function FormatFileContent({
       showError={file.error}
       styleInGrid={styleInGrid}
       onUploadComplete={onUploadComplete}
+      onLoadEnd={onLoadEnd}
     />
   ) : (
     <FileView
