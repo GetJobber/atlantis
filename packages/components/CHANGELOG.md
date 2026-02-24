@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.111.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.4...@jobber/components@6.111.5) (2026-02-23)
+
+
+### Bug Fixes
+
+* **components:** Fix Lightbox transitions [JOB-152407] ([#2918](https://github.com/GetJobber/atlantis/issues/2918)) ([c2beb0c](https://github.com/GetJobber/atlantis/commit/c2beb0ccea32348d5e9cbba23504dc6a90c70c0b))
+
+
+
+
+
 ## [6.111.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.3...@jobber/components@6.111.4) (2026-02-23)
 
 
