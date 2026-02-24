@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import type { XOR } from "ts-xor";
@@ -103,7 +103,65 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-// eslint-disable-next-line max-statements
+function useDatePickerClassNames(
+  inline: boolean,
+  open: boolean,
+  fullWidth: boolean,
+) {
+  const wrapperClassName = classnames(styles.datePickerWrapper, {
+    // react-datepicker uses this class name to not close the date picker when
+    // the activator is clicked
+    // https://github.com/Hacker0x01/react-datepicker/blob/master/src/index.jsx#L905
+    //
+    // It uses react-onclickoutside package and declaring some elements to be
+    // ignored via said class name
+    // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
+    "react-datepicker-ignore-onclickoutside": !inline && open,
+    [styles.fullWidth]: fullWidth,
+  });
+  const datePickerClassNames = classnames(styles.datePicker, {
+    [styles.inline]: inline,
+  });
+
+  return { wrapperClassName, datePickerClassNames };
+}
+
+function useDatePickerHandlers(
+  onChange: (val: Date) => void,
+  setOpen: (open: boolean) => void,
+  onOpenChange?: (open: boolean) => void,
+) {
+  const handleChange = useCallback(
+    (value: Date | null) => {
+      onChange(value as Date);
+    },
+    [onChange],
+  );
+  const handleCalendarOpen = useCallback(() => {
+    setOpen(true);
+    onOpenChange?.(true);
+  }, [setOpen, onOpenChange]);
+  const handleCalendarClose = useCallback(() => {
+    setOpen(false);
+    onOpenChange?.(false);
+  }, [setOpen, onOpenChange]);
+
+  return { handleChange, handleCalendarOpen, handleCalendarClose };
+}
+
+function useSmartAutofocus(
+  smartAutofocus: boolean,
+  open: boolean,
+  focusOnSelectedDate: () => boolean,
+) {
+  useRefocusOnActivator(smartAutofocus ? open : false);
+  useEffect(() => {
+    if (smartAutofocus) {
+      focusOnSelectedDate();
+    }
+  }, [open, smartAutofocus, focusOnSelectedDate]);
+}
+
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -127,34 +185,20 @@ export function DatePicker({
   const renderInsidePortal = !inline;
   const uniquePortalId = useId();
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate(uniquePortalId);
-
-  const wrapperClassName = classnames(styles.datePickerWrapper, {
-    // react-datepicker uses this class name to not close the date picker when
-    // the activator is clicked
-    // https://github.com/Hacker0x01/react-datepicker/blob/master/src/index.jsx#L905
-    //
-    // It uses react-onclickoutside package and declaring some elements to be
-    // ignored via said class name
-    // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
-    "react-datepicker-ignore-onclickoutside": !inline && open,
-    [styles.fullWidth]: fullWidth,
-  });
-  const datePickerClassNames = classnames(styles.datePicker, {
-    [styles.inline]: inline,
-  });
+  const { wrapperClassName, datePickerClassNames } = useDatePickerClassNames(
+    inline ?? false,
+    open,
+    fullWidth ?? false,
+  );
   const { pickerRef } = useEscapeKeyToCloseDatePicker(
     open,
     ref,
     focusOnSelectedDate,
     renderInsidePortal,
   );
-
-  if (smartAutofocus) {
-    useRefocusOnActivator(open);
-    useEffect(() => {
-      focusOnSelectedDate();
-    }, [open]);
-  }
+  const { handleChange, handleCalendarOpen, handleCalendarClose } =
+    useDatePickerHandlers(onChange, setOpen, onOpenChange);
+  useSmartAutofocus(smartAutofocus ?? true, open, focusOnSelectedDate);
 
   return (
     <div
@@ -162,10 +206,7 @@ export function DatePicker({
       ref={ref}
       data-elevation={"elevated"}
       onKeyDown={event => {
-        // React synthetic events propagate through the React component tree
-        // regardless of DOM structure, so Escape from the portalled calendar
-        // bubbles up here and would reach any parent floating element's dismiss
-        // handler (e.g. a Modal). Stop it here so only the calendar closes.
+        // Stop Escape from bubbling to parent floating elements (e.g. Modal).
         if (event.key === "Escape" && open) {
           event.stopPropagation();
         }
@@ -202,35 +243,11 @@ export function DatePicker({
         onMonthChange={onMonthChange}
         calendarStartDay={effectiveFirstDayOfWeek}
         popperPlacement="bottom-start"
-        // This tells RDP to render the popper inside a portal we control.
         {...(renderInsidePortal && { portalId: uniquePortalId })}
       />
       {renderInsidePortal && <DatePickerPortal portalId={uniquePortalId} />}
     </div>
   );
-
-  /**
-   * The onChange callback on ReactDatePicker returns a Date and an Event, but
-   * the onChange in our interface only provides the Date. Simplifying the code
-   * by removing this function and passing it directly to the underlying
-   * component breaks tests both here and downstream (i.e. the pattern
-   * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
-   * fail).
-   */
-  function handleChange(value: Date | null) {
-    // TODO: Ticket created to update all DatePicker and InputDate usages to accept Date | null
-    onChange(value as Date);
-  }
-
-  function handleCalendarOpen() {
-    setOpen(true);
-    onOpenChange?.(true);
-  }
-
-  function handleCalendarClose() {
-    setOpen(false);
-    onOpenChange?.(false);
-  }
 }
 
 function useEscapeKeyToCloseDatePicker(
@@ -250,9 +267,9 @@ function useEscapeKeyToCloseDatePicker(
     }
 
     if (event.key === "Tab" && open && isPortalled) {
-      // When the calendar is portalled outside the modal DOM, Tab no longer
-      // naturally reaches the calendar. Intercept Tab and move focus to the
-      // calendar ourselves to restore the pre-portal keyboard behaviour.
+      // When portalled, Tab from the activator doesn't reach the calendar.
+      // Intercept Tab to move focus there (mainly when smartAutofocus is false
+      // and focus stayed in the input).
       const focused = focusOnSelectedDate();
 
       if (focused) {
@@ -274,17 +291,7 @@ function useEscapeKeyToCloseDatePicker(
   };
 }
 
-/**
- * This is one approach, continuing to allow ReactDatePicker to handle its open/close state and the activator/positioning behaviour.
- *
- * However, we don't have full control and it's making certain things difficult, like this portal behaviour and focus management.
- * What if instead of RDP controlling the activator (customInput), we instead manage it ourselves? We could render RDP (with inline=true)
- * inside our own Popover component which gives us a lot more control over positioning, open/close state, focus/blur/dismiss management,
- * and more. Unclear if this is a better approach or if it would introduce more problems, but worth considering.
- */
 function DatePickerPortal({ portalId }: { readonly portalId: string }) {
-  // TODO: ideally we don't always render this. However, it needs to be rendered BEFORE DatePicker tries to portal into it.
-
   const nodeId = useFloatingNodeId();
   const parentNodeId = useFloatingParentNodeId();
 

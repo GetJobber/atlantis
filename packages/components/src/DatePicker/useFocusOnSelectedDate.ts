@@ -3,13 +3,7 @@ import { useRef } from "react";
 export function useFocusOnSelectedDate(portalContainerId?: string) {
   const ref = useRef<HTMLDivElement>(null);
 
-  /**
-   * Moves focus to the selected/pre-selected day in the calendar ([tabindex="0"]).
-   * Uses tabindex rather than react-datepicker's internal CSS class names, which
-   * are an implementation detail and may change.
-   *
-   * Returns true if focus was successfully moved, false otherwise.
-   */
+  // Moves focus to the selected/pre-selected day in the calendar ([tabindex="0"]).
   function focusOnSelectedDate(): boolean {
     const portalElement = portalContainerId
       ? document.getElementById(portalContainerId)
