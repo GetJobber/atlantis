@@ -288,15 +288,7 @@ function DatePickerPortal({ portalId }: { readonly portalId: string }) {
   const nodeId = useFloatingNodeId();
   const parentNodeId = useFloatingParentNodeId();
 
-  const portalDiv = (
-    <div
-      id={portalId}
-      style={{
-        position: "absolute",
-        zIndex: "var(--elevation-modal)",
-      }}
-    />
-  );
+  const portalDiv = <div id={portalId} className={styles.portalContainer} />;
 
   if (parentNodeId) {
     return (
