@@ -81,6 +81,7 @@ function AutocompleteRebuiltInternal<
     onInputFocus,
     onInputKeyDown,
     setReferenceElement,
+    clearAll,
   } = useAutocomplete<Value, Multiple>(props);
   const listboxId = React.useId();
 
@@ -228,54 +229,6 @@ function AutocompleteRebuiltInternal<
     refs.setPositionReference(positionRefEl);
   }, [positionRefEl, refs]);
 
-  const handleClear = useCallback(() => {
-    if (props.multiple) {
-      (props.onChange as (v: Value[]) => void)([]);
-    } else {
-      (props.onChange as (v: Value | undefined) => void)(undefined);
-    }
-
-    onInputChangeFromUser("");
-    internalInputRef.current?.focus();
-  }, [props.multiple, props.onChange, onInputChangeFromUser]);
-
-  const canDismissChip = !disabled && !props.readOnly;
-
-  const chips = selectedValues.map((v, i) => (
-    <span
-      key={v.key ?? getOptionLabel(v)}
-      className={classNames(
-        styles.selectionChip,
-        {
-          [styles.selectionChipActive]: activeChipIndex === i,
-          [styles.selectionChipDisabled]: disabled,
-        },
-        props.UNSAFE_className?.selection,
-      )}
-      style={props.UNSAFE_styles?.selection}
-      data-testid="ATL-AutocompleteRebuilt-chip"
-      onPointerDown={preventDefaultPointerDown}
-    >
-      {props.customRenderValue ? (
-        props.customRenderValue({ value: v, getOptionLabel })
-      ) : (
-        <Typography size="small">{getOptionLabel(v)}</Typography>
-      )}
-      {canDismissChip && (
-        <button
-          type="button"
-          className={styles.chipDismiss}
-          onClick={() => removeSelection(v)}
-          onPointerDown={preventDefaultPointerDown}
-          aria-label={`Remove ${getOptionLabel(v)}`}
-          tabIndex={-1}
-        >
-          <Icon size="small" name="remove" />
-        </button>
-      )}
-    </span>
-  ));
-
   const menuClassName = classNames(styles.list, props.UNSAFE_className?.menu);
   const showEmptyStateMessage =
     optionCount === 0 && props.emptyStateMessage !== false;
@@ -349,6 +302,7 @@ function AutocompleteRebuiltInternal<
 
   if (props.multiple) {
     const hasValue = selectedValues.length > 0 || inputValue;
+    const canDismissChip = !disabled && !props.readOnly;
 
     return (
       <div data-testid="ATL-AutocompleteRebuilt">
@@ -365,7 +319,10 @@ function AutocompleteRebuiltInternal<
             descriptionIdentifier={descriptionId}
             description={description}
             clearable={props.clearable ?? "never"}
-            onClear={handleClear}
+            onClear={() => {
+              clearAll();
+              internalInputRef.current?.focus();
+            }}
             type="text"
             placeholder={placeholder}
             value={hasValue ? "has-value" : ""}
@@ -380,7 +337,20 @@ function AutocompleteRebuiltInternal<
                 ? { onFocus: onInputFocus, onBlur: chipBlur }
                 : composedReferenceProps)}
             >
-              {chips}
+              {selectedValues.map((v, i) => (
+                <SelectionChip<Value>
+                  key={v.key ?? getOptionLabel(v)}
+                  value={v}
+                  active={activeChipIndex === i}
+                  disabled={disabled}
+                  getOptionLabel={getOptionLabel}
+                  customRenderValue={props.customRenderValue}
+                  canDismiss={canDismissChip}
+                  onDismiss={() => removeSelection(v)}
+                  unsafeClassName={props.UNSAFE_className?.selection}
+                  unsafeStyle={props.UNSAFE_styles?.selection}
+                />
+              ))}
               <input
                 ref={mergedInputRef}
                 className={styles.inlineInput}
@@ -412,5 +382,64 @@ function AutocompleteRebuiltInternal<
       <InputText ref={mergedInputRef} {...inputProps} />
       {floatingMenu}
     </div>
+  );
+}
+
+function SelectionChip<Value extends OptionLike>({
+  value,
+  active,
+  disabled,
+  getOptionLabel,
+  customRenderValue,
+  canDismiss,
+  onDismiss,
+  unsafeClassName,
+  unsafeStyle,
+}: {
+  readonly value: Value;
+  readonly active: boolean;
+  readonly disabled?: boolean;
+  readonly getOptionLabel: (option: Value) => string;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    Value,
+    boolean
+  >["customRenderValue"];
+  readonly canDismiss: boolean;
+  readonly onDismiss: () => void;
+  readonly unsafeClassName?: string;
+  readonly unsafeStyle?: React.CSSProperties;
+}) {
+  return (
+    <span
+      className={classNames(
+        styles.selectionChip,
+        {
+          [styles.selectionChipActive]: active,
+          [styles.selectionChipDisabled]: disabled,
+        },
+        unsafeClassName,
+      )}
+      style={unsafeStyle}
+      data-testid="ATL-AutocompleteRebuilt-chip"
+      onPointerDown={preventDefaultPointerDown}
+    >
+      {customRenderValue ? (
+        customRenderValue({ value, getOptionLabel })
+      ) : (
+        <Typography size="small">{getOptionLabel(value)}</Typography>
+      )}
+      {canDismiss && (
+        <button
+          type="button"
+          className={styles.chipDismiss}
+          onClick={onDismiss}
+          onPointerDown={preventDefaultPointerDown}
+          aria-label={`Remove ${getOptionLabel(value)}`}
+          tabIndex={-1}
+        >
+          <Icon size="small" name="remove" />
+        </button>
+      )}
+    </span>
   );
 }

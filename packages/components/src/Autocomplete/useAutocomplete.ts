@@ -704,6 +704,16 @@ export function useAutocomplete<
     ],
   );
 
+  const clearAll = useCallback(() => {
+    if (multiple) {
+      onChange([] as unknown as AutocompleteValue<Value, Multiple>);
+    } else {
+      onChange(undefined as AutocompleteValue<Value, Multiple>);
+    }
+
+    onInputChangeFromUser("");
+  }, [multiple, onChange, onInputChangeFromUser]);
+
   return {
     // rendering data
     renderable,
@@ -732,6 +742,7 @@ export function useAutocomplete<
     onAction,
     onInteractionPointerDown,
     removeSelection,
+    clearAll,
     // input handlers
     onInputChangeFromUser,
     onInputBlur,
