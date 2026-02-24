@@ -3189,6 +3189,99 @@ describe("AutocompleteRebuilt", () => {
       ).toHaveTextContent("One");
       expect(document.activeElement).toBe(screen.getByRole("combobox"));
     });
+
+    it("opens menu when clicking the chip area (not on a chip or input)", async () => {
+      render(
+        <MultipleWrapper initialValue={[{ label: "One" }, { label: "Two" }]} />,
+      );
+
+      const chipArea = screen
+        .getByTestId("ATL-AutocompleteRebuilt-multiSelectContainer")
+        .querySelector("[class*='chipArea']") as HTMLElement;
+
+      await userEvent.click(chipArea);
+
+      await expectMenuShown();
+      expect(document.activeElement).toBe(screen.getByRole("combobox"));
+    });
+
+    it("preserves selections when closing menu with Escape", async () => {
+      render(<MultipleWrapper />);
+
+      await openAutocomplete();
+      await selectWithClick("One");
+      await selectWithClick("Two");
+
+      expect(
+        screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveLength(2);
+
+      await closeAutocomplete();
+      await expectMenuClosed();
+
+      expect(
+        screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveLength(2);
+    });
+
+    it("preserves selections when blurring away", async () => {
+      render(
+        <div>
+          <MultipleWrapper />
+          <button type="button">External</button>
+        </div>,
+      );
+
+      await openAutocomplete();
+      await selectWithClick("One");
+
+      expect(
+        screen.getByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveTextContent("One");
+
+      await blurAutocomplete();
+      await expectMenuClosed();
+
+      expect(
+        screen.getByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveTextContent("One");
+    });
+
+    it("filters options while selecting, and restores full list after selection clears input", async () => {
+      render(<MultipleWrapper />);
+
+      await openAutocomplete();
+      await typeInInput("Tw");
+
+      expect(screen.getByText("Two")).toBeVisible();
+      expect(screen.queryByText("One")).not.toBeInTheDocument();
+
+      await selectWithClick("Two");
+
+      expect(
+        screen.getByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveTextContent("Two");
+
+      await waitFor(() => {
+        expect(screen.getByText("One")).toBeVisible();
+        expect(screen.getByText("Three")).toBeVisible();
+      });
+    });
+
+    it("toggles off a selected option via click (stateful)", async () => {
+      render(<MultipleWrapper initialValue={[{ label: "One" }]} />);
+
+      await openAutocomplete();
+
+      const option = screen.getByRole("option", { name: "One" });
+      await userEvent.click(option);
+
+      await waitFor(() => {
+        expect(
+          screen.queryByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).not.toBeInTheDocument();
+      });
+    });
   });
 
   describe("blur and focus management", () => {
