@@ -98,6 +98,19 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "onLoadEnd": {
+        "defaultValue": null,
+        "description": "A function to be called when the image has loaded.",
+        "name": "onLoadEnd",
+        "parent": {
+          "fileName": "../components-native/src/FormatFile/FormatFile.tsx",
+          "name": "FormatFileContentProps"
+        },
+        "required": false,
+        "type": {
+          "name": "() => void"
+        }
       }
     }
   },
