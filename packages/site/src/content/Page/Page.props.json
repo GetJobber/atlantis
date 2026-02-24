@@ -178,8 +178,8 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Positional slot for the primary action. Renders children in the primary action position.",
-    "displayName": "Page.PrimarySlot",
+    "description": "Positional container for the primary action. Should contain a Button element, e.g. <Page.PrimaryButton>.",
+    "displayName": "Page.ActionPrimary",
     "methods": [],
     "props": {
       "ref": {
@@ -200,8 +200,8 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Positional slot for the secondary action. Renders children in the secondary action position.",
-    "displayName": "Page.SecondarySlot",
+    "description": "Positional container for the secondary action. Should contain a Button element, e.g. <Page.SecondaryButton>.",
+    "displayName": "Page.ActionSecondary",
     "methods": [],
     "props": {
       "ref": {
@@ -222,8 +222,8 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Positional slot for the tertiary action (typically the menu).",
-    "displayName": "Page.TertiarySlot",
+    "description": "Positional container for the menu action. Should contain Page.Menu or a custom Menu.",
+    "displayName": "Page.ActionMenu",
     "methods": [],
     "props": {
       "ref": {
@@ -244,8 +244,8 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Primary action button with default styling. Use inside Page.PrimarySlot or Page.Actions.",
-    "displayName": "Page.PrimaryAction",
+    "description": "Default primary Button with opinionated styling. Use inside Page.ActionPrimary.",
+    "displayName": "Page.PrimaryButton",
     "methods": [],
     "props": {
       "ref": {
@@ -344,8 +344,8 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Secondary action button with default styling. Use inside Page.SecondarySlot or Page.Actions.",
-    "displayName": "Page.SecondaryAction",
+    "description": "Default secondary Button with opinionated styling. Use inside Page.ActionSecondary.",
+    "displayName": "Page.SecondaryButton",
     "methods": [],
     "props": {
       "ref": {
