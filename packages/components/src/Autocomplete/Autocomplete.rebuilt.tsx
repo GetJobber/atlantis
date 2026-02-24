@@ -6,11 +6,7 @@ import React, {
   useMemo,
   useRef,
 } from "react";
-import {
-  FloatingFocusManager,
-  FloatingPortal,
-  useTransitionStyles,
-} from "@floating-ui/react";
+import { useTransitionStyles } from "@floating-ui/react";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
 import type {
@@ -21,12 +17,10 @@ import styles from "./AutocompleteRebuilt.module.css";
 import { useAutocomplete } from "./useAutocomplete";
 import { useChipNavigation } from "./hooks/useChipNavigation";
 import { preventDefaultPointerDown } from "./utils/interactionUtils";
-import { MenuList } from "./components/MenuList";
-import { PersistentRegion } from "./components/PersistentRegion";
+import { FloatingMenu } from "./components/FloatingMenu";
 import { InputText } from "../InputText";
 import type { InputTextRebuiltProps } from "../InputText/InputText.types";
 import { FormFieldWrapper } from "../FormField";
-import { Glimmer } from "../Glimmer";
 import { mergeRefs } from "../utils/mergeRefs";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
 import { Icon } from "../Icon";
@@ -234,46 +228,6 @@ function AutocompleteRebuiltInternal<
     refs.setPositionReference(positionRefEl);
   }, [positionRefEl, refs]);
 
-  const menuClassName = classNames(styles.list, props.UNSAFE_className?.menu);
-
-  const showEmptyStateMessage =
-    optionCount === 0 && props.emptyStateMessage !== false;
-
-  const activeIndexForMiddle =
-    activeIndex != null ? activeIndex - headerInteractiveCount : null;
-
-  let inputElement: React.ReactNode;
-
-  if (props.customRenderInput) {
-    inputElement = props.customRenderInput({
-      inputRef: mergedInputRef,
-      inputProps,
-    });
-  } else if (props.multiple) {
-    inputElement = (
-      <input
-        ref={mergedInputRef}
-        className={styles.inlineInput}
-        id={inputId}
-        value={inputValue}
-        onChange={
-          props.readOnly
-            ? undefined
-            : e => onInputChangeFromUser(e.target.value)
-        }
-        disabled={disabled}
-        readOnly={props.readOnly}
-        name={props.name}
-        autoComplete="off"
-        autoFocus={props.autoFocus}
-        {...ariaProps}
-        {...dataAttrs}
-      />
-    );
-  } else {
-    inputElement = <InputText ref={mergedInputRef} {...inputProps} />;
-  }
-
   const handleClear = useCallback(() => {
     if (props.multiple) {
       (props.onChange as (v: Value[]) => void)([]);
@@ -313,7 +267,6 @@ function AutocompleteRebuiltInternal<
           className={styles.chipDismiss}
           onClick={() => removeSelection(v)}
           onPointerDown={preventDefaultPointerDown}
-          // TODO avoid hardcoding english
           aria-label={`Remove ${getOptionLabel(v)}`}
           tabIndex={-1}
         >
@@ -323,199 +276,141 @@ function AutocompleteRebuiltInternal<
     </span>
   ));
 
-  let fieldContent: React.ReactNode;
+  const menuClassName = classNames(styles.list, props.UNSAFE_className?.menu);
+  const showEmptyStateMessage =
+    optionCount === 0 && props.emptyStateMessage !== false;
+
+  const floatingMenu = isMounted && !props.readOnly && (
+    <FloatingMenu<Value>
+      context={context}
+      getFloatingProps={getFloatingProps}
+      refs={refs}
+      listboxId={listboxId}
+      className={menuClassName}
+      floatingStyles={floatingStyles}
+      transitionStyles={transitionStyles}
+      menuWidth={menuWidth}
+      menuStyle={props.UNSAFE_styles?.menu}
+      renderable={renderable}
+      persistentsHeaders={persistentsHeaders}
+      persistentsFooters={persistentsFooters}
+      activeIndex={activeIndex}
+      headerInteractiveCount={headerInteractiveCount}
+      middleNavigableCount={middleNavigableCount}
+      getItemProps={getItemProps}
+      listRef={listRef}
+      onSelection={onSelection}
+      onAction={onAction}
+      onInteractionPointerDown={onInteractionPointerDown}
+      getOptionLabel={getOptionLabel}
+      isOptionSelected={isOptionSelected}
+      loading={loading}
+      showEmptyStateMessage={showEmptyStateMessage}
+      emptyStateMessage={props.emptyStateMessage}
+      customRenderLoading={props.customRenderLoading}
+      customRenderOption={props.customRenderOption}
+      customRenderSection={props.customRenderSection}
+      customRenderAction={props.customRenderAction}
+      customRenderHeader={props.customRenderHeader}
+      customRenderFooter={props.customRenderFooter}
+      slotOverrides={{
+        option: {
+          className: props.UNSAFE_className?.option,
+          style: props.UNSAFE_styles?.option,
+        },
+        action: {
+          className: props.UNSAFE_className?.action,
+          style: props.UNSAFE_styles?.action,
+        },
+        section: {
+          className: props.UNSAFE_className?.section,
+          style: props.UNSAFE_styles?.section,
+        },
+        header: {
+          className: props.UNSAFE_className?.header,
+          style: props.UNSAFE_styles?.header,
+        },
+        footer: {
+          className: props.UNSAFE_className?.footer,
+          style: props.UNSAFE_styles?.footer,
+        },
+      }}
+    />
+  );
+
+  if (props.customRenderInput) {
+    return (
+      <div data-testid="ATL-AutocompleteRebuilt">
+        {props.customRenderInput({ inputRef: mergedInputRef, inputProps })}
+        {floatingMenu}
+      </div>
+    );
+  }
 
   if (props.multiple) {
     const hasValue = selectedValues.length > 0 || inputValue;
 
-    fieldContent = (
-      <div
-        className={styles.multiSelectField}
-        data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
-      >
-        <FormFieldWrapper
-          disabled={disabled}
-          size={sizeProp ? sizeProp : undefined}
-          error={error ?? ""}
-          invalid={Boolean(error || invalid)}
-          identifier={inputId}
-          descriptionIdentifier={descriptionId}
-          description={description}
-          clearable={props.clearable ?? "never"}
-          onClear={handleClear}
-          type="text"
-          placeholder={placeholder}
-          value={hasValue ? "has-value" : ""}
-          prefix={props.prefix}
-          suffix={props.suffix}
-          wrapperRef={formFieldRef}
+    return (
+      <div data-testid="ATL-AutocompleteRebuilt">
+        <div
+          className={styles.multiSelectField}
+          data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
         >
-          <div
-            ref={chipAreaRef}
-            className={styles.chipArea}
-            {...(props.readOnly
-              ? { onFocus: onInputFocus, onBlur: chipBlur }
-              : composedReferenceProps)}
+          <FormFieldWrapper
+            disabled={disabled}
+            size={sizeProp ? sizeProp : undefined}
+            error={error ?? ""}
+            invalid={Boolean(error || invalid)}
+            identifier={inputId}
+            descriptionIdentifier={descriptionId}
+            description={description}
+            clearable={props.clearable ?? "never"}
+            onClear={handleClear}
+            type="text"
+            placeholder={placeholder}
+            value={hasValue ? "has-value" : ""}
+            prefix={props.prefix}
+            suffix={props.suffix}
+            wrapperRef={formFieldRef}
           >
-            {chips}
-            {inputElement}
-          </div>
-        </FormFieldWrapper>
+            <div
+              ref={chipAreaRef}
+              className={styles.chipArea}
+              {...(props.readOnly
+                ? { onFocus: onInputFocus, onBlur: chipBlur }
+                : composedReferenceProps)}
+            >
+              {chips}
+              <input
+                ref={mergedInputRef}
+                className={styles.inlineInput}
+                id={inputId}
+                value={inputValue}
+                onChange={
+                  props.readOnly
+                    ? undefined
+                    : e => onInputChangeFromUser(e.target.value)
+                }
+                disabled={disabled}
+                readOnly={props.readOnly}
+                name={props.name}
+                autoComplete="off"
+                autoFocus={props.autoFocus}
+                {...ariaProps}
+                {...dataAttrs}
+              />
+            </div>
+          </FormFieldWrapper>
+        </div>
+        {floatingMenu}
       </div>
     );
-  } else {
-    fieldContent = inputElement;
   }
 
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
-      {fieldContent}
-      {isMounted && !props.readOnly && (
-        <FloatingPortal>
-          <FloatingFocusManager
-            context={context}
-            modal={false}
-            initialFocus={-1}
-            closeOnFocusOut
-            returnFocus={false}
-          >
-            <div
-              {...getFloatingProps({
-                ref(node: HTMLElement | null) {
-                  if (node) refs.setFloating(node);
-                },
-                id: listboxId,
-                role: "listbox",
-                className: menuClassName,
-                style: {
-                  ...floatingStyles,
-                  ...transitionStyles,
-                  ...props.UNSAFE_styles?.menu,
-                  ...(menuWidth
-                    ? { width: menuWidth, maxWidth: menuWidth }
-                    : {}),
-                },
-              })}
-            >
-              {/* Header persistents */}
-              <PersistentRegion<Value>
-                items={persistentsHeaders}
-                position="header"
-                activeIndex={activeIndex}
-                indexOffset={0}
-                listboxId={listboxId}
-                getItemProps={getItemProps}
-                listRef={listRef}
-                customRenderHeader={props.customRenderHeader}
-                customRenderFooter={props.customRenderFooter}
-                onAction={onAction}
-                onInteractionPointerDown={onInteractionPointerDown}
-                className={classNames(
-                  styles.persistentHeader,
-                  props.UNSAFE_className?.header,
-                )}
-                style={props.UNSAFE_styles?.header}
-              />
-
-              {/* Scrollable middle region */}
-              <div className={styles.scrollRegion}>
-                {loading ? (
-                  props.customRenderLoading ?? <LoadingContent />
-                ) : (
-                  <>
-                    {showEmptyStateMessage && (
-                      <EmptyStateMessage emptyState={props.emptyStateMessage} />
-                    )}
-                    {renderable.length > 0 && (
-                      <MenuList<Value>
-                        items={renderable}
-                        activeIndex={activeIndexForMiddle}
-                        indexOffset={headerInteractiveCount}
-                        listboxId={listboxId}
-                        getItemProps={getItemProps}
-                        listRef={listRef}
-                        customRenderOption={props.customRenderOption}
-                        customRenderSection={props.customRenderSection}
-                        customRenderAction={props.customRenderAction}
-                        getOptionLabel={getOptionLabel}
-                        onSelect={onSelection}
-                        onAction={onAction}
-                        onInteractionPointerDown={onInteractionPointerDown}
-                        isOptionSelected={isOptionSelected}
-                        slotOverrides={{
-                          option: {
-                            className: props.UNSAFE_className?.option,
-                            style: props.UNSAFE_styles?.option,
-                          },
-                          action: {
-                            className: props.UNSAFE_className?.action,
-                            style: props.UNSAFE_styles?.action,
-                          },
-                          section: {
-                            className: props.UNSAFE_className?.section,
-                            style: props.UNSAFE_styles?.section,
-                          },
-                        }}
-                      />
-                    )}
-                  </>
-                )}
-              </div>
-
-              {/* Footer persistents */}
-              <PersistentRegion<Value>
-                items={persistentsFooters}
-                position={"footer"}
-                activeIndex={activeIndex}
-                indexOffset={headerInteractiveCount + middleNavigableCount}
-                listboxId={listboxId}
-                getItemProps={getItemProps}
-                listRef={listRef}
-                customRenderHeader={props.customRenderHeader}
-                customRenderFooter={props.customRenderFooter}
-                onAction={onAction}
-                onInteractionPointerDown={onInteractionPointerDown}
-                className={classNames(
-                  styles.persistentFooter,
-                  props.UNSAFE_className?.footer,
-                )}
-                style={props.UNSAFE_styles?.footer}
-              />
-            </div>
-          </FloatingFocusManager>
-        </FloatingPortal>
-      )}
-    </div>
-  );
-}
-
-function LoadingContent() {
-  return (
-    <div
-      className={styles.loadingList}
-      onPointerDown={preventDefaultPointerDown}
-    >
-      <Glimmer shape="rectangle" size="base" />
-      <Glimmer shape="rectangle" size="base" />
-      <Glimmer shape="rectangle" size="base" />
-    </div>
-  );
-}
-
-function EmptyStateMessage({
-  emptyState,
-}: {
-  readonly emptyState: React.ReactNode;
-}) {
-  const emptyStateDefault = "No options";
-  const emptyStateContent = emptyState ?? emptyStateDefault;
-
-  return (
-    <div
-      className={styles.emptyStateMessage}
-      onPointerDown={preventDefaultPointerDown}
-    >
-      {emptyStateContent}
+      <InputText ref={mergedInputRef} {...inputProps} />
+      {floatingMenu}
     </div>
   );
 }
