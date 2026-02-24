@@ -2709,7 +2709,7 @@ describe("AutocompleteRebuilt", () => {
       ).not.toBeInTheDocument();
     });
 
-    it("removes a selection when clicking a chip dismiss button", () => {
+    it("removes a selection when clicking a chip dismiss button", async () => {
       const onChange = jest.fn();
       const menu = [
         menuOptions<OptionLike>([
@@ -2733,7 +2733,7 @@ describe("AutocompleteRebuilt", () => {
       );
 
       const dismissButton = screen.getByLabelText("Remove One");
-      dismissButton.click();
+      await userEvent.click(dismissButton);
 
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange).toHaveBeenCalledWith([{ label: "Two" }]);
@@ -2882,7 +2882,7 @@ describe("AutocompleteRebuilt", () => {
       ).toHaveLength(2);
 
       const dismiss = screen.getByLabelText("Remove One");
-      dismiss.click();
+      await userEvent.click(dismiss);
 
       await waitFor(() => {
         expect(
