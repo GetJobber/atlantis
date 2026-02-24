@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.111.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.5...@jobber/components@6.111.6) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Update SegmentedControl visual styling and add hover state ([#2919](https://github.com/GetJobber/atlantis/issues/2919)) ([d57b082](https://github.com/GetJobber/atlantis/commit/d57b082b21241c05a77a5e65766c786a2609b82f))
+
+
+
+
+
 ## [6.111.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.4...@jobber/components@6.111.5) (2026-02-23)
 
 
