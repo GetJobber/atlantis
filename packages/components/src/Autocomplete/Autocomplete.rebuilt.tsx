@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState,
 } from "react";
 import {
   FloatingFocusManager,
@@ -20,6 +19,7 @@ import type {
 } from "./Autocomplete.types";
 import styles from "./AutocompleteRebuilt.module.css";
 import { useAutocomplete } from "./useAutocomplete";
+import { useChipNavigation } from "./hooks/useChipNavigation";
 import { preventDefaultPointerDown } from "./utils/interactionUtils";
 import { MenuList } from "./components/MenuList";
 import { PersistentRegion } from "./components/PersistentRegion";
@@ -114,112 +114,18 @@ function AutocompleteRebuiltInternal<
     ? ((props.value ?? []) as Value[])
     : [];
 
-  const [activeChipIndex, setActiveChipIndex] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (inputValue !== "") {
-      setActiveChipIndex(null);
-    }
-  }, [inputValue]);
-
-  useEffect(() => {
-    setActiveChipIndex(prev => {
-      if (prev === null) return null;
-      if (selectedValues.length === 0) return null;
-      if (prev >= selectedValues.length) return selectedValues.length - 1;
-
-      return prev;
-    });
-  }, [selectedValues.length]);
-
-  const handleActiveChipKey = useCallback(
-    // eslint-disable-next-line max-statements
-    (event: React.KeyboardEvent): boolean => {
-      if (activeChipIndex === null) return false;
-
-      const { key } = event;
-
-      if (key === "ArrowLeft") {
-        event.preventDefault();
-        setActiveChipIndex(i => Math.max(0, (i ?? 0) - 1));
-
-        return true;
-      }
-
-      if (key === "ArrowRight") {
-        event.preventDefault();
-        setActiveChipIndex(
-          activeChipIndex + 1 >= selectedValues.length
-            ? null
-            : activeChipIndex + 1,
-        );
-
-        return true;
-      }
-
-      if (key === "Backspace" || key === "Delete") {
-        event.preventDefault();
-        const option = selectedValues[activeChipIndex];
-        const newLen = selectedValues.length - 1;
-
-        if (newLen === 0) {
-          setActiveChipIndex(null);
-        } else if (activeChipIndex >= newLen) {
-          setActiveChipIndex(newLen - 1);
-        }
-
-        removeSelection(option);
-
-        return true;
-      }
-
-      if (key === "Escape") {
-        setActiveChipIndex(null);
-
-        return true;
-      }
-
-      setActiveChipIndex(null);
-
-      return false;
-    },
-    [activeChipIndex, selectedValues, removeSelection],
-  );
-
-  const handleMultipleKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
-      if (handleActiveChipKey(event)) return;
-
-      if (
-        event.key === "ArrowLeft" &&
-        !props.readOnly &&
-        inputValue === "" &&
-        selectedValues.length > 0
-      ) {
-        event.preventDefault();
-        setActiveChipIndex(selectedValues.length - 1);
-
-        return;
-      }
-
-      onInputKeyDown(event);
-    },
-    [
-      handleActiveChipKey,
-      selectedValues,
-      inputValue,
-      props.readOnly,
-      onInputKeyDown,
-    ],
-  );
-
-  const handleBlur = useCallback(
-    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setActiveChipIndex(null);
-      onInputBlur(event);
-    },
-    [onInputBlur],
-  );
+  const {
+    activeChipIndex,
+    onKeyDown: chipKeyDown,
+    onBlur: chipBlur,
+  } = useChipNavigation<Value>({
+    selectedValues,
+    inputValue,
+    readOnly: props.readOnly,
+    removeSelection,
+    onInputKeyDown,
+    onInputBlur,
+  });
 
   const focusInputOnPointerDown = useCallback((e: React.PointerEvent) => {
     const target = e.target as HTMLElement;
@@ -231,9 +137,9 @@ function AutocompleteRebuiltInternal<
   }, []);
 
   const composedReferenceProps = getReferenceProps({
-    onKeyDown: props.multiple ? handleMultipleKeyDown : onInputKeyDown,
+    onKeyDown: props.multiple ? chipKeyDown : onInputKeyDown,
     onFocus: onInputFocus,
-    onBlur: props.multiple ? handleBlur : onInputBlur,
+    onBlur: props.multiple ? chipBlur : onInputBlur,
     ...(props.multiple ? { onPointerDown: focusInputOnPointerDown } : {}),
   });
 
@@ -449,7 +355,7 @@ function AutocompleteRebuiltInternal<
             ref={chipAreaRef}
             className={styles.chipArea}
             {...(props.readOnly
-              ? { onFocus: onInputFocus, onBlur: handleBlur }
+              ? { onFocus: onInputFocus, onBlur: chipBlur }
               : composedReferenceProps)}
           >
             {chips}
