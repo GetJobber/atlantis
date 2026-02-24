@@ -3177,6 +3177,18 @@ describe("AutocompleteRebuilt", () => {
         expect(chips[1].className).not.toContain("selectionChipActive");
       });
     });
+
+    it("keeps input focused after clicking an option", async () => {
+      render(<MultipleWrapper />);
+
+      await openAutocomplete();
+      await selectWithClick("One");
+
+      expect(
+        screen.getByTestId("ATL-AutocompleteRebuilt-chip"),
+      ).toHaveTextContent("One");
+      expect(document.activeElement).toBe(screen.getByRole("combobox"));
+    });
   });
 
   describe("blur and focus management", () => {

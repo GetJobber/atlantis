@@ -36,7 +36,10 @@ export function useAutocomplete<
   Multiple extends boolean = false,
   SectionExtra extends object = Record<string, unknown>,
   ActionExtra extends object = Record<string, unknown>,
->(props: AutocompleteRebuiltProps<Value, Multiple, SectionExtra, ActionExtra>) {
+>(
+  props: AutocompleteRebuiltProps<Value, Multiple, SectionExtra, ActionExtra>,
+  inputRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>,
+) {
   const {
     menu,
     emptyActions,
@@ -380,11 +383,9 @@ export function useAutocomplete<
         setOpen(false);
       }
 
-      if (refs.domReference.current instanceof HTMLElement) {
-        refs.domReference.current.focus();
-      }
+      inputRef.current?.focus();
     },
-    [selectOption, setOpen, multiple],
+    [selectOption, setOpen, multiple, inputRef],
   );
 
   const onAction = useCallback(
@@ -395,11 +396,9 @@ export function useAutocomplete<
 
       if (action.closeOnRun !== false) setOpen(false);
 
-      if (refs.domReference.current instanceof HTMLElement) {
-        refs.domReference.current.focus();
-      }
+      inputRef.current?.focus();
     },
-    [setOpen, setActiveIndex],
+    [setOpen, setActiveIndex, inputRef],
   );
 
   /**

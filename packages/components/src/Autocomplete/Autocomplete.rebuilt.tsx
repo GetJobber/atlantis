@@ -54,6 +54,12 @@ function AutocompleteRebuiltInternal<
     loading = false,
   } = props;
 
+  const formFieldRef = useRef<HTMLDivElement>(null);
+  // Ref for the multi-select input element, where we cannot use refs.domReference
+  // since it is not attached to the literal input element, whereas single + InputText only offers a
+  // ref to the literal input element.
+  const internalInputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+
   const {
     renderable,
     optionCount,
@@ -82,7 +88,7 @@ function AutocompleteRebuiltInternal<
     onInputKeyDown,
     setReferenceElement,
     clearAll,
-  } = useAutocomplete<Value, Multiple>(props);
+  } = useAutocomplete<Value, Multiple>(props, internalInputRef);
   const listboxId = React.useId();
 
   // Provides mount/unmount-aware transition styles for the floating element
@@ -100,8 +106,6 @@ function AutocompleteRebuiltInternal<
     null,
   );
 
-  const formFieldRef = useRef<HTMLDivElement>(null);
-  const internalInputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const inputId = React.useId();
   const descriptionId = `descriptionUUID--${inputId}`;
 
