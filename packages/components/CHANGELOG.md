@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.111.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.6...@jobber/components@6.111.7) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Adjust Clearable Positioning ([#2925](https://github.com/GetJobber/atlantis/issues/2925)) ([d137e67](https://github.com/GetJobber/atlantis/commit/d137e67cd622712677afb5f602aff726f4127abf))
+
+
+
+
+
 ## [6.111.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.5...@jobber/components@6.111.6) (2026-02-24)
 
 
