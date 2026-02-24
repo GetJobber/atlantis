@@ -293,6 +293,27 @@ export function useAutocomplete<
     shouldResetActiveIndexOnClose: () => !hasSelection,
     selectedIndex,
     readOnly,
+    onMenuOpen: () => {
+      if (multiple) return;
+
+      const selectedValue = value as Value | undefined;
+
+      if (selectedValue) {
+        const selectedNavigableIndex = findNavigableIndexForValue(
+          renderable,
+          equals,
+          selectedValue,
+        );
+
+        if (selectedNavigableIndex != null) {
+          setActiveIndex(selectedNavigableIndex);
+
+          return;
+        }
+      }
+
+      setActiveIndex(null);
+    },
     onMenuClose: () => {
       if (props.allowFreeForm !== true) {
         const hasText = inputValue.trim().length > 0;
@@ -306,27 +327,6 @@ export function useAutocomplete<
       }
     },
   });
-
-  // Handles activeIndex reset and, in single-select mode only, clearing selection when input is empty
-  useEffect(() => {
-    const hasText = inputValue.trim().length > 0;
-
-    if (hasText) return;
-
-    // In multiple mode, preserve highlight after programmatic clears (e.g. after selection).
-    // Only reset when the user manually clears the search text.
-    if (!multiple || lastInputWasUser.current) {
-      setActiveIndex(null);
-    }
-
-    // In multiple mode, clearing the input should NOT clear the selection
-    if (multiple) return;
-
-    // For single-select, treat clearing input as clearing the selection
-    if (hasSelection) {
-      onChange?.(undefined as AutocompleteValue<Value, Multiple>);
-    }
-  }, [inputValue, multiple, hasSelection, setActiveIndex, onChange, open]);
 
   function selectOption(option: Value) {
     if (multiple) {
@@ -349,6 +349,16 @@ export function useAutocomplete<
     }
   }
 
+  function reHighlightSelectedItem() {
+    const selectedValue = value as Value | undefined;
+
+    if (!selectedValue) return;
+
+    const idx = findNavigableIndexForValue(renderable, equals, selectedValue);
+
+    if (idx != null) setActiveIndex(idx);
+  }
+
   function tryCommitFreeFormOnEnter(): boolean {
     if (props.allowFreeForm !== true) return false;
     if (open && activeIndex != null) return false;
@@ -361,66 +371,6 @@ export function useAutocomplete<
 
     return true;
   }
-
-  // Keep the selected item highlighted when deleting characters from the input.
-  // Only meaningful for single-select where the input mirrors the selected label.
-  const prevInputLengthRef = useRef(inputValue.length);
-
-  useEffect(() => {
-    const previousLength = prevInputLengthRef.current;
-    prevInputLengthRef.current = inputValue.length;
-
-    if (!open) return;
-    if (multiple) return;
-    if (!lastInputWasUser.current) return;
-    if (previousLength <= inputValue.length) return; // only on deletion
-    if (!hasSelection) return;
-
-    const selectedValue = value as Value | undefined;
-
-    if (!selectedValue) return;
-
-    const idx = findNavigableIndexForValue(renderable, equals, selectedValue);
-    if (idx != null) setActiveIndex(idx);
-  }, [
-    inputValue,
-    renderable,
-    equals,
-    value,
-    open,
-    hasSelection,
-    multiple,
-    setActiveIndex,
-  ]);
-
-  useEffect(() => {
-    if (!open) return;
-
-    // In multiple mode, selections are indicated by checkmarks, not highlighting.
-    // Don't jump the highlight when the value array changes while the menu is open.
-    if (multiple) return;
-
-    // When opening the menu, initialize the highlight consistently:
-    // - If there is a current selection, highlight that option
-    // - Otherwise, leave the highlight unset (null)
-    const selectedValue = value as Value | undefined;
-
-    if (selectedValue) {
-      const selectedNavigableIndex = findNavigableIndexForValue(
-        renderable,
-        equals,
-        selectedValue,
-      );
-
-      if (selectedNavigableIndex != null) {
-        setActiveIndex(selectedNavigableIndex);
-
-        return;
-      }
-    }
-
-    setActiveIndex(null);
-  }, [open, multiple, value, renderable, equals, setActiveIndex]);
 
   const onSelection = useCallback(
     (option: Value) => {
@@ -714,19 +664,27 @@ export function useAutocomplete<
     (val: string) => {
       lastInputWasUser.current = true;
 
-      // Reset highlight (activeIndex) on additions to the search term
-      if (val.length > inputValue.length) {
+      const isEmpty = val.trim().length === 0;
+
+      if (isEmpty) {
         setActiveIndex(null);
+
+        if (!multiple && hasSelection) {
+          onChange?.(undefined as AutocompleteValue<Value, Multiple>);
+        }
+      } else if (val.length > inputValue.length) {
+        setActiveIndex(null);
+      } else if (
+        val.length < inputValue.length &&
+        !multiple &&
+        open &&
+        hasSelection
+      ) {
+        reHighlightSelectedItem();
       }
 
-      // Important: update open state before propagating the change so that downstream effects
-      // don't see an intermediate state where inputValue changed but open was stale
       if (!readOnly) {
-        const hasText = val.trim().length > 0;
-        const mustSelectFromOptions = hasText && !props.allowFreeForm;
-        const keepOpenOnEmpty = openOnFocus;
-
-        setOpen(mustSelectFromOptions || keepOpenOnEmpty);
+        setOpen((!isEmpty && !props.allowFreeForm) || openOnFocus);
       }
 
       onInputChange?.(val);
@@ -739,6 +697,10 @@ export function useAutocomplete<
       props.allowFreeForm,
       openOnFocus,
       setOpen,
+      multiple,
+      hasSelection,
+      onChange,
+      open,
     ],
   );
 

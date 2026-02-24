@@ -38,6 +38,7 @@ export interface UseAutocompleteListNavReturn {
 export interface UseAutocompleteListNavProps {
   navigableCount: number;
   shouldResetActiveIndexOnClose?: () => boolean;
+  onMenuOpen?: () => void;
   onMenuClose?: (reason?: string) => void;
   selectedIndex?: number | null;
   readOnly?: boolean;
@@ -46,6 +47,7 @@ export interface UseAutocompleteListNavProps {
 export function useAutocompleteListNav({
   navigableCount,
   shouldResetActiveIndexOnClose,
+  onMenuOpen,
   onMenuClose,
   selectedIndex,
   readOnly = false,
@@ -61,7 +63,9 @@ export function useAutocompleteListNav({
     onOpenChange: (isOpen, _event, reason) => {
       setOpen(isOpen);
 
-      if (isOpen === false) {
+      if (isOpen) {
+        onMenuOpen?.();
+      } else {
         if (shouldResetActiveIndexOnClose?.()) {
           setActiveIndex(null);
         }
