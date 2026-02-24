@@ -356,13 +356,13 @@ export const VisualTestPagePage = () => {
         <Page.Header>
           <Page.Title>Composable - With Actions</Page.Title>
           <Page.Actions>
-            <Page.PrimarySlot>
-              <Page.PrimaryAction label="New Client" onClick={() => null} />
-            </Page.PrimarySlot>
-            <Page.SecondarySlot>
-              <Page.SecondaryAction label="Export" onClick={() => null} />
-            </Page.SecondarySlot>
-            <Page.TertiarySlot>
+            <Page.ActionPrimary>
+              <Page.PrimaryButton label="New Client" onClick={() => null} />
+            </Page.ActionPrimary>
+            <Page.ActionSecondary>
+              <Page.SecondaryButton label="Export" onClick={() => null} />
+            </Page.ActionSecondary>
+            <Page.ActionMenu>
               <Page.Menu>
                 <Menu.Item textValue="Import" onClick={() => null}>
                   <Menu.ItemIcon name="import" />
@@ -373,7 +373,7 @@ export const VisualTestPagePage = () => {
                   <Menu.ItemLabel>Archive</Menu.ItemLabel>
                 </Menu.Item>
               </Page.Menu>
-            </Page.TertiarySlot>
+            </Page.ActionMenu>
           </Page.Actions>
         </Page.Header>
         <Page.Body>
@@ -419,17 +419,17 @@ export const VisualTestPagePage = () => {
           </Page.Title>
           <Page.Subtitle>A subtitle with default styling</Page.Subtitle>
           <Page.Actions>
-            <Page.PrimarySlot>
-              <Page.PrimaryAction
+            <Page.ActionPrimary>
+              <Page.PrimaryButton
                 label="Create"
                 icon="add"
                 onClick={() => null}
               />
-            </Page.PrimarySlot>
-            <Page.SecondarySlot>
-              <Page.SecondaryAction label="Export" onClick={() => null} />
-            </Page.SecondarySlot>
-            <Page.TertiarySlot>
+            </Page.ActionPrimary>
+            <Page.ActionSecondary>
+              <Page.SecondaryButton label="Export" onClick={() => null} />
+            </Page.ActionSecondary>
+            <Page.ActionMenu>
               <Page.Menu>
                 <Menu.Item textValue="Import" onClick={() => null}>
                   <Menu.ItemIcon name="import" />
@@ -440,7 +440,7 @@ export const VisualTestPagePage = () => {
                   <Menu.ItemLabel>Settings</Menu.ItemLabel>
                 </Menu.Item>
               </Page.Menu>
-            </Page.TertiarySlot>
+            </Page.ActionMenu>
           </Page.Actions>
         </Page.Header>
         <Page.Body>

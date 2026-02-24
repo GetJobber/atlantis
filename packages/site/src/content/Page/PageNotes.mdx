@@ -16,20 +16,20 @@ for client-side router integration) or custom action elements.
     </Page.Title>
     <Page.Subtitle>Manage your client list</Page.Subtitle>
     <Page.Actions>
-      <Page.PrimarySlot>
-        <Page.PrimaryAction label="New Client" onClick={handleCreate} />
-      </Page.PrimarySlot>
-      <Page.SecondarySlot>
-        <Page.SecondaryAction label="Export" onClick={handleExport} />
-      </Page.SecondarySlot>
-      <Page.TertiarySlot>
+      <Page.ActionPrimary>
+        <Page.PrimaryButton label="New Client" onClick={handleCreate} />
+      </Page.ActionPrimary>
+      <Page.ActionSecondary>
+        <Page.SecondaryButton label="Export" onClick={handleExport} />
+      </Page.ActionSecondary>
+      <Page.ActionMenu>
         <Page.Menu>
           <Menu.Item textValue="Import" onClick={handleImport}>
             <Menu.ItemIcon name="import" />
             <Menu.ItemLabel>Import</Menu.ItemLabel>
           </Menu.Item>
         </Page.Menu>
-      </Page.TertiarySlot>
+      </Page.ActionMenu>
     </Page.Actions>
   </Page.Header>
   <Page.Body>
@@ -100,24 +100,24 @@ For markdown formatting with links, provide `<Markdown>` explicitly:
 Container for the action slots and menu. Applies the responsive action group
 layout that stacks on small viewports and inlines on larger ones.
 
-**_Page.PrimarySlot / Page.SecondarySlot / Page.TertiarySlot (Optional)_**
+**_Page.ActionPrimary / Page.ActionSecondary / Page.ActionMenu (Optional)_**
 
 Positional slots that control where action elements appear. Use these to wrap
 either the default action buttons or fully custom elements.
 
 ```
 {/* Default button via slot */}
-<Page.PrimarySlot>
-  <Page.PrimaryAction label="Create" onClick={handleCreate} />
-</Page.PrimarySlot>
+<Page.ActionPrimary>
+  <Page.PrimaryButton label="Create" onClick={handleCreate} />
+</Page.ActionPrimary>
 
 {/* Custom element via slot */}
-<Page.PrimarySlot>
+<Page.ActionPrimary>
   <MyCustomButton />
-</Page.PrimarySlot>
+</Page.ActionPrimary>
 ```
 
-**_Page.PrimaryAction / Page.SecondaryAction (Optional)_**
+**_Page.PrimaryButton / Page.SecondaryButton (Optional)_**
 
 Default action buttons with opinionated styling (`fullWidth`, primary or
 secondary type). Use inside their respective slots.
@@ -126,7 +126,7 @@ secondary type). Use inside their respective slots.
 
 The "More Actions" menu. Provides the default trigger button (kebab icon +
 label) so consumers only need to supply `Menu.Item` children. Use inside
-`Page.TertiarySlot`.
+`Page.ActionMenu`.
 
 This is the primary integration point for client-side routers. For example, if
 you are using TanStack Router in the consumer app, you can wrap `Menu.Item` with
@@ -138,14 +138,14 @@ menu links:
 const TSRMenuItem = createLink(Menu.Item);
 
 // Use inside Page.Menu
-<Page.TertiarySlot>
+<Page.ActionMenu>
   <Page.Menu>
     <TSRMenuItem to="/clients/export" textValue="Export">
       <Menu.ItemIcon name="export" />
       <Menu.ItemLabel>Export</Menu.ItemLabel>
     </TSRMenuItem>
   </Page.Menu>
-</Page.TertiarySlot>
+</Page.ActionMenu>
 ```
 
 The trigger label defaults to "More Actions" and can be customized via the
@@ -160,16 +160,16 @@ Main content area of the page. Wraps children in a `Content` component.
 The props-based API remains fully supported. You only need to migrate if you
 need composable actions (e.g. for client-side router links in the menu).
 
-| Props-based                            | Composable                                                                                          |
-| -------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `title="Clients"`                      | `<Page.Title>Clients</Page.Title>`                                                                  |
-| `titleMetaData={<Badge />}`            | `<Page.TitleMetaData><Badge /></Page.TitleMetaData>` inside `Page.Title`                            |
-| `subtitle="Text"`                      | `<Page.Subtitle>Text</Page.Subtitle>`                                                               |
-| `intro="Markdown **text**"`            | `<Page.Intro><Markdown content="Markdown **text**" basicUsage /></Page.Intro>`                      |
-| `externalIntroLinks={true}`            | Pass `externalLink` to `<Markdown>` directly                                                        |
-| `primaryAction={{ label, onClick }}`   | `<Page.PrimarySlot><Page.PrimaryAction label={label} onClick={onClick} /></Page.PrimarySlot>`       |
-| `secondaryAction={{ label, onClick }}` | `<Page.SecondarySlot><Page.SecondaryAction label={label} onClick={onClick} /></Page.SecondarySlot>` |
-| `moreActionsMenu={[...]}`              | `<Page.TertiarySlot><Page.Menu>...</Page.Menu></Page.TertiarySlot>`                                 |
+| Props-based                            | Composable                                                                                              |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `title="Clients"`                      | `<Page.Title>Clients</Page.Title>`                                                                      |
+| `titleMetaData={<Badge />}`            | `<Page.TitleMetaData><Badge /></Page.TitleMetaData>` inside `Page.Title`                                |
+| `subtitle="Text"`                      | `<Page.Subtitle>Text</Page.Subtitle>`                                                                   |
+| `intro="Markdown **text**"`            | `<Page.Intro><Markdown content="Markdown **text**" basicUsage /></Page.Intro>`                          |
+| `externalIntroLinks={true}`            | Pass `externalLink` to `<Markdown>` directly                                                            |
+| `primaryAction={{ label, onClick }}`   | `<Page.ActionPrimary><Page.PrimaryButton label={label} onClick={onClick} /></Page.ActionPrimary>`       |
+| `secondaryAction={{ label, onClick }}` | `<Page.ActionSecondary><Page.SecondaryButton label={label} onClick={onClick} /></Page.ActionSecondary>` |
+| `moreActionsMenu={[...]}`              | `<Page.ActionMenu><Page.Menu>...</Page.Menu></Page.ActionMenu>`                                         |
 
 ### Example migration
 
@@ -197,17 +197,17 @@ After:
     <Page.Title>Clients</Page.Title>
     <Page.Subtitle>Manage your client list</Page.Subtitle>
     <Page.Actions>
-      <Page.PrimarySlot>
-        <Page.PrimaryAction label="New Client" onClick={handleCreate} />
-      </Page.PrimarySlot>
-      <Page.TertiarySlot>
+      <Page.ActionPrimary>
+        <Page.PrimaryButton label="New Client" onClick={handleCreate} />
+      </Page.ActionPrimary>
+      <Page.ActionMenu>
         <Page.Menu>
           <Menu.Item textValue="Import" onClick={handleImport}>
             <Menu.ItemIcon name="import" />
             <Menu.ItemLabel>Import</Menu.ItemLabel>
           </Menu.Item>
         </Page.Menu>
-      </Page.TertiarySlot>
+      </Page.ActionMenu>
     </Page.Actions>
   </Page.Header>
   <Page.Body>

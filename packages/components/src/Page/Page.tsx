@@ -243,8 +243,8 @@ function PageActions({ children, ...rest }: PageActionsProps) {
   );
 }
 
-/** Positional slot for the primary action. Renders children in the primary action position. */
-function PagePrimarySlot({ children, ref }: PageSlotProps) {
+/** Positional container for the primary action. Should contain a Button element, e.g. <Page.PrimaryButton>. */
+function PageActionPrimary({ children, ref }: PageSlotProps) {
   return (
     <div className={styles.primaryAction} ref={ref}>
       {children}
@@ -252,8 +252,8 @@ function PagePrimarySlot({ children, ref }: PageSlotProps) {
   );
 }
 
-/** Positional slot for the secondary action. Renders children in the secondary action position. */
-function PageSecondarySlot({ children, ref }: PageSlotProps) {
+/** Positional container for the secondary action. Should contain a Button element, e.g. <Page.SecondaryButton>. */
+function PageActionSecondary({ children, ref }: PageSlotProps) {
   return (
     <div className={styles.actionButton} ref={ref}>
       {children}
@@ -261,8 +261,8 @@ function PageSecondarySlot({ children, ref }: PageSlotProps) {
   );
 }
 
-/** Positional slot for the tertiary action (typically the menu). */
-function PageTertiarySlot({ children, ref }: PageSlotProps) {
+/** Positional container for the menu action. Should contain Page.Menu or a custom Menu. */
+function PageActionMenu({ children, ref }: PageSlotProps) {
   return (
     <div className={styles.actionButton} ref={ref}>
       {children}
@@ -270,8 +270,8 @@ function PageTertiarySlot({ children, ref }: PageSlotProps) {
   );
 }
 
-/** Primary action button with default styling. Use inside Page.PrimarySlot or Page.Actions. */
-function PagePrimaryAction({
+/** Default primary Button with opinionated styling. Use inside Page.ActionPrimary. */
+function PagePrimaryButton({
   ref,
   label,
   onClick,
@@ -298,8 +298,8 @@ function PagePrimaryAction({
   );
 }
 
-/** Secondary action button with default styling. Use inside Page.SecondarySlot or Page.Actions. */
-function PageSecondaryAction({
+/** Default secondary Button with opinionated styling. Use inside Page.ActionSecondary. */
+function PageSecondaryButton({
   ref,
   label,
   onClick,
@@ -373,10 +373,10 @@ Page.TitleMetaData = PageTitleMetaData;
 Page.Subtitle = PageSubtitle;
 Page.Intro = PageIntro;
 Page.Actions = PageActions;
-Page.PrimarySlot = PagePrimarySlot;
-Page.SecondarySlot = PageSecondarySlot;
-Page.TertiarySlot = PageTertiarySlot;
-Page.PrimaryAction = PagePrimaryAction;
-Page.SecondaryAction = PageSecondaryAction;
+Page.ActionPrimary = PageActionPrimary;
+Page.ActionSecondary = PageActionSecondary;
+Page.ActionMenu = PageActionMenu;
+Page.PrimaryButton = PagePrimaryButton;
+Page.SecondaryButton = PageSecondaryButton;
 Page.Menu = PageMenu;
 Page.Body = PageBody;

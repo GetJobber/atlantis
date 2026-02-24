@@ -373,12 +373,12 @@ describe("Composable Page", () => {
         <Page.Header>
           <Page.Title>Actions</Page.Title>
           <Page.Actions>
-            <Page.PrimarySlot>
-              <Page.PrimaryAction label="Create" onClick={handlePrimary} />
-            </Page.PrimarySlot>
-            <Page.SecondarySlot>
-              <Page.SecondaryAction label="Cancel" onClick={handleSecondary} />
-            </Page.SecondarySlot>
+            <Page.ActionPrimary>
+              <Page.PrimaryButton label="Create" onClick={handlePrimary} />
+            </Page.ActionPrimary>
+            <Page.ActionSecondary>
+              <Page.SecondaryButton label="Cancel" onClick={handleSecondary} />
+            </Page.ActionSecondary>
           </Page.Actions>
         </Page.Header>
         <Page.Body>Content</Page.Body>
@@ -401,9 +401,9 @@ describe("Composable Page", () => {
         <Page.Header>
           <Page.Title>Slot Test</Page.Title>
           <Page.Actions>
-            <Page.PrimarySlot>
+            <Page.ActionPrimary>
               <button type="button">My Custom Button</button>
-            </Page.PrimarySlot>
+            </Page.ActionPrimary>
           </Page.Actions>
         </Page.Header>
         <Page.Body>Content</Page.Body>
@@ -419,13 +419,13 @@ describe("Composable Page", () => {
         <Page.Header>
           <Page.Title>Menu Test</Page.Title>
           <Page.Actions>
-            <Page.TertiarySlot>
+            <Page.ActionMenu>
               <Page.Menu>
                 <Menu.Item textValue="Export" onClick={jest.fn()}>
                   <Menu.ItemLabel>Export</Menu.ItemLabel>
                 </Menu.Item>
               </Page.Menu>
-            </Page.TertiarySlot>
+            </Page.ActionMenu>
           </Page.Actions>
         </Page.Header>
         <Page.Body>Content</Page.Body>
@@ -441,13 +441,13 @@ describe("Composable Page", () => {
         <Page.Header>
           <Page.Title>Menu Test</Page.Title>
           <Page.Actions>
-            <Page.TertiarySlot>
+            <Page.ActionMenu>
               <Page.Menu triggerLabel="Options">
                 <Menu.Item textValue="Settings" onClick={jest.fn()}>
                   <Menu.ItemLabel>Settings</Menu.ItemLabel>
                 </Menu.Item>
               </Page.Menu>
-            </Page.TertiarySlot>
+            </Page.ActionMenu>
           </Page.Actions>
         </Page.Header>
         <Page.Body>Content</Page.Body>
@@ -469,19 +469,19 @@ describe("Composable Page", () => {
           </Page.Title>
           <Page.Subtitle>A subtitle here</Page.Subtitle>
           <Page.Actions>
-            <Page.PrimarySlot>
-              <Page.PrimaryAction label="Create" onClick={jest.fn()} />
-            </Page.PrimarySlot>
-            <Page.SecondarySlot>
-              <Page.SecondaryAction label="Export" onClick={jest.fn()} />
-            </Page.SecondarySlot>
-            <Page.TertiarySlot>
+            <Page.ActionPrimary>
+              <Page.PrimaryButton label="Create" onClick={jest.fn()} />
+            </Page.ActionPrimary>
+            <Page.ActionSecondary>
+              <Page.SecondaryButton label="Export" onClick={jest.fn()} />
+            </Page.ActionSecondary>
+            <Page.ActionMenu>
               <Page.Menu>
                 <Menu.Item textValue="Import" onClick={jest.fn()}>
                   <Menu.ItemLabel>Import</Menu.ItemLabel>
                 </Menu.Item>
               </Page.Menu>
-            </Page.TertiarySlot>
+            </Page.ActionMenu>
           </Page.Actions>
         </Page.Header>
         <Page.Body>Main content</Page.Body>

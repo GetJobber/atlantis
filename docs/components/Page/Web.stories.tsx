@@ -200,19 +200,19 @@ export const ComposableWithActions: StoryFn<PageComposableProps> = args => (
     <Page.Header>
       <Page.Title>Clients</Page.Title>
       <Page.Actions>
-        <Page.PrimarySlot>
-          <Page.PrimaryAction
+        <Page.ActionPrimary>
+          <Page.PrimaryButton
             label="New Client"
             onClick={() => alert("New Client")}
           />
-        </Page.PrimarySlot>
-        <Page.SecondarySlot>
-          <Page.SecondaryAction
+        </Page.ActionPrimary>
+        <Page.ActionSecondary>
+          <Page.SecondaryButton
             label="Export"
             onClick={() => alert("Export")}
           />
-        </Page.SecondarySlot>
-        <Page.TertiarySlot>
+        </Page.ActionSecondary>
+        <Page.ActionMenu>
           <Page.Menu>
             <Menu.Item textValue="Import" onClick={() => alert("Import")}>
               <Menu.ItemIcon name="import" />
@@ -223,7 +223,7 @@ export const ComposableWithActions: StoryFn<PageComposableProps> = args => (
               <Menu.ItemLabel>Archive</Menu.ItemLabel>
             </Menu.Item>
           </Page.Menu>
-        </Page.TertiarySlot>
+        </Page.ActionMenu>
       </Page.Actions>
     </Page.Header>
     <Page.Body>
@@ -265,20 +265,20 @@ export const ComposableWithAllPieces: StoryFn<PageComposableProps> = args => (
       </Page.Title>
       <Page.Subtitle>Everything but the Kitchen Sink</Page.Subtitle>
       <Page.Actions>
-        <Page.PrimarySlot>
-          <Page.PrimaryAction
+        <Page.ActionPrimary>
+          <Page.PrimaryButton
             label="Create Invoice"
             icon="add"
             onClick={() => alert("Create")}
           />
-        </Page.PrimarySlot>
-        <Page.SecondarySlot>
-          <Page.SecondaryAction
+        </Page.ActionPrimary>
+        <Page.ActionSecondary>
+          <Page.SecondaryButton
             label="Send Quote"
             onClick={() => alert("Send")}
           />
-        </Page.SecondarySlot>
-        <Page.TertiarySlot>
+        </Page.ActionSecondary>
+        <Page.ActionMenu>
           <Page.Menu>
             <Menu.Item textValue="Edit" onClick={() => alert("Edit")}>
               <Menu.ItemIcon name="edit" />
@@ -293,7 +293,7 @@ export const ComposableWithAllPieces: StoryFn<PageComposableProps> = args => (
               <Menu.ItemLabel>Delete</Menu.ItemLabel>
             </Menu.Item>
           </Page.Menu>
-        </Page.TertiarySlot>
+        </Page.ActionMenu>
       </Page.Actions>
     </Page.Header>
     <Page.Body>
@@ -313,28 +313,28 @@ export const ComposableCustomSlot: StoryFn<PageComposableProps> = args => (
     <Page.Header>
       <Page.Title>Custom Action Elements</Page.Title>
       <Page.Actions>
-        <Page.PrimarySlot>
+        <Page.ActionPrimary>
           <Button
             label="Custom Primary"
             icon="add"
             onClick={() => alert("Custom primary")}
             fullWidth
           />
-        </Page.PrimarySlot>
-        <Page.SecondarySlot>
+        </Page.ActionPrimary>
+        <Page.ActionSecondary>
           <Button
             label="Custom Secondary"
             type="secondary"
             onClick={() => alert("Custom secondary")}
             fullWidth
           />
-        </Page.SecondarySlot>
+        </Page.ActionSecondary>
       </Page.Actions>
     </Page.Header>
     <Page.Body>
       <Text>
         This example uses custom Button elements via the slots instead of the
-        default Page.PrimaryAction/Page.SecondaryAction components.
+        default Page.PrimaryButton/Page.SecondaryButton components.
       </Text>
     </Page.Body>
   </Page>
