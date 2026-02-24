@@ -26,6 +26,7 @@
   box-sizing: border-box;
   padding: var(--space-small);
   border: none;
+  outline: none;
   background-color: transparent;
   cursor: pointer;
 }
@@ -54,6 +55,7 @@
 .action {
   box-sizing: border-box;
   padding: var(--space-small);
+  outline: none;
   cursor: pointer;
 }
 
