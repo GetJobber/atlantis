@@ -1,7 +1,16 @@
 import { screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
-const user = userEvent.setup();
+let user = userEvent.setup();
+
+/**
+ * Reconfigure the shared userEvent instance used by all POM helpers.
+ * Call with options (e.g. `{ advanceTimers: jest.advanceTimersByTime }`) before
+ * tests that use fake timers, and call with no arguments afterwards to restore defaults.
+ */
+export function configureUser(options?: Parameters<typeof userEvent.setup>[0]) {
+  user = userEvent.setup(options);
+}
 
 /**
  * Open the Autocomplete menu
