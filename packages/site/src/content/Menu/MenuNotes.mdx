@@ -48,14 +48,15 @@ close the Menu.
 <Banner type="notice">
   <Text>
     To achieve a full-width Trigger, such as a Button please use UNSAFE_style or
-    UNSAFE_className
+    UNSAFE_className to set the desired display. See example below.
   </Text>
-  eg. ```
-  <Menu.Trigger UNSAFE_style={{ display: "block" }}>
-    <Button fullWidth />
-  </Menu.Trigger>
-  ```
 </Banner>
+
+```
+<Menu.Trigger UNSAFE_style={{ display: "block" }}>
+  <Button fullWidth />
+</Menu.Trigger>
+```
 
 **_Menu.Content (Required)_**
 
