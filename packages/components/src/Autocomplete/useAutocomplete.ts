@@ -10,6 +10,7 @@ import type {
   MenuSection,
   OptionLike,
 } from "./Autocomplete.types";
+import { EMPTY_SELECTED_VALUES } from "./constants";
 import {
   buildRenderableList,
   findNavigableIndexForValue,
@@ -90,7 +91,8 @@ export function useAutocomplete<
   const isOptionSelected = useCallback(
     (opt: Value) => {
       if (multiple) {
-        const current = (value as AutocompleteValue<Value, true>) ?? [];
+        const current =
+          (value as AutocompleteValue<Value, true>) ?? EMPTY_SELECTED_VALUES;
 
         return (current as Value[]).some(v => equals(v, opt));
       }
@@ -229,7 +231,8 @@ export function useAutocomplete<
 
   const hasSelection = useMemo(() => {
     if (multiple) {
-      const current = (value as AutocompleteValue<Value, true>) ?? [];
+      const current =
+        (value as AutocompleteValue<Value, true>) ?? EMPTY_SELECTED_VALUES;
 
       return Array.isArray(current) && current.length > 0;
     }
@@ -339,13 +342,19 @@ export function useAutocomplete<
 
   function selectOption(option: Value) {
     if (multiple) {
-      const current = (value as AutocompleteValue<Value, true>) ?? [];
+      const current =
+        (value as AutocompleteValue<Value, true>) ?? EMPTY_SELECTED_VALUES;
       const exists = (current as Value[]).some(v => equals(v, option));
       const next = exists
         ? (current as Value[]).filter(v => !equals(v, option))
         : [...(current as Value[]), option];
 
-      onChange(next as AutocompleteValue<Value, Multiple>);
+      onChange(
+        (next.length === 0 ? EMPTY_SELECTED_VALUES : next) as AutocompleteValue<
+          Value,
+          Multiple
+        >,
+      );
 
       lastInputWasUser.current = false;
       onInputChange?.("");
@@ -418,7 +427,7 @@ export function useAutocomplete<
 
   function applyFreeFormValue(freeFormCreated: Value): void {
     const nextValue = multiple
-      ? [...((value as Value[]) ?? []), freeFormCreated]
+      ? [...((value as Value[]) ?? EMPTY_SELECTED_VALUES), freeFormCreated]
       : freeFormCreated;
 
     props.onChange(nextValue as AutocompleteValue<Value, Multiple>);
@@ -629,11 +638,17 @@ export function useAutocomplete<
   const removeLastSelection = useCallback(() => {
     if (!multiple || readOnly) return;
 
-    const current = (value as AutocompleteValue<Value, true>) ?? [];
+    const current =
+      (value as AutocompleteValue<Value, true>) ?? EMPTY_SELECTED_VALUES;
 
     if ((current as Value[]).length > 0) {
       const next = (current as Value[]).slice(0, -1);
-      onChange(next as AutocompleteValue<Value, Multiple>);
+      onChange(
+        (next.length === 0 ? EMPTY_SELECTED_VALUES : next) as AutocompleteValue<
+          Value,
+          Multiple
+        >,
+      );
     }
   }, [multiple, readOnly, value, onChange]);
 
@@ -642,9 +657,14 @@ export function useAutocomplete<
       if (readOnly) return;
 
       if (multiple) {
-        const current = (value as AutocompleteValue<Value, true>) ?? [];
+        const current =
+          (value as AutocompleteValue<Value, true>) ?? EMPTY_SELECTED_VALUES;
         const next = (current as Value[]).filter(v => !equals(v, option));
-        onChange(next as AutocompleteValue<Value, Multiple>);
+        onChange(
+          (next.length === 0
+            ? EMPTY_SELECTED_VALUES
+            : next) as AutocompleteValue<Value, Multiple>,
+        );
       } else {
         const current = value as Value | undefined;
 
@@ -723,7 +743,7 @@ export function useAutocomplete<
 
   const clearAll = useCallback(() => {
     if (multiple) {
-      onChange([] as unknown as AutocompleteValue<Value, Multiple>);
+      onChange(EMPTY_SELECTED_VALUES as AutocompleteValue<Value, Multiple>);
     } else {
       onChange(undefined as AutocompleteValue<Value, Multiple>);
     }

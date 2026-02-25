@@ -54,7 +54,6 @@ import {
 import { InputText } from "../InputText";
 import { GLIMMER_TEST_ID } from "../Glimmer/Glimmer";
 
-// They're tests, limit isn't helpful here
 describe("AutocompleteRebuilt", () => {
   it("renders", () => {
     render(<Wrapper />);
@@ -379,8 +378,6 @@ describe("AutocompleteRebuilt", () => {
         expect(screen.getByText("Experience the high tide")).toBeVisible();
       });
     });
-    // Many interactions in the test
-    // This is verifying both the order and arrow navigation/activeIndex
     it("renders sections actions in the expected order", async () => {
       render(
         <Wrapper
@@ -1357,7 +1354,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOption).toBeNull();
     });
 
-    // Test requires multiple interactions
     it("resets the highlight to initial, not visible state when the menu is closed without a selection", async () => {
       render(<Wrapper />);
 
@@ -1387,7 +1383,6 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNavigation?.textContent).toContain("One");
     });
 
-    // Test requires multiple interactions
     it("resets the highlight to initial, not visible state when the input is cleared with backspaces", async () => {
       render(<Wrapper />);
 
@@ -1414,7 +1409,6 @@ describe("AutocompleteRebuilt", () => {
       expect(thirdActiveOption?.textContent).toContain("One");
     });
 
-    // Test requires multiple interactions
     it("resets the highlight to initial, not visible state after using an action", async () => {
       render(<Wrapper />);
 
@@ -1440,7 +1434,7 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav).not.toBeNull();
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
-    // Test requires multiple interactions
+
     it("resets the highlight to initial, not visible state when the autocomplete loses focus (blur)", async () => {
       render(<Wrapper />);
 
@@ -1490,7 +1484,7 @@ describe("AutocompleteRebuilt", () => {
       expect(activeOptionAfterNav).not.toBeNull();
       expect(activeOptionAfterNav?.textContent).toContain("One");
     });
-    // Test requires elaborate amount of interactions
+
     it("resets the highlight to initial, not visible state after making a selection, select-all + delete and reopening the menu", async () => {
       render(<Wrapper />);
 

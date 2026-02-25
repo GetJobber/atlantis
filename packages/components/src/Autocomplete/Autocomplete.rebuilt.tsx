@@ -13,6 +13,7 @@ import type {
   AutocompleteRebuiltProps,
   OptionLike,
 } from "./Autocomplete.types";
+import { EMPTY_SELECTED_VALUES } from "./constants";
 import styles from "./AutocompleteRebuilt.module.css";
 import { useAutocomplete } from "./useAutocomplete";
 import { useChipNavigation } from "./hooks/useChipNavigation";
@@ -110,8 +111,8 @@ function AutocompleteRebuiltInternal<
   const descriptionId = `descriptionUUID--${inputId}`;
 
   const selectedValues: Value[] = props.multiple
-    ? ((props.value ?? []) as Value[])
-    : [];
+    ? ((props.value ?? EMPTY_SELECTED_VALUES) as Value[])
+    : (EMPTY_SELECTED_VALUES as Value[]);
 
   const {
     activeChipIndex,
