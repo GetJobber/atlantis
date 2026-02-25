@@ -24,30 +24,17 @@ export const Basic: Story = {
     const [value, setValue] = useState<Date>();
 
     return (
-      <>
-        <InputDate
-          {...args}
-          value={value}
-          onChange={next => {
-            setValue(next); // Controlled to reflect selection in the input while still logging actions
-            args.onChange(next); // Log the action in the actions panel
-          }}
-          onBlur={() => {
-            args.onBlur?.();
-          }}
-        />
-        <InputDate
-          {...args}
-          value={value}
-          onChange={next => {
-            setValue(next); // Controlled to reflect selection in the input while still logging actions
-            args.onChange(next); // Log the action in the actions panel
-          }}
-          onBlur={() => {
-            args.onBlur?.();
-          }}
-        />
-      </>
+      <InputDate
+        {...args}
+        value={value}
+        onChange={next => {
+          setValue(next); // Controlled to reflect selection in the input while still logging actions
+          args.onChange(next); // Log the action in the actions panel
+        }}
+        onBlur={() => {
+          args.onBlur?.();
+        }}
+      />
     );
   },
 };
