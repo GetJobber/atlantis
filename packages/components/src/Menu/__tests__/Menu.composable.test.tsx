@@ -190,6 +190,16 @@ describe("Menu (composable API)", () => {
       expect(separator).toHaveClass("unsafe-sep");
       expect(separator).toHaveStyle("height: 7px");
     });
+
+    it("applies UNSAFE props on Menu.Trigger", async () => {
+      render(<TestUnsafePropsMenu />);
+
+      const triggerWrapper = POM.getTriggerUnsafeElement("Menu");
+
+      expect(triggerWrapper).toBeInTheDocument();
+      expect(triggerWrapper).toHaveClass("full-width-trigger");
+      expect(triggerWrapper).toHaveStyle("display: block");
+    });
   });
 
   describe("Link integration and event mapping", () => {
@@ -400,8 +410,12 @@ function TestChipTriggerMenu(props: {
 function TestUnsafePropsMenu() {
   return (
     <Menu>
-      <Menu.Trigger ariaLabel="Menu">
-        <Button label="Menu" />
+      <Menu.Trigger
+        ariaLabel="Menu"
+        UNSAFE_style={{ display: "block" }}
+        UNSAFE_className="full-width-trigger"
+      >
+        <Button label="Menu" fullWidth />
       </Menu.Trigger>
       <Menu.Content
         UNSAFE_className="unsafe-menu"
@@ -478,7 +492,7 @@ function TestDefaultMenuWithIcons() {
         </Menu.Section>
         <Menu.Separator />
         <Menu.Section>
-          <Menu.Item destructive textValue="Delete">
+          <Menu.Item variation="destructive" textValue="Delete">
             <Menu.ItemLabel>Delete</Menu.ItemLabel>
             <Menu.ItemIcon name="trash" />
           </Menu.Item>
@@ -508,7 +522,7 @@ function TestMenuWithReactNodeItemLabel() {
         </Menu.Section>
         <Menu.Separator />
         <Menu.Section>
-          <Menu.Item destructive textValue="Delete">
+          <Menu.Item variation="destructive" textValue="Delete">
             <Menu.ItemLabel>
               <ExampleUtilityComponent>Delete</ExampleUtilityComponent>
             </Menu.ItemLabel>
