@@ -29,7 +29,9 @@
 }
 
 .portalContainer {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: var(--elevation-modal);
 }
 
