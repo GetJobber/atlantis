@@ -1217,6 +1217,18 @@ describe("AutocompleteRebuilt", () => {
       expect(onChange).toHaveBeenCalledWith({ label: "Two" });
     });
 
+    it("adds free-form value to selection when multiple + allowFreeForm", async () => {
+      const onChange = jest.fn();
+
+      render(<MultipleWrapper allowFreeForm onChange={onChange} />);
+
+      await openAutocomplete();
+      await typeInInput("A Whole New World");
+      await blurAutocomplete();
+
+      expect(onChange).toHaveBeenCalledWith([{ label: "A Whole New World" }]);
+    });
+
     it("commits free-form on Enter when menu is closed", async () => {
       const onChange = jest.fn();
 

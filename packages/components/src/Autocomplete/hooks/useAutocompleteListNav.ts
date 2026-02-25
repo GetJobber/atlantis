@@ -42,6 +42,11 @@ export interface UseAutocompleteListNavProps {
   onMenuClose?: (reason?: string) => void;
   selectedIndex?: number | null;
   readOnly?: boolean;
+  /**
+   * When the reference is smaller than the clickable area (e.g. input inside chip area),
+   * pass a selector for the extended zone. Clicks inside it won't trigger outsidePress dismiss.
+   */
+  outsidePressExcludeSelector?: string;
 }
 
 export function useAutocompleteListNav({
@@ -51,6 +56,7 @@ export function useAutocompleteListNav({
   onMenuClose,
   selectedIndex,
   readOnly = false,
+  outsidePressExcludeSelector,
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -111,7 +117,20 @@ export function useAutocompleteListNav({
   });
 
   const dismiss = useDismiss(context, {
-    outsidePress: true,
+    outsidePress: outsidePressExcludeSelector
+      ? (event: MouseEvent) => {
+          const target = event.target as Node;
+          const insideRef =
+            context.elements.domReference?.contains(target) ?? false;
+          const insideFloating =
+            context.elements.floating?.contains(target) ?? false;
+          const insideExclude = (event.target as Element).closest(
+            outsidePressExcludeSelector,
+          );
+
+          return !(insideRef || insideFloating || insideExclude);
+        }
+      : true,
     escapeKey: true,
     outsidePressEvent: "click",
   });

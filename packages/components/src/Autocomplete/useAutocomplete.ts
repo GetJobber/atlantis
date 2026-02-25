@@ -299,6 +299,9 @@ export function useAutocomplete<
     shouldResetActiveIndexOnClose: () => !hasSelection,
     selectedIndex,
     readOnly,
+    outsidePressExcludeSelector: multiple
+      ? "[data-testid='ATL-AutocompleteRebuilt-chipArea']"
+      : undefined,
     onMenuOpen: () => {
       if (multiple) return;
 
@@ -413,6 +416,19 @@ export function useAutocomplete<
     [],
   );
 
+  function applyFreeFormValue(freeFormCreated: Value): void {
+    const nextValue = multiple
+      ? [...((value as Value[]) ?? []), freeFormCreated]
+      : freeFormCreated;
+
+    props.onChange(nextValue as AutocompleteValue<Value, Multiple>);
+
+    if (multiple) {
+      lastInputWasUser.current = false;
+      onInputChange?.("");
+    }
+  }
+
   function commitFromInputText(inputText: string): boolean {
     if (inputText.length === 0) return false;
 
@@ -432,7 +448,7 @@ export function useAutocomplete<
 
     if (!freeFormCreated) return false;
 
-    props.onChange(freeFormCreated as AutocompleteValue<Value, Multiple>);
+    applyFreeFormValue(freeFormCreated);
 
     return true;
   }
@@ -665,7 +681,6 @@ export function useAutocomplete<
   const onInputChangeFromUser = useCallback(
     (val: string) => {
       lastInputWasUser.current = true;
-
       const isEmpty = val.trim().length === 0;
 
       if (isEmpty) {

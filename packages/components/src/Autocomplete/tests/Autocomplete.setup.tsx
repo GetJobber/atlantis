@@ -203,6 +203,9 @@ export function FreeFormWrapper({
  * Stateful wrapper for testing multiple-selection behavior.
  * Manages both value (array) and inputValue internally so tests
  * can perform multiple interactions that build on each other.
+ *
+ * When allowFreeForm is true, uses createFreeFormValue if provided,
+ * otherwise defaults to (input) => ({ label: input }).
  */
 export function MultipleWrapper<T extends OptionLike>({
   initialValue = [],
@@ -212,27 +215,24 @@ export function MultipleWrapper<T extends OptionLike>({
   debounce = 0,
   customRenderValue,
   clearable,
-}: {
-  readonly initialValue?: T[];
-  readonly onChange?: (v: T[]) => void;
-  readonly onInputChange?: (v: string) => void;
-  readonly menu?: MenuItem<T>[];
-  readonly debounce?: number;
-  readonly customRenderValue?: AutocompleteRebuiltProps<
-    T,
-    true
-  >["customRenderValue"];
-  readonly clearable?: AutocompleteRebuiltProps<T, true>["clearable"];
-}) {
+  allowFreeForm,
+  createFreeFormValue = (input => ({ label: input })) as (input: string) => T,
+}: MultipleWrapperProps<T>) {
   const [value, setValue] = React.useState<T[]>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>("");
   const built = React.useMemo(() => buildMenu(), []);
+
+  const freeFormProps =
+    allowFreeForm === true
+      ? { allowFreeForm: true as const, createFreeFormValue }
+      : { allowFreeForm: false as const };
 
   return (
     <AutocompleteRebuilt
       version={2}
       multiple
       value={value}
+      {...freeFormProps}
       onChange={(v: T[]) => {
         setValue(v);
         onChange?.(v);
@@ -249,6 +249,21 @@ export function MultipleWrapper<T extends OptionLike>({
       clearable={clearable}
     />
   );
+}
+
+interface MultipleWrapperProps<T extends OptionLike> {
+  readonly initialValue?: T[];
+  readonly onChange?: (v: T[]) => void;
+  readonly onInputChange?: (v: string) => void;
+  readonly menu?: MenuItem<T>[];
+  readonly debounce?: number;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    T,
+    true
+  >["customRenderValue"];
+  readonly clearable?: AutocompleteRebuiltProps<T, true>["clearable"];
+  readonly allowFreeForm?: boolean;
+  readonly createFreeFormValue?: (input: string) => T;
 }
 
 /**

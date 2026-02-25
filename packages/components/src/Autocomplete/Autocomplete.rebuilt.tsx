@@ -183,7 +183,12 @@ function AutocompleteRebuiltInternal<
     (node: HTMLDivElement | null) => {
       if (!node) return;
 
-      setReferenceElement(node);
+      // In multiple mode, we use the input as the reference so floating-ui's
+      // useListNavigation treats it as a typeable combobox and allows Space.
+      // Only use chipArea for positioning/sizing.
+      if (!props.multiple) {
+        setReferenceElement(node);
+      }
 
       const multiContainer = node.closest(
         "[data-testid='ATL-AutocompleteRebuilt-multiSelectContainer']",
@@ -194,15 +199,14 @@ function AutocompleteRebuiltInternal<
         setPositionRefEl(multiContainer);
       }
     },
-    [setReferenceElement],
+    [setReferenceElement, props.multiple],
   );
 
   const referenceInputRef = useCallback(
     (node: HTMLInputElement | HTMLTextAreaElement | null) => {
-      // In multiple mode, the chipArea is the reference element for floating-ui
-      if (!props.multiple) {
-        setReferenceElement(node);
+      setReferenceElement(node);
 
+      if (!props.multiple) {
         // Workaround to get the width of the visual InputText element, which is not the same as
         // the literal input reference element.
         const visualInputTextElement = node?.closest(
@@ -337,6 +341,7 @@ function AutocompleteRebuiltInternal<
             <div
               ref={chipAreaRef}
               className={styles.chipArea}
+              data-testid="ATL-AutocompleteRebuilt-chipArea"
               {...(props.readOnly
                 ? { onFocus: onInputFocus, onBlur: chipBlur }
                 : composedReferenceProps)}

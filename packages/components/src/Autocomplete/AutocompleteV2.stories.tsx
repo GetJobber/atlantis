@@ -857,6 +857,7 @@ const TemplateFocusBehavior = () => {
   );
 };
 
+// eslint-disable-next-line max-statements
 const TemplateMultiple = () => {
   const [value, setValue] = useState<OptionLike[]>([]);
   const [inputValue, setInputValue] = useState("");
@@ -867,13 +868,22 @@ const TemplateMultiple = () => {
   const [otherValue, setOtherValue] = useState<OptionLike[]>([]);
   const [otherInputValue, setOtherInputValue] = useState("");
 
-  const [headerFooterValue, setHeaderFooterValue] = useState<OptionLike[]>([]);
+  const [headerFooterValue, setHeaderFooterValue] = useState<OptionLike[]>([
+    {
+      label: "Drain Cleaning",
+    },
+  ]);
   const [headerFooterInputValue, setHeaderFooterInputValue] = useState("");
 
   const [disabledValue, setDisabledValue] = useState<OptionLike[]>([
     { label: "Drain Cleaning" },
   ]);
   const [disabledInputValue, setDisabledInputValue] = useState("");
+
+  const [allowFreeFormValue, setAllowFreeFormValue] = useState<OptionLike[]>(
+    [],
+  );
+  const [allowFreeFormInputValue, setAllowFreeFormInputValue] = useState("");
 
   return (
     <Content>
@@ -938,6 +948,7 @@ const TemplateMultiple = () => {
         onBlur={() => console.log("blurred")}
         placeholder="Search"
         value={headerFooterValue}
+        clearable="always"
         onChange={setHeaderFooterValue}
         multiple
         inputValue={headerFooterInputValue}
@@ -970,6 +981,20 @@ const TemplateMultiple = () => {
         inputValue={disabledInputValue}
         onInputChange={setDisabledInputValue}
         menu={sectionedWithHeaderFooterMenu}
+      />
+      <Heading level={4}>Allow free form</Heading>
+      <Autocomplete
+        version={2}
+        menu={sectionedMenu}
+        multiple
+        allowFreeForm
+        createFreeFormValue={label => ({ label })}
+        inputValue={allowFreeFormInputValue}
+        onInputChange={setAllowFreeFormInputValue}
+        onBlur={() => console.log("blurred")}
+        placeholder="Search"
+        value={allowFreeFormValue}
+        onChange={setAllowFreeFormValue}
       />
     </Content>
   );
