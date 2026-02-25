@@ -17,6 +17,20 @@ export async function openWithIconClick(ariaLabel: string): Promise<void> {
   await waitForAnimationToSettle();
 }
 
+export function getTrigger(ariaLabel: string) {
+  return screen.getByLabelText(ariaLabel);
+}
+
+export function getTriggerUnsafeElement(ariaLabel: string) {
+  const triggerWrapper = getTrigger(ariaLabel).closest(".triggerWrapper");
+
+  if (!triggerWrapper) {
+    throw new Error(`Trigger with aria-label "${ariaLabel}" not found`);
+  }
+
+  return triggerWrapper;
+}
+
 export async function openWithKeyboard(
   ariaLabel: string,
   key: "Enter" | "Space" = "Enter",
