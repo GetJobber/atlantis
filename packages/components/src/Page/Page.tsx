@@ -27,9 +27,7 @@ import { Markdown } from "../Markdown";
 import { Button, type ButtonProps } from "../Button";
 import { Menu } from "../Menu";
 import { Emphasis } from "../Emphasis";
-import { Container } from "../Container";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
-import type { CommonAtlantisProps } from "../sharedHelpers/types";
 
 /** Discriminates between the props-based API and the composable children API. */
 function isLegacy(props: PageProps): props is PageLegacyProps {
@@ -159,17 +157,19 @@ function PageLegacy({
  */
 function PageHeader({ children, ...rest }: PageHeaderProps) {
   const dataAttrs = filterDataAttributes(rest);
+  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
+    useResizeObserver<HTMLDivElement>();
+
+  const titleBarClasses = classnames(styles.titleBar, {
+    [styles.small]: titleBarWidth > Breakpoints.smaller,
+    [styles.medium]: titleBarWidth > Breakpoints.small,
+    [styles.large]: titleBarWidth > Breakpoints.base,
+  });
 
   return (
-    <Container
-      name="page-titlebar"
-      autoWidth
-      dataAttributes={dataAttrs as CommonAtlantisProps["dataAttributes"]}
-    >
-      <Container.Apply autoWidth>
-        <div className={styles.titleBar}>{children}</div>
-      </Container.Apply>
-    </Container>
+    <div className={titleBarClasses} ref={titleBarRef} {...dataAttrs}>
+      {children}
+    </div>
   );
 }
 
