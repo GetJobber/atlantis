@@ -1,4 +1,4 @@
-import { Banner } from "@jobber/components";
+import { Banner, Text } from "@jobber/components";
 
 ## Composable Version (Web Only)
 
@@ -44,6 +44,16 @@ Menu.Trigger must be an element with an interactive role.
 
 Clicking the trigger again, or clicking anywhere outside the Menu at all will
 close the Menu.
+
+<Banner type="notice">
+  <Text>
+    To achieve a full-width Trigger, such as a Button please use UNSAFE_style or
+    UNSAFE_className
+  </Text>
+  eg. `<Menu.Trigger UNSAFE_style={{ display: "block" }}>
+    <Button fullWidth />
+  </Menu.Trigger>`
+</Banner>
 
 **_Menu.Content (Required)_**
 
