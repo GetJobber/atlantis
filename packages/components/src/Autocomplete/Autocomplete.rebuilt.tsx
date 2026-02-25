@@ -1,5 +1,5 @@
 import type { Ref } from "react";
-import React, { forwardRef, useEffect } from "react";
+import React, { forwardRef, useCallback, useEffect, useMemo } from "react";
 import {
   FloatingFocusManager,
   FloatingPortal,
@@ -132,27 +132,32 @@ function AutocompleteRebuiltInternal<
     ...dataAttrs,
   };
 
-  const referenceInputRef: React.Ref<HTMLInputElement | HTMLTextAreaElement> = (
-    node: HTMLInputElement | HTMLTextAreaElement | null,
-  ) => {
-    setReferenceElement(node);
+  const referenceInputRef = useCallback(
+    (node: HTMLInputElement | HTMLTextAreaElement | null) => {
+      setReferenceElement(node);
 
-    // Workaround to get the width of the visual InputText element, which is not the same as
-    // the literal input reference element when props like suffix/prefix/clearable are present.
-    const visualInputTextElement = node?.closest(
-      "[data-testid='Form-Field-Wrapper']",
-    );
+      // Workaround to get the width of the visual InputText element, which is not the same as
+      // the literal input reference element when props like suffix/prefix/clearable are present.
+      const visualInputTextElement = node?.closest(
+        "[data-testid='Form-Field-Wrapper']",
+      );
 
-    if (visualInputTextElement) {
-      setMenuWidth(visualInputTextElement.clientWidth);
-      setPositionRefEl(visualInputTextElement);
-    }
-  };
+      if (visualInputTextElement) {
+        setMenuWidth(visualInputTextElement.clientWidth);
+        setPositionRefEl(visualInputTextElement);
+      }
+    },
+    [setReferenceElement],
+  );
 
-  const mergedInputRef = mergeRefs<HTMLInputElement | HTMLTextAreaElement>([
-    referenceInputRef,
-    forwardedRef,
-  ]);
+  const mergedInputRef = useMemo(
+    () =>
+      mergeRefs<HTMLInputElement | HTMLTextAreaElement>([
+        referenceInputRef,
+        forwardedRef,
+      ]),
+    [referenceInputRef, forwardedRef],
+  );
 
   useEffect(() => {
     if (!positionRefEl) return;

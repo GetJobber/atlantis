@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.111.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.6...@jobber/components@6.111.7) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Adjust Clearable Positioning ([#2925](https://github.com/GetJobber/atlantis/issues/2925)) ([d137e67](https://github.com/GetJobber/atlantis/commit/d137e67cd622712677afb5f602aff726f4127abf))
+
+
+
+
+
+## [6.111.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.5...@jobber/components@6.111.6) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Update SegmentedControl visual styling and add hover state ([#2919](https://github.com/GetJobber/atlantis/issues/2919)) ([d57b082](https://github.com/GetJobber/atlantis/commit/d57b082b21241c05a77a5e65766c786a2609b82f))
+
+
+
+
+
+## [6.111.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.4...@jobber/components@6.111.5) (2026-02-23)
+
+
+### Bug Fixes
+
+* **components:** Fix Lightbox transitions [JOB-152407] ([#2918](https://github.com/GetJobber/atlantis/issues/2918)) ([c2beb0c](https://github.com/GetJobber/atlantis/commit/c2beb0ccea32348d5e9cbba23504dc6a90c70c0b))
+
+
+
+
+
+## [6.111.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.3...@jobber/components@6.111.4) (2026-02-23)
+
+
+### Reverts
+
+* **components:** Improve Tooltip + Icon Button Accessibility ([#2923](https://github.com/GetJobber/atlantis/issues/2923)) ([7a01788](https://github.com/GetJobber/atlantis/commit/7a017884ba576567877f215c77509d9b5139cde5)), closes [#2907](https://github.com/GetJobber/atlantis/issues/2907)
+
+
+
+
+
+## [6.111.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.2...@jobber/components@6.111.3) (2026-02-18)
+
+
+### Bug Fixes
+
+* **components:** Added Link interaction styling ([#2916](https://github.com/GetJobber/atlantis/issues/2916)) ([b27c440](https://github.com/GetJobber/atlantis/commit/b27c440f076fec04b090058f303dab0b8cae1cc2))
+
+
+
+
+
+## [6.111.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.1...@jobber/components@6.111.2) (2026-02-18)
+
+
+### Bug Fixes
+
+* **components:** Stabilize Autocomplete Internal References ([#2914](https://github.com/GetJobber/atlantis/issues/2914)) ([e4b29af](https://github.com/GetJobber/atlantis/commit/e4b29aff84e61cb3f996f2876f65c6e04279f18c))
+
+
+
+
+
+## [6.111.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.0...@jobber/components@6.111.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* **components:** DataTableRow interactivity updates ([#2913](https://github.com/GetJobber/atlantis/issues/2913)) ([525c11e](https://github.com/GetJobber/atlantis/commit/525c11e052a4c255081d5b858c42d7ade432d51e))
+
+
+
+
+
+# [6.111.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.4...@jobber/components@6.111.0) (2026-02-17)
+
+
+### Features
+
+* **components:** Improve Tooltip + Icon Button Accessibility ([#2907](https://github.com/GetJobber/atlantis/issues/2907)) ([ea7a5a1](https://github.com/GetJobber/atlantis/commit/ea7a5a158db93346994bdb3eb7e5968fec26f0f9))
+
+
+
+
+
+## [6.110.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.3...@jobber/components@6.110.4) (2026-02-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [6.110.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.110.2...@jobber/components@6.110.3) (2026-02-12)
 
 

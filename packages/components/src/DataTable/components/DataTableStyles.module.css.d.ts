@@ -6,6 +6,7 @@ declare const styles: {
   readonly "sortableButton": string;
   readonly "focusArea": string;
   readonly "row": string;
+  readonly "clickableRow": string;
   readonly "cell": string;
   readonly "footer": string;
   readonly "actions": string;

@@ -58,7 +58,11 @@
   position: relative;
 }
 
-.row:hover {
+.row.clickableRow {
+  cursor: pointer;
+}
+
+.tableElement tbody tr.row.clickableRow:hover {
   background-color: var(--color-surface--hover);
 }
 
