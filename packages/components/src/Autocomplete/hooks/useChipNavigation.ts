@@ -1,5 +1,5 @@
 import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { OptionLike } from "../Autocomplete.types";
 
 interface UseChipNavigationProps<Value extends OptionLike> {
@@ -29,23 +29,23 @@ export function useChipNavigation<Value extends OptionLike>({
   onInputKeyDown,
   onInputBlur,
 }: UseChipNavigationProps<Value>): UseChipNavigationReturn {
-  const [activeChipIndex, setActiveChipIndex] = useState<number | null>(null);
+  const [rawActiveChipIndex, setRawActiveChipIndex] = useState<number | null>(
+    null,
+  );
+  const [previousInputValue, setPreviousInputValue] = useState(inputValue);
 
-  useEffect(() => {
-    if (inputValue !== "") {
-      setActiveChipIndex(null);
+  const activeChipIndex = useMemo(
+    () => clampActiveIndex(rawActiveChipIndex, selectedValues.length),
+    [rawActiveChipIndex, selectedValues.length],
+  );
+
+  if (previousInputValue !== inputValue) {
+    setPreviousInputValue(inputValue);
+
+    if (inputValue !== "" && rawActiveChipIndex !== null) {
+      setRawActiveChipIndex(null);
     }
-  }, [inputValue]);
-
-  useEffect(() => {
-    setActiveChipIndex(prev => {
-      if (prev === null) return null;
-      if (selectedValues.length === 0) return null;
-      if (prev >= selectedValues.length) return selectedValues.length - 1;
-
-      return prev;
-    });
-  }, [selectedValues.length]);
+  }
 
   const handleActiveChipKey = useCallback(
     // eslint-disable-next-line max-statements
@@ -56,14 +56,14 @@ export function useChipNavigation<Value extends OptionLike>({
 
       if (key === "ArrowLeft") {
         event.preventDefault();
-        setActiveChipIndex(i => Math.max(0, (i ?? 0) - 1));
+        setRawActiveChipIndex(i => Math.max(0, (i ?? 0) - 1));
 
         return true;
       }
 
       if (key === "ArrowRight") {
         event.preventDefault();
-        setActiveChipIndex(
+        setRawActiveChipIndex(
           activeChipIndex + 1 >= selectedValues.length
             ? null
             : activeChipIndex + 1,
@@ -78,9 +78,9 @@ export function useChipNavigation<Value extends OptionLike>({
         const newLen = selectedValues.length - 1;
 
         if (newLen === 0) {
-          setActiveChipIndex(null);
+          setRawActiveChipIndex(null);
         } else if (activeChipIndex >= newLen) {
-          setActiveChipIndex(newLen - 1);
+          setRawActiveChipIndex(newLen - 1);
         }
 
         removeSelection(option);
@@ -89,12 +89,12 @@ export function useChipNavigation<Value extends OptionLike>({
       }
 
       if (key === "Escape") {
-        setActiveChipIndex(null);
+        setRawActiveChipIndex(null);
 
         return true;
       }
 
-      setActiveChipIndex(null);
+      setRawActiveChipIndex(null);
 
       return false;
     },
@@ -112,7 +112,7 @@ export function useChipNavigation<Value extends OptionLike>({
         selectedValues.length > 0
       ) {
         event.preventDefault();
-        setActiveChipIndex(selectedValues.length - 1);
+        setRawActiveChipIndex(selectedValues.length - 1);
 
         return;
       }
@@ -124,11 +124,19 @@ export function useChipNavigation<Value extends OptionLike>({
 
   const onBlur = useCallback(
     (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setActiveChipIndex(null);
+      setRawActiveChipIndex(null);
       onInputBlur(event);
     },
     [onInputBlur],
   );
 
   return { activeChipIndex, onKeyDown, onBlur };
+}
+
+function clampActiveIndex(index: number | null, length: number): number | null {
+  if (index === null) return null;
+  if (length === 0) return null;
+  if (index >= length) return length - 1;
+
+  return index;
 }
