@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.112.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.7...@jobber/components@6.112.0) (2026-02-25)
+
+
+### Features
+
+* **components:** Add UNSAFE to Menu Trigger ([#2927](https://github.com/GetJobber/atlantis/issues/2927)) ([898a6de](https://github.com/GetJobber/atlantis/commit/898a6de50fe0fc015af9c7454aba7491552151c2))
+
+
+
+
+
 ## [6.111.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.6...@jobber/components@6.111.7) (2026-02-24)
 
 
