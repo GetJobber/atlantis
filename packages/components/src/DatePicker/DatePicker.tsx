@@ -154,11 +154,7 @@ function useSmartAutofocus(
   open: boolean,
   focusOnSelectedDate: () => boolean,
 ) {
-  // Always return focus to the activator when the calendar closes, even when
-  // smartAutofocus is false (e.g. InputDate inside a Modal). Skipping this
-  // causes focus to escape to the first focusable element in the DOM when the
-  // portalled calendar unmounts outside the parent focus trap.
-  useRefocusOnActivator(open);
+  useRefocusOnActivator(smartAutofocus ? open : false);
   useEffect(() => {
     if (smartAutofocus) {
       focusOnSelectedDate();
