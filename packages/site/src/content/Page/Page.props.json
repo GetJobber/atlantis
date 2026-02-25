@@ -130,7 +130,7 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Groups title, subtitle, and actions. Separates Page.Actions for layout positioning.",
+    "description": "Groups the title area and actions into the page header layout.\nPlace non-action content (title, subtitle) inside `Page.HeaderContent`\nand actions inside `Page.Actions`.",
     "displayName": "Page.Header",
     "methods": [],
     "props": {}
@@ -138,16 +138,26 @@
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Renders the page heading (H1). Extracts Page.TitleMetaData from children for layout.",
-    "displayName": "Page.Title",
+    "description": "Wraps the title area (title, subtitle) inside `Page.Header`. Use when the header contains more than one content element to keep them stacked vertically.",
+    "displayName": "Page.HeaderContent",
+    "methods": [],
+    "props": {}
+  },
+  {
+    "tags": {
+      "example": "```tsx\n<Page.TitleBar>\n  <Page.Title>Clients</Page.Title>\n  <StatusLabel label=\"Active\" status=\"success\" />\n</Page.TitleBar>\n```"
+    },
+    "filePath": "../components/src/Page/Page.tsx",
+    "description": "Flex container for the page title and optional sibling elements such as\nstatus badges. Use when you need to display metadata alongside the heading.",
+    "displayName": "Page.TitleBar",
     "methods": [],
     "props": {}
   },
   {
     "tags": {},
     "filePath": "../components/src/Page/Page.tsx",
-    "description": "Metadata displayed alongside the page title (e.g. status badges). Use inside Page.Title.",
-    "displayName": "Page.TitleMetaData",
+    "description": "Renders the page heading as an H1. When metadata is present alongside the\ntitle, wrap both in `Page.TitleBar`.",
+    "displayName": "Page.Title",
     "methods": [],
     "props": {}
   },

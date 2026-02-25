@@ -198,7 +198,9 @@ export const ComposableBasic: StoryFn<PageComposableProps> = args => (
 export const ComposableWithActions: StoryFn<PageComposableProps> = args => (
   <Page {...args}>
     <Page.Header>
-      <Page.Title>Clients</Page.Title>
+      <Page.HeaderContent>
+        <Page.Title>Clients</Page.Title>
+      </Page.HeaderContent>
       <Page.Actions>
         <Page.ActionPrimary>
           <Page.PrimaryButton
@@ -240,8 +242,10 @@ export const ComposableWithSubtitleAndIntro: StoryFn<
 > = args => (
   <Page {...args}>
     <Page.Header>
-      <Page.Title>Notifications</Page.Title>
-      <Page.Subtitle>Notify me of all the work</Page.Subtitle>
+      <Page.HeaderContent>
+        <Page.Title>Notifications</Page.Title>
+        <Page.Subtitle>Notify me of all the work</Page.Subtitle>
+      </Page.HeaderContent>
     </Page.Header>
     <Page.Intro>
       Improve job completion rates, stop chasing payments, and boost your
@@ -257,13 +261,13 @@ export const ComposableWithSubtitleAndIntro: StoryFn<
 export const ComposableWithAllPieces: StoryFn<PageComposableProps> = args => (
   <Page {...args}>
     <Page.Header>
-      <Page.Title>
-        Kitchen Renovation Project
-        <Page.TitleMetaData>
+      <Page.HeaderContent>
+        <Page.TitleBar>
+          <Page.Title>Kitchen Renovation Project</Page.Title>
           <StatusLabel label="In Progress" alignment="start" status="warning" />
-        </Page.TitleMetaData>
-      </Page.Title>
-      <Page.Subtitle>Everything but the Kitchen Sink</Page.Subtitle>
+        </Page.TitleBar>
+        <Page.Subtitle>Everything but the Kitchen Sink</Page.Subtitle>
+      </Page.HeaderContent>
       <Page.Actions>
         <Page.ActionPrimary>
           <Page.PrimaryButton
@@ -311,7 +315,9 @@ ComposableWithAllPieces.args = {
 export const ComposableCustomSlot: StoryFn<PageComposableProps> = args => (
   <Page {...args}>
     <Page.Header>
-      <Page.Title>Custom Action Elements</Page.Title>
+      <Page.HeaderContent>
+        <Page.Title>Custom Action Elements</Page.Title>
+      </Page.HeaderContent>
       <Page.Actions>
         <Page.ActionPrimary>
           <Button
@@ -343,10 +349,15 @@ export const ComposableCustomSlot: StoryFn<PageComposableProps> = args => (
 export const ComposableWithMarkdown: StoryFn<PageComposableProps> = args => (
   <Page {...args}>
     <Page.Header>
-      <Page.Title>Notifications</Page.Title>
-      <Page.Subtitle>
-        <Markdown content="Everything but the **_Kitchen Sink_**" basicUsage />
-      </Page.Subtitle>
+      <Page.HeaderContent>
+        <Page.Title>Notifications</Page.Title>
+        <Page.Subtitle>
+          <Markdown
+            content="Everything but the **_Kitchen Sink_**"
+            basicUsage
+          />
+        </Page.Subtitle>
+      </Page.HeaderContent>
     </Page.Header>
     <Page.Intro>
       <Markdown

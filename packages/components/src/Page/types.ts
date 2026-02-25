@@ -96,11 +96,15 @@ export interface PageHeaderProps {
   readonly children: ReactNode;
 }
 
-export interface PageTitleProps {
+export interface PageHeaderContentProps {
   readonly children: ReactNode;
 }
 
-export interface PageTitleMetaDataProps {
+export interface PageTitleBarProps {
+  readonly children: ReactNode;
+}
+
+export interface PageTitleProps {
   readonly children: ReactNode;
 }
 

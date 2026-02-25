@@ -1,5 +1,5 @@
-import type { ReactElement, ReactNode, RefObject } from "react";
-import React, { Children, isValidElement } from "react";
+import type { ReactElement, RefObject } from "react";
+import React from "react";
 import classnames from "classnames";
 import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.module.css";
@@ -9,6 +9,7 @@ import type {
   PageActionsProps,
   PageBodyProps,
   PageComposableProps,
+  PageHeaderContentProps,
   PageHeaderProps,
   PageIntroProps,
   PageLegacyProps,
@@ -16,7 +17,7 @@ import type {
   PageProps,
   PageSlotProps,
   PageSubtitleProps,
-  PageTitleMetaDataProps,
+  PageTitleBarProps,
   PageTitleProps,
 } from "./types";
 import { Heading } from "../Heading";
@@ -151,67 +152,68 @@ function PageLegacy({
   );
 }
 
-/** Groups title, subtitle, and actions. Separates Page.Actions for layout positioning. */
+/**
+ * Groups the title area and actions into the page header layout.
+ * Place non-action content (title, subtitle) inside `Page.HeaderContent`
+ * and actions inside `Page.Actions`.
+ */
 function PageHeader({ children, ...rest }: PageHeaderProps) {
   const dataAttrs = filterDataAttributes(rest);
-  let actionsElement: ReactNode = null;
-  const otherChildren: ReactNode[] = [];
-
-  Children.forEach(children, child => {
-    if (isValidElement(child) && child.type === PageActions) {
-      actionsElement = child;
-    } else {
-      otherChildren.push(child);
-    }
-  });
 
   return (
-    <Content>
-      <Container
-        name="page-titlebar"
-        autoWidth
-        dataAttributes={dataAttrs as CommonAtlantisProps["dataAttributes"]}
-      >
-        <Container.Apply autoWidth>
-          <div className={styles.titleBar}>
-            <div>{otherChildren}</div>
-            {actionsElement}
-          </div>
-        </Container.Apply>
-      </Container>
-    </Content>
+    <Container
+      name="page-titlebar"
+      autoWidth
+      dataAttributes={dataAttrs as CommonAtlantisProps["dataAttributes"]}
+    >
+      <Container.Apply autoWidth>
+        <div className={styles.titleBar}>{children}</div>
+      </Container.Apply>
+    </Container>
   );
 }
 
-/** Renders the page heading (H1). Extracts Page.TitleMetaData from children for layout. */
-function PageTitle({ children, ...rest }: PageTitleProps) {
+/** Wraps the title area (title, subtitle) inside `Page.Header`. Use when the header contains more than one content element to keep them stacked vertically. */
+function PageHeaderContent({ children, ...rest }: PageHeaderContentProps) {
   const dataAttrs = filterDataAttributes(rest);
-  let metaDataElement: ReactNode = null;
-  const otherChildren: ReactNode[] = [];
 
-  Children.forEach(children, child => {
-    if (isValidElement(child) && child.type === PageTitleMetaData) {
-      metaDataElement = child;
-    } else {
-      otherChildren.push(child);
-    }
-  });
-
-  if (metaDataElement) {
-    return (
-      <div className={styles.titleRow} {...dataAttrs}>
-        <Heading level={1}>{otherChildren}</Heading>
-        {metaDataElement}
-      </div>
-    );
-  }
-
-  return <Heading level={1}>{otherChildren}</Heading>;
+  return <div {...dataAttrs}>{children}</div>;
 }
 
-/** Metadata displayed alongside the page title (e.g. status badges). Use inside Page.Title. */
-function PageTitleMetaData({ children }: PageTitleMetaDataProps) {
-  return <>{children}</>;
+/**
+ * Flex container for the page title and optional sibling elements such as
+ * status badges. Use when you need to display metadata alongside the heading.
+ *
+ * @example
+ * ```tsx
+ * <Page.TitleBar>
+ *   <Page.Title>Clients</Page.Title>
+ *   <StatusLabel label="Active" status="success" />
+ * </Page.TitleBar>
+ * ```
+ */
+function PageTitleBar({ children, ...rest }: PageTitleBarProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <div className={styles.titleRow} {...dataAttrs}>
+      {children}
+    </div>
+  );
+}
+
+/**
+ * Renders the page heading as an H1. When metadata is present alongside the
+ * title, wrap both in `Page.TitleBar`.
+ */
+function PageTitle({ children, ...rest }: PageTitleProps) {
+  const dataAttrs = filterDataAttributes(rest);
+
+  return (
+    <Heading level={1} {...dataAttrs}>
+      {children}
+    </Heading>
+  );
 }
 
 /** Secondary text below the title. Always applies default Text/Emphasis styling. */
@@ -368,8 +370,9 @@ export const getActionProps = (
 };
 
 Page.Header = PageHeader;
+Page.HeaderContent = PageHeaderContent;
+Page.TitleBar = PageTitleBar;
 Page.Title = PageTitle;
-Page.TitleMetaData = PageTitleMetaData;
 Page.Subtitle = PageSubtitle;
 Page.Intro = PageIntro;
 Page.Actions = PageActions;

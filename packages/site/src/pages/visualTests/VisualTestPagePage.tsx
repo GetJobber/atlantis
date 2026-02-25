@@ -354,7 +354,9 @@ export const VisualTestPagePage = () => {
       {/* Composable: With Actions and Menu */}
       <Page width="fill">
         <Page.Header>
-          <Page.Title>Composable - With Actions</Page.Title>
+          <Page.HeaderContent>
+            <Page.Title>Composable - With Actions</Page.Title>
+          </Page.HeaderContent>
           <Page.Actions>
             <Page.ActionPrimary>
               <Page.PrimaryButton label="New Client" onClick={() => null} />
@@ -388,8 +390,10 @@ export const VisualTestPagePage = () => {
       {/* Composable: Subtitle and Intro */}
       <Page>
         <Page.Header>
-          <Page.Title>Composable - Subtitle and Intro</Page.Title>
-          <Page.Subtitle>A subtitle with **markdown** support</Page.Subtitle>
+          <Page.HeaderContent>
+            <Page.Title>Composable - Subtitle and Intro</Page.Title>
+            <Page.Subtitle>A subtitle with **markdown** support</Page.Subtitle>
+          </Page.HeaderContent>
         </Page.Header>
         <Page.Intro>
           This is an intro section that always applies the default Text styling.
@@ -407,17 +411,17 @@ export const VisualTestPagePage = () => {
       {/* Composable: All Pieces */}
       <Page width="standard">
         <Page.Header>
-          <Page.Title>
-            Composable - All Pieces
-            <Page.TitleMetaData>
+          <Page.HeaderContent>
+            <Page.TitleBar>
+              <Page.Title>Composable - All Pieces</Page.Title>
               <StatusLabel
                 label="In Progress"
                 alignment="start"
                 status="warning"
               />
-            </Page.TitleMetaData>
-          </Page.Title>
-          <Page.Subtitle>A subtitle with default styling</Page.Subtitle>
+            </Page.TitleBar>
+            <Page.Subtitle>A subtitle with default styling</Page.Subtitle>
+          </Page.HeaderContent>
           <Page.Actions>
             <Page.ActionPrimary>
               <Page.PrimaryButton

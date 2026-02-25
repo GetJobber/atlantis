@@ -8,13 +8,13 @@ for client-side router integration) or custom action elements.
 ```
 <Page width="fill">
   <Page.Header>
-    <Page.Title>
-      Clients
-      <Page.TitleMetaData>
+    <Page.HeaderContent>
+      <Page.TitleBar>
+        <Page.Title>Clients</Page.Title>
         <StatusLabel label="Draft" status="warning" />
-      </Page.TitleMetaData>
-    </Page.Title>
-    <Page.Subtitle>Manage your client list</Page.Subtitle>
+      </Page.TitleBar>
+      <Page.Subtitle>Manage your client list</Page.Subtitle>
+    </Page.HeaderContent>
     <Page.Actions>
       <Page.ActionPrimary>
         <Page.PrimaryButton label="New Client" onClick={handleCreate} />
@@ -42,27 +42,34 @@ for client-side router integration) or custom action elements.
 
 **_Page.Header (Required)_**
 
-Groups the title area and actions into the page header. Automatically positions
-`Page.Actions` alongside the title content using the responsive titlebar layout.
+Groups the title area and actions into the page header layout. Place non-action
+content (title, subtitle) inside `Page.HeaderContent` and actions inside
+`Page.Actions`.
+
+**_Page.HeaderContent (Optional)_**
+
+Wraps the title area (title, subtitle) inside `Page.Header`. Use whenever the
+header contains more than one content element (e.g. title + subtitle, or
+titlebar + subtitle) to keep them stacked vertically within the flex layout.
+
+**_Page.TitleBar (Optional)_**
+
+Flex container for the page title and optional sibling elements such as status
+badges. Use when you need to display metadata alongside the heading. When no
+metadata is needed, use `Page.Title` directly without wrapping in
+`Page.TitleBar`.
+
+```
+<Page.TitleBar>
+  <Page.Title>My Page Title</Page.Title>
+  <StatusLabel label="Active" status="success" />
+</Page.TitleBar>
+```
 
 **_Page.Title (Required)_**
 
-Renders the page heading as an H1. Can contain `Page.TitleMetaData` as a child
-for elements displayed alongside the title.
-
-**_Page.TitleMetaData (Optional)_**
-
-Metadata displayed alongside the page title, such as status badges. Use inside
-`Page.Title`.
-
-```
-<Page.Title>
-  My Page Title
-  <Page.TitleMetaData>
-    <StatusLabel label="Active" status="success" />
-  </Page.TitleMetaData>
-</Page.Title>
-```
+Renders the page heading as an H1. When metadata is present alongside the title,
+wrap both in `Page.TitleBar`.
 
 **_Page.Subtitle (Optional)_**
 
@@ -163,7 +170,7 @@ need composable actions (e.g. for client-side router links in the menu).
 | Props-based                            | Composable                                                                                              |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `title="Clients"`                      | `<Page.Title>Clients</Page.Title>`                                                                      |
-| `titleMetaData={<Badge />}`            | `<Page.TitleMetaData><Badge /></Page.TitleMetaData>` inside `Page.Title`                                |
+| `titleMetaData={<Badge />}`            | Place `<Badge />` as a sibling of `Page.Title` inside `Page.TitleBar`                                   |
 | `subtitle="Text"`                      | `<Page.Subtitle>Text</Page.Subtitle>`                                                                   |
 | `intro="Markdown **text**"`            | `<Page.Intro><Markdown content="Markdown **text**" basicUsage /></Page.Intro>`                          |
 | `externalIntroLinks={true}`            | Pass `externalLink` to `<Markdown>` directly                                                            |
@@ -194,8 +201,10 @@ After:
 ```
 <Page width="fill">
   <Page.Header>
-    <Page.Title>Clients</Page.Title>
-    <Page.Subtitle>Manage your client list</Page.Subtitle>
+    <Page.HeaderContent>
+      <Page.Title>Clients</Page.Title>
+      <Page.Subtitle>Manage your client list</Page.Subtitle>
+    </Page.HeaderContent>
     <Page.Actions>
       <Page.ActionPrimary>
         <Page.PrimaryButton label="New Client" onClick={handleCreate} />

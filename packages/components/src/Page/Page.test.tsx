@@ -297,16 +297,14 @@ describe("Composable Page", () => {
     expect(screen.getByText("Body content")).toBeVisible();
   });
 
-  it("renders title with metadata as a sub-component", () => {
+  it("renders title with metadata using Page.TitleBar", () => {
     render(
       <Page>
         <Page.Header>
-          <Page.Title>
-            Title With Badge
-            <Page.TitleMetaData>
-              <StatusLabel label="Active" status="success" />
-            </Page.TitleMetaData>
-          </Page.Title>
+          <Page.TitleBar>
+            <Page.Title>Title With Badge</Page.Title>
+            <StatusLabel label="Active" status="success" />
+          </Page.TitleBar>
         </Page.Header>
         <Page.Body>Content</Page.Body>
       </Page>,
@@ -322,8 +320,10 @@ describe("Composable Page", () => {
     render(
       <Page>
         <Page.Header>
-          <Page.Title>Title</Page.Title>
-          <Page.Subtitle>A subtitle</Page.Subtitle>
+          <Page.HeaderContent>
+            <Page.Title>Title</Page.Title>
+            <Page.Subtitle>A subtitle</Page.Subtitle>
+          </Page.HeaderContent>
         </Page.Header>
         <Page.Body>Content</Page.Body>
       </Page>,
@@ -336,10 +336,12 @@ describe("Composable Page", () => {
     render(
       <Page>
         <Page.Header>
-          <Page.Title>Title</Page.Title>
-          <Page.Subtitle>
-            <span>Translated subtitle</span>
-          </Page.Subtitle>
+          <Page.HeaderContent>
+            <Page.Title>Title</Page.Title>
+            <Page.Subtitle>
+              <span>Translated subtitle</span>
+            </Page.Subtitle>
+          </Page.HeaderContent>
         </Page.Header>
         <Page.Body>Content</Page.Body>
       </Page>,
@@ -371,7 +373,9 @@ describe("Composable Page", () => {
     render(
       <Page>
         <Page.Header>
-          <Page.Title>Actions</Page.Title>
+          <Page.HeaderContent>
+            <Page.Title>Actions</Page.Title>
+          </Page.HeaderContent>
           <Page.Actions>
             <Page.ActionPrimary>
               <Page.PrimaryButton label="Create" onClick={handlePrimary} />
@@ -399,7 +403,9 @@ describe("Composable Page", () => {
     render(
       <Page>
         <Page.Header>
-          <Page.Title>Slot Test</Page.Title>
+          <Page.HeaderContent>
+            <Page.Title>Slot Test</Page.Title>
+          </Page.HeaderContent>
           <Page.Actions>
             <Page.ActionPrimary>
               <button type="button">My Custom Button</button>
@@ -413,11 +419,13 @@ describe("Composable Page", () => {
     expect(screen.getByText("My Custom Button")).toBeVisible();
   });
 
-  it("renders Page.Menu inside TertiarySlot", () => {
+  it("renders Page.Menu inside ActionMenu", () => {
     render(
       <Page>
         <Page.Header>
-          <Page.Title>Menu Test</Page.Title>
+          <Page.HeaderContent>
+            <Page.Title>Menu Test</Page.Title>
+          </Page.HeaderContent>
           <Page.Actions>
             <Page.ActionMenu>
               <Page.Menu>
@@ -439,7 +447,9 @@ describe("Composable Page", () => {
     render(
       <Page>
         <Page.Header>
-          <Page.Title>Menu Test</Page.Title>
+          <Page.HeaderContent>
+            <Page.Title>Menu Test</Page.Title>
+          </Page.HeaderContent>
           <Page.Actions>
             <Page.ActionMenu>
               <Page.Menu triggerLabel="Options">
@@ -461,13 +471,13 @@ describe("Composable Page", () => {
     render(
       <Page width="fill">
         <Page.Header>
-          <Page.Title>
-            Full Example
-            <Page.TitleMetaData>
+          <Page.HeaderContent>
+            <Page.TitleBar>
+              <Page.Title>Full Example</Page.Title>
               <StatusLabel label="Draft" status="warning" />
-            </Page.TitleMetaData>
-          </Page.Title>
-          <Page.Subtitle>A subtitle here</Page.Subtitle>
+            </Page.TitleBar>
+            <Page.Subtitle>A subtitle here</Page.Subtitle>
+          </Page.HeaderContent>
           <Page.Actions>
             <Page.ActionPrimary>
               <Page.PrimaryButton label="Create" onClick={jest.fn()} />
