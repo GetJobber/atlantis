@@ -2369,12 +2369,13 @@ describe("AutocompleteRebuilt", () => {
 
     it("renders a clear button for multiple select with clearable='always' when values exist", async () => {
       render(
-        <MultipleWrapper initialValue={[{ label: "One" }, { label: "Two" }]} />,
+        <MultipleWrapper
+          clearable="always"
+          initialValue={[{ label: "One" }, { label: "Two" }]}
+        />,
       );
 
-      expect(
-        screen.queryByTestId("ATL-FormField-clearButton"),
-      ).not.toBeInTheDocument();
+      expect(screen.getByTestId("ATL-FormField-clearButton")).toBeVisible();
     });
 
     it("clears all selections and input when clicking clear for multiple select", async () => {
