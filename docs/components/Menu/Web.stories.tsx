@@ -179,6 +179,9 @@ export const Composable = () => {
   const [showPopover, setShowPopover] = useState(true);
   const [controlledOpen, setControlledOpen] = useState(false);
 
+  const fullWidthTriggerRef = useRef<HTMLDivElement>(null);
+  const [showFullWidthPopover, setShowFullWidthPopover] = useState(true);
+
   return (
     <div>
       <style>
@@ -204,8 +207,8 @@ export const Composable = () => {
           </Content>
         </Popover>
         <Menu>
-          <Menu.Trigger ref={divRef} UNSAFE_style={{ display: "block" }}>
-            <Button fullWidth={true}>
+          <Menu.Trigger ref={divRef}>
+            <Button>
               <Button.Label>I have a popover</Button.Label>
             </Button>
           </Menu.Trigger>
@@ -244,7 +247,7 @@ export const Composable = () => {
         <Menu open={controlledOpen} onOpenChange={setControlledOpen}>
           <Tooltip message="Menu Tooltip">
             <Menu.Trigger>
-              <Button fullWidth={false}>
+              <Button>
                 <Button.Label>I have a tooltip</Button.Label>
               </Button>
             </Menu.Trigger>
@@ -465,6 +468,58 @@ export const Composable = () => {
               >
                 <span style={{ textDecoration: "underline" }}>Jobber Docs</span>
                 <span aria-hidden>↗</span>
+              </Menu.Item>
+            </Menu.Section>
+          </Menu.Content>
+        </Menu>
+      </section>
+
+      <section>
+        <h1>Composable with full width trigger and Popover</h1>
+        <Popover
+          attachTo={fullWidthTriggerRef}
+          open={showFullWidthPopover}
+          preferredPlacement="bottom"
+          onRequestClose={() => setShowFullWidthPopover(false)}
+        >
+          <Content>
+            <Text>Centered on the trigger</Text>
+          </Content>
+        </Popover>
+        <Menu>
+          <Menu.Trigger
+            ref={fullWidthTriggerRef}
+            UNSAFE_style={{ display: "block" }}
+          >
+            <Button fullWidth={true}>
+              <Button.Label>I am full width and have a popover</Button.Label>
+            </Button>
+          </Menu.Trigger>
+          <Menu.Content>
+            <Menu.Section>
+              <Menu.Header>
+                <Menu.HeaderLabel>Nav</Menu.HeaderLabel>
+              </Menu.Header>
+              <Menu.Item onClick={() => alert("Home")} textValue="Home">
+                <Menu.ItemLabel>Home</Menu.ItemLabel>
+                <Menu.ItemIcon name="home" />
+              </Menu.Item>
+              <Menu.Item onClick={() => alert("Admin")} textValue="Admin">
+                <Menu.ItemLabel>Admin</Menu.ItemLabel>
+                <Menu.ItemIcon name="lock" />
+                <StatusIndicator status="critical" />
+              </Menu.Item>
+            </Menu.Section>
+            <Menu.Section>
+              <Menu.Header>
+                <Menu.HeaderLabel>Misc</Menu.HeaderLabel>
+              </Menu.Header>
+              <Menu.Item
+                onClick={() => alert("Toggle")}
+                textValue="Toggle Theme"
+              >
+                <Menu.ItemLabel>Toggle Theme</Menu.ItemLabel>
+                <Menu.ItemIcon name="sun" />
               </Menu.Item>
             </Menu.Section>
           </Menu.Content>
