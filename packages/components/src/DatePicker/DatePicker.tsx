@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import type { XOR } from "ts-xor";
-import { useRefocusOnActivator } from "@jobber/hooks";
 import {
   FloatingNode,
   FloatingPortal,
@@ -130,7 +129,10 @@ function useDatePickerHandlers(
   onChange: (val: Date) => void,
   setOpen: (open: boolean) => void,
   onOpenChange?: (open: boolean) => void,
+  portalled?: boolean,
 ) {
+  const activatorRef = useRef<HTMLElement | null>(null);
+
   const handleChange = useCallback(
     (value: Date | null) => {
       onChange(value as Date);
@@ -138,13 +140,25 @@ function useDatePickerHandlers(
     [onChange],
   );
   const handleCalendarOpen = useCallback(() => {
+    if (portalled) {
+      // Capture synchronously during the event, before react-datepicker or the
+      // portal can move focus away from the activator.
+      activatorRef.current = document.activeElement as HTMLElement | null;
+    }
     setOpen(true);
     onOpenChange?.(true);
-  }, [setOpen, onOpenChange]);
+  }, [setOpen, onOpenChange, portalled]);
   const handleCalendarClose = useCallback(() => {
+    if (portalled) {
+      // Restore focus BEFORE notifying consumers via onOpenChange so that any
+      // composite focus-tracking logic (e.g. InputDateRebuilt) sees the input
+      // as focused when it runs its blur check.
+      activatorRef.current?.focus();
+      activatorRef.current = null;
+    }
     setOpen(false);
     onOpenChange?.(false);
-  }, [setOpen, onOpenChange]);
+  }, [setOpen, onOpenChange, portalled]);
 
   return { handleChange, handleCalendarOpen, handleCalendarClose };
 }
@@ -154,11 +168,6 @@ function useSmartAutofocus(
   open: boolean,
   focusOnSelectedDate: () => boolean,
 ) {
-  // Always return focus to the activator when the calendar closes, even when
-  // smartAutofocus is false (e.g. InputDate inside a Modal). Skipping this
-  // causes focus to escape to the first focusable element in the DOM when the
-  // portalled calendar unmounts outside the parent focus trap.
-  useRefocusOnActivator(open);
   useEffect(() => {
     if (smartAutofocus) {
       focusOnSelectedDate();
@@ -201,7 +210,7 @@ export function DatePicker({
     renderInsidePortal,
   );
   const { handleChange, handleCalendarOpen, handleCalendarClose } =
-    useDatePickerHandlers(onChange, setOpen, onOpenChange);
+    useDatePickerHandlers(onChange, setOpen, onOpenChange, renderInsidePortal);
   useSmartAutofocus(smartAutofocus ?? true, open, focusOnSelectedDate);
 
   return (
