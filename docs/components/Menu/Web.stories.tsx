@@ -204,8 +204,8 @@ export const Composable = () => {
           </Content>
         </Popover>
         <Menu>
-          <Menu.Trigger ref={divRef}>
-            <Button>
+          <Menu.Trigger ref={divRef} UNSAFE_style={{ display: "block" }}>
+            <Button fullWidth={true}>
               <Button.Label>I have a popover</Button.Label>
             </Button>
           </Menu.Trigger>
@@ -244,7 +244,7 @@ export const Composable = () => {
         <Menu open={controlledOpen} onOpenChange={setControlledOpen}>
           <Tooltip message="Menu Tooltip">
             <Menu.Trigger>
-              <Button>
+              <Button fullWidth={false}>
                 <Button.Label>I have a tooltip</Button.Label>
               </Button>
             </Menu.Trigger>
