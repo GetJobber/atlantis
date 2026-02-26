@@ -173,3 +173,12 @@
 .chipDismiss:hover {
   background-color: var(--color-surface--hover);
 }
+
+.limitText {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-smallest) var(--space-small);
+  color: var(--color-text--secondary);
+  cursor: default;
+  transition: all var(--timing-base);
+}

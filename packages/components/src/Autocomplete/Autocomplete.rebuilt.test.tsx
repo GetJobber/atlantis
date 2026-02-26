@@ -3098,6 +3098,152 @@ describe("AutocompleteRebuilt", () => {
         ).not.toBeInTheDocument();
       });
     });
+
+    describe("limitVisibleSelections", () => {
+      const threeSelected = [
+        { label: "One" },
+        { label: "Two" },
+        { label: "Three" },
+      ];
+
+      it("shows all 3 chips by default (limitVisibleSelections = 6)", () => {
+        render(<MultipleWrapper initialValue={threeSelected} />);
+
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(3);
+        expect(
+          screen.queryByTestId("ATL-AutocompleteRebuilt-limitText"),
+        ).not.toBeInTheDocument();
+      });
+
+      it("limits visible chips when not focused", () => {
+        render(
+          <MultipleWrapper
+            initialValue={threeSelected}
+            limitVisibleSelections={1}
+          />,
+        );
+
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(1);
+        expect(
+          screen.getByTestId("ATL-AutocompleteRebuilt-limitText"),
+        ).toHaveTextContent("+2");
+      });
+
+      it("shows all chips when focused", async () => {
+        render(
+          <MultipleWrapper
+            initialValue={threeSelected}
+            limitVisibleSelections={1}
+          />,
+        );
+
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(1);
+
+        await openAutocomplete();
+
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(3);
+        expect(
+          screen.queryByTestId("ATL-AutocompleteRebuilt-limitText"),
+        ).not.toBeInTheDocument();
+      });
+
+      it("re-truncates chips after blur", async () => {
+        render(
+          <div>
+            <MultipleWrapper
+              initialValue={threeSelected}
+              limitVisibleSelections={2}
+            />
+            <button type="button">External</button>
+          </div>,
+        );
+
+        await openAutocomplete();
+
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(3);
+
+        await userEvent.click(screen.getByText("External"));
+
+        await waitFor(() => {
+          expect(
+            screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+          ).toHaveLength(2);
+          expect(screen.getByText("+1")).toBeVisible();
+        });
+      });
+
+      it("shows no limit text when selections fit within the limit", () => {
+        render(
+          <MultipleWrapper
+            initialValue={[{ label: "One" }]}
+            limitVisibleSelections={3}
+          />,
+        );
+
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(1);
+        expect(
+          screen.queryByTestId("ATL-AutocompleteRebuilt-limitText"),
+        ).not.toBeInTheDocument();
+      });
+
+      it("uses limitSelectionText for custom truncation message", () => {
+        render(
+          <MultipleWrapper
+            initialValue={threeSelected}
+            limitVisibleSelections={1}
+            limitSelectionText={n => `and ${n} others`}
+          />,
+        );
+
+        expect(
+          screen.getByTestId("ATL-AutocompleteRebuilt-limitText"),
+        ).toHaveTextContent("and 2 others");
+      });
+
+      it("shows zero chips when limitVisibleSelections is 0", () => {
+        render(
+          <MultipleWrapper
+            initialValue={threeSelected}
+            limitVisibleSelections={0}
+          />,
+        );
+
+        expect(
+          screen.queryByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).not.toBeInTheDocument();
+        expect(
+          screen.getByTestId("ATL-AutocompleteRebuilt-limitText"),
+        ).toHaveTextContent("+3");
+      });
+
+      it("does not limit when limitVisibleSelections is -1 (explicit)", () => {
+        render(
+          <MultipleWrapper
+            initialValue={threeSelected}
+            limitVisibleSelections={-1}
+          />,
+        );
+
+        expect(
+          screen.getAllByTestId("ATL-AutocompleteRebuilt-chip"),
+        ).toHaveLength(3);
+        expect(
+          screen.queryByTestId("ATL-AutocompleteRebuilt-limitText"),
+        ).not.toBeInTheDocument();
+      });
+    });
   });
 
   describe("blur and focus management", () => {

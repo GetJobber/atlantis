@@ -21,6 +21,7 @@ declare const styles: {
   readonly "selectionChipActive": string;
   readonly "selectionChipDisabled": string;
   readonly "chipDismiss": string;
+  readonly "limitText": string;
 };
 export = styles;
 

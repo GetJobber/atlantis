@@ -569,6 +569,27 @@ interface AutocompleteRebuiltBaseProps<
     | ((args: { inputValue: string }) => MenuAction<ActionExtra>[]);
 
   /**
+   * Maximum number of selection chips visible when the input is not focused.
+   * When the input gains focus, all selections are shown regardless of this value.
+   * Set to `-1` to always show all selections.
+   *
+   * Only applicable when `multiple` is `true`. Ignored for single-select.
+   *
+   * @default 6
+   */
+  readonly limitVisibleSelections?: number;
+
+  /**
+   * Function to generate the label displayed when selections are truncated
+   * by `limitVisibleSelections`. Receives the number of hidden selections.
+   *
+   * Only applicable when `multiple` is `true`. Ignored for single-select.
+   *
+   * @default (count) => `+${count} more`
+   */
+  readonly limitSelectionText?: (truncatedCount: number) => string;
+
+  /**
    * Whether the menu should open when the input gains focus.
    * Note: Clicking on the input will always open the menu.
    * openOnFocus only determines the behavior of focus events such as tabs or programmatic focus.

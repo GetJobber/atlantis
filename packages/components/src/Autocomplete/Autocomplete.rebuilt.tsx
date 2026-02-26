@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { useTransitionStyles } from "@floating-ui/react";
 import classNames from "classnames";
@@ -310,80 +311,48 @@ function AutocompleteRebuiltInternal<
   }
 
   if (props.multiple) {
-    const hasValue = selectedValues.length > 0 || inputValue;
-    const canDismissChip = !disabled && !props.readOnly;
-
     return (
-      <div data-testid="ATL-AutocompleteRebuilt">
-        <div
-          className={styles.multiSelectField}
-          data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
-        >
-          <FormFieldWrapper
-            disabled={disabled}
-            size={sizeProp ? sizeProp : undefined}
-            error={error ?? ""}
-            invalid={Boolean(error || invalid)}
-            identifier={inputId}
-            descriptionIdentifier={descriptionId}
-            description={description}
-            clearable={props.clearable ?? "never"}
-            onClear={() => {
-              clearAll();
-              internalInputRef.current?.focus();
-            }}
-            type="text"
-            placeholder={placeholder}
-            value={hasValue ? "has-value" : ""}
-            prefix={props.prefix}
-            suffix={props.suffix}
-            wrapperRef={formFieldRef}
-          >
-            <div
-              ref={chipAreaRef}
-              className={styles.chipArea}
-              data-testid="ATL-AutocompleteRebuilt-chipArea"
-              {...(props.readOnly
-                ? { onFocus: onInputFocus, onBlur: chipBlur }
-                : composedReferenceProps)}
-            >
-              {selectedValues.map((v, i) => (
-                <SelectionChip<Value>
-                  key={v.key ?? getOptionLabel(v)}
-                  value={v}
-                  active={activeChipIndex === i}
-                  disabled={disabled}
-                  getOptionLabel={getOptionLabel}
-                  customRenderValue={props.customRenderValue}
-                  canDismiss={canDismissChip}
-                  onDismiss={() => removeSelection(v)}
-                  unsafeClassName={props.UNSAFE_className?.selection}
-                  unsafeStyle={props.UNSAFE_styles?.selection}
-                />
-              ))}
-              <input
-                ref={mergedInputRef}
-                className={styles.inlineInput}
-                id={inputId}
-                value={inputValue}
-                onChange={
-                  props.readOnly
-                    ? undefined
-                    : e => onInputChangeFromUser(e.target.value)
-                }
-                disabled={disabled}
-                readOnly={props.readOnly}
-                name={props.name}
-                autoComplete="off"
-                autoFocus={props.autoFocus}
-                {...ariaProps}
-                {...dataAttrs}
-              />
-            </div>
-          </FormFieldWrapper>
-        </div>
+      <MultipleSelectionLayout<Value>
+        selectedValues={selectedValues}
+        inputValue={inputValue}
+        disabled={disabled}
+        error={error}
+        invalid={invalid}
+        sizeProp={sizeProp}
+        inputId={inputId}
+        descriptionId={descriptionId}
+        description={description}
+        placeholder={placeholder}
+        clearable={props.clearable}
+        prefix={props.prefix}
+        suffix={props.suffix}
+        readOnly={props.readOnly}
+        name={props.name}
+        autoFocus={props.autoFocus}
+        formFieldRef={formFieldRef}
+        chipAreaRef={chipAreaRef}
+        mergedInputRef={mergedInputRef as React.Ref<HTMLInputElement>}
+        internalInputRef={internalInputRef}
+        activeChipIndex={activeChipIndex}
+        getOptionLabel={getOptionLabel}
+        customRenderValue={props.customRenderValue}
+        removeSelection={removeSelection}
+        clearAll={clearAll}
+        onInputChangeFromUser={onInputChangeFromUser}
+        chipAreaEventProps={
+          props.readOnly
+            ? { onFocus: onInputFocus, onBlur: chipBlur }
+            : composedReferenceProps
+        }
+        inputAriaProps={ariaProps}
+        inputDataAttrs={dataAttrs}
+        limitVisibleSelections={props.limitVisibleSelections}
+        limitSelectionText={props.limitSelectionText}
+        unsafeClassName={props.UNSAFE_className?.selection}
+        unsafeStyle={props.UNSAFE_styles?.selection}
+      >
         {floatingMenu}
-      </div>
+      </MultipleSelectionLayout>
     );
   }
 
@@ -451,5 +420,245 @@ function SelectionChip<Value extends OptionLike>({
         </button>
       )}
     </span>
+  );
+}
+
+function SelectionChipsList<Value extends OptionLike>({
+  selectedValues,
+  isFocused,
+  limitVisibleSelections = 6,
+  limitSelectionText = (count: number) => `+${count}`,
+  activeChipIndex,
+  disabled,
+  getOptionLabel,
+  customRenderValue,
+  canDismiss,
+  removeSelection,
+  unsafeClassName,
+  unsafeStyle,
+}: {
+  readonly selectedValues: Value[];
+  readonly isFocused: boolean;
+  readonly limitVisibleSelections?: number;
+  readonly limitSelectionText?: (truncatedCount: number) => string;
+  readonly activeChipIndex: number | null;
+  readonly disabled?: boolean;
+  readonly getOptionLabel: (option: Value) => string;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    Value,
+    boolean
+  >["customRenderValue"];
+  readonly canDismiss: boolean;
+  readonly removeSelection: (value: Value) => void;
+  readonly unsafeClassName?: string;
+  readonly unsafeStyle?: React.CSSProperties;
+}) {
+  const shouldLimit =
+    !isFocused &&
+    limitVisibleSelections !== -1 &&
+    selectedValues.length > limitVisibleSelections;
+  const visibleValues = shouldLimit
+    ? selectedValues.slice(0, limitVisibleSelections)
+    : selectedValues;
+  const hiddenCount = shouldLimit
+    ? selectedValues.length - limitVisibleSelections
+    : 0;
+
+  return (
+    <>
+      {visibleValues.map((v, i) => (
+        <SelectionChip<Value>
+          key={v.key ?? getOptionLabel(v)}
+          value={v}
+          active={activeChipIndex === i}
+          disabled={disabled}
+          getOptionLabel={getOptionLabel}
+          customRenderValue={customRenderValue}
+          canDismiss={canDismiss}
+          onDismiss={() => removeSelection(v)}
+          unsafeClassName={unsafeClassName}
+          unsafeStyle={unsafeStyle}
+        />
+      ))}
+      {hiddenCount > 0 && (
+        <span data-testid="ATL-AutocompleteRebuilt-limitText">
+          <Typography
+            size="base"
+            element="span"
+            data-testid="ATL-AutocompleteRebuilt-limitText"
+          >
+            {limitSelectionText(hiddenCount)}
+          </Typography>
+        </span>
+      )}
+    </>
+  );
+}
+
+interface MultipleSelectionLayoutProps<Value extends OptionLike> {
+  readonly selectedValues: Value[];
+  readonly inputValue: string;
+  readonly disabled?: boolean;
+  readonly error?: React.ReactNode;
+  readonly invalid?: boolean;
+  readonly sizeProp?: "small" | "large";
+  readonly inputId: string;
+  readonly descriptionId: string;
+  readonly description?: React.ReactNode;
+  readonly placeholder?: string;
+  readonly clearable?: AutocompleteRebuiltProps<Value, true>["clearable"];
+  readonly prefix?: AutocompleteRebuiltProps<Value, true>["prefix"];
+  readonly suffix?: AutocompleteRebuiltProps<Value, true>["suffix"];
+  readonly readOnly?: boolean;
+  readonly name?: string;
+  readonly autoFocus?: boolean;
+  readonly formFieldRef: React.RefObject<HTMLDivElement | null>;
+  readonly chipAreaRef: (node: HTMLDivElement | null) => void;
+  readonly mergedInputRef: React.Ref<HTMLInputElement>;
+  readonly internalInputRef: React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | null
+  >;
+  readonly activeChipIndex: number | null;
+  readonly getOptionLabel: (option: Value) => string;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    Value,
+    boolean
+  >["customRenderValue"];
+  readonly removeSelection: (value: Value) => void;
+  readonly clearAll: () => void;
+  readonly onInputChangeFromUser: (value: string) => void;
+  readonly chipAreaEventProps: Record<string, unknown>;
+  readonly inputAriaProps: Record<string, unknown>;
+  readonly inputDataAttrs: Record<string, unknown>;
+  readonly limitVisibleSelections?: number;
+  readonly limitSelectionText?: (truncatedCount: number) => string;
+  readonly unsafeClassName?: string;
+  readonly unsafeStyle?: React.CSSProperties;
+  readonly children: React.ReactNode;
+}
+
+function MultipleSelectionLayout<Value extends OptionLike>({
+  selectedValues,
+  inputValue,
+  disabled,
+  error,
+  invalid,
+  sizeProp,
+  inputId,
+  descriptionId,
+  description,
+  placeholder,
+  clearable,
+  prefix,
+  suffix,
+  readOnly,
+  name,
+  autoFocus,
+  formFieldRef,
+  chipAreaRef,
+  mergedInputRef,
+  internalInputRef,
+  activeChipIndex,
+  getOptionLabel,
+  customRenderValue,
+  removeSelection,
+  clearAll,
+  onInputChangeFromUser,
+  chipAreaEventProps,
+  inputAriaProps,
+  inputDataAttrs,
+  limitVisibleSelections,
+  limitSelectionText,
+  unsafeClassName,
+  unsafeStyle,
+  children,
+}: MultipleSelectionLayoutProps<Value>) {
+  const [isFocused, setIsFocused] = useState(false);
+  const hasValue = selectedValues.length > 0 || inputValue;
+  const canDismissChip = !disabled && !readOnly;
+
+  const handleFocusIn = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleFocusOut = useCallback((e: React.FocusEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      setIsFocused(false);
+    }
+  }, []);
+
+  return (
+    <div
+      data-testid="ATL-AutocompleteRebuilt"
+      onFocus={handleFocusIn}
+      onBlur={handleFocusOut}
+    >
+      <div
+        className={styles.multiSelectField}
+        data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
+      >
+        <FormFieldWrapper
+          disabled={disabled}
+          size={sizeProp ? sizeProp : undefined}
+          error={(error as string) ?? ""}
+          invalid={Boolean(error || invalid)}
+          identifier={inputId}
+          descriptionIdentifier={descriptionId}
+          description={description}
+          clearable={clearable ?? "never"}
+          onClear={() => {
+            clearAll();
+            internalInputRef.current?.focus();
+          }}
+          type="text"
+          placeholder={placeholder}
+          value={hasValue ? "has-value" : ""}
+          prefix={prefix}
+          suffix={suffix}
+          wrapperRef={formFieldRef}
+        >
+          <div
+            ref={chipAreaRef}
+            className={styles.chipArea}
+            data-testid="ATL-AutocompleteRebuilt-chipArea"
+            {...chipAreaEventProps}
+          >
+            <SelectionChipsList<Value>
+              selectedValues={selectedValues}
+              isFocused={isFocused}
+              limitVisibleSelections={limitVisibleSelections}
+              limitSelectionText={limitSelectionText}
+              activeChipIndex={activeChipIndex}
+              disabled={disabled}
+              getOptionLabel={getOptionLabel}
+              customRenderValue={customRenderValue}
+              canDismiss={canDismissChip}
+              removeSelection={removeSelection}
+              unsafeClassName={unsafeClassName}
+              unsafeStyle={unsafeStyle}
+            />
+            <input
+              ref={mergedInputRef}
+              className={styles.inlineInput}
+              id={inputId}
+              value={inputValue}
+              onChange={
+                readOnly
+                  ? undefined
+                  : e => onInputChangeFromUser(e.target.value)
+              }
+              disabled={disabled}
+              readOnly={readOnly}
+              name={name}
+              autoComplete="off"
+              autoFocus={autoFocus}
+              {...inputAriaProps}
+              {...inputDataAttrs}
+            />
+          </div>
+        </FormFieldWrapper>
+      </div>
+      {children}
+    </div>
   );
 }

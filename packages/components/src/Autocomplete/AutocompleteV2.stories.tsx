@@ -911,6 +911,7 @@ const TemplateMultiple = () => {
         clearable="always"
         value={customRenderValue}
         multiple
+        size="large"
         onChange={setCustomRenderValue}
         menu={defineMenu<OptionLike>([
           { type: "options", options: simpleOptions },
@@ -920,11 +921,20 @@ const TemplateMultiple = () => {
         suffix={{
           icon: "arrowDown",
         }}
-        UNSAFE_styles={{ selection: { padding: 4 } }}
+        UNSAFE_styles={{
+          selection: {
+            paddingLeft: 0,
+            backgroundColor: "var(--color-background-surface)",
+            border: "1px solid var(--color-border)",
+          },
+        }}
         customRenderValue={({ value: v, getOptionLabel }) => (
           <>
             <Avatar size="small" initials={getOptionLabel(v)} />
             <span style={{ fontWeight: "bold" }}>{getOptionLabel(v)}</span>
+            <span>|</span>
+            <Icon name="truck" size="small" />
+            <Typography size="small">+15 min</Typography>
           </>
         )}
       />

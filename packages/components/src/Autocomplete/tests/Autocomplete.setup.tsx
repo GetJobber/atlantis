@@ -224,6 +224,8 @@ export function MultipleWrapper<T extends OptionLike>({
   onBlur,
   UNSAFE_className,
   UNSAFE_styles,
+  limitVisibleSelections,
+  limitSelectionText,
 }: MultipleWrapperProps<T>) {
   const [value, setValue] = React.useState<T[]>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(initialInputValue);
@@ -259,6 +261,8 @@ export function MultipleWrapper<T extends OptionLike>({
       onBlur={onBlur}
       UNSAFE_className={UNSAFE_className}
       UNSAFE_styles={UNSAFE_styles}
+      limitVisibleSelections={limitVisibleSelections}
+      limitSelectionText={limitSelectionText}
     />
   );
 }
@@ -285,6 +289,8 @@ interface MultipleWrapperProps<T extends OptionLike> {
     true
   >["UNSAFE_className"];
   readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, true>["UNSAFE_styles"];
+  readonly limitVisibleSelections?: number;
+  readonly limitSelectionText?: (truncatedCount: number) => string;
 }
 
 /**
