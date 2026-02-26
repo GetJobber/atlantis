@@ -43,6 +43,7 @@ export interface UseAutocompleteListNavProps {
   readOnly?: boolean;
 }
 
+// eslint-disable-next-line max-statements
 export function useAutocompleteListNav({
   navigableCount,
   shouldResetActiveIndexOnClose,
@@ -72,12 +73,13 @@ export function useAutocompleteListNav({
       offset(MENU_OFFSET),
       flip({ fallbackPlacements: ["top"] }),
       size({
-        apply({ availableHeight, elements }) {
+        apply({ availableHeight, rects, elements }) {
           const maxHeight = calculateMaxHeight(availableHeight, {
             maxHeight: AUTOCOMPLETE_MAX_HEIGHT,
           });
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
+            width: `${rects.reference.width}px`,
           });
         },
       }),
@@ -127,9 +129,12 @@ export function useAutocompleteListNav({
     });
   }, [navigableCount, setActiveIndex, listRef]);
 
+  const latestRefs = useRef(refs);
+  latestRefs.current = refs;
+
   const setReferenceElement = useCallback(
-    (el: HTMLElement | null) => refs.setReference(el),
-    [refs],
+    (el: HTMLElement | null) => latestRefs.current.setReference(el),
+    [],
   );
 
   return {

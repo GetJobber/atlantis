@@ -1,5 +1,5 @@
 import type { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
-import React, { forwardRef, useId } from "react";
+import React, { forwardRef, useId, useMemo } from "react";
 import type { InputTextRebuiltProps } from "./InputText.types";
 import { useTextAreaResize } from "./useTextAreaResize";
 import { useInputTextActions } from "./useInputTextActions";
@@ -64,6 +64,11 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   const isInvalid = Boolean(props.error || props.invalid);
   const dataAttrs = filterDataAttributes(props);
 
+  const mergedRef = useMemo(
+    () => mergeRefs([inputRef, inputTextRef]),
+    [inputRef, inputTextRef],
+  );
+
   // Shared props for both TextArea and TextInput
   const commonInputProps = {
     id,
@@ -98,7 +103,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
     onPointerDown: handlePointerDown,
     onPointerUp: handlePointerUp,
     onClick: handleClick,
-    ref: mergeRefs([inputRef, inputTextRef]),
+    ref: mergedRef,
     ...dataAttrs,
   };
 
