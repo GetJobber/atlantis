@@ -84,6 +84,11 @@ export const VisualTestAutocompleteV2Page = () => {
       { label: "Pipe Replacement" },
       { label: "Sewer Line Repair" },
       { label: "Window Cleaning" },
+      { label: "Electrical Work" },
+      { label: "Plumbing Work" },
+      { label: "HVAC Work" },
+      { label: "General Maintenance" },
+      { label: "Other" },
     ],
     [],
   );
@@ -337,6 +342,10 @@ export const VisualTestAutocompleteV2Page = () => {
                     { label: "Pipe Replacement" },
                     { label: "Sewer Line Repair" },
                     { label: "Window Cleaning" },
+                    { label: "Electrical Work" },
+                    { label: "Plumbing Work" },
+                    { label: "HVAC Work" },
+                    { label: "General Maintenance" },
                   ]}
                 />
               </Grid.Cell>
