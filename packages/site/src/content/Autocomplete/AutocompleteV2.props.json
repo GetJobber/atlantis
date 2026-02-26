@@ -270,6 +270,36 @@
           "name": "MenuAction<ExtraProps>[] | ((args: { inputValue: string; }) => MenuAction<ExtraProps>[])"
         }
       },
+      "limitVisibleSelections": {
+        "defaultValue": {
+          "value": "6"
+        },
+        "description": "Maximum number of selection chips visible when the input is not focused.\nWhen the input gains focus, all selections are shown regardless of this value.\nSet to `-1` to always show all selections.\n\nOnly applicable when `multiple` is `true`. Ignored for single-select.",
+        "name": "limitVisibleSelections",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "number"
+        }
+      },
+      "limitSelectionText": {
+        "defaultValue": {
+          "value": "(count) => `+${count} more`"
+        },
+        "description": "Function to generate the label displayed when selections are truncated\nby `limitVisibleSelections`. Receives the number of hidden selections.\n\nOnly applicable when `multiple` is `true`. Ignored for single-select.",
+        "name": "limitSelectionText",
+        "parent": {
+          "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",
+          "name": "AutocompleteRebuiltBaseProps"
+        },
+        "required": false,
+        "type": {
+          "name": "(truncatedCount: number) => string"
+        }
+      },
       "openOnFocus": {
         "defaultValue": {
           "value": "true"
