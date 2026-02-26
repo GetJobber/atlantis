@@ -1,10 +1,10 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 export function useFocusOnSelectedDate(portalContainerId?: string) {
   const ref = useRef<HTMLDivElement>(null);
 
   // Moves focus to the selected/pre-selected day in the calendar ([tabindex="0"]).
-  function focusOnSelectedDate(): boolean {
+  const focusOnSelectedDate = useCallback((): boolean => {
     const portalElement = portalContainerId
       ? document.getElementById(portalContainerId)
       : null;
@@ -18,7 +18,7 @@ export function useFocusOnSelectedDate(portalContainerId?: string) {
     }
 
     return false;
-  }
+  }, [portalContainerId]);
 
   return { ref, focusOnSelectedDate };
 }

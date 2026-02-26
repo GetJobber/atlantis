@@ -103,7 +103,7 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-function useDatePickerClassNames(
+function getDatePickerClassNames(
   inline: boolean,
   open: boolean,
   fullWidth: boolean,
@@ -130,6 +130,8 @@ function useDatePickerHandlers(
   onChange: (val: Date) => void,
   setOpen: (open: boolean) => void,
   onOpenChange?: (open: boolean) => void,
+  smartAutofocus?: boolean,
+  focusOnSelectedDate?: () => boolean,
 ) {
   const handleChange = useCallback(
     (value: Date | null) => {
@@ -140,26 +142,20 @@ function useDatePickerHandlers(
   const handleCalendarOpen = useCallback(() => {
     setOpen(true);
     onOpenChange?.(true);
-  }, [setOpen, onOpenChange]);
+
+    if (smartAutofocus) {
+      // The portal DOM may not be painted yet, so defer to the next frame
+      requestAnimationFrame(() => {
+        focusOnSelectedDate?.();
+      });
+    }
+  }, [setOpen, onOpenChange, smartAutofocus, focusOnSelectedDate]);
   const handleCalendarClose = useCallback(() => {
     setOpen(false);
     onOpenChange?.(false);
   }, [setOpen, onOpenChange]);
 
   return { handleChange, handleCalendarOpen, handleCalendarClose };
-}
-
-function useSmartAutofocus(
-  smartAutofocus: boolean,
-  open: boolean,
-  focusOnSelectedDate: () => boolean,
-) {
-  useRefocusOnActivator(smartAutofocus ? open : false);
-  useEffect(() => {
-    if (smartAutofocus) {
-      focusOnSelectedDate();
-    }
-  }, [open, smartAutofocus, focusOnSelectedDate]);
 }
 
 export function DatePicker({
@@ -185,7 +181,7 @@ export function DatePicker({
   const renderInsidePortal = !inline;
   const uniquePortalId = useId();
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate(uniquePortalId);
-  const { wrapperClassName, datePickerClassNames } = useDatePickerClassNames(
+  const { wrapperClassName, datePickerClassNames } = getDatePickerClassNames(
     inline ?? false,
     open,
     fullWidth ?? false,
@@ -197,8 +193,14 @@ export function DatePicker({
     renderInsidePortal,
   );
   const { handleChange, handleCalendarOpen, handleCalendarClose } =
-    useDatePickerHandlers(onChange, setOpen, onOpenChange);
-  useSmartAutofocus(smartAutofocus ?? true, open, focusOnSelectedDate);
+    useDatePickerHandlers(
+      onChange,
+      setOpen,
+      onOpenChange,
+      smartAutofocus ?? true,
+      focusOnSelectedDate,
+    );
+  useRefocusOnActivator(smartAutofocus ? open : false);
 
   return (
     <div
