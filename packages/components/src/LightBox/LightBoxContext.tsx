@@ -105,6 +105,14 @@ export interface LightBoxProviderProps {
    */
   onRequestClose?(options: RequestCloseOptions): void;
   /**
+   * Callback function that is invoked whenever the current image index changes.
+   * This includes when the user navigates to a different image (via arrow keys,
+   * navigation buttons, or swipe gestures) or when clicking a thumbnail.
+   *
+   * @param index - The new current image index (0-based)
+   */
+  onImageChange?(index: number): void;
+  /**
    * Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where
    * tailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.
    * @default "content-box"
@@ -118,6 +126,7 @@ export function LightBoxProvider({
   images,
   imageIndex = 0,
   onRequestClose = noop,
+  onImageChange = noop,
   boxSizing = "content-box",
   children,
 }: LightBoxProviderProps) {
@@ -155,6 +164,7 @@ export function LightBoxProvider({
 
   useEffect(() => {
     setCurrentImageIndex(imageIndex);
+    onImageChange(imageIndex);
   }, [imageIndex, open]);
 
   if (prevOpen.current !== open) {
@@ -179,14 +189,16 @@ export function LightBoxProvider({
 
   function handleMovePrevious() {
     directionRef.current = -1;
-    setCurrentImageIndex(
-      (currentImageIndex + images.length - 1) % images.length,
-    );
+    const newIndex = (currentImageIndex + images.length - 1) % images.length;
+    setCurrentImageIndex(newIndex);
+    onImageChange(newIndex);
   }
 
   function handleMoveNext() {
     directionRef.current = 1;
-    setCurrentImageIndex((currentImageIndex + 1) % images.length);
+    const newIndex = (currentImageIndex + 1) % images.length;
+    setCurrentImageIndex(newIndex);
+    onImageChange(newIndex);
   }
 
   function handleRequestClose() {
@@ -213,6 +225,7 @@ export function LightBoxProvider({
       directionRef.current = 1;
     }
     setCurrentImageIndex(index);
+    onImageChange(index);
   }
 
   return (
