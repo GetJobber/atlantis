@@ -109,6 +109,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  align-content: flex-start;
   gap: var(--space-smaller);
   padding: var(--field--padding-top) var(--field--padding-right)
     var(--field--padding-bottom) var(--field--padding-left);

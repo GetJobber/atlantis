@@ -481,12 +481,11 @@ function SelectionChipsList<Value extends OptionLike>({
         />
       ))}
       {hiddenCount > 0 && (
-        <span data-testid="ATL-AutocompleteRebuilt-limitText">
-          <Typography
-            size="base"
-            element="span"
-            data-testid="ATL-AutocompleteRebuilt-limitText"
-          >
+        <span
+          className={styles.limitText}
+          data-testid="ATL-AutocompleteRebuilt-limitText"
+        >
+          <Typography size="small" element="span">
             {limitSelectionText(hiddenCount)}
           </Typography>
         </span>
