@@ -117,13 +117,13 @@
 
 .inlineInput {
   min-width: 80px;
-  padding: var(--space-minuscule) 0;
+  padding: 0;
   border: none;
   outline: none;
   color: inherit;
   font-family: inherit;
   font-size: inherit;
-  line-height: inherit;
+  line-height: var(--field--value-lineHeight);
   background: transparent;
   flex: 1 1 auto;
 }
