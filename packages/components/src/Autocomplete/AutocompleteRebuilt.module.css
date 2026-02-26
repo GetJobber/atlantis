@@ -141,12 +141,13 @@
   padding: var(--space-smallest) var(--space-small);
   border-radius: var(--radius-large);
   outline: none;
+  overflow: hidden;
   color: var(--color-heading);
   background-color: var(--color-interactive--background);
   cursor: default;
   transition: var(--timing-base);
   align-items: center;
-  gap: var(--space-smaller);
+  gap: var(--space-small);
 }
 
 .selectionChipActive {
@@ -160,18 +161,29 @@
 
 .chipDismiss {
   display: inline-flex;
+  position: relative;
+  z-index: 0;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   padding: 0;
   border: none;
-  border-radius: var(--radius-circle);
   background: transparent;
   cursor: pointer;
-  flex-shrink: 0;
 }
 
-.chipDismiss:hover {
-  background-color: var(--color-surface--hover);
+.chipDismiss::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--space-large));
+  right: calc(-1 * var(--space-small));
+  bottom: calc(-1 * var(--space-large));
+  left: calc(-1 * var(--space-smaller));
+  z-index: -1;
+}
+
+.chipDismiss:hover::before {
+  background-color: var(--color-interactive--background--hover);
 }
 
 .limitText {
