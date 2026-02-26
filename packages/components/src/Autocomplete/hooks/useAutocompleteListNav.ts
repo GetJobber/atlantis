@@ -42,6 +42,7 @@ export interface UseAutocompleteListNavProps {
   onMenuClose?: (reason?: string) => void;
   selectedIndex?: number | null;
   readOnly?: boolean;
+  disabled?: boolean;
   /**
    * When the reference is smaller than the clickable area (e.g. input inside chip area),
    * pass a selector for the extended zone. Clicks inside it won't trigger outsidePress dismiss.
@@ -56,6 +57,7 @@ export function useAutocompleteListNav({
   onMenuClose,
   selectedIndex,
   readOnly = false,
+  disabled = false,
   outsidePressExcludeSelector,
 }: UseAutocompleteListNavProps): UseAutocompleteListNavReturn {
   const [open, setOpen] = useState(false);
@@ -94,8 +96,10 @@ export function useAutocompleteListNav({
     ],
   });
 
+  const enabled = !readOnly && !disabled;
+
   const click = useClick(context, {
-    enabled: !readOnly,
+    enabled,
     toggle: false, // Only open, never close on click
   });
 

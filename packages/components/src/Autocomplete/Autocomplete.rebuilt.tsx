@@ -242,7 +242,7 @@ function AutocompleteRebuiltInternal<
   const showEmptyStateMessage =
     optionCount === 0 && props.emptyStateMessage !== false;
 
-  const floatingMenu = isMounted && !props.readOnly && (
+  const floatingMenu = isMounted && !props.readOnly && !disabled && (
     <FloatingMenu<Value>
       context={context}
       getFloatingProps={getFloatingProps}

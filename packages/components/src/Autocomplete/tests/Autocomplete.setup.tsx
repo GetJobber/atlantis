@@ -212,6 +212,8 @@ export function MultipleWrapper<T extends OptionLike>({
   onChange,
   onInputChange,
   menu,
+  disabled,
+  readOnly,
   debounce = 0,
   customRenderValue,
   clearable,
@@ -233,6 +235,8 @@ export function MultipleWrapper<T extends OptionLike>({
       multiple
       value={value}
       {...freeFormProps}
+      disabled={disabled}
+      readOnly={readOnly}
       onChange={(v: T[]) => {
         setValue(v);
         onChange?.(v);
@@ -257,6 +261,8 @@ interface MultipleWrapperProps<T extends OptionLike> {
   readonly onInputChange?: (v: string) => void;
   readonly menu?: MenuItem<T>[];
   readonly debounce?: number;
+  readonly disabled?: boolean;
+  readonly readOnly?: boolean;
   readonly customRenderValue?: AutocompleteRebuiltProps<
     T,
     true

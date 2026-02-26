@@ -26,6 +26,7 @@ import {
 } from "./Autocomplete.types";
 import {
   blurAutocomplete,
+  clickOnSelectionArea,
   closeAutocomplete,
   configureUser,
   deleteInput,
@@ -2244,6 +2245,21 @@ describe("AutocompleteRebuilt", () => {
   });
 
   describe("chip disabled and readOnly behavior", () => {
+    it("when disabled,does not show the menu when 'chipArea' is clicked", async () => {
+      render(<MultipleWrapper disabled initialValue={[{ label: "One" }]} />);
+
+      await clickOnSelectionArea();
+
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    });
+
+    it("when readOnly, does not show the menu when 'chipArea' is clicked", async () => {
+      render(<MultipleWrapper readOnly initialValue={[{ label: "One" }]} />);
+      await clickOnSelectionArea();
+
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    });
+
     it("hides dismiss button when disabled", () => {
       render(
         <AutocompleteRebuilt

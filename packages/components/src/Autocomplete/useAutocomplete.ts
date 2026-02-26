@@ -53,6 +53,7 @@ export function useAutocomplete<
     multiple,
     openOnFocus = true,
     readOnly = false,
+    disabled = false,
     debounce: debounceMs = 300,
   } = props;
 
@@ -302,6 +303,7 @@ export function useAutocomplete<
     shouldResetActiveIndexOnClose: () => !hasSelection,
     selectedIndex,
     readOnly,
+    disabled,
     outsidePressExcludeSelector: multiple
       ? "[data-testid='ATL-AutocompleteRebuilt-chipArea']"
       : undefined,

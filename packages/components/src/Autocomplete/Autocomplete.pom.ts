@@ -176,3 +176,7 @@ export async function expectMenuClosed() {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 }
+
+export async function clickOnSelectionArea() {
+  await user.click(screen.getByTestId("ATL-AutocompleteRebuilt-chipArea"));
+}
