@@ -83,7 +83,7 @@ export function LightBoxContent() {
           <LightBoxBackground />
           <LightBoxOverlay />
           <LightBoxToolbar />
-          <LightBoxSlides className={styles.imageArea} />
+          <LightBoxSlides />
           <LightBoxNavigation />
           <LightBoxCaption />
           <LightBoxThumbnails />
