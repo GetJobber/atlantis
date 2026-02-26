@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BREAKPOINT_SIZES, mockViewportWidth } from "@jobber/hooks";
 import { LightBox } from ".";
-import { slideVariants } from "./LightBox";
+import { slideVariants } from "./LightBox.constants";
 import * as POM from "./LightBox.pom";
 
 const { setViewportWidth } = mockViewportWidth();

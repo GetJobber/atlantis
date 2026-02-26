@@ -137,6 +137,7 @@
     "LightBox",
     "LightBox.Background",
     "LightBox.Caption",
+    "LightBox.Content",
     "LightBox.Navigation",
     "LightBox.Overlay",
     "LightBox.Provider",

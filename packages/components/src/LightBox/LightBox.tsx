@@ -1,68 +1,17 @@
-import type { CSSProperties } from "react";
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ReactDOM from "react-dom";
 import { useBreakpoints, useIsMounted } from "@jobber/hooks";
 import classNames from "classnames";
 import styles from "./LightBox.module.css";
-import type { PresentedImage, RequestCloseOptions } from "./LightBoxContext";
-import { useLightBoxContext } from "./LightBoxContext";
+import type { LightBoxNavigationProps, LightBoxProps } from "./LightBox.types";
+import { imageTransition, slideVariants } from "./LightBox.constants";
+import { LightBoxProvider, useLightBoxContext } from "./LightBoxContext";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Text } from "../Text";
 import { Button } from "../Button";
 import { Heading } from "../Heading";
 import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
-
-export type { PresentedImage, RequestCloseOptions };
-
-export interface LightBoxProps {
-  /**
-   * Specify if the Lightbox is open or closed.
-   */
-  readonly open: boolean;
-  /**
-   * Images is an array of objects defining a LightBox image. This object consists of
-   * `title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is
-   * required, for each image.
-   */
-  readonly images: PresentedImage[];
-  /**
-   * Use this to specify which image in `images` to initialize the lightbox with.
-   * This is useful when you have a collection of thumbnails as you only need one
-   * collection of image urls, order doesn't matter.
-   */
-  readonly imageIndex?: number;
-  /**
-   * This function must set open to false in order to close the lightbox. Note there
-   * is a 300ms easing animation on lightbox close that occurs before this function
-   * is called.
-   * This function receives an object as an argument with the key `lastPosition`
-   * that has the index of the image the user was on when LightBox was closed.
-   */
-  onRequestClose(options: RequestCloseOptions): void;
-  /**
-   * Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where
-   * tailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.
-   * @default "content-box"
-   */
-  readonly boxSizing?: CSSProperties["boxSizing"];
-}
-
-export const slideVariants = {
-  enter: (directionRef: React.RefObject<number>) => ({
-    x: directionRef.current > 0 ? "150%" : "-150%",
-  }),
-  center: {
-    x: 0,
-  },
-  exit: (directionRef: React.RefObject<number>) => ({
-    x: directionRef.current < 0 ? "150%" : "-150%",
-  }),
-};
-
-const imageTransition = {
-  x: { duration: 0.65, ease: [0.42, 0, 0, 1.03] },
-};
 
 export function LightBoxContent() {
   const { open, lightboxRef, handleMouseMove } = useLightBoxContext();
@@ -147,14 +96,18 @@ function NextButton({ onClick, hideButton, className }: NavButtonProps) {
 
 /**
  * Blurred, desaturated copy of the current image rendered as a full-bleed
- * background behind the lightbox.
+ * background behind the lightbox. Pass `className` to apply additional styles.
  */
-export function LightBoxBackground() {
+export function LightBoxBackground({
+  className,
+}: {
+  readonly className?: string;
+}) {
   const { images, currentImageIndex } = useLightBoxContext();
 
   return (
     <div
-      className={styles.backgroundImage}
+      className={classNames(styles.backgroundImage, className)}
       style={{
         backgroundImage: `url("${images[currentImageIndex].url}")`,
       }}
@@ -164,11 +117,21 @@ export function LightBoxBackground() {
 
 /**
  * Semi-transparent blur backdrop. Clicking it calls `onRequestClose`.
+ * Pass `className` to apply additional styles.
  */
-export function LightBoxOverlay() {
+export function LightBoxOverlay({
+  className,
+}: {
+  readonly className?: string;
+}) {
   const { handleRequestClose } = useLightBoxContext();
 
-  return <div className={styles.blurOverlay} onClick={handleRequestClose} />;
+  return (
+    <div
+      className={classNames(styles.blurOverlay, className)}
+      onClick={handleRequestClose}
+    />
+  );
 }
 
 /**
@@ -196,11 +159,9 @@ export function LightBoxToolbar() {
 /**
  * The animated hero image with swipe-to-navigate and slide animation.
  *
- * Pass a `className` to override the wrapper styles (e.g. to use
- * `styles.imageArea` inside `LightBox.Content`).
- *
- * Supports swipe-to-navigate (drag). Keyboard arrow navigation is handled
- * by `LightBox.Provider`.
+ * Pass `className` to add styles to the image wrapper. Supports
+ * swipe-to-navigate (drag). Keyboard arrow navigation is handled by
+ * `LightBox.Provider`.
  *
  * @example
  * ```tsx
@@ -216,7 +177,7 @@ export function LightBoxSlides({ className }: { readonly className?: string }) {
     useLightBoxContext();
 
   return (
-    <div className={className ?? styles.imageArea}>
+    <div className={classNames(styles.imageArea, className)}>
       <AnimatePresence initial={false}>
         <motion.img
           key={currentImageIndex}
@@ -241,17 +202,6 @@ export function LightBoxSlides({ className }: { readonly className?: string }) {
       </AnimatePresence>
     </div>
   );
-}
-
-export interface LightBoxNavigationProps {
-  /**
-   * The class name to apply to the previous button.
-   */
-  readonly prevButtonClassName?: string;
-  /**
-   * The class name to apply to the next button.
-   */
-  readonly nextButtonClassName?: string;
 }
 
 /**
@@ -287,12 +237,12 @@ export function LightBoxNavigation({
       <PreviousButton
         onClick={debouncedHandlePrevious}
         hideButton={mouseIsStationary}
-        className={prevButtonClassName ?? styles.prev}
+        className={classNames(styles.prev, prevButtonClassName)}
       />
       <NextButton
         onClick={debouncedHandleNext}
         hideButton={mouseIsStationary}
-        className={nextButtonClassName ?? styles.next}
+        className={classNames(styles.next, nextButtonClassName)}
       />
     </>
   );
@@ -362,3 +312,61 @@ export function LightBoxThumbnails() {
     </div>
   );
 }
+
+/**
+ * LightBox displays images in a fullscreen overlay.
+ *
+ * **Self-contained (legacy) usage:**
+ * ```tsx
+ * <LightBox
+ *   open={isOpen}
+ *   images={images}
+ *   imageIndex={imageIndex}
+ *   onRequestClose={({ lastPosition }) => { setIsOpen(false); }}
+ * />
+ * ```
+ *
+ * **Full composable (fullscreen) usage:**
+ * ```tsx
+ * <LightBox.Provider open={isOpen} images={images} onRequestClose={onClose}>
+ *   <LightBox.Content />
+ * </LightBox.Provider>
+ * ```
+ *
+ * **Inline gallery usage (no overlay, no close):**
+ * ```tsx
+ * <LightBox.Provider
+ *   open={true}
+ *   images={images}
+ *   imageIndex={activeIndex}
+ *   onImageChange={onImageChange}
+ * >
+ *   <div className={styles.lightboxWrapper} onMouseMove={handleMouseMove}>
+ *     <LightBox.Background className={styles.backgroundImage} />
+ *     <LightBox.Overlay className={styles.blurOverlay} />
+ *     <LightBox.Slides className={styles.imageArea} />
+ *     <LightBox.Navigation
+ *       prevButtonClassName={styles.prev}
+ *       nextButtonClassName={styles.next}
+ *     />
+ *   </div>
+ * </LightBox.Provider>
+ * ```
+ */
+export function LightBox(props: LightBoxProps) {
+  return (
+    <LightBoxProvider {...props}>
+      <LightBoxContent />
+    </LightBoxProvider>
+  );
+}
+
+LightBox.Provider = LightBoxProvider;
+LightBox.Content = LightBoxContent;
+LightBox.Background = LightBoxBackground;
+LightBox.Overlay = LightBoxOverlay;
+LightBox.Toolbar = LightBoxToolbar;
+LightBox.Slides = LightBoxSlides;
+LightBox.Navigation = LightBoxNavigation;
+LightBox.Caption = LightBoxCaption;
+LightBox.Thumbnails = LightBoxThumbnails;
