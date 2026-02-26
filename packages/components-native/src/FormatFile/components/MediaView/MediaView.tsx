@@ -18,6 +18,7 @@ interface MediaViewProps {
   readonly file: FormattedFile;
   readonly styleInGrid: boolean;
   readonly onUploadComplete: () => void;
+  readonly onLoadEnd?: () => void;
 }
 
 export function MediaView({
@@ -27,6 +28,7 @@ export function MediaView({
   file,
   styleInGrid,
   onUploadComplete,
+  onLoadEnd,
 }: MediaViewProps) {
   const { t } = useAtlantisI18n();
   const { useCreateThumbnail } = useAtlantisFormatFileContext();
@@ -77,7 +79,10 @@ export function MediaView({
         source={{ uri }}
         testID={"test-image"}
         onLoadStart={handleLoadStart}
-        onLoadEnd={handleLoadEnd}
+        onLoadEnd={() => {
+          handleLoadEnd();
+          onLoadEnd?.();
+        }}
       >
         <Overlay
           isLoading={isLoading}

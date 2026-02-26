@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.112.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.7...@jobber/components@6.112.0) (2026-02-25)
+
+
+### Features
+
+* **components:** Add UNSAFE to Menu Trigger ([#2927](https://github.com/GetJobber/atlantis/issues/2927)) ([898a6de](https://github.com/GetJobber/atlantis/commit/898a6de50fe0fc015af9c7454aba7491552151c2))
+
+
+
+
+
+## [6.111.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.6...@jobber/components@6.111.7) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Adjust Clearable Positioning ([#2925](https://github.com/GetJobber/atlantis/issues/2925)) ([d137e67](https://github.com/GetJobber/atlantis/commit/d137e67cd622712677afb5f602aff726f4127abf))
+
+
+
+
+
+## [6.111.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.5...@jobber/components@6.111.6) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Update SegmentedControl visual styling and add hover state ([#2919](https://github.com/GetJobber/atlantis/issues/2919)) ([d57b082](https://github.com/GetJobber/atlantis/commit/d57b082b21241c05a77a5e65766c786a2609b82f))
+
+
+
+
+
+## [6.111.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.4...@jobber/components@6.111.5) (2026-02-23)
+
+
+### Bug Fixes
+
+* **components:** Fix Lightbox transitions [JOB-152407] ([#2918](https://github.com/GetJobber/atlantis/issues/2918)) ([c2beb0c](https://github.com/GetJobber/atlantis/commit/c2beb0ccea32348d5e9cbba23504dc6a90c70c0b))
+
+
+
+
+
+## [6.111.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.3...@jobber/components@6.111.4) (2026-02-23)
+
+
+### Reverts
+
+* **components:** Improve Tooltip + Icon Button Accessibility ([#2923](https://github.com/GetJobber/atlantis/issues/2923)) ([7a01788](https://github.com/GetJobber/atlantis/commit/7a017884ba576567877f215c77509d9b5139cde5)), closes [#2907](https://github.com/GetJobber/atlantis/issues/2907)
+
+
+
+
+
 ## [6.111.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.2...@jobber/components@6.111.3) (2026-02-18)
 
 

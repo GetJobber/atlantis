@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.97.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.96.0...@jobber/components-native@0.97.0) (2026-02-25)
+
+
+### Features
+
+* **components-native:** expose onLoadEnd from FormatFileThumbnail ([#2926](https://github.com/GetJobber/atlantis/issues/2926)) ([6ccd434](https://github.com/GetJobber/atlantis/commit/6ccd43435505486dc580472c36ed7b623bf84850))
+
+
+
+
+
 # [0.96.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.95.4...@jobber/components-native@0.96.0) (2026-02-17)
 
 
