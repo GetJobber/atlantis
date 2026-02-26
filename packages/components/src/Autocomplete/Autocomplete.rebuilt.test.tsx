@@ -15,7 +15,6 @@ jest.mock("@jobber/design", () => {
 import { act, render, screen, waitFor, within } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { AutocompleteRebuilt } from "./Autocomplete.rebuilt";
 import {
   type MenuItem,
   type MenuSection,
@@ -2146,9 +2145,8 @@ describe("AutocompleteRebuilt", () => {
   describe("customRenderValue", () => {
     it("renders custom content inside each chip", () => {
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
+        <MultipleWrapper
+          initialValue={[{ label: "One" }, { label: "Two" }]}
           menu={[
             menuOptions<OptionLike>([
               { label: "One" },
@@ -2156,11 +2154,6 @@ describe("AutocompleteRebuilt", () => {
               { label: "Three" },
             ]),
           ]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }, { label: "Two" }]}
-          onChange={jest.fn()}
-          placeholder=""
           customRenderValue={({ value, getOptionLabel }) => (
             <span data-testid="custom-chip-content">
               🏷 {getOptionLabel(value)}
@@ -2180,15 +2173,8 @@ describe("AutocompleteRebuilt", () => {
 
     it("still renders dismiss button alongside custom content", () => {
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }]}
-          onChange={jest.fn()}
-          placeholder=""
+        <MultipleWrapper
+          initialValue={[{ label: "One" }]}
           customRenderValue={({ value, getOptionLabel }) => (
             <span>{getOptionLabel(value)}</span>
           )}
@@ -2204,15 +2190,9 @@ describe("AutocompleteRebuilt", () => {
       const onChange = jest.fn();
 
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }, { label: "Two" }]}
+        <MultipleWrapper
+          initialValue={[{ label: "One" }, { label: "Two" }]}
           onChange={onChange}
-          placeholder=""
           customRenderValue={({ value, getOptionLabel }) => (
             <span>{getOptionLabel(value)}</span>
           )}
@@ -2226,18 +2206,7 @@ describe("AutocompleteRebuilt", () => {
     });
 
     it("uses default label content when customRenderValue is not provided", () => {
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }]}
-          onChange={jest.fn()}
-          placeholder=""
-        />,
-      );
+      render(<MultipleWrapper initialValue={[{ label: "One" }]} />);
 
       const chip = screen.getByTestId("ATL-AutocompleteRebuilt-chip");
       expect(chip).toHaveTextContent("One");
@@ -2261,19 +2230,7 @@ describe("AutocompleteRebuilt", () => {
     });
 
     it("hides dismiss button when disabled", () => {
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }]}
-          onChange={jest.fn()}
-          placeholder=""
-          disabled
-        />,
-      );
+      render(<MultipleWrapper initialValue={[{ label: "One" }]} disabled />);
 
       expect(screen.getByTestId("ATL-AutocompleteRebuilt-chip")).toBeVisible();
       expect(
@@ -2282,19 +2239,7 @@ describe("AutocompleteRebuilt", () => {
     });
 
     it("hides dismiss button when readOnly", () => {
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }]}
-          onChange={jest.fn()}
-          placeholder=""
-          readOnly
-        />,
-      );
+      render(<MultipleWrapper initialValue={[{ label: "One" }]} readOnly />);
 
       expect(screen.getByTestId("ATL-AutocompleteRebuilt-chip")).toBeVisible();
       expect(
@@ -2306,15 +2251,8 @@ describe("AutocompleteRebuilt", () => {
   describe("UNSAFE chip props", () => {
     it("applies UNSAFE_className.selection to selection chips", () => {
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }]}
-          onChange={jest.fn()}
-          placeholder=""
+        <MultipleWrapper
+          initialValue={[{ label: "One" }]}
           UNSAFE_className={{ selection: "my-custom-chip-class" }}
         />,
       );
@@ -2325,15 +2263,8 @@ describe("AutocompleteRebuilt", () => {
 
     it("applies UNSAFE_styles.selection to selection chips", () => {
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }]}
-          onChange={jest.fn()}
-          placeholder=""
+        <MultipleWrapper
+          initialValue={[{ label: "One" }]}
           UNSAFE_styles={{ selection: { backgroundColor: "red" } }}
         />,
       );
@@ -2404,15 +2335,10 @@ describe("AutocompleteRebuilt", () => {
       const onChange = jest.fn();
 
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={[menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }])]}
-          inputValue="search"
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }, { label: "Two" }]}
+        <MultipleWrapper
+          initialValue={[{ label: "One" }, { label: "Two" }]}
+          initialInputValue="search"
           onChange={onChange}
-          placeholder=""
           clearable="always"
         />,
       );
@@ -2445,17 +2371,7 @@ describe("AutocompleteRebuilt", () => {
 
     it("does not render clear button when disabled", () => {
       render(
-        <AutocompleteRebuilt
-          version={2}
-          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
-          inputValue="One"
-          onInputChange={jest.fn()}
-          value={{ label: "One" }}
-          onChange={jest.fn()}
-          placeholder=""
-          clearable="always"
-          disabled
-        />,
+        <Wrapper initialValue={{ label: "One" }} clearable="always" disabled />,
       );
 
       expect(
@@ -2465,17 +2381,7 @@ describe("AutocompleteRebuilt", () => {
 
     it("does not render clear button when readOnly", () => {
       render(
-        <AutocompleteRebuilt
-          version={2}
-          menu={[menuOptions<OptionLike>([{ label: "One" }])]}
-          inputValue="One"
-          onInputChange={jest.fn()}
-          value={{ label: "One" }}
-          onChange={jest.fn()}
-          placeholder=""
-          clearable="always"
-          readOnly
-        />,
+        <Wrapper initialValue={{ label: "One" }} clearable="always" readOnly />,
       );
 
       expect(
@@ -2635,18 +2541,7 @@ describe("AutocompleteRebuilt", () => {
     it("forwards ref to the input element", () => {
       const ref = React.createRef<HTMLInputElement | HTMLTextAreaElement>();
 
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          menu={[]}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={undefined}
-          onChange={jest.fn()}
-          placeholder=""
-          ref={ref}
-        />,
-      );
+      render(<Wrapper menu={[]} ref={ref} />);
 
       expect(
         ref.current instanceof HTMLInputElement ||
@@ -2660,25 +2555,8 @@ describe("AutocompleteRebuilt", () => {
       const onChange = jest.fn();
       const onInputChange = jest.fn();
 
-      const menu = [
-        menuOptions<OptionLike>([
-          { label: "One" },
-          { label: "Two" },
-          { label: "Three" },
-        ]),
-      ];
-
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue=""
-          onInputChange={onInputChange}
-          value={[]}
-          onChange={onChange}
-          placeholder=""
-        />,
+        <MultipleWrapper onChange={onChange} onInputChange={onInputChange} />,
       );
 
       await openAutocomplete();
@@ -2693,24 +2571,11 @@ describe("AutocompleteRebuilt", () => {
       const onChange = jest.fn();
       const onInputChange = jest.fn();
 
-      const menu = [
-        menuOptions<OptionLike>([
-          { label: "One" },
-          { label: "Two" },
-          { label: "Three" },
-        ]),
-      ];
-
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue=""
-          onInputChange={onInputChange}
-          value={[{ label: "One" }]}
+        <MultipleWrapper
+          initialValue={[{ label: "One" }]}
           onChange={onChange}
-          placeholder=""
+          onInputChange={onInputChange}
         />,
       );
 
@@ -2723,25 +2588,8 @@ describe("AutocompleteRebuilt", () => {
     });
 
     it("renders chips for selected values", () => {
-      const menu = [
-        menuOptions<OptionLike>([
-          { label: "One" },
-          { label: "Two" },
-          { label: "Three" },
-        ]),
-      ];
-
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }, { label: "Two" }]}
-          onChange={jest.fn()}
-          placeholder=""
-        />,
+        <MultipleWrapper initialValue={[{ label: "One" }, { label: "Two" }]} />,
       );
 
       const chips = screen.getAllByTestId("ATL-AutocompleteRebuilt-chip");
@@ -2751,20 +2599,7 @@ describe("AutocompleteRebuilt", () => {
     });
 
     it("does not render chips when there are no selected values", () => {
-      const menu = [menuOptions<OptionLike>([{ label: "One" }])];
-
-      render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[]}
-          onChange={jest.fn()}
-          placeholder=""
-        />,
-      );
+      render(<MultipleWrapper />);
 
       expect(
         screen.queryByTestId("ATL-AutocompleteRebuilt-chip"),
@@ -2773,24 +2608,11 @@ describe("AutocompleteRebuilt", () => {
 
     it("removes a selection when clicking a chip dismiss button", async () => {
       const onChange = jest.fn();
-      const menu = [
-        menuOptions<OptionLike>([
-          { label: "One" },
-          { label: "Two" },
-          { label: "Three" },
-        ]),
-      ];
 
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }, { label: "Two" }]}
+        <MultipleWrapper
+          initialValue={[{ label: "One" }, { label: "Two" }]}
           onChange={onChange}
-          placeholder=""
         />,
       );
 
@@ -2831,24 +2653,11 @@ describe("AutocompleteRebuilt", () => {
 
     it("clears input text after selecting an option", async () => {
       const onInputChange = jest.fn();
-      const menu = [
-        menuOptions<OptionLike>([
-          { label: "One" },
-          { label: "Two" },
-          { label: "Three" },
-        ]),
-      ];
 
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue="On"
+        <MultipleWrapper
+          initialInputValue="On"
           onInputChange={onInputChange}
-          value={[]}
-          onChange={jest.fn()}
-          placeholder=""
         />,
       );
 
@@ -2861,24 +2670,11 @@ describe("AutocompleteRebuilt", () => {
 
     it("removes the last selection when pressing backspace on empty input", async () => {
       const onChange = jest.fn();
-      const menu = [
-        menuOptions<OptionLike>([
-          { label: "One" },
-          { label: "Two" },
-          { label: "Three" },
-        ]),
-      ];
 
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }, { label: "Two" }]}
+        <MultipleWrapper
+          initialValue={[{ label: "One" }, { label: "Two" }]}
           onChange={onChange}
-          placeholder=""
         />,
       );
 
@@ -2891,20 +2687,12 @@ describe("AutocompleteRebuilt", () => {
 
     it("does not remove selections when pressing backspace with text in input", async () => {
       const onChange = jest.fn();
-      const menu = [
-        menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }]),
-      ];
 
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue="search"
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }]}
+        <MultipleWrapper
+          initialValue={[{ label: "One" }]}
+          initialInputValue="search"
           onChange={onChange}
-          placeholder=""
         />,
       );
 
@@ -2980,22 +2768,9 @@ describe("AutocompleteRebuilt", () => {
 
     it("does not blur input when clicking chip dismiss button", async () => {
       const onBlur = jest.fn();
-      const menu = [
-        menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }]),
-      ];
 
       render(
-        <AutocompleteRebuilt
-          version={2}
-          multiple
-          menu={menu}
-          inputValue=""
-          onInputChange={jest.fn()}
-          value={[{ label: "One" }]}
-          onChange={jest.fn()}
-          onBlur={onBlur}
-          placeholder=""
-        />,
+        <MultipleWrapper initialValue={[{ label: "One" }]} onBlur={onBlur} />,
       );
 
       await openAutocomplete();
@@ -3024,20 +2799,10 @@ describe("AutocompleteRebuilt", () => {
       });
 
       it("does not activate chip navigation when input has text", async () => {
-        const menu = [
-          menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }]),
-        ];
-
         render(
-          <AutocompleteRebuilt
-            version={2}
-            multiple
-            menu={menu}
-            inputValue="search"
-            onInputChange={jest.fn()}
-            value={[{ label: "One" }]}
-            onChange={jest.fn()}
-            placeholder=""
+          <MultipleWrapper
+            initialValue={[{ label: "One" }]}
+            initialInputValue="search"
           />,
         );
 
@@ -3213,21 +2978,10 @@ describe("AutocompleteRebuilt", () => {
       });
 
       it("does not activate chip navigation in readOnly mode", async () => {
-        const menu = [
-          menuOptions<OptionLike>([{ label: "One" }, { label: "Two" }]),
-        ];
-
         render(
-          <AutocompleteRebuilt
-            version={2}
-            multiple
+          <MultipleWrapper
+            initialValue={[{ label: "One" }, { label: "Two" }]}
             readOnly
-            menu={menu}
-            inputValue=""
-            onInputChange={jest.fn()}
-            value={[{ label: "One" }, { label: "Two" }]}
-            onChange={jest.fn()}
-            placeholder=""
           />,
         );
 

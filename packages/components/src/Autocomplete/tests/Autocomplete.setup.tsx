@@ -114,6 +114,7 @@ export function Wrapper<T extends OptionLike>({
   readonly readOnly?: boolean;
   readonly clearable?: AutocompleteRebuiltProps<T, false>["clearable"];
   readonly debounce?: number;
+  readonly disabled?: boolean;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -209,6 +210,7 @@ export function FreeFormWrapper({
  */
 export function MultipleWrapper<T extends OptionLike>({
   initialValue = [],
+  initialInputValue = "",
   onChange,
   onInputChange,
   menu,
@@ -219,9 +221,12 @@ export function MultipleWrapper<T extends OptionLike>({
   clearable,
   allowFreeForm,
   createFreeFormValue = (input => ({ label: input })) as (input: string) => T,
+  onBlur,
+  UNSAFE_className,
+  UNSAFE_styles,
 }: MultipleWrapperProps<T>) {
   const [value, setValue] = React.useState<T[]>(initialValue);
-  const [inputValue, setInputValue] = React.useState<string>("");
+  const [inputValue, setInputValue] = React.useState<string>(initialInputValue);
   const built = React.useMemo(() => buildMenu(), []);
 
   const freeFormProps =
@@ -251,12 +256,16 @@ export function MultipleWrapper<T extends OptionLike>({
       debounce={debounce}
       customRenderValue={customRenderValue}
       clearable={clearable}
+      onBlur={onBlur}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_styles={UNSAFE_styles}
     />
   );
 }
 
 interface MultipleWrapperProps<T extends OptionLike> {
   readonly initialValue?: T[];
+  readonly initialInputValue?: string;
   readonly onChange?: (v: T[]) => void;
   readonly onInputChange?: (v: string) => void;
   readonly menu?: MenuItem<T>[];
@@ -270,6 +279,12 @@ interface MultipleWrapperProps<T extends OptionLike> {
   readonly clearable?: AutocompleteRebuiltProps<T, true>["clearable"];
   readonly allowFreeForm?: boolean;
   readonly createFreeFormValue?: (input: string) => T;
+  readonly onBlur?: () => void;
+  readonly UNSAFE_className?: AutocompleteRebuiltProps<
+    T,
+    true
+  >["UNSAFE_className"];
+  readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, true>["UNSAFE_styles"];
 }
 
 /**
