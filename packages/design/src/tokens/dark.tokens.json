@@ -45,6 +45,12 @@
                 "hover": {
                     "$value": "{color.base.blue-.600}",
                     "$description": "Hover state for interactive--background."
+                },
+                "subtle-": {
+                    "hover": {
+                        "$value": "{color.base.green-.800}",
+                        "$description": "Hover state for interactive--background--subtle."
+                    }
                 }
             }
         },
