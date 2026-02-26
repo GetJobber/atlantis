@@ -1,5 +1,5 @@
 import type React from "react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import type { OptionLike } from "../Autocomplete.types";
 
 interface UseChipNavigationProps<Value extends OptionLike> {
@@ -34,9 +34,9 @@ export function useChipNavigation<Value extends OptionLike>({
   );
   const [previousInputValue, setPreviousInputValue] = useState(inputValue);
 
-  const activeChipIndex = useMemo(
-    () => clampActiveIndex(rawActiveChipIndex, selectedValues.length),
-    [rawActiveChipIndex, selectedValues.length],
+  const activeChipIndex = clampActiveIndex(
+    rawActiveChipIndex,
+    selectedValues.length,
   );
 
   if (previousInputValue !== inputValue) {
