@@ -287,7 +287,7 @@
       },
       "limitSelectionText": {
         "defaultValue": {
-          "value": "(count) => `+${count} more`"
+          "value": "(count) => `+${count}`"
         },
         "description": "Function to generate the label displayed when selections are truncated\nby `limitVisibleSelections`. Receives the number of hidden selections.\n\nOnly applicable when `multiple` is `true`. Ignored for single-select.",
         "name": "limitSelectionText",
@@ -297,7 +297,7 @@
         },
         "required": false,
         "type": {
-          "name": "(truncatedCount: number) => string"
+          "name": "(truncatedCount: number) => ReactNode"
         }
       },
       "openOnFocus": {
