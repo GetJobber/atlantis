@@ -353,7 +353,7 @@ export function LightBoxThumbnails() {
  * </LightBox.Provider>
  * ```
  */
-export function LightBox(props: LightBoxProps) {
+function LightBox(props: LightBoxProps) {
   return (
     <LightBoxProvider {...props}>
       <LightBoxContent />
@@ -370,3 +370,5 @@ LightBox.Slides = LightBoxSlides;
 LightBox.Navigation = LightBoxNavigation;
 LightBox.Caption = LightBoxCaption;
 LightBox.Thumbnails = LightBoxThumbnails;
+
+export { LightBox };
