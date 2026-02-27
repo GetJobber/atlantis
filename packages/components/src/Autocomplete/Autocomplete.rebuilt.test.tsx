@@ -2807,4 +2807,79 @@ describe("AutocompleteRebuilt", () => {
       expect(input).toHaveAttribute("data-test", "autocomplete-input");
     });
   });
+
+  describe("autoHighlight", () => {
+    it("highlights the first option on open when autoHighlight is true", async () => {
+      render(<Wrapper autoHighlight />);
+
+      await openAutocomplete();
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("One");
+    });
+
+    it("does not highlight the first option on open when autoHighlight is false (default)", async () => {
+      render(<Wrapper />);
+
+      await openAutocomplete();
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).toBeNull();
+    });
+
+    it("keeps the first option highlighted after typing narrows the list", async () => {
+      render(<Wrapper autoHighlight />);
+
+      await openAutocomplete();
+      await typeInInput("T");
+
+      await waitFor(() => {
+        const activeOption = getActiveOption();
+
+        expect(activeOption).not.toBeNull();
+        expect(activeOption?.textContent).toContain("Two");
+      });
+    });
+
+    it("still highlights the selected option instead of the first when a selection exists", async () => {
+      render(<Wrapper autoHighlight initialValue={{ label: "Three" }} />);
+
+      await openAutocomplete();
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Three");
+    });
+
+    it("allows arrow navigation after auto-highlighting", async () => {
+      render(<Wrapper autoHighlight />);
+
+      await openAutocomplete();
+      await navigateDown(1);
+
+      const activeOption = getActiveOption();
+
+      expect(activeOption).not.toBeNull();
+      expect(activeOption?.textContent).toContain("Two");
+    });
+
+    it("highlights the first option on reopen after closing without selection", async () => {
+      render(<Wrapper autoHighlight />);
+
+      await openAutocomplete();
+      await closeAutocomplete();
+      await reopenAutocomplete("click");
+
+      await waitFor(() => {
+        const activeOption = getActiveOption();
+
+        expect(activeOption).not.toBeNull();
+        expect(activeOption?.textContent).toContain("One");
+      });
+    });
+  });
 });

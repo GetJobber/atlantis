@@ -549,6 +549,14 @@ interface AutocompleteRebuiltBaseProps<
     | ((args: { inputValue: string }) => MenuAction<ActionExtra>[]);
 
   /**
+   * If `true`, the first option is automatically highlighted when the menu
+   * opens and as the available options change (e.g. while the user types).
+   *
+   * @default false
+   */
+  readonly autoHighlight?: boolean;
+
+  /**
    * Whether the menu should open when the input gains focus.
    * Note: Clicking on the input will always open the menu.
    * openOnFocus only determines the behavior of focus events such as tabs or programmatic focus.

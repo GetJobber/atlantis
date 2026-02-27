@@ -735,6 +735,7 @@ const TemplateEverythingCustomized = () => {
   );
 };
 
+// eslint-disable-next-line max-statements
 const TemplateFocusBehavior = () => {
   const [value, setValue] = useState<OptionLike | undefined>();
   const [inputValue, setInputValue] = useState("");
@@ -744,6 +745,9 @@ const TemplateFocusBehavior = () => {
 
   const [otherInputValue, setOtherInputValue] = useState("");
   const [anotherInputValue, setAnotherInputValue] = useState("");
+
+  const [thirdInputValue, setThirdInputValue] = useState("");
+  const [thirdValue, setThirdValue] = useState<OptionLike | undefined>();
 
   const [lastBlur, setLastBlur] = useState("");
   const [lastFocus, setLastFocus] = useState("");
@@ -820,6 +824,18 @@ const TemplateFocusBehavior = () => {
         onInputChange={setSecondInputValue}
         onBlur={() => setLastBlur("Second Autocomplete blurred")}
         onFocus={() => setLastFocus("Second Autocomplete focused")}
+      />
+      <Autocomplete
+        version={2}
+        placeholder="autoHighlight=true"
+        autoHighlight
+        menu={defineMenu<OptionLike>([
+          { type: "options", options: simpleOptions.slice(0, 3) },
+        ])}
+        value={thirdValue}
+        onChange={setThirdValue}
+        inputValue={thirdInputValue}
+        onInputChange={setThirdInputValue}
       />
       <Modal
         open={openCreatModal}

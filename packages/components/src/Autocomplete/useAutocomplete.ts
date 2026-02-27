@@ -50,6 +50,7 @@ export function useAutocomplete<
     openOnFocus = true,
     readOnly = false,
     debounce: debounceMs = 300,
+    autoHighlight = false,
   } = props;
 
   const isHandlingMenuInteractionRef = useRef(false);
@@ -390,6 +391,7 @@ export function useAutocomplete<
 
     // When opening the menu, initialize the highlight consistently:
     // - If there is a current selection, highlight that option
+    // - If autoHighlight is enabled, highlight the first option
     // - Otherwise, leave the highlight unset (null)
     const selectedValue = multiple
       ? ((value as AutocompleteValue<Value, true>)?.[0] as Value | undefined)
@@ -409,8 +411,24 @@ export function useAutocomplete<
       }
     }
 
+    if (autoHighlight && mainNavigableCount > 0) {
+      setActiveIndex(headerInteractivePersistents.length);
+
+      return;
+    }
+
     setActiveIndex(null);
-  }, [open, multiple, value, renderable, equals, setActiveIndex]);
+  }, [
+    open,
+    multiple,
+    value,
+    renderable,
+    equals,
+    setActiveIndex,
+    autoHighlight,
+    mainNavigableCount,
+    headerInteractivePersistents.length,
+  ]);
 
   const onSelection = useCallback(
     (option: Value) => {

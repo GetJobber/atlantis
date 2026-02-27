@@ -113,6 +113,7 @@ export function Wrapper<T extends OptionLike>({
   readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, false>["UNSAFE_styles"];
   readonly readOnly?: boolean;
   readonly debounce?: number;
+  readonly autoHighlight?: boolean;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -210,6 +211,7 @@ export function FocusableSiblingsWrapper<T extends OptionLike>({
   menu,
   readOnly,
   openOnFocus = false,
+  autoHighlight,
 }: {
   readonly onChange?: (v: T | undefined) => void;
   readonly onInputChange?: (v: string) => void;
@@ -217,6 +219,7 @@ export function FocusableSiblingsWrapper<T extends OptionLike>({
   readonly readOnly?: boolean;
   readonly onFocus?: () => void;
   readonly openOnFocus?: boolean;
+  readonly autoHighlight?: boolean;
 }) {
   const [value, setValue] = React.useState<T | undefined>(undefined);
   const [inputValue, setInputValue] = React.useState<string>("");
@@ -238,6 +241,7 @@ export function FocusableSiblingsWrapper<T extends OptionLike>({
         placeholder=""
         openOnFocus={openOnFocus}
         readOnly={readOnly}
+        autoHighlight={autoHighlight}
       />
       <button type="button" data-testid="after-button">
         After
