@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.112.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.0...@jobber/components@6.112.1) (2026-02-27)
+
+
+### Bug Fixes
+
+* **components:** Fix DatePickers rendering inside Modals ([#2912](https://github.com/GetJobber/atlantis/issues/2912)) ([b8dfc56](https://github.com/GetJobber/atlantis/commit/b8dfc566091297cf095629b90c3bb5b113b6ff72))
+
+
+
+
+
 # [6.112.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.7...@jobber/components@6.112.0) (2026-02-25)
 
 
