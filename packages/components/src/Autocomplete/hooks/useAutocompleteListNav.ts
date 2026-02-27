@@ -43,7 +43,18 @@ export interface UseAutocompleteListNavProps {
   readOnly?: boolean;
 }
 
-// eslint-disable-next-line max-statements
+function useStableSetReference(
+  refs: UseFloatingReturn["refs"],
+): (el: HTMLElement | null) => void {
+  const latestRefs = useRef(refs);
+  latestRefs.current = refs;
+
+  return useCallback(
+    (el: HTMLElement | null) => latestRefs.current.setReference(el),
+    [],
+  );
+}
+
 export function useAutocompleteListNav({
   navigableCount,
   shouldResetActiveIndexOnClose,
@@ -129,13 +140,7 @@ export function useAutocompleteListNav({
     });
   }, [navigableCount, setActiveIndex, listRef]);
 
-  const latestRefs = useRef(refs);
-  latestRefs.current = refs;
-
-  const setReferenceElement = useCallback(
-    (el: HTMLElement | null) => latestRefs.current.setReference(el),
-    [],
-  );
+  const setReferenceElement = useStableSetReference(refs);
 
   return {
     refs,
