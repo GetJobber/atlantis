@@ -390,6 +390,7 @@ function SelectionChip<Value extends OptionLike>({
 }) {
   return (
     <span
+      data-selection-disabled={disabled}
       className={classNames(
         styles.selectionChip,
         {
@@ -410,6 +411,7 @@ function SelectionChip<Value extends OptionLike>({
       {canDismiss && (
         <button
           type="button"
+          disabled={disabled}
           className={styles.chipDismiss}
           onClick={onDismiss}
           onPointerDown={preventDefaultPointerDown}
