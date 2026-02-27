@@ -440,7 +440,7 @@ function SelectionChipsList<Value extends OptionLike>({
   readonly selectedValues: Value[];
   readonly isFocused: boolean;
   readonly limitVisibleSelections?: number;
-  readonly limitSelectionText?: (truncatedCount: number) => string;
+  readonly limitSelectionText?: (truncatedCount: number) => React.ReactNode;
   readonly activeChipIndex: number | null;
   readonly disabled?: boolean;
   readonly getOptionLabel: (option: Value) => string;
@@ -530,7 +530,7 @@ interface MultipleSelectionLayoutProps<Value extends OptionLike> {
   readonly inputAriaProps: Record<string, unknown>;
   readonly inputDataAttrs: Record<string, unknown>;
   readonly limitVisibleSelections?: number;
-  readonly limitSelectionText?: (truncatedCount: number) => string;
+  readonly limitSelectionText?: (truncatedCount: number) => React.ReactNode;
   readonly unsafeClassName?: string;
   readonly unsafeStyle?: React.CSSProperties;
   readonly children: React.ReactNode;

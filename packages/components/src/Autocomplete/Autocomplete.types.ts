@@ -585,9 +585,9 @@ interface AutocompleteRebuiltBaseProps<
    *
    * Only applicable when `multiple` is `true`. Ignored for single-select.
    *
-   * @default (count) => `+${count} more`
+   * @default (count) => `+${count}`
    */
-  readonly limitSelectionText?: (truncatedCount: number) => string;
+  readonly limitSelectionText?: (truncatedCount: number) => React.ReactNode;
 
   /**
    * Whether the menu should open when the input gains focus.
