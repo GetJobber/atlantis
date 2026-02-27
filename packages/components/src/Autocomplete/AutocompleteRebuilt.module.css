@@ -156,8 +156,10 @@
 }
 
 .selectionChipDisabled {
+  border: var(--border-base) solid var(--color-border);
+  color: var(--color-disabled);
+  background-color: var(--color-disabled--secondary);
   cursor: default;
-  opacity: 0.6;
 }
 
 .chipDismiss {
