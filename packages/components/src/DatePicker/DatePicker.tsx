@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import type { XOR } from "ts-xor";
-import { useRefocusOnActivator } from "@jobber/hooks";
 import {
   FloatingNode,
   FloatingPortal,
@@ -130,9 +129,12 @@ function useDatePickerHandlers(
   onChange: (val: Date) => void,
   setOpen: (open: boolean) => void,
   onOpenChange?: (open: boolean) => void,
+  portalled?: boolean,
   smartAutofocus?: boolean,
   focusOnSelectedDate?: () => boolean,
 ) {
+  const activatorRef = useRef<HTMLElement | null>(null);
+
   const handleChange = useCallback(
     (value: Date | null) => {
       onChange(value as Date);
@@ -140,20 +142,26 @@ function useDatePickerHandlers(
     [onChange],
   );
   const handleCalendarOpen = useCallback(() => {
+    if (portalled) {
+      activatorRef.current = document.activeElement as HTMLElement | null;
+    }
     setOpen(true);
     onOpenChange?.(true);
 
     if (smartAutofocus) {
-      // The portal DOM may not be painted yet, so defer to the next frame
       requestAnimationFrame(() => {
         focusOnSelectedDate?.();
       });
     }
-  }, [setOpen, onOpenChange, smartAutofocus, focusOnSelectedDate]);
+  }, [setOpen, onOpenChange, portalled, smartAutofocus, focusOnSelectedDate]);
   const handleCalendarClose = useCallback(() => {
+    if (portalled) {
+      activatorRef.current?.focus();
+      activatorRef.current = null;
+    }
     setOpen(false);
     onOpenChange?.(false);
-  }, [setOpen, onOpenChange]);
+  }, [setOpen, onOpenChange, portalled]);
 
   return { handleChange, handleCalendarOpen, handleCalendarClose };
 }
@@ -197,10 +205,10 @@ export function DatePicker({
       onChange,
       setOpen,
       onOpenChange,
-      smartAutofocus ?? true,
+      renderInsidePortal,
+      smartAutofocus,
       focusOnSelectedDate,
     );
-  useRefocusOnActivator(smartAutofocus ? open : false);
 
   return (
     <div

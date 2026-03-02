@@ -378,7 +378,7 @@ describe("InputDate V2", () => {
   });
 
   describe("focus and blur behavior", () => {
-    it("fires onBlur after onChange when user clicks to select a date", async () => {
+    it("does not fire onBlur when user selects a date, only when focus leaves the input", async () => {
       const user = userEvent.setup();
       const date = "11/11/2011";
       const newDate = "11/15/2011";
@@ -405,14 +405,11 @@ describe("InputDate V2", () => {
       await user.click(screen.getByText("15"));
 
       expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
+      expect(blurHandler).not.toHaveBeenCalled();
+
+      await user.tab();
+
       expect(blurHandler).toHaveBeenCalledTimes(1);
-
-      const focusCallOrder = focusHandler.mock.invocationCallOrder[0];
-      const changeCallOrder = changeHandler.mock.invocationCallOrder[0];
-      const blurCallOrder = blurHandler.mock.invocationCallOrder[0];
-
-      expect(focusCallOrder).toBeLessThan(changeCallOrder);
-      expect(changeCallOrder).toBeLessThan(blurCallOrder);
     });
 
     it("does not fire onBlur when calendar opens after clicking input", async () => {
