@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.113.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.2...@jobber/components@6.113.0) (2026-03-02)
+
+
+### Features
+
+* **components:** Autocomplete Multiselect ([#2921](https://github.com/GetJobber/atlantis/issues/2921)) ([8ad6fa6](https://github.com/GetJobber/atlantis/commit/8ad6fa6879714d3df74c7b89ce51489eeec8184a))
+
+
+
+
+
 ## [6.112.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.1...@jobber/components@6.112.2) (2026-02-27)
 
 **Note:** Version bump only for package @jobber/components
