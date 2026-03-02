@@ -911,7 +911,6 @@ const TemplateMultiple = () => {
         clearable="always"
         value={customRenderValue}
         multiple
-        size="large"
         onChange={setCustomRenderValue}
         menu={defineMenu<OptionLike>([
           { type: "options", options: simpleOptions },
