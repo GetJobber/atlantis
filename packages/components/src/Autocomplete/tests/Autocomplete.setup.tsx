@@ -48,6 +48,8 @@ export function Wrapper<T extends OptionLike>({
   onInputChange,
   onBlur,
   onFocus,
+  onOpen,
+  onClose,
   menu,
   openOnFocus,
   filterOptions,
@@ -74,6 +76,8 @@ export function Wrapper<T extends OptionLike>({
   readonly onInputChange?: (v: string) => void;
   readonly onBlur?: () => void;
   readonly onFocus?: () => void;
+  readonly onOpen?: () => void;
+  readonly onClose?: () => void;
   readonly menu?: MenuItem<T>[];
   readonly openOnFocus?: boolean;
   readonly filterOptions?: false | ((opts: T[], input: string) => T[]);
@@ -131,6 +135,8 @@ export function Wrapper<T extends OptionLike>({
       onInputChange={onInputChange ?? setInputValue}
       onBlur={onBlur}
       onFocus={onFocus}
+      onOpen={onOpen}
+      onClose={onClose}
       menu={menu ?? (built.menu as MenuItem<T>[])}
       placeholder=""
       openOnFocus={openOnFocus}
@@ -300,6 +306,8 @@ interface MultipleWrapperProps<T extends OptionLike> {
  */
 export function FocusableSiblingsWrapper<T extends OptionLike>({
   onFocus,
+  onOpen,
+  onClose,
   onChange,
   onInputChange,
   menu,
@@ -311,6 +319,8 @@ export function FocusableSiblingsWrapper<T extends OptionLike>({
   readonly menu?: MenuItem<T>[];
   readonly readOnly?: boolean;
   readonly onFocus?: () => void;
+  readonly onOpen?: () => void;
+  readonly onClose?: () => void;
   readonly openOnFocus?: boolean;
 }) {
   const [value, setValue] = React.useState<T | undefined>(undefined);
@@ -327,6 +337,8 @@ export function FocusableSiblingsWrapper<T extends OptionLike>({
         value={value}
         onChange={onChange ?? setValue}
         onFocus={onFocus}
+        onOpen={onOpen}
+        onClose={onClose}
         inputValue={inputValue}
         onInputChange={onInputChange ?? setInputValue}
         menu={menu ?? (built.menu as MenuItem<T>[])}

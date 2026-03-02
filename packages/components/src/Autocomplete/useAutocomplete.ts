@@ -342,6 +342,19 @@ export function useAutocomplete<
     },
   });
 
+  const prevOpenRef = useRef(false);
+  // TODO: Leverage FloatingUI useFocus, and onArrowKeyDown to manage open state and allow onOpenChange to be the source of truth
+  // JOB-154442
+  useEffect(() => {
+    if (open && !prevOpenRef.current) {
+      props.onOpen?.();
+    } else if (!open && prevOpenRef.current) {
+      props.onClose?.();
+    }
+
+    prevOpenRef.current = open;
+  }, [open, props.onOpen, props.onClose]);
+
   function selectOption(option: Value) {
     if (multiple) {
       const current =

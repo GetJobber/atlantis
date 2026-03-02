@@ -182,6 +182,96 @@ describe("AutocompleteRebuilt", () => {
     });
   });
 
+  describe("onOpen and onClose callbacks", () => {
+    it("calls onOpen when the menu opens via click", async () => {
+      const onOpen = jest.fn();
+      render(<Wrapper onOpen={onOpen} />);
+
+      await openAutocomplete();
+      await expectMenuShown();
+
+      expect(onOpen).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onOpen when the menu opens via keyboard", async () => {
+      const onOpen = jest.fn();
+      render(<FocusableSiblingsWrapper openOnFocus={false} onOpen={onOpen} />);
+
+      await tabToInput();
+      await openWithKeyboard("arrowDown");
+      await expectMenuShown();
+
+      expect(onOpen).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onOpen when the menu opens on focus (openOnFocus=true)", async () => {
+      const onOpen = jest.fn();
+      render(<FocusableSiblingsWrapper openOnFocus onOpen={onOpen} />);
+
+      await tabToInput();
+      await expectMenuShown();
+
+      expect(onOpen).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onClose when the menu closes via Escape", async () => {
+      const onClose = jest.fn();
+      render(<Wrapper onClose={onClose} />);
+
+      await openAutocomplete();
+      await expectMenuShown();
+
+      await closeAutocomplete();
+      await expectMenuClosed();
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onClose when the menu closes after selecting an option", async () => {
+      const onClose = jest.fn();
+      render(<Wrapper onClose={onClose} />);
+
+      await openAutocomplete();
+      await expectMenuShown();
+
+      await selectWithClick("One");
+      await expectMenuClosed();
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onClose when the menu closes on outside blur", async () => {
+      const onClose = jest.fn();
+      render(<FocusableSiblingsWrapper openOnFocus onClose={onClose} />);
+
+      await tabToInput();
+      await expectMenuShown();
+
+      await userEvent.tab();
+      await expectMenuClosed();
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
+
+    it("calls onOpen and onClose in sequence for open/close/reopen cycle", async () => {
+      const onOpen = jest.fn();
+      const onClose = jest.fn();
+      render(<Wrapper onOpen={onOpen} onClose={onClose} />);
+
+      await openAutocomplete();
+      await expectMenuShown();
+      expect(onOpen).toHaveBeenCalledTimes(1);
+
+      await closeAutocomplete();
+      await expectMenuClosed();
+      expect(onClose).toHaveBeenCalledTimes(1);
+
+      await reopenAutocomplete();
+      await expectMenuShown();
+      expect(onOpen).toHaveBeenCalledTimes(2);
+    });
+  });
+
   describe("openOnFocus=false", () => {
     it("does not open menu on tab focus, only on arrowDown", async () => {
       render(<FocusableSiblingsWrapper />);

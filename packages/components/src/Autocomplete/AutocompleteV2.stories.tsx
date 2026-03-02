@@ -884,6 +884,7 @@ const TemplateMultiple = () => {
     [],
   );
   const [allowFreeFormInputValue, setAllowFreeFormInputValue] = useState("");
+  const [suffix, setSuffix] = useState<IconNames | undefined>("arrowDown");
 
   return (
     <Content>
@@ -918,7 +919,15 @@ const TemplateMultiple = () => {
         inputValue={customRenderInputValue}
         onInputChange={setCustomRenderInputValue}
         suffix={{
-          icon: "arrowDown",
+          icon: suffix,
+        }}
+        onOpen={() => {
+          console.log("open callback called");
+          setSuffix("arrowUp");
+        }}
+        onClose={() => {
+          console.log("close callback called");
+          setSuffix("arrowDown");
         }}
         UNSAFE_styles={{
           selection: {
