@@ -3,6 +3,80 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.113.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.2...@jobber/components@6.113.0) (2026-03-02)
+
+
+### Features
+
+* **components:** Autocomplete Multiselect ([#2921](https://github.com/GetJobber/atlantis/issues/2921)) ([8ad6fa6](https://github.com/GetJobber/atlantis/commit/8ad6fa6879714d3df74c7b89ce51489eeec8184a))
+
+
+
+
+
+## [6.112.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.1...@jobber/components@6.112.2) (2026-02-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [6.112.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.0...@jobber/components@6.112.1) (2026-02-27)
+
+
+### Bug Fixes
+
+* **components:** Fix DatePickers rendering inside Modals ([#2912](https://github.com/GetJobber/atlantis/issues/2912)) ([b8dfc56](https://github.com/GetJobber/atlantis/commit/b8dfc566091297cf095629b90c3bb5b113b6ff72))
+
+
+
+
+
+# [6.112.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.7...@jobber/components@6.112.0) (2026-02-25)
+
+
+### Features
+
+* **components:** Add UNSAFE to Menu Trigger ([#2927](https://github.com/GetJobber/atlantis/issues/2927)) ([898a6de](https://github.com/GetJobber/atlantis/commit/898a6de50fe0fc015af9c7454aba7491552151c2))
+
+
+
+
+
+## [6.111.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.6...@jobber/components@6.111.7) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Adjust Clearable Positioning ([#2925](https://github.com/GetJobber/atlantis/issues/2925)) ([d137e67](https://github.com/GetJobber/atlantis/commit/d137e67cd622712677afb5f602aff726f4127abf))
+
+
+
+
+
+## [6.111.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.5...@jobber/components@6.111.6) (2026-02-24)
+
+
+### Bug Fixes
+
+* **components:** Update SegmentedControl visual styling and add hover state ([#2919](https://github.com/GetJobber/atlantis/issues/2919)) ([d57b082](https://github.com/GetJobber/atlantis/commit/d57b082b21241c05a77a5e65766c786a2609b82f))
+
+
+
+
+
+## [6.111.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.4...@jobber/components@6.111.5) (2026-02-23)
+
+
+### Bug Fixes
+
+* **components:** Fix Lightbox transitions [JOB-152407] ([#2918](https://github.com/GetJobber/atlantis/issues/2918)) ([c2beb0c](https://github.com/GetJobber/atlantis/commit/c2beb0ccea32348d5e9cbba23504dc6a90c70c0b))
+
+
+
+
+
 ## [6.111.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.111.3...@jobber/components@6.111.4) (2026-02-23)
 
 

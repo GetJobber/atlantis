@@ -2,6 +2,8 @@ import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BREAKPOINT_SIZES, mockViewportWidth } from "@jobber/hooks";
 import { LightBox } from ".";
+import { slideVariants } from "./LightBox";
+import * as POM from "./LightBox.pom";
 
 const { setViewportWidth } = mockViewportWidth();
 
@@ -67,7 +69,7 @@ describe("LightBox", () => {
       expect(handleClose).toHaveBeenCalledTimes(1);
     });
 
-    const { getByLabelText } = render(
+    render(
       <LightBox
         open={true}
         images={[
@@ -81,7 +83,7 @@ describe("LightBox", () => {
       />,
     );
 
-    fireEvent.click(getByLabelText("Close"));
+    fireEvent.click(POM.getCloseButton());
   });
 
   test("displays the image title of the selected imageIndex", () => {
@@ -123,7 +125,7 @@ describe("LightBox", () => {
           {
             title: "title",
             caption: "caption",
-            url: "",
+            url: "https://example.com/photo.jpg",
           },
         ],
         onRequestClose: jest.fn(),
@@ -164,8 +166,8 @@ describe("LightBox", () => {
           onRequestClose={jest.fn()}
         />,
       );
-      expect(screen.queryByLabelText("Previous image")).toBeInTheDocument();
-      expect(screen.queryByLabelText("Next image")).toBeInTheDocument();
+      expect(POM.getPreviousButton()).toBeInTheDocument();
+      expect(POM.getNextButton()).toBeInTheDocument();
     });
 
     test("doesn't display the next and previous buttons when only one image", () => {
@@ -183,8 +185,26 @@ describe("LightBox", () => {
           onRequestClose={jest.fn()}
         />,
       );
-      expect(screen.queryByLabelText("Previous image")).toBeNull();
-      expect(screen.queryByLabelText("Next image")).toBeNull();
+      expect(POM.getPreviousButton()).toBeNull();
+      expect(POM.getNextButton()).toBeNull();
+    });
+  });
+
+  describe("slideVariants", () => {
+    it("enter slides in from the right when direction is forward", () => {
+      expect(slideVariants.enter({ current: 1 })).toEqual({ x: "150%" });
+    });
+
+    it("enter slides in from the left when direction is backward", () => {
+      expect(slideVariants.enter({ current: -1 })).toEqual({ x: "-150%" });
+    });
+
+    it("exit slides out to the left when direction is forward", () => {
+      expect(slideVariants.exit({ current: 1 })).toEqual({ x: "-150%" });
+    });
+
+    it("exit slides out to the right when direction is backward", () => {
+      expect(slideVariants.exit({ current: -1 })).toEqual({ x: "150%" });
     });
   });
 
@@ -216,7 +236,7 @@ describe("LightBox", () => {
       expect(
         screen.queryByAltText("alt of unselected image"),
       ).toBeInTheDocument();
-      expect(screen.queryByTestId("ATL-Thumbnail-Bar")).toBeInTheDocument();
+      expect(POM.getThumbnailBar()).toBeInTheDocument();
     });
 
     test("doesn't display when there is only one image", () => {
@@ -236,7 +256,7 @@ describe("LightBox", () => {
           onRequestClose={handleClose}
         />,
       );
-      expect(screen.queryByTestId("thumbnail-bar")).not.toBeInTheDocument();
+      expect(POM.getThumbnailBar()).not.toBeInTheDocument();
     });
 
     test("displays the selected image thumbnail and caption when imageclicked", () => {
@@ -269,8 +289,7 @@ describe("LightBox", () => {
         screen.queryByText(destinationImageCaption),
       ).not.toBeInTheDocument();
 
-      const destinationImage = screen.getByAltText(destinationImageAlt);
-      fireEvent.click(destinationImage);
+      fireEvent.click(POM.getThumbnailByAlt(destinationImageAlt));
 
       const imagesWithAlt = screen.getAllByAltText(destinationImageAlt);
       expect(imagesWithAlt).toHaveLength(2);

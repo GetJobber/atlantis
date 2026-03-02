@@ -1,26 +1,32 @@
 import type { Ref } from "react";
-import React, { forwardRef, useCallback, useEffect, useMemo } from "react";
-import {
-  FloatingFocusManager,
-  FloatingPortal,
-  useTransitionStyles,
-} from "@floating-ui/react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { useTransitionStyles } from "@floating-ui/react";
 import classNames from "classnames";
 import { tokens } from "@jobber/design";
 import type {
   AutocompleteRebuiltProps,
   OptionLike,
 } from "./Autocomplete.types";
+import { EMPTY_SELECTED_VALUES } from "./constants";
 import styles from "./AutocompleteRebuilt.module.css";
 import { useAutocomplete } from "./useAutocomplete";
+import { useChipNavigation } from "./hooks/useChipNavigation";
 import { preventDefaultPointerDown } from "./utils/interactionUtils";
-import { MenuList } from "./components/MenuList";
-import { PersistentRegion } from "./components/PersistentRegion";
+import { FloatingMenu } from "./components/FloatingMenu";
 import { InputText } from "../InputText";
 import type { InputTextRebuiltProps } from "../InputText/InputText.types";
-import { Glimmer } from "../Glimmer";
+import { FormFieldWrapper } from "../FormField";
 import { mergeRefs } from "../utils/mergeRefs";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import { Icon } from "../Icon";
+import { Typography } from "../Typography";
 
 export const AutocompleteRebuilt = forwardRef(AutocompleteRebuiltInternal) as <
   Value extends OptionLike = OptionLike,
@@ -50,6 +56,12 @@ function AutocompleteRebuiltInternal<
     loading = false,
   } = props;
 
+  const formFieldRef = useRef<HTMLDivElement>(null);
+  // Ref for the multi-select input element, where we cannot use refs.domReference
+  // since it is not attached to the literal input element, whereas single + InputText only offers a
+  // ref to the literal input element.
+  const internalInputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+
   const {
     renderable,
     optionCount,
@@ -71,12 +83,14 @@ function AutocompleteRebuiltInternal<
     onSelection,
     onAction,
     onInteractionPointerDown,
+    removeSelection,
     onInputChangeFromUser,
     onInputBlur,
     onInputFocus,
     onInputKeyDown,
     setReferenceElement,
-  } = useAutocomplete<Value, Multiple>(props);
+    clearAll,
+  } = useAutocomplete<Value, Multiple>(props, internalInputRef);
   const listboxId = React.useId();
 
   // Provides mount/unmount-aware transition styles for the floating element
@@ -87,17 +101,61 @@ function AutocompleteRebuiltInternal<
     duration: { open: tokens["timing-base"], close: tokens["timing-base"] },
   });
 
+  const [menuWidth, setMenuWidth] = React.useState<number | undefined>(
+    undefined,
+  );
   const [positionRefEl, setPositionRefEl] = React.useState<Element | null>(
     null,
   );
 
+  const inputId = React.useId();
+  const descriptionId = `descriptionUUID--${inputId}`;
+
+  const selectedValues: Value[] = props.multiple
+    ? ((props.value ?? EMPTY_SELECTED_VALUES) as Value[])
+    : (EMPTY_SELECTED_VALUES as Value[]);
+
+  const {
+    activeChipIndex,
+    onKeyDown: chipKeyDown,
+    onBlur: chipBlur,
+  } = useChipNavigation<Value>({
+    selectedValues,
+    inputValue,
+    readOnly: props.readOnly,
+    removeSelection,
+    onInputKeyDown,
+    onInputBlur,
+  });
+
+  const focusInputOnPointerDown = useCallback((e: React.PointerEvent) => {
+    const target = e.target as HTMLElement;
+
+    if (target.closest("input, button")) return;
+
+    e.preventDefault();
+    internalInputRef.current?.focus();
+  }, []);
+
   const composedReferenceProps = getReferenceProps({
-    onKeyDown: onInputKeyDown,
+    onKeyDown: props.multiple ? chipKeyDown : onInputKeyDown,
     onFocus: onInputFocus,
-    onBlur: onInputBlur,
+    onBlur: props.multiple ? chipBlur : onInputBlur,
+    ...(props.multiple ? { onPointerDown: focusInputOnPointerDown } : {}),
   });
 
   const dataAttrs = filterDataAttributes(props);
+
+  const ariaProps = {
+    role: "combobox" as const,
+    "aria-autocomplete": "list" as const,
+    "aria-expanded": open ? true : false,
+    "aria-controls": listboxId,
+    "aria-activedescendant":
+      activeChipIndex === null && open && activeIndex != null
+        ? `${listboxId}-item-${activeIndex}`
+        : undefined,
+  };
 
   const inputProps: InputTextRebuiltProps = {
     version: 2 as const,
@@ -111,6 +169,7 @@ function AutocompleteRebuiltInternal<
     error: error ?? undefined,
     name: props.name,
     invalid,
+    clearable: props.clearable,
     autoComplete: "off",
     autoFocus: props.autoFocus,
     description,
@@ -118,39 +177,58 @@ function AutocompleteRebuiltInternal<
     prefix: props.prefix,
     suffix: props.suffix,
     ...(props.readOnly ? {} : composedReferenceProps),
-    role: "combobox",
-    "aria-autocomplete": "list",
-    "aria-expanded": open ? true : false,
-    "aria-controls": listboxId,
-    "aria-activedescendant":
-      open && activeIndex != null
-        ? `${listboxId}-item-${activeIndex}`
-        : undefined,
+    ...ariaProps,
     ...dataAttrs,
   };
+
+  const chipAreaRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (!node) return;
+
+      // In multiple mode, we use the input as the reference so floating-ui's
+      // useListNavigation treats it as a typeable combobox and allows Space.
+      // Only use chipArea for positioning/sizing.
+      if (!props.multiple) {
+        setReferenceElement(node);
+      }
+
+      const multiContainer = node.closest(
+        "[data-testid='ATL-AutocompleteRebuilt-multiSelectContainer']",
+      );
+
+      if (multiContainer) {
+        setMenuWidth(multiContainer.clientWidth);
+        setPositionRefEl(multiContainer);
+      }
+    },
+    [setReferenceElement, props.multiple],
+  );
 
   const referenceInputRef = useCallback(
     (node: HTMLInputElement | HTMLTextAreaElement | null) => {
       setReferenceElement(node);
 
-      // Workaround to get the visual InputText element, which is not the same
-      // as the literal input reference element when props like suffix/prefix
-      // are present. Used to set the position reference for the floating menu.
-      const visualInputTextElement = node?.closest(
-        "[data-testid='Form-Field-Wrapper']",
-      );
+      if (!props.multiple) {
+        // Workaround to get the visual InputText element, which is not the same
+        // as the literal input reference element when props like suffix/prefix
+        // are present. Used to set the position reference for the floating menu.
+        const visualInputTextElement = node?.closest(
+          "[data-testid='Form-Field-Wrapper']",
+        );
 
-      if (visualInputTextElement) {
-        setPositionRefEl(visualInputTextElement);
+        if (visualInputTextElement) {
+          setPositionRefEl(visualInputTextElement);
+        }
       }
     },
-    [setReferenceElement],
+    [setReferenceElement, props.multiple],
   );
 
   const mergedInputRef = useMemo(
     () =>
       mergeRefs<HTMLInputElement | HTMLTextAreaElement>([
         referenceInputRef,
+        internalInputRef,
         forwardedRef,
       ]),
     [referenceInputRef, forwardedRef],
@@ -158,168 +236,430 @@ function AutocompleteRebuiltInternal<
 
   useEffect(() => {
     if (!positionRefEl) return;
-    // Set the reference element to the visual InputText element so the menu aligns with the input.
     refs.setPositionReference(positionRefEl);
   }, [positionRefEl, refs]);
 
   const menuClassName = classNames(styles.list, props.UNSAFE_className?.menu);
-
   const showEmptyStateMessage =
     optionCount === 0 && props.emptyStateMessage !== false;
 
-  const activeIndexForMiddle =
-    activeIndex != null ? activeIndex - headerInteractiveCount : null;
+  const floatingMenu = isMounted && !props.readOnly && !disabled && (
+    <FloatingMenu<Value>
+      context={context}
+      getFloatingProps={getFloatingProps}
+      refs={refs}
+      listboxId={listboxId}
+      className={menuClassName}
+      floatingStyles={floatingStyles}
+      transitionStyles={transitionStyles}
+      menuWidth={menuWidth}
+      menuStyle={props.UNSAFE_styles?.menu}
+      renderable={renderable}
+      persistentsHeaders={persistentsHeaders}
+      persistentsFooters={persistentsFooters}
+      activeIndex={activeIndex}
+      headerInteractiveCount={headerInteractiveCount}
+      middleNavigableCount={middleNavigableCount}
+      getItemProps={getItemProps}
+      listRef={listRef}
+      onSelection={onSelection}
+      onAction={onAction}
+      onInteractionPointerDown={onInteractionPointerDown}
+      getOptionLabel={getOptionLabel}
+      isOptionSelected={isOptionSelected}
+      loading={loading}
+      showEmptyStateMessage={showEmptyStateMessage}
+      emptyStateMessage={props.emptyStateMessage}
+      customRenderLoading={props.customRenderLoading}
+      customRenderOption={props.customRenderOption}
+      customRenderSection={props.customRenderSection}
+      customRenderAction={props.customRenderAction}
+      customRenderHeader={props.customRenderHeader}
+      customRenderFooter={props.customRenderFooter}
+      slotOverrides={{
+        option: {
+          className: props.UNSAFE_className?.option,
+          style: props.UNSAFE_styles?.option,
+        },
+        action: {
+          className: props.UNSAFE_className?.action,
+          style: props.UNSAFE_styles?.action,
+        },
+        section: {
+          className: props.UNSAFE_className?.section,
+          style: props.UNSAFE_styles?.section,
+        },
+        header: {
+          className: props.UNSAFE_className?.header,
+          style: props.UNSAFE_styles?.header,
+        },
+        footer: {
+          className: props.UNSAFE_className?.footer,
+          style: props.UNSAFE_styles?.footer,
+        },
+      }}
+    />
+  );
+
+  if (props.customRenderInput) {
+    return (
+      <div data-testid="ATL-AutocompleteRebuilt">
+        {props.customRenderInput({ inputRef: mergedInputRef, inputProps })}
+        {floatingMenu}
+      </div>
+    );
+  }
+
+  if (props.multiple) {
+    return (
+      <MultipleSelectionLayout<Value>
+        selectedValues={selectedValues}
+        inputValue={inputValue}
+        disabled={disabled}
+        error={error}
+        invalid={invalid}
+        sizeProp={sizeProp}
+        inputId={inputId}
+        descriptionId={descriptionId}
+        description={description}
+        placeholder={placeholder}
+        clearable={props.clearable}
+        prefix={props.prefix}
+        suffix={props.suffix}
+        readOnly={props.readOnly}
+        name={props.name}
+        autoFocus={props.autoFocus}
+        formFieldRef={formFieldRef}
+        chipAreaRef={chipAreaRef}
+        mergedInputRef={mergedInputRef as React.Ref<HTMLInputElement>}
+        internalInputRef={internalInputRef}
+        activeChipIndex={activeChipIndex}
+        getOptionLabel={getOptionLabel}
+        customRenderValue={props.customRenderValue}
+        removeSelection={removeSelection}
+        clearAll={clearAll}
+        onInputChangeFromUser={onInputChangeFromUser}
+        chipAreaEventProps={
+          props.readOnly
+            ? { onFocus: onInputFocus, onBlur: chipBlur }
+            : composedReferenceProps
+        }
+        inputAriaProps={ariaProps}
+        inputDataAttrs={dataAttrs}
+        limitVisibleSelections={props.limitVisibleSelections}
+        limitSelectionText={props.limitSelectionText}
+        unsafeClassName={props.UNSAFE_className?.selection}
+        unsafeStyle={props.UNSAFE_styles?.selection}
+      >
+        {floatingMenu}
+      </MultipleSelectionLayout>
+    );
+  }
 
   return (
     <div data-testid="ATL-AutocompleteRebuilt">
-      {props.customRenderInput ? (
-        props.customRenderInput({ inputRef: mergedInputRef, inputProps })
-      ) : (
-        <InputText ref={mergedInputRef} {...inputProps} />
-      )}
-      {isMounted && !props.readOnly && (
-        <FloatingPortal>
-          <FloatingFocusManager
-            context={context}
-            modal={false}
-            initialFocus={-1}
-            closeOnFocusOut
-            returnFocus={false}
-          >
-            <div
-              {...getFloatingProps({
-                ref(node: HTMLElement | null) {
-                  if (node) refs.setFloating(node);
-                },
-                id: listboxId,
-                role: "listbox",
-                className: menuClassName,
-                style: {
-                  ...floatingStyles,
-                  ...transitionStyles,
-                  ...props.UNSAFE_styles?.menu,
-                },
-              })}
-            >
-              {/* Header persistents */}
-              <PersistentRegion<Value>
-                items={persistentsHeaders}
-                position="header"
-                activeIndex={activeIndex}
-                indexOffset={0}
-                listboxId={listboxId}
-                getItemProps={getItemProps}
-                listRef={listRef}
-                customRenderHeader={props.customRenderHeader}
-                customRenderFooter={props.customRenderFooter}
-                onAction={onAction}
-                onInteractionPointerDown={onInteractionPointerDown}
-                className={classNames(
-                  styles.persistentHeader,
-                  props.UNSAFE_className?.header,
-                )}
-                style={props.UNSAFE_styles?.header}
-              />
-
-              {/* Scrollable middle region */}
-              <div className={styles.scrollRegion}>
-                {loading ? (
-                  props.customRenderLoading ?? <LoadingContent />
-                ) : (
-                  <>
-                    {showEmptyStateMessage && (
-                      <EmptyStateMessage emptyState={props.emptyStateMessage} />
-                    )}
-                    {renderable.length > 0 && (
-                      <MenuList<Value>
-                        items={renderable}
-                        activeIndex={activeIndexForMiddle}
-                        indexOffset={headerInteractiveCount}
-                        listboxId={listboxId}
-                        getItemProps={getItemProps}
-                        listRef={listRef}
-                        customRenderOption={props.customRenderOption}
-                        customRenderSection={props.customRenderSection}
-                        customRenderAction={props.customRenderAction}
-                        getOptionLabel={getOptionLabel}
-                        onSelect={onSelection}
-                        onAction={onAction}
-                        onInteractionPointerDown={onInteractionPointerDown}
-                        isOptionSelected={isOptionSelected}
-                        slotOverrides={{
-                          option: {
-                            className: props.UNSAFE_className?.option,
-                            style: props.UNSAFE_styles?.option,
-                          },
-                          action: {
-                            className: props.UNSAFE_className?.action,
-                            style: props.UNSAFE_styles?.action,
-                          },
-                          section: {
-                            className: props.UNSAFE_className?.section,
-                            style: props.UNSAFE_styles?.section,
-                          },
-                        }}
-                      />
-                    )}
-                  </>
-                )}
-              </div>
-
-              {/* Footer persistents */}
-              <PersistentRegion<Value>
-                items={persistentsFooters}
-                position={"footer"}
-                activeIndex={activeIndex}
-                indexOffset={headerInteractiveCount + middleNavigableCount}
-                listboxId={listboxId}
-                getItemProps={getItemProps}
-                listRef={listRef}
-                customRenderHeader={props.customRenderHeader}
-                customRenderFooter={props.customRenderFooter}
-                onAction={onAction}
-                onInteractionPointerDown={onInteractionPointerDown}
-                className={classNames(
-                  styles.persistentFooter,
-                  props.UNSAFE_className?.footer,
-                )}
-                style={props.UNSAFE_styles?.footer}
-              />
-            </div>
-          </FloatingFocusManager>
-        </FloatingPortal>
-      )}
+      <InputText ref={mergedInputRef} {...inputProps} />
+      {floatingMenu}
     </div>
   );
 }
 
-function LoadingContent() {
-  return (
-    <div
-      className={styles.loadingList}
-      onPointerDown={preventDefaultPointerDown}
-    >
-      <Glimmer shape="rectangle" size="base" />
-      <Glimmer shape="rectangle" size="base" />
-      <Glimmer shape="rectangle" size="base" />
-    </div>
-  );
-}
-
-function EmptyStateMessage({
-  emptyState,
+function SelectionChip<Value extends OptionLike>({
+  value,
+  active,
+  disabled,
+  getOptionLabel,
+  customRenderValue,
+  canDismiss,
+  onDismiss,
+  unsafeClassName,
+  unsafeStyle,
 }: {
-  readonly emptyState: React.ReactNode;
+  readonly value: Value;
+  readonly active: boolean;
+  readonly disabled?: boolean;
+  readonly getOptionLabel: (option: Value) => string;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    Value,
+    boolean
+  >["customRenderValue"];
+  readonly canDismiss: boolean;
+  readonly onDismiss: () => void;
+  readonly unsafeClassName?: string;
+  readonly unsafeStyle?: React.CSSProperties;
 }) {
-  const emptyStateDefault = "No options";
-  const emptyStateContent = emptyState ?? emptyStateDefault;
+  return (
+    <span
+      data-selection-disabled={disabled}
+      className={classNames(
+        styles.selectionChip,
+        {
+          [styles.selectionChipActive]: active,
+          [styles.selectionChipDisabled]: disabled,
+        },
+        unsafeClassName,
+      )}
+      style={unsafeStyle}
+      data-testid="ATL-AutocompleteRebuilt-chip"
+      onPointerDown={preventDefaultPointerDown}
+    >
+      {customRenderValue ? (
+        customRenderValue({ value, getOptionLabel })
+      ) : (
+        <Typography size="small">{getOptionLabel(value)}</Typography>
+      )}
+      {canDismiss && (
+        <button
+          type="button"
+          disabled={disabled}
+          className={styles.chipDismiss}
+          onClick={onDismiss}
+          onPointerDown={preventDefaultPointerDown}
+          aria-label={`Remove ${getOptionLabel(value)}`}
+          tabIndex={-1}
+        >
+          <Icon size="small" name="remove" />
+        </button>
+      )}
+    </span>
+  );
+}
+
+function SelectionChipsList<Value extends OptionLike>({
+  selectedValues,
+  isFocused,
+  limitVisibleSelections = 6,
+  limitSelectionText = (count: number) => `+${count}`,
+  activeChipIndex,
+  disabled,
+  getOptionLabel,
+  customRenderValue,
+  canDismiss,
+  removeSelection,
+  unsafeClassName,
+  unsafeStyle,
+}: {
+  readonly selectedValues: Value[];
+  readonly isFocused: boolean;
+  readonly limitVisibleSelections?: number;
+  readonly limitSelectionText?: (truncatedCount: number) => React.ReactNode;
+  readonly activeChipIndex: number | null;
+  readonly disabled?: boolean;
+  readonly getOptionLabel: (option: Value) => string;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    Value,
+    boolean
+  >["customRenderValue"];
+  readonly canDismiss: boolean;
+  readonly removeSelection: (value: Value) => void;
+  readonly unsafeClassName?: string;
+  readonly unsafeStyle?: React.CSSProperties;
+}) {
+  const shouldLimit =
+    !isFocused &&
+    limitVisibleSelections !== -1 &&
+    selectedValues.length > limitVisibleSelections;
+  const visibleValues = shouldLimit
+    ? selectedValues.slice(0, limitVisibleSelections)
+    : selectedValues;
+  const hiddenCount = shouldLimit
+    ? selectedValues.length - limitVisibleSelections
+    : 0;
+
+  return (
+    <>
+      {visibleValues.map((v, i) => (
+        <SelectionChip<Value>
+          key={v.key ?? getOptionLabel(v)}
+          value={v}
+          active={activeChipIndex === i}
+          disabled={disabled}
+          getOptionLabel={getOptionLabel}
+          customRenderValue={customRenderValue}
+          canDismiss={canDismiss}
+          onDismiss={() => removeSelection(v)}
+          unsafeClassName={unsafeClassName}
+          unsafeStyle={unsafeStyle}
+        />
+      ))}
+      {hiddenCount > 0 && (
+        <span
+          className={styles.limitText}
+          data-testid="ATL-AutocompleteRebuilt-limitText"
+        >
+          <Typography size="small" element="span">
+            {limitSelectionText(hiddenCount)}
+          </Typography>
+        </span>
+      )}
+    </>
+  );
+}
+
+interface MultipleSelectionLayoutProps<Value extends OptionLike> {
+  readonly selectedValues: Value[];
+  readonly inputValue: string;
+  readonly disabled?: boolean;
+  readonly error?: React.ReactNode;
+  readonly invalid?: boolean;
+  readonly sizeProp?: "small" | "large";
+  readonly inputId: string;
+  readonly descriptionId: string;
+  readonly description?: React.ReactNode;
+  readonly placeholder?: string;
+  readonly clearable?: AutocompleteRebuiltProps<Value, true>["clearable"];
+  readonly prefix?: AutocompleteRebuiltProps<Value, true>["prefix"];
+  readonly suffix?: AutocompleteRebuiltProps<Value, true>["suffix"];
+  readonly readOnly?: boolean;
+  readonly name?: string;
+  readonly autoFocus?: boolean;
+  readonly formFieldRef: React.RefObject<HTMLDivElement | null>;
+  readonly chipAreaRef: (node: HTMLDivElement | null) => void;
+  readonly mergedInputRef: React.Ref<HTMLInputElement>;
+  readonly internalInputRef: React.RefObject<
+    HTMLInputElement | HTMLTextAreaElement | null
+  >;
+  readonly activeChipIndex: number | null;
+  readonly getOptionLabel: (option: Value) => string;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    Value,
+    boolean
+  >["customRenderValue"];
+  readonly removeSelection: (value: Value) => void;
+  readonly clearAll: () => void;
+  readonly onInputChangeFromUser: (value: string) => void;
+  readonly chipAreaEventProps: Record<string, unknown>;
+  readonly inputAriaProps: Record<string, unknown>;
+  readonly inputDataAttrs: Record<string, unknown>;
+  readonly limitVisibleSelections?: number;
+  readonly limitSelectionText?: (truncatedCount: number) => React.ReactNode;
+  readonly unsafeClassName?: string;
+  readonly unsafeStyle?: React.CSSProperties;
+  readonly children: React.ReactNode;
+}
+
+function MultipleSelectionLayout<Value extends OptionLike>({
+  selectedValues,
+  inputValue,
+  disabled,
+  error,
+  invalid,
+  sizeProp,
+  inputId,
+  descriptionId,
+  description,
+  placeholder,
+  clearable,
+  prefix,
+  suffix,
+  readOnly,
+  name,
+  autoFocus,
+  formFieldRef,
+  chipAreaRef,
+  mergedInputRef,
+  internalInputRef,
+  activeChipIndex,
+  getOptionLabel,
+  customRenderValue,
+  removeSelection,
+  clearAll,
+  onInputChangeFromUser,
+  chipAreaEventProps,
+  inputAriaProps,
+  inputDataAttrs,
+  limitVisibleSelections,
+  limitSelectionText,
+  unsafeClassName,
+  unsafeStyle,
+  children,
+}: MultipleSelectionLayoutProps<Value>) {
+  const [isFocused, setIsFocused] = useState(false);
+  const hasValue = selectedValues.length > 0 || inputValue;
+  const canDismissChip = !disabled && !readOnly;
+
+  const handleFocusIn = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleFocusOut = useCallback((e: React.FocusEvent<HTMLDivElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      setIsFocused(false);
+    }
+  }, []);
 
   return (
     <div
-      className={styles.emptyStateMessage}
-      onPointerDown={preventDefaultPointerDown}
+      data-testid="ATL-AutocompleteRebuilt"
+      onFocus={handleFocusIn}
+      onBlur={handleFocusOut}
     >
-      {emptyStateContent}
+      <div
+        className={styles.multiSelectField}
+        data-testid="ATL-AutocompleteRebuilt-multiSelectContainer"
+      >
+        <FormFieldWrapper
+          disabled={disabled}
+          size={sizeProp ? sizeProp : undefined}
+          error={(error as string) ?? ""}
+          invalid={Boolean(error || invalid)}
+          identifier={inputId}
+          descriptionIdentifier={descriptionId}
+          description={description}
+          clearable={clearable ?? "never"}
+          onClear={() => {
+            clearAll();
+            internalInputRef.current?.focus();
+          }}
+          type="text"
+          placeholder={placeholder}
+          value={hasValue ? "has-value" : ""}
+          prefix={prefix}
+          suffix={suffix}
+          wrapperRef={formFieldRef}
+        >
+          <div
+            ref={chipAreaRef}
+            className={styles.chipArea}
+            data-testid="ATL-AutocompleteRebuilt-chipArea"
+            {...chipAreaEventProps}
+          >
+            <SelectionChipsList<Value>
+              selectedValues={selectedValues}
+              isFocused={isFocused}
+              limitVisibleSelections={limitVisibleSelections}
+              limitSelectionText={limitSelectionText}
+              activeChipIndex={activeChipIndex}
+              disabled={disabled}
+              getOptionLabel={getOptionLabel}
+              customRenderValue={customRenderValue}
+              canDismiss={canDismissChip}
+              removeSelection={removeSelection}
+              unsafeClassName={unsafeClassName}
+              unsafeStyle={unsafeStyle}
+            />
+            <input
+              ref={mergedInputRef}
+              className={styles.inlineInput}
+              id={inputId}
+              value={inputValue}
+              onChange={
+                readOnly
+                  ? undefined
+                  : e => onInputChangeFromUser(e.target.value)
+              }
+              disabled={disabled}
+              readOnly={readOnly}
+              name={name}
+              autoComplete="off"
+              autoFocus={autoFocus}
+              {...inputAriaProps}
+              {...inputDataAttrs}
+            />
+          </div>
+        </FormFieldWrapper>
+      </div>
+      {children}
     </div>
   );
 }
