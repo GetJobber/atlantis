@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.90.1...@jobber/design@0.91.0) (2026-03-02)
+
+
+### Features
+
+* **components:** Add New Schedule UserConfirmed Status Icon ([#2932](https://github.com/GetJobber/atlantis/issues/2932)) ([1d129cb](https://github.com/GetJobber/atlantis/commit/1d129cb75c8ebdbc4ec57da3e412ec1e70745083))
+
+
+
+
+
 ## [0.90.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.90.0...@jobber/design@0.90.1) (2026-02-24)
 
 
