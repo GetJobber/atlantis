@@ -289,7 +289,7 @@
         "defaultValue": {
           "value": "(count) => `+${count}`"
         },
-        "description": "Function to generate the label displayed when selections are truncated\nby `limitVisibleSelections`. Receives the number of hidden selections.\n\nOnly applicable when `multiple` is `true`. Ignored for single-select.",
+        "description": "Function to generate the label displayed when selections are truncated\nby `limitVisibleSelections`. Receives the number of hidden selections.\nThe final returned content must be Phrasing Content eg. string, span, etc.\n\nOnly applicable when `multiple` is `true`. Ignored for single-select.",
         "name": "limitSelectionText",
         "parent": {
           "fileName": "packages/components/src/Autocomplete/Autocomplete.types.ts",

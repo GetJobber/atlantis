@@ -582,6 +582,7 @@ interface AutocompleteRebuiltBaseProps<
   /**
    * Function to generate the label displayed when selections are truncated
    * by `limitVisibleSelections`. Receives the number of hidden selections.
+   * The final returned content must be Phrasing Content eg. string, span, etc.
    *
    * Only applicable when `multiple` is `true`. Ignored for single-select.
    *
