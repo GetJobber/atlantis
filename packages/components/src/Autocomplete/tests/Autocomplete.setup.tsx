@@ -48,6 +48,8 @@ export function Wrapper<T extends OptionLike>({
   onInputChange,
   onBlur,
   onFocus,
+  onOpen,
+  onClose,
   menu,
   openOnFocus,
   filterOptions,
@@ -74,6 +76,8 @@ export function Wrapper<T extends OptionLike>({
   readonly onInputChange?: (v: string) => void;
   readonly onBlur?: () => void;
   readonly onFocus?: () => void;
+  readonly onOpen?: () => void;
+  readonly onClose?: () => void;
   readonly menu?: MenuItem<T>[];
   readonly openOnFocus?: boolean;
   readonly filterOptions?: false | ((opts: T[], input: string) => T[]);
@@ -112,7 +116,9 @@ export function Wrapper<T extends OptionLike>({
   >["UNSAFE_className"];
   readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, false>["UNSAFE_styles"];
   readonly readOnly?: boolean;
+  readonly clearable?: AutocompleteRebuiltProps<T, false>["clearable"];
   readonly debounce?: number;
+  readonly disabled?: boolean;
 }) {
   const [value, setValue] = React.useState<T | undefined>(initialValue);
   const [inputValue, setInputValue] = React.useState<string>(
@@ -129,6 +135,8 @@ export function Wrapper<T extends OptionLike>({
       onInputChange={onInputChange ?? setInputValue}
       onBlur={onBlur}
       onFocus={onFocus}
+      onOpen={onOpen}
+      onClose={onClose}
       menu={menu ?? (built.menu as MenuItem<T>[])}
       placeholder=""
       openOnFocus={openOnFocus}
@@ -199,12 +207,107 @@ export function FreeFormWrapper({
 }
 
 /**
+ * Stateful wrapper for testing multiple-selection behavior.
+ * Manages both value (array) and inputValue internally so tests
+ * can perform multiple interactions that build on each other.
+ *
+ * When allowFreeForm is true, uses createFreeFormValue if provided,
+ * otherwise defaults to (input) => ({ label: input }).
+ */
+export function MultipleWrapper<T extends OptionLike>({
+  initialValue = [],
+  initialInputValue = "",
+  onChange,
+  onInputChange,
+  menu,
+  disabled,
+  readOnly,
+  debounce = 0,
+  customRenderValue,
+  clearable,
+  allowFreeForm,
+  createFreeFormValue = (input => ({ label: input })) as (input: string) => T,
+  onBlur,
+  UNSAFE_className,
+  UNSAFE_styles,
+  limitVisibleSelections,
+  limitSelectionText,
+}: MultipleWrapperProps<T>) {
+  const [value, setValue] = React.useState<T[]>(initialValue);
+  const [inputValue, setInputValue] = React.useState<string>(initialInputValue);
+  const built = React.useMemo(() => buildMenu(), []);
+
+  const freeFormProps =
+    allowFreeForm === true
+      ? { allowFreeForm: true as const, createFreeFormValue }
+      : { allowFreeForm: false as const };
+
+  return (
+    <AutocompleteRebuilt
+      version={2}
+      multiple
+      value={value}
+      {...freeFormProps}
+      disabled={disabled}
+      readOnly={readOnly}
+      onChange={(v: T[]) => {
+        setValue(v);
+        onChange?.(v);
+      }}
+      inputValue={inputValue}
+      onInputChange={(v: string) => {
+        setInputValue(v);
+        onInputChange?.(v);
+      }}
+      menu={menu ?? (built.menu as MenuItem<T>[])}
+      placeholder=""
+      debounce={debounce}
+      customRenderValue={customRenderValue}
+      clearable={clearable}
+      onBlur={onBlur}
+      UNSAFE_className={UNSAFE_className}
+      UNSAFE_styles={UNSAFE_styles}
+      limitVisibleSelections={limitVisibleSelections}
+      limitSelectionText={limitSelectionText}
+    />
+  );
+}
+
+interface MultipleWrapperProps<T extends OptionLike> {
+  readonly initialValue?: T[];
+  readonly initialInputValue?: string;
+  readonly onChange?: (v: T[]) => void;
+  readonly onInputChange?: (v: string) => void;
+  readonly menu?: MenuItem<T>[];
+  readonly debounce?: number;
+  readonly disabled?: boolean;
+  readonly readOnly?: boolean;
+  readonly customRenderValue?: AutocompleteRebuiltProps<
+    T,
+    true
+  >["customRenderValue"];
+  readonly clearable?: AutocompleteRebuiltProps<T, true>["clearable"];
+  readonly allowFreeForm?: boolean;
+  readonly createFreeFormValue?: (input: string) => T;
+  readonly onBlur?: () => void;
+  readonly UNSAFE_className?: AutocompleteRebuiltProps<
+    T,
+    true
+  >["UNSAFE_className"];
+  readonly UNSAFE_styles?: AutocompleteRebuiltProps<T, true>["UNSAFE_styles"];
+  readonly limitVisibleSelections?: number;
+  readonly limitSelectionText?: (truncatedCount: number) => string;
+}
+
+/**
  * Wrapper for testing focus and blur behavior with tabbable siblings
  * Includes tabbable elements before and after the autocomplete
  * so tests can use tab navigation to focus without clicking
  */
 export function FocusableSiblingsWrapper<T extends OptionLike>({
   onFocus,
+  onOpen,
+  onClose,
   onChange,
   onInputChange,
   menu,
@@ -216,6 +319,8 @@ export function FocusableSiblingsWrapper<T extends OptionLike>({
   readonly menu?: MenuItem<T>[];
   readonly readOnly?: boolean;
   readonly onFocus?: () => void;
+  readonly onOpen?: () => void;
+  readonly onClose?: () => void;
   readonly openOnFocus?: boolean;
 }) {
   const [value, setValue] = React.useState<T | undefined>(undefined);
@@ -232,6 +337,8 @@ export function FocusableSiblingsWrapper<T extends OptionLike>({
         value={value}
         onChange={onChange ?? setValue}
         onFocus={onFocus}
+        onOpen={onOpen}
+        onClose={onClose}
         inputValue={inputValue}
         onInputChange={onInputChange ?? setInputValue}
         menu={menu ?? (built.menu as MenuItem<T>[])}
