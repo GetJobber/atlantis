@@ -64,10 +64,7 @@ export const InputTextSPAR = forwardRef(function InputTextInternal(
   const isInvalid = Boolean(props.error || props.invalid);
   const dataAttrs = filterDataAttributes(props);
 
-  const mergedRef = useMemo(
-    () => mergeRefs([inputRef, inputTextRef]),
-    [inputRef, inputTextRef],
-  );
+  const mergedRef = useMemo(() => mergeRefs([inputRef, inputTextRef]), []);
 
   // Shared props for both TextArea and TextInput
   const commonInputProps = {
