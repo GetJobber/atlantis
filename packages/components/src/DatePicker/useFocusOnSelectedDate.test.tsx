@@ -3,14 +3,14 @@ import { render, waitFor } from "@testing-library/react";
 import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
 
 describe("useFocusOnSelectedDate hook", () => {
-  it("focuses when an element with tabindex 0 exists in the dom", async () => {
+  it("focuses when the selected class name exists in the dom", async () => {
     const { getByTestId } = render(<TestComponent hasSelectedDay={true} />);
     await waitFor(() => {
       expect(getByTestId("this is it")).toHaveFocus();
     });
   });
 
-  it("doesn't focus when no element with tabindex 0 exists in the dom", async () => {
+  it("doesn't focus when the selected class name doesn't exist in the dom", async () => {
     render(<TestComponent hasSelectedDay={false} />);
     await waitFor(() => {
       expect(document.body).toHaveFocus();
@@ -25,9 +25,7 @@ interface TestComponentProps {
 function TestComponent({ hasSelectedDay }: TestComponentProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
 
-  useEffect(() => {
-    focusOnSelectedDate();
-  }, []);
+  useEffect(focusOnSelectedDate, []);
 
   return (
     <div ref={ref}>

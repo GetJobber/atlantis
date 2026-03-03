@@ -70,7 +70,7 @@ test.describe("DatePicker Visual Tests", () => {
     await hoverActivator.click();
     await page.waitForSelector(".react-datepicker__month");
 
-    const popup = page.locator(".react-datepicker-popper").first();
+    const popup = page.locator(".react-datepicker-popper");
     const outsideDays = popup.locator(".react-datepicker__day--outside-month");
 
     await outsideDays.first().hover();
@@ -102,7 +102,7 @@ test.describe("DatePicker Visual Tests", () => {
     await page.waitForSelector(".react-datepicker-popper");
     await page.waitForTimeout(300);
 
-    const popper = page.locator(".react-datepicker-popper").first();
+    const popper = page.locator(".react-datepicker-popper");
     await expect(popper).toBeVisible();
 
     await expect(page).toHaveScreenshot("position-upward.png", {
@@ -127,7 +127,7 @@ test.describe("DatePicker Visual Tests", () => {
       fullPage: true,
     });
 
-    const popup = page.locator(".react-datepicker-popper").first();
+    const popup = page.locator(".react-datepicker-popper");
     const previousMonthButton = popup.getByRole("button", {
       name: "Previous Month",
     });

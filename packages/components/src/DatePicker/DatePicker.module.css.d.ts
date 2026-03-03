@@ -3,7 +3,6 @@ declare const styles: {
   readonly "fullWidth": string;
   readonly "datePicker": string;
   readonly "inline": string;
-  readonly "portalContainer": string;
   readonly "header": string;
   readonly "month": string;
 };

@@ -1,24 +1,16 @@
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 
-export function useFocusOnSelectedDate(portalContainerId?: string) {
+export function useFocusOnSelectedDate() {
   const ref = useRef<HTMLDivElement>(null);
 
-  // Moves focus to the selected/pre-selected day in the calendar ([tabindex="0"]).
-  const focusOnSelectedDate = useCallback((): boolean => {
-    const portalElement = portalContainerId
-      ? document.getElementById(portalContainerId)
-      : null;
-    const searchRoot = portalElement ?? ref.current;
-    const day = searchRoot?.querySelector('[tabindex="0"]');
+  function focusOnSelectedDate() {
+    const selectedDateClass = ".react-datepicker__day--selected";
+    const selectedDate = ref.current?.querySelector(selectedDateClass);
 
-    if (day instanceof HTMLElement) {
-      day.focus();
-
-      return true;
+    if (selectedDate instanceof HTMLDivElement) {
+      selectedDate.focus();
     }
-
-    return false;
-  }, [portalContainerId]);
+  }
 
   return { ref, focusOnSelectedDate };
 }
