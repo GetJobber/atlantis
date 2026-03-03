@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.97.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.97.0...@jobber/components-native@0.97.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* **components-native:** Fix styling of checkbox [JOB-152492] ([#2936](https://github.com/GetJobber/atlantis/issues/2936)) ([71313c0](https://github.com/GetJobber/atlantis/commit/71313c04cb581d02891e35931b5992aa327542a3))
+
+
+
+
+
 # [0.97.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.96.0...@jobber/components-native@0.97.0) (2026-02-25)
 
 
