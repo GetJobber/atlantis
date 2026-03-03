@@ -13,7 +13,7 @@ export const useStyles = buildThemedStyles(tokens => {
       justifyContent: "space-between",
       flexDirection: "row",
       alignItems: "center",
-      minHeight: tokens["space-largest"],
+      minHeight: 48,
     },
 
     checkBoxContainerWithAssistiveText: {
