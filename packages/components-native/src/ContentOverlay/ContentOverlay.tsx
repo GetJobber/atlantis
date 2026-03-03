@@ -179,7 +179,7 @@ export function ContentOverlay({
 
   const renderHeader = () => {
     const closeOverlayA11YLabel = t("ContentOverlay.close", {
-      title: title,
+      title: title || "Modal",
     });
 
     const headerStyles = [
@@ -197,7 +197,7 @@ export function ContentOverlay({
       },
     ];
 
-    return (
+    return title || showDismiss ? (
       <View testID="ATL-Overlay-Header">
         <View style={headerStyles}>
           <View
@@ -240,7 +240,7 @@ export function ContentOverlay({
           <View style={headerShadowStyles} />
         </View>
       </View>
-    );
+    ) : null;
   };
 
   return (
