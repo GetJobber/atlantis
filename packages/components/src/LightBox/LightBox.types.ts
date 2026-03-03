@@ -33,6 +33,12 @@ export interface LightBoxContextType {
   debouncedHandlePrevious(): void;
 }
 
+export interface NavButtonProps {
+  readonly onClick: () => void;
+  readonly hideButton: boolean;
+  readonly className: string;
+}
+
 export interface LightBoxProps {
   /**
    * Specify if the Lightbox is open or closed.

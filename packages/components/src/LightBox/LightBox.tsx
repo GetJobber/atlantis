@@ -4,7 +4,11 @@ import ReactDOM from "react-dom";
 import { useBreakpoints, useIsMounted } from "@jobber/hooks";
 import classNames from "classnames";
 import styles from "./LightBox.module.css";
-import type { LightBoxNavigationProps, LightBoxProps } from "./LightBox.types";
+import type {
+  LightBoxNavigationProps,
+  LightBoxProps,
+  NavButtonProps,
+} from "./LightBox.types";
 import { imageTransition, slideVariants } from "./LightBox.constants";
 import { LightBoxProvider, useLightBoxContext } from "./LightBoxContext";
 import { ButtonDismiss } from "../ButtonDismiss";
@@ -44,12 +48,6 @@ export function LightBoxContent() {
   return mounted.current
     ? ReactDOM.createPortal(template, document.body)
     : template;
-}
-
-interface NavButtonProps {
-  readonly onClick: () => void;
-  readonly hideButton: boolean;
-  readonly className: string;
 }
 
 function PreviousButton({ onClick, hideButton, className }: NavButtonProps) {
@@ -98,11 +96,7 @@ function NextButton({ onClick, hideButton, className }: NavButtonProps) {
  * Blurred, desaturated copy of the current image rendered as a full-bleed
  * background behind the lightbox. Pass `className` to apply additional styles.
  */
-export function LightBoxBackground({
-  className,
-}: {
-  readonly className?: string;
-}) {
+function LightBoxBackground({ className }: { readonly className?: string }) {
   const { images, currentImageIndex } = useLightBoxContext();
 
   return (
@@ -119,11 +113,7 @@ export function LightBoxBackground({
  * Semi-transparent blur backdrop. Clicking it calls `onRequestClose`.
  * Pass `className` to apply additional styles.
  */
-export function LightBoxOverlay({
-  className,
-}: {
-  readonly className?: string;
-}) {
+function LightBoxOverlay({ className }: { readonly className?: string }) {
   const { handleRequestClose } = useLightBoxContext();
 
   return (
@@ -138,7 +128,7 @@ export function LightBoxOverlay({
  * Top bar showing the current image counter (`1/3`) and a close button.
  * Styled for dark backgrounds.
  */
-export function LightBoxToolbar() {
+function LightBoxToolbar() {
   const { images, currentImageIndex, handleRequestClose } =
     useLightBoxContext();
 
@@ -172,7 +162,7 @@ export function LightBoxToolbar() {
  * />
  * ```
  */
-export function LightBoxSlides({ className }: { readonly className?: string }) {
+function LightBoxSlides({ className }: { readonly className?: string }) {
   const { images, currentImageIndex, directionRef, handleOnDragEnd } =
     useLightBoxContext();
 
@@ -219,7 +209,7 @@ export function LightBoxSlides({ className }: { readonly className?: string }) {
  * />
  * ```
  */
-export function LightBoxNavigation({
+function LightBoxNavigation({
   prevButtonClassName,
   nextButtonClassName,
 }: LightBoxNavigationProps) {
@@ -252,7 +242,7 @@ export function LightBoxNavigation({
  * Title and caption text for the current image. Only renders when the current
  * image has a `title` or `caption`. Styled for dark backgrounds.
  */
-export function LightBoxCaption() {
+function LightBoxCaption() {
   const { images, currentImageIndex } = useLightBoxContext();
   const { title, caption } = images[currentImageIndex];
 
@@ -275,7 +265,7 @@ export function LightBoxCaption() {
 /**
  * Scrollable thumbnail strip. Only renders when there are two or more images.
  */
-export function LightBoxThumbnails() {
+function LightBoxThumbnails() {
   const {
     images,
     currentImageIndex,
