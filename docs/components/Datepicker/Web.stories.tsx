@@ -146,23 +146,3 @@ const WeekStartTemplate: ComponentStory<typeof DatePicker> = () => {
 
 export const WeekStart = WeekStartTemplate.bind({});
 WeekStart.args = {};
-
-const OverflowHiddenTemplate: ComponentStory<typeof DatePicker> = args => {
-  const [date, setDate] = useState(new Date("01/01/2021"));
-
-  return (
-    <div
-      style={{
-        overflow: "hidden",
-        border: "2px dashed red",
-        padding: "16px",
-        height: "80px",
-      }}
-    >
-      <DatePicker {...args} selected={date} onChange={setDate} />
-    </div>
-  );
-};
-
-export const InsideOverflowHidden = OverflowHiddenTemplate.bind({});
-InsideOverflowHidden.args = {};
