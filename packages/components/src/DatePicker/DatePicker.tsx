@@ -1,9 +1,16 @@
 import type { ReactElement } from "react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useId, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import type { XOR } from "ts-xor";
 import { useRefocusOnActivator } from "@jobber/hooks";
+import {
+  FloatingNode,
+  FloatingPortal,
+  FloatingTree,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+} from "@floating-ui/react";
 import styles from "./DatePicker.module.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import type { DatePickerActivatorProps } from "./DatePickerActivator";
@@ -96,7 +103,61 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-/*eslint max-statements: ["error", 14]*/
+function getDatePickerClassNames(
+  inline: boolean,
+  open: boolean,
+  fullWidth: boolean,
+) {
+  const wrapperClassName = classnames(styles.datePickerWrapper, {
+    // react-datepicker uses this class name to not close the date picker when
+    // the activator is clicked
+    // https://github.com/Hacker0x01/react-datepicker/blob/master/src/index.jsx#L905
+    //
+    // It uses react-onclickoutside package and declaring some elements to be
+    // ignored via said class name
+    // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
+    "react-datepicker-ignore-onclickoutside": !inline && open,
+    [styles.fullWidth]: fullWidth,
+  });
+  const datePickerClassNames = classnames(styles.datePicker, {
+    [styles.inline]: inline,
+  });
+
+  return { wrapperClassName, datePickerClassNames };
+}
+
+function useDatePickerHandlers(
+  onChange: (val: Date) => void,
+  setOpen: (open: boolean) => void,
+  onOpenChange?: (open: boolean) => void,
+  smartAutofocus?: boolean,
+  focusOnSelectedDate?: () => boolean,
+) {
+  const handleChange = useCallback(
+    (value: Date | null) => {
+      onChange(value as Date);
+    },
+    [onChange],
+  );
+  const handleCalendarOpen = useCallback(() => {
+    setOpen(true);
+    onOpenChange?.(true);
+
+    if (smartAutofocus) {
+      // The portal DOM may not be painted yet, so defer to the next frame
+      requestAnimationFrame(() => {
+        focusOnSelectedDate?.();
+      });
+    }
+  }, [setOpen, onOpenChange, smartAutofocus, focusOnSelectedDate]);
+  const handleCalendarClose = useCallback(() => {
+    setOpen(false);
+    onOpenChange?.(false);
+  }, [setOpen, onOpenChange]);
+
+  return { handleChange, handleCalendarOpen, handleCalendarClose };
+}
+
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -113,34 +174,46 @@ export function DatePicker({
   highlightDates,
   firstDayOfWeek,
 }: DatePickerProps) {
-  const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
   const { dateFormat, firstDayOfWeek: contextFirstDayOfWeek } =
     useAtlantisContext();
   const effectiveFirstDayOfWeek = firstDayOfWeek ?? contextFirstDayOfWeek;
-  const wrapperClassName = classnames(styles.datePickerWrapper, {
-    // react-datepicker uses this class name to not close the date picker when
-    // the activator is clicked
-    // https://github.com/Hacker0x01/react-datepicker/blob/master/src/index.jsx#L905
-    //
-    // It uses react-onclickoutside package and declaring some elements to be
-    // ignored via said class name
-    // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
-    "react-datepicker-ignore-onclickoutside": !inline && open,
-    [styles.fullWidth]: fullWidth,
-  });
-  const datePickerClassNames = classnames(styles.datePicker, {
-    [styles.inline]: inline,
-  });
-  const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
-
-  if (smartAutofocus) {
-    useRefocusOnActivator(open);
-    useEffect(focusOnSelectedDate, [open]);
-  }
+  const renderInsidePortal = !inline;
+  const uniquePortalId = useId();
+  const { ref, focusOnSelectedDate } = useFocusOnSelectedDate(uniquePortalId);
+  const { wrapperClassName, datePickerClassNames } = getDatePickerClassNames(
+    inline ?? false,
+    open,
+    fullWidth ?? false,
+  );
+  const { pickerRef } = useEscapeKeyToCloseDatePicker(
+    open,
+    ref,
+    focusOnSelectedDate,
+    renderInsidePortal,
+  );
+  const { handleChange, handleCalendarOpen, handleCalendarClose } =
+    useDatePickerHandlers(
+      onChange,
+      setOpen,
+      onOpenChange,
+      smartAutofocus ?? true,
+      focusOnSelectedDate,
+    );
+  useRefocusOnActivator(smartAutofocus ? open : false);
 
   return (
-    <div className={wrapperClassName} ref={ref} data-elevation={"elevated"}>
+    <div
+      className={wrapperClassName}
+      ref={ref}
+      data-elevation={"elevated"}
+      onKeyDown={event => {
+        // Stop Escape from bubbling to parent floating elements (e.g. Modal).
+        if (event.key === "Escape" && open) {
+          event.stopPropagation();
+        }
+      }}
+    >
       <ReactDatePicker
         ref={pickerRef}
         calendarClassName={datePickerClassNames}
@@ -172,57 +245,69 @@ export function DatePicker({
         onMonthChange={onMonthChange}
         calendarStartDay={effectiveFirstDayOfWeek}
         popperPlacement="bottom-start"
+        {...(renderInsidePortal && { portalId: uniquePortalId })}
       />
+      {renderInsidePortal && <DatePickerPortal portalId={uniquePortalId} />}
     </div>
   );
-
-  /**
-   * The onChange callback on ReactDatePicker returns a Date and an Event, but
-   * the onChange in our interface only provides the Date. Simplifying the code
-   * by removing this function and passing it directly to the underlying
-   * component breaks tests both here and downstream (i.e. the pattern
-   * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
-   * fail).
-   */
-  function handleChange(value: Date | null) {
-    // TODO: Ticket created to update all DatePicker and InputDate usages to accept Date | null
-    onChange(value as Date);
-  }
-
-  function handleCalendarOpen() {
-    setOpen(true);
-    onOpenChange?.(true);
-  }
-
-  function handleCalendarClose() {
-    setOpen(false);
-    onOpenChange?.(false);
-  }
 }
 
 function useEscapeKeyToCloseDatePicker(
   open: boolean,
   ref: React.RefObject<HTMLDivElement | null>,
+  focusOnSelectedDate: () => boolean,
+  isPortalled: boolean,
 ): { pickerRef: React.RefObject<ReactDatePicker | null> } {
   const pickerRef = useRef<ReactDatePicker>(null);
 
-  const escFunction = (event: KeyboardEvent) => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape" && open) {
       // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
       // do not close parent elements that may also be listening for ESC presses such as Modals
       pickerRef.current?.setOpen(false);
       event.stopPropagation();
     }
+
+    if (event.key === "Tab" && open && isPortalled) {
+      // When portalled, Tab from the activator doesn't reach the calendar.
+      // Intercept Tab to move focus there (mainly when smartAutofocus is false
+      // and focus stayed in the input).
+      const focused = focusOnSelectedDate();
+
+      if (focused) {
+        event.preventDefault();
+      }
+    }
   };
+
   useEffect(() => {
-    ref.current?.addEventListener("keydown", escFunction);
+    ref.current?.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      ref.current?.removeEventListener("keydown", escFunction);
+      ref.current?.removeEventListener("keydown", handleKeyDown);
     };
-  }, [open, ref, pickerRef]);
+  }, [open, ref, pickerRef, isPortalled]);
 
   return {
     pickerRef,
   };
+}
+
+function DatePickerPortal({ portalId }: { readonly portalId: string }) {
+  const nodeId = useFloatingNodeId();
+  const parentNodeId = useFloatingParentNodeId();
+
+  const portalDiv = <div id={portalId} className={styles.portalContainer} />;
+
+  if (parentNodeId) {
+    return (
+      <FloatingTree>
+        <FloatingNode id={nodeId}>
+          <FloatingPortal>{portalDiv}</FloatingPortal>
+        </FloatingNode>
+      </FloatingTree>
+    );
+  }
+
+  return <FloatingPortal>{portalDiv}</FloatingPortal>;
 }

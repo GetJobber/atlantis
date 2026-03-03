@@ -26,6 +26,7 @@
   box-sizing: border-box;
   padding: var(--space-small);
   border: none;
+  outline: none;
   background-color: transparent;
   cursor: pointer;
 }
@@ -54,6 +55,7 @@
 .action {
   box-sizing: border-box;
   padding: var(--space-small);
+  outline: none;
   cursor: pointer;
 }
 
@@ -95,4 +97,103 @@
 .textPersistent {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   cursor: default;
+}
+
+/* Multiple mode: FormFieldWrapper-based container */
+.multiSelectField [data-testid="Form-Field-Wrapper"] > div:first-child {
+  height: auto;
+  min-height: var(--field--height);
+}
+
+.chipArea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  gap: var(--space-smaller);
+  padding: var(--field--padding-top) var(--field--padding-right)
+    var(--field--padding-bottom) var(--field--padding-left);
+  cursor: text;
+}
+
+.inlineInput {
+  min-width: 80px;
+  padding: 0;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: var(--field--value-lineHeight);
+  background: transparent;
+  flex: 1 1 auto;
+}
+
+.inlineInput:focus {
+  outline: none;
+}
+
+.inlineInput:disabled {
+  color: var(--color-disabled);
+}
+
+.selectionChip {
+  display: inline-flex;
+  padding: var(--space-smallest) var(--space-small);
+  border-radius: var(--radius-large);
+  outline: none;
+  overflow: hidden;
+  color: var(--color-heading);
+  background-color: var(--color-interactive--background);
+  cursor: default;
+  transition: var(--timing-base);
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.selectionChipActive {
+  background-color: var(--color-interactive--background--hover);
+}
+
+.selectionChipDisabled {
+  border: var(--border-base) solid var(--color-border);
+  color: var(--color-disabled);
+  background-color: var(--color-disabled--secondary);
+  cursor: default;
+}
+
+.chipDismiss {
+  display: inline-flex;
+  position: relative;
+  z-index: 0;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.chipDismiss::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--space-large));
+  right: calc(-1 * var(--space-small));
+  bottom: calc(-1 * var(--space-large));
+  left: calc(-1 * var(--space-smaller));
+  z-index: -1;
+}
+
+.chipDismiss:hover::before {
+  background-color: var(--color-interactive--background--hover);
+}
+
+.limitText {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-smallest) var(--space-small);
+  color: var(--color-text--secondary);
+  cursor: default;
+  transition: all var(--timing-base);
 }
