@@ -1,7 +1,6 @@
 import type { ReactElement, RefObject } from "react";
 import React from "react";
 import classnames from "classnames";
-import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.module.css";
 import type {
   ButtonActionProps,
@@ -28,6 +27,8 @@ import { Button, type ButtonProps } from "../Button";
 import { Menu } from "../Menu";
 import { Emphasis } from "../Emphasis";
 import { filterDataAttributes } from "../sharedHelpers/filterDataAttributes";
+import { Container } from "../Container";
+import type { CommonAtlantisProps } from "../sharedHelpers/types";
 
 /** Discriminates between the props-based API and the composable children API. */
 function isLegacy(props: PageProps): props is PageLegacyProps {
@@ -66,15 +67,6 @@ function PageLegacy({
   ...rest
 }: PageLegacyProps & { readonly pageStyles: string }) {
   const dataAttrs = filterDataAttributes(rest);
-  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
-    useResizeObserver<HTMLDivElement>();
-
-  const titleBarClasses = classnames(styles.titleBar, {
-    [styles.small]: titleBarWidth > Breakpoints.smaller,
-    [styles.medium]: titleBarWidth > Breakpoints.small,
-    [styles.large]: titleBarWidth > Breakpoints.base,
-  });
-
   const showMenu = moreActionsMenu.length > 0;
   const showActionGroup = showMenu || primaryAction || secondaryAction;
 
@@ -82,58 +74,63 @@ function PageLegacy({
     <div className={pageStyles} {...dataAttrs}>
       <Content>
         <Content>
-          <div className={titleBarClasses} ref={titleBarRef}>
-            <div>
-              {typeof title === "string" && titleMetaData ? (
-                <div className={styles.titleRow}>
+          <Container name="page-titlebar">
+            <div className={styles.titleBar}>
+              <div>
+                {typeof title === "string" && titleMetaData ? (
+                  <div className={styles.titleRow}>
+                    <Heading level={1}>{title}</Heading>
+                    {titleMetaData}
+                  </div>
+                ) : typeof title === "string" ? (
                   <Heading level={1}>{title}</Heading>
-                  {titleMetaData}
-                </div>
-              ) : typeof title === "string" ? (
-                <Heading level={1}>{title}</Heading>
-              ) : (
-                title
-              )}
-              {subtitle && (
-                <div className={styles.subtitle}>
-                  <Text size="large" variation="subdued">
-                    <Emphasis variation="bold">
-                      <Markdown content={subtitle} basicUsage={true} />
-                    </Emphasis>
-                  </Text>
-                </div>
-              )}
-            </div>
-            {showActionGroup && (
-              <div className={styles.actionGroup}>
-                {primaryAction && (
-                  <div className={styles.primaryAction} ref={primaryAction.ref}>
-                    <Button
-                      {...getActionProps(primaryAction)}
-                      fullWidth={true}
-                    />
-                  </div>
+                ) : (
+                  title
                 )}
-                {secondaryAction && (
-                  <div
-                    className={styles.actionButton}
-                    ref={secondaryAction.ref}
-                  >
-                    <Button
-                      {...getActionProps(secondaryAction)}
-                      fullWidth={true}
-                      type="secondary"
-                    />
-                  </div>
-                )}
-                {showMenu && (
-                  <div className={styles.actionButton}>
-                    <Menu items={moreActionsMenu}></Menu>
+                {subtitle && (
+                  <div className={styles.subtitle}>
+                    <Text size="large" variation="subdued">
+                      <Emphasis variation="bold">
+                        <Markdown content={subtitle} basicUsage={true} />
+                      </Emphasis>
+                    </Text>
                   </div>
                 )}
               </div>
-            )}
-          </div>
+              {showActionGroup && (
+                <div className={styles.actionGroup}>
+                  {primaryAction && (
+                    <div
+                      className={styles.primaryAction}
+                      ref={primaryAction.ref}
+                    >
+                      <Button
+                        {...getActionProps(primaryAction)}
+                        fullWidth={true}
+                      />
+                    </div>
+                  )}
+                  {secondaryAction && (
+                    <div
+                      className={styles.actionButton}
+                      ref={secondaryAction.ref}
+                    >
+                      <Button
+                        {...getActionProps(secondaryAction)}
+                        fullWidth={true}
+                        type="secondary"
+                      />
+                    </div>
+                  )}
+                  {showMenu && (
+                    <div className={styles.actionButton}>
+                      <Menu items={moreActionsMenu}></Menu>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </Container>
           {intro && (
             <Text size="large">
               <Markdown
@@ -157,19 +154,14 @@ function PageLegacy({
  */
 function PageHeader({ children, ...rest }: PageHeaderProps) {
   const dataAttrs = filterDataAttributes(rest);
-  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
-    useResizeObserver<HTMLDivElement>();
-
-  const titleBarClasses = classnames(styles.titleBar, {
-    [styles.small]: titleBarWidth > Breakpoints.smaller,
-    [styles.medium]: titleBarWidth > Breakpoints.small,
-    [styles.large]: titleBarWidth > Breakpoints.base,
-  });
 
   return (
-    <div className={titleBarClasses} ref={titleBarRef} {...dataAttrs}>
-      {children}
-    </div>
+    <Container
+      name="page-titlebar"
+      dataAttributes={dataAttrs as CommonAtlantisProps["dataAttributes"]}
+    >
+      <div className={styles.titleBar}>{children}</div>
+    </Container>
   );
 }
 

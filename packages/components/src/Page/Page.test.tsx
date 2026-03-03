@@ -8,24 +8,6 @@ import type { SectionProps } from "../Menu";
 import { Heading } from "../Heading";
 import { Menu } from "../Menu";
 
-jest.mock("@jobber/hooks", () => {
-  return {
-    ...(jest.requireActual("@jobber/hooks") as Record<string, unknown>),
-    useResizeObserver: () => [
-      { current: undefined },
-      { width: 1000, height: 100 },
-    ],
-
-    Breakpoints: {
-      base: 640,
-      small: 500,
-      smaller: 265,
-      large: 750,
-      larger: 1024,
-    },
-  };
-});
-
 it("renders a Page", () => {
   const { container } = render(
     <Page
