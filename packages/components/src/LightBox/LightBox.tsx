@@ -1,153 +1,26 @@
-/* eslint-disable max-statements */
-import type { CSSProperties } from "react";
-import React, { useEffect, useRef, useState } from "react";
-import type { PanInfo } from "framer-motion";
+import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ReactDOM from "react-dom";
-import {
-  useBreakpoints,
-  useDebounce,
-  useFocusTrap,
-  useIsMounted,
-  useOnKeyDown,
-  useRefocusOnActivator,
-} from "@jobber/hooks";
+import { useBreakpoints, useIsMounted } from "@jobber/hooks";
 import classNames from "classnames";
 import styles from "./LightBox.module.css";
+import type {
+  LightBoxNavigationProps,
+  LightBoxProps,
+  NavButtonProps,
+} from "./LightBox.types";
+import { imageTransition, slideVariants } from "./LightBox.constants";
+import { LightBoxProvider, useLightBoxContext } from "./LightBoxContext";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Text } from "../Text";
 import { Button } from "../Button";
 import { Heading } from "../Heading";
 import { AtlantisThemeContextProvider } from "../AtlantisThemeContext";
 
-interface PresentedImage {
-  title?: string;
-  caption?: string;
-  alt?: string;
-  url: string;
-}
+export function LightBoxContent() {
+  const { open, lightboxRef, handleMouseMove } = useLightBoxContext();
 
-interface RequestCloseOptions {
-  lastPosition: number;
-}
-
-interface LightBoxProps {
-  /**
-   * Specify if the Lightbox is open or closed.
-   */
-  readonly open: boolean;
-  /**
-   * Images is an array of objects defining a LightBox image. This object consists of
-   * `title`, `caption`, `alt` and `url`. `title`, `alt` and `caption` are optional, `url` is
-   * required, for each image.
-   */
-  readonly images: PresentedImage[];
-  /**
-   * Use this to specify which image in `images` to initialize the lightbox with.
-   * This is useful when you have a collection of thumbnails as you only need one
-   * collection of image urls, order doesn't matter.
-   */
-  readonly imageIndex?: number;
-  /**
-   * This function must set open to false in order to close the lightbox. Note there
-   * is a 300ms easing animation on lightbox close that occurs before this function
-   * is called.
-   * This function receives an object as an argument with the key `lastPosition`
-   * that has the index of the image the user was on when LightBox was closed.
-   */
-  onRequestClose(options: RequestCloseOptions): void;
-
-  /**
-   * Sets the box-sizing for the thumbnails in the lightbox. This is a solution for a problem where
-   * tailwind was setting the box-sizing to `border-box` and causing issues with the lightbox.
-   * @default "content-box"
-   */
-  readonly boxSizing?: CSSProperties["boxSizing"];
-}
-
-const swipeConfidenceThreshold = 10000;
-
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity;
-};
-
-export const slideVariants = {
-  enter: (directionRef: React.RefObject<number>) => ({
-    x: directionRef.current > 0 ? "150%" : "-150%",
-  }),
-  center: {
-    x: 0,
-  },
-  exit: (directionRef: React.RefObject<number>) => ({
-    x: directionRef.current < 0 ? "150%" : "-150%",
-  }),
-};
-
-const imageTransition = {
-  x: { duration: 0.65, ease: [0.42, 0, 0, 1.03] },
-};
-
-// A little bit more than the transition's duration
-// We're doing this to prevent a bug from framer-motion
-// https://github.com/framer/motion/issues/1769
-const BUTTON_DEBOUNCE_DELAY = 250;
-const MOVEMENT_DEBOUNCE_DELAY = 1000;
-
-export function LightBox({
-  boxSizing = "content-box",
-  open,
-  images,
-  imageIndex = 0,
-  onRequestClose,
-}: LightBoxProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
-  const directionRef = useRef(0);
-  const [mouseIsStationary, setMouseIsStationary] = useState(true);
-  const lightboxRef = useFocusTrap<HTMLDivElement>(open);
-  const selectedThumbnailRef = useRef<HTMLDivElement>(null);
-
-  const debouncedHandleNext = useDebounce(
-    handleMoveNext,
-    BUTTON_DEBOUNCE_DELAY,
-  );
-  const debouncedHandlePrevious = useDebounce(
-    handleMovePrevious,
-    BUTTON_DEBOUNCE_DELAY,
-  );
   const mounted = useIsMounted();
-  const prevOpen = useRef(open);
-  useRefocusOnActivator(open);
-
-  const handleMouseMovement = useDebounce(() => {
-    setMouseIsStationary(true);
-  }, MOVEMENT_DEBOUNCE_DELAY);
-
-  useOnKeyDown(handleRequestClose, "Escape");
-
-  useOnKeyDown(debouncedHandlePrevious, {
-    key: "ArrowLeft",
-  });
-
-  useOnKeyDown(debouncedHandleNext, {
-    key: "ArrowRight",
-  });
-
-  useEffect(() => {
-    setCurrentImageIndex(imageIndex);
-  }, [imageIndex, open]);
-
-  if (prevOpen.current !== open) {
-    prevOpen.current = open;
-    togglePrintStyles(open);
-  }
-
-  useEffect(() => {
-    selectedThumbnailRef?.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
-  }, [currentImageIndex]);
 
   const template = (
     <>
@@ -158,119 +31,15 @@ export function LightBox({
           aria-label="Lightbox"
           key="Lightbox"
           ref={lightboxRef}
-          onMouseMove={() => {
-            if (mouseIsStationary) {
-              setMouseIsStationary(false);
-            }
-            handleMouseMovement();
-          }}
+          onMouseMove={handleMouseMove}
         >
-          <div
-            className={styles.backgroundImage}
-            style={{
-              backgroundImage: `url("${images[currentImageIndex].url}")`,
-            }}
-          />
-          <div className={styles.blurOverlay} onClick={handleRequestClose} />
-
-          <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-            <div className={styles.toolbar}>
-              <div className={styles.slideNumber}>
-                <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
-              </div>
-              <div className={styles.closeButton}>
-                <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
-              </div>
-            </div>
-          </AtlantisThemeContextProvider>
-
-          <div className={styles.imageArea}>
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={currentImageIndex}
-                variants={slideVariants}
-                src={images[currentImageIndex].url}
-                custom={directionRef}
-                className={styles.image}
-                initial="enter"
-                alt={
-                  images[currentImageIndex].alt ||
-                  images[currentImageIndex].title ||
-                  ""
-                }
-                animate="center"
-                exit="exit"
-                transition={imageTransition}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={handleOnDragEnd}
-              />
-            </AnimatePresence>
-          </div>
-
-          {images.length > 1 && (
-            <>
-              <PreviousButton
-                onClick={debouncedHandlePrevious}
-                hideButton={mouseIsStationary}
-              />
-              <NextButton
-                onClick={debouncedHandleNext}
-                hideButton={mouseIsStationary}
-              />
-            </>
-          )}
-
-          {(images[currentImageIndex].title ||
-            images[currentImageIndex].caption) && (
-            <div className={styles.captionWrapper}>
-              <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
-                {images[currentImageIndex].title && (
-                  <div className={styles.title}>
-                    <Heading level={4}>
-                      {images[currentImageIndex].title}
-                    </Heading>
-                  </div>
-                )}
-                {images[currentImageIndex].caption && (
-                  <Text size="large">{images[currentImageIndex].caption}</Text>
-                )}
-              </AtlantisThemeContextProvider>
-            </div>
-          )}
-
-          {images.length > 1 && (
-            <div
-              className={styles.thumbnailBar}
-              style={
-                {
-                  "--lightbox--box-sizing": boxSizing,
-                } as React.CSSProperties
-              }
-              data-testid="ATL-Thumbnail-Bar"
-            >
-              {images.map((image, index) => (
-                <div
-                  key={index}
-                  className={classNames(styles.thumbnail, {
-                    [styles.selected]: index === currentImageIndex,
-                  })}
-                  onClick={() => handleThumbnailClick(index)}
-                  ref={
-                    index === currentImageIndex ? selectedThumbnailRef : null
-                  }
-                >
-                  <img
-                    key={index}
-                    src={image.url}
-                    alt={image.alt || image.title || ""}
-                    className={styles.thumbnailImage}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          <LightBoxBackground />
+          <LightBoxOverlay />
+          <LightBoxToolbar />
+          <LightBoxSlides />
+          <LightBoxNavigation />
+          <LightBoxCaption />
+          <LightBoxThumbnails />
         </div>
       )}
     </>
@@ -279,56 +48,14 @@ export function LightBox({
   return mounted.current
     ? ReactDOM.createPortal(template, document.body)
     : template;
-
-  function handleMovePrevious() {
-    directionRef.current = -1;
-    setCurrentImageIndex(
-      (currentImageIndex + images.length - 1) % images.length,
-    );
-  }
-
-  function handleMoveNext() {
-    directionRef.current = 1;
-    setCurrentImageIndex((currentImageIndex + 1) % images.length);
-  }
-
-  function handleRequestClose() {
-    onRequestClose({ lastPosition: currentImageIndex });
-  }
-
-  function handleOnDragEnd(
-    event: MouseEvent | TouchEvent | PointerEvent,
-    { offset, velocity }: PanInfo,
-  ) {
-    const swipe = swipePower(offset.x, velocity.x);
-
-    if (swipe < -swipeConfidenceThreshold) {
-      handleMoveNext();
-    } else if (swipe > swipeConfidenceThreshold) {
-      handleMovePrevious();
-    }
-  }
-
-  function handleThumbnailClick(index: number) {
-    if (index < currentImageIndex) {
-      directionRef.current = -1;
-    } else {
-      directionRef.current = 1;
-    }
-    setCurrentImageIndex(index);
-  }
-}
-interface NavButtonProps {
-  readonly onClick: () => void;
-  readonly hideButton: boolean;
 }
 
-function PreviousButton({ onClick, hideButton }: NavButtonProps) {
+function PreviousButton({ onClick, hideButton, className }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
     <div
-      className={`${styles.prev} ${
+      className={`${className} ${
         hideButton ? styles.buttonHidden : styles.buttonVisible
       }`}
     >
@@ -344,12 +71,12 @@ function PreviousButton({ onClick, hideButton }: NavButtonProps) {
   );
 }
 
-function NextButton({ onClick, hideButton }: NavButtonProps) {
+function NextButton({ onClick, hideButton, className }: NavButtonProps) {
   const { mediumAndUp } = useBreakpoints();
 
   return (
     <div
-      className={`${styles.next} ${
+      className={`${className} ${
         hideButton ? styles.buttonHidden : styles.buttonVisible
       }`}
     >
@@ -365,14 +92,273 @@ function NextButton({ onClick, hideButton }: NavButtonProps) {
   );
 }
 
-function togglePrintStyles(open: boolean) {
-  try {
-    if (open) {
-      document.documentElement.classList.add("atlantisLightBoxActive");
-    } else {
-      document.documentElement.classList.remove("atlantisLightBoxActive");
-    }
-  } catch (error) {
-    console.error(error);
-  }
+/**
+ * Blurred, desaturated copy of the current image rendered as a full-bleed
+ * background behind the lightbox. Pass `className` to apply additional styles.
+ */
+function LightBoxBackground({ className }: { readonly className?: string }) {
+  const { images, currentImageIndex } = useLightBoxContext();
+
+  return (
+    <div
+      className={classNames(styles.backgroundImage, className)}
+      style={{
+        backgroundImage: `url("${images[currentImageIndex].url}")`,
+      }}
+    />
+  );
 }
+
+/**
+ * Semi-transparent blur backdrop. Clicking it calls `onRequestClose`.
+ * Pass `className` to apply additional styles.
+ */
+function LightBoxOverlay({ className }: { readonly className?: string }) {
+  const { handleRequestClose } = useLightBoxContext();
+
+  return (
+    <div
+      className={classNames(styles.blurOverlay, className)}
+      onClick={handleRequestClose}
+    />
+  );
+}
+
+/**
+ * Top bar showing the current image counter (`1/3`) and a close button.
+ * Styled for dark backgrounds.
+ */
+function LightBoxToolbar() {
+  const { images, currentImageIndex, handleRequestClose } =
+    useLightBoxContext();
+
+  return (
+    <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+      <div className={styles.toolbar}>
+        <div className={styles.slideNumber}>
+          <Text>{`${currentImageIndex + 1}/${images.length}`}</Text>
+        </div>
+        <div className={styles.closeButton}>
+          <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+        </div>
+      </div>
+    </AtlantisThemeContextProvider>
+  );
+}
+
+/**
+ * The animated hero image with swipe-to-navigate and slide animation.
+ *
+ * Pass `className` to add styles to the image wrapper. Supports
+ * swipe-to-navigate (drag). Keyboard arrow navigation is handled by
+ * `LightBox.Provider`.
+ *
+ * @example
+ * ```tsx
+ * <LightBox.Slides className={styles.imageArea} />
+ * <LightBox.Navigation
+ *   prevButtonClassName={styles.prev}
+ *   nextButtonClassName={styles.next}
+ * />
+ * ```
+ */
+function LightBoxSlides({ className }: { readonly className?: string }) {
+  const { images, currentImageIndex, directionRef, handleOnDragEnd } =
+    useLightBoxContext();
+
+  return (
+    <div className={classNames(styles.imageArea, className)}>
+      <AnimatePresence initial={false}>
+        <motion.img
+          key={currentImageIndex}
+          variants={slideVariants}
+          src={images[currentImageIndex].url}
+          custom={directionRef}
+          className={styles.image}
+          initial="enter"
+          alt={
+            images[currentImageIndex].alt ||
+            images[currentImageIndex].title ||
+            ""
+          }
+          animate="center"
+          exit="exit"
+          transition={imageTransition}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={1}
+          onDragEnd={handleOnDragEnd}
+        />
+      </AnimatePresence>
+    </div>
+  );
+}
+
+/**
+ * Previous and next navigation buttons. Returns `null` when the image set
+ * has only one image.
+ *
+ * Use `prevButtonClassName` and `nextButtonClassName` to override the styles
+ * on each button's wrapper for custom layouts.
+ *
+ * @example
+ * ```tsx
+ * <LightBox.Navigation
+ *   prevButtonClassName={styles.prev}
+ *   nextButtonClassName={styles.next}
+ * />
+ * ```
+ */
+function LightBoxNavigation({
+  prevButtonClassName,
+  nextButtonClassName,
+}: LightBoxNavigationProps) {
+  const {
+    images,
+    mouseIsStationary,
+    debouncedHandleNext,
+    debouncedHandlePrevious,
+  } = useLightBoxContext();
+
+  if (images.length <= 1) return null;
+
+  return (
+    <>
+      <PreviousButton
+        onClick={debouncedHandlePrevious}
+        hideButton={mouseIsStationary}
+        className={classNames(styles.prev, prevButtonClassName)}
+      />
+      <NextButton
+        onClick={debouncedHandleNext}
+        hideButton={mouseIsStationary}
+        className={classNames(styles.next, nextButtonClassName)}
+      />
+    </>
+  );
+}
+
+/**
+ * Title and caption text for the current image. Only renders when the current
+ * image has a `title` or `caption`. Styled for dark backgrounds.
+ */
+function LightBoxCaption() {
+  const { images, currentImageIndex } = useLightBoxContext();
+  const { title, caption } = images[currentImageIndex];
+
+  if (!title && !caption) return null;
+
+  return (
+    <div className={styles.captionWrapper}>
+      <AtlantisThemeContextProvider dangerouslyOverrideTheme="dark">
+        {title && (
+          <div className={styles.title}>
+            <Heading level={4}>{title}</Heading>
+          </div>
+        )}
+        {caption && <Text size="large">{caption}</Text>}
+      </AtlantisThemeContextProvider>
+    </div>
+  );
+}
+
+/**
+ * Scrollable thumbnail strip. Only renders when there are two or more images.
+ */
+function LightBoxThumbnails() {
+  const {
+    images,
+    currentImageIndex,
+    boxSizing,
+    selectedThumbnailRef,
+    handleThumbnailClick,
+  } = useLightBoxContext();
+
+  if (images.length <= 1) return null;
+
+  return (
+    <div
+      className={styles.thumbnailBar}
+      style={{ "--lightbox--box-sizing": boxSizing } as React.CSSProperties}
+      data-testid="ATL-Thumbnail-Bar"
+    >
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={classNames(styles.thumbnail, {
+            [styles.selected]: index === currentImageIndex,
+          })}
+          onClick={() => handleThumbnailClick(index)}
+          ref={index === currentImageIndex ? selectedThumbnailRef : null}
+        >
+          <img
+            key={index}
+            src={image.url}
+            alt={image.alt || image.title || ""}
+            className={styles.thumbnailImage}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * LightBox displays images in a fullscreen overlay.
+ *
+ * **Self-contained (legacy) usage:**
+ * ```tsx
+ * <LightBox
+ *   open={isOpen}
+ *   images={images}
+ *   imageIndex={imageIndex}
+ *   onRequestClose={({ lastPosition }) => { setIsOpen(false); }}
+ * />
+ * ```
+ *
+ * **Full composable (fullscreen) usage:**
+ * ```tsx
+ * <LightBox.Provider open={isOpen} images={images} onRequestClose={onClose}>
+ *   <LightBox.Content />
+ * </LightBox.Provider>
+ * ```
+ *
+ * **Inline gallery usage (no overlay, no close):**
+ * ```tsx
+ * <LightBox.Provider
+ *   open={true}
+ *   images={images}
+ *   imageIndex={activeIndex}
+ *   onImageChange={onImageChange}
+ * >
+ *   <div className={styles.lightboxWrapper} onMouseMove={handleMouseMove}>
+ *     <LightBox.Background className={styles.backgroundImage} />
+ *     <LightBox.Overlay className={styles.blurOverlay} />
+ *     <LightBox.Slides className={styles.imageArea} />
+ *     <LightBox.Navigation
+ *       prevButtonClassName={styles.prev}
+ *       nextButtonClassName={styles.next}
+ *     />
+ *   </div>
+ * </LightBox.Provider>
+ * ```
+ */
+function LightBox(props: LightBoxProps) {
+  return (
+    <LightBoxProvider {...props}>
+      <LightBoxContent />
+    </LightBoxProvider>
+  );
+}
+
+LightBox.Provider = LightBoxProvider;
+LightBox.Content = LightBoxContent;
+LightBox.Background = LightBoxBackground;
+LightBox.Overlay = LightBoxOverlay;
+LightBox.Toolbar = LightBoxToolbar;
+LightBox.Slides = LightBoxSlides;
+LightBox.Navigation = LightBoxNavigation;
+LightBox.Caption = LightBoxCaption;
+LightBox.Thumbnails = LightBoxThumbnails;
+
+export { LightBox };

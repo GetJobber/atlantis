@@ -34,6 +34,7 @@ import { VisualTestInputTimePage } from "./VisualTestInputTimePage";
 import { VisualTestInputValidationPage } from "./VisualTestInputValidationPage";
 import { VisualTestLayoutPage } from "./VisualTestLayoutPage";
 import { VisualTestLightBoxPage } from "./VisualTestLightBoxPage";
+import { VisualTestLightBoxComposablePage } from "./VisualTestLightBoxComposablePage";
 import { VisualTestLinkPage } from "./VisualTestLinkPage";
 import { VisualTestListPage } from "./VisualTestListPage";
 import { VisualTestMarkdownPage } from "./VisualTestMarkdownPage";
@@ -250,6 +251,11 @@ export const VisualTestRouter = () => {
         path="/visual-tests/lightbox"
         exact={true}
         component={VisualTestLightBoxPage}
+      />
+      <Route
+        path="/visual-tests/lightbox-composable"
+        exact={true}
+        component={VisualTestLightBoxComposablePage}
       />
       <Route
         path="/visual-tests/link"
