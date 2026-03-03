@@ -56,7 +56,8 @@
   outline: none;
 }
 
-.compact .wrapper:focus {
+.compact .wrapper:focus,
+.compact .active {
   box-shadow: var(--shadow-focus);
   border-radius: var(--radius-base);
   outline: none;
@@ -67,7 +68,8 @@
   border-radius: var(--radius-base);
 }
 
-.expanded .wrapper:focus::after {
+.expanded .wrapper:focus::after,
+.expanded .active::after {
   content: "";
   display: block;
   position: absolute;
@@ -116,6 +118,7 @@
   transition: all var(--timing-base);
 }
 
+.active .thumbnail::after,
 .hoverable:hover .thumbnail::after,
 .hoverable:focus .thumbnail::after,
 .progress {

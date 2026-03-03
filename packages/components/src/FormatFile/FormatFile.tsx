@@ -16,6 +16,8 @@ export function FormatFile({
   displaySize = "base",
   onDelete,
   onClick,
+  active = false,
+  UNSAFE_style,
 }: FormatFileProps) {
   const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
 
@@ -25,6 +27,7 @@ export function FormatFile({
     displaySize,
     onClick,
     onDelete,
+    active,
   });
   const {
     wrapperClassNames,
@@ -38,10 +41,14 @@ export function FormatFile({
     isComplete,
     onClick,
     onDelete,
+    active,
   });
 
+  const compactSizeStyle =
+    display === "compact" ? UNSAFE_style?.thumbnailContainer : undefined;
+
   return (
-    <FormatFile.Wrapper className={wrapperClassNames}>
+    <FormatFile.Wrapper className={wrapperClassNames} style={compactSizeStyle}>
       <FormatFile.Body
         type="button"
         className={detailsClassNames}
@@ -49,8 +56,12 @@ export function FormatFile({
         tabIndex={0}
         ariaBusy={!isComplete}
         isComplete={isComplete}
+        style={compactSizeStyle}
       >
-        <FormatFile.ThumbnailContainer className={thumbnailContainerClassNames}>
+        <FormatFile.ThumbnailContainer
+          className={thumbnailContainerClassNames}
+          style={UNSAFE_style?.thumbnailContainer}
+        >
           <Thumbnail
             key={file.key}
             compact={display === "compact"}
@@ -130,11 +141,17 @@ FormatFile.ProgressContainer = function FormatFileProgressContainer({
 FormatFile.ThumbnailContainer = function FormatFileThumbnailContainer({
   children,
   className,
+  style,
 }: {
   readonly children: React.ReactNode;
   readonly className?: string;
+  readonly style?: React.CSSProperties;
 }) {
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className} style={style}>
+      {children}
+    </div>
+  );
 };
 
 FormatFile.Body = function FormatFileBody({
@@ -145,6 +162,7 @@ FormatFile.Body = function FormatFileBody({
   tabIndex,
   ariaBusy,
   isComplete,
+  style,
 }: {
   readonly children: React.ReactNode;
   readonly className?: string;
@@ -155,6 +173,7 @@ FormatFile.Body = function FormatFileBody({
   readonly tabIndex?: number;
   readonly ariaBusy?: boolean;
   readonly isComplete: boolean;
+  readonly style?: React.CSSProperties;
 }) {
   const FormatFileBodyTag = isComplete && onClick ? "button" : "div";
 
@@ -165,6 +184,7 @@ FormatFile.Body = function FormatFileBody({
       onClick={onClick}
       tabIndex={tabIndex}
       aria-busy={ariaBusy}
+      style={style}
     >
       {children}
     </FormatFileBodyTag>
@@ -193,11 +213,17 @@ FormatFile.Expanded = function FormatFileExpanded({
 FormatFile.Wrapper = function FormatFileWrapper({
   children,
   className,
+  style,
 }: {
   readonly children: React.ReactNode;
   readonly className?: string;
+  readonly style?: React.CSSProperties;
 }) {
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className} style={style}>
+      {children}
+    </div>
+  );
 };
 
 FormatFile.DeleteButton = function FormatFileDeleteButton({

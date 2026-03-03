@@ -8,7 +8,11 @@ export const useFormatFileStyles = ({
   onClick,
   onDelete,
   isComplete,
-}: Pick<FormatFileProps, "display" | "onClick" | "onDelete" | "displaySize"> & {
+  active = false,
+}: Pick<
+  FormatFileProps,
+  "display" | "onClick" | "onDelete" | "displaySize" | "active"
+> & {
   isComplete: boolean;
 }) => {
   const wrapperClassNames = classnames(styles[display], styles.formatFile, {
@@ -17,7 +21,9 @@ export const useFormatFileStyles = ({
 
   const detailsClassNames = classnames(styles.wrapper, {
     [styles[displaySize]]: display === "compact",
-    [styles.hoverable]: isHoverable({ display, isComplete, onClick, onDelete }),
+    [styles.hoverable]:
+      isHoverable({ display, isComplete, onClick, onDelete }) || active,
+    [styles.active]: active,
     [styles.clickable]: onClick,
     [styles.deleteable]: display === "compact",
   });

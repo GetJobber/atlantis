@@ -142,6 +142,98 @@ describe("when the format file is a thumbnail", () => {
   });
 });
 
+describe("when active prop is provided", () => {
+  const testFile = {
+    key: "368",
+    name: "Pink Dolphin",
+    type: "image/png",
+    src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+    size: 1024,
+    progress: 1,
+  };
+
+  it("applies active and hoverable classes when active is true", () => {
+    const { container } = render(<FormatFile file={testFile} active={true} />);
+    const bodyElement = container.querySelector('[class*="wrapper"]');
+    expect(bodyElement?.className).toContain("active");
+    expect(bodyElement?.className).toContain("hoverable");
+  });
+
+  it("does not apply the active class when active is false", () => {
+    const { container } = render(<FormatFile file={testFile} active={false} />);
+    const bodyElement = container.querySelector('[class*="wrapper"]');
+    expect(bodyElement?.className).not.toContain("active");
+  });
+
+  it("does not apply the active class by default", () => {
+    const { container } = render(<FormatFile file={testFile} />);
+    const bodyElement = container.querySelector('[class*="wrapper"]');
+    expect(bodyElement?.className).not.toContain("active");
+  });
+});
+
+describe("UNSAFE_style", () => {
+  const testFile = {
+    key: "368",
+    name: "Pink Dolphin",
+    type: "image/png",
+    src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+    size: 1024,
+    progress: 1,
+  };
+
+  const customSize = { width: 150, height: 150 };
+
+  describe("when display is compact", () => {
+    it("applies custom dimensions to the wrapper, body, and thumbnail container", () => {
+      const { container } = render(
+        <FormatFile
+          file={testFile}
+          display="compact"
+          displaySize="large"
+          UNSAFE_style={{ thumbnailContainer: customSize }}
+        />,
+      );
+      const wrapperElement = container.firstElementChild;
+      const bodyElement = container.querySelector('[class*="wrapper"]');
+      const thumbnailContainer = container.querySelector(
+        '[class*="thumbnail"]',
+      );
+
+      expect(wrapperElement).toHaveStyle({ width: "150px", height: "150px" });
+      expect(bodyElement).toHaveStyle({ width: "150px", height: "150px" });
+      expect(thumbnailContainer).toHaveStyle({
+        width: "150px",
+        height: "150px",
+      });
+    });
+  });
+
+  describe("when display is expanded", () => {
+    it("applies custom dimensions only to the thumbnail container", () => {
+      const { container } = render(
+        <FormatFile
+          file={testFile}
+          display="expanded"
+          UNSAFE_style={{ thumbnailContainer: customSize }}
+        />,
+      );
+      const wrapperElement = container.firstElementChild;
+      const bodyElement = container.querySelector('[class*="wrapper"]');
+      const thumbnailContainer = container.querySelector(
+        '[class*="thumbnail"]',
+      );
+
+      expect(wrapperElement).not.toHaveStyle({ width: "150px" });
+      expect(bodyElement).not.toHaveStyle({ width: "150px" });
+      expect(thumbnailContainer).toHaveStyle({
+        width: "150px",
+        height: "150px",
+      });
+    });
+  });
+});
+
 describe("Image Load Error Callback", () => {
   const errorCallback = jest.fn();
   const testImage = {

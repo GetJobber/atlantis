@@ -13,6 +13,7 @@ declare const styles: {
   readonly "progress": string;
   readonly "contentBlock": string;
   readonly "deleteable": string;
+  readonly "active": string;
 };
 export = styles;
 
