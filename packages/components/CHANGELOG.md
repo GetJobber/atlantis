@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.114.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.113.1...@jobber/components@6.114.0) (2026-03-03)
+
+
+### Features
+
+* **components:** Make Atlantis LightBox composable [153332] ([#2929](https://github.com/GetJobber/atlantis/issues/2929)) ([d184425](https://github.com/GetJobber/atlantis/commit/d1844252f34ad40030ae40af6d2b83b990f26b5e))
+
+
+
+
+
 ## [6.113.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.113.0...@jobber/components@6.113.1) (2026-03-03)
 
 
