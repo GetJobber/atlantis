@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.113.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.113.0...@jobber/components@6.113.1) (2026-03-03)
+
+
+### Bug Fixes
+
+* **components:** Remove doubled shadow on SideDrawer  ([#2933](https://github.com/GetJobber/atlantis/issues/2933)) ([4dda576](https://github.com/GetJobber/atlantis/commit/4dda5762cefdfbd13e90d84ea1243c0c5d3c04ca))
+
+
+
+
+
 # [6.113.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.112.2...@jobber/components@6.113.0) (2026-03-02)
 
 
