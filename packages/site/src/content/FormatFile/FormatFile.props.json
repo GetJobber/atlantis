@@ -49,6 +49,21 @@
           "name": "\"base\" | \"large\""
         }
       },
+      "active": {
+        "defaultValue": {
+          "value": false
+        },
+        "description": "Whether the format file is active. This will apply the focus styles to the thumbnail.",
+        "name": "active",
+        "parent": {
+          "fileName": "packages/components/src/FormatFile/types.ts",
+          "name": "FormatFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "boolean"
+        }
+      },
       "onClick": {
         "defaultValue": null,
         "description": "Function to execute when format file is clicked",
@@ -73,6 +88,19 @@
         "required": false,
         "type": {
           "name": "() => void"
+        }
+      },
+      "UNSAFE_style": {
+        "defaultValue": null,
+        "description": "**Use at your own risk:** Custom styles for specific elements. This should only be used as a\n**last resort**. Using this may result in unexpected side effects.\nMore information in the [Customizing components Guide](https://atlantis.getjobber.com/guides/customizing-components).",
+        "name": "UNSAFE_style",
+        "parent": {
+          "fileName": "packages/components/src/FormatFile/types.ts",
+          "name": "FormatFileProps"
+        },
+        "required": false,
+        "type": {
+          "name": "{ thumbnailContainer?: CSSProperties; }"
         }
       }
     }
@@ -146,6 +174,15 @@
         "type": {
           "name": "string"
         }
+      },
+      "style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "style",
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
       }
     }
   },
@@ -209,6 +246,15 @@
         "type": {
           "name": "boolean"
         }
+      },
+      "style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "style",
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
+        }
       }
     }
   },
@@ -262,6 +308,15 @@
         "required": false,
         "type": {
           "name": "string"
+        }
+      },
+      "style": {
+        "defaultValue": null,
+        "description": "",
+        "name": "style",
+        "required": false,
+        "type": {
+          "name": "CSSProperties"
         }
       }
     }
