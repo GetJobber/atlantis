@@ -6,6 +6,7 @@ declare const styles: {
   readonly "large": string;
   readonly "base": string;
   readonly "thumbnail": string;
+  readonly "active": string;
   readonly "deleteButton": string;
   readonly "customDeleteButton": string;
   readonly "clickable": string;
@@ -13,7 +14,6 @@ declare const styles: {
   readonly "progress": string;
   readonly "contentBlock": string;
   readonly "deleteable": string;
-  readonly "active": string;
 };
 export = styles;
 
