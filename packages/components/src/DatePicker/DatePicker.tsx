@@ -247,6 +247,13 @@ export function DatePicker({
         popperPlacement="bottom-start"
         {...(renderInsidePortal && { portalId: uniquePortalId })}
       />
+      {/*
+       * Some consumers rely on `.react-datepicker-popper` to detect clicks
+       * inside the portalled calendar when doing outside-click handling via
+       * DOM containment (ref.contains(event.target)). If this class name
+       * changes, or this portal implementation changes, those consumers will
+       * break. Verify consumer behaviour before making changes here.
+       */}
       {renderInsidePortal && <DatePickerPortal portalId={uniquePortalId} />}
     </div>
   );
