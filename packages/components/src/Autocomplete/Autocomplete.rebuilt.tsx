@@ -101,9 +101,6 @@ function AutocompleteRebuiltInternal<
     duration: { open: tokens["timing-base"], close: tokens["timing-base"] },
   });
 
-  const [menuWidth, setMenuWidth] = React.useState<number | undefined>(
-    undefined,
-  );
   const [positionRefEl, setPositionRefEl] = React.useState<Element | null>(
     null,
   );
@@ -197,7 +194,6 @@ function AutocompleteRebuiltInternal<
       );
 
       if (multiContainer) {
-        setMenuWidth(multiContainer.clientWidth);
         setPositionRefEl(multiContainer);
       }
     },
@@ -252,7 +248,6 @@ function AutocompleteRebuiltInternal<
       className={menuClassName}
       floatingStyles={floatingStyles}
       transitionStyles={transitionStyles}
-      menuWidth={menuWidth}
       menuStyle={props.UNSAFE_styles?.menu}
       renderable={renderable}
       persistentsHeaders={persistentsHeaders}

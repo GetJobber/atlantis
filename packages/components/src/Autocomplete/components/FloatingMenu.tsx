@@ -27,7 +27,6 @@ interface FloatingMenuProps<Value extends OptionLike> {
   readonly className: string;
   readonly floatingStyles: React.CSSProperties;
   readonly transitionStyles: React.CSSProperties;
-  readonly menuWidth?: number;
   readonly menuStyle?: React.CSSProperties;
 
   readonly renderable: Array<RenderItem<Value>>;
@@ -89,7 +88,6 @@ export function FloatingMenu<Value extends OptionLike>({
   className,
   floatingStyles,
   transitionStyles,
-  menuWidth,
   menuStyle,
   renderable,
   persistentsHeaders,
@@ -139,7 +137,6 @@ export function FloatingMenu<Value extends OptionLike>({
               ...floatingStyles,
               ...transitionStyles,
               ...menuStyle,
-              ...(menuWidth ? { width: menuWidth, maxWidth: menuWidth } : {}),
             },
           })}
         >
