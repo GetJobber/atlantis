@@ -101,9 +101,6 @@ function AutocompleteRebuiltInternal<
     duration: { open: tokens["timing-base"], close: tokens["timing-base"] },
   });
 
-  const [menuWidth, setMenuWidth] = React.useState<number | undefined>(
-    undefined,
-  );
   const [positionRefEl, setPositionRefEl] = React.useState<Element | null>(
     null,
   );
@@ -197,7 +194,6 @@ function AutocompleteRebuiltInternal<
       );
 
       if (multiContainer) {
-        setMenuWidth(multiContainer.clientWidth);
         setPositionRefEl(multiContainer);
       }
     },
@@ -209,14 +205,14 @@ function AutocompleteRebuiltInternal<
       setReferenceElement(node);
 
       if (!props.multiple) {
-        // Workaround to get the width of the visual InputText element, which is not the same as
-        // the literal input reference element.
+        // Workaround to get the visual InputText element, which is not the same
+        // as the literal input reference element when props like suffix/prefix
+        // are present. Used to set the position reference for the floating menu.
         const visualInputTextElement = node?.closest(
           "[data-testid='Form-Field-Wrapper']",
         );
 
         if (visualInputTextElement) {
-          setMenuWidth(visualInputTextElement.clientWidth);
           setPositionRefEl(visualInputTextElement);
         }
       }
@@ -252,7 +248,6 @@ function AutocompleteRebuiltInternal<
       className={menuClassName}
       floatingStyles={floatingStyles}
       transitionStyles={transitionStyles}
-      menuWidth={menuWidth}
       menuStyle={props.UNSAFE_styles?.menu}
       renderable={renderable}
       persistentsHeaders={persistentsHeaders}

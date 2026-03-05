@@ -50,6 +50,18 @@ export interface UseAutocompleteListNavProps {
   outsidePressExcludeSelector?: string;
 }
 
+function useStableSetReference(
+  refs: UseFloatingReturn["refs"],
+): (el: HTMLElement | null) => void {
+  const latestRefs = useRef(refs);
+  latestRefs.current = refs;
+
+  return useCallback(
+    (el: HTMLElement | null) => latestRefs.current.setReference(el),
+    [],
+  );
+}
+
 export function useAutocompleteListNav({
   navigableCount,
   shouldResetActiveIndexOnClose,
@@ -84,12 +96,13 @@ export function useAutocompleteListNav({
       offset(MENU_OFFSET),
       flip({ fallbackPlacements: ["top"] }),
       size({
-        apply({ availableHeight, elements }) {
+        apply({ availableHeight, rects, elements }) {
           const maxHeight = calculateMaxHeight(availableHeight, {
             maxHeight: AUTOCOMPLETE_MAX_HEIGHT,
           });
           Object.assign(elements.floating.style, {
             maxHeight: `${maxHeight}px`,
+            width: `${rects.reference.width}px`,
           });
         },
       }),
@@ -154,10 +167,7 @@ export function useAutocompleteListNav({
     });
   }, [navigableCount, setActiveIndex, listRef]);
 
-  const setReferenceElement = useCallback(
-    (el: HTMLElement | null) => refs.setReference(el),
-    [refs],
-  );
+  const setReferenceElement = useStableSetReference(refs);
 
   return {
     refs,
