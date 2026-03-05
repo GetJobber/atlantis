@@ -208,7 +208,7 @@ export function DatePicker({
       ref={ref}
       data-elevation={"elevated"}
       onKeyDown={event => {
-        // Stop Escape from bubbling to parent floating elements (e.g. Modal).
+        // Stop Escape from bubbling to parent floating elements (e.g. Modal)
         if (event.key === "Escape" && open) {
           event.stopPropagation();
         }
