@@ -17,7 +17,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-glimmer--docs`,
+        `?path=/story/components-status-and-feedback-glimmer-web--basic`,
       ),
     },
   ],

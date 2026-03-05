@@ -22,7 +22,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputemail--docs`,
+        `?path=/story/components-forms-and-inputs-inputemail-web--basic`,
       ),
     },
   ],

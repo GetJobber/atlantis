@@ -5,14 +5,9 @@ set -e # Exit on error
 #
 # The final output looks like this:
 # /                 -> the docs site is the root
-# /storybook        -> storybook v7 (going away soon)
+# /storybook        -> redirects to /storybook/web
 # /storybook/web    -> storybook v9 web (components)
 # /storybook/mobile -> storybook v9 mobile (components-native)
-
-# Install storybook v7 dependencies and build it
-cd packages/storybook-v7
-npm run storybook:build
-cd -
 
 # Build storybook v9 instances
 npm run --prefix packages/components storybook:build
@@ -25,7 +20,8 @@ npm run generate:sitemap
 npm run --prefix packages/site build
 
 # Merge all outputs into the final dist directory
-mv packages/storybook-v7/storybook-static packages/site/dist/storybook
+mkdir -p packages/site/dist/storybook
 mv packages/components/storybook-static packages/site/dist/storybook/web
 mv packages/components-native/storybook-static packages/site/dist/storybook/mobile
+
 mv packages/site/dist storybook-static

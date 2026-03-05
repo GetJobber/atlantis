@@ -4,7 +4,6 @@ import styles from "./Glimmer.module.css";
 import sizes from "./style/Sizes.module.css";
 import shapes from "./style/Shape.module.css";
 import timings from "./style/Timing.module.css";
-/* eslint-enable import/no-internal-modules */
 import { Content } from "../Content";
 
 export type Sizes = keyof typeof sizes;

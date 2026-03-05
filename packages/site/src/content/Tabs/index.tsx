@@ -31,7 +31,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-navigation-tabs--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-navigation-tabs-web--basic`,
+      ),
     },
   ],
   notes: () => <Notes />,

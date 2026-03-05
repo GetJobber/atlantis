@@ -3,7 +3,7 @@ import React from "react";
 import classnames from "classnames";
 import styles from "./InputGroup.module.css";
 
-interface InputGroupProps {
+export interface InputGroupProps {
   readonly children: ReactElement | ReactElement[];
   /**
    * Determine the direction the fields are laid out in.
@@ -16,7 +16,7 @@ export function InputGroup({
   children,
   flowDirection = "vertical",
 }: InputGroupProps) {
-  if (isInvalidGroupNesting(children)) return <></>;
+  if (isInvalidGroupNesting(children)) return null;
 
   const className = classnames(styles.inputGroup, styles[flowDirection]);
 

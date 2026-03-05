@@ -29,7 +29,7 @@ export default {
     {
       label: "Disclosure Storybook",
       url: getStorybookUrl(
-        "?path=/docs/components-layouts-and-structure-disclosure--docs",
+        "?path=/story/components-layouts-and-structure-disclosure-web--basic",
       ),
     },
   ],

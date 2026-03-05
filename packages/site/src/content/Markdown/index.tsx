@@ -19,7 +19,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-markdown--docs`,
+        `?path=/story/components-text-and-typography-markdown-web--basic`,
       ),
     },
   ],

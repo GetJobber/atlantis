@@ -70,12 +70,12 @@ Once that's done, it should tell you where the files got added.
 ✔  +! 5 files added
  -> /packages/components/src/AmountCounter/index.ts
  -> /packages/components/src/AmountCounter/AmountCounter.css
- -> /packages/components/src/AmountCounter/AmountCounter.mdx
+ -> /packages/components/src/AmountCounter/AmountCounter.stories.tsx
  -> /packages/components/src/AmountCounter/AmountCounter.test.tsx
  -> /packages/components/src/AmountCounter/AmountCounter.tsx
 ✔  +! 2 files added
- -> /docs/components/AmountCounter/Web.stories.tsx
- -> /docs/components/AmountCounter/AmountCounter.stories.mdx
+ -> /packages/components-native/src/AmountCounter/AmountCounter.stories.tsx
+ -> /packages/components/src/AmountCounter/AmountCounter.stories.tsx
 ```
 
 ### What are thooooose?!
@@ -87,7 +87,7 @@ Right, I promised to explain them.
 | `index.ts`                  | This tells react what to render. Honestly, You'd rarely have to touch this.                                                                                                                                 |
 | `AmountCounter.tsx`         | This file is where you make the magic happen.                                                                                                                                                               |
 | `AmountCounter.stories.mdx` | This creates the page that you see under Components/AmountCounter. This is where you explain what the magic is doing.                                                                                       |
-| `Web.stories.tsx`           | This file is where you will add the examples of your component. You can add as many examples as you want with different props implementations.                                                              |
+| `AmountCounter.stories.tsx` | This file is where you will add the examples of your component. You can add as many examples as you want with different props implementations.                                                              |
 | `AmountCounter.test.tsx`    | Self-explanatory.                                                                                                                                                                                           |
 | `AmountCounter.css`         | Self-explanatory.                                                                                                                                                                                           |
 | `AmountCounter.css.d.ts`    | This wasn't on the original list but it's very important. This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. More on it later. |
@@ -106,7 +106,7 @@ for now as components should be useable on its own anywhere and a card would
 restrict the overall re-usability of this component. _#componentThinking_
 
 Alternatively, you can also create a
-[proposal doc](https://github.com/GetJobber/atlantis/blob/master/docs/proposals/TEMPLATE.md)
+[proposal docs directory](https://github.com/GetJobber/atlantis/tree/master/packages/site/src/docs/proposals)
 to help better understand and plan out what you're building. If you just wanna
 see how to build a react component first, then off we go!
 

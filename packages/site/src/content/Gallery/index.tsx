@@ -98,7 +98,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-gallery--docs`,
+        `?path=/story/components-images-and-icons-gallery-web--basic`,
       ),
     },
   ],

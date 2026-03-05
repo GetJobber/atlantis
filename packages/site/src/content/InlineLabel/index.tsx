@@ -14,7 +14,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-inlinelabel--docs`,
+        `?path=/story/components-status-and-feedback-inlinelabel-web--basic`,
       ),
     },
   ],

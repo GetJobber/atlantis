@@ -42,7 +42,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-datalist--docs`,
+        `?path=/story/components-lists-and-tables-datalist-web--basic`,
       ),
     },
   ],

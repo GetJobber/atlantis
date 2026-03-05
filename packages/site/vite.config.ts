@@ -70,20 +70,9 @@ export default defineConfig({
         __dirname,
         "./src/components/StorybookOverrides",
       ),
-      "@storybook/blocks": path.resolve(
-        __dirname,
-        "../storybook-v7/node_modules/@storybook/blocks",
-      ),
-      "@storybook/components": path.resolve(
-        __dirname,
-        "../storybook-v7/node_modules/@storybook/components",
-      ),
-      mdxUtils: path.resolve(
-        __dirname,
-        "../storybook-v7/.storybook/components",
-      ),
+      mdxUtils: path.resolve(__dirname, "./src/components/mdxUtils"),
       "@jobber/docx": path.resolve(__dirname, "../docx/src"),
-      "@atlantis/docs": path.resolve(__dirname, "../../docs"),
+      "@atlantis/docs": path.resolve(__dirname, "./src/docs"),
       "@atlantis/packages": path.resolve(__dirname, "../../packages"),
     },
   },

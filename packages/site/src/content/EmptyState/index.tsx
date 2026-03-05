@@ -30,7 +30,8 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-emptystate--docs`,
+        `?path=/story/components-status-and-feedback-emptystate-mobile--basic`,
+        "mobile",
       ),
     },
   ],

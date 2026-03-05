@@ -30,7 +30,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-overlays-confirmationmodal--docs`,
+        `?path=/story/components-overlays-confirmationmodal-web--basic`,
       ),
     },
   ],

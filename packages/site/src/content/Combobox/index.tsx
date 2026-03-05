@@ -62,7 +62,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-selections-combobox--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-selections-combobox-web--single-select`,
+      ),
     },
   ],
   notes: () => <Notes />,

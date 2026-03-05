@@ -13,7 +13,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-utilities-formatdate--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-utilities-formatdate-web--basic`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

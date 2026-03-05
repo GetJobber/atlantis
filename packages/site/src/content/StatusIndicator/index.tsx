@@ -22,7 +22,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-statusindicator--docs`,
+        `?path=/story/components-status-and-feedback-statusindicator-web--basic`,
       ),
     },
   ],

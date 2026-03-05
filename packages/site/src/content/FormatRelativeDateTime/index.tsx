@@ -17,7 +17,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-utilities-formatrelativedatetime--docs`,
+        `?path=/story/components-utilities-formatrelativedatetime-web--basic`,
       ),
     },
   ],

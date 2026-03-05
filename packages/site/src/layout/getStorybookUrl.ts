@@ -21,11 +21,11 @@ export const getStorybookUrl = (path: string, type?: "web" | "mobile") => {
       // Storybook v9 (components-native)
       hostname = "http://localhost:6008/";
     } else {
-      // Storybook v7
-      hostname = "http://localhost:6005/";
+      // Default to web Storybook in local development.
+      hostname = "http://localhost:6007/";
     }
   } else if (!hostname) {
-    const prefix = (type && pathPrefixes[type]) || "";
+    const prefix = (type && pathPrefixes[type]) || pathPrefixes.web;
     hostname = `https://${window.location.hostname}/${prefix}/`;
   }
 

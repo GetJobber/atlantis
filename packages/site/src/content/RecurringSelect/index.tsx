@@ -21,7 +21,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-recurringselect--docs`,
+        `?path=/story/components-deprecated-recurringselect-web--basic`,
       ),
     },
   ],

@@ -34,7 +34,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-featureswitch--docs`,
+        `?path=/story/components-selections-featureswitch-web--basic`,
       ),
     },
   ],

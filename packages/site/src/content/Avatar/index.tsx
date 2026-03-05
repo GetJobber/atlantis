@@ -21,7 +21,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-avatar--docs`,
+        `?path=/story/components-images-and-icons-avatar-web--basic`,
       ),
     },
   ],

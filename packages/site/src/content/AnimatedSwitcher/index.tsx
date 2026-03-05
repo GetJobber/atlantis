@@ -35,7 +35,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        "?path=/docs/components-utilities-animatedswitcher--docs",
+        "?path=/story/components-utilities-animatedswitcher-web--basic",
       ),
     },
   ],

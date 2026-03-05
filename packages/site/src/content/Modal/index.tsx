@@ -30,7 +30,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-overlays-modal--docs`),
+      url: getStorybookUrl(`?path=/story/components-overlays-modal-web--basic`),
     },
   ],
   notes: () => <Notes />,

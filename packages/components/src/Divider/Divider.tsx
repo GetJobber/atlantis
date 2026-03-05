@@ -4,7 +4,7 @@ import styles from "./Divider.module.css";
 import sizes from "./DividerSizes.module.css";
 import directions from "./DividerDirections.module.css";
 
-interface DividerProps {
+export interface DividerProps {
   /**
    * The weight of the divider.
    *

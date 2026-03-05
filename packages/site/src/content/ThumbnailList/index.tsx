@@ -60,7 +60,8 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-thumbnaillist--docs`,
+        `?path=/story/components-images-and-icons-thumbnaillist-mobile--basic`,
+        "mobile",
       ),
     },
   ],

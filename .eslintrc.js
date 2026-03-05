@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-internal-modules
 require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 
 const packageAliases = [
@@ -52,21 +51,6 @@ module.exports = {
             name: "lodash",
             message: "Import [module] from lodash/[module] instead.",
           },
-        ],
-      },
-    ],
-    "import/no-internal-modules": [
-      "error",
-      {
-        allow: [
-          "@jobber/components/*",
-          "@jobber/components-native",
-          "@jobber/hooks/*",
-          "@jobber/design/*",
-          "lodash/*",
-          "utils/*",
-          "storybook/*",
-          "@storybook/*",
         ],
       },
     ],

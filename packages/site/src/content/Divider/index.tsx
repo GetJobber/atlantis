@@ -29,7 +29,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-divider--docs`,
+        `?path=/story/components-layouts-and-structure-divider-web--horizontal`,
       ),
     },
   ],

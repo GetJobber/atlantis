@@ -49,7 +49,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-lists-and-tables-table--docs`,
+        `?path=/story/components-lists-and-tables-table-web--basic`,
       ),
     },
   ],

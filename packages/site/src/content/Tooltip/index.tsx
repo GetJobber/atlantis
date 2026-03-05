@@ -21,7 +21,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-overlays-tooltip--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-overlays-tooltip-web--basic`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

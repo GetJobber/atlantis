@@ -40,7 +40,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputvalidation--docs`,
+        `?path=/story/components-forms-and-inputs-inputvalidation-web--basic`,
       ),
     },
   ],

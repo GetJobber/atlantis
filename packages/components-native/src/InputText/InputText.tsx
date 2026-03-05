@@ -238,7 +238,7 @@ export interface InputTextProps
   readonly styleOverride?: InputTextStyleOverride;
 }
 
-interface InputTextStyleOverride extends InputFieldStyleOverride {
+export interface InputTextStyleOverride extends InputFieldStyleOverride {
   inputText?: StyleProp<TextStyle>;
 }
 

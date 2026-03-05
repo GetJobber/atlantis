@@ -27,7 +27,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-datepicker--docs`,
+        `?path=/story/components-selections-datepicker-web--basic`,
       ),
     },
   ],

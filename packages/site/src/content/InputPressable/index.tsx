@@ -21,7 +21,8 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputpressable--docs`,
+        `?path=/story/components-forms-and-inputs-inputpressable-mobile--basic`,
+        "mobile",
       ),
     },
   ],

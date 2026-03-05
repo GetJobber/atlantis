@@ -15,7 +15,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-text-and-typography-link--docs`,
+        `?path=/story/components-text-and-typography-link-web--basic`,
       ),
     },
   ],

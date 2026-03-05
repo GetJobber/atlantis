@@ -41,7 +41,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        "?path=/docs/components-utilities-animatedpresence--docs",
+        "?path=/story/components-utilities-animatedpresence-web--basic",
       ),
     },
   ],

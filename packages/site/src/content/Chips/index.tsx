@@ -29,7 +29,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-selections-chips--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-selections-chips-web--basic`,
+      ),
     },
   ],
   notes: () => <Notes />,

@@ -20,7 +20,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputtime--docs`,
+        `?path=/story/components-forms-and-inputs-inputtime-web-v2--basic`,
       ),
     },
   ],

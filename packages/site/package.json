@@ -36,6 +36,7 @@
     "react-router-dom": "5.3.4"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^9",
     "@babel/plugin-transform-typescript": "^7.25.9",
     "@babel/preset-react": "^7.26.3",
     "@mdx-js/react": "^3.0.1",

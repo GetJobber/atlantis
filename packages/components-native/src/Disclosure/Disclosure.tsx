@@ -16,7 +16,7 @@ import { useAtlantisTheme } from "../AtlantisThemeContext";
 const ReanimatedView = Reanimated.View;
 const ReanimatedScrollView = Reanimated.ScrollView;
 
-interface DisclosureProps {
+export interface DisclosureProps {
   /**
    * Specifies the main content of the disclosure component.
    * It can be any React Node - simple text, JSX, or a complex React component.

@@ -14,7 +14,8 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-activityindicator--docs`,
+        `?path=/story/components-actions-actionlabel-mobile--basic`,
+        "mobile",
       ),
     },
   ],

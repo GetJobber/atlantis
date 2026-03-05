@@ -114,10 +114,7 @@ export const NavMenu = ({ mainContentRef }: NavMenuProps) => {
           })}
         </MenuList>
       </div>
-      <a
-        href={getStorybookUrl("?path=/docs/introduction--docs")}
-        className={styles.navFooterLink}
-      >
+      <a href={getStorybookUrl("")} className={styles.navFooterLink}>
         View in Storybook
       </a>
     </nav>

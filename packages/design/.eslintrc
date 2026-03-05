@@ -1,6 +1,5 @@
 {
     "rules": {
-        "import/no-internal-modules": "off",
         "eslint-plugin-import/no-default-export": "off",
         "import/no-default-export": "off"
     },

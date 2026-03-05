@@ -19,7 +19,10 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-actions-iconbutton--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-actions-iconbutton-mobile--basic`,
+        "mobile",
+      ),
     },
   ],
 } as const satisfies ContentExport;

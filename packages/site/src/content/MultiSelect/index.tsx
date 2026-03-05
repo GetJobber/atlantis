@@ -29,7 +29,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-multiselect--docs`,
+        `?path=/story/components-selections-multiselect-web--basic`,
       ),
     },
   ],

@@ -4,10 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "@atlantis/docs": [
-        "../../docs"
+        "./src/docs"
       ],
       "@atlantis/docs/*": [
-        "../../docs/*"
+        "./src/docs/*"
       ],
       "react": [
         "./node_modules/@types/react"

@@ -14,7 +14,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-utilities-formatemail--docs`,
+        `?path=/story/components-utilities-formatemail-web--basic`,
       ),
     },
   ],

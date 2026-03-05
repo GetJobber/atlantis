@@ -34,7 +34,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-overlays-popover--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-overlays-popover-web--basic`,
+      ),
     },
   ],
   notes: () => <Notes />,

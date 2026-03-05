@@ -1,4 +1,4 @@
-import { List } from "@jobber/components/List";
+import { List, ListItemProps } from "@jobber/components/List";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
 import { InlineLabel } from "@jobber/components/InlineLabel";
@@ -8,8 +8,7 @@ import {
   ListQueryType,
   apolloClient,
   getLoadingState,
-  // @ts-expect-error This does exist, though we don't export it publicly for consumers.
-} from "@jobber/hooks/useCollectionQuery/mdxUtils";
+} from "./mdxUtils";
 
 export function UseCollectionQuery() {
   const {
@@ -31,7 +30,7 @@ export function UseCollectionQuery() {
       client: apolloClient,
     },
     getCollectionByPath(items) {
-      return items.allPlanets;
+      return items?.allPlanets;
     },
   });
   const { loadingStatus, loading } = getLoadingState(
@@ -39,7 +38,7 @@ export function UseCollectionQuery() {
     loadingRefresh,
     loadingNextPage,
   );
-  let items = [];
+  let items: ListItemProps[] = [];
 
   if (data) {
     items = data.allPlanets.edges.map(

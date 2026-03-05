@@ -22,7 +22,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl("?path=/docs/components-selections-checkbox--docs"),
+      url: getStorybookUrl(
+        "?path=/story/components-selections-checkbox-web--basic",
+      ),
     },
   ],
   webSupportedLinks: [

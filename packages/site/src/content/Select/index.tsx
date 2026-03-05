@@ -27,7 +27,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-selections-select--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-selections-select-web--basic`,
+      ),
     },
   ],
   webSupportedLinks: [

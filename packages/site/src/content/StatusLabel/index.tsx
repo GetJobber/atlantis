@@ -17,7 +17,7 @@ export default {
     {
       label: "StatusLabel Storybook",
       url: getStorybookUrl(
-        "?path=/docs/components-status-and-feedback-statuslabel--docs",
+        "?path=/story/components-status-and-feedback-statuslabel-web--basic",
       ),
     },
   ],

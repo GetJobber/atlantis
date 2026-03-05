@@ -17,7 +17,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputphonenumber--docs`,
+        `?path=/story/components-forms-and-inputs-inputphonenumber-web--basic`,
       ),
     },
   ],

@@ -39,7 +39,8 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-actionitemgroup--docs`,
+        `?path=/story/components-layouts-and-structure-actionitemgroup-mobile--basic`,
+        "mobile",
       ),
     },
   ],

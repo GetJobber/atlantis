@@ -28,7 +28,7 @@ const transitions = {
 
 export type AnimatedPresenceTransitions = keyof typeof transitions;
 
-interface AnimatedPresenceProps extends Required<PropsWithChildren> {
+export interface AnimatedPresenceProps extends Required<PropsWithChildren> {
   /**
    * The type of transition you can use.
    */

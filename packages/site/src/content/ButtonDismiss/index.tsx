@@ -16,7 +16,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-private-buttondismiss--docs`,
+        `?path=/story/components-private-buttondismiss-web--basic`,
       ),
     },
   ],

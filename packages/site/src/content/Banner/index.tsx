@@ -30,7 +30,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-status-and-feedback-banner--docs`,
+        `?path=/story/components-status-and-feedback-banner-web--basic`,
       ),
     },
   ],

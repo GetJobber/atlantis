@@ -39,7 +39,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-layouts-and-structure-flex--docs`,
+        `?path=/story/components-layouts-and-structure-flex-web--basic`,
       ),
     },
   ],

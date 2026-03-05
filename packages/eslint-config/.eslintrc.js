@@ -35,7 +35,6 @@ module.exports = {
     "import/export": "error",
     "import/no-duplicates": "error",
     "import/no-extraneous-dependencies": "error",
-    "import/no-internal-modules": "error",
     "import/no-named-default": "error",
     "import/no-named-as-default": "error",
     "import/no-cycle": ["error", { maxDepth: Infinity }],

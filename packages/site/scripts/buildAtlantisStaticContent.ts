@@ -49,8 +49,7 @@ const mobileComponentsDir = path.join(
   "components-native",
   "src",
 );
-const docsDir = path.join(REPO_ROOT, "docs");
-const componentDocsDir = path.join(REPO_ROOT, "docs", "components");
+const docsDir = path.join(SITE_ROOT, "src", "docs");
 const designDir = path.join(REPO_ROOT, "packages", "design");
 const siteContentDir = path.join(SITE_ROOT, "src", "content");
 
@@ -93,17 +92,13 @@ writeFileSync(
   JSON.stringify(componentMobile),
 );
 
-const webDocs = extractFiles(
-  componentDocsDir,
-  "webDocs",
-  "/**/Web.stories.tsx",
-);
+const webDocs = extractFiles(componentsDir, "webDocs", "/**/*.stories.tsx");
 writeFileSync(path.join(OUTPUT_DIR, "webDocs.json"), JSON.stringify(webDocs));
 
 const mobileDocs = extractFiles(
-  componentDocsDir,
+  mobileComponentsDir,
   "mobileDocs",
-  "/**/Mobile.stories.tsx",
+  "/**/*.stories.tsx",
 );
 writeFileSync(
   path.join(OUTPUT_DIR, "mobileDocs.json"),

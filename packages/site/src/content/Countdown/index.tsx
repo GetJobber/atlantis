@@ -13,7 +13,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-utilities-countdown--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-utilities-countdown-web--basic`,
+      ),
     },
   ],
 } as const satisfies ContentExport;

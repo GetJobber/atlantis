@@ -18,7 +18,8 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-private-inputfieldwrapper--docs`,
+        `?path=/story/components-private-inputfieldwrapper-mobile--basic`,
+        "mobile",
       ),
     },
   ],

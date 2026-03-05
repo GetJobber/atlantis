@@ -19,7 +19,9 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl(`?path=/docs/components-private-formfield--docs`),
+      url: getStorybookUrl(
+        `?path=/story/components-private-formfield-web--basic`,
+      ),
     },
   ],
   notes: () => <Notes />,

@@ -42,7 +42,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-images-and-icons-lightbox--docs`,
+        `?path=/story/components-images-and-icons-lightbox-web--basic`,
       ),
     },
   ],

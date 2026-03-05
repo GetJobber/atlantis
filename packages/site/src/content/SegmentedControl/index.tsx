@@ -38,7 +38,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-selections-segmentedcontrol--docs`,
+        `?path=/story/components-selections-segmentedcontrol-web--uncontrolled`,
       ),
     },
   ],

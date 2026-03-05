@@ -24,7 +24,7 @@ export default {
   links: [
     {
       label: "Storybook",
-      url: getStorybookUrl("?path=/docs/components-selections-chip--docs"),
+      url: getStorybookUrl("?path=/story/components-selections-chip-web--base"),
     },
   ],
   notes: () => <Notes />,

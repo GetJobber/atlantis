@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react-native-web-vite";
 import { {{name}} } from "@jobber/components-native";
 
 export default {
@@ -10,9 +10,9 @@ export default {
     previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
   },
-} as ComponentMeta<typeof {{name}}>;
+} satisfies Meta<typeof {{name}}>;
 
-const BasicTemplate: ComponentStory<typeof {{name}}> = args => (
+const BasicTemplate: StoryFn<typeof {{name}}> = args => (
   <{{name}} {...args} />
 );
 

@@ -26,7 +26,7 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputdate--docs`,
+        `?path=/story/components-forms-and-inputs-inputdate-web--basic`,
       ),
     },
   ],

@@ -22,7 +22,8 @@ export default {
     {
       label: "Storybook",
       url: getStorybookUrl(
-        `?path=/docs/components-forms-and-inputs-inputsearch--docs`,
+        `?path=/story/components-forms-and-inputs-inputsearch-mobile--basic`,
+        "mobile",
       ),
     },
   ],
