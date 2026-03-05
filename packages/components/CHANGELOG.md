@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.114.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.2...@jobber/components@6.114.3) (2026-03-05)
+
+
+### Bug Fixes
+
+* **components:** Fix autocomplete crashing on resize larger [JOB-151844] ([#2924](https://github.com/GetJobber/atlantis/issues/2924)) ([4cce232](https://github.com/GetJobber/atlantis/commit/4cce2324c37b69c3276f4dd046f4b49f1cd0c2c8))
+
+
+
+
+
 ## [6.114.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@6.114.1...@jobber/components@6.114.2) (2026-03-05)
 
 
