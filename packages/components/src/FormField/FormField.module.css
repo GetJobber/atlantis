@@ -71,7 +71,6 @@
 .horizontalWrapper {
   display: flex;
   height: var(--field--height);
-  align-items: center;
   flex: 1;
 }
 
